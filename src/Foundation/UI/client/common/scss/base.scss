@@ -1,0 +1,514 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+// base.scss - Usage: global shared styles. Extend for specific components in component css
+
+body {
+  background-color: #191919;
+  color: #999;
+}
+
+main{
+  background: #fff;
+  &.landing{
+    background: #191919;
+    & .container {
+      padding: 0;
+    }
+  }
+}
+
+aside{
+  margin-bottom: 40px;
+}
+
+// to prevent angular html template from being displayed uncompiled
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+//-Some blocks need a white background color, but for now for purposes of displaying the proper background on each
+//-type of form element we have, just going to add this class to the encapsulating tag. form elements will need
+//-some parent class to know whether to display a dark or light version (ex/ buttons), so will use this
+//-class for now...  forms.scss will further define the differences in color based on the presence of this class
+.bg-white {
+  background-color:#fff;
+  color:#5e5e5e;
+  @include clearfix;
+}
+
+
+
+table {
+  width: 100%;
+  color: $font-color;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+
+  // styles for visibility and coloring strips for tables on 320-479px breakpoint
+  &.table-sm {
+    @media (min-width: $screen-xs-min) {
+      display: none;
+      visibility: hidden;
+    }
+    &.table-striped { // works for tables, without thead (first column is likely a thead)
+      tr:nth-child(odd) {
+        background: #f1f1f1;
+      }
+      tr:nth-child(even) {
+        background: #fff;
+      }
+      tbody td:first-child {
+        color: #666;
+      }
+      tbody td:last-child {
+        font-weight: 900;
+        color: #999;
+      }
+    }
+
+  }
+  &.table-lg { // styles for visibility for tables on 480px+ breakpoint
+    display: none;
+    visibility: hidden;
+    @media (min-width: $screen-xs-min) {
+      display: table;
+      visibility: visible;
+    }
+  }
+  &.table-striped { // works for tables with thead
+    thead tr {
+      background: #f1f1f1;
+    }
+    tbody {
+      tr:nth-child(odd) {
+        background: #fff;
+      }
+      tr:nth-child(even) {
+        background: #f1f1f1;
+      }
+    }
+  }
+
+  thead {
+    font-size: 16px;
+    font-family: $sans-serif;
+    font-weight: 900;
+    color: #999999;
+  }
+  td {
+    padding: 0 17px;
+    line-height: 34px;
+    text-align: center;
+    border-right: 1px solid #cfcece;
+
+    &:first-child {
+      text-align: left;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+a {
+  cursor: pointer;
+}
+
+//note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
+.billing-shipping-info {
+  section {
+    border: 1px solid #cccccc;
+    margin-bottom: 20px;
+    color: #5e5e5e;
+    position: relative;
+    &.no-border {
+      border:none;
+    }
+    .button-spacing-wrap {
+      padding: 20px 20px 0;
+    }
+    p {
+      font-size: 18px;
+      margin: 0;
+      padding: 20px;
+    }
+    fieldset {
+      border-bottom: 1px solid #cccccc;
+      padding-left: 20px;
+      padding-right: 20px;
+      &:last-child, &.no-border {
+        border-bottom: none;
+      }
+    }
+    h1 {
+      background-color: #fafafa;
+      border: 1px solid #cccccc;
+      font-size: 18px;
+      line-height: 36px;
+      margin: -1px;
+      padding: 0 20px;
+      letter-spacing: 1px;
+    }
+    h1 + a.edit {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 900;
+      font-family: $sans-serif, sans-serif;
+      text-transform: uppercase;
+    }
+    ul.options {
+      li {
+        margin-bottom: 10px; // for better UX on mobile
+        @media (min-width: $screen-sm-min) {
+          display: inline-block;
+          margin-bottom: 0;
+          margin-right: 20px;
+        }
+      }
+    }
+    .sub-text {
+      position: relative;
+      margin-bottom: 8px; //sub text will live in the padding space of the input(s)
+      @include clearfix();
+      sub {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: #cccccc;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: $sans-serif, sans-serif;
+        text-transform: none;
+      }
+    }
+    label {
+      font-size: 18px;
+      text-transform: uppercase;
+      &.required:after {
+        content: " *";
+        font-weight: 900;
+        font-size: 10px;
+        vertical-align: super;
+      }
+    }
+    input[type="checkbox"]+label, input[type="radio"]+label {
+      text-transform: none;
+    }
+    input {
+      &.tel1,
+      &.tel2 {
+        float: left;
+        width: 23%;
+        margin-right: 2%;
+        @media (min-width: $screen-ms-min) {
+          width: 20%;
+          margin-right: 5%;
+        }
+      }
+      &.tel3 {
+        float: left;
+        width: 50%;
+      }
+    }
+    a {
+      &.right-car {
+        color: #5e5e5e;
+        text-decoration: underline;
+        &:after {
+          content: " \f0da";
+          font-family: "FontAwesome";
+        }
+      }
+      &.plus {
+        color: #5e5e5e;
+        text-decoration: underline;
+        &:after {
+          content: " +";
+        }
+      }
+      &.btn {
+        width: 100%;
+      }
+    }
+    ul.summary {
+      li {
+        border-bottom: 1px solid #ccc;
+        padding: 5px 10px 2px;
+        color: #999999;
+        .name {
+          width: 65%;
+          display: inline-block;
+        }
+        .val {
+          font-weight: 900;
+          width: 35%;
+          display: inline-block;
+        }
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// Moved from typography
+body{
+  font: 16px/1.2 $sans-serif;
+}
+
+p {
+  margin: 0 0 20px;
+}
+article {
+  font-size: 20px;
+  line-height: 1.4;
+  p{
+    margin: 0 0 30px;
+  }
+}
+small {
+  font-size: 85%;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+cite {
+  font-style: normal;
+}
+a {
+  color: #999;
+  text-decoration: none;
+}
+a:hover {
+  color: #999;
+  cursor: point;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 20px;
+  font-family: $phosphate;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #666666;
+  text-rendering: optimizelegibility;
+}
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  font-weight: normal;
+  line-height: 1;
+}
+h1 {
+  font-size: 40px;
+  @media (max-width: $screen-xs-max){
+    font-size:25px;
+  }
+  &.sub-category-title{
+    font: 300 26px/1 $sans-serif;
+    color:#99cc00;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+h2 {
+  font-size: 30px;
+  @media (max-width: $screen-xs-max){
+    font-size: 20px
+  }
+}
+
+h3 {
+  font-size: 24px;
+  @media (max-width: $screen-xs-max){
+    font-size: 18px;
+  }
+}
+h4 {
+  font-size: 18px;
+  @media (max-width: $screen-xs-max){
+    font-size: 16px;
+  }
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 11.9px;
+}
+h1 small {
+  font-size: 24.5px;
+}
+h2 small {
+  font-size: 17.5px;
+}
+h3 small {
+  font-size: 14px;
+}
+h4 small {
+  font-size: 14px;
+}
+
+aside {
+  h1{
+    font: 300 20px/1.2 $sans-serif;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+}
+article {
+  h1{
+    font-size: 26px;
+    &.rainbow-bar:after{
+      top: auto;
+      bottom: 0;
+    }
+  }
+  h2{
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  h3{
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+}
+
+
+ul,
+ol {
+  padding:0;margin:0;
+  article &{
+    padding: 0;
+    margin: 0 0 10px 25px;
+  }
+  nav & {
+    list-style: none;
+  }
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+li {
+  line-height: 20px;
+  list-style:none;
+}
+article{
+  ul{
+    margin: 0 0 40px 20px;
+    li{
+      list-style: disc;
+      margin-bottom: 20px;
+    }
+  }
+  ol{
+    margin: 0 0 40px 20px;
+    li{
+      list-style: decimal;
+      margin-bottom: 20px;
+    }
+  }
+}
+dl {
+  margin-bottom: 20px;
+}
+dt,
+dd {
+  line-height: 20px;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 10px;
+}
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eeeeee;
+}
+blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 25px;
+}
+blockquote small {
+  display: block;
+  line-height: 20px;
+  color: #999999;
+}
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px;
+}
+
+.meta-category{
+  text-transform:uppercase;
+  font-size:14px;
+  display: block;
+  font-weight: bold;
+}
+.meta{
+  font-size:12px;
+  display: block;
+  margin: 0 0 10px;
+  color: #858585;
+}

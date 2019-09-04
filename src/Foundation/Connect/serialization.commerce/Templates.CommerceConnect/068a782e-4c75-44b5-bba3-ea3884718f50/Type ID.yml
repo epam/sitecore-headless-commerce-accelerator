@@ -1,0 +1,62 @@
+﻿---
+ID: "a4fdfec1-f911-43cb-b4e1-e24b34c52443"
+Parent: "068a782e-4c75-44b5-bba3-ea3884718f50"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Option Type/Commerce Control Panel/Type ID
+DB: master
+SharedFields:
+- ID: "21828437-ea4b-40a1-8c61-4ce60ea41db6"
+  Hint: Validate Button
+  Type: tree list
+  Value: "{59D4EE10-627C-4FD3-A964-61A88B092CBC}"
+- ID: "337e20e1-999a-4eea-85ad-b58a03ae75cc"
+  Hint: Quick Action Bar
+  Type: tree list
+  Value: "{59D4EE10-627C-4FD3-A964-61A88B092CBC}"
+- ID: "9c903e29-650d-4af2-b9bd-526d5c14a1a5"
+  Hint: Validator Bar
+  Type: tree list
+  Value: "{59D4EE10-627C-4FD3-A964-61A88B092CBC}"
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
+Languages:
+- Language: en
+  Fields:
+  - ID: "577f1689-7de4-4ad2-a15f-7fdc1759285f"
+    Hint: __Long description
+    Value: |
+      Default Commerce Connect PaymentOptionType values:
+      1 - Payment Card
+      2 - Loyalty Card Payment
+      3 - Gift Card Payment
+      4 - Federated Payment
+  - ID: "9541e67d-ce8c-4225-803d-33f7f29f09ef"
+    Hint: __Short description
+    Value: Default Commerce Connect PaymentOptionType value.
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161206T123129Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161206T123129Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

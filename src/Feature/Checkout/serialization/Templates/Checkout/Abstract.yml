@@ -1,0 +1,18 @@
+﻿---
+ID: "f80eaec2-5030-4589-a0cb-140ccf569147"
+Parent: "2e3cd9b1-0049-470a-9612-7bde6333cdb0"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T135039Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

@@ -1,0 +1,256 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import '~Foundation/UI/client/common/scss/variables';
+@import '~Foundation/UI/client/common/scss/mixins';
+.cartSummary {
+  @include loading-overlay(99998);
+  
+  &-header {
+    @include clearfix;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    background: #fafafa;
+    border: 1px solid $border-color;
+    text-transform: uppercase;
+  }
+  .header {
+    &-title {
+      margin: 0;
+      color: $font-color;
+      font-size: 16px;
+      line-height: 36px;
+      font-family: $sans-serif;
+      font-weight: 900;
+
+      span {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .cartList {
+    &-product {
+      border-bottom: 1px solid $border-color;
+      margin-bottom: 20px;
+    }
+    .product {
+      margin-bottom: 30px;
+      &:first-child {
+        margin-bottom: 0;
+      }
+
+      &-summary {
+        padding: 0 15px;
+      }
+
+      .product-image {
+        text-align: center;
+        @media (max-width: 479px) {
+          width: 100%;
+          padding: 0 15px;
+        }
+      }
+      &-caption {
+        @media (max-width: 479px) {
+          width: 100%;
+          padding: 0 15px;
+        }
+      }
+
+      .product-heading {
+        margin-bottom: 10px;
+
+        .heading {
+          &-brand {
+            font-size: 14px;
+            font-family: $phosphate;
+            color: $brand-font-color;
+            text-transform: uppercase;
+          }
+          &-productTitle {
+            margin: 0;
+            font-size: 20px;
+            font-family: $sans-serif;
+            color: $title-font-color;
+            text-transform: uppercase;
+          }
+        }
+      }
+      .product-options {
+        margin-bottom: 10px;
+
+        .option {
+          font-size: 15px;
+          line-height: 20px;
+          font-weight: 900;
+          color: $font-color;
+          text-transform: uppercase;
+
+          > span {
+            margin-left: 4px;
+            font-weight: 500;
+          }
+          .color {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+      .product-qty {
+        margin-top: 15px;
+
+        label {
+          display: inline-block;
+          margin-right: 4px;
+          margin-bottom: 0;
+          font-size: 15px;
+          line-height: 30px;
+          color: $font-color;
+          text-transform: uppercase;
+        }
+        input {
+          display: inline-block;
+          margin: 0;
+          width: 46px;
+          text-align: right;
+        }
+      }
+      .product-price,
+      .product-total {
+        margin: 0;
+        @media (min-width: $screen-lg-min) {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        > span {
+          font-size: 15px;
+          line-height: 30px;
+          color: $font-color;
+          text-transform: uppercase;
+          font-weight: 900;
+
+        }
+        .label {
+          display: inline-block;
+          margin-right: 4px;
+          font-weight: 400;
+        }
+      }
+      .product-price {
+        margin-top: 15px;
+      }
+      .product-total {
+        margin-top: -10px;
+
+        > span {
+          font-size: 22px;
+        }
+        .label {
+          font-size: 15px;
+        }
+      }
+      .product-actions {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        @media (min-width: $screen-sm-min) {
+          margin-top: 15px;
+        }
+        @media (min-width: $screen-lg-min) {
+          margin-top: 30px;
+          text-align: right;
+        }
+        .action {
+          font-size: 15px;
+          font-weight: 500;
+          color: $font-color;
+
+          &:after {
+            content: '/';
+            margin: 0 4px;
+          }
+          &:last-child:after {
+            content: none;
+          }
+          > span {
+            @include underline($bg: $font-color);
+          }
+
+          &-addToWishlist {
+            color: $teal;
+
+            > span {
+              @include underline($bg: $teal);
+            }
+          }
+
+          @media (min-width: $screen-xs-min) and (max-width: 639px) {
+            display: block;
+            &:after {
+              content: none;
+            }
+          }
+          @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+            display: block;
+            &:after {
+              content: none;
+            }
+          }
+        }
+
+      }
+
+      .product-detail {
+        margin-bottom: 5px;
+
+        .detail-header {
+          padding: 0 15px;
+          margin: 0;
+          font-size: 16px;
+          line-height: 34px;
+          font-family: $sans-serif;
+          font-weight: 900;
+          color: $font-color;
+          background: #fafafa;
+          border: 1px solid $border-color;
+          cursor: pointer;
+
+          i {
+            float: right;
+            line-height: 34px;
+            transition: transform .2s;
+          }
+        }
+        &.is-open i { //open state for icon
+          transform: rotate(90deg);
+          transition: transform .2s;
+        }
+
+        .detail-description {
+          display: none;
+          padding: 10px 15px;
+          border: 1px solid $border-color;
+          border-top: none;
+        }
+        &.is-open .detail-description { //open state for description text
+          display: block;
+        }
+      }
+    }
+  }
+}

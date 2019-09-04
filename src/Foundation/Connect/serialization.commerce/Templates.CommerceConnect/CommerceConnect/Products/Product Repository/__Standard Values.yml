@@ -1,0 +1,46 @@
+﻿---
+ID: "17306bd3-bc90-43fc-a540-769c1787ac78"
+Parent: "f599bf48-d6fe-40dc-9f78-cf2d56bfb657"
+Template: "f599bf48-d6fe-40dc-9f78-cf2d56bfb657"
+Path: /sitecore/templates/CommerceConnect/Products/Product Repository/__Standard Values
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: people/32x32/box.png
+- ID: "0c894aab-962b-4a84-b923-cb24b05e60d2"
+  Hint: __Ribbon
+  Value: "{80B181AF-8E8E-4433-B9F7-B17B697A5D33}"
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {29FE9B4E-BDA0-420F-97CA-CE1421CD9CC8}
+    {6ADDBD3C-6A82-4361-A361-6C89B4CB05B2}
+    {D5B1659A-83E7-485F-AD9A-555EECB564BF}
+    {26D1E614-5AE9-4E58-90AB-6CF9B9B6F938}
+    {BF890455-A0AE-4502-8619-C952594605CB}
+- ID: "39c4902e-9960-4469-aeef-e878e9c8218f"
+  Hint: __Hidden
+  Type: Checkbox
+  Value: 0
+- ID: "a0cb3965-8884-4c7a-8815-b6b2e5ced162"
+  Hint: __Editors
+  Type: TreelistEx
+  Value: 
+- ID: "d312103c-b36c-4ca5-864a-c85f9abda503"
+  Hint: __Is Bucket
+  Type: Checkbox
+  Value: 0
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130617T123600
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

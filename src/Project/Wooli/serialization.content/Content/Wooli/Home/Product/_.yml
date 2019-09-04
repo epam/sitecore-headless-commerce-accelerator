@@ -1,0 +1,84 @@
+﻿---
+ID: "7463c80f-69a4-4ddf-8bd3-a4155d69cb9b"
+Parent: "56f3c5b3-cc57-41c4-8895-ec5af747d209"
+Template: "1daeff25-b075-4c13-b41a-72b553b22542"
+Path: /sitecore/content/Wooli/Home/Product/*
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{EEE36796-277B-4CAD-B3D5-F36571861114}"
+          s:ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
+          s:id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
+          s:par="" />
+        <r
+          uid="{F018926A-5AE5-4AA9-B6B3-FB344D0EC0A1}">
+          <p:d />
+        </r>
+        <r
+          uid="{782D562A-A0A4-4DA3-9B92-89677AF5149C}"
+          p:after="r[@uid='{EEE36796-277B-4CAD-B3D5-F36571861114}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Container Class&amp;First Column Class=col-md-12&amp;Second Column Class"
+          s:ph="wooli-content" />
+        <r
+          uid="{AF30A71C-96C1-47C3-B08B-C289472A29FE}"
+          p:after="r[@uid='{782D562A-A0A4-4DA3-9B92-89677AF5149C}']"
+          s:id="{ADE4FC3C-C8E6-4908-876C-E7E13D4F1266}"
+          s:par=""
+          s:ph="/wooli-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0" />
+        <r
+          uid="{1FACCF39-707B-41B8-B0E9-4D49E556EE40}"
+          s:ds=""
+          s:par=""
+          s:ph="/wooli-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0" />
+        <r
+          uid="{FA56527E-FF2A-480F-8FFA-7F3322290156}"
+          p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']"
+          s:ds=""
+          s:id="{CA40D5E8-0E95-491F-85CE-93B3D1E20ED5}"
+          s:par=""
+          s:ph="/wooli-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-actions-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
+        <r
+          uid="{5B004766-8A1B-43D4-BCDB-32BF748B5F22}"
+          p:after="*[1=2]"
+          s:id="{AA73BE63-C2C1-4B28-A02D-54B0369A64E3}"
+          s:ph="/wooli-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-properties-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{DDF89CD8-75B3-48FE-A2CF-85F6FD58785B}"
+              p:after="*[1=2]"
+              s:id="{D226FCE8-8B0D-4964-94BE-A9C55AE599CB}"
+              s:par=""
+              s:ph="/wooli-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-actions-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180419T084606Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

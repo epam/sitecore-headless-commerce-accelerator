@@ -1,0 +1,21 @@
+﻿---
+ID: "fef7847e-3ac3-4c79-be15-bf407c461de6"
+Parent: "a27b7522-c3d6-4966-af20-9202d945d1da"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/CommerceConnect/Products/Product Resource/Main/Resource
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Image
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20131218T125526

@@ -1,0 +1,18 @@
+---
+ID: "e5f5b264-bd9a-4a9e-8b2c-db5a6d48a886"
+Parent: "dec6afd4-412f-4009-a897-d252b327dad5"
+Template: "93227c5d-4fef-474d-94c0-f252ec8e8219"
+Path: /sitecore/layout/Layouts/Wooli/Foundation/Commerce
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170511T174958Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

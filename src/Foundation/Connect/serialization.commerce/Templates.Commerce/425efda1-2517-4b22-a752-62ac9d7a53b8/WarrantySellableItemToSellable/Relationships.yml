@@ -1,0 +1,18 @@
+﻿---
+ID: "1ddd752b-5e1d-4ff4-88a6-9f992092f5cf"
+Parent: "75db3f5a-13df-401a-b993-165f1a00b498"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantySellableItemToSellableItem/Relationships
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190621T165117Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        extranet\Anonymous

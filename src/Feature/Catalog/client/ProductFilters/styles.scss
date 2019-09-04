@@ -1,0 +1,478 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import '~Foundation/UI/client/common/scss/variables';
+
+.filters {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @media (max-width: $screen-sm-max) {
+    /* Disable this info according to updated design for Product Search Resulp page */
+    /*background: #c2c6c9;*/
+    /*padding: 10px 20px;*/
+    /*margin-bottom: 20px;*/
+  }
+}
+
+.filters-menu {
+  display: flex;
+  justify-content: space-between;
+  @media (min-width: $screen-md-min) {
+    display: none;
+  }
+  .btn {
+    width: 48%;
+    border: 1px solid #acafb2;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 2;
+    color: $font-color;
+    background: #fff;
+    .filter-visible &-filter,
+    .sort-visible &-sort,
+    &:hover {
+      color: #fff;
+      background: $green;
+    }
+  }
+}
+
+.productGridFilter {
+  @media (max-width: $screen-sm-max) {
+    display: none; // don't display desktop filters in mobile view
+  }
+  position: relative;
+  display: block;
+  & .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+    opacity: 0.5;
+    z-index: 999;
+  }
+  &_title {
+    font-size: 22px;
+    font-family: $sans-serif;
+    color: $title-font-color;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .rzslider-price {
+    display: none;
+
+    @media (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+  .is-open ul,
+  .is-open .rzslider-price {
+    display: block;
+  }
+
+  &-mobile {
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    .rzslider-price {
+      display: none;
+    }
+    .is-open .rzslider-price {
+      display: block;
+    }
+  }
+}
+
+.reviews {
+  color: $teal;
+
+  .fitness-theme & {
+    color: $green;
+  }
+  .outdoor-theme & {
+    color: $orange;
+  }
+  .travel-theme & {
+    color: $blue;
+  }
+  .sport-theme & {
+    color: $purple;
+  }
+  .home-theme & {
+    color: $red;
+  }
+}
+
+.view-all {
+  display: block;
+
+  color: #666;
+  transition: color 0.2s;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  &:after {
+    display: inline-block;
+    padding-left: 10px;
+    font-family: FontAwesome;
+    content: '\f0da';
+  }
+  &.hide-all:after {
+    content: '\f0d8';
+  }
+  &:hover, &:active {
+    color: $teal;
+
+    .fitness-theme & {
+      color: $green;
+    }
+    .outdoor-theme & {
+      color: $orange;
+    }
+    .travel-theme & {
+      color: $blue;
+    }
+    .sport-theme & {
+      color: $purple;
+    }
+    .home-theme & {
+      color: $red;
+    }
+  }
+
+  .productGridFilter-mobile & {
+    display: none;
+  }
+
+}
+
+.productGridSort {
+  display: block;
+  position: relative;
+
+  .sortOptions {
+
+    li {
+      @include clearfix;
+      padding: 0 15px 0 15px;
+
+      // styles for selected items
+      & i.fa-check {
+        display: none;
+        float: right;
+        line-height: inherit;
+      }
+      &.selected i.fa-check {
+        display: block;
+      }
+    }
+    a {
+      display: block;
+      color: #888888;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 50px;
+      text-transform: uppercase;
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+}
+
+.filter {
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 1px solid $border-color;
+  &-first & {
+    border-top: 1px solid $border-color;
+  }
+  &-last & {
+    border: none;
+  }
+  &-sale {
+    position: relative;
+
+    &__label {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: $brand-font-color;
+      font-family: $sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+  .productGridFilter-mobile & {
+    padding: 0;
+    border: 0;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+      width: calc(100% - 30px);
+      height: 1px;
+      background: $border-color;
+    }
+  }
+  .productGridFilter-mobile .filter-last &:after {
+    content: none;
+  }
+
+  .productGridFilter-mobile &-sale {
+
+    &__label {
+      padding: 10px 15px;
+      color: #888888;
+      line-height: 40px;
+
+      &:before {
+        line-height: 40px;
+        margin: 0 8px 3px 3px;
+        vertical-align: middle;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+      width: calc(100% - 30px);
+      height: 1px;
+      background: $border-color;
+    }
+  }
+
+  /* Styles for .filter_options */
+  &_options {
+    display: block;
+     //max show 7 of the li's max-height: 203px;
+    margin-bottom: 5px;
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    &.show-all-links {
+      transition: max-height .2s;
+    }
+    &.hide-all-links {
+      max-height: 0;
+      transition: max-height .2s;
+    }
+
+    /* Styles for filter_options in mobile side-panel */
+    .productGridFilter-mobile & {
+      display: none;
+      max-height: 100%;
+      background: #F2F2F2;
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      margin: 0;
+      padding: 5px 15px;
+      color: #888888;
+
+      &.show-all-links {
+        max-height: 100%;
+      }
+      &.hide-all-links {
+        max-height: 100%;
+      }
+    }
+    li {
+      //TODO: need to prevent long text in the label of the checkbox from overflowing.. requires changes to checbox+label css
+      height: 29px;
+      margin: 5px 0 5px 0;
+    }
+    label {
+      @media (min-width: $screen-md-min) {
+        -o-text-overflow: ellipsis; /* Opera */
+        text-overflow: ellipsis; /* IE, Safari (WebKit) */
+        overflow: hidden; /* don't show excess chars */
+        white-space: nowrap; /* force single line */
+        width: 110px; /* fixed width */
+      }
+      @media (min-width: $screen-lg-min) {
+        width: 160px; /* fixed width */
+      }
+    }
+    span {
+      line-height: 20px;
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: bottom;
+      margin: 0px 0px 5px 0px;
+      width: 20px; /* fixed width */
+      height: 24px;
+    }
+  }
+
+  /* Styles for .filter_toggle */
+  &_toggle {
+    position: relative;
+    margin: 0 0 7px;
+    padding: 0;
+
+    /* Styles for .filter_toggle in mobile side-panel */
+    .productGridFilter-mobile & {
+      margin: 0;
+      padding: 10px 15px;
+      &:hover {
+        color: $green;
+      }
+
+      // styles for plus icon and it's animation
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        right: 15px;
+        top: 29px;
+        width: 15px;
+        height: 2px;
+        background: currentColor;
+      }
+      &:after {
+        transform: rotate(90deg);
+        transition: transform .2s;
+      }
+    }
+
+    /* Styles for .filter_toggle in mobile side-panel if filter is in open state */
+    .is-open & {
+      @media (max-width: $screen-sm-max) {
+        color: $green;
+      }
+    }
+    .is-open &:after {
+      transform: rotate(0deg);
+      transition: transform .2s;
+    }
+  }
+
+  &_name {
+    font-size: 18px;
+    line-height: inherit;
+    text-transform: uppercase;
+    font-family: $sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0;
+
+    /* Styles for .filter_name in mobile side-panel */
+    .productGridFilter-mobile & {
+      font-size: 18px;
+      line-height: 40px;
+      color: #888888;
+      cursor: pointer;
+    }
+    /* if labels was added - name should have lower height */
+    .filter_toggle-withLabels & {
+      line-height: 25px;
+    }
+
+    /* green color on hover and open states */
+    .filter_toggle:hover & {
+      @media (max-width: $screen-sm-max) {
+        color: $green;
+      }
+    }
+    .is-open & {
+      @media (max-width: $screen-sm-max) {
+        color: $green;
+      }
+    }
+  }
+
+  &_labels {
+    display: block;
+    height: 15px;
+    @include clearfix;
+  }
+  &_label {
+    float: left;
+    margin-right: 4px;
+    font-size: 14px;
+    line-height: 15px;
+    text-transform: capitalize;
+  }
+
+  .colorPicker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-right: 9px;
+    padding-left: 9px;
+    @media (min-width: $screen-md-min) {
+      padding-right: 0;
+      padding-left: 0;
+      margin: 0 -4px;
+    }
+
+    &_item {
+      display: block;
+      height: 40px;
+      margin: 6px;
+
+      @media (min-width: $screen-md-min) {
+        height: 26px;
+        margin: 4px;
+      }
+    }
+
+    &_itemColor {
+      display: block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 0, 0, .3);
+      transition: transform .2s;
+
+      @media (min-width: $screen-md-min) {
+        height: 26px;
+        width: 26px;
+      }
+
+      &.is-selected, &:hover {
+        transform: scale3d(1.2, 1.2, 1);
+        border-width: 2px;
+        transition: transform .2s;
+      }
+    }
+  }
+  .productGridFilter-mobile & .colorPicker {
+    display: none;
+  }
+  .productGridFilter-mobile & .is-open .colorPicker {
+    display: flex;
+  }
+
+  .stars {
+    color: $green;
+
+    .fa-star {
+      margin-right: 3px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

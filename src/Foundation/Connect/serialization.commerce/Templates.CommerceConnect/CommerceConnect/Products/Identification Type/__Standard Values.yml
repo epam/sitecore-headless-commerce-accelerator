@@ -1,0 +1,21 @@
+﻿---
+ID: "5625759f-a839-4e10-8f84-655850771b5c"
+Parent: "0a5feaa1-1b35-441a-9cc0-8fc259a15213"
+Template: "0a5feaa1-1b35-441a-9cc0-8fc259a15213"
+Path: /sitecore/templates/CommerceConnect/Products/Identification Type/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130422T163800
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "6cbb88aa-3a9f-4769-9996-6ed459bed324"
+      Hint: Name
+      Value: $name

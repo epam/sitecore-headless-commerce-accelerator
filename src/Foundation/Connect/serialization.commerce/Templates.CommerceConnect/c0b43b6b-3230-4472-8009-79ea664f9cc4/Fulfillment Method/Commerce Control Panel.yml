@@ -1,0 +1,19 @@
+﻿---
+ID: "f305a6b7-d6d5-44a2-90ec-558ee8f91375"
+Parent: "79c4bb54-df7d-4825-bfa7-32ff9b051299"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Method/Commerce Control Panel
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161214T082426Z
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161214T082426Z

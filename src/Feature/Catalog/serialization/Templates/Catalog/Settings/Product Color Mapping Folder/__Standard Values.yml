@@ -1,0 +1,23 @@
+﻿---
+ID: "3e49fa1a-a09a-4fc3-890f-298936a7815c"
+Parent: "93687745-63f3-4022-8cb0-29848c918a18"
+Template: "93687745-63f3-4022-8cb0-29848c918a18"
+Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{CA4B8E4A-BFEC-474A-8A85-E7DF2D9C1404}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180529T123409Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

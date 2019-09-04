@@ -1,0 +1,18 @@
+﻿---
+ID: "aa4e3d69-e525-4bea-9045-e4c1405a812c"
+Parent: "0b5b3cae-352f-425c-bd16-8ede9f683585"
+Template: "814c1dbb-b118-4511-ba2b-7288ed3d490b"
+Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/Wooli/Foundation/Commerce/Storefront Countries Contents Resolver
+DB: master
+SharedFields:
+- ID: "de218ede-a9ad-4b04-86c5-9ff593ccf39d"
+  Hint: Type
+  Value: Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers.StorefrontCountriesContentsResolver, Wooli.Foundation.Commerce
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180613T135319Z

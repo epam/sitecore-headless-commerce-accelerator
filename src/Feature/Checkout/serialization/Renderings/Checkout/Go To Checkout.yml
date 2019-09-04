@@ -1,0 +1,25 @@
+﻿---
+ID: "c1505026-93f5-490a-9f6f-215570ac46b8"
+Parent: "34a74946-9413-485b-9607-07b1d9521128"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/Wooli/Feature/Checkout/Go To Checkout
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Go To Checkout
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{C365BD3B-0885-42C4-94E9-CA7D8DE5F28D}"
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{F703DF45-1ECD-4EDE-AE81-F55D2F994CDE}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180514T122413Z

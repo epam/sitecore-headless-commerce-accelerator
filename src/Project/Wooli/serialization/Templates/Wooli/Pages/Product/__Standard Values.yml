@@ -1,0 +1,41 @@
+﻿---
+ID: "26a49085-60a7-482a-83c9-a4431a6ff18e"
+Parent: "1daeff25-b075-4c13-b41a-72b553b22542"
+Template: "1daeff25-b075-4c13-b41a-72b553b22542"
+Path: /sitecore/templates/Wooli/Project/Wooli/Pages/Product/__Standard Values
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{3EF1A39A-6C46-47C9-A3CD-317F24FF29C8}">
+        <r
+          id="{7ED67F91-04A8-4312-9184-AAA36D717BB7}"
+          ph="/wooli-content"
+          uid="{EEE36796-277B-4CAD-B3D5-F36571861114}" />
+        <r
+          id="{ADE4FC3C-C8E6-4908-876C-E7E13D4F1266}"
+          ph="/wooli-content"
+          uid="{F018926A-5AE5-4AA9-B6B3-FB344D0EC0A1}" />
+        <r
+          id="{991080F2-5C17-417E-8AD7-1C19389276DD}"
+          ph="/wooli-content"
+          uid="{1FACCF39-707B-41B8-B0E9-4D49E556EE40}" />
+        <r
+          id="{8923317E-48A7-4A3C-80EB-AF11D35F3D9E}"
+          ph="/wooli-content"
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180425T131405Z

@@ -1,0 +1,14 @@
+﻿---
+ID: "0b5b3cae-352f-425c-bd16-8ede9f683585"
+Parent: "3f020ea6-e2cc-443c-908d-9d3fcc2391c3"
+Template: "1404a77a-d5fd-46b3-aa4c-200f3d519979"
+Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/Wooli/Foundation/Commerce
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180614T152501Z

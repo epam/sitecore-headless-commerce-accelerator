@@ -1,0 +1,22 @@
+﻿---
+ID: "f40df875-b002-492f-86c9-6d7b28ce6905"
+Parent: "5d7682df-27d9-4fc9-bb4e-7ac06d7bbd7c"
+Template: "128c8948-5304-473e-93d1-914cc5f29b90"
+Path: /sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/Wooli/Currencies Display Adjustments
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Currencies Display Adjustments
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171123T163445Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

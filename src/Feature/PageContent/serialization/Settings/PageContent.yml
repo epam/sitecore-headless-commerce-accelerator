@@ -1,0 +1,18 @@
+---
+ID: "d1e816d3-0486-432b-834a-820970fb9a4b"
+Parent: "74c3a511-d920-445c-9faf-285397aefd27"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Settings/Wooli/Feature/PageContent
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170511T174958Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

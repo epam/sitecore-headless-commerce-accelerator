@@ -1,0 +1,14 @@
+﻿---
+ID: "3F020EA6-E2CC-443C-908D-9D3FCC2391C3"
+Parent: "db29d010-c3b8-4172-b341-60003f666bb2"
+Template: "1404a77a-d5fd-46b3-aa4c-200f3d519979"
+Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/Wooli/Foundation
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180614T152441Z

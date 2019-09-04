@@ -1,0 +1,25 @@
+﻿---
+ID: "ae607469-621e-4f9c-955b-4cc6e1b58b15"
+Parent: "47d1a39e-3b4b-4428-a9f8-b446256c9581"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/CommerceConnect/Products/Product/General product information
+DB: master
+SharedFields:
+- ID: "6fd695e7-7f6d-4ca5-8b49-a829e5950ae9"
+  Hint: __Subitems Sorting
+  Value: "{EA1DECB2-B4F2-4AE0-99A8-30FDED9B8B50}"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 10
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130422T144800
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

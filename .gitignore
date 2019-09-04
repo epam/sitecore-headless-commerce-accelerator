@@ -1,0 +1,139 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+.vs/
+
+#Visual Studio Code files
+.vscode/
+#Phpstorm Code files
+.idea/
+#MonoDevelop
+*.pidb
+*.userprefs
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+*.sass-cache
+
+#Project files
+.[Bb]uild/
+.[Bb]uilds/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#NuGet
+packages/
+localPackages/
+
+#ncrunch
+*ncrunch*
+*crunch*.local.xml
+
+# visual studio database projects
+*.dbmdl
+
+#Test files
+*.testsettings
+
+# logging
+Logs/
+
+#sandbox
+sandbox/
+
+*.Cache
+*.loadtest
+*.ltrar
+*.testsettings
+*.trx
+*.vspscc
+*.webtest
+*.webtestresult
+Load test results
+
+#Sitecore
+/src/.sitecore
+/src/.builds
+
+#TDS
+IconCache
+Package_*
+T4RenderCache
+*BuiltFiles_*.txt
+
+#SKIP package folders
+/src/*.Master/packages
+/src/*.Core/packages
+CopiedFiles_*.txt
+DeployedFiles_*.txt
+
+#nodejs and client resources
+node_modules
+bower_components
+_res/
+tools/nodejs/
+Code Generation Templates/*.tt
+
+#Virtual machine
+/.vagrant
+
+# EXCEPTION
+!env/modules/*/bin
+
+# Sitecore license file
+/src/license.xml
+/license.xml
+
+# Front-end artifacts
+/src/Project/Wooli/client/build
+/src/Project/Wooli/code/dist/
+
+# Development environment
+/src/scripts/webpack/environments/development/sitecore-context.json
+
+
+# Cake artifacts
+/src/tools/
+
+# Output and CI artifacts
+/output/
+/artifacts/
+
+#Idea
+/.idea
+

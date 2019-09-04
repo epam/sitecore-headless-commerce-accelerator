@@ -1,0 +1,62 @@
+﻿---
+ID: "81c273b0-8f34-4371-aa9f-d76bfae6d9ff"
+Parent: "93af861a-b6f4-45be-887d-d93d4b95b39d"
+Template: "93af861a-b6f4-45be-887d-d93d4b95b39d"
+Path: /sitecore/templates/Commerce/Catalog/Commerce Catalog/__Standard Values
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Business/32x32/column_edit.png
+- ID: "83798d75-df25-4c28-9327-e8bac2b75292"
+  Hint: __Insert Rules
+  Type: TreelistEx
+  Value: "{4664108F-D564-432F-9761-A9A4C4DA3629}"
+- ID: "d3ae7222-425d-4b77-95d8-ee33ac2b6730"
+  Hint: __Context Menu
+  Value: "{64BA1004-F0BE-429E-AAAD-20BD42BD99B5}"
+Languages:
+- Language: "de-DE"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170717T125746Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        default\Anonymous
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130523T143800
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+- Language: "fr-FR"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171221T212049Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Anonymous
+- Language: "ja-JP"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171221T212049Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Anonymous

@@ -1,0 +1,32 @@
+﻿---
+ID: "d5440345-d25e-4a9b-b8e4-5c2aef3c9178"
+Parent: "418e2ca1-26d5-43b1-9fed-d23f29240010"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Wooli/Project/Wooli/Pages/Checkout
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/platform_truck_box.png
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+    {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
+    {41BEC638-40FE-4A75-ACE5-F3377299D8FA}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{4DE4F482-20A0-4C66-AEE8-591572BB96DB}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T124421Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

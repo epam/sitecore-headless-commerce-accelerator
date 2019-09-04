@@ -1,0 +1,536 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '../../scss/variables';
+@import '../../scss/mixins';
+// Variables for button sizes
+$btn-padding-y: 8px;
+$btn-padding-x: 12px;
+$btn-lg-padding-y: (1.2 * $btn-padding-y);
+$btn-lg-padding-x: (1.2 * $btn-padding-x);
+$btn-sm-padding-y: ($btn-padding-y / 2);
+$btn-sm-padding-x: ($btn-padding-x / 2);
+$btn-font-size: 20px;
+$btn-lg-font-size: 28px;
+$btn-sm-font-size: 12px;
+$btn-border-width: 3px;
+$btn-lg-border-width: 3px;
+$btn-sm-border-width: 1px;
+// Variables for theme colors
+$btn-teal-color: #fff;
+$btn-teal-bg: $teal;
+$btn-teal-border: $teal;
+$btn-green-color: #fff;
+$btn-green-bg: $green;
+$btn-green-border: $green;
+$btn-orange-color: #fff;
+$btn-orange-bg: $orange;
+$btn-orange-border: $orange;
+$btn-blue-color: #fff;
+$btn-blue-bg: $blue;
+$btn-blue-border: $blue;
+$btn-purple-color: #fff;
+$btn-purple-bg: $purple;
+$btn-purple-border: $purple;
+$btn-red-color: #fff;
+$btn-red-bg: $red;
+$btn-red-border: $red;
+.btn,
+button {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 42px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: $teal;
+  background-color: #fff;
+  background-repeat: repeat-x;
+  border: 3px solid $teal;
+  border-radius: 0px;
+  text-transform: uppercase;
+  transition: background-color 0.20s ease-out 0.10s, color 0.20s ease-out 0.10s;
+  &.small {
+    font-size: 12px;
+    line-height: 21px;
+    font-weight: 900;
+    border-width: 1px;
+  }
+  &+.btn {
+    margin-left: 12px;
+  }
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+  color: #333333;
+  background-color: #e6e6e6;
+  *background-color: #d9d9d9;
+}
+
+.btn:active,
+.btn.active {
+  background-color: #cccccc \9;
+}
+
+.btn:first-child {
+  *margin-left: 0;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  background-color: $teal;
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn.active,
+.btn:active {
+  background-image: none;
+  outline: 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-image: none;
+  box-shadow: none;
+  background-color: #fff;
+  color: #ccc;
+  border-color: #ccc;
+  transition: none;
+}
+
+a.btn.animated {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  transition: background-color 0.25s ease-out 0.18s, color 0.25s ease-out 0.18s;
+  span {
+    padding: 7px 15px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+  }
+  &:before,
+  &:after,
+  span:before,
+  span:after {
+    content: '';
+    position: absolute;
+    background-color: $teal;
+    transition: transform .2s;
+  }
+  &:before {
+    // top border
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    transform: translate3d(0, 0, 0);
+  }
+  &:after {
+    // bottom border
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    transform: translate3d(0, 0, 0);
+  }
+  & span:before {
+    // right border
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+  & span:after {
+    // left border
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+  &:hover {
+    border-color: $teal;
+    background-color: $teal;
+    &:before {
+      transform: translate3d(101%, 0, 0);
+    }
+    &:after {
+      transform: translate3d(-101%, 0, 0);
+    }
+    & span:before {
+      transform: translate3d(0, 101%, 0);
+    }
+    & span:after {
+      transform: translate3d(0, -101%, 0);
+    }
+  }
+}
+
+.fitness-theme .btn {
+  color: $green;
+  border-color: $green;
+  &:hover,
+  &:focus {
+    background-color: $green;
+    color: #fff;
+  }
+  &.animated {
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      background-color: $green;
+    }
+    &:hover {
+      border-color: $green;
+      background-color: $green;
+    }
+  }
+}
+
+.outdoor-theme .btn {
+  color: $orange;
+  border-color: $orange;
+  &:hover,
+  &:focus {
+    background-color: $orange;
+    color: #fff;
+  }
+  &.animated {
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      background-color: $orange;
+    }
+    &:hover {
+      border-color: $orange;
+      background-color: $orange;
+    }
+  }
+}
+
+.travel-theme .btn {
+  color: $blue;
+  border-color: $blue;
+  &:hover,
+  &:focus {
+    background-color: $blue;
+    color: #fff;
+  }
+  &.animated {
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      background-color: $blue;
+    }
+    &:hover {
+      border-color: $blue;
+      background-color: $blue;
+    }
+  }
+}
+
+.sport-theme .btn {
+  color: $purple;
+  border-color: $purple;
+  &:hover,
+  &:focus {
+    background-color: $purple;
+    color: #fff;
+  }
+  &.animated {
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      background-color: $purple;
+    }
+    &:hover {
+      border-color: $purple;
+      background-color: $purple;
+    }
+  }
+}
+
+.home-theme .btn {
+  color: $red;
+  border-color: $red;
+  &:hover,
+  &:focus {
+    background-color: $red;
+    color: #fff;
+  }
+  &.animated {
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      background-color: $red;
+    }
+    &:hover {
+      border-color: $red;
+      background-color: $red;
+    }
+  }
+}
+
+button.btn,
+input[type="submit"].btn {
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+}
+
+button.btn::-moz-focus-inner,
+input[type="submit"].btn::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none;
+}
+
+//
+// Alternate buttons
+//
+.btn-teal {
+  @include button-variant($btn-teal-color, $btn-teal-bg, $btn-teal-border);
+}
+
+.btn-green {
+  @include button-variant($btn-green-color, $btn-green-bg, $btn-green-border);
+}
+
+.btn-green.btn-add,
+btn-green.btn-quickView,
+btn-green.btn-viewProduct {
+  font-weight: normal;
+  transform-origin: center center;
+  transition: all 0.5s ease 0s;
+  -webkit-transform-origin: center center;
+  -webkit-transition: all 0.5s ease 0s;
+  &:hover,
+  &:focus {
+    color: $btn-green-bg;
+    background: #fff;
+    border-color: #99CC00;
+    span {}
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-green.btn-add,
+.btn-green.btn-quickView,
+.btn-green.btn-viewProduct {
+  font-weight: normal;
+  transform-origin: center center;
+  transition: all 0.5s ease 0s;
+  -webkit-transform-origin: center center;
+  -webkit-transition: all 0.5s ease 0s;
+  &:hover,
+  &:focus {
+    color: $btn-green-bg;
+    background: #fff;
+    border-color: #99CC00;
+    span {}
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-orange {
+  @include button-variant($btn-orange-color, $btn-orange-bg, $btn-orange-border);
+}
+
+.btn-blue {
+  @include button-variant($btn-blue-color, $btn-blue-bg, $btn-blue-border);
+}
+
+.btn-purple {
+  @include button-variant($btn-purple-color, $btn-purple-bg, $btn-purple-border);
+}
+
+.btn-red {
+  @include button-variant($btn-red-color, $btn-red-bg, $btn-red-border);
+}
+
+//// Remove all backgrounds
+.btn-outline-white {
+  @include button-variant(#fff, transparent, #fff);
+}
+
+.btn-outline-teal {
+  @include button-outline-variant($btn-teal-bg);
+}
+
+.btn-outline-green {
+  @include button-outline-variant($btn-green-bg);
+}
+
+.btn-outline-orange {
+  @include button-outline-variant($btn-orange-bg);
+}
+
+.btn-outline-blue {
+  @include button-outline-variant($btn-blue-bg);
+}
+
+.btn-outline-purple {
+  @include button-outline-variant($btn-purple-bg);
+}
+
+.btn-outline-red {
+  @include button-outline-variant($btn-red-bg);
+}
+
+//
+// Animated buttons
+//
+// Params for mixin: $color, $border-width, $padding-y, $padding-x
+.btn-animated-teal {
+  @include button-animated-variant($teal, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+.btn-animated-green {
+  @include button-animated-variant($green, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+.btn-animated-purple {
+  @include button-animated-variant($purple, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+.btn-animated-orange {
+  @include button-animated-variant($orange, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+.btn-animated-blue {
+  @include button-animated-variant($blue, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+.btn-animated-red {
+  @include button-animated-variant($red, $btn-border-width, $btn-padding-y, $btn-padding-x);
+}
+
+//
+// Button Sizes
+//
+.btn-lg {
+  // line-height: ensure even-numbered height of button next to large input
+  // $padding-y, $padding-x, $font-size, border-width, $border-radius
+  @include button-size($btn-lg-padding-y, $btn-lg-padding-x, $btn-lg-font-size, $btn-lg-border-width, 0); //
+  // Animated large buttons
+  //
+  &.btn-animated-teal {
+    @include button-animated-variant($teal, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+  &.btn-animated-green {
+    @include button-animated-variant($green, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+  &.btn-animated-purple {
+    @include button-animated-variant($purple, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+  &.btn-animated-orange {
+    @include button-animated-variant($orange, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+  &.btn-animated-blue {
+    @include button-animated-variant($blue, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+  &.btn-animated-red {
+    @include button-animated-variant($red, $btn-lg-border-width, $btn-lg-padding-y, $btn-lg-padding-x);
+  }
+}
+
+.btn-sm {
+  // line-height: ensure proper height of button next to small input
+  // $padding-y, $padding-x, $font-size, border-width, $border-radius
+  @include button-size($btn-sm-padding-y, $btn-sm-padding-x, $btn-sm-font-size, $btn-sm-border-width, 0);
+  font-weight: 900; //
+  // Animated large buttons
+  //
+  &.btn-animated-teal {
+    @include button-animated-variant($teal, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+  &.btn-animated-green {
+    @include button-animated-variant($green, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+  &.btn-animated-purple {
+    @include button-animated-variant($purple, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+  &.btn-animated-orange {
+    @include button-animated-variant($orange, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+  &.btn-animated-blue {
+    @include button-animated-variant($blue, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+  &.btn-animated-red {
+    @include button-animated-variant($red, $btn-sm-border-width, $btn-sm-padding-y, $btn-sm-padding-x);
+  }
+}
+
+//
+// Block button
+//
+.btn-block {
+  @include button-block;
+}
+
+// Vertically space out multiple block buttons
+.btn-block+.btn-block {
+  margin-top: 12px;
+}
+
+.btn-loading {
+  & .fa-spinner {
+    display: none;
+    margin-right: 8px;
+  }
+  &.is-loading .fa-spinner {
+    display: inline-block;
+    animation: fa-spin 2s infinite linear;
+  }
+}

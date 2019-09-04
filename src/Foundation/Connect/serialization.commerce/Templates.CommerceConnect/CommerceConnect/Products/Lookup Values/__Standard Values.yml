@@ -1,0 +1,23 @@
+﻿---
+ID: "91fb77cf-40e6-47a9-b71b-33d231135bb9"
+Parent: "ab6feece-afa4-49b8-b96d-f15e28eaefcd"
+Template: "ab6feece-afa4-49b8-b96d-f15e28eaefcd"
+Path: /sitecore/templates/CommerceConnect/Products/Lookup Values/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{B95D069C-7867-4140-816D-6B204949B522}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130516T130413
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

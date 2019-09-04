@@ -1,0 +1,44 @@
+﻿---
+ID: "bf6b5933-e49c-4ec1-b802-67b4b42c5d6a"
+Parent: "59190273-fdcc-4048-9537-7edbdf94b22d"
+Template: "59190273-fdcc-4048-9537-7edbdf94b22d"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Storefront/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {762364A6-3CCB-43D2-9ACB-C889DB0F7FCF}
+    {128C8948-5304-473E-93D1-914CC5F29B90}
+    {81AFAA32-F1B0-47DE-A8E6-3E443A06510E}
+    {A2A80C92-826A-4928-BEED-6E46FFF31919}
+    {9C514FF0-FBF7-42F1-82F6-156272F70CAA}
+    {2C7E608F-5450-4F6C-A990-B53526E7D35F}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150825T141244Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "a68724cc-9513-46f5-aa82-d26c0644b21d"
+      Hint: Title
+      Value: $name
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150825T141244Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "a68724cc-9513-46f5-aa82-d26c0644b21d"
+      Hint: Title
+      Value: $name

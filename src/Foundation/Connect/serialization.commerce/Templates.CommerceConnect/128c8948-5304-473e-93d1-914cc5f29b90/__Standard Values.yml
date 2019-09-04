@@ -1,0 +1,32 @@
+﻿---
+ID: "a9960f28-29a2-410d-9208-bfec22d1e026"
+Parent: "128c8948-5304-473e-93d1-914cc5f29b90"
+Template: "128c8948-5304-473e-93d1-914cc5f29b90"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Currency Display Overrides/Currencies Display Adjustments/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{59E0AE1A-6A2A-4C7B-931A-5DEF873B9DF6}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161128T115931Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161128T115931Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

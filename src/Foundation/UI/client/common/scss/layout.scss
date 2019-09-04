@@ -1,0 +1,164 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+html, body{
+  height: 100%;
+}
+#app{
+  overflow: hidden;
+  @media (max-width: $screen-sm-max){
+    padding-top: 50px; //make space for mobile fixed header;
+    transition: padding-top .2s;
+
+    &.nav-up {
+      padding-top: 0;
+      transition: padding-top .2s;
+    }
+  }
+}
+header#header-main{
+  transition: left .2s;
+  z-index: 1001;
+  position: relative;
+  @media (max-width: $screen-sm-max){
+    width: 400px;
+    //padding-right: 20px; //make room for scroll bar which we tuck behind main
+    position: fixed;
+    -webkit-transform: translate3d(-100%,0px,0px);
+    -moz-transform: translate3d(-100%,0px,0px);
+    -ms-transform: translate3d(-100%,0px,0px);
+    -o-transform: translate3d(-100%,0px,0px);
+    transform: translate3d(-100%,0px,0px);
+    -webkit-transition: transform 2s;
+    -moz-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    //z-index: 998; //move this back so we can tuck behind main
+  }
+  @media (max-width: $screen-xs-max){
+    width: 280px;
+  }
+  @media (max-width: 321px){
+    width: 250px;
+  }
+}
+header#header-main.panel-open{
+  -webkit-transform: translate3d(0%, 0px, 0px);
+  -moz-transform: translate3d(0%, 0px, 0px);
+  -ms-transform: translate3d(0%, 0px, 0px);
+  -o-transform: translate3d(0%, 0px, 0px);
+  transform: translate3d(0%, 0px, 0px);
+}
+header#header-mobile {
+  transition: left .2s, right .2s, top .2s;
+  z-index: 999;
+  top: 0;
+  .nav-up & {
+    top: -50px;
+    transition: top .2s;
+
+    .nav-main-panel-open & {
+      top: 0;
+    }
+  }
+}
+main{
+  overflow: auto;
+  position: relative;
+  left: 0;
+  transition: left .2s;
+  z-index: 999;
+}
+footer#footer-main{
+  position: relative;
+  left: 0;
+  transition: left .2s;
+  z-index: 999;
+}
+
+.nav-main-panel-open{
+  @media (max-width: $screen-sm-max){
+    header#header-main{
+      left: 0;
+    }
+    header#header-mobile {
+      left: 400px;
+      right: -400px;
+    }
+    main{
+      left: 400px;
+    }
+    footer#footer-main{
+      left: 400px;
+    }
+  }
+  @media (max-width: $screen-xs-max){
+    header#header-mobile {
+      left: 280px;
+      right: -280px;
+    }
+    main{
+      left: 280px;
+    }
+    footer#footer-main{
+      left: 280px;
+    }
+  }
+  @media (max-width: 321px){
+    header#header-mobile {
+      left: 250px;
+      right: -250px;
+    }
+    main{
+      left: 250px;
+    }
+    footer#footer-main{
+      left: 250px;
+    }
+  }
+}
+
+
+//styles for account page's layout
+.accountContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+
+  &-main {
+    width: 100%;
+    padding: 0 ($grid-gutter-width/2);
+
+    @media (min-width: $screen-md-min) {
+      width: 75%;
+      padding: 0 ($grid-gutter-width/2);
+    }
+  }
+  &-aside {
+    width: 100%;
+    padding: 0 ($grid-gutter-width/2);
+
+    @media (min-width: $screen-md-min) {
+      width: 25%;
+      padding: 0 ($grid-gutter-width/2);
+      background: #f3f5f9;
+      border: 1px solid $border-color;
+      border-bottom: none;
+    }
+  }
+}

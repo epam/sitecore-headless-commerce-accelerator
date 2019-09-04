@@ -1,0 +1,22 @@
+﻿---
+ID: "d6bebe54-6d0d-40f6-a26d-1d001472359b"
+Parent: "425efda1-2517-4b22-a752-62ac9d7a53b8"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/ItemSpecifications
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Item Specifications
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190621T165120Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        extranet\Anonymous

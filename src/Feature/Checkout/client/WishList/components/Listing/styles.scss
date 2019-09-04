@@ -1,0 +1,368 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~Foundation/UI/client/common/scss/mixins';
+
+@import '~Foundation/UI/client/common/scss/variables';
+
+$teal: #066666;
+.teal-thick-theme .select:after {
+  background-color: $teal;
+  color: #fff;
+}
+
+section.listing-wishlist-grid {
+    header{
+      @include clearfix;
+      position: relative;
+  
+      color: #fff;
+      margin: 0;
+      padding-top: 25px;
+      text-transform: uppercase;
+    }
+  
+    .rainbow-title {
+      font-size: 26px;
+      margin: 0;
+    }
+    .wishlist-title {
+      font-size: inherit;
+      line-height: 1;
+    }
+    .wishlist-filter {
+      &:before {
+        content: '';
+        display: table;
+        clear: both;
+        padding-top: 10px;
+      }
+      @media (min-width: $screen-sm-min) {
+        position: absolute;
+        top: 10px;
+        right: 0;
+  
+        &:before {
+          content: none;
+        }
+      }
+  
+      .label {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 900;
+        color: $font-color;
+      }
+      .select {
+        display: inline-block;
+        width: auto;
+      }
+      select {
+        margin: 0;
+        width: 200px;
+      }
+    }
+  
+    >ul{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      >li{
+        position: relative;
+        width: 100%;
+        padding: 0;
+  
+        @media (max-width: $screen-xs-max) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $border-color;
+          }
+          &:first-child:before {
+            content: none;
+          }
+        }
+  
+        @media (min-width: $screen-sm-min) {
+          &:after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 0;
+            bottom: 20px;
+            width: 1px;
+            background: $border-color;
+          }
+          &:last-child:after {
+            content: none;
+          }
+        }
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          width: 50%;
+  
+          // using such puddings, cause of border between lines
+          padding-right: 15px;
+          &:nth-child(2n) {
+            padding-right: 0;
+            padding-left: 15px;
+          }
+  
+          &:nth-child(2n):after {
+            content: none;
+          }
+          &:nth-child(2) ~ li:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $border-color;
+          }
+        }
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          width: calc(100%/3);
+  
+          // using such puddings, cause of border between lines
+          padding-right: 15px;
+          padding-left: 15px;
+          &:nth-child(3n) {
+            padding-right: 0;
+          }
+          &:nth-child(3n+1) {
+            padding-left: 0;
+          }
+  
+          // using pseudo-elements as borders
+          &:nth-child(3n):after {
+            content: none;
+          }
+          &:nth-child(3) ~ li:before { //selects all lines, except first one
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $border-color;
+          }
+        }
+        @media (min-width: $screen-lg-min) {
+          width: 25%;
+  
+          // using such puddings, cause of border between lines
+          padding-right: 15px;
+          padding-left: 15px;
+          &:nth-child(4n) {
+            padding-right: 0;
+          }
+          &:nth-child(4n+1) {
+            padding-left: 0;
+          }
+  
+          // using pseudo-elements as borders
+          &:nth-child(4n):after {
+            content: none;
+          }
+          &:nth-child(4) ~ li:before { //selects all lines, except first one
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $border-color;
+          }
+        }
+      }
+    }
+  }
+
+
+
+  .wishlist-grid-item {
+    @include clearfix;
+    position: relative;
+    padding: 20px 0;
+  
+    &-remove {
+      position: absolute;
+      top: 25px;
+      right: 5px;
+      height: 20px;
+      width: 20px;
+      text-align: center;
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        top: 20px;
+        right: 0;
+      }
+  
+      > i {
+        display: inline-block;
+        line-height: 20px;
+      }
+    }
+  
+    .item-imageBlock {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 275px;
+  
+      background: #fff;
+      border: 1px solid $border-color;
+  
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        float: left;
+        width: 50%;
+        padding: 0 15px;
+      }
+    }
+    .overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 15px;
+      background: rgba(0, 0, 0, .7);
+  
+      font-size: 33px;
+      line-height: 1;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+  
+      text-align: center;
+      align-items: center;
+  
+    }
+    &.unavailable .overlay-unavailable {
+      display: flex;
+    }
+    &.added .overlay-added {
+      display: flex;
+    }
+  
+    .item-caption {
+      padding: 20px 0 0;
+  
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+  
+        width: 50%;
+        height: 275px;
+        padding: 0 15px;
+      }
+    }
+    .item-price {
+      padding: 0 25px;
+      font: 700 32px/1 $sans-serif;
+      color: #666;
+      margin-bottom: 10px;
+  
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        padding: 0;
+        margin: 0;
+      }
+  
+      .price-currency {
+        vertical-align: top;
+        font-size: 70%;
+        position: relative;
+        top: 2px;
+      }
+    }
+    .item-heading {
+      padding: 0 25px;
+  
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        order: -1;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .heading {
+      &-brand {
+        font-size: 14px;
+        font-family: $phosphate;
+        color: $brand-font-color;
+      }
+      &-product {
+        margin: 0;
+        font-size: 20px;
+        font-family: $sans-serif;
+        text-transform: uppercase;
+      }
+    }
+    .item-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 25px;
+      margin: 25px 0;
+  
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: $font-color;
+  
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+        padding: 0;
+        margin: 0;
+      }
+      .color .color-sample {
+        display: inline-block;
+        margin-left: 8px;
+        width: 15px;
+        height: 15px;
+      }
+    }
+    .item-btns {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        margin: 0;
+        width: 49%;
+        @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+          width: 100%;
+          margin-bottom: 10px;
+  
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    &.unavailable .btn-find,
+    &.unavailable .btn-move,
+    &.added .btn-find {
+      // @extend .btn[disabled];
+    }
+    &.added .btn-move {
+      background: $teal;
+      color: #fff;
+    }
+  }

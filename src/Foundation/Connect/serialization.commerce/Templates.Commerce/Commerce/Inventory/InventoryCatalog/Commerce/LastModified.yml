@@ -1,0 +1,130 @@
+﻿---
+ID: "731cb645-faa3-4440-9511-a27556a63ad9"
+Parent: "8a1c7619-007b-4c07-9003-a7b4e7ffdfa6"
+Template: "6a553ec0-2ab9-49d6-be0e-a472e5e24213"
+Path: /sitecore/templates/Commerce/Inventory/InventoryCatalog/Commerce/LastModified
+DB: master
+SharedFields:
+- ID: "09e76fed-d919-4277-b6bf-748628dfd8ed"
+  Hint: Managed by External Commerce System
+  Type: Checkbox
+  Value: 1
+- ID: "21828437-ea4b-40a1-8c61-4ce60ea41db6"
+  Hint: Validate Button
+  Type: tree list
+  Value: "{F59B7AA2-D0EA-4A1C-9F92-21A583201383}"
+- ID: "337e20e1-999a-4eea-85ad-b58a03ae75cc"
+  Hint: Quick Action Bar
+  Type: tree list
+  Value: "{F59B7AA2-D0EA-4A1C-9F92-21A583201383}"
+- ID: "39847666-389d-409b-95bd-f2016f11eed5"
+  Hint: Unversioned
+  Type: Checkbox
+  Value: 1
+- ID: "63cb4f24-a2d2-4082-9821-8f350a781e48"
+  Hint: Is Required
+  Type: Checkbox
+  Value: 0
+- ID: "7ee38888-5f13-4cb1-bad0-09f5b7759856"
+  Hint: Specification Searchable
+  Type: Checkbox
+  Value: 0
+- ID: "81180d30-1185-426f-ae2d-7da7741399a1"
+  Hint: Free Text Searchable
+  Type: Checkbox
+  Value: 0
+- ID: "9c903e29-650d-4af2-b9bd-526d5c14a1a5"
+  Hint: Validator Bar
+  Type: tree list
+  Value: "{F59B7AA2-D0EA-4A1C-9F92-21A583201383}"
+- ID: "a0f35a32-14b5-4147-9851-7e0bbdc17efc"
+  Hint: Assign To All Product Types
+  Type: Checkbox
+  Value: 0
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Commerce Read-Only Control"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 6
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
+- ID: "d8a78e27-f87f-409b-a4df-d69335dd466f"
+  Hint: Base Property
+  Type: Checkbox
+  Value: 1
+- ID: "ff45e279-7051-42ad-bf91-117f5ec4bd16"
+  Hint: Display On Site
+  Type: Checkbox
+  Value: 0
+Languages:
+- Language: "de-DE"
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Zuletzt modifiziert
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Zuletzt modifiziert
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140507T120114:635350608743993013"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+- Language: en
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Last Modified
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Last Modified
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140507T095532
+- Language: "fr-FR"
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: Dernière modification
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Dernière modification
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140507T120114:635350608744862697"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+- Language: "ja-JP"
+  Fields:
+  - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
+    Hint: Title
+    Value: 最終変更日時
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: 最終変更日時
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140507T120114:635350608745473144"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

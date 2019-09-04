@@ -1,0 +1,27 @@
+﻿---
+ID: "d7640afe-63c0-4cdf-876f-c17c5d3fa5c4"
+Parent: "9606b2b4-4eea-45b4-9caa-d7e66e4b1af4"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: "/sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/Countries-Regions Folder"
+DB: master
+SharedFields:
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}"
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{E9B953E4-CF74-4860-A55D-2A1A7874D1EB}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161202T071243Z
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161202T071243Z

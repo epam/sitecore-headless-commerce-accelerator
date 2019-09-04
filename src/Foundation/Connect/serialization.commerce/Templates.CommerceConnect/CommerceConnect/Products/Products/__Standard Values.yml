@@ -1,0 +1,45 @@
+﻿---
+ID: "f6b8e183-e102-475a-ae01-39f8fca02403"
+Parent: "4d21ad2a-ba49-4dfc-9db9-c299c7fb7f6e"
+Template: "4d21ad2a-ba49-4dfc-9db9-c299c7fb7f6e"
+Path: /sitecore/templates/CommerceConnect/Products/Products/__Standard Values
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: People/32x32/box_into.png
+- ID: "0c894aab-962b-4a84-b923-cb24b05e60d2"
+  Hint: __Ribbon
+  Value: "{80B181AF-8E8E-4433-B9F7-B17B697A5D33}"
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{81AB8A43-2EC0-4CA6-9D0F-E6DE3E01FF41}"
+- ID: "21f74f6e-42d4-42a2-a4b4-4cefbcfbd2bb"
+  Hint: __Facets
+  Type: Treelist
+  Value: |
+    {CB928897-1D1E-4635-8423-860B7AACBFCB}
+    {AE6B53F9-16F1-49B9-B8F8-360FD21DD59E}
+    {E44EE688-13DB-48C0-9C69-133B4C938280}
+    {DD195103-53E1-48ED-9990-42D9FB2969DE}
+- ID: "a0cb3965-8884-4c7a-8815-b6b2e5ced162"
+  Hint: __Editors
+  Type: TreelistEx
+  Value: "{59F53BBB-D1F5-4E38-8EBA-0D73109BB59B}"
+- ID: "d312103c-b36c-4ca5-864a-c85f9abda503"
+  Hint: __Is Bucket
+  Type: Checkbox
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130617T124500
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

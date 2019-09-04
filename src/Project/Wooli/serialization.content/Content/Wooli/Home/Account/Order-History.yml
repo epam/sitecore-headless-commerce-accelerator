@@ -1,0 +1,40 @@
+﻿---
+ID: "844a0d4e-270a-4d59-9565-038c352818f8"
+Parent: "141d9a06-eee9-4ef4-b2fc-1f84891326dd"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: "/sitecore/content/Wooli/Home/Account/Order-History"
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{5789B4D0-3292-471C-BD2E-853B0EDEB64D}"
+          p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="/wooli-content" />
+        <r
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
+          p:after="r[@uid='{5789B4D0-3292-471C-BD2E-853B0EDEB64D}']" />
+        <r
+          uid="{8B6F9B41-8708-4E97-936A-F44F5E079902}"
+          p:after="*[1=2]"
+          s:ds=""
+          s:id="{142B6246-F56B-443F-9472-39791A8F396A}"
+          s:par=""
+          s:ph="/wooli-content/w-col-wide-{5789B4D0-3292-471C-BD2E-853B0EDEB64D}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180525T144222Z

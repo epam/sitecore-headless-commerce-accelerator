@@ -1,0 +1,14 @@
+﻿---
+ID: "b3e885e9-43e0-472c-8c95-066bbfb24c2b"
+Parent: "c696bec3-0414-4a3d-a4fe-3583a7ae051d"
+Template: "c696bec3-0414-4a3d-a4fe-3583a7ae051d"
+Path: /sitecore/templates/CommerceConnect/Products/Product Type Specification/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20131224T132304

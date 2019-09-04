@@ -1,0 +1,21 @@
+﻿---
+ID: "fd0d6fc1-1cc2-4746-b53b-7d2b13d9c11b"
+Parent: "03b48bea-29af-42b3-8377-6018afedc61f"
+Template: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
+Path: /sitecore/content/Wooli/Settings/Product Color Mapping/Pink
+DB: master
+SharedFields:
+- ID: "634fdabf-59c5-4b31-9878-3c370fea110f"
+  Hint: Color HEX
+  Value: #E34D67
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180529T145903Z
+    - ID: "ba711f5f-bc6f-4bb0-9628-1f135ec399fa"
+      Hint: Color Name
+      Value: Pink

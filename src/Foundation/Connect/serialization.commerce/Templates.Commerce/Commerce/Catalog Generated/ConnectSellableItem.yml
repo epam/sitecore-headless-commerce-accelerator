@@ -1,0 +1,35 @@
+﻿---
+ID: "fba5f258-0014-4089-ac06-1849683accbe"
+Parent: "37ab7913-7d59-47f9-8951-74e67ee2238c"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem
+DB: master
+SharedFields:
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {C5E167AB-2E81-447F-9E6A-6AFF9B2B799F}
+    {A69DE1BC-20F9-4B52-9A07-8832E391FECE}
+    {3FA7FDF1-7EC3-48F6-B3F0-EDC730DBC590}
+    {75DB3F5A-13DF-401A-B993-165F1A00B498}
+    {9E8231C4-18AC-46F8-AC34-54C4D409AA47}
+    {9F800E72-6263-4F99-AD56-0A2B2C95C49A}
+    {D6BEBE54-6D0D-40F6-A26D-1D001472359B}
+    {834A798E-9167-470A-B67E-BE3CDB9BC2C1}
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: ConnectSellableItem
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190621T165116Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        extranet\Anonymous

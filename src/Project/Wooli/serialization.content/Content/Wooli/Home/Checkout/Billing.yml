@@ -1,0 +1,68 @@
+﻿---
+ID: "905ae517-341c-451a-b357-4c13ffb07e1c"
+Parent: "9de58d08-0dfd-4f1f-938f-0233898e472a"
+Template: "d5440345-d25e-4a9b-b8e4-5c2aef3c9178"
+Path: /sitecore/content/Wooli/Home/Checkout/Billing
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/id_cards.png
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}"
+          p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
+          s:ph="/wooli-content" />
+        <r
+          uid="{46E4425C-FC5D-4D4F-8DC0-18E6A394700A}"
+          p:after="r[@uid='{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}']"
+          s:ds="{C74BB736-5C99-475F-8FFD-B73D02ED286C}"
+          s:id="{954DA00A-4F7B-4CDC-8FFF-9147207147F6}"
+          s:par=""
+          s:ph="/wooli-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0" />
+        <r
+          uid="{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}"
+          p:after="r[@uid='{46E4425C-FC5D-4D4F-8DC0-18E6A394700A}']"
+          s:ds=""
+          s:id="{129348AA-2485-482F-A0F6-B53F6C585712}"
+          s:par="Wrapper Class=form-billing%20billing-shipping-info%20row&amp;First Column Class=col-md-8&amp;Second Column Class=col-md-4"
+          s:ph="/wooli-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0" />
+        <r
+          uid="{94BE19AE-743F-4A0D-8F12-C6524D7251BB}"
+          p:after="r[@uid='{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}']"
+          s:id="{C123E053-1630-4900-B106-FD3EA3D58747}"
+          s:ph="/wooli-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-1-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
+        <r
+          uid="{E0E95FA5-5F76-446E-841E-FD392B7E9C93}"
+          p:after="r[@uid='{94BE19AE-743F-4A0D-8F12-C6524D7251BB}']"
+          s:id="{B167B5C0-E815-444D-AC46-8B653A1A571A}"
+          s:ph="/wooli-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-2-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
+        <r
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T144242Z
+    - ID: "69f49102-c8c0-4e55-8f8e-c9cb130071e4"
+      Hint: Checkout Step Name
+      Value: Billing

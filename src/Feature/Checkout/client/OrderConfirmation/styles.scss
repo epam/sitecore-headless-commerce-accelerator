@@ -1,0 +1,120 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import '~Foundation/UI/client/common/scss/variables';
+
+// Block Order Promo
+
+.order-promo-wrapper {
+    width: 100%;
+    margin: 0 0 0 0;
+    display: none;
+      @media (min-width: $screen-md-min) { //1024+
+        display: block;
+      }
+  }
+  
+  .order-promo-container {
+    width: 100%; 
+    padding: 0 0 0 0;
+  }
+  
+  .order-promo {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0 0 0 0;
+    padding: 0 0 35px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .order-promo img {
+    display: block;
+    transition: transform 1.8s;
+  }
+  
+  .order-promo:hover img {
+    transform: scale(1.02);
+    transition: transform 1.8s;
+  }
+  
+  .order-promo figcaption {
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-promo figcaption:hover {
+    background-color: rgba(255, 255, 255, 0.20);
+    width: auto;
+    height: auto;
+    z-index: 100;
+    display: block;
+  }
+  
+  .order-promo .order-promo-text {
+    width: 90%;
+    display: block;
+    margin: 30% auto 0 21%;
+    padding: 0;
+  }
+  
+  .order-promo .order-promo-text span {
+    display: block;
+    width: 100%;
+    font-family: $phosphate;
+    text-transform: uppercase;
+  }
+  
+  .order-promo .order-promo-text .text-style1 {
+    color: #ffffff;
+    font-size: 18px;
+  }
+  
+  .order-promo figcaption .btn-order-promo {
+    border: solid #FFFFFF 3px;
+    background-color: rgba(0, 0, 0, 0.15);
+    font-family: $sans-serif;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 11px 27px 11px 27px;
+    margin: 0 0 0 0;  
+    display: block;
+    letter-spacing: 1px;
+    outline: none;
+    position: absolute;
+    top: 85px;
+    right: 36px; 
+      @media (min-width: $screen-lg-min) { //1310+
+        top: 110px;
+        right: 45px;        
+      }    
+  }
+  
+  .order-promo figcaption:hover .btn-order-promo {
+    border: solid #BBBBBB 3px;
+    color: #BBBBBB;
+  }
+  
+  
+  

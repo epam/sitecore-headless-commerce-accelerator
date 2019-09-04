@@ -1,0 +1,14 @@
+{
+  "name": "Wooli",
+  "clientEntry": "client.index.tsx",
+  "serverEntry": "server.index.tsx",
+  "publicFolderPath": "./Project/Wooli/client/public/**/*",
+  "outputPath": "build",
+  "env": [
+    {
+      "name": "local",
+      "url": "https://wooli.local",
+      "apiKey": "{9DFF2B2D-206B-436E-B758-B716728B0F0D}"
+    }
+  ]
+}

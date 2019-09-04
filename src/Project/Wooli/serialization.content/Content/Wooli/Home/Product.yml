@@ -1,0 +1,39 @@
+﻿---
+ID: "56f3c5b3-cc57-41c4-8895-ec5af747d209"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/Wooli/Home/Product
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/jar_earth.png
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{EEE36796-277B-4CAD-B3D5-F36571861114}">
+          <p:d />
+        </r>
+        <r
+          uid="{5E19B451-041F-4E80-BCC3-4AF1E58DB2E6}"
+          p:before="*"
+          s:ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
+          s:id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
+          s:par=""
+          s:ph="/wooli-content" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180419T084554Z

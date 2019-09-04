@@ -1,0 +1,14 @@
+﻿---
+ID: "1f5215c7-9ddf-4fb8-b423-f4a3ddf9e110"
+Parent: "9ca86513-c986-4bf3-9f9c-9791aa7ea352"
+Template: "9ca86513-c986-4bf3-9f9c-9791aa7ea352"
+Path: /sitecore/templates/CommerceConnect/Products/Product Classifications Specification/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20131224T132139

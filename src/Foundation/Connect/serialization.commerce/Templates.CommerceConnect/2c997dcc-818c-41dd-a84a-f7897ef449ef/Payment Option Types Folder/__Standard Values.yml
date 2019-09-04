@@ -1,0 +1,24 @@
+﻿---
+ID: "94b3f7f8-7f27-4ad7-bb90-1d6118f50230"
+Parent: "237a09ab-fb5d-47cd-8096-0a8d65cc321b"
+Template: "237a09ab-fb5d-47cd-8096-0a8d65cc321b"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Option Types Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{D096418C-C1B3-4FC4-B45D-76E9707A4AD3}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161206T123231Z
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161206T123231Z

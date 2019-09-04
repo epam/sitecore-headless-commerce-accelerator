@@ -1,0 +1,18 @@
+﻿---
+ID: "805170ad-d4fb-470e-81ea-2bec1974b14e"
+Parent: "34a74946-9413-485b-9607-07b1d9521128"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/Wooli/Feature/Checkout/Payment
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Payment
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T145409Z

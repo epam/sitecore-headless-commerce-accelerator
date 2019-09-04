@@ -1,0 +1,14 @@
+---
+ID: "d2be47b2-f122-4264-a068-fd5832f64911"
+Parent: "583858b9-8282-415c-b28d-5e412e672335"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/Wooli/Foundation/Extensions
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170511T175239Z

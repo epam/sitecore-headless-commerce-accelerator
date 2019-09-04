@@ -1,0 +1,21 @@
+﻿---
+ID: "d31e47a2-8874-42b9-bd6b-7f8618c4ba11"
+Parent: "f4ba5f16-0a33-46e3-ad7a-60ce4ed52bda"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/Wooli/Feature/Account/Address Manager
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Address Manager
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{AA4E3D69-E525-4BEA-9045-E4C1405A812C}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180613T101956Z

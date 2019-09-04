@@ -1,0 +1,178 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import '~Foundation/UI/client/common/scss/variables';
+@import '~Foundation/UI/client/common/scss/mixins';
+
+.orderSummary {
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0 15px;
+    font-size: 18px;
+    line-height: 1.9;
+    color: $title-font-color;
+    background: #fafafa;
+    border: 1px solid $border-color;
+  }
+
+  &-list {
+    li {
+      border-bottom: 1px solid $border-color;
+      padding: 5px 10px 2px;
+      color: #999999;
+      .name {
+        width: 65%;
+        display: inline-block;
+      }
+      .val {
+        font-weight: 900;
+        width: 35%;
+        display: inline-block;
+      }
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+  &-freeShipping {
+    margin: 0;
+    padding: 15px;
+    background: #fafafa;
+    border: 1px solid $border-color;
+
+    p {
+      margin: 0;
+    }
+    .details {
+      color: $blue;
+      transition: color .2s;
+
+      @include underline($bg: $blue-hover);
+      &:hover {
+        color: $blue-hover;
+        transition: color .2s;
+      }
+    }
+  }
+  &-promoCode {
+    margin-bottom: 20px;
+
+    h3 {
+      position: relative;
+      margin: 0;
+      padding: 0 15px;
+      font-size: 16px;
+      line-height: 2;
+      font-family: $sans-serif;
+      color: $font-color-light;
+      cursor: pointer;
+      background: #fafafa;
+      border: 1px solid $border-color;
+      border-top: none;
+
+      // styles for plus icon and it's animation
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 10px;
+        height: 1px;
+        background: currentColor;
+      }
+      &:after {
+        transform: rotate(90deg);
+        transition: transform .2s;
+      }
+    }
+    &.is-open h3:after {
+      transform: rotate(0deg);
+      transition: transform .2s;
+    }
+
+    .field {
+      @include clearfix;
+      display: none;
+      padding: 15px;
+      border: 1px solid $border-color;
+      border-top: none;
+
+      label, input, .btn {
+        margin: 0;
+      }
+      input, .btn {
+        clear: left;
+      }
+      input {
+        width: 50%;
+        margin-right: 10px;
+      }
+    }
+    &.is-open .field {
+      display: block;
+    }
+  }
+  &-checkout {
+    .btn {
+      width: 100%;
+      background: $teal;
+      color: #fff;
+      transition: color .2s, background .2s;
+
+      &:hover {
+        background: #fff;
+        color: $teal;
+        transition: color .2s, background .2s;
+      }
+    }
+  }
+  &-creditCards {
+    display: flex;
+
+    li {
+      //width: 50px;
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  &-paypal {
+    display: flex;
+    align-items: center;
+
+    .paypal-btn {
+      display: inline-block;
+      width: 50%;
+      margin-right: 10px;
+    }
+    .paypal-details {
+      color: $blue;
+      transition: color .2s;
+
+      @include underline($bg: $blue-hover);
+      &:hover {
+        color: $blue-hover;
+        transition: color .2s;
+      }
+    }
+  }
+}

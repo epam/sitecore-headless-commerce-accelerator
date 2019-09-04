@@ -1,0 +1,79 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~Foundation/UI/client/common/scss/mixins';
+
+@import '~Foundation/UI/client/common/scss/variables';
+
+.nav-category {
+  @media (max-width: $screen-md-max) { // show only at large screens
+    display: none;
+  }
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 1;
+  background: #fff;
+  padding: 20px 32px;
+  border-bottom: 7px solid $green;
+}
+.category-list {
+  &-item {
+    padding: 15px 0;
+    border-bottom: 1px solid $green;
+
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+  }
+}
+.filter {
+  &-title {
+    margin: 0;
+    color: #54565b;
+    font-size: 18px;
+    line-height: 31px;
+    font-weight: 500;
+    font-family: $sans-serif;
+    text-transform: uppercase;
+  }
+  &-link {
+    color: #898b8e;
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &-active, &:hover {
+      color: $green;
+    }
+
+    // styles for gender filter
+    .category-filter-gender & {
+      font-size: 21px;
+      line-height: 27px;
+      color: #cccccc;
+      text-transform: uppercase;
+
+      &-active, &:hover {
+        color: $green;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+---
+ID: "4a6010a4-0fc3-4008-af62-7f660750ac05"
+Parent: "d6a1aa65-1c77-4bb4-8848-2ca15ae39e22"
+Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
+Path: /sitecore/layout/Renderings/Wooli/Foundation/Connect
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170511T175500Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

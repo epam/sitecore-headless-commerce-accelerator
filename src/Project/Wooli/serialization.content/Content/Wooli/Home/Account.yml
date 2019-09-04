@@ -1,0 +1,48 @@
+﻿---
+ID: "141d9a06-eee9-4ef4-b2fc-1f84891326dd"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/Wooli/Home/Account
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{881A9677-2B9A-47EC-9689-4BDE26819D5C}"
+          p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="/wooli-content" />
+        <r
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
+          p:after="r[@uid='{881A9677-2B9A-47EC-9689-4BDE26819D5C}']" />
+        <r
+          uid="{ABB80CF4-5EC7-4712-B60D-E5FCFCEAC437}"
+          p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']"
+          s:id="{E3538FC5-6E16-4D93-A988-7BC57E184E87}"
+          s:ph="/wooli-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{DEFDEC03-3CA6-48B1-B085-5D7C864EDAFA}"
+          p:after="r[@uid='{ABB80CF4-5EC7-4712-B60D-E5FCFCEAC437}']"
+          s:id="{699BBC0B-B614-4951-AD37-53A10F49EAB9}"
+          s:ph="/wooli-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{D8FE579C-1C38-4FE8-8BD0-AAB28594123E}"
+          p:after="*[1=2]"
+          s:id="{D31E47A2-8874-42B9-BD6B-7F8618C4BA11}"
+          s:ph="/wooli-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180607T103416Z

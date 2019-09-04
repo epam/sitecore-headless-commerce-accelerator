@@ -1,0 +1,151 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~Foundation/UI/client/common/scss/variables';
+
+header#header-main{
+  padding-top: 40px;
+  background: #040404;
+  @media (max-width: $screen-sm-max){
+    padding-top: 0;
+  }
+  .wrap{
+    @include container-fixed;
+
+    @media (min-width: $screen-sm-min) {
+      width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+      width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg;
+    }
+
+    position: relative;
+    @media (max-width: $screen-sm-max){
+      padding: 0;
+      width: auto;
+    }
+  }
+  .nav-wrap{
+    height: 41px;
+    background: #444;
+    border-top:1px solid #fff;
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.25);
+    @media (max-width: $screen-sm-max){
+      height: auto;
+    }
+    .wrap{
+      padding: 0 400px 0 180px;
+      @media (max-width: $screen-md-max){
+        padding: 0 270px 0 120px;
+      }
+      @media (max-width: $screen-sm-max){
+        padding: 0;
+      }
+    }
+  }
+  .logo{
+    height: 40px;
+    width: 180px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @media (max-width: $screen-md-max){
+      width: 120px;
+    }
+    @media (max-width: $screen-sm-max){
+      display: none;
+    }
+    img{
+      display: block;
+      width: 77px;
+      margin: 8px auto;
+    }
+  }
+}
+
+
+header#header-mobile{
+  display: none;
+  background: #666;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  &:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right,  $green 20%,$orange 20%,$orange 40%,$blue 40%,$blue 60%,$purple 60%,$purple 80%,$red 80%);
+    @media (min-width: 521px){
+      left: auto;
+      width: 250px;
+    }
+  }
+  a{
+    display: block;
+    height: 50px;
+  }
+  .toggle{
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    color:#999;
+    transition: color .2s;
+    &:hover{
+      color:#fff;
+    }
+    i{
+      font-size: 40px;
+      line-height: 50px;
+    }
+  }
+  .logo{
+    position: absolute;
+    left: 60px;
+    width: 114px;
+    img{
+      width: 114px;
+      margin: 9px auto;
+    }
+  }
+  @media (max-width: $screen-sm-max){
+    display: block;
+  }
+}
+.nav-main-panel-open{
+  header#header-mobile{
+    .toggle{
+      color: #fff;
+      i:before{
+        content: '\f00d';
+      }
+    }
+  }
+}

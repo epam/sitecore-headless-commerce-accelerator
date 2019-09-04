@@ -1,0 +1,19 @@
+﻿---
+ID: "39923bde-a2a0-4e05-aa76-dcd497e24696"
+Parent: "cc933745-4840-4bd7-962a-24b27c7eca6d"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: "/sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/Subdivision/Commerce Control Panel"
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161202T071950Z
+  - Version: 2
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161202T071950Z

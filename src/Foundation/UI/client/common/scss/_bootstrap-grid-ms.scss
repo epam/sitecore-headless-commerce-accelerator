@@ -1,0 +1,131 @@
+//    Copyright 2019 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+// Originally taken from from: https://gist.github.com/wdollar/135ec3c80faaf5a821b0
+//
+// Bootstrap Mid-Small - col-ms-* - the missing grid set for Bootstrap3.
+//
+// This is a hack to fill the gap between 480 and 767 pixels - a missing range
+// in the bootstrap responsive grid structure. Use these classes to style pages
+// on cellphones when they transition from portrait to landscape.
+//
+// Contains:
+// Columns, Offsets, Pushes, Pulls for the Mid-Small layout
+// Visibility classes for the Mid-Small layout
+// Redefined visibility classes for the Extra Small layout
+//
+// See https://github.com/twbs/bootstrap/issues/10203 for more info.
+//
+
+
+// Common styles (see make-grid-columns() in bootstrap/mixins/_grid-framework.scss)
+.col-ms-1,
+.col-ms-2,
+.col-ms-3,
+.col-ms-4,
+.col-ms-5,
+.col-ms-6,
+.col-ms-7,
+.col-ms-8,
+.col-ms-9,
+.col-ms-10,
+.col-ms-11,
+.col-ms-12 {
+  position: relative;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Inner gutter via padding
+  padding-left: ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
+}
+
+// Misc. class adjustments for col-ms
+@media (min-width: $screen-ms) and (max-width: $screen-ms-max) {
+  .hidden-xs {
+    display: block !important;
+  }
+}
+
+// col-ms grid
+@media (min-width: $screen-ms-min) {
+  @include make-grid(ms);
+}
+@media (min-width: $screen-sm-min) {
+  @include make-grid(sm);
+}
+@media (min-width: $screen-md-min) {
+  @include make-grid(md);
+}
+@media (min-width: $screen-lg-min) {
+  @include make-grid(lg);
+}
+
+// Visibility utilities
+@include responsive-invisibility('.visible-xs');
+@include responsive-invisibility('.visible-ms');
+
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-ms-block,
+.visible-ms-inline,
+.visible-ms-inline-block {
+  display: none !important;
+}
+
+@media (max-width: $screen-xs-max-new) {
+  @include responsive-visibility('.visible-xs');
+}
+.visible-xs-block {
+  @media (max-width: $screen-xs-max-new) {
+    display: block !important;
+  }
+}
+.visible-xs-inline {
+  @media (max-width: $screen-xs-max-new) {
+    display: inline !important;
+  }
+}
+.visible-xs-inline-block {
+  @media (max-width: $screen-xs-max-new) {
+    display: inline-block !important;
+  }
+}
+
+@media (min-width: $screen-ms-min) and (max-width: $screen-ms-max) {
+  @include responsive-visibility('.visible-ms');
+}
+.visible-ms-block {
+  @media (min-width: $screen-ms-min) and (max-width: $screen-ms-max) {
+    display: block !important;
+  }
+}
+.visible-ms-inline {
+  @media (min-width: $screen-ms-min) and (max-width: $screen-ms-max) {
+    display: inline !important;
+  }
+}
+.visible-ms-inline-block {
+  @media (min-width: $screen-ms-min) and (max-width: $screen-ms-max) {
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: $screen-xs-max-new) {
+  @include responsive-invisibility('.hidden-xs');
+}
+
+@media (min-width: $screen-ms-min) and (max-width: $screen-ms-max) {
+  @include responsive-invisibility('.hidden-ms');
+}

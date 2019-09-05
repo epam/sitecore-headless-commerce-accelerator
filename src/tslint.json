@@ -35,7 +35,7 @@
     "no-string-literal": false,
     "no-submodule-imports": [ true, "react-dom/server", "redux-saga", "Foundation", "Project", "Feature" ],
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": [true, "ignore-comments"],
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-useless-cast": false,

@@ -130,8 +130,7 @@ To bootstrap the Commerce Server follow these instructions:
 ### Building & deploying Wooli      
 * Fetch **Wooli** code base
 * Copy Sitecore license to **./src** folder.
-* Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). 
-* Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
+* Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
 * For Visual Studio:
   * 17: leave **msBuildToolVersion** parameter as is.
   * 19: change to **msBuildToolVersion: MSBuildToolVersion.VS2019**

@@ -127,27 +127,29 @@ To bootstrap the Commerce Server follow these instructions:
 * Make sure the following exists in your web.config and if not then add it (system.webServer/handlers section):
 `<add verb="*" path="sitecorejss_media.ashx" type="Sitecore.JavaScriptServices.Media.MediaRequestHandler, Sitecore.JavaScriptServices.Media" name="Sitecore.JavaScriptServices.Media.MediaRequestHandler" />`
 
+----
 ### Building & deploying Wooli      
-* Fetch **Wooli** code base
-* Copy Sitecore license to **./src** folder.
-* Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
-* For Visual Studio:
-  * 17: leave **msBuildToolVersion** parameter as is.
-  * 19: change to **msBuildToolVersion: MSBuildToolVersion.VS2019**
-* Add the following NuGet package sources:
-  * https://sitecore.myget.org/F/sc-packages/api/v3/index.json
-  * https://sitecore.myget.org/F/sc-commerce-packages/api/v3/index.json
-* Restore NuGet packages.
-* Execute `npm install` inside the **.\src** folder.
-* Execute src/build.ps1.
+1. Fetch **Wooli** code base
+2. Copy Sitecore license to **./src** folder.
+3. Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
+4. For Visual Studio:
+   * 17: leave **msBuildToolVersion** parameter as is.
+   * 19: change to **msBuildToolVersion: MSBuildToolVersion.VS2019**
+5. Add the following NuGet package sources:
+   * https://sitecore.myget.org/F/sc-packages/api/v3/index.json
+   * https://sitecore.myget.org/F/sc-commerce-packages/api/v3/index.json
+6. Restore NuGet packages.
+7. Execute `npm install` inside the **.\src** folder.
+8. Execute src/build.ps1.
 
-* It’s advisable to make a backup of the website prior to the next step
-* Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc)
-* In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts)
-* Log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
-* In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
-* Publish content tree & Rebuild all the indexes in sitecore indexing manager.
+9. It’s advisable to make a backup of the website prior to the next step
+10. Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc)
+11. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts)
+12. Log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
+13. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
+14. Publish content tree & Rebuild all the indexes in sitecore indexing manager.
 
+----
 ### Troubleshooting deployment 
 
 In case of issues with the installation process you have several diagnostic options:

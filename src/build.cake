@@ -77,7 +77,7 @@ Task("Default") // LocalDev
     .IsDependentOn("003-Tests") // comment this line if deploy process fails on this step
     //.IsDependentOn("004-Packages")
     .IsDependentOn("005-Publish")
-    .IsDependentOn("006-Sync-Content"); // comment this line if deploy process fails on this step
+    //.IsDependentOn("006-Sync-Content"); // comment this line if deploy process fails on this step
 
 Task("Build-and-Publish") // LocalDev
     .IsDependentOn("002-Build")

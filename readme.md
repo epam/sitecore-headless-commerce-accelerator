@@ -1,6 +1,5 @@
-# Wooli solution
+## Headless Commerce Accelerator for Sitecore Experience Commerce
 
-## Wooli commerce accelerator:
 * Enables a JSS-based eCommerce site that is headless, meaning it is decoupled from Sitecore servers
 * Empowers productivity on day one through source code that saves teams weeks of development time
 * Allows front-end JavaScript developers to quickly develop and adjust eCommerce website features independently from Sitecore back-end developers
@@ -67,7 +66,7 @@ Acquire a Sitecore license that authorizes the use of JSS (open it in Notepad an
 > CommerceMinionsServicesPort
 
 ### Advanced configuration of the installation process:
-* The **Sitecore Experience Accelerator (SXA)** was not working with Wooli at the time of writing, so it’s recommended that it be removed from installation. To do it, edit the following file: **.\ Configuration\Commerce\ Master_SingleServer.json** by removing these sections:
+* The **Sitecore Experience Accelerator (SXA)** was not working with Headless Commerce Accelerator at the time of writing, so it’s recommended that it be removed from installation. To do it, edit the following file: **.\ Configuration\Commerce\ Master_SingleServer.json** by removing these sections:
 * Parameters:   
 
 > SXAModuleFullPath     
@@ -112,7 +111,7 @@ To resolve the issue follow the link to [StackOverflow](https://sitecore.stackex
 
 To bootstrap the Commerce Server follow these instructions:
 
-* For Wooli use the authoring server instance of the commerce server (default directory for the instances C:\inetpub\wwwroot).
+* For Headless Commerce Accelerator use the authoring server instance of the commerce server (default directory for the instances C:\inetpub\wwwroot).
 * In the instance modify the wwwroot\data\Environments\PlugIn.Payments.Braintree.PolicySet-1.0.0.json - set the MerchantId, PublicKey and PrivateKey corresponding to the account you have set up with BrainTree.
 * Disable SSL verification from the File > Settings > SSL certification verification in Postman. This settings needs to be turned off.
 * Navigate to \CommerceAuthoring_Sc9\wwwroot\config.json and set the value for AntiForgeryEnabled to false.
@@ -128,8 +127,8 @@ To bootstrap the Commerce Server follow these instructions:
 `<add verb="*" path="sitecorejss_media.ashx" type="Sitecore.JavaScriptServices.Media.MediaRequestHandler, Sitecore.JavaScriptServices.Media" name="Sitecore.JavaScriptServices.Media.MediaRequestHandler" />`
 
 ----
-### Building & deploying Wooli      
-1. Fetch **Wooli** code base
+### Building & deploying Headless Commerce Accelerator      
+1. Fetch **Headless Commerce Accelerator** code base
 2. Copy Sitecore license to **./src** folder.
 3. Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
 4. For Visual Studio:
@@ -144,7 +143,7 @@ To bootstrap the Commerce Server follow these instructions:
 
 9. It’s advisable to make a backup of the website prior to the next step
 10. Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc)
-11. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts)
+11. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), Wooli - is internal name of the Headless Commerce Accelerator
 12. Log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
 13. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
 14. Publish content tree & Rebuild all the indexes in sitecore indexing manager.

@@ -14,6 +14,7 @@
 
 import { isExperienceEditorActive } from '@sitecore-jss/sitecore-jss-react';
 import { push } from 'connected-react-router';
+import queryString from 'query-string';
 import { apply, fork, put, takeEvery } from 'redux-saga/effects';
 
 import * as Extensions from 'Foundation/Extensions/client';
@@ -57,11 +58,13 @@ export function* getRoute(newUrl: string) {
       window.stop();
     }
 
+    const search = queryString.parse(location.search) as { sc_itemid: string };
     const parsedUrlData = tryParseUrl(newUrl);
 
     // TODO: implement functionality language selection
     const data: SitecoreState = yield apply(dataProvider, dataProvider.getRouteData, [
-      parsedUrlData.pathname,
+      // sc_itemid means we're in Experience Editor
+      search.sc_itemid || parsedUrlData.pathname,
       constants.DEFAULT_LANGUAGE,
       {
         querystringParams: parsedUrlData.params,

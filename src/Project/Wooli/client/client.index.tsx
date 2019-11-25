@@ -14,6 +14,7 @@
 
 // import the babel polyfill here instead of via webpack
 import 'babel-polyfill';
+import queryString from 'query-string';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -86,8 +87,15 @@ const initialize = async (jssState?: LayoutServiceData, dictionary?: i18n.Resour
   // if sitecoreData is not available fetch it from SC
   if (!jssState) {
     try {
-      const { language, itemPath } = getRoute(location.pathname);
-
+      const search = queryString.parse(location.search) as { sc_itemid: string, sc_lan: string };
+      let language: string;
+      let itemPath: string;
+      // sc_itemid means we're in Experience Editor
+      if (search.sc_itemid) {
+        ({ sc_itemid: itemPath, sc_lan: language } = search);
+      } else {
+        ({ itemPath, language } = getRoute(location.pathname));
+      }
       const decodedItemPath = decodeURI(itemPath);
       const data: LayoutServiceData = await dataProvider.getRouteData(decodedItemPath, language);
       render(ReactDOM.render, data, dictionary);

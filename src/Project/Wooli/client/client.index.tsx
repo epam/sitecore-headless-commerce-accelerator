@@ -87,17 +87,14 @@ const initialize = async (jssState?: LayoutServiceData, dictionary?: i18n.Resour
   // if sitecoreData is not available fetch it from SC
   if (!jssState) {
     try {
-      const search = queryString.parse(location.search);
-      let language: string, itemPath: string;
-      //sc_itemid means we're in Experience Editor
-      if(search["sc_itemid"]) {
-        itemPath = search["sc_itemid"];
-        language = search["sc_lan"];
-      }
-      else {
-        const languageItemPath = getRoute(location.pathname);
-        itemPath = languageItemPath.itemPath;
-        language = languageItemPath.language;
+      const search = queryString.parse(location.search) as { sc_itemid: string, sc_lan: string };
+      let language: string;
+      let itemPath: string;
+      // sc_itemid means we're in Experience Editor
+      if (search.sc_itemid) {
+        ({ sc_itemid: itemPath, sc_lan: language } = search);
+      } else {
+        ({ itemPath, language } = getRoute(location.pathname));
       }
       const decodedItemPath = decodeURI(itemPath);
       const data: LayoutServiceData = await dataProvider.getRouteData(decodedItemPath, language);

@@ -14,7 +14,6 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Initialize
 {
-    using System.Web.Mvc;
     using System.Web.Routing;
 
     using Sitecore.Pipelines;

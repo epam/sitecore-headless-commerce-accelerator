@@ -29,7 +29,6 @@ namespace Wooli.Feature.Catalog.Models
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Linq;
     using System.Text;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration;

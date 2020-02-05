@@ -30,7 +30,9 @@ Sitecore.Parameters.InitParams(
 Task("000-Clean")
     .IsDependentOn(Sitecore.Tasks.ConfigureToolsTaskName)
     .IsDependentOn(Sitecore.Tasks.CleanWildcardFoldersTaskName)
-    ;
+    .Does(() => {
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Unicorn\*");
+    });
 
 Task("001-Restore")
     .IsDependentOn(Sitecore.Tasks.RestoreNuGetPackagesTask)

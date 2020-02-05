@@ -1,0 +1,19 @@
+{
+  "commands": {
+    "Install": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \"cd ..\\; .\\build\\install.ps1\""
+    },
+    "Default": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \"cd ..\\; .\\build\\build.ps1 -Target=Default\""
+    },
+    "Build-and-Publish": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \"cd ..\\; .\\build\\build.ps1 -Target=Build-And-Publish\""
+    }
+  }
+}

@@ -24,7 +24,7 @@ DO NOT CHANGE THIS FILE - UPDATE GlassMapperScCustom.cs
 
 // WebActivator has been removed. If you wish to continue using WebActivator uncomment the line below
 // and delete the Glass.Mapper.Sc.CastleWindsor.config file from the Sitecore Config Include folder.
-// [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Wooli.Foundation.GlassMapper.App_Start.GlassMapperSc), "Start")]
+// [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Wooli.Foundation.GlassMapper.GlassMapperSc), "Start")]
 
 namespace Wooli.Foundation.GlassMapper
 {

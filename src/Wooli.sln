@@ -78,10 +78,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wooli.Foundation.Dependency
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DF3B36CF-6D1C-415A-8115-C806AAE79DB9}"
 	ProjectSection(SolutionItems) = preProject
-		cake.config = cake.config
-		gulp-config.js = gulp-config.js
-		gulpfile-ci.js = gulpfile-ci.js
-		gulpfile.js = gulpfile.js
+		..\build\build-ci.ps1 = ..\build\build-ci.ps1
+		..\build\build.cake = ..\build\build.cake
+		..\build\build.ps1 = ..\build\build.ps1
+		..\build\cake.config = ..\build\cake.config
+		commands.json = commands.json
 		package.json = package.json
 		readme.md = readme.md
 	EndProjectSection

@@ -50,7 +50,7 @@ https://cakebuild.net
 
 [CmdletBinding()]
 Param(
-    [string]$Script = "build.cake",
+    [string]$Script = "build\build.cake",
     [string]$Target,
     [string]$Configuration,
     [ValidateSet("Quiet", "Minimal", "Normal", "Verbose", "Diagnostic")]

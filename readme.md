@@ -130,7 +130,7 @@ To bootstrap the Commerce Server follow these instructions:
 ### Building & deploying Headless Commerce Accelerator      
 1. Fetch **Headless Commerce Accelerator** code base
 2. Copy Sitecore license to **./src** folder.
-3. Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **src/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
+3. Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check **build/build.cake** if `Sitecore/Parameters.InitParams` are correct for your installation.
 4. For Visual Studio:
    * 17: leave **msBuildToolVersion** parameter as is.
    * 19: change to **msBuildToolVersion: MSBuildToolVersion.VS2019**
@@ -139,20 +139,23 @@ To bootstrap the Commerce Server follow these instructions:
    * https://sitecore.myget.org/F/sc-commerce-packages/api/v3/index.json
 6. Restore NuGet packages.
 7. Execute `npm install` inside the **.\src** folder.
-8. Execute src/build.ps1.
+8. Change default IP address to VM address (run ipconfig in cmd) in Wooli\src\publishsettings.targets: `<MSDeployServiceURL><VM IP here></MSDeployServiceURL>`.
+9. Install [Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandTaskRunner) for running Cake deployment scripts inside IDE. 
 
-9. It’s advisable to make a backup of the website prior to the next step
-10. Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc)
-11. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), Wooli - is internal name of the Headless Commerce Accelerator
-12. Log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
-13. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
-14. Publish content tree & Rebuild all the indexes in sitecore indexing manager.
+**It’s advisable to make a backup of the website prior to the next step**
+
+10. Run "Default" task in Visual Studio Task Runner Explorer. 
+11. Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc)
+12. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), Wooli - is internal name of the Headless Commerce Accelerator
+13. Log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
+14. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
+15. Publish content tree & Rebuild all the indexes in sitecore indexing manager.
 
 ----
 ### Troubleshooting deployment 
 
 In case of issues with the installation process you have several diagnostic options:
 
-  * In **src/build.cake**, set **BuildConfiguration = "Debug"**;  
-  * In **src/build.cake**, set **var publishingTargetDir = artifactsBuildDir** 
+  * In **build/build.cake**, set **BuildConfiguration = "Debug"**;  
+  * In **build/build.cake**, set **var publishingTargetDir = artifactsBuildDir** 
   * In **src/scripts/webpack/environments/production.js** make sure **mode="development"** and **minimize: false** 

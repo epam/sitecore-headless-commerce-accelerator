@@ -86,20 +86,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Unicorn\Unicorn.UI.IdentityServer.config" />
-    <None Include="packages.config" />
-    <Content Include="App_Config\Include\Rainbow.config" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.config" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config.disabled" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.config.disabled" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Dependency.config.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.NewItemsOnly.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.CustomSerializationFolder.config.example" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.DataProvider.config" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.DataProvider.config.disabled" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Deployed.config.disabled" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.Dilithium.config.example" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.PowerShell.config.disabled" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Remote.config.disabled" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.UI.config" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.UI.config.disabled" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.UI.IdentityServer.config.disabled" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.zSharedSecret.config.example" />
+    <None Include="packages.config" />
+    <Content Include="App_Config\Include\Rainbow.config" />
     <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Serialization.config" />
     <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Serialization.Settings.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">

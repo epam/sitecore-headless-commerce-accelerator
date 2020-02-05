@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.ContentSearch.Linq;
-using Sitecore.Diagnostics;
-using TypeLite;
-
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using Sitecore.ContentSearch.Linq;
+    using Sitecore.Diagnostics;
+    using TypeLite;
+
     [TsClass]
     public class FacetValueResultModel
     {

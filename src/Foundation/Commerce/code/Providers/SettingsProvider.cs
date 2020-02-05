@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Context;
+    using DependencyInjection;
+    using Models.Catalog;
+
     [Service(typeof(ISettingsProvider))]
     public class SettingsProvider : ISettingsProvider
     {

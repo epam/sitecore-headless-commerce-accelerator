@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Glass.Mapper.Sc;
-using Sitecore.Data;
-using Sitecore.JavaScriptServices.Configuration;
-using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-using Wooli.Feature.Catalog.Models;
-using Wooli.Foundation.ReactJss.Infrastructure;
-
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using System.Collections.Generic;
+    using Foundation.ReactJss.Infrastructure;
+    using Glass.Mapper.Sc;
+    using Models;
+    using Sitecore.Data;
+    using Sitecore.JavaScriptServices.Configuration;
+    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+
     public class ProductColorsContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly ISitecoreContext sitecoreContext;

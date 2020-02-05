@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Diagnostics;
-using TypeLite;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.Extensions.Extensions;
-
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Connect.Models;
+    using Extensions.Extensions;
+    using Sitecore.Diagnostics;
+    using TypeLite;
+
     [TsClass]
     public class ProductVariantModel
     {

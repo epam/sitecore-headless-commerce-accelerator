@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Glass.Mapper.Sc;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Context
 {
+    using Connect.Models;
+    using DependencyInjection;
+    using Glass.Mapper.Sc;
+
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {

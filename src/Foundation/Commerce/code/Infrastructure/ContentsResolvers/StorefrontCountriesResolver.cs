@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
-using Sitecore.Mvc.Presentation;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using Connect.Models;
+    using Context;
+    using DependencyInjection;
+    using ModelMappers;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
+    using Sitecore.Mvc.Presentation;
+
     [Service(Lifetime = Lifetime.Transient)]
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
     {

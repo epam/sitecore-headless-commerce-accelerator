@@ -12,21 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Specialized;
-using System.Net;
-using System.Web;
-using System.Web.Http;
-using Glass.Mapper.Sc;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.Extensions.Extensions;
-using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
-
 namespace Wooli.Feature.Catalog.Controllers
 {
+    using System.Collections.Specialized;
+    using System.Net;
+    using System.Web;
+    using System.Web.Http;
+    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models.Catalog;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Utils;
+    using Foundation.Connect.Models;
+    using Foundation.Extensions.Extensions;
+    using Glass.Mapper.Sc;
+    using ProductModel = Foundation.Commerce.Models.Catalog.ProductModel;
+
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
     {

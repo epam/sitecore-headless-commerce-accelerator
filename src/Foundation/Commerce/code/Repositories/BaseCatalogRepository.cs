@@ -12,20 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Glass.Mapper.Sc;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.Connect.Models;
-using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Connect.Managers;
+    using Connect.Models;
+    using Context;
+    using Glass.Mapper.Sc;
+    using Models.Catalog;
+    using Providers;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using ProductModel = Models.Catalog.ProductModel;
+
     public class BaseCatalogRepository
     {
         public const string CurrentCatalogItemRenderingModelKey = "CurrentCatalogItemRenderingModel";

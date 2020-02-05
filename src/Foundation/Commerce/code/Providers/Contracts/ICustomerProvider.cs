@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Web;
-using Wooli.Foundation.Commerce.Models;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using System.Web;
+    using Models;
+
     public interface ICustomerProvider
     {
         CommerceUserModel GetCommerceUser(string contactIdOrName);

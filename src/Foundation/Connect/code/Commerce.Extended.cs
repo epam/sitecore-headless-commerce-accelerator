@@ -14,14 +14,14 @@
 
 // ReSharper disable CheckNamespace
 
-using System.Collections.Generic;
-using Glass.Mapper.Sc.Configuration.Attributes;
-
 #pragma warning disable 1591
 #pragma warning disable 0108
 
 namespace Wooli.Foundation.Connect.Models
 {
+    using System.Collections.Generic;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+
     public partial interface ICommerceProductModel
     {
         [SitecoreChildren(InferType = true)] IEnumerable<ICommerceProductVariantModel> Variants { get; set; }

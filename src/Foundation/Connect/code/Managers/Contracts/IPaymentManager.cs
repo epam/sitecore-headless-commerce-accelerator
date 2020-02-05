@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Payments;
-using Sitecore.Commerce.Services;
-using Sitecore.Commerce.Services.Payments;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Payments;
+    using Sitecore.Commerce.Services;
+    using Sitecore.Commerce.Services.Payments;
+
     public interface IPaymentManager
     {
         ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>> GetPaymentMethods(Cart cart,

@@ -12,22 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Engine.Connect.Services.Carts;
-using Sitecore.Commerce.Services;
-using Sitecore.Commerce.Services.Carts;
-using Sitecore.Commerce.Services.Catalog;
-using Sitecore.Commerce.Services.Customers;
-using Sitecore.Commerce.Services.Inventory;
-using Sitecore.Commerce.Services.Orders;
-using Sitecore.Commerce.Services.Payments;
-using Sitecore.Commerce.Services.Prices;
-using Sitecore.Commerce.Services.Shipping;
-using Sitecore.Configuration;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Providers
 {
+    using Contracts;
+    using DependencyInjection;
+    using Sitecore.Commerce.Engine.Connect.Services.Carts;
+    using Sitecore.Commerce.Services;
+    using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Commerce.Services.Catalog;
+    using Sitecore.Commerce.Services.Customers;
+    using Sitecore.Commerce.Services.Inventory;
+    using Sitecore.Commerce.Services.Orders;
+    using Sitecore.Commerce.Services.Payments;
+    using Sitecore.Commerce.Services.Prices;
+    using Sitecore.Commerce.Services.Shipping;
+    using Sitecore.Configuration;
+
     [Service(typeof(IConnectServiceProvider))]
     public class ConnectServiceProvider : IConnectServiceProvider
     {

@@ -12,25 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using Glass.Mapper.Sc;
-using Sitecore.Commerce.Engine.Connect;
-using Sitecore.Commerce.Engine.Connect.Search.Models;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using Connect.Managers;
+    using Connect.Models;
+    using Context;
+    using DependencyInjection;
+    using Glass.Mapper.Sc;
+    using Models.Catalog;
+    using Providers;
+    using Sitecore.Commerce.Engine.Connect;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using ProductModel = Models.Catalog.ProductModel;
+
     [Service(typeof(IProductListRepository), Lifetime = Lifetime.Singleton)]
     public class ProductListRepository : BaseCatalogRepository, IProductListRepository
     {

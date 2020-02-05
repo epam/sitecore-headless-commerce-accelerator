@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Web.Mvc;
-using System.Web.Security;
-using Sitecore.Commerce;
-using Sitecore.Security.Authentication;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Authentication;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Extensions.Extensions;
-
 namespace Wooli.Feature.Account.Controllers
 {
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Authentication;
+    using Foundation.Commerce.Providers;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Extensions.Extensions;
+    using Sitecore.Commerce;
+    using Sitecore.Security.Authentication;
+
     public class AuthenticationController : Controller
     {
         private readonly ICartRepository cartRepository;

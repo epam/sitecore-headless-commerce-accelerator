@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Engine.Connect.Search.Models;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Models;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+
     public interface ISearchManager
     {
         Item GetProduct(string catalogName, string productId);

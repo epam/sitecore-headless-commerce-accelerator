@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Linq;
-using System.Net;
-using System.Web.Http;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Extensions.Extensions;
-
 namespace Wooli.Feature.Checkout.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Http;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Utils;
+    using Foundation.Extensions.Extensions;
+
     [RoutePrefix(Constants.CommerceRoutePrefix + "/order")]
     public class OrderController : ApiController
     {

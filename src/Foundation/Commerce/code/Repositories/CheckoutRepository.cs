@@ -12,23 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Linq;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Orders;
-using Sitecore.Commerce.Services.Carts;
-using Sitecore.Commerce.Services.Orders;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelInitilizers;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System;
+    using System.Linq;
+    using Connect.Managers;
+    using Context;
+    using DependencyInjection;
+    using ModelInitilizers;
+    using ModelMappers;
+    using Models;
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Orders;
+    using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Commerce.Services.Orders;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(ICheckoutRepository), Lifetime = Lifetime.Singleton)]
     public class CheckoutRepository : BaseCheckoutRepository, ICheckoutRepository
     {

@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using Microsoft.Extensions.DependencyInjection;
-using NSubstitute;
-using Xunit;
-
 namespace Wooli.Foundation.DependencyInjection.Tests
 {
+    using System;
+    using Microsoft.Extensions.DependencyInjection;
+    using NSubstitute;
+    using Xunit;
+
     public class ServiceCollectionExtensionsTests
     {
         [Theory]

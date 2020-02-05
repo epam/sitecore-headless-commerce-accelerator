@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Wooli.Foundation.ReactJss.Helpers;
-using Xunit;
-
 namespace Wooli.Foundation.ReactJss.Tests.Helpers
 {
+    using ReactJss.Helpers;
+    using Xunit;
+
     public class StringHelperTests
     {
         [Theory]

@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
-using Wooli.Foundation.Extensions.Controllers.ActionResult;
-using Wooli.Foundation.Extensions.Models;
-
 namespace Wooli.Foundation.Extensions.Extensions
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using Controllers.ActionResult;
+    using Models;
+
     public static class ControllerExtensions
     {
         public static ActionResult JsonError(this Controller controller, string[] errorMessages,

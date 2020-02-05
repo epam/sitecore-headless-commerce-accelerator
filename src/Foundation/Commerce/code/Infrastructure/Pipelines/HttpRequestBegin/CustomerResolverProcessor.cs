@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Pipelines.HttpRequest;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Extensions.Infrastructure;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
+    using Context;
+    using Extensions.Infrastructure;
+    using Providers;
+    using Sitecore.Pipelines.HttpRequest;
+
     public class CustomerResolverProcessor : SiteSpecificPipelineProcessor
     {
         private readonly ICustomerProvider customerProvider;

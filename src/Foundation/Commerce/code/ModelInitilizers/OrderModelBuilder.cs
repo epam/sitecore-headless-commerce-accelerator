@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Entities.Orders;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.ModelInitilizers
 {
+    using DependencyInjection;
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities.Orders;
+
     [Service(typeof(IOrderModelBuilder))]
     public class OrderModelBuilder : IOrderModelBuilder
     {

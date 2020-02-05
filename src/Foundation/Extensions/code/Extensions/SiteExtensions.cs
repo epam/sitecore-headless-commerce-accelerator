@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using Sitecore;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Sites;
-
 namespace Wooli.Foundation.Extensions.Extensions
 {
+    using System;
+    using Sitecore;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.Sites;
+
     public static class SiteExtensions
     {
         public static Item GetContextItem(this SiteContext site, ID derivedFromTemplateId)

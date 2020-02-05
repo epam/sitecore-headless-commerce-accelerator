@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using NSubstitute;
-using Sitecore.Data.Items;
-using Sitecore.FakeDb;
-using Sitecore.JavaScriptServices.Configuration;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-using Wooli.Foundation.ReactJss.Infrastructure;
-using Xunit;
-
 namespace Wooli.Foundation.ReactJss.Tests.Infrastucture
 {
+    using System;
+    using Infrastructure;
+    using NSubstitute;
+    using Sitecore.Data.Items;
+    using Sitecore.FakeDb;
+    using Sitecore.JavaScriptServices.Configuration;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+    using Xunit;
+
     public class BaseSafeJssGetLayoutServiceContextProcessorTests
     {
         public class ErrorableGetLayoutServiceContextProcessor : BaseSafeJssGetLayoutServiceContextProcessor

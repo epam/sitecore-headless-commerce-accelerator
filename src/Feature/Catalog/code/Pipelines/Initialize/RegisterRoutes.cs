@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Web.Routing;
-using Sitecore.Diagnostics;
-using Sitecore.Pipelines;
-
 namespace Wooli.Feature.Catalog.Pipelines.Initialize
 {
+    using System.Web.Routing;
+    using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
+
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)

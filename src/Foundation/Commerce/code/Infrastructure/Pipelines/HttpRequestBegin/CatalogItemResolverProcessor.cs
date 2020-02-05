@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using Sitecore.Data.Items;
-using Sitecore.Pipelines.HttpRequest;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
+    using System;
+    using Sitecore.Data.Items;
+    using Sitecore.Pipelines.HttpRequest;
+
     public class CatalogItemResolverProcessor : HttpRequestProcessor
     {
         private readonly ICatalogItemResolver catalogItemResolver;

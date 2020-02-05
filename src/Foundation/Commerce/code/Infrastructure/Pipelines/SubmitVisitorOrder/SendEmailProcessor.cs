@@ -12,20 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Net.Mail;
-using Sitecore;
-using Sitecore.Commerce.Engine.Connect.Pipelines;
-using Sitecore.Commerce.Entities.Orders;
-using Sitecore.Commerce.Pipelines;
-using Sitecore.Commerce.Services.Orders;
-using Sitecore.Configuration;
-using Sitecore.Diagnostics;
-using Sitecore.Links;
-using Wooli.Foundation.Extensions.Extensions;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 {
+    using System;
+    using System.Net.Mail;
+    using Extensions.Extensions;
+    using Sitecore;
+    using Sitecore.Commerce.Engine.Connect.Pipelines;
+    using Sitecore.Commerce.Entities.Orders;
+    using Sitecore.Commerce.Pipelines;
+    using Sitecore.Commerce.Services.Orders;
+    using Sitecore.Configuration;
+    using Sitecore.Diagnostics;
+    using Sitecore.Links;
+
     public class SendEmailProcessor : PipelineProcessor
     {
         private static readonly string SendConfirmationFrom =

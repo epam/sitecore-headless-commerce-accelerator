@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using Sitecore;
-using Sitecore.Data.Fields;
-using Sitecore.Resources.Media;
-
 namespace Wooli.Foundation.Extensions.Extensions
 {
+    using System;
+    using Sitecore;
+    using Sitecore.Data.Fields;
+    using Sitecore.Resources.Media;
+
     public static class FieldExtensions
     {
         public static string ImageUrl(this ImageField imageField)

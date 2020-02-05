@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Search.Models;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-
 namespace Wooli.Foundation.Connect.Models
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+
     public class SearchResults
     {
         private IEnumerable<CommerceQueryFacet> facets;

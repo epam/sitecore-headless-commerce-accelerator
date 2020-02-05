@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Diagnostics;
-using TypeLite;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Connect.Models;
+    using Sitecore.Diagnostics;
+    using TypeLite;
+
     [TsClass]
     public class CategoryModel
     {

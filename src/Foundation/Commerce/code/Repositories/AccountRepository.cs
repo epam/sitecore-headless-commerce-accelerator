@@ -12,27 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web.Security;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Services.Customers;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Account;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Web.Security;
+    using Connect.Managers;
+    using Connect.Models;
+    using Context;
+    using DependencyInjection;
+    using ModelMappers;
+    using Models;
+    using Models.Account;
+    using Models.Checkout;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Services.Customers;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IAccountRepositry), Lifetime = Lifetime.Singleton)]
     public class AccountRepository : IAccountRepositry
     {

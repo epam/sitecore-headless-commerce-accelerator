@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Specialized;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System.Collections.Specialized;
+    using Connect.Models;
+    using Context;
+    using Models.Catalog;
+
     public interface IProductListRepository
     {
         ProductListResultModel GetProductList(

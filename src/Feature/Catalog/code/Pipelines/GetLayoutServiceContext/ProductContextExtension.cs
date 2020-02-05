@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.JavaScriptServices.Configuration;
-using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.ReactJss.Infrastructure;
-
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using Foundation.Commerce.Models.Catalog;
+    using Foundation.Commerce.Repositories;
+    using Foundation.ReactJss.Infrastructure;
+    using Sitecore.JavaScriptServices.Configuration;
+    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly IAnalyticsRepository analyticsRepository;

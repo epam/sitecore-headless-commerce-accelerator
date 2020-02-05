@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Shipping;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Connect.Models;
-using Xunit;
-
 namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
+    using System.Collections.Generic;
+    using Commerce.ModelMappers;
+    using Connect.Models;
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Xunit;
+
     public class AddressPartyMapperTests
     {
         [Fact]

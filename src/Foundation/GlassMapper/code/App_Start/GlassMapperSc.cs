@@ -20,11 +20,7 @@ DO NOT CHANGE THIS FILE - UPDATE GlassMapperScCustom.cs
 
 **************************************/
 
-using Glass.Mapper;
-using Glass.Mapper.Maps;
-using Glass.Mapper.Sc.Configuration.Fluent;
-using Glass.Mapper.Sc.IoC;
-using Sitecore.Pipelines;
+
 
 // WebActivator has been removed. If you wish to continue using WebActivator uncomment the line below
 // and delete the Glass.Mapper.Sc.CastleWindsor.config file from the Sitecore Config Include folder.
@@ -32,6 +28,12 @@ using Sitecore.Pipelines;
 
 namespace Wooli.Foundation.GlassMapper
 {
+    using Glass.Mapper;
+    using Glass.Mapper.Maps;
+    using Glass.Mapper.Sc.Configuration.Fluent;
+    using Glass.Mapper.Sc.IoC;
+    using Sitecore.Pipelines;
+
     public class GlassMapperSc
     {
         public void Process(PipelineArgs args)

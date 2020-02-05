@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Services.Customers;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Services.Customers;
+
     public interface IAccountManager
     {
         ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email, string password,

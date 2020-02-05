@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Services;
-using Sitecore.Diagnostics;
-
 namespace Wooli.Foundation.Connect.Utils
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Sitecore.Commerce.Services;
+    using Sitecore.Diagnostics;
+
     public static class SystemMessageExtensions
     {
         public static void LogSystemMessages(this IEnumerable<SystemMessage> messages, object owner)

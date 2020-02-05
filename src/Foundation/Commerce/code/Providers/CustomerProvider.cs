@@ -12,20 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Services.Customers;
-using Sitecore.Diagnostics;
-using Sitecore.Security.Accounts;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Connect.Managers;
+    using DependencyInjection;
+    using Models;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Services.Customers;
+    using Sitecore.Diagnostics;
+    using Sitecore.Security.Accounts;
+    using Utils;
+
     [Service(typeof(ICustomerProvider))]
     public class CustomerProvider : ICustomerProvider
     {

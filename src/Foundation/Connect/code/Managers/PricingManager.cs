@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities.Prices;
-using Sitecore.Commerce.Services.Prices;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
-using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System;
+    using System.Collections.Generic;
+    using DependencyInjection;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Commerce.Services.Prices;
+    using Sitecore.Diagnostics;
+    using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
+    using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
+
     [Service(typeof(IPricingManager))]
     public class PricingManager : IPricingManager
     {

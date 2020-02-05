@@ -12,23 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Services.Carts;
-using Sitecore.Commerce.Services.Customers;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelInitilizers;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Connect.Managers;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Connect.Managers;
+    using Context;
+    using ModelInitilizers;
+    using ModelMappers;
+    using Models;
+    using Models.Checkout;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Commerce.Services.Customers;
+
     public abstract class BaseCheckoutRepository
     {
         protected readonly ICartManager CartManager;

@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.Sites;
-using Sitecore.Web;
-using Wooli.Foundation.Extensions.Models;
-
 namespace Wooli.Foundation.Extensions.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Models;
+    using Sitecore;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Sitecore.Sites;
+    using Sitecore.Web;
+
     public class SiteDefinitionsProvider : ISiteDefinitionsProvider
     {
         private readonly IEnumerable<SiteInfo> sites;

@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using TypeLite;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using Connect.Models;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using TypeLite;
+
     [TsClass]
     public class SortOptionModel
     {

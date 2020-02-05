@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using Connect.Managers;
+    using Context;
+    using DependencyInjection;
+    using ModelMappers;
+    using Models.Catalog;
+
     [Service(typeof(IAnalyticsRepository), Lifetime = Lifetime.Singleton)]
     public class AnalyticsRepository : IAnalyticsRepository
     {

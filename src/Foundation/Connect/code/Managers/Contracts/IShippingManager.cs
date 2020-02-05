@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Shipping;
-using Sitecore.Commerce.Services.Shipping;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Models;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Sitecore.Commerce.Services.Shipping;
+
     public interface IShippingManager
     {
         ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(

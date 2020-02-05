@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Inventory;
-using Sitecore.Commerce.Entities.Prices;
-using Sitecore.Commerce.Services.Inventory;
-using Sitecore.Commerce.Services.Prices;
-using Sitecore.Data.Items;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Models;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Inventory;
+    using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Commerce.Services.Inventory;
+    using Sitecore.Commerce.Services.Prices;
+    using Sitecore.Data.Items;
+
     [Service(typeof(ICatalogManager))]
     public class CatalogManager : ICatalogManager
     {

@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using AutoMapper;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.Connect.Utils;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.ModelMappers
 {
+    using System.Collections.Generic;
+    using AutoMapper;
+    using DependencyInjection;
+    using Models;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Utils;
+
     [Service(typeof(IConnectEntityMapper))]
     public class ConnectEntityMapper : IConnectEntityMapper
     {

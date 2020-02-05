@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections;
-using System.Web;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Context
 {
+    using System.Collections;
+    using System.Web;
+    using DependencyInjection;
+    using Models;
+    using Providers;
+
     [Service(typeof(IVisitorContext))]
     public class VisitorContext : IVisitorContext
     {

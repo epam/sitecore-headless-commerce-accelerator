@@ -14,15 +14,15 @@
 
 #region GlassMapperScCustom generated code
 
-using Glass.Mapper.Configuration;
-using Glass.Mapper.IoC;
-using Glass.Mapper.Maps;
-using Glass.Mapper.Sc;
-using Glass.Mapper.Sc.IoC;
-using IDependencyResolver = Glass.Mapper.Sc.IoC.IDependencyResolver;
-
 namespace Wooli.Foundation.GlassMapper
 {
+    using Glass.Mapper.Configuration;
+    using Glass.Mapper.IoC;
+    using Glass.Mapper.Maps;
+    using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.IoC;
+    using IDependencyResolver = Glass.Mapper.Sc.IoC.IDependencyResolver;
+
     public static class GlassMapperScCustom
     {
         public static IDependencyResolver CreateResolver()

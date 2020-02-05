@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Linq;
-using System.Net;
-using System.Web.Http;
-using System.Web.Mvc;
-using Wooli.Feature.Checkout.Models;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Extensions.Extensions;
-
 namespace Wooli.Feature.Checkout.Controllers
 {
+    using System.Linq;
+    using System.Net;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Extensions.Extensions;
+    using Models;
+
     public class CartController : Controller
     {
         private readonly ICartRepository cartRepository;

@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Reflection;
-using System.Runtime.Serialization;
-
 namespace Wooli.Foundation.DependencyInjection.Tests
 {
+    using System.Reflection;
+    using System.Runtime.Serialization;
+
     public abstract class FakeAssembly : Assembly
     {
         public override void GetObjectData(SerializationInfo info, StreamingContext context)

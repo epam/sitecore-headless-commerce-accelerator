@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Linq;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.DependencyInjection;
-using Wooli.Foundation.Extensions.Services;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
+    using System.Linq;
+    using Connect.Managers;
+    using Context;
+    using DependencyInjection;
+    using Extensions.Services;
+    using Providers;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Utils;
+
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
     {

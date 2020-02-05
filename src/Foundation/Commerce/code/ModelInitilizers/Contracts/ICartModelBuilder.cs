@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Entities.Carts;
-using Wooli.Foundation.Commerce.Models.Checkout;
-
 namespace Wooli.Foundation.Commerce.ModelInitilizers
 {
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities.Carts;
+
     public interface ICartModelBuilder
     {
         CartModel Initialize(Cart model);

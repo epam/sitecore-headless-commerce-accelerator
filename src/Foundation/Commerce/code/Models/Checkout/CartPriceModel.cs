@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Prices;
-using Sitecore.Diagnostics;
-using TypeLite;
-using Wooli.Foundation.Commerce.Providers;
-
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using Providers;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Diagnostics;
+    using TypeLite;
+
     [TsClass]
     public class CartPriceModel
     {

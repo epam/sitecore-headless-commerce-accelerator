@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Entities.Inventory;
-using Sitecore.Data.Items;
-
 namespace Wooli.Foundation.Connect.Models
 {
+    using Sitecore.Commerce.Entities.Inventory;
+    using Sitecore.Data.Items;
+
     public class Variant
     {
         public Variant(Item item)

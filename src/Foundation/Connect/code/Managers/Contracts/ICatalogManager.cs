@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Services.Prices;
-using Sitecore.Data.Items;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Models;
+    using Sitecore.Commerce.Services.Prices;
+    using Sitecore.Data.Items;
+
     public interface ICatalogManager
     {
         ManagerResponse<GetProductBulkPricesResult, bool> GetProductBulkPrices(List<Product> products);

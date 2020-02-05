@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Entities.Shipping;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Connect.Models;
-using CountryRegionModel = Wooli.Foundation.Commerce.Models.Region.CountryRegionModel;
-
 namespace Wooli.Foundation.Commerce.ModelMappers
 {
+    using System.Collections.Generic;
+    using Connect.Models;
+    using Models;
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Entities.Shipping;
+    using CountryRegionModel = Models.Region.CountryRegionModel;
+
     public interface IEntityMapper
     {
         PartyEntity MapToPartyEntity(AddressModel item);

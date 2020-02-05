@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Net.Http;
-using System.Web;
-using Sitecore.Data.Items;
-using Sitecore.JavaScriptServices.Configuration;
-using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-using Wooli.Foundation.DependencyInjection;
-using Wooli.Foundation.ReactJss.Infrastructure;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.GetLayoutServiceContext
 {
+    using System.Net.Http;
+    using System.Web;
+    using DependencyInjection;
+    using ReactJss.Infrastructure;
+    using Sitecore.Data.Items;
+    using Sitecore.JavaScriptServices.Configuration;
+    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+
     [Service]
     public class CatalogItemResolverProcessor : BaseSafeJssGetLayoutServiceContextProcessor
     {

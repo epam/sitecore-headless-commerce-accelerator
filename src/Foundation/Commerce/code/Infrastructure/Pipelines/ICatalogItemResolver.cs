@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Data.Items;
-
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
+    using Sitecore.Data.Items;
+
     public interface ICatalogItemResolver
     {
         void ProcessItemAndApplyContext(Item contextItem, string[] urlSegments);

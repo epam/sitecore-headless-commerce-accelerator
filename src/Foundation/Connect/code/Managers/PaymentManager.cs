@@ -12,21 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Payments;
-using Sitecore.Commerce.Services;
-using Sitecore.Commerce.Services.Payments;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Payments;
+    using Sitecore.Commerce.Services;
+    using Sitecore.Commerce.Services.Payments;
+    using Sitecore.Diagnostics;
+    using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
+
     [Service(typeof(IPaymentManager))]
     public class PaymentManager : IPaymentManager
     {

@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Services.Customers;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Services.Customers;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IAccountManager))]
     public class AccountManager : IAccountManager
     {

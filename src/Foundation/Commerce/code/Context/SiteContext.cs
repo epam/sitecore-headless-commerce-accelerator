@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections;
-using System.Web;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Context
 {
+    using System.Collections;
+    using System.Web;
+    using DependencyInjection;
+    using Providers;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Utils;
+
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
     {

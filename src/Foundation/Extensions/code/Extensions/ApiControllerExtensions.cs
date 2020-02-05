@@ -12,20 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Web.Http;
-using System.Web.Http.Results;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Extensions.Models;
-using Wooli.Foundation.Extensions.Utils;
-
 namespace Wooli.Foundation.Extensions.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
+    using System.Web.Http;
+    using System.Web.Http.Results;
+    using Models;
+    using Sitecore.Diagnostics;
+    using Utils;
+
     public static class ApiControllerExtensions
     {
         private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter = new JsonMediaTypeFormatter

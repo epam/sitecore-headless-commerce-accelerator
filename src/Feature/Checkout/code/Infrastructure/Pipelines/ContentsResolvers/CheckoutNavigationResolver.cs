@@ -12,21 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Glass.Mapper.Sc;
-using Newtonsoft.Json.Linq;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
-using Sitecore.Mvc.Presentation;
-using Wooli.Feature.Checkout.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Foundation.DependencyInjection;
+    using Glass.Mapper.Sc;
+    using Models;
+    using Newtonsoft.Json.Linq;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
+    using Sitecore.Mvc.Presentation;
+
     [Service(Lifetime = Lifetime.Transient)]
     public class CheckoutNavigationResolver : RenderingContentsResolver
     {

@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using DependencyInjection;
+
     [Service(typeof(ICurrencyProvider), Lifetime = Lifetime.Singleton)]
     public class CurrencyProvider : ICurrencyProvider
     {

@@ -12,30 +12,30 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-using Sitecore.Commerce.Engine.Connect.Services.Carts;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Shipping;
-using Sitecore.Commerce.Services.Carts;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.Links;
-using Wooli.Foundation.Connect.ModelMappers;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.Connect.Utils;
-using Wooli.Foundation.DependencyInjection;
-using Wooli.Foundation.Extensions.Extensions;
-using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Extensions.Extensions;
+    using ModelMappers;
+    using Models;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+    using Sitecore.Commerce.Engine.Connect.Services.Carts;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Data.Fields;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Sitecore.Links;
+    using Utils;
+    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
+
     [Service(typeof(ICartManager))]
     public class CartManager : ICartManager
     {

@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using NSubstitute;
-using Sitecore.FakeDb;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.ItemRendering;
-using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-using Sitecore.Mvc.Presentation;
-using Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering;
-using Xunit;
-
 namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 {
+    using System.Collections.Generic;
+    using NSubstitute;
+    using ReactJss.Serialization.RenderJsonRendering;
+    using Sitecore.FakeDb;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.ItemRendering;
+    using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
+    using Sitecore.Mvc.Presentation;
+    using Xunit;
+
     public class FormatRenderingParamsTests
     {
         // [Fact]

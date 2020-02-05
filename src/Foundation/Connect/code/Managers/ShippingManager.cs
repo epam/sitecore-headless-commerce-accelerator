@@ -12,22 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Shipping;
-using Sitecore.Commerce.Services.Shipping;
-using Sitecore.Commerce.Services.Shipping.Generics;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.ModelMappers;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using ModelMappers;
+    using Models;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Sitecore.Commerce.Services.Shipping;
+    using Sitecore.Commerce.Services.Shipping.Generics;
+    using Sitecore.Diagnostics;
+    using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
+
     [Service(typeof(IShippingManager))]
     public class ShippingManager : IShippingManager
     {
@@ -37,7 +37,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         public ShippingManager(IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectEntityMapper)
         {
-            Assert.ArgumentNotNull((object) connectServiceProvider, nameof(connectServiceProvider));
+            Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             Assert.ArgumentNotNull(connectEntityMapper, nameof(connectEntityMapper));
             this.connectEntityMapper = connectEntityMapper;
             shippingServiceProvider = connectServiceProvider.GetShippingServiceProvider();

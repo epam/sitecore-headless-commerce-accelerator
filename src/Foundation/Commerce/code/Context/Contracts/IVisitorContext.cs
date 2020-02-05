@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Wooli.Foundation.Commerce.Models;
-
 namespace Wooli.Foundation.Commerce.Context
 {
+    using Models;
+
     public interface IVisitorContext
     {
         CommerceUserModel CurrentUser { get; set; }

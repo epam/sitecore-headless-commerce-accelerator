@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.GlassMapper.Models;
-
 namespace Wooli.Foundation.Extensions.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using GlassMapper.Models;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+
     public static class GlassExtension
     {
         public static IList<MediaItem> ExtractMediaItems<T>(this T glassModel, Func<T, IEnumerable<Guid>> selector)

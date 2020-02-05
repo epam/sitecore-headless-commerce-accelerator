@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Diagnostics;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-using Wooli.Foundation.ReactJss.Helpers;
-
 namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
 {
+    using System.Collections.Generic;
+    using Helpers;
+    using Sitecore.Diagnostics;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
+
     public class FormatRenderingParams : BaseRenderJsonRendering
     {
         public FormatRenderingParams(IConfiguration configuration)

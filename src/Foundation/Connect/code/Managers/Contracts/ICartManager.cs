@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Shipping;
-using Sitecore.Commerce.Services.Carts;
-using Wooli.Foundation.Connect.Models;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Models;
+    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Sitecore.Commerce.Services.Carts;
+
     public interface ICartManager
     {
         ManagerResponse<CartResult, Cart> AddLineItemsToCart(Cart cart, IEnumerable<CartLineArgument> cartLines,

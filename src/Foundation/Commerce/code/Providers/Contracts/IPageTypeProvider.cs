@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Data.Items;
-using Sitecore.Data.Templates;
-using Wooli.Foundation.Commerce.Utils;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Sitecore.Data.Items;
+    using Sitecore.Data.Templates;
+    using Utils;
+
     public interface IPageTypeProvider
     {
         Constants.ItemType ResolveByItem(Item item);

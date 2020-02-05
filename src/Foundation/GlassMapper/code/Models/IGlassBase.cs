@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using Glass.Mapper.Sc.Configuration;
-using Glass.Mapper.Sc.Configuration.Attributes;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-
 namespace Wooli.Foundation.GlassMapper.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using Glass.Mapper.Sc.Configuration;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.Globalization;
+
     public interface IGlassBase
     {
         [SitecoreId] Guid Id { get; }

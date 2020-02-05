@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect;
-using Sitecore.Commerce.Engine.Connect.Interfaces;
-using Sitecore.Commerce.Engine.Connect.Search.Models;
-using Sitecore.Data.Items;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Models.Catalog;
+    using Sitecore.Commerce.Engine.Connect;
+    using Sitecore.Commerce.Engine.Connect.Interfaces;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data.Items;
+
     [Service(typeof(ISearchInformationProvider))]
     public class SearchInformationProvider : ISearchInformationProvider
     {

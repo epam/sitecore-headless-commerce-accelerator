@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore;
-using Sitecore.Pipelines.HttpRequest;
-
 namespace Wooli.Foundation.Extensions.Infrastructure
 {
+    using System.Collections.Generic;
+    using Sitecore;
+    using Sitecore.Pipelines.HttpRequest;
+
     public abstract class SiteSpecificPipelineProcessor : HttpRequestProcessor
     {
         protected SiteSpecificPipelineProcessor()

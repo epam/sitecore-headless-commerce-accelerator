@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Orders;
-using Sitecore.Commerce.Services.Orders;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Orders;
+    using Sitecore.Commerce.Services.Orders;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IOrderManager))]
     public class OrderManager : IOrderManager
     {

@@ -12,24 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Glass.Mapper.Sc;
-using NSubstitute;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Prices;
-using Sitecore.Commerce.Services.Carts;
-using Sitecore.FakeDb;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.ModelInitilizers;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Connect.Managers;
-using Xunit;
-
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
+    using System.Collections.Generic;
+    using Commerce.ModelMappers;
+    using Commerce.Repositories;
+    using Connect.Managers;
+    using Context;
+    using Glass.Mapper.Sc;
+    using ModelInitilizers;
+    using Models.Catalog;
+    using Models.Checkout;
+    using NSubstitute;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Commerce.Services.Carts;
+    using Sitecore.FakeDb;
+    using Xunit;
+
     public class CartRepositoryTests
     {
         [Fact]

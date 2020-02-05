@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Inventory;
-using Sitecore.Commerce.Services.Inventory;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Inventory;
+    using Sitecore.Commerce.Services.Inventory;
+
     public interface IInventoryManager
     {
         ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> GetStockInformation(string shopName,

@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Data.Items;
-using Sitecore.FakeDb;
-using Xunit;
-
 namespace Wooli.Foundation.Connect.Tests
 {
+    using Sitecore.Data.Items;
+    using Sitecore.FakeDb;
+    using Xunit;
+
     public class SimpleTest
     {
         [Fact]

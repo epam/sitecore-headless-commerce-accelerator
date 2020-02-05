@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Linq;
-using Sitecore;
-using Sitecore.Data.Items;
-
 namespace Wooli.Foundation.Connect.Utils
 {
+    using System;
+    using System.Linq;
+    using Sitecore;
+    using Sitecore.Data.Items;
+
     public class CommerceRequestUtils
     {
         public static string GetPaymentOptionId(string paymentType)

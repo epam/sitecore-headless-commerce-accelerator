@@ -12,24 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Commerce.Entities.Customers;
-using Sitecore.Commerce.Entities.Shipping;
-using Wooli.Foundation.Commerce.Models;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-using CountryRegionModel = Wooli.Foundation.Commerce.Models.Region.CountryRegionModel;
-using SubdivisionModel = Wooli.Foundation.Commerce.Models.Region.SubdivisionModel;
-
 namespace Wooli.Foundation.Commerce.ModelMappers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoMapper;
+    using Connect.Models;
+    using DependencyInjection;
+    using Models;
+    using Models.Checkout;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Entities.Shipping;
+    using Utils;
+    using CountryRegionModel = Models.Region.CountryRegionModel;
+    using SubdivisionModel = Models.Region.SubdivisionModel;
+
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
     {

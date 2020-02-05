@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Linq;
-using System.Text;
-using Sitecore.Diagnostics;
-
 namespace Wooli.Foundation.ReactJss.Helpers
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using Sitecore.Diagnostics;
+
     public static class StringHelper
     {
         public static string ConvertToCamelCase(string phrase)

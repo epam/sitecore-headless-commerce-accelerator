@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Newtonsoft.Json;
-using NSubstitute;
-using Sitecore.Data.Items;
-using Sitecore.FakeDb;
-using Sitecore.Globalization;
-using Sitecore.LayoutService.Serialization.FieldSerializers;
-using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
-using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
-using Xunit;
-
 namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
 {
+    using Newtonsoft.Json;
+    using NSubstitute;
+    using ReactJss.Serialization.ItemSerializers;
+    using Sitecore.Data.Items;
+    using Sitecore.FakeDb;
+    using Sitecore.Globalization;
+    using Sitecore.LayoutService.Serialization.FieldSerializers;
+    using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
+    using Xunit;
+
     public class EnhancedItemSerializerTest
     {
         //[Fact]

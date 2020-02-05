@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Glass.Mapper.Sc;
-using NSubstitute;
-using Sitecore.FakeDb;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.Connect.Models;
-using Xunit;
-using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
-
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
+    using Commerce.Repositories;
+    using Connect.Managers;
+    using Connect.Models;
+    using Context;
+    using Glass.Mapper.Sc;
+    using NSubstitute;
+    using Providers;
+    using Sitecore.FakeDb;
+    using Xunit;
+    using ProductModel = Models.Catalog.ProductModel;
+
     public class CatalogRepositoryTests
     {
         [Fact]

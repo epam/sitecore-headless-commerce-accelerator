@@ -12,24 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore;
-using Sitecore.Commerce.Engine.Connect;
-using Sitecore.Commerce.Engine.Connect.Interfaces;
-using Sitecore.Commerce.Engine.Connect.Search;
-using Sitecore.Commerce.Engine.Connect.Search.Models;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Linq;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using Models;
+    using Sitecore;
+    using Sitecore.Commerce.Engine.Connect;
+    using Sitecore.Commerce.Engine.Connect.Interfaces;
+    using Sitecore.Commerce.Engine.Connect.Search;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.Linq;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(ISearchManager))]
     public class SearchManager : ISearchManager
     {

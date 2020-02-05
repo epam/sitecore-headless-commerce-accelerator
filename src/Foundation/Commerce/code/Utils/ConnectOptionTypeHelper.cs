@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Globalization;
-using Sitecore.Commerce.Entities.Shipping;
-
 namespace Wooli.Foundation.Commerce.Utils
 {
+    using System;
+    using System.Globalization;
+    using Sitecore.Commerce.Entities.Shipping;
+
     public static class ConnectOptionTypeHelper
     {
         public static ShippingOptionType ToShippingOptionType(string optionTypeName)

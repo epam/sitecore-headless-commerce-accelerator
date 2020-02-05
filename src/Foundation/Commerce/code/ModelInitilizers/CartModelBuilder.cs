@@ -12,20 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Carts;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Models.Checkout;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Repositories;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.ModelInitilizers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DependencyInjection;
+    using ModelMappers;
+    using Models.Catalog;
+    using Models.Checkout;
+    using Providers;
+    using Repositories;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(ICartModelBuilder))]
     public class CartModelBuilder : ICartModelBuilder
     {

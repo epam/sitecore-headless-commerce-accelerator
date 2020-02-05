@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Web.Mvc;
-using System.Web.Routing;
-using Sitecore.Diagnostics;
-using Sitecore.Pipelines;
-using Wooli.Feature.Checkout.Controllers;
-using Wooli.Foundation.Commerce.Utils;
-
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using Controllers;
+    using Foundation.Commerce.Utils;
+    using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
+
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)

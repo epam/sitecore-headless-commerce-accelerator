@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using TypeLite;
-using Wooli.Foundation.Commerce.Models.Catalog;
-
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using Catalog;
+    using TypeLite;
+
     [TsClass]
     public class CartLineModel
     {

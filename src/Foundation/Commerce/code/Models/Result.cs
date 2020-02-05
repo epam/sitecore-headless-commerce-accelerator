@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Commerce.Services;
-
 namespace Wooli.Foundation.Commerce.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Sitecore.Commerce.Services;
+
     public class Result<T> where T : class
     {
         public bool Success { get; set; } = true;

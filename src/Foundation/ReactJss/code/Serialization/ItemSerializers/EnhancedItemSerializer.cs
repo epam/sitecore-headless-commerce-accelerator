@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using System.IO;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.LayoutService.Serialization;
-using Sitecore.LayoutService.Serialization.ItemSerializers;
-using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
-
 namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using Sitecore.Data.Fields;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Sitecore.LayoutService.Serialization;
+    using Sitecore.LayoutService.Serialization.ItemSerializers;
+    using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
+
     public class EnhancedItemSerializer : DefaultItemSerializer
     {
         public EnhancedItemSerializer(IGetFieldSerializerPipeline getFieldSerializerPipeline) : base(

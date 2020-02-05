@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Collections.Generic;
-using Sitecore.Commerce.Engine.Connect.Entities;
-using Sitecore.Commerce.Entities.Inventory;
-using Sitecore.Commerce.Services.Inventory;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers.Contracts;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using System.Collections.Generic;
+    using DependencyInjection;
+    using Providers.Contracts;
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Inventory;
+    using Sitecore.Commerce.Services.Inventory;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IInventoryManager))]
     public class InventoryManager : IInventoryManager
     {

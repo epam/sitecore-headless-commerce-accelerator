@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Data.Items;
-using Sitecore.Data.Managers;
-using Sitecore.Data.Templates;
-using Wooli.Foundation.Commerce.Utils;
-using Wooli.Foundation.Connect.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Connect.Models;
+    using DependencyInjection;
+    using Sitecore.Data.Items;
+    using Sitecore.Data.Managers;
+    using Sitecore.Data.Templates;
+    using Utils;
+
     [Service(typeof(IItemTypeProvider))]
     public class ItemTypeProvider : IItemTypeProvider
     {

@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Glass.Mapper.Sc;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Commerce.Context;
-using Wooli.Foundation.Commerce.Models.Catalog;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Connect.Managers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using Connect.Managers;
+    using Context;
+    using DependencyInjection;
+    using Glass.Mapper.Sc;
+    using Models.Catalog;
+    using Providers;
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(ICatalogRepository), Lifetime = Lifetime.Singleton)]
     public class CatalogRepository : BaseCatalogRepository, ICatalogRepository
     {

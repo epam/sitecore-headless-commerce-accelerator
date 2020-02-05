@@ -128,7 +128,7 @@ Code Generation Templates/*.tt
 
 
 # Cake artifacts
-/src/tools/
+/build/tools/
 
 # Output and CI artifacts
 /output/

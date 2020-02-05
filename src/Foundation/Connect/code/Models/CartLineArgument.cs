@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Models
 {
-    using System;
-
     public class CartLineArgument
     {
         public string CatalogName { get; set; }
@@ -24,6 +22,6 @@ namespace Wooli.Foundation.Connect.Models
 
         public string VariantId { get; set; }
 
-        public Decimal Quantity { get; set; }
+        public decimal Quantity { get; set; }
     }
 }

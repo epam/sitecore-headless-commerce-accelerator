@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Wooli.Foundation.Commerce.Models.Catalog;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Wooli.Foundation.Commerce.Models;
-
     public interface ISettingsProvider
     {
         int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation);

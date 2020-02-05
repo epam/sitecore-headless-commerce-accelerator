@@ -12,24 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Payments;
+using Sitecore.Commerce.Services;
+using Sitecore.Commerce.Services.Payments;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Connect.Providers.Contracts;
+using Wooli.Foundation.DependencyInjection;
+using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Services;
-    using Sitecore.Commerce.Services.Payments;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using Entities = Sitecore.Commerce.Entities;
-    using Services = Sitecore.Commerce.Engine.Connect.Services;
-
     [Service(typeof(IPaymentManager))]
     public class PaymentManager : IPaymentManager
     {
@@ -37,30 +34,35 @@ namespace Wooli.Foundation.Connect.Managers
 
         public PaymentManager(IConnectServiceProvider connectServiceProvider)
         {
-            Assert.ArgumentNotNull((object)connectServiceProvider, nameof(connectServiceProvider));
-            this.paymentServiceProvider = connectServiceProvider.GetPaymentServiceProvider();
+            Assert.ArgumentNotNull((object) connectServiceProvider, nameof(connectServiceProvider));
+            paymentServiceProvider = connectServiceProvider.GetPaymentServiceProvider();
         }
 
-        public ManagerResponse<GetPaymentMethodsResult, IEnumerable<Entities.Payments.PaymentMethod>> GetPaymentMethods(Cart cart, Entities.Payments.PaymentOption paymentOption)
+        public ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>> GetPaymentMethods(Cart cart,
+            PaymentOption paymentOption)
         {
-            var request = new Services.Payments.GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
-                    
-            GetPaymentMethodsResult paymentMethods = this.paymentServiceProvider.GetPaymentMethods(request);
-            return new ManagerResponse<GetPaymentMethodsResult, IEnumerable<Entities.Payments.PaymentMethod>>(paymentMethods, paymentMethods.PaymentMethods.ToList());
+            var request = new GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
+
+            GetPaymentMethodsResult paymentMethods = paymentServiceProvider.GetPaymentMethods(request);
+            return new ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>>(paymentMethods,
+                paymentMethods.PaymentMethods.ToList());
         }
 
-        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<Entities.Payments.PaymentOption>> GetPaymentOptions(string shopName, Cart cart)
+        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(string shopName,
+            Cart cart)
         {
-
             var request = new GetPaymentOptionsRequest(shopName, cart);
-            GetPaymentOptionsResult paymentOptions = this.paymentServiceProvider.GetPaymentOptions(request);
-            return new ManagerResponse<GetPaymentOptionsResult, IEnumerable<Entities.Payments.PaymentOption>>(paymentOptions, paymentOptions.PaymentOptions.ToList());
+            GetPaymentOptionsResult paymentOptions = paymentServiceProvider.GetPaymentOptions(request);
+            return new ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>>(paymentOptions,
+                paymentOptions.PaymentOptions.ToList());
         }
 
         public ManagerResponse<ServiceProviderResult, string> GetPaymentClientToken()
         {
             var request = new ServiceProviderRequest();
-            var clientTokenResult = this.paymentServiceProvider.RunPipeline<ServiceProviderRequest, PaymentClientTokenResult>("commerce.payments.getClientToken", request);
+            PaymentClientTokenResult clientTokenResult =
+                paymentServiceProvider.RunPipeline<ServiceProviderRequest, PaymentClientTokenResult>(
+                    "commerce.payments.getClientToken", request);
             return new ManagerResponse<ServiceProviderResult, string>(clientTokenResult, clientTokenResult.ClientToken);
         }
     }

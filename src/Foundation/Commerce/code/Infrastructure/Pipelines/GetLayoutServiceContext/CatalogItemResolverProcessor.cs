@@ -12,24 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Net.Http;
+using System.Web;
+using Sitecore.Data.Items;
+using Sitecore.JavaScriptServices.Configuration;
+using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+using Wooli.Foundation.DependencyInjection;
+using Wooli.Foundation.ReactJss.Infrastructure;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.GetLayoutServiceContext
 {
-    using System.Net.Http;
-    using System.Web;
-
-    using Sitecore.Data.Items;
-    using Sitecore.JavaScriptServices.Configuration;
-    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Foundation.DependencyInjection;
-    using Wooli.Foundation.ReactJss.Infrastructure;
-
     [Service]
     public class CatalogItemResolverProcessor : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly ICatalogItemResolver catalogItemResolver;
 
-        public CatalogItemResolverProcessor(ICatalogItemResolver catalogItemResolver, IConfigurationResolver configurationResolver) 
+        public CatalogItemResolverProcessor(ICatalogItemResolver catalogItemResolver,
+            IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
             this.catalogItemResolver = catalogItemResolver;
@@ -37,22 +36,16 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.GetLayoutServiceCon
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            if (args.RenderedItem == null)
-            {
-                return;
-            }
+            if (args.RenderedItem == null) return;
 
             Item currentItem = args.RenderedItem;
 
             // Trying to get original url path
             string itemPath = HttpContext.Current.Request.Url.ParseQueryString()?["item"];
             string[] urlSegments = itemPath?.Trim('/').Split('/');
-            if (args.RenderedItem == null)
-            {
-                return;
-            }
+            if (args.RenderedItem == null) return;
 
-            this.catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
+            catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
         }
     }
 }

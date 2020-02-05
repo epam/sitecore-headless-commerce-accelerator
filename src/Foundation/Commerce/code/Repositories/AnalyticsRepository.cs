@@ -14,7 +14,7 @@
 
 using Wooli.Foundation.Commerce.Context;
 using Wooli.Foundation.Commerce.ModelMappers;
-using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Catalog;
 using Wooli.Foundation.Connect.Managers;
 using Wooli.Foundation.DependencyInjection;
 
@@ -42,12 +42,13 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public void RaiseProductVisitedEvent(ProductModel product)
         {
-            this.analyticsManager.VisitedProductDetailsPage(this.storefrontContext.ShopName, product.SitecoreId, product.DisplayName);
+            analyticsManager.VisitedProductDetailsPage(storefrontContext.ShopName, product.SitecoreId,
+                product.DisplayName);
         }
 
         public void RaiseCategoryVisitedEvent(CategoryModel category)
         {
-            this.analyticsManager.VisitedCategoryPage(this.storefrontContext.ShopName, category.SitecoreId, category.Name);
+            analyticsManager.VisitedCategoryPage(storefrontContext.ShopName, category.SitecoreId, category.Name);
         }
     }
 }

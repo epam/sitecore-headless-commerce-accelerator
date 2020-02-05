@@ -12,20 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Linq;
+using System.Net;
+using System.Web.Http;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.Extensions.Extensions;
+
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Http;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Extensions.Extensions;
-
     [RoutePrefix(Constants.CommerceRoutePrefix + "/order")]
     public class OrderController : ApiController
     {
@@ -35,43 +33,31 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             this.orderRepository = orderRepository;
         }
-        
+
         [Route("get/{orderId}")]
         public IHttpActionResult GetOrder(string orderId)
         {
             if (string.IsNullOrEmpty(orderId))
-            {
                 return this.JsonError($"{orderId} should be specified.", HttpStatusCode.BadRequest);
-            }
 
-            Result<CartModel> model = this.orderRepository.GetOrderDetails(orderId);
+            Result<CartModel> model = orderRepository.GetOrderDetails(orderId);
 
-            if (model.Success)
-            {
-                return this.JsonOk(model.Data);
-            }
+            if (model.Success) return this.JsonOk(model.Data);
 
             return this.JsonError(model.Errors.ToArray(), HttpStatusCode.InternalServerError);
         }
 
         [Route("get")]
-        public IHttpActionResult GetOrders(DateTime? fromDate = null, DateTime? untilDate = null, int page = 0, int count = 5)
+        public IHttpActionResult GetOrders(DateTime? fromDate = null, DateTime? untilDate = null, int page = 0,
+            int count = 5)
         {
             if (page < 0)
-            {
                 return this.JsonError($"{nameof(page)} should be positive or zero.", HttpStatusCode.BadRequest);
-            }
 
-            if (count <= 0)
-            {
-                return this.JsonError($"{nameof(page)} should be positive.", HttpStatusCode.BadRequest);
-            }
+            if (count <= 0) return this.JsonError($"{nameof(page)} should be positive.", HttpStatusCode.BadRequest);
 
-            Result<OrderHistoryResultModel> model = this.orderRepository.GetOrders(fromDate, fromDate, page, count);
-            if (model.Success)
-            {
-                return this.JsonOk(model.Data);
-            }
+            Result<OrderHistoryResultModel> model = orderRepository.GetOrders(fromDate, fromDate, page, count);
+            if (model.Success) return this.JsonOk(model.Data);
 
             return this.JsonError(model.Errors.ToArray(), HttpStatusCode.InternalServerError);
         }

@@ -12,90 +12,71 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Sitecore;
+using Sitecore.Data;
+using Sitecore.Data.Fields;
+using Sitecore.Data.Items;
+using Sitecore.Data.Managers;
+using Sitecore.Data.Templates;
+using Sitecore.Links;
+using Sitecore.Resources.Media;
+
 namespace Wooli.Foundation.Extensions.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using Sitecore;
-    using Sitecore.Data;
-    using Sitecore.Data.Fields;
-    using Sitecore.Data.Items;
-    using Sitecore.Data.Managers;
-    using Sitecore.Links;
-    using Sitecore.Resources.Media;
-
     public static class ItemExtensions
     {
         public static string Url(this Item item, UrlOptions options = null)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
-            if (options != null)
-            {
-                return LinkManager.GetItemUrl(item, options);
-            }
+            if (options != null) return LinkManager.GetItemUrl(item, options);
 
             return !item.Paths.IsMediaItem ? LinkManager.GetItemUrl(item) : MediaManager.GetMediaUrl(item);
         }
 
         public static string ImageUrl(this Item item, ID imageFieldId, MediaUrlOptions options = null)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
-            var imageField = (ImageField)item.Fields[imageFieldId];
+            var imageField = (ImageField) item.Fields[imageFieldId];
             return imageField?.MediaItem == null ? string.Empty : imageField.ImageUrl(options);
         }
 
         public static string ImageUrl(this MediaItem mediaItem, int width, int height)
         {
-            if (mediaItem == null)
-            {
-                throw new ArgumentNullException(nameof(mediaItem));
-            }
+            if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
-            var options = new MediaUrlOptions { Height = height, Width = width };
-            var url = MediaManager.GetMediaUrl(mediaItem, options);
-            var cleanUrl = StringUtil.EnsurePrefix('/', url);
-            var hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
+            var options = new MediaUrlOptions {Height = height, Width = width};
+            string url = MediaManager.GetMediaUrl(mediaItem, options);
+            string cleanUrl = StringUtil.EnsurePrefix('/', url);
+            string hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
 
             return hashedUrl;
         }
 
         public static string ImageUrl(this MediaItem mediaItem)
         {
-            if (mediaItem == null)
-            {
-                throw new ArgumentNullException(nameof(mediaItem));
-            }
+            if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
-            var url = MediaManager.GetMediaUrl(mediaItem);
-            var cleanUrl = StringUtil.EnsurePrefix('/', url);
-            var hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
+            string url = MediaManager.GetMediaUrl(mediaItem);
+            string cleanUrl = StringUtil.EnsurePrefix('/', url);
+            string hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
 
             return hashedUrl;
         }
 
         public static Item TargetItem(this Item item, ID linkFieldId)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
-            if (item.Fields[linkFieldId] == null || !item.Fields[linkFieldId].HasValue)
-            {
-                return null;
-            }
+            if (item.Fields[linkFieldId] == null || !item.Fields[linkFieldId].HasValue) return null;
 
-            return ((LinkField)item.Fields[linkFieldId]).TargetItem ?? ((ReferenceField)item.Fields[linkFieldId]).TargetItem;
+            return ((LinkField) item.Fields[linkFieldId]).TargetItem ??
+                   ((ReferenceField) item.Fields[linkFieldId]).TargetItem;
         }
 
         public static bool IsImage(this Item item)
@@ -110,26 +91,19 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static Item GetAncestorOrSelfOfTemplate(this Item item, ID templateId)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
-            return item.IsDerived(templateId) ? item : item.Axes.GetAncestors().LastOrDefault(i => i.IsDerived(templateId));
+            return item.IsDerived(templateId)
+                ? item
+                : item.Axes.GetAncestors().LastOrDefault(i => i.IsDerived(templateId));
         }
 
         public static IList<Item> GetAncestorsAndSelfOfTemplate(this Item item, ID templateId)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
             var returnValue = new List<Item>();
-            if (item.IsDerived(templateId))
-            {
-                returnValue.Add(item);
-            }
+            if (item.IsDerived(templateId)) returnValue.Add(item);
 
             returnValue.AddRange(item.Axes.GetAncestors().Reverse().Where(i => i.IsDerived(templateId)));
             return returnValue;
@@ -137,21 +111,12 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static string LinkFieldUrl(this Item item, ID fieldId)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            if (item == null) throw new ArgumentNullException(nameof(item));
 
-            if (ID.IsNullOrEmpty(fieldId))
-            {
-                throw new ArgumentNullException(nameof(fieldId));
-            }
+            if (ID.IsNullOrEmpty(fieldId)) throw new ArgumentNullException(nameof(fieldId));
 
-            var field = item.Fields[fieldId];
-            if (field == null || !(FieldTypeManager.GetField(field) is LinkField))
-            {
-                return string.Empty;
-            }
+            Field field = item.Fields[fieldId];
+            if (field == null || !(FieldTypeManager.GetField(field) is LinkField)) return string.Empty;
 
             LinkField linkField = field;
             switch (linkField.LinkType.ToLower())
@@ -215,28 +180,20 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static bool IsDerived(this Item item, ID templateId)
         {
-            if (item == null)
-            {
-                return false;
-            }
+            if (item == null) return false;
 
             return !templateId.IsNull && item.IsDerived(item.Database.Templates[templateId]);
         }
 
         public static bool IsDerived(this Item item, Item templateItem)
         {
-            if (item == null)
-            {
-                return false;
-            }
+            if (item == null) return false;
 
-            if (templateItem == null)
-            {
-                return false;
-            }
+            if (templateItem == null) return false;
 
-            var itemTemplate = TemplateManager.GetTemplate(item);
-            return itemTemplate != null && (itemTemplate.ID == templateItem.ID || itemTemplate.DescendsFrom(templateItem.ID));
+            Template itemTemplate = TemplateManager.GetTemplate(item);
+            return itemTemplate != null &&
+                   (itemTemplate.ID == templateItem.ID || itemTemplate.DescendsFrom(templateItem.ID));
         }
 
         public static bool FieldHasValue(this Item item, ID fieldId)
@@ -246,23 +203,18 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static int? GetInteger(this Item item, ID fieldId)
         {
-            return !int.TryParse(item.Fields[fieldId].Value, out var result) ? new int?() : result;
+            return !int.TryParse(item.Fields[fieldId].Value, out int result) ? new int?() : result;
         }
 
         public static double? GetDouble(this Item item, ID fieldId)
         {
-            var value = item?.Fields[fieldId]?.Value;
-            if (value == null)
-            {
-                return null;
-            }
+            string value = item?.Fields[fieldId]?.Value;
+            if (value == null) return null;
 
-            if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var num) || 
-                double.TryParse(value, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out num) || 
+            if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out double num) ||
+                double.TryParse(value, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out num) ||
                 double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out num))
-            {
                 return num;
-            }
 
             return null;
         }
@@ -274,7 +226,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static bool HasContextLanguage(this Item item)
         {
-            var latestVersion = item.Versions.GetLatestVersion();
+            Item latestVersion = item.Versions.GetLatestVersion();
             return latestVersion?.Versions.Count > 0;
         }
     }

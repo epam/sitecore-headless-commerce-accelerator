@@ -12,20 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities.Inventory;
+using Sitecore.Data.Items;
+
 namespace Wooli.Foundation.Connect.Models
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities.Inventory;
-    using Sitecore.Data.Items;
-
     public class Product
     {
         public Product(Item item, List<Variant> variants)
         {
-            this.Item = item;
-            this.Variants = variants;
-            this.ProductId = item.Name;
+            Item = item;
+            Variants = variants;
+            ProductId = item.Name;
         }
 
         public Item Item { get; set; }
@@ -47,6 +46,5 @@ namespace Wooli.Foundation.Connect.Models
         public string StockStatusName { get; set; }
 
         public List<Variant> Variants { get; protected set; }
-
     }
 }

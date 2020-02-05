@@ -12,10 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
-{
-    using TypeLite;
+using TypeLite;
+using Wooli.Foundation.Commerce.Models.Catalog;
 
+namespace Wooli.Foundation.Commerce.Models.Checkout
+{
     [TsClass]
     public class CartLineModel
     {
@@ -29,7 +30,6 @@ namespace Wooli.Foundation.Commerce.Models
 
         public CartPriceModel Price { get; set; }
 
-        [TsIgnore]
-        public object Temp { get; set; }
+        [TsIgnore] public object Temp { get; set; }
     }
 }

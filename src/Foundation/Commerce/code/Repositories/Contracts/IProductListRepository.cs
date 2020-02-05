@@ -12,25 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Specialized;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.Connect.Models;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System.Collections.Specialized;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Models;
-
     public interface IProductListRepository
     {
         ProductListResultModel GetProductList(
             IVisitorContext visitorContext,
-            string currentItemId, 
-            string currentCatalogItemId, 
-            string searchKeyword, 
-            int? pageNumber, 
-            NameValueCollection facetValues, 
-            string sortField, 
-            int? pageSize, 
+            string currentItemId,
+            string currentCatalogItemId,
+            string searchKeyword,
+            int? pageNumber,
+            NameValueCollection facetValues,
+            string sortField,
+            int? pageSize,
             SortDirection? sortDirection);
     }
 }

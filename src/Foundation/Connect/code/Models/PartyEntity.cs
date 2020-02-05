@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Commerce.Entities;
+
 namespace Wooli.Foundation.Connect.Models
 {
-    using Sitecore.Commerce.Entities;
-
     public class PartyEntity : Party
     {
         public string Name { get; set; }

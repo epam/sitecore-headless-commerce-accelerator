@@ -12,22 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Glass.Mapper.Sc;
+using NSubstitute;
+using Sitecore.FakeDb;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Connect.Managers;
+using Wooli.Foundation.Connect.Models;
+using Xunit;
+using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
+
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
-    using Glass.Mapper.Sc;
-
-    using NSubstitute;
-
-    using Sitecore.FakeDb;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-
-    using Xunit;
-
     public class CatalogRepositoryTests
     {
         [Fact]
@@ -43,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var searchManager = Substitute.For<ISearchManager>();
 
             var productItem = new DbItem("ProductItem");
-            using (var db = new Db { productItem })
+            using (var db = new Db {productItem})
             {
                 storefrontContext
                     .CatalogName
@@ -53,11 +50,12 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                     .Returns(db.GetItem(productItem.ID));
                 sitecoreContext
                     .Cast<ICommerceProductModel>(db.GetItem(productItem.ID))
-                    .Returns(new CommerceProductModel { Item = db.GetItem(productItem.ID), ProductId = "productId" });
+                    .Returns(new CommerceProductModel {Item = db.GetItem(productItem.ID), ProductId = "productId"});
 
                 // Execute
-                var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager, sitecoreContext, searchManager, currencyProvider);
-                var result = repository.GetProduct("productId");
+                var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager,
+                    sitecoreContext, searchManager, currencyProvider);
+                ProductModel result = repository.GetProduct("productId");
 
                 // Assert
                 Assert.NotNull(result);

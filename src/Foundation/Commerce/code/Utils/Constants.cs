@@ -16,9 +16,6 @@ namespace Wooli.Foundation.Commerce.Utils
 {
     public static class Constants
     {
-        public const string CommerceRoutePrefix = "apix/client/commerce";
-        public const string CommereceCustomerIdPrefix = "Entity-Customer-";
-
         public enum ItemType
         {
             Unknown,
@@ -26,5 +23,8 @@ namespace Wooli.Foundation.Commerce.Utils
             Product,
             Variant
         }
+
+        public const string CommerceRoutePrefix = "apix/client/commerce";
+        public const string CommereceCustomerIdPrefix = "Entity-Customer-";
     }
 }

@@ -12,29 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Utils
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Services;
+using Sitecore.Diagnostics;
+
+namespace Wooli.Foundation.Connect.Utils
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Services;
-    using Sitecore.Diagnostics;
-
     public static class SystemMessageExtensions
     {
         public static void LogSystemMessages(this IEnumerable<SystemMessage> messages, object owner)
         {
-            var source = messages as IList<SystemMessage> ?? messages.ToList();
+            IList<SystemMessage> source = messages as IList<SystemMessage> ?? messages.ToList();
 
-            if (!source.Any())
-            {
-                return;
-            }
+            if (!source.Any()) return;
 
-            foreach (SystemMessage systemMessage in source)
-            {
-                Log.Error(systemMessage.Message, owner);
-            }
+            foreach (SystemMessage systemMessage in source) Log.Error(systemMessage.Message, owner);
         }
     }
 }

@@ -12,28 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities;
+using Sitecore.Commerce.Entities.Shipping;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Connect.Models;
+using Xunit;
+
 namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities.Shipping;
-
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-
-    using Xunit;
-
     public class AddressPartyMapperTests
     {
         [Fact]
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()
         {
             // Setup
-            var input = new AddressModel { PartyId = "partyId", IsPrimary = true };
+            var input = new AddressModel {PartyId = "partyId", IsPrimary = true};
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToParty(input);
+            Party result = addressPartyMapper.MapToParty(input);
 
             // Assert
             Assert.NotNull(result);
@@ -54,7 +53,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToShippingInfoArgument(input);
+            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);
@@ -70,12 +69,12 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             // Setup
             var input = new ShippingMethodModel
             {
-                LineIds = new List<string>() { "1", "2"}
+                LineIds = new List<string> {"1", "2"}
             };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToShippingInfoArgument(input);
+            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);
@@ -83,4 +82,3 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         }
     }
 }
-

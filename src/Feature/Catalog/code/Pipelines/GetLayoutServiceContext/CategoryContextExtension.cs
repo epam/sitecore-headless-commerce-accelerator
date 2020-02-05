@@ -12,19 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.JavaScriptServices.Configuration;
+using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.ReactJss.Infrastructure;
+
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
-    using Sitecore.JavaScriptServices.Configuration;
-    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.ReactJss.Infrastructure;
-
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ICatalogRepository catalogRepository;
         private readonly IAnalyticsRepository analyticsRepository;
+        private readonly ICatalogRepository catalogRepository;
 
         public CategoryContextExtension(
             ICatalogRepository catalogRepository,
@@ -37,12 +36,9 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            CategoryModel model = this.catalogRepository.GetCurrentCategory();
+            CategoryModel model = catalogRepository.GetCurrentCategory();
 
-            if (model != null)
-            {
-                this.analyticsRepository.RaiseCategoryVisitedEvent(model);
-            }
+            if (model != null) analyticsRepository.RaiseCategoryVisitedEvent(model);
 
             args.ContextData.Add("category", model);
         }

@@ -18,8 +18,8 @@ namespace Wooli.Foundation.Connect.Managers
     {
         public ManagerResponse(TServiceProviderResult serviceProviderResult, TResult result)
         {
-            this.ServiceProviderResult = serviceProviderResult;
-            this.Result = result;
+            ServiceProviderResult = serviceProviderResult;
+            Result = result;
         }
 
         public TServiceProviderResult ServiceProviderResult { get; set; }

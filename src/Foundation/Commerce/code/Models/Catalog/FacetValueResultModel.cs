@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using Sitecore.ContentSearch.Linq;
+using Sitecore.Diagnostics;
+using TypeLite;
+
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.Diagnostics;
-
-    using TypeLite;
-
     [TsClass]
     public class FacetValueResultModel
     {
@@ -30,8 +29,8 @@ namespace Wooli.Foundation.Commerce.Models
         {
             Assert.ArgumentNotNull(queryFacet, nameof(queryFacet));
 
-            this.Name = queryFacet.Name;
-            this.AggregateCount = queryFacet.AggregateCount;
+            Name = queryFacet.Name;
+            AggregateCount = queryFacet.AggregateCount;
         }
     }
 }

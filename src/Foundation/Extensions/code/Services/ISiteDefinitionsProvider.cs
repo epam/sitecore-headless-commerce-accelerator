@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Data.Items;
+using Wooli.Foundation.Extensions.Models;
+
 namespace Wooli.Foundation.Extensions.Services
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Extensions.Models;
-
     public interface ISiteDefinitionsProvider
     {
         IEnumerable<SiteDefinition> SiteDefinitions { get; }

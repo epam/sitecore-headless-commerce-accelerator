@@ -12,21 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Shipping;
+using Sitecore.Commerce.Services.Carts;
+using Wooli.Foundation.Connect.Models;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services.Carts;
-
-    using Wooli.Foundation.Connect.Models;
-
     public interface ICartManager
     {
-        ManagerResponse<CartResult, Cart> AddLineItemsToCart(Cart cart, IEnumerable<CartLineArgument> cartLines, string giftCardProductId, string giftCardPageLink);
+        ManagerResponse<CartResult, Cart> AddLineItemsToCart(Cart cart, IEnumerable<CartLineArgument> cartLines,
+            string giftCardProductId, string giftCardPageLink);
 
-        ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(Cart cart, IEnumerable<CartLineArgument> cartLines, string giftCardProductId, string giftCardPageLink);
+        ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(Cart cart, IEnumerable<CartLineArgument> cartLines,
+            string giftCardProductId, string giftCardPageLink);
 
         ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds);
 
@@ -34,7 +35,8 @@ namespace Wooli.Foundation.Connect.Managers
 
         ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId);
 
-        ManagerResponse<CartResult, Cart> MergeCarts(string shopName, string customerId, string anonymousVisitorId, Cart anonymousVisitorCart);
+        ManagerResponse<CartResult, Cart> MergeCarts(string shopName, string customerId, string anonymousVisitorId,
+            Cart anonymousVisitorCart);
 
         ManagerResponse<AddPromoCodeResult, Cart> AddPromoCode(Cart cart, string promoCode);
 
@@ -46,6 +48,7 @@ namespace Wooli.Foundation.Connect.Managers
             PartyEntity billingPartyEntity,
             FederatedPaymentArgs federatedPaymentArgs);
 
-        ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(Cart cart, List<PartyEntity> partyEntityList, ShippingOptionType shippingOptionType, List<ShippingInfoArgument> shippingInfoList);
+        ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(Cart cart, List<PartyEntity> partyEntityList,
+            ShippingOptionType shippingOptionType, List<ShippingInfoArgument> shippingInfoList);
     }
 }

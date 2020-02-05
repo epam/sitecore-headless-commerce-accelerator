@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using System.Collections.Generic;
+using Sitecore.Commerce.Engine.Connect.Search.Models;
+using Sitecore.ContentSearch.Linq;
+using Sitecore.Diagnostics;
+using TypeLite;
+
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.Diagnostics;
-
-    using TypeLite;
-
     [TsClass]
     public class FacetResultModel
     {
@@ -37,9 +35,9 @@ namespace Wooli.Foundation.Commerce.Models
         {
             Assert.ArgumentNotNull(commerceQueryFacet, nameof(commerceQueryFacet));
 
-            this.Name = commerceQueryFacet.Name;
-            this.DisplayName = commerceQueryFacet.DisplayName;
-            this.Values = commerceQueryFacet.Values;
+            Name = commerceQueryFacet.Name;
+            DisplayName = commerceQueryFacet.DisplayName;
+            Values = commerceQueryFacet.Values;
 
             var foundValues = new List<FacetValueResultModel>();
             foreach (FacetValue facetValue in commerceQueryFacet.FoundValues)
@@ -49,7 +47,7 @@ namespace Wooli.Foundation.Commerce.Models
                 foundValues.Add(facetValueResultModel);
             }
 
-            this.FoundValues = foundValues;
+            FoundValues = foundValues;
         }
     }
 }

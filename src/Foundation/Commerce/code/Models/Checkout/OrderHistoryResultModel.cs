@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using TypeLite;
+
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
-    using System.Collections.Generic;
-    using TypeLite;
-
     [TsClass]
     public class OrderHistoryResultModel
     {
         public OrderHistoryResultModel(IList<CartModel> orders)
         {
-            this.Orders = orders;
+            Orders = orders;
         }
 
         public int CurrentPageNumber { get; set; }

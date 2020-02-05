@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Glass.Mapper.Sc;
+using Microsoft.Extensions.DependencyInjection;
+using Sitecore.DependencyInjection;
+
 namespace Wooli.Foundation.GlassMapper.Infrastructure
 {
-    using Glass.Mapper.Sc;
-
-    using Microsoft.Extensions.DependencyInjection;
-
-    using Sitecore.DependencyInjection;
-
     public class GlassMapperConfigurator : IServicesConfigurator
     {
         public void Configure(IServiceCollection serviceCollection)

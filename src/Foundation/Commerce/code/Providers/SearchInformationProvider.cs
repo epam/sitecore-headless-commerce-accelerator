@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Engine.Connect;
+using Sitecore.Commerce.Engine.Connect.Interfaces;
+using Sitecore.Commerce.Engine.Connect.Search.Models;
+using Sitecore.Data.Items;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using System.Linq;
-
-    using Sitecore.Commerce.Engine.Connect;
-    using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ISearchInformationProvider))]
     public class SearchInformationProvider : ISearchInformationProvider
     {
@@ -30,15 +30,17 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public SearchInformationProvider()
         {
-            this.commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
+            commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
         }
 
         // ToDo: update this logic if required
         public CategorySearchInformation GetCategorySearchInformation(Item categoryItem)
         {
-            var commerceQueryFacets = this.commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
-            var commerceQuerySorts = this.commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
-            int itemsPerPageForItem = this.commerceSearchManager.GetItemsPerPageForItem(categoryItem);
+            List<CommerceQueryFacet> commerceQueryFacets =
+                commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
+            List<CommerceQuerySort> commerceQuerySorts =
+                commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
+            int itemsPerPageForItem = commerceSearchManager.GetItemsPerPageForItem(categoryItem);
 
             var searchInformation = new CategorySearchInformation
             {

@@ -12,22 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Sitecore.Commerce.Entities.Customers;
+using Sitecore.Commerce.Services.Customers;
+using Sitecore.Diagnostics;
+using Sitecore.Security.Accounts;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.Connect.Managers;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-
-    using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services.Customers;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
-
     [Service(typeof(ICustomerProvider))]
     public class CustomerProvider : ICustomerProvider
     {
@@ -43,7 +41,6 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             this.accountManager = accountManager;
-
         }
 
         #endregion
@@ -52,22 +49,13 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
         {
-            var user = Sitecore.Context.Data.User;
-            if (user == null)
-            {
-                return null;
-            }
+            User user = Sitecore.Context.Data.User;
+            if (user == null) return null;
 
-            if (user.IsAuthenticated)
-            {
-                return this.GetCommerceUser(user.Profile.UserName);
-            }
+            if (user.IsAuthenticated) return GetCommerceUser(user.Profile.UserName);
 
-            var cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
-            if (cookie != null)
-            {
-                return this.GetCommerceUser(cookie.Value);
-            }
+            HttpCookie cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
+            if (cookie != null) return GetCommerceUser(cookie.Value);
 
             return null;
         }
@@ -77,9 +65,9 @@ namespace Wooli.Foundation.Commerce.Providers
             Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
             ManagerResponse<GetUserResult, CommerceUser> commerceUser =
-                this.accountManager.GetUser(contactIdOrName);
+                accountManager.GetUser(contactIdOrName);
 
-            return this.MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
+            return MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
         }
 
         #endregion
@@ -102,14 +90,11 @@ namespace Wooli.Foundation.Commerce.Providers
 
         private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
         {
-            if (commerceUser == null)
-            {
-                return new CommerceUserModel { ContactId = contactIdOrEmail };
-            }
+            if (commerceUser == null) return new CommerceUserModel {ContactId = contactIdOrEmail};
 
-            string customerId = this.GetCustomerId(commerceUser?.Customers);
-            string contactId = this.ParseContactId(commerceUser?.ExternalId);
-           
+            string customerId = GetCustomerId(commerceUser?.Customers);
+            string contactId = ParseContactId(commerceUser?.ExternalId);
+
 
             return new CommerceUserModel
             {

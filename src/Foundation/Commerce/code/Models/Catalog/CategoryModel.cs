@@ -12,17 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Diagnostics;
+using TypeLite;
+using Wooli.Foundation.Connect.Models;
+
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Diagnostics;
-
-    using TypeLite;
-
-    using Wooli.Foundation.Connect.Models;
-
     [TsClass]
     public class CategoryModel
     {
@@ -42,13 +39,13 @@ namespace Wooli.Foundation.Commerce.Models
         {
             Assert.ArgumentNotNull(categoryModel, nameof(categoryModel));
 
-            this.SitecoreId = categoryModel.SitecoreId;
-            this.Name = categoryModel.Name;
-            this.DisplayName = categoryModel.DisplayName;
-            this.Description = categoryModel.Description;
+            SitecoreId = categoryModel.SitecoreId;
+            Name = categoryModel.Name;
+            DisplayName = categoryModel.DisplayName;
+            Description = categoryModel.Description;
 
-            this.ParentCatalogList = categoryModel.ParentCatalogList?.Split('|').ToList();
-            this.ChildrenCategoryList = categoryModel.ChildrenCategoryList?.Split('|').ToList();
+            ParentCatalogList = categoryModel.ParentCatalogList?.Split('|').ToList();
+            ChildrenCategoryList = categoryModel.ChildrenCategoryList?.Split('|').ToList();
         }
     }
 }

@@ -12,19 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.IO;
+using Sitecore.Data.Fields;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
 using Sitecore.LayoutService.Serialization;
+using Sitecore.LayoutService.Serialization.ItemSerializers;
+using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
 
 namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
 {
-    using System.Collections.Generic;
-    using System.IO;
-
-    using Sitecore.Data.Fields;
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-    using Sitecore.LayoutService.Serialization.ItemSerializers;
-    using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
-
     public class EnhancedItemSerializer : DefaultItemSerializer
     {
         public EnhancedItemSerializer(IGetFieldSerializerPipeline getFieldSerializerPipeline) : base(
@@ -44,12 +42,9 @@ namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
                     writer.WritePropertyName("id");
                     writer.WriteValue(item.ID.Guid.ToString("D", null));
 
-                    IEnumerable<Field> itemFields = this.GetItemFields(item);
+                    IEnumerable<Field> itemFields = GetItemFields(item);
                     var options = new SerializationOptions();
-                    foreach (Field itemField in itemFields)
-                    {
-                        this.SerializeField(itemField, writer, options);
-                    }
+                    foreach (Field itemField in itemFields) SerializeField(itemField, writer, options);
 
                     writer.WriteEndObject();
                 }

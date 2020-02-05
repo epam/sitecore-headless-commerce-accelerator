@@ -12,24 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Data.Items;
+using Sitecore.Data.Managers;
+using Sitecore.Data.Templates;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Sitecore.Data.Items;
-    using Sitecore.Data.Managers;
-    using Sitecore.Data.Templates;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IPageTypeProvider))]
     public class PageTypeProvider : IPageTypeProvider
     {
         public Constants.ItemType ResolveByItem(Item item)
         {
-            var template = TemplateManager.GetTemplate(item);
+            Template template = TemplateManager.GetTemplate(item);
 
-            return this.ResolveByTemplate(template);
+            return ResolveByTemplate(template);
         }
 
         public Constants.ItemType ResolveByTemplate(Template template)
@@ -37,13 +36,8 @@ namespace Wooli.Foundation.Commerce.Providers
             var itemType = Constants.ItemType.Unknown;
 
             if (template.InheritsFrom(CategoryItem.TemplateId))
-            {
                 itemType = Constants.ItemType.Category;
-            }
-            else if (template.InheritsFrom(ProductItem.TemplateId))
-            {
-                itemType = Constants.ItemType.Product;
-            }
+            else if (template.InheritsFrom(ProductItem.TemplateId)) itemType = Constants.ItemType.Product;
 
             return itemType;
         }

@@ -12,32 +12,32 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Entities;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Services.Carts;
+using Sitecore.Commerce.Services.Customers;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.ModelInitilizers;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Connect.Managers;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Customers;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-
     public abstract class BaseCheckoutRepository
     {
         protected readonly ICartManager CartManager;
 
+        protected readonly ICartModelBuilder CartModelBuilder;
+
         protected readonly ICatalogRepository CatalogRepository;
 
         protected readonly IEntityMapper EntityMapper;
-
-        protected readonly ICartModelBuilder CartModelBuilder;
 
         protected BaseCheckoutRepository(
             ICartManager cartManager,
@@ -48,13 +48,13 @@ namespace Wooli.Foundation.Commerce.Repositories
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
         {
-            this.AccountManager = accountManager;
-            this.StorefrontContext = storefrontContext;
-            this.VisitorContext = visitorContext;
-            this.CartManager = cartManager;
-            this.CatalogRepository = catalogRepository;
-            this.CartModelBuilder = cartModelBuilder;
-            this.EntityMapper = entityMapper;
+            AccountManager = accountManager;
+            StorefrontContext = storefrontContext;
+            VisitorContext = visitorContext;
+            CartManager = cartManager;
+            CatalogRepository = catalogRepository;
+            CartModelBuilder = cartModelBuilder;
+            EntityMapper = entityMapper;
         }
 
         public IAccountManager AccountManager { get; }
@@ -65,14 +65,15 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected virtual void AddUserInfo<T>(BaseCheckoutModel baseCheckoutModel, Result<T> result) where T : class
         {
-            var currentCustomerParties = this.AccountManager.GetCurrentCustomerParties(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+            ManagerResponse<GetPartiesResult, IEnumerable<Party>> currentCustomerParties =
+                AccountManager.GetCurrentCustomerParties(StorefrontContext.ShopName, VisitorContext.ContactId);
 
             if (currentCustomerParties.ServiceProviderResult.Success && currentCustomerParties.Result != null)
             {
                 baseCheckoutModel.UserAddresses = new List<AddressModel>();
-                foreach (var party in currentCustomerParties.Result)
+                foreach (Party party in currentCustomerParties.Result)
                 {
-                    AddressModel address = this.EntityMapper.MapToAddress(party);
+                    AddressModel address = EntityMapper.MapToAddress(party);
                     var commerceParty = party as CommerceParty;
                     address.Name = commerceParty.Name;
                     address.CountryCode = commerceParty.CountryCode;
@@ -91,18 +92,15 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             try
             {
-                CartModel model = this.CartModelBuilder.Initialize(cart);
+                CartModel model = CartModelBuilder.Initialize(cart);
                 result.SetResult(model);
 
                 // ToDo: investigate the sometimes issue where Success=false but no any errors and the action is success
-                if (serviceProviderResult.SystemMessages.Any() || cart == null)
-                {
-                    result.SetErrors(serviceProviderResult);
-                }
+                if (serviceProviderResult.SystemMessages.Any() || cart == null) result.SetErrors(serviceProviderResult);
             }
             catch (Exception ex)
             {
-                result.SetErrors(nameof(this.GetCart), ex);
+                result.SetErrors(nameof(GetCart), ex);
             }
 
             return result;

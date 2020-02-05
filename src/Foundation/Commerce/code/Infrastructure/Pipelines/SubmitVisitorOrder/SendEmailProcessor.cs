@@ -12,39 +12,37 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Net.Mail;
+using Sitecore;
+using Sitecore.Commerce.Engine.Connect.Pipelines;
+using Sitecore.Commerce.Entities.Orders;
+using Sitecore.Commerce.Pipelines;
+using Sitecore.Commerce.Services.Orders;
+using Sitecore.Configuration;
+using Sitecore.Diagnostics;
+using Sitecore.Links;
+using Wooli.Foundation.Extensions.Extensions;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 {
-    using System;
-    using System.Net.Mail;
-
-    using Sitecore;
-    using Sitecore.Commerce.Engine.Connect.Pipelines;
-    using Sitecore.Commerce.Entities.Orders;
-    using Sitecore.Commerce.Pipelines;
-    using Sitecore.Commerce.Services.Orders;
-    using Sitecore.Configuration;
-    using Sitecore.Diagnostics;
-    using Sitecore.Links;
-    
-    using Wooli.Foundation.Extensions.Extensions;
-
     public class SendEmailProcessor : PipelineProcessor
     {
-        private static readonly string SendConfirmationFrom = Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.From");
-        private static readonly string SendConfirmationSubject = Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.Subject");
+        private static readonly string SendConfirmationFrom =
+            Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.From");
+
+        private static readonly string SendConfirmationSubject =
+            Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.Subject");
 
         public override void Process(ServicePipelineArgs args)
         {
-            var order = GetOrderFromArgs(args);
+            Order order = GetOrderFromArgs(args);
 
-            if (order == null || order.Total == null)
-            {
-                return;
-            }
+            if (order == null || order.Total == null) return;
 
             try
             {
-                var body = BuildBody(order);
+                string body = BuildBody(order);
                 var emailMessage = new MailMessage(SendConfirmationFrom, order.Email, SendConfirmationSubject, body)
                 {
                     IsBodyHtml = true
@@ -52,7 +50,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
                 MainUtil.SendMail(emailMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error("Send order confirmation email failed!", ex, this);
             }
@@ -65,21 +63,19 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
                 AlwaysIncludeServerUrl = true
             };
 
-            var homeItemUrl = Context.Database.GetItem(Context.Site.StartPath).Url(options);
-            var link = $"<a href=\"{homeItemUrl}Checkout/Confirmation?trackingNumber={order.TrackingNumber}\">here</a>";
-            var result = $"<h2>Thank You For Your Order!</h2><p>Click {link} for more details.</p>";
+            string homeItemUrl = Sitecore.Context.Database.GetItem(Sitecore.Context.Site.StartPath).Url(options);
+            string link =
+                $"<a href=\"{homeItemUrl}Checkout/Confirmation?trackingNumber={order.TrackingNumber}\">here</a>";
+            string result = $"<h2>Thank You For Your Order!</h2><p>Click {link} for more details.</p>";
 
             return result;
         }
 
         private Order GetOrderFromArgs(ServicePipelineArgs args)
         {
-            if (args == null || !(args.Result is SubmitVisitorOrderResult))
-            {
-                return null;
-            }
+            if (args == null || !(args.Result is SubmitVisitorOrderResult)) return null;
 
-            return ((SubmitVisitorOrderResult)args.Result).Order;
+            return ((SubmitVisitorOrderResult) args.Result).Order;
         }
     }
 }

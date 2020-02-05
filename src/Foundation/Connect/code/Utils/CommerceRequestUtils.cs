@@ -12,26 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Utils
+using System;
+using System.Linq;
+using Sitecore;
+using Sitecore.Data.Items;
+
+namespace Wooli.Foundation.Connect.Utils
 {
-    using System;
-    using System.Linq;
-
-    using Sitecore;
-    using Sitecore.Data.Items;
-
     public class CommerceRequestUtils
     {
         public static string GetPaymentOptionId(string paymentType)
         {
-            Item paymentOptions = Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
+            Item paymentOptions =
+                Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
             if (paymentOptions != null && paymentOptions.Children.Any())
             {
-                Item paymentOption = paymentOptions.Children.FirstOrDefault(o => o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));
-                if (paymentOption != null)
-                {
-                    return paymentOption.ID.ToGuid().ToString("D");
-                }
+                Item paymentOption = paymentOptions.Children.FirstOrDefault(o =>
+                    o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));
+                if (paymentOption != null) return paymentOption.ID.ToGuid().ToString("D");
             }
 
             return string.Empty;

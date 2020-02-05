@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Shipping;
+using Sitecore.Commerce.Services.Shipping;
+using Wooli.Foundation.Connect.Models;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services.Shipping;
-
-    using Wooli.Foundation.Connect.Models;
-
     public interface IShippingManager
     {
-        ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(string shopName, Cart cart, ShippingOptionType shippingOptionType, PartyEntity address, List<string> cartLineExternalIdList);
+        ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(
+            string shopName, Cart cart, ShippingOptionType shippingOptionType, PartyEntity address,
+            List<string> cartLineExternalIdList);
 
         ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart);
     }

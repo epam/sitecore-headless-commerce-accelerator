@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Glass.Mapper.Sc;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Glass.Mapper.Sc;
-
-    using Wooli.Foundation.Connect;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {
@@ -37,12 +35,14 @@ namespace Wooli.Foundation.Commerce.Context
         public string ShopName => "Wooli";
 
         // ToDo: implement logic for getting current storefront settings
-        public IStorefrontModel CurrentStorefront 
-            => this.sitecoreContext.GetItem<IStorefrontModel>($"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
+        public IStorefrontModel CurrentStorefront
+            => sitecoreContext.GetItem<IStorefrontModel>(
+                $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{ShopName}");
 
         // ToDo: implement logic for getting current catalog item
-        public ICommerceCatalogModel CurrentCatalog 
-            => this.sitecoreContext.GetItem<ICommerceCatalogModel>($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
+        public ICommerceCatalogModel CurrentCatalog
+            => sitecoreContext.GetItem<ICommerceCatalogModel>(
+                $"/sitecore/Commerce/Catalog Management/Catalogs/{CatalogName}");
 
         public string SelectedCurrency => "USD";
 

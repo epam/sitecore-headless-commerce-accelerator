@@ -13,24 +13,22 @@
 //    limitations under the License.
 
 // ReSharper disable CheckNamespace
+
+using System.Collections.Generic;
+using Glass.Mapper.Sc.Configuration.Attributes;
+
 #pragma warning disable 1591
 #pragma warning disable 0108
 
 namespace Wooli.Feature.Catalog.Models
 {
-    using System.Collections.Generic;
-
-    using Glass.Mapper.Sc.Configuration.Attributes;
-
     public partial interface IProductColorMappingFolder
     {
-        [SitecoreChildren(InferType = true)]
-        IEnumerable<IProductColorMapping> Mappings { get; set; } 
+        [SitecoreChildren(InferType = true)] IEnumerable<IProductColorMapping> Mappings { get; set; }
     }
 
     public partial class ProductColorMappingFolder
     {
-        [SitecoreChildren(InferType = true)]
-        public IEnumerable<IProductColorMapping> Mappings { get; set; }
+        [SitecoreChildren(InferType = true)] public IEnumerable<IProductColorMapping> Mappings { get; set; }
     }
 }

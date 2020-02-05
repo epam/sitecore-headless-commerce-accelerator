@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+
 namespace Wooli.Foundation.DependencyInjection
 {
-    using System;
-
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public class ServiceAttribute : Attribute
     {
@@ -25,7 +25,7 @@ namespace Wooli.Foundation.DependencyInjection
 
         public ServiceAttribute(Type serviceType)
         {
-            this.ServiceType = serviceType;
+            ServiceType = serviceType;
         }
 
         public Lifetime Lifetime { get; set; } = Lifetime.Singleton;

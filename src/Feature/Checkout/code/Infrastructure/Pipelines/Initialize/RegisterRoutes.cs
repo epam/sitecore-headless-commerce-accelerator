@@ -12,22 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Web.Mvc;
+using System.Web.Routing;
+using Sitecore.Diagnostics;
+using Sitecore.Pipelines;
+using Wooli.Feature.Checkout.Controllers;
+using Wooli.Foundation.Commerce.Utils;
+
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
 {
-    using System.Web.Mvc;
-    using System.Web.Routing;
-
-    using Sitecore.Diagnostics;
-    using Sitecore.Pipelines;
-
-    using Wooli.Feature.Checkout.Controllers;
-    using Wooli.Foundation.Commerce.Utils;
-
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)
         {
-            this.RegisterHttpRoutes(RouteTable.Routes);
+            RegisterHttpRoutes(RouteTable.Routes);
         }
 
         private void RegisterHttpRoutes(RouteCollection routeCollection)
@@ -37,18 +35,18 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
             const string CheckoutControllerName = "Checkout";
 
             routeCollection.MapRoute(
-                name: nameof(CheckoutController),
-                url: Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new { controller = CheckoutControllerName });
+                nameof(CheckoutController),
+                Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] {typeof(CheckoutController).Namespace},
+                defaults: new {controller = CheckoutControllerName});
 
             const string CartControllerName = "Cart";
 
             routeCollection.MapRoute(
-                name: nameof(CartController),
-                url: Constants.CommerceRoutePrefix + $"/{CartControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new { controller = CartControllerName });
+                nameof(CartController),
+                Constants.CommerceRoutePrefix + $"/{CartControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] {typeof(CheckoutController).Namespace},
+                defaults: new {controller = CartControllerName});
         }
     }
 }

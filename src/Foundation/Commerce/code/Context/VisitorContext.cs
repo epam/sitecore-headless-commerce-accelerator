@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections;
+using System.Web;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Context
 {
-    using System.Collections;
-    using System.Web;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IVisitorContext))]
     public class VisitorContext : IVisitorContext
     {
@@ -36,14 +35,14 @@ namespace Wooli.Foundation.Commerce.Context
             this.customerProvider = customerProvider;
         }
 
-        public string ContactId => this.CurrentUser?.ContactId;
+        private IDictionary Items => HttpContext.Current.Items;
+
+        public string ContactId => CurrentUser?.ContactId;
 
         public CommerceUserModel CurrentUser
         {
-            get => this.Items[CurrentUserItemKey] as CommerceUserModel;
-            set => this.Items[CurrentUserItemKey] = value;
+            get => Items[CurrentUserItemKey] as CommerceUserModel;
+            set => Items[CurrentUserItemKey] = value;
         }
-
-        private IDictionary Items => HttpContext.Current.Items;
     }
 }

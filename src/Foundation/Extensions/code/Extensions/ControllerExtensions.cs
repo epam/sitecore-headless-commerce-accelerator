@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using Wooli.Foundation.Extensions.Controllers.ActionResult;
+using Wooli.Foundation.Extensions.Models;
+
 namespace Wooli.Foundation.Extensions.Extensions
 {
-    using System;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Mvc;
-
-    using Wooli.Foundation.Extensions.Controllers.ActionResult;
-    using Wooli.Foundation.Extensions.Models;
-
     public static class ControllerExtensions
     {
-        public static ActionResult JsonError(this Controller controller, string[] errorMessages, HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static ActionResult JsonError(this Controller controller, string[] errorMessages,
+            HttpStatusCode statusCode, Exception e = null, object tempData = null)
         {
             var result = new ErrorsJsonResultModel
             {
@@ -45,7 +45,8 @@ namespace Wooli.Foundation.Extensions.Extensions
             };
         }
 
-        public static ActionResult JsonError(this Controller controller, string errorMessage, HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static ActionResult JsonError(this Controller controller, string errorMessage, HttpStatusCode statusCode,
+            Exception e = null, object tempData = null)
         {
             var result = new ErrorJsonResultModel
             {

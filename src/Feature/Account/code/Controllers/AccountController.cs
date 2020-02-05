@@ -12,24 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using Sitecore.Analytics;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Account;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Extensions.Extensions;
+
 namespace Wooli.Feature.Account.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Web.Mvc;
-
-    using Sitecore.Analytics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Account;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Extensions.Extensions;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
-
     public class AccountController : Controller
     {
         private readonly IAccountRepositry accountRepositry;
@@ -41,7 +38,7 @@ namespace Wooli.Feature.Account.Controllers
             IVisitorContext visitorContex)
         {
             this.accountRepositry = accountRepositry;
-            this.visitorContext = visitorContex;
+            visitorContext = visitorContex;
         }
 
 
@@ -51,15 +48,13 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                this.EnsureTracker();
+                EnsureTracker();
 
                 Result<CreateAccountResultModel> createAccountResult =
-                    this.accountRepositry.CreateAccount(createAccountModel);
+                    accountRepositry.CreateAccount(createAccountModel);
 
                 if (!createAccountResult.Success)
-                {
                     return this.JsonError(createAccountResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(createAccountResult.Data);
             }
@@ -75,13 +70,12 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                this.EnsureTracker();
-                Result<ValidateAccountResultModel> accountExists = this.accountRepositry.ValidateAccount(validateAccountModel);
+                EnsureTracker();
+                Result<ValidateAccountResultModel> accountExists =
+                    accountRepositry.ValidateAccount(validateAccountModel);
 
                 if (!accountExists.Success)
-                {
                     return this.JsonError(accountExists.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(accountExists.Data);
             }
@@ -97,13 +91,11 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                this.EnsureTracker();
-                var updateUserResult = this.accountRepositry.UpdateAccountInfo(user);
+                EnsureTracker();
+                Result<CommerceUserModel> updateUserResult = accountRepositry.UpdateAccountInfo(user);
 
                 if (!updateUserResult.Success)
-                {
                     return this.JsonError(updateUserResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(updateUserResult.Data);
             }
@@ -119,13 +111,12 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                this.EnsureTracker();
-                var ñhangePasswordResult = this.accountRepositry.ChangePassword(changePassword);
+                EnsureTracker();
+                Result<ChangePasswordResultModel>
+                    ñhangePasswordResult = accountRepositry.ChangePassword(changePassword);
 
                 if (!ñhangePasswordResult.Success)
-                {
                     return this.JsonError(ñhangePasswordResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(ñhangePasswordResult.Data);
             }
@@ -141,14 +132,13 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                string contactId = visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> addAddressResult = this.accountRepositry.AddCustomerAddress(contactId, newAddress);
+                Result<IEnumerable<AddressModel>> addAddressResult =
+                    accountRepositry.AddCustomerAddress(contactId, newAddress);
 
                 if (!addAddressResult.Success)
-                {
                     return this.JsonError(addAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(addAddressResult.Data);
             }
@@ -164,14 +154,12 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                string contactId = visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> getAddressListResult = this.accountRepositry.GetAddressList(contactId);
+                Result<IEnumerable<AddressModel>> getAddressListResult = accountRepositry.GetAddressList(contactId);
 
                 if (!getAddressListResult.Success)
-                {
                     return this.JsonError(getAddressListResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(getAddressListResult.Data);
             }
@@ -187,14 +175,13 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                string contactId = visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> updateAddressResult = this.accountRepositry.UpdateAddress(contactId, address);
+                Result<IEnumerable<AddressModel>> updateAddressResult =
+                    accountRepositry.UpdateAddress(contactId, address);
 
                 if (!updateAddressResult.Success)
-                {
                     return this.JsonError(updateAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(updateAddressResult.Data);
             }
@@ -210,14 +197,13 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                string contactId = visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> removeAddressResult = this.accountRepositry.RemoveCustomerAddress(contactId, address);
+                Result<IEnumerable<AddressModel>> removeAddressResult =
+                    accountRepositry.RemoveCustomerAddress(contactId, address);
 
                 if (!removeAddressResult.Success)
-                {
                     return this.JsonError(removeAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
 
                 return this.JsonOk(removeAddressResult.Data);
             }
@@ -229,10 +215,7 @@ namespace Wooli.Feature.Account.Controllers
 
         private void EnsureTracker()
         {
-            if (!Tracker.IsActive)
-            {
-                Tracker.StartTracking();
-            }
+            if (!Tracker.IsActive) Tracker.StartTracking();
         }
     }
 }

@@ -12,41 +12,41 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using NSubstitute;
+using Sitecore.FakeDb;
+using Sitecore.LayoutService.Configuration;
+using Sitecore.LayoutService.ItemRendering;
+using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
+using Sitecore.Mvc.Presentation;
+using Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering;
+using Xunit;
+
 namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 {
-    using System.Collections.Generic;
-
-    using NSubstitute;
-
-    using Sitecore.FakeDb;
-    using Sitecore.LayoutService.Configuration;
-    using Sitecore.LayoutService.ItemRendering;
-    using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-    using Sitecore.Mvc.Presentation;
-
-    using Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering;
-
-    using Xunit;
-
     public class FormatRenderingParamsTests
     {
-       // [Fact]
+        // [Fact]
         public void FormatRenderingParameters_Parameters_ProcessedLowerCaseParameterKeys()
         {
             var configuration = Substitute.For<IConfiguration>();
             var renderingConfiguration = Substitute.For<IRenderingConfiguration>();
 
             var renderingItem = new DbItem("renderingItem");
-            using (var db = new Db { renderingItem })
+            using (var db = new Db {renderingItem})
             {
                 var args = new RenderJsonRenderingArgs
                 {
                     RenderingConfiguration = renderingConfiguration,
                     Rendering = new Rendering
                     {
-                        RenderingItem = db.GetItem(renderingItem.ID),
+                        RenderingItem = db.GetItem(renderingItem.ID)
                     },
-                    Result = new RenderedJsonRendering { RenderingParams = new Dictionary<string, string> { { "Param1", "Value1" }, { "Param 2", "Value 2" }, { "notChanged", "1" } } }
+                    Result = new RenderedJsonRendering
+                    {
+                        RenderingParams = new Dictionary<string, string>
+                            {{"Param1", "Value1"}, {"Param 2", "Value 2"}, {"notChanged", "1"}}
+                    }
                 };
 
                 var likesContextExtension = new FormatRenderingParams(configuration);
@@ -54,7 +54,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 
                 Assert.NotNull(args.Result);
 
-                var renderingParams = args.Result.RenderingParams;
+                IDictionary<string, string> renderingParams = args.Result.RenderingParams;
                 Assert.NotNull(renderingParams);
 
                 Assert.Equal(3, renderingParams.Count);

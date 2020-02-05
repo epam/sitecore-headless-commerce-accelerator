@@ -12,25 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore;
+using Sitecore.Commerce.Engine.Connect;
+using Sitecore.Commerce.Engine.Connect.Interfaces;
+using Sitecore.Commerce.Engine.Connect.Search;
+using Sitecore.Commerce.Engine.Connect.Search.Models;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.Linq;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore;
-    using Sitecore.Commerce.Engine.Connect;
-    using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Commerce.Engine.Connect.Search;
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.Data;
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ISearchManager))]
     public class SearchManager : ISearchManager
     {
@@ -47,31 +46,27 @@ namespace Wooli.Foundation.Connect.Managers
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
 
-            var queryable = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
+            IQueryable<CommerceSellableItemSearchResultItem> queryable =
+                GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
             if (!ID.IsNullOrEmpty(categoryId))
-            {
                 queryable = queryable.Where(x => x.CommerceAncestorIds.Contains(categoryId));
-            }
 
             if (!string.IsNullOrEmpty(searchKeyword))
-            {
-                queryable = queryable.Where(item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
-            }
+                queryable = queryable.Where(item =>
+                    item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
 
             queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
 
-            var results = queryable.GetResults();
+            SearchResults<CommerceSellableItemSearchResultItem> results = queryable.GetResults();
 
             var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
             if (searchResultsItems != null)
-            {
                 return new SearchResults(
                     searchResultsItems.ResponseItems,
                     searchResultsItems.TotalItemCount,
                     searchResultsItems.TotalPageCount,
                     searchOptions.StartPageIndex,
                     searchResultsItems.Facets.ToList());
-            }
 
             return new SearchResults();
         }
@@ -92,13 +87,11 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            var searchResultItem = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
-                .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
+            CommerceSellableItemSearchResultItem searchResultItem =
+                GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
+                    .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
 
-            if (searchResultItem != null)
-            {
-                productItem = searchResultItem.GetItem();
-            }
+            if (searchResultItem != null) productItem = searchResultItem.GetItem();
 
             return productItem;
         }
@@ -110,13 +103,11 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            var searchResultItem = this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
-                .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
+            CommerceSellableItemSearchResultItem searchResultItem =
+                GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
+                    .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
 
-            if (searchResultItem != null)
-            {
-                productItem = searchResultItem.GetItem();
-            }
+            if (searchResultItem != null) productItem = searchResultItem.GetItem();
 
             return productItem;
         }
@@ -131,15 +122,18 @@ namespace Wooli.Foundation.Connect.Managers
             throw new NotImplementedException();
         }
 
-        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(string catalogName, string searchItemType)
+        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(string catalogName,
+            string searchItemType)
         {
             Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
             Assert.ArgumentNotNullOrEmpty(searchItemType, nameof(searchItemType));
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            using (var searchContext = commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
+            using (IProviderSearchContext searchContext =
+                commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
             {
-                var searchResultItems = searchContext.GetQueryable<CommerceSellableItemSearchResultItem>()
+                IQueryable<CommerceSellableItemSearchResultItem> searchResultItems = searchContext
+                    .GetQueryable<CommerceSellableItemSearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == searchItemType)
                     .Where(item => item.Language == Context.Language.Name);
 

@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities.Shipping;
+
 namespace Wooli.Foundation.Connect.Models
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities.Shipping;
-
     public class ShippingInfoArgument
     {
         public string ElectronicDeliveryEmail { get; set; }

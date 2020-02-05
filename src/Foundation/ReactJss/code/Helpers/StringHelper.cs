@@ -12,22 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Linq;
+using System.Text;
+using Sitecore.Diagnostics;
+
 namespace Wooli.Foundation.ReactJss.Helpers
 {
-    using System;
-    using System.Linq;
-    using System.Text;
-
-    using Sitecore.Diagnostics;
-
     public static class StringHelper
     {
         public static string ConvertToCamelCase(string phrase)
         {
-            if (string.IsNullOrEmpty(phrase))
-            {
-                return phrase;
-            }
+            if (string.IsNullOrEmpty(phrase)) return phrase;
 
             string[] splittedPhrase = phrase.Split(' ', '-', '.');
             var sb = new StringBuilder();
@@ -35,16 +31,13 @@ namespace Wooli.Foundation.ReactJss.Helpers
             var isFirst = true;
             foreach (string s in splittedPhrase)
             {
-                if (s.Length <= 0)
-                {
-                    continue;
-                }
+                if (s.Length <= 0) continue;
 
                 string modifiedValue = !isFirst
                     ? FormatFirstChar(s, x => x.ToUpper())
-                    : (s.IsUpper()
+                    : s.IsUpper()
                         ? s.ToLower()
-                        : FormatFirstChar(s, x => x.ToLower()));
+                        : FormatFirstChar(s, x => x.ToLower());
 
                 sb.Append(modifiedValue);
 

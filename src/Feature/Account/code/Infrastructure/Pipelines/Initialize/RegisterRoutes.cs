@@ -12,22 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Web.Mvc;
+using System.Web.Routing;
 using Sitecore.Diagnostics;
+using Sitecore.Pipelines;
 using Wooli.Feature.Account.Controllers;
 using Wooli.Foundation.Commerce.Utils;
 
 namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
 {
-    using System.Web.Mvc;
-    using System.Web.Routing;
-
-    using Sitecore.Pipelines;
-
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)
         {
-            this.RegisterHttpRoutes(RouteTable.Routes);
+            RegisterHttpRoutes(RouteTable.Routes);
         }
 
         private void RegisterHttpRoutes(RouteCollection routeCollection)
@@ -37,19 +35,19 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
             const string AccountControllerName = "Account";
 
             routeCollection.MapRoute(
-                name: nameof(AccountController),
-                url: Constants.CommerceRoutePrefix + $"/{AccountControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(AccountController).Namespace },
-                defaults: new { controller = AccountControllerName });
+                nameof(AccountController),
+                Constants.CommerceRoutePrefix + $"/{AccountControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] {typeof(AccountController).Namespace},
+                defaults: new {controller = AccountControllerName});
 
             const string AuthenticationControllerName = "Authentication";
             const string AuthenticationPrefix = "auth";
 
             routeCollection.MapRoute(
-                name: nameof(AuthenticationController),
-                url: Constants.CommerceRoutePrefix + $"/{AuthenticationPrefix}" + "/{action}",
-                namespaces: new[] { typeof(AuthenticationController).Namespace },
-                defaults: new { controller = AuthenticationControllerName });
+                nameof(AuthenticationController),
+                Constants.CommerceRoutePrefix + $"/{AuthenticationPrefix}" + "/{action}",
+                namespaces: new[] {typeof(AuthenticationController).Namespace},
+                defaults: new {controller = AuthenticationControllerName});
         }
     }
 }

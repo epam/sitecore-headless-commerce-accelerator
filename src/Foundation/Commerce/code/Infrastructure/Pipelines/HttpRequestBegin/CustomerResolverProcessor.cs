@@ -12,19 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Pipelines.HttpRequest;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Extensions.Infrastructure;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
-    using Sitecore.Pipelines.HttpRequest;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Extensions.Infrastructure;
-
     public class CustomerResolverProcessor : SiteSpecificPipelineProcessor
     {
-        private readonly IVisitorContext visitorContext;
-
         private readonly ICustomerProvider customerProvider;
+        private readonly IVisitorContext visitorContext;
 
         public CustomerResolverProcessor(IVisitorContext visitorContext, ICustomerProvider customerProvider)
         {
@@ -34,17 +32,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 
         protected override void DoProcess(HttpRequestArgs args)
         {
-            if (this.visitorContext.CurrentUser != null)
-            {
-                return;
-            }
+            if (visitorContext.CurrentUser != null) return;
 
-            if (!Sitecore.Context.PageMode.IsNormal)
-            {
-                return;
-            }
+            if (!Sitecore.Context.PageMode.IsNormal) return;
 
-            this.visitorContext.CurrentUser = this.customerProvider.GetCurrentCommerceUser(args.HttpContext);
+            visitorContext.CurrentUser = customerProvider.GetCurrentCommerceUser(args.HttpContext);
         }
     }
 }

@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Diagnostics;
+using Sitecore.LayoutService.Configuration;
+using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
+using Wooli.Foundation.ReactJss.Helpers;
+
 namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Diagnostics;
-    using Sitecore.LayoutService.Configuration;
-    using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-
-    using Wooli.Foundation.ReactJss.Helpers;
-
     public class FormatRenderingParams : BaseRenderJsonRendering
     {
         public FormatRenderingParams(IConfiguration configuration)
@@ -33,10 +31,11 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
         {
             Assert.ArgumentNotNull(args, nameof(args));
             Assert.IsNotNull(args.Result, "args.Result cannot be null");
-            args.Result.RenderingParams = this.FormatRenderingParameters(args.Result.RenderingParams);
+            args.Result.RenderingParams = FormatRenderingParameters(args.Result.RenderingParams);
         }
 
-        private IDictionary<string, string> FormatRenderingParameters(IDictionary<string, string> originalRenderingParams)
+        private IDictionary<string, string> FormatRenderingParameters(
+            IDictionary<string, string> originalRenderingParams)
         {
             var renderingParams = new Dictionary<string, string>();
 

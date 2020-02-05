@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using System.Collections.Generic;
+using TypeLite;
+
+namespace Wooli.Foundation.Commerce.Models.Checkout
 {
-    using System.Collections.Generic;
-
-    using TypeLite;
-
     [TsClass]
     public class CartModel
     {
@@ -37,7 +36,6 @@ namespace Wooli.Foundation.Commerce.Models
 
         public IList<ShippingMethodModel> Shippings { get; set; }
 
-        [TsIgnore]
-        public object Temp { get; set; }
+        [TsIgnore] public object Temp { get; set; }
     }
 }

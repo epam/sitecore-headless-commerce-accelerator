@@ -12,14 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Glass.Mapper.Sc;
 using Newtonsoft.Json.Linq;
 using Sitecore.Data;
-using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
 using Sitecore.LayoutService.Configuration;
 using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
+using Sitecore.Mvc.Presentation;
 using Wooli.Feature.Checkout.Models;
 using Wooli.Foundation.DependencyInjection;
 
@@ -29,29 +31,24 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
     public class CheckoutNavigationResolver : RenderingContentsResolver
     {
         private readonly ISitecoreContext sitecoreContext;
+
         public CheckoutNavigationResolver(ISitecoreContext sitecoreContext)
         {
             this.sitecoreContext = sitecoreContext;
         }
 
         protected override JObject ProcessItem(Item item,
-            Sitecore.Mvc.Presentation.Rendering rendering,
+            Rendering rendering,
             IRenderingConfiguration renderingConfig)
         {
-            var processedItem = base.ProcessItem(item, rendering, renderingConfig);
-            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId)))
-            {
-                return processedItem;
-            }
+            JObject processedItem = base.ProcessItem(item, rendering, renderingConfig);
+            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId))) return processedItem;
 
-            var checkoutNavigation = this.sitecoreContext.Cast<ICheckoutNavigation>(item);
-            var checkoutSteps = checkoutNavigation?.CheckoutSteps;
-            if (checkoutSteps == null || !checkoutSteps.Any())
-            {
-                return processedItem;
-            }
+            var checkoutNavigation = sitecoreContext.Cast<ICheckoutNavigation>(item);
+            IEnumerable<Guid> checkoutSteps = checkoutNavigation?.CheckoutSteps;
+            if (checkoutSteps == null || !checkoutSteps.Any()) return processedItem;
 
-            var firstStep = this.sitecoreContext.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
+            var firstStep = sitecoreContext.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
             processedItem.Add("url", firstStep.Url);
 
             return processedItem;

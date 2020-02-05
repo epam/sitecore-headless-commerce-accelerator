@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Engine.Connect.Search.Models;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+
 namespace Wooli.Foundation.Connect.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-
     public class SearchResults
     {
         private IEnumerable<CommerceQueryFacet> facets;
@@ -31,13 +30,14 @@ namespace Wooli.Foundation.Connect.Models
         {
         }
 
-        public SearchResults(List<Item> searchResultItems, int totalItemCount, int totalPageCount, int currentPageNumber, IEnumerable<CommerceQueryFacet> facets)
+        public SearchResults(List<Item> searchResultItems, int totalItemCount, int totalPageCount,
+            int currentPageNumber, IEnumerable<CommerceQueryFacet> facets)
         {
-            this.SearchResultItems = searchResultItems ?? new List<Item>();
-            this.TotalPageCount = totalPageCount;
-            this.TotalItemCount = totalItemCount;
-            this.Facets = facets ?? Enumerable.Empty<CommerceQueryFacet>();
-            this.CurrentPageNumber = currentPageNumber;
+            SearchResultItems = searchResultItems ?? new List<Item>();
+            TotalPageCount = totalPageCount;
+            TotalItemCount = totalItemCount;
+            Facets = facets ?? Enumerable.Empty<CommerceQueryFacet>();
+            CurrentPageNumber = currentPageNumber;
         }
 
         public string DisplayName { get; set; }
@@ -52,21 +52,21 @@ namespace Wooli.Foundation.Connect.Models
 
         public IList<Item> SearchResultItems
         {
-            get => this.searchResultItems;
+            get => searchResultItems;
             set
             {
                 Assert.ArgumentNotNull(value, nameof(value));
-                this.searchResultItems = value;
+                searchResultItems = value;
             }
         }
 
         public IEnumerable<CommerceQueryFacet> Facets
         {
-            get => this.facets;
+            get => facets;
             set
             {
                 Assert.ArgumentNotNull(value, nameof(value));
-                this.facets = value;
+                facets = value;
             }
         }
     }

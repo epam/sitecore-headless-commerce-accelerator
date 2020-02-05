@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Engine.Connect.Search.Models;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Wooli.Foundation.Connect.Models;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.Data;
-    using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Connect.Models;
-
     public interface ISearchManager
     {
         Item GetProduct(string catalogName, string productId);
@@ -32,8 +30,10 @@ namespace Wooli.Foundation.Connect.Managers
 
         List<Item> GetCategoryChildCategories(ID categoryId);
 
-        SearchResults SearchCatalogItemsByKeyword(string catalogName, string searchKeyword, CommerceSearchOptions searchOptions);
+        SearchResults SearchCatalogItemsByKeyword(string catalogName, string searchKeyword,
+            CommerceSearchOptions searchOptions);
 
-        SearchResults GetProducts(string catalogName, ID categoryId, CommerceSearchOptions searchOptions, string searchKeyword);
+        SearchResults GetProducts(string catalogName, ID categoryId, CommerceSearchOptions searchOptions,
+            string searchKeyword);
     }
 }

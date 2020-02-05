@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Wooli.Foundation.Connect.Models;
+
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Wooli.Foundation.Connect.Models;
-
     public interface IStorefrontContext
     {
         string CatalogName { get; }

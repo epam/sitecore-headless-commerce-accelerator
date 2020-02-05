@@ -12,24 +12,31 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Globalization;
+using Sitecore.Commerce.Entities.Shipping;
+
 namespace Wooli.Foundation.Commerce.Utils
 {
-    using System;
-    using System.Globalization;
-
-    using Sitecore.Commerce.Entities.Shipping;
-
     public static class ConnectOptionTypeHelper
     {
         public static ShippingOptionType ToShippingOptionType(string optionTypeName)
         {
-            if (string.Equals(optionTypeName, ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(optionTypeName,
+                ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
                 return ShippingOptionType.ShipToAddress;
-            if (string.Equals(optionTypeName, ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(optionTypeName,
+                ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
                 return ShippingOptionType.PickupFromStore;
-            if (string.Equals(optionTypeName, ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(optionTypeName,
+                ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
                 return ShippingOptionType.ElectronicDelivery;
-            if (string.Equals(optionTypeName, ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(optionTypeName,
+                ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
                 return ShippingOptionType.DeliverItemsIndividually;
             return ShippingOptionType.None;
         }

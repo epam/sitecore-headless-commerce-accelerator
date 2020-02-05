@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.JavaScriptServices.Configuration;
+using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.ReactJss.Infrastructure;
+
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContext
 {
-    using Sitecore.JavaScriptServices.Configuration;
-    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.ReactJss.Infrastructure;
-
     public class CommerceUserContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly IVisitorContext visitorContext;
@@ -34,7 +33,7 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContex
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            CommerceUserModel model = this.visitorContext.CurrentUser;
+            CommerceUserModel model = visitorContext.CurrentUser;
 
             args.ContextData.Add("commerceUser", model);
         }

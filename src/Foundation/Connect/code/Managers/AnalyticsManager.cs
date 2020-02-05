@@ -13,9 +13,8 @@
 //    limitations under the License.
 
 using Sitecore.Commerce.Services.Catalog;
-using Sitecore.Commerce.Services.Payments;
 using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers;
+using Wooli.Foundation.Connect.Providers.Contracts;
 using Wooli.Foundation.DependencyInjection;
 
 namespace Wooli.Foundation.Connect.Managers
@@ -27,8 +26,8 @@ namespace Wooli.Foundation.Connect.Managers
 
         public AnalyticsManager(IConnectServiceProvider connectServiceProvider)
         {
-            Assert.ArgumentNotNull((object)connectServiceProvider, nameof(connectServiceProvider));
-            this.catalogServiceProvider = connectServiceProvider.GetCatalogServiceProvider();
+            Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
+            catalogServiceProvider = connectServiceProvider.GetCatalogServiceProvider();
         }
 
         public void VisitedProductDetailsPage(
@@ -38,9 +37,9 @@ namespace Wooli.Foundation.Connect.Managers
         {
             Assert.IsNotNullOrEmpty(productId, nameof(productId));
             Assert.IsNotNullOrEmpty(productName, nameof(productName));
-            VisitedProductDetailsPageRequest request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
-            
-            this.catalogServiceProvider.VisitedProductDetailsPage(request);
+            var request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
+
+            catalogServiceProvider.VisitedProductDetailsPage(request);
         }
 
         public void VisitedCategoryPage(
@@ -50,9 +49,9 @@ namespace Wooli.Foundation.Connect.Managers
         {
             Assert.IsNotNullOrEmpty(categoryId, nameof(categoryId));
             Assert.IsNotNullOrEmpty(categoryName, nameof(categoryName));
-            VisitedCategoryPageRequest request = new VisitedCategoryPageRequest(shopName, categoryId, categoryName);
+            var request = new VisitedCategoryPageRequest(shopName, categoryId, categoryName);
 
-            this.catalogServiceProvider.VisitedCategoryPage(request);
+            catalogServiceProvider.VisitedCategoryPage(request);
         }
     }
 }

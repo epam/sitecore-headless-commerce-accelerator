@@ -12,35 +12,36 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Specialized;
+using System.Net;
+using System.Web;
+using System.Web.Http;
+using Glass.Mapper.Sc;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.Extensions.Extensions;
+using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
+
 namespace Wooli.Feature.Catalog.Controllers
 {
-    using System.Collections.Specialized;
-    using System.Net;
-    using System.Web;
-    using System.Web.Http;
-
-    using Glass.Mapper.Sc;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Extensions.Extensions;
-
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
     {
+        private readonly ICatalogRepository catalogRepository;
+
+        private readonly IProductListRepository productListRepository;
         private readonly ISitecoreContext sitecoreContext;
 
         private readonly IStorefrontContext storefrontContext;
 
         private readonly IVisitorContext visitorContext;
 
-        private readonly ICatalogRepository catalogRepository;
-
-        private readonly IProductListRepository productListRepository;
-
-        public ProductController(ISitecoreContext sitecoreContext, IStorefrontContext storefrontContext, IVisitorContext visitorContext, ICatalogRepository catalogRepository, IProductListRepository productListRepository)
+        public ProductController(ISitecoreContext sitecoreContext, IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext, ICatalogRepository catalogRepository,
+            IProductListRepository productListRepository)
         {
             this.sitecoreContext = sitecoreContext;
             this.storefrontContext = storefrontContext;
@@ -51,18 +52,21 @@ namespace Wooli.Feature.Catalog.Controllers
 
         [Route("search")]
         public IHttpActionResult GetProductList(
-            [FromUri(Name = "q")] string searchKeyword = null, 
-            [FromUri(Name = "pg")] int? page = null, 
-            [FromUri(Name = "f")] string facetValues = null, 
-            [FromUri(Name = "s")] string sortField = null, 
-            [FromUri(Name = "ps")] int? pageSize = null, 
-            [FromUri(Name = "sd")] SortDirection? sortDirection = null, 
-            [FromUri(Name = "cci")] string currentCatalogItemId = null, 
+            [FromUri(Name = "q")] string searchKeyword = null,
+            [FromUri(Name = "pg")] int? page = null,
+            [FromUri(Name = "f")] string facetValues = null,
+            [FromUri(Name = "s")] string sortField = null,
+            [FromUri(Name = "ps")] int? pageSize = null,
+            [FromUri(Name = "sd")] SortDirection? sortDirection = null,
+            [FromUri(Name = "cci")] string currentCatalogItemId = null,
             [FromUri(Name = "ci")] string currentItemId = null)
         {
-            var facetValuesCollection = !string.IsNullOrEmpty(facetValues) ? HttpUtility.ParseQueryString(facetValues) : new NameValueCollection();
+            NameValueCollection facetValuesCollection = !string.IsNullOrEmpty(facetValues)
+                ? HttpUtility.ParseQueryString(facetValues)
+                : new NameValueCollection();
 
-            var model = this.productListRepository.GetProductList(this.visitorContext, currentItemId, currentCatalogItemId, searchKeyword, page, facetValuesCollection, sortField, pageSize, sortDirection);
+            ProductListResultModel model = productListRepository.GetProductList(visitorContext, currentItemId,
+                currentCatalogItemId, searchKeyword, page, facetValuesCollection, sortField, pageSize, sortDirection);
 
             return this.JsonOk(model);
         }
@@ -70,11 +74,8 @@ namespace Wooli.Feature.Catalog.Controllers
         [Route("get/{id}")]
         public IHttpActionResult Get(string id)
         {
-            var productModel = this.catalogRepository.GetProduct(id);
-            if (productModel == null)
-            {
-                return this.JsonError("Not Found", HttpStatusCode.NotFound);
-            }
+            ProductModel productModel = catalogRepository.GetProduct(id);
+            if (productModel == null) return this.JsonError("Not Found", HttpStatusCode.NotFound);
 
             return this.JsonOk(productModel);
         }

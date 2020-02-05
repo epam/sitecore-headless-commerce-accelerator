@@ -12,132 +12,133 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Linq;
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Services.Carts;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.ModelInitilizers;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Connect.Managers;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System;
-    using System.Linq;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Services.Carts;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ICartRepository))]
     public class CartRepository : BaseCheckoutRepository, ICartRepository
     {
-        public CartRepository(ICartManager cartManager, ICatalogRepository catalogRepository, IAccountManager accountManager, ICartModelBuilder cartModelBuilder, IEntityMapper entityMapper, IStorefrontContext storefrontContext, IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext, visitorContext)
+        public CartRepository(ICartManager cartManager, ICatalogRepository catalogRepository,
+            IAccountManager accountManager, ICartModelBuilder cartModelBuilder, IEntityMapper entityMapper,
+            IStorefrontContext storefrontContext, IVisitorContext visitorContext)
+            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext,
+                visitorContext)
         {
         }
 
         public virtual CartModel GetCurrentCart()
         {
-           ManagerResponse<CartResult, Cart> cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
-           // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
+            ManagerResponse<CartResult, Cart> cart =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+            // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
 
-            Result<CartModel> result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
 
-            if (result.Success)
-            {
-                return result.Data;
-            }
+            if (result.Success) return result.Data;
 
             return null;
         }
 
         public virtual void MergeCarts(string anonymousContactId)
         {
-            ManagerResponse<CartResult, Cart> cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, anonymousContactId);
+            ManagerResponse<CartResult, Cart> cart =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, anonymousContactId);
             if (cart.ServiceProviderResult.Success)
-            {
-                this.CartManager.MergeCarts(
-                    this.StorefrontContext.ShopName,
-                    this.VisitorContext.ContactId,
+                CartManager.MergeCarts(
+                    StorefrontContext.ShopName,
+                    VisitorContext.ContactId,
                     anonymousContactId,
                     cart.Result);
-            }
-
         }
 
         public Result<CartModel> AddProductVariantToCart(string productId, string variantId, decimal quantity)
         {
-            ManagerResponse<CartResult, Cart> model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+            ManagerResponse<CartResult, Cart> model =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
             var cartLineArgument = new CartLineArgument
             {
-                CatalogName = this.StorefrontContext.CatalogName,
+                CatalogName = StorefrontContext.CatalogName,
                 ProductId = productId,
                 Quantity = quantity,
                 VariantId = variantId
             };
 
-            ManagerResponse<CartResult, Cart> cart = this.CartManager.AddLineItemsToCart(model.Result, new[] { cartLineArgument }, null, null);
+            ManagerResponse<CartResult, Cart> cart =
+                CartManager.AddLineItemsToCart(model.Result, new[] {cartLineArgument}, null, null);
 
-            Result<CartModel> result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
 
             return result;
         }
 
         public Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity)
         {
-            ManagerResponse<CartResult, Cart> model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+            ManagerResponse<CartResult, Cart> model =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
             CartLine cartLine = model.Result.Lines.FirstOrDefault(x =>
-                {
-                    var current = x.Product as CommerceCartProduct;
-                    return current?.ProductId == productId && current?.ProductVariantId == variantId;
-                });
+            {
+                var current = x.Product as CommerceCartProduct;
+                return current?.ProductId == productId && current?.ProductVariantId == variantId;
+            });
 
             if (cartLine != null)
             {
-                if (quantity <= 0)
-                {
-                    return this.RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
-                }
+                if (quantity <= 0) return RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
 
                 var cartLineArgument = new CartLineArgument
                 {
-                    CatalogName = this.StorefrontContext.CatalogName,
+                    CatalogName = StorefrontContext.CatalogName,
                     ProductId = productId,
                     Quantity = quantity,
                     VariantId = variantId
                 };
 
-                ManagerResponse<CartResult, Cart> cart = this.CartManager.UpdateLineItemsInCart(model.Result, new[] { cartLineArgument }, null, null);
-                Result<CartModel> result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+                ManagerResponse<CartResult, Cart> cart =
+                    CartManager.UpdateLineItemsInCart(model.Result, new[] {cartLineArgument}, null, null);
+                Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
                 return result;
             }
-            else if (quantity > 0)
-            {
-                return this.AddProductVariantToCart(productId, variantId, quantity);
-            }
+
+            if (quantity > 0) return AddProductVariantToCart(productId, variantId, quantity);
 
             return null;
         }
 
         public Result<CartModel> RemoveProductVariantFromCart(string cartLineId)
         {
-            ManagerResponse<CartResult, Cart> model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+            ManagerResponse<CartResult, Cart> model =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
-            ManagerResponse<CartResult, Cart> cart = this.CartManager.RemoveLineItemsFromCart(model.Result, new[] { cartLineId });
+            ManagerResponse<CartResult, Cart> cart =
+                CartManager.RemoveLineItemsFromCart(model.Result, new[] {cartLineId});
 
-            Result<CartModel> result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
 
             return result;
         }
 
         public Result<CartModel> AddPromoCode(string promoCode)
         {
-            var getCartResponse = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
-            var addPromoCodeResponse = this.CartManager.AddPromoCode(getCartResponse.Result, promoCode);
-            var result = this.GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
+            ManagerResponse<CartResult, Cart> getCartResponse =
+                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+            ManagerResponse<AddPromoCodeResult, Cart> addPromoCodeResponse =
+                CartManager.AddPromoCode(getCartResponse.Result, promoCode);
+            Result<CartModel> result = GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
 
             return result;
         }

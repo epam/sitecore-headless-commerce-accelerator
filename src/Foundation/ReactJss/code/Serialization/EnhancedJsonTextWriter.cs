@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.IO;
+using Newtonsoft.Json;
+using Wooli.Foundation.ReactJss.Helpers;
+
 namespace Wooli.Foundation.ReactJss.Serialization
 {
-    using System.IO;
-
-    using Newtonsoft.Json;
-
-    using Wooli.Foundation.ReactJss.Helpers;
-
     public class EnhancedJsonTextWriter : JsonTextWriter
     {
         public EnhancedJsonTextWriter(TextWriter textWriter)
@@ -29,13 +27,13 @@ namespace Wooli.Foundation.ReactJss.Serialization
 
         public override void WritePropertyName(string name)
         {
-            string newName = this.FormatPropertyName(name);
+            string newName = FormatPropertyName(name);
             base.WritePropertyName(newName);
         }
 
         public override void WritePropertyName(string name, bool escape)
         {
-            string newName = this.FormatPropertyName(name);
+            string newName = FormatPropertyName(name);
             base.WritePropertyName(newName, escape);
         }
 

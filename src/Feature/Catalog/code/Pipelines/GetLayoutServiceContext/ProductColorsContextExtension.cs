@@ -12,19 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Glass.Mapper.Sc;
+using Sitecore.Data;
+using Sitecore.JavaScriptServices.Configuration;
+using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+using Wooli.Feature.Catalog.Models;
+using Wooli.Foundation.ReactJss.Infrastructure;
+
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
-    using System.Collections.Generic;
-
-    using Glass.Mapper.Sc;
-
-    using Sitecore.Data;
-    using Sitecore.JavaScriptServices.Configuration;
-    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Feature.Catalog.Models;
-    using Wooli.Foundation.ReactJss.Infrastructure;
-
     public class ProductColorsContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly ISitecoreContext sitecoreContext;
@@ -38,17 +35,14 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            string productColorMappingQuery = $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
-            var productColorMapping = this.sitecoreContext.QuerySingle<IProductColorMappingFolder>(productColorMappingQuery);
+            string productColorMappingQuery =
+                $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
+            var productColorMapping = sitecoreContext.QuerySingle<IProductColorMappingFolder>(productColorMappingQuery);
 
             var dictionary = new Dictionary<string, string>();
             if (productColorMapping?.Mappings != null)
-            {
                 foreach (IProductColorMapping colorMapping in productColorMapping.Mappings)
-                {
                     dictionary.Add(colorMapping.ColorName, colorMapping.ColorHEX);
-                }
-            }
 
 
             args.ContextData.Add("productColors", dictionary);

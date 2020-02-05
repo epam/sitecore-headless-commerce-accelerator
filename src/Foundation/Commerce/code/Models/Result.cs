@@ -12,14 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Services;
+
 namespace Wooli.Foundation.Commerce.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Services;
-
     public class Result<T> where T : class
     {
         public bool Success { get; set; } = true;
@@ -30,51 +29,39 @@ namespace Wooli.Foundation.Commerce.Models
 
         public void SetResult(T result)
         {
-            this.Data = result;
+            Data = result;
         }
 
         public void SetError(string error)
         {
-            if (string.IsNullOrEmpty(error))
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(error)) return;
 
-            this.Success = false;
-            this.Errors.Add(error);
+            Success = false;
+            Errors.Add(error);
         }
 
         public void SetErrors(ServiceProviderResult result)
         {
-            this.Success = result.Success;
-            if (result.SystemMessages.Count <= 0)
-            {
-                return;
-            }
+            Success = result.Success;
+            if (result.SystemMessages.Count <= 0) return;
 
             foreach (SystemMessage systemMessage in result.SystemMessages)
             {
                 string message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
-                this.SetError(message);
+                SetError(message);
             }
         }
 
         public void SetErrors(string area, Exception exception)
         {
-            this.SetError($"{area}: {exception.Message}");
+            SetError($"{area}: {exception.Message}");
         }
 
         public void SetErrors(IList<string> errors)
         {
-            if (!errors.Any())
-            {
-                return;
-            }
+            if (!errors.Any()) return;
 
-            foreach (string error in errors)
-            {
-                this.SetError(error);
-            }
+            foreach (string error in errors) SetError(error);
         }
     }
 }

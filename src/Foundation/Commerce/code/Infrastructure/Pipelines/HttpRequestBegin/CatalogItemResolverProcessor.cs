@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using Sitecore.Data.Items;
+using Sitecore.Pipelines.HttpRequest;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
-    using System;
-
-    using Sitecore;
-    using Sitecore.Data.Items;
-    using Sitecore.Pipelines.HttpRequest;
-
     public class CatalogItemResolverProcessor : HttpRequestProcessor
     {
         private readonly ICatalogItemResolver catalogItemResolver;
@@ -32,20 +30,14 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
         public override void Process(HttpRequestArgs args)
         {
             Uri requestUrl = args.HttpContext.Request.Url;
-            if (requestUrl == null || requestUrl.AbsolutePath.StartsWith("/sitecore"))
-            {
-                return;
-            }
+            if (requestUrl == null || requestUrl.AbsolutePath.StartsWith("/sitecore")) return;
 
-            if (Context.Item == null)
-            {
-                return;
-            }
+            if (Sitecore.Context.Item == null) return;
 
-            Item currentItem = Context.Item;
+            Item currentItem = Sitecore.Context.Item;
             string[] urlSegments = requestUrl.Segments;
 
-            this.catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
+            catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
         }
     }
 }

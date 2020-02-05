@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections;
+using System.Web;
+using Sitecore.Data.Items;
+
 namespace Wooli.Foundation.Commerce.Context
 {
-    using System.Collections;
-    using System.Web;
-
-    using Sitecore.Data.Items;
-
     public interface ISiteContext
     {
         HttpContext CurrentContext { get; }

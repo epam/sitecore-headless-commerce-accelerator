@@ -12,17 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections;
+using System.Web;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Context
 {
-    using System.Collections;
-    using System.Web;
-
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
     {
@@ -34,40 +33,40 @@ namespace Wooli.Foundation.Commerce.Context
 
         public SiteContext(IItemTypeProvider itemTypeProvider)
         {
-            Assert.ArgumentNotNull((object)itemTypeProvider, "itemTypeProvider must not be null");
-            this.ItemTypeProvider = itemTypeProvider;
+            Assert.ArgumentNotNull(itemTypeProvider, "itemTypeProvider must not be null");
+            ItemTypeProvider = itemTypeProvider;
         }
 
         public IItemTypeProvider ItemTypeProvider { get; set; }
 
         public Item CurrentCategoryItem
         {
-            get => this.Items[CurrentCategoryItemKey] as Item;
-            set => this.Items[CurrentCategoryItemKey] = value;
+            get => Items[CurrentCategoryItemKey] as Item;
+            set => Items[CurrentCategoryItemKey] = value;
         }
 
         public Item CurrentProductItem
         {
-            get => this.Items[CurrentProductItemKey] as Item;
-            set => this.Items[CurrentProductItemKey] = value;
+            get => Items[CurrentProductItemKey] as Item;
+            set => Items[CurrentProductItemKey] = value;
         }
 
         public Item CurrentItem
         {
-            get => this.Items[CurrentItemKey] as Item;
+            get => Items[CurrentItemKey] as Item;
             set
             {
-                this.Items[CurrentItemKey] = value;
+                Items[CurrentItemKey] = value;
                 if (value != null)
                 {
-                    var itemType = this.ItemTypeProvider.ResolveByItem(value);
-                    this.Items[IsCategoryKey] = itemType == Utils.Constants.ItemType.Category;
-                    this.Items[IsProductKey] = itemType == Utils.Constants.ItemType.Product;
+                    Constants.ItemType itemType = ItemTypeProvider.ResolveByItem(value);
+                    Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
+                    Items[IsProductKey] = itemType == Constants.ItemType.Product;
                 }
                 else
                 {
-                    this.Items[IsCategoryKey] = false;
-                    this.Items[IsProductKey] = false;
+                    Items[IsCategoryKey] = false;
+                    Items[IsProductKey] = false;
                 }
             }
         }
@@ -80,10 +79,7 @@ namespace Wooli.Foundation.Commerce.Context
         {
             get
             {
-                if (this.Items[IsCategoryKey] != null)
-                {
-                    return (bool)this.Items[IsCategoryKey];
-                }
+                if (Items[IsCategoryKey] != null) return (bool) Items[IsCategoryKey];
 
                 return false;
             }
@@ -93,10 +89,7 @@ namespace Wooli.Foundation.Commerce.Context
         {
             get
             {
-                if (this.Items[IsProductKey] != null)
-                {
-                    return (bool)this.Items[IsProductKey];
-                }
+                if (Items[IsProductKey] != null) return (bool) Items[IsProductKey];
 
                 return false;
             }

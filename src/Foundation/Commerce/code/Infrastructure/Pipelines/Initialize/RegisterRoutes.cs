@@ -12,14 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Pipelines;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Initialize
 {
-    using System.Web.Routing;
-
-    using Sitecore.Pipelines;
-
-    using Wooli.Foundation.Commerce.Utils;
-
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)

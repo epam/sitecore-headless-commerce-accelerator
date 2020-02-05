@@ -12,29 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore;
+using Sitecore.Pipelines.HttpRequest;
+
 namespace Wooli.Foundation.Extensions.Infrastructure
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Pipelines.HttpRequest;
-
     public abstract class SiteSpecificPipelineProcessor : HttpRequestProcessor
     {
-        public List<string> Sites { get; set; }
-
         protected SiteSpecificPipelineProcessor()
         {
-            this.Sites = new List<string>();
+            Sites = new List<string>();
         }
 
-        public override sealed void Process(HttpRequestArgs args)
-        {
-            if (!this.Sites.Contains(Sitecore.Context.Site?.Name))
-            {
-                return;
-            }
+        public List<string> Sites { get; set; }
 
-            this.DoProcess(args);
+        public sealed override void Process(HttpRequestArgs args)
+        {
+            if (!Sites.Contains(Context.Site?.Name)) return;
+
+            DoProcess(args);
         }
 
         protected abstract void DoProcess(HttpRequestArgs args);

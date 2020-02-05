@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-
     public interface IOrderRepository
     {
         Result<CartModel> GetOrderDetails(string trackingId);

@@ -12,24 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using Glass.Mapper.Sc;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Connect.Managers;
+using Wooli.Foundation.Connect.Models;
+using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Glass.Mapper.Sc;
-
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-
-    using ProductModel = Wooli.Foundation.Commerce.Models.ProductModel;
-
     public class BaseCatalogRepository
     {
         public const string CurrentCatalogItemRenderingModelKey = "CurrentCatalogItemRenderingModel";
@@ -42,12 +38,12 @@ namespace Wooli.Foundation.Commerce.Repositories
             ICatalogManager catalogManager,
             ISitecoreContext sitecoreContext)
         {
-            this.CurrencyProvider = currencyProvider;
-            this.SiteContext = siteContext;
-            this.StorefrontContext = storefrontContext;
-            this.VisitorContext = visitorContext;
-            this.CatalogManager = catalogManager;
-            this.SitecoreContext = sitecoreContext;
+            CurrencyProvider = currencyProvider;
+            SiteContext = siteContext;
+            StorefrontContext = storefrontContext;
+            VisitorContext = visitorContext;
+            CatalogManager = catalogManager;
+            SitecoreContext = sitecoreContext;
         }
 
         public ICurrencyProvider CurrencyProvider { get; }
@@ -66,30 +62,24 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
-            if (productItem == null)
-            {
-                return null;
-            }
+            if (productItem == null) return null;
 
             var variantEntityList = new List<Variant>();
-            if (productItem.HasChildren)
-            {
-                variantEntityList = this.LoadVariants(productItem);
-            }
+            if (productItem.HasChildren) variantEntityList = LoadVariants(productItem);
 
             var product = new Product(productItem, variantEntityList);
-            product.CatalogName = this.StorefrontContext.CatalogName;
+            product.CatalogName = StorefrontContext.CatalogName;
 
-            product.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
+            product.CustomerAverageRating = CatalogManager.GetProductRating(productItem);
 
-            this.CatalogManager.GetProductPrice(product);
-            this.CatalogManager.GetStockInfo(product, this.StorefrontContext.ShopName);
+            CatalogManager.GetProductPrice(product);
+            CatalogManager.GetStockInfo(product, StorefrontContext.ShopName);
 
             var renderingModel = new ProductModel();
-            var model = this.SitecoreContext.Cast<ICommerceProductModel>(productItem);
+            var model = SitecoreContext.Cast<ICommerceProductModel>(productItem);
 
             renderingModel.Initialize(model);
-            renderingModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
+            renderingModel.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
             renderingModel.ListPrice = product.ListPrice;
             renderingModel.AdjustedPrice = product.AdjustedPrice;
             renderingModel.StockStatusName = product.StockStatusName;
@@ -97,13 +87,11 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             foreach (ProductVariantModel renderingModelVariant in renderingModel.Variants)
             {
-                var variant = product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
-                if (variant == null)
-                {
-                    continue;
-                }
+                Variant variant =
+                    product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
+                if (variant == null) continue;
 
-                renderingModelVariant.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
+                renderingModelVariant.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
                 renderingModelVariant.StockStatusName = variant.StockStatusName;
@@ -119,7 +107,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             foreach (Item variantItem in productItem.Children)
             {
                 var variantEntity = new Variant(variantItem);
-                variantEntity.CustomerAverageRating = this.CatalogManager.GetProductRating(variantItem);
+                variantEntity.CustomerAverageRating = CatalogManager.GetProductRating(variantItem);
 
                 variants.Add(variantEntity);
             }
@@ -129,11 +117,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected CategoryModel GetCategoryModel(Item categoryItem)
         {
-            var glassModel = this.SitecoreContext.Cast<IConnectCategoryModel>(categoryItem);
-            if (glassModel == null)
-            {
-                return null;
-            }
+            var glassModel = SitecoreContext.Cast<IConnectCategoryModel>(categoryItem);
+            if (glassModel == null) return null;
 
             var categoryModel = new CategoryModel();
             categoryModel.Initialize(glassModel);

@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ISettingsProvider))]
     public class SettingsProvider : ISettingsProvider
     {
@@ -30,16 +30,10 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation)
         {
-            var defaultValue = this.storefrontContext.DefaultItemsPerPage;
-            if (defaultValue <= 0)
-            {
-                defaultValue = searchInformation.ItemsPerPage;
-            }
+            int defaultValue = storefrontContext.DefaultItemsPerPage;
+            if (defaultValue <= 0) defaultValue = searchInformation.ItemsPerPage;
 
-            if (defaultValue <= 0)
-            {
-                defaultValue = 12;
-            }
+            if (defaultValue <= 0) defaultValue = 12;
 
             return pageSize.GetValueOrDefault(defaultValue);
         }

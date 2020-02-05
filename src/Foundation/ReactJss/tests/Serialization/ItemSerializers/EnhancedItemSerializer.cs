@@ -12,21 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Newtonsoft.Json;
+using NSubstitute;
+using Sitecore.Data.Items;
+using Sitecore.FakeDb;
+using Sitecore.Globalization;
+using Sitecore.LayoutService.Serialization.FieldSerializers;
+using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
+using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
+using Xunit;
+
 namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
 {
-    using Newtonsoft.Json;
-
-    using NSubstitute;
-
-    using Sitecore.FakeDb;
-    using Sitecore.Globalization;
-    using Sitecore.LayoutService.Serialization.FieldSerializers;
-    using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
-
-    using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
-
-    using Xunit;
-
     public class EnhancedItemSerializerTest
     {
         //[Fact]
@@ -38,10 +35,12 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
             getFieldSerializerPipeline.GetResult(Arg.Any<GetFieldSerializerPipelineArgs>())
                 .Returns(fieldSerializer);
 
-           
-            using (var db = new Db { new DbItem("dataSource") { { "field", "value1" }, { "Text Field", "value2" } } }.WithLanguages(Language.Parse("en")))
+
+            using (Db db =
+                new Db {new DbItem("dataSource") {{"field", "value1"}, {"Text Field", "value2"}}}.WithLanguages(
+                    Language.Parse("en")))
             {
-                var item = db.GetItem("sitecore/content/dataSource");
+                Item item = db.GetItem("sitecore/content/dataSource");
                 var serializer = new EnhancedItemSerializer(getFieldSerializerPipeline);
 
                 string jsonString = serializer.Serialize(db.GetItem(item.ID));

@@ -19,5 +19,4 @@ namespace Wooli.Foundation.Connect.Models
         Asc,
         Desc
     }
-
 }

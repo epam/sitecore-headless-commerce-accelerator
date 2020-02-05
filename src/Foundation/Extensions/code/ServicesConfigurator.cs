@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Microsoft.Extensions.DependencyInjection;
+using Sitecore.DependencyInjection;
+using Wooli.Foundation.Extensions.Services;
+
 namespace Wooli.Foundation.Extensions
 {
-    using Microsoft.Extensions.DependencyInjection;
-
-    using Sitecore.DependencyInjection;
-
-    using Wooli.Foundation.Extensions.Services;
-
     public class ServicesConfigurator : IServicesConfigurator
     {
         public void Configure(IServiceCollection serviceCollection)

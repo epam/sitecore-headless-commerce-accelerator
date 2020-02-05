@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Commerce.Entities.Orders;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.ModelInitilizers
 {
-    using Sitecore.Commerce.Entities.Orders;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IOrderModelBuilder))]
     public class OrderModelBuilder : IOrderModelBuilder
     {
@@ -31,7 +30,7 @@ namespace Wooli.Foundation.Commerce.ModelInitilizers
 
         public OrderModel Initialize(Order model)
         {
-            var result = this.cartModelBuilder.Initialize<OrderModel>(model);
+            var result = cartModelBuilder.Initialize<OrderModel>(model);
 
             result.Status = model.Status;
             result.TrackingNumber = model.TrackingNumber;

@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using Sitecore.Diagnostics;
+using Sitecore.JavaScriptServices.Configuration;
+using Sitecore.JavaScriptServices.ViewEngine.LayoutService.Pipelines.GetLayoutServiceContext;
+using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+
 namespace Wooli.Foundation.ReactJss.Infrastructure
 {
-    using System;
-
-    using Sitecore.Diagnostics;
-    using Sitecore.JavaScriptServices.Configuration;
-    using Sitecore.JavaScriptServices.ViewEngine.LayoutService.Pipelines.GetLayoutServiceContext;
-    using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
     public abstract class BaseSafeJssGetLayoutServiceContextProcessor : JssGetLayoutServiceContextProcessor
     {
         protected BaseSafeJssGetLayoutServiceContextProcessor(IConfigurationResolver configurationResolver)
@@ -34,15 +33,14 @@ namespace Wooli.Foundation.ReactJss.Infrastructure
         {
             try
             {
-                this.DoProcessSafe(args, application);
+                DoProcessSafe(args, application);
             }
             catch (Exception e)
             {
-                Log.Error("Unexpected error during JSS context resolving.", e, this.GetType());
+                Log.Error("Unexpected error during JSS context resolving.", e, GetType());
             }
         }
 
         protected abstract void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application);
     }
-
 }

@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Entities.Prices;
+using Sitecore.Diagnostics;
+using TypeLite;
+using Wooli.Foundation.Commerce.Providers;
+
+namespace Wooli.Foundation.Commerce.Models.Checkout
 {
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Prices;
-    using Sitecore.Diagnostics;
-    using TypeLite;
-
-    using Wooli.Foundation.Commerce.Providers;
-
     [TsClass]
     public class CartPriceModel
     {
@@ -41,27 +40,26 @@ namespace Wooli.Foundation.Commerce.Models
         public decimal? TotalSavings { get; set; }
 
 
-        [TsIgnore]
-        public object Temp { get; set; }
+        [TsIgnore] public object Temp { get; set; }
 
         public void Initialize(Total model, ICurrencyProvider currencyProvider)
         {
             Assert.ArgumentNotNull(model, nameof(model));
             Assert.ArgumentNotNull(model, nameof(currencyProvider));
 
-            this.CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(model.CurrencyCode);
+            CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(model.CurrencyCode);
 
-            this.CurrencyCode = model.CurrencyCode;
-            this.Total = model.Amount;
-            this.TaxTotal = model.TaxTotal?.Amount ?? 0;
+            CurrencyCode = model.CurrencyCode;
+            Total = model.Amount;
+            TaxTotal = model.TaxTotal?.Amount ?? 0;
 
             var commerceModel = model as CommerceTotal;
-            this.Subtotal = commerceModel?.Subtotal;
-            this.ShippingTotal = commerceModel?.ShippingTotal;
-            this.HandlingTotal = commerceModel?.HandlingTotal;
-            this.TotalSavings = commerceModel?.LineItemDiscountAmount + commerceModel?.OrderLevelDiscountAmount;
+            Subtotal = commerceModel?.Subtotal;
+            ShippingTotal = commerceModel?.ShippingTotal;
+            HandlingTotal = commerceModel?.HandlingTotal;
+            TotalSavings = commerceModel?.LineItemDiscountAmount + commerceModel?.OrderLevelDiscountAmount;
 
-            this.Temp = model;
+            Temp = model;
         }
     }
 }

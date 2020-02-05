@@ -12,79 +12,67 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Extensions.Extensions;
 
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System.Linq;
-    using System.Net;
-    using System.Web.Http;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Extensions.Extensions;
-
     public class CheckoutController : Controller
     {
+        private readonly IBillingRepository billingRepository;
         private readonly ICheckoutRepository checkoutRepository;
 
         private readonly IDeliveryRepository deliveryRepository;
 
-        private readonly IBillingRepository billingRepository;
-
-        public CheckoutController(ICheckoutRepository checkoutRepository, IDeliveryRepository deliveryRepository, IBillingRepository billingRepository)
+        public CheckoutController(ICheckoutRepository checkoutRepository, IDeliveryRepository deliveryRepository,
+            IBillingRepository billingRepository)
         {
             this.checkoutRepository = checkoutRepository;
             this.deliveryRepository = deliveryRepository;
             this.billingRepository = billingRepository;
         }
 
-        [HttpPost]
-        [ActionName("submitOrder")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.ActionName("submitOrder")]
         public ActionResult SubmitOrder()
         {
-            var result = this.checkoutRepository.SubmitOrder();
+            Result<SubmitOrderModel> result = checkoutRepository.SubmitOrder();
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
 
-        [HttpGet]
-        [ActionName("getDeliveryData")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.ActionName("getDeliveryData")]
         public ActionResult GetDeliveryData()
         {
-            var result = this.deliveryRepository.GetDeliveryData();
+            Result<DeliveryModel> result = deliveryRepository.GetDeliveryData();
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
 
 
-        [HttpGet]
-        [ActionName("getBillingData")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.ActionName("getBillingData")]
         public ActionResult GetBillingData()
         {
-            var result = this.billingRepository.GetBillingData();
+            Result<BillingModel> result = billingRepository.GetBillingData();
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
 
-        [HttpGet]
-        [ActionName("getShippingMethods")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.ActionName("getShippingMethods")]
         public ActionResult GetShippingMethods()
         {
             var shippingArgs = new GetShippingArgs
@@ -92,44 +80,33 @@ namespace Wooli.Feature.Checkout.Controllers
                 ShippingPreferenceType = "1"
             };
 
-            var result = this.deliveryRepository.GetShippingMethods(shippingArgs);
+            Result<ShippingModel> result = deliveryRepository.GetShippingMethods(shippingArgs);
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
 
-        [HttpPost]
-        [ActionName("setShippingMethods")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.ActionName("setShippingMethods")]
         public ActionResult SetShippingMethods(SetShippingArgs args)
         {
-            var result = this.deliveryRepository.SetShippingMethods(args);
+            Result<SetShippingModel> result = deliveryRepository.SetShippingMethods(args);
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
 
-        [HttpPost]
-        [ActionName("setPaymentMethods")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.ActionName("setPaymentMethods")]
         public ActionResult SetPaymentMethods(SetPaymentArgs paymentArgs)
         {
-            var result = this.billingRepository.SetPaymentMethods(paymentArgs);
+            Result<VoidResult> result = billingRepository.SetPaymentMethods(paymentArgs);
 
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
+            if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
-
-
     }
 }

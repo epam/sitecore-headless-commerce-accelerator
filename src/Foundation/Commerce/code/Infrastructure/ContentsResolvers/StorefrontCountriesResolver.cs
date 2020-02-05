@@ -12,27 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using Sitecore.LayoutService.Configuration;
+using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
+using Sitecore.Mvc.Presentation;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Linq;
-
-    using Sitecore.LayoutService.Configuration;
-    using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
-    using Sitecore.Mvc.Presentation;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(Lifetime = Lifetime.Transient)]
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
     {
-        private readonly IStorefrontContext storefrontContext;
-
         private readonly IEntityMapper mapper;
+        private readonly IStorefrontContext storefrontContext;
 
         public StorefrontCountriesContentsResolver(
             IStorefrontContext storefrontContext,
@@ -46,9 +42,9 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
         public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
         {
             IEnumerable<ICountryRegionModel> model =
-                this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
+                storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
 
-            return new { Countries = this.mapper.MapToCountryRegionModel(model) };
+            return new {Countries = mapper.MapToCountryRegionModel(model)};
         }
 
         public bool IncludeServerUrlInMediaUrls { get; set; }

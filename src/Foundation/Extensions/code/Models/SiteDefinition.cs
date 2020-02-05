@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using Sitecore;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Web;
+
 namespace Wooli.Foundation.Extensions.Models
 {
-    using System;
-
-    using Sitecore;
-    using Sitecore.Data;
-    using Sitecore.Data.Items;
-    using Sitecore.Web;
-
     public class SiteDefinition
     {
         public Item RootItem { get; set; }
@@ -35,11 +34,12 @@ namespace Wooli.Foundation.Extensions.Models
 
         public string StartPath { get; set; }
 
-        public bool IsCurrent => Context.Site != null && Context.Site.Name.Equals(this.Name, StringComparison.OrdinalIgnoreCase);
+        public bool IsCurrent =>
+            Context.Site != null && Context.Site.Name.Equals(Name, StringComparison.OrdinalIgnoreCase);
 
         public virtual Item GetRootItem(Database database)
         {
-            return database.GetItem(this.Site.RootPath);
+            return database.GetItem(Site.RootPath);
         }
     }
 }

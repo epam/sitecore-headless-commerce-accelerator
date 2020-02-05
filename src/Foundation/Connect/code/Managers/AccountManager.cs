@@ -12,43 +12,34 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Entities;
+using Sitecore.Commerce.Entities.Customers;
+using Sitecore.Commerce.Services.Customers;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Connect.Providers.Contracts;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Customers;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using AddPartiesRequest = Sitecore.Commerce.Services.Customers.AddPartiesRequest;
-    using AddPartiesResult = Sitecore.Commerce.Services.Customers.AddPartiesResult;
-    using RemovePartiesRequest = Sitecore.Commerce.Services.Customers.RemovePartiesRequest;
-    using UpdatePartiesRequest = Sitecore.Commerce.Services.Customers.UpdatePartiesRequest;
-
     [Service(typeof(IAccountManager))]
     public class AccountManager : IAccountManager
     {
-        private readonly CustomerServiceProvider customerServiceProvider;
-
         private readonly ICartManager cartManager;
+        private readonly CustomerServiceProvider customerServiceProvider;
 
         public AccountManager(IConnectServiceProvider connectServiceProvider, ICartManager cartManager)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
 
-            this.customerServiceProvider = connectServiceProvider.GetCustomerServiceProvider();
+            customerServiceProvider = connectServiceProvider.GetCustomerServiceProvider();
             this.cartManager = cartManager;
         }
 
-        public ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email, string password, string shopName)
+        public ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email,
+            string password, string shopName)
         {
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
             Assert.ArgumentNotNullOrEmpty(email, nameof(email));
@@ -56,16 +47,14 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
 
             // Commerce needs domain name to be presented in the user name
-            var fullUserName = $"{Constants.CommerceUsersDomainName}\\{userName}";
+            string fullUserName = $"{Constants.CommerceUsersDomainName}\\{userName}";
 
             var createUserRequest = new CreateUserRequest(fullUserName, password, email, shopName);
 
-            CreateUserResult createUserResult = this.customerServiceProvider.CreateUser(createUserRequest);
+            CreateUserResult createUserResult = customerServiceProvider.CreateUser(createUserRequest);
 
             if (!createUserResult.Success || createUserResult.CommerceUser == null)
-            {
-                Log.Warn("User creation failed", this.GetType());
-            }
+                Log.Warn("User creation failed", GetType());
 
             return new ManagerResponse<CreateUserResult, CommerceUser>(createUserResult, createUserResult.CommerceUser);
         }
@@ -76,12 +65,9 @@ namespace Wooli.Foundation.Connect.Managers
 
             var updateUserRequest = new UpdateUserRequest(updatedCommerceUser);
 
-            UpdateUserResult updateUserResult = this.customerServiceProvider.UpdateUser(updateUserRequest);
+            UpdateUserResult updateUserResult = customerServiceProvider.UpdateUser(updateUserRequest);
 
-            if (!updateUserResult.Success)
-            {
-                Log.Warn("User update failed", this.GetType());
-            }
+            if (!updateUserResult.Success) Log.Warn("User update failed", GetType());
 
             return new ManagerResponse<UpdateUserResult, CommerceUser>(updateUserResult, updateUserResult.CommerceUser);
         }
@@ -92,12 +78,9 @@ namespace Wooli.Foundation.Connect.Managers
 
             var enableUserRequest = new EnableUserRequest(commerceUser);
 
-            EnableUserResult enableUserResult = this.customerServiceProvider.EnableUser(enableUserRequest);
+            EnableUserResult enableUserResult = customerServiceProvider.EnableUser(enableUserRequest);
 
-            if (!enableUserResult.Success)
-            {
-                Log.Warn("Enable user failed", this.GetType());
-            }
+            if (!enableUserResult.Success) Log.Warn("Enable user failed", GetType());
 
             return new ManagerResponse<EnableUserResult, CommerceUser>(enableUserResult, enableUserResult.CommerceUser);
         }
@@ -108,25 +91,20 @@ namespace Wooli.Foundation.Connect.Managers
 
             var disableUserRequest = new DisableUserRequest(commerceUser);
 
-            DisableUserResult disableUserResult = this.customerServiceProvider.DisableUser(disableUserRequest);
+            DisableUserResult disableUserResult = customerServiceProvider.DisableUser(disableUserRequest);
 
-            if (!disableUserResult.Success)
-            {
-                Log.Warn("Disable user failed", this.GetType());
-            }
+            if (!disableUserResult.Success) Log.Warn("Disable user failed", GetType());
 
-            return new ManagerResponse<DisableUserResult, CommerceUser>(disableUserResult, disableUserResult.CommerceUser);
+            return new ManagerResponse<DisableUserResult, CommerceUser>(disableUserResult,
+                disableUserResult.CommerceUser);
         }
 
         public ManagerResponse<GetUserResult, CommerceUser> GetUser(string userName)
         {
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
 
-            GetUserResult user = this.customerServiceProvider.GetUser(new GetUserRequest(userName));
-            if (!user.Success || user.CommerceUser == null)
-            {
-                Log.Warn("User Not Found Error", this.GetType());
-            }
+            GetUserResult user = customerServiceProvider.GetUser(new GetUserRequest(userName));
+            if (!user.Success || user.CommerceUser == null) Log.Warn("User Not Found Error", GetType());
 
             GetUserResult serviceProviderResult = user;
 
@@ -139,14 +117,14 @@ namespace Wooli.Foundation.Connect.Managers
             UserSearchCriteria userSearchCriteria)
         {
             var getUsersRequest = new GetUsersRequest(userSearchCriteria);
-            GetUsersResult serviceProviderResult = this.customerServiceProvider.GetUsers(getUsersRequest);
+            GetUsersResult serviceProviderResult = customerServiceProvider.GetUsers(getUsersRequest);
 
             if (!serviceProviderResult.Success)
-            {
-                return new ManagerResponse<GetUsersResult, IList<CommerceUser>>(serviceProviderResult, new List<CommerceUser>());
-            }
+                return new ManagerResponse<GetUsersResult, IList<CommerceUser>>(serviceProviderResult,
+                    new List<CommerceUser>());
 
-            return new ManagerResponse<GetUsersResult, IList<CommerceUser>>(serviceProviderResult, serviceProviderResult.CommerceUsers);
+            return new ManagerResponse<GetUsersResult, IList<CommerceUser>>(serviceProviderResult,
+                serviceProviderResult.CommerceUsers);
         }
 
         public ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string extenalId)
@@ -154,9 +132,10 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(extenalId, nameof(extenalId));
 
             var getCustomerRequest = new GetCustomerRequest(extenalId);
-            GetCustomerResult getCustomerResult = this.customerServiceProvider.GetCustomer(getCustomerRequest);
+            GetCustomerResult getCustomerResult = customerServiceProvider.GetCustomer(getCustomerRequest);
 
-            return new ManagerResponse<GetCustomerResult, CommerceCustomer>(getCustomerResult, getCustomerResult.CommerceCustomer);
+            return new ManagerResponse<GetCustomerResult, CommerceCustomer>(getCustomerResult,
+                getCustomerResult.CommerceCustomer);
         }
 
         public ManagerResponse<CreateCustomerResult, CommerceCustomer> CreateCustomer(CommerceCustomer commerceCustomer)
@@ -166,14 +145,12 @@ namespace Wooli.Foundation.Connect.Managers
             var createCustomerRequest = new CreateCustomerRequest(commerceCustomer);
 
             CreateCustomerResult createCustomerResult =
-                this.customerServiceProvider.CreateCustomer(createCustomerRequest);
+                customerServiceProvider.CreateCustomer(createCustomerRequest);
 
-            if (!createCustomerResult.Success)
-            {
-                Log.Warn("Create customer failed", this.GetType());
-            }
+            if (!createCustomerResult.Success) Log.Warn("Create customer failed", GetType());
 
-            return new ManagerResponse<CreateCustomerResult, CommerceCustomer>(createCustomerResult, createCustomerResult.CommerceCustomer);
+            return new ManagerResponse<CreateCustomerResult, CommerceCustomer>(createCustomerResult,
+                createCustomerResult.CommerceCustomer);
         }
 
         public ManagerResponse<UpdateCustomerResult, CommerceCustomer> UpdateCustomer(CommerceCustomer commerceCustomer)
@@ -183,14 +160,12 @@ namespace Wooli.Foundation.Connect.Managers
             var updateCustomerRequest = new UpdateCustomerRequest(commerceCustomer);
 
             UpdateCustomerResult updateCustomerResult =
-                this.customerServiceProvider.UpdateCustomer(updateCustomerRequest);
+                customerServiceProvider.UpdateCustomer(updateCustomerRequest);
 
-            if (!updateCustomerResult.Success)
-            {
-                Log.Warn("Update customer failed", this.GetType());
-            }
+            if (!updateCustomerResult.Success) Log.Warn("Update customer failed", GetType());
 
-            return new ManagerResponse<UpdateCustomerResult, CommerceCustomer>(updateCustomerResult, updateCustomerResult.CommerceCustomer);
+            return new ManagerResponse<UpdateCustomerResult, CommerceCustomer>(updateCustomerResult,
+                updateCustomerResult.CommerceCustomer);
         }
 
         public ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(
@@ -199,38 +174,40 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var getPartiesResult = new GetPartiesResult();
 
-            ManagerResponse<GetUserResult, CommerceUser> user = this.GetUser(contactId);
+            ManagerResponse<GetUserResult, CommerceUser> user = GetUser(contactId);
             if (!user.ServiceProviderResult.Success || user.Result == null)
-            {
                 return new ManagerResponse<GetPartiesResult, IEnumerable<Party>>(getPartiesResult, null);
-            }
 
-            var customer = new CommerceCustomer { ExternalId = user.Result.ExternalId };
-            return this.GetParties(customer);
+            var customer = new CommerceCustomer {ExternalId = user.Result.ExternalId};
+            return GetParties(customer);
         }
 
         public ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetParties(CommerceCustomer customer)
         {
             var request = new GetPartiesRequest(customer);
-            GetPartiesResult parties = this.customerServiceProvider.GetParties(request);
-            IEnumerable<Party> result = !parties.Success || parties.Parties == null ? new List<Party>() : parties.Parties;
+            GetPartiesResult parties = customerServiceProvider.GetParties(request);
+            IEnumerable<Party> result =
+                !parties.Success || parties.Parties == null ? new List<Party>() : parties.Parties;
 
             return new ManagerResponse<GetPartiesResult, IEnumerable<Party>>(parties, result);
         }
 
-        public ManagerResponse<AddPartiesResult, IEnumerable<Party>> AddParties(CommerceCustomer customer, IEnumerable<Party> parties)
+        public ManagerResponse<AddPartiesResult, IEnumerable<Party>> AddParties(CommerceCustomer customer,
+            IEnumerable<Party> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
 
             var addPartiesRequest = new AddPartiesRequest(customer, parties.ToList());
 
-            AddPartiesResult addPartiesResult = this.customerServiceProvider.AddParties(addPartiesRequest);
+            AddPartiesResult addPartiesResult = customerServiceProvider.AddParties(addPartiesRequest);
 
-            return new ManagerResponse<AddPartiesResult, IEnumerable<Party>>(addPartiesResult, addPartiesRequest.Parties);
+            return new ManagerResponse<AddPartiesResult, IEnumerable<Party>>(addPartiesResult,
+                addPartiesRequest.Parties);
         }
 
-        public ManagerResponse<CustomerResult, IEnumerable<Party>> UpdateParties(CommerceCustomer customer, IEnumerable<Party> parties)
+        public ManagerResponse<CustomerResult, IEnumerable<Party>> UpdateParties(CommerceCustomer customer,
+            IEnumerable<Party> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
@@ -238,58 +215,68 @@ namespace Wooli.Foundation.Connect.Managers
             var updatePartiesRequest = new UpdatePartiesRequest(customer, parties.ToList());
 
             CustomerResult updatePartiesResult =
-                this.customerServiceProvider.UpdateParties(updatePartiesRequest);
+                customerServiceProvider.UpdateParties(updatePartiesRequest);
 
 
             return new ManagerResponse<CustomerResult, IEnumerable<Party>>(updatePartiesResult, null);
         }
 
-        public ManagerResponse<CustomerResult, IEnumerable<Party>> RemoveParties(CommerceCustomer customer, IEnumerable<Party> parties)
+        public ManagerResponse<CustomerResult, IEnumerable<Party>> RemoveParties(CommerceCustomer customer,
+            IEnumerable<Party> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
 
             var removePartiesRequest = new RemovePartiesRequest(customer, parties.ToList());
 
-            CustomerResult removePartiesResult = this.customerServiceProvider.RemoveParties(removePartiesRequest);
+            CustomerResult removePartiesResult = customerServiceProvider.RemoveParties(removePartiesRequest);
 
             return new ManagerResponse<CustomerResult, IEnumerable<Party>>(removePartiesResult, null);
         }
 
-        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> AddCustomerParties(CommerceCustomer customer, IEnumerable<CustomerParty> parties)
+        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> AddCustomerParties(
+            CommerceCustomer customer, IEnumerable<CustomerParty> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
 
             var addCustomerPartiesRequest = new AddCustomerPartiesRequest(customer, parties.ToList());
 
-            CustomerPartiesResult addCustomerPartiesResult = this.customerServiceProvider.AddCustomerParties(addCustomerPartiesRequest);
+            CustomerPartiesResult addCustomerPartiesResult =
+                customerServiceProvider.AddCustomerParties(addCustomerPartiesRequest);
 
-            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(addCustomerPartiesResult, null);
+            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(addCustomerPartiesResult,
+                null);
         }
 
-        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> RemoveCustomerParties(CommerceCustomer customer, IEnumerable<CustomerParty> parties)
+        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> RemoveCustomerParties(
+            CommerceCustomer customer, IEnumerable<CustomerParty> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
 
             var removeCustomerPartiesRequest = new RemoveCustomerPartiesRequest(customer, parties.ToList());
 
-            CustomerPartiesResult removeCustomerPartiesResult = this.customerServiceProvider.RemoveCustomerParties(removeCustomerPartiesRequest);
+            CustomerPartiesResult removeCustomerPartiesResult =
+                customerServiceProvider.RemoveCustomerParties(removeCustomerPartiesRequest);
 
-            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(removeCustomerPartiesResult, null);
+            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(removeCustomerPartiesResult,
+                null);
         }
 
-        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> UpdateCustomerParties(CommerceCustomer customer, IEnumerable<CustomerParty> parties)
+        public ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>> UpdateCustomerParties(
+            CommerceCustomer customer, IEnumerable<CustomerParty> parties)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));
             Assert.ArgumentNotNull(parties, nameof(parties));
 
             var updateCustomerPartiesRequest = new UpdateCustomerPartiesRequest(customer, parties.ToList());
 
-            CustomerPartiesResult updateCustomerPartiesResult = this.customerServiceProvider.UpdateCustomerParties(updateCustomerPartiesRequest);
+            CustomerPartiesResult updateCustomerPartiesResult =
+                customerServiceProvider.UpdateCustomerParties(updateCustomerPartiesRequest);
 
-            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(updateCustomerPartiesResult, null);
+            return new ManagerResponse<CustomerPartiesResult, IEnumerable<CustomerParty>>(updateCustomerPartiesResult,
+                null);
         }
     }
 }

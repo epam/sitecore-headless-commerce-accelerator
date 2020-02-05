@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using TypeLite;
+
 namespace Wooli.Foundation.Commerce.Models
 {
-    using TypeLite;
-
     [TsClass]
     public class VoidResult
     {
-
     }
 }

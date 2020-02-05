@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Microsoft.Extensions.DependencyInjection;
+using Sitecore.DependencyInjection;
+using Sitecore.LayoutService.Serialization.ItemSerializers;
+using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
+
 namespace Wooli.Foundation.ReactJss
 {
-    using Microsoft.Extensions.DependencyInjection;
-
-    using Sitecore.DependencyInjection;
-    using Sitecore.LayoutService.Serialization.ItemSerializers;
-
     public class ItemSerializaerConfigurator : IServicesConfigurator
     {
         public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped(typeof(IItemSerializer), typeof(Serialization.ItemSerializers.EnhancedItemSerializer));
+            serviceCollection.AddScoped(typeof(IItemSerializer), typeof(EnhancedItemSerializer));
         }
     }
 }

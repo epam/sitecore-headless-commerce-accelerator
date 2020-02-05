@@ -12,20 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities;
+using Sitecore.Commerce.Entities.Customers;
+using Sitecore.Commerce.Services.Customers;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Customers;
-
-    using AddPartiesResult = Sitecore.Commerce.Services.Customers.AddPartiesResult;
-
     public interface IAccountManager
     {
-        ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email, string password, string shopName);
+        ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email, string password,
+            string shopName);
 
         ManagerResponse<UpdateUserResult, CommerceUser> UpdateUser(CommerceUser updatedCommerceUser);
 
@@ -44,7 +41,8 @@ namespace Wooli.Foundation.Connect.Managers
 
         ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string extenalId);
 
-        ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(string shopName, string contactId);
+        ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(string shopName,
+            string contactId);
 
         ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetParties(CommerceCustomer customer);
 

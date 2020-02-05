@@ -12,14 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ICurrencyProvider), Lifetime = Lifetime.Singleton)]
     public class CurrencyProvider : ICurrencyProvider
     {
@@ -33,19 +32,15 @@ namespace Wooli.Foundation.Commerce.Providers
                 .Select(x => new RegionInfo(x.LCID));
 
             foreach (RegionInfo region in regions)
-            {
                 if (!symbolsByCodeDict.ContainsKey(region.ISOCurrencySymbol))
-                {
                     symbolsByCodeDict.Add(region.ISOCurrencySymbol, region.CurrencySymbol);
-                }
-            }
 
-            this.symbolsByCode = symbolsByCodeDict;
+            symbolsByCode = symbolsByCodeDict;
         }
 
         public string GetCurrencySymbolByCode(string currencyCode)
         {
-            return this.symbolsByCode[currencyCode];
+            return symbolsByCode[currencyCode];
         }
     }
 }

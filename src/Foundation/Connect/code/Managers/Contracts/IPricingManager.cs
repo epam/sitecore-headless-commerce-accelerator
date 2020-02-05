@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Entities.Prices;
+using Sitecore.Commerce.Services.Prices;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-
-    using Sitecore.Commerce.Entities.Prices;
-    using Sitecore.Commerce.Services.Prices;
-
     public interface IPricingManager
     {
         ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>> GetProductBulkPrices(

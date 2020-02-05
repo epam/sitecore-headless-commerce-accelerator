@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Data.Items;
+using Sitecore.FakeDb;
+using Xunit;
+
 namespace Wooli.Project.Wooli.Tests
 {
-    using Sitecore.FakeDb;
-
-    using Xunit;
-
     public class SimpleTest
     {
         [Fact]
@@ -25,15 +25,15 @@ namespace Wooli.Project.Wooli.Tests
         {
             using (
                 var db = new Db
-                             {
-                                 new DbItem("Articles")
-                                     {
-                                         new DbItem("Getting Started"),
-                                         new DbItem("Troubleshooting")
-                                     }
-                             })
+                {
+                    new DbItem("Articles")
+                    {
+                        new DbItem("Getting Started"),
+                        new DbItem("Troubleshooting")
+                    }
+                })
             {
-                var articles = db.GetItem("/sitecore/content/Articles");
+                Item articles = db.GetItem("/sitecore/content/Articles");
 
                 Assert.NotNull(articles.Children["Getting Started"]);
                 Assert.NotNull(articles.Children["Troubleshooting"]);
@@ -43,9 +43,9 @@ namespace Wooli.Project.Wooli.Tests
         [Fact]
         public void CreatingSimpleItem()
         {
-            using (var db = new Db { new DbItem("Home") { { "Title", "Welcome!" } } })
+            using (var db = new Db {new DbItem("Home") {{"Title", "Welcome!"}}})
             {
-                var home = db.GetItem("/sitecore/content/home");
+                Item home = db.GetItem("/sitecore/content/home");
                 Assert.Equal("Welcome!", home["Title"]);
             }
         }

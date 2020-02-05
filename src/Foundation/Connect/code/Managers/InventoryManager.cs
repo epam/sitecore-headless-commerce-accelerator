@@ -12,17 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Entities.Inventory;
+using Sitecore.Commerce.Services.Inventory;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Connect.Providers.Contracts;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System.Collections.Generic;
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Inventory;
-    using Sitecore.Commerce.Services.Inventory;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IInventoryManager))]
     public class InventoryManager : IInventoryManager
     {
@@ -31,7 +30,7 @@ namespace Wooli.Foundation.Connect.Managers
         public InventoryManager(IConnectServiceProvider connectServiceProvider)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            this.inventoryServiceProvider = connectServiceProvider.GetInventoryServiceProvider();
+            inventoryServiceProvider = connectServiceProvider.GetInventoryServiceProvider();
         }
 
         public ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> GetStockInformation(
@@ -43,10 +42,11 @@ namespace Wooli.Foundation.Connect.Managers
 
             var request = new GetStockInformationRequest(shopName, inventoryProducts, detailsLevel);
             request.Location = string.Empty;
-           
-            GetStockInformationResult stockInformation = this.inventoryServiceProvider.GetStockInformation(request);
 
-            return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(stockInformation, stockInformation.StockInformation ?? new List<StockInformation>());
+            GetStockInformationResult stockInformation = inventoryServiceProvider.GetStockInformation(request);
+
+            return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(stockInformation,
+                stockInformation.StockInformation ?? new List<StockInformation>());
         }
     }
 }

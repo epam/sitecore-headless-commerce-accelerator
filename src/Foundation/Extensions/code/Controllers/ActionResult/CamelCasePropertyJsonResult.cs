@@ -12,19 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using Newtonsoft.Json;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Extensions.Utils;
+
 namespace Wooli.Foundation.Extensions.Controllers.ActionResult
 {
-    using System;
-    using System.Net;
-    using System.Web;
-    using System.Web.Mvc;
-
-    using Newtonsoft.Json;
-
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Extensions.Utils;
-
     public class CamelCasePropertyJsonResult : JsonResult
     {
         private static readonly JsonSerializerSettings JsonSerialiserSettings = Constants.JsonSerialiserSettings;
@@ -35,29 +32,21 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
         {
             Assert.ArgumentNotNull(context, nameof(context));
 
-            if (this.JsonRequestBehavior == JsonRequestBehavior.DenyGet
+            if (JsonRequestBehavior == JsonRequestBehavior.DenyGet
                 && string.Equals(context.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
-            {
                 throw new InvalidOperationException("GET is not allowed.");
-            }
 
-            if (this.Data == null)
-            {
-                return;
-            }
+            if (Data == null) return;
 
             HttpResponseBase response = context.HttpContext.Response;
 
-            if (this.ContentEncoding != null)
-            {
-                response.ContentEncoding = this.ContentEncoding;
-            }
+            if (ContentEncoding != null) response.ContentEncoding = ContentEncoding;
 
-            response.StatusCode = (int)this.StatusCode;
-            response.ContentType = string.IsNullOrEmpty(this.ContentType) ? "application/json" : this.ContentType;
+            response.StatusCode = (int) StatusCode;
+            response.ContentType = string.IsNullOrEmpty(ContentType) ? "application/json" : ContentType;
 
-            JsonSerializer scriptSerializer = JsonSerializer.Create(JsonSerialiserSettings);
-            scriptSerializer.Serialize(response.Output, this.Data);
+            var scriptSerializer = JsonSerializer.Create(JsonSerialiserSettings);
+            scriptSerializer.Serialize(response.Output, Data);
         }
     }
 }

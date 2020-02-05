@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+
 namespace Wooli.Foundation.Extensions.Models
 {
-    using System.Collections.Generic;
-
     public class ErrorsJsonResultModel : ErrorJsonResultModel
     {
         public IList<string> Errors { get; set; }

@@ -12,18 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Diagnostics;
+using TypeLite;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.Extensions.Extensions;
+
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Diagnostics;
-
-    using TypeLite;
-
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Extensions.Extensions;
-
     [TsClass]
     public class ProductModel
     {
@@ -57,30 +54,31 @@ namespace Wooli.Foundation.Commerce.Models
         {
             Assert.ArgumentNotNull(sellableItemModel, nameof(sellableItemModel));
 
-            this.ProductId = sellableItemModel.ProductId;
-            this.SitecoreId = sellableItemModel.SitecoreId;
-            this.DisplayName = sellableItemModel.DisplayName;
-            this.Description = sellableItemModel.Description;
-            this.Brand = sellableItemModel.Brand;
+            ProductId = sellableItemModel.ProductId;
+            SitecoreId = sellableItemModel.SitecoreId;
+            DisplayName = sellableItemModel.DisplayName;
+            Description = sellableItemModel.Description;
+            Brand = sellableItemModel.Brand;
 
 
-            this.Tags = sellableItemModel.Tags?.Split('|').ToList();
+            Tags = sellableItemModel.Tags?.Split('|').ToList();
 
-            this.ImageUrls = sellableItemModel
+            ImageUrls = sellableItemModel
                 .ExtractMediaItems(x => x.Images)
                 ?.Select(x => x.ImageUrl())
                 .ToList();
 
             var variants = new List<ProductVariantModel>();
-            foreach (ICommerceProductVariantModel commerceProductVariantModel in sellableItemModel.Variants ?? new List<ICommerceProductVariantModel>())
+            foreach (ICommerceProductVariantModel commerceProductVariantModel in sellableItemModel.Variants ??
+                                                                                 new List<ICommerceProductVariantModel
+                                                                                 >())
             {
                 var variant = new ProductVariantModel();
                 variant.Initialize(commerceProductVariantModel);
                 variants.Add(variant);
             }
 
-            this.Variants = variants;
+            Variants = variants;
         }
-
     }
 }

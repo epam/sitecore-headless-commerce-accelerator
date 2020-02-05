@@ -12,28 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using Glass.Mapper.Sc;
+using NSubstitute;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Prices;
+using Sitecore.Commerce.Services.Carts;
+using Sitecore.FakeDb;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.ModelInitilizers;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Commerce.Models.Catalog;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Connect.Managers;
+using Xunit;
+
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
-    using System.Collections.Generic;
-
-    using Glass.Mapper.Sc;
-
-    using NSubstitute;
-
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Prices;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.FakeDb;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Connect.Managers;
-
-    using Xunit;
-
     public class CartRepositoryTests
     {
         [Fact]
@@ -51,12 +47,13 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var sitecoreContext = Substitute.For<ISitecoreContext>();
 
             var productItem = new DbItem("ProductItem");
-            using (var db = new Db { productItem })
+            using (var db = new Db {productItem})
             {
                 var cart = new Cart
                 {
                     Total = new Total(),
-                    Lines = new List<CartLine> { new CartLine { Product = new CartProduct { ProductId = "productId" }, Total = new Total() } }
+                    Lines = new List<CartLine>
+                        {new CartLine {Product = new CartProduct {ProductId = "productId"}, Total = new Total()}}
                 };
 
                 storefrontContext
@@ -67,16 +64,21 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                     .Returns("contactId");
                 cartManager
                     .GetCurrentCart("shopName", "contactId")
-                    .Returns(new ManagerResponse<CartResult, Cart>(new CartResult { Cart = cart }, cart));
+                    .Returns(new ManagerResponse<CartResult, Cart>(new CartResult {Cart = cart}, cart));
                 catalogRepository
                     .GetProduct("productId")
-                    .Returns(new ProductModel { ProductId = "productId"});
+                    .Returns(new ProductModel {ProductId = "productId"});
                 cartModelBuilder
                     .Initialize(Arg.Any<Cart>())
-                    .Returns(new CartModel { CartLines = new List<CartLineModel> { new CartLineModel { Product = new ProductModel { ProductId = "productId" } } } });
+                    .Returns(new CartModel
+                    {
+                        CartLines = new List<CartLineModel>
+                            {new CartLineModel {Product = new ProductModel {ProductId = "productId"}}}
+                    });
 
                 // Execute
-                var repository = new CartRepository(cartManager, catalogRepository, accountManager, cartModelBuilder, addressPartyMapper, storefrontContext, visitorContext);
+                var repository = new CartRepository(cartManager, catalogRepository, accountManager, cartModelBuilder,
+                    addressPartyMapper, storefrontContext, visitorContext);
                 CartModel result = repository.GetCurrentCart();
 
                 // Assert

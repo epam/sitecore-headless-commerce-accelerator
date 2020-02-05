@@ -12,24 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
+using Sitecore.Commerce.Engine.Connect.Entities;
+using Sitecore.Commerce.Entities;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Customers;
+using Sitecore.Commerce.Entities.Shipping;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+using CountryRegionModel = Wooli.Foundation.Commerce.Models.Region.CountryRegionModel;
+using SubdivisionModel = Wooli.Foundation.Commerce.Models.Region.SubdivisionModel;
+
 namespace Wooli.Foundation.Commerce.ModelMappers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using AutoMapper;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Entities.Shipping;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
     {
@@ -51,7 +51,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     .ReverseMap();
 
                 cfg.CreateMap<ShippingMethodModel, ShippingInfoArgument>()
-                    .ForMember(dest => dest.LineIds, opt => opt.MapFrom(src => (src.LineIds != null ? new List<string>(src.LineIds) : new List<string>())))
+                    .ForMember(dest => dest.LineIds,
+                        opt => opt.MapFrom(src =>
+                            src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()))
                     .ForMember(dest => dest.ShippingMethodId, opt => opt.MapFrom(src => src.ExternalId))
                     .ForMember(dest => dest.ShippingMethodName, opt => opt.MapFrom(src => src.Name))
                     .ReverseMap();
@@ -63,7 +65,8 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     .ReverseMap();
 
                 cfg.CreateMap<ShippingOption, ShippingOptionModel>()
-                    .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingOptionType.Value));
+                    .ForMember(dest => dest.ShippingOptionType,
+                        opt => opt.MapFrom(src => src.ShippingOptionType.Value));
 
                 cfg.CreateMap<PaymentInfo, FederatedPaymentModel>()
                     .ReverseMap();
@@ -77,80 +80,82 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     .ReverseMap();
 
                 cfg.CreateMap<CommerceUser, CommerceUserModel>()
-                    .ForMember(dest => dest.ContactId, opt => opt.MapFrom(src => src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
+                    .ForMember(dest => dest.ContactId,
+                        opt => opt.MapFrom(src =>
+                            src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
                     .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                     .ReverseMap();
 
-                cfg.CreateMap<ICountryRegionModel, Models.CountryRegionModel>();
-                cfg.CreateMap<ISubdivisionModel, Models.SubdivisionModel>();
+                cfg.CreateMap<ICountryRegionModel, CountryRegionModel>();
+                cfg.CreateMap<ISubdivisionModel, SubdivisionModel>();
             });
 
-            this.innerMapper = new Mapper(config);
+            innerMapper = new Mapper(config);
         }
 
         public PartyEntity MapToPartyEntity(AddressModel item)
         {
-            return this.innerMapper.Map<PartyEntity>(item);
+            return innerMapper.Map<PartyEntity>(item);
         }
 
         public List<PartyEntity> MapToPartyEntityList(IEnumerable<AddressModel> items)
         {
-            return items?.Select(this.MapToPartyEntity).ToList();
+            return items?.Select(MapToPartyEntity).ToList();
         }
 
         public Party MapToParty(AddressModel item)
         {
-            return this.innerMapper.Map<Party>(item);
+            return innerMapper.Map<Party>(item);
         }
 
         public AddressModel MapToAddress(Party item)
         {
-            return this.innerMapper.Map<AddressModel>(item);
+            return innerMapper.Map<AddressModel>(item);
         }
 
         public ShippingInfoArgument MapToShippingInfoArgument(ShippingMethodModel item)
         {
-            return this.innerMapper.Map<ShippingInfoArgument>(item);
+            return innerMapper.Map<ShippingInfoArgument>(item);
         }
 
         public List<ShippingInfoArgument> MapToShippingInfoArgumentList(IEnumerable<ShippingMethodModel> items)
         {
-            return items?.Select(this.MapToShippingInfoArgument).ToList();
+            return items?.Select(MapToShippingInfoArgument).ToList();
         }
 
         public FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model)
         {
-            return this.innerMapper.Map<FederatedPaymentArgs>(model);
+            return innerMapper.Map<FederatedPaymentArgs>(model);
         }
 
         public ShippingMethodModel MapToShippingMethodModel(ShippingMethod shippingMethod)
         {
-            return this.innerMapper.Map<ShippingMethodModel>(shippingMethod);
+            return innerMapper.Map<ShippingMethodModel>(shippingMethod);
         }
 
         public ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption)
         {
-            return this.innerMapper.Map<ShippingOptionModel>(shipppingOption);
+            return innerMapper.Map<ShippingOptionModel>(shipppingOption);
         }
 
         public FederatedPaymentModel MapToFederatedPayment(PaymentInfo x)
         {
-            return this.innerMapper.Map<FederatedPaymentModel>(x);
+            return innerMapper.Map<FederatedPaymentModel>(x);
         }
 
         public ShippingMethodModel MapToShippingMethodModel(ShippingInfo x)
         {
-            return this.innerMapper.Map<ShippingMethodModel>(x);
+            return innerMapper.Map<ShippingMethodModel>(x);
         }
 
         public CommerceUserModel MapToCommerceUserModel(CommerceUser x)
         {
-            return this.innerMapper.Map<CommerceUserModel>(x);
+            return innerMapper.Map<CommerceUserModel>(x);
         }
 
-        public IEnumerable<Models.CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> model)
+        public IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> model)
         {
-            return this.innerMapper.Map<IEnumerable<Models.CountryRegionModel>>(model);
+            return innerMapper.Map<IEnumerable<CountryRegionModel>>(model);
         }
     }
 }

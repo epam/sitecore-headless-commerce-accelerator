@@ -12,18 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Diagnostics;
+using TypeLite;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.Extensions.Extensions;
+
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Diagnostics;
-
-    using TypeLite;
-
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Extensions.Extensions;
-
     [TsClass]
     public class ProductVariantModel
     {
@@ -57,30 +54,28 @@ namespace Wooli.Foundation.Commerce.Models
         {
             Assert.ArgumentNotNull(sellableItemModel, nameof(sellableItemModel));
 
-            this.ProductVariantId = sellableItemModel.ItemName;
-            this.ProductId = sellableItemModel.ProductId;
-            this.DisplayName = sellableItemModel.DisplayName;
-            this.Description = sellableItemModel.Description;
-            this.Brand = sellableItemModel.Brand;
+            ProductVariantId = sellableItemModel.ItemName;
+            ProductId = sellableItemModel.ProductId;
+            DisplayName = sellableItemModel.DisplayName;
+            Description = sellableItemModel.Description;
+            Brand = sellableItemModel.Brand;
 
-            this.Tags = sellableItemModel.Tags?.Split('|').ToList();
+            Tags = sellableItemModel.Tags?.Split('|').ToList();
 
-            this.ImageUrls = sellableItemModel
+            ImageUrls = sellableItemModel
                 .ExtractMediaItems(x => x.Images)
                 .Select(x => x.ImageUrl())
                 .ToList();
 
             var properties = new Dictionary<string, string>();
             foreach (string variantPropertyName in sellableItemModel.VariationProperties?.Split('|') ?? new string[0])
-            {
                 if (!string.IsNullOrEmpty(variantPropertyName))
                 {
                     string value = sellableItemModel.Item[variantPropertyName];
                     properties.Add(variantPropertyName, value);
                 }
-            }
 
-            this.VariantProperties = properties;
+            VariantProperties = properties;
         }
     }
 }

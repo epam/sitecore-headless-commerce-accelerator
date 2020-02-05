@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
-{
-    using TypeLite;
+using TypeLite;
 
+namespace Wooli.Foundation.Commerce.Models.Region
+{
     [TsClass]
     public class SubdivisionModel
     {

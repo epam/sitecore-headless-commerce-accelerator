@@ -12,33 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System.Web.Mvc;
+using System.Web.Security;
 using Sitecore.Commerce;
+using Sitecore.Security.Authentication;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Authentication;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Commerce.Repositories;
+using Wooli.Foundation.Extensions.Extensions;
 
 namespace Wooli.Feature.Account.Controllers
 {
-    using System.Web.Mvc;
-    using System.Web.Security;
-
-    using Sitecore.Analytics;
-    using Sitecore.Security.Authentication;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Authentication;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Extensions.Extensions;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
-
     public class AuthenticationController : Controller
     {
+        private readonly ICartRepository cartRepository;
         private readonly ICustomerProvider customerProvider;
         private readonly IVisitorContext visitorContext;
 
-        private readonly ICartRepository cartRepository;
-
-        public AuthenticationController(ICustomerProvider customerProvider, IVisitorContext visitorContext, ICartRepository cartRepository)
+        public AuthenticationController(ICustomerProvider customerProvider, IVisitorContext visitorContext,
+            ICartRepository cartRepository)
         {
             this.customerProvider = customerProvider;
             this.visitorContext = visitorContext;
@@ -49,10 +43,9 @@ namespace Wooli.Feature.Account.Controllers
         [ActionName("start")]
         public ActionResult ValidateCredentials(UserLoginModel userLogin)
         {
-
             var validateCredentialsResultDto = new ValidateCredentialsResultModel
             {
-                HasValidCredentials = this.ValidateUser(userLogin)
+                HasValidCredentials = ValidateUser(userLogin)
             };
 
             return this.JsonOk(validateCredentialsResultDto);
@@ -62,59 +55,49 @@ namespace Wooli.Feature.Account.Controllers
         [ActionName("signin")]
         public ActionResult SignIn(UserLoginModel userLogin, string returnUrl)
         {
-            bool userLoginResult = this.LoginUser(userLogin, out CommerceUserModel commerceUserModel);
+            bool userLoginResult = LoginUser(userLogin, out CommerceUserModel commerceUserModel);
 
-            if (!userLoginResult || commerceUserModel == null)
-            {
-                return this.Redirect("/signin");
-            }
+            if (!userLoginResult || commerceUserModel == null) return Redirect("/signin");
 
-            this.CompleteAuthentication(commerceUserModel);
+            CompleteAuthentication(commerceUserModel);
 
-            return this.RedirectOnSignin(returnUrl);
+            return RedirectOnSignin(returnUrl);
         }
 
         [HttpPost]
         [ActionName("signout")]
         public ActionResult SignOut()
         {
-            this.visitorContext.CurrentUser = null;
+            visitorContext.CurrentUser = null;
 
             CommerceTracker.Current.EndVisit(true);
-            this.Session.Abandon();
+            Session.Abandon();
             AuthenticationManager.Logout();
-           
-            return this.RedirectOnSignin(null);
+
+            return RedirectOnSignin(null);
         }
 
         private ActionResult RedirectOnSignin(string returnUrl)
         {
-            if (string.IsNullOrEmpty(returnUrl))
-            {
-                return this.Redirect("/");
-            }
+            if (string.IsNullOrEmpty(returnUrl)) return Redirect("/");
 
-            return this.Redirect(returnUrl);
+            return Redirect(returnUrl);
         }
 
         private void CompleteAuthentication(CommerceUserModel commerceUser)
         {
+            string anonymousContact = visitorContext.ContactId;
+            visitorContext.CurrentUser = commerceUser;
 
-            var anonymousContact = this.visitorContext.ContactId;
-            this.visitorContext.CurrentUser = commerceUser;
+            cartRepository.MergeCarts(anonymousContact);
 
-            this.cartRepository.MergeCarts(anonymousContact);
-
-            CommerceTracker.Current.IdentifyAs("CommerceUser", commerceUser.UserName, (string)null, true);
+            CommerceTracker.Current.IdentifyAs("CommerceUser", commerceUser.UserName);
         }
 
         private bool ValidateUser(UserLoginModel userLogin)
         {
-            var userName = Membership.GetUserNameByEmail(userLogin.Email);
-            if (!string.IsNullOrWhiteSpace(userName))
-            {
-                return Membership.ValidateUser(userName, userLogin.Password);
-            }
+            string userName = Membership.GetUserNameByEmail(userLogin.Email);
+            if (!string.IsNullOrWhiteSpace(userName)) return Membership.ValidateUser(userName, userLogin.Password);
 
             return false;
         }
@@ -122,23 +105,19 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool LoginUser(UserLoginModel userLogin, out CommerceUserModel commerceUser)
         {
-            var userName = Membership.GetUserNameByEmail(userLogin.Email);
+            string userName = Membership.GetUserNameByEmail(userLogin.Email);
             if (string.IsNullOrWhiteSpace(userName))
             {
                 commerceUser = null;
                 return false;
             }
 
-            commerceUser = this.customerProvider.GetCommerceUser(userName);
+            commerceUser = customerProvider.GetCommerceUser(userName);
 
-            if (commerceUser == null)
-            {
-                return false;
-            }
+            if (commerceUser == null) return false;
 
-          
+
             return AuthenticationManager.Login(userName, userLogin.Password);
         }
-
     }
 }

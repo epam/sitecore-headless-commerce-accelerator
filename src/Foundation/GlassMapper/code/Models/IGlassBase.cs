@@ -12,34 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using Glass.Mapper.Sc.Configuration;
+using Glass.Mapper.Sc.Configuration.Attributes;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Globalization;
+
 namespace Wooli.Foundation.GlassMapper.Models
 {
-    using System;
-    using System.Collections.Generic;
-
-    using Glass.Mapper.Sc.Configuration;
-    using Glass.Mapper.Sc.Configuration.Attributes;
-
-    using Sitecore.Data;
-    using Sitecore.Data.Items;
-    using Sitecore.Globalization;
-
     public interface IGlassBase
     {
-        [SitecoreId]
-        Guid Id { get; }
+        [SitecoreId] Guid Id { get; }
 
-        [SitecoreInfo(SitecoreInfoType.Name)]
-        string ItemName { get; set; }
+        [SitecoreInfo(SitecoreInfoType.Name)] string ItemName { get; set; }
 
-        [SitecoreItem]
-        Item Item { get; }
+        [SitecoreItem] Item Item { get; }
 
-        [SitecoreParent]
-        Item Parent { get; }
+        [SitecoreParent] Item Parent { get; }
 
-        [SitecoreChildren]
-        IEnumerable<Item> Children { get; }
+        [SitecoreChildren] IEnumerable<Item> Children { get; }
 
         [SitecoreInfo(SitecoreInfoType.Language)]
         Language Language { get; }
@@ -47,8 +40,7 @@ namespace Wooli.Foundation.GlassMapper.Models
         [SitecoreInfo(SitecoreInfoType.Version)]
         int Version { get; }
 
-        [SitecoreInfo(SitecoreInfoType.Url)]
-        string Url { get; }
+        [SitecoreInfo(SitecoreInfoType.Url)] string Url { get; }
 
         [SitecoreInfo(SitecoreInfoType.BaseTemplateIds)]
         IEnumerable<Guid> BaseTemplateIds { get; }

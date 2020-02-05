@@ -12,28 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sitecore.Commerce.Entities.Carts;
+using Sitecore.Commerce.Entities.Shipping;
+using Sitecore.Commerce.Services.Carts;
+using Sitecore.Commerce.Services.Shipping;
+using Sitecore.Diagnostics;
+using Wooli.Foundation.Commerce.Context;
+using Wooli.Foundation.Commerce.ModelInitilizers;
+using Wooli.Foundation.Commerce.ModelMappers;
+using Wooli.Foundation.Commerce.Models;
+using Wooli.Foundation.Commerce.Models.Checkout;
+using Wooli.Foundation.Commerce.Utils;
+using Wooli.Foundation.Connect.Managers;
+using Wooli.Foundation.Connect.Models;
+using Wooli.Foundation.DependencyInjection;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Shipping;
-    using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(IDeliveryRepository), Lifetime = Lifetime.Singleton)]
     public class DeliveryRepository : BaseCheckoutRepository, IDeliveryRepository
     {
@@ -46,9 +44,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext, visitorContext)
+            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext,
+                visitorContext)
         {
-            this.ShippingManager = shippingManager;
+            ShippingManager = shippingManager;
         }
 
         protected IShippingManager ShippingManager { get; }
@@ -60,23 +59,23 @@ namespace Wooli.Foundation.Commerce.Repositories
             try
             {
                 result.SetResult(model);
-                ManagerResponse<CartResult, Cart> currentCart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+                ManagerResponse<CartResult, Cart> currentCart =
+                    CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
                     result.SetErrors(currentCart.ServiceProviderResult);
                     return result;
                 }
 
-                ShippingOptionType shippingOptionType = ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
+                var shippingOptionType =
+                    ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
                 PartyEntity address = null;
                 if (getShippingArgs.ShippingAddress != null)
-                {
-                    address = this.EntityMapper.MapToPartyEntity(getShippingArgs.ShippingAddress);
-                }
+                    address = EntityMapper.MapToPartyEntity(getShippingArgs.ShippingAddress);
 
                 ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> shippingMethods =
-                    this.ShippingManager.GetShippingMethods(
-                        this.StorefrontContext.ShopName,
+                    ShippingManager.GetShippingMethods(
+                        StorefrontContext.ShopName,
                         currentCart.Result,
                         shippingOptionType,
                         address,
@@ -88,16 +87,16 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 result.Data.ShippingMethods = new List<ShippingMethodModel>();
-                foreach (var shippingMethod in shippingMethods.ServiceProviderResult.ShippingMethods)
+                foreach (ShippingMethod shippingMethod in shippingMethods.ServiceProviderResult.ShippingMethods)
                 {
-                    var shippingModel = this.EntityMapper.MapToShippingMethodModel(shippingMethod);
+                    ShippingMethodModel shippingModel = EntityMapper.MapToShippingMethodModel(shippingMethod);
                     result.Data.ShippingMethods.Add(shippingModel);
                 }
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message, ex, this);
-                result.SetErrors(nameof(this.GetShippingMethods), ex);
+                result.SetErrors(nameof(GetShippingMethods), ex);
             }
 
             return result;
@@ -109,8 +108,9 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             try
             {
-                result.SetResult(new SetShippingModel() { Success = true });
-                var currentCart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+                result.SetResult(new SetShippingModel {Success = true});
+                ManagerResponse<CartResult, Cart> currentCart =
+                    CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
                 if (!currentCart.ServiceProviderResult.Success)
                 {
@@ -118,12 +118,16 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                var cart = currentCart.Result;
-                var partyEntityList = this.EntityMapper.MapToPartyEntityList(setShippingArgs.ShippingAddresses);
-                var shippingOptionType = ConnectOptionTypeHelper.ToShippingOptionType(setShippingArgs.OrderShippingPreferenceType);
-                var shippingInfo = this.EntityMapper.MapToShippingInfoArgumentList(setShippingArgs.ShippingMethods);
+                Cart cart = currentCart.Result;
+                List<PartyEntity> partyEntityList =
+                    EntityMapper.MapToPartyEntityList(setShippingArgs.ShippingAddresses);
+                var shippingOptionType =
+                    ConnectOptionTypeHelper.ToShippingOptionType(setShippingArgs.OrderShippingPreferenceType);
+                List<ShippingInfoArgument> shippingInfo =
+                    EntityMapper.MapToShippingInfoArgumentList(setShippingArgs.ShippingMethods);
 
-                var managerResponse = this.CartManager.AddShippingInfo(cart, partyEntityList, shippingOptionType, shippingInfo);
+                ManagerResponse<AddShippingInfoResult, Cart> managerResponse =
+                    CartManager.AddShippingInfo(cart, partyEntityList, shippingOptionType, shippingInfo);
 
                 if (!managerResponse.ServiceProviderResult.Success)
                 {
@@ -133,7 +137,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
             catch (Exception ex)
             {
-                result.SetErrors(nameof(this.SetShippingMethods), ex);
+                result.SetErrors(nameof(SetShippingMethods), ex);
             }
 
             return result;
@@ -149,7 +153,8 @@ namespace Wooli.Foundation.Commerce.Repositories
             try
             {
                 result.SetResult(model);
-                ManagerResponse<CartResult, Cart> cartResult = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+                ManagerResponse<CartResult, Cart> cartResult =
+                    CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
                 if (!cartResult.ServiceProviderResult.Success)
                 {
                     result.SetErrors(cartResult.ServiceProviderResult);
@@ -159,25 +164,19 @@ namespace Wooli.Foundation.Commerce.Repositories
                 Cart currentCart = cartResult.Result;
                 if (currentCart.Lines != null && currentCart.Lines.Any())
                 {
-                    this.AddShippingOptionsToModel(result, currentCart);
+                    AddShippingOptionsToModel(result, currentCart);
                     if (result.Success)
-                    {
                         ////this.AddEmailShippingMethodToResult(model, result);
                         if (result.Success)
-                        {
                             ////this.AddAvailableCountries((BaseCheckoutDataJsonResult)model);
                             if (result.Success)
-                            {
-                                this.AddUserInfo(result.Data, result);
-                            }
-                        }
-                    }
+                                AddUserInfo(result.Data, result);
                 }
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message, ex, this);
-                result.SetErrors(nameof(this.GetDeliveryData), ex);
+                result.SetErrors(nameof(GetDeliveryData), ex);
                 return result;
             }
 
@@ -186,7 +185,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected virtual void AddShippingOptionsToModel(Result<DeliveryModel> result, Cart cart)
         {
-            ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> shippingPreferences = this.ShippingManager.GetShippingPreferences(cart);
+            ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> shippingPreferences =
+                ShippingManager.GetShippingPreferences(cart);
             if (!shippingPreferences.ServiceProviderResult.Success)
             {
                 result.SetErrors(shippingPreferences.ServiceProviderResult);
@@ -194,9 +194,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             else
             {
                 result.Data.ShippingOptions = new List<ShippingOptionModel>();
-                foreach (var shipppingOption in shippingPreferences.Result)
+                foreach (ShippingOption shipppingOption in shippingPreferences.Result)
                 {
-                    var model = this.EntityMapper.MapToShippingOptionModel(shipppingOption);
+                    ShippingOptionModel model = EntityMapper.MapToShippingOptionModel(shipppingOption);
                     result.Data.ShippingOptions.Add(model);
                 }
             }

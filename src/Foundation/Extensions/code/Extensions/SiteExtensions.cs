@@ -12,44 +12,34 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using System;
+using Sitecore;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Sites;
+
 namespace Wooli.Foundation.Extensions.Extensions
 {
-    using System;
-
-    using Sitecore;
-    using Sitecore.Data;
-    using Sitecore.Data.Items;
-    using Sitecore.Sites;
-
     public static class SiteExtensions
     {
         public static Item GetContextItem(this SiteContext site, ID derivedFromTemplateId)
         {
-            if (site == null)
-            {
-                throw new ArgumentNullException(nameof(site));
-            }
+            if (site == null) throw new ArgumentNullException(nameof(site));
 
-            var startItem = site.GetStartItem();
+            Item startItem = site.GetStartItem();
             return startItem?.GetAncestorOrSelfOfTemplate(derivedFromTemplateId);
         }
 
         public static Item GetRootItem(this SiteContext site)
         {
-            if (site == null)
-            {
-                throw new ArgumentNullException(nameof(site));
-            }
+            if (site == null) throw new ArgumentNullException(nameof(site));
 
             return site.Database.GetItem(Context.Site.RootPath);
         }
 
         public static Item GetStartItem(this SiteContext site)
         {
-            if (site == null)
-            {
-                throw new ArgumentNullException(nameof(site));
-            }
+            if (site == null) throw new ArgumentNullException(nameof(site));
 
             return site.Database.GetItem(Context.Site.StartPath);
         }

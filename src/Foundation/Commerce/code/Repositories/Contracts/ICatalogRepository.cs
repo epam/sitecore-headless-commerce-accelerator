@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.Data.Items;
+using Wooli.Foundation.Commerce.Models.Catalog;
+
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Commerce.Models;
-
     public interface ICatalogRepository
     {
         ProductModel GetProduct(string productd);

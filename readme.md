@@ -139,9 +139,9 @@ To bootstrap the Commerce Server follow these instructions:
    * https://sitecore.myget.org/F/sc-commerce-packages/api/v3/index.json
 6. Restore NuGet packages.
 7. Execute `npm install` inside the **.\src** folder.
-8. Change default IP address to VM address (run ipconfig in cmd) in
-- Wooli\src\publishsettings.targets: `192.168.0.1 -> VM IP`.
-- Wooli\build\build.cake: `192.168.0.1 -> VM IP`
+8. Change default IP address to VM address (if it's different) in
+- Wooli\src\publishsettings.targets: `192.168.50.4 -> VM IP`.
+- Wooli\build\build.cake: `192.168.50.4 -> VM IP`
 9. Install [Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandTaskRunner) for running Cake deployment scripts inside IDE. 
 
 **It’s advisable to make a backup of the website prior to the next step**

@@ -84,6 +84,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 		..\build\cake.config = ..\build\cake.config
 		commands.json = commands.json
 		package.json = package.json
+		publishsettings.targets = publishsettings.targets
 		readme.md = readme.md
 	EndProjectSection
 EndProject

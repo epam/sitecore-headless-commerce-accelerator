@@ -20,7 +20,7 @@ Sitecore.Parameters.InitParams(
     solutionName: "Wooli",
     scSiteUrl: "https://sc9.local", // default URL exposed from the box
     unicornSerializationRoot: "unicorn-wooli",
-    publishingTargetDir: "\\\\192.168.0.1\\c$\\inetpub\\wwwroot\\sc9.local"
+    publishingTargetDir: "\\\\192.168.50.4\\c$\\inetpub\\wwwroot\\sc9.local"
 );
 
 // //////////////////////////////////////////////////

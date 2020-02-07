@@ -8,7 +8,7 @@
     <SiteUrlToLaunchAfterPublish>http://wooli.local</SiteUrlToLaunchAfterPublish>
     <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
     <ExcludeApp_Data>False</ExcludeApp_Data>
-    <MSDeployServiceURL>192.168.0.1</MSDeployServiceURL>
+    <MSDeployServiceURL>192.168.50.4</MSDeployServiceURL>
     <DeployIisAppPath>sc9.local</DeployIisAppPath>
     <RemoteSitePhysicalPath />
     <SkipExtraFilesOnServer>True</SkipExtraFilesOnServer>

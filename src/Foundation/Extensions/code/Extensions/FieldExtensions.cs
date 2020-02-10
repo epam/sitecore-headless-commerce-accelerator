@@ -27,9 +27,9 @@ namespace Wooli.Foundation.Extensions.Extensions
 
             var options = MediaUrlOptions.Empty;
 
-            if (int.TryParse(imageField.Width, out int width)) options.Width = width;
+            if (int.TryParse(imageField.Width, out var width)) options.Width = width;
 
-            if (int.TryParse(imageField.Height, out int height)) options.Height = height;
+            if (int.TryParse(imageField.Height, out var height)) options.Height = height;
 
             return imageField.ImageUrl(options);
         }

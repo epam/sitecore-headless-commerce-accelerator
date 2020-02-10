@@ -58,7 +58,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
             ChildProducts = productEntityList ?? new List<ProductModel>();
 
             var facets = new List<FacetResultModel>();
-            foreach (CommerceQueryFacet queryFacet in searchResults.Facets)
+            foreach (var queryFacet in searchResults.Facets)
             {
                 var facetModel = new FacetResultModel();
                 facetModel.Initialize(queryFacet);

@@ -42,9 +42,9 @@ namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
                     writer.WritePropertyName("id");
                     writer.WriteValue(item.ID.Guid.ToString("D", null));
 
-                    IEnumerable<Field> itemFields = GetItemFields(item);
+                    var itemFields = GetItemFields(item);
                     var options = new SerializationOptions();
-                    foreach (Field itemField in itemFields) SerializeField(itemField, writer, options);
+                    foreach (var itemField in itemFields) SerializeField(itemField, writer, options);
 
                     writer.WriteEndObject();
                 }

@@ -38,11 +38,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.GetLayoutServiceCon
         {
             if (args.RenderedItem == null) return;
 
-            Item currentItem = args.RenderedItem;
+            var currentItem = args.RenderedItem;
 
             // Trying to get original url path
-            string itemPath = HttpContext.Current.Request.Url.ParseQueryString()?["item"];
-            string[] urlSegments = itemPath?.Trim('/').Split('/');
+            var itemPath = HttpContext.Current.Request.Url.ParseQueryString()?["item"];
+            var urlSegments = itemPath?.Trim('/').Split('/');
             if (args.RenderedItem == null) return;
 
             catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);

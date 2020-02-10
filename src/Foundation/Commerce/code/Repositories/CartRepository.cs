@@ -41,11 +41,11 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public virtual CartModel GetCurrentCart()
         {
-            ManagerResponse<CartResult, Cart> cart =
+            var cart =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
             // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
 
-            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
+            var result = GetCart(cart.ServiceProviderResult, cart.Result);
 
             if (result.Success) return result.Data;
 
@@ -54,7 +54,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public virtual void MergeCarts(string anonymousContactId)
         {
-            ManagerResponse<CartResult, Cart> cart =
+            var cart =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, anonymousContactId);
             if (cart.ServiceProviderResult.Success)
                 CartManager.MergeCarts(
@@ -66,7 +66,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public Result<CartModel> AddProductVariantToCart(string productId, string variantId, decimal quantity)
         {
-            ManagerResponse<CartResult, Cart> model =
+            var model =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
             var cartLineArgument = new CartLineArgument
@@ -77,20 +77,20 @@ namespace Wooli.Foundation.Commerce.Repositories
                 VariantId = variantId
             };
 
-            ManagerResponse<CartResult, Cart> cart =
+            var cart =
                 CartManager.AddLineItemsToCart(model.Result, new[] {cartLineArgument}, null, null);
 
-            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
+            var result = GetCart(cart.ServiceProviderResult, cart.Result);
 
             return result;
         }
 
         public Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity)
         {
-            ManagerResponse<CartResult, Cart> model =
+            var model =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
-            CartLine cartLine = model.Result.Lines.FirstOrDefault(x =>
+            var cartLine = model.Result.Lines.FirstOrDefault(x =>
             {
                 var current = x.Product as CommerceCartProduct;
                 return current?.ProductId == productId && current?.ProductVariantId == variantId;
@@ -108,9 +108,9 @@ namespace Wooli.Foundation.Commerce.Repositories
                     VariantId = variantId
                 };
 
-                ManagerResponse<CartResult, Cart> cart =
+                var cart =
                     CartManager.UpdateLineItemsInCart(model.Result, new[] {cartLineArgument}, null, null);
-                Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
+                var result = GetCart(cart.ServiceProviderResult, cart.Result);
                 return result;
             }
 
@@ -121,24 +121,24 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public Result<CartModel> RemoveProductVariantFromCart(string cartLineId)
         {
-            ManagerResponse<CartResult, Cart> model =
+            var model =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
 
-            ManagerResponse<CartResult, Cart> cart =
+            var cart =
                 CartManager.RemoveLineItemsFromCart(model.Result, new[] {cartLineId});
 
-            Result<CartModel> result = GetCart(cart.ServiceProviderResult, cart.Result);
+            var result = GetCart(cart.ServiceProviderResult, cart.Result);
 
             return result;
         }
 
         public Result<CartModel> AddPromoCode(string promoCode)
         {
-            ManagerResponse<CartResult, Cart> getCartResponse =
+            var getCartResponse =
                 CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
-            ManagerResponse<AddPromoCodeResult, Cart> addPromoCodeResponse =
+            var addPromoCodeResponse =
                 CartManager.AddPromoCode(getCartResponse.Result, promoCode);
-            Result<CartModel> result = GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
+            var result = GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
 
             return result;
         }

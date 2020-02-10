@@ -55,7 +55,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             var model = new SubmitOrderModel();
             try
             {
-                ManagerResponse<CartResult, Cart> currentCart =
+                var currentCart =
                     CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
@@ -63,7 +63,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                ManagerResponse<SubmitVisitorOrderResult, Order> managerResponse =
+                var managerResponse =
                     OrderManager.SubmitVisitorOrder(currentCart.Result);
                 if (managerResponse.ServiceProviderResult.Success ||
                     !managerResponse.ServiceProviderResult.SystemMessages.Any())

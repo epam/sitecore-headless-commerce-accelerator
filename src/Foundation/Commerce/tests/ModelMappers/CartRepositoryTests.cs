@@ -32,7 +32,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            Party result = addressPartyMapper.MapToParty(input);
+            var result = addressPartyMapper.MapToParty(input);
 
             // Assert
             Assert.NotNull(result);
@@ -53,7 +53,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
+            var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);
@@ -74,7 +74,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
+            var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);

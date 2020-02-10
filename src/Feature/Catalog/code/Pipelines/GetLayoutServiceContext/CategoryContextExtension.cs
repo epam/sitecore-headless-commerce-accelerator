@@ -36,7 +36,7 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            CategoryModel model = catalogRepository.GetCurrentCategory();
+            var model = catalogRepository.GetCurrentCategory();
 
             if (model != null) analyticsRepository.RaiseCategoryVisitedEvent(model);
 

@@ -36,7 +36,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("get")]
         public ActionResult GetCart()
         {
-            CartModel model = cartRepository.GetCurrentCart();
+            var model = cartRepository.GetCurrentCart();
 
             return this.JsonOk(model);
         }
@@ -45,7 +45,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("add")]
         public ActionResult AddProductVariant([FromBody] CartItemDto cartItem)
         {
-            Result<CartModel> result =
+            var result =
                 cartRepository.AddProductVariantToCart(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
 
             if (result.Success) return this.JsonOk(result.Data);
@@ -57,7 +57,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("update")]
         public ActionResult Update([FromBody] CartItemDto cartItem)
         {
-            Result<CartModel> result =
+            var result =
                 cartRepository.UpdateProductVariantQuantity(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
 
             if (result.Success) return this.JsonOk(result.Data);
@@ -69,7 +69,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("addpromo")]
         public ActionResult AddPromoCode([FromBody] PromoCodeDto data)
         {
-            Result<CartModel> result = cartRepository.AddPromoCode(data.PromoCode);
+            var result = cartRepository.AddPromoCode(data.PromoCode);
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -80,7 +80,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("remove")]
         public ActionResult DeleteVariant(string cartLineId)
         {
-            Result<CartModel> result = cartRepository.RemoveProductVariantFromCart(cartLineId);
+            var result = cartRepository.RemoveProductVariantFromCart(cartLineId);
             if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);

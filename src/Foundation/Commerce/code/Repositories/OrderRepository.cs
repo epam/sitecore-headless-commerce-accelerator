@@ -58,10 +58,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             var result = new Result<CartModel>();
             try
             {
-                ManagerResponse<GetVisitorOrderResult, Order> orderDetails =
+                var orderDetails =
                     orderManager.GetOrderDetails(trackingId, VisitorContext.ContactId, StorefrontContext.ShopName);
 
-                Order order = orderDetails.Result;
+                var order = orderDetails.Result;
                 if (order != null)
                 {
                     CartModel orderModel = orderModelBuilder.Initialize(order);
@@ -87,7 +87,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             var result = new Result<OrderHistoryResultModel>();
             try
             {
-                ManagerResponse<GetVisitorOrdersResult, OrderHeader[]> orderHeaders =
+                var orderHeaders =
                     orderManager.GetVisitorOrders(VisitorContext.ContactId, StorefrontContext.ShopName, fromDate,
                         untilDate, page, count);
 
@@ -98,13 +98,13 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var ordersList = new List<CartModel>();
-                foreach (OrderHeader orderHeader in orderHeaders.Result)
+                foreach (var orderHeader in orderHeaders.Result)
                 {
-                    ManagerResponse<GetVisitorOrderResult, Order> orderDetails =
+                    var orderDetails =
                         orderManager.GetOrderDetails(orderHeader.OrderID, VisitorContext.ContactId,
                             StorefrontContext.ShopName);
 
-                    Order order = orderDetails.Result;
+                    var order = orderDetails.Result;
                     if (order != null)
                     {
                         CartModel orderModel = orderModelBuilder.Initialize(order);

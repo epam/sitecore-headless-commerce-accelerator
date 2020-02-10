@@ -53,15 +53,15 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
             if (urlSegments == null) return;
 
-            Item rootItem = siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
+            var rootItem = siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
             if (rootItem == null) return;
 
             if (siteContext.CurrentItem != null) return;
 
-            Item currentItem = Sitecore.Context.Item;
+            var currentItem = Sitecore.Context.Item;
             while (currentItem != null && currentItem.ID != rootItem.ID)
             {
-                string urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
+                var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
 
                 ProcessItem(currentItem, urlSegment, storefrontContext.CatalogName);
 
@@ -73,10 +73,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
         private void ProcessItem(Item item, string urlSegment, string catalogName)
         {
-            Constants.ItemType contextItemType = pageTypeProvider.ResolveByItem(item);
+            var contextItemType = pageTypeProvider.ResolveByItem(item);
             if (contextItemType == Constants.ItemType.Unknown) return;
 
-            string itemName = item.Name != "*" ? item.Name : urlSegment;
+            var itemName = item.Name != "*" ? item.Name : urlSegment;
             if (string.IsNullOrEmpty(itemName)) return;
 
             Item catalogItem;

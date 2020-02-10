@@ -30,7 +30,7 @@ namespace Wooli.Foundation.Extensions.Extensions
             Assert.ArgumentNotNull(glassModel, nameof(glassModel));
             Assert.ArgumentNotNull(selector, nameof(selector));
 
-            IEnumerable<Guid> imageGuids = selector(glassModel);
+            var imageGuids = selector(glassModel);
 
             IList<MediaItem> imageUrls = imageGuids
                 ?.Select(x => glassModel.Item.Database.GetItem(ID.Parse(x)))

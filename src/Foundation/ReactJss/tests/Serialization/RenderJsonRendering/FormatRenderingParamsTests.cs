@@ -54,7 +54,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 
                 Assert.NotNull(args.Result);
 
-                IDictionary<string, string> renderingParams = args.Result.RenderingParams;
+                var renderingParams = args.Result.RenderingParams;
                 Assert.NotNull(renderingParams);
 
                 Assert.Equal(3, renderingParams.Count);

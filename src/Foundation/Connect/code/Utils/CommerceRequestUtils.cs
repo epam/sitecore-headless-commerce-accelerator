@@ -23,11 +23,11 @@ namespace Wooli.Foundation.Connect.Utils
     {
         public static string GetPaymentOptionId(string paymentType)
         {
-            Item paymentOptions =
+            var paymentOptions =
                 Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
             if (paymentOptions != null && paymentOptions.Children.Any())
             {
-                Item paymentOption = paymentOptions.Children.FirstOrDefault(o =>
+                var paymentOption = paymentOptions.Children.FirstOrDefault(o =>
                     o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));
                 if (paymentOption != null) return paymentOption.ID.ToGuid().ToString("D");
             }

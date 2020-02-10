@@ -40,7 +40,7 @@ namespace Wooli.Feature.Checkout.Controllers
             if (string.IsNullOrEmpty(orderId))
                 return this.JsonError($"{orderId} should be specified.", HttpStatusCode.BadRequest);
 
-            Result<CartModel> model = orderRepository.GetOrderDetails(orderId);
+            var model = orderRepository.GetOrderDetails(orderId);
 
             if (model.Success) return this.JsonOk(model.Data);
 
@@ -56,7 +56,7 @@ namespace Wooli.Feature.Checkout.Controllers
 
             if (count <= 0) return this.JsonError($"{nameof(page)} should be positive.", HttpStatusCode.BadRequest);
 
-            Result<OrderHistoryResultModel> model = orderRepository.GetOrders(fromDate, fromDate, page, count);
+            var model = orderRepository.GetOrders(fromDate, fromDate, page, count);
             if (model.Success) return this.JsonOk(model.Data);
 
             return this.JsonError(model.Errors.ToArray(), HttpStatusCode.InternalServerError);

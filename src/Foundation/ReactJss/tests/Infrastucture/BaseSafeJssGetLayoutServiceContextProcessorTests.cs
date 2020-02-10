@@ -48,7 +48,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastucture
                     new DbItem("RenderedItem")
                 })
             {
-                Item renderedItem = db.GetItem("/sitecore/content/RenderedItem");
+                var renderedItem = db.GetItem("/sitecore/content/RenderedItem");
                 var configurationResolver = Substitute.For<IConfigurationResolver>();
 
 
@@ -67,7 +67,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastucture
 
                 contextProcessor.Process(args);
 
-                object resultObject = args.ContextData["_sign"];
+                var resultObject = args.ContextData["_sign"];
                 var value = Assert.IsType<int>(resultObject);
                 Assert.Equal(1, value);
             }

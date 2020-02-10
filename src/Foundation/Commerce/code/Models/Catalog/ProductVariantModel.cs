@@ -68,10 +68,10 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
                 .ToList();
 
             var properties = new Dictionary<string, string>();
-            foreach (string variantPropertyName in sellableItemModel.VariationProperties?.Split('|') ?? new string[0])
+            foreach (var variantPropertyName in sellableItemModel.VariationProperties?.Split('|') ?? new string[0])
                 if (!string.IsNullOrEmpty(variantPropertyName))
                 {
-                    string value = sellableItemModel.Item[variantPropertyName];
+                    var value = sellableItemModel.Item[variantPropertyName];
                     properties.Add(variantPropertyName, value);
                 }
 

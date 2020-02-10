@@ -30,7 +30,7 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation)
         {
-            int defaultValue = storefrontContext.DefaultItemsPerPage;
+            var defaultValue = storefrontContext.DefaultItemsPerPage;
             if (defaultValue <= 0) defaultValue = searchInformation.ItemsPerPage;
 
             if (defaultValue <= 0) defaultValue = 12;

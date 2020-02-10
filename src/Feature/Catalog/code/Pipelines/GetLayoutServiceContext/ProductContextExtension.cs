@@ -36,7 +36,7 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            ProductModel model = catalogRepository.GetCurrentProduct();
+            var model = catalogRepository.GetCurrentProduct();
 
             if (model != null) analyticsRepository.RaiseProductVisitedEvent(model);
             args.ContextData.Add("product", model);

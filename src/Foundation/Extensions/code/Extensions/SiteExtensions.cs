@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Extensions.Extensions
         {
             if (site == null) throw new ArgumentNullException(nameof(site));
 
-            Item startItem = site.GetStartItem();
+            var startItem = site.GetStartItem();
             return startItem?.GetAncestorOrSelfOfTemplate(derivedFromTemplateId);
         }
 

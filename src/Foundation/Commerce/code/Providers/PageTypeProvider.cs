@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Commerce.Providers
     {
         public Constants.ItemType ResolveByItem(Item item)
         {
-            Template template = TemplateManager.GetTemplate(item);
+            var template = TemplateManager.GetTemplate(item);
 
             return ResolveByTemplate(template);
         }

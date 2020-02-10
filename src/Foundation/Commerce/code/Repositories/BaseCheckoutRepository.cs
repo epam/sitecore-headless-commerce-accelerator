@@ -65,15 +65,15 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected virtual void AddUserInfo<T>(BaseCheckoutModel baseCheckoutModel, Result<T> result) where T : class
         {
-            ManagerResponse<GetPartiesResult, IEnumerable<Party>> currentCustomerParties =
+            var currentCustomerParties =
                 AccountManager.GetCurrentCustomerParties(StorefrontContext.ShopName, VisitorContext.ContactId);
 
             if (currentCustomerParties.ServiceProviderResult.Success && currentCustomerParties.Result != null)
             {
                 baseCheckoutModel.UserAddresses = new List<AddressModel>();
-                foreach (Party party in currentCustomerParties.Result)
+                foreach (var party in currentCustomerParties.Result)
                 {
-                    AddressModel address = EntityMapper.MapToAddress(party);
+                    var address = EntityMapper.MapToAddress(party);
                     var commerceParty = party as CommerceParty;
                     address.Name = commerceParty.Name;
                     address.CountryCode = commerceParty.CountryCode;
@@ -92,7 +92,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             try
             {
-                CartModel model = CartModelBuilder.Initialize(cart);
+                var model = CartModelBuilder.Initialize(cart);
                 result.SetResult(model);
 
                 // ToDo: investigate the sometimes issue where Success=false but no any errors and the action is success

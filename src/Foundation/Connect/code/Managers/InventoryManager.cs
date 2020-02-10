@@ -43,7 +43,7 @@ namespace Wooli.Foundation.Connect.Managers
             var request = new GetStockInformationRequest(shopName, inventoryProducts, detailsLevel);
             request.Location = string.Empty;
 
-            GetStockInformationResult stockInformation = inventoryServiceProvider.GetStockInformation(request);
+            var stockInformation = inventoryServiceProvider.GetStockInformation(request);
 
             return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(stockInformation,
                 stockInformation.StockInformation ?? new List<StockInformation>());

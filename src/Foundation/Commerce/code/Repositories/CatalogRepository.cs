@@ -40,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(productd, nameof(productd));
 
-            Item productItem = searchManager.GetProduct(StorefrontContext.CatalogName, productd);
+            var productItem = searchManager.GetProduct(StorefrontContext.CatalogName, productd);
             if (productItem != null) return GetProductModel(VisitorContext, productItem);
 
             return null;
@@ -55,14 +55,14 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public ProductModel GetCurrentProduct()
         {
-            Item productItem = SiteContext.CurrentProductItem;
+            var productItem = SiteContext.CurrentProductItem;
 
             return GetProductModel(VisitorContext, productItem);
         }
 
         public CategoryModel GetCurrentCategory()
         {
-            Item categoryItem = SiteContext.CurrentCategoryItem;
+            var categoryItem = SiteContext.CurrentCategoryItem;
 
             return GetCategoryModel(categoryItem);
         }

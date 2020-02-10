@@ -79,7 +79,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                 // Execute
                 var repository = new CartRepository(cartManager, catalogRepository, accountManager, cartModelBuilder,
                     addressPartyMapper, storefrontContext, visitorContext);
-                CartModel result = repository.GetCurrentCart();
+                var result = repository.GetCurrentCart();
 
                 // Assert
                 Assert.NotNull(result);

@@ -49,12 +49,12 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
         {
-            User user = Sitecore.Context.Data.User;
+            var user = Sitecore.Context.Data.User;
             if (user == null) return null;
 
             if (user.IsAuthenticated) return GetCommerceUser(user.Profile.UserName);
 
-            HttpCookie cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
+            var cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
             if (cookie != null) return GetCommerceUser(cookie.Value);
 
             return null;
@@ -64,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
-            ManagerResponse<GetUserResult, CommerceUser> commerceUser =
+            var commerceUser =
                 accountManager.GetUser(contactIdOrName);
 
             return MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
@@ -92,8 +92,8 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             if (commerceUser == null) return new CommerceUserModel {ContactId = contactIdOrEmail};
 
-            string customerId = GetCustomerId(commerceUser?.Customers);
-            string contactId = ParseContactId(commerceUser?.ExternalId);
+            var customerId = GetCustomerId(commerceUser?.Customers);
+            var contactId = ParseContactId(commerceUser?.ExternalId);
 
 
             return new CommerceUserModel

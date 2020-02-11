@@ -51,9 +51,9 @@ namespace Wooli.Foundation.Extensions.Extensions
             if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
             var options = new MediaUrlOptions {Height = height, Width = width};
-            string url = MediaManager.GetMediaUrl(mediaItem, options);
-            string cleanUrl = StringUtil.EnsurePrefix('/', url);
-            string hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
+            var url = MediaManager.GetMediaUrl(mediaItem, options);
+            var cleanUrl = StringUtil.EnsurePrefix('/', url);
+            var hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
 
             return hashedUrl;
         }
@@ -62,9 +62,9 @@ namespace Wooli.Foundation.Extensions.Extensions
         {
             if (mediaItem == null) throw new ArgumentNullException(nameof(mediaItem));
 
-            string url = MediaManager.GetMediaUrl(mediaItem);
-            string cleanUrl = StringUtil.EnsurePrefix('/', url);
-            string hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
+            var url = MediaManager.GetMediaUrl(mediaItem);
+            var cleanUrl = StringUtil.EnsurePrefix('/', url);
+            var hashedUrl = HashingUtils.ProtectAssetUrl(cleanUrl);
 
             return hashedUrl;
         }
@@ -115,7 +115,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
             if (ID.IsNullOrEmpty(fieldId)) throw new ArgumentNullException(nameof(fieldId));
 
-            Field field = item.Fields[fieldId];
+            var field = item.Fields[fieldId];
             if (field == null || !(FieldTypeManager.GetField(field) is LinkField)) return string.Empty;
 
             LinkField linkField = field;
@@ -191,7 +191,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
             if (templateItem == null) return false;
 
-            Template itemTemplate = TemplateManager.GetTemplate(item);
+            var itemTemplate = TemplateManager.GetTemplate(item);
             return itemTemplate != null &&
                    (itemTemplate.ID == templateItem.ID || itemTemplate.DescendsFrom(templateItem.ID));
         }
@@ -203,15 +203,15 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static int? GetInteger(this Item item, ID fieldId)
         {
-            return !int.TryParse(item.Fields[fieldId].Value, out int result) ? new int?() : result;
+            return !int.TryParse(item.Fields[fieldId].Value, out var result) ? new int?() : result;
         }
 
         public static double? GetDouble(this Item item, ID fieldId)
         {
-            string value = item?.Fields[fieldId]?.Value;
+            var value = item?.Fields[fieldId]?.Value;
             if (value == null) return null;
 
-            if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out double num) ||
+            if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var num) ||
                 double.TryParse(value, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out num) ||
                 double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out num))
                 return num;
@@ -226,7 +226,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static bool HasContextLanguage(this Item item)
         {
-            Item latestVersion = item.Versions.GetLatestVersion();
+            var latestVersion = item.Versions.GetLatestVersion();
             return latestVersion?.Versions.Count > 0;
         }
     }

@@ -45,9 +45,9 @@ namespace Wooli.Foundation.Commerce.Models
             Success = result.Success;
             if (result.SystemMessages.Count <= 0) return;
 
-            foreach (SystemMessage systemMessage in result.SystemMessages)
+            foreach (var systemMessage in result.SystemMessages)
             {
-                string message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
+                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
                 SetError(message);
             }
         }
@@ -61,7 +61,7 @@ namespace Wooli.Foundation.Commerce.Models
         {
             if (!errors.Any()) return;
 
-            foreach (string error in errors) SetError(error);
+            foreach (var error in errors) SetError(error);
         }
     }
 }

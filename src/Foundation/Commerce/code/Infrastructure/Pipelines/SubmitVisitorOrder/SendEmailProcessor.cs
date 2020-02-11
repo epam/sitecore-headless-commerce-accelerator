@@ -36,13 +36,13 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
         public override void Process(ServicePipelineArgs args)
         {
-            Order order = GetOrderFromArgs(args);
+            var order = GetOrderFromArgs(args);
 
             if (order == null || order.Total == null) return;
 
             try
             {
-                string body = BuildBody(order);
+                var body = BuildBody(order);
                 var emailMessage = new MailMessage(SendConfirmationFrom, order.Email, SendConfirmationSubject, body)
                 {
                     IsBodyHtml = true
@@ -63,10 +63,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
                 AlwaysIncludeServerUrl = true
             };
 
-            string homeItemUrl = Sitecore.Context.Database.GetItem(Sitecore.Context.Site.StartPath).Url(options);
-            string link =
+            var homeItemUrl = Context.Database.GetItem(Context.Site.StartPath).Url(options);
+            var link =
                 $"<a href=\"{homeItemUrl}Checkout/Confirmation?trackingNumber={order.TrackingNumber}\">here</a>";
-            string result = $"<h2>Thank You For Your Order!</h2><p>Click {link} for more details.</p>";
+            var result = $"<h2>Thank You For Your Order!</h2><p>Click {link} for more details.</p>";
 
             return result;
         }

@@ -52,7 +52,7 @@ namespace Wooli.Foundation.Extensions.Services
 
         public SiteDefinition GetContextSiteDefinition(Item item)
         {
-            SiteDefinition rootSite = SiteDefinitions
+            var rootSite = SiteDefinitions
                 .Where(x => item.Paths.FullPath.StartsWith(x.RootItem.Paths.FullPath))
                 .OrderByDescending(x => x.IsCurrent)
                 .FirstOrDefault();
@@ -72,7 +72,7 @@ namespace Wooli.Foundation.Extensions.Services
             if (string.IsNullOrEmpty(site.Database)) return null;
 
             var database = Database.GetDatabase(site.Database);
-            Item item = database?.GetItem(site.RootPath);
+            var item = database?.GetItem(site.RootPath);
 
             return item;
         }
@@ -81,7 +81,7 @@ namespace Wooli.Foundation.Extensions.Services
         {
             if (site == null) throw new ArgumentNullException(nameof(site));
 
-            Item siteItem = GetSiteRootItem(site);
+            var siteItem = GetSiteRootItem(site);
             return new SiteDefinition
             {
                 RootItem = siteItem,

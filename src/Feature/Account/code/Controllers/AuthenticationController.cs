@@ -55,7 +55,7 @@ namespace Wooli.Feature.Account.Controllers
         [ActionName("signin")]
         public ActionResult SignIn(UserLoginModel userLogin, string returnUrl)
         {
-            bool userLoginResult = LoginUser(userLogin, out CommerceUserModel commerceUserModel);
+            var userLoginResult = LoginUser(userLogin, out var commerceUserModel);
 
             if (!userLoginResult || commerceUserModel == null) return Redirect("/signin");
 
@@ -86,7 +86,7 @@ namespace Wooli.Feature.Account.Controllers
 
         private void CompleteAuthentication(CommerceUserModel commerceUser)
         {
-            string anonymousContact = visitorContext.ContactId;
+            var anonymousContact = visitorContext.ContactId;
             visitorContext.CurrentUser = commerceUser;
 
             cartRepository.MergeCarts(anonymousContact);
@@ -96,7 +96,7 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool ValidateUser(UserLoginModel userLogin)
         {
-            string userName = Membership.GetUserNameByEmail(userLogin.Email);
+            var userName = Membership.GetUserNameByEmail(userLogin.Email);
             if (!string.IsNullOrWhiteSpace(userName)) return Membership.ValidateUser(userName, userLogin.Password);
 
             return false;
@@ -105,7 +105,7 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool LoginUser(UserLoginModel userLogin, out CommerceUserModel commerceUser)
         {
-            string userName = Membership.GetUserNameByEmail(userLogin.Email);
+            var userName = Membership.GetUserNameByEmail(userLogin.Email);
             if (string.IsNullOrWhiteSpace(userName))
             {
                 commerceUser = null;

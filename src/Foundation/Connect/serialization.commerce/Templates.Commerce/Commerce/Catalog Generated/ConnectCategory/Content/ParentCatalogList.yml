@@ -1,6 +1,6 @@
 ﻿---
 ID: "66ccfa57-93e4-8211-b7ce-c2666f167e88"
-Parent: "545f5249-5455-43dc-b912-f60c7e17df96"
+Parent: "6662bfd8-d4dd-4499-994b-a0ad0a9913bf"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCategory/Content/ParentCatalogList
 DB: master
@@ -26,12 +26,15 @@ Languages:
   - ID: "19a69332-a23e-4e70-8d16-b2640cb24cc8"
     Hint: Title
     Value: ParentCatalogList
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: ParentCatalogList
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190621T165115Z
+      Value: 20200212T094447Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

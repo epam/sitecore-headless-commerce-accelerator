@@ -1,6 +1,6 @@
 ﻿---
-ID: "697b9e8d-e2da-4f7a-b827-ee02209f07af"
-Parent: "acf5c5b4-81e6-4551-9174-45202cdceac7"
+ID: "5df5453c-54ee-4d98-91ae-4248074c0855"
+Parent: "52c23764-55ae-f760-fe2d-8dad44485bd7"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
 Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCatalog/Content
 DB: master
@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190621T165113Z
+      Value: 20200212T094444Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

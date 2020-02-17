@@ -49,7 +49,7 @@ namespace Wooli.Foundation.Connect.Managers
             var queryable =
                 GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
             if (!ID.IsNullOrEmpty(categoryId))
-                queryable = queryable.Where(x => x.CommerceAncestorIds.Contains(categoryId));
+                queryable = queryable.Where(x => x.Paths.Contains(categoryId));
 
             if (!string.IsNullOrEmpty(searchKeyword))
                 queryable = queryable.Where(item =>

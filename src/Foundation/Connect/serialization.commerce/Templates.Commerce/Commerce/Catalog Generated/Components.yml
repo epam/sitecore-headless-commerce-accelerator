@@ -1,5 +1,5 @@
 ﻿---
-ID: "9896918d-1809-4aef-af68-82ad1962add9"
+ID: "dadc2b6a-3bc0-904b-1231-17629b20c161"
 Parent: "37ab7913-7d59-47f9-8951-74e67ee2238c"
 Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
 Path: /sitecore/templates/Commerce/Catalog Generated/Components
@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190621T165116Z
+      Value: 20200212T094449Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

@@ -41,7 +41,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("submitOrder")]
         public ActionResult SubmitOrder()
         {
-            Result<SubmitOrderModel> result = checkoutRepository.SubmitOrder();
+            var result = checkoutRepository.SubmitOrder();
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -52,7 +52,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("getDeliveryData")]
         public ActionResult GetDeliveryData()
         {
-            Result<DeliveryModel> result = deliveryRepository.GetDeliveryData();
+            var result = deliveryRepository.GetDeliveryData();
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -64,7 +64,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("getBillingData")]
         public ActionResult GetBillingData()
         {
-            Result<BillingModel> result = billingRepository.GetBillingData();
+            var result = billingRepository.GetBillingData();
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -80,7 +80,7 @@ namespace Wooli.Feature.Checkout.Controllers
                 ShippingPreferenceType = "1"
             };
 
-            Result<ShippingModel> result = deliveryRepository.GetShippingMethods(shippingArgs);
+            var result = deliveryRepository.GetShippingMethods(shippingArgs);
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -91,7 +91,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("setShippingMethods")]
         public ActionResult SetShippingMethods(SetShippingArgs args)
         {
-            Result<SetShippingModel> result = deliveryRepository.SetShippingMethods(args);
+            var result = deliveryRepository.SetShippingMethods(args);
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -102,7 +102,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("setPaymentMethods")]
         public ActionResult SetPaymentMethods(SetPaymentArgs paymentArgs)
         {
-            Result<VoidResult> result = billingRepository.SetPaymentMethods(paymentArgs);
+            var result = billingRepository.SetPaymentMethods(paymentArgs);
 
             if (result.Success) return this.JsonOk(result.Data);
 

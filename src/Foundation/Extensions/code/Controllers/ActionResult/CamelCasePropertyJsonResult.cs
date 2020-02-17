@@ -38,7 +38,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
 
             if (Data == null) return;
 
-            HttpResponseBase response = context.HttpContext.Response;
+            var response = context.HttpContext.Response;
 
             if (ContentEncoding != null) response.ContentEncoding = ContentEncoding;
 

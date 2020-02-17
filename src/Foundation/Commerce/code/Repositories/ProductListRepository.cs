@@ -84,28 +84,28 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var model = new ProductListResultModel();
 
-            Item specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
+            var specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
                 ? Sitecore.Context.Database.GetItem(currentCatalogItemId)
                 : null;
-            Item currentCatalogItem = specifiedCatalogItem ?? storefrontContext.CurrentCatalog.Item;
+            var currentCatalogItem = specifiedCatalogItem ?? storefrontContext.CurrentCatalog.Item;
             model.CurrentCatalogItemId = currentCatalogItem.ID.Guid.ToString("D");
 
             // var currentItem = Sitecore.Context.Database.GetItem(currentItemId);
 
             // this.siteContext.CurrentCategoryItem = currentCatalogItem;
             // this.siteContext.CurrentItem = currentItem;
-            CategorySearchInformation searchInformation =
+            var searchInformation =
                 searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
             GetSortParameters(searchInformation, ref sortField, ref sortDirection);
 
-            int itemsPerPage = settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
+            var itemsPerPage = settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
             var commerceSearchOptions = new CommerceSearchOptions(itemsPerPage, pageNumber.GetValueOrDefault(0));
 
             UpdateOptionsWithFacets(searchInformation.RequiredFacets, facetValues, commerceSearchOptions);
             UpdateOptionsWithSorting(sortField, sortDirection, commerceSearchOptions);
 
-            SearchResults childProducts = GetChildProducts(searchKeyword, commerceSearchOptions, specifiedCatalogItem);
-            IList<ProductModel> productEntityList =
+            var childProducts = GetChildProducts(searchKeyword, commerceSearchOptions, specifiedCatalogItem);
+            var productEntityList =
                 AdjustProductPriceAndStockStatus(visitorContext, childProducts, currentCatalogItem);
 
             model.Initialize(commerceSearchOptions, childProducts, productEntityList);
@@ -124,9 +124,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             if (searchInformation.SortFields == null || !searchInformation.SortFields.Any()) return;
 
             var sortOptions = new List<SortOptionModel>();
-            foreach (CommerceQuerySort sortField in searchInformation.SortFields)
+            foreach (var sortField in searchInformation.SortFields)
             {
-                bool isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
+                var isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
 
                 var sortOptionAsc = new SortOptionModel
                 {
@@ -157,7 +157,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         protected SearchResults GetChildProducts(string searchKeyword, CommerceSearchOptions searchOptions,
             Item categoryItem)
         {
-            SearchResults searchResults = searchManager.GetProducts(storefrontContext.CatalogName, categoryItem?.ID,
+            var searchResults = searchManager.GetProducts(storefrontContext.CatalogName, categoryItem?.ID,
                 searchOptions, searchKeyword);
 
             return searchResults;
@@ -171,7 +171,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             if (searchResult.SearchResultItems != null && searchResult.SearchResultItems.Count > 0)
             {
-                foreach (Item searchResultItem in searchResult.SearchResultItems)
+                foreach (var searchResultItem in searchResult.SearchResultItems)
                 {
                     var variants = new List<Variant>();
                     var product = new Product(searchResultItem, variants);
@@ -182,7 +182,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
                 CatalogManager.GetProductBulkPrices(products);
                 //this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
-                foreach (Product product in products)
+                foreach (var product in products)
                 {
                     var productModel = new ProductModel();
                     var commerceProductModel = SitecoreContext.Cast<ICommerceProductModel>(product.Item);
@@ -204,7 +204,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             if (!string.IsNullOrWhiteSpace(sortField)) return;
 
-            IList<CommerceQuerySort> sortFields = categorySearchInformation.SortFields;
+            var sortFields = categorySearchInformation.SortFields;
             if (sortFields == null || sortFields.Count <= 0) return;
 
             sortField = sortFields[0].Name;
@@ -219,12 +219,12 @@ namespace Wooli.Foundation.Commerce.Repositories
             if (valueQuery != null)
                 foreach (string name in valueQuery)
                 {
-                    CommerceQueryFacet commerceQueryFacet = facets.FirstOrDefault(item =>
+                    var commerceQueryFacet = facets.FirstOrDefault(item =>
                         item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
                     if (commerceQueryFacet != null)
                     {
-                        string facetValues = valueQuery[name];
-                        foreach (string facetValue in facetValues.Split('|')) commerceQueryFacet.Values.Add(facetValue);
+                        var facetValues = valueQuery[name];
+                        foreach (var facetValue in facetValues.Split('|')) commerceQueryFacet.Values.Add(facetValue);
                     }
                 }
 

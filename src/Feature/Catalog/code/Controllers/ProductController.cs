@@ -61,11 +61,11 @@ namespace Wooli.Feature.Catalog.Controllers
             [FromUri(Name = "cci")] string currentCatalogItemId = null,
             [FromUri(Name = "ci")] string currentItemId = null)
         {
-            NameValueCollection facetValuesCollection = !string.IsNullOrEmpty(facetValues)
+            var facetValuesCollection = !string.IsNullOrEmpty(facetValues)
                 ? HttpUtility.ParseQueryString(facetValues)
                 : new NameValueCollection();
 
-            ProductListResultModel model = productListRepository.GetProductList(visitorContext, currentItemId,
+            var model = productListRepository.GetProductList(visitorContext, currentItemId,
                 currentCatalogItemId, searchKeyword, page, facetValuesCollection, sortField, pageSize, sortDirection);
 
             return this.JsonOk(model);
@@ -74,7 +74,7 @@ namespace Wooli.Feature.Catalog.Controllers
         [Route("get/{id}")]
         public IHttpActionResult Get(string id)
         {
-            ProductModel productModel = catalogRepository.GetProduct(id);
+            var productModel = catalogRepository.GetProduct(id);
             if (productModel == null) return this.JsonError("Not Found", HttpStatusCode.NotFound);
 
             return this.JsonOk(productModel);

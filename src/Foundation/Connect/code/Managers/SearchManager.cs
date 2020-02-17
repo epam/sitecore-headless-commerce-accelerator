@@ -46,10 +46,10 @@ namespace Wooli.Foundation.Connect.Managers
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
 
-            IQueryable<CommerceSellableItemSearchResultItem> queryable =
+            var queryable =
                 GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
             if (!ID.IsNullOrEmpty(categoryId))
-                queryable = queryable.Where(x => x.CommerceAncestorIds.Contains(categoryId));
+                queryable = queryable.Where(x => x.Paths.Contains(categoryId));
 
             if (!string.IsNullOrEmpty(searchKeyword))
                 queryable = queryable.Where(item =>
@@ -57,7 +57,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
 
-            SearchResults<CommerceSellableItemSearchResultItem> results = queryable.GetResults();
+            var results = queryable.GetResults();
 
             var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
             if (searchResultsItems != null)
@@ -87,7 +87,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            CommerceSellableItemSearchResultItem searchResultItem =
+            var searchResultItem =
                 GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
                     .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
 
@@ -103,7 +103,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            CommerceSellableItemSearchResultItem searchResultItem =
+            var searchResultItem =
                 GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
                     .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
 
@@ -129,10 +129,10 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(searchItemType, nameof(searchItemType));
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            using (IProviderSearchContext searchContext =
+            using (var searchContext =
                 commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
             {
-                IQueryable<CommerceSellableItemSearchResultItem> searchResultItems = searchContext
+                var searchResultItems = searchContext
                     .GetQueryable<CommerceSellableItemSearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == searchItemType)
                     .Where(item => item.Language == Context.Language.Name);

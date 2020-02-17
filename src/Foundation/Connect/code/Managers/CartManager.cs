@@ -63,12 +63,12 @@ namespace Wooli.Foundation.Connect.Managers
 
             var cartLineList = new List<CartLine>();
 
-            foreach (CartLineArgument cartLine in cartLines)
+            foreach (var cartLine in cartLines)
             {
                 Assert.ArgumentNotNullOrEmpty(cartLine.ProductId, "inputModel.ProductId");
                 Assert.ArgumentNotNullOrEmpty(cartLine.CatalogName, "inputModel.CatalogName");
                 Assert.ArgumentNotNull(cartLine.Quantity, "inputModel.Quantity");
-                decimal quantity = cartLine.Quantity;
+                var quantity = cartLine.Quantity;
 
                 var commerceCartLine = new CommerceCartLine(cartLine.CatalogName, cartLine.ProductId,
                     cartLine.VariantId == "-1" ? null : cartLine.VariantId, quantity);
@@ -76,7 +76,7 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             var request = new AddCartLinesRequest(cart, cartLineList);
-            CartResult cartResult = cartServiceProvider.AddCartLines(request);
+            var cartResult = cartServiceProvider.AddCartLines(request);
             if (!cartResult.Success) cartResult.SystemMessages.LogSystemMessages(cartResult);
 
             return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
@@ -89,12 +89,12 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNull(cartLines, nameof(cartLines));
 
             var cartLineList = new List<CartLine>();
-            foreach (CartLineArgument cartLine in cartLines)
+            foreach (var cartLine in cartLines)
             {
                 Assert.ArgumentNotNullOrEmpty(cartLine.ProductId, "inputModel.ProductId");
                 Assert.ArgumentNotNullOrEmpty(cartLine.CatalogName, "inputModel.CatalogName");
                 Assert.ArgumentNotNull(cartLine.Quantity, "inputModel.Quantity");
-                decimal quantity = cartLine.Quantity;
+                var quantity = cartLine.Quantity;
 
                 bool Selector(CartLine x)
                 {
@@ -104,15 +104,15 @@ namespace Wooli.Foundation.Connect.Managers
                            product.ProductCatalog == cartLine.CatalogName;
                 }
 
-                CartLine commerceCartLine = cart.Lines.FirstOrDefault(Selector)
-                                            ?? new CommerceCartLine(cartLine.CatalogName, cartLine.ProductId,
-                                                cartLine.VariantId == "-1" ? null : cartLine.VariantId, quantity);
+                var commerceCartLine = cart.Lines.FirstOrDefault(Selector)
+                                       ?? new CommerceCartLine(cartLine.CatalogName, cartLine.ProductId,
+                                           cartLine.VariantId == "-1" ? null : cartLine.VariantId, quantity);
                 commerceCartLine.Quantity = quantity;
                 cartLineList.Add(commerceCartLine);
             }
 
             var request = new UpdateCartLinesRequest(cart, cartLineList);
-            CartResult updateCartResult = cartServiceProvider.UpdateCartLines(request);
+            var updateCartResult = cartServiceProvider.UpdateCartLines(request);
             if (!updateCartResult.Success) updateCartResult.SystemMessages.LogSystemMessages(this);
 
             return new ManagerResponse<CartResult, Cart>(updateCartResult, updateCartResult.Cart);
@@ -125,14 +125,14 @@ namespace Wooli.Foundation.Connect.Managers
 
             var cartLineList = new List<CartLine>();
 
-            foreach (string cartLineId in cartLineIds)
+            foreach (var cartLineId in cartLineIds)
             {
-                CartLine cartLine = cart.Lines.FirstOrDefault(line => line.ExternalCartLineId == cartLineId);
+                var cartLine = cart.Lines.FirstOrDefault(line => line.ExternalCartLineId == cartLineId);
                 cartLineList.Add(cartLine);
             }
 
             var request = new RemoveCartLinesRequest(cart, cartLineList);
-            CartResult serviceProviderResult = cartServiceProvider.RemoveCartLines(request);
+            var serviceProviderResult = cartServiceProvider.RemoveCartLines(request);
             return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
         }
 
@@ -140,7 +140,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
 
-            CartResult cartResult = cartServiceProvider.LoadCart(request);
+            var cartResult = cartServiceProvider.LoadCart(request);
             var stringList = new List<string>();
 
             if (cartResult.Cart is CommerceCart cart && cart.OrderForms.Count > 0)
@@ -154,7 +154,7 @@ namespace Wooli.Foundation.Connect.Managers
         public ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId)
         {
             var request = new CreateOrResumeCartRequest(shopName, userId, Constants.DefaultCartName, customerId);
-            CartResult cartResult = cartServiceProvider.CreateOrResumeCart(request);
+            var cartResult = cartServiceProvider.CreateOrResumeCart(request);
 
             return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
         }
@@ -164,7 +164,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             Assert.ArgumentNotNullOrEmpty(anonymousVisitorId, "anonymousVisitorId");
             var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
-            CartResult cartResult = cartServiceProvider.LoadCart(request);
+            var cartResult = cartServiceProvider.LoadCart(request);
 
             if (!cartResult.Success || cartResult.Cart == null)
             {
@@ -180,8 +180,8 @@ namespace Wooli.Foundation.Connect.Managers
             };
             if (customerId != anonymousVisitorId)
             {
-                bool flag = anonymousVisitorCart is CommerceCart &&
-                            ((CommerceCart) anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
+                var flag = anonymousVisitorCart is CommerceCart &&
+                           ((CommerceCart) anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
                 if (anonymousVisitorCart != null && anonymousVisitorCart.Lines.Any() | flag &&
                     (commerceCart.ShopName == anonymousVisitorCart.ShopName ||
                      commerceCart.ExternalId != anonymousVisitorCart.ExternalId))
@@ -196,7 +196,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var commerceCart = (CommerceCart) cart;
             var request = new AddPromoCodeRequest(commerceCart, promoCode);
-            AddPromoCodeResult result = cartServiceProvider.AddPromoCode(request);
+            var result = cartServiceProvider.AddPromoCode(request);
 
             return new ManagerResponse<AddPromoCodeResult, Cart>(result, result.Cart);
         }
@@ -204,7 +204,7 @@ namespace Wooli.Foundation.Connect.Managers
         public ManagerResponse<CartResult, Cart> UpdateCart(string shopName, Cart currentCart, CartBase cartUpdate)
         {
             var request = new UpdateCartRequest(currentCart, cartUpdate);
-            CartResult serviceProviderResult = cartServiceProvider.UpdateCart(request);
+            var serviceProviderResult = cartServiceProvider.UpdateCart(request);
             return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
         }
 
@@ -217,13 +217,13 @@ namespace Wooli.Foundation.Connect.Managers
             if (federatedPaymentArgs != null && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken) &&
                 billingPartyEntity != null)
             {
-                CommerceParty commerceParty = connectEntityMapper.MapToCommerceParty(billingPartyEntity);
+                var commerceParty = connectEntityMapper.MapToCommerceParty(billingPartyEntity);
                 commerceParty.PartyId = Guid.NewGuid().ToString().Replace("-", string.Empty);
                 commerceParty.ExternalId = commerceParty.PartyId;
                 if (string.IsNullOrWhiteSpace(commerceParty.Name))
                     commerceParty.Name = $"billing{commerceParty.PartyId}";
                 cart.Parties.Add(commerceParty);
-                FederatedPaymentInfo federatedPaymentInfo =
+                var federatedPaymentInfo =
                     connectEntityMapper.MapToFederatedPaymentInfo(federatedPaymentArgs);
                 federatedPaymentInfo.PartyID = commerceParty.PartyId;
                 federatedPaymentInfo.Amount = cart.Total.Amount;
@@ -231,7 +231,7 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             var request = new AddPaymentInfoRequest(cart, payments);
-            AddPaymentInfoResult paymentInfoResult = cartServiceProvider.AddPaymentInfo(request);
+            var paymentInfoResult = cartServiceProvider.AddPaymentInfo(request);
             if (!paymentInfoResult.Success) paymentInfoResult.SystemMessages.LogSystemMessages(paymentInfoResult);
 
             return new ManagerResponse<AddPaymentInfoResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
@@ -248,24 +248,24 @@ namespace Wooli.Foundation.Connect.Managers
 
             if (partyEntityList != null && partyEntityList.Any())
             {
-                List<Party> cartParties = cart.Parties.ToList();
-                IList<CommerceParty> commercePartyList = connectEntityMapper.MapToCommercePartyList(partyEntityList);
+                var cartParties = cart.Parties.ToList();
+                var commercePartyList = connectEntityMapper.MapToCommercePartyList(partyEntityList);
                 cartParties.AddRange(commercePartyList);
                 cart.Parties = cartParties;
             }
 
             if (shippingOptionType != ShippingOptionType.DeliverItemsIndividually)
-                foreach (ShippingInfoArgument shippingInfo in shippingInfoList)
+                foreach (var shippingInfo in shippingInfoList)
                     shippingInfo.LineIds = cart.Lines.Select(lineItem => lineItem.ExternalCartLineId).ToList();
 
             var shippings = new List<ShippingInfo>();
 
-            foreach (ShippingInfoArgument shippingInfo in shippingInfoList)
+            foreach (var shippingInfo in shippingInfoList)
                 shippings.Add(connectEntityMapper.MapToCommerceShippingInfo(shippingInfo));
 
             var addShippingInfoRequest = new AddShippingInfoRequest(cart, shippings, shippingOptionType);
 
-            AddShippingInfoResult shippingInfoResult = cartServiceProvider.AddShippingInfo(addShippingInfoRequest);
+            var shippingInfoResult = cartServiceProvider.AddShippingInfo(addShippingInfoRequest);
 
             if (!shippingInfoResult.Success) shippingInfoResult.SystemMessages.LogSystemMessages(this);
 
@@ -312,12 +312,12 @@ namespace Wooli.Foundation.Connect.Managers
         {
             if (cart.Shipping != null && cart.Shipping.Any())
             {
-                List<Party> list = cart.Parties.ToList();
+                var list = cart.Parties.ToList();
 
-                foreach (ShippingInfo shippingInfo in cart.Shipping)
+                foreach (var shippingInfo in cart.Shipping)
                 {
-                    ShippingInfo shipment = shippingInfo;
-                    Party party = list.Find(
+                    var shipment = shippingInfo;
+                    var party = list.Find(
                         cp => cp.PartyId.Equals(shipment.PartyID, StringComparison.OrdinalIgnoreCase));
                     if (party != null) list.Remove(party);
                 }

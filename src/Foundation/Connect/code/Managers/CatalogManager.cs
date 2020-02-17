@@ -45,13 +45,13 @@ namespace Wooli.Foundation.Connect.Managers
                 return new ManagerResponse<GetProductBulkPricesResult, bool>(new GetProductBulkPricesResult(), true);
 
             var catalogName = products.Select(p => p.CatalogName).First().ToString();
-            IEnumerable<string> productIds = products.Select(p => p.ProductId);
-            ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>> productBulkPrices =
+            var productIds = products.Select(p => p.ProductId);
+            var productBulkPrices =
                 pricingManager.GetProductBulkPrices(catalogName, productIds, null);
-            IDictionary<string, Price> source = productBulkPrices == null || productBulkPrices.Result == null
+            var source = productBulkPrices == null || productBulkPrices.Result == null
                 ? new Dictionary<string, Price>()
                 : productBulkPrices.Result;
-            foreach (Product product in products)
+            foreach (var product in products)
             {
                 Price price;
                 if (source.Any() && source.TryGetValue(product.ProductId, out price))
@@ -71,13 +71,13 @@ namespace Wooli.Foundation.Connect.Managers
             if (product == null)
                 return;
 
-            bool includeVariants = product.Variants != null && product.Variants.Count > 0;
-            ManagerResponse<GetProductPricesResult, IDictionary<string, Price>> productPrices =
+            var includeVariants = product.Variants != null && product.Variants.Count > 0;
+            var productPrices =
                 pricingManager.GetProductPrices(product.CatalogName, product.ProductId, includeVariants, null);
             if (productPrices == null || !productPrices.ServiceProviderResult.Success || productPrices.Result == null)
                 return;
 
-            if (productPrices.Result.TryGetValue(product.ProductId, out Price price))
+            if (productPrices.Result.TryGetValue(product.ProductId, out var price))
             {
                 var commercePrice = (CommercePrice) price;
                 product.CurrencyCode = price.CurrencyCode;
@@ -88,7 +88,7 @@ namespace Wooli.Foundation.Connect.Managers
             if (!includeVariants)
                 return;
 
-            foreach (Variant variant in product.Variants)
+            foreach (var variant in product.Variants)
                 if (productPrices.Result.TryGetValue(variant.VariantId, out price))
                 {
                     var commercePrice = (CommercePrice) price;
@@ -100,7 +100,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         public decimal? GetProductRating(Item productItem)
         {
-            if (decimal.TryParse(productItem["Rating"], out decimal result)) return result;
+            if (decimal.TryParse(productItem["Rating"], out var result)) return result;
 
             return null;
         }
@@ -119,7 +119,7 @@ namespace Wooli.Foundation.Connect.Managers
             };
 
             if (product.Variants != null)
-                foreach (Variant productVariant in product.Variants)
+                foreach (var productVariant in product.Variants)
                     inventortyProducts.Add(new CommerceInventoryProduct
                     {
                         CatalogName = product.CatalogName,
@@ -127,19 +127,19 @@ namespace Wooli.Foundation.Connect.Managers
                         VariantId = productVariant.VariantId
                     });
 
-            ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> stockInformationResponse =
+            var stockInformationResponse =
                 inventoryManager.GetStockInformation(shopName, inventortyProducts,
                     StockDetailsLevel.StatusAndAvailability);
             if (!stockInformationResponse.ServiceProviderResult.Success ||
                 stockInformationResponse.Result == null) return;
 
-            IEnumerable<StockInformation> stockInformationItems = stockInformationResponse.Result;
-            foreach (StockInformation stockInformationItem in stockInformationItems)
+            var stockInformationItems = stockInformationResponse.Result;
+            foreach (var stockInformationItem in stockInformationItems)
             {
                 if (stockInformationItem == null || stockInformationItem.Status == null) return;
 
                 var commerceInvertaryProduct = stockInformationItem.Product as CommerceInventoryProduct;
-                string variantId = commerceInvertaryProduct?.VariantId;
+                var variantId = commerceInvertaryProduct?.VariantId;
                 if (string.IsNullOrEmpty(variantId))
                 {
                     product.StockStatus = stockInformationItem.Status;
@@ -147,7 +147,7 @@ namespace Wooli.Foundation.Connect.Managers
                 }
                 else
                 {
-                    Variant variant = product.Variants?.FirstOrDefault(x => x.VariantId == variantId);
+                    var variant = product.Variants?.FirstOrDefault(x => x.VariantId == variantId);
                     if (variant != null)
                     {
                         variant.StockStatus = stockInformationItem.Status;

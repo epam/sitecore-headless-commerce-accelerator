@@ -29,13 +29,13 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 
         public override void Process(HttpRequestArgs args)
         {
-            Uri requestUrl = args.HttpContext.Request.Url;
+            var requestUrl = args.HttpContext.Request.Url;
             if (requestUrl == null || requestUrl.AbsolutePath.StartsWith("/sitecore")) return;
 
             if (Sitecore.Context.Item == null) return;
 
-            Item currentItem = Sitecore.Context.Item;
-            string[] urlSegments = requestUrl.Segments;
+            var currentItem = Sitecore.Context.Item;
+            var urlSegments = requestUrl.Segments;
 
             catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
         }

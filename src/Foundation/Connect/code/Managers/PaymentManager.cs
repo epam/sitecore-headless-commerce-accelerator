@@ -43,7 +43,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var request = new GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
 
-            GetPaymentMethodsResult paymentMethods = paymentServiceProvider.GetPaymentMethods(request);
+            var paymentMethods = paymentServiceProvider.GetPaymentMethods(request);
             return new ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>>(paymentMethods,
                 paymentMethods.PaymentMethods.ToList());
         }
@@ -52,7 +52,7 @@ namespace Wooli.Foundation.Connect.Managers
             Cart cart)
         {
             var request = new GetPaymentOptionsRequest(shopName, cart);
-            GetPaymentOptionsResult paymentOptions = paymentServiceProvider.GetPaymentOptions(request);
+            var paymentOptions = paymentServiceProvider.GetPaymentOptions(request);
             return new ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>>(paymentOptions,
                 paymentOptions.PaymentOptions.ToList());
         }
@@ -60,7 +60,7 @@ namespace Wooli.Foundation.Connect.Managers
         public ManagerResponse<ServiceProviderResult, string> GetPaymentClientToken()
         {
             var request = new ServiceProviderRequest();
-            PaymentClientTokenResult clientTokenResult =
+            var clientTokenResult =
                 paymentServiceProvider.RunPipeline<ServiceProviderRequest, PaymentClientTokenResult>(
                     "commerce.payments.getClientToken", request);
             return new ManagerResponse<ServiceProviderResult, string>(clientTokenResult, clientTokenResult.ClientToken);

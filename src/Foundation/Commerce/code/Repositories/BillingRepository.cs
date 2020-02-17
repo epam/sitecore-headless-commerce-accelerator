@@ -64,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 try
                 {
                     result.SetResult(model);
-                    ManagerResponse<CartResult, Cart> currentCart =
+                    var currentCart =
                         CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
                     if (!currentCart.ServiceProviderResult.Success)
                     {
@@ -72,7 +72,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                         return result;
                     }
 
-                    Cart cartResult = currentCart.Result;
+                    var cartResult = currentCart.Result;
                     if (cartResult.Lines != null && cartResult.Lines.Any())
                     {
                         ////result.Initialize(result, visitorContext);
@@ -113,7 +113,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             try
             {
                 result.SetResult(model);
-                ManagerResponse<CartResult, Cart> currentCart =
+                var currentCart =
                     CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
@@ -121,7 +121,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                ManagerResponse<CartResult, Cart> updateCartResponse = CartManager.UpdateCart(
+                var updateCartResponse = CartManager.UpdateCart(
                     StorefrontContext.ShopName,
                     currentCart.Result,
                     new CartBase
@@ -138,11 +138,11 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                PartyEntity billingParty = EntityMapper.MapToPartyEntity(args.BillingAddress);
-                FederatedPaymentArgs federatedPaymentArgs =
+                var billingParty = EntityMapper.MapToPartyEntity(args.BillingAddress);
+                var federatedPaymentArgs =
                     EntityMapper.MapToFederatedPaymentArgs(args.FederatedPayment);
 
-                ManagerResponse<AddPaymentInfoResult, Cart> paymentInfoResponse = CartManager.AddPaymentInfo(
+                var paymentInfoResponse = CartManager.AddPaymentInfo(
                     StorefrontContext.ShopName,
                     updateCartResponse.Result,
                     billingParty,
@@ -164,13 +164,13 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected virtual void AddPaymentOptions(Result<BillingModel> result, Cart cart)
         {
-            ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> paymentOptions =
+            var paymentOptions =
                 PaymentManager.GetPaymentOptions(StorefrontContext.ShopName, cart);
 
             if (paymentOptions.ServiceProviderResult.Success && paymentOptions.Result != null)
             {
                 result.Data.PaymentOptions = new List<PaymentOptionModel>();
-                foreach (PaymentOption paymentOption in paymentOptions.Result)
+                foreach (var paymentOption in paymentOptions.Result)
                 {
                     var model = new PaymentOptionModel
                     {
@@ -195,13 +195,13 @@ namespace Wooli.Foundation.Commerce.Repositories
                 PaymentOptionType = PaymentOptionType.PayCard
             };
 
-            ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>> paymentMethods =
+            var paymentMethods =
                 PaymentManager.GetPaymentMethods(cart, paymentOption);
 
             if (paymentMethods.ServiceProviderResult.Success && paymentMethods.Result != null)
             {
                 result.Data.PaymentMethods = new List<PaymentMethodModel>();
-                foreach (PaymentMethod paymentMethod in paymentMethods.Result)
+                foreach (var paymentMethod in paymentMethods.Result)
                 {
                     var model = new PaymentMethodModel();
                     model.Description = paymentMethod.Description;
@@ -217,7 +217,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected virtual void AddPaymentClientToken(Result<BillingModel> result)
         {
-            ManagerResponse<ServiceProviderResult, string> paymentClientToken = PaymentManager.GetPaymentClientToken();
+            var paymentClientToken = PaymentManager.GetPaymentClientToken();
             if (paymentClientToken.ServiceProviderResult.Success)
                 result.Data.PaymentClientToken = paymentClientToken.Result;
             result.SetErrors(paymentClientToken.ServiceProviderResult);

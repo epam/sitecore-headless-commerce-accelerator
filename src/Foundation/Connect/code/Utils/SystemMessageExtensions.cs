@@ -23,11 +23,11 @@ namespace Wooli.Foundation.Connect.Utils
     {
         public static void LogSystemMessages(this IEnumerable<SystemMessage> messages, object owner)
         {
-            IList<SystemMessage> source = messages as IList<SystemMessage> ?? messages.ToList();
+            var source = messages as IList<SystemMessage> ?? messages.ToList();
 
             if (!source.Any()) return;
 
-            foreach (SystemMessage systemMessage in source) Log.Error(systemMessage.Message, owner);
+            foreach (var systemMessage in source) Log.Error(systemMessage.Message, owner);
         }
     }
 }

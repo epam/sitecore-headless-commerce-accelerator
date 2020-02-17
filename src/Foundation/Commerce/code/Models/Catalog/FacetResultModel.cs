@@ -40,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
             Values = commerceQueryFacet.Values;
 
             var foundValues = new List<FacetValueResultModel>();
-            foreach (FacetValue facetValue in commerceQueryFacet.FoundValues)
+            foreach (var facetValue in commerceQueryFacet.FoundValues)
             {
                 var facetValueResultModel = new FacetValueResultModel();
                 facetValueResultModel.Initialize(facetValue);

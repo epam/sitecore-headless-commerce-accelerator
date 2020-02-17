@@ -29,8 +29,8 @@ namespace Wooli.Foundation.DependencyInjection.Tests
         {
             IServiceCollection serviceCollection = new ServiceCollection();
 
-            Type simpleTestClassType = typeof(AddByWildcardTestClasses.SimpleTestClass);
-            Type anotherSimpleTestClassType = typeof(AddByWildcardTestClasses.AnotherSimpleTestClass);
+            var simpleTestClassType = typeof(AddByWildcardTestClasses.SimpleTestClass);
+            var anotherSimpleTestClassType = typeof(AddByWildcardTestClasses.AnotherSimpleTestClass);
 
             var assembly = Substitute.For<FakeAssembly>();
             assembly.ExportedTypes.Returns(new[] {simpleTestClassType, anotherSimpleTestClassType});
@@ -79,10 +79,10 @@ namespace Wooli.Foundation.DependencyInjection.Tests
         {
             IServiceCollection serviceCollection = new ServiceCollection();
 
-            Type interfaceType = typeof(AddClassesWithServiceAttributeTestClasses.InterfaceClass);
-            Type implementationType = typeof(AddClassesWithServiceAttributeTestClasses.ImplementationClass);
+            var interfaceType = typeof(AddClassesWithServiceAttributeTestClasses.InterfaceClass);
+            var implementationType = typeof(AddClassesWithServiceAttributeTestClasses.ImplementationClass);
 
-            Type selfRegistratingType = typeof(AddClassesWithServiceAttributeTestClasses.SelfRegistratingClass);
+            var selfRegistratingType = typeof(AddClassesWithServiceAttributeTestClasses.SelfRegistratingClass);
 
             var assembly = Substitute.For<FakeAssembly>();
             assembly.ExportedTypes.Returns(new[] {interfaceType, implementationType, selfRegistratingType});

@@ -89,25 +89,25 @@ namespace Wooli.Foundation.Extensions.Extensions
             Assert.ArgumentNotNull(resultFunc, nameof(resultFunc));
 
             // Extracting default configuration from controller
-            HttpConfiguration configuration = controller.Configuration;
+            var configuration = controller.Configuration;
             if (configuration == null)
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} configuration must not be null.");
 
-            IContentNegotiator contentNegotiator = configuration.Services.GetContentNegotiator();
+            var contentNegotiator = configuration.Services.GetContentNegotiator();
             if (contentNegotiator == null)
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} do not have a content configuration.");
 
-            HttpRequestMessage request = controller.Request;
+            var request = controller.Request;
             if (request == null)
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} request must not be null.");
 
             // Modifying custom configuration
-            JsonMediaTypeFormatter defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
+            var defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
             IList<MediaTypeFormatter> formatters = configuration.Formatters.ToList();
-            int indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
+            var indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
             formatters[indexOfJsonMediaTypeFormatter] = JsonMediaTypeFormatter;
 
             return resultFunc(contentNegotiator, request, formatters);

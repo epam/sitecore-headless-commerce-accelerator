@@ -59,7 +59,7 @@ namespace Wooli.Foundation.Commerce.Context
                 Items[CurrentItemKey] = value;
                 if (value != null)
                 {
-                    Constants.ItemType itemType = ItemTypeProvider.ResolveByItem(value);
+                    var itemType = ItemTypeProvider.ResolveByItem(value);
                     Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
                     Items[IsProductKey] = itemType == Constants.ItemType.Product;
                 }

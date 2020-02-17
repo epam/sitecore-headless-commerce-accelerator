@@ -85,9 +85,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             renderingModel.StockStatusName = product.StockStatusName;
             renderingModel.CustomerAverageRating = product.CustomerAverageRating;
 
-            foreach (ProductVariantModel renderingModelVariant in renderingModel.Variants)
+            foreach (var renderingModelVariant in renderingModel.Variants)
             {
-                Variant variant =
+                var variant =
                     product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
                 if (variant == null) continue;
 

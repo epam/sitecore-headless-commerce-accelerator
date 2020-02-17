@@ -27,19 +27,19 @@ namespace Wooli.Foundation.ReactJss.Serialization
 
         public override void WritePropertyName(string name)
         {
-            string newName = FormatPropertyName(name);
+            var newName = FormatPropertyName(name);
             base.WritePropertyName(newName);
         }
 
         public override void WritePropertyName(string name, bool escape)
         {
-            string newName = FormatPropertyName(name);
+            var newName = FormatPropertyName(name);
             base.WritePropertyName(newName, escape);
         }
 
         private string FormatPropertyName(string originalValue)
         {
-            string result = StringHelper.ConvertToCamelCase(originalValue);
+            var result = StringHelper.ConvertToCamelCase(originalValue);
             return result;
         }
     }

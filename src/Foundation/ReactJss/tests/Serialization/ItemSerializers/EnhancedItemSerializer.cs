@@ -36,14 +36,14 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
                 .Returns(fieldSerializer);
 
 
-            using (Db db =
+            using (var db =
                 new Db {new DbItem("dataSource") {{"field", "value1"}, {"Text Field", "value2"}}}.WithLanguages(
                     Language.Parse("en")))
             {
-                Item item = db.GetItem("sitecore/content/dataSource");
+                var item = db.GetItem("sitecore/content/dataSource");
                 var serializer = new EnhancedItemSerializer(getFieldSerializerPipeline);
 
-                string jsonString = serializer.Serialize(db.GetItem(item.ID));
+                var jsonString = serializer.Serialize(db.GetItem(item.ID));
 
                 dynamic jsonObject = JsonConvert.DeserializeObject(jsonString);
 

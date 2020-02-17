@@ -54,9 +54,9 @@ namespace Wooli.Foundation.Connect.Managers
                 DateTime = DateTime.UtcNow
             };
 
-            GetProductBulkPricesResult productBulkPrices =
+            var productBulkPrices =
                 pricingServiceProvider.GetProductBulkPrices(bulkPricesRequest);
-            IDictionary<string, Price> result = productBulkPrices.Prices ?? new Dictionary<string, Price>();
+            var result = productBulkPrices.Prices ?? new Dictionary<string, Price>();
             return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(productBulkPrices,
                 result);
         }
@@ -73,7 +73,7 @@ namespace Wooli.Foundation.Connect.Managers
                     IncludeVariantPrices = includeVariants
                 };
 
-            GetProductPricesResult serviceProviderResult = pricingServiceProvider.GetProductPrices(pricesRequest);
+            var serviceProviderResult = pricingServiceProvider.GetProductPrices(pricesRequest);
 
             return new ManagerResponse<GetProductPricesResult, IDictionary<string, Price>>(serviceProviderResult,
                 serviceProviderResult.Prices ?? new Dictionary<string, Price>());

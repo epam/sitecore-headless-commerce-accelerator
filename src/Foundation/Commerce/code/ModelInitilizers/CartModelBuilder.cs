@@ -86,7 +86,7 @@ namespace Wooli.Foundation.Commerce.ModelInitilizers
 
             var commerceCartProduct = model.Product as CommerceCartProduct;
 
-            ProductModel product = catalogRepository.GetProduct(model.Product.ProductId);
+            var product = catalogRepository.GetProduct(model.Product.ProductId);
             result.Product = product;
             result.Variant =
                 product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);

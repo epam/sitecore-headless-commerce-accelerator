@@ -35,13 +35,13 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            string productColorMappingQuery =
+            var productColorMappingQuery =
                 $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
             var productColorMapping = sitecoreContext.QuerySingle<IProductColorMappingFolder>(productColorMappingQuery);
 
             var dictionary = new Dictionary<string, string>();
             if (productColorMapping?.Mappings != null)
-                foreach (IProductColorMapping colorMapping in productColorMapping.Mappings)
+                foreach (var colorMapping in productColorMapping.Mappings)
                     dictionary.Add(colorMapping.ColorName, colorMapping.ColorHEX);
 
 

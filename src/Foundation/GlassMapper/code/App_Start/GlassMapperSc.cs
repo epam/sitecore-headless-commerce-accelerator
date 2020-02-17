@@ -44,7 +44,7 @@ namespace Wooli.Foundation.GlassMapper
         public static void Start()
         {
             //install the custom services
-            IDependencyResolver resolver = GlassMapperScCustom.CreateResolver();
+            var resolver = GlassMapperScCustom.CreateResolver();
 
             //create a context
             var context = Context.Create(resolver);

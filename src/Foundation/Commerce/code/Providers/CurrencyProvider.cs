@@ -28,10 +28,10 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             var symbolsByCodeDict = new Dictionary<string, string>();
 
-            IEnumerable<RegionInfo> regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            var regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
                 .Select(x => new RegionInfo(x.LCID));
 
-            foreach (RegionInfo region in regions)
+            foreach (var region in regions)
                 if (!symbolsByCodeDict.ContainsKey(region.ISOCurrencySymbol))
                     symbolsByCodeDict.Add(region.ISOCurrencySymbol, region.CurrencySymbol);
 

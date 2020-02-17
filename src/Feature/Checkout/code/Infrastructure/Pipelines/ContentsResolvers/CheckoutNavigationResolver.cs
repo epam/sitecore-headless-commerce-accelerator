@@ -41,11 +41,11 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
             Rendering rendering,
             IRenderingConfiguration renderingConfig)
         {
-            JObject processedItem = base.ProcessItem(item, rendering, renderingConfig);
+            var processedItem = base.ProcessItem(item, rendering, renderingConfig);
             if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId))) return processedItem;
 
             var checkoutNavigation = sitecoreContext.Cast<ICheckoutNavigation>(item);
-            IEnumerable<Guid> checkoutSteps = checkoutNavigation?.CheckoutSteps;
+            var checkoutSteps = checkoutNavigation?.CheckoutSteps;
             if (checkoutSteps == null || !checkoutSteps.Any()) return processedItem;
 
             var firstStep = sitecoreContext.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));

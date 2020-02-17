@@ -30,15 +30,3 @@ Languages:
     - ID: "a68724cc-9513-46f5-aa82-d26c0644b21d"
       Hint: Title
       Value: $name
-  - Version: 2
-    Fields:
-    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-      Hint: __Created
-      Value: 20150825T141244Z
-    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
-      Hint: __Created by
-      Value: |
-        sitecore\admin
-    - ID: "a68724cc-9513-46f5-aa82-d26c0644b21d"
-      Hint: Title
-      Value: $name

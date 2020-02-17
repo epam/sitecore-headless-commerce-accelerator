@@ -41,7 +41,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 
         public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
         {
-            IEnumerable<ICountryRegionModel> model =
+            var model =
                 storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
 
             return new {Countries = mapper.MapToCountryRegionModel(model)};

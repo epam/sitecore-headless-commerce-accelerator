@@ -33,7 +33,7 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContex
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            CommerceUserModel model = visitorContext.CurrentUser;
+            var model = visitorContext.CurrentUser;
 
             args.ContextData.Add("commerceUser", model);
         }

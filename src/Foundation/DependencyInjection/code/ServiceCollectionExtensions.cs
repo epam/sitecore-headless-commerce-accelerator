@@ -35,7 +35,7 @@ namespace Wooli.Foundation.DependencyInjection
         public static void AddClassesWithServiceAttribute(this IServiceCollection serviceCollection,
             params string[] assemblyFilters)
         {
-            Assembly[] assemblies = GetAssemblies(assemblyFilters);
+            var assemblies = GetAssemblies(assemblyFilters);
             serviceCollection.AddClassesWithServiceAttribute(assemblies);
         }
 
@@ -67,14 +67,14 @@ namespace Wooli.Foundation.DependencyInjection
         {
             if (assemblies == null || !assemblies.Any()) assemblies = new[] {Assembly.GetCallingAssembly()};
 
-            IEnumerable<Type> types = GetTypesImplementing(typeof(object), assemblies, classFilter);
+            var types = GetTypesImplementing(typeof(object), assemblies, classFilter);
 
             serviceCollection.Add(lifetime, types.ToArray());
         }
 
         public static void Add(this IServiceCollection serviceCollection, Lifetime lifetime, params Type[] types)
         {
-            foreach (Type type in types) serviceCollection.Add(type, lifetime);
+            foreach (var type in types) serviceCollection.Add(type, lifetime);
         }
 
         public static void Add<T>(this IServiceCollection serviceCollection, Lifetime lifetime)
@@ -116,7 +116,7 @@ namespace Wooli.Foundation.DependencyInjection
         public static void AddTypesImplementingInCurrentAssembly<T>(this IServiceCollection serviceCollection,
             Lifetime lifetime)
         {
-            IEnumerable<Type> types = GetTypesImplementing(typeof(T), Assembly.GetCallingAssembly());
+            var types = GetTypesImplementing(typeof(T), Assembly.GetCallingAssembly());
             serviceCollection.Add(lifetime, types.ToArray());
         }
 
@@ -129,7 +129,7 @@ namespace Wooli.Foundation.DependencyInjection
         public static void AddTypesImplementing<T>(this IServiceCollection serviceCollection, Lifetime lifetime,
             params Assembly[] assemblies)
         {
-            IEnumerable<Type> types = GetTypesImplementing(typeof(T), assemblies);
+            var types = GetTypesImplementing(typeof(T), assemblies);
             serviceCollection.Add(lifetime, types.ToArray());
         }
 
@@ -158,15 +158,15 @@ namespace Wooli.Foundation.DependencyInjection
         private static void AddControllers<T>(this IServiceCollection serviceCollection,
             IEnumerable<Assembly> assemblies, string[] classFilters)
         {
-            IEnumerable<Type> controllers = GetTypesImplementing(typeof(T), assemblies, classFilters);
+            var controllers = GetTypesImplementing(typeof(T), assemblies, classFilters);
 
-            foreach (Type controller in controllers) serviceCollection.Add(controller, Lifetime.Transient);
+            foreach (var controller in controllers) serviceCollection.Add(controller, Lifetime.Transient);
         }
 
         private static Assembly[] GetAssemblies(IEnumerable<string> assemblyFilters)
         {
             var assemblies = new List<Assembly>();
-            foreach (string assemblyFilter in assemblyFilters)
+            foreach (var assemblyFilter in assemblyFilters)
                 assemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies()
                     .Where(assembly => IsWildcardMatch(assembly.GetName().Name, assemblyFilter)).ToArray());
 
@@ -176,7 +176,7 @@ namespace Wooli.Foundation.DependencyInjection
         private static IEnumerable<Type> GetTypesImplementing(Type implementsType, IEnumerable<Assembly> assemblies,
             params string[] classFilter)
         {
-            IEnumerable<Type> types = GetTypesImplementing(implementsType, assemblies.ToArray());
+            var types = GetTypesImplementing(implementsType, assemblies.ToArray());
             if (classFilter != null && classFilter.Any())
                 types = types.Where(type => classFilter.Any(filter => IsWildcardMatch(type.FullName, filter)));
 
@@ -187,7 +187,7 @@ namespace Wooli.Foundation.DependencyInjection
         {
             if (assemblies == null || assemblies.Length == 0) return new Type[0];
 
-            Type targetType = implementsType;
+            var targetType = implementsType;
 
             return assemblies
                 .Where(assembly => !assembly.IsDynamic)

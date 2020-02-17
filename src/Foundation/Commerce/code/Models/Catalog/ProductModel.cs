@@ -69,9 +69,9 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
                 .ToList();
 
             var variants = new List<ProductVariantModel>();
-            foreach (ICommerceProductVariantModel commerceProductVariantModel in sellableItemModel.Variants ??
-                                                                                 new List<ICommerceProductVariantModel
-                                                                                 >())
+            foreach (var commerceProductVariantModel in sellableItemModel.Variants ??
+                                                        new List<ICommerceProductVariantModel
+                                                        >())
             {
                 var variant = new ProductVariantModel();
                 variant.Initialize(commerceProductVariantModel);

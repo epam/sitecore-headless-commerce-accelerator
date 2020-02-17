@@ -55,7 +55,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                 // Execute
                 var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager,
                     sitecoreContext, searchManager, currencyProvider);
-                ProductModel result = repository.GetProduct("productId");
+                var result = repository.GetProduct("productId");
 
                 // Assert
                 Assert.NotNull(result);

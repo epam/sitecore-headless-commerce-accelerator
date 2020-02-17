@@ -36,11 +36,11 @@ namespace Wooli.Foundation.Commerce.Providers
         // ToDo: update this logic if required
         public CategorySearchInformation GetCategorySearchInformation(Item categoryItem)
         {
-            List<CommerceQueryFacet> commerceQueryFacets =
+            var commerceQueryFacets =
                 commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
-            List<CommerceQuerySort> commerceQuerySorts =
+            var commerceQuerySorts =
                 commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
-            int itemsPerPageForItem = commerceSearchManager.GetItemsPerPageForItem(categoryItem);
+            var itemsPerPageForItem = commerceSearchManager.GetItemsPerPageForItem(categoryItem);
 
             var searchInformation = new CategorySearchInformation
             {

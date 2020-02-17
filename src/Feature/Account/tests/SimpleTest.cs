@@ -33,7 +33,7 @@ namespace Wooli.Feature.Account.Tests
                     }
                 })
             {
-                Item articles = db.GetItem("/sitecore/content/Articles");
+                var articles = db.GetItem("/sitecore/content/Articles");
 
                 Assert.NotNull(articles.Children["Getting Started"]);
                 Assert.NotNull(articles.Children["Troubleshooting"]);
@@ -45,7 +45,7 @@ namespace Wooli.Feature.Account.Tests
         {
             using (var db = new Db {new DbItem("Home") {{"Title", "Welcome!"}}})
             {
-                Item home = db.GetItem("/sitecore/content/home");
+                var home = db.GetItem("/sitecore/content/home");
                 Assert.Equal("Welcome!", home["Title"]);
             }
         }

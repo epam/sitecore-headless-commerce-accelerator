@@ -39,10 +39,10 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
         {
             var renderingParams = new Dictionary<string, string>();
 
-            foreach (KeyValuePair<string, string> originalRenderingParam in originalRenderingParams)
+            foreach (var originalRenderingParam in originalRenderingParams)
             {
-                string key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
-                string value = originalRenderingParam.Value;
+                var key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
+                var value = originalRenderingParam.Value;
 
                 renderingParams[key] = value;
             }

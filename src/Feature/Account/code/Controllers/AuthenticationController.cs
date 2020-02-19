@@ -16,6 +16,10 @@ namespace Wooli.Feature.Account.Controllers
 {
     using System.Web.Mvc;
     using System.Web.Security;
+    using Configuration.Models;
+    using Foundation.Base.Models.Logging;
+    using Foundation.Base.Services.Configuration;
+    using Foundation.Base.Services.Logging;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
@@ -31,18 +35,28 @@ namespace Wooli.Feature.Account.Controllers
         private readonly ICustomerProvider customerProvider;
         private readonly IVisitorContext visitorContext;
 
+        //Examples
+        private readonly IConfigurationService configurationService;
+        private readonly ILogService<CommonLog> logService;
+
         public AuthenticationController(ICustomerProvider customerProvider, IVisitorContext visitorContext,
-            ICartRepository cartRepository)
+            ICartRepository cartRepository, IConfigurationService configurationService, ILogService<CommonLog> logService)
         {
             this.customerProvider = customerProvider;
             this.visitorContext = visitorContext;
             this.cartRepository = cartRepository;
+            this.configurationService = configurationService;
+            this.logService = logService;
         }
-
+        
         [HttpPost]
         [ActionName("start")]
         public ActionResult ValidateCredentials(UserLoginModel userLogin)
         {
+            //Examples
+            var configuration = this.configurationService.Get<ExampleConfiguration>();
+            logService.Info("Test log message");
+
             var validateCredentialsResultDto = new ValidateCredentialsResultModel
             {
                 HasValidCredentials = ValidateUser(userLogin)

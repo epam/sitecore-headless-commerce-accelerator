@@ -5,27 +5,27 @@
     public interface ILogService<TLog> where TLog : Log, new()
     {
         /// <summary>
-        /// CommonLog Debug level message
+        /// Log Debug level message
         /// </summary>
-        /// <param name="message">CommonLog message.</param>
+        /// <param name="message">Log message.</param>
         void Debug(string message);
 
         /// <summary>
-        /// CommonLog Info level message
+        /// Log Info level message
         /// </summary>
-        /// <param name="message">CommonLog message.</param>
+        /// <param name="message">Log message.</param>
         void Info(string message);
 
         /// <summary>
-        /// CommonLog Warn level message
+        /// Log Warn level message
         /// </summary>
-        /// <param name="message">CommonLog message.</param>
+        /// <param name="message">Log message.</param>
         void Warn(string message);
 
         /// <summary>
-        /// CommonLog Error level message
+        /// Log Error level message
         /// </summary>
-        /// <param name="message">CommonLog message.</param>
+        /// <param name="message">Log message.</param>
         void Error(string message);
     }
 }

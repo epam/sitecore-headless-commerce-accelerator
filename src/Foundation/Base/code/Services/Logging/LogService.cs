@@ -1,18 +1,16 @@
 ﻿namespace Wooli.Foundation.Base.Services.Logging
 {
     using System.Diagnostics.CodeAnalysis;
-    using DependencyInjection;
     using log4net;
     using Sitecore.Diagnostics;
     using Log = Models.Logging.Log;
 
     [ExcludeFromCodeCoverage]
-    [Service(typeof(ILogService<>), Lifetime = Lifetime.Singleton)]
-    public class LogService<TLog> : ILogService<TLog> where TLog : Log, new()
+    public abstract class LogService<TLog> : ILogService<TLog> where TLog : Log, new()
     {
         protected readonly ILog Log;
 
-        public LogService()
+        protected LogService()
         {
             var log = new TLog();
             this.Log = LogManager.GetLogger(log.Name);

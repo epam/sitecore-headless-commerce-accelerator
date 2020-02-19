@@ -219,6 +219,7 @@
     <Compile Include="Models\Logging\Log.cs" />
     <Compile Include="Models\Logging\CommonLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Logging\CommonLogService.cs" />
     <Compile Include="Services\Logging\ILogService.cs" />
     <Compile Include="Services\Logging\LogService.cs" />
   </ItemGroup>

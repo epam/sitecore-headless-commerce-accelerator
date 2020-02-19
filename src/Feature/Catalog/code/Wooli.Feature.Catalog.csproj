@@ -602,6 +602,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductColorsContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CategoryContextExtension.cs" />
@@ -649,6 +650,10 @@
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>Wooli.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
+      <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
+      <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
       <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>

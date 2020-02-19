@@ -622,7 +622,6 @@
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\StorefrontContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
-    <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CatalogItemResolverProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
@@ -768,10 +767,6 @@
     <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">
       <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
       <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ReactJss\code\Wooli.Foundation.ReactJss.csproj">
-      <Project>{9F27A62C-2A80-42F8-8BF0-3877B65C0427}</Project>
-      <Name>Wooli.Foundation.ReactJss</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

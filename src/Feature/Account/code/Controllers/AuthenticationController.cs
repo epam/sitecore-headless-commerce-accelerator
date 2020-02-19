@@ -21,8 +21,8 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Providers;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
-    using Sitecore.Commerce;
     using Sitecore.Security.Authentication;
 
     public class AuthenticationController : Controller
@@ -30,13 +30,15 @@ namespace Wooli.Feature.Account.Controllers
         private readonly ICartRepository cartRepository;
         private readonly ICustomerProvider customerProvider;
         private readonly IVisitorContext visitorContext;
+        private readonly ICommerceTrackingService commerceTrackingService;
 
         public AuthenticationController(ICustomerProvider customerProvider, IVisitorContext visitorContext,
-            ICartRepository cartRepository)
+            ICartRepository cartRepository, ICommerceTrackingService commerceTrackingService)
         {
             this.customerProvider = customerProvider;
             this.visitorContext = visitorContext;
             this.cartRepository = cartRepository;
+            this.commerceTrackingService = commerceTrackingService;
         }
 
         [HttpPost]
@@ -70,7 +72,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             visitorContext.CurrentUser = null;
 
-            CommerceTracker.Current.EndVisit(true);
+            this.commerceTrackingService.EndVisit(true);
             Session.Abandon();
             AuthenticationManager.Logout();
 
@@ -91,7 +93,7 @@ namespace Wooli.Feature.Account.Controllers
 
             cartRepository.MergeCarts(anonymousContact);
 
-            CommerceTracker.Current.IdentifyAs("CommerceUser", commerceUser.UserName);
+            this.commerceTrackingService.IdentifyAs("CommerceUser", commerceUser.UserName);
         }
 
         private bool ValidateUser(UserLoginModel userLogin)

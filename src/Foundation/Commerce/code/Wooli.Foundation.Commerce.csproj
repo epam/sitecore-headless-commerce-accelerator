@@ -717,6 +717,8 @@
     <Compile Include="Providers\Contracts\ISearchInformationProvider.cs" />
     <Compile Include="Providers\Contracts\ISettingsProvider.cs" />
     <Compile Include="Providers\SearchInformationProvider.cs" />
+    <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
+    <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
     <Compile Include="Utils\Constants.cs" />
   </ItemGroup>

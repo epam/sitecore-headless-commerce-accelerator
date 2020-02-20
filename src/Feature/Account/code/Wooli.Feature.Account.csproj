@@ -532,6 +532,10 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
+      <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>Wooli.Foundation.Commerce</Name>

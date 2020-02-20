@@ -25,20 +25,22 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Repositories;
     using Foundation.Extensions.Extensions;
-    using Sitecore.Analytics;
+    using Foundation.Base.Services.Tracking;
 
     public class AccountController : Controller
     {
         private readonly IAccountRepositry accountRepositry;
-
+        private readonly ITrackingService trackingService;
         private readonly IVisitorContext visitorContext;
 
         public AccountController(
             IAccountRepositry accountRepositry,
-            IVisitorContext visitorContex)
+            IVisitorContext visitorContex,
+            ITrackingService trackingService)
         {
             this.accountRepositry = accountRepositry;
-            visitorContext = visitorContex;
+            this.visitorContext = visitorContex;
+            this.trackingService = trackingService;
         }
 
 
@@ -48,7 +50,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                EnsureTracker();
+                this.trackingService.EnsureTracker();
 
                 var createAccountResult =
                     accountRepositry.CreateAccount(createAccountModel);
@@ -70,7 +72,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                EnsureTracker();
+                this.trackingService.EnsureTracker();
                 var accountExists =
                     accountRepositry.ValidateAccount(validateAccountModel);
 
@@ -91,7 +93,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                EnsureTracker();
+                this.trackingService.EnsureTracker();
                 var updateUserResult = accountRepositry.UpdateAccountInfo(user);
 
                 if (!updateUserResult.Success)
@@ -111,7 +113,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             try
             {
-                EnsureTracker();
+                this.trackingService.EnsureTracker();
                 var
                     ñhangePasswordResult = accountRepositry.ChangePassword(changePassword);
 
@@ -211,11 +213,6 @@ namespace Wooli.Feature.Account.Controllers
             {
                 return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
             }
-        }
-
-        private void EnsureTracker()
-        {
-            if (!Tracker.IsActive) Tracker.StartTracking();
         }
     }
 }

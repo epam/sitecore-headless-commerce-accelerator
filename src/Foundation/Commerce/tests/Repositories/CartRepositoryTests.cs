@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Commerce.Repositories;
     using Connect.Managers;
     using Context;
-    using Glass.Mapper.Sc;
+
     using ModelInitilizers;
     using Models.Catalog;
     using Models.Checkout;
@@ -27,6 +27,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Data;
     using Sitecore.FakeDb;
     using Xunit;
 
@@ -36,25 +37,30 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
         public void GetCurrentCart_ProductId_ProductIsReturned()
         {
             // Setup
+            const string ProductIdValue = "productId";
+
             var cartManager = Substitute.For<ICartManager>();
-            var searchManager = Substitute.For<ISearchManager>();
             var catalogRepository = Substitute.For<ICatalogRepository>();
             var accountManager = Substitute.For<IAccountManager>();
             var addressPartyMapper = Substitute.For<IEntityMapper>();
             var cartModelBuilder = Substitute.For<ICartModelBuilder>();
             var storefrontContext = Substitute.For<IStorefrontContext>();
             var visitorContext = Substitute.For<IVisitorContext>();
-            var sitecoreContext = Substitute.For<ISitecoreContext>();
 
-            var productItem = new DbItem("ProductItem");
-            using (var db = new Db {productItem})
+            var productItemId = new ID();
+            var productDbItem = new DbItem("ProductItem", productItemId);
+            productDbItem.Fields.Add("ProductId", ProductIdValue);
+
+            using (var db = new Db {productDbItem})
             {
                 var cart = new Cart
                 {
                     Total = new Total(),
                     Lines = new List<CartLine>
-                        {new CartLine {Product = new CartProduct {ProductId = "productId"}, Total = new Total()}}
+                        {new CartLine {Product = new CartProduct {ProductId = ProductIdValue}, Total = new Total()}}
                 };
+
+                var productItem = db.GetItem(productItemId);
 
                 storefrontContext
                     .ShopName
@@ -66,25 +72,31 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                     .GetCurrentCart("shopName", "contactId")
                     .Returns(new ManagerResponse<CartResult, Cart>(new CartResult {Cart = cart}, cart));
                 catalogRepository
-                    .GetProduct("productId")
-                    .Returns(new ProductModel {ProductId = "productId"});
+                    .GetProduct(ProductIdValue)
+                    .Returns(new ProductModel(productItem));
                 cartModelBuilder
                     .Initialize(Arg.Any<Cart>())
                     .Returns(new CartModel
                     {
                         CartLines = new List<CartLineModel>
-                            {new CartLineModel {Product = new ProductModel {ProductId = "productId"}}}
+                            {new CartLineModel {Product = new ProductModel(productItem)}}
                     });
 
                 // Execute
-                var repository = new CartRepository(cartManager, catalogRepository, accountManager, cartModelBuilder,
-                    addressPartyMapper, storefrontContext, visitorContext);
+                var repository = new CartRepository(
+                    cartManager,
+                    catalogRepository,
+                    accountManager,
+                    cartModelBuilder,
+                    addressPartyMapper,
+                    storefrontContext,
+                    visitorContext);
                 var result = repository.GetCurrentCart();
 
                 // Assert
                 Assert.NotNull(result);
                 Assert.NotEmpty(result.CartLines);
-                Assert.Contains(result.CartLines, x => x.Product.ProductId == "productId");
+                Assert.Contains(result.CartLines, x => x.Product.ProductId == ProductIdValue);
             }
         }
     }

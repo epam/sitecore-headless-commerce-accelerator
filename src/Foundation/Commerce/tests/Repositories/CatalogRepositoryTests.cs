@@ -18,7 +18,10 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Connect.Managers;
     using Connect.Models;
     using Context;
+
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
+
     using NSubstitute;
     using Providers;
     using Sitecore.FakeDb;
@@ -36,7 +39,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var storefrontContext = Substitute.For<IStorefrontContext>();
             var visitorContext = Substitute.For<IVisitorContext>();
             var catalogManager = Substitute.For<ICatalogManager>();
-            var sitecoreContext = Substitute.For<ISitecoreContext>();
+            var sitecoreService = Substitute.For<ISitecoreService>();
             var searchManager = Substitute.For<ISearchManager>();
 
             var productItem = new DbItem("ProductItem");
@@ -48,13 +51,10 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                 searchManager
                     .GetProduct("storeName", "productId")
                     .Returns(db.GetItem(productItem.ID));
-                sitecoreContext
-                    .Cast<ICommerceProductModel>(db.GetItem(productItem.ID))
-                    .Returns(new CommerceProductModel {Item = db.GetItem(productItem.ID), ProductId = "productId"});
 
                 // Execute
                 var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager,
-                    sitecoreContext, searchManager, currencyProvider);
+                    sitecoreService, searchManager, currencyProvider);
                 var result = repository.GetProduct("productId");
 
                 // Assert

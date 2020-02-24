@@ -31,6 +31,9 @@ namespace Wooli.Foundation.Extensions.Models
     using System.Collections.Specialized;
     using System.Linq;
     using System.Text;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Glass.Mapper.Sc.Configuration;
+    using Glass.Mapper.Sc.Fields;
     using Sitecore.Globalization;
     using Sitecore.Data;
     using Sitecore.Data.Items;

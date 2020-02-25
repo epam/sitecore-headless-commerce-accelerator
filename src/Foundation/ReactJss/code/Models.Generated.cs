@@ -39,6 +39,5 @@ namespace Wooli.Foundation.ReactJss.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
 
 }

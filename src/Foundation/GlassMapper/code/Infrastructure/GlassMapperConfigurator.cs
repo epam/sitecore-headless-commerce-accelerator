@@ -15,6 +15,8 @@
 namespace Wooli.Foundation.GlassMapper.Infrastructure
 {
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
+
     using Microsoft.Extensions.DependencyInjection;
     using Sitecore.DependencyInjection;
 
@@ -22,7 +24,14 @@ namespace Wooli.Foundation.GlassMapper.Infrastructure
     {
         public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<ISitecoreContext>(provider => new SitecoreContext());
+            serviceCollection.AddTransient<ISitecoreService>(
+                provider => new SitecoreService(Sitecore.Context.Database));
+            serviceCollection.AddTransient<IRequestContext>(provider =>
+                {
+                    var sitecoreService = provider.GetService<ISitecoreService>();
+                    return new RequestContext(sitecoreService);
+                });
+
             serviceCollection.AddTransient<IGlassHtml, GlassHtml>();
         }
     }

@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Context
 {
     using Connect.Models;
 
+    using Sitecore.Data.Items;
+
     public interface IStorefrontContext
     {
         string CatalogName { get; }
@@ -24,7 +26,7 @@ namespace Wooli.Foundation.Commerce.Context
 
         IStorefrontModel CurrentStorefront { get; }
 
-        ICommerceCatalogModel CurrentCatalog { get; }
+        Item CurrentCatalogItem { get; }
 
         string SelectedCurrency { get; }
 

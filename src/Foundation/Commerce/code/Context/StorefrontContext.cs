@@ -16,16 +16,21 @@ namespace Wooli.Foundation.Commerce.Context
 {
     using Connect.Models;
     using DependencyInjection;
+
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
+
+    using Sitecore.Data.Items;
 
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly ISitecoreService sitecoreService;
 
-        public StorefrontContext(ISitecoreContext sitecoreContext)
+        public StorefrontContext(ISitecoreService sitecoreService)
         {
-            this.sitecoreContext = sitecoreContext;
+            this.sitecoreService = sitecoreService;
         }
 
         // ToDo: implement logic for getting current catalog
@@ -36,13 +41,12 @@ namespace Wooli.Foundation.Commerce.Context
 
         // ToDo: implement logic for getting current storefront settings
         public IStorefrontModel CurrentStorefront
-            => sitecoreContext.GetItem<IStorefrontModel>(
-                $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{ShopName}");
+            => this.sitecoreService.GetItem<IStorefrontModel>(
+                $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
 
         // ToDo: implement logic for getting current catalog item
-        public ICommerceCatalogModel CurrentCatalog
-            => sitecoreContext.GetItem<ICommerceCatalogModel>(
-                $"/sitecore/Commerce/Catalog Management/Catalogs/{CatalogName}");
+        public Item CurrentCatalogItem =>
+            this.sitecoreService.Database.GetItem($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
 
         public string SelectedCurrency => "USD";
 

@@ -41,7 +41,7 @@ namespace Wooli.Foundation.Connect.Models
         {{#each this.Fields}}
 
         /// <summary>
-        /// The {{this.PropertyName}} field.
+        /// The {{this.Name}} field.
         /// <para>Field Type: {{this.Type}}</para>
         /// <para>Field ID: {{this.ID}}</para>
         /// </summary>
@@ -72,7 +72,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: {{this.ID}}</para>
         /// </summary>
         [SitecoreField("{{this.Name}}")]
-        public {{{this.AsPropertyType}}} {{this.AsProperty}} {get; set;}
+        public virtual {{{this.AsPropertyType}}} {{this.AsProperty}} {get; set;}
         public const string {{this.AsProperty}}FieldId = "{{this.ID}}";
         public const string {{this.AsProperty}}FieldName = "{{this.Name}}";
 

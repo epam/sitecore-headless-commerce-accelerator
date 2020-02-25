@@ -28,10 +28,17 @@ namespace Wooli.Feature.Navigation.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
     using System.Text;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Fields;
+    using Sitecore.Globalization;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+
+    using System.CodeDom.Compiler;
     using Wooli.Foundation.GlassMapper.Models;
 
 
@@ -45,7 +52,7 @@ namespace Wooli.Feature.Navigation.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Menu Items field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
         /// </summary>
@@ -74,7 +81,7 @@ namespace Wooli.Feature.Navigation.Models
         /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
         /// </summary>
         [SitecoreField("Menu Items")]
-        public IEnumerable<Guid> MenuItems {get; set;}
+        public virtual IEnumerable<Guid> MenuItems {get; set;}
         public const string MenuItemsFieldId = "35033e47-38f6-4912-b14d-e23b5c7390d7";
         public const string MenuItemsFieldName = "Menu Items";
 
@@ -91,7 +98,7 @@ namespace Wooli.Feature.Navigation.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Commerce Categories field.
         /// <para>Field Type: Treelist</para>
         /// <para>Field ID: 1059d1e9-7ee8-4021-9a18-b7876ff11e28</para>
         /// </summary>
@@ -99,7 +106,7 @@ namespace Wooli.Feature.Navigation.Models
         IEnumerable<Guid> CommerceCategories {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: 8d6d3e24-814b-4c4a-b0d8-c2f9d607b923</para>
         /// </summary>
@@ -107,7 +114,7 @@ namespace Wooli.Feature.Navigation.Models
         Image Image {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 2f131184-e443-4376-94b3-2283d246d205</para>
         /// </summary>
@@ -136,7 +143,7 @@ namespace Wooli.Feature.Navigation.Models
         /// <para>Field ID: 1059d1e9-7ee8-4021-9a18-b7876ff11e28</para>
         /// </summary>
         [SitecoreField("Commerce Categories")]
-        public IEnumerable<Guid> CommerceCategories {get; set;}
+        public virtual IEnumerable<Guid> CommerceCategories {get; set;}
         public const string CommerceCategoriesFieldId = "1059d1e9-7ee8-4021-9a18-b7876ff11e28";
         public const string CommerceCategoriesFieldName = "Commerce Categories";
 
@@ -146,7 +153,7 @@ namespace Wooli.Feature.Navigation.Models
         /// <para>Field ID: 8d6d3e24-814b-4c4a-b0d8-c2f9d607b923</para>
         /// </summary>
         [SitecoreField("Image")]
-        public Image Image {get; set;}
+        public virtual Image Image {get; set;}
         public const string ImageFieldId = "8d6d3e24-814b-4c4a-b0d8-c2f9d607b923";
         public const string ImageFieldName = "Image";
 
@@ -156,7 +163,7 @@ namespace Wooli.Feature.Navigation.Models
         /// <para>Field ID: 2f131184-e443-4376-94b3-2283d246d205</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "2f131184-e443-4376-94b3-2283d246d205";
         public const string TitleFieldName = "Title";
 

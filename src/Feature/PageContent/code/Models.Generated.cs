@@ -28,10 +28,17 @@ namespace Wooli.Feature.PageContent.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
     using System.Text;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Fields;
+    using Sitecore.Globalization;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+
+    using System.CodeDom.Compiler;
     using Wooli.Foundation.GlassMapper.Models;
 
 
@@ -45,7 +52,7 @@ namespace Wooli.Feature.PageContent.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The First Column Class field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
         /// </summary>
@@ -53,7 +60,7 @@ namespace Wooli.Feature.PageContent.Models
         string FirstColumnClass {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Second Column Class field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
         /// </summary>
@@ -61,7 +68,7 @@ namespace Wooli.Feature.PageContent.Models
         string SecondColumnClass {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Wrapper Class field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
         /// </summary>
@@ -90,7 +97,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
         /// </summary>
         [SitecoreField("First Column Class")]
-        public string FirstColumnClass {get; set;}
+        public virtual string FirstColumnClass {get; set;}
         public const string FirstColumnClassFieldId = "a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88";
         public const string FirstColumnClassFieldName = "First Column Class";
 
@@ -100,7 +107,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
         /// </summary>
         [SitecoreField("Second Column Class")]
-        public string SecondColumnClass {get; set;}
+        public virtual string SecondColumnClass {get; set;}
         public const string SecondColumnClassFieldId = "525bb442-fc9e-49dd-b557-52b833f0855d";
         public const string SecondColumnClassFieldName = "Second Column Class";
 
@@ -110,7 +117,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
         /// </summary>
         [SitecoreField("Wrapper Class")]
-        public string WrapperClass {get; set;}
+        public virtual string WrapperClass {get; set;}
         public const string WrapperClassFieldId = "b4386ac8-1f1b-49f3-adcb-264f5f595e52";
         public const string WrapperClassFieldName = "Wrapper Class";
 
@@ -127,7 +134,7 @@ namespace Wooli.Feature.PageContent.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Main Promo Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: e61322f9-d70b-4a4b-ba2c-9359584e3362</para>
         /// </summary>
@@ -135,7 +142,7 @@ namespace Wooli.Feature.PageContent.Models
         Image MainPromoImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Main Promo Text field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 010272e8-caad-4046-9410-7d4c67e95bfb</para>
         /// </summary>
@@ -143,7 +150,7 @@ namespace Wooli.Feature.PageContent.Models
         string MainPromoText {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Promo A Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: 0af1cec2-d257-44f8-a034-0c6624da9560</para>
         /// </summary>
@@ -151,7 +158,7 @@ namespace Wooli.Feature.PageContent.Models
         Image PromoAImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Promo A Text field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0612860c-f8be-428b-a432-e2aed3cb5776</para>
         /// </summary>
@@ -159,7 +166,7 @@ namespace Wooli.Feature.PageContent.Models
         string PromoAText {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Promo B Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: d743c370-80dc-41d3-9c39-58b67dc9176c</para>
         /// </summary>
@@ -167,7 +174,7 @@ namespace Wooli.Feature.PageContent.Models
         Image PromoBImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Promo C Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: 4eeb0814-a262-45f1-beea-7956ed5e15a6</para>
         /// </summary>
@@ -175,7 +182,7 @@ namespace Wooli.Feature.PageContent.Models
         Image PromoCImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Promo D Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: 2c20de23-de06-4b1d-95f2-c39d911c1518</para>
         /// </summary>
@@ -183,7 +190,7 @@ namespace Wooli.Feature.PageContent.Models
         Image PromoDImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Slider Header field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6a98f330-5d79-480b-a700-ce29bd09570f</para>
         /// </summary>
@@ -191,7 +198,7 @@ namespace Wooli.Feature.PageContent.Models
         string SliderHeader {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Wide Promo Image field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: 5567973b-f2f0-445c-b9b8-76d1d41c23ae</para>
         /// </summary>
@@ -199,7 +206,7 @@ namespace Wooli.Feature.PageContent.Models
         Image WidePromoImage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Wide Promo Text field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32</para>
         /// </summary>
@@ -228,7 +235,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: e61322f9-d70b-4a4b-ba2c-9359584e3362</para>
         /// </summary>
         [SitecoreField("Main Promo Image")]
-        public Image MainPromoImage {get; set;}
+        public virtual Image MainPromoImage {get; set;}
         public const string MainPromoImageFieldId = "e61322f9-d70b-4a4b-ba2c-9359584e3362";
         public const string MainPromoImageFieldName = "Main Promo Image";
 
@@ -238,7 +245,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 010272e8-caad-4046-9410-7d4c67e95bfb</para>
         /// </summary>
         [SitecoreField("Main Promo Text")]
-        public string MainPromoText {get; set;}
+        public virtual string MainPromoText {get; set;}
         public const string MainPromoTextFieldId = "010272e8-caad-4046-9410-7d4c67e95bfb";
         public const string MainPromoTextFieldName = "Main Promo Text";
 
@@ -248,7 +255,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 0af1cec2-d257-44f8-a034-0c6624da9560</para>
         /// </summary>
         [SitecoreField("Promo A Image")]
-        public Image PromoAImage {get; set;}
+        public virtual Image PromoAImage {get; set;}
         public const string PromoAImageFieldId = "0af1cec2-d257-44f8-a034-0c6624da9560";
         public const string PromoAImageFieldName = "Promo A Image";
 
@@ -258,7 +265,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 0612860c-f8be-428b-a432-e2aed3cb5776</para>
         /// </summary>
         [SitecoreField("Promo A Text")]
-        public string PromoAText {get; set;}
+        public virtual string PromoAText {get; set;}
         public const string PromoATextFieldId = "0612860c-f8be-428b-a432-e2aed3cb5776";
         public const string PromoATextFieldName = "Promo A Text";
 
@@ -268,7 +275,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: d743c370-80dc-41d3-9c39-58b67dc9176c</para>
         /// </summary>
         [SitecoreField("Promo B Image")]
-        public Image PromoBImage {get; set;}
+        public virtual Image PromoBImage {get; set;}
         public const string PromoBImageFieldId = "d743c370-80dc-41d3-9c39-58b67dc9176c";
         public const string PromoBImageFieldName = "Promo B Image";
 
@@ -278,7 +285,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 4eeb0814-a262-45f1-beea-7956ed5e15a6</para>
         /// </summary>
         [SitecoreField("Promo C Image")]
-        public Image PromoCImage {get; set;}
+        public virtual Image PromoCImage {get; set;}
         public const string PromoCImageFieldId = "4eeb0814-a262-45f1-beea-7956ed5e15a6";
         public const string PromoCImageFieldName = "Promo C Image";
 
@@ -288,7 +295,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 2c20de23-de06-4b1d-95f2-c39d911c1518</para>
         /// </summary>
         [SitecoreField("Promo D Image")]
-        public Image PromoDImage {get; set;}
+        public virtual Image PromoDImage {get; set;}
         public const string PromoDImageFieldId = "2c20de23-de06-4b1d-95f2-c39d911c1518";
         public const string PromoDImageFieldName = "Promo D Image";
 
@@ -298,7 +305,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 6a98f330-5d79-480b-a700-ce29bd09570f</para>
         /// </summary>
         [SitecoreField("Slider Header")]
-        public string SliderHeader {get; set;}
+        public virtual string SliderHeader {get; set;}
         public const string SliderHeaderFieldId = "6a98f330-5d79-480b-a700-ce29bd09570f";
         public const string SliderHeaderFieldName = "Slider Header";
 
@@ -308,7 +315,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: 5567973b-f2f0-445c-b9b8-76d1d41c23ae</para>
         /// </summary>
         [SitecoreField("Wide Promo Image")]
-        public Image WidePromoImage {get; set;}
+        public virtual Image WidePromoImage {get; set;}
         public const string WidePromoImageFieldId = "5567973b-f2f0-445c-b9b8-76d1d41c23ae";
         public const string WidePromoImageFieldName = "Wide Promo Image";
 
@@ -318,7 +325,7 @@ namespace Wooli.Feature.PageContent.Models
         /// <para>Field ID: bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32</para>
         /// </summary>
         [SitecoreField("Wide Promo Text")]
-        public string WidePromoText {get; set;}
+        public virtual string WidePromoText {get; set;}
         public const string WidePromoTextFieldId = "bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32";
         public const string WidePromoTextFieldName = "Wide Promo Text";
 

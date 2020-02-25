@@ -19,11 +19,19 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Managers;
     using Connect.Models;
     using Context;
+
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Configuration;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+
     using Models.Catalog;
     using Providers;
+
+    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+
     using ProductModel = Models.Catalog.ProductModel;
 
     public class BaseCatalogRepository
@@ -36,14 +44,14 @@ namespace Wooli.Foundation.Commerce.Repositories
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             ICatalogManager catalogManager,
-            ISitecoreContext sitecoreContext)
+            ISitecoreService sitecoreService)
         {
             CurrencyProvider = currencyProvider;
             SiteContext = siteContext;
             StorefrontContext = storefrontContext;
             VisitorContext = visitorContext;
             CatalogManager = catalogManager;
-            SitecoreContext = sitecoreContext;
+            SitecoreService = sitecoreService;
         }
 
         public ICurrencyProvider CurrencyProvider { get; }
@@ -52,7 +60,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public ISiteContext SiteContext { get; }
 
-        public ISitecoreContext SitecoreContext { get; }
+        public ISitecoreService SitecoreService { get; }
 
         public IStorefrontContext StorefrontContext { get; }
 
@@ -68,18 +76,16 @@ namespace Wooli.Foundation.Commerce.Repositories
             if (productItem.HasChildren) variantEntityList = LoadVariants(productItem);
 
             var product = new Product(productItem, variantEntityList);
-            product.CatalogName = StorefrontContext.CatalogName;
+            product.CatalogName = this.StorefrontContext.CatalogName;
 
-            product.CustomerAverageRating = CatalogManager.GetProductRating(productItem);
+            product.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
 
-            CatalogManager.GetProductPrice(product);
-            CatalogManager.GetStockInfo(product, StorefrontContext.ShopName);
+            this.CatalogManager.GetProductPrice(product);
+            this.CatalogManager.GetStockInfo(product, this.StorefrontContext.ShopName);
 
-            var renderingModel = new ProductModel();
-            var model = SitecoreContext.Cast<ICommerceProductModel>(productItem);
+            var renderingModel = new ProductModel(productItem);
 
-            renderingModel.Initialize(model);
-            renderingModel.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
+            renderingModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
             renderingModel.ListPrice = product.ListPrice;
             renderingModel.AdjustedPrice = product.AdjustedPrice;
             renderingModel.StockStatusName = product.StockStatusName;
@@ -91,7 +97,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
                 if (variant == null) continue;
 
-                renderingModelVariant.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
+                renderingModelVariant.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
                 renderingModelVariant.StockStatusName = variant.StockStatusName;
@@ -101,29 +107,30 @@ namespace Wooli.Foundation.Commerce.Repositories
             return renderingModel;
         }
 
+        protected CategoryModel GetCategoryModel(Item categoryItem)
+        {
+            if (categoryItem == null)
+            {
+                return null;
+            }
+
+            var categoryModel = new CategoryModel(categoryItem);
+
+            return categoryModel;
+        }
+
         private List<Variant> LoadVariants(Item productItem)
         {
             var variants = new List<Variant>();
             foreach (Item variantItem in productItem.Children)
             {
                 var variantEntity = new Variant(variantItem);
-                variantEntity.CustomerAverageRating = CatalogManager.GetProductRating(variantItem);
+                variantEntity.CustomerAverageRating = this.CatalogManager.GetProductRating(variantItem);
 
                 variants.Add(variantEntity);
             }
 
             return variants;
-        }
-
-        protected CategoryModel GetCategoryModel(Item categoryItem)
-        {
-            var glassModel = SitecoreContext.Cast<IConnectCategoryModel>(categoryItem);
-            if (glassModel == null) return null;
-
-            var categoryModel = new CategoryModel();
-            categoryModel.Initialize(glassModel);
-
-            return categoryModel;
         }
     }
 }

@@ -29,9 +29,9 @@ namespace Wooli.Foundation.Commerce.Repositories
         private readonly ISearchManager searchManager;
 
         public CatalogRepository(ISiteContext siteContext, IStorefrontContext storefrontContext,
-            IVisitorContext visitorContext, ICatalogManager catalogManager, ISitecoreContext sitecoreContext,
+            IVisitorContext visitorContext, ICatalogManager catalogManager, ISitecoreService sitecoreService,
             ISearchManager searchManager, ICurrencyProvider currencyProvider)
-            : base(currencyProvider, siteContext, storefrontContext, visitorContext, catalogManager, sitecoreContext)
+            : base(currencyProvider, siteContext, storefrontContext, visitorContext, catalogManager, sitecoreService)
         {
             this.searchManager = searchManager;
         }

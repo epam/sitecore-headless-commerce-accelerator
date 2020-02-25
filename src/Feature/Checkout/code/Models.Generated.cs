@@ -52,7 +52,7 @@ namespace Wooli.Feature.Checkout.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Back To Link field.
         /// <para>Field Type: General Link</para>
         /// <para>Field ID: cb7502d8-cf47-4919-a528-ac7dcc1b636a</para>
         /// </summary>
@@ -60,7 +60,7 @@ namespace Wooli.Feature.Checkout.Models
         Link BackToLink {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Checkout Steps field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 55a6fd7a-07be-4fcd-ab3a-138b4ecbdc6b</para>
         /// </summary>
@@ -68,7 +68,7 @@ namespace Wooli.Feature.Checkout.Models
         IEnumerable<Guid> CheckoutSteps {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Info Link field.
         /// <para>Field Type: General Link</para>
         /// <para>Field ID: da2a953e-b11a-4be5-8dba-f2e2c45233b8</para>
         /// </summary>
@@ -97,7 +97,7 @@ namespace Wooli.Feature.Checkout.Models
         /// <para>Field ID: cb7502d8-cf47-4919-a528-ac7dcc1b636a</para>
         /// </summary>
         [SitecoreField("Back To Link")]
-        public Link BackToLink {get; set;}
+        public virtual Link BackToLink {get; set;}
         public const string BackToLinkFieldId = "cb7502d8-cf47-4919-a528-ac7dcc1b636a";
         public const string BackToLinkFieldName = "Back To Link";
 
@@ -107,7 +107,7 @@ namespace Wooli.Feature.Checkout.Models
         /// <para>Field ID: 55a6fd7a-07be-4fcd-ab3a-138b4ecbdc6b</para>
         /// </summary>
         [SitecoreField("Checkout Steps")]
-        public IEnumerable<Guid> CheckoutSteps {get; set;}
+        public virtual IEnumerable<Guid> CheckoutSteps {get; set;}
         public const string CheckoutStepsFieldId = "55a6fd7a-07be-4fcd-ab3a-138b4ecbdc6b";
         public const string CheckoutStepsFieldName = "Checkout Steps";
 
@@ -117,7 +117,7 @@ namespace Wooli.Feature.Checkout.Models
         /// <para>Field ID: da2a953e-b11a-4be5-8dba-f2e2c45233b8</para>
         /// </summary>
         [SitecoreField("Info Link")]
-        public Link InfoLink {get; set;}
+        public virtual Link InfoLink {get; set;}
         public const string InfoLinkFieldId = "da2a953e-b11a-4be5-8dba-f2e2c45233b8";
         public const string InfoLinkFieldName = "Info Link";
 
@@ -134,7 +134,7 @@ namespace Wooli.Feature.Checkout.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Checkout Step Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 69f49102-c8c0-4e55-8f8e-c9cb130071e4</para>
         /// </summary>
@@ -163,7 +163,7 @@ namespace Wooli.Feature.Checkout.Models
         /// <para>Field ID: 69f49102-c8c0-4e55-8f8e-c9cb130071e4</para>
         /// </summary>
         [SitecoreField("Checkout Step Name")]
-        public string CheckoutStepName {get; set;}
+        public virtual string CheckoutStepName {get; set;}
         public const string CheckoutStepNameFieldId = "69f49102-c8c0-4e55-8f8e-c9cb130071e4";
         public const string CheckoutStepNameFieldName = "Checkout Step Name";
 

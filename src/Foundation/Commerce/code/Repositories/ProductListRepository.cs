@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Context;
     using DependencyInjection;
     using Glass.Mapper.Sc;
-    using Models;
+
     using Models.Catalog;
     using Providers;
     using Sitecore.Commerce.Engine.Connect;
@@ -42,7 +42,6 @@ namespace Wooli.Foundation.Commerce.Repositories
         private readonly ISettingsProvider settingsProvider;
 
         private readonly ISiteContext siteContext;
-        private readonly ISitecoreContext sitecoreContext;
 
         private readonly IStorefrontContext storefrontContext;
 
@@ -50,19 +49,13 @@ namespace Wooli.Foundation.Commerce.Repositories
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             ICatalogManager catalogManager,
-            ISitecoreContext sitecoreContext,
+            ISitecoreService sitecoreService,
             ISearchInformationProvider searchInformationProvider,
             ISettingsProvider settingsProvider,
             ISearchManager searchManager,
             ICurrencyProvider currencyProvider)
-            : base(currencyProvider,
-                siteContext,
-                storefrontContext,
-                visitorContext,
-                catalogManager,
-                sitecoreContext)
+            : base(currencyProvider, siteContext, storefrontContext, visitorContext, catalogManager, sitecoreService)
         {
-            this.sitecoreContext = sitecoreContext;
             this.storefrontContext = storefrontContext;
             this.searchInformationProvider = searchInformationProvider;
             this.settingsProvider = settingsProvider;
@@ -88,7 +81,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             var specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
                 ? Sitecore.Context.Database.GetItem(currentCatalogItemId)
                 : null;
-            var currentCatalogItem = specifiedCatalogItem ?? storefrontContext.CurrentCatalog.Item;
+            var currentCatalogItem = specifiedCatalogItem ?? storefrontContext.CurrentCatalogItem;
             model.CurrentCatalogItemId = currentCatalogItem.ID.Guid.ToString("D");
 
             // var currentItem = Sitecore.Context.Database.GetItem(currentItemId);
@@ -185,9 +178,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 //this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
                 foreach (var product in products)
                 {
-                    var productModel = new ProductModel();
-                    var commerceProductModel = SitecoreContext.Cast<ICommerceProductModel>(product.Item);
-                    productModel.Initialize(commerceProductModel);
+                    var productModel = new ProductModel(product.Item);
                     productModel.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
                     productModel.ListPrice = product.ListPrice;
                     productModel.AdjustedPrice = product.AdjustedPrice;

@@ -24,6 +24,7 @@ namespace Wooli.Foundation.Extensions.Extensions
     using Sitecore.Data.Items;
     using Sitecore.Data.Managers;
     using Sitecore.Data.Templates;
+    using Sitecore.Diagnostics;
     using Sitecore.Links;
     using Sitecore.Resources.Media;
 
@@ -228,6 +229,22 @@ namespace Wooli.Foundation.Extensions.Extensions
         {
             var latestVersion = item.Versions.GetLatestVersion();
             return latestVersion?.Versions.Count > 0;
+        }
+
+        public static IList<MediaItem> ExtractMediaItems(this Item item, Func<Item, IEnumerable<Guid>> selector)
+        {
+            Assert.ArgumentNotNull(item, nameof(item));
+            Assert.ArgumentNotNull(selector, nameof(selector));
+
+            var imageGuids = selector(item);
+
+            IList<MediaItem> imageUrls = imageGuids
+                ?.Select(x => item.Database.GetItem(ID.Parse(x)))
+                .Where(x => x != null)
+                .Select(x => new MediaItem(x))
+                .ToList();
+
+            return imageUrls;
         }
     }
 }

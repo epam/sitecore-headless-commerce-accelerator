@@ -16,7 +16,9 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Collections.Generic;
     using Foundation.ReactJss.Infrastructure;
+
     using Glass.Mapper.Sc;
+
     using Models;
     using Sitecore.Data;
     using Sitecore.JavaScriptServices.Configuration;
@@ -24,20 +26,21 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
     public class ProductColorsContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly ISitecoreService sitecoreService;
 
         public ProductColorsContextExtension(
-            ISitecoreContext sitecoreContext,
+            ISitecoreService sitecoreService,
             IConfigurationResolver configurationResolver) : base(configurationResolver)
         {
-            this.sitecoreContext = sitecoreContext;
+            this.sitecoreService = sitecoreService;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
             var productColorMappingQuery =
                 $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
-            var productColorMapping = sitecoreContext.QuerySingle<IProductColorMappingFolder>(productColorMappingQuery);
+            var productColorMapping =
+                this.sitecoreService.GetItem<IProductColorMappingFolder>(new Query(productColorMappingQuery));
 
             var dictionary = new Dictionary<string, string>();
             if (productColorMapping?.Mappings != null)

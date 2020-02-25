@@ -24,8 +24,6 @@ namespace Wooli.Feature.Catalog.Controllers
     using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
-    using Glass.Mapper.Sc;
-    using ProductModel = Foundation.Commerce.Models.Catalog.ProductModel;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
@@ -33,17 +31,15 @@ namespace Wooli.Feature.Catalog.Controllers
         private readonly ICatalogRepository catalogRepository;
 
         private readonly IProductListRepository productListRepository;
-        private readonly ISitecoreContext sitecoreContext;
 
         private readonly IStorefrontContext storefrontContext;
 
         private readonly IVisitorContext visitorContext;
 
-        public ProductController(ISitecoreContext sitecoreContext, IStorefrontContext storefrontContext,
+        public ProductController(IStorefrontContext storefrontContext,
             IVisitorContext visitorContext, ICatalogRepository catalogRepository,
             IProductListRepository productListRepository)
         {
-            this.sitecoreContext = sitecoreContext;
             this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
             this.catalogRepository = catalogRepository;

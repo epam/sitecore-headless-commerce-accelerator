@@ -16,13 +16,27 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Connect.Models;
+
+    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using TypeLite;
 
     [TsClass]
     public class CategoryModel
     {
+        public CategoryModel(Item categoryItem)
+        {
+            Assert.ArgumentNotNull(categoryItem, nameof(categoryItem));
+
+            this.SitecoreId = categoryItem["SitecoreId"];
+            this.Name = categoryItem["Name"];
+            this.DisplayName = categoryItem["DisplayName"];
+            this.Description = categoryItem["Description"];
+
+            this.ParentCatalogList = categoryItem["ParentCatalogList"]?.Split('|').ToList();
+            this.ChildrenCategoryList = categoryItem["ChildrenCategoryList"]?.Split('|').ToList();
+        }
+
         public string SitecoreId { get; set; }
 
         public string Name { get; set; }
@@ -34,18 +48,5 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
         public IList<string> ParentCatalogList { get; set; }
 
         public IList<string> ChildrenCategoryList { get; set; }
-
-        public void Initialize(IConnectCategoryModel categoryModel)
-        {
-            Assert.ArgumentNotNull(categoryModel, nameof(categoryModel));
-
-            SitecoreId = categoryModel.SitecoreId;
-            Name = categoryModel.Name;
-            DisplayName = categoryModel.DisplayName;
-            Description = categoryModel.Description;
-
-            ParentCatalogList = categoryModel.ParentCatalogList?.Split('|').ToList();
-            ChildrenCategoryList = categoryModel.ChildrenCategoryList?.Split('|').ToList();
-        }
     }
 }

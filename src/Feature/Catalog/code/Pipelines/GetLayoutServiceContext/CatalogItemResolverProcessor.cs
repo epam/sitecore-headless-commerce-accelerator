@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.GetLayoutServiceContext
+namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Net.Http;
     using System.Web;
-    using DependencyInjection;
-    using ReactJss.Infrastructure;
-    using Sitecore.Data.Items;
+    using Foundation.Commerce.Infrastructure.Pipelines;
+    using Foundation.DependencyInjection;
+    using Foundation.ReactJss.Infrastructure;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 

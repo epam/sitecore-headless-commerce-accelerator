@@ -599,12 +599,6 @@
       <LastGenOutput>Models.Generated.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
-      <Project>{0044b0ca-abe2-4365-b1b2-1e347993b4aa}</Project>
-      <Name>Wooli.Foundation.GlassMapper</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

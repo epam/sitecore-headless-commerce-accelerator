@@ -19,10 +19,10 @@ namespace Wooli.Feature.Catalog.Controllers
     using System.Web;
     using System.Web.Http;
     using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Catalog;
     using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Utils;
-    using Foundation.Connect.Models;
     using Foundation.Extensions.Extensions;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]

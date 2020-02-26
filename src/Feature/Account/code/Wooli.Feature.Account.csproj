@@ -240,12 +240,6 @@
     <Reference Include="Sitecore.Cloud.Nexus, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Cloud.Nexus.9.3.0\lib\net471\Sitecore.Cloud.Nexus.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Connect.Collection.Model, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Collection.Model.14.0.27\lib\net471\Sitecore.Commerce.Connect.Collection.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Commerce.Connect.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -505,8 +499,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Models\ExampleConfiguration.cs" />
-    <Compile Include="Configuration\Providers\ExampleProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
@@ -536,16 +528,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Foundation\Base\code\Wooli.Foundation.Base.csproj">
-      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>Wooli.Foundation.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>Wooli.Foundation.Commerce</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
-      <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
-      <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
       <Project>{b4cd14e8-725d-401c-8d99-f20ef83e3ff5}</Project>

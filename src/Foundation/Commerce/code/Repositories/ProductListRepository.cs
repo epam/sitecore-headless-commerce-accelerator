@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Context;
     using DependencyInjection;
     using Glass.Mapper.Sc;
-
+    using Models;
     using Models.Catalog;
     using Providers;
     using Sitecore.Commerce.Engine.Connect;

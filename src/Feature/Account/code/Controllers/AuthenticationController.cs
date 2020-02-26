@@ -16,17 +16,15 @@ namespace Wooli.Feature.Account.Controllers
 {
     using System.Web.Mvc;
     using System.Web.Security;
-    using Configuration.Models;
     using Foundation.Base.Models.Logging;
-    using Foundation.Base.Services.Configuration;
     using Foundation.Base.Services.Logging;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Providers;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
-    using Sitecore.Commerce;
     using Sitecore.Security.Authentication;
 
     public class AuthenticationController : Controller
@@ -34,29 +32,24 @@ namespace Wooli.Feature.Account.Controllers
         private readonly ICartRepository cartRepository;
         private readonly ICustomerProvider customerProvider;
         private readonly IVisitorContext visitorContext;
-
-        //Examples
-        private readonly IConfigurationService configurationService;
+        private readonly ICommerceTrackingService commerceTrackingService;
         private readonly ILogService<CommonLog> logService;
 
         public AuthenticationController(ICustomerProvider customerProvider, IVisitorContext visitorContext,
-            ICartRepository cartRepository, IConfigurationService configurationService, ILogService<CommonLog> logService)
+            ICartRepository cartRepository, ICommerceTrackingService commerceTrackingService, ILogService<CommonLog> logService)
         {
             this.customerProvider = customerProvider;
             this.visitorContext = visitorContext;
             this.cartRepository = cartRepository;
-            this.configurationService = configurationService;
+            this.commerceTrackingService = commerceTrackingService;
             this.logService = logService;
         }
-        
+
         [HttpPost]
         [ActionName("start")]
         public ActionResult ValidateCredentials(UserLoginModel userLogin)
         {
-            //Examples
-            var configuration = this.configurationService.Get<ExampleConfiguration>();
-            logService.Info("Test log message");
-
+            this.logService.Info("Message");
             var validateCredentialsResultDto = new ValidateCredentialsResultModel
             {
                 HasValidCredentials = ValidateUser(userLogin)
@@ -84,7 +77,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             visitorContext.CurrentUser = null;
 
-            CommerceTracker.Current.EndVisit(true);
+            this.commerceTrackingService.EndVisit(true);
             Session.Abandon();
             AuthenticationManager.Logout();
 
@@ -105,7 +98,7 @@ namespace Wooli.Feature.Account.Controllers
 
             cartRepository.MergeCarts(anonymousContact);
 
-            CommerceTracker.Current.IdentifyAs("CommerceUser", commerceUser.UserName);
+            this.commerceTrackingService.IdentifyAs("CommerceUser", commerceUser.UserName);
         }
 
         private bool ValidateUser(UserLoginModel userLogin)

@@ -40,9 +40,9 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
                 .ExtractMediaItems(x =>
                     {
                         var imagesField = (MultilistField)sellableItem.Fields["Images"];
-                        return imagesField.TargetIDs.Select(id => id.Guid);
+                        return imagesField?.TargetIDs.Select(id => id.Guid);
                     })
-                .Select(x => x.ImageUrl())
+                ?.Select(x => x.ImageUrl())
                 .ToList();
         }
 

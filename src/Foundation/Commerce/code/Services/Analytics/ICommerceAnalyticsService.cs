@@ -12,14 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Services.Analytics
 {
     using Models.Catalog;
 
-    public interface IAnalyticsRepository
+    /// <summary>
+    /// Raise commerce related analytics events
+    /// </summary>
+    public interface ICommerceAnalyticsService
     {
+        /// <summary>
+        /// Raise "Product Visited" event.
+        /// </summary>
+        /// <param name="product">Product model.</param>
         void RaiseProductVisitedEvent(ProductModel product);
 
+        /// <summary>
+        /// Raise "Category Visited" event.
+        /// </summary>
+        /// <param name="category">Category model.</param>
         void RaiseCategoryVisitedEvent(CategoryModel category);
     }
 }

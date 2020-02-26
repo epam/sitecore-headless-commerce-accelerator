@@ -12,42 +12,44 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Services.Analytics
 {
     using Connect.Managers;
     using Context;
     using DependencyInjection;
     using ModelMappers;
     using Models.Catalog;
+    using Sitecore.Commerce;
 
-    [Service(typeof(IAnalyticsRepository), Lifetime = Lifetime.Singleton)]
-    public class AnalyticsRepository : IAnalyticsRepository
+    [Service(typeof(ICommerceAnalyticsService), Lifetime = Lifetime.Singleton)]
+    public class CommerceAnalyticsService : ICommerceAnalyticsService
     {
         private readonly IAnalyticsManager analyticsManager;
-        private readonly IEntityMapper entityMapper;
         private readonly IStorefrontContext storefrontContext;
-        private readonly IVisitorContext visitorContext;
 
-        public AnalyticsRepository(
+        public CommerceAnalyticsService(
             IAnalyticsManager analyticsManager,
-            IEntityMapper entityMapper,
-            IStorefrontContext storefrontContext,
-            IVisitorContext visitorContext)
+            IStorefrontContext storefrontContext)
         {
+            Assert.ArgumentNotNull(analyticsManager, nameof(analyticsManager));
+            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+
             this.analyticsManager = analyticsManager;
-            this.entityMapper = entityMapper;
             this.storefrontContext = storefrontContext;
-            this.visitorContext = visitorContext;
         }
 
         public void RaiseProductVisitedEvent(ProductModel product)
         {
+            Assert.ArgumentNotNull(product, nameof(product));
+
             analyticsManager.VisitedProductDetailsPage(storefrontContext.ShopName, product.SitecoreId,
                 product.DisplayName);
         }
 
         public void RaiseCategoryVisitedEvent(CategoryModel category)
         {
+            Assert.ArgumentNotNull(category, nameof(category));
+
             analyticsManager.VisitedCategoryPage(storefrontContext.ShopName, category.SitecoreId, category.Name);
         }
     }

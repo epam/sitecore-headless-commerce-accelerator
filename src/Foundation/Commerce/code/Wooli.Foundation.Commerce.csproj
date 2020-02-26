@@ -688,14 +688,14 @@
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\AnalyticsRepository.cs" />
+    <Compile Include="Services\Analytics\CommerceAnalyticsService.cs" />
     <Compile Include="Repositories\BaseCheckoutRepository.cs" />
     <Compile Include="Repositories\BaseCatalogRepository.cs" />
     <Compile Include="Repositories\BillingRepository.cs" />
     <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\CatalogRepository.cs" />
     <Compile Include="Repositories\Contracts\IAccountRepositry.cs" />
-    <Compile Include="Repositories\Contracts\IAnalyticsRepository.cs" />
+    <Compile Include="Services\Analytics\ICommerceAnalyticsService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\CheckoutRepository.cs" />
     <Compile Include="Repositories\Contracts\IBillingRepository.cs" />

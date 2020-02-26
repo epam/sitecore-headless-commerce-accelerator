@@ -16,18 +16,19 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using Foundation.Commerce.Models.Catalog;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Analytics;
     using Foundation.ReactJss.Infrastructure;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly IAnalyticsRepository analyticsRepository;
+        private readonly ICommerceAnalyticsService analyticsRepository;
         private readonly ICatalogRepository catalogRepository;
 
         public CategoryContextExtension(
             ICatalogRepository catalogRepository,
-            IAnalyticsRepository analyticsRepository,
+            ICommerceAnalyticsService analyticsRepository,
             IConfigurationResolver configurationResolver) : base(configurationResolver)
         {
             this.catalogRepository = catalogRepository;

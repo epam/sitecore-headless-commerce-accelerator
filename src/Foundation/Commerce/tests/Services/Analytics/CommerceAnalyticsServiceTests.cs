@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -21,17 +21,19 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
     using Models.Catalog;
     using NSubstitute;
     using Ploeh.AutoFixture;
+    using Sitecore.Data.Items;
+    using Sitecore.FakeDb.AutoFixture;
     using Xunit;
 
     public class CommerceAnalyticsServiceTests
     {
-        private readonly Fixture fixture;
+        private readonly IFixture fixture;
         private readonly IAnalyticsManager analyticsManager;
         private readonly IStorefrontContext storefrontContext;
 
         public CommerceAnalyticsServiceTests()
         {
-            this.fixture = new Fixture();
+            this.fixture = new Fixture().Customize(new AutoDbCustomization()); ;
             
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
@@ -40,16 +42,43 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         }
 
         [Fact]
+        public void RaiseProductVisitedEvent_IfProductIsNotNull_ShouldRaiseEvent()
+        {
+            //arrange
+            var product = new ProductModel(this.fixture.Create<Item>());
+            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
+
+            //act
+            service.RaiseProductVisitedEvent(product);
+
+            //assert
+            analyticsManager.Received(1).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+        }
+
+        [Fact]
         public void RaiseProductVisitedEvent_IfProductIsNull_ShouldThrowException()
         {
             //arrange
             ProductModel product = null;
-            var manager = Substitute.For<IAnalyticsManager>();
             var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
 
             //act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });
-            manager.Received(0).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            analyticsManager.Received(0).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+        }
+
+        [Fact]
+        public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()
+        {
+            //arrange
+            var category = new CategoryModel(this.fixture.Create<Item>());
+            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
+
+            //act
+            service.RaiseCategoryVisitedEvent(category);
+
+            //assert
+            analyticsManager.Received(1).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -57,12 +86,11 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         {
             //arrange
             CategoryModel category = null;
-            var manager = Substitute.For<IAnalyticsManager>();
             var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
 
             //act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseCategoryVisitedEvent(category); });
-            manager.Received(0).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            analyticsManager.Received(0).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
     }
 }

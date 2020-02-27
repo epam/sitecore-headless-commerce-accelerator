@@ -129,7 +129,7 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("address/add")]
+        [ActionName("address-add")]
         public ActionResult AddAddress(AddressModel newAddress)
         {
             try
@@ -151,7 +151,7 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpGet]
-        [ActionName("address/list")]
+        [ActionName("address-list")]
         public ActionResult GetAddressList()
         {
             try
@@ -172,7 +172,7 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("address/update")]
+        [ActionName("address-update")]
         public ActionResult UpdateAddress(AddressModel address)
         {
             try
@@ -194,7 +194,7 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("address/remove")]
+        [ActionName("address-remove")]
         public ActionResult RemoveAddress(AddressModel address)
         {
             try

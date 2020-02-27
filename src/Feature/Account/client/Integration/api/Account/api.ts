@@ -71,7 +71,7 @@ export const changePassword = async (
 
 export const addAddress = async (addressModel: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
   try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address/add`, addressModel);
+    const response = await axios.post<AddressResponse>(`${routeBase}/address-add`, addressModel);
 
     const { data: responseData } = response;
 
@@ -83,7 +83,7 @@ export const addAddress = async (addressModel: Commerce.AddressModel): Promise<R
 
 export const getAddressList = async (): Promise<Result<Commerce.AddressModel[]>> => {
   try {
-    const response = await axios.get<AddressResponse>(`${routeBase}/address/list`);
+    const response = await axios.get<AddressResponse>(`${routeBase}/address-list`);
 
     const { data: responseData } = response;
 
@@ -95,7 +95,7 @@ export const getAddressList = async (): Promise<Result<Commerce.AddressModel[]>>
 
 export const updateAddress = async (address: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
   try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address/update`, address);
+    const response = await axios.post<AddressResponse>(`${routeBase}/address-update`, address);
 
     const { data: responseData } = response;
 
@@ -107,7 +107,7 @@ export const updateAddress = async (address: Commerce.AddressModel): Promise<Res
 
 export const removeAddress = async (address: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
   try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address/remove`, address);
+    const response = await axios.post<AddressResponse>(`${routeBase}/address-remove`, address);
 
     const { data: responseData } = response;
 

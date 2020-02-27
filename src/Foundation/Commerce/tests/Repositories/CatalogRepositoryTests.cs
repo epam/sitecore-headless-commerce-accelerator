@@ -43,6 +43,8 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var searchManager = Substitute.For<ISearchManager>();
 
             var productItem = new DbItem("ProductItem");
+            productItem.Fields.Add("ProductId", "productId");
+
             using (var db = new Db {productItem})
             {
                 storefrontContext

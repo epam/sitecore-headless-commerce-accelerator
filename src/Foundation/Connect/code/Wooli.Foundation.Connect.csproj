@@ -638,6 +638,10 @@
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>Wooli.Foundation.GlassMapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>

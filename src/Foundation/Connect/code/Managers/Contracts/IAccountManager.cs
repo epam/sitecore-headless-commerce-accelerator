@@ -30,6 +30,13 @@ namespace Wooli.Foundation.Connect.Managers
 
         ManagerResponse<DisableUserResult, CommerceUser> DisableUser(CommerceUser commerceUser);
 
+        /// <summary>
+        /// Gets User by Email
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <returns></returns>
+        ManagerResponse<GetUsersResult, CommerceUser> GetUserByEmail(string email);
+
         ManagerResponse<GetUserResult, CommerceUser> GetUser(string userName);
 
         ManagerResponse<GetUsersResult, IList<CommerceUser>> GetUsers(

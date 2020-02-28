@@ -23,19 +23,26 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
 
+    using Wooli.Foundation.Base.Models.Logging;
+    using Wooli.Foundation.Base.Services.Logging;
+
+    using Log = Sitecore.Diagnostics.Log;
+
     [Service(typeof(IAccountManager))]
     public class AccountManager : IAccountManager
     {
         private readonly ICartManager cartManager;
         private readonly CustomerServiceProvider customerServiceProvider;
+        private readonly ILogService<CommonLog> logService;
 
-        public AccountManager(IConnectServiceProvider connectServiceProvider, ICartManager cartManager)
+        public AccountManager(IConnectServiceProvider connectServiceProvider, ICartManager cartManager, ILogService<CommonLog> logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
 
             customerServiceProvider = connectServiceProvider.GetCustomerServiceProvider();
             this.cartManager = cartManager;
+            this.logService = logService;
         }
 
         public ManagerResponse<CreateUserResult, CommerceUser> CreateUser(string userName, string email,
@@ -97,6 +104,21 @@ namespace Wooli.Foundation.Connect.Managers
 
             return new ManagerResponse<DisableUserResult, CommerceUser>(disableUserResult,
                 disableUserResult.CommerceUser);
+        }
+
+        public ManagerResponse<GetUsersResult, CommerceUser> GetUserByEmail(string email)
+        {
+            Assert.ArgumentNotNullOrEmpty(email, nameof(email));
+
+            var users = this.customerServiceProvider.GetUsers(new GetUsersRequest(new UserSearchCriteria { Email = email }));
+            if (!users.Success || users.CommerceUsers == null || users.CommerceUsers.Count == 0)
+                this.logService.Warn($"User Not Found Error");
+
+            var serviceProviderResult = users;
+
+            return new ManagerResponse<GetUsersResult, CommerceUser>(
+                serviceProviderResult,
+                serviceProviderResult.CommerceUsers.FirstOrDefault());
         }
 
         public ManagerResponse<GetUserResult, CommerceUser> GetUser(string userName)

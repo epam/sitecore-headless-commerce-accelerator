@@ -161,8 +161,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            var getUserManagerResponse = accountManager.GetUser(email);
-            var emailAlreadyInUse = getUserManagerResponse.ServiceProviderResult.Success;
+            var getUserManagerResponse = this.accountManager.GetUserByEmail(email);
+            var emailAlreadyInUse = getUserManagerResponse.Result != null;
 
             result.SetResult(new ValidateAccountResultModel
             {

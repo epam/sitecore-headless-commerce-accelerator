@@ -15,16 +15,20 @@
 namespace Wooli.Foundation.Base.Services.Configuration
 {
     using System.Diagnostics.CodeAnalysis;
-    using DependencyInjection;
+
     using Microsoft.Extensions.DependencyInjection;
-    using Models.Configuration;
+
     using Sitecore.DependencyInjection;
+
+    using Wooli.Foundation.Base.Models.Configuration;
+    using Wooli.Foundation.DependencyInjection;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(IConfigurationService))]
     public class ConfigurationService : IConfigurationService
     {
-        public TConfiguration Get<TConfiguration>() where TConfiguration : Configuration, new()
+        public TConfiguration Get<TConfiguration>()
+            where TConfiguration : Configuration, new()
         {
             return ServiceLocator.ServiceProvider.GetService<IConfigurationProvider<TConfiguration>>().Get();
         }

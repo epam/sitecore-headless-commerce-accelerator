@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ namespace Wooli.Foundation.Connect.Utils
 {
     using System;
     using System.Linq;
+
     using Sitecore;
     using Sitecore.Data.Items;
 
@@ -23,12 +24,12 @@ namespace Wooli.Foundation.Connect.Utils
     {
         public static string GetPaymentOptionId(string paymentType)
         {
-            var paymentOptions =
-                Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
-            if (paymentOptions != null && paymentOptions.Children.Any())
+            Item paymentOptions = Context.Database.GetItem(
+                "/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
+            if ((paymentOptions != null) && paymentOptions.Children.Any())
             {
-                var paymentOption = paymentOptions.Children.FirstOrDefault(o =>
-                    o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));
+                Item paymentOption = paymentOptions.Children.FirstOrDefault(
+                    o => o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));
                 if (paymentOption != null) return paymentOption.ID.ToGuid().ToString("D");
             }
 

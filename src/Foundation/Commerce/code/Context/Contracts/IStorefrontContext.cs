@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,22 +14,22 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Connect.Models;
-
     using Sitecore.Data.Items;
+
+    using Wooli.Foundation.Connect.Models;
 
     public interface IStorefrontContext
     {
         string CatalogName { get; }
 
-        string ShopName { get; }
+        Item CurrentCatalogItem { get; }
 
         IStorefrontModel CurrentStorefront { get; }
 
-        Item CurrentCatalogItem { get; }
+        int DefaultItemsPerPage { get; }
 
         string SelectedCurrency { get; }
 
-        int DefaultItemsPerPage { get; }
+        string ShopName { get; }
     }
 }

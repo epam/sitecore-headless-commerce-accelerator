@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,21 +14,22 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Connect.Models;
-    using DependencyInjection;
     using Sitecore.Data.Items;
     using Sitecore.Data.Managers;
     using Sitecore.Data.Templates;
-    using Utils;
+
+    using Wooli.Foundation.Commerce.Utils;
+    using Wooli.Foundation.Connect.Models;
+    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IItemTypeProvider))]
     public class ItemTypeProvider : IItemTypeProvider
     {
         public Constants.ItemType ResolveByItem(Item item)
         {
-            var template = TemplateManager.GetTemplate(item);
+            Template template = TemplateManager.GetTemplate(item);
 
-            return ResolveByTemplate(template);
+            return this.ResolveByTemplate(template);
         }
 
         public Constants.ItemType ResolveByTemplate(Template template)

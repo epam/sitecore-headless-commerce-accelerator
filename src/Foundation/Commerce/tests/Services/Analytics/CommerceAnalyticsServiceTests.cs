@@ -15,82 +15,101 @@
 namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 {
     using System;
-    using Commerce.Services.Analytics;
-    using Connect.Managers;
-    using Context;
-    using Models.Catalog;
+
     using NSubstitute;
+
     using Ploeh.AutoFixture;
+
     using Sitecore.Data.Items;
     using Sitecore.FakeDb.AutoFixture;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Wooli.Foundation.Commerce.Services.Analytics;
+    using Wooli.Foundation.Connect.Managers;
+
     using Xunit;
 
     public class CommerceAnalyticsServiceTests
     {
-        private readonly IFixture fixture;
         private readonly IAnalyticsManager analyticsManager;
+
+        private readonly IFixture fixture;
+
         private readonly IStorefrontContext storefrontContext;
 
         public CommerceAnalyticsServiceTests()
         {
-            this.fixture = new Fixture().Customize(new AutoDbCustomization()); ;
-            
+            this.fixture = new Fixture().Customize(new AutoDbCustomization());
+
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
-            
+
             this.analyticsManager = Substitute.For<IAnalyticsManager>();
-        }
-
-        [Fact]
-        public void RaiseProductVisitedEvent_IfProductIsNotNull_ShouldRaiseEvent()
-        {
-            //arrange
-            var product = new ProductModel(this.fixture.Create<Item>());
-            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
-
-            //act
-            service.RaiseProductVisitedEvent(product);
-
-            //assert
-            analyticsManager.Received(1).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
-        }
-
-        [Fact]
-        public void RaiseProductVisitedEvent_IfProductIsNull_ShouldThrowException()
-        {
-            //arrange
-            ProductModel product = null;
-            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
-
-            //act & assert
-            Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });
-            analyticsManager.Received(0).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
         public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()
         {
-            //arrange
+            // arrange
             var category = new CategoryModel(this.fixture.Create<Item>());
-            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
+            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
-            //act
+            // act
             service.RaiseCategoryVisitedEvent(category);
 
-            //assert
-            analyticsManager.Received(1).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            // assert
+            this.analyticsManager.Received(1).VisitedCategoryPage(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>());
         }
 
         [Fact]
         public void RaiseCategoryVisitedEvent_IfCategoryIsNull_ShouldThrowException()
         {
-            //arrange
+            // arrange
             CategoryModel category = null;
-            var service = new CommerceAnalyticsService(analyticsManager, storefrontContext);
+            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
-            //act & assert
+            // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseCategoryVisitedEvent(category); });
-            analyticsManager.Received(0).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            this.analyticsManager.Received(0).VisitedCategoryPage(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>());
+        }
+
+        [Fact]
+        public void RaiseProductVisitedEvent_IfProductIsNotNull_ShouldRaiseEvent()
+        {
+            // arrange
+            var product = new ProductModel(this.fixture.Create<Item>());
+            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+
+            // act
+            service.RaiseProductVisitedEvent(product);
+
+            // assert
+            this.analyticsManager.Received(1).VisitedProductDetailsPage(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>());
+        }
+
+        [Fact]
+        public void RaiseProductVisitedEvent_IfProductIsNull_ShouldThrowException()
+        {
+            // arrange
+            ProductModel product = null;
+            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+
+            // act & assert
+            Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });
+            this.analyticsManager.Received(0).VisitedProductDetailsPage(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                Arg.Any<string>());
         }
     }
 }

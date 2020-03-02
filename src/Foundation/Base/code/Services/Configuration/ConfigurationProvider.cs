@@ -16,8 +16,11 @@ namespace Wooli.Foundation.Base.Services.Configuration
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Models.Configuration;
+    using System.Xml;
+
     using Sitecore.Configuration;
+
+    using Wooli.Foundation.Base.Models.Configuration;
 
     [ExcludeFromCodeCoverage]
     public abstract class ConfigurationProvider<TConfiguration> : IConfigurationProvider<TConfiguration>
@@ -39,7 +42,7 @@ namespace Wooli.Foundation.Base.Services.Configuration
 
         private TConfiguration Read()
         {
-            var xmlNode = Factory.GetConfigNode(this.Path);
+            XmlNode xmlNode = Factory.GetConfigNode(this.Path);
             return xmlNode != null ? Factory.CreateObject<TConfiguration>(xmlNode) : null;
         }
     }

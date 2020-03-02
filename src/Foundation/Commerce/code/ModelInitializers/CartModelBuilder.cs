@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,15 +16,17 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 {
     using System.Collections.Generic;
     using System.Linq;
-    using DependencyInjection;
-    using ModelMappers;
-    using Models.Catalog;
-    using Models.Checkout;
-    using Providers;
-    using Repositories;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Diagnostics;
+
+    using Wooli.Foundation.Commerce.ModelMappers;
+    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Wooli.Foundation.Commerce.Providers;
+    using Wooli.Foundation.Commerce.Repositories;
+    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ICartModelBuilder))]
     public class CartModelBuilder : ICartModelBuilder
@@ -35,7 +37,9 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
         private readonly IEntityMapper entityMapper;
 
-        public CartModelBuilder(ICatalogRepository catalogRepository, IEntityMapper entityMapper,
+        public CartModelBuilder(
+            ICatalogRepository catalogRepository,
+            IEntityMapper entityMapper,
             ICurrencyProvider currencyProvider)
         {
             this.catalogRepository = catalogRepository;
@@ -45,7 +49,7 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
         public CartModel Initialize(Cart model)
         {
-            return Initialize<CartModel>(model);
+            return this.Initialize<CartModel>(model);
         }
 
         public TResult Initialize<TResult>(Cart model)
@@ -56,17 +60,17 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
             var result = new TResult();
             result.Id = model.ExternalId;
 
-            result.CartLines = model.Lines.Select(Initialize).ToList();
+            result.CartLines = model.Lines.Select(this.Initialize).ToList();
             result.Adjustments = model.Adjustments?.Select(a => a.Description).ToList() ?? new List<string>();
-            result.Addresses = model.Parties?.Select(x => entityMapper.MapToAddress(x)).ToList() ??
-                               new List<AddressModel>();
-            result.Payments = model.Payment?.Select(x => entityMapper.MapToFederatedPayment(x)).ToList() ??
-                              new List<FederatedPaymentModel>();
-            result.Shippings = model.Shipping?.Select(x => entityMapper.MapToShippingMethodModel(x)).ToList() ??
-                               new List<ShippingMethodModel>();
+            result.Addresses = model.Parties?.Select(x => this.entityMapper.MapToAddress(x)).ToList()
+                               ?? new List<AddressModel>();
+            result.Payments = model.Payment?.Select(x => this.entityMapper.MapToFederatedPayment(x)).ToList()
+                              ?? new List<FederatedPaymentModel>();
+            result.Shippings = model.Shipping?.Select(x => this.entityMapper.MapToShippingMethodModel(x)).ToList()
+                               ?? new List<ShippingMethodModel>();
 
             var price = new CartPriceModel();
-            price.Initialize(model.Total, currencyProvider);
+            price.Initialize(model.Total, this.currencyProvider);
             result.Price = price;
 
             result.Email = model.Email;
@@ -86,14 +90,14 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
             var commerceCartProduct = model.Product as CommerceCartProduct;
 
-            var product = catalogRepository.GetProduct(model.Product.ProductId);
+            ProductModel product = this.catalogRepository.GetProduct(model.Product.ProductId);
             result.Product = product;
             result.Variant =
                 product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
             result.Quantity = model.Quantity;
 
             var price = new CartPriceModel();
-            price.Initialize(model.Total, currencyProvider);
+            price.Initialize(model.Total, this.currencyProvider);
             result.Price = price;
 
             result.Temp = model;

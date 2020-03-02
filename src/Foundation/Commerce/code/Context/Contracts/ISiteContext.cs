@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,23 +16,24 @@ namespace Wooli.Foundation.Commerce.Context
 {
     using System.Collections;
     using System.Web;
+
     using Sitecore.Data.Items;
 
     public interface ISiteContext
     {
-        HttpContext CurrentContext { get; }
-
-        IDictionary Items { get; }
-
         Item CurrentCategoryItem { get; set; }
 
-        Item CurrentProductItem { get; set; }
+        HttpContext CurrentContext { get; }
 
         Item CurrentItem { get; set; }
+
+        Item CurrentProductItem { get; set; }
 
         bool IsCategory { get; }
 
         bool IsProduct { get; }
+
+        IDictionary Items { get; }
 
         string VirtualFolder { get; }
     }

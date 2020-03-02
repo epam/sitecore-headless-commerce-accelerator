@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,10 +15,10 @@
 namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Collections.Specialized;
-    using Connect.Models;
-    using Context;
-    using Models;
-    using Models.Catalog;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Models;
+    using Wooli.Foundation.Commerce.Models.Catalog;
 
     public interface IProductListRepository
     {

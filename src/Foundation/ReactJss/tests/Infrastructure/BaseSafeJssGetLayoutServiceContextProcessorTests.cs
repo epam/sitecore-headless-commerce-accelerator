@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,17 +15,49 @@
 namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
 {
     using System;
-    using ReactJss.Infrastructure;
+
     using NSubstitute;
+
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
+
+    using Wooli.Foundation.ReactJss.Infrastructure;
+
     using Xunit;
 
     public class BaseSafeJssGetLayoutServiceContextProcessorTests
     {
+        [Fact]
+        public void ResolveContents_ErrorableContentsResolver_ExceptionNotThrowed()
+        {
+            using (var db = new Db { new DbItem("RenderedItem") })
+            {
+                Item renderedItem = db.GetItem("/sitecore/content/RenderedItem");
+                var configurationResolver = Substitute.For<IConfigurationResolver>();
+
+                var args = new GetLayoutServiceContextArgs
+                           {
+                               RenderedItem = renderedItem,
+                               RenderingConfiguration = new DefaultRenderingConfiguration(),
+                               ContextData = {
+                                                { "_sign", 1 } 
+                                             }
+                           };
+
+                IGetLayoutServiceContextProcessor contextProcessor =
+                    new ErrorableGetLayoutServiceContextProcessor(configurationResolver);
+
+                contextProcessor.Process(args);
+
+                object resultObject = args.ContextData["_sign"];
+                var value = Assert.IsType<int>(resultObject);
+                Assert.Equal(1, value);
+            }
+        }
+
         public class ErrorableGetLayoutServiceContextProcessor : BaseSafeJssGetLayoutServiceContextProcessor
         {
             public ErrorableGetLayoutServiceContextProcessor(IConfigurationResolver configurationResolver)
@@ -35,41 +67,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
 
             protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
             {
-                throw new Exception("The test should not show this exception!");
-            }
-        }
-
-        [Fact]
-        public void ResolveContents_ErrorableContentsResolver_ExceptionNotThrowed()
-        {
-            using (
-                var db = new Db
-                {
-                    new DbItem("RenderedItem")
-                })
-            {
-                var renderedItem = db.GetItem("/sitecore/content/RenderedItem");
-                var configurationResolver = Substitute.For<IConfigurationResolver>();
-
-
-                var args = new GetLayoutServiceContextArgs
-                {
-                    RenderedItem = renderedItem,
-                    RenderingConfiguration = new DefaultRenderingConfiguration(),
-                    ContextData =
-                    {
-                        {"_sign", 1}
-                    }
-                };
-
-                IGetLayoutServiceContextProcessor contextProcessor =
-                    new ErrorableGetLayoutServiceContextProcessor(configurationResolver);
-
-                contextProcessor.Process(args);
-
-                var resultObject = args.ContextData["_sign"];
-                var value = Assert.IsType<int>(resultObject);
-                Assert.Equal(1, value);
+                throw new Exception("The test shouldnot show this exception!");
             }
         }
     }

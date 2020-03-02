@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,12 +15,14 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
-    using DependencyInjection;
-    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Diagnostics;
+
+    using Wooli.Foundation.Connect.Providers.Contracts;
+    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IInventoryManager))]
     public class InventoryManager : IInventoryManager
@@ -30,7 +32,7 @@ namespace Wooli.Foundation.Connect.Managers
         public InventoryManager(IConnectServiceProvider connectServiceProvider)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            inventoryServiceProvider = connectServiceProvider.GetInventoryServiceProvider();
+            this.inventoryServiceProvider = connectServiceProvider.GetInventoryServiceProvider();
         }
 
         public ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> GetStockInformation(
@@ -43,9 +45,10 @@ namespace Wooli.Foundation.Connect.Managers
             var request = new GetStockInformationRequest(shopName, inventoryProducts, detailsLevel);
             request.Location = string.Empty;
 
-            var stockInformation = inventoryServiceProvider.GetStockInformation(request);
+            GetStockInformationResult stockInformation = this.inventoryServiceProvider.GetStockInformation(request);
 
-            return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(stockInformation,
+            return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(
+                stockInformation,
                 stockInformation.StockInformation ?? new List<StockInformation>());
         }
     }

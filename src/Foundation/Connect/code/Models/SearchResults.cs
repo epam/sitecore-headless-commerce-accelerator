@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ namespace Wooli.Foundation.Connect.Models
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
@@ -26,48 +27,53 @@ namespace Wooli.Foundation.Connect.Models
 
         private IList<Item> searchResultItems;
 
-        public SearchResults() : this(null, 0, 0, 0, null)
+        public SearchResults()
+            : this(null, 0, 0, 0, null)
         {
         }
 
-        public SearchResults(List<Item> searchResultItems, int totalItemCount, int totalPageCount,
-            int currentPageNumber, IEnumerable<CommerceQueryFacet> facets)
+        public SearchResults(
+            List<Item> searchResultItems,
+            int totalItemCount,
+            int totalPageCount,
+            int currentPageNumber,
+            IEnumerable<CommerceQueryFacet> facets)
         {
-            SearchResultItems = searchResultItems ?? new List<Item>();
-            TotalPageCount = totalPageCount;
-            TotalItemCount = totalItemCount;
-            Facets = facets ?? Enumerable.Empty<CommerceQueryFacet>();
-            CurrentPageNumber = currentPageNumber;
+            this.SearchResultItems = searchResultItems ?? new List<Item>();
+            this.TotalPageCount = totalPageCount;
+            this.TotalItemCount = totalItemCount;
+            this.Facets = facets ?? Enumerable.Empty<CommerceQueryFacet>();
+            this.CurrentPageNumber = currentPageNumber;
         }
+
+        public int CurrentPageNumber { get; set; }
 
         public string DisplayName { get; set; }
 
+        public IEnumerable<CommerceQueryFacet> Facets
+        {
+            get => this.facets;
+            set
+            {
+                Assert.ArgumentNotNull(value, nameof(value));
+                this.facets = value;
+            }
+        }
+
         public Item NamedSearchItem { get; set; }
+
+        public IList<Item> SearchResultItems
+        {
+            get => this.searchResultItems;
+            set
+            {
+                Assert.ArgumentNotNull(value, nameof(value));
+                this.searchResultItems = value;
+            }
+        }
 
         public int TotalItemCount { get; set; }
 
         public int TotalPageCount { get; set; }
-
-        public int CurrentPageNumber { get; set; }
-
-        public IList<Item> SearchResultItems
-        {
-            get => searchResultItems;
-            set
-            {
-                Assert.ArgumentNotNull(value, nameof(value));
-                searchResultItems = value;
-            }
-        }
-
-        public IEnumerable<CommerceQueryFacet> Facets
-        {
-            get => facets;
-            set
-            {
-                Assert.ArgumentNotNull(value, nameof(value));
-                facets = value;
-            }
-        }
     }
 }

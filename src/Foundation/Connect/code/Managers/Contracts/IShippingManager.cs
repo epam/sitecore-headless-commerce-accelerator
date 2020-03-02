@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,15 +15,20 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
-    using Models;
+
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
 
+    using Wooli.Foundation.Connect.Models;
+
     public interface IShippingManager
     {
         ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(
-            string shopName, Cart cart, ShippingOptionType shippingOptionType, PartyEntity address,
+            string shopName,
+            Cart cart,
+            ShippingOptionType shippingOptionType,
+            PartyEntity address,
             List<string> cartLineExternalIdList);
 
         ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart);

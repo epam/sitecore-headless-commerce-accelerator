@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,13 +23,14 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     [TsClass]
     public class ProductModel : BaseProductModel
     {
-        public ProductModel(Item sellableItem) : base(sellableItem)
+        public ProductModel(Item sellableItem)
+            : base(sellableItem)
         {
             this.SitecoreId = sellableItem["SitecoreId"];
 
             var variantItems = sellableItem.Children.ToArray();
             var variants = new List<ProductVariantModel>();
-            foreach (var commerceProductVariant in variantItems)
+            foreach (Item commerceProductVariant in variantItems)
             {
                 var variant = new ProductVariantModel(commerceProductVariant);
                 variants.Add(variant);

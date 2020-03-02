@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,12 +18,13 @@ namespace Wooli.Feature.Catalog.Controllers
     using System.Net;
     using System.Web;
     using System.Web.Http;
-    using Foundation.Commerce.Context;
-    using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Catalog;
-    using Foundation.Commerce.Repositories;
-    using Foundation.Commerce.Utils;
-    using Foundation.Extensions.Extensions;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Models;
+    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Wooli.Foundation.Commerce.Repositories;
+    using Wooli.Foundation.Commerce.Utils;
+    using Wooli.Foundation.Extensions.Extensions;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
@@ -36,14 +37,25 @@ namespace Wooli.Feature.Catalog.Controllers
 
         private readonly IVisitorContext visitorContext;
 
-        public ProductController(IStorefrontContext storefrontContext,
-            IVisitorContext visitorContext, ICatalogRepository catalogRepository,
+        public ProductController(
+            IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext,
+            ICatalogRepository catalogRepository,
             IProductListRepository productListRepository)
         {
             this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
             this.catalogRepository = catalogRepository;
             this.productListRepository = productListRepository;
+        }
+
+        [Route("get/{id}")]
+        public IHttpActionResult Get(string id)
+        {
+            ProductModel productModel = this.catalogRepository.GetProduct(id);
+            if (productModel == null) return this.JsonError("Not Found", HttpStatusCode.NotFound);
+
+            return this.JsonOk(productModel);
         }
 
         [Route("search")]
@@ -57,23 +69,22 @@ namespace Wooli.Feature.Catalog.Controllers
             [FromUri(Name = "cci")] string currentCatalogItemId = null,
             [FromUri(Name = "ci")] string currentItemId = null)
         {
-            var facetValuesCollection = !string.IsNullOrEmpty(facetValues)
-                ? HttpUtility.ParseQueryString(facetValues)
-                : new NameValueCollection();
+            NameValueCollection facetValuesCollection = !string.IsNullOrEmpty(facetValues)
+                                                            ? HttpUtility.ParseQueryString(facetValues)
+                                                            : new NameValueCollection();
 
-            var model = productListRepository.GetProductList(visitorContext, currentItemId,
-                currentCatalogItemId, searchKeyword, page, facetValuesCollection, sortField, pageSize, sortDirection);
+            ProductListResultModel model = this.productListRepository.GetProductList(
+                this.visitorContext,
+                currentItemId,
+                currentCatalogItemId,
+                searchKeyword,
+                page,
+                facetValuesCollection,
+                sortField,
+                pageSize,
+                sortDirection);
 
             return this.JsonOk(model);
-        }
-
-        [Route("get/{id}")]
-        public IHttpActionResult Get(string id)
-        {
-            var productModel = catalogRepository.GetProduct(id);
-            if (productModel == null) return this.JsonError("Not Found", HttpStatusCode.NotFound);
-
-            return this.JsonOk(productModel);
         }
     }
 }

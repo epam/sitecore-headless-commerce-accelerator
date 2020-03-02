@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,16 +16,18 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
 {
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Controllers;
-    using Foundation.Commerce.Utils;
+
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
+
+    using Wooli.Feature.Account.Controllers;
+    using Wooli.Foundation.Commerce.Utils;
 
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)
         {
-            RegisterHttpRoutes(RouteTable.Routes);
+            this.RegisterHttpRoutes(RouteTable.Routes);
         }
 
         private void RegisterHttpRoutes(RouteCollection routeCollection)
@@ -37,8 +39,8 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
             routeCollection.MapRoute(
                 nameof(AccountController),
                 Constants.CommerceRoutePrefix + $"/{AccountControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] {typeof(AccountController).Namespace},
-                defaults: new {controller = AccountControllerName});
+                namespaces: new[] { typeof(AccountController).Namespace },
+                defaults: new { controller = AccountControllerName });
 
             const string AuthenticationControllerName = "Authentication";
             const string AuthenticationPrefix = "auth";
@@ -46,8 +48,8 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
             routeCollection.MapRoute(
                 nameof(AuthenticationController),
                 Constants.CommerceRoutePrefix + $"/{AuthenticationPrefix}" + "/{action}",
-                namespaces: new[] {typeof(AuthenticationController).Namespace},
-                defaults: new {controller = AuthenticationControllerName});
+                namespaces: new[] { typeof(AuthenticationController).Namespace },
+                defaults: new { controller = AuthenticationControllerName });
         }
     }
 }

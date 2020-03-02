@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,17 +14,34 @@
 
 namespace Wooli.Foundation.ReactJss.Tests.Helpers
 {
-    using ReactJss.Helpers;
+    using Wooli.Foundation.ReactJss.Helpers;
+
     using Xunit;
 
     public class StringHelperTests
     {
         [Theory]
+        [InlineData("OneWord", "oneWord")]
+        [InlineData("Two Words", "twoWords")]
+        [InlineData("Long long long text", "longLongLongText")]
+        [InlineData("Long long long text with Dot.", "longLongLongTextWithDot")]
+        [InlineData("Text with CAPS.", "textWithCAPS")]
+        [InlineData("CAPS First Text", "capsFirstText")]
+        [InlineData("Text with particialCAPS", "textWithParticialCAPS")]
+        [InlineData("", "")]
+        [InlineData(null, null)]
+        public void ConvertToCamelCase_InputString_ReturnsCorrectValue(string str, string expected)
+        {
+            string result = StringHelper.ConvertToCamelCase(str);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
         [InlineData("lower")]
         [InlineData("12345")]
         public void IsLower_LowerString_ReturnsTrue(string str)
         {
-            var result = str.IsLower();
+            bool result = str.IsLower();
             Assert.True(result);
         }
 
@@ -33,7 +50,16 @@ namespace Wooli.Foundation.ReactJss.Tests.Helpers
         [InlineData("UPPER")]
         public void IsLower_NotLowerString_ReturnsFalse(string str)
         {
-            var result = str.IsLower();
+            bool result = str.IsLower();
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("notUpper")]
+        [InlineData("lower")]
+        public void IsUpper_NotUpperString_ReturnsFalse(string str)
+        {
+            bool result = str.IsUpper();
             Assert.False(result);
         }
 
@@ -42,33 +68,8 @@ namespace Wooli.Foundation.ReactJss.Tests.Helpers
         [InlineData("12345")]
         public void IsUpper_UpperString_ReturnsTrue(string str)
         {
-            var result = str.IsUpper();
+            bool result = str.IsUpper();
             Assert.True(result);
-        }
-
-        [Theory]
-        [InlineData("notUpper")]
-        [InlineData("lower")]
-        public void IsUpper_NotUpperString_ReturnsFalse(string str)
-        {
-            var result = str.IsUpper();
-            Assert.False(result);
-        }
-
-        [Theory]
-        [InlineData("OneWord", "oneWord")]
-        [InlineData("Two Words", "twoWords")]
-        [InlineData("Long long long text", "longLongLongText")]
-        [InlineData("Long long long text with Dot.", "longLongLongTextWithDot")]
-        [InlineData("Text with CAPS.", "textWithCAPS")]
-        [InlineData("CAPS First Text", "capsFirstText")]
-        [InlineData("Text with partial  CAPS", "textWithPartialCAPS")]
-        [InlineData("", "")]
-        [InlineData(null, null)]
-        public void ConvertToCamelCase_InputString_ReturnsCorrectValue(string str, string expected)
-        {
-            var result = StringHelper.ConvertToCamelCase(str);
-            Assert.Equal(expected, result);
         }
     }
 }

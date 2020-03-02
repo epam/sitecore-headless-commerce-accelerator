@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,19 +15,24 @@
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
     using System.Linq;
-    using Connect.Managers;
-    using Context;
-    using DependencyInjection;
-    using Extensions.Services;
-    using Providers;
+
+    using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Utils;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Providers;
+    using Wooli.Foundation.Connect.Managers;
+    using Wooli.Foundation.DependencyInjection;
+    using Wooli.Foundation.Extensions.Services;
+
+    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
 
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
     {
         private readonly IPageTypeProvider pageTypeProvider;
+
         private readonly ISearchManager searchManager;
 
         private readonly ISiteContext siteContext;
@@ -36,9 +41,13 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
         private readonly IStorefrontContext storefrontContext;
 
-        public CatalogItemResolver(ISearchManager searchManager, IPageTypeProvider pageTypeProvider,
-            IStorefrontContext storefrontContext, ISiteDefinitionsProvider siteDefinitionsProvider,
-            ISiteContext siteContext, IAnalyticsManager analyticsManager)
+        public CatalogItemResolver(
+            ISearchManager searchManager,
+            IPageTypeProvider pageTypeProvider,
+            IStorefrontContext storefrontContext,
+            ISiteDefinitionsProvider siteDefinitionsProvider,
+            ISiteContext siteContext,
+            IAnalyticsManager analyticsManager)
         {
             this.searchManager = searchManager;
             this.pageTypeProvider = pageTypeProvider;
@@ -53,17 +62,17 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
             if (urlSegments == null) return;
 
-            var rootItem = siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
+            Item rootItem = this.siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
             if (rootItem == null) return;
 
-            if (siteContext.CurrentItem != null) return;
+            if (this.siteContext.CurrentItem != null) return;
 
-            var currentItem = Sitecore.Context.Item;
-            while (currentItem != null && currentItem.ID != rootItem.ID)
+            Item currentItem = Context.Item;
+            while ((currentItem != null) && (currentItem.ID != rootItem.ID))
             {
-                var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
+                string urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
 
-                ProcessItem(currentItem, urlSegment, storefrontContext.CatalogName);
+                this.ProcessItem(currentItem, urlSegment, this.storefrontContext.CatalogName);
 
                 if (urlSegments?.Length > 0) urlSegments = urlSegments.Take(urlSegments.Length - 1).ToArray();
 
@@ -73,28 +82,28 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
         private void ProcessItem(Item item, string urlSegment, string catalogName)
         {
-            var contextItemType = pageTypeProvider.ResolveByItem(item);
+            Constants.ItemType contextItemType = this.pageTypeProvider.ResolveByItem(item);
             if (contextItemType == Constants.ItemType.Unknown) return;
 
-            var itemName = item.Name != "*" ? item.Name : urlSegment;
+            string itemName = item.Name != "*" ? item.Name : urlSegment;
             if (string.IsNullOrEmpty(itemName)) return;
 
             Item catalogItem;
             switch (contextItemType)
             {
                 case Constants.ItemType.Category:
-                    catalogItem = searchManager.GetCategory(catalogName, itemName);
-                    siteContext.CurrentCategoryItem = catalogItem;
+                    catalogItem = this.searchManager.GetCategory(catalogName, itemName);
+                    this.siteContext.CurrentCategoryItem = catalogItem;
                     break;
                 case Constants.ItemType.Product:
-                    catalogItem = searchManager.GetProduct(catalogName, itemName);
-                    siteContext.CurrentProductItem = catalogItem;
+                    catalogItem = this.searchManager.GetProduct(catalogName, itemName);
+                    this.siteContext.CurrentProductItem = catalogItem;
                     break;
                 default:
                     return;
             }
 
-            if (siteContext.CurrentItem == null) siteContext.CurrentItem = catalogItem;
+            if (this.siteContext.CurrentItem == null) this.siteContext.CurrentItem = catalogItem;
         }
     }
 }

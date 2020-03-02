@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,23 +16,19 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Connect.Managers;
-    using Connect.Models;
-    using Context;
 
-    using Glass.Mapper;
     using Glass.Mapper.Sc;
-    using Glass.Mapper.Sc.Configuration;
-    using Glass.Mapper.Sc.Configuration.Attributes;
 
-    using Models.Catalog;
-    using Providers;
-
-    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using ProductModel = Models.Catalog.ProductModel;
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Wooli.Foundation.Commerce.Providers;
+    using Wooli.Foundation.Connect.Managers;
+    using Wooli.Foundation.Connect.Models;
+
+    using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
 
     public class BaseCatalogRepository
     {
@@ -46,17 +42,17 @@ namespace Wooli.Foundation.Commerce.Repositories
             ICatalogManager catalogManager,
             ISitecoreService sitecoreService)
         {
-            CurrencyProvider = currencyProvider;
-            SiteContext = siteContext;
-            StorefrontContext = storefrontContext;
-            VisitorContext = visitorContext;
-            CatalogManager = catalogManager;
-            SitecoreService = sitecoreService;
+            this.CurrencyProvider = currencyProvider;
+            this.SiteContext = siteContext;
+            this.StorefrontContext = storefrontContext;
+            this.VisitorContext = visitorContext;
+            this.CatalogManager = catalogManager;
+            this.SitecoreService = sitecoreService;
         }
 
-        public ICurrencyProvider CurrencyProvider { get; }
-
         public ICatalogManager CatalogManager { get; }
+
+        public ICurrencyProvider CurrencyProvider { get; }
 
         public ISiteContext SiteContext { get; }
 
@@ -66,6 +62,18 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public IVisitorContext VisitorContext { get; }
 
+        protected CategoryModel GetCategoryModel(Item categoryItem)
+        {
+            if (categoryItem == null)
+            {
+                return null;
+            }
+
+            var categoryModel = new CategoryModel(categoryItem);
+
+            return categoryModel;
+        }
+
         protected virtual ProductModel GetProductModel(IVisitorContext visitorContext, Item productItem)
         {
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
@@ -73,7 +81,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             if (productItem == null) return null;
 
             var variantEntityList = new List<Variant>();
-            if (productItem.HasChildren) variantEntityList = LoadVariants(productItem);
+            if (productItem.HasChildren) variantEntityList = this.LoadVariants(productItem);
 
             var product = new Product(productItem, variantEntityList);
             product.CatalogName = this.StorefrontContext.CatalogName;
@@ -91,13 +99,14 @@ namespace Wooli.Foundation.Commerce.Repositories
             renderingModel.StockStatusName = product.StockStatusName;
             renderingModel.CustomerAverageRating = product.CustomerAverageRating;
 
-            foreach (var renderingModelVariant in renderingModel.Variants)
+            foreach (ProductVariantModel renderingModelVariant in renderingModel.Variants)
             {
-                var variant =
+                Variant variant =
                     product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
                 if (variant == null) continue;
 
-                renderingModelVariant.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
+                renderingModelVariant.CurrencySymbol =
+                    this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
                 renderingModelVariant.StockStatusName = variant.StockStatusName;
@@ -105,18 +114,6 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
 
             return renderingModel;
-        }
-
-        protected CategoryModel GetCategoryModel(Item categoryItem)
-        {
-            if (categoryItem == null)
-            {
-                return null;
-            }
-
-            var categoryModel = new CategoryModel(categoryItem);
-
-            return categoryModel;
         }
 
         private List<Variant> LoadVariants(Item productItem)

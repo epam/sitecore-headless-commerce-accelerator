@@ -15,12 +15,12 @@
 namespace Wooli.Foundation.Base.Services.Mapping
 {
     /// <summary>
-    /// Maps models using AutoMapper
+    ///     Maps models using AutoMapper
     /// </summary>
     public interface IMapService
     {
         /// <summary>
-        /// Wraps AutoMapper.Mapper.Map
+        ///     Wraps AutoMapper.Mapper.Map
         /// </summary>
         /// <typeparam name="TSource">Type of source model</typeparam>
         /// <typeparam name="TDestination">Type of destination model</typeparam>
@@ -29,7 +29,7 @@ namespace Wooli.Foundation.Base.Services.Mapping
         TDestination Map<TSource, TDestination>(TSource source);
 
         /// <summary>
-        /// Wraps AutoMapper.Mapper.Map
+        ///     Wraps AutoMapper.Mapper.Map
         /// </summary>
         /// <typeparam name="TSource">Type of source model</typeparam>
         /// <typeparam name="TDestination">Type of destination model</typeparam>

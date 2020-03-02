@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
 
 namespace Wooli.Foundation.Commerce.ModelInitializers
 {
-    using DependencyInjection;
-    using Models.Checkout;
     using Sitecore.Commerce.Entities.Orders;
+
+    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IOrderModelBuilder))]
     public class OrderModelBuilder : IOrderModelBuilder
@@ -30,7 +31,7 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
         public OrderModel Initialize(Order model)
         {
-            var result = cartModelBuilder.Initialize<OrderModel>(model);
+            var result = this.cartModelBuilder.Initialize<OrderModel>(model);
 
             result.Status = model.Status;
             result.TrackingNumber = model.TrackingNumber;

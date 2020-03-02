@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,26 +15,27 @@
 namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Collections.Generic;
-    using Models;
-    using Models.Account;
-    using Models.Checkout;
+
+    using Wooli.Foundation.Commerce.Models;
+    using Wooli.Foundation.Commerce.Models.Account;
+    using Wooli.Foundation.Commerce.Models.Checkout;
 
     public interface IAccountRepository
     {
-        Result<CreateAccountResultModel> CreateAccount(CreateAccountModel createAccountModel);
-
-        Result<CommerceUserModel> UpdateAccountInfo(CommerceUserModel user);
-
-        Result<ValidateAccountResultModel> ValidateAccount(ValidateAccountModel validateAccountModel);
+        Result<IEnumerable<AddressModel>> AddCustomerAddress(string userName, AddressModel address);
 
         Result<ChangePasswordResultModel> ChangePassword(ChangePasswordModel changePasswordModel);
 
-        Result<IEnumerable<AddressModel>> AddCustomerAddress(string userName, AddressModel address);
+        Result<CreateAccountResultModel> CreateAccount(CreateAccountModel createAccountModel);
+
+        Result<IEnumerable<AddressModel>> GetAddressList(string userName);
 
         Result<IEnumerable<AddressModel>> RemoveCustomerAddress(string userName, AddressModel address);
 
+        Result<CommerceUserModel> UpdateAccountInfo(CommerceUserModel user);
+
         Result<IEnumerable<AddressModel>> UpdateAddress(string userName, AddressModel address);
 
-        Result<IEnumerable<AddressModel>> GetAddressList(string userName);
+        Result<ValidateAccountResultModel> ValidateAccount(ValidateAccountModel validateAccountModel);
     }
 }

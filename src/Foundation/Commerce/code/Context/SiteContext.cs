@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,70 +16,74 @@ namespace Wooli.Foundation.Commerce.Context
 {
     using System.Collections;
     using System.Web;
-    using DependencyInjection;
-    using Providers;
+
+    using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Utils;
+
+    using Wooli.Foundation.Commerce.Providers;
+    using Wooli.Foundation.DependencyInjection;
+
+    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
 
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
     {
-        private const string CurrentProductItemKey = "_CurrentProductItem";
         private const string CurrentCategoryItemKey = "_CurrentCategoryItem";
+
         private const string CurrentItemKey = "_CurrentItem";
+
+        private const string CurrentProductItemKey = "_CurrentProductItem";
+
         private const string IsCategoryKey = "_IsCategory";
+
         private const string IsProductKey = "_IsProduct";
 
         public SiteContext(IItemTypeProvider itemTypeProvider)
         {
             Assert.ArgumentNotNull(itemTypeProvider, "itemTypeProvider must not be null");
-            ItemTypeProvider = itemTypeProvider;
+            this.ItemTypeProvider = itemTypeProvider;
         }
-
-        public IItemTypeProvider ItemTypeProvider { get; set; }
 
         public Item CurrentCategoryItem
         {
-            get => Items[CurrentCategoryItemKey] as Item;
-            set => Items[CurrentCategoryItemKey] = value;
-        }
-
-        public Item CurrentProductItem
-        {
-            get => Items[CurrentProductItemKey] as Item;
-            set => Items[CurrentProductItemKey] = value;
-        }
-
-        public Item CurrentItem
-        {
-            get => Items[CurrentItemKey] as Item;
-            set
-            {
-                Items[CurrentItemKey] = value;
-                if (value != null)
-                {
-                    var itemType = ItemTypeProvider.ResolveByItem(value);
-                    Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
-                    Items[IsProductKey] = itemType == Constants.ItemType.Product;
-                }
-                else
-                {
-                    Items[IsCategoryKey] = false;
-                    Items[IsProductKey] = false;
-                }
-            }
+            get => this.Items[CurrentCategoryItemKey] as Item;
+            set => this.Items[CurrentCategoryItemKey] = value;
         }
 
         public virtual HttpContext CurrentContext => HttpContext.Current;
 
-        public string VirtualFolder => Sitecore.Context.Site.VirtualFolder;
+        public Item CurrentItem
+        {
+            get => this.Items[CurrentItemKey] as Item;
+            set
+            {
+                this.Items[CurrentItemKey] = value;
+                if (value != null)
+                {
+                    Constants.ItemType itemType = this.ItemTypeProvider.ResolveByItem(value);
+                    this.Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
+                    this.Items[IsProductKey] = itemType == Constants.ItemType.Product;
+                }
+                else
+                {
+                    this.Items[IsCategoryKey] = false;
+                    this.Items[IsProductKey] = false;
+                }
+            }
+        }
+
+        public Item CurrentProductItem
+        {
+            get => this.Items[CurrentProductItemKey] as Item;
+            set => this.Items[CurrentProductItemKey] = value;
+        }
 
         public bool IsCategory
         {
             get
             {
-                if (Items[IsCategoryKey] != null) return (bool) Items[IsCategoryKey];
+                if (this.Items[IsCategoryKey] != null) return (bool)this.Items[IsCategoryKey];
 
                 return false;
             }
@@ -89,12 +93,16 @@ namespace Wooli.Foundation.Commerce.Context
         {
             get
             {
-                if (Items[IsProductKey] != null) return (bool) Items[IsProductKey];
+                if (this.Items[IsProductKey] != null) return (bool)this.Items[IsProductKey];
 
                 return false;
             }
         }
 
         public IDictionary Items => HttpContext.Current.Items;
+
+        public IItemTypeProvider ItemTypeProvider { get; set; }
+
+        public string VirtualFolder => Context.Site.VirtualFolder;
     }
 }

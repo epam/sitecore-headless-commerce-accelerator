@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,11 +15,14 @@
 namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
     using System.Collections.Generic;
-    using Commerce.ModelMappers;
-    using Connect.Models;
-    using Models.Checkout;
+
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Shipping;
+
+    using Wooli.Foundation.Commerce.ModelMappers;
+    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Wooli.Foundation.Connect.Models;
+
     using Xunit;
 
     public class AddressPartyMapperTests
@@ -28,11 +31,11 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()
         {
             // Setup
-            var input = new AddressModel {PartyId = "partyId", IsPrimary = true};
+            var input = new AddressModel { PartyId = "partyId", IsPrimary = true };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToParty(input);
+            Party result = addressPartyMapper.MapToParty(input);
 
             // Assert
             Assert.NotNull(result);
@@ -45,15 +48,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         {
             // Setup
             var input = new ShippingMethodModel
-            {
-                PartyId = "partyId",
-                LineIds = null,
-                ShippingPreferenceType = ShippingOptionType.ElectronicDelivery.Value.ToString()
-            };
+                        {
+                            PartyId = "partyId",
+                            LineIds = null,
+                            ShippingPreferenceType = ShippingOptionType.ElectronicDelivery.Value.ToString()
+                        };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToShippingInfoArgument(input);
+            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);
@@ -67,14 +70,11 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         public void MapToShippingInfoArgument_ValidInputObjectWithLineIdsNotEmpty_ObjectIsMappedCorrectly()
         {
             // Setup
-            var input = new ShippingMethodModel
-            {
-                LineIds = new List<string> {"1", "2"}
-            };
+            var input = new ShippingMethodModel { LineIds = new List<string> { "1", "2" } };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            var result = addressPartyMapper.MapToShippingInfoArgument(input);
+            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ namespace Wooli.Feature.Navigation.Tests
 {
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;
+
     using Xunit;
 
     public class SimpleTest
@@ -23,17 +24,12 @@ namespace Wooli.Feature.Navigation.Tests
         [Fact]
         public void CreatingHierarchyOfItems()
         {
-            using (
-                var db = new Db
-                {
-                    new DbItem("Articles")
-                    {
-                        new DbItem("Getting Started"),
-                        new DbItem("Troubleshooting")
-                    }
-                })
+            using (var db = new Db
+                            {
+                                new DbItem("Articles") { new DbItem("Getting Started"), new DbItem("Troubleshooting") }
+                            })
             {
-                var articles = db.GetItem("/sitecore/content/Articles");
+                Item articles = db.GetItem("/sitecore/content/Articles");
 
                 Assert.NotNull(articles.Children["Getting Started"]);
                 Assert.NotNull(articles.Children["Troubleshooting"]);
@@ -43,9 +39,9 @@ namespace Wooli.Feature.Navigation.Tests
         [Fact]
         public void CreatingSimpleItem()
         {
-            using (var db = new Db {new DbItem("Home") {{"Title", "Welcome!"}}})
+            using (var db = new Db { new DbItem("Home") { { "Title", "Welcome!" } } })
             {
-                var home = db.GetItem("/sitecore/content/home");
+                Item home = db.GetItem("/sitecore/content/home");
                 Assert.Equal("Welcome!", home["Title"]);
             }
         }

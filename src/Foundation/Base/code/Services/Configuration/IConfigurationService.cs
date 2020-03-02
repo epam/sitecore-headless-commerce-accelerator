@@ -14,7 +14,7 @@
 
 namespace Wooli.Foundation.Base.Services.Configuration
 {
-    using Models.Configuration;
+    using Wooli.Foundation.Base.Models.Configuration;
 
     /// <summary>
     ///     Get Sitecore config
@@ -26,6 +26,7 @@ namespace Wooli.Foundation.Base.Services.Configuration
         /// </summary>
         /// <typeparam name="TConfiguration"></typeparam>
         /// <returns></returns>
-        TConfiguration Get<TConfiguration>() where TConfiguration : Configuration, new();
+        TConfiguration Get<TConfiguration>()
+            where TConfiguration : Configuration, new();
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,8 @@
 namespace Wooli.Foundation.Commerce.Providers
 {
     using System.Web;
-    using Models;
+
+    using Wooli.Foundation.Commerce.Models;
 
     public interface ICustomerProvider
     {

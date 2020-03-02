@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Extensions.Extensions
 {
     using System;
+
     using Sitecore;
     using Sitecore.Data.Fields;
     using Sitecore.Resources.Media;
@@ -25,11 +26,11 @@ namespace Wooli.Foundation.Extensions.Extensions
         {
             if (imageField?.MediaItem == null) throw new ArgumentNullException(nameof(imageField));
 
-            var options = MediaUrlOptions.Empty;
+            MediaUrlOptions options = MediaUrlOptions.Empty;
 
-            if (int.TryParse(imageField.Width, out var width)) options.Width = width;
+            if (int.TryParse(imageField.Width, out int width)) options.Width = width;
 
-            if (int.TryParse(imageField.Height, out var height)) options.Height = height;
+            if (int.TryParse(imageField.Height, out int height)) options.Height = height;
 
             return imageField.ImageUrl(options);
         }
@@ -39,8 +40,8 @@ namespace Wooli.Foundation.Extensions.Extensions
             if (imageField?.MediaItem == null) throw new ArgumentNullException(nameof(imageField));
 
             return options == null
-                ? imageField.ImageUrl()
-                : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, options));
+                       ? imageField.ImageUrl()
+                       : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, options));
         }
 
         public static bool IsChecked(this Field checkboxField)

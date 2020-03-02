@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -26,22 +26,22 @@ namespace Wooli.Foundation.Connect.Providers.Contracts
 
     public interface IConnectServiceProvider
     {
-        PricingServiceProvider GetPricingServiceProvider();
+        CartServiceProvider GetCartServiceProvider();
 
-        InventoryServiceProvider GetInventoryServiceProvider();
+        CatalogServiceProvider GetCatalogServiceProvider();
 
         CommerceCartServiceProvider GetCommerceCartServiceProvider();
 
-        CartServiceProvider GetCartServiceProvider();
-
         CustomerServiceProvider GetCustomerServiceProvider();
+
+        InventoryServiceProvider GetInventoryServiceProvider();
 
         OrderServiceProvider GetOrderServiceProvider();
 
-        ShippingServiceProvider GetShippingServiceProvider();
-
         PaymentServiceProvider GetPaymentServiceProvider();
 
-        CatalogServiceProvider GetCatalogServiceProvider();
+        PricingServiceProvider GetPricingServiceProvider();
+
+        ShippingServiceProvider GetShippingServiceProvider();
     }
 }

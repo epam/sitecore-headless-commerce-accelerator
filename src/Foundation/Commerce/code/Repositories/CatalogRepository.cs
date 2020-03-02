@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,34 +14,55 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using Connect.Managers;
-    using Context;
-    using DependencyInjection;
     using Glass.Mapper.Sc;
-    using Models.Catalog;
-    using Providers;
+
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Wooli.Foundation.Commerce.Providers;
+    using Wooli.Foundation.Connect.Managers;
+    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ICatalogRepository), Lifetime = Lifetime.Singleton)]
     public class CatalogRepository : BaseCatalogRepository, ICatalogRepository
     {
         private readonly ISearchManager searchManager;
 
-        public CatalogRepository(ISiteContext siteContext, IStorefrontContext storefrontContext,
-            IVisitorContext visitorContext, ICatalogManager catalogManager, ISitecoreService sitecoreService,
-            ISearchManager searchManager, ICurrencyProvider currencyProvider)
+        public CatalogRepository(
+            ISiteContext siteContext,
+            IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext,
+            ICatalogManager catalogManager,
+            ISitecoreService sitecoreService,
+            ISearchManager searchManager,
+            ICurrencyProvider currencyProvider)
             : base(currencyProvider, siteContext, storefrontContext, visitorContext, catalogManager, sitecoreService)
         {
             this.searchManager = searchManager;
         }
 
-        public ProductModel GetProduct(string productId)
+        public CategoryModel GetCurrentCategory()
         {
-            Assert.ArgumentNotNull(productId, nameof(productId));
+            Item categoryItem = this.SiteContext.CurrentCategoryItem;
 
-            var productItem = searchManager.GetProduct(StorefrontContext.CatalogName, productId);
-            if (productItem != null) return GetProductModel(VisitorContext, productItem);
+            return this.GetCategoryModel(categoryItem);
+        }
+
+        public ProductModel GetCurrentProduct()
+        {
+            Item productItem = this.SiteContext.CurrentProductItem;
+
+            return this.GetProductModel(this.VisitorContext, productItem);
+        }
+
+        public ProductModel GetProduct(string productd)
+        {
+            Assert.ArgumentNotNull(productd, nameof(productd));
+
+            Item productItem = this.searchManager.GetProduct(this.StorefrontContext.CatalogName, productd);
+            if (productItem != null) return this.GetProductModel(this.VisitorContext, productItem);
 
             return null;
         }
@@ -50,21 +71,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(productItem, nameof(productItem));
 
-            return GetProductModel(VisitorContext, productItem);
-        }
-
-        public ProductModel GetCurrentProduct()
-        {
-            var productItem = SiteContext.CurrentProductItem;
-
-            return GetProductModel(VisitorContext, productItem);
-        }
-
-        public CategoryModel GetCurrentCategory()
-        {
-            var categoryItem = SiteContext.CurrentCategoryItem;
-
-            return GetCategoryModel(categoryItem);
+            return this.GetProductModel(this.VisitorContext, productItem);
         }
     }
 }

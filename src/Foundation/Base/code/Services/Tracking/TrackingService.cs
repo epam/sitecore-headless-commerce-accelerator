@@ -15,8 +15,10 @@
 namespace Wooli.Foundation.Base.Services.Tracking
 {
     using System.Diagnostics.CodeAnalysis;
-    using DependencyInjection;
+
     using Sitecore.Analytics;
+
+    using Wooli.Foundation.DependencyInjection;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(ITrackingService), Lifetime = Lifetime.Transient)]

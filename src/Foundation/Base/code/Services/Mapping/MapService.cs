@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Base.Services.Mapping
 {
     using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     [ExcludeFromCodeCoverage]

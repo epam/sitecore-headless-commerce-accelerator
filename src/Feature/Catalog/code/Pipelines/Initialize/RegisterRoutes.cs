@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Feature.Catalog.Pipelines.Initialize
 {
     using System.Web.Routing;
+
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
 
@@ -22,7 +23,7 @@ namespace Wooli.Feature.Catalog.Pipelines.Initialize
     {
         public void Process(PipelineArgs args)
         {
-            RegisterHttpRoutes(RouteTable.Routes);
+            this.RegisterHttpRoutes(RouteTable.Routes);
         }
 
         private void RegisterHttpRoutes(RouteCollection routeCollection)

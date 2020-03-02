@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,8 +17,7 @@ namespace Wooli.Foundation.Connect.Managers
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DependencyInjection;
-    using Models;
+
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
@@ -30,11 +29,57 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
+    using Wooli.Foundation.Connect.Models;
+    using Wooli.Foundation.DependencyInjection;
+
     [Service(typeof(ISearchManager))]
     public class SearchManager : ISearchManager
     {
-        public const string ProductCommerceSearchItemType = "SellableItem";
         public const string CategoryCommerceSearchItemType = "Category";
+
+        public const string ProductCommerceSearchItemType = "SellableItem";
+
+        public Item GetCategory(string catalogName, string categoryName)
+        {
+            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
+            Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
+
+            Item productItem = null;
+
+            CommerceSellableItemSearchResultItem searchResultItem =
+                this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType).FirstOrDefault(
+                    item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
+
+            if (searchResultItem != null) productItem = searchResultItem.GetItem();
+
+            return productItem;
+        }
+
+        public List<Item> GetCategoryChildCategories(ID categoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Item> GetNavigationCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Item GetProduct(string catalogName, string productId)
+        {
+            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
+            Assert.ArgumentNotNullOrEmpty(productId, nameof(productId));
+
+            Item productItem = null;
+
+            CommerceSellableItemSearchResultItem searchResultItem =
+                this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
+                    .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
+
+            if (searchResultItem != null) productItem = searchResultItem.GetItem();
+
+            return productItem;
+        }
 
         public SearchResults GetProducts(
             string catalogName,
@@ -46,22 +91,21 @@ namespace Wooli.Foundation.Connect.Managers
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
 
-            var queryable =
-                GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
+            var queryable = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
 
             queryable = !ID.IsNullOrEmpty(categoryId)
                             ? queryable.Where(item => item.Parent == categoryId)
                             : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
 
             if (!string.IsNullOrEmpty(searchKeyword))
-                queryable = queryable.Where(item =>
-                    item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
+                queryable = queryable.Where(
+                    item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
 
             queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
 
             var results = queryable.GetResults();
 
-            var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
+            SearchResponse searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
             if (searchResultsItems != null)
                 return new SearchResults(
                     searchResultsItems.ResponseItems,
@@ -82,60 +126,18 @@ namespace Wooli.Foundation.Connect.Managers
             throw new NotImplementedException();
         }
 
-        public Item GetProduct(string catalogName, string productId)
-        {
-            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
-            Assert.ArgumentNotNullOrEmpty(productId, nameof(productId));
-
-            Item productItem = null;
-
-            var searchResultItem =
-                GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
-                    .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
-
-            if (searchResultItem != null) productItem = searchResultItem.GetItem();
-
-            return productItem;
-        }
-
-        public Item GetCategory(string catalogName, string categoryName)
-        {
-            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
-            Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
-
-            Item productItem = null;
-
-            var searchResultItem =
-                GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
-                    .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
-
-            if (searchResultItem != null) productItem = searchResultItem.GetItem();
-
-            return productItem;
-        }
-
-        public List<Item> GetNavigationCategories()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Item> GetCategoryChildCategories(ID categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
-        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(string catalogName,
+        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(
+            string catalogName,
             string searchItemType)
         {
             Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
             Assert.ArgumentNotNullOrEmpty(searchItemType, nameof(searchItemType));
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            using (var searchContext =
+            using (IProviderSearchContext searchContext =
                 commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
             {
-                var searchResultItems = searchContext
-                    .GetQueryable<CommerceSellableItemSearchResultItem>()
+                var searchResultItems = searchContext.GetQueryable<CommerceSellableItemSearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == searchItemType)
                     .Where(item => item.Language == Context.Language.Name);
 

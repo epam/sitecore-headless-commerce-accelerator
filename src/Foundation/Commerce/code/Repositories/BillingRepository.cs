@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,22 +17,23 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Connect.Managers;
-    using Connect.Models;
-    using Context;
-    using DependencyInjection;
-    using ModelInitializers;
-    using ModelMappers;
-    using Models;
-    using Models.Checkout;
+
+    using Sitecore;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
-    using Sitecore.Commerce.Services;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Payments;
     using Sitecore.Diagnostics;
-    using PaymentMethodModel = Models.Checkout.PaymentMethodModel;
-    using PaymentOptionModel = Models.Checkout.PaymentOptionModel;
+
+    using Wooli.Foundation.Commerce.Context;
+    using Wooli.Foundation.Commerce.ModelInitializers;
+    using Wooli.Foundation.Commerce.ModelMappers;
+    using Wooli.Foundation.Commerce.Models;
+    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Wooli.Foundation.Connect.Managers;
+    using Wooli.Foundation.Connect.Models;
+    using Wooli.Foundation.DependencyInjection;
+
+    using PaymentMethodModel = Wooli.Foundation.Commerce.Models.Checkout.PaymentMethodModel;
+    using PaymentOptionModel = Wooli.Foundation.Commerce.Models.Checkout.PaymentOptionModel;
 
     [Service(typeof(IBillingRepository), Lifetime = Lifetime.Singleton)]
     public class BillingRepository : BaseCheckoutRepository, IBillingRepository
@@ -46,45 +47,51 @@ namespace Wooli.Foundation.Commerce.Repositories
             IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext,
+            : base(
+                cartManager,
+                catalogRepository,
+                accountManager,
+                cartModelBuilder,
+                entityMapper,
+                storefrontContext,
                 visitorContext)
         {
-            PaymentManager = paymentManager;
+            this.PaymentManager = paymentManager;
         }
 
         protected IPaymentManager PaymentManager { get; }
-
 
         public virtual Result<BillingModel> GetBillingData()
         {
             var result = new Result<BillingModel>();
             var model = new BillingModel();
 
-            if (!Sitecore.Context.PageMode.IsExperienceEditor)
+            if (!Context.PageMode.IsExperienceEditor)
                 try
                 {
                     result.SetResult(model);
-                    var currentCart =
-                        CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+                    var currentCart = this.CartManager.GetCurrentCart(
+                        this.StorefrontContext.ShopName,
+                        this.VisitorContext.ContactId);
                     if (!currentCart.ServiceProviderResult.Success)
                     {
                         result.SetErrors(currentCart.ServiceProviderResult);
                         return result;
                     }
 
-                    var cartResult = currentCart.Result;
-                    if (cartResult.Lines != null && cartResult.Lines.Any())
+                    Cart cartResult = currentCart.Result;
+                    if ((cartResult.Lines != null) && cartResult.Lines.Any())
                     {
                         ////result.Initialize(result, visitorContext);
-                        AddPaymentOptions(result, cartResult);
+                        this.AddPaymentOptions(result, cartResult);
                         if (result.Success)
                         {
-                            AddPaymentMethods(result, cartResult);
+                            this.AddPaymentMethods(result, cartResult);
                             if (result.Success)
                             {
-                                AddPaymentClientToken(result);
-                                if (result.Success)
-                                    AddUserInfo(result.Data, result);
+                                this.AddPaymentClientToken(result);
+                                if (result.Success) this.AddUserInfo(result.Data, result);
+
                                 ////if (result.Success)
                                 ////{
                                 ////    this.AddAvailableCountries((BaseCheckoutDataJsonResult)model);
@@ -98,7 +105,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 catch (Exception ex)
                 {
                     Log.Error(ex.Message, ex, this);
-                    result.SetErrors(nameof(GetBillingData), ex);
+                    result.SetErrors(nameof(this.GetBillingData), ex);
                     return result;
                 }
 
@@ -113,37 +120,38 @@ namespace Wooli.Foundation.Commerce.Repositories
             try
             {
                 result.SetResult(model);
-                var currentCart =
-                    CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+                var currentCart = this.CartManager.GetCurrentCart(
+                    this.StorefrontContext.ShopName,
+                    this.VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
                     result.SetErrors(currentCart.ServiceProviderResult);
                     return result;
                 }
 
-                var updateCartResponse = CartManager.UpdateCart(
-                    StorefrontContext.ShopName,
+                var updateCartResponse = this.CartManager.UpdateCart(
+                    this.StorefrontContext.ShopName,
                     currentCart.Result,
                     new CartBase
                     {
                         Email = string.IsNullOrWhiteSpace(args.BillingAddress.Email)
-                            ? VisitorContext.CurrentUser.Email
-                            : args.BillingAddress.Email
+                                    ? this.VisitorContext.CurrentUser.Email
+                                    : args.BillingAddress.Email
                     });
 
-                if (!updateCartResponse.ServiceProviderResult.Success &&
-                    updateCartResponse.ServiceProviderResult.SystemMessages.Any())
+                if (!updateCartResponse.ServiceProviderResult.Success
+                    && updateCartResponse.ServiceProviderResult.SystemMessages.Any())
                 {
                     result.SetErrors(updateCartResponse.ServiceProviderResult);
                     return result;
                 }
 
-                var billingParty = EntityMapper.MapToPartyEntity(args.BillingAddress);
-                var federatedPaymentArgs =
-                    EntityMapper.MapToFederatedPaymentArgs(args.FederatedPayment);
+                PartyEntity billingParty = this.EntityMapper.MapToPartyEntity(args.BillingAddress);
+                FederatedPaymentArgs federatedPaymentArgs =
+                    this.EntityMapper.MapToFederatedPaymentArgs(args.FederatedPayment);
 
-                var paymentInfoResponse = CartManager.AddPaymentInfo(
-                    StorefrontContext.ShopName,
+                var paymentInfoResponse = this.CartManager.AddPaymentInfo(
+                    this.StorefrontContext.ShopName,
                     updateCartResponse.Result,
                     billingParty,
                     federatedPaymentArgs);
@@ -156,52 +164,30 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
             catch (Exception ex)
             {
-                result.SetErrors(nameof(SetPaymentMethods), ex);
+                result.SetErrors(nameof(this.SetPaymentMethods), ex);
             }
 
             return result;
         }
 
-        protected virtual void AddPaymentOptions(Result<BillingModel> result, Cart cart)
+        protected virtual void AddPaymentClientToken(Result<BillingModel> result)
         {
-            var paymentOptions =
-                PaymentManager.GetPaymentOptions(StorefrontContext.ShopName, cart);
-
-            if (paymentOptions.ServiceProviderResult.Success && paymentOptions.Result != null)
-            {
-                result.Data.PaymentOptions = new List<PaymentOptionModel>();
-                foreach (var paymentOption in paymentOptions.Result)
-                {
-                    var model = new PaymentOptionModel
-                    {
-                        Name = paymentOption.Name,
-                        Description = paymentOption.Description,
-                        PaymentOptionTypeName = paymentOption.PaymentOptionType.Name
-                    };
-
-                    result.Data.PaymentOptions.Add(model);
-                }
-            }
-            else
-            {
-                result.SetErrors(paymentOptions.ServiceProviderResult);
-            }
+            var paymentClientToken = this.PaymentManager.GetPaymentClientToken();
+            if (paymentClientToken.ServiceProviderResult.Success)
+                result.Data.PaymentClientToken = paymentClientToken.Result;
+            result.SetErrors(paymentClientToken.ServiceProviderResult);
         }
 
         protected virtual void AddPaymentMethods(Result<BillingModel> result, Cart cart)
         {
-            var paymentOption = new PaymentOption
-            {
-                PaymentOptionType = PaymentOptionType.PayCard
-            };
+            var paymentOption = new PaymentOption { PaymentOptionType = PaymentOptionType.PayCard };
 
-            var paymentMethods =
-                PaymentManager.GetPaymentMethods(cart, paymentOption);
+            var paymentMethods = this.PaymentManager.GetPaymentMethods(cart, paymentOption);
 
-            if (paymentMethods.ServiceProviderResult.Success && paymentMethods.Result != null)
+            if (paymentMethods.ServiceProviderResult.Success && (paymentMethods.Result != null))
             {
                 result.Data.PaymentMethods = new List<PaymentMethodModel>();
-                foreach (var paymentMethod in paymentMethods.Result)
+                foreach (PaymentMethod paymentMethod in paymentMethods.Result)
                 {
                     var model = new PaymentMethodModel();
                     model.Description = paymentMethod.Description;
@@ -215,12 +201,29 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
         }
 
-        protected virtual void AddPaymentClientToken(Result<BillingModel> result)
+        protected virtual void AddPaymentOptions(Result<BillingModel> result, Cart cart)
         {
-            var paymentClientToken = PaymentManager.GetPaymentClientToken();
-            if (paymentClientToken.ServiceProviderResult.Success)
-                result.Data.PaymentClientToken = paymentClientToken.Result;
-            result.SetErrors(paymentClientToken.ServiceProviderResult);
+            var paymentOptions = this.PaymentManager.GetPaymentOptions(this.StorefrontContext.ShopName, cart);
+
+            if (paymentOptions.ServiceProviderResult.Success && (paymentOptions.Result != null))
+            {
+                result.Data.PaymentOptions = new List<PaymentOptionModel>();
+                foreach (PaymentOption paymentOption in paymentOptions.Result)
+                {
+                    var model = new PaymentOptionModel
+                                {
+                                    Name = paymentOption.Name,
+                                    Description = paymentOption.Description,
+                                    PaymentOptionTypeName = paymentOption.PaymentOptionType.Name
+                                };
+
+                    result.Data.PaymentOptions.Add(model);
+                }
+            }
+            else
+            {
+                result.SetErrors(paymentOptions.ServiceProviderResult);
+            }
         }
     }
 }

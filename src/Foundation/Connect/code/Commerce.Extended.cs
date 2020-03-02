@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -20,11 +20,13 @@
 namespace Wooli.Foundation.Connect.Models
 {
     using System.Collections.Generic;
+
     using Glass.Mapper.Sc.Configuration.Attributes;
 
     public partial interface ICommerceProductModel
     {
-        [SitecoreChildren(InferType = true)] IEnumerable<ICommerceProductVariantModel> Variants { get; set; }
+        [SitecoreChildren(InferType = true)]
+        IEnumerable<ICommerceProductVariantModel> Variants { get; set; }
     }
 
     public partial class CommerceProductModel
@@ -35,12 +37,14 @@ namespace Wooli.Foundation.Connect.Models
 
     public partial interface ICountryRegionModel
     {
-        [SitecoreChildren(InferType = true)] IEnumerable<ISubdivisionModel> Subdivisions { get; set; }
+        [SitecoreChildren(InferType = true)]
+        IEnumerable<ISubdivisionModel> Subdivisions { get; set; }
     }
 
     public partial class CountryRegionModel
     {
-        [SitecoreChildren(InferType = true)] public IEnumerable<ISubdivisionModel> Subdivisions { get; set; }
+        [SitecoreChildren(InferType = true)]
+        public IEnumerable<ISubdivisionModel> Subdivisions { get; set; }
     }
 
     public partial interface IStorefrontModel
@@ -51,18 +55,20 @@ namespace Wooli.Foundation.Connect.Models
 
     public partial class StorefrontModel
     {
-        //TODO Fix to relative query
+        // TODO Fix to relative query
         [SitecoreQuery("./#Country-Region configuration#", IsRelative = true)]
         public ICountryRegionConfigurationModel CountriesRegionsConfiguration { get; set; }
     }
 
     public partial interface ICountryRegionConfigurationModel
     {
-        [SitecoreField("Countries-Regions")] IEnumerable<ICountryRegionModel> CountriesRegionsModel { get; set; }
+        [SitecoreField("Countries-Regions")]
+        IEnumerable<ICountryRegionModel> CountriesRegionsModel { get; set; }
     }
 
     public partial class CountryRegionConfigurationModel
     {
-        [SitecoreField("Countries-Regions")] public IEnumerable<ICountryRegionModel> CountriesRegionsModel { get; set; }
+        [SitecoreField("Countries-Regions")]
+        public IEnumerable<ICountryRegionModel> CountriesRegionsModel { get; set; }
     }
 }

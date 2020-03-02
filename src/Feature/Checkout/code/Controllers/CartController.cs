@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ namespace Wooli.Feature.Checkout.Controllers
     using System.Net;
     using System.Web.Http;
     using System.Web.Mvc;
-    using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Checkout;
-    using Foundation.Commerce.Repositories;
-    using Foundation.Extensions.Extensions;
-    using Models;
+
+    using Wooli.Feature.Checkout.Models;
+    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Wooli.Foundation.Commerce.Repositories;
+    using Wooli.Foundation.Extensions.Extensions;
 
     public class CartController : Controller
     {
@@ -33,32 +33,14 @@ namespace Wooli.Feature.Checkout.Controllers
             this.cartRepository = cartRepository;
         }
 
-        [System.Web.Mvc.ActionName("get")]
-        public ActionResult GetCart()
-        {
-            var model = cartRepository.GetCurrentCart();
-
-            return this.JsonOk(model);
-        }
-
         [System.Web.Mvc.HttpPost]
         [System.Web.Mvc.ActionName("add")]
         public ActionResult AddProductVariant([FromBody] CartItemDto cartItem)
         {
-            var result =
-                cartRepository.AddProductVariantToCart(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
-
-            if (result.Success) return this.JsonOk(result.Data);
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
-        }
-
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.ActionName("update")]
-        public ActionResult Update([FromBody] CartItemDto cartItem)
-        {
-            var result =
-                cartRepository.UpdateProductVariantQuantity(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
+            var result = this.cartRepository.AddProductVariantToCart(
+                cartItem.ProductId,
+                cartItem.VariantId,
+                cartItem.Quantity);
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -69,7 +51,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("addpromo")]
         public ActionResult AddPromoCode([FromBody] PromoCodeDto data)
         {
-            var result = cartRepository.AddPromoCode(data.PromoCode);
+            var result = this.cartRepository.AddPromoCode(data.PromoCode);
 
             if (result.Success) return this.JsonOk(result.Data);
 
@@ -80,7 +62,29 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("remove")]
         public ActionResult DeleteVariant(string cartLineId)
         {
-            var result = cartRepository.RemoveProductVariantFromCart(cartLineId);
+            var result = this.cartRepository.RemoveProductVariantFromCart(cartLineId);
+            if (result.Success) return this.JsonOk(result.Data);
+
+            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+        }
+
+        [System.Web.Mvc.ActionName("get")]
+        public ActionResult GetCart()
+        {
+            CartModel model = this.cartRepository.GetCurrentCart();
+
+            return this.JsonOk(model);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.ActionName("update")]
+        public ActionResult Update([FromBody] CartItemDto cartItem)
+        {
+            var result = this.cartRepository.UpdateProductVariantQuantity(
+                cartItem.ProductId,
+                cartItem.VariantId,
+                cartItem.Quantity);
+
             if (result.Success) return this.JsonOk(result.Data);
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);

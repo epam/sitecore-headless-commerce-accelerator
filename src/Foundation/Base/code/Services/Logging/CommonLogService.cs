@@ -15,8 +15,9 @@
 namespace Wooli.Foundation.Base.Services.Logging
 {
     using System.Diagnostics.CodeAnalysis;
-    using DependencyInjection;
-    using Models.Logging;
+
+    using Wooli.Foundation.Base.Models.Logging;
+    using Wooli.Foundation.DependencyInjection;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(ILogService<CommonLog>), Lifetime = Lifetime.Singleton)]

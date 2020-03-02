@@ -133,9 +133,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
             return innerMapper.Map<ShippingMethodModel>(shippingMethod);
         }
 
-        public ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption)
+        public ShippingOptionModel MapToShippingOptionModel(ShippingOption shippingOption)
         {
-            return innerMapper.Map<ShippingOptionModel>(shipppingOption);
+            return innerMapper.Map<ShippingOptionModel>(shippingOption);
         }
 
         public FederatedPaymentModel MapToFederatedPayment(PaymentInfo x)

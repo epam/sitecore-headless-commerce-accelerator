@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Connect.Managers;
     using Context;
 
-    using ModelInitilizers;
+    using ModelInitializers;
     using Models.Catalog;
     using Models.Checkout;
     using NSubstitute;

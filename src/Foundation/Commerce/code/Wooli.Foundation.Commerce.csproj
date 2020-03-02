@@ -622,10 +622,10 @@
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
     <Compile Include="Infrastructure\ContentsResolvers\StorefrontCountriesResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
-    <Compile Include="ModelInitilizers\OrderModelBuilder.cs" />
-    <Compile Include="ModelInitilizers\Contracts\IOrderModelBuilder.cs" />
-    <Compile Include="ModelInitilizers\Contracts\ICartModelBuilder.cs" />
-    <Compile Include="ModelInitilizers\CartModelBuilder.cs" />
+    <Compile Include="ModelInitializers\OrderModelBuilder.cs" />
+    <Compile Include="ModelInitializers\Contracts\IOrderModelBuilder.cs" />
+    <Compile Include="ModelInitializers\Contracts\ICartModelBuilder.cs" />
+    <Compile Include="ModelInitializers\CartModelBuilder.cs" />
     <Compile Include="ModelMappers\Contracts\IEntityMapper.cs" />
     <Compile Include="ModelMappers\EntityMapper.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />

@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Models;
     using Context;
     using DependencyInjection;
-    using ModelInitilizers;
+    using ModelInitializers;
     using ModelMappers;
     using Models;
     using Models.Checkout;
@@ -194,9 +194,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             else
             {
                 result.Data.ShippingOptions = new List<ShippingOptionModel>();
-                foreach (var shipppingOption in shippingPreferences.Result)
+                foreach (var shippingOption in shippingPreferences.Result)
                 {
-                    var model = EntityMapper.MapToShippingOptionModel(shipppingOption);
+                    var model = EntityMapper.MapToShippingOptionModel(shippingOption);
                     result.Data.ShippingOptions.Add(model);
                 }
             }

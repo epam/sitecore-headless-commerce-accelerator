@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Managers;
     using Context;
     using DependencyInjection;
-    using ModelInitilizers;
+    using ModelInitializers;
     using ModelMappers;
     using Models;
     using Models.Checkout;

@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -436,6 +439,8 @@
     <Compile Include="Services\Logging\CommonLogService.cs" />
     <Compile Include="Services\Logging\ILogService.cs" />
     <Compile Include="Services\Logging\LogService.cs" />
+    <Compile Include="Services\Mapping\IMapService.cs" />
+    <Compile Include="Services\Mapping\MapService.cs" />
     <Compile Include="Services\Tracking\TrackingService.cs" />
     <Compile Include="Services\Tracking\ITrackingService.cs" />
   </ItemGroup>

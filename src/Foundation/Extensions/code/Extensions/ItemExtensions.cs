@@ -236,9 +236,9 @@ namespace Wooli.Foundation.Extensions.Extensions
             Assert.ArgumentNotNull(item, nameof(item));
             Assert.ArgumentNotNull(selector, nameof(selector));
 
-            var imageGuides = selector(item);
+            var imageGuids = selector(item);
 
-            IList<MediaItem> imageUrls = imageGuides
+            IList<MediaItem> imageUrls = imageGuids
                 ?.Select(x => item.Database.GetItem(ID.Parse(x)))
                 .Where(x => x != null)
                 .Select(x => new MediaItem(x))

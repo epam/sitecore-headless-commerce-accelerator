@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     public interface ICatalogRepository
     {
-        ProductModel GetProduct(string produced);
+        ProductModel GetProduct(string productId);
 
         ProductModel GetProduct(Item productItem);
 

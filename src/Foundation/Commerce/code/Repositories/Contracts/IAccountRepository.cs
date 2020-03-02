@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models.Account;
     using Models.Checkout;
 
-    public interface IAccountRepositry
+    public interface IAccountRepository
     {
         Result<CreateAccountResultModel> CreateAccount(CreateAccountModel createAccountModel);
 

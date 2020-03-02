@@ -19,7 +19,7 @@ namespace Wooli.Foundation.ReactJss
     using Sitecore.DependencyInjection;
     using Sitecore.LayoutService.Serialization.ItemSerializers;
 
-    public class ItemSerializaerConfigurator : IServicesConfigurator
+    public class ItemSerializerConfigurator : IServicesConfigurator
     {
         public void Configure(IServiceCollection serviceCollection)
         {

@@ -35,7 +35,7 @@ namespace Wooli.Foundation.GlassMapper.App_Start
 			
 			/* USE THIS AREA TO ADD FLUENT CONFIGURATION LOADERS
              * 
-             * If you are using Attribute Configuration or automapping/on-demand mapping you don't need to do anything!
+             * If you are using Attribute Configuration or auto-mapping/on-demand mapping you don't need to do anything!
              * 
              */
 

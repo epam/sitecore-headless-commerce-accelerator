@@ -85,7 +85,7 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             // We extract contact id from externalId,
             // it is not returned by current implementation of Sitecore.Commerce.Core
-            return externalId?.Replace(Constants.CommereceCustomerIdPrefix, string.Empty);
+            return externalId?.Replace(Constants.CommerceCustomerIdPrefix, string.Empty);
         }
 
         private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)

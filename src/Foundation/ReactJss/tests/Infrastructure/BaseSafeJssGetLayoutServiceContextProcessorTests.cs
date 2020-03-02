@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.ReactJss.Tests.Infrastucture
+namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
 {
     using System;
-    using Infrastructure;
+    using ReactJss.Infrastructure;
     using NSubstitute;
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;
@@ -35,7 +35,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastucture
 
             protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
             {
-                throw new Exception("The test shouldnot show this exception!");
+                throw new Exception("The test should not show this exception!");
             }
         }
 

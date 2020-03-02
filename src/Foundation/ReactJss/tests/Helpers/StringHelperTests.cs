@@ -62,7 +62,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Helpers
         [InlineData("Long long long text with Dot.", "longLongLongTextWithDot")]
         [InlineData("Text with CAPS.", "textWithCAPS")]
         [InlineData("CAPS First Text", "capsFirstText")]
-        [InlineData("Text with particialCAPS", "textWithParticialCAPS")]
+        [InlineData("Text with partial  CAPS", "textWithPartialCAPS")]
         [InlineData("", "")]
         [InlineData(null, null)]
         public void ConvertToCamelCase_InputString_ReturnsCorrectValue(string str, string expected)

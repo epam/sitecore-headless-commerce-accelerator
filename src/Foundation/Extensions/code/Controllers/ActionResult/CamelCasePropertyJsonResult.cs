@@ -24,7 +24,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
 
     public class CamelCasePropertyJsonResult : JsonResult
     {
-        private static readonly JsonSerializerSettings JsonSerialiserSettings = Constants.JsonSerialiserSettings;
+        private static readonly JsonSerializerSettings JsonSerializerSettings = Constants.JsonSerializerSettings;
 
         public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
 
@@ -45,7 +45,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
             response.StatusCode = (int) StatusCode;
             response.ContentType = string.IsNullOrEmpty(ContentType) ? "application/json" : ContentType;
 
-            var scriptSerializer = JsonSerializer.Create(JsonSerialiserSettings);
+            var scriptSerializer = JsonSerializer.Create(JsonSerializerSettings);
             scriptSerializer.Serialize(response.Output, Data);
         }
     }

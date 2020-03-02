@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
 
         public string CardToken { get; set; }
 
-        // ToDo: investigate wheither the following properties should be here or to create PaymentInfoModel class and move there:
+        // ToDo: investigate whether the following properties should be here or to create PaymentInfoModel class and move there:
         public string PartyID { get; set; }
 
         ////public IList<string> LineIDs { get; set; } = new List<string>();

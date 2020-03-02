@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Extensions.Utils
 
     public class Constants
     {
-        public static readonly JsonSerializerSettings JsonSerialiserSettings = new JsonSerializerSettings
+        public static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };

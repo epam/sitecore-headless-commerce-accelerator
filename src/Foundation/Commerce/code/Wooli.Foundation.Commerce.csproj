@@ -694,7 +694,7 @@
     <Compile Include="Repositories\BillingRepository.cs" />
     <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\CatalogRepository.cs" />
-    <Compile Include="Repositories\Contracts\IAccountRepositry.cs" />
+    <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
     <Compile Include="Services\Analytics\ICommerceAnalyticsService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\CheckoutRepository.cs" />

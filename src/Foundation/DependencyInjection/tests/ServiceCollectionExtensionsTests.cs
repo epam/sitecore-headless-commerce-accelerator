@@ -25,7 +25,7 @@ namespace Wooli.Foundation.DependencyInjection.Tests
         [InlineData("*AnotherSimpleTestClass")]
         [InlineData("*Another*")]
         [InlineData("Wooli.*Another*")]
-        public void AddByWildcard_ValidTypes_ServicesCollectionWihtMathingType(string pattern)
+        public void AddByWildcard_ValidTypes_ServicesCollectionWithMatchingType(string pattern)
         {
             IServiceCollection serviceCollection = new ServiceCollection();
 
@@ -58,7 +58,7 @@ namespace Wooli.Foundation.DependencyInjection.Tests
             }
 
             [Service(Lifetime = Lifetime.Transient)]
-            public class SelfRegistratingClass
+            public class SelfRegisteringClass
             {
             }
         }
@@ -82,10 +82,10 @@ namespace Wooli.Foundation.DependencyInjection.Tests
             var interfaceType = typeof(AddClassesWithServiceAttributeTestClasses.InterfaceClass);
             var implementationType = typeof(AddClassesWithServiceAttributeTestClasses.ImplementationClass);
 
-            var selfRegistratingType = typeof(AddClassesWithServiceAttributeTestClasses.SelfRegistratingClass);
+            var selfRegisteringType = typeof(AddClassesWithServiceAttributeTestClasses.SelfRegisteringClass);
 
             var assembly = Substitute.For<FakeAssembly>();
-            assembly.ExportedTypes.Returns(new[] {interfaceType, implementationType, selfRegistratingType});
+            assembly.ExportedTypes.Returns(new[] {interfaceType, implementationType, selfRegisteringType });
             assembly.GetExportedTypes().Returns(x => assembly.ExportedTypes);
 
             serviceCollection.AddClassesWithServiceAttribute(assembly);
@@ -98,9 +98,9 @@ namespace Wooli.Foundation.DependencyInjection.Tests
                 x => x.ServiceType == interfaceType && x.Lifetime == ServiceLifetime.Singleton);
 
             Assert.Contains(serviceCollection,
-                x => x.ImplementationType == selfRegistratingType && x.Lifetime == ServiceLifetime.Transient);
+                x => x.ImplementationType == selfRegisteringType && x.Lifetime == ServiceLifetime.Transient);
             Assert.Contains(serviceCollection,
-                x => x.ServiceType == selfRegistratingType && x.Lifetime == ServiceLifetime.Transient);
+                x => x.ServiceType == selfRegisteringType && x.Lifetime == ServiceLifetime.Transient);
         }
     }
 }

@@ -123,7 +123,7 @@ namespace Wooli.Foundation.Extensions.Extensions
             switch (linkField.LinkType.ToLower())
             {
                 case "internal":
-                    // Use LinkMananger for internal links, if link is not empty
+                    // Use LinkManager for internal links, if link is not empty
                     return linkField.TargetItem != null ? LinkManager.GetItemUrl(linkField.TargetItem) : string.Empty;
                 case "media":
                     // Use MediaManager for media links, if link is not empty
@@ -236,9 +236,9 @@ namespace Wooli.Foundation.Extensions.Extensions
             Assert.ArgumentNotNull(item, nameof(item));
             Assert.ArgumentNotNull(selector, nameof(selector));
 
-            var imageGuids = selector(item);
+            var imageGuides = selector(item);
 
-            IList<MediaItem> imageUrls = imageGuids
+            IList<MediaItem> imageUrls = imageGuides
                 ?.Select(x => item.Database.GetItem(ID.Parse(x)))
                 .Where(x => x != null)
                 .Select(x => new MediaItem(x))

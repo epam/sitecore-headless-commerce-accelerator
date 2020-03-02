@@ -79,11 +79,14 @@ Task("Default") // LocalDev
     //.IsDependentOn("003-Tests")
     //.IsDependentOn("004-Packages")
     .IsDependentOn("005-Publish")
-    .IsDependentOn("006-Sync-Content");
+    .IsDependentOn("006-Sync-Content")
+    ;
 
 Task("Build-and-Publish") // LocalDev
     .IsDependentOn("002-Build")
-    .IsDependentOn("005-Publish");
+    .IsDependentOn("005-Publish")
+    ;
+
 // //////////////////////////////////////////////////
 // Execution
 // //////////////////////////////////////////////////

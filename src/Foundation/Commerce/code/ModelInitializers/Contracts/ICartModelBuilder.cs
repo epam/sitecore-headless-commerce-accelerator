@@ -12,18 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.ReactJss
+namespace Wooli.Foundation.Commerce.ModelInitializers
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using Serialization.ItemSerializers;
-    using Sitecore.DependencyInjection;
-    using Sitecore.LayoutService.Serialization.ItemSerializers;
+    using Models.Checkout;
+    using Sitecore.Commerce.Entities.Carts;
 
-    public class ItemSerializaerConfigurator : IServicesConfigurator
+    public interface ICartModelBuilder
     {
-        public void Configure(IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddScoped(typeof(IItemSerializer), typeof(EnhancedItemSerializer));
-        }
+        CartModel Initialize(Cart model);
+
+        TResult Initialize<TResult>(Cart model)
+            where TResult : CartModel, new();
     }
 }

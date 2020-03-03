@@ -114,23 +114,23 @@ namespace Wooli.Foundation.DependencyInjection
         }
 
         public static void AddTypesImplementingInCurrentAssembly<T>(this IServiceCollection serviceCollection,
-            Lifetime lifetime)
+            Lifetime lifeTime)
         {
             var types = GetTypesImplementing(typeof(T), Assembly.GetCallingAssembly());
-            serviceCollection.Add(lifetime, types.ToArray());
+            serviceCollection.Add(lifeTime, types.ToArray());
         }
 
-        public static void AddTypesImplementing<T>(this IServiceCollection servicecollection, Lifetime lifetime,
+        public static void AddTypesImplementing<T>(this IServiceCollection serviceCollection, Lifetime lifeTime,
             params string[] assemblies)
         {
-            servicecollection.AddTypesImplementing<T>(lifetime, GetAssemblies(assemblies));
+            serviceCollection.AddTypesImplementing<T>(lifeTime, GetAssemblies(assemblies));
         }
 
-        public static void AddTypesImplementing<T>(this IServiceCollection serviceCollection, Lifetime lifetime,
+        public static void AddTypesImplementing<T>(this IServiceCollection serviceCollection, Lifetime lifeTime,
             params Assembly[] assemblies)
         {
             var types = GetTypesImplementing(typeof(T), assemblies);
-            serviceCollection.Add(lifetime, types.ToArray());
+            serviceCollection.Add(lifeTime, types.ToArray());
         }
 
         public static void AddControllersInCurrentAssembly<T>(this IServiceCollection serviceCollection,

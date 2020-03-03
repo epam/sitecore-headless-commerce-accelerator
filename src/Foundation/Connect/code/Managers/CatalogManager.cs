@@ -109,7 +109,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             if (product == null) return;
 
-            var inventortyProducts = new List<CommerceInventoryProduct>
+            var inventoryProducts = new List<CommerceInventoryProduct>
             {
                 new CommerceInventoryProduct
                 {
@@ -120,7 +120,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             if (product.Variants != null)
                 foreach (var productVariant in product.Variants)
-                    inventortyProducts.Add(new CommerceInventoryProduct
+                    inventoryProducts.Add(new CommerceInventoryProduct
                     {
                         CatalogName = product.CatalogName,
                         ProductId = product.ProductId,
@@ -128,7 +128,7 @@ namespace Wooli.Foundation.Connect.Managers
                     });
 
             var stockInformationResponse =
-                inventoryManager.GetStockInformation(shopName, inventortyProducts,
+                inventoryManager.GetStockInformation(shopName, inventoryProducts,
                     StockDetailsLevel.StatusAndAvailability);
             if (!stockInformationResponse.ServiceProviderResult.Success ||
                 stockInformationResponse.Result == null) return;
@@ -138,8 +138,8 @@ namespace Wooli.Foundation.Connect.Managers
             {
                 if (stockInformationItem == null || stockInformationItem.Status == null) return;
 
-                var commerceInvertaryProduct = stockInformationItem.Product as CommerceInventoryProduct;
-                var variantId = commerceInvertaryProduct?.VariantId;
+                var commerceInverterProduct = stockInformationItem.Product as CommerceInventoryProduct;
+                var variantId = commerceInverterProduct?.VariantId;
                 if (string.IsNullOrEmpty(variantId))
                 {
                     product.StockStatus = stockInformationItem.Status;

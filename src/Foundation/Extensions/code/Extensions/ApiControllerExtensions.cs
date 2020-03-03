@@ -30,7 +30,7 @@ namespace Wooli.Foundation.Extensions.Extensions
     {
         private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter = new JsonMediaTypeFormatter
         {
-            SerializerSettings = Constants.JsonSerialiserSettings
+            SerializerSettings = Constants.JsonSerializerSettings
         };
 
         public static IHttpActionResult JsonError(this ApiController controller, string[] errorMessages,

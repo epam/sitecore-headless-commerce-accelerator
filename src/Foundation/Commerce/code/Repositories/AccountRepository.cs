@@ -33,8 +33,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IAccountRepositry), Lifetime = Lifetime.Singleton)]
-    public class AccountRepository : IAccountRepositry
+    [Service(typeof(IAccountRepository), Lifetime = Lifetime.Singleton)]
+    public class AccountRepository : IAccountRepository
     {
         #region Constructors
 
@@ -148,7 +148,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var result = new Result<ValidateAccountResultModel>();
 
-            // comerce connect don't have separate method for user's email validation
+            // commerce connect don't have separate method for user's email validation
             var emailRegex = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
             if (!emailRegex.Match(email).Success)
             {

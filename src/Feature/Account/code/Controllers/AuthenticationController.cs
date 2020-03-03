@@ -54,20 +54,20 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("signin")]
+        [ActionName("signIn")]
         public ActionResult SignIn(UserLoginModel userLogin, string returnUrl)
         {
             var userLoginResult = LoginUser(userLogin, out var commerceUserModel);
 
-            if (!userLoginResult || commerceUserModel == null) return Redirect("/signin");
+            if (!userLoginResult || commerceUserModel == null) return Redirect("/signIn");
 
             CompleteAuthentication(commerceUserModel);
 
-            return RedirectOnSignin(returnUrl);
+            return this.RedirectOnSignIn(returnUrl);
         }
 
         [HttpPost]
-        [ActionName("signout")]
+        [ActionName("signOut")]
         public ActionResult SignOut()
         {
             visitorContext.CurrentUser = null;
@@ -76,10 +76,10 @@ namespace Wooli.Feature.Account.Controllers
             Session.Abandon();
             AuthenticationManager.Logout();
 
-            return RedirectOnSignin(null);
+            return this.RedirectOnSignIn(null);
         }
 
-        private ActionResult RedirectOnSignin(string returnUrl)
+        private ActionResult RedirectOnSignIn(string returnUrl)
         {
             if (string.IsNullOrEmpty(returnUrl)) return Redirect("/");
 

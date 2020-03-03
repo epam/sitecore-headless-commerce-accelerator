@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                 cfg.CreateMap<CommerceUser, CommerceUserModel>()
                     .ForMember(dest => dest.ContactId,
                         opt => opt.MapFrom(src =>
-                            src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
+                            src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)))
                     .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                     .ReverseMap();
 
@@ -133,9 +133,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
             return innerMapper.Map<ShippingMethodModel>(shippingMethod);
         }
 
-        public ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption)
+        public ShippingOptionModel MapToShippingOptionModel(ShippingOption shippingOption)
         {
-            return innerMapper.Map<ShippingOptionModel>(shipppingOption);
+            return innerMapper.Map<ShippingOptionModel>(shippingOption);
         }
 
         public FederatedPaymentModel MapToFederatedPayment(PaymentInfo x)

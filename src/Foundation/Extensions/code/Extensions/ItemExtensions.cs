@@ -123,7 +123,7 @@ namespace Wooli.Foundation.Extensions.Extensions
             switch (linkField.LinkType.ToLower())
             {
                 case "internal":
-                    // Use LinkMananger for internal links, if link is not empty
+                    // Use LinkManager for internal links, if link is not empty
                     return linkField.TargetItem != null ? LinkManager.GetItemUrl(linkField.TargetItem) : string.Empty;
                 case "media":
                     // Use MediaManager for media links, if link is not empty

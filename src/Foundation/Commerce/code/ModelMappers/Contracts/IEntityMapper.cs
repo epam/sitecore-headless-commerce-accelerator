@@ -42,7 +42,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
         ShippingMethodModel MapToShippingMethodModel(ShippingMethod shippingMethod);
 
-        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
+        ShippingOptionModel MapToShippingOptionModel(ShippingOption shippingOption);
 
         FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
 

@@ -29,17 +29,17 @@ namespace Wooli.Feature.Account.Controllers
 
     public class AccountController : Controller
     {
-        private readonly IAccountRepositry accountRepositry;
+        private readonly IAccountRepository accountRepository;
         private readonly ITrackingService trackingService;
         private readonly IVisitorContext visitorContext;
 
         public AccountController(
-            IAccountRepositry accountRepositry,
-            IVisitorContext visitorContex,
+            IAccountRepository accountRepository,
+            IVisitorContext visitorContext,
             ITrackingService trackingService)
         {
-            this.accountRepositry = accountRepositry;
-            this.visitorContext = visitorContex;
+            this.accountRepository = accountRepository;
+            this.visitorContext = visitorContext;
             this.trackingService = trackingService;
         }
 
@@ -53,7 +53,7 @@ namespace Wooli.Feature.Account.Controllers
                 this.trackingService.EnsureTracker();
 
                 var createAccountResult =
-                    accountRepositry.CreateAccount(createAccountModel);
+                    accountRepository.CreateAccount(createAccountModel);
 
                 if (!createAccountResult.Success)
                     return this.JsonError(createAccountResult.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -74,7 +74,7 @@ namespace Wooli.Feature.Account.Controllers
             {
                 this.trackingService.EnsureTracker();
                 var accountExists =
-                    accountRepositry.ValidateAccount(validateAccountModel);
+                    accountRepository.ValidateAccount(validateAccountModel);
 
                 if (!accountExists.Success)
                     return this.JsonError(accountExists.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -94,7 +94,7 @@ namespace Wooli.Feature.Account.Controllers
             try
             {
                 this.trackingService.EnsureTracker();
-                var updateUserResult = accountRepositry.UpdateAccountInfo(user);
+                var updateUserResult = accountRepository.UpdateAccountInfo(user);
 
                 if (!updateUserResult.Success)
                     return this.JsonError(updateUserResult.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -114,13 +114,12 @@ namespace Wooli.Feature.Account.Controllers
             try
             {
                 this.trackingService.EnsureTracker();
-                var
-                    ñhangePasswordResult = accountRepositry.ChangePassword(changePassword);
+                var changePasswordResult = accountRepository.ChangePassword(changePassword);
 
-                if (!ñhangePasswordResult.Success)
-                    return this.JsonError(ñhangePasswordResult.Errors.ToArray(), HttpStatusCode.BadRequest);
+                if (!changePasswordResult.Success)
+                    return this.JsonError(changePasswordResult.Errors.ToArray(), HttpStatusCode.BadRequest);
 
-                return this.JsonOk(ñhangePasswordResult.Data);
+                return this.JsonOk(changePasswordResult.Data);
             }
             catch (Exception ex)
             {
@@ -137,7 +136,7 @@ namespace Wooli.Feature.Account.Controllers
                 var contactId = visitorContext.ContactId;
 
                 var addAddressResult =
-                    accountRepositry.AddCustomerAddress(contactId, newAddress);
+                    accountRepository.AddCustomerAddress(contactId, newAddress);
 
                 if (!addAddressResult.Success)
                     return this.JsonError(addAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -158,7 +157,7 @@ namespace Wooli.Feature.Account.Controllers
             {
                 var contactId = visitorContext.ContactId;
 
-                var getAddressListResult = accountRepositry.GetAddressList(contactId);
+                var getAddressListResult = accountRepository.GetAddressList(contactId);
 
                 if (!getAddressListResult.Success)
                     return this.JsonError(getAddressListResult.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -180,7 +179,7 @@ namespace Wooli.Feature.Account.Controllers
                 var contactId = visitorContext.ContactId;
 
                 var updateAddressResult =
-                    accountRepositry.UpdateAddress(contactId, address);
+                    accountRepository.UpdateAddress(contactId, address);
 
                 if (!updateAddressResult.Success)
                     return this.JsonError(updateAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
@@ -202,7 +201,7 @@ namespace Wooli.Feature.Account.Controllers
                 var contactId = visitorContext.ContactId;
 
                 var removeAddressResult =
-                    accountRepositry.RemoveCustomerAddress(contactId, address);
+                    accountRepository.RemoveCustomerAddress(contactId, address);
 
                 if (!removeAddressResult.Success)
                     return this.JsonError(removeAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);

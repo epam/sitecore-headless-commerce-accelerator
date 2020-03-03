@@ -36,11 +36,11 @@ namespace Wooli.Foundation.Commerce.Repositories
             this.searchManager = searchManager;
         }
 
-        public ProductModel GetProduct(string productd)
+        public ProductModel GetProduct(string productId)
         {
-            Assert.ArgumentNotNull(productd, nameof(productd));
+            Assert.ArgumentNotNull(productId, nameof(productId));
 
-            var productItem = searchManager.GetProduct(StorefrontContext.CatalogName, productd);
+            var productItem = searchManager.GetProduct(StorefrontContext.CatalogName, productId);
             if (productItem != null) return GetProductModel(VisitorContext, productItem);
 
             return null;

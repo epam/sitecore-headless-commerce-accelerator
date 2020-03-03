@@ -149,11 +149,11 @@ namespace Wooli.Foundation.Connect.Managers
                 serviceProviderResult.CommerceUsers);
         }
 
-        public ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string extenalId)
+        public ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string externalId)
         {
-            Assert.ArgumentNotNullOrEmpty(extenalId, nameof(extenalId));
+            Assert.ArgumentNotNullOrEmpty(externalId, nameof(externalId));
 
-            var getCustomerRequest = new GetCustomerRequest(extenalId);
+            var getCustomerRequest = new GetCustomerRequest(externalId);
             var getCustomerResult = customerServiceProvider.GetCustomer(getCustomerRequest);
 
             return new ManagerResponse<GetCustomerResult, CommerceCustomer>(getCustomerResult,

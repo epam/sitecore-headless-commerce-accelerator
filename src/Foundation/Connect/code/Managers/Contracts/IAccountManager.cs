@@ -46,7 +46,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         ManagerResponse<UpdateCustomerResult, CommerceCustomer> UpdateCustomer(CommerceCustomer commerceCustomer);
 
-        ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string extenalId);
+        ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string externalId);
 
         ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(string shopName,
             string contactId);

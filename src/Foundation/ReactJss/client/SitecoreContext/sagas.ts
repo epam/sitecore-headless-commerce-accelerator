@@ -1,11 +1,11 @@
 //    Copyright 2019 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@ import * as Extensions from 'Foundation/Extensions/client';
 import { Action } from 'Foundation/Integration/client';
 
 import dataProvider from '../dataProvider';
-import { SitecoreState } from '../models';
+import { ChangeRoutePayload, SitecoreState } from '../models';
 
 import * as actions from './actions';
 import * as constants from './constants';
@@ -45,10 +45,11 @@ const tryParseUrl = (urlString: string): { pathname: string; params: { [key: str
   };
 };
 
-export function* getRoute(newUrl: string) {
+export function* getRoute(payload: ChangeRoutePayload) {
   try {
     // sometimes newUrl can be undefined, due to incorrect configuration of NavigationLink in runtime,
     // in this case we want to prevent it by redirecting to home page
+    let newUrl = payload.newRoute;
     newUrl = newUrl || '/';
 
     yield put(actions.GetSitecoreContextRequest());
@@ -72,7 +73,10 @@ export function* getRoute(newUrl: string) {
     ]);
 
     yield put(actions.SetLoadedUrl(newUrl));
-    yield put(push(newUrl));
+
+    if (payload.shouldPushNewRoute) {
+      yield put(push(newUrl));
+    }
     yield put(actions.GetSitecoreContextSuccess(data.sitecore));
 
     // reset scroll to the begin
@@ -91,19 +95,19 @@ export function* getRoute(newUrl: string) {
   }
 }
 
-export function* changeRoute(action: Action<string>) {
-  const newPathname = action.payload;
+export function* changeRoute(action: Action<ChangeRoutePayload>) {
+  const { newRoute } = action.payload;
 
   if (isExperienceEditorActive()) {
-    window.location.assign(newPathname);
+    window.location.assign(newRoute);
     return;
   }
 
-  if (newPathname === constants.NOT_FOUND_ROUTE || newPathname === constants.SERVER_ERROR_ROUTE) {
+  if (newRoute === constants.NOT_FOUND_ROUTE || newRoute === constants.SERVER_ERROR_ROUTE) {
     return;
   }
 
-  yield fork(getRoute, newPathname);
+  yield fork(getRoute, action.payload);
 }
 
 function* watch() {

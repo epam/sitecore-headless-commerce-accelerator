@@ -502,6 +502,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
+    <Compile Include="Models.Generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -538,6 +539,10 @@
     <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
       <Project>{b4cd14e8-725d-401c-8d99-f20ef83e3ff5}</Project>
       <Name>Wooli.Foundation.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
+      <Project>{0044b0ca-abe2-4365-b1b2-1e347993b4aa}</Project>
+      <Name>Wooli.Foundation.GlassMapper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

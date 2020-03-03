@@ -16,8 +16,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Models;
+    using Models.Checkout;
 
     public interface IOrderRepository
     {

@@ -17,6 +17,10 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Entities.Carts;
@@ -24,9 +28,6 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Payments;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
 
@@ -44,7 +45,7 @@ namespace Wooli.Foundation.Connect.Managers
         public ManagerResponse<ServiceProviderResult, string> GetPaymentClientToken()
         {
             var request = new ServiceProviderRequest();
-            PaymentClientTokenResult clientTokenResult =
+            var clientTokenResult =
                 this.paymentServiceProvider.RunPipeline<ServiceProviderRequest, PaymentClientTokenResult>(
                     "commerce.payments.getClientToken",
                     request);
@@ -57,18 +58,16 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var request = new GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
 
-            GetPaymentMethodsResult paymentMethods = this.paymentServiceProvider.GetPaymentMethods(request);
+            var paymentMethods = this.paymentServiceProvider.GetPaymentMethods(request);
             return new ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>>(
                 paymentMethods,
                 paymentMethods.PaymentMethods.ToList());
         }
 
-        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(
-            string shopName,
-            Cart cart)
+        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(string shopName, Cart cart)
         {
             var request = new GetPaymentOptionsRequest(shopName, cart);
-            GetPaymentOptionsResult paymentOptions = this.paymentServiceProvider.GetPaymentOptions(request);
+            var paymentOptions = this.paymentServiceProvider.GetPaymentOptions(request);
             return new ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>>(
                 paymentOptions,
                 paymentOptions.PaymentOptions.ToList());

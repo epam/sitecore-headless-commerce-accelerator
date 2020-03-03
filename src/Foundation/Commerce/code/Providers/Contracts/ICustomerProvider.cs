@@ -16,7 +16,7 @@ namespace Wooli.Foundation.Commerce.Providers
 {
     using System.Web;
 
-    using Wooli.Foundation.Commerce.Models;
+    using Models;
 
     public interface ICustomerProvider
     {

@@ -14,13 +14,12 @@
 
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Analytics;
+    using Foundation.ReactJss.Infrastructure;
+
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Services.Analytics;
-    using Wooli.Foundation.ReactJss.Infrastructure;
 
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
@@ -40,9 +39,13 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            ProductModel model = this.catalogRepository.GetCurrentProduct();
+            var model = this.catalogRepository.GetCurrentProduct();
 
-            if (model != null) this.analyticsRepository.RaiseProductVisitedEvent(model);
+            if (model != null)
+            {
+                this.analyticsRepository.RaiseProductVisitedEvent(model);
+            }
+
             args.ContextData.Add("product", model);
         }
     }

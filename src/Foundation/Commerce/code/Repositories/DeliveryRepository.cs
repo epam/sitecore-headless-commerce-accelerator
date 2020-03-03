@@ -18,19 +18,24 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Collections.Generic;
     using System.Linq;
 
+    using Connect.Managers;
+    using Connect.Models;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
     using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitializers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Utils;
 
     [Service(typeof(IDeliveryRepository), Lifetime = Lifetime.Singleton)]
     public class DeliveryRepository : BaseCheckoutRepository, IDeliveryRepository
@@ -60,32 +65,37 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public virtual Result<DeliveryModel> GetDeliveryData()
         {
-            var model = new DeliveryModel { NewPartyId = Guid.NewGuid().ToString("N").ToLower() };
+            var model = new DeliveryModel
+            {
+                NewPartyId = Guid.NewGuid().ToString("N").ToLower()
+            };
             var result = new Result<DeliveryModel>();
             try
             {
                 result.SetResult(model);
-                var cartResult = this.CartManager.GetCurrentCart(
-                    this.StorefrontContext.ShopName,
-                    this.VisitorContext.ContactId);
+                var cartResult = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
                 if (!cartResult.ServiceProviderResult.Success)
                 {
                     result.SetErrors(cartResult.ServiceProviderResult);
                     return result;
                 }
 
-                Cart currentCart = cartResult.Result;
+                var currentCart = cartResult.Result;
                 if ((currentCart.Lines != null) && currentCart.Lines.Any())
                 {
                     this.AddShippingOptionsToModel(result, currentCart);
                     if (result.Success)
-
+                    {
                         ////this.AddEmailShippingMethodToResult(model, result);
                         if (result.Success)
-
+                        {
                             ////this.AddAvailableCountries((BaseCheckoutDataJsonResult)model);
                             if (result.Success)
+                            {
                                 this.AddUserInfo(result.Data, result);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -114,11 +124,12 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                ShippingOptionType shippingOptionType =
-                    ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
+                var shippingOptionType = ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
                 PartyEntity address = null;
                 if (getShippingArgs.ShippingAddress != null)
+                {
                     address = this.EntityMapper.MapToPartyEntity(getShippingArgs.ShippingAddress);
+                }
 
                 var shippingMethods = this.ShippingManager.GetShippingMethods(
                     this.StorefrontContext.ShopName,
@@ -133,9 +144,9 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 result.Data.ShippingMethods = new List<ShippingMethodModel>();
-                foreach (ShippingMethod shippingMethod in shippingMethods.ServiceProviderResult.ShippingMethods)
+                foreach (var shippingMethod in shippingMethods.ServiceProviderResult.ShippingMethods)
                 {
-                    ShippingMethodModel shippingModel = this.EntityMapper.MapToShippingMethodModel(shippingMethod);
+                    var shippingModel = this.EntityMapper.MapToShippingMethodModel(shippingMethod);
                     result.Data.ShippingMethods.Add(shippingModel);
                 }
             }
@@ -154,7 +165,11 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             try
             {
-                result.SetResult(new SetShippingModel { Success = true });
+                result.SetResult(
+                    new SetShippingModel
+                    {
+                        Success = true
+                    });
                 var currentCart = this.CartManager.GetCurrentCart(
                     this.StorefrontContext.ShopName,
                     this.VisitorContext.ContactId);
@@ -165,17 +180,13 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                Cart cart = currentCart.Result;
+                var cart = currentCart.Result;
                 var partyEntityList = this.EntityMapper.MapToPartyEntityList(setShippingArgs.ShippingAddresses);
-                ShippingOptionType shippingOptionType =
+                var shippingOptionType =
                     ConnectOptionTypeHelper.ToShippingOptionType(setShippingArgs.OrderShippingPreferenceType);
                 var shippingInfo = this.EntityMapper.MapToShippingInfoArgumentList(setShippingArgs.ShippingMethods);
 
-                var managerResponse = this.CartManager.AddShippingInfo(
-                    cart,
-                    partyEntityList,
-                    shippingOptionType,
-                    shippingInfo);
+                var managerResponse = this.CartManager.AddShippingInfo(cart, partyEntityList, shippingOptionType, shippingInfo);
 
                 if (!managerResponse.ServiceProviderResult.Success)
                 {
@@ -202,9 +213,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             {
                 result.Data.ShippingOptions = new List<ShippingOptionModel>();
 
-                foreach (ShippingOption shippingOption in shippingPreferences.Result)
+                foreach (var shippingOption in shippingPreferences.Result)
                 {
-                    ShippingOptionModel model = this.EntityMapper.MapToShippingOptionModel(shippingOption);
+                    var model = this.EntityMapper.MapToShippingOptionModel(shippingOption);
                     result.Data.ShippingOptions.Add(model);
                 }
             }

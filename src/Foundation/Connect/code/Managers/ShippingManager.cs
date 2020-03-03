@@ -17,17 +17,20 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using ModelMappers;
+
+    using Models;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Commerce.Services.Shipping.Generics;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.ModelMappers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
@@ -58,13 +61,19 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             CommerceParty commerceParty = null;
-            if (address != null) commerceParty = this.connectEntityMapper.MapToCommerceParty(address);
+            if (address != null)
+            {
+                commerceParty = this.connectEntityMapper.MapToCommerceParty(address);
+            }
 
-            var shippingOption = new ShippingOption { ShippingOptionType = shippingOptionType };
+            var shippingOption = new ShippingOption
+            {
+                ShippingOptionType = shippingOptionType
+            };
             var request = new GetShippingMethodsRequest(shippingOption, commerceParty, cart as CommerceCart);
-            GetShippingMethodsResult shippingMethods = this.shippingServiceProvider
-                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest,
-                    GetShippingMethodsResult>(request);
+            var shippingMethods = this.shippingServiceProvider
+                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest, GetShippingMethodsResult>(
+                    request);
             return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(
                 shippingMethods,
                 shippingMethods.ShippingMethods);
@@ -73,11 +82,14 @@ namespace Wooli.Foundation.Connect.Managers
         public virtual ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart)
         {
             var request = new GetShippingOptionsRequest(cart);
-            GetShippingOptionsResult shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
+            var shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
             if (shippingOptions.Success && (shippingOptions.ShippingOptions != null))
+            {
                 return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(
                     shippingOptions,
                     shippingOptions.ShippingOptions.ToList());
+            }
+
             return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(shippingOptions, null);
         }
     }

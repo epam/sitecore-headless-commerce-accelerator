@@ -14,9 +14,11 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using Models.Catalog;
 
     [Service(typeof(ISettingsProvider))]
     public class SettingsProvider : ISettingsProvider
@@ -30,10 +32,16 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation)
         {
-            int defaultValue = this.storefrontContext.DefaultItemsPerPage;
-            if (defaultValue <= 0) defaultValue = searchInformation.ItemsPerPage;
+            var defaultValue = this.storefrontContext.DefaultItemsPerPage;
+            if (defaultValue <= 0)
+            {
+                defaultValue = searchInformation.ItemsPerPage;
+            }
 
-            if (defaultValue <= 0) defaultValue = 12;
+            if (defaultValue <= 0)
+            {
+                defaultValue = 12;
+            }
 
             return pageSize.GetValueOrDefault(defaultValue);
         }

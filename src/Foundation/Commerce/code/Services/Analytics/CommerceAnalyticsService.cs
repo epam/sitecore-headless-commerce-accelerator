@@ -14,12 +14,15 @@
 
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
-    using Sitecore.Commerce;
+    using Connect.Managers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using Models.Catalog;
+
+    using Sitecore.Commerce;
 
     [Service(typeof(ICommerceAnalyticsService), Lifetime = Lifetime.Singleton)]
     public class CommerceAnalyticsService : ICommerceAnalyticsService
@@ -41,10 +44,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
         {
             Assert.ArgumentNotNull(category, nameof(category));
 
-            this.analyticsManager.VisitedCategoryPage(
-                this.storefrontContext.ShopName,
-                category.SitecoreId,
-                category.Name);
+            this.analyticsManager.VisitedCategoryPage(this.storefrontContext.ShopName, category.SitecoreId, category.Name);
         }
 
         public void RaiseProductVisitedEvent(ProductModel product)

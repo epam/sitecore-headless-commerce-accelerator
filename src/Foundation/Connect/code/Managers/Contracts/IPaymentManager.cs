@@ -29,8 +29,6 @@ namespace Wooli.Foundation.Connect.Managers
             Cart cart,
             PaymentOption paymentOption);
 
-        ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(
-            string shopName,
-            Cart cart);
+        ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(string shopName, Cart cart);
     }
 }

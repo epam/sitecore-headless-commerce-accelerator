@@ -16,9 +16,10 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Collections.Specialized;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Context;
+
+    using Models;
+    using Models.Catalog;
 
     public interface IProductListRepository
     {

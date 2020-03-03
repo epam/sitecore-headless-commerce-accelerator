@@ -17,18 +17,21 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Collections.Generic;
     using System.Linq;
 
+    using Connect.Managers;
+    using Connect.Models;
+
+    using Context;
+
     using Glass.Mapper.Sc;
+
+    using Models.Catalog;
+
+    using Providers;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-
-    using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
+    using ProductModel = Models.Catalog.ProductModel;
 
     public class BaseCatalogRepository
     {
@@ -78,10 +81,16 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
-            if (productItem == null) return null;
+            if (productItem == null)
+            {
+                return null;
+            }
 
             var variantEntityList = new List<Variant>();
-            if (productItem.HasChildren) variantEntityList = this.LoadVariants(productItem);
+            if (productItem.HasChildren)
+            {
+                variantEntityList = this.LoadVariants(productItem);
+            }
 
             var product = new Product(productItem, variantEntityList);
             product.CatalogName = this.StorefrontContext.CatalogName;
@@ -99,14 +108,15 @@ namespace Wooli.Foundation.Commerce.Repositories
             renderingModel.StockStatusName = product.StockStatusName;
             renderingModel.CustomerAverageRating = product.CustomerAverageRating;
 
-            foreach (ProductVariantModel renderingModelVariant in renderingModel.Variants)
+            foreach (var renderingModelVariant in renderingModel.Variants)
             {
-                Variant variant =
-                    product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
-                if (variant == null) continue;
+                var variant = product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
+                if (variant == null)
+                {
+                    continue;
+                }
 
-                renderingModelVariant.CurrencySymbol =
-                    this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
+                renderingModelVariant.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
                 renderingModelVariant.StockStatusName = variant.StockStatusName;

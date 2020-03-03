@@ -16,9 +16,9 @@ namespace Wooli.Foundation.ReactJss.Serialization
 {
     using System.IO;
 
-    using Newtonsoft.Json;
+    using Helpers;
 
-    using Wooli.Foundation.ReactJss.Helpers;
+    using Newtonsoft.Json;
 
     public class EnhancedJsonTextWriter : JsonTextWriter
     {
@@ -29,19 +29,19 @@ namespace Wooli.Foundation.ReactJss.Serialization
 
         public override void WritePropertyName(string name)
         {
-            string newName = this.FormatPropertyName(name);
+            var newName = this.FormatPropertyName(name);
             base.WritePropertyName(newName);
         }
 
         public override void WritePropertyName(string name, bool escape)
         {
-            string newName = this.FormatPropertyName(name);
+            var newName = this.FormatPropertyName(name);
             base.WritePropertyName(newName, escape);
         }
 
         private string FormatPropertyName(string originalValue)
         {
-            string result = StringHelper.ConvertToCamelCase(originalValue);
+            var result = StringHelper.ConvertToCamelCase(originalValue);
             return result;
         }
     }

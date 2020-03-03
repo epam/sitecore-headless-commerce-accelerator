@@ -20,19 +20,22 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Text.RegularExpressions;
     using System.Web.Security;
 
+    using Connect.Managers;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Account;
+    using Models.Checkout;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Account;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IAccountRepository), Lifetime = Lifetime.Singleton)]
     public class AccountRepository : IAccountRepository
@@ -71,14 +74,22 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            string partyId = Guid.NewGuid().ToString("N");
-            var newParty = new CommerceParty { Name = partyId, ExternalId = partyId, PartyId = partyId };
+            var partyId = Guid.NewGuid().ToString("N");
+            var newParty = new CommerceParty
+            {
+                Name = partyId,
+                ExternalId = partyId,
+                PartyId = partyId
+            };
 
             this.UpdateCommerceParty(newParty, address);
 
             var createPartyResponse = this.accountManager.AddParties(
                 getCustomerResult.Data,
-                new List<Party> { newParty });
+                new List<Party>
+                {
+                    newParty
+                });
 
             if (!createPartyResponse.ServiceProviderResult.Success)
             {
@@ -95,7 +106,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var result = new Result<ChangePasswordResultModel>();
 
-            string userName = Membership.GetUserNameByEmail(changePasswordModel.Email);
+            var userName = Membership.GetUserNameByEmail(changePasswordModel.Email);
 
             if (string.IsNullOrWhiteSpace(userName))
             {
@@ -109,7 +120,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            MembershipUser sitecoreUser = Membership.GetUser(userName);
+            var sitecoreUser = Membership.GetUser(userName);
 
             if (sitecoreUser == null)
             {
@@ -117,10 +128,14 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            string resetedPassword = sitecoreUser.ResetPassword();
+            var resetedPassword = sitecoreUser.ResetPassword();
             sitecoreUser.ChangePassword(resetedPassword, changePasswordModel.NewPassword);
 
-            result.SetResult(new ChangePasswordResultModel { PasswordChanged = true });
+            result.SetResult(
+                new ChangePasswordResultModel
+                {
+                    PasswordChanged = true
+                });
             return result;
         }
 
@@ -128,26 +143,30 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(createAccountModel, nameof(createAccountModel));
 
-            string firstName = createAccountModel.FirstName;
+            var firstName = createAccountModel.FirstName;
             Assert.ArgumentNotNullOrEmpty(firstName, nameof(firstName));
 
-            string lastName = createAccountModel.LastName;
+            var lastName = createAccountModel.LastName;
             Assert.ArgumentNotNullOrEmpty(lastName, nameof(lastName));
 
-            string userName = $"{firstName}{lastName}{Guid.NewGuid():N}";
+            var userName = $"{firstName}{lastName}{Guid.NewGuid():N}";
 
-            string email = createAccountModel.Email;
+            var email = createAccountModel.Email;
             Assert.ArgumentNotNullOrEmpty(email, nameof(email));
 
-            string password = createAccountModel.Password;
+            var password = createAccountModel.Password;
             Assert.ArgumentNotNull(password, nameof(password));
 
-            string shopName = this.storefrontContext.ShopName;
+            var shopName = this.storefrontContext.ShopName;
             Assert.ArgumentNotNull(shopName, nameof(shopName));
 
             var result = new Result<CreateAccountResultModel>();
 
-            var validateAccountResult = this.ValidateAccount(new ValidateAccountModel { Email = email });
+            var validateAccountResult = this.ValidateAccount(
+                new ValidateAccountModel
+                {
+                    Email = email
+                });
 
             if (!validateAccountResult.Success)
             {
@@ -157,7 +176,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             if (validateAccountResult.Success && validateAccountResult.Data.Invalid)
             {
-                string message = validateAccountResult.Data.InUse ? "Email is already in use" : "Email is invalid";
+                var message = validateAccountResult.Data.InUse ? "Email is already in use" : "Email is invalid";
                 result.SetError(message);
                 return result;
             }
@@ -167,15 +186,20 @@ namespace Wooli.Foundation.Commerce.Repositories
             if (!createUserResult.ServiceProviderResult.Success)
             {
                 result.SetError("Error is occured during user account creation");
-                result.SetResult(new CreateAccountResultModel { Created = false, Message = string.Empty });
+                result.SetResult(
+                    new CreateAccountResultModel
+                    {
+                        Created = false,
+                        Message = string.Empty
+                    });
                 return result;
             }
 
-            CommerceUser createdCommerceUser = createUserResult.Result;
+            var createdCommerceUser = createUserResult.Result;
 
             var enableUserResult = this.accountManager.EnableUser(createdCommerceUser);
 
-            CommerceUser user = enableUserResult.Result ?? createdCommerceUser;
+            var user = enableUserResult.Result ?? createdCommerceUser;
 
             // set user data
             user.FirstName = createAccountModel.FirstName;
@@ -240,11 +264,14 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
 
             var customerParties = getPartiesResponse.Result;
-            Party partyForRemove = customerParties.FirstOrDefault(party => party.ExternalId == address.ExternalId);
+            var partyForRemove = customerParties.FirstOrDefault(party => party.ExternalId == address.ExternalId);
 
             var removePartyResponse = this.accountManager.RemoveParties(
                 getCustomerResult.Data,
-                new List<Party> { partyForRemove });
+                new List<Party>
+                {
+                    partyForRemove
+                });
 
             if (!removePartyResponse.ServiceProviderResult.Success)
             {
@@ -269,7 +296,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            CommerceUser userForUpdate = getUserResponse.Result;
+            var userForUpdate = getUserResponse.Result;
 
             userForUpdate.FirstName = user.FirstName;
             userForUpdate.LastName = user.LastName;
@@ -322,7 +349,10 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var updatePartyResponse = this.accountManager.UpdateParties(
                 getCustomerResult.Data,
-                new List<Party> { partyForUpdate });
+                new List<Party>
+                {
+                    partyForUpdate
+                });
 
             if (!updatePartyResponse.ServiceProviderResult.Success)
             {
@@ -334,7 +364,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         }
 
         /// <summary>
-        ///     Returns true, if user exists
+        /// Returns true, if user exists
         /// </summary>
         /// <param name="validateAccountModel"></param>
         /// <returns></returns>
@@ -342,7 +372,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(validateAccountModel, nameof(validateAccountModel));
 
-            string email = validateAccountModel.Email;
+            var email = validateAccountModel.Email;
             Assert.ArgumentNotNullOrEmpty(email, nameof(email));
 
             var result = new Result<ValidateAccountResultModel>();
@@ -351,18 +381,25 @@ namespace Wooli.Foundation.Commerce.Repositories
             var emailRegex = new Regex(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
             if (!emailRegex.Match(email).Success)
             {
-                result.SetResult(new ValidateAccountResultModel { Email = email, Invalid = true });
+                result.SetResult(
+                    new ValidateAccountResultModel
+                    {
+                        Email = email,
+                        Invalid = true
+                    });
 
                 return result;
             }
 
             var getUserManagerResponse = this.accountManager.GetUserByEmail(email);
-            bool emailAlreadyInUse = getUserManagerResponse.Result != null;
+            var emailAlreadyInUse = getUserManagerResponse.Result != null;
 
             result.SetResult(
                 new ValidateAccountResultModel
                 {
-                    Email = email, Invalid = emailAlreadyInUse, InUse = emailAlreadyInUse
+                    Email = email,
+                    Invalid = emailAlreadyInUse,
+                    InUse = emailAlreadyInUse
                 });
             return result;
         }
@@ -381,27 +418,31 @@ namespace Wooli.Foundation.Commerce.Repositories
                 return result;
             }
 
-            result.SetResult(new CommerceCustomer { ExternalId = getUserResponse.Result.ExternalId });
+            result.SetResult(
+                new CommerceCustomer
+                {
+                    ExternalId = getUserResponse.Result.ExternalId
+                });
 
             return result;
         }
 
-        private CreateAccountResultModel MapToCreateAccountResultDto(
-            bool created,
-            string message,
-            CommerceUser commerceUser)
+        private CreateAccountResultModel MapToCreateAccountResultDto(bool created, string message, CommerceUser commerceUser)
         {
-            CommerceUserModel accountInfo = this.entityMapper.MapToCommerceUserModel(commerceUser);
-            return new CreateAccountResultModel { Created = created, Message = message, AccountInfo = accountInfo };
+            var accountInfo = this.entityMapper.MapToCommerceUserModel(commerceUser);
+            return new CreateAccountResultModel
+            {
+                Created = created,
+                Message = message,
+                AccountInfo = accountInfo
+            };
         }
 
         private void UpdateCommerceParty(CommerceParty partyForUpdate, AddressModel address)
         {
-            ICountryRegionModel countryRegionModel = this.storefrontContext.CurrentStorefront
-                .CountriesRegionsConfiguration.CountriesRegionsModel
-                .FirstOrDefault(c => c.CountryCode == address.CountryCode);
-            ISubdivisionModel subdivisionModel =
-                countryRegionModel?.Subdivisions.FirstOrDefault(s => s.Code == address.State);
+            var countryRegionModel = this.storefrontContext.CurrentStorefront
+                .CountriesRegionsConfiguration.CountriesRegionsModel.FirstOrDefault(c => c.CountryCode == address.CountryCode);
+            var subdivisionModel = countryRegionModel?.Subdivisions.FirstOrDefault(s => s.Code == address.State);
 
             partyForUpdate.FirstName = address.FirstName;
             partyForUpdate.LastName = address.LastName;

@@ -19,8 +19,9 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Net;
     using System.Web.Mvc;
 
-    using Wooli.Foundation.Extensions.Controllers.ActionResult;
-    using Wooli.Foundation.Extensions.Models;
+    using Controllers.ActionResult;
+
+    using Models;
 
     public static class ControllerExtensions
     {
@@ -32,20 +33,22 @@ namespace Wooli.Foundation.Extensions.Extensions
             object tempData = null)
         {
             var result = new ErrorsJsonResultModel
-                         {
-                             Status = "error",
-                             Error = errorMessages.FirstOrDefault(),
-                             Errors = errorMessages,
-                             ExceptionMessage = e?.Message,
-                             TempData = tempData
-                         };
+            {
+                Status = "error",
+                Error = errorMessages.FirstOrDefault(),
+                Errors = errorMessages,
+                ExceptionMessage = e?.Message,
+                TempData = tempData
+            };
 
             controller.Response.TrySkipIisCustomErrors = true;
 
             return new CamelCasePropertyJsonResult
-                   {
-                       Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet, StatusCode = statusCode
-                   };
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                StatusCode = statusCode
+            };
         }
 
         public static ActionResult JsonError(
@@ -56,27 +59,37 @@ namespace Wooli.Foundation.Extensions.Extensions
             object tempData = null)
         {
             var result = new ErrorJsonResultModel
-                         {
-                             Status = "error", Error = errorMessage, ExceptionMessage = e?.Message, TempData = tempData
-                         };
+            {
+                Status = "error",
+                Error = errorMessage,
+                ExceptionMessage = e?.Message,
+                TempData = tempData
+            };
 
             controller.Response.TrySkipIisCustomErrors = true;
 
             return new CamelCasePropertyJsonResult
-                   {
-                       Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet, StatusCode = statusCode
-                   };
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                StatusCode = statusCode
+            };
         }
 
         public static ActionResult JsonOk<TData>(this Controller controller, TData data = null)
             where TData : class
         {
-            var result = new OkJsonResultModel<TData> { Status = "ok", Data = data };
+            var result = new OkJsonResultModel<TData>
+            {
+                Status = "ok",
+                Data = data
+            };
 
             return new CamelCasePropertyJsonResult
-                   {
-                       Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                   };
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }

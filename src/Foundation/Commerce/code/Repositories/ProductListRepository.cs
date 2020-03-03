@@ -19,7 +19,19 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Collections.Specialized;
     using System.Linq;
 
+    using Connect.Managers;
+    using Connect.Models;
+
+    using Context;
+
+    using DependencyInjection;
+
     using Glass.Mapper.Sc;
+
+    using Models;
+    using Models.Catalog;
+
+    using Providers;
 
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect;
@@ -27,15 +39,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
-    using ProductModel = Wooli.Foundation.Commerce.Models.Catalog.ProductModel;
+    using ProductModel = Models.Catalog.ProductModel;
 
     [Service(typeof(IProductListRepository), Lifetime = Lifetime.Singleton)]
     public class ProductListRepository : BaseCatalogRepository, IProductListRepository
@@ -84,34 +88,27 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var model = new ProductListResultModel();
 
-            Item specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
-                                            ? Context.Database.GetItem(currentCatalogItemId)
-                                            : null;
-            Item currentCatalogItem = specifiedCatalogItem ?? this.storefrontContext.CurrentCatalogItem;
+            var specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
+                                           ? Context.Database.GetItem(currentCatalogItemId)
+                                           : null;
+            var currentCatalogItem = specifiedCatalogItem ?? this.storefrontContext.CurrentCatalogItem;
             model.CurrentCatalogItemId = currentCatalogItem.ID.Guid.ToString("D");
 
             // var currentItem = Sitecore.Context.Database.GetItem(currentItemId);
 
             // this.siteContext.CurrentCategoryItem = currentCatalogItem;
             // this.siteContext.CurrentItem = currentItem;
-            CategorySearchInformation searchInformation =
-                this.searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
+            var searchInformation = this.searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
             this.GetSortParameters(searchInformation, ref sortField, ref sortDirection);
 
-            int itemsPerPage = this.settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
+            var itemsPerPage = this.settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
             var commerceSearchOptions = new CommerceSearchOptions(itemsPerPage, pageNumber.GetValueOrDefault(0));
 
             this.UpdateOptionsWithFacets(searchInformation.RequiredFacets, facetValues, commerceSearchOptions);
             this.UpdateOptionsWithSorting(sortField, sortDirection, commerceSearchOptions);
 
-            SearchResults childProducts = this.GetChildProducts(
-                searchKeyword,
-                commerceSearchOptions,
-                specifiedCatalogItem);
-            var productEntityList = this.AdjustProductPriceAndStockStatus(
-                visitorContext,
-                childProducts,
-                currentCatalogItem);
+            var childProducts = this.GetChildProducts(searchKeyword, commerceSearchOptions, specifiedCatalogItem);
+            var productEntityList = this.AdjustProductPriceAndStockStatus(visitorContext, childProducts, currentCatalogItem);
 
             model.Initialize(commerceSearchOptions, childProducts, productEntityList);
             this.ApplySortOptions(model, commerceSearchOptions, searchInformation);
@@ -129,7 +126,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             if ((searchResult.SearchResultItems != null) && (searchResult.SearchResultItems.Count > 0))
             {
-                foreach (Item searchResultItem in searchResult.SearchResultItems)
+                foreach (var searchResultItem in searchResult.SearchResultItems)
                 {
                     var variants = new List<Variant>();
                     var product = new Product(searchResultItem, variants);
@@ -141,7 +138,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 this.CatalogManager.GetProductBulkPrices(products);
 
                 // this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
-                foreach (Product product in products)
+                foreach (var product in products)
                 {
                     var productModel = new ProductModel(product.Item);
                     productModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
@@ -165,34 +162,33 @@ namespace Wooli.Foundation.Commerce.Repositories
             Assert.ArgumentNotNull(commerceSearchOptions, nameof(commerceSearchOptions));
             Assert.ArgumentNotNull(searchInformation, nameof(searchInformation));
 
-            if ((searchInformation.SortFields == null) || !searchInformation.SortFields.Any()) return;
+            if ((searchInformation.SortFields == null) || !searchInformation.SortFields.Any())
+            {
+                return;
+            }
 
             var sortOptions = new List<SortOptionModel>();
-            foreach (CommerceQuerySort sortField in searchInformation.SortFields)
+            foreach (var sortField in searchInformation.SortFields)
             {
-                bool isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
+                var isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
 
                 var sortOptionAsc = new SortOptionModel
-                                    {
-                                        Name = sortField.Name,
-                                        DisplayName = sortField.DisplayName,
-                                        SortDirection = SortDirection.Asc,
-                                        IsSelected =
-                                            isSelected && (commerceSearchOptions.SortDirection
-                                                           == CommerceConstants.SortDirection.Asc)
-                                    };
+                {
+                    Name = sortField.Name,
+                    DisplayName = sortField.DisplayName,
+                    SortDirection = SortDirection.Asc,
+                    IsSelected = isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Asc)
+                };
 
                 sortOptions.Add(sortOptionAsc);
 
                 var sortOptionDesc = new SortOptionModel
-                                     {
-                                         Name = sortField.Name,
-                                         DisplayName = sortField.DisplayName,
-                                         SortDirection = SortDirection.Desc,
-                                         IsSelected =
-                                             isSelected && (commerceSearchOptions.SortDirection
-                                                            == CommerceConstants.SortDirection.Desc)
-                                     };
+                {
+                    Name = sortField.Name,
+                    DisplayName = sortField.DisplayName,
+                    SortDirection = SortDirection.Desc,
+                    IsSelected = isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Desc)
+                };
 
                 sortOptions.Add(sortOptionDesc);
             }
@@ -200,12 +196,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             model.SortOptions = sortOptions;
         }
 
-        protected SearchResults GetChildProducts(
-            string searchKeyword,
-            CommerceSearchOptions searchOptions,
-            Item categoryItem)
+        protected SearchResults GetChildProducts(string searchKeyword, CommerceSearchOptions searchOptions, Item categoryItem)
         {
-            SearchResults searchResults = this.searchManager.GetProducts(
+            var searchResults = this.searchManager.GetProducts(
                 this.storefrontContext.CatalogName,
                 categoryItem?.ID,
                 searchOptions,
@@ -219,10 +212,16 @@ namespace Wooli.Foundation.Commerce.Repositories
             ref string sortField,
             ref SortDirection? sortOrder)
         {
-            if (!string.IsNullOrWhiteSpace(sortField)) return;
+            if (!string.IsNullOrWhiteSpace(sortField))
+            {
+                return;
+            }
 
             var sortFields = categorySearchInformation.SortFields;
-            if ((sortFields == null) || (sortFields.Count <= 0)) return;
+            if ((sortFields == null) || (sortFields.Count <= 0))
+            {
+                return;
+            }
 
             sortField = sortFields[0].Name;
             sortOrder = (SortDirection?)CommerceConstants.SortDirection.Asc;
@@ -233,19 +232,27 @@ namespace Wooli.Foundation.Commerce.Repositories
             NameValueCollection valueQuery,
             CommerceSearchOptions productSearchOptions)
         {
-            if ((facets == null) || !facets.Any()) return;
+            if ((facets == null) || !facets.Any())
+            {
+                return;
+            }
 
             if (valueQuery != null)
+            {
                 foreach (string name in valueQuery)
                 {
-                    CommerceQueryFacet commerceQueryFacet = facets.FirstOrDefault(
+                    var commerceQueryFacet = facets.FirstOrDefault(
                         item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
                     if (commerceQueryFacet != null)
                     {
-                        string facetValues = valueQuery[name];
-                        foreach (string facetValue in facetValues.Split('|')) commerceQueryFacet.Values.Add(facetValue);
+                        var facetValues = valueQuery[name];
+                        foreach (var facetValue in facetValues.Split('|'))
+                        {
+                            commerceQueryFacet.Values.Add(facetValue);
+                        }
                     }
                 }
+            }
 
             productSearchOptions.FacetFields = facets;
         }
@@ -255,10 +262,16 @@ namespace Wooli.Foundation.Commerce.Repositories
             SortDirection? sortDirection,
             CommerceSearchOptions productSearchOptions)
         {
-            if (string.IsNullOrEmpty(sortField)) return;
+            if (string.IsNullOrEmpty(sortField))
+            {
+                return;
+            }
 
             productSearchOptions.SortField = sortField;
-            if (!sortDirection.HasValue) return;
+            if (!sortDirection.HasValue)
+            {
+                return;
+            }
 
             productSearchOptions.SortDirection = sortDirection == SortDirection.Asc
                                                      ? CommerceConstants.SortDirection.Asc

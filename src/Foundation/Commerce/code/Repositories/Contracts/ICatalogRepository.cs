@@ -14,9 +14,9 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using Sitecore.Data.Items;
+    using Models.Catalog;
 
-    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Sitecore.Data.Items;
 
     public interface ICatalogRepository
     {

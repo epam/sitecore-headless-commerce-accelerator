@@ -16,17 +16,20 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 {
     using System;
 
+    using Commerce.Services.Analytics;
+
+    using Connect.Managers;
+
+    using Context;
+
+    using Models.Catalog;
+
     using NSubstitute;
 
     using Ploeh.AutoFixture;
 
     using Sitecore.Data.Items;
     using Sitecore.FakeDb.AutoFixture;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Services.Analytics;
-    using Wooli.Foundation.Connect.Managers;
 
     using Xunit;
 
@@ -59,10 +62,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
             service.RaiseCategoryVisitedEvent(category);
 
             // assert
-            this.analyticsManager.Received(1).VisitedCategoryPage(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                Arg.Any<string>());
+            this.analyticsManager.Received(1).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -74,10 +74,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseCategoryVisitedEvent(category); });
-            this.analyticsManager.Received(0).VisitedCategoryPage(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                Arg.Any<string>());
+            this.analyticsManager.Received(0).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -91,10 +88,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
             service.RaiseProductVisitedEvent(product);
 
             // assert
-            this.analyticsManager.Received(1).VisitedProductDetailsPage(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                Arg.Any<string>());
+            this.analyticsManager.Received(1).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -106,10 +100,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });
-            this.analyticsManager.Received(0).VisitedProductDetailsPage(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                Arg.Any<string>());
+            this.analyticsManager.Received(0).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
     }
 }

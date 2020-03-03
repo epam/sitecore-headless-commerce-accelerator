@@ -18,9 +18,9 @@ namespace Wooli.Feature.Checkout.Controllers
     using System.Net;
     using System.Web.Mvc;
 
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Extensions.Extensions;
+    using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Extensions.Extensions;
 
     public class CheckoutController : Controller
     {
@@ -46,7 +46,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.billingRepository.GetBillingData();
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -57,7 +60,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.deliveryRepository.GetDeliveryData();
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -66,11 +72,17 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Http.ActionName("getShippingMethods")]
         public ActionResult GetShippingMethods()
         {
-            var shippingArgs = new GetShippingArgs { ShippingPreferenceType = "1" };
+            var shippingArgs = new GetShippingArgs
+            {
+                ShippingPreferenceType = "1"
+            };
 
             var result = this.deliveryRepository.GetShippingMethods(shippingArgs);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -81,7 +93,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.billingRepository.SetPaymentMethods(paymentArgs);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -92,7 +107,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.deliveryRepository.SetShippingMethods(args);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -103,7 +121,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.checkoutRepository.SubmitOrder();
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }

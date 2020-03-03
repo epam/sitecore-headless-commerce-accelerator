@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Base.Services.Logging
 
     using Sitecore.Diagnostics;
 
-    using Log = Wooli.Foundation.Base.Models.Logging.Log;
+    using Log = Models.Logging.Log;
 
     [ExcludeFromCodeCoverage]
     public abstract class LogService<TLog> : ILogService<TLog>

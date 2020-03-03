@@ -16,17 +16,21 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Linq;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Carts;
+    using Connect.Managers;
+    using Connect.Models;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitializers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
+    using Sitecore.Commerce.Engine.Connect.Entities;
 
     [Service(typeof(ICartRepository))]
     public class CartRepository : BaseCheckoutRepository, ICartRepository
@@ -55,14 +59,21 @@ namespace Wooli.Foundation.Commerce.Repositories
             var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
             var cartLineArgument = new CartLineArgument
-                                   {
-                                       CatalogName = this.StorefrontContext.CatalogName,
-                                       ProductId = productId,
-                                       Quantity = quantity,
-                                       VariantId = variantId
-                                   };
+            {
+                CatalogName = this.StorefrontContext.CatalogName,
+                ProductId = productId,
+                Quantity = quantity,
+                VariantId = variantId
+            };
 
-            var cart = this.CartManager.AddLineItemsToCart(model.Result, new[] { cartLineArgument }, null, null);
+            var cart = this.CartManager.AddLineItemsToCart(
+                model.Result,
+                new[]
+                {
+                    cartLineArgument
+                },
+                null,
+                null);
 
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
@@ -87,7 +98,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
-            if (result.Success) return result.Data;
+            if (result.Success)
+            {
+                return result.Data;
+            }
 
             return null;
         }
@@ -96,18 +110,25 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             var cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, anonymousContactId);
             if (cart.ServiceProviderResult.Success)
+            {
                 this.CartManager.MergeCarts(
                     this.StorefrontContext.ShopName,
                     this.VisitorContext.ContactId,
                     anonymousContactId,
                     cart.Result);
+            }
         }
 
         public Result<CartModel> RemoveProductVariantFromCart(string cartLineId)
         {
             var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
-            var cart = this.CartManager.RemoveLineItemsFromCart(model.Result, new[] { cartLineId });
+            var cart = this.CartManager.RemoveLineItemsFromCart(
+                model.Result,
+                new[]
+                {
+                    cartLineId
+                });
 
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
@@ -118,7 +139,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
-            CartLine cartLine = model.Result.Lines.FirstOrDefault(
+            var cartLine = model.Result.Lines.FirstOrDefault(
                 x =>
                 {
                     var current = x.Product as CommerceCartProduct;
@@ -127,22 +148,35 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             if (cartLine != null)
             {
-                if (quantity <= 0) return this.RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
+                if (quantity <= 0)
+                {
+                    return this.RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
+                }
 
                 var cartLineArgument = new CartLineArgument
-                                       {
-                                           CatalogName = this.StorefrontContext.CatalogName,
-                                           ProductId = productId,
-                                           Quantity = quantity,
-                                           VariantId = variantId
-                                       };
+                {
+                    CatalogName = this.StorefrontContext.CatalogName,
+                    ProductId = productId,
+                    Quantity = quantity,
+                    VariantId = variantId
+                };
 
-                var cart = this.CartManager.UpdateLineItemsInCart(model.Result, new[] { cartLineArgument }, null, null);
+                var cart = this.CartManager.UpdateLineItemsInCart(
+                    model.Result,
+                    new[]
+                    {
+                        cartLineArgument
+                    },
+                    null,
+                    null);
                 var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
                 return result;
             }
 
-            if (quantity > 0) return this.AddProductVariantToCart(productId, variantId, quantity);
+            if (quantity > 0)
+            {
+                return this.AddProductVariantToCart(productId, variantId, quantity);
+            }
 
             return null;
         }

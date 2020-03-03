@@ -16,9 +16,9 @@ namespace Wooli.Foundation.Extensions.Services
 {
     using System.Collections.Generic;
 
-    using Sitecore.Data.Items;
+    using Models;
 
-    using Wooli.Foundation.Extensions.Models;
+    using Sitecore.Data.Items;
 
     public interface ISiteDefinitionsProvider
     {

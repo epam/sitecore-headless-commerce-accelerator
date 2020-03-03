@@ -31,7 +31,10 @@ namespace Wooli.Foundation.Commerce.Models
 
         public void SetError(string error)
         {
-            if (string.IsNullOrEmpty(error)) return;
+            if (string.IsNullOrEmpty(error))
+            {
+                return;
+            }
 
             this.Success = false;
             this.Errors.Add(error);
@@ -40,11 +43,14 @@ namespace Wooli.Foundation.Commerce.Models
         public void SetErrors(ServiceProviderResult result)
         {
             this.Success = result.Success;
-            if (result.SystemMessages.Count <= 0) return;
-
-            foreach (SystemMessage systemMessage in result.SystemMessages)
+            if (result.SystemMessages.Count <= 0)
             {
-                string message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
+                return;
+            }
+
+            foreach (var systemMessage in result.SystemMessages)
+            {
+                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
                 this.SetError(message);
             }
         }
@@ -56,9 +62,15 @@ namespace Wooli.Foundation.Commerce.Models
 
         public void SetErrors(IList<string> errors)
         {
-            if (!errors.Any()) return;
+            if (!errors.Any())
+            {
+                return;
+            }
 
-            foreach (string error in errors) this.SetError(error);
+            foreach (var error in errors)
+            {
+                this.SetError(error);
+            }
         }
 
         public void SetResult(T result)

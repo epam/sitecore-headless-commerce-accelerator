@@ -26,9 +26,15 @@ namespace Wooli.Foundation.Connect.Utils
         {
             var source = messages as IList<SystemMessage> ?? messages.ToList();
 
-            if (!source.Any()) return;
+            if (!source.Any())
+            {
+                return;
+            }
 
-            foreach (SystemMessage systemMessage in source) Log.Error(systemMessage.Message, owner);
+            foreach (var systemMessage in source)
+            {
+                Log.Error(systemMessage.Message, owner);
+            }
         }
     }
 }

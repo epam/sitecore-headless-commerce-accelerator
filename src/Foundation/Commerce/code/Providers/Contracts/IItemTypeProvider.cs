@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Commerce.Providers
     using Sitecore.Data.Items;
     using Sitecore.Data.Templates;
 
-    using Wooli.Foundation.Commerce.Utils;
+    using Utils;
 
     public interface IItemTypeProvider
     {

@@ -14,12 +14,14 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
+    using Context;
+
+    using Extensions.Infrastructure;
+
+    using Providers;
+
     using Sitecore;
     using Sitecore.Pipelines.HttpRequest;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Extensions.Infrastructure;
 
     public class CustomerResolverProcessor : SiteSpecificPipelineProcessor
     {
@@ -35,9 +37,15 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 
         protected override void DoProcess(HttpRequestArgs args)
         {
-            if (this.visitorContext.CurrentUser != null) return;
+            if (this.visitorContext.CurrentUser != null)
+            {
+                return;
+            }
 
-            if (!Context.PageMode.IsNormal) return;
+            if (!Context.PageMode.IsNormal)
+            {
+                return;
+            }
 
             this.visitorContext.CurrentUser = this.customerProvider.GetCurrentCommerceUser(args.HttpContext);
         }

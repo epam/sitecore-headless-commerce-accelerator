@@ -14,17 +14,19 @@
 
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
+    using Commerce.Repositories;
+
+    using Connect.Managers;
+
+    using Context;
+
     using Glass.Mapper.Sc;
 
     using NSubstitute;
 
-    using Sitecore.FakeDb;
+    using Providers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Connect.Managers;
+    using Sitecore.FakeDb;
 
     using Xunit;
 
@@ -45,7 +47,10 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var productItem = new DbItem("ProductItem");
             productItem.Fields.Add("ProductId", "productId");
 
-            using (var db = new Db { productItem })
+            using (var db = new Db
+            {
+                productItem
+            })
             {
                 storefrontContext.CatalogName.Returns("storeName");
                 searchManager.GetProduct("storeName", "productId").Returns(db.GetItem(productItem.ID));
@@ -59,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                     sitecoreService,
                     searchManager,
                     currencyProvider);
-                ProductModel result = repository.GetProduct("productId");
+                var result = repository.GetProduct("productId");
 
                 // Assert
                 Assert.NotNull(result);

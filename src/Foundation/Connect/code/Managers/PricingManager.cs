@@ -17,12 +17,13 @@ namespace Wooli.Foundation.Connect.Managers
     using System;
     using System.Collections.Generic;
 
+    using DependencyInjection;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
     using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
@@ -31,11 +32,9 @@ namespace Wooli.Foundation.Connect.Managers
     public class PricingManager : IPricingManager
     {
         private static readonly string[] DefaultPriceTypeIds = new string[5]
-                                                               {
-                                                                   "List", "Adjusted", "LowestPricedVariant",
-                                                                   "LowestPricedVariantListPrice",
-                                                                   "HighestPricedVariant"
-                                                               };
+        {
+            "List", "Adjusted", "LowestPricedVariant", "LowestPricedVariantListPrice", "HighestPricedVariant"
+        };
 
         private readonly PricingServiceProvider pricingServiceProvider;
 
@@ -50,19 +49,19 @@ namespace Wooli.Foundation.Connect.Managers
             IEnumerable<string> productIds,
             params string[] priceTypeIds)
         {
-            if (priceTypeIds == null) priceTypeIds = DefaultPriceTypeIds;
+            if (priceTypeIds == null)
+            {
+                priceTypeIds = DefaultPriceTypeIds;
+            }
 
             var bulkPricesRequest = new GetProductBulkPricesRequest(catalogName, productIds, priceTypeIds)
-                                    {
-                                        DateTime = DateTime.UtcNow
-                                    };
+            {
+                DateTime = DateTime.UtcNow
+            };
 
-            GetProductBulkPricesResult productBulkPrices =
-                this.pricingServiceProvider.GetProductBulkPrices(bulkPricesRequest);
+            var productBulkPrices = this.pricingServiceProvider.GetProductBulkPrices(bulkPricesRequest);
             var result = productBulkPrices.Prices ?? new Dictionary<string, Price>();
-            return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(
-                productBulkPrices,
-                result);
+            return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(productBulkPrices, result);
         }
 
         public ManagerResponse<GetProductPricesResult, IDictionary<string, Price>> GetProductPrices(
@@ -71,14 +70,18 @@ namespace Wooli.Foundation.Connect.Managers
             bool includeVariants,
             params string[] priceTypeIds)
         {
-            if (priceTypeIds == null) priceTypeIds = DefaultPriceTypeIds;
+            if (priceTypeIds == null)
+            {
+                priceTypeIds = DefaultPriceTypeIds;
+            }
 
             var pricesRequest = new GetProductPricesRequest(catalogName, productId, priceTypeIds)
-                                {
-                                    DateTime = DateTime.UtcNow, IncludeVariantPrices = includeVariants
-                                };
+            {
+                DateTime = DateTime.UtcNow,
+                IncludeVariantPrices = includeVariants
+            };
 
-            GetProductPricesResult serviceProviderResult = this.pricingServiceProvider.GetProductPrices(pricesRequest);
+            var serviceProviderResult = this.pricingServiceProvider.GetProductPrices(pricesRequest);
 
             return new ManagerResponse<GetProductPricesResult, IDictionary<string, Price>>(
                 serviceProviderResult,

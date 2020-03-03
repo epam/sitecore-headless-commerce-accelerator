@@ -17,16 +17,19 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using ModelMappers;
+
+    using Models.Checkout;
+
+    using Providers;
+
+    using Repositories;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ICartModelBuilder))]
     public class CartModelBuilder : ICartModelBuilder
@@ -90,10 +93,9 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
             var commerceCartProduct = model.Product as CommerceCartProduct;
 
-            ProductModel product = this.catalogRepository.GetProduct(model.Product.ProductId);
+            var product = this.catalogRepository.GetProduct(model.Product.ProductId);
             result.Product = product;
-            result.Variant =
-                product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
+            result.Variant = product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
             result.Quantity = model.Quantity;
 
             var price = new CartPriceModel();

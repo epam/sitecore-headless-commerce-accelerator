@@ -17,11 +17,11 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using System.Collections.Generic;
     using System.Linq;
 
+    using Extensions.Extensions;
+
     using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Extensions.Extensions;
 
     public class BaseProductModel
     {
@@ -37,11 +37,13 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
             this.Tags = sellableItem["Tags"]?.Split('|').ToList();
 
             this.ImageUrls = sellableItem.ExtractMediaItems(
-                x =>
-                {
-                    var imagesField = (MultilistField)sellableItem.Fields["Images"];
-                    return imagesField?.TargetIDs.Select(id => id.Guid);
-                })?.Select(x => x.ImageUrl()).ToList();
+                    x =>
+                    {
+                        var imagesField = (MultilistField)sellableItem.Fields["Images"];
+                        return imagesField?.TargetIDs.Select(id => id.Guid);
+                    })
+                ?.Select(x => x.ImageUrl())
+                .ToList();
         }
 
         public decimal? AdjustedPrice { get; set; }

@@ -30,12 +30,14 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 
             var properties = new Dictionary<string, string>();
             var variantProperties = sellableItem["VariationProperties"]?.Split('|') ?? new string[0];
-            foreach (string variantPropertyName in variantProperties)
+            foreach (var variantPropertyName in variantProperties)
+            {
                 if (!string.IsNullOrEmpty(variantPropertyName))
                 {
-                    string value = sellableItem[variantPropertyName];
+                    var value = sellableItem[variantPropertyName];
                     properties.Add(variantPropertyName, value);
                 }
+            }
 
             this.VariantProperties = properties;
         }

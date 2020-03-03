@@ -24,20 +24,32 @@ namespace Wooli.Foundation.Extensions.Extensions
     {
         public static string ImageUrl(this ImageField imageField)
         {
-            if (imageField?.MediaItem == null) throw new ArgumentNullException(nameof(imageField));
+            if (imageField?.MediaItem == null)
+            {
+                throw new ArgumentNullException(nameof(imageField));
+            }
 
-            MediaUrlOptions options = MediaUrlOptions.Empty;
+            var options = MediaUrlOptions.Empty;
 
-            if (int.TryParse(imageField.Width, out int width)) options.Width = width;
+            if (int.TryParse(imageField.Width, out var width))
+            {
+                options.Width = width;
+            }
 
-            if (int.TryParse(imageField.Height, out int height)) options.Height = height;
+            if (int.TryParse(imageField.Height, out var height))
+            {
+                options.Height = height;
+            }
 
             return imageField.ImageUrl(options);
         }
 
         public static string ImageUrl(this ImageField imageField, MediaUrlOptions options)
         {
-            if (imageField?.MediaItem == null) throw new ArgumentNullException(nameof(imageField));
+            if (imageField?.MediaItem == null)
+            {
+                throw new ArgumentNullException(nameof(imageField));
+            }
 
             return options == null
                        ? imageField.ImageUrl()
@@ -46,7 +58,10 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static bool IsChecked(this Field checkboxField)
         {
-            if (checkboxField == null) throw new ArgumentNullException(nameof(checkboxField));
+            if (checkboxField == null)
+            {
+                throw new ArgumentNullException(nameof(checkboxField));
+            }
 
             return MainUtil.GetBool(checkboxField.Value, false);
         }

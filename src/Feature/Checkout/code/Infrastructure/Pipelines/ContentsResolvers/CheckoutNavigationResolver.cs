@@ -16,7 +16,11 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 {
     using System.Linq;
 
+    using Foundation.DependencyInjection;
+
     using Glass.Mapper.Sc;
+
+    using Models;
 
     using Newtonsoft.Json.Linq;
 
@@ -25,9 +29,6 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
-
-    using Wooli.Feature.Checkout.Models;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(Lifetime = Lifetime.Transient)]
     public class CheckoutNavigationResolver : RenderingContentsResolver
@@ -41,12 +42,18 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 
         protected override JObject ProcessItem(Item item, Rendering rendering, IRenderingConfiguration renderingConfig)
         {
-            JObject processedItem = base.ProcessItem(item, rendering, renderingConfig);
-            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId))) return processedItem;
+            var processedItem = base.ProcessItem(item, rendering, renderingConfig);
+            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId)))
+            {
+                return processedItem;
+            }
 
             var checkoutNavigation = this.sitecoreService.GetItem<ICheckoutNavigation>(item);
             var checkoutSteps = checkoutNavigation?.CheckoutSteps;
-            if ((checkoutSteps == null) || !checkoutSteps.Any()) return processedItem;
+            if ((checkoutSteps == null) || !checkoutSteps.Any())
+            {
+                return processedItem;
+            }
 
             var firstStep = this.sitecoreService.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
             processedItem.Add("url", firstStep.Url);

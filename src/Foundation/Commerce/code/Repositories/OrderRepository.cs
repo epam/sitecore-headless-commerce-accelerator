@@ -17,16 +17,20 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Collections.Generic;
 
-    using Sitecore.Commerce.Entities.Orders;
-    using Sitecore.Diagnostics;
+    using Connect.Managers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitializers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
+    using Sitecore.Diagnostics;
 
     [Service(typeof(IOrderRepository), Lifetime = Lifetime.Singleton)]
     public class OrderRepository : BaseCheckoutRepository, IOrderRepository
@@ -70,7 +74,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     this.VisitorContext.ContactId,
                     this.StorefrontContext.ShopName);
 
-                Order order = orderDetails.Result;
+                var order = orderDetails.Result;
                 if (order != null)
                 {
                     CartModel orderModel = this.orderModelBuilder.Initialize(order);
@@ -90,11 +94,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             return result;
         }
 
-        public virtual Result<OrderHistoryResultModel> GetOrders(
-            DateTime? fromDate,
-            DateTime? untilDate,
-            int page,
-            int count)
+        public virtual Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)
         {
             var result = new Result<OrderHistoryResultModel>();
             try
@@ -114,14 +114,14 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var ordersList = new List<CartModel>();
-                foreach (OrderHeader orderHeader in orderHeaders.Result)
+                foreach (var orderHeader in orderHeaders.Result)
                 {
                     var orderDetails = this.orderManager.GetOrderDetails(
                         orderHeader.OrderID,
                         this.VisitorContext.ContactId,
                         this.StorefrontContext.ShopName);
 
-                    Order order = orderDetails.Result;
+                    var order = orderDetails.Result;
                     if (order != null)
                     {
                         CartModel orderModel = this.orderModelBuilder.Initialize(order);
@@ -133,7 +133,10 @@ namespace Wooli.Foundation.Commerce.Repositories
                     }
                 }
 
-                var model = new OrderHistoryResultModel(ordersList) { CurrentPageNumber = page };
+                var model = new OrderHistoryResultModel(ordersList)
+                {
+                    CurrentPageNumber = page
+                };
 
                 result.SetResult(model);
                 return result;

@@ -30,7 +30,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 
             var variantItems = sellableItem.Children.ToArray();
             var variants = new List<ProductVariantModel>();
-            foreach (Item commerceProductVariant in variantItems)
+            foreach (var commerceProductVariant in variantItems)
             {
                 var variant = new ProductVariantModel(commerceProductVariant);
                 variants.Add(variant);

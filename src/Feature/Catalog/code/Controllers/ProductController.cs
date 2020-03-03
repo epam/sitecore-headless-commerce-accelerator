@@ -19,12 +19,11 @@ namespace Wooli.Feature.Catalog.Controllers
     using System.Web;
     using System.Web.Http;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Extensions.Extensions;
+    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Utils;
+    using Foundation.Extensions.Extensions;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
@@ -52,8 +51,11 @@ namespace Wooli.Feature.Catalog.Controllers
         [Route("get/{id}")]
         public IHttpActionResult Get(string id)
         {
-            ProductModel productModel = this.catalogRepository.GetProduct(id);
-            if (productModel == null) return this.JsonError("Not Found", HttpStatusCode.NotFound);
+            var productModel = this.catalogRepository.GetProduct(id);
+            if (productModel == null)
+            {
+                return this.JsonError("Not Found", HttpStatusCode.NotFound);
+            }
 
             return this.JsonOk(productModel);
         }
@@ -69,11 +71,11 @@ namespace Wooli.Feature.Catalog.Controllers
             [FromUri(Name = "cci")] string currentCatalogItemId = null,
             [FromUri(Name = "ci")] string currentItemId = null)
         {
-            NameValueCollection facetValuesCollection = !string.IsNullOrEmpty(facetValues)
-                                                            ? HttpUtility.ParseQueryString(facetValues)
-                                                            : new NameValueCollection();
+            var facetValuesCollection = !string.IsNullOrEmpty(facetValues)
+                                            ? HttpUtility.ParseQueryString(facetValues)
+                                            : new NameValueCollection();
 
-            ProductListResultModel model = this.productListRepository.GetProductList(
+            var model = this.productListRepository.GetProductList(
                 this.visitorContext,
                 currentItemId,
                 currentCatalogItemId,

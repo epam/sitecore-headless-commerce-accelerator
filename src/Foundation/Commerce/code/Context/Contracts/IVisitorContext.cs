@@ -14,7 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Wooli.Foundation.Commerce.Models;
+    using Models;
 
     public interface IVisitorContext
     {

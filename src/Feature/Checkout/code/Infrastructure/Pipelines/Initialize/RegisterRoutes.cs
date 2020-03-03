@@ -17,11 +17,12 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    using Controllers;
+
+    using Foundation.Commerce.Utils;
+
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
-
-    using Wooli.Feature.Checkout.Controllers;
-    using Wooli.Foundation.Commerce.Utils;
 
     public class RegisterRoutes
     {

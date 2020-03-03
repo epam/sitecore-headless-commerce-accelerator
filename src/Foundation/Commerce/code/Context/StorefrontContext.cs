@@ -14,12 +14,13 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
+    using Connect.Models;
+
+    using DependencyInjection;
+
     using Glass.Mapper.Sc;
 
     using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext

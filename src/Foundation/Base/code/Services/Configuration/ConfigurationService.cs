@@ -16,12 +16,13 @@ namespace Wooli.Foundation.Base.Services.Configuration
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using DependencyInjection;
+
     using Microsoft.Extensions.DependencyInjection;
 
-    using Sitecore.DependencyInjection;
+    using Models.Configuration;
 
-    using Wooli.Foundation.Base.Models.Configuration;
-    using Wooli.Foundation.DependencyInjection;
+    using Sitecore.DependencyInjection;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(IConfigurationService))]

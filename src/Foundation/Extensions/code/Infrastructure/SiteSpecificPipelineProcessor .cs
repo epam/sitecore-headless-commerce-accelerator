@@ -30,7 +30,10 @@ namespace Wooli.Foundation.Extensions.Infrastructure
 
         public override sealed void Process(HttpRequestArgs args)
         {
-            if (!this.Sites.Contains(Context.Site?.Name)) return;
+            if (!this.Sites.Contains(Context.Site?.Name))
+            {
+                return;
+            }
 
             this.DoProcess(args);
         }

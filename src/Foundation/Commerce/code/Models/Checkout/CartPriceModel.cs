@@ -14,13 +14,13 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using Providers;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Diagnostics;
 
     using TypeLite;
-
-    using Wooli.Foundation.Commerce.Providers;
 
     [TsClass]
     public class CartPriceModel

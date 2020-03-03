@@ -14,9 +14,9 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Sitecore.Data.Items;
+    using Connect.Models;
 
-    using Wooli.Foundation.Connect.Models;
+    using Sitecore.Data.Items;
 
     public interface IStorefrontContext
     {

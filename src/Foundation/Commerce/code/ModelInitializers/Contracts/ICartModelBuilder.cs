@@ -14,9 +14,9 @@
 
 namespace Wooli.Foundation.Commerce.ModelInitializers
 {
-    using Sitecore.Commerce.Entities.Carts;
+    using Models.Checkout;
 
-    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Sitecore.Commerce.Entities.Carts;
 
     public interface ICartModelBuilder
     {

@@ -16,9 +16,9 @@ namespace Wooli.Foundation.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
 
-    using Sitecore.DependencyInjection;
+    using Services;
 
-    using Wooli.Foundation.Extensions.Services;
+    using Sitecore.DependencyInjection;
 
     public class ServicesConfigurator : IServicesConfigurator
     {

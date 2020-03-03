@@ -14,6 +14,10 @@
 
 namespace Wooli.Foundation.Connect.Providers
 {
+    using Contracts;
+
+    using DependencyInjection;
+
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Carts;
@@ -25,9 +29,6 @@ namespace Wooli.Foundation.Connect.Providers
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Configuration;
-
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IConnectServiceProvider))]
     public class ConnectServiceProvider : IConnectServiceProvider

@@ -18,14 +18,14 @@ namespace Wooli.Foundation.Extensions.Services
     using System.Collections.Generic;
     using System.Linq;
 
+    using Models;
+
     using Sitecore;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Sites;
     using Sitecore.Web;
-
-    using Wooli.Foundation.Extensions.Models;
 
     public class SiteDefinitionsProvider : ISiteDefinitionsProvider
     {
@@ -44,14 +44,17 @@ namespace Wooli.Foundation.Extensions.Services
         }
 
         public IEnumerable<SiteDefinition> SiteDefinitions =>
-            this.siteDefinitions ?? (this.siteDefinitions = this.sites.Where(this.IsValidSite).Select(this.Create)
-                                         .OrderBy(s => s.RootItem.Appearance.Sortorder).ToArray());
+            this.siteDefinitions
+            ?? (this.siteDefinitions = this.sites.Where(this.IsValidSite)
+                    .Select(this.Create)
+                    .OrderBy(s => s.RootItem.Appearance.Sortorder)
+                    .ToArray());
 
         public SiteDefinition GetContextSiteDefinition(Item item)
         {
-            SiteDefinition rootSite = this.SiteDefinitions
-                .Where(x => item.Paths.FullPath.StartsWith(x.RootItem.Paths.FullPath))
-                .OrderByDescending(x => x.IsCurrent).FirstOrDefault();
+            var rootSite = this.SiteDefinitions.Where(x => item.Paths.FullPath.StartsWith(x.RootItem.Paths.FullPath))
+                .OrderByDescending(x => x.IsCurrent)
+                .FirstOrDefault();
 
             return rootSite ?? this.SiteDefinitions.FirstOrDefault(s => s.IsCurrent);
         }
@@ -63,25 +66,34 @@ namespace Wooli.Foundation.Extensions.Services
 
         private SiteDefinition Create([NotNull] SiteInfo site)
         {
-            if (site == null) throw new ArgumentNullException(nameof(site));
+            if (site == null)
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
 
-            Item siteItem = this.GetSiteRootItem(site);
+            var siteItem = this.GetSiteRootItem(site);
             return new SiteDefinition
-                   {
-                       RootItem = siteItem,
-                       Name = site.Name,
-                       HostName = this.GetHostName(site),
-                       Site = site,
-                       RootPath = siteItem?.Paths.FullPath,
-                       StartPath = $"{siteItem?.Paths.FullPath?.TrimEnd('/')}/{site.StartItem?.Trim('/')}"
-                   };
+            {
+                RootItem = siteItem,
+                Name = site.Name,
+                HostName = this.GetHostName(site),
+                Site = site,
+                RootPath = siteItem?.Paths.FullPath,
+                StartPath = $"{siteItem?.Paths.FullPath?.TrimEnd('/')}/{site.StartItem?.Trim('/')}"
+            };
         }
 
         private string GetHostName(SiteInfo site)
         {
-            if (!string.IsNullOrEmpty(site.TargetHostName)) return site.TargetHostName;
+            if (!string.IsNullOrEmpty(site.TargetHostName))
+            {
+                return site.TargetHostName;
+            }
 
-            if (Uri.CheckHostName(site.HostName) != UriHostNameType.Unknown) return site.HostName;
+            if (Uri.CheckHostName(site.HostName) != UriHostNameType.Unknown)
+            {
+                return site.HostName;
+            }
 
             Log.Warn($"Cannot determine hostname for site '{site.Name}'.", this.GetType());
             return null;
@@ -89,12 +101,18 @@ namespace Wooli.Foundation.Extensions.Services
 
         private Item GetSiteRootItem(SiteInfo site)
         {
-            if (site == null) throw new ArgumentNullException(nameof(site));
+            if (site == null)
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
 
-            if (string.IsNullOrEmpty(site.Database)) return null;
+            if (string.IsNullOrEmpty(site.Database))
+            {
+                return null;
+            }
 
-            Database database = Database.GetDatabase(site.Database);
-            Item item = database?.GetItem(site.RootPath);
+            var database = Database.GetDatabase(site.Database);
+            var item = database?.GetItem(site.RootPath);
 
             return item;
         }

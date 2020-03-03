@@ -14,8 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
+    using Models;
+    using Models.Checkout;
 
     public interface ICartRepository
     {

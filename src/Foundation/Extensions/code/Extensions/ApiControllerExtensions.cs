@@ -23,15 +23,18 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Web.Http;
     using System.Web.Http.Results;
 
+    using Models;
+
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Extensions.Models;
-    using Wooli.Foundation.Extensions.Utils;
+    using Utils;
 
     public static class ApiControllerExtensions
     {
-        private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter =
-            new JsonMediaTypeFormatter { SerializerSettings = Constants.JsonSerializerSettings };
+        private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter = new JsonMediaTypeFormatter
+        {
+            SerializerSettings = Constants.JsonSerializerSettings
+        };
 
         public static IHttpActionResult JsonError(
             this ApiController controller,
@@ -41,13 +44,13 @@ namespace Wooli.Foundation.Extensions.Extensions
             object tempData = null)
         {
             var result = new ErrorsJsonResultModel
-                         {
-                             Status = "error",
-                             Error = errorMessages.FirstOrDefault(),
-                             Errors = errorMessages,
-                             ExceptionMessage = e?.Message,
-                             TempData = tempData
-                         };
+            {
+                Status = "error",
+                Error = errorMessages.FirstOrDefault(),
+                Errors = errorMessages,
+                ExceptionMessage = e?.Message,
+                TempData = tempData
+            };
 
             return ResolveDependencies(
                 controller,
@@ -67,9 +70,12 @@ namespace Wooli.Foundation.Extensions.Extensions
             object tempData = null)
         {
             var result = new ErrorJsonResultModel
-                         {
-                             Status = "error", Error = errorMessage, ExceptionMessage = e?.Message, TempData = tempData
-                         };
+            {
+                Status = "error",
+                Error = errorMessage,
+                ExceptionMessage = e?.Message,
+                TempData = tempData
+            };
 
             return ResolveDependencies(
                 controller,
@@ -84,7 +90,11 @@ namespace Wooli.Foundation.Extensions.Extensions
         public static IHttpActionResult JsonOk<TData>(this ApiController controller, TData data = null)
             where TData : class
         {
-            var result = new OkJsonResultModel<TData> { Status = "ok", Data = data };
+            var result = new OkJsonResultModel<TData>
+            {
+                Status = "ok",
+                Data = data
+            };
 
             return ResolveDependencies(
                 controller,
@@ -100,25 +110,30 @@ namespace Wooli.Foundation.Extensions.Extensions
             Assert.ArgumentNotNull(resultFunc, nameof(resultFunc));
 
             // Extracting default configuration from controller
-            HttpConfiguration configuration = controller.Configuration;
+            var configuration = controller.Configuration;
             if (configuration == null)
+            {
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} configuration must not be null.");
+            }
 
-            IContentNegotiator contentNegotiator = configuration.Services.GetContentNegotiator();
+            var contentNegotiator = configuration.Services.GetContentNegotiator();
             if (contentNegotiator == null)
+            {
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} do not have a content configuration.");
+            }
 
-            HttpRequestMessage request = controller.Request;
+            var request = controller.Request;
             if (request == null)
-                throw new InvalidOperationException(
-                    $"The controller {controller.GetType().FullName} request must not be null.");
+            {
+                throw new InvalidOperationException($"The controller {controller.GetType().FullName} request must not be null.");
+            }
 
             // Modifying custom configuration
-            JsonMediaTypeFormatter defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
+            var defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
             IList<MediaTypeFormatter> formatters = configuration.Formatters.ToList();
-            int indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
+            var indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
             formatters[indexOfJsonMediaTypeFormatter] = JsonMediaTypeFormatter;
 
             return resultFunc(contentNegotiator, request, formatters);

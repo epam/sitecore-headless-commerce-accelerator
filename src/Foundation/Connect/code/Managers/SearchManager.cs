@@ -18,19 +18,19 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using Models;
+
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch;
     using Sitecore.ContentSearch.Linq;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ISearchManager))]
     public class SearchManager : ISearchManager
@@ -46,11 +46,13 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            CommerceSellableItemSearchResultItem searchResultItem =
-                this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType).FirstOrDefault(
-                    item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
+            var searchResultItem = this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
+                .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
 
-            if (searchResultItem != null) productItem = searchResultItem.GetItem();
+            if (searchResultItem != null)
+            {
+                productItem = searchResultItem.GetItem();
+            }
 
             return productItem;
         }
@@ -72,11 +74,13 @@ namespace Wooli.Foundation.Connect.Managers
 
             Item productItem = null;
 
-            CommerceSellableItemSearchResultItem searchResultItem =
-                this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
-                    .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
+            var searchResultItem = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType)
+                .FirstOrDefault(item => string.Equals(item.Name, productId.ToLowerInvariant()));
 
-            if (searchResultItem != null) productItem = searchResultItem.GetItem();
+            if (searchResultItem != null)
+            {
+                productItem = searchResultItem.GetItem();
+            }
 
             return productItem;
         }
@@ -98,44 +102,42 @@ namespace Wooli.Foundation.Connect.Managers
                             : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
 
             if (!string.IsNullOrEmpty(searchKeyword))
+            {
                 queryable = queryable.Where(
                     item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
+            }
 
             queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
 
             var results = queryable.GetResults();
 
-            SearchResponse searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
+            var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
             if (searchResultsItems != null)
+            {
                 return new SearchResults(
                     searchResultsItems.ResponseItems,
                     searchResultsItems.TotalItemCount,
                     searchResultsItems.TotalPageCount,
                     searchOptions.StartPageIndex,
                     searchResultsItems.Facets.ToList());
+            }
 
             return new SearchResults();
         }
 
-        public SearchResults SearchCatalogItemsByKeyword(
-            string catalogName,
-            string keyword,
-            CommerceSearchOptions searchOptions)
+        public SearchResults SearchCatalogItemsByKeyword(string catalogName, string keyword, CommerceSearchOptions searchOptions)
         {
             // ToDo: implement or remove
             throw new NotImplementedException();
         }
 
-        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(
-            string catalogName,
-            string searchItemType)
+        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(string catalogName, string searchItemType)
         {
             Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
             Assert.ArgumentNotNullOrEmpty(searchItemType, nameof(searchItemType));
 
             var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            using (IProviderSearchContext searchContext =
-                commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
+            using (var searchContext = commerceSearchManager.GetIndex(catalogName).CreateSearchContext())
             {
                 var searchResultItems = searchContext.GetQueryable<CommerceSellableItemSearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == searchItemType)

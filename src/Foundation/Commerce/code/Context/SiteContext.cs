@@ -17,14 +17,15 @@ namespace Wooli.Foundation.Commerce.Context
     using System.Collections;
     using System.Web;
 
+    using DependencyInjection;
+
+    using Providers;
+
     using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
@@ -61,7 +62,7 @@ namespace Wooli.Foundation.Commerce.Context
                 this.Items[CurrentItemKey] = value;
                 if (value != null)
                 {
-                    Constants.ItemType itemType = this.ItemTypeProvider.ResolveByItem(value);
+                    var itemType = this.ItemTypeProvider.ResolveByItem(value);
                     this.Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
                     this.Items[IsProductKey] = itemType == Constants.ItemType.Product;
                 }
@@ -83,7 +84,10 @@ namespace Wooli.Foundation.Commerce.Context
         {
             get
             {
-                if (this.Items[IsCategoryKey] != null) return (bool)this.Items[IsCategoryKey];
+                if (this.Items[IsCategoryKey] != null)
+                {
+                    return (bool)this.Items[IsCategoryKey];
+                }
 
                 return false;
             }
@@ -93,7 +97,10 @@ namespace Wooli.Foundation.Commerce.Context
         {
             get
             {
-                if (this.Items[IsProductKey] != null) return (bool)this.Items[IsProductKey];
+                if (this.Items[IsProductKey] != null)
+                {
+                    return (bool)this.Items[IsProductKey];
+                }
 
                 return false;
             }

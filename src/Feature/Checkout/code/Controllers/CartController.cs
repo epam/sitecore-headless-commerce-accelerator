@@ -19,10 +19,10 @@ namespace Wooli.Feature.Checkout.Controllers
     using System.Web.Http;
     using System.Web.Mvc;
 
-    using Wooli.Feature.Checkout.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Extensions.Extensions;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Extensions.Extensions;
+
+    using Models;
 
     public class CartController : Controller
     {
@@ -37,12 +37,12 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("add")]
         public ActionResult AddProductVariant([FromBody] CartItemDto cartItem)
         {
-            var result = this.cartRepository.AddProductVariantToCart(
-                cartItem.ProductId,
-                cartItem.VariantId,
-                cartItem.Quantity);
+            var result = this.cartRepository.AddProductVariantToCart(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -53,7 +53,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             var result = this.cartRepository.AddPromoCode(data.PromoCode);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -63,7 +66,10 @@ namespace Wooli.Feature.Checkout.Controllers
         public ActionResult DeleteVariant(string cartLineId)
         {
             var result = this.cartRepository.RemoveProductVariantFromCart(cartLineId);
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }
@@ -71,7 +77,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("get")]
         public ActionResult GetCart()
         {
-            CartModel model = this.cartRepository.GetCurrentCart();
+            var model = this.cartRepository.GetCurrentCart();
 
             return this.JsonOk(model);
         }
@@ -85,7 +91,10 @@ namespace Wooli.Feature.Checkout.Controllers
                 cartItem.VariantId,
                 cartItem.Quantity);
 
-            if (result.Success) return this.JsonOk(result.Data);
+            if (result.Success)
+            {
+                return this.JsonOk(result.Data);
+            }
 
             return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
         }

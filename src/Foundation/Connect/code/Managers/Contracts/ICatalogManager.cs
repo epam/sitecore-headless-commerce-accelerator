@@ -16,10 +16,10 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
+    using Models;
+
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Connect.Models;
 
     public interface ICatalogManager
     {

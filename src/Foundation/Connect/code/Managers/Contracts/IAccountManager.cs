@@ -26,9 +26,7 @@ namespace Wooli.Foundation.Connect.Managers
             CommerceCustomer customer,
             IEnumerable<CustomerParty> parties);
 
-        ManagerResponse<AddPartiesResult, IEnumerable<Party>> AddParties(
-            CommerceCustomer customer,
-            IEnumerable<Party> parties);
+        ManagerResponse<AddPartiesResult, IEnumerable<Party>> AddParties(CommerceCustomer customer, IEnumerable<Party> parties);
 
         ManagerResponse<CreateCustomerResult, CommerceCustomer> CreateCustomer(CommerceCustomer commerceCustomer);
 
@@ -42,9 +40,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         ManagerResponse<EnableUserResult, CommerceUser> EnableUser(CommerceUser commerceUser);
 
-        ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(
-            string shopName,
-            string contactId);
+        ManagerResponse<GetPartiesResult, IEnumerable<Party>> GetCurrentCustomerParties(string shopName, string contactId);
 
         ManagerResponse<GetCustomerResult, CommerceCustomer> GetCustomer(string extenalId);
 
@@ -53,7 +49,7 @@ namespace Wooli.Foundation.Connect.Managers
         ManagerResponse<GetUserResult, CommerceUser> GetUser(string userName);
 
         /// <summary>
-        ///     Gets User by Email
+        /// Gets User by Email
         /// </summary>
         /// <param name="email">User email</param>
         /// <returns></returns>
@@ -65,9 +61,7 @@ namespace Wooli.Foundation.Connect.Managers
             CommerceCustomer customer,
             IEnumerable<CustomerParty> parties);
 
-        ManagerResponse<CustomerResult, IEnumerable<Party>> RemoveParties(
-            CommerceCustomer customer,
-            IEnumerable<Party> parties);
+        ManagerResponse<CustomerResult, IEnumerable<Party>> RemoveParties(CommerceCustomer customer, IEnumerable<Party> parties);
 
         ManagerResponse<UpdateCustomerResult, CommerceCustomer> UpdateCustomer(CommerceCustomer commerceCustomer);
 
@@ -75,9 +69,7 @@ namespace Wooli.Foundation.Connect.Managers
             CommerceCustomer customer,
             IEnumerable<CustomerParty> parties);
 
-        ManagerResponse<CustomerResult, IEnumerable<Party>> UpdateParties(
-            CommerceCustomer customer,
-            IEnumerable<Party> parties);
+        ManagerResponse<CustomerResult, IEnumerable<Party>> UpdateParties(CommerceCustomer customer, IEnumerable<Party> parties);
 
         ManagerResponse<UpdateUserResult, CommerceUser> UpdateUser(CommerceUser updatedCommerceUser);
     }

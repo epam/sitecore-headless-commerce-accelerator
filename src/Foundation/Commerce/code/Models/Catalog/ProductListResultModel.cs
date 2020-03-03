@@ -16,12 +16,12 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
 
+    using Connect.Models;
+
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Diagnostics;
 
     using TypeLite;
-
-    using Wooli.Foundation.Connect.Models;
 
     [TsClass]
     public class ProductListResultModel
@@ -64,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
             this.ChildProducts = productEntityList ?? new List<ProductModel>();
 
             var facets = new List<FacetResultModel>();
-            foreach (CommerceQueryFacet queryFacet in searchResults.Facets)
+            foreach (var queryFacet in searchResults.Facets)
             {
                 var facetModel = new FacetResultModel();
                 facetModel.Initialize(queryFacet);

@@ -18,16 +18,17 @@ namespace Wooli.Foundation.Commerce.Providers
     using System.Linq;
     using System.Web;
 
+    using Connect.Managers;
+
+    using DependencyInjection;
+
+    using Models;
+
     using Sitecore;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Diagnostics;
-    using Sitecore.Security.Accounts;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ICustomerProvider))]
     public class CustomerProvider : ICustomerProvider
@@ -51,13 +52,22 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
         {
-            User user = Context.Data.User;
-            if (user == null) return null;
+            var user = Context.Data.User;
+            if (user == null)
+            {
+                return null;
+            }
 
-            if (user.IsAuthenticated) return this.GetCommerceUser(user.Profile.UserName);
+            if (user.IsAuthenticated)
+            {
+                return this.GetCommerceUser(user.Profile.UserName);
+            }
 
-            HttpCookie cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
-            if (cookie != null) return this.GetCommerceUser(cookie.Value);
+            var cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
+            if (cookie != null)
+            {
+                return this.GetCommerceUser(cookie.Value);
+            }
 
             return null;
         }
@@ -71,20 +81,26 @@ namespace Wooli.Foundation.Commerce.Providers
 
         private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
         {
-            if (commerceUser == null) return new CommerceUserModel { ContactId = contactIdOrEmail };
+            if (commerceUser == null)
+            {
+                return new CommerceUserModel
+                {
+                    ContactId = contactIdOrEmail
+                };
+            }
 
-            string customerId = this.GetCustomerId(commerceUser?.Customers);
-            string contactId = this.ParseContactId(commerceUser?.ExternalId);
+            var customerId = this.GetCustomerId(commerceUser?.Customers);
+            var contactId = this.ParseContactId(commerceUser?.ExternalId);
 
             return new CommerceUserModel
-                   {
-                       ContactId = contactId,
-                       CustomerId = customerId,
-                       Email = commerceUser.Email,
-                       FirstName = commerceUser.FirstName,
-                       LastName = commerceUser.LastName,
-                       UserName = commerceUser.UserName
-                   };
+            {
+                ContactId = contactId,
+                CustomerId = customerId,
+                Email = commerceUser.Email,
+                FirstName = commerceUser.FirstName,
+                LastName = commerceUser.LastName,
+                UserName = commerceUser.UserName
+            };
         }
 
         private string ParseContactId(string externalId)

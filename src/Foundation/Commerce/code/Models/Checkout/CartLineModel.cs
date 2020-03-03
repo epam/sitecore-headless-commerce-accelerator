@@ -14,9 +14,9 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
-    using TypeLite;
+    using Catalog;
 
-    using Wooli.Foundation.Commerce.Models.Catalog;
+    using TypeLite;
 
     [TsClass]
     public class CartLineModel

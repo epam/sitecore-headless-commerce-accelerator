@@ -19,20 +19,23 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using AutoMapper;
 
+    using Connect.Models;
+
+    using DependencyInjection;
+
+    using Models;
+    using Models.Checkout;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Shipping;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Utils;
 
-    using CountryRegionModel = Wooli.Foundation.Commerce.Models.Region.CountryRegionModel;
-    using SubdivisionModel = Wooli.Foundation.Commerce.Models.Region.SubdivisionModel;
+    using CountryRegionModel = Models.Region.CountryRegionModel;
+    using SubdivisionModel = Models.Region.SubdivisionModel;
 
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
@@ -54,33 +57,30 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     cfg.CreateMap<ShippingMethodModel, ShippingInfoArgument>()
                         .ForMember(
                             dest => dest.LineIds,
-                            opt => opt.MapFrom(
-                                src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()))
-                        .ForMember(dest => dest.ShippingMethodId, opt => opt.MapFrom(src => src.ExternalId)).ForMember(
-                            dest => dest.ShippingMethodName,
-                            opt => opt.MapFrom(src => src.Name)).ReverseMap();
+                            opt => opt.MapFrom(src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()))
+                        .ForMember(dest => dest.ShippingMethodId, opt => opt.MapFrom(src => src.ExternalId))
+                        .ForMember(dest => dest.ShippingMethodName, opt => opt.MapFrom(src => src.Name))
+                        .ReverseMap();
 
-                    cfg.CreateMap<string, ShippingOptionType>()
-                        .ConvertUsing(ConnectOptionTypeHelper.ToShippingOptionType);
+                    cfg.CreateMap<string, ShippingOptionType>().ConvertUsing(ConnectOptionTypeHelper.ToShippingOptionType);
 
                     cfg.CreateMap<ShippingMethod, ShippingMethodModel>().ReverseMap();
 
-                    cfg.CreateMap<ShippingOption, ShippingOptionModel>().ForMember(
-                        dest => dest.ShippingOptionType,
-                        opt => opt.MapFrom(src => src.ShippingOptionType.Value));
+                    cfg.CreateMap<ShippingOption, ShippingOptionModel>()
+                        .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingOptionType.Value));
 
                     cfg.CreateMap<PaymentInfo, FederatedPaymentModel>().ReverseMap();
                     cfg.CreateMap<FederatedPaymentInfo, FederatedPaymentModel>().ReverseMap();
 
                     cfg.CreateMap<ShippingInfo, ShippingMethodModel>().ReverseMap();
-                    cfg.CreateMap<CommerceShippingInfo, ShippingMethodModel>().ForMember(
-                        dest => dest.Name,
-                        opt => opt.MapFrom(src => src.ShippingMethodName)).ReverseMap();
+                    cfg.CreateMap<CommerceShippingInfo, ShippingMethodModel>()
+                        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ShippingMethodName))
+                        .ReverseMap();
 
-                    cfg.CreateMap<CommerceUser, CommerceUserModel>().ForMember(
+                    cfg.CreateMap<CommerceUser, CommerceUserModel>()
+                        .ForMember(
                             dest => dest.ContactId,
-                            opt => opt.MapFrom(
-                                src => src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
+                            opt => opt.MapFrom(src => src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
                         .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                         .ReverseMap();
 

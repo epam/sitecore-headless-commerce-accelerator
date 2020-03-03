@@ -14,7 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Models.Catalog;
 
     public interface ISettingsProvider
     {

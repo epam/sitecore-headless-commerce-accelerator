@@ -27,22 +27,34 @@ namespace Wooli.Foundation.Commerce.Utils
                 optionTypeName,
                 ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture),
                 StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.ShipToAddress;
+            }
+
             if (string.Equals(
                 optionTypeName,
                 ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture),
                 StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.PickupFromStore;
+            }
+
             if (string.Equals(
                 optionTypeName,
                 ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture),
                 StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.ElectronicDelivery;
+            }
+
             if (string.Equals(
                 optionTypeName,
                 ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture),
                 StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.DeliverItemsIndividually;
+            }
+
             return ShippingOptionType.None;
         }
     }

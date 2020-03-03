@@ -16,12 +16,11 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
     using System.Collections.Generic;
 
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Shipping;
+    using Commerce.ModelMappers;
 
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Models;
+    using Models.Checkout;
+
+    using Sitecore.Commerce.Entities.Shipping;
 
     using Xunit;
 
@@ -31,11 +30,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()
         {
             // Setup
-            var input = new AddressModel { PartyId = "partyId", IsPrimary = true };
+            var input = new AddressModel
+            {
+                PartyId = "partyId",
+                IsPrimary = true
+            };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            Party result = addressPartyMapper.MapToParty(input);
+            var result = addressPartyMapper.MapToParty(input);
 
             // Assert
             Assert.NotNull(result);
@@ -48,15 +51,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         {
             // Setup
             var input = new ShippingMethodModel
-                        {
-                            PartyId = "partyId",
-                            LineIds = null,
-                            ShippingPreferenceType = ShippingOptionType.ElectronicDelivery.Value.ToString()
-                        };
+            {
+                PartyId = "partyId",
+                LineIds = null,
+                ShippingPreferenceType = ShippingOptionType.ElectronicDelivery.Value.ToString()
+            };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
+            var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);
@@ -70,11 +73,18 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
         public void MapToShippingInfoArgument_ValidInputObjectWithLineIdsNotEmpty_ObjectIsMappedCorrectly()
         {
             // Setup
-            var input = new ShippingMethodModel { LineIds = new List<string> { "1", "2" } };
+            var input = new ShippingMethodModel
+            {
+                LineIds = new List<string>
+                {
+                    "1",
+                    "2"
+                }
+            };
 
             // Execute
             var addressPartyMapper = new EntityMapper();
-            ShippingInfoArgument result = addressPartyMapper.MapToShippingInfoArgument(input);
+            var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
             Assert.NotNull(result);

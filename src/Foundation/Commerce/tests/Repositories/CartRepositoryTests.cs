@@ -16,22 +16,25 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
     using System.Collections.Generic;
 
+    using Commerce.ModelMappers;
+    using Commerce.Repositories;
+
+    using Connect.Managers;
+
+    using Context;
+
+    using ModelInitializers;
+
+    using Models.Catalog;
+    using Models.Checkout;
+
     using NSubstitute;
 
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Data;
-    using Sitecore.Data.Items;
     using Sitecore.FakeDb;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitializers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Connect.Managers;
 
     using Xunit;
 
@@ -55,36 +58,52 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var productDbItem = new DbItem("ProductItem", productItemId);
             productDbItem.Fields.Add("ProductId", ProductIdValue);
 
-            using (var db = new Db { productDbItem })
+            using (var db = new Db
+            {
+                productDbItem
+            })
             {
                 var cart = new Cart
-                           {
-                               Total = new Total(),
-                               Lines = new List<CartLine>
-                                       {
-                                           new CartLine
-                                           {
-                                               Product = new CartProduct { ProductId = ProductIdValue },
-                                               Total = new Total()
-                                           }
-                                       }
-                           };
+                {
+                    Total = new Total(),
+                    Lines = new List<CartLine>
+                    {
+                        new CartLine
+                        {
+                            Product = new CartProduct
+                            {
+                                ProductId = ProductIdValue
+                            },
+                            Total = new Total()
+                        }
+                    }
+                };
 
-                Item productItem = db.GetItem(productItemId);
+                var productItem = db.GetItem(productItemId);
 
                 storefrontContext.ShopName.Returns("shopName");
                 visitorContext.ContactId.Returns("contactId");
-                cartManager.GetCurrentCart("shopName", "contactId").Returns(
-                    new ManagerResponse<CartResult, Cart>(new CartResult { Cart = cart }, cart));
+                cartManager.GetCurrentCart("shopName", "contactId")
+                    .Returns(
+                        new ManagerResponse<CartResult, Cart>(
+                            new CartResult
+                            {
+                                Cart = cart
+                            },
+                            cart));
                 catalogRepository.GetProduct(ProductIdValue).Returns(new ProductModel(productItem));
-                cartModelBuilder.Initialize(Arg.Any<Cart>()).Returns(
-                    new CartModel
-                    {
-                        CartLines = new List<CartLineModel>
-                                    {
-                                        new CartLineModel { Product = new ProductModel(productItem) }
-                                    }
-                    });
+                cartModelBuilder.Initialize(Arg.Any<Cart>())
+                    .Returns(
+                        new CartModel
+                        {
+                            CartLines = new List<CartLineModel>
+                            {
+                                new CartLineModel
+                                {
+                                    Product = new ProductModel(productItem)
+                                }
+                            }
+                        });
 
                 // Execute
                 var repository = new CartRepository(
@@ -95,7 +114,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                     addressPartyMapper,
                     storefrontContext,
                     visitorContext);
-                CartModel result = repository.GetCurrentCart();
+                var result = repository.GetCurrentCart();
 
                 // Assert
                 Assert.NotNull(result);

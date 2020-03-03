@@ -16,13 +16,14 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
+    using DependencyInjection;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IInventoryManager))]
     public class InventoryManager : IInventoryManager
@@ -45,7 +46,7 @@ namespace Wooli.Foundation.Connect.Managers
             var request = new GetStockInformationRequest(shopName, inventoryProducts, detailsLevel);
             request.Location = string.Empty;
 
-            GetStockInformationResult stockInformation = this.inventoryServiceProvider.GetStockInformation(request);
+            var stockInformation = this.inventoryServiceProvider.GetStockInformation(request);
 
             return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(
                 stockInformation,

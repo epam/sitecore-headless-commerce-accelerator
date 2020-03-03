@@ -17,15 +17,20 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Linq;
 
-    using Sitecore.Diagnostics;
+    using Connect.Managers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitializers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
+    using Sitecore.Diagnostics;
 
     [Service(typeof(ICheckoutRepository), Lifetime = Lifetime.Singleton)]
     public class CheckoutRepository : BaseCheckoutRepository, ICheckoutRepository
@@ -69,8 +74,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var managerResponse = this.OrderManager.SubmitVisitorOrder(currentCart.Result);
-                if (managerResponse.ServiceProviderResult.Success
-                    || !managerResponse.ServiceProviderResult.SystemMessages.Any())
+                if (managerResponse.ServiceProviderResult.Success || !managerResponse.ServiceProviderResult.SystemMessages.Any())
                 {
                     model.Temp = managerResponse.Result;
                     model.ConfirmationId = managerResponse.Result.TrackingNumber;

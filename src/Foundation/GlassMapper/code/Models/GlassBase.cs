@@ -59,7 +59,10 @@ namespace Wooli.Foundation.GlassMapper.Models
 
         public virtual bool InheritsTemplate(Guid templateGuid)
         {
-            if (!this.BaseTemplateIds.Contains(templateGuid)) return this.ItemTemplateId.Equals(templateGuid);
+            if (!this.BaseTemplateIds.Contains(templateGuid))
+            {
+                return this.ItemTemplateId.Equals(templateGuid);
+            }
 
             return true;
         }

@@ -18,7 +18,7 @@ namespace Wooli.Foundation.Commerce.Providers
     using System.Globalization;
     using System.Linq;
 
-    using Wooli.Foundation.DependencyInjection;
+    using DependencyInjection;
 
     [Service(typeof(ICurrencyProvider), Lifetime = Lifetime.Singleton)]
     public class CurrencyProvider : ICurrencyProvider
@@ -31,9 +31,13 @@ namespace Wooli.Foundation.Commerce.Providers
 
             var regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(x => new RegionInfo(x.LCID));
 
-            foreach (RegionInfo region in regions)
+            foreach (var region in regions)
+            {
                 if (!symbolsByCodeDict.ContainsKey(region.ISOCurrencySymbol))
+                {
                     symbolsByCodeDict.Add(region.ISOCurrencySymbol, region.CurrencySymbol);
+                }
+            }
 
             this.symbolsByCode = symbolsByCodeDict;
         }

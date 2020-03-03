@@ -16,11 +16,11 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
+    using Models;
+
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
-
-    using Wooli.Foundation.Connect.Models;
 
     public interface IShippingManager
     {

@@ -17,15 +17,15 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
-    using Sitecore.Security.Authentication;
+    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Authentication;
+    using Foundation.Commerce.Providers;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Tracking;
+    using Foundation.Extensions.Extensions;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Authentication;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Commerce.Services.Tracking;
-    using Wooli.Foundation.Extensions.Extensions;
+    using Sitecore.Security.Authentication;
 
     public class AuthenticationController : Controller
     {
@@ -53,9 +53,12 @@ namespace Wooli.Feature.Account.Controllers
         [ActionName("signIn")]
         public ActionResult SignIn(UserLoginModel userLogin, string returnUrl)
         {
-            bool userLoginResult = this.LoginUser(userLogin, out CommerceUserModel commerceUserModel);
+            var userLoginResult = this.LoginUser(userLogin, out var commerceUserModel);
 
-            if (!userLoginResult || (commerceUserModel == null)) return this.Redirect("/signIn");
+            if (!userLoginResult || (commerceUserModel == null))
+            {
+                return this.Redirect("/signIn");
+            }
 
             this.CompleteAuthentication(commerceUserModel);
 
@@ -80,16 +83,16 @@ namespace Wooli.Feature.Account.Controllers
         public ActionResult ValidateCredentials(UserLoginModel userLogin)
         {
             var validateCredentialsResultDto = new ValidateCredentialsResultModel
-                                               {
-                                                   HasValidCredentials = this.ValidateUser(userLogin)
-                                               };
+            {
+                HasValidCredentials = this.ValidateUser(userLogin)
+            };
 
             return this.JsonOk(validateCredentialsResultDto);
         }
 
         private void CompleteAuthentication(CommerceUserModel commerceUser)
         {
-            string anonymousContact = this.visitorContext.ContactId;
+            var anonymousContact = this.visitorContext.ContactId;
             this.visitorContext.CurrentUser = commerceUser;
 
             this.cartRepository.MergeCarts(anonymousContact);
@@ -99,7 +102,7 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool LoginUser(UserLoginModel userLogin, out CommerceUserModel commerceUser)
         {
-            string userName = Membership.GetUserNameByEmail(userLogin.Email);
+            var userName = Membership.GetUserNameByEmail(userLogin.Email);
             if (string.IsNullOrWhiteSpace(userName))
             {
                 commerceUser = null;
@@ -108,22 +111,31 @@ namespace Wooli.Feature.Account.Controllers
 
             commerceUser = this.customerProvider.GetCommerceUser(userName);
 
-            if (commerceUser == null) return false;
+            if (commerceUser == null)
+            {
+                return false;
+            }
 
             return AuthenticationManager.Login(userName, userLogin.Password);
         }
 
         private ActionResult RedirectOnSignIn(string returnUrl)
         {
-            if (string.IsNullOrEmpty(returnUrl)) return this.Redirect("/");
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return this.Redirect("/");
+            }
 
             return this.Redirect(returnUrl);
         }
 
         private bool ValidateUser(UserLoginModel userLogin)
         {
-            string userName = Membership.GetUserNameByEmail(userLogin.Email);
-            if (!string.IsNullOrWhiteSpace(userName)) return Membership.ValidateUser(userName, userLogin.Password);
+            var userName = Membership.GetUserNameByEmail(userLogin.Email);
+            if (!string.IsNullOrWhiteSpace(userName))
+            {
+                return Membership.ValidateUser(userName, userLogin.Password);
+            }
 
             return false;
         }

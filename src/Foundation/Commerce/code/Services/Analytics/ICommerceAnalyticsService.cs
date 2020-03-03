@@ -14,21 +14,21 @@
 
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
-    using Wooli.Foundation.Commerce.Models.Catalog;
+    using Models.Catalog;
 
     /// <summary>
-    ///     Raise commerce related analytics events
+    /// Raise commerce related analytics events
     /// </summary>
     public interface ICommerceAnalyticsService
     {
         /// <summary>
-        ///     Raise "Category Visited" event.
+        /// Raise "Category Visited" event.
         /// </summary>
         /// <param name="category">Category model.</param>
         void RaiseCategoryVisitedEvent(CategoryModel category);
 
         /// <summary>
-        ///     Raise "Product Visited" event.
+        /// Raise "Product Visited" event.
         /// </summary>
         /// <param name="product">Product model.</param>
         void RaiseProductVisitedEvent(ProductModel product);

@@ -17,7 +17,6 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using System.Collections.Generic;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
     using Sitecore.Diagnostics;
 
     using TypeLite;
@@ -42,7 +41,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
             this.Values = commerceQueryFacet.Values;
 
             var foundValues = new List<FacetValueResultModel>();
-            foreach (FacetValue facetValue in commerceQueryFacet.FoundValues)
+            foreach (var facetValue in commerceQueryFacet.FoundValues)
             {
                 var facetValueResultModel = new FacetValueResultModel();
                 facetValueResultModel.Initialize(facetValue);

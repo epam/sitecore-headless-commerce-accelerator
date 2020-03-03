@@ -14,16 +14,20 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using Connect.Managers;
+
+    using Context;
+
+    using DependencyInjection;
+
     using Glass.Mapper.Sc;
+
+    using Models.Catalog;
+
+    using Providers;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models.Catalog;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ICatalogRepository), Lifetime = Lifetime.Singleton)]
     public class CatalogRepository : BaseCatalogRepository, ICatalogRepository
@@ -45,14 +49,14 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public CategoryModel GetCurrentCategory()
         {
-            Item categoryItem = this.SiteContext.CurrentCategoryItem;
+            var categoryItem = this.SiteContext.CurrentCategoryItem;
 
             return this.GetCategoryModel(categoryItem);
         }
 
         public ProductModel GetCurrentProduct()
         {
-            Item productItem = this.SiteContext.CurrentProductItem;
+            var productItem = this.SiteContext.CurrentProductItem;
 
             return this.GetProductModel(this.VisitorContext, productItem);
         }
@@ -61,8 +65,11 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             Assert.ArgumentNotNull(productd, nameof(productd));
 
-            Item productItem = this.searchManager.GetProduct(this.StorefrontContext.CatalogName, productd);
-            if (productItem != null) return this.GetProductModel(this.VisitorContext, productItem);
+            var productItem = this.searchManager.GetProduct(this.StorefrontContext.CatalogName, productd);
+            if (productItem != null)
+            {
+                return this.GetProductModel(this.VisitorContext, productItem);
+            }
 
             return null;
         }

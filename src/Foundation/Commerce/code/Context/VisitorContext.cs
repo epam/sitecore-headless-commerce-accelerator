@@ -17,9 +17,11 @@ namespace Wooli.Foundation.Commerce.Context
     using System.Collections;
     using System.Web;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
+    using DependencyInjection;
+
+    using Models;
+
+    using Providers;
 
     [Service(typeof(IVisitorContext))]
     public class VisitorContext : IVisitorContext

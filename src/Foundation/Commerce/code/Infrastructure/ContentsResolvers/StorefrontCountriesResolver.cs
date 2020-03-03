@@ -16,13 +16,15 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
     using System.Collections.Specialized;
 
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelMappers;
+
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(Lifetime = Lifetime.Transient)]
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
@@ -49,7 +51,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
         {
             var model = this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
 
-            return new { Countries = this.mapper.MapToCountryRegionModel(model) };
+            return new
+            {
+                Countries = this.mapper.MapToCountryRegionModel(model)
+            };
         }
     }
 }

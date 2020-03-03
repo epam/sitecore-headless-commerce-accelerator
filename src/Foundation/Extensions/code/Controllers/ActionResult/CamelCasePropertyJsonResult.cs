@@ -16,14 +16,13 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
 {
     using System;
     using System.Net;
-    using System.Web;
     using System.Web.Mvc;
 
     using Newtonsoft.Json;
 
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Extensions.Utils;
+    using Utils;
 
     public class CamelCasePropertyJsonResult : JsonResult
     {
@@ -35,22 +34,28 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
         {
             Assert.ArgumentNotNull(context, nameof(context));
 
-            if ((this.JsonRequestBehavior == JsonRequestBehavior.DenyGet) && string.Equals(
-                    context.HttpContext.Request.HttpMethod,
-                    "GET",
-                    StringComparison.OrdinalIgnoreCase))
+            if ((this.JsonRequestBehavior == JsonRequestBehavior.DenyGet)
+                && string.Equals(context.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
+            {
                 throw new InvalidOperationException("GET is not allowed.");
+            }
 
-            if (this.Data == null) return;
+            if (this.Data == null)
+            {
+                return;
+            }
 
-            HttpResponseBase response = context.HttpContext.Response;
+            var response = context.HttpContext.Response;
 
-            if (this.ContentEncoding != null) response.ContentEncoding = this.ContentEncoding;
+            if (this.ContentEncoding != null)
+            {
+                response.ContentEncoding = this.ContentEncoding;
+            }
 
             response.StatusCode = (int)this.StatusCode;
             response.ContentType = string.IsNullOrEmpty(this.ContentType) ? "application/json" : this.ContentType;
 
-            JsonSerializer scriptSerializer = JsonSerializer.Create(JsonSerializerSettings);
+            var scriptSerializer = JsonSerializer.Create(JsonSerializerSettings);
             scriptSerializer.Serialize(response.Output, this.Data);
         }
     }

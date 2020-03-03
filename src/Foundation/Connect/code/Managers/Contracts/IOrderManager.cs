@@ -22,10 +22,7 @@ namespace Wooli.Foundation.Connect.Managers
 
     public interface IOrderManager
     {
-        ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(
-            string orderId,
-            string customerId,
-            string shopName);
+        ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId, string shopName);
 
         ManagerResponse<GetVisitorOrdersResult, OrderHeader[]> GetVisitorOrders(
             string customerId,

@@ -16,11 +16,11 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
 {
     using System.Collections.Generic;
 
+    using Helpers;
+
     using Sitecore.Diagnostics;
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-
-    using Wooli.Foundation.ReactJss.Helpers;
 
     public class FormatRenderingParams : BaseRenderJsonRendering
     {
@@ -36,15 +36,14 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
             args.Result.RenderingParams = this.FormatRenderingParameters(args.Result.RenderingParams);
         }
 
-        private IDictionary<string, string> FormatRenderingParameters(
-            IDictionary<string, string> originalRenderingParams)
+        private IDictionary<string, string> FormatRenderingParameters(IDictionary<string, string> originalRenderingParams)
         {
             var renderingParams = new Dictionary<string, string>();
 
             foreach (var originalRenderingParam in originalRenderingParams)
             {
-                string key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
-                string value = originalRenderingParam.Value;
+                var key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
+                var value = originalRenderingParam.Value;
 
                 renderingParams[key] = value;
             }

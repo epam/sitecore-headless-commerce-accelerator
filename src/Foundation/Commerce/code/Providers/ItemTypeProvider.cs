@@ -14,20 +14,22 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Connect.Models;
+
+    using DependencyInjection;
+
     using Sitecore.Data.Items;
     using Sitecore.Data.Managers;
     using Sitecore.Data.Templates;
 
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Utils;
 
     [Service(typeof(IItemTypeProvider))]
     public class ItemTypeProvider : IItemTypeProvider
     {
         public Constants.ItemType ResolveByItem(Item item)
         {
-            Template template = TemplateManager.GetTemplate(item);
+            var template = TemplateManager.GetTemplate(item);
 
             return this.ResolveByTemplate(template);
         }
@@ -37,11 +39,17 @@ namespace Wooli.Foundation.Commerce.Providers
             var itemType = Constants.ItemType.Unknown;
 
             if (template.InheritsFrom(CommerceCategoryModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Category;
+            }
             else if (template.InheritsFrom(CommerceProductModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Product;
+            }
             else if (template.InheritsFrom(CommerceProductVariantModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Variant;
+            }
 
             return itemType;
         }

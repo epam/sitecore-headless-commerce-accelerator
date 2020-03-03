@@ -14,10 +14,11 @@
 
 namespace Wooli.Foundation.Commerce.ModelInitializers
 {
-    using Sitecore.Commerce.Entities.Orders;
+    using DependencyInjection;
 
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.DependencyInjection;
+    using Models.Checkout;
+
+    using Sitecore.Commerce.Entities.Orders;
 
     [Service(typeof(IOrderModelBuilder))]
     public class OrderModelBuilder : IOrderModelBuilder

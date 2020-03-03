@@ -14,11 +14,12 @@
 
 namespace Wooli.Foundation.Connect.Managers
 {
+    using DependencyInjection;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Connect.Providers.Contracts;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IAnalyticsManager))]
     public class AnalyticsManager : IAnalyticsManager

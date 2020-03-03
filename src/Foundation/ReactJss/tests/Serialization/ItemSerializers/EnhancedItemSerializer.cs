@@ -18,13 +18,12 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
 
     using NSubstitute;
 
-    using Sitecore.Data.Items;
+    using ReactJss.Serialization.ItemSerializers;
+
     using Sitecore.FakeDb;
     using Sitecore.Globalization;
     using Sitecore.LayoutService.Serialization.FieldSerializers;
     using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
-
-    using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
 
     using Xunit;
 
@@ -38,14 +37,23 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
             var getFieldSerializerPipeline = Substitute.For<IGetFieldSerializerPipeline>();
             getFieldSerializerPipeline.GetResult(Arg.Any<GetFieldSerializerPipelineArgs>()).Returns(fieldSerializer);
 
-            using (Db db =
-                new Db { new DbItem("dataSource") { { "field", "value1" }, { "Text Field", "value2" } } }.WithLanguages(
-                    Language.Parse("en")))
+            using (var db = new Db
             {
-                Item item = db.GetItem("sitecore/content/dataSource");
+                new DbItem("dataSource")
+                {
+                    {
+                        "field", "value1"
+                    },
+                    {
+                        "Text Field", "value2"
+                    }
+                }
+            }.WithLanguages(Language.Parse("en")))
+            {
+                var item = db.GetItem("sitecore/content/dataSource");
                 var serializer = new EnhancedItemSerializer(getFieldSerializerPipeline);
 
-                string jsonString = serializer.Serialize(db.GetItem(item.ID));
+                var jsonString = serializer.Serialize(db.GetItem(item.ID));
 
                 dynamic jsonObject = JsonConvert.DeserializeObject(jsonString);
 

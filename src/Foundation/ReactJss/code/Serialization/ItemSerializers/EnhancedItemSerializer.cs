@@ -16,7 +16,6 @@ namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
 {
     using System.IO;
 
-    using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.LayoutService.Serialization;
@@ -44,7 +43,10 @@ namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
 
                     var itemFields = this.GetItemFields(item);
                     var options = new SerializationOptions();
-                    foreach (Field itemField in itemFields) this.SerializeField(itemField, writer, options);
+                    foreach (var itemField in itemFields)
+                    {
+                        this.SerializeField(itemField, writer, options);
+                    }
 
                     writer.WriteEndObject();
                 }

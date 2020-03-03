@@ -18,13 +18,12 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
 
     using NSubstitute;
 
-    using Sitecore.Data.Items;
+    using ReactJss.Infrastructure;
+
     using Sitecore.FakeDb;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
-
-    using Wooli.Foundation.ReactJss.Infrastructure;
 
     using Xunit;
 
@@ -33,26 +32,32 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
         [Fact]
         public void ResolveContents_ErrorableContentsResolver_ExceptionNotThrowed()
         {
-            using (var db = new Db { new DbItem("RenderedItem") })
+            using (var db = new Db
             {
-                Item renderedItem = db.GetItem("/sitecore/content/RenderedItem");
+                new DbItem("RenderedItem")
+            })
+            {
+                var renderedItem = db.GetItem("/sitecore/content/RenderedItem");
                 var configurationResolver = Substitute.For<IConfigurationResolver>();
 
                 var args = new GetLayoutServiceContextArgs
-                           {
-                               RenderedItem = renderedItem,
-                               RenderingConfiguration = new DefaultRenderingConfiguration(),
-                               ContextData = {
-                                                { "_sign", 1 } 
-                                             }
-                           };
+                {
+                    RenderedItem = renderedItem,
+                    RenderingConfiguration = new DefaultRenderingConfiguration(),
+                    ContextData =
+                    {
+                        {
+                            "_sign", 1
+                        }
+                    }
+                };
 
                 IGetLayoutServiceContextProcessor contextProcessor =
                     new ErrorableGetLayoutServiceContextProcessor(configurationResolver);
 
                 contextProcessor.Process(args);
 
-                object resultObject = args.ContextData["_sign"];
+                var resultObject = args.ContextData["_sign"];
                 var value = Assert.IsType<int>(resultObject);
                 Assert.Equal(1, value);
             }

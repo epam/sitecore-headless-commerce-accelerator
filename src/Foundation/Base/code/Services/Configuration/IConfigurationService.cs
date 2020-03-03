@@ -14,15 +14,15 @@
 
 namespace Wooli.Foundation.Base.Services.Configuration
 {
-    using Wooli.Foundation.Base.Models.Configuration;
+    using Models.Configuration;
 
     /// <summary>
-    ///     Get Sitecore config
+    /// Get Sitecore config
     /// </summary>
     public interface IConfigurationService
     {
         /// <summary>
-        ///     Get specific Sitecore config node
+        /// Get specific Sitecore config node
         /// </summary>
         /// <typeparam name="TConfiguration"></typeparam>
         /// <returns></returns>

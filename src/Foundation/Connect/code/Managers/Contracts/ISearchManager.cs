@@ -16,11 +16,11 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
+    using Models;
+
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data;
     using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Connect.Models;
 
     public interface ISearchManager
     {
@@ -32,15 +32,8 @@ namespace Wooli.Foundation.Connect.Managers
 
         Item GetProduct(string catalogName, string productId);
 
-        SearchResults GetProducts(
-            string catalogName,
-            ID categoryId,
-            CommerceSearchOptions searchOptions,
-            string searchKeyword);
+        SearchResults GetProducts(string catalogName, ID categoryId, CommerceSearchOptions searchOptions, string searchKeyword);
 
-        SearchResults SearchCatalogItemsByKeyword(
-            string catalogName,
-            string searchKeyword,
-            CommerceSearchOptions searchOptions);
+        SearchResults SearchCatalogItemsByKeyword(string catalogName, string searchKeyword, CommerceSearchOptions searchOptions);
     }
 }

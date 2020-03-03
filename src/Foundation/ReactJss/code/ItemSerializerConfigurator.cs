@@ -16,10 +16,10 @@ namespace Wooli.Foundation.ReactJss
 {
     using Microsoft.Extensions.DependencyInjection;
 
+    using Serialization.ItemSerializers;
+
     using Sitecore.DependencyInjection;
     using Sitecore.LayoutService.Serialization.ItemSerializers;
-
-    using Wooli.Foundation.ReactJss.Serialization.ItemSerializers;
 
     public class ItemSerializerConfigurator : IServicesConfigurator
     {

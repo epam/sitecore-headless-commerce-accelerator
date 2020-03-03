@@ -16,17 +16,21 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
     using System.Linq;
 
+    using Connect.Managers;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using Extensions.Services;
+
+    using Providers;
+
     using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
-    using Wooli.Foundation.Extensions.Services;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
@@ -60,21 +64,33 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
         {
             Assert.ArgumentNotNull(contextItem, nameof(contextItem));
 
-            if (urlSegments == null) return;
+            if (urlSegments == null)
+            {
+                return;
+            }
 
-            Item rootItem = this.siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
-            if (rootItem == null) return;
+            var rootItem = this.siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
+            if (rootItem == null)
+            {
+                return;
+            }
 
-            if (this.siteContext.CurrentItem != null) return;
+            if (this.siteContext.CurrentItem != null)
+            {
+                return;
+            }
 
-            Item currentItem = Context.Item;
+            var currentItem = Context.Item;
             while ((currentItem != null) && (currentItem.ID != rootItem.ID))
             {
-                string urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
+                var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
 
                 this.ProcessItem(currentItem, urlSegment, this.storefrontContext.CatalogName);
 
-                if (urlSegments?.Length > 0) urlSegments = urlSegments.Take(urlSegments.Length - 1).ToArray();
+                if (urlSegments?.Length > 0)
+                {
+                    urlSegments = urlSegments.Take(urlSegments.Length - 1).ToArray();
+                }
 
                 currentItem = currentItem.Parent;
             }
@@ -82,11 +98,17 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
         private void ProcessItem(Item item, string urlSegment, string catalogName)
         {
-            Constants.ItemType contextItemType = this.pageTypeProvider.ResolveByItem(item);
-            if (contextItemType == Constants.ItemType.Unknown) return;
+            var contextItemType = this.pageTypeProvider.ResolveByItem(item);
+            if (contextItemType == Constants.ItemType.Unknown)
+            {
+                return;
+            }
 
-            string itemName = item.Name != "*" ? item.Name : urlSegment;
-            if (string.IsNullOrEmpty(itemName)) return;
+            var itemName = item.Name != "*" ? item.Name : urlSegment;
+            if (string.IsNullOrEmpty(itemName))
+            {
+                return;
+            }
 
             Item catalogItem;
             switch (contextItemType)
@@ -103,7 +125,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
                     return;
             }
 
-            if (this.siteContext.CurrentItem == null) this.siteContext.CurrentItem = catalogItem;
+            if (this.siteContext.CurrentItem == null)
+            {
+                this.siteContext.CurrentItem = catalogItem;
+            }
         }
     }
 }

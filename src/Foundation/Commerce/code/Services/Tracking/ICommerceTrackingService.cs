@@ -15,7 +15,7 @@
 namespace Wooli.Foundation.Commerce.Services.Tracking
 {
     /// <summary>
-    ///     Proxy service for static CommerceTracker
+    /// Proxy service for static CommerceTracker
     /// </summary>
     public interface ICommerceTrackingService
     {
@@ -24,7 +24,7 @@ namespace Wooli.Foundation.Commerce.Services.Tracking
         void EndVisit(bool clearVisitor);
 
         /// <summary>
-        ///     Identifies current user as given source and user name.
+        /// Identifies current user as given source and user name.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="userName">The username.</param>

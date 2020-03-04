@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,132 +15,170 @@
 namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Linq;
+
     using Connect.Managers;
     using Connect.Models;
+
     using Context;
+
     using DependencyInjection;
+
     using ModelInitializers;
+
     using ModelMappers;
+
     using Models;
     using Models.Checkout;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Services.Carts;
 
     [Service(typeof(ICartRepository))]
     public class CartRepository : BaseCheckoutRepository, ICartRepository
     {
-        public CartRepository(ICartManager cartManager, ICatalogRepository catalogRepository,
-            IAccountManager accountManager, ICartModelBuilder cartModelBuilder, IEntityMapper entityMapper,
-            IStorefrontContext storefrontContext, IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext,
+        public CartRepository(
+            ICartManager cartManager,
+            ICatalogRepository catalogRepository,
+            IAccountManager accountManager,
+            ICartModelBuilder cartModelBuilder,
+            IEntityMapper entityMapper,
+            IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext)
+            : base(
+                cartManager,
+                catalogRepository,
+                accountManager,
+                cartModelBuilder,
+                entityMapper,
+                storefrontContext,
                 visitorContext)
         {
         }
 
-        public virtual CartModel GetCurrentCart()
-        {
-            var cart =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
-            // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
-
-            var result = GetCart(cart.ServiceProviderResult, cart.Result);
-
-            if (result.Success) return result.Data;
-
-            return null;
-        }
-
-        public virtual void MergeCarts(string anonymousContactId)
-        {
-            var cart =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, anonymousContactId);
-            if (cart.ServiceProviderResult.Success)
-                CartManager.MergeCarts(
-                    StorefrontContext.ShopName,
-                    VisitorContext.ContactId,
-                    anonymousContactId,
-                    cart.Result);
-        }
-
         public Result<CartModel> AddProductVariantToCart(string productId, string variantId, decimal quantity)
         {
-            var model =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+            var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
             var cartLineArgument = new CartLineArgument
             {
-                CatalogName = StorefrontContext.CatalogName,
+                CatalogName = this.StorefrontContext.CatalogName,
                 ProductId = productId,
                 Quantity = quantity,
                 VariantId = variantId
             };
 
-            var cart =
-                CartManager.AddLineItemsToCart(model.Result, new[] {cartLineArgument}, null, null);
-
-            var result = GetCart(cart.ServiceProviderResult, cart.Result);
-
-            return result;
-        }
-
-        public Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity)
-        {
-            var model =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
-
-            var cartLine = model.Result.Lines.FirstOrDefault(x =>
-            {
-                var current = x.Product as CommerceCartProduct;
-                return current?.ProductId == productId && current?.ProductVariantId == variantId;
-            });
-
-            if (cartLine != null)
-            {
-                if (quantity <= 0) return RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
-
-                var cartLineArgument = new CartLineArgument
+            var cart = this.CartManager.AddLineItemsToCart(
+                model.Result,
+                new[]
                 {
-                    CatalogName = StorefrontContext.CatalogName,
-                    ProductId = productId,
-                    Quantity = quantity,
-                    VariantId = variantId
-                };
+                    cartLineArgument
+                },
+                null,
+                null);
 
-                var cart =
-                    CartManager.UpdateLineItemsInCart(model.Result, new[] {cartLineArgument}, null, null);
-                var result = GetCart(cart.ServiceProviderResult, cart.Result);
-                return result;
-            }
-
-            if (quantity > 0) return AddProductVariantToCart(productId, variantId, quantity);
-
-            return null;
-        }
-
-        public Result<CartModel> RemoveProductVariantFromCart(string cartLineId)
-        {
-            var model =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
-
-            var cart =
-                CartManager.RemoveLineItemsFromCart(model.Result, new[] {cartLineId});
-
-            var result = GetCart(cart.ServiceProviderResult, cart.Result);
+            var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
             return result;
         }
 
         public Result<CartModel> AddPromoCode(string promoCode)
         {
-            var getCartResponse =
-                CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
-            var addPromoCodeResponse =
-                CartManager.AddPromoCode(getCartResponse.Result, promoCode);
-            var result = GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
+            var getCartResponse = this.CartManager.GetCurrentCart(
+                this.StorefrontContext.ShopName,
+                this.VisitorContext.ContactId);
+            var addPromoCodeResponse = this.CartManager.AddPromoCode(getCartResponse.Result, promoCode);
+            var result = this.GetCart(addPromoCodeResponse.ServiceProviderResult, addPromoCodeResponse.Result);
 
             return result;
+        }
+
+        public virtual CartModel GetCurrentCart()
+        {
+            var cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+
+            // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
+            var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+
+            if (result.Success)
+            {
+                return result.Data;
+            }
+
+            return null;
+        }
+
+        public virtual void MergeCarts(string anonymousContactId)
+        {
+            var cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, anonymousContactId);
+            if (cart.ServiceProviderResult.Success)
+            {
+                this.CartManager.MergeCarts(
+                    this.StorefrontContext.ShopName,
+                    this.VisitorContext.ContactId,
+                    anonymousContactId,
+                    cart.Result);
+            }
+        }
+
+        public Result<CartModel> RemoveProductVariantFromCart(string cartLineId)
+        {
+            var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+
+            var cart = this.CartManager.RemoveLineItemsFromCart(
+                model.Result,
+                new[]
+                {
+                    cartLineId
+                });
+
+            var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+
+            return result;
+        }
+
+        public Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity)
+        {
+            var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+
+            var cartLine = model.Result.Lines.FirstOrDefault(
+                x =>
+                {
+                    var current = x.Product as CommerceCartProduct;
+                    return (current?.ProductId == productId) && (current?.ProductVariantId == variantId);
+                });
+
+            if (cartLine != null)
+            {
+                if (quantity <= 0)
+                {
+                    return this.RemoveProductVariantFromCart(cartLine.ExternalCartLineId);
+                }
+
+                var cartLineArgument = new CartLineArgument
+                {
+                    CatalogName = this.StorefrontContext.CatalogName,
+                    ProductId = productId,
+                    Quantity = quantity,
+                    VariantId = variantId
+                };
+
+                var cart = this.CartManager.UpdateLineItemsInCart(
+                    model.Result,
+                    new[]
+                    {
+                        cartLineArgument
+                    },
+                    null,
+                    null);
+                var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
+                return result;
+            }
+
+            if (quantity > 0)
+            {
+                return this.AddProductVariantToCart(productId, variantId, quantity);
+            }
+
+            return null;
         }
     }
 }

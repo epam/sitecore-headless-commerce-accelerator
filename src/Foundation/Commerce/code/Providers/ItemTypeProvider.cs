@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,10 +15,13 @@
 namespace Wooli.Foundation.Commerce.Providers
 {
     using Connect.Models;
+
     using DependencyInjection;
+
     using Sitecore.Data.Items;
     using Sitecore.Data.Managers;
     using Sitecore.Data.Templates;
+
     using Utils;
 
     [Service(typeof(IItemTypeProvider))]
@@ -28,7 +31,7 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             var template = TemplateManager.GetTemplate(item);
 
-            return ResolveByTemplate(template);
+            return this.ResolveByTemplate(template);
         }
 
         public Constants.ItemType ResolveByTemplate(Template template)
@@ -36,11 +39,17 @@ namespace Wooli.Foundation.Commerce.Providers
             var itemType = Constants.ItemType.Unknown;
 
             if (template.InheritsFrom(CommerceCategoryModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Category;
+            }
             else if (template.InheritsFrom(CommerceProductModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Product;
+            }
             else if (template.InheritsFrom(CommerceProductVariantModel.TemplateId))
+            {
                 itemType = Constants.ItemType.Variant;
+            }
 
             return itemType;
         }

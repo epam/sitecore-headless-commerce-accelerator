@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@ namespace Wooli.Foundation.Connect.Managers
     {
         public ManagerResponse(TServiceProviderResult serviceProviderResult, TResult result)
         {
-            ServiceProviderResult = serviceProviderResult;
-            Result = result;
+            this.ServiceProviderResult = serviceProviderResult;
+            this.Result = result;
         }
 
-        public TServiceProviderResult ServiceProviderResult { get; set; }
-
         public TResult Result { get; set; }
+
+        public TServiceProviderResult ServiceProviderResult { get; set; }
     }
 }

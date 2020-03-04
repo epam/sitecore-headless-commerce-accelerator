@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,15 +16,19 @@ namespace Wooli.Foundation.Commerce.Utils
 {
     public static class Constants
     {
+        public const string CommerceRoutePrefix = "apix/client/commerce";
+
+        public const string CommereceCustomerIdPrefix = "Entity-Customer-";
+
         public enum ItemType
         {
             Unknown,
+
             Category,
+
             Product,
+
             Variant
         }
-
-        public const string CommerceRoutePrefix = "apix/client/commerce";
-        public const string CommerceCustomerIdPrefix = "Entity-Customer-";
     }
 }

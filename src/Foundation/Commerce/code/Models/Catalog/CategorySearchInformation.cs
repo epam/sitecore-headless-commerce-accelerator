@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,16 +15,18 @@
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
+
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+
     using TypeLite;
 
     [TsClass]
     public class CategorySearchInformation
     {
+        public int ItemsPerPage { get; set; }
+
         public IList<CommerceQueryFacet> RequiredFacets { get; set; }
 
         public IList<CommerceQuerySort> SortFields { get; set; }
-
-        public int ItemsPerPage { get; set; }
     }
 }

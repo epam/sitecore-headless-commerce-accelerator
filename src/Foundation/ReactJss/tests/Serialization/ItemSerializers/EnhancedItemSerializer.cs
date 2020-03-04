@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,30 +15,40 @@
 namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
 {
     using Newtonsoft.Json;
+
     using NSubstitute;
+
     using ReactJss.Serialization.ItemSerializers;
-    using Sitecore.Data.Items;
+
     using Sitecore.FakeDb;
     using Sitecore.Globalization;
     using Sitecore.LayoutService.Serialization.FieldSerializers;
     using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
+
     using Xunit;
 
     public class EnhancedItemSerializerTest
     {
-        //[Fact]
+        // [Fact]
         public void Serialize_ItemWithFields_LowerCaseJson()
         {
             var fieldSerializer = Substitute.For<IFieldSerializer>();
 
             var getFieldSerializerPipeline = Substitute.For<IGetFieldSerializerPipeline>();
-            getFieldSerializerPipeline.GetResult(Arg.Any<GetFieldSerializerPipelineArgs>())
-                .Returns(fieldSerializer);
+            getFieldSerializerPipeline.GetResult(Arg.Any<GetFieldSerializerPipelineArgs>()).Returns(fieldSerializer);
 
-
-            using (var db =
-                new Db {new DbItem("dataSource") {{"field", "value1"}, {"Text Field", "value2"}}}.WithLanguages(
-                    Language.Parse("en")))
+            using (var db = new Db
+            {
+                new DbItem("dataSource")
+                {
+                    {
+                        "field", "value1"
+                    },
+                    {
+                        "Text Field", "value2"
+                    }
+                }
+            }.WithLanguages(Language.Parse("en")))
             {
                 var item = db.GetItem("sitecore/content/dataSource");
                 var serializer = new EnhancedItemSerializer(getFieldSerializerPipeline);

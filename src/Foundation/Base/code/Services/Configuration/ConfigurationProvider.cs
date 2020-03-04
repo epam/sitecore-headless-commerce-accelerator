@@ -16,7 +16,9 @@ namespace Wooli.Foundation.Base.Services.Configuration
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+
     using Models.Configuration;
+
     using Sitecore.Configuration;
 
     [ExcludeFromCodeCoverage]

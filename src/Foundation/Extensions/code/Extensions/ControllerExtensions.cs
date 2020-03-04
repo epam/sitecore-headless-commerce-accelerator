@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,13 +18,19 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+
     using Controllers.ActionResult;
+
     using Models;
 
     public static class ControllerExtensions
     {
-        public static ActionResult JsonError(this Controller controller, string[] errorMessages,
-            HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static ActionResult JsonError(
+            this Controller controller,
+            string[] errorMessages,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorsJsonResultModel
             {
@@ -45,8 +51,12 @@ namespace Wooli.Foundation.Extensions.Extensions
             };
         }
 
-        public static ActionResult JsonError(this Controller controller, string errorMessage, HttpStatusCode statusCode,
-            Exception e = null, object tempData = null)
+        public static ActionResult JsonError(
+            this Controller controller,
+            string errorMessage,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorJsonResultModel
             {

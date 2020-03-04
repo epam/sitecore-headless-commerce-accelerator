@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using DependencyInjection;
+
     using Providers.Contracts;
+
     using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Diagnostics;
 
@@ -27,31 +29,25 @@ namespace Wooli.Foundation.Connect.Managers
         public AnalyticsManager(IConnectServiceProvider connectServiceProvider)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            catalogServiceProvider = connectServiceProvider.GetCatalogServiceProvider();
+            this.catalogServiceProvider = connectServiceProvider.GetCatalogServiceProvider();
         }
 
-        public void VisitedProductDetailsPage(
-            string shopName,
-            string productId,
-            string productName)
-        {
-            Assert.IsNotNullOrEmpty(productId, nameof(productId));
-            Assert.IsNotNullOrEmpty(productName, nameof(productName));
-            var request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
-
-            catalogServiceProvider.VisitedProductDetailsPage(request);
-        }
-
-        public void VisitedCategoryPage(
-            string shopName,
-            string categoryId,
-            string categoryName)
+        public void VisitedCategoryPage(string shopName, string categoryId, string categoryName)
         {
             Assert.IsNotNullOrEmpty(categoryId, nameof(categoryId));
             Assert.IsNotNullOrEmpty(categoryName, nameof(categoryName));
             var request = new VisitedCategoryPageRequest(shopName, categoryId, categoryName);
 
-            catalogServiceProvider.VisitedCategoryPage(request);
+            this.catalogServiceProvider.VisitedCategoryPage(request);
+        }
+
+        public void VisitedProductDetailsPage(string shopName, string productId, string productName)
+        {
+            Assert.IsNotNullOrEmpty(productId, nameof(productId));
+            Assert.IsNotNullOrEmpty(productName, nameof(productName));
+            var request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
+
+            this.catalogServiceProvider.VisitedProductDetailsPage(request);
         }
     }
 }

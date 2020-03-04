@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -22,15 +22,15 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
     public interface ICommerceAnalyticsService
     {
         /// <summary>
-        /// Raise "Product Visited" event.
-        /// </summary>
-        /// <param name="product">Product model.</param>
-        void RaiseProductVisitedEvent(ProductModel product);
-
-        /// <summary>
         /// Raise "Category Visited" event.
         /// </summary>
         /// <param name="category">Category model.</param>
         void RaiseCategoryVisitedEvent(CategoryModel category);
+
+        /// <summary>
+        /// Raise "Product Visited" event.
+        /// </summary>
+        /// <param name="product">Product model.</param>
+        void RaiseProductVisitedEvent(ProductModel product);
     }
 }

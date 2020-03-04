@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.Connect.Providers
 {
     using Contracts;
+
     using DependencyInjection;
+
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Carts;
@@ -31,55 +33,55 @@ namespace Wooli.Foundation.Connect.Providers
     [Service(typeof(IConnectServiceProvider))]
     public class ConnectServiceProvider : IConnectServiceProvider
     {
+        public CartServiceProvider GetCartServiceProvider()
+        {
+            return this.GetConnectServiceProvider<CartServiceProvider>("cartServiceProvider");
+        }
+
+        public CatalogServiceProvider GetCatalogServiceProvider()
+        {
+            return this.GetConnectServiceProvider<CatalogServiceProvider>("catalogServiceProvider");
+        }
+
         public CommerceCartServiceProvider GetCommerceCartServiceProvider()
         {
             return new CommerceCartServiceProvider();
         }
 
-        public CartServiceProvider GetCartServiceProvider()
-        {
-            return GetConnectServiceProvider<CartServiceProvider>("cartServiceProvider");
-        }
-
         public CustomerServiceProvider GetCustomerServiceProvider()
         {
-            return GetConnectServiceProvider<CustomerServiceProvider>("customerServiceProvider");
-        }
-
-        public OrderServiceProvider GetOrderServiceProvider()
-        {
-            return GetConnectServiceProvider<OrderServiceProvider>("orderServiceProvider");
+            return this.GetConnectServiceProvider<CustomerServiceProvider>("customerServiceProvider");
         }
 
         public InventoryServiceProvider GetInventoryServiceProvider()
         {
-            return GetConnectServiceProvider<InventoryServiceProvider>("inventoryServiceProvider");
+            return this.GetConnectServiceProvider<InventoryServiceProvider>("inventoryServiceProvider");
         }
 
-        public virtual PricingServiceProvider GetPricingServiceProvider()
+        public OrderServiceProvider GetOrderServiceProvider()
         {
-            return GetConnectServiceProvider<PricingServiceProvider>("pricingServiceProvider");
-        }
-
-        public virtual ShippingServiceProvider GetShippingServiceProvider()
-        {
-            return GetConnectServiceProvider<ShippingServiceProvider>("shippingServiceProvider");
+            return this.GetConnectServiceProvider<OrderServiceProvider>("orderServiceProvider");
         }
 
         public PaymentServiceProvider GetPaymentServiceProvider()
         {
-            return GetConnectServiceProvider<PaymentServiceProvider>("paymentServiceProvider");
+            return this.GetConnectServiceProvider<PaymentServiceProvider>("paymentServiceProvider");
         }
 
-        public CatalogServiceProvider GetCatalogServiceProvider()
+        public virtual PricingServiceProvider GetPricingServiceProvider()
         {
-            return GetConnectServiceProvider<CatalogServiceProvider>("catalogServiceProvider");
+            return this.GetConnectServiceProvider<PricingServiceProvider>("pricingServiceProvider");
+        }
+
+        public virtual ShippingServiceProvider GetShippingServiceProvider()
+        {
+            return this.GetConnectServiceProvider<ShippingServiceProvider>("shippingServiceProvider");
         }
 
         protected virtual TServiceProvider GetConnectServiceProvider<TServiceProvider>(string serviceProviderName)
             where TServiceProvider : ServiceProvider
         {
-            return (TServiceProvider) Factory.CreateObject(serviceProviderName, true);
+            return (TServiceProvider)Factory.CreateObject(serviceProviderName, true);
         }
     }
 }

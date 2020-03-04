@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,13 +15,16 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
 
     public interface IInventoryManager
     {
-        ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> GetStockInformation(string shopName,
-            IEnumerable<CommerceInventoryProduct> inventoryProducts, StockDetailsLevel detailsLevel);
+        ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>> GetStockInformation(
+            string shopName,
+            IEnumerable<CommerceInventoryProduct> inventoryProducts,
+            StockDetailsLevel detailsLevel);
     }
 }

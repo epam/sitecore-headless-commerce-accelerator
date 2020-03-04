@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.Base.Services.Tracking
 {
     using System.Diagnostics.CodeAnalysis;
+
     using DependencyInjection;
+
     using Sitecore.Analytics;
 
     [ExcludeFromCodeCoverage]

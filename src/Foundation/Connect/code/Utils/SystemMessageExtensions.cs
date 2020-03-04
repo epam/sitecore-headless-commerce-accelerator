@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ namespace Wooli.Foundation.Connect.Utils
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using Sitecore.Commerce.Services;
     using Sitecore.Diagnostics;
 
@@ -25,9 +26,15 @@ namespace Wooli.Foundation.Connect.Utils
         {
             var source = messages as IList<SystemMessage> ?? messages.ToList();
 
-            if (!source.Any()) return;
+            if (!source.Any())
+            {
+                return;
+            }
 
-            foreach (var systemMessage in source) Log.Error(systemMessage.Message, owner);
+            foreach (var systemMessage in source)
+            {
+                Log.Error(systemMessage.Message, owner);
+            }
         }
     }
 }

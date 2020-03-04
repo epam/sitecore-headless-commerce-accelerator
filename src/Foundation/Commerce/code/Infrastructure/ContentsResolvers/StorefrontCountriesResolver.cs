@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,12 +14,14 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
-    using System.Collections.Generic;
     using System.Collections.Specialized;
-    using Connect.Models;
+
     using Context;
+
     using DependencyInjection;
+
     using ModelMappers;
+
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
@@ -28,31 +30,31 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
     {
         private readonly IEntityMapper mapper;
+
         private readonly IStorefrontContext storefrontContext;
 
-        public StorefrontCountriesContentsResolver(
-            IStorefrontContext storefrontContext,
-            IEntityMapper mapper)
+        public StorefrontCountriesContentsResolver(IStorefrontContext storefrontContext, IEntityMapper mapper)
         {
             this.storefrontContext = storefrontContext;
             this.mapper = mapper;
         }
 
-
-        public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
-        {
-            var model =
-                storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
-
-            return new {Countries = mapper.MapToCountryRegionModel(model)};
-        }
-
         public bool IncludeServerUrlInMediaUrls { get; set; }
-
-        public bool UseContextItem { get; set; }
 
         public string ItemSelectorQuery { get; set; }
 
         public NameValueCollection Parameters { get; set; }
+
+        public bool UseContextItem { get; set; }
+
+        public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
+        {
+            var model = this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
+
+            return new
+            {
+                Countries = this.mapper.MapToCountryRegionModel(model)
+            };
+        }
     }
 }

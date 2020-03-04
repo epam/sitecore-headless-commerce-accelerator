@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using Catalog;
+
     using TypeLite;
 
     [TsClass]
@@ -22,14 +23,15 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
     {
         public string Id { get; set; }
 
-        public ProductModel Product { get; set; }
+        public CartPriceModel Price { get; set; }
 
-        public ProductVariantModel Variant { get; set; }
+        public ProductModel Product { get; set; }
 
         public decimal Quantity { get; set; }
 
-        public CartPriceModel Price { get; set; }
+        [TsIgnore]
+        public object Temp { get; set; }
 
-        [TsIgnore] public object Temp { get; set; }
+        public ProductVariantModel Variant { get; set; }
     }
 }

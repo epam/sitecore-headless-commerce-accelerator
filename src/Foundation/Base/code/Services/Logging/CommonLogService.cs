@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.Base.Services.Logging
 {
     using System.Diagnostics.CodeAnalysis;
+
     using DependencyInjection;
+
     using Models.Logging;
 
     [ExcludeFromCodeCoverage]

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,11 +15,13 @@
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Collections.Generic;
+
     using Foundation.ReactJss.Infrastructure;
 
     using Glass.Mapper.Sc;
 
     using Models;
+
     using Sitecore.Data;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
@@ -28,9 +30,8 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
     {
         private readonly ISitecoreService sitecoreService;
 
-        public ProductColorsContextExtension(
-            ISitecoreService sitecoreService,
-            IConfigurationResolver configurationResolver) : base(configurationResolver)
+        public ProductColorsContextExtension(ISitecoreService sitecoreService, IConfigurationResolver configurationResolver)
+            : base(configurationResolver)
         {
             this.sitecoreService = sitecoreService;
         }
@@ -44,9 +45,12 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
             var dictionary = new Dictionary<string, string>();
             if (productColorMapping?.Mappings != null)
+            {
                 foreach (var colorMapping in productColorMapping.Mappings)
+                {
                     dictionary.Add(colorMapping.ColorName, colorMapping.ColorHEX);
-
+                }
+            }
 
             args.ContextData.Add("productColors", dictionary);
         }

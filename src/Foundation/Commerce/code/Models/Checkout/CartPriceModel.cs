@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,9 +15,11 @@
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using Providers;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Diagnostics;
+
     using TypeLite;
 
     [TsClass]
@@ -27,39 +29,39 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
 
         public string CurrencySymbol { get; set; }
 
-        public decimal? Total { get; set; }
-
-        public decimal? Subtotal { get; set; }
-
         public decimal? HandlingTotal { get; set; }
 
         public decimal? ShippingTotal { get; set; }
 
+        public decimal? Subtotal { get; set; }
+
         public decimal TaxTotal { get; set; }
 
+        [TsIgnore]
+        public object Temp { get; set; }
+
+        public decimal? Total { get; set; }
+
         public decimal? TotalSavings { get; set; }
-
-
-        [TsIgnore] public object Temp { get; set; }
 
         public void Initialize(Total model, ICurrencyProvider currencyProvider)
         {
             Assert.ArgumentNotNull(model, nameof(model));
             Assert.ArgumentNotNull(model, nameof(currencyProvider));
 
-            CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(model.CurrencyCode);
+            this.CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(model.CurrencyCode);
 
-            CurrencyCode = model.CurrencyCode;
-            Total = model.Amount;
-            TaxTotal = model.TaxTotal?.Amount ?? 0;
+            this.CurrencyCode = model.CurrencyCode;
+            this.Total = model.Amount;
+            this.TaxTotal = model.TaxTotal?.Amount ?? 0;
 
             var commerceModel = model as CommerceTotal;
-            Subtotal = commerceModel?.Subtotal;
-            ShippingTotal = commerceModel?.ShippingTotal;
-            HandlingTotal = commerceModel?.HandlingTotal;
-            TotalSavings = commerceModel?.LineItemDiscountAmount + commerceModel?.OrderLevelDiscountAmount;
+            this.Subtotal = commerceModel?.Subtotal;
+            this.ShippingTotal = commerceModel?.ShippingTotal;
+            this.HandlingTotal = commerceModel?.HandlingTotal;
+            this.TotalSavings = commerceModel?.LineItemDiscountAmount + commerceModel?.OrderLevelDiscountAmount;
 
-            Temp = model;
+            this.Temp = model;
         }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,17 +17,21 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using Connect.Managers;
+
     using Context;
+
     using ModelInitializers;
+
     using ModelMappers;
+
     using Models;
     using Models.Checkout;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Customers;
 
     public abstract class BaseCheckoutRepository
     {
@@ -48,13 +52,13 @@ namespace Wooli.Foundation.Commerce.Repositories
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
         {
-            AccountManager = accountManager;
-            StorefrontContext = storefrontContext;
-            VisitorContext = visitorContext;
-            CartManager = cartManager;
-            CatalogRepository = catalogRepository;
-            CartModelBuilder = cartModelBuilder;
-            EntityMapper = entityMapper;
+            this.AccountManager = accountManager;
+            this.StorefrontContext = storefrontContext;
+            this.VisitorContext = visitorContext;
+            this.CartManager = cartManager;
+            this.CatalogRepository = catalogRepository;
+            this.CartModelBuilder = cartModelBuilder;
+            this.EntityMapper = entityMapper;
         }
 
         public IAccountManager AccountManager { get; }
@@ -63,17 +67,19 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public IVisitorContext VisitorContext { get; }
 
-        protected virtual void AddUserInfo<T>(BaseCheckoutModel baseCheckoutModel, Result<T> result) where T : class
+        protected virtual void AddUserInfo<T>(BaseCheckoutModel baseCheckoutModel, Result<T> result)
+            where T : class
         {
-            var currentCustomerParties =
-                AccountManager.GetCurrentCustomerParties(StorefrontContext.ShopName, VisitorContext.ContactId);
+            var currentCustomerParties = this.AccountManager.GetCurrentCustomerParties(
+                this.StorefrontContext.ShopName,
+                this.VisitorContext.ContactId);
 
-            if (currentCustomerParties.ServiceProviderResult.Success && currentCustomerParties.Result != null)
+            if (currentCustomerParties.ServiceProviderResult.Success && (currentCustomerParties.Result != null))
             {
                 baseCheckoutModel.UserAddresses = new List<AddressModel>();
                 foreach (var party in currentCustomerParties.Result)
                 {
-                    var address = EntityMapper.MapToAddress(party);
+                    var address = this.EntityMapper.MapToAddress(party);
                     var commerceParty = party as CommerceParty;
                     address.Name = commerceParty.Name;
                     address.CountryCode = commerceParty.CountryCode;
@@ -92,15 +98,18 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             try
             {
-                var model = CartModelBuilder.Initialize(cart);
+                var model = this.CartModelBuilder.Initialize(cart);
                 result.SetResult(model);
 
                 // ToDo: investigate the sometimes issue where Success=false but no any errors and the action is success
-                if (serviceProviderResult.SystemMessages.Any() || cart == null) result.SetErrors(serviceProviderResult);
+                if (serviceProviderResult.SystemMessages.Any() || (cart == null))
+                {
+                    result.SetErrors(serviceProviderResult);
+                }
             }
             catch (Exception ex)
             {
-                result.SetErrors(nameof(GetCart), ex);
+                result.SetErrors(nameof(this.GetCart), ex);
             }
 
             return result;

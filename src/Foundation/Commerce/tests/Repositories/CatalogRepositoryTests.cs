@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,18 +15,20 @@
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
     using Commerce.Repositories;
+
     using Connect.Managers;
-    using Connect.Models;
+
     using Context;
 
     using Glass.Mapper.Sc;
-    using Glass.Mapper.Sc.Web;
 
     using NSubstitute;
+
     using Providers;
+
     using Sitecore.FakeDb;
+
     using Xunit;
-    using ProductModel = Models.Catalog.ProductModel;
 
     public class CatalogRepositoryTests
     {
@@ -45,18 +47,23 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var productItem = new DbItem("ProductItem");
             productItem.Fields.Add("ProductId", "productId");
 
-            using (var db = new Db {productItem})
+            using (var db = new Db
             {
-                storefrontContext
-                    .CatalogName
-                    .Returns("storeName");
-                searchManager
-                    .GetProduct("storeName", "productId")
-                    .Returns(db.GetItem(productItem.ID));
+                productItem
+            })
+            {
+                storefrontContext.CatalogName.Returns("storeName");
+                searchManager.GetProduct("storeName", "productId").Returns(db.GetItem(productItem.ID));
 
                 // Execute
-                var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager,
-                    sitecoreService, searchManager, currencyProvider);
+                var repository = new CatalogRepository(
+                    siteContext,
+                    storefrontContext,
+                    visitorContext,
+                    catalogManager,
+                    sitecoreService,
+                    searchManager,
+                    currencyProvider);
                 var result = repository.GetProduct("productId");
 
                 // Assert

@@ -1,4 +1,4 @@
-﻿//    Copyright 2019 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using System.Collections.Generic;
     using System.Linq;
 
+    using Extensions.Extensions;
+
     using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Extensions.Extensions;
 
     public class BaseProductModel
     {
@@ -36,8 +36,8 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 
             this.Tags = sellableItem["Tags"]?.Split('|').ToList();
 
-            this.ImageUrls = sellableItem
-                .ExtractMediaItems(x =>
+            this.ImageUrls = sellableItem.ExtractMediaItems(
+                    x =>
                     {
                         var imagesField = (MultilistField)sellableItem.Fields["Images"];
                         return imagesField?.TargetIDs.Select(id => id.Guid);
@@ -46,26 +46,26 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
                 .ToList();
         }
 
-        public string ProductId { get; set; }
-
-        public string DisplayName { get; set; }
-
-        public string Description { get; set; }
+        public decimal? AdjustedPrice { get; set; }
 
         public string Brand { get; set; }
 
-        public IList<string> Tags { get; set; }
+        public string CurrencySymbol { get; set; }
+
+        public decimal? CustomerAverageRating { get; set; }
+
+        public string Description { get; set; }
+
+        public string DisplayName { get; set; }
 
         public IList<string> ImageUrls { get; set; }
 
-        public string CurrencySymbol { get; set; }
-
         public decimal? ListPrice { get; set; }
 
-        public decimal? AdjustedPrice { get; set; }
+        public string ProductId { get; set; }
 
         public string StockStatusName { get; set; }
 
-        public decimal? CustomerAverageRating { get; set; }
+        public IList<string> Tags { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Extensions.Extensions
 {
     using System;
+
     using Sitecore;
     using Sitecore.Data;
     using Sitecore.Data.Items;
@@ -24,7 +25,10 @@ namespace Wooli.Foundation.Extensions.Extensions
     {
         public static Item GetContextItem(this SiteContext site, ID derivedFromTemplateId)
         {
-            if (site == null) throw new ArgumentNullException(nameof(site));
+            if (site == null)
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
 
             var startItem = site.GetStartItem();
             return startItem?.GetAncestorOrSelfOfTemplate(derivedFromTemplateId);
@@ -32,14 +36,20 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static Item GetRootItem(this SiteContext site)
         {
-            if (site == null) throw new ArgumentNullException(nameof(site));
+            if (site == null)
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
 
             return site.Database.GetItem(Context.Site.RootPath);
         }
 
         public static Item GetStartItem(this SiteContext site)
         {
-            if (site == null) throw new ArgumentNullException(nameof(site));
+            if (site == null)
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
 
             return site.Database.GetItem(Context.Site.StartPath);
         }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,21 +15,23 @@
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
     using Connect.Managers;
+
     using Context;
+
     using DependencyInjection;
-    using ModelMappers;
+
     using Models.Catalog;
+
     using Sitecore.Commerce;
 
     [Service(typeof(ICommerceAnalyticsService), Lifetime = Lifetime.Singleton)]
     public class CommerceAnalyticsService : ICommerceAnalyticsService
     {
         private readonly IAnalyticsManager analyticsManager;
+
         private readonly IStorefrontContext storefrontContext;
 
-        public CommerceAnalyticsService(
-            IAnalyticsManager analyticsManager,
-            IStorefrontContext storefrontContext)
+        public CommerceAnalyticsService(IAnalyticsManager analyticsManager, IStorefrontContext storefrontContext)
         {
             Assert.ArgumentNotNull(analyticsManager, nameof(analyticsManager));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
@@ -38,19 +40,21 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
             this.storefrontContext = storefrontContext;
         }
 
-        public void RaiseProductVisitedEvent(ProductModel product)
-        {
-            Assert.ArgumentNotNull(product, nameof(product));
-
-            analyticsManager.VisitedProductDetailsPage(storefrontContext.ShopName, product.SitecoreId,
-                product.DisplayName);
-        }
-
         public void RaiseCategoryVisitedEvent(CategoryModel category)
         {
             Assert.ArgumentNotNull(category, nameof(category));
 
-            analyticsManager.VisitedCategoryPage(storefrontContext.ShopName, category.SitecoreId, category.Name);
+            this.analyticsManager.VisitedCategoryPage(this.storefrontContext.ShopName, category.SitecoreId, category.Name);
+        }
+
+        public void RaiseProductVisitedEvent(ProductModel product)
+        {
+            Assert.ArgumentNotNull(product, nameof(product));
+
+            this.analyticsManager.VisitedProductDetailsPage(
+                this.storefrontContext.ShopName,
+                product.SitecoreId,
+                product.DisplayName);
         }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,13 +14,14 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using System.Collections.Generic;
     using System.Linq;
+
     using DependencyInjection;
+
     using Models.Catalog;
+
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data.Items;
 
     [Service(typeof(ISearchInformationProvider))]
@@ -30,17 +31,15 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public SearchInformationProvider()
         {
-            commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
+            this.commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
         }
 
         // ToDo: update this logic if required
         public CategorySearchInformation GetCategorySearchInformation(Item categoryItem)
         {
-            var commerceQueryFacets =
-                commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
-            var commerceQuerySorts =
-                commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
-            var itemsPerPageForItem = commerceSearchManager.GetItemsPerPageForItem(categoryItem);
+            var commerceQueryFacets = this.commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
+            var commerceQuerySorts = this.commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
+            var itemsPerPageForItem = this.commerceSearchManager.GetItemsPerPageForItem(categoryItem);
 
             var searchInformation = new CategorySearchInformation
             {

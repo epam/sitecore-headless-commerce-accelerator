@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -22,8 +22,11 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Net.Http.Formatting;
     using System.Web.Http;
     using System.Web.Http.Results;
+
     using Models;
+
     using Sitecore.Diagnostics;
+
     using Utils;
 
     public static class ApiControllerExtensions
@@ -33,8 +36,12 @@ namespace Wooli.Foundation.Extensions.Extensions
             SerializerSettings = Constants.JsonSerializerSettings
         };
 
-        public static IHttpActionResult JsonError(this ApiController controller, string[] errorMessages,
-            HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static IHttpActionResult JsonError(
+            this ApiController controller,
+            string[] errorMessages,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorsJsonResultModel
             {
@@ -45,14 +52,22 @@ namespace Wooli.Foundation.Extensions.Extensions
                 TempData = tempData
             };
 
-            return ResolveDependencies(controller,
-                (negotiator, request, formatters) =>
-                    new NegotiatedContentResult<ErrorsJsonResultModel>(statusCode, result, negotiator, request,
-                        formatters));
+            return ResolveDependencies(
+                controller,
+                (negotiator, request, formatters) => new NegotiatedContentResult<ErrorsJsonResultModel>(
+                    statusCode,
+                    result,
+                    negotiator,
+                    request,
+                    formatters));
         }
 
-        public static IHttpActionResult JsonError(this ApiController controller, string errorMessage,
-            HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static IHttpActionResult JsonError(
+            this ApiController controller,
+            string errorMessage,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorJsonResultModel
             {
@@ -62,10 +77,14 @@ namespace Wooli.Foundation.Extensions.Extensions
                 TempData = tempData
             };
 
-            return ResolveDependencies(controller,
-                (negotiator, request, formatters) =>
-                    new NegotiatedContentResult<ErrorJsonResultModel>(statusCode, result, negotiator, request,
-                        formatters));
+            return ResolveDependencies(
+                controller,
+                (negotiator, request, formatters) => new NegotiatedContentResult<ErrorJsonResultModel>(
+                    statusCode,
+                    result,
+                    negotiator,
+                    request,
+                    formatters));
         }
 
         public static IHttpActionResult JsonOk<TData>(this ApiController controller, TData data = null)
@@ -77,12 +96,14 @@ namespace Wooli.Foundation.Extensions.Extensions
                 Data = data
             };
 
-            return ResolveDependencies(controller,
+            return ResolveDependencies(
+                controller,
                 (negotiator, request, formatters) =>
                     new OkNegotiatedContentResult<OkJsonResultModel<TData>>(result, negotiator, request, formatters));
         }
 
-        private static IHttpActionResult ResolveDependencies(ApiController controller,
+        private static IHttpActionResult ResolveDependencies(
+            ApiController controller,
             Func<IContentNegotiator, HttpRequestMessage, IEnumerable<MediaTypeFormatter>, IHttpActionResult> resultFunc)
         {
             Assert.ArgumentNotNull(controller, nameof(controller));
@@ -91,18 +112,23 @@ namespace Wooli.Foundation.Extensions.Extensions
             // Extracting default configuration from controller
             var configuration = controller.Configuration;
             if (configuration == null)
+            {
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} configuration must not be null.");
+            }
 
             var contentNegotiator = configuration.Services.GetContentNegotiator();
             if (contentNegotiator == null)
+            {
                 throw new InvalidOperationException(
                     $"The controller {controller.GetType().FullName} do not have a content configuration.");
+            }
 
             var request = controller.Request;
             if (request == null)
-                throw new InvalidOperationException(
-                    $"The controller {controller.GetType().FullName} request must not be null.");
+            {
+                throw new InvalidOperationException($"The controller {controller.GetType().FullName} request must not be null.");
+            }
 
             // Modifying custom configuration
             var defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;

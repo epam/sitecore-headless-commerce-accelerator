@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,8 +17,11 @@ namespace Wooli.Foundation.Connect.Managers
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using DependencyInjection;
+
     using Providers.Contracts;
+
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Orders;
     using Sitecore.Commerce.Services.Orders;
@@ -31,52 +34,31 @@ namespace Wooli.Foundation.Connect.Managers
 
         public OrderManager(IConnectServiceProvider connectServiceProvider)
         {
-            Assert.ArgumentNotNull((object) connectServiceProvider, nameof(connectServiceProvider));
-            orderServiceProvider = connectServiceProvider.GetOrderServiceProvider();
+            Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
+            this.orderServiceProvider = connectServiceProvider.GetOrderServiceProvider();
         }
 
-        public ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Cart cart)
-        {
-            var request = new SubmitVisitorOrderRequest(cart);
-            try
-            {
-                var visitorOrderResult = orderServiceProvider.SubmitVisitorOrder(request);
-
-                var serviceProviderResult = visitorOrderResult;
-                return new ManagerResponse<SubmitVisitorOrderResult, Order>(
-                    serviceProviderResult,
-                    serviceProviderResult.Order);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.Message, ex, this);
-
-                // ToDo: fix issues during order submitting: down there: temp implementation of the submit result
-                if (TryResolveSubmittedOrder(cart, out var managerResponse)
-                ) return managerResponse;
-
-                throw;
-            }
-        }
-
-        public ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId,
-            string shopName)
+        public ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId, string shopName)
         {
             Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
             Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
             Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
 
             var getVisitorOrderRequest = new GetVisitorOrderRequest(orderId, customerId, shopName);
-            var getVisitorOrderResult = orderServiceProvider.GetVisitorOrder(getVisitorOrderRequest);
-            if (!string.IsNullOrEmpty(getVisitorOrderResult.Order?.CustomerId) &&
-                getVisitorOrderResult.Order?.CustomerId == customerId)
+            var getVisitorOrderResult = this.orderServiceProvider.GetVisitorOrder(getVisitorOrderRequest);
+            if (!string.IsNullOrEmpty(getVisitorOrderResult.Order?.CustomerId)
+                && (getVisitorOrderResult.Order?.CustomerId == customerId))
             {
                 var successServiceProviderResult = getVisitorOrderResult;
-                return new ManagerResponse<GetVisitorOrderResult, Order>(successServiceProviderResult,
+                return new ManagerResponse<GetVisitorOrderResult, Order>(
+                    successServiceProviderResult,
                     successServiceProviderResult.Order);
             }
 
-            var errorServiceProviderResult = new GetVisitorOrderResult {Success = false};
+            var errorServiceProviderResult = new GetVisitorOrderResult
+            {
+                Success = false
+            };
             return new ManagerResponse<GetVisitorOrderResult, Order>(errorServiceProviderResult, null);
         }
 
@@ -89,48 +71,81 @@ namespace Wooli.Foundation.Connect.Managers
             int count)
         {
             var getVisitorOrdersRequest = new GetVisitorOrdersRequest(customerId, shopName);
-            var visitorOrders = orderServiceProvider.GetVisitorOrders(getVisitorOrdersRequest);
+            var visitorOrders = this.orderServiceProvider.GetVisitorOrders(getVisitorOrdersRequest);
 
             if (visitorOrders.OrderHeaders == null)
+            {
                 return new ManagerResponse<GetVisitorOrdersResult, OrderHeader[]>(visitorOrders, new OrderHeader[0]);
+            }
 
             IEnumerable<OrderHeader> query = visitorOrders.OrderHeaders;
-            if (fromDate != null) query = query.Where(x => x.OrderDate >= fromDate);
+            if (fromDate != null)
+            {
+                query = query.Where(x => x.OrderDate >= fromDate);
+            }
 
-            if (untilDate != null) query = query.Where(oh => oh.OrderDate <= untilDate);
+            if (untilDate != null)
+            {
+                query = query.Where(oh => oh.OrderDate <= untilDate);
+            }
 
-            var array = query
-                .Skip(page * count)
-                .Take(count)
-                .ToArray();
+            var array = query.Skip(page * count).Take(count).ToArray();
 
             return new ManagerResponse<GetVisitorOrdersResult, OrderHeader[]>(visitorOrders, array);
         }
 
-        private bool TryResolveSubmittedOrder(CartBase cart,
+        public ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Cart cart)
+        {
+            var request = new SubmitVisitorOrderRequest(cart);
+            try
+            {
+                var visitorOrderResult = this.orderServiceProvider.SubmitVisitorOrder(request);
+
+                var serviceProviderResult = visitorOrderResult;
+                return new ManagerResponse<SubmitVisitorOrderResult, Order>(serviceProviderResult, serviceProviderResult.Order);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message, ex, this);
+
+                // ToDo: fix issues during order submitting: down there: temp implementation of the submit result
+                if (this.TryResolveSubmittedOrder(cart, out var managerResponse))
+                {
+                    return managerResponse;
+                }
+
+                throw;
+            }
+        }
+
+        private bool TryResolveSubmittedOrder(
+            CartBase cart,
             out ManagerResponse<SubmitVisitorOrderResult, Order> managerResponse)
         {
             var getVisitorOrdersRequest = new GetVisitorOrdersRequest(cart.CustomerId, cart.ShopName);
-            var getVisitorOrdersResult =
-                orderServiceProvider.GetVisitorOrders(getVisitorOrdersRequest);
+            var getVisitorOrdersResult = this.orderServiceProvider.GetVisitorOrders(getVisitorOrdersRequest);
 
             if (getVisitorOrdersResult.Success)
             {
                 // Getting the latest order
-                var orderHeader = getVisitorOrdersResult.OrderHeaders.OrderByDescending(x => x.OrderDate)
-                    .FirstOrDefault();
+                var orderHeader = getVisitorOrdersResult.OrderHeaders.OrderByDescending(x => x.OrderDate).FirstOrDefault();
                 if (orderHeader != null)
                 {
-                    var getVisitorOrderRequest = new GetVisitorOrderRequest(orderHeader.OrderID, orderHeader.CustomerId,
+                    var getVisitorOrderRequest = new GetVisitorOrderRequest(
+                        orderHeader.OrderID,
+                        orderHeader.CustomerId,
                         orderHeader.ShopName);
 
-                    var getVisitorOrderResult =
-                        orderServiceProvider.GetVisitorOrder(getVisitorOrderRequest);
+                    var getVisitorOrderResult = this.orderServiceProvider.GetVisitorOrder(getVisitorOrderRequest);
 
                     if (getVisitorOrderResult.Order != null)
                     {
                         managerResponse = new ManagerResponse<SubmitVisitorOrderResult, Order>(
-                            new SubmitVisitorOrderResult {Order = getVisitorOrderResult.Order, Success = true},
+                            new SubmitVisitorOrderResult
+                            {
+                                Order = getVisitorOrderResult.Order,
+                                Success = true
+                            },
                             getVisitorOrderResult.Order);
 
                         return true;

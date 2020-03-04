@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,18 +18,27 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Linq;
+
     using Connect.Managers;
     using Connect.Models;
+
     using Context;
+
     using DependencyInjection;
+
     using Glass.Mapper.Sc;
+
     using Models;
     using Models.Catalog;
+
     using Providers;
+
+    using Sitecore;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+
     using ProductModel = Models.Catalog.ProductModel;
 
     [Service(typeof(IProductListRepository), Lifetime = Lifetime.Singleton)]
@@ -45,7 +54,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         private readonly IStorefrontContext storefrontContext;
 
-        public ProductListRepository(ISiteContext siteContext,
+        public ProductListRepository(
+            ISiteContext siteContext,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             ICatalogManager catalogManager,
@@ -79,107 +89,59 @@ namespace Wooli.Foundation.Commerce.Repositories
             var model = new ProductListResultModel();
 
             var specifiedCatalogItem = !string.IsNullOrEmpty(currentCatalogItemId)
-                ? Sitecore.Context.Database.GetItem(currentCatalogItemId)
-                : null;
-            var currentCatalogItem = specifiedCatalogItem ?? storefrontContext.CurrentCatalogItem;
+                                           ? Context.Database.GetItem(currentCatalogItemId)
+                                           : null;
+            var currentCatalogItem = specifiedCatalogItem ?? this.storefrontContext.CurrentCatalogItem;
             model.CurrentCatalogItemId = currentCatalogItem.ID.Guid.ToString("D");
 
             // var currentItem = Sitecore.Context.Database.GetItem(currentItemId);
 
             // this.siteContext.CurrentCategoryItem = currentCatalogItem;
             // this.siteContext.CurrentItem = currentItem;
-            var searchInformation =
-                searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
-            GetSortParameters(searchInformation, ref sortField, ref sortDirection);
+            var searchInformation = this.searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
+            this.GetSortParameters(searchInformation, ref sortField, ref sortDirection);
 
-            var itemsPerPage = settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
+            var itemsPerPage = this.settingsProvider.GetDefaultItemsPerPage(pageSize, searchInformation);
             var commerceSearchOptions = new CommerceSearchOptions(itemsPerPage, pageNumber.GetValueOrDefault(0));
 
-            UpdateOptionsWithFacets(searchInformation.RequiredFacets, facetValues, commerceSearchOptions);
-            UpdateOptionsWithSorting(sortField, sortDirection, commerceSearchOptions);
+            this.UpdateOptionsWithFacets(searchInformation.RequiredFacets, facetValues, commerceSearchOptions);
+            this.UpdateOptionsWithSorting(sortField, sortDirection, commerceSearchOptions);
 
-            var childProducts = GetChildProducts(searchKeyword, commerceSearchOptions, specifiedCatalogItem);
-            var productEntityList =
-                AdjustProductPriceAndStockStatus(visitorContext, childProducts, currentCatalogItem);
+            var childProducts = this.GetChildProducts(searchKeyword, commerceSearchOptions, specifiedCatalogItem);
+            var productEntityList = this.AdjustProductPriceAndStockStatus(visitorContext, childProducts, currentCatalogItem);
 
             model.Initialize(commerceSearchOptions, childProducts, productEntityList);
-            ApplySortOptions(model, commerceSearchOptions, searchInformation);
+            this.ApplySortOptions(model, commerceSearchOptions, searchInformation);
 
             return model;
         }
 
-        protected void ApplySortOptions(ProductListResultModel model, CommerceSearchOptions commerceSearchOptions,
-            CategorySearchInformation searchInformation)
-        {
-            Assert.ArgumentNotNull(model, nameof(model));
-            Assert.ArgumentNotNull(commerceSearchOptions, nameof(commerceSearchOptions));
-            Assert.ArgumentNotNull(searchInformation, nameof(searchInformation));
-
-            if (searchInformation.SortFields == null || !searchInformation.SortFields.Any()) return;
-
-            var sortOptions = new List<SortOptionModel>();
-            foreach (var sortField in searchInformation.SortFields)
-            {
-                var isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
-
-                var sortOptionAsc = new SortOptionModel
-                {
-                    Name = sortField.Name,
-                    DisplayName = sortField.DisplayName,
-                    SortDirection = SortDirection.Asc,
-                    IsSelected = isSelected &&
-                                 commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Asc
-                };
-
-                sortOptions.Add(sortOptionAsc);
-
-                var sortOptionDesc = new SortOptionModel
-                {
-                    Name = sortField.Name,
-                    DisplayName = sortField.DisplayName,
-                    SortDirection = SortDirection.Desc,
-                    IsSelected = isSelected &&
-                                 commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Desc
-                };
-
-                sortOptions.Add(sortOptionDesc);
-            }
-
-            model.SortOptions = sortOptions;
-        }
-
-        protected SearchResults GetChildProducts(string searchKeyword, CommerceSearchOptions searchOptions,
-            Item categoryItem)
-        {
-            var searchResults = searchManager.GetProducts(storefrontContext.CatalogName, categoryItem?.ID,
-                searchOptions, searchKeyword);
-
-            return searchResults;
-        }
-
-        protected IList<ProductModel> AdjustProductPriceAndStockStatus(IVisitorContext visitorContext,
-            SearchResults searchResult, Item currentCategory)
+        protected IList<ProductModel> AdjustProductPriceAndStockStatus(
+            IVisitorContext visitorContext,
+            SearchResults searchResult,
+            Item currentCategory)
         {
             var result = new List<ProductModel>();
             var products = new List<Product>();
 
-            if (searchResult.SearchResultItems != null && searchResult.SearchResultItems.Count > 0)
+            if ((searchResult.SearchResultItems != null) && (searchResult.SearchResultItems.Count > 0))
             {
                 foreach (var searchResultItem in searchResult.SearchResultItems)
                 {
                     var variants = new List<Variant>();
                     var product = new Product(searchResultItem, variants);
-                    product.CatalogName = StorefrontContext.CatalogName;
-                    product.CustomerAverageRating = CatalogManager.GetProductRating(searchResultItem);
+                    product.CatalogName = this.StorefrontContext.CatalogName;
+                    product.CustomerAverageRating = this.CatalogManager.GetProductRating(searchResultItem);
                     products.Add(product);
                 }
 
-                CatalogManager.GetProductBulkPrices(products);
-                //this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
+                this.CatalogManager.GetProductBulkPrices(products);
+
+                // this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
                 foreach (var product in products)
                 {
                     var productModel = new ProductModel(product.Item);
-                    productModel.CurrencySymbol = CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
+                    productModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
                     productModel.ListPrice = product.ListPrice;
                     productModel.AdjustedPrice = product.AdjustedPrice;
                     productModel.StockStatusName = product.StockStatusName;
@@ -191,49 +153,129 @@ namespace Wooli.Foundation.Commerce.Repositories
             return result;
         }
 
-        protected virtual void GetSortParameters(CategorySearchInformation categorySearchInformation,
-            ref string sortField, ref SortDirection? sortOrder)
+        protected void ApplySortOptions(
+            ProductListResultModel model,
+            CommerceSearchOptions commerceSearchOptions,
+            CategorySearchInformation searchInformation)
         {
-            if (!string.IsNullOrWhiteSpace(sortField)) return;
+            Assert.ArgumentNotNull(model, nameof(model));
+            Assert.ArgumentNotNull(commerceSearchOptions, nameof(commerceSearchOptions));
+            Assert.ArgumentNotNull(searchInformation, nameof(searchInformation));
 
-            var sortFields = categorySearchInformation.SortFields;
-            if (sortFields == null || sortFields.Count <= 0) return;
+            if ((searchInformation.SortFields == null) || !searchInformation.SortFields.Any())
+            {
+                return;
+            }
 
-            sortField = sortFields[0].Name;
-            sortOrder = (SortDirection?) CommerceConstants.SortDirection.Asc;
+            var sortOptions = new List<SortOptionModel>();
+            foreach (var sortField in searchInformation.SortFields)
+            {
+                var isSelected = sortField.Name.Equals(commerceSearchOptions.SortField);
+
+                var sortOptionAsc = new SortOptionModel
+                {
+                    Name = sortField.Name,
+                    DisplayName = sortField.DisplayName,
+                    SortDirection = SortDirection.Asc,
+                    IsSelected = isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Asc)
+                };
+
+                sortOptions.Add(sortOptionAsc);
+
+                var sortOptionDesc = new SortOptionModel
+                {
+                    Name = sortField.Name,
+                    DisplayName = sortField.DisplayName,
+                    SortDirection = SortDirection.Desc,
+                    IsSelected = isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Desc)
+                };
+
+                sortOptions.Add(sortOptionDesc);
+            }
+
+            model.SortOptions = sortOptions;
         }
 
-        protected virtual void UpdateOptionsWithFacets(IList<CommerceQueryFacet> facets, NameValueCollection valueQuery,
+        protected SearchResults GetChildProducts(string searchKeyword, CommerceSearchOptions searchOptions, Item categoryItem)
+        {
+            var searchResults = this.searchManager.GetProducts(
+                this.storefrontContext.CatalogName,
+                categoryItem?.ID,
+                searchOptions,
+                searchKeyword);
+
+            return searchResults;
+        }
+
+        protected virtual void GetSortParameters(
+            CategorySearchInformation categorySearchInformation,
+            ref string sortField,
+            ref SortDirection? sortOrder)
+        {
+            if (!string.IsNullOrWhiteSpace(sortField))
+            {
+                return;
+            }
+
+            var sortFields = categorySearchInformation.SortFields;
+            if ((sortFields == null) || (sortFields.Count <= 0))
+            {
+                return;
+            }
+
+            sortField = sortFields[0].Name;
+            sortOrder = (SortDirection?)CommerceConstants.SortDirection.Asc;
+        }
+
+        protected virtual void UpdateOptionsWithFacets(
+            IList<CommerceQueryFacet> facets,
+            NameValueCollection valueQuery,
             CommerceSearchOptions productSearchOptions)
         {
-            if (facets == null || !facets.Any()) return;
+            if ((facets == null) || !facets.Any())
+            {
+                return;
+            }
 
             if (valueQuery != null)
+            {
                 foreach (string name in valueQuery)
                 {
-                    var commerceQueryFacet = facets.FirstOrDefault(item =>
-                        item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                    var commerceQueryFacet = facets.FirstOrDefault(
+                        item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
                     if (commerceQueryFacet != null)
                     {
                         var facetValues = valueQuery[name];
-                        foreach (var facetValue in facetValues.Split('|')) commerceQueryFacet.Values.Add(facetValue);
+                        foreach (var facetValue in facetValues.Split('|'))
+                        {
+                            commerceQueryFacet.Values.Add(facetValue);
+                        }
                     }
                 }
+            }
 
             productSearchOptions.FacetFields = facets;
         }
 
-        protected virtual void UpdateOptionsWithSorting(string sortField, SortDirection? sortDirection,
+        protected virtual void UpdateOptionsWithSorting(
+            string sortField,
+            SortDirection? sortDirection,
             CommerceSearchOptions productSearchOptions)
         {
-            if (string.IsNullOrEmpty(sortField)) return;
+            if (string.IsNullOrEmpty(sortField))
+            {
+                return;
+            }
 
             productSearchOptions.SortField = sortField;
-            if (!sortDirection.HasValue) return;
+            if (!sortDirection.HasValue)
+            {
+                return;
+            }
 
             productSearchOptions.SortDirection = sortDirection == SortDirection.Asc
-                ? CommerceConstants.SortDirection.Asc
-                : CommerceConstants.SortDirection.Desc;
+                                                     ? CommerceConstants.SortDirection.Asc
+                                                     : CommerceConstants.SortDirection.Desc;
         }
     }
 }

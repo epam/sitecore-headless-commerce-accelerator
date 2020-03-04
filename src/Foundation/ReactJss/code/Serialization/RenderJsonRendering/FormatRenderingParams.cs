@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
 {
     using System.Collections.Generic;
+
     using Helpers;
+
     using Sitecore.Diagnostics;
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
@@ -31,11 +33,10 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
         {
             Assert.ArgumentNotNull(args, nameof(args));
             Assert.IsNotNull(args.Result, "args.Result cannot be null");
-            args.Result.RenderingParams = FormatRenderingParameters(args.Result.RenderingParams);
+            args.Result.RenderingParams = this.FormatRenderingParameters(args.Result.RenderingParams);
         }
 
-        private IDictionary<string, string> FormatRenderingParameters(
-            IDictionary<string, string> originalRenderingParams)
+        private IDictionary<string, string> FormatRenderingParameters(IDictionary<string, string> originalRenderingParams)
         {
             var renderingParams = new Dictionary<string, string>();
 

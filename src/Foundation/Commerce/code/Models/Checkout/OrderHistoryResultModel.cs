@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using System.Collections.Generic;
+
     using TypeLite;
 
     [TsClass]
@@ -22,10 +23,11 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
     {
         public OrderHistoryResultModel(IList<CartModel> orders)
         {
-            Orders = orders;
+            this.Orders = orders;
         }
 
         public int CurrentPageNumber { get; set; }
+
         public IList<CartModel> Orders { get; set; }
     }
 }

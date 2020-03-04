@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,21 +16,22 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using Sitecore.ContentSearch.Linq;
     using Sitecore.Diagnostics;
+
     using TypeLite;
 
     [TsClass]
     public class FacetValueResultModel
     {
-        public string Name { get; protected set; }
-
         public int AggregateCount { get; protected set; }
+
+        public string Name { get; protected set; }
 
         public void Initialize(FacetValue queryFacet)
         {
             Assert.ArgumentNotNull(queryFacet, nameof(queryFacet));
 
-            Name = queryFacet.Name;
-            AggregateCount = queryFacet.AggregateCount;
+            this.Name = queryFacet.Name;
+            this.AggregateCount = queryFacet.AggregateCount;
         }
     }
 }

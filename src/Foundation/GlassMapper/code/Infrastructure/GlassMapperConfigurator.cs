@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,15 +18,17 @@ namespace Wooli.Foundation.GlassMapper.Infrastructure
     using Glass.Mapper.Sc.Web;
 
     using Microsoft.Extensions.DependencyInjection;
+
+    using Sitecore;
     using Sitecore.DependencyInjection;
 
     public class GlassMapperConfigurator : IServicesConfigurator
     {
         public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<ISitecoreService>(
-                provider => new SitecoreService(Sitecore.Context.Database));
-            serviceCollection.AddTransient<IRequestContext>(provider =>
+            serviceCollection.AddTransient<ISitecoreService>(provider => new SitecoreService(Context.Database));
+            serviceCollection.AddTransient<IRequestContext>(
+                provider =>
                 {
                     var sitecoreService = provider.GetService<ISitecoreService>();
                     return new RequestContext(sitecoreService);

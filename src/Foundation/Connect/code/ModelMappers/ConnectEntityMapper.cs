@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,11 +15,16 @@
 namespace Wooli.Foundation.Connect.ModelMappers
 {
     using System.Collections.Generic;
+
     using AutoMapper;
+
     using DependencyInjection;
+
     using Models;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
+
     using Utils;
 
     [Service(typeof(IConnectEntityMapper))]
@@ -34,37 +39,36 @@ namespace Wooli.Foundation.Connect.ModelMappers
                 {
                     cfg.CreateMap<PartyEntity, CommerceParty>();
                     cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
-                        .ForMember(dest => dest.PaymentMethodID,
+                        .ForMember(
+                            dest => dest.PaymentMethodID,
                             opt => opt.MapFrom(src => CommerceRequestUtils.GetPaymentOptionId("Federated")));
                     cfg.CreateMap<ShippingInfoArgument, CommerceShippingInfo>()
-                        .ForMember(dest => dest.ShippingOptionType,
-                            opt => opt.MapFrom(src => src.ShippingPreferenceType))
-                        .ForMember(dest => dest.LineIDs,
-                            opt => opt.MapFrom(src =>
-                                src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
-                    ;
+                        .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingPreferenceType))
+                        .ForMember(
+                            dest => dest.LineIDs,
+                            opt => opt.MapFrom(src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
                 });
-            innerMapper = new Mapper(config);
+            this.innerMapper = new Mapper(config);
         }
 
         public CommerceParty MapToCommerceParty(PartyEntity item)
         {
-            return innerMapper.Map<CommerceParty>(item);
+            return this.innerMapper.Map<CommerceParty>(item);
         }
 
         public IList<CommerceParty> MapToCommercePartyList(IEnumerable<PartyEntity> item)
         {
-            return innerMapper.Map<IList<CommerceParty>>(item);
-        }
-
-        public FederatedPaymentInfo MapToFederatedPaymentInfo(FederatedPaymentArgs item)
-        {
-            return innerMapper.Map<FederatedPaymentInfo>(item);
+            return this.innerMapper.Map<IList<CommerceParty>>(item);
         }
 
         public CommerceShippingInfo MapToCommerceShippingInfo(ShippingInfoArgument item)
         {
-            return innerMapper.Map<CommerceShippingInfo>(item);
+            return this.innerMapper.Map<CommerceShippingInfo>(item);
+        }
+
+        public FederatedPaymentInfo MapToFederatedPaymentInfo(FederatedPaymentArgs item)
+        {
+            return this.innerMapper.Map<FederatedPaymentInfo>(item);
         }
     }
 }

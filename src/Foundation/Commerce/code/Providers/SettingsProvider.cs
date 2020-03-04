@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.Commerce.Providers
 {
     using Context;
+
     using DependencyInjection;
+
     using Models.Catalog;
 
     [Service(typeof(ISettingsProvider))]
@@ -30,10 +32,16 @@ namespace Wooli.Foundation.Commerce.Providers
 
         public int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation)
         {
-            var defaultValue = storefrontContext.DefaultItemsPerPage;
-            if (defaultValue <= 0) defaultValue = searchInformation.ItemsPerPage;
+            var defaultValue = this.storefrontContext.DefaultItemsPerPage;
+            if (defaultValue <= 0)
+            {
+                defaultValue = searchInformation.ItemsPerPage;
+            }
 
-            if (defaultValue <= 0) defaultValue = 12;
+            if (defaultValue <= 0)
+            {
+                defaultValue = 12;
+            }
 
             return pageSize.GetValueOrDefault(defaultValue);
         }

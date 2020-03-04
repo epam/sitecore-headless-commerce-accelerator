@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,18 +23,21 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     [TsClass]
     public class ProductVariantModel : BaseProductModel
     {
-        public ProductVariantModel(Item sellableItem) : base(sellableItem)
+        public ProductVariantModel(Item sellableItem)
+            : base(sellableItem)
         {
             this.ProductVariantId = sellableItem.Name;
 
             var properties = new Dictionary<string, string>();
             var variantProperties = sellableItem["VariationProperties"]?.Split('|') ?? new string[0];
             foreach (var variantPropertyName in variantProperties)
+            {
                 if (!string.IsNullOrEmpty(variantPropertyName))
                 {
                     var value = sellableItem[variantPropertyName];
                     properties.Add(variantPropertyName, value);
                 }
+            }
 
             this.VariantProperties = properties;
         }

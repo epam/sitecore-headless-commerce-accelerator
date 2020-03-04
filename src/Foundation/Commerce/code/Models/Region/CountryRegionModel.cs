@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,14 +15,15 @@
 namespace Wooli.Foundation.Commerce.Models.Region
 {
     using System.Collections.Generic;
+
     using TypeLite;
 
     [TsClass]
     public class CountryRegionModel
     {
-        public string Name { get; set; }
-
         public string CountryCode { get; set; }
+
+        public string Name { get; set; }
 
         public IEnumerable<SubdivisionModel> Subdivisions { get; set; }
     }

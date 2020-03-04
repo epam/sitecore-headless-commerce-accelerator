@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,17 +16,20 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System;
     using System.Linq;
+
     using Connect.Managers;
+
     using Context;
+
     using DependencyInjection;
+
     using ModelInitializers;
+
     using ModelMappers;
+
     using Models;
     using Models.Checkout;
-    using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Commerce.Entities.Orders;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Orders;
+
     using Sitecore.Diagnostics;
 
     [Service(typeof(ICheckoutRepository), Lifetime = Lifetime.Singleton)]
@@ -41,10 +44,16 @@ namespace Wooli.Foundation.Commerce.Repositories
             IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext,
+            : base(
+                cartManager,
+                catalogRepository,
+                accountManager,
+                cartModelBuilder,
+                entityMapper,
+                storefrontContext,
                 visitorContext)
         {
-            OrderManager = orderManager;
+            this.OrderManager = orderManager;
         }
 
         protected IOrderManager OrderManager { get; }
@@ -55,18 +64,17 @@ namespace Wooli.Foundation.Commerce.Repositories
             var model = new SubmitOrderModel();
             try
             {
-                var currentCart =
-                    CartManager.GetCurrentCart(StorefrontContext.ShopName, VisitorContext.ContactId);
+                var currentCart = this.CartManager.GetCurrentCart(
+                    this.StorefrontContext.ShopName,
+                    this.VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
                     result.SetErrors(currentCart.ServiceProviderResult);
                     return result;
                 }
 
-                var managerResponse =
-                    OrderManager.SubmitVisitorOrder(currentCart.Result);
-                if (managerResponse.ServiceProviderResult.Success ||
-                    !managerResponse.ServiceProviderResult.SystemMessages.Any())
+                var managerResponse = this.OrderManager.SubmitVisitorOrder(currentCart.Result);
+                if (managerResponse.ServiceProviderResult.Success || !managerResponse.ServiceProviderResult.SystemMessages.Any())
                 {
                     model.Temp = managerResponse.Result;
                     model.ConfirmationId = managerResponse.Result.TrackingNumber;
@@ -80,7 +88,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             catch (Exception ex)
             {
                 Log.Error(ex.Message, ex, this);
-                result.SetErrors(nameof(SubmitOrder), ex);
+                result.SetErrors(nameof(this.SubmitOrder), ex);
             }
 
             return result;

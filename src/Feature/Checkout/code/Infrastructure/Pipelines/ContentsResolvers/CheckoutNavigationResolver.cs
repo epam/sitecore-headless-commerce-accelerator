@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,15 +14,16 @@
 
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
+
     using Foundation.DependencyInjection;
+
     using Glass.Mapper.Sc;
-    using Glass.Mapper.Sc.Web;
 
     using Models;
+
     using Newtonsoft.Json.Linq;
+
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.LayoutService.Configuration;
@@ -39,16 +40,20 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
             this.sitecoreService = sitecoreService;
         }
 
-        protected override JObject ProcessItem(Item item,
-            Rendering rendering,
-            IRenderingConfiguration renderingConfig)
+        protected override JObject ProcessItem(Item item, Rendering rendering, IRenderingConfiguration renderingConfig)
         {
             var processedItem = base.ProcessItem(item, rendering, renderingConfig);
-            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId))) return processedItem;
+            if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId)))
+            {
+                return processedItem;
+            }
 
             var checkoutNavigation = this.sitecoreService.GetItem<ICheckoutNavigation>(item);
             var checkoutSteps = checkoutNavigation?.CheckoutSteps;
-            if (checkoutSteps == null || !checkoutSteps.Any()) return processedItem;
+            if ((checkoutSteps == null) || !checkoutSteps.Any())
+            {
+                return processedItem;
+            }
 
             var firstStep = this.sitecoreService.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
             processedItem.Add("url", firstStep.Url);

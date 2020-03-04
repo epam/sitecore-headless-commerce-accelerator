@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,16 +15,14 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using System;
+
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Orders;
     using Sitecore.Commerce.Services.Orders;
 
     public interface IOrderManager
     {
-        ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Cart cart);
-
-        ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId,
-            string shopName);
+        ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId, string shopName);
 
         ManagerResponse<GetVisitorOrdersResult, OrderHeader[]> GetVisitorOrders(
             string customerId,
@@ -33,5 +31,7 @@ namespace Wooli.Foundation.Connect.Managers
             DateTime? untilDate,
             int page,
             int count);
+
+        ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Cart cart);
     }
 }

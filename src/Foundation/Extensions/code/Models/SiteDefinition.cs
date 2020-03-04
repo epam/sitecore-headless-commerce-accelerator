@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Extensions.Models
 {
     using System;
+
     using Sitecore;
     using Sitecore.Data;
     using Sitecore.Data.Items;
@@ -22,24 +23,24 @@ namespace Wooli.Foundation.Extensions.Models
 
     public class SiteDefinition
     {
-        public Item RootItem { get; set; }
-
         public string HostName { get; set; }
+
+        public bool IsCurrent =>
+            (Context.Site != null) && Context.Site.Name.Equals(this.Name, StringComparison.OrdinalIgnoreCase);
 
         public string Name { get; set; }
 
-        public SiteInfo Site { get; set; }
+        public Item RootItem { get; set; }
 
         public string RootPath { get; set; }
 
-        public string StartPath { get; set; }
+        public SiteInfo Site { get; set; }
 
-        public bool IsCurrent =>
-            Context.Site != null && Context.Site.Name.Equals(Name, StringComparison.OrdinalIgnoreCase);
+        public string StartPath { get; set; }
 
         public virtual Item GetRootItem(Database database)
         {
-            return database.GetItem(Site.RootPath);
+            return database.GetItem(this.Site.RootPath);
         }
     }
 }

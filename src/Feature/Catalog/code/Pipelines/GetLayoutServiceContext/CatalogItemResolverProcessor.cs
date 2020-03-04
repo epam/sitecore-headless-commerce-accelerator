@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,9 +16,11 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Net.Http;
     using System.Web;
+
     using Foundation.Commerce.Infrastructure.Pipelines;
     using Foundation.DependencyInjection;
     using Foundation.ReactJss.Infrastructure;
+
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
@@ -27,7 +29,8 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
     {
         private readonly ICatalogItemResolver catalogItemResolver;
 
-        public CatalogItemResolverProcessor(ICatalogItemResolver catalogItemResolver,
+        public CatalogItemResolverProcessor(
+            ICatalogItemResolver catalogItemResolver,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
@@ -36,16 +39,22 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            if (args.RenderedItem == null) return;
+            if (args.RenderedItem == null)
+            {
+                return;
+            }
 
             var currentItem = args.RenderedItem;
 
             // Trying to get original url path
             var itemPath = HttpContext.Current.Request.Url.ParseQueryString()?["item"];
             var urlSegments = itemPath?.Trim('/').Split('/');
-            if (args.RenderedItem == null) return;
+            if (args.RenderedItem == null)
+            {
+                return;
+            }
 
-            catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
+            this.catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
         }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 namespace Wooli.Foundation.ReactJss.Serialization
 {
     using System.IO;
+
     using Helpers;
+
     using Newtonsoft.Json;
 
     public class EnhancedJsonTextWriter : JsonTextWriter
@@ -27,13 +29,13 @@ namespace Wooli.Foundation.ReactJss.Serialization
 
         public override void WritePropertyName(string name)
         {
-            var newName = FormatPropertyName(name);
+            var newName = this.FormatPropertyName(name);
             base.WritePropertyName(newName);
         }
 
         public override void WritePropertyName(string name, bool escape)
         {
-            var newName = FormatPropertyName(name);
+            var newName = this.FormatPropertyName(name);
             base.WritePropertyName(newName, escape);
         }
 

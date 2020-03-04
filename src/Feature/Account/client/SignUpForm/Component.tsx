@@ -68,9 +68,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
                     name={FORM_FIELDS.EMAIL}
                     required={true}
                     onBlur={(e) => {
-                      if (e.target.validity.valid) {
-                        AccountValidation(e.target.value);
-                      }
+                      AccountValidation(e.target.value);
                     }}
                   />
                   {accountValidation.status === LoadingStatus.Loading && (

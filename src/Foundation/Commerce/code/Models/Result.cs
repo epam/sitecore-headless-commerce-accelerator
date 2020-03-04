@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2019 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,65 +17,64 @@ namespace Wooli.Foundation.Commerce.Models
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using Sitecore.Commerce.Services;
 
-    public class Result<T>
-        where T : class
+    public class Result<T> where T : class
     {
+        public bool Success { get; set; } = true;
+
         public T Data { get; private set; }
 
         public IList<string> Errors { get; set; } = new List<string>();
 
-        public bool Success { get; set; } = true;
-
-        public void SetError(string error)
+        public Result()
         {
-            if (string.IsNullOrEmpty(error))
-            {
-                return;
-            }
-
-            this.Success = false;
-            this.Errors.Add(error);
         }
 
-        public void SetErrors(ServiceProviderResult result)
+        public Result(T result, IList<string> errorMessages = null)
         {
-            this.Success = result.Success;
-            if (result.SystemMessages.Count <= 0)
+            this.Data = result;
+            if (errorMessages != null && errorMessages.Any())
             {
-                return;
-            }
-
-            foreach (var systemMessage in result.SystemMessages)
-            {
-                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
-                this.SetError(message);
-            }
-        }
-
-        public void SetErrors(string area, Exception exception)
-        {
-            this.SetError($"{area}: {exception.Message}");
-        }
-
-        public void SetErrors(IList<string> errors)
-        {
-            if (!errors.Any())
-            {
-                return;
-            }
-
-            foreach (var error in errors)
-            {
-                this.SetError(error);
+                this.SetErrors(errorMessages);
             }
         }
 
         public void SetResult(T result)
         {
-            this.Data = result;
+            Data = result;
+        }
+
+        public void SetError(string error)
+        {
+            if (string.IsNullOrEmpty(error)) return;
+
+            Success = false;
+            Errors.Add(error);
+        }
+
+        public void SetErrors(ServiceProviderResult result)
+        {
+            Success = result.Success;
+            if (result.SystemMessages.Count <= 0) return;
+
+            foreach (var systemMessage in result.SystemMessages)
+            {
+                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
+                SetError(message);
+            }
+        }
+
+        public void SetErrors(string area, Exception exception)
+        {
+            SetError($"{area}: {exception.Message}");
+        }
+
+        public void SetErrors(IList<string> errors)
+        {
+            if (!errors.Any()) return;
+
+            foreach (var error in errors) SetError(error);
         }
     }
 }

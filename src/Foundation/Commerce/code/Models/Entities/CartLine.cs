@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Checkout
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using System;
-    using Catalog;
-    using Entities;
+    using System.Diagnostics.CodeAnalysis;
     using TypeLite;
 
+    [ExcludeFromCodeCoverage]
     [TsClass]
-    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.CartLine")]
-    public class CartLineModel
+    public class CartLine
     {
         public string Id { get; set; }
 
@@ -31,8 +29,6 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
 
         public decimal Quantity { get; set; }
 
-        public CartPriceModel Price { get; set; }
-
-        [TsIgnore] public object Temp { get; set; }
+        public TotalPrice Price { get; set; }
     }
 }

@@ -14,6 +14,7 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
+    using System;
     using System.Linq;
     using System.Net;
     using System.Web.Http;
@@ -24,6 +25,7 @@ namespace Wooli.Feature.Checkout.Controllers
 
     using Models;
 
+    [Obsolete("CartController is obsolete. Use CartsController instead.")]
     public class CartController : Controller
     {
         private readonly ICartRepository cartRepository;

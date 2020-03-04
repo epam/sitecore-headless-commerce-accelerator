@@ -576,6 +576,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Models.Generated.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductColorsContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductContextExtension.cs" />
@@ -583,11 +584,6 @@
     <Compile Include="Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Models.Extended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models.Generated.cs">
-      <DependentUpon>SitecoreTemplates.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Wooli\Feature.Catalog.config">
@@ -613,12 +609,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SitecoreTemplates.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Models.Generated.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">

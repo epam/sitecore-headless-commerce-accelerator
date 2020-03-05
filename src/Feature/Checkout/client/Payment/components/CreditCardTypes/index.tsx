@@ -23,24 +23,16 @@ export default () => (
   <div className="credit-cards-col">
     <ul className="card-types">
       <li>
-        <a href="">
-          <img src={Visa} alt="Visa" />
-        </a>
+        <img src={Visa} alt="Visa" />
       </li>
       <li>
-        <a href="">
-          <img src={MasterCard} alt="MasterCard" />
-        </a>
+        <img src={MasterCard} alt="MasterCard" />
       </li>
       <li>
-        <a href="">
-          <img src={AmericanExpress} alt="American Express" />
-        </a>
+        <img src={AmericanExpress} alt="American Express" />
       </li>
       <li>
-        <a href="">
-          <img src={Discover} alt="Discover" />
-        </a>
+        <img src={Discover} alt="Discover" />
       </li>
     </ul>
   </div>

@@ -34,7 +34,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
         {
             Assert.ArgumentNotNull(context, nameof(context));
 
-            if ((this.JsonRequestBehavior == JsonRequestBehavior.DenyGet) && string.Equals(
+            if (this.JsonRequestBehavior == JsonRequestBehavior.DenyGet && string.Equals(
                 context.HttpContext.Request.HttpMethod,
                 "GET",
                 StringComparison.OrdinalIgnoreCase))

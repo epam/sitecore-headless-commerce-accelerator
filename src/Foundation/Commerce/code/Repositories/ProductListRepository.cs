@@ -127,7 +127,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             var result = new List<ProductModel>();
             var products = new List<Product>();
 
-            if ((searchResult.SearchResultItems != null) && (searchResult.SearchResultItems.Count > 0))
+            if (searchResult.SearchResultItems != null && searchResult.SearchResultItems.Count > 0)
             {
                 foreach (var searchResultItem in searchResult.SearchResultItems)
                 {
@@ -165,7 +165,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             Assert.ArgumentNotNull(commerceSearchOptions, nameof(commerceSearchOptions));
             Assert.ArgumentNotNull(searchInformation, nameof(searchInformation));
 
-            if ((searchInformation.SortFields == null) || !searchInformation.SortFields.Any())
+            if (searchInformation.SortFields == null || !searchInformation.SortFields.Any())
             {
                 return;
             }
@@ -181,7 +181,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     DisplayName = sortField.DisplayName,
                     SortDirection = SortDirection.Asc,
                     IsSelected =
-                        isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Asc)
+                        isSelected && commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Asc
                 };
 
                 sortOptions.Add(sortOptionAsc);
@@ -192,7 +192,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     DisplayName = sortField.DisplayName,
                     SortDirection = SortDirection.Desc,
                     IsSelected =
-                        isSelected && (commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Desc)
+                        isSelected && commerceSearchOptions.SortDirection == CommerceConstants.SortDirection.Desc
                 };
 
                 sortOptions.Add(sortOptionDesc);
@@ -226,7 +226,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
 
             var sortFields = categorySearchInformation.SortFields;
-            if ((sortFields == null) || (sortFields.Count <= 0))
+            if (sortFields == null || sortFields.Count <= 0)
             {
                 return;
             }
@@ -240,7 +240,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             NameValueCollection valueQuery,
             CommerceSearchOptions productSearchOptions)
         {
-            if ((facets == null) || !facets.Any())
+            if (facets == null || !facets.Any())
             {
                 return;
             }

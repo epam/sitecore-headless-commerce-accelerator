@@ -28,7 +28,7 @@ namespace Wooli.Foundation.Extensions.Infrastructure
 
         public List<string> Sites { get; set; }
 
-        public override sealed void Process(HttpRequestArgs args)
+        public sealed override void Process(HttpRequestArgs args)
         {
             if (!this.Sites.Contains(Context.Site?.Name))
             {

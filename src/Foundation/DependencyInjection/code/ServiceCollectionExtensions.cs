@@ -81,7 +81,7 @@ namespace Wooli.Foundation.DependencyInjection
             string classFilter,
             params Assembly[] assemblies)
         {
-            if ((assemblies == null) || !assemblies.Any())
+            if (assemblies == null || !assemblies.Any())
             {
                 assemblies = new[] { Assembly.GetCallingAssembly() };
             }
@@ -251,7 +251,7 @@ namespace Wooli.Foundation.DependencyInjection
             params string[] classFilter)
         {
             var types = GetTypesImplementing(implementsType, assemblies.ToArray());
-            if ((classFilter != null) && classFilter.Any())
+            if (classFilter != null && classFilter.Any())
             {
                 types = types.Where(type => classFilter.Any(filter => IsWildcardMatch(type.FullName, filter)));
             }
@@ -261,7 +261,7 @@ namespace Wooli.Foundation.DependencyInjection
 
         private static IEnumerable<Type> GetTypesImplementing(Type implementsType, params Assembly[] assemblies)
         {
-            if ((assemblies == null) || (assemblies.Length == 0))
+            if (assemblies == null || assemblies.Length == 0)
             {
                 return new Type[0];
             }
@@ -279,7 +279,7 @@ namespace Wooli.Foundation.DependencyInjection
         /// </summary>
         private static bool IsWildcardMatch(string input, string wildcard)
         {
-            return (input == wildcard) || Regex.IsMatch(
+            return input == wildcard || Regex.IsMatch(
                 input,
                 "^" + Regex.Escape(wildcard).Replace("\\*", ".*").Replace("\\?", ".") + "$",
                 RegexOptions.IgnoreCase);

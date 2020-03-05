@@ -121,7 +121,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             var createUserResult = this.customerServiceProvider.CreateUser(createUserRequest);
 
-            if (!createUserResult.Success || (createUserResult.CommerceUser == null))
+            if (!createUserResult.Success || createUserResult.CommerceUser == null)
             {
                 Log.Warn("User creation failed", this.GetType());
             }
@@ -170,7 +170,7 @@ namespace Wooli.Foundation.Connect.Managers
             var getPartiesResult = new GetPartiesResult();
 
             var user = this.GetUser(contactId);
-            if (!user.ServiceProviderResult.Success || (user.Result == null))
+            if (!user.ServiceProviderResult.Success || user.Result == null)
             {
                 return new ManagerResponse<GetPartiesResult, IEnumerable<Party>>(getPartiesResult, null);
             }
@@ -199,7 +199,7 @@ namespace Wooli.Foundation.Connect.Managers
             var request = new GetPartiesRequest(customer);
             var parties = this.customerServiceProvider.GetParties(request);
             IEnumerable<Party> result =
-                !parties.Success || (parties.Parties == null) ? new List<Party>() : parties.Parties;
+                !parties.Success || parties.Parties == null ? new List<Party>() : parties.Parties;
 
             return new ManagerResponse<GetPartiesResult, IEnumerable<Party>>(parties, result);
         }
@@ -209,7 +209,7 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
 
             var user = this.customerServiceProvider.GetUser(new GetUserRequest(userName));
-            if (!user.Success || (user.CommerceUser == null))
+            if (!user.Success || user.CommerceUser == null)
             {
                 Log.Warn("User Not Found Error", this.GetType());
             }
@@ -231,7 +231,7 @@ namespace Wooli.Foundation.Connect.Managers
                     {
                         Email = email
                     }));
-            if (!users.Success || (users.CommerceUsers == null) || (users.CommerceUsers.Count == 0))
+            if (!users.Success || users.CommerceUsers == null || users.CommerceUsers.Count == 0)
             {
                 this.logService.Warn("User Not Found Error");
             }

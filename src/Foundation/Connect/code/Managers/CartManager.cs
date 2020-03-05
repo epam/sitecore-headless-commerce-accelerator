@@ -110,8 +110,8 @@ namespace Wooli.Foundation.Connect.Managers
             var payments = new List<PaymentInfo>();
             cart = this.RemoveAllPaymentMethods(cart).Result;
 
-            if ((federatedPaymentArgs != null) && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken)
-                && (billingPartyEntity != null))
+            if (federatedPaymentArgs != null && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken)
+                && billingPartyEntity != null)
             {
                 var commerceParty = this.connectEntityMapper.MapToCommerceParty(billingPartyEntity);
                 commerceParty.PartyId = Guid.NewGuid().ToString().Replace("-", string.Empty);
@@ -158,7 +158,7 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNull(shippingInfoList, nameof(shippingInfoList));
             cart = this.RemoveAllShipmentFromCart(cart);
 
-            if ((partyEntityList != null) && partyEntityList.Any())
+            if (partyEntityList != null && partyEntityList.Any())
             {
                 var cartParties = cart.Parties.ToList();
                 var commercePartyList = this.connectEntityMapper.MapToCommercePartyList(partyEntityList);
@@ -208,7 +208,7 @@ namespace Wooli.Foundation.Connect.Managers
             var cartResult = this.cartServiceProvider.LoadCart(request);
             var stringList = new List<string>();
 
-            if (cartResult.Cart is CommerceCart cart && (cart.OrderForms.Count > 0))
+            if (cartResult.Cart is CommerceCart cart && cart.OrderForms.Count > 0)
             {
                 stringList.AddRange(cart.OrderForms[0].PromoCodes ?? Enumerable.Empty<string>());
             }
@@ -228,7 +228,7 @@ namespace Wooli.Foundation.Connect.Managers
             var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
             var cartResult = this.cartServiceProvider.LoadCart(request);
 
-            if (!cartResult.Success || (cartResult.Cart == null))
+            if (!cartResult.Success || cartResult.Cart == null)
             {
                 Log.Warn("Cart Not Found Error", this.GetType());
                 return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
@@ -244,9 +244,9 @@ namespace Wooli.Foundation.Connect.Managers
             {
                 var flag = anonymousVisitorCart is CommerceCart
                     && ((CommerceCart)anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
-                if ((anonymousVisitorCart != null) && (anonymousVisitorCart.Lines.Any() | flag)
-                    && ((commerceCart.ShopName == anonymousVisitorCart.ShopName)
-                        || (commerceCart.ExternalId != anonymousVisitorCart.ExternalId)))
+                if (anonymousVisitorCart != null && anonymousVisitorCart.Lines.Any() | flag
+                    && (commerceCart.ShopName == anonymousVisitorCart.ShopName
+                        || commerceCart.ExternalId != anonymousVisitorCart.ExternalId))
                 {
                     newCartResult =
                         this.cartServiceProvider.MergeCart(new MergeCartRequest(anonymousVisitorCart, commerceCart));
@@ -254,23 +254,6 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             return new ManagerResponse<CartResult, Cart>(newCartResult, newCartResult.Cart);
-        }
-
-        public virtual ManagerResponse<CartResult, Cart> RemoveAllPaymentMethods(Cart cart)
-        {
-            RemovePaymentInfoResult paymentInfoResult = null;
-            if ((cart.Payment != null) && cart.Payment.Any())
-            {
-                var request = new RemovePaymentInfoRequest(cart, cart.Payment);
-                paymentInfoResult = this.cartServiceProvider.RemovePaymentInfo(request);
-                return new ManagerResponse<CartResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
-            }
-
-            paymentInfoResult = new RemovePaymentInfoResult
-            {
-                Success = true
-            };
-            return new ManagerResponse<CartResult, Cart>(paymentInfoResult, cart);
         }
 
         public ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds)
@@ -318,9 +301,9 @@ namespace Wooli.Foundation.Connect.Managers
                 bool Selector(CartLine x)
                 {
                     var product = (CommerceCartProduct)x.Product;
-                    return (x.Product.ProductId == cartLine.ProductId)
-                        && (product.ProductVariantId == cartLine.VariantId)
-                        && (product.ProductCatalog == cartLine.CatalogName);
+                    return x.Product.ProductId == cartLine.ProductId
+                        && product.ProductVariantId == cartLine.VariantId
+                        && product.ProductCatalog == cartLine.CatalogName;
                 }
 
                 var commerceCartLine = cart.Lines.FirstOrDefault(Selector) ?? new CommerceCartLine(
@@ -342,9 +325,26 @@ namespace Wooli.Foundation.Connect.Managers
             return new ManagerResponse<CartResult, Cart>(updateCartResult, updateCartResult.Cart);
         }
 
+        public virtual ManagerResponse<CartResult, Cart> RemoveAllPaymentMethods(Cart cart)
+        {
+            RemovePaymentInfoResult paymentInfoResult = null;
+            if (cart.Payment != null && cart.Payment.Any())
+            {
+                var request = new RemovePaymentInfoRequest(cart, cart.Payment);
+                paymentInfoResult = this.cartServiceProvider.RemovePaymentInfo(request);
+                return new ManagerResponse<CartResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
+            }
+
+            paymentInfoResult = new RemovePaymentInfoResult
+            {
+                Success = true
+            };
+            return new ManagerResponse<CartResult, Cart>(paymentInfoResult, cart);
+        }
+
         protected virtual Cart RemoveAllShipmentFromCart(Cart cart)
         {
-            if ((cart.Shipping != null) && cart.Shipping.Any())
+            if (cart.Shipping != null && cart.Shipping.Any())
             {
                 var list = cart.Parties.ToList();
 
@@ -369,7 +369,7 @@ namespace Wooli.Foundation.Connect.Managers
         private string GetImageLink(Item productItem)
         {
             var field = (MultilistField)productItem.Fields["Images"];
-            if ((field != null) && field.TargetIDs.Any())
+            if (field != null && field.TargetIDs.Any())
             {
                 var mediaItem = (MediaItem)productItem.Database.GetItem(field.TargetIDs[0]);
 

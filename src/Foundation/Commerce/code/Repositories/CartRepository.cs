@@ -131,7 +131,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 x =>
                 {
                     var current = x.Product as CommerceCartProduct;
-                    return (current?.ProductId == productId) && (current?.ProductVariantId == variantId);
+                    return current?.ProductId == productId && current?.ProductVariantId == variantId;
                 });
 
             if (cartLine != null)

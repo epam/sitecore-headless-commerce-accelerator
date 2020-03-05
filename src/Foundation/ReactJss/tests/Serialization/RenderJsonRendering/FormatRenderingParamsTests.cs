@@ -69,9 +69,9 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
                 Assert.NotNull(renderingParams);
 
                 Assert.Equal(3, renderingParams.Count);
-                Assert.Contains(renderingParams, x => (x.Key == "param1") && (x.Value == "Value1"));
-                Assert.Contains(renderingParams, x => (x.Key == "param2") && (x.Value == "Value 2"));
-                Assert.Contains(renderingParams, x => (x.Key == "notChanged") && (x.Value == "1"));
+                Assert.Contains(renderingParams, x => x.Key == "param1" && x.Value == "Value1");
+                Assert.Contains(renderingParams, x => x.Key == "param2" && x.Value == "Value 2");
+                Assert.Contains(renderingParams, x => x.Key == "notChanged" && x.Value == "1");
             }
         }
     }

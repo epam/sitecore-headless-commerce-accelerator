@@ -83,7 +83,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var currentCart = cartResult.Result;
-                if ((currentCart.Lines != null) && currentCart.Lines.Any())
+                if (currentCart.Lines != null && currentCart.Lines.Any())
                 {
                     this.AddShippingOptionsToModel(result, currentCart);
                     if (result.Success)

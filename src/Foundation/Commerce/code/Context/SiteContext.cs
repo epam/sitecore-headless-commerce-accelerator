@@ -46,6 +46,8 @@ namespace Wooli.Foundation.Commerce.Context
             this.ItemTypeProvider = itemTypeProvider;
         }
 
+        public IItemTypeProvider ItemTypeProvider { get; set; }
+
         public Item CurrentCategoryItem
         {
             get => this.Items[CurrentCategoryItemKey] as Item;
@@ -107,8 +109,6 @@ namespace Wooli.Foundation.Commerce.Context
         }
 
         public IDictionary Items => HttpContext.Current.Items;
-
-        public IItemTypeProvider ItemTypeProvider { get; set; }
 
         public string VirtualFolder => Context.Site.VirtualFolder;
     }

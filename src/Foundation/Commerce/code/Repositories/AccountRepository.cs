@@ -68,7 +68,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getCustomerResult = this.GetCustomerByUserName(userName);
 
-            if (!getCustomerResult.Success || (getCustomerResult.Data == null))
+            if (!getCustomerResult.Success || getCustomerResult.Data == null)
             {
                 result.SetErrors(getCustomerResult.Errors);
                 return result;
@@ -219,7 +219,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getCustomerResult = this.GetCustomerByUserName(userName);
 
-            if (!getCustomerResult.Success || (getCustomerResult.Data == null))
+            if (!getCustomerResult.Success || getCustomerResult.Data == null)
             {
                 result.SetErrors(getCustomerResult.Errors);
                 return result;
@@ -227,7 +227,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getPartiesResponse = this.accountManager.GetParties(getCustomerResult.Data);
 
-            if (!getPartiesResponse.ServiceProviderResult.Success || (getPartiesResponse.Result == null))
+            if (!getPartiesResponse.ServiceProviderResult.Success || getPartiesResponse.Result == null)
             {
                 result.SetErrors(getPartiesResponse.ServiceProviderResult);
                 return result;
@@ -249,7 +249,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getCustomerResult = this.GetCustomerByUserName(userName);
 
-            if (!getCustomerResult.Success || (getCustomerResult.Data == null))
+            if (!getCustomerResult.Success || getCustomerResult.Data == null)
             {
                 result.SetErrors(getCustomerResult.Errors);
                 return result;
@@ -257,7 +257,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getPartiesResponse = this.accountManager.GetParties(getCustomerResult.Data);
 
-            if (!getPartiesResponse.ServiceProviderResult.Success || (getPartiesResponse.Result == null))
+            if (!getPartiesResponse.ServiceProviderResult.Success || getPartiesResponse.Result == null)
             {
                 result.SetErrors(getPartiesResponse.ServiceProviderResult);
                 return result;
@@ -290,7 +290,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getUserResponse = this.accountManager.GetUser(user.ContactId);
 
-            if (!getUserResponse.ServiceProviderResult.Success || (getUserResponse.Result == null))
+            if (!getUserResponse.ServiceProviderResult.Success || getUserResponse.Result == null)
             {
                 result.SetErrors(getUserResponse.ServiceProviderResult);
                 return result;
@@ -303,7 +303,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var userUpdateResponse = this.accountManager.UpdateUser(userForUpdate);
 
-            if (!userUpdateResponse.ServiceProviderResult.Success || (userUpdateResponse.Result == null))
+            if (!userUpdateResponse.ServiceProviderResult.Success || userUpdateResponse.Result == null)
             {
                 result.SetErrors(userUpdateResponse.ServiceProviderResult);
                 return result;
@@ -322,7 +322,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getCustomerResult = this.GetCustomerByUserName(userName);
 
-            if (!getCustomerResult.Success || (getCustomerResult.Data == null))
+            if (!getCustomerResult.Success || getCustomerResult.Data == null)
             {
                 result.SetErrors(getCustomerResult.Errors);
                 return result;
@@ -330,7 +330,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getPartiesResponse = this.accountManager.GetParties(getCustomerResult.Data);
 
-            if (!getPartiesResponse.ServiceProviderResult.Success || (getPartiesResponse.Result == null))
+            if (!getPartiesResponse.ServiceProviderResult.Success || getPartiesResponse.Result == null)
             {
                 result.SetErrors(getPartiesResponse.ServiceProviderResult);
                 return result;
@@ -412,7 +412,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var getUserResponse = this.accountManager.GetUser(userName);
 
-            if (!getUserResponse.ServiceProviderResult.Success || (getUserResponse.Result == null))
+            if (!getUserResponse.ServiceProviderResult.Success || getUserResponse.Result == null)
             {
                 result.SetErrors(getUserResponse.ServiceProviderResult);
                 return result;

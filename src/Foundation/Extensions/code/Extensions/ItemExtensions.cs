@@ -47,7 +47,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
         public static bool FieldHasValue(this Item item, ID fieldId)
         {
-            return (item.Fields[fieldId] != null) && !string.IsNullOrWhiteSpace(item.Fields[fieldId].Value);
+            return item.Fields[fieldId] != null && !string.IsNullOrWhiteSpace(item.Fields[fieldId].Value);
         }
 
         public static Item GetAncestorOrSelfOfTemplate(this Item item, ID templateId)
@@ -185,8 +185,8 @@ namespace Wooli.Foundation.Extensions.Extensions
             }
 
             var itemTemplate = TemplateManager.GetTemplate(item);
-            return (itemTemplate != null)
-                && ((itemTemplate.ID == templateItem.ID) || itemTemplate.DescendsFrom(templateItem.ID));
+            return itemTemplate != null
+                && (itemTemplate.ID == templateItem.ID || itemTemplate.DescendsFrom(templateItem.ID));
         }
 
         public static bool IsImage(this Item item)
@@ -239,7 +239,7 @@ namespace Wooli.Foundation.Extensions.Extensions
             }
 
             var field = item.Fields[fieldId];
-            if ((field == null) || !(FieldTypeManager.GetField(field) is LinkField))
+            if (field == null || !(FieldTypeManager.GetField(field) is LinkField))
             {
                 return string.Empty;
             }
@@ -286,7 +286,7 @@ namespace Wooli.Foundation.Extensions.Extensions
                 throw new ArgumentNullException(nameof(item));
             }
 
-            if ((item.Fields[linkFieldId] == null) || !item.Fields[linkFieldId].HasValue)
+            if (item.Fields[linkFieldId] == null || !item.Fields[linkFieldId].HasValue)
             {
                 return null;
             }

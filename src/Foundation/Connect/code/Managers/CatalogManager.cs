@@ -42,7 +42,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         public ManagerResponse<GetProductBulkPricesResult, bool> GetProductBulkPrices(List<Product> products)
         {
-            if ((products == null) || !products.Any())
+            if (products == null || !products.Any())
             {
                 return new ManagerResponse<GetProductBulkPricesResult, bool>(new GetProductBulkPricesResult(), true);
             }
@@ -50,7 +50,7 @@ namespace Wooli.Foundation.Connect.Managers
             var catalogName = products.Select(p => p.CatalogName).First();
             var productIds = products.Select(p => p.ProductId);
             var productBulkPrices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null);
-            var source = (productBulkPrices == null) || (productBulkPrices.Result == null)
+            var source = productBulkPrices == null || productBulkPrices.Result == null
                 ? new Dictionary<string, Price>()
                 : productBulkPrices.Result;
             foreach (var product in products)
@@ -75,14 +75,14 @@ namespace Wooli.Foundation.Connect.Managers
                 return;
             }
 
-            var includeVariants = (product.Variants != null) && (product.Variants.Count > 0);
+            var includeVariants = product.Variants != null && product.Variants.Count > 0;
             var productPrices = this.pricingManager.GetProductPrices(
                 product.CatalogName,
                 product.ProductId,
                 includeVariants,
                 null);
-            if ((productPrices == null) || !productPrices.ServiceProviderResult.Success
-                || (productPrices.Result == null))
+            if (productPrices == null || !productPrices.ServiceProviderResult.Success
+                || productPrices.Result == null)
             {
                 return;
             }
@@ -156,7 +156,7 @@ namespace Wooli.Foundation.Connect.Managers
                 shopName,
                 inventortyProducts,
                 StockDetailsLevel.StatusAndAvailability);
-            if (!stockInformationResponse.ServiceProviderResult.Success || (stockInformationResponse.Result == null))
+            if (!stockInformationResponse.ServiceProviderResult.Success || stockInformationResponse.Result == null)
             {
                 return;
             }
@@ -164,7 +164,7 @@ namespace Wooli.Foundation.Connect.Managers
             var stockInformationItems = stockInformationResponse.Result;
             foreach (var stockInformationItem in stockInformationItems)
             {
-                if ((stockInformationItem == null) || (stockInformationItem.Status == null))
+                if (stockInformationItem == null || stockInformationItem.Status == null)
                 {
                     return;
                 }

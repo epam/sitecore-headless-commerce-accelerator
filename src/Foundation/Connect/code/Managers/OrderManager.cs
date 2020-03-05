@@ -50,7 +50,7 @@ namespace Wooli.Foundation.Connect.Managers
             var getVisitorOrderRequest = new GetVisitorOrderRequest(orderId, customerId, shopName);
             var getVisitorOrderResult = this.orderServiceProvider.GetVisitorOrder(getVisitorOrderRequest);
             if (!string.IsNullOrEmpty(getVisitorOrderResult.Order?.CustomerId)
-                && (getVisitorOrderResult.Order?.CustomerId == customerId))
+                && getVisitorOrderResult.Order?.CustomerId == customerId)
             {
                 var successServiceProviderResult = getVisitorOrderResult;
                 return new ManagerResponse<GetVisitorOrderResult, Order>(

@@ -56,7 +56,7 @@ namespace Wooli.Foundation.Connect.Managers
             PartyEntity address,
             List<string> cartLineExternalIdList)
         {
-            if ((cartLineExternalIdList != null) && cartLineExternalIdList.Any())
+            if (cartLineExternalIdList != null && cartLineExternalIdList.Any())
             {
             }
 
@@ -83,7 +83,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var request = new GetShippingOptionsRequest(cart);
             var shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
-            if (shippingOptions.Success && (shippingOptions.ShippingOptions != null))
+            if (shippingOptions.Success && shippingOptions.ShippingOptions != null)
             {
                 return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(
                     shippingOptions,

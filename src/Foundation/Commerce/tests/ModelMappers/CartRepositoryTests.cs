@@ -12,6 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using NSubstitute;
+using Wooli.Foundation.Commerce.Providers;
+using Wooli.Foundation.Commerce.Repositories;
+
 namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
     using System.Collections.Generic;
@@ -26,6 +30,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
     public class AddressPartyMapperTests
     {
+        private readonly ICatalogRepository catalogRepository;
+        private readonly ICurrencyProvider currencyProvider;
+
+        public AddressPartyMapperTests()
+        {
+            this.catalogRepository = Substitute.For<ICatalogRepository>();
+            this.currencyProvider = Substitute.For<ICurrencyProvider>();
+        }
+
         [Fact]
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()
         {
@@ -37,7 +50,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToParty(input);
 
             // Assert
@@ -58,7 +71,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
@@ -83,7 +96,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert

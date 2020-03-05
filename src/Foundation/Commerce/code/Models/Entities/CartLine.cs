@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Wooli.Foundation.Commerce.Models.Catalog;
+
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
     using System.Diagnostics.CodeAnalysis;
@@ -23,9 +25,9 @@ namespace Wooli.Foundation.Commerce.Models.Entities
     {
         public string Id { get; set; }
 
-        public Product Product { get; set; }
+        public ProductModel Product { get; set; }
 
-        public ProductVariant Variant { get; set; }
+        public ProductVariantModel Variant { get; set; }
 
         public decimal Quantity { get; set; }
 

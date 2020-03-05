@@ -25,9 +25,9 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
     {
         public string Id { get; set; }
 
-        public Product Product { get; set; }
+        public ProductModel Product { get; set; }
 
-        public ProductVariant Variant { get; set; }
+        public ProductVariantModel Variant { get; set; }
 
         public decimal Quantity { get; set; }
 

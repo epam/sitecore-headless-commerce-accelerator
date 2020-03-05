@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Wooli.Foundation.Commerce.Providers;
+
 namespace Wooli.Foundation.Commerce.ModelMappers
 {
     using System.Collections.Generic;
@@ -40,11 +42,15 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     {
         private readonly IMapper innerMapper;
         private readonly ICatalogRepository catalogRepository;
+        private readonly ICurrencyProvider currencyProvider;
 
-        public EntityMapper(ICatalogRepository catalogRepository)
+        public EntityMapper(ICatalogRepository catalogRepository, ICurrencyProvider currencyProvider)
         {
             Assert.ArgumentNotNull(catalogRepository, nameof(catalogRepository));
+            Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
+
             this.catalogRepository = catalogRepository;
+            this.currencyProvider = currencyProvider;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -86,9 +92,18 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                 #region Price
 
                 cfg.CreateMap<Total, Models.Entities.TotalPrice>()
-                    .ReverseMap();
-
+                    .ForMember(dest => dest.TaxTotal, opt => opt.MapFrom(src => src.TaxTotal.Amount))
+                    .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Amount))
+                    .ReverseMap()
+                    .AfterMap(
+                        (dest, src) =>
+                        {
+                            dest.CurrencySymbol = this.currencyProvider.GetCurrencySymbolByCode(src.CurrencyCode);
+                        })
+                    .ForAllOtherMembers(opt => opt.Ignore());
+                    
                 cfg.CreateMap<CommerceTotal, Models.Entities.TotalPrice>()
+                    .ForMember(dest => dest.TotalSavings, opt => opt.MapFrom(src => src.LineItemDiscountAmount + src.OrderLevelDiscountAmount))
                     .IncludeBase<Total, Models.Entities.TotalPrice>()
                     .ReverseMap();
 

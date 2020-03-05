@@ -574,6 +574,11 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\CartItemDto.cs" />
     <Compile Include="Models\PromoCodeDto.cs" />
+    <Compile Include="Models\Requests\PromoCodeRequest.cs" />
+    <Compile Include="Models\Requests\RemoveCartLineRequest.cs" />
+    <Compile Include="Models\Requests\UpdateCartLineRequest.cs" />
+    <Compile Include="Models\Requests\AddCartLineRequest.cs" />
+    <Compile Include="Models\Requests\CartLineRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

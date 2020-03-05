@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2019 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,15 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Checkout.Models
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Sitecore.Data.Items;
     using TypeLite;
 
-    [Obsolete("Use PromoCodeRequest instead.")]
     [TsClass]
-    public class PromoCodeDto
+    public class Product : BaseProduct
     {
-        public string PromoCode { get; set; }
+        public Product(Item sellableItem) : base(sellableItem)
+        {
+            this.SitecoreId = sellableItem["SitecoreId"];
+            this.Variants = sellableItem.Children.Select(commerceProductVariant => new ProductVariant(commerceProductVariant)).ToList();
+        }
+
+        public string SitecoreId { get; set; }
+
+        public IList<ProductVariant> Variants { get; set; }
     }
 }

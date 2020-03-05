@@ -15,16 +15,15 @@
 namespace Wooli.Foundation.Commerce.Repositories
 {
     using Models.Catalog;
-    using Models.Entities;
     using Sitecore.Data.Items;
 
     public interface ICatalogRepository
     {
-        Product GetProduct(string productd);
+        ProductModel GetProduct(string productd);
 
-        Product GetProduct(Item productItem);
+        ProductModel GetProduct(Item productItem);
 
-        Product GetCurrentProduct();
+        ProductModel GetCurrentProduct();
 
         CategoryModel GetCurrentCategory();
     }

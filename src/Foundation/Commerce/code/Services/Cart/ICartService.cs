@@ -40,25 +40,30 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         /// Adds product to cart
         /// </summary>
         /// <param name="cart">Cart to add</param>
-        /// <param name="cartLine">Cart line</param>
+        /// <param name="productId">Product id</param>
+        /// <param name="variantId">Variant product id</param>
+        /// <param name="quantity">Quantity</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> AddCartLine(Cart cart, CartLine cartLine);
+        Result<Cart> AddCartLine(Cart cart, string productId, string variantId, decimal quantity);
 
         /// <summary>
         /// Updates product in cart
         /// </summary>
         /// <param name="cart">Cart to update</param>
-        /// <param name="cartLine">Cart line</param>
+        /// <param name="productId">Product id</param>
+        /// <param name="variantId">Variant product id</param>
+        /// <param name="quantity">Quantity</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> UpdateCartLine(Cart cart, CartLine cartLine);
+        Result<Cart> UpdateCartLine(Cart cart, string productId, string variantId, decimal quantity);
 
         /// <summary>
         /// Removes product from cart
         /// </summary>
         /// <param name="cart">Cart to remove product from</param>
-        /// <param name="cartLine">Cart line</param>
+        /// <param name="productId">Product id</param>
+        /// <param name="variantId">Variant product id</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> RemoveCartLine(Cart cart, CartLine cartLine);
+        Result<Cart> RemoveCartLine(Cart cart, string productId, string variantId);
 
         /// <summary>
         /// Adds promo code to cart

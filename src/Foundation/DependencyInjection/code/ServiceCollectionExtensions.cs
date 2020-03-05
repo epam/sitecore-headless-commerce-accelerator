@@ -83,10 +83,7 @@ namespace Wooli.Foundation.DependencyInjection
         {
             if ((assemblies == null) || !assemblies.Any())
             {
-                assemblies = new[]
-                {
-                    Assembly.GetCallingAssembly()
-                };
+                assemblies = new[] { Assembly.GetCallingAssembly() };
             }
 
             var types = GetTypesImplementing(typeof(object), assemblies, classFilter);
@@ -143,12 +140,7 @@ namespace Wooli.Foundation.DependencyInjection
 
         public static void AddControllers<T>(this IServiceCollection serviceCollection, params Assembly[] assemblies)
         {
-            serviceCollection.AddControllers<T>(
-                assemblies,
-                new[]
-                {
-                    DefaultControllerFilter
-                });
+            serviceCollection.AddControllers<T>(assemblies, new[] { DefaultControllerFilter });
         }
 
         public static void AddControllers<T>(
@@ -183,7 +175,9 @@ namespace Wooli.Foundation.DependencyInjection
             serviceCollection.Add(lifetime, types.ToArray());
         }
 
-        public static void AddTypesImplementingInCurrentAssembly<T>(this IServiceCollection serviceCollection, Lifetime lifetime)
+        public static void AddTypesImplementingInCurrentAssembly<T>(
+            this IServiceCollection serviceCollection,
+            Lifetime lifetime)
         {
             var types = GetTypesImplementing(typeof(T), Assembly.GetCallingAssembly());
             serviceCollection.Add(lifetime, types.ToArray());
@@ -285,11 +279,10 @@ namespace Wooli.Foundation.DependencyInjection
         /// </summary>
         private static bool IsWildcardMatch(string input, string wildcard)
         {
-            return (input == wildcard)
-                   || Regex.IsMatch(
-                       input,
-                       "^" + Regex.Escape(wildcard).Replace("\\*", ".*").Replace("\\?", ".") + "$",
-                       RegexOptions.IgnoreCase);
+            return (input == wildcard) || Regex.IsMatch(
+                input,
+                "^" + Regex.Escape(wildcard).Replace("\\*", ".*").Replace("\\?", ".") + "$",
+                RegexOptions.IgnoreCase);
         }
     }
 }

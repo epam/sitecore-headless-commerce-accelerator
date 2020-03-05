@@ -72,8 +72,8 @@ namespace Wooli.Foundation.Connect.Managers
             };
             var request = new GetShippingMethodsRequest(shippingOption, commerceParty, cart as CommerceCart);
             var shippingMethods = this.shippingServiceProvider
-                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest, GetShippingMethodsResult>(
-                    request);
+                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest,
+                    GetShippingMethodsResult>(request);
             return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(
                 shippingMethods,
                 shippingMethods.ShippingMethods);

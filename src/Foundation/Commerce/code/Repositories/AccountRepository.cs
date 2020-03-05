@@ -427,7 +427,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             return result;
         }
 
-        private CreateAccountResultModel MapToCreateAccountResultDto(bool created, string message, CommerceUser commerceUser)
+        private CreateAccountResultModel MapToCreateAccountResultDto(
+            bool created,
+            string message,
+            CommerceUser commerceUser)
         {
             var accountInfo = this.entityMapper.MapToCommerceUserModel(commerceUser);
             return new CreateAccountResultModel
@@ -441,7 +444,8 @@ namespace Wooli.Foundation.Commerce.Repositories
         private void UpdateCommerceParty(CommerceParty partyForUpdate, AddressModel address)
         {
             var countryRegionModel = this.storefrontContext.CurrentStorefront
-                .CountriesRegionsConfiguration.CountriesRegionsModel.FirstOrDefault(c => c.CountryCode == address.CountryCode);
+                .CountriesRegionsConfiguration.CountriesRegionsModel.FirstOrDefault(
+                    c => c.CountryCode == address.CountryCode);
             var subdivisionModel = countryRegionModel?.Subdivisions.FirstOrDefault(s => s.Code == address.State);
 
             partyForUpdate.FirstName = address.FirstName;

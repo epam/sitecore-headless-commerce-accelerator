@@ -30,7 +30,9 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
     {
         private readonly ISitecoreService sitecoreService;
 
-        public ProductColorsContextExtension(ISitecoreService sitecoreService, IConfigurationResolver configurationResolver)
+        public ProductColorsContextExtension(
+            ISitecoreService sitecoreService,
+            IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
             this.sitecoreService = sitecoreService;

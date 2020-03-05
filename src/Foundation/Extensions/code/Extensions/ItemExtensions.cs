@@ -57,7 +57,9 @@ namespace Wooli.Foundation.Extensions.Extensions
                 throw new ArgumentNullException(nameof(item));
             }
 
-            return item.IsDerived(templateId) ? item : item.Axes.GetAncestors().LastOrDefault(i => i.IsDerived(templateId));
+            return item.IsDerived(templateId)
+                ? item
+                : item.Axes.GetAncestors().LastOrDefault(i => i.IsDerived(templateId));
         }
 
         public static IList<Item> GetAncestorsAndSelfOfTemplate(this Item item, ID templateId)
@@ -184,7 +186,7 @@ namespace Wooli.Foundation.Extensions.Extensions
 
             var itemTemplate = TemplateManager.GetTemplate(item);
             return (itemTemplate != null)
-                   && ((itemTemplate.ID == templateItem.ID) || itemTemplate.DescendsFrom(templateItem.ID));
+                && ((itemTemplate.ID == templateItem.ID) || itemTemplate.DescendsFrom(templateItem.ID));
         }
 
         public static bool IsImage(this Item item)
@@ -289,7 +291,8 @@ namespace Wooli.Foundation.Extensions.Extensions
                 return null;
             }
 
-            return ((LinkField)item.Fields[linkFieldId]).TargetItem ?? ((ReferenceField)item.Fields[linkFieldId]).TargetItem;
+            return ((LinkField)item.Fields[linkFieldId]).TargetItem
+                ?? ((ReferenceField)item.Fields[linkFieldId]).TargetItem;
         }
 
         public static string Url(this Item item, UrlOptions options = null)

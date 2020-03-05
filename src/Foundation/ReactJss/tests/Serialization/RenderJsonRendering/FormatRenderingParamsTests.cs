@@ -53,15 +53,9 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
                     {
                         RenderingParams = new Dictionary<string, string>
                         {
-                            {
-                                "Param1", "Value1"
-                            },
-                            {
-                                "Param 2", "Value 2"
-                            },
-                            {
-                                "notChanged", "1"
-                            }
+                            { "Param1", "Value1" },
+                            { "Param 2", "Value 2" },
+                            { "notChanged", "1" }
                         }
                     }
                 };

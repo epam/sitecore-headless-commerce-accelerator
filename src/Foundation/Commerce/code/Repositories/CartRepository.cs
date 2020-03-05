@@ -66,14 +66,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 VariantId = variantId
             };
 
-            var cart = this.CartManager.AddLineItemsToCart(
-                model.Result,
-                new[]
-                {
-                    cartLineArgument
-                },
-                null,
-                null);
+            var cart = this.CartManager.AddLineItemsToCart(model.Result, new[] { cartLineArgument }, null, null);
 
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
@@ -123,12 +116,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             var model = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
-            var cart = this.CartManager.RemoveLineItemsFromCart(
-                model.Result,
-                new[]
-                {
-                    cartLineId
-                });
+            var cart = this.CartManager.RemoveLineItemsFromCart(model.Result, new[] { cartLineId });
 
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
@@ -161,14 +149,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     VariantId = variantId
                 };
 
-                var cart = this.CartManager.UpdateLineItemsInCart(
-                    model.Result,
-                    new[]
-                    {
-                        cartLineArgument
-                    },
-                    null,
-                    null);
+                var cart = this.CartManager.UpdateLineItemsInCart(model.Result, new[] { cartLineArgument }, null, null);
                 var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
                 return result;
             }

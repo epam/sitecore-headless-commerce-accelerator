@@ -141,8 +141,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                     new CartBase
                     {
                         Email = string.IsNullOrWhiteSpace(args.BillingAddress.Email)
-                                    ? this.VisitorContext.CurrentUser.Email
-                                    : args.BillingAddress.Email
+                            ? this.VisitorContext.CurrentUser.Email
+                            : args.BillingAddress.Email
                     });
 
                 if (!updateCartResponse.ServiceProviderResult.Success

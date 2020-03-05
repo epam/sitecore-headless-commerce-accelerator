@@ -66,11 +66,11 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
             result.CartLines = model.Lines.Select(this.Initialize).ToList();
             result.Adjustments = model.Adjustments?.Select(a => a.Description).ToList() ?? new List<string>();
             result.Addresses = model.Parties?.Select(x => this.entityMapper.MapToAddress(x)).ToList()
-                               ?? new List<AddressModel>();
+                ?? new List<AddressModel>();
             result.Payments = model.Payment?.Select(x => this.entityMapper.MapToFederatedPayment(x)).ToList()
-                              ?? new List<FederatedPaymentModel>();
+                ?? new List<FederatedPaymentModel>();
             result.Shippings = model.Shipping?.Select(x => this.entityMapper.MapToShippingMethodModel(x)).ToList()
-                               ?? new List<ShippingMethodModel>();
+                ?? new List<ShippingMethodModel>();
 
             var price = new CartPriceModel();
             price.Initialize(model.Total, this.currencyProvider);
@@ -95,7 +95,8 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
             var product = this.catalogRepository.GetProduct(model.Product.ProductId);
             result.Product = product;
-            result.Variant = product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
+            result.Variant =
+                product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
             result.Quantity = model.Quantity;
 
             var price = new CartPriceModel();

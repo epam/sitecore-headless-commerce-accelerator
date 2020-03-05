@@ -46,9 +46,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
                     RenderingConfiguration = new DefaultRenderingConfiguration(),
                     ContextData =
                     {
-                        {
-                            "_sign", 1
-                        }
+                        { "_sign", 1 }
                     }
                 };
 

@@ -98,8 +98,8 @@ namespace Wooli.Foundation.Connect.Managers
             var queryable = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
 
             queryable = !ID.IsNullOrEmpty(categoryId)
-                            ? queryable.Where(item => item.Parent == categoryId)
-                            : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
+                ? queryable.Where(item => item.Parent == categoryId)
+                : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
 
             if (!string.IsNullOrEmpty(searchKeyword))
             {
@@ -125,13 +125,18 @@ namespace Wooli.Foundation.Connect.Managers
             return new SearchResults();
         }
 
-        public SearchResults SearchCatalogItemsByKeyword(string catalogName, string keyword, CommerceSearchOptions searchOptions)
+        public SearchResults SearchCatalogItemsByKeyword(
+            string catalogName,
+            string keyword,
+            CommerceSearchOptions searchOptions)
         {
             // ToDo: implement or remove
             throw new NotImplementedException();
         }
 
-        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(string catalogName, string searchItemType)
+        private IQueryable<CommerceSellableItemSearchResultItem> GetBaseQueryable(
+            string catalogName,
+            string searchItemType)
         {
             Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
             Assert.ArgumentNotNullOrEmpty(searchItemType, nameof(searchItemType));

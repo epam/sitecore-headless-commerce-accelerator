@@ -38,7 +38,10 @@ namespace Wooli.Foundation.Connect.Managers
             this.orderServiceProvider = connectServiceProvider.GetOrderServiceProvider();
         }
 
-        public ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(string orderId, string customerId, string shopName)
+        public ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(
+            string orderId,
+            string customerId,
+            string shopName)
         {
             Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
             Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
@@ -102,7 +105,9 @@ namespace Wooli.Foundation.Connect.Managers
                 var visitorOrderResult = this.orderServiceProvider.SubmitVisitorOrder(request);
 
                 var serviceProviderResult = visitorOrderResult;
-                return new ManagerResponse<SubmitVisitorOrderResult, Order>(serviceProviderResult, serviceProviderResult.Order);
+                return new ManagerResponse<SubmitVisitorOrderResult, Order>(
+                    serviceProviderResult,
+                    serviceProviderResult.Order);
             }
             catch (Exception ex)
             {
@@ -128,7 +133,8 @@ namespace Wooli.Foundation.Connect.Managers
             if (getVisitorOrdersResult.Success)
             {
                 // Getting the latest order
-                var orderHeader = getVisitorOrdersResult.OrderHeaders.OrderByDescending(x => x.OrderDate).FirstOrDefault();
+                var orderHeader = getVisitorOrdersResult.OrderHeaders.OrderByDescending(x => x.OrderDate)
+                    .FirstOrDefault();
                 if (orderHeader != null)
                 {
                     var getVisitorOrderRequest = new GetVisitorOrderRequest(

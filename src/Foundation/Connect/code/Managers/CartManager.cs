@@ -110,8 +110,7 @@ namespace Wooli.Foundation.Connect.Managers
             var payments = new List<PaymentInfo>();
             cart = this.RemoveAllPaymentMethods(cart).Result;
 
-            if ((federatedPaymentArgs != null)
-                && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken)
+            if ((federatedPaymentArgs != null) && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken)
                 && (billingPartyEntity != null))
             {
                 var commerceParty = this.connectEntityMapper.MapToCommerceParty(billingPartyEntity);
@@ -244,13 +243,13 @@ namespace Wooli.Foundation.Connect.Managers
             if (customerId != anonymousVisitorId)
             {
                 var flag = anonymousVisitorCart is CommerceCart
-                           && ((CommerceCart)anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
-                if ((anonymousVisitorCart != null)
-                    && (anonymousVisitorCart.Lines.Any() | flag)
+                    && ((CommerceCart)anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
+                if ((anonymousVisitorCart != null) && (anonymousVisitorCart.Lines.Any() | flag)
                     && ((commerceCart.ShopName == anonymousVisitorCart.ShopName)
                         || (commerceCart.ExternalId != anonymousVisitorCart.ExternalId)))
                 {
-                    newCartResult = this.cartServiceProvider.MergeCart(new MergeCartRequest(anonymousVisitorCart, commerceCart));
+                    newCartResult =
+                        this.cartServiceProvider.MergeCart(new MergeCartRequest(anonymousVisitorCart, commerceCart));
                 }
             }
 
@@ -320,16 +319,15 @@ namespace Wooli.Foundation.Connect.Managers
                 {
                     var product = (CommerceCartProduct)x.Product;
                     return (x.Product.ProductId == cartLine.ProductId)
-                           && (product.ProductVariantId == cartLine.VariantId)
-                           && (product.ProductCatalog == cartLine.CatalogName);
+                        && (product.ProductVariantId == cartLine.VariantId)
+                        && (product.ProductCatalog == cartLine.CatalogName);
                 }
 
-                var commerceCartLine = cart.Lines.FirstOrDefault(Selector)
-                                       ?? new CommerceCartLine(
-                                           cartLine.CatalogName,
-                                           cartLine.ProductId,
-                                           cartLine.VariantId == "-1" ? null : cartLine.VariantId,
-                                           quantity);
+                var commerceCartLine = cart.Lines.FirstOrDefault(Selector) ?? new CommerceCartLine(
+                    cartLine.CatalogName,
+                    cartLine.ProductId,
+                    cartLine.VariantId == "-1" ? null : cartLine.VariantId,
+                    quantity);
                 commerceCartLine.Quantity = quantity;
                 cartLineList.Add(commerceCartLine);
             }
@@ -353,7 +351,8 @@ namespace Wooli.Foundation.Connect.Managers
                 foreach (var shippingInfo in cart.Shipping)
                 {
                     var shipment = shippingInfo;
-                    var party = list.Find(cp => cp.PartyId.Equals(shipment.PartyID, StringComparison.OrdinalIgnoreCase));
+                    var party = list.Find(
+                        cp => cp.PartyId.Equals(shipment.PartyID, StringComparison.OrdinalIgnoreCase));
                     if (party != null)
                     {
                         list.Remove(party);
@@ -380,11 +379,15 @@ namespace Wooli.Foundation.Connect.Managers
             return string.Empty;
         }
 
-        private string GetProductLink(Item productItem, string productId, string giftCardProductId, string giftCardPageLink)
+        private string GetProductLink(
+            Item productItem,
+            string productId,
+            string giftCardProductId,
+            string giftCardPageLink)
         {
             return !productId.Equals(giftCardProductId, StringComparison.OrdinalIgnoreCase)
-                       ? LinkManager.GetDynamicUrl(productItem)
-                       : giftCardPageLink;
+                ? LinkManager.GetDynamicUrl(productItem)
+                : giftCardPageLink;
         }
     }
 }

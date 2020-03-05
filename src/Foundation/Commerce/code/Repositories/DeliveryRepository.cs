@@ -73,7 +73,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             try
             {
                 result.SetResult(model);
-                var cartResult = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+                var cartResult = this.CartManager.GetCurrentCart(
+                    this.StorefrontContext.ShopName,
+                    this.VisitorContext.ContactId);
                 if (!cartResult.ServiceProviderResult.Success)
                 {
                     result.SetErrors(cartResult.ServiceProviderResult);
@@ -124,7 +126,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                     return result;
                 }
 
-                var shippingOptionType = ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
+                var shippingOptionType =
+                    ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
                 PartyEntity address = null;
                 if (getShippingArgs.ShippingAddress != null)
                 {
@@ -186,7 +189,11 @@ namespace Wooli.Foundation.Commerce.Repositories
                     ConnectOptionTypeHelper.ToShippingOptionType(setShippingArgs.OrderShippingPreferenceType);
                 var shippingInfo = this.EntityMapper.MapToShippingInfoArgumentList(setShippingArgs.ShippingMethods);
 
-                var managerResponse = this.CartManager.AddShippingInfo(cart, partyEntityList, shippingOptionType, shippingInfo);
+                var managerResponse = this.CartManager.AddShippingInfo(
+                    cart,
+                    partyEntityList,
+                    shippingOptionType,
+                    shippingInfo);
 
                 if (!managerResponse.ServiceProviderResult.Success)
                 {

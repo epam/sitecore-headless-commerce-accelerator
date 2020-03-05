@@ -51,8 +51,8 @@ namespace Wooli.Foundation.Connect.Managers
             var productIds = products.Select(p => p.ProductId);
             var productBulkPrices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null);
             var source = (productBulkPrices == null) || (productBulkPrices.Result == null)
-                             ? new Dictionary<string, Price>()
-                             : productBulkPrices.Result;
+                ? new Dictionary<string, Price>()
+                : productBulkPrices.Result;
             foreach (var product in products)
             {
                 Price price;
@@ -81,7 +81,8 @@ namespace Wooli.Foundation.Connect.Managers
                 product.ProductId,
                 includeVariants,
                 null);
-            if ((productPrices == null) || !productPrices.ServiceProviderResult.Success || (productPrices.Result == null))
+            if ((productPrices == null) || !productPrices.ServiceProviderResult.Success
+                || (productPrices.Result == null))
             {
                 return;
             }

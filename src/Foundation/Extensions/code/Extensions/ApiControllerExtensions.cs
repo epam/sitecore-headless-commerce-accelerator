@@ -127,7 +127,8 @@ namespace Wooli.Foundation.Extensions.Extensions
             var request = controller.Request;
             if (request == null)
             {
-                throw new InvalidOperationException($"The controller {controller.GetType().FullName} request must not be null.");
+                throw new InvalidOperationException(
+                    $"The controller {controller.GetType().FullName} request must not be null.");
             }
 
             // Modifying custom configuration

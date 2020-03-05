@@ -25,7 +25,11 @@ namespace Wooli.Feature.Checkout.Tests
         {
             using (var db = new Db
             {
-                new DbItem("Articles") { new DbItem("Getting Started"), new DbItem("Troubleshooting") }
+                new DbItem("Articles")
+                {
+                    new DbItem("Getting Started"),
+                    new DbItem("Troubleshooting")
+                }
             })
             {
                 var articles = db.GetItem("/sitecore/content/Articles");
@@ -42,9 +46,7 @@ namespace Wooli.Feature.Checkout.Tests
             {
                 new DbItem("Home")
                 {
-                    {
-                        "Title", "Welcome!"
-                    }
+                    { "Title", "Welcome!" }
                 }
             })
             {

@@ -74,7 +74,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var managerResponse = this.OrderManager.SubmitVisitorOrder(currentCart.Result);
-                if (managerResponse.ServiceProviderResult.Success || !managerResponse.ServiceProviderResult.SystemMessages.Any())
+                if (managerResponse.ServiceProviderResult.Success
+                    || !managerResponse.ServiceProviderResult.SystemMessages.Any())
                 {
                     model.Temp = managerResponse.Result;
                     model.ConfirmationId = managerResponse.Result.TrackingNumber;

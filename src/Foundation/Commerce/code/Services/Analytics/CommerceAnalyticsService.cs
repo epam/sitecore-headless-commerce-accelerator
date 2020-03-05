@@ -44,7 +44,10 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
         {
             Assert.ArgumentNotNull(category, nameof(category));
 
-            this.analyticsManager.VisitedCategoryPage(this.storefrontContext.ShopName, category.SitecoreId, category.Name);
+            this.analyticsManager.VisitedCategoryPage(
+                this.storefrontContext.ShopName,
+                category.SitecoreId,
+                category.Name);
         }
 
         public void RaiseProductVisitedEvent(ProductModel product)

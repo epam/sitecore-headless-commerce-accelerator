@@ -41,7 +41,7 @@ namespace Wooli.Foundation.ReactJss.Helpers
                 }
 
                 var modifiedValue = !isFirst ? FormatFirstChar(s, x => x.ToUpper()) :
-                                    s.IsUpper() ? s.ToLower() : FormatFirstChar(s, x => x.ToLower());
+                    s.IsUpper() ? s.ToLower() : FormatFirstChar(s, x => x.ToLower());
 
                 sb.Append(modifiedValue);
 

@@ -34,11 +34,7 @@ namespace Wooli.Foundation.DependencyInjection.Tests
             var anotherSimpleTestClassType = typeof(AddByWildcardTestClasses.AnotherSimpleTestClass);
 
             var assembly = Substitute.For<FakeAssembly>();
-            assembly.ExportedTypes.Returns(
-                new[]
-                {
-                    simpleTestClassType, anotherSimpleTestClassType
-                });
+            assembly.ExportedTypes.Returns(new[] { simpleTestClassType, anotherSimpleTestClassType });
             assembly.GetExportedTypes().Returns(x => assembly.ExportedTypes);
 
             serviceCollection.AddByWildcard(Lifetime.Singleton, pattern, assembly);
@@ -64,11 +60,7 @@ namespace Wooli.Foundation.DependencyInjection.Tests
             var selfRegistratingType = typeof(AddClassesWithServiceAttributeTestClasses.SelfRegistratingClass);
 
             var assembly = Substitute.For<FakeAssembly>();
-            assembly.ExportedTypes.Returns(
-                new[]
-                {
-                    interfaceType, implementationType, selfRegistratingType
-                });
+            assembly.ExportedTypes.Returns(new[] { interfaceType, implementationType, selfRegistratingType });
             assembly.GetExportedTypes().Returns(x => assembly.ExportedTypes);
 
             serviceCollection.AddClassesWithServiceAttribute(assembly);

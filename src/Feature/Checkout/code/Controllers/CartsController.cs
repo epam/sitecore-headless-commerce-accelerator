@@ -18,18 +18,13 @@ namespace Wooli.Feature.Checkout.Controllers
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
-
     using Models.Requests;
-
     using Sitecore.Diagnostics;
-
-    using IHttpActionResult = System.Web.Mvc.ActionResult;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/carts")]
     public class CartsController : Controller
@@ -42,64 +37,60 @@ namespace Wooli.Feature.Checkout.Controllers
             this.cartService = cartService;
         }
 
-        [HttpGet, ActionName("get")]
-        public IHttpActionResult GetCart()
+        [ActionName("get")]
+        public ActionResult GetCart()
         {
             return this.Execute(this.cartService.GetCart);
         }
 
-        [HttpPost, ActionName("addCartLine")]
-        public IHttpActionResult AddCartLine(AddCartLineRequest request)
+        [ActionName("addCartLine")]
+        public ActionResult AddCartLine(AddCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(
-                cart => this.cartService.AddCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.ExecuteWithCurrentCart(cart => this.cartService.AddCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
         }
 
-        [HttpPut, ActionName("updateCartLine")]
-        public IHttpActionResult UpdateCartLine(UpdateCartLineRequest request)
+        [ActionName("updateCartLine")]
+        public ActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(
-                cart => this.cartService.UpdateCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.ExecuteWithCurrentCart(cart => this.cartService.UpdateCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
         }
 
-        [HttpDelete, ActionName("removeCartLine")]
-        public IHttpActionResult RemoveCartLine(RemoveCartLineRequest request)
+        [ActionName("removeCartLine")]
+        public ActionResult RemoveCartLine(RemoveCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(
-                cart => this.cartService.RemoveCartLine(cart, request.ProductId, request.VariantId));
+            return this.ExecuteWithCurrentCart(cart => this.cartService.RemoveCartLine(cart, request.ProductId, request.VariantId));
         }
 
-        [HttpPost, ActionName("addPromoCode")]
-        public IHttpActionResult AddPromoCode(PromoCodeRequest request)
+        [ActionName("addPromoCode")]
+        public ActionResult AddPromoCode(PromoCodeRequest request)
         {
             return this.ExecuteWithCurrentCart(cart => this.cartService.AddPromoCode(cart, request.PromoCode));
         }
 
-        [HttpDelete, ActionName("removePromoCode")]
-        public IHttpActionResult RemovePromoCode(PromoCodeRequest request)
+        [ActionName("removePromoCode")]
+        public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
             return this.ExecuteWithCurrentCart(cart => this.cartService.RemovePromoCode(cart, request.PromoCode));
         }
 
-        private IHttpActionResult ExecuteWithCurrentCart(Func<Cart, Result<Cart>> action)
+        private ActionResult ExecuteWithCurrentCart(Func<Cart, Result<Cart>> action)
         {
             return this.Execute(
                 () =>
-                {
-                    var cartResult = this.cartService.GetCart();
-                    return action.Invoke(cartResult.Data);
-                });
+            {
+                var cartResult = this.cartService.GetCart();
+                return action.Invoke(cartResult.Data);
+            });
         }
 
-        private IHttpActionResult Execute(Func<Result<Cart>> action)
+        private ActionResult Execute(Func<Result<Cart>> action)
         {
             try
             {
                 if (!this.ModelState.IsValid)
                 {
                     var errorMessages =
-                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage))
-                            .ToArray();
+                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage)).ToArray();
                     return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
                 }
 

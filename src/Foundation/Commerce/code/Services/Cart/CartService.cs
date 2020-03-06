@@ -98,8 +98,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             var cartLines = this.GetCartLinesByProduct(cartModel.Lines.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();
 
             var response = !cartLines.Any()
-                ? quantity <= 0 ? this.cartManager.RemoveCartLines(cartModel, cartLines) 
-                : this.cartManager.UpdateCartLines(cartModel, cartLines)
+                ? this.cartManager.UpdateCartLines(cartModel, cartLines)
                 : this.cartManager.AddCartLines(cartModel, cartLines);
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);

@@ -64,7 +64,9 @@ namespace Wooli.Foundation.Connect.Managers
                 paymentMethods.PaymentMethods.ToList());
         }
 
-        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(string shopName, Cart cart)
+        public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(
+            string shopName,
+            Cart cart)
         {
             var request = new GetPaymentOptionsRequest(shopName, cart);
             var paymentOptions = this.paymentServiceProvider.GetPaymentOptions(request);

@@ -61,7 +61,9 @@ namespace Wooli.Foundation.Connect.Managers
 
             var productBulkPrices = this.pricingServiceProvider.GetProductBulkPrices(bulkPricesRequest);
             var result = productBulkPrices.Prices ?? new Dictionary<string, Price>();
-            return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(productBulkPrices, result);
+            return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(
+                productBulkPrices,
+                result);
         }
 
         public ManagerResponse<GetProductPricesResult, IDictionary<string, Price>> GetProductPrices(

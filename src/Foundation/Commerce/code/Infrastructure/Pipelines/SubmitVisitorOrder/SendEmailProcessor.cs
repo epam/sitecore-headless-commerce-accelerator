@@ -40,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
         {
             var order = this.GetOrderFromArgs(args);
 
-            if ((order == null) || (order.Total == null))
+            if (order == null || order.Total == null)
             {
                 return;
             }
@@ -77,7 +77,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
         private Order GetOrderFromArgs(ServicePipelineArgs args)
         {
-            if ((args == null) || !(args.Result is SubmitVisitorOrderResult))
+            if (args == null || !(args.Result is SubmitVisitorOrderResult))
             {
                 return null;
             }

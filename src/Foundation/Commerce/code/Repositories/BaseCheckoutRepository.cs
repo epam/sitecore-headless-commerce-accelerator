@@ -74,7 +74,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 this.StorefrontContext.ShopName,
                 this.VisitorContext.ContactId);
 
-            if (currentCustomerParties.ServiceProviderResult.Success && (currentCustomerParties.Result != null))
+            if (currentCustomerParties.ServiceProviderResult.Success && currentCustomerParties.Result != null)
             {
                 baseCheckoutModel.UserAddresses = new List<AddressModel>();
                 foreach (var party in currentCustomerParties.Result)
@@ -102,7 +102,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                 result.SetResult(model);
 
                 // ToDo: investigate the sometimes issue where Success=false but no any errors and the action is success
-                if (serviceProviderResult.SystemMessages.Any() || (cart == null))
+                if (serviceProviderResult.SystemMessages.Any() || cart == null)
                 {
                     result.SetErrors(serviceProviderResult);
                 }

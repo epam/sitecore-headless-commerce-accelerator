@@ -40,10 +40,7 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
             routeCollection.MapRoute(
                 nameof(AccountController),
                 Constants.CommerceRoutePrefix + $"/{AccountControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[]
-                {
-                    typeof(AccountController).Namespace
-                },
+                namespaces: new[] { typeof(AccountController).Namespace },
                 defaults: new
                 {
                     controller = AccountControllerName
@@ -55,10 +52,7 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
             routeCollection.MapRoute(
                 nameof(AuthenticationController),
                 Constants.CommerceRoutePrefix + $"/{AuthenticationPrefix}" + "/{action}",
-                namespaces: new[]
-                {
-                    typeof(AuthenticationController).Namespace
-                },
+                namespaces: new[] { typeof(AuthenticationController).Namespace },
                 defaults: new
                 {
                     controller = AuthenticationControllerName

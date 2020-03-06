@@ -81,7 +81,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             }
 
             var currentItem = Context.Item;
-            while ((currentItem != null) && (currentItem.ID != rootItem.ID))
+            while (currentItem != null && currentItem.ID != rootItem.ID)
             {
                 var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
 

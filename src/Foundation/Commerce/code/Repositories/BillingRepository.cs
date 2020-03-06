@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     }
 
                     var cartResult = currentCart.Result;
-                    if ((cartResult.Lines != null) && cartResult.Lines.Any())
+                    if (cartResult.Lines != null && cartResult.Lines.Any())
                     {
                         ////result.Initialize(result, visitorContext);
                         this.AddPaymentOptions(result, cartResult);
@@ -141,8 +141,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                     new CartBase
                     {
                         Email = string.IsNullOrWhiteSpace(args.BillingAddress.Email)
-                                    ? this.VisitorContext.CurrentUser.Email
-                                    : args.BillingAddress.Email
+                            ? this.VisitorContext.CurrentUser.Email
+                            : args.BillingAddress.Email
                     });
 
                 if (!updateCartResponse.ServiceProviderResult.Success
@@ -195,7 +195,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             var paymentMethods = this.PaymentManager.GetPaymentMethods(cart, paymentOption);
 
-            if (paymentMethods.ServiceProviderResult.Success && (paymentMethods.Result != null))
+            if (paymentMethods.ServiceProviderResult.Success && paymentMethods.Result != null)
             {
                 result.Data.PaymentMethods = new List<PaymentMethodModel>();
                 foreach (var paymentMethod in paymentMethods.Result)
@@ -216,7 +216,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             var paymentOptions = this.PaymentManager.GetPaymentOptions(this.StorefrontContext.ShopName, cart);
 
-            if (paymentOptions.ServiceProviderResult.Success && (paymentOptions.Result != null))
+            if (paymentOptions.ServiceProviderResult.Success && paymentOptions.Result != null)
             {
                 result.Data.PaymentOptions = new List<PaymentOptionModel>();
                 foreach (var paymentOption in paymentOptions.Result)

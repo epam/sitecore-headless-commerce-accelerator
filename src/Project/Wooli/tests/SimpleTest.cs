@@ -46,9 +46,7 @@ namespace Wooli.Project.Wooli.Tests
             {
                 new DbItem("Home")
                 {
-                    {
-                        "Title", "Welcome!"
-                    }
+                    { "Title", "Welcome!" }
                 }
             })
             {

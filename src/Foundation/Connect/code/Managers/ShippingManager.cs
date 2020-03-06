@@ -56,7 +56,7 @@ namespace Wooli.Foundation.Connect.Managers
             PartyEntity address,
             List<string> cartLineExternalIdList)
         {
-            if ((cartLineExternalIdList != null) && cartLineExternalIdList.Any())
+            if (cartLineExternalIdList != null && cartLineExternalIdList.Any())
             {
             }
 
@@ -72,8 +72,8 @@ namespace Wooli.Foundation.Connect.Managers
             };
             var request = new GetShippingMethodsRequest(shippingOption, commerceParty, cart as CommerceCart);
             var shippingMethods = this.shippingServiceProvider
-                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest, GetShippingMethodsResult>(
-                    request);
+                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest,
+                    GetShippingMethodsResult>(request);
             return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(
                 shippingMethods,
                 shippingMethods.ShippingMethods);
@@ -83,7 +83,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             var request = new GetShippingOptionsRequest(cart);
             var shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
-            if (shippingOptions.Success && (shippingOptions.ShippingOptions != null))
+            if (shippingOptions.Success && shippingOptions.ShippingOptions != null)
             {
                 return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(
                     shippingOptions,

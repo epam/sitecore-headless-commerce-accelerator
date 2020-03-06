@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using System;
+
     using TypeLite;
 
     [TsClass]

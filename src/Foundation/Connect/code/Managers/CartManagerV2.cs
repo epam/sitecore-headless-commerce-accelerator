@@ -16,10 +16,14 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System;
     using System.Collections.Generic;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
+
     using DependencyInjection;
+
     using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
@@ -44,12 +48,16 @@ namespace Wooli.Foundation.Connect.Managers
 
         public CartResult LoadCart(string shopName, string customerId)
         {
-            return this.Execute(new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId), this.cartServiceProvider.LoadCart);
+            return this.Execute(
+                new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId),
+                this.cartServiceProvider.LoadCart);
         }
 
         public CartResult CreateOrResumeCart(string shopName, string userId, string customerId)
         {
-            return this.Execute(new CreateOrResumeCartRequest(shopName, userId), this.cartServiceProvider.CreateOrResumeCart);
+            return this.Execute(
+                new CreateOrResumeCartRequest(shopName, userId),
+                this.cartServiceProvider.CreateOrResumeCart);
         }
 
         public CartResult AddCartLines(Cart cart, IEnumerable<CartLine> cartLines)
@@ -61,7 +69,7 @@ namespace Wooli.Foundation.Connect.Managers
         {
             return this.Execute(new UpdateCartLinesRequest(cart, cartLines), this.cartServiceProvider.UpdateCartLines);
         }
-        
+
         public CartResult RemoveCartLines(Cart cart, IEnumerable<CartLine> cartLines)
         {
             return this.Execute(new RemoveCartLinesRequest(cart, cartLines), this.cartServiceProvider.RemoveCartLines);
@@ -82,7 +90,8 @@ namespace Wooli.Foundation.Connect.Managers
             return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
         }
 
-        private CartResult Execute<TRequest>(TRequest request, Func<TRequest, CartResult> action) where TRequest : CartRequest
+        private CartResult Execute<TRequest>(TRequest request, Func<TRequest, CartResult> action)
+            where TRequest : CartRequest
         {
             var cartResult = action.Invoke(request);
             if (!cartResult.Success)
@@ -92,6 +101,7 @@ namespace Wooli.Foundation.Connect.Managers
                     this.logService.Error(systemMessage.Message);
                 }
             }
+
             return cartResult;
         }
     }

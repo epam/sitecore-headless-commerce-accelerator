@@ -41,7 +41,10 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
                 nameof(CheckoutController),
                 Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new { controller = CheckoutControllerName });
+                defaults: new
+                {
+                    controller = CheckoutControllerName
+                });
 
             const string CartControllerName = "Cart";
 
@@ -49,7 +52,10 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
                 nameof(CartController),
                 Constants.CommerceRoutePrefix + $"/{CartControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new { controller = CartControllerName });
+                defaults: new
+                {
+                    controller = CartControllerName
+                });
 
             const string CartsControllerName = "Carts";
 
@@ -57,7 +63,10 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
                 nameof(CartsController),
                 Constants.CommerceRoutePrefix + $"/{CartsControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CartsController).Namespace },
-                defaults: new { controller = CartsControllerName });
+                defaults: new
+                {
+                    controller = CartsControllerName
+                });
         }
     }
 }

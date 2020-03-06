@@ -15,6 +15,7 @@
 namespace Wooli.Feature.Checkout.Models
 {
     using System;
+
     using TypeLite;
 
     [Obsolete("Use PromoCodeRequest instead.")]

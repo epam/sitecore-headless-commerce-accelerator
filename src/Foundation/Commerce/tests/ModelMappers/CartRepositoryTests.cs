@@ -12,17 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using NSubstitute;
-using Wooli.Foundation.Commerce.Providers;
-using Wooli.Foundation.Commerce.Repositories;
-
 namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
     using System.Collections.Generic;
 
     using Commerce.ModelMappers;
+    using Commerce.Repositories;
 
     using Models.Checkout;
+
+    using NSubstitute;
+
+    using Providers;
 
     using Sitecore.Commerce.Entities.Shipping;
 
@@ -30,14 +31,14 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
     public class AddressPartyMapperTests
     {
-        private readonly ICatalogRepository catalogRepository;
-        private readonly ICurrencyProvider currencyProvider;
-
         public AddressPartyMapperTests()
         {
             this.catalogRepository = Substitute.For<ICatalogRepository>();
             this.currencyProvider = Substitute.For<ICurrencyProvider>();
         }
+
+        private readonly ICatalogRepository catalogRepository;
+        private readonly ICurrencyProvider currencyProvider;
 
         [Fact]
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()

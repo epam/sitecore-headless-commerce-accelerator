@@ -15,8 +15,9 @@
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
     using System.Diagnostics.CodeAnalysis;
+
     using TypeLite;
-    
+
     [ExcludeFromCodeCoverage]
     [TsClass]
     public class TotalPrice

@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Carts;

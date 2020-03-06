@@ -16,6 +16,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
@@ -29,7 +30,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities
         public TotalPrice Price { get; set; }
 
         public IList<CartLine> CartLines { get; set; }
-        
+
         public IList<Address> Addresses { get; set; }
 
         public IList<ShippingMethod> ShippingMethods { get; set; }

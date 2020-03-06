@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,13 +15,17 @@
 namespace Wooli.Foundation.Commerce.ModelMappers
 {
     using System.Collections.Generic;
+
     using Connect.Models;
+
     using Models;
     using Models.Checkout;
+
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Shipping;
+
     using CountryRegionModel = Models.Region.CountryRegionModel;
 
     public interface IEntityMapper

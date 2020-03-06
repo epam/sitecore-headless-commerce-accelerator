@@ -12,21 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Web.Mvc;
-
 namespace Wooli.Feature.Checkout.Controllers
 {
     using System;
     using System.Linq;
     using System.Net;
+    using System.Web.Mvc;
+
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
+
     using Models.Requests;
+
     using Sitecore.Diagnostics;
-    using IHttpActionResult = ActionResult;
+
+    using IHttpActionResult = System.Web.Mvc.ActionResult;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/carts")]
     public class CartsController : Controller
@@ -48,19 +51,22 @@ namespace Wooli.Feature.Checkout.Controllers
         [HttpPost, ActionName("addCartLine")]
         public IHttpActionResult AddCartLine(AddCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.AddCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.ExecuteWithCurrentCart(
+                cart => this.cartService.AddCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpPut, ActionName("updateCartLine")]
         public IHttpActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.UpdateCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.ExecuteWithCurrentCart(
+                cart => this.cartService.UpdateCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpDelete, ActionName("removeCartLine")]
         public IHttpActionResult RemoveCartLine(RemoveCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.RemoveCartLine(cart, request.ProductId, request.VariantId));
+            return this.ExecuteWithCurrentCart(
+                cart => this.cartService.RemoveCartLine(cart, request.ProductId, request.VariantId));
         }
 
         [HttpPost, ActionName("addPromoCode")]
@@ -79,10 +85,10 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             return this.Execute(
                 () =>
-            {
-                var cartResult = this.cartService.GetCart();
-                return action.Invoke(cartResult.Data);
-            });
+                {
+                    var cartResult = this.cartService.GetCart();
+                    return action.Invoke(cartResult.Data);
+                });
         }
 
         private IHttpActionResult Execute(Func<Result<Cart>> action)
@@ -92,7 +98,8 @@ namespace Wooli.Feature.Checkout.Controllers
                 if (!this.ModelState.IsValid)
                 {
                     var errorMessages =
-                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage)).ToArray();
+                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage))
+                            .ToArray();
                     return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
                 }
 

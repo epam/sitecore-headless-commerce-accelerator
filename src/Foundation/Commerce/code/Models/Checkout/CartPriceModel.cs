@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using System;
+
     using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;

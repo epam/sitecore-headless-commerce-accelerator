@@ -86,7 +86,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                             dest => dest.ContactId,
                             opt => opt.MapFrom(
                                 src => src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
-                        .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
+                        .ForMember(
+                            dest => dest.CustomerId,
+                            opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                         .ReverseMap();
 
                     cfg.CreateMap<ICountryRegionModel, CountryRegionModel>();

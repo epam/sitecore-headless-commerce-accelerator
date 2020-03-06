@@ -55,7 +55,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             var userLoginResult = this.LoginUser(userLogin, out var commerceUserModel);
 
-            if (!userLoginResult || (commerceUserModel == null))
+            if (!userLoginResult || commerceUserModel == null)
             {
                 return this.Redirect("/signIn");
             }

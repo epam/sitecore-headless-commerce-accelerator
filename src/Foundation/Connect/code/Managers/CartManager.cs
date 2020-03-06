@@ -301,8 +301,7 @@ namespace Wooli.Foundation.Connect.Managers
                 bool Selector(CartLine x)
                 {
                     var product = (CommerceCartProduct)x.Product;
-                    return x.Product.ProductId == cartLine.ProductId
-                        && product.ProductVariantId == cartLine.VariantId
+                    return x.Product.ProductId == cartLine.ProductId && product.ProductVariantId == cartLine.VariantId
                         && product.ProductCatalog == cartLine.CatalogName;
                 }
 

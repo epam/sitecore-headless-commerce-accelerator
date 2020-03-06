@@ -81,8 +81,7 @@ namespace Wooli.Foundation.Connect.Managers
                 product.ProductId,
                 includeVariants,
                 null);
-            if (productPrices == null || !productPrices.ServiceProviderResult.Success
-                || productPrices.Result == null)
+            if (productPrices == null || !productPrices.ServiceProviderResult.Success || productPrices.Result == null)
             {
                 return;
             }

@@ -30,30 +30,32 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     public interface IEntityMapper
     {
-        AddressModel MapToAddress(Party item);
-
-        CommerceUserModel MapToCommerceUserModel(CommerceUser x);
-
-        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
-
-        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
-
-        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
-
-        Party MapToParty(AddressModel item);
+        TResult Map<TResult, TSource>(TSource source) where TSource : class;
 
         PartyEntity MapToPartyEntity(AddressModel item);
 
         List<PartyEntity> MapToPartyEntityList(IEnumerable<AddressModel> items);
 
+        Party MapToParty(AddressModel item);
+
         ShippingInfoArgument MapToShippingInfoArgument(ShippingMethodModel item);
 
         List<ShippingInfoArgument> MapToShippingInfoArgumentList(IEnumerable<ShippingMethodModel> items);
 
+        AddressModel MapToAddress(Party item);
+
+        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
+
         ShippingMethodModel MapToShippingMethodModel(ShippingMethod shippingMethod);
+
+        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
+
+        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
 
         ShippingMethodModel MapToShippingMethodModel(ShippingInfo x);
 
-        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
+        CommerceUserModel MapToCommerceUserModel(CommerceUser x);
+
+        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
     }
 }

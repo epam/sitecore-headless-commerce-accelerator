@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
+
     using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
@@ -23,6 +25,7 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.TotalPrice instead.")]
     public class CartPriceModel
     {
         public string CurrencyCode { get; set; }

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2019 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,29 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Checkout
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using System;
-
-    using Catalog;
-
+    using System.Collections.Generic;
+    using System.Linq;
+    using Sitecore.Data.Items;
     using TypeLite;
 
     [TsClass]
-    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.CartLine")]
-    public class CartLineModel
+    public class Product : BaseProduct
     {
-        public string Id { get; set; }
+        public Product(Item sellableItem) : base(sellableItem)
+        {
+            this.SitecoreId = sellableItem["SitecoreId"];
+            this.Variants = sellableItem.Children.Select(commerceProductVariant => new ProductVariant(commerceProductVariant)).ToList();
+        }
 
-        public ProductModel Product { get; set; }
+        public string SitecoreId { get; set; }
 
-        public ProductVariantModel Variant { get; set; }
-
-        public decimal Quantity { get; set; }
-
-        public CartPriceModel Price { get; set; }
-
-        [TsIgnore]
-        public object Temp { get; set; }
+        public IList<ProductVariant> Variants { get; set; }
     }
 }

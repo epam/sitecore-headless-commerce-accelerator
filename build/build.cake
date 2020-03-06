@@ -3,6 +3,7 @@
 // //////////////////////////////////////////////////
 #tool nuget:?package=Cake.Sitecore&prerelease
 #load nuget:?package=Cake.Sitecore&prerelease
+#load "./../src/scripts/generateTypescript.cake"
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -86,6 +87,32 @@ Task("Build-and-Publish") // LocalDev
     .IsDependentOn("002-Build")
     .IsDependentOn("005-Publish")
     ;
+
+Task("Generate-Client-Models")
+    .Does(() =>
+        {
+            var regex = @"^.+[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\](client|code)[/\\].+$";
+
+            var templateFiles = GetFiles($"./../src/*/*/client/**/*.tt");
+            Information($"Found files: {templateFiles.Count}");
+
+            foreach (var templateFile in templateFiles)
+            {
+                Information($"Running client generation in {templateFile}.");
+
+                Regex fileRegex = new Regex(regex);
+                System.Text.RegularExpressions.Match match = fileRegex.Match(templateFile.FullPath);
+                var layer = match.Groups["layerName"];
+                var project = match.Groups["projectName"];
+
+                var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
+                var dllFile = GetFiles($"./../src/{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
+
+                generateTypeScript(dllFile, tsFile);
+            }
+        })
+        ;
+
 
 // //////////////////////////////////////////////////
 // Execution

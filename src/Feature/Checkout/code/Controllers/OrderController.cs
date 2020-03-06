@@ -52,7 +52,11 @@ namespace Wooli.Feature.Checkout.Controllers
         }
 
         [Route("get")]
-        public IHttpActionResult GetOrders(DateTime? fromDate = null, DateTime? untilDate = null, int page = 0, int count = 5)
+        public IHttpActionResult GetOrders(
+            DateTime? fromDate = null,
+            DateTime? untilDate = null,
+            int page = 0,
+            int count = 5)
         {
             if (page < 0)
             {

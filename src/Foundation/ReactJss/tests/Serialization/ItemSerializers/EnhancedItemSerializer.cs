@@ -41,12 +41,8 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.ItemSerializers
             {
                 new DbItem("dataSource")
                 {
-                    {
-                        "field", "value1"
-                    },
-                    {
-                        "Text Field", "value2"
-                    }
+                    { "field", "value1" },
+                    { "Text Field", "value2" }
                 }
             }.WithLanguages(Language.Parse("en")))
             {

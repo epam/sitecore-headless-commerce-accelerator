@@ -94,7 +94,11 @@ namespace Wooli.Foundation.Commerce.Repositories
             return result;
         }
 
-        public virtual Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)
+        public virtual Result<OrderHistoryResultModel> GetOrders(
+            DateTime? fromDate,
+            DateTime? untilDate,
+            int page,
+            int count)
         {
             var result = new Result<OrderHistoryResultModel>();
             try

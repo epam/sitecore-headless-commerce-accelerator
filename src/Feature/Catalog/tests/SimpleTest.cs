@@ -46,9 +46,7 @@ namespace Wooli.Feature.Catalog.Tests
             {
                 new DbItem("Home")
                 {
-                    {
-                        "Title", "Welcome!"
-                    }
+                    { "Title", "Welcome!" }
                 }
             })
             {

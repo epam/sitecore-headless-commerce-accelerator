@@ -43,10 +43,13 @@ namespace Wooli.Foundation.Connect.ModelMappers
                             dest => dest.PaymentMethodID,
                             opt => opt.MapFrom(src => CommerceRequestUtils.GetPaymentOptionId("Federated")));
                     cfg.CreateMap<ShippingInfoArgument, CommerceShippingInfo>()
-                        .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingPreferenceType))
+                        .ForMember(
+                            dest => dest.ShippingOptionType,
+                            opt => opt.MapFrom(src => src.ShippingPreferenceType))
                         .ForMember(
                             dest => dest.LineIDs,
-                            opt => opt.MapFrom(src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
+                            opt => opt.MapFrom(
+                                src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
                 });
             this.innerMapper = new Mapper(config);
         }

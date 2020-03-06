@@ -29,6 +29,19 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
 
     public class BaseSafeJssGetLayoutServiceContextProcessorTests
     {
+        public class ErrorableGetLayoutServiceContextProcessor : BaseSafeJssGetLayoutServiceContextProcessor
+        {
+            public ErrorableGetLayoutServiceContextProcessor(IConfigurationResolver configurationResolver)
+                : base(configurationResolver)
+            {
+            }
+
+            protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
+            {
+                throw new Exception("The test shouldnot show this exception!");
+            }
+        }
+
         [Fact]
         public void ResolveContents_ErrorableContentsResolver_ExceptionNotThrowed()
         {
@@ -46,9 +59,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
                     RenderingConfiguration = new DefaultRenderingConfiguration(),
                     ContextData =
                     {
-                        {
-                            "_sign", 1
-                        }
+                        { "_sign", 1 }
                     }
                 };
 
@@ -60,19 +71,6 @@ namespace Wooli.Foundation.ReactJss.Tests.Infrastructure
                 var resultObject = args.ContextData["_sign"];
                 var value = Assert.IsType<int>(resultObject);
                 Assert.Equal(1, value);
-            }
-        }
-
-        public class ErrorableGetLayoutServiceContextProcessor : BaseSafeJssGetLayoutServiceContextProcessor
-        {
-            public ErrorableGetLayoutServiceContextProcessor(IConfigurationResolver configurationResolver)
-                : base(configurationResolver)
-            {
-            }
-
-            protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
-            {
-                throw new Exception("The test shouldnot show this exception!");
             }
         }
     }

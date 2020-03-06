@@ -32,8 +32,15 @@ namespace Wooli.Foundation.Connect.Managers
 
         Item GetProduct(string catalogName, string productId);
 
-        SearchResults GetProducts(string catalogName, ID categoryId, CommerceSearchOptions searchOptions, string searchKeyword);
+        SearchResults GetProducts(
+            string catalogName,
+            ID categoryId,
+            CommerceSearchOptions searchOptions,
+            string searchKeyword);
 
-        SearchResults SearchCatalogItemsByKeyword(string catalogName, string searchKeyword, CommerceSearchOptions searchOptions);
+        SearchResults SearchCatalogItemsByKeyword(
+            string catalogName,
+            string searchKeyword,
+            CommerceSearchOptions searchOptions);
     }
 }

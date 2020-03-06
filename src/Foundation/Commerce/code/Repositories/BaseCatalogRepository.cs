@@ -110,13 +110,15 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             foreach (var renderingModelVariant in renderingModel.Variants)
             {
-                var variant = product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
+                var variant =
+                    product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
                 if (variant == null)
                 {
                     continue;
                 }
 
-                renderingModelVariant.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
+                renderingModelVariant.CurrencySymbol =
+                    this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
                 renderingModelVariant.StockStatusName = variant.StockStatusName;

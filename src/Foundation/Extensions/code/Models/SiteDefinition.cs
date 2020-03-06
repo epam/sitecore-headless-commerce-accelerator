@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Extensions.Models
         public string HostName { get; set; }
 
         public bool IsCurrent =>
-            (Context.Site != null) && Context.Site.Name.Equals(this.Name, StringComparison.OrdinalIgnoreCase);
+            Context.Site != null && Context.Site.Name.Equals(this.Name, StringComparison.OrdinalIgnoreCase);
 
         public string Name { get; set; }
 

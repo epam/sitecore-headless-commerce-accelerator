@@ -35,12 +35,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     public class CommerceAnalyticsServiceTests
     {
-        private readonly IAnalyticsManager analyticsManager;
-
-        private readonly IFixture fixture;
-
-        private readonly IStorefrontContext storefrontContext;
-
         public CommerceAnalyticsServiceTests()
         {
             this.fixture = new Fixture().Customize(new AutoDbCustomization());
@@ -50,6 +44,12 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             this.analyticsManager = Substitute.For<IAnalyticsManager>();
         }
+
+        private readonly IAnalyticsManager analyticsManager;
+
+        private readonly IFixture fixture;
+
+        private readonly IStorefrontContext storefrontContext;
 
         [Fact]
         public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()
@@ -62,7 +62,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
             service.RaiseCategoryVisitedEvent(category);
 
             // assert
-            this.analyticsManager.Received(1).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            this.analyticsManager.Received(1)
+                .VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -74,7 +75,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseCategoryVisitedEvent(category); });
-            this.analyticsManager.Received(0).VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            this.analyticsManager.Received(0)
+                .VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -88,7 +90,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
             service.RaiseProductVisitedEvent(product);
 
             // assert
-            this.analyticsManager.Received(1).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            this.analyticsManager.Received(1)
+                .VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
 
         [Fact]
@@ -100,7 +103,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });
-            this.analyticsManager.Received(0).VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
+            this.analyticsManager.Received(0)
+                .VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>());
         }
     }
 }

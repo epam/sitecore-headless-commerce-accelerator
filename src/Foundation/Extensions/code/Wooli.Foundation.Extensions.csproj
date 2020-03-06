@@ -509,7 +509,7 @@
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Extensions\LinkFieldOption.cs" />
     <Compile Include="Extensions\SiteExtensions.cs" />
-    <Compile Include="Infrastructure\SiteSpecificPipelineProcessor .cs" />
+    <Compile Include="Infrastructure\SiteSpecificPipelineProcessor.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\ErrorsJsonResultModel.cs" />
     <Compile Include="Models\ErrorJsonResultModel.cs" />

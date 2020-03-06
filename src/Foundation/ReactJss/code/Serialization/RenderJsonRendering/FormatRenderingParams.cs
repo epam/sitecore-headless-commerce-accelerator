@@ -36,7 +36,8 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
             args.Result.RenderingParams = this.FormatRenderingParameters(args.Result.RenderingParams);
         }
 
-        private IDictionary<string, string> FormatRenderingParameters(IDictionary<string, string> originalRenderingParams)
+        private IDictionary<string, string> FormatRenderingParameters(
+            IDictionary<string, string> originalRenderingParams)
         {
             var renderingParams = new Dictionary<string, string>();
 

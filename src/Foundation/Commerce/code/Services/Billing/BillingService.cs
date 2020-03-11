@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Checkout
+namespace Wooli.Foundation.Commerce.Services.Billing
 {
     using System;
-    using System.Collections.Generic;
 
-    using TypeLite;
+    using DependencyInjection;
 
-    [TsClass]
-    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.DeliveryInfo")]
-    public class DeliveryModel : BaseCheckoutModel
+    using Models;
+    using Models.Entities;
+
+    [Service(typeof(IBillingService), Lifetime = Lifetime.Singleton)]
+    public class BillingService : IBillingService
     {
-        public string NewPartyId { get; set; }
+        public Result<BillingInfo> GetBillingOptions()
+        {
+            throw new NotImplementedException();
+        }
 
-        public IList<ShippingOptionModel> ShippingOptions { get; set; }
+        public Result<VoidResult> SetPaymentOptions(Address billingAddress, FederatedPaymentInfo federatedPayment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -48,7 +48,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
     using CountryRegionModel = Models.Region.CountryRegionModel;
     using FederatedPaymentInfo = Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo;
+    using ShippingInfo = Sitecore.Commerce.Entities.Carts.ShippingInfo;
     using ShippingMethod = Sitecore.Commerce.Entities.Shipping.ShippingMethod;
+    using ShippingOption = Sitecore.Commerce.Entities.Shipping.ShippingOption;
     using SubdivisionModel = Models.Region.SubdivisionModel;
 
     [Service(typeof(IEntityMapper))]

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Checkout
+namespace Wooli.Feature.Checkout.Models.Requests
 {
-    using System;
     using System.Collections.Generic;
 
-    using TypeLite;
+    using Foundation.Commerce.Models.Entities;
 
-    [TsClass]
-    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.DeliveryInfo")]
-    public class DeliveryModel : BaseCheckoutModel
+    public class SetShippingOptionsRequest
     {
-        public string NewPartyId { get; set; }
+        public string OrderShippingPreferenceType { get; set; }
 
-        public IList<ShippingOptionModel> ShippingOptions { get; set; }
+        public List<Address> ShippingAddresses { get; set; }
+
+        public List<ShippingMethod> ShippingMethods { get; set; }
     }
 }

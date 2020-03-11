@@ -14,9 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
+
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.PaymentMethod instead.")]
     public class PaymentMethodModel
     {
         public string Description { get; set; }

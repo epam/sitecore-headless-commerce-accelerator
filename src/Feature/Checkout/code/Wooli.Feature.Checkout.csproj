@@ -565,6 +565,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CartsController.cs" />
+    <Compile Include="Controllers\CheckoutV2Controller.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Infrastructure\Pipelines\ContentsResolvers\CheckoutNavigationResolver.cs" />
@@ -573,6 +574,8 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Requests\PromoCodeRequest.cs" />
     <Compile Include="Models\Requests\RemoveCartLineRequest.cs" />
+    <Compile Include="Models\Requests\SetPaymentOptionsRequest.cs" />
+    <Compile Include="Models\Requests\SetShippingOptionsRequest.cs" />
     <Compile Include="Models\Requests\UpdateCartLineRequest.cs" />
     <Compile Include="Models\Requests\AddCartLineRequest.cs" />
     <Compile Include="Models\Requests\CartLineRequest.cs" />

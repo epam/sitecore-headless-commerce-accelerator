@@ -14,11 +14,13 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
     using System.Collections.Generic;
 
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.BillingInfo instead.")]
     public class BillingModel : BaseCheckoutModel
     {
         public string PaymentClientToken { get; set; }

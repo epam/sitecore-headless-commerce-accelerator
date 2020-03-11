@@ -667,8 +667,12 @@
     <Compile Include="Models\Checkout\SubmitOrderModel.cs" />
     <Compile Include="Models\CommerceUserModel.cs" />
     <Compile Include="Models\Entities\Address.cs" />
+    <Compile Include="Models\Entities\BaseProduct.cs" />
     <Compile Include="Models\Entities\Cart.cs" />
     <Compile Include="Models\Entities\CartLine.cs" />
+    <Compile Include="Models\Entities\FederatedPaymentInfo.cs" />
+    <Compile Include="Models\Entities\Product.cs" />
+    <Compile Include="Models\Entities\ProductVariant.cs" />
     <Compile Include="Models\Entities\TotalPrice.cs" />
     <Compile Include="Models\Entities\ShippingMethod.cs" />
     <Compile Include="Models\Region\CountryRegionModel.cs" />

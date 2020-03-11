@@ -39,46 +39,41 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         /// <summary>
         /// Adds product to cart
         /// </summary>
-        /// <param name="cart">Cart to add</param>
         /// <param name="productId">Product id</param>
         /// <param name="variantId">Variant product id</param>
         /// <param name="quantity">Quantity</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> AddCartLine(Cart cart, string productId, string variantId, decimal quantity);
+        Result<Cart> AddCartLine(string productId, string variantId, decimal quantity);
 
         /// <summary>
         /// Updates product in cart
         /// </summary>
-        /// <param name="cart">Cart to update</param>
         /// <param name="productId">Product id</param>
         /// <param name="variantId">Variant product id</param>
         /// <param name="quantity">Quantity</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> UpdateCartLine(Cart cart, string productId, string variantId, decimal quantity);
+        Result<Cart> UpdateCartLine(string productId, string variantId, decimal quantity);
 
         /// <summary>
         /// Removes product from cart
         /// </summary>
-        /// <param name="cart">Cart to remove product from</param>
         /// <param name="productId">Product id</param>
         /// <param name="variantId">Variant product id</param>
         /// <returns>Updated cart result</returns>
-        Result<Cart> RemoveCartLine(Cart cart, string productId, string variantId);
+        Result<Cart> RemoveCartLine(string productId, string variantId);
 
         /// <summary>
         /// Adds promo code to cart
         /// </summary>
-        /// <param name="cart">Cart to add promo code to</param>
         /// <param name="promoCode">Promo code to add</param>
         /// <returns></returns>
-        Result<Cart> AddPromoCode(Cart cart, string promoCode);
+        Result<Cart> AddPromoCode(string promoCode);
 
         /// <summary>
         /// Removes promo code from cart
         /// </summary>
-        /// <param name="cart">Cart to remove promo code from</param>
         /// <param name="promoCode">Promo code to add</param>
         /// <returns></returns>
-        Result<Cart> RemovePromoCode(Cart cart, string promoCode);
+        Result<Cart> RemovePromoCode(string promoCode);
     }
 }

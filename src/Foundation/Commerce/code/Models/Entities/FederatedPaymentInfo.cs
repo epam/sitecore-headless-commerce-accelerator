@@ -14,29 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-
-    using TypeLite;
-
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class Cart
+    public class FederatedPaymentInfo
     {
-        public string Id { get; set; }
+        public string CardToken { get; set; }
 
-        public string Email { get; internal set; }
+        public string PartyId { get; set; }
 
-        public TotalPrice Price { get; set; }
-
-        public IList<CartLine> CartLines { get; set; }
-
-        public IList<Address> Addresses { get; set; }
-
-        public IList<string> Adjustments { get; set; }
-
-        public IList<ShippingMethod> Shipping { get; set; }
-
-        public IList<FederatedPaymentInfo> Payment { get; set; }
+        public string PaymentMethodId { get; set; }
     }
 }

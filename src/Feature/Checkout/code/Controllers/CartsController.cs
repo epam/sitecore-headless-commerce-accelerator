@@ -46,43 +46,33 @@ namespace Wooli.Feature.Checkout.Controllers
         [ActionName("addCartLine")]
         public ActionResult AddCartLine(AddCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.AddCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.Execute(() => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [ActionName("updateCartLine")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.UpdateCartLine(cart, request.ProductId, request.VariantId, request.Quantity));
+            return this.Execute(() => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [ActionName("removeCartLine")]
         public ActionResult RemoveCartLine(RemoveCartLineRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.RemoveCartLine(cart, request.ProductId, request.VariantId));
+            return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
         }
 
         [ActionName("addPromoCode")]
         public ActionResult AddPromoCode(PromoCodeRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.AddPromoCode(cart, request.PromoCode));
+            return this.Execute(() => this.cartService.AddPromoCode(request.PromoCode));
         }
 
         [ActionName("removePromoCode")]
         public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
-            return this.ExecuteWithCurrentCart(cart => this.cartService.RemovePromoCode(cart, request.PromoCode));
+            return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));
         }
-
-        private ActionResult ExecuteWithCurrentCart(Func<Cart, Result<Cart>> action)
-        {
-            return this.Execute(
-                () =>
-            {
-                var cartResult = this.cartService.GetCart();
-                return action.Invoke(cartResult.Data);
-            });
-        }
-
+        
         private ActionResult Execute(Func<Result<Cart>> action)
         {
             try

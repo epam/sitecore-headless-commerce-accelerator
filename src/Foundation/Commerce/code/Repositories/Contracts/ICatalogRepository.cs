@@ -20,12 +20,12 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     public interface ICatalogRepository
     {
-        CategoryModel GetCurrentCategory();
-
-        ProductModel GetCurrentProduct();
-
         ProductModel GetProduct(string productd);
 
         ProductModel GetProduct(Item productItem);
+
+        ProductModel GetCurrentProduct();
+
+        CategoryModel GetCurrentCategory();
     }
 }

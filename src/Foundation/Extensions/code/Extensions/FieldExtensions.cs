@@ -53,8 +53,8 @@ namespace Wooli.Foundation.Extensions.Extensions
             }
 
             return builderOptions == null
-                       ? imageField.ImageUrl()
-                       : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, builderOptions));
+                ? imageField.ImageUrl()
+                : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, builderOptions));
         }
 
         public static bool IsChecked(this Field checkboxField)

@@ -39,6 +39,8 @@ namespace Wooli.Foundation.Commerce.Context
             this.customerProvider = customerProvider;
         }
 
+        private IDictionary Items => HttpContext.Current.Items;
+
         public string ContactId => this.CurrentUser?.ContactId;
 
         public CommerceUserModel CurrentUser
@@ -46,7 +48,5 @@ namespace Wooli.Foundation.Commerce.Context
             get => this.Items[CurrentUserItemKey] as CommerceUserModel;
             set => this.Items[CurrentUserItemKey] = value;
         }
-
-        private IDictionary Items => HttpContext.Current.Items;
     }
 }

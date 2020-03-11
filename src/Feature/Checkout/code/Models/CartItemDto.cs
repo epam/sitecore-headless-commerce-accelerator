@@ -14,8 +14,11 @@
 
 namespace Wooli.Feature.Checkout.Models
 {
+    using System;
+
     using TypeLite;
 
+    [Obsolete("Use CartLinesRequest instead.")]
     [TsClass]
     public class CartItemDto
     {

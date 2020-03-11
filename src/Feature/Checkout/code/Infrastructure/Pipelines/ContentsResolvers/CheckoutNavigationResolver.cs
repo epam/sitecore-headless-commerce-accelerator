@@ -50,7 +50,7 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 
             var checkoutNavigation = this.sitecoreService.GetItem<ICheckoutNavigation>(item);
             var checkoutSteps = checkoutNavigation?.CheckoutSteps;
-            if ((checkoutSteps == null) || !checkoutSteps.Any())
+            if (checkoutSteps == null || !checkoutSteps.Any())
             {
                 return processedItem;
             }

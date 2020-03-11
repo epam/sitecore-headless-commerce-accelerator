@@ -44,11 +44,10 @@ namespace Wooli.Foundation.Extensions.Services
         }
 
         public IEnumerable<SiteDefinition> SiteDefinitions =>
-            this.siteDefinitions
-            ?? (this.siteDefinitions = this.sites.Where(this.IsValidSite)
-                    .Select(this.Create)
-                    .OrderBy(s => s.RootItem.Appearance.Sortorder)
-                    .ToArray());
+            this.siteDefinitions ?? (this.siteDefinitions = this.sites.Where(this.IsValidSite)
+                .Select(this.Create)
+                .OrderBy(s => s.RootItem.Appearance.Sortorder)
+                .ToArray());
 
         public SiteDefinition GetContextSiteDefinition(Item item)
         {

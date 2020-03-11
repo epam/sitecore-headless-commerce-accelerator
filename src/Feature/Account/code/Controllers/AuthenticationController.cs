@@ -17,6 +17,7 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
+    using Foundation.Base.Services.Authentication;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
@@ -25,10 +26,10 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
 
-    using Sitecore.Security.Authentication;
-
     public class AuthenticationController : Controller
     {
+        private readonly IAuthenticationService authenticationService;
+
         private readonly ICartRepository cartRepository;
 
         private readonly ICommerceTrackingService commerceTrackingService;
@@ -38,15 +39,17 @@ namespace Wooli.Feature.Account.Controllers
         private readonly IVisitorContext visitorContext;
 
         public AuthenticationController(
-            ICustomerProvider customerProvider,
-            IVisitorContext visitorContext,
+            IAuthenticationService authenticationService,
             ICartRepository cartRepository,
-            ICommerceTrackingService commerceTrackingService)
+            ICommerceTrackingService commerceTrackingService,
+            ICustomerProvider customerProvider,
+            IVisitorContext visitorContext)
         {
-            this.customerProvider = customerProvider;
-            this.visitorContext = visitorContext;
+            this.authenticationService = authenticationService;
             this.cartRepository = cartRepository;
+            this.customerProvider = customerProvider;
             this.commerceTrackingService = commerceTrackingService;
+            this.visitorContext = visitorContext;
         }
 
         [HttpPost]
@@ -55,7 +58,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             var userLoginResult = this.LoginUser(userLogin, out var commerceUserModel);
 
-            if (!userLoginResult || (commerceUserModel == null))
+            if (!userLoginResult || commerceUserModel == null)
             {
                 return this.Redirect("/signIn");
             }
@@ -73,7 +76,7 @@ namespace Wooli.Feature.Account.Controllers
 
             this.commerceTrackingService.EndVisit(true);
             this.Session.Abandon();
-            AuthenticationManager.Logout();
+            this.authenticationService.Logout();
 
             return this.RedirectOnSignIn(null);
         }
@@ -116,7 +119,7 @@ namespace Wooli.Feature.Account.Controllers
                 return false;
             }
 
-            return AuthenticationManager.Login(userName, userLogin.Password);
+            return this.authenticationService.Login(userName, userLogin.Password);
         }
 
         private ActionResult RedirectOnSignIn(string returnUrl)

@@ -20,14 +20,31 @@ namespace Wooli.Foundation.Commerce.Models
 
     using Sitecore.Commerce.Services;
 
-    public class Result<T>
-        where T : class
+    public class Result<T> where T : class
     {
+        public Result()
+        {
+        }
+
+        public Result(T result, IList<string> errorMessages = null)
+        {
+            this.Data = result;
+            if (errorMessages != null && errorMessages.Any())
+            {
+                this.SetErrors(errorMessages);
+            }
+        }
+
+        public bool Success { get; set; } = true;
+
         public T Data { get; private set; }
 
         public IList<string> Errors { get; set; } = new List<string>();
 
-        public bool Success { get; set; } = true;
+        public void SetResult(T result)
+        {
+            this.Data = result;
+        }
 
         public void SetError(string error)
         {
@@ -71,11 +88,6 @@ namespace Wooli.Foundation.Commerce.Models
             {
                 this.SetError(error);
             }
-        }
-
-        public void SetResult(T result)
-        {
-            this.Data = result;
         }
     }
 }

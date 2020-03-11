@@ -666,6 +666,11 @@
     <Compile Include="Models\Checkout\ShippingOptionModel.cs" />
     <Compile Include="Models\Checkout\SubmitOrderModel.cs" />
     <Compile Include="Models\CommerceUserModel.cs" />
+    <Compile Include="Models\Entities\Address.cs" />
+    <Compile Include="Models\Entities\Cart.cs" />
+    <Compile Include="Models\Entities\CartLine.cs" />
+    <Compile Include="Models\Entities\TotalPrice.cs" />
+    <Compile Include="Models\Entities\ShippingMethod.cs" />
     <Compile Include="Models\Region\CountryRegionModel.cs" />
     <Compile Include="Models\Region\SubdivisionModel.cs" />
     <Compile Include="Models\Result.cs" />
@@ -707,6 +712,8 @@
     <Compile Include="Providers\Contracts\ISearchInformationProvider.cs" />
     <Compile Include="Providers\Contracts\ISettingsProvider.cs" />
     <Compile Include="Providers\SearchInformationProvider.cs" />
+    <Compile Include="Services\Cart\CartService.cs" />
+    <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
@@ -740,6 +747,10 @@
     <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>Wooli.Foundation.GlassMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>Wooli.Foundation.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Connect\code\Wooli.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>

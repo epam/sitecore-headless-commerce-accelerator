@@ -46,9 +46,7 @@ namespace Wooli.Feature.Navigation.Tests
             {
                 new DbItem("Home")
                 {
-                    {
-                        "Title", "Welcome!"
-                    }
+                    { "Title", "Welcome!" }
                 }
             })
             {

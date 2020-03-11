@@ -14,9 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using System;
+
     using Models;
     using Models.Checkout;
 
+    [Obsolete("This repository is obsolete. Use ICartService instead.")]
     public interface ICartRepository
     {
         Result<CartModel> AddProductVariantToCart(string productId, string variantId, decimal quantity);

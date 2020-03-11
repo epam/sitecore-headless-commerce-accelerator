@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Connect.Utils
         {
             var paymentOptions = Context.Database.GetItem(
                 "/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
-            if ((paymentOptions != null) && paymentOptions.Children.Any())
+            if (paymentOptions != null && paymentOptions.Children.Any())
             {
                 var paymentOption = paymentOptions.Children.FirstOrDefault(
                     o => o.Name.Equals(paymentType, StringComparison.OrdinalIgnoreCase));

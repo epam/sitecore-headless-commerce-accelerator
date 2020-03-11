@@ -24,7 +24,9 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContex
     {
         private readonly IVisitorContext visitorContext;
 
-        public CommerceUserContextExtension(IVisitorContext visitorContext, IConfigurationResolver configurationResolver)
+        public CommerceUserContextExtension(
+            IVisitorContext visitorContext,
+            IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
             this.visitorContext = visitorContext;

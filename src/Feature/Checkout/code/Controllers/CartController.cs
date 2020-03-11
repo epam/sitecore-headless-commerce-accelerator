@@ -14,6 +14,7 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
+    using System;
     using System.Linq;
     using System.Net;
     using System.Web.Http;
@@ -24,6 +25,7 @@ namespace Wooli.Feature.Checkout.Controllers
 
     using Models;
 
+    [Obsolete("Use CartsController instead.")]
     public class CartController : Controller
     {
         private readonly ICartRepository cartRepository;
@@ -37,7 +39,10 @@ namespace Wooli.Feature.Checkout.Controllers
         [System.Web.Mvc.ActionName("add")]
         public ActionResult AddProductVariant([FromBody] CartItemDto cartItem)
         {
-            var result = this.cartRepository.AddProductVariantToCart(cartItem.ProductId, cartItem.VariantId, cartItem.Quantity);
+            var result = this.cartRepository.AddProductVariantToCart(
+                cartItem.ProductId,
+                cartItem.VariantId,
+                cartItem.Quantity);
 
             if (result.Success)
             {

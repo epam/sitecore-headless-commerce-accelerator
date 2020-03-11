@@ -53,15 +53,9 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
                     {
                         RenderingParams = new Dictionary<string, string>
                         {
-                            {
-                                "Param1", "Value1"
-                            },
-                            {
-                                "Param 2", "Value 2"
-                            },
-                            {
-                                "notChanged", "1"
-                            }
+                            { "Param1", "Value1" },
+                            { "Param 2", "Value 2" },
+                            { "notChanged", "1" }
                         }
                     }
                 };
@@ -75,9 +69,9 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
                 Assert.NotNull(renderingParams);
 
                 Assert.Equal(3, renderingParams.Count);
-                Assert.Contains(renderingParams, x => (x.Key == "param1") && (x.Value == "Value1"));
-                Assert.Contains(renderingParams, x => (x.Key == "param2") && (x.Value == "Value 2"));
-                Assert.Contains(renderingParams, x => (x.Key == "notChanged") && (x.Value == "1"));
+                Assert.Contains(renderingParams, x => x.Key == "param1" && x.Value == "Value1");
+                Assert.Contains(renderingParams, x => x.Key == "param2" && x.Value == "Value 2");
+                Assert.Contains(renderingParams, x => x.Key == "notChanged" && x.Value == "1");
             }
         }
     }

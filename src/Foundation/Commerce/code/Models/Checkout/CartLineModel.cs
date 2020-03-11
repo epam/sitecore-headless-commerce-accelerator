@@ -14,24 +14,27 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
+
     using Catalog;
 
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.CartLine")]
     public class CartLineModel
     {
         public string Id { get; set; }
 
-        public CartPriceModel Price { get; set; }
-
         public ProductModel Product { get; set; }
+
+        public ProductVariantModel Variant { get; set; }
 
         public decimal Quantity { get; set; }
 
+        public CartPriceModel Price { get; set; }
+
         [TsIgnore]
         public object Temp { get; set; }
-
-        public ProductVariantModel Variant { get; set; }
     }
 }

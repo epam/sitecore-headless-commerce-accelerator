@@ -17,8 +17,13 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
     using System.Collections.Generic;
 
     using Commerce.ModelMappers;
+    using Commerce.Repositories;
 
     using Models.Checkout;
+
+    using NSubstitute;
+
+    using Providers;
 
     using Sitecore.Commerce.Entities.Shipping;
 
@@ -26,6 +31,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
     public class AddressPartyMapperTests
     {
+        public AddressPartyMapperTests()
+        {
+            this.catalogRepository = Substitute.For<ICatalogRepository>();
+            this.currencyProvider = Substitute.For<ICurrencyProvider>();
+        }
+
+        private readonly ICatalogRepository catalogRepository;
+        private readonly ICurrencyProvider currencyProvider;
+
         [Fact]
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()
         {
@@ -37,7 +51,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToParty(input);
 
             // Assert
@@ -58,7 +72,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
@@ -83,7 +97,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper();
+            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert

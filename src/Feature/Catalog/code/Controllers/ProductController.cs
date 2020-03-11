@@ -72,8 +72,8 @@ namespace Wooli.Feature.Catalog.Controllers
             [FromUri(Name = "ci")] string currentItemId = null)
         {
             var facetValuesCollection = !string.IsNullOrEmpty(facetValues)
-                                            ? HttpUtility.ParseQueryString(facetValues)
-                                            : new NameValueCollection();
+                ? HttpUtility.ParseQueryString(facetValues)
+                : new NameValueCollection();
 
             var model = this.productListRepository.GetProductList(
                 this.visitorContext,

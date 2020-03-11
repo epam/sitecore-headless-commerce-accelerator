@@ -14,9 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
+
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.Address instead.")]
     public class AddressModel
     {
         public string Address1 { get; set; }

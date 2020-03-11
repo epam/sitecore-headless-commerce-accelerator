@@ -563,8 +563,10 @@
     <Compile Include="Commerce.Generated.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Managers\AnalyticsManager.cs" />
+    <Compile Include="Managers\CartManagerV2.cs" />
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
     <Compile Include="Managers\Contracts\IAnalyticsManager.cs" />
+    <Compile Include="Managers\ICartManagerV2.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="ModelMappers\ConnectEntityMapper.cs" />
     <Compile Include="ModelMappers\IConnectEntityMapper.cs" />

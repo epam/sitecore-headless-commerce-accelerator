@@ -24,7 +24,6 @@ namespace Wooli.Foundation.Commerce.Services.Cart
     using Models.Entities;
     using Sitecore.Diagnostics;
     using Connect = Sitecore.Commerce.Engine.Connect.Entities;
-
     using CartResult = Sitecore.Commerce.Services.Carts.CartResult;
 
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
@@ -59,85 +58,85 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> MergeCarts(Cart source, Cart destination)
+        public Result<Cart> MergeCarts(string anonymousContactId)
         {
-            Assert.ArgumentNotNull(source, nameof(source));
-            Assert.ArgumentNotNull(destination, nameof(destination));
+            Assert.ArgumentNotNull(anonymousContactId, nameof(anonymousContactId));
 
-            var fromCart = this.entityMapper.Map<Connect.CommerceCart, Cart>(source);
-            var toCart = this.entityMapper.Map<Connect.CommerceCart, Cart>(destination);
+            var sourceCartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, anonymousContactId);
+            var destinationCartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            if (!sourceCartResult.Success || !destinationCartResult.Success)
+            {
+                return this.entityMapper.Map<Result<Cart>, CartResult>(
+                    sourceCartResult.Success ? destinationCartResult : sourceCartResult);
+            }
 
-            var response = this.cartManager.MergeCarts(fromCart, toCart);
-
+            var response = this.cartManager.MergeCarts(sourceCartResult.Cart, destinationCartResult.Cart);
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
         
-        public Result<Cart> AddCartLine(Cart cart, string productId, string variantId, decimal quantity)
+        public Result<Cart> AddCartLine(string productId, string variantId, decimal quantity)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
             Assert.ArgumentNotNull(quantity, nameof(quantity));
 
-            var cartModel = this.entityMapper.Map<Connect.CommerceCart, Cart>(cart);
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLine = new Connect.CommerceCartLine(this.storefrontContext.CatalogName, productId, variantId == "-1" ? null : variantId, quantity);
 
-            var response = this.cartManager.AddCartLines(cartModel, new[] { cartLine });
+            var response = this.cartManager.AddCartLines(cartResult?.Cart, new[] { cartLine });
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> UpdateCartLine(Cart cart, string productId, string variantId, decimal quantity)
+        public Result<Cart> UpdateCartLine(string productId, string variantId, decimal quantity)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
             Assert.ArgumentNotNull(quantity, nameof(quantity));
 
-            var cartModel = this.entityMapper.Map<Connect.CommerceCart, Cart>(cart);
-            var cartLines = this.GetCartLinesByProduct(cartModel.Lines.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            var cartLines = this.GetCartLinesByProduct(cartResult?.Cart?.Lines?.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();
 
-            var response = !cartLines.Any()
-                ? this.cartManager.UpdateCartLines(cartModel, cartLines)
-                : this.cartManager.AddCartLines(cartModel, cartLines);
+            cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
+
+            var response = cartLines.Any()
+                ? quantity == 0 
+                ? this.cartManager.RemoveCartLines(cartResult?.Cart, cartLines)
+                : this.cartManager.UpdateCartLines(cartResult?.Cart, cartLines)
+                : this.cartManager.AddCartLines(cartResult?.Cart, cartLines);
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> RemoveCartLine(Cart cart, string productId, string variantId)
+        public Result<Cart> RemoveCartLine(string productId, string variantId)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
 
-            var cartModel = this.entityMapper.Map<Connect.CommerceCart, Cart>(cart);
-            var cartLines = this.GetCartLinesByProduct(cartModel.Lines.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            var cartLines = this.GetCartLinesByProduct(cartResult?.Cart?.Lines?.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();
                     
-            var response = this.cartManager.RemoveCartLines(cartModel, cartLines);
+            var response = this.cartManager.RemoveCartLines(cartResult?.Cart, cartLines);
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> AddPromoCode(Cart cart, string promoCode)
+        public Result<Cart> AddPromoCode(string promoCode)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
-            var cartModel = this.entityMapper.Map<Connect.CommerceCart, Cart>(cart);
-
-            var response = this.cartManager.AddPromoCode(cartModel, promoCode);
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            var response = this.cartManager.AddPromoCode(cartResult?.Cart as Connect.CommerceCart, promoCode);
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> RemovePromoCode(Cart cart, string promoCode)
+        public Result<Cart> RemovePromoCode(string promoCode)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
-            var cartModel = this.entityMapper.Map<Connect.CommerceCart, Cart>(cart);
-
-            var response = this.cartManager.RemovePromoCode(cartModel, promoCode);
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            var response = this.cartManager.RemovePromoCode(cartResult?.Cart as Connect.CommerceCart, promoCode);
 
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }

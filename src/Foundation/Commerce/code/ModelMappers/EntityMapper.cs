@@ -23,6 +23,8 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using DependencyInjection;
 
+    using DocumentFormat.OpenXml.Wordprocessing;
+
     using Models;
     using Models.Checkout;
     using Models.Entities;
@@ -45,6 +47,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using Cart = Models.Entities.Cart;
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
     using CountryRegionModel = Models.Region.CountryRegionModel;
+    using FederatedPaymentInfo = Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo;
     using ShippingMethod = Sitecore.Commerce.Entities.Shipping.ShippingMethod;
     using SubdivisionModel = Models.Region.SubdivisionModel;
 
@@ -79,6 +82,8 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ExternalId))
                         .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Total))
                         .ForMember(dest => dest.CartLines, opt => opt.MapFrom(src => src.Lines))
+                        .ForMember(dest => dest.Addresses, opt => opt.MapFrom(src => src.Parties))
+                        .ForMember(dest => dest.Adjustments, opt => opt.MapFrom(src => src.Adjustments.Select(a => a.Description).ToList()))
                         .ReverseMap();
 
                     cfg.CreateMap<CommerceCart, Cart>()
@@ -107,23 +112,32 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
                     #region Price
 
+                    cfg.CreateMap<TotalPrice, Total>()
+                        .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Total))
+                        .ForMember(
+                            dest => dest.TaxTotal,
+                            opt => opt.MapFrom(
+                                src => new TaxTotal
+                                {
+                                    Amount = src.TaxTotal
+                                }))
+                        .ForMember(src => src.Description, opt => opt.Ignore());
+
                     cfg.CreateMap<Total, TotalPrice>()
-                        .ForMember(dest => dest.TaxTotal, opt => opt.MapFrom(src => src.TaxTotal.Amount))
                         .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Amount))
-                        .ReverseMap()
+                        .ForMember(dest => dest.TaxTotal, opt => opt.MapFrom(src => src.TaxTotal.Amount))
+                        .ForSourceMember(src => src.Description, opt => opt.Ignore())
                         .AfterMap(
-                            (dest, src) =>
+                            (src, dest) =>
                             {
-                                dest.CurrencySymbol = this.currencyProvider.GetCurrencySymbolByCode(src.CurrencyCode);
-                            })
-                        .ForAllOtherMembers(opt => opt.Ignore());
+                                dest.CurrencySymbol = this.currencyProvider.GetCurrencySymbolByCode(dest.CurrencyCode);
+                            });
 
                     cfg.CreateMap<CommerceTotal, TotalPrice>()
                         .ForMember(
                             dest => dest.TotalSavings,
                             opt => opt.MapFrom(src => src.LineItemDiscountAmount + src.OrderLevelDiscountAmount))
-                        .IncludeBase<Total, TotalPrice>()
-                        .ReverseMap();
+                        .IncludeBase<Total, TotalPrice>();
 
                     #endregion
 
@@ -169,6 +183,17 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     cfg.CreateMap<string, ShippingOptionType>()
                         .ConvertUsing(ConnectOptionTypeHelper.ToShippingOptionType);
 
+                    #endregion
+
+                    #region Payment
+
+                    cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
+                        .ReverseMap();
+
+                    cfg.CreateMap<PaymentInfo, Models.Entities.FederatedPaymentInfo>()
+                        .ReverseMap();
+                    cfg.CreateMap<FederatedPaymentInfo, Models.Entities.FederatedPaymentInfo>()
+                        .ReverseMap();
                     #endregion
 
                     cfg.CreateMap<Party, AddressModel>()

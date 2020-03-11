@@ -22,3 +22,18 @@
     export interface PromoCodeDto {
         promoCode: string;
     }
+    export interface CartLineRequest {
+        productId: string;
+        variantId: string;
+    }
+    export interface AddCartLineRequest extends CartLineRequest {
+        quantity: number;
+    }
+    export interface PromoCodeRequest {
+        promoCode: string;
+    }
+    export interface RemoveCartLineRequest extends CartLineRequest {
+    }
+    export interface UpdateCartLineRequest extends CartLineRequest {
+        quantity: number;
+    }

@@ -14,8 +14,6 @@
 
 import { FailureType, LoadingStatus, StatusType } from 'Foundation/Integration/client';
 
-import * as ShoppingCart from 'Feature/Checkout/client/Integration/api/ShoppingCart';
-
 import * as DataModels from 'Feature/Checkout/client/dataModel.Generated';
 import * as actionCreators from './actionCreators';
 import { actionTypes } from './actionTypes';
@@ -49,7 +47,7 @@ export const GetCartSuccess: actionCreators.GetCartSuccess = (data: ShoppingCart
   type: actionTypes.CART_GET_SUCCESS,
 });
 
-export const AddToCart: actionCreators.AddToCart = (model: ShoppingCart.CartItemDto) => ({
+export const AddToCart: actionCreators.AddToCart = (model: DataModels.AddCartLineRequest) => ({
   payload: {
     ...model,
   },
@@ -81,7 +79,7 @@ export const AddToCartSuccess: actionCreators.AddToCartSuccess = (data: Shopping
   type: actionTypes.ADD_TO_CART_SUCCESS,
 });
 
-export const UpdateCartLine: actionCreators.UpdateCartLine = (model: ShoppingCart.CartItemDto) => ({
+export const UpdateCartLine: actionCreators.UpdateCartLine = (model: DataModels.UpdateCartLineRequest) => ({
   payload: {
     ...model,
   },
@@ -113,7 +111,7 @@ export const UpdateCartLineSuccess: actionCreators.UpdateCartLineSuccess = (data
   type: actionTypes.UPDATE_CART_LINE_SUCCESS,
 });
 
-export const AddPromoCode: actionCreators.AddPromoCode = (model: DataModels.PromoCodeDto) => ({
+export const AddPromoCode: actionCreators.AddPromoCode = (model: DataModels.PromoCodeRequest) => ({
   payload: {
     ...model
   },

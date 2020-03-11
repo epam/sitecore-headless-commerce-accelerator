@@ -43,7 +43,7 @@ export function* loadCart() {
   }
 }
 
-export function* addToCart(requestData: Action<ShoppingCart.CartItemDto>): SagaIterator {
+export function* addToCart(requestData: Action<DataModels.AddCartLineRequest>): SagaIterator {
   const addToCartModel = requestData.payload;
   yield put(actions.AddToCartRequest());
 
@@ -56,7 +56,7 @@ export function* addToCart(requestData: Action<ShoppingCart.CartItemDto>): SagaI
   }
 }
 
-export function* updateCartLine(requestData: Action<ShoppingCart.CartItemDto>): SagaIterator {
+export function* updateCartLine(requestData: Action<DataModels.UpdateCartLineRequest>): SagaIterator {
   const updateCartLineModel = requestData.payload;
   yield put(actions.UpdateCartLineRequest());
 
@@ -69,7 +69,7 @@ export function* updateCartLine(requestData: Action<ShoppingCart.CartItemDto>): 
   }
 }
 
-export function* addPromoCode(requestData: Action<DataModels.PromoCodeDto>): SagaIterator {
+export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
   const addPromoCodeModel = requestData.payload;
   yield put(actions.AddPromoCodeRequest());
   const { data, error }: Result<Commerce.CartModel> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);

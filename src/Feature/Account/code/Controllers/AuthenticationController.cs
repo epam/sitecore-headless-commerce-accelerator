@@ -23,6 +23,7 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Providers;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
 
@@ -30,7 +31,7 @@ namespace Wooli.Feature.Account.Controllers
     {
         private readonly IAuthenticationService authenticationService;
 
-        private readonly ICartRepository cartRepository;
+        private readonly ICartService cartService;
 
         private readonly ICommerceTrackingService commerceTrackingService;
 
@@ -40,13 +41,13 @@ namespace Wooli.Feature.Account.Controllers
 
         public AuthenticationController(
             IAuthenticationService authenticationService,
-            ICartRepository cartRepository,
+            ICartService cartService,
             ICommerceTrackingService commerceTrackingService,
             ICustomerProvider customerProvider,
             IVisitorContext visitorContext)
         {
             this.authenticationService = authenticationService;
-            this.cartRepository = cartRepository;
+            this.cartService = cartService;
             this.customerProvider = customerProvider;
             this.commerceTrackingService = commerceTrackingService;
             this.visitorContext = visitorContext;
@@ -98,7 +99,7 @@ namespace Wooli.Feature.Account.Controllers
             var anonymousContact = this.visitorContext.ContactId;
             this.visitorContext.CurrentUser = commerceUser;
 
-            this.cartRepository.MergeCarts(anonymousContact);
+            this.cartService.MergeCarts(anonymousContact);
 
             this.commerceTrackingService.IdentifyAs("CommerceUser", commerceUser.UserName);
         }

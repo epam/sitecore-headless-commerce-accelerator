@@ -100,6 +100,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wooli.Foundation.Base", "Fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wooli.Foundation.Base.Tests", "Foundation\Base\tests\Wooli.Foundation.Base.Tests.csproj", "{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{E14AB398-8319-41E2-8A0F-9E2316DBD217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wooli.Foundation.Account", "Foundation\Account\code\Wooli.Foundation.Account.csproj", "{74C245AA-2561-4A2A-ADBD-E7D4045F6227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wooli.Foundation.Account.Tests", "Foundation\Account\tests\Wooli.Foundation.Account.Tests.csproj", "{E2A02D35-08C9-4256-AD41-9C12B3BD6073}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -210,6 +216,14 @@ Global
 		{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C245AA-2561-4A2A-ADBD-E7D4045F6227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C245AA-2561-4A2A-ADBD-E7D4045F6227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C245AA-2561-4A2A-ADBD-E7D4045F6227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C245AA-2561-4A2A-ADBD-E7D4045F6227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A02D35-08C9-4256-AD41-9C12B3BD6073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A02D35-08C9-4256-AD41-9C12B3BD6073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A02D35-08C9-4256-AD41-9C12B3BD6073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A02D35-08C9-4256-AD41-9C12B3BD6073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,9 +269,12 @@ Global
 		{BCE225B2-085A-4460-B74B-09F317A393DA} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
 		{FF564A60-1CC7-4BAE-B859-88DE35FDA77A} = {BCE225B2-085A-4460-B74B-09F317A393DA}
 		{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E} = {BCE225B2-085A-4460-B74B-09F317A393DA}
+		{E14AB398-8319-41E2-8A0F-9E2316DBD217} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
+		{74C245AA-2561-4A2A-ADBD-E7D4045F6227} = {E14AB398-8319-41E2-8A0F-9E2316DBD217}
+		{E2A02D35-08C9-4256-AD41-9C12B3BD6073} = {E14AB398-8319-41E2-8A0F-9E2316DBD217}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {56412AC7-41FC-4C49-8CEC-4FE3EE7CF1D2}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\lib\NET45
+		SolutionGuid = {56412AC7-41FC-4C49-8CEC-4FE3EE7CF1D2}
 	EndGlobalSection
 EndGlobal

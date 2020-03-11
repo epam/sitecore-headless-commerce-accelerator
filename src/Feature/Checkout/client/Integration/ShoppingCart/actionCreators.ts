@@ -32,6 +32,6 @@ export type UpdateCartLine = (model: ShoppingCart.CartItemDto) => Action<Shoppin
 
 export type UpdateCartLineSuccess = (model: ShoppingCartData) => Action<CartLineSuccessPayload>;
 
-export type AddPromoCode = (promoCode: DataModels.PromoCodeDto) => Action;
+export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
 
 export type AddPromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;

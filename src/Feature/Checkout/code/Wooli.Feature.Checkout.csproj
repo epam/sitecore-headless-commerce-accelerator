@@ -564,7 +564,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -572,8 +571,6 @@
     <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\CommerceUserContextExtension.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Models.Generated.cs" />
-    <Compile Include="Models\CartItemDto.cs" />
-    <Compile Include="Models\PromoCodeDto.cs" />
     <Compile Include="Models\Requests\PromoCodeRequest.cs" />
     <Compile Include="Models\Requests\RemoveCartLineRequest.cs" />
     <Compile Include="Models\Requests\UpdateCartLineRequest.cs" />

@@ -27,7 +27,7 @@ export interface OrderSummaryStateProps {
   adjustments: string[];
 }
 export interface OrderSummaryDispatchProps {
-  AddPromoCode: (model: DataModels.PromoCodeDto) => void;
+  AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
 }
 
 export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}

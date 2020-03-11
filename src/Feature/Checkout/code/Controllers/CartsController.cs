@@ -43,35 +43,35 @@ namespace Wooli.Feature.Checkout.Controllers
         }
 
         [HttpPost]
-        [ActionName("cartLine")]
+        [ActionName("cartLines")]
         public ActionResult AddCartLine(AddCartLineRequest request)
         {
             return this.Execute(() => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpPut]
-        [ActionName("cartLine")]
+        [ActionName("cartLines")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
             return this.Execute(() => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpDelete]
-        [ActionName("cartLine")]
+        [ActionName("cartLines")]
         public ActionResult RemoveCartLine(RemoveCartLineRequest request)
         {
             return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
         }
 
         [HttpPost]
-        [ActionName("promoCode")]
+        [ActionName("promoCodes")]
         public ActionResult AddPromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.AddPromoCode(request.PromoCode));
         }
 
         [HttpDelete]
-        [ActionName("promoCode")]
+        [ActionName("promoCodes")]
         public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));

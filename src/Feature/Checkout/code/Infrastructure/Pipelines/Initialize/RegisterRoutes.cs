@@ -46,17 +46,6 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
                     controller = CheckoutControllerName
                 });
 
-            const string CartControllerName = "Cart";
-
-            routeCollection.MapRoute(
-                nameof(CartController),
-                Constants.CommerceRoutePrefix + $"/{CartControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new
-                {
-                    controller = CartControllerName
-                });
-
             const string CartsControllerName = "Carts";
 
             routeCollection.MapRoute(

@@ -14,14 +14,6 @@
 
 // tslint:disable:indent array-type
 
-    export interface CartItemDto {
-        productId: string;
-        quantity: number;
-        variantId: string;
-    }
-    export interface PromoCodeDto {
-        promoCode: string;
-    }
     export interface CartLineRequest {
         productId: string;
         variantId: string;

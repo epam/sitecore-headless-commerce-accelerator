@@ -26,6 +26,7 @@ namespace Wooli.Foundation.Extensions.Extensions
     using Sitecore.Data.Managers;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
+    using Sitecore.Links.UrlBuilders;
     using Sitecore.Resources.Media;
 
     public static class ItemExtensions
@@ -118,7 +119,7 @@ namespace Wooli.Foundation.Extensions.Extensions
             return item?.Visualization?.Layout != null;
         }
 
-        public static string ImageUrl(this Item item, ID imageFieldId, MediaUrlOptions options = null)
+        public static string ImageUrl(this Item item, ID imageFieldId, MediaUrlBuilderOptions options = null)
         {
             if (item == null)
             {
@@ -136,7 +137,7 @@ namespace Wooli.Foundation.Extensions.Extensions
                 throw new ArgumentNullException(nameof(mediaItem));
             }
 
-            var options = new MediaUrlOptions
+            var options = new MediaUrlBuilderOptions
             {
                 Height = height,
                 Width = width
@@ -295,7 +296,7 @@ namespace Wooli.Foundation.Extensions.Extensions
                 ?? ((ReferenceField)item.Fields[linkFieldId]).TargetItem;
         }
 
-        public static string Url(this Item item, UrlOptions options = null)
+        public static string Url(this Item item, ItemUrlBuilderOptions options = null)
         {
             if (item == null)
             {

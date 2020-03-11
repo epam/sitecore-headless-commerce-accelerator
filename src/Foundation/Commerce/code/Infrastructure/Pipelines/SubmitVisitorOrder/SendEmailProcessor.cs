@@ -27,6 +27,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
+    using Sitecore.Links.UrlBuilders;
 
     public class SendEmailProcessor : PipelineProcessor
     {
@@ -63,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
         private string BuildBody(Order order)
         {
-            var options = new UrlOptions
+            var options = new ItemUrlBuilderOptions
             {
                 AlwaysIncludeServerUrl = true
             };

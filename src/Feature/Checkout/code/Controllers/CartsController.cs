@@ -21,12 +21,10 @@ namespace Wooli.Feature.Checkout.Controllers
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Services.Cart;
-    using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
     using Models.Requests;
     using Sitecore.Diagnostics;
 
-    [RoutePrefix(Constants.CommerceRoutePrefix + "/carts")]
     public class CartsController : Controller
     {
         private readonly ICartService cartService;
@@ -37,37 +35,43 @@ namespace Wooli.Feature.Checkout.Controllers
             this.cartService = cartService;
         }
 
-        [ActionName("get")]
+        [HttpGet]
+        [ActionName("cart")]
         public ActionResult GetCart()
         {
             return this.Execute(this.cartService.GetCart);
         }
 
-        [ActionName("addCartLine")]
+        [HttpPost]
+        [ActionName("cartLine")]
         public ActionResult AddCartLine(AddCartLineRequest request)
         {
             return this.Execute(() => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
-        [ActionName("updateCartLine")]
+        [HttpPut]
+        [ActionName("cartLine")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
             return this.Execute(() => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
-        [ActionName("removeCartLine")]
+        [HttpDelete]
+        [ActionName("cartLine")]
         public ActionResult RemoveCartLine(RemoveCartLineRequest request)
         {
             return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
         }
 
-        [ActionName("addPromoCode")]
+        [HttpPost]
+        [ActionName("promoCode")]
         public ActionResult AddPromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.AddPromoCode(request.PromoCode));
         }
 
-        [ActionName("removePromoCode")]
+        [HttpDelete]
+        [ActionName("promoCode")]
         public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));

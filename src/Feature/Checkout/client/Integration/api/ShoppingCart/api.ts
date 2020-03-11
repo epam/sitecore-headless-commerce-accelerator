@@ -25,7 +25,7 @@ const routeBase = '/apix/client/commerce/carts';
 
 export const getShoppingCart = async (): Promise<Result<Commerce.CartModel>> => {
   try {
-    const response = await axios.get<GetCartResponse>(`${routeBase}/get`, null);
+    const response = await axios.get<GetCartResponse>(`${routeBase}/cart`, null);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -39,7 +39,7 @@ export const getShoppingCart = async (): Promise<Result<Commerce.CartModel>> => 
 
 export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineRequest): Promise<Result<Commerce.CartModel>> => {
   try {
-    const response = await axios.post<GetCartResponse>(`${routeBase}/addCartLine/`, requestPayload);
+    const response = await axios.post<GetCartResponse>(`${routeBase}/cartLine/`, requestPayload);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -53,7 +53,7 @@ export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineReq
 
 export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartLineRequest): Promise<Result<Commerce.CartModel>> => {
   try {
-    const response = await axios.put<GetCartResponse>(`${routeBase}/updateCartLine/`, requestPayload);
+    const response = await axios.put<GetCartResponse>(`${routeBase}/cartLine/`, requestPayload);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -67,7 +67,7 @@ export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartL
 
 export const removeCartItem = async (requestPayload: DataModels.RemoveCartLineRequest): Promise<Result<string>> => {
   try {
-    const response = await axios.delete(`${routeBase}/removeCartLine/`);
+    const response = await axios.delete(`${routeBase}/cartLine/`);
     return { data: response.data };
   } catch (e) {
     return { error: e };
@@ -76,7 +76,7 @@ export const removeCartItem = async (requestPayload: DataModels.RemoveCartLineRe
 
 export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest): Promise<Result<Commerce.CartModel>> => {
   try {
-    const response = await axios.post<GetCartResponse>(`${routeBase}/addPromoCode/`, requestPayload);
+    const response = await axios.post<GetCartResponse>(`${routeBase}/promoCode/`, requestPayload);
     const { data } = response;
     if (data.status !== 'ok') {
       return { error: new Error('Failure') };

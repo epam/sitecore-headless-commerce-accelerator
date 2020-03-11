@@ -3,7 +3,7 @@
 // //////////////////////////////////////////////////
 #tool nuget:?package=Cake.Sitecore&prerelease
 #load nuget:?package=Cake.Sitecore&prerelease
-#load "./../src/scripts/generateTypescript.cake"
+#load "./scripts/generateTypescript.cake"
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -93,7 +93,7 @@ Task("Generate-Client-Models")
         {
             var regex = @"^.+[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\](client|code)[/\\].+$";
 
-            var templateFiles = GetFiles($"./../src/*/*/client/**/*.tt");
+            var templateFiles = GetFiles($"./*/*/client/**/*.tt");
             Information($"Found files: {templateFiles.Count}");
 
             foreach (var templateFile in templateFiles)
@@ -106,7 +106,7 @@ Task("Generate-Client-Models")
                 var project = match.Groups["projectName"];
 
                 var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
-                var dllFile = GetFiles($"./../src/{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
+                var dllFile = GetFiles($"./{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
 
                 generateTypeScript(dllFile, tsFile);
             }

@@ -58,16 +58,19 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
 
-        public Result<Cart> MergeCarts(Cart source, Cart destination)
+        public Result<Cart> MergeCarts(string anonymousContactId)
         {
-            Assert.ArgumentNotNull(source, nameof(source));
-            Assert.ArgumentNotNull(destination, nameof(destination));
+            Assert.ArgumentNotNull(anonymousContactId, nameof(anonymousContactId));
 
-            var fromCart = this.entityMapper.Map<Connect.CommerceCart, Cart>(source);
-            var toCart = this.entityMapper.Map<Connect.CommerceCart, Cart>(destination);
+            var sourceCartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, anonymousContactId);
+            var destinationCartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            if (!sourceCartResult.Success || !destinationCartResult.Success)
+            {
+                return this.entityMapper.Map<Result<Cart>, CartResult>(
+                    sourceCartResult.Success ? destinationCartResult : sourceCartResult);
+            }
 
-            var response = this.cartManager.MergeCarts(fromCart, toCart);
-
+            var response = this.cartManager.MergeCarts(sourceCartResult.Cart, destinationCartResult.Cart);
             return this.entityMapper.Map<Result<Cart>, CartResult>(response);
         }
         

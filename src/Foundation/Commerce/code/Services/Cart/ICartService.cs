@@ -31,10 +31,9 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         /// <summary>
         /// Merges two carts in one
         /// </summary>
-        /// <param name="source">Source cart</param>
-        /// <param name="destination">Destination cart</param>
+        /// <param name="anonymousContactId">Id of anonymous user</param>
         /// <returns>Merged cart result</returns>
-        Result<Cart> MergeCarts(Cart source, Cart destination);
+        Result<Cart> MergeCarts(string anonymousContactId);
 
         /// <summary>
         /// Adds product to cart

@@ -4,17 +4,22 @@
 
 Front-end part of the project is build on the top of ReactJS and architectured by flux principles
 
-### NPM development commands
+### package.json commands
 
-In order to run the local dev server, you need to execute `npm start` in cmd or shell and pass required arguments, see more invormation in arguments table below
-|  Argument Name | Description |
-| --- | --- | --- |
-| `project`| **name** from project's manifest file | Starts wepback local development server and use this first defined manifest file as per default. In order to |
-| `env` | **name** of **env** from project's manifest file | |
-| `static-content` | if specified local sitecore-context.json will be fetched | |
+In [package.json](package.json) file you can find most frequently used commands for development. To start commands use **npm**
+
+| Command | Description |
+| --- | --- |
+| `start` | Starts local development server with configuration for project **Wooli** and env **local**. Configuration information stores in [manifest.json](Project/Wooli/client/manifest.json) file |
+| `build:Debug` | Builds client code in Debug mode |
+| `sc:codegen` | Starts *.ts and *.cs models generation for sitecore templates |
+| `test` | Runs client tests |
+| `test-watch` | Starts watching for new client tests and reruns them automatically |
+| `test-cover` | Runs client tests with generation of coverage results |
 
 ###### Examples
 
- `npm start -- --project=Wooli --env=local`, command runs local dev server and fetches a sitecore context from a url specified in **manifest** file of a project
-
-`npm start -- --project=Wooli --env=local --static-content`, command runs local dev server and fetches a sitecore context from **sitecore-context.json**, but all calls to sitecore are forwarded to a url specified in **manifest** file of a project
+ ```
+ npm run start
+ npm run sc:codegen
+ ```

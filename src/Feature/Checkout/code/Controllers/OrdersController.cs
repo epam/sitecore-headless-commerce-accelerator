@@ -40,13 +40,13 @@ namespace Wooli.Feature.Checkout.Controllers
 
         [HttpGet]
         [ActionName("order")]
-        public ActionResult GetOrder(string orderId)
+        public ActionResult GetOrder(string id)
         {
-            return this.Execute(() => this.orderService.GetOrderDetails(orderId));
+            return this.Execute(() => this.orderService.GetOrderDetails(id));
         }
 
         [HttpGet]
-        [ActionName("get")]
+        [ActionName("orders")]
         public ActionResult GetOrders(GetOrdersRequest request)
         {
             return this.Execute(

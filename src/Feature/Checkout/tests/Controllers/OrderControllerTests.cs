@@ -31,6 +31,8 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
+    using Ploeh.AutoFixture;
+
     using Xunit;
 
     // TODO: Replace models with new one
@@ -38,6 +40,8 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     {
         public OrdersControllerTests()
         {
+
+            this.fixture = new Fixture();
             this.orderService = Substitute.For<IOrderService>();
             this.controller = new OrdersController(this.orderService);
 
@@ -45,6 +49,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), this.controller);
         }
 
+        private readonly Fixture fixture;
         private readonly OrdersController controller;
         private readonly IOrderService orderService;
 
@@ -52,13 +57,13 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrder_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
         {
             // arrange
-            const string request = "request";
+            var orderId = this.fixture.Create<string>();
 
-            this.orderService.GetOrderDetails(request)
+            this.orderService.GetOrderDetails(orderId)
                 .Throws<NullReferenceException>();
 
             // act
-            var jsonResult = this.controller.GetOrder(request) as JsonResult;
+            var jsonResult = this.controller.GetOrder(orderId) as JsonResult;
             var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert
@@ -69,14 +74,14 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrder_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
         {
             // arrange
-            const string request = "request";
+            var orderId = this.fixture.Create<string>();
             var result = new Result<CartModel>();
 
-            this.orderService.GetOrderDetails(request)
+            this.orderService.GetOrderDetails(orderId)
                 .Returns(result);
 
             // act
-            var jsonResult = this.controller.GetOrder(request) as JsonResult;
+            var jsonResult = this.controller.GetOrder(orderId) as JsonResult;
             var okResult = jsonResult?.Data as OkJsonResultModel<CartModel>;
 
             // assert
@@ -87,17 +92,17 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrder_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
         {
             // arrange
-            const string request = "request";
+            var orderId = this.fixture.Create<string>();
             var result = new Result<CartModel>
             {
                 Success = false
             };
 
-            this.orderService.GetOrderDetails(request)
+            this.orderService.GetOrderDetails(orderId)
                 .Returns(result);
 
             // act
-            var jsonResult = this.controller.GetOrder(request) as JsonResult;
+            var jsonResult = this.controller.GetOrder(orderId) as JsonResult;
             var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert

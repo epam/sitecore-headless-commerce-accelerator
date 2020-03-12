@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base
+namespace Wooli.Foundation.Account
 {
     public static class Constants
     {
         public static class Pipelines
         {
-            public const string Login = "wooli.foundation.base.login";
+            public const string Login = "wooli.foundation.account.login";
         }
     }
 }

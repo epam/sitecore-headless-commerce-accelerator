@@ -17,12 +17,11 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
-    using Foundation.Base.Services.Authentication;
+    using Foundation.Account.Authentication;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Providers;
-    using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;

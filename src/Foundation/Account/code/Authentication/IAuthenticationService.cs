@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Authentication
+namespace Wooli.Foundation.Account.Authentication
 {
     /// <summary>
     /// Proxy service for static AuthenticationManager
@@ -20,12 +20,12 @@ namespace Wooli.Foundation.Base.Services.Authentication
     public interface IAuthenticationService
     {
         /// <summary>
-        /// Log out the current user.
+        /// Logs out the current user.
         /// </summary>
         void Logout();
 
         /// <summary>
-        /// Logs a user into the system if the <paramref name="password" /> is valid.
+        /// Logs in a user into the system if the <paramref name="password" /> is valid.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="password">The password.</param>

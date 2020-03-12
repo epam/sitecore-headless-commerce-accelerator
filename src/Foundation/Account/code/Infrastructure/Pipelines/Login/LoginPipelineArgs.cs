@@ -12,26 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Authentication
+namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using DependencyInjection;
-
-    using Sitecore.Security.Authentication;
+    using Sitecore.Pipelines;
 
     [ExcludeFromCodeCoverage]
-    [Service(typeof(IAuthenticationService), Lifetime = Lifetime.Transient)]
-    public class AuthenticationService : IAuthenticationService
+    public class LoginPipelineArgs : PipelineArgs
     {
-        public void Logout()
-        {
-            AuthenticationManager.Logout();
-        }
+        public string Email { get; set; }
 
-        public bool Login(string userName, string password)
-        {
-            return AuthenticationManager.Login(userName, password);
-        }
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+        public bool IsValid { get; set; }
+
+        public string RedirectTo { get; set; }
     }
 }

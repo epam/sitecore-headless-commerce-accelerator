@@ -516,6 +516,7 @@
       <Link>license.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Controllers\OrderControllerTests.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

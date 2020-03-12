@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ namespace Wooli.Foundation.Commerce.Services.Order
     /// </summary>
     public interface IOrderService
     {
+        // TODO: Refactor return type
         Result<CartModel> GetOrderDetails(string trackingId);
 
         /// <summary>
@@ -34,12 +35,14 @@ namespace Wooli.Foundation.Commerce.Services.Order
         /// <param name="page"></param>
         /// <param name="count"></param>
         /// <returns></returns>
+        // TODO: Refactor return type
         Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count);
 
         /// <summary>
         /// Submits current user order
         /// </summary>
         /// <returns>Submit order result</returns>
+        // TODO: Refactor return type
         Result<SubmitOrderModel> SubmitOrder();
     }
 }

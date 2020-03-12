@@ -17,17 +17,14 @@ namespace Wooli.Feature.Checkout.Controllers
     using System;
     using System.Linq;
     using System.Net;
-    using System.Web.Http.Description;
-    using System.Web.Mvc;
+    using System.Web.Http;
 
-    using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
 
-    using Models.Requests;
-
-    public class OrderController : Controller
+    [RoutePrefix(Constants.CommerceRoutePrefix + "/order")]
+    public class OrderController : ApiController
     {
         private readonly IOrderRepository orderRepository;
 
@@ -36,48 +33,48 @@ namespace Wooli.Feature.Checkout.Controllers
             this.orderRepository = orderRepository;
         }
 
-        [ResponseType(typeof(CartModel))]
-        [HttpGet, ActionName("getOrder")]
-        public ActionResult GetOrder(string orderId)
+        [Route("get/{orderId}")]
+        public IHttpActionResult GetOrder(string orderId)
         {
-            return this.Execute(() => this.orderRepository.GetOrderDetails(orderId));
+            if (string.IsNullOrEmpty(orderId))
+            {
+                return this.JsonError($"{orderId} should be specified.", HttpStatusCode.BadRequest);
+            }
+
+            var model = this.orderRepository.GetOrderDetails(orderId);
+
+            if (model.Success)
+            {
+                return this.JsonOk(model.Data);
+            }
+
+            return this.JsonError(model.Errors.ToArray(), HttpStatusCode.InternalServerError);
         }
 
-        [ResponseType(typeof(OrderHistoryResultModel))]
-        [HttpGet, ActionName("get")]
-        public ActionResult GetOrders(GetOrdersRequest request)
+        [Route("get")]
+        public IHttpActionResult GetOrders(
+            DateTime? fromDate = null,
+            DateTime? untilDate = null,
+            int page = 0,
+            int count = 5)
         {
-            return this.Execute(
-                () => this.orderRepository.GetOrders(request.FromDate, request.UntilDate, request.Page, request.Count));
-        }
-
-        private ActionResult Execute<T>(Func<Result<T>> action) where T : class
-        {
-            try
+            if (page < 0)
             {
-                if (!this.ModelState.IsValid)
-                {
-                    var errorMessages = this.ModelState.Values
-                        .SelectMany(state => state?.Errors)
-                        .Select(error => error.ErrorMessage)
-                        .ToArray();
-
-                    return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
-                }
-
-                var result = action.Invoke();
-
-                return result.Success
-                    ? this.JsonOk(result.Data)
-                    : this.JsonError(
-                        result.Errors?.ToArray(),
-                        HttpStatusCode.InternalServerError,
-                        tempData: result.Data);
+                return this.JsonError($"{nameof(page)} should be positive or zero.", HttpStatusCode.BadRequest);
             }
-            catch (Exception exception)
+
+            if (count <= 0)
             {
-                return this.JsonError(exception.Message, HttpStatusCode.InternalServerError, exception);
+                return this.JsonError($"{nameof(page)} should be positive.", HttpStatusCode.BadRequest);
             }
+
+            var model = this.orderRepository.GetOrders(fromDate, fromDate, page, count);
+            if (model.Success)
+            {
+                return this.JsonOk(model.Data);
+            }
+
+            return this.JsonError(model.Errors.ToArray(), HttpStatusCode.InternalServerError);
         }
     }
 }

@@ -429,6 +429,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Pipelines\PipelineProcessor.cs" />
+    <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Models\Configuration\Configuration.cs" />
     <Compile Include="Models\Logging\Log.cs" />
     <Compile Include="Models\Logging\CommonLog.cs" />

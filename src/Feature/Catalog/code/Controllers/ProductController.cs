@@ -14,6 +14,7 @@
 
 namespace Wooli.Feature.Catalog.Controllers
 {
+    using System;
     using System.Collections.Specialized;
     using System.Net;
     using System.Web;

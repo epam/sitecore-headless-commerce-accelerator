@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Feature.Catalog.Models.Requests
 {
-    using Models.Catalog;
+    using Foundation.Commerce.Models;
 
-    using Sitecore.Data.Items;
-
-    public interface ICatalogRepository
+    public class ProductsSearchRequest
     {
-        ProductModel GetProduct(string productId);
+        public string SearchKeyword { get; set; }
 
-        ProductModel GetProduct(Item productItem);
+        public int? Page { get; set; }
 
-        ProductModel GetCurrentProduct();
+        public string FacetValues { get; set; }
 
-        CategoryModel GetCurrentCategory();
+        public string SortField { get; set; }
+
+        public int? PageSize { get; set; }
+
+        public SortDirection? SortDirection { get; set; }
+
+        public string CurrentCatalogItemId { get; set; }
+
+        public string CurrentItemId { get; set; }
     }
 }

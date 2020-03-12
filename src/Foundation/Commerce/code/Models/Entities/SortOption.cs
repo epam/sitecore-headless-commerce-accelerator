@@ -12,20 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using Models.Catalog;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Data.Items;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
 
-    public interface ICatalogRepository
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
+    public class SortOption
     {
-        ProductModel GetProduct(string productId);
+        public string DisplayName { get; set; }
 
-        ProductModel GetProduct(Item productItem);
+        public bool IsSelected { get; set; }
 
-        ProductModel GetCurrentProduct();
+        public string Name { get; set; }
 
-        CategoryModel GetCurrentCategory();
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SortDirection SortDirection { get; set; }
     }
 }

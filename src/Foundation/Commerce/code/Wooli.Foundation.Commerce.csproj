@@ -645,6 +645,8 @@
     <Compile Include="Models\Catalog\ProductListResultModel.cs" />
     <Compile Include="Models\Catalog\ProductVariantModel.cs" />
     <Compile Include="Models\Catalog\ProductModel.cs" />
+    <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\ProductsSearchOptions.cs" />
     <Compile Include="Models\Catalog\SortOptionModel.cs" />
     <Compile Include="Models\Checkout\AddressModel.cs" />
     <Compile Include="Models\Checkout\BaseCheckoutModel.cs" />
@@ -674,13 +676,17 @@
     <Compile Include="Models\Entities\Cart.cs" />
     <Compile Include="Models\Entities\CartLine.cs" />
     <Compile Include="Models\Entities\DeliveryInfo.cs" />
+    <Compile Include="Models\Entities\FacetResult.cs" />
+    <Compile Include="Models\Entities\FacetValueResult.cs" />
     <Compile Include="Models\Entities\FederatedPaymentInfo.cs" />
     <Compile Include="Models\Entities\PaymentMethod.cs" />
     <Compile Include="Models\Entities\PaymentOption.cs" />
     <Compile Include="Models\Entities\Product.cs" />
+    <Compile Include="Models\Entities\ProductsSearchResult.cs" />
     <Compile Include="Models\Entities\ProductVariant.cs" />
     <Compile Include="Models\Entities\ShippingInfo.cs" />
     <Compile Include="Models\Entities\ShippingOption.cs" />
+    <Compile Include="Models\Entities\SortOption.cs" />
     <Compile Include="Models\Entities\TotalPrice.cs" />
     <Compile Include="Models\Entities\ShippingMethod.cs" />
     <Compile Include="Models\Region\CountryRegionModel.cs" />
@@ -732,6 +738,10 @@
     <Compile Include="Services\Billing\IBillingService.cs" />
     <Compile Include="Services\Order\IOrderService.cs" />
     <Compile Include="Services\Delivery\IDeliveryService.cs" />
+    <Compile Include="Services\Catalog\CatalogService.cs" />
+    <Compile Include="Services\Catalog\ICatalogService.cs" />
+    <Compile Include="Services\Catalog\IProductSearchService.cs" />
+    <Compile Include="Services\Catalog\ProductSearchService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />

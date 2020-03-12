@@ -14,34 +14,34 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Extensions.Extensions;
+
+    using Providers;
+
     using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
     public class BaseProduct
     {
+        [Obsolete("Use BaseProduct(Connect.Models.BaseProduct, ICurrencyProvider)")]
         public BaseProduct(Item sellableItem)
         {
-            Assert.ArgumentNotNull(sellableItem, nameof(sellableItem));
+            this.Initialize(sellableItem);
+        }
 
-            this.ProductId = sellableItem["ProductId"];
-            this.DisplayName = sellableItem["DisplayName"];
-            this.Description = sellableItem["Description"];
-            this.Brand = sellableItem["Brand"];
+        public BaseProduct(Connect.Models.BaseProduct product, ICurrencyProvider currencyProvider)
+        {
+            this.Initialize(product.Item);
 
-            this.Tags = sellableItem["Tags"]?.Split('|').ToList();
-
-            this.ImageUrls = sellableItem
-                .ExtractMediaItems(x =>
-                    {
-                        var imagesField = (MultilistField)sellableItem.Fields["Images"];
-                        return imagesField?.TargetIDs.Select(id => id.Guid);
-                    })
-                ?.Select(x => x.ImageUrl())
-                .ToList();
+            this.CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
+            this.ListPrice = product.ListPrice;
+            this.AdjustedPrice = product.AdjustedPrice;
+            this.StockStatusName = product.StockStatusName;
+            this.CustomerAverageRating = product.CustomerAverageRating;
         }
 
         public string ProductId { get; set; }
@@ -65,5 +65,26 @@ namespace Wooli.Foundation.Commerce.Models.Entities
         public string StockStatusName { get; set; }
 
         public decimal? CustomerAverageRating { get; set; }
+
+        private void Initialize(Item item)
+        {
+            Assert.ArgumentNotNull(item, nameof(item));
+
+            this.ProductId = item["ProductId"];
+            this.DisplayName = item["DisplayName"];
+            this.Description = item["Description"];
+            this.Brand = item["Brand"];
+
+            this.Tags = item["Tags"]?.Split('|').ToList();
+
+            this.ImageUrls = item.ExtractMediaItems(
+                    x =>
+                    {
+                        var imagesField = (MultilistField)item.Fields["Images"];
+                        return imagesField?.TargetIDs.Select(id => id.Guid);
+                    })
+                ?.Select(x => x.ImageUrl())
+                .ToList();
+        }
     }
 }

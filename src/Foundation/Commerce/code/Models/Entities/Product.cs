@@ -14,18 +14,41 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+
+    using Providers;
+
     using Sitecore.Data.Items;
     using TypeLite;
 
     [TsClass]
+    [ExcludeFromCodeCoverage]
     public class Product : BaseProduct
     {
+        [Obsolete("Use Product(Connect.Models.Product, ICurrencyProvider)")]
         public Product(Item sellableItem) : base(sellableItem)
         {
             this.SitecoreId = sellableItem["SitecoreId"];
             this.Variants = sellableItem.Children.Select(commerceProductVariant => new ProductVariant(commerceProductVariant)).ToList();
+        }
+
+        public Product(Connect.Models.Product product, ICurrencyProvider currencyProvider)
+            : base(product, currencyProvider)
+        {
+            this.SitecoreId = product.Item["SitecoreId"];
+
+            var variants = new List<ProductVariant>();
+            foreach (var productVariant in product.Variants)
+            {
+                var variant = new ProductVariant(productVariant, currencyProvider);
+
+                variants.Add(variant);
+            }
+
+            this.Variants = variants;
         }
 
         public string SitecoreId { get; set; }

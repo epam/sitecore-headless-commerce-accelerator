@@ -14,11 +14,13 @@
 
 namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using System;
     using System.Collections.Generic;
 
     using TypeLite;
 
     [TsClass]
+    [Obsolete("This model is obsolete. Use Commerce.Models.Entities.BaseCheckoutInfo instead.")]
     public class BaseCheckoutModel
     {
         public List<AddressModel> UserAddresses { get; set; }

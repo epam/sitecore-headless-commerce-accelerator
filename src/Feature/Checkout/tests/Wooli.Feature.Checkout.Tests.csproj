@@ -507,6 +507,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CheckoutV2ControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTest.cs" />
   </ItemGroup>
@@ -525,6 +526,20 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
+      <Project>{4CD01A37-76D8-4A6A-8822-014369C4243D}</Project>
+      <Name>Wooli.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
+      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
+      <Name>Wooli.Foundation.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\code\Wooli.Feature.Checkout.csproj">
+      <Project>{EC1DB1BE-B3A9-4AC2-8700-34186E20444A}</Project>
+      <Name>Wooli.Feature.Checkout</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -24,14 +24,14 @@ namespace Wooli.Feature.Checkout.Models.Requests
     [TsClass]
     public class GetOrdersRequest
     {
-        public DateTime? FromDate { get; set; } = null;
+        public DateTime? FromDate { get; set; }
 
-        public DateTime? UntilDate { get; set; } = null;
+        public DateTime? UntilDate { get; set; }
 
         [Range(0, int.MaxValue)]
-        public int Page { get; set; } = 0;
+        public int Page { get; set; }
 
         [Range(1, int.MaxValue)]
-        public int Count { get; set; } = 5;
+        public int Count { get; set; }
     }
 }

@@ -15,7 +15,6 @@
 namespace Wooli.Feature.Checkout.Tests.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -24,7 +23,6 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Checkout;
-    using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Services.Order;
     using Foundation.Extensions.Models;
 
@@ -35,6 +33,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
     using Xunit;
 
+    // TODO: Replace models with new one
     public class OrdersControllerTests
     {
         public OrdersControllerTests()
@@ -109,7 +108,10 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrders_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
         {
             // arrange
-            var request = new GetOrdersRequest();
+            var request = new GetOrdersRequest
+            {
+                Count = 1
+            };
 
             this.orderService.GetOrders(request.FromDate, request.UntilDate, request.Page, request.Count)
                 .Throws<NullReferenceException>();
@@ -126,7 +128,10 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrders_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
         {
             // arrange
-            var request = new GetOrdersRequest();
+            var request = new GetOrdersRequest
+            {
+                Count = 1
+            };
             var result = new Result<OrderHistoryResultModel>();
 
             this.orderService.GetOrders(request.FromDate, request.UntilDate, request.Page, request.Count)
@@ -144,7 +149,10 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         public void GetOrders_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
         {
             // arrange
-            var request = new GetOrdersRequest();
+            var request = new GetOrdersRequest
+            {
+                Count = 1
+            };
             var result = new Result<OrderHistoryResultModel>
             {
                 Success = false

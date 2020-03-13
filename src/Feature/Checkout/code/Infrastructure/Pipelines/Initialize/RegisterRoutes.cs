@@ -67,6 +67,28 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
                 {
                     controller = CartsControllerName
                 });
+
+            const string OrdersControllerName = "Orders";
+
+            routeCollection.MapRoute(
+                nameof(OrdersController),
+                Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}",
+                namespaces: new[] { typeof(OrdersController).Namespace },
+                defaults: new
+                {
+                    controller = OrdersControllerName,
+                    action = "orders"
+                });
+
+            routeCollection.MapRoute(
+                $"{nameof(OrdersController)}.order",
+                Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}" + "/{id}",
+                namespaces: new[] { typeof(OrdersController).Namespace },
+                defaults: new
+                {
+                    controller = OrdersControllerName,
+                    action = "order"
+                });
         }
     }
 }

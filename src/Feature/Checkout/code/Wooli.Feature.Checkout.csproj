@@ -568,10 +568,12 @@
     <Compile Include="Controllers\CheckoutV2Controller.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Infrastructure\Pipelines\ContentsResolvers\CheckoutNavigationResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\CommerceUserContextExtension.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Models.Generated.cs" />
+    <Compile Include="Models\Requests\GetOrdersRequest.cs" />
     <Compile Include="Models\Requests\PromoCodeRequest.cs" />
     <Compile Include="Models\Requests\RemoveCartLineRequest.cs" />
     <Compile Include="Models\Requests\SetPaymentOptionsRequest.cs" />

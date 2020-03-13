@@ -14,18 +14,15 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
-    using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Entities;
+
+    using Foundation.Commerce.Controllers;
     using Foundation.Commerce.Services.Cart;
-    using Foundation.Extensions.Extensions;
+
     using Models.Requests;
     using Sitecore.Diagnostics;
 
-    public class CartsController : Controller
+    public class CartsController : BaseController
     {
         private readonly ICartService cartService;
 
@@ -75,32 +72,6 @@ namespace Wooli.Feature.Checkout.Controllers
         public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));
-        }
-        
-        private ActionResult Execute(Func<Result<Cart>> action)
-        {
-            try
-            {
-                if (!this.ModelState.IsValid)
-                {
-                    var errorMessages =
-                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage)).ToArray();
-                    return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
-                }
-
-                var result = action.Invoke();
-
-                return result.Success
-                    ? this.JsonOk(result.Data)
-                    : this.JsonError(
-                        result.Errors?.ToArray(),
-                        HttpStatusCode.InternalServerError,
-                        tempData: result.Data);
-            }
-            catch (Exception exception)
-            {
-                return this.JsonError(exception.Message, HttpStatusCode.InternalServerError, exception);
-            }
         }
     }
 }

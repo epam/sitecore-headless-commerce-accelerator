@@ -14,22 +14,18 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
 
-    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Controllers;
     using Foundation.Commerce.Services.Billing;
     using Foundation.Commerce.Services.Delivery;
     using Foundation.Commerce.Services.Order;
-    using Foundation.Extensions.Extensions;
 
     using Models.Requests;
 
     using Sitecore.Diagnostics;
 
-    public class CheckoutV2Controller : Controller
+    public class CheckoutV2Controller : BaseController
     {
         private readonly IBillingService billingService;
 
@@ -69,7 +65,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [ActionName("shippingOptions")]
         public ActionResult GetShippingOptions()
         {
-            return this.Execute(() => this.deliveryService.GetShippingOptions());
+            return this.Execute(this.deliveryService.GetShippingOptions);
         }
 
         [HttpPost]
@@ -95,34 +91,6 @@ namespace Wooli.Feature.Checkout.Controllers
         public ActionResult SubmitOrder()
         {
             return this.Execute(this.orderService.SubmitOrder);
-        }
-
-        // TODO: Create Extension Method
-        private ActionResult Execute<TData>(Func<Result<TData>> action) where TData : class
-        {
-            try
-            {
-                if (!this.ModelState.IsValid)
-                {
-                    var errorMessages =
-                        this.ModelState.SelectMany(state => state.Value?.Errors.Select(error => error.ErrorMessage))
-                            .ToArray();
-                    return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
-                }
-
-                var result = action.Invoke();
-
-                return result.Success
-                    ? this.JsonOk(result.Data)
-                    : this.JsonError(
-                        result.Errors?.ToArray(),
-                        HttpStatusCode.InternalServerError,
-                        tempData: result.Data);
-            }
-            catch (Exception exception)
-            {
-                return this.JsonError(exception.Message, HttpStatusCode.InternalServerError, exception);
-            }
         }
     }
 }

@@ -14,20 +14,16 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
 
-    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Controllers;
     using Foundation.Commerce.Services.Order;
-    using Foundation.Extensions.Extensions;
 
     using Models.Requests;
 
     using Sitecore.Diagnostics;
 
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         private readonly IOrderService orderService;
 
@@ -51,36 +47,6 @@ namespace Wooli.Feature.Checkout.Controllers
         {
             return this.Execute(
                 () => this.orderService.GetOrders(request.FromDate, request.UntilDate, request.Page, request.Count));
-        }
-
-        // TODO: Create Extension Method
-        private ActionResult Execute<T>(Func<Result<T>> action) where T : class
-        {
-            try
-            {
-                if (!this.ModelState.IsValid)
-                {
-                    var errorMessages = this.ModelState.Values
-                        .SelectMany(state => state?.Errors)
-                        .Select(error => error.ErrorMessage)
-                        .ToArray();
-
-                    return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
-                }
-
-                var result = action.Invoke();
-
-                return result.Success
-                    ? this.JsonOk(result.Data)
-                    : this.JsonError(
-                        result.Errors?.ToArray(),
-                        HttpStatusCode.InternalServerError,
-                        tempData: result.Data);
-            }
-            catch (Exception exception)
-            {
-                return this.JsonError(exception.Message, HttpStatusCode.InternalServerError, exception);
-            }
         }
     }
 }

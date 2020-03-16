@@ -617,6 +617,7 @@
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\StorefrontContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
     <Compile Include="Infrastructure\ContentsResolvers\StorefrontCountriesResolver.cs" />
@@ -746,7 +747,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\unicorn\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Infrastructure\Pipelines\MvcRequestBegin\" />
     <Folder Include="Views\" />
   </ItemGroup>

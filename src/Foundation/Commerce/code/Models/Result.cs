@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Models
 
     using Sitecore.Commerce.Services;
 
+    // TODO: Move to Foundation.Base
     public class Result<T> where T : class
     {
         public Result()
@@ -57,6 +58,7 @@ namespace Wooli.Foundation.Commerce.Models
             this.Errors.Add(error);
         }
 
+        [Obsolete("This method is obsolete. Use SetErrors(IList<string> errors) instead.")]
         public void SetErrors(ServiceProviderResult result)
         {
             this.Success = result.Success;

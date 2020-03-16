@@ -15,16 +15,10 @@
 namespace Wooli.Feature.Checkout.Tests.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Routing;
 
     using Checkout.Controllers;
 
     using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Checkout;
-    using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Services.Billing;
     using Foundation.Commerce.Services.Delivery;
     using Foundation.Commerce.Services.Order;
@@ -32,13 +26,8 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using Models.Requests;
 
     using NSubstitute;
-    using NSubstitute.ExceptionExtensions;
-
-    using Wooli.Foundation.Extensions.Models;
 
     using Xunit;
-
-    using Address = Foundation.Commerce.Models.Entities.Address;
 
     public class CheckoutV2ControllerTests
     {
@@ -55,371 +44,67 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.billingService = Substitute.For<IBillingService>();
             this.deliveryService = Substitute.For<IDeliveryService>();
             this.orderService = Substitute.For<IOrderService>();
-
-            var httpContext = Substitute.For<HttpContextBase>();
-            httpContext.Response.Returns(Substitute.For<HttpResponseBase>());
-
-            this.controller = new CheckoutV2Controller(this.billingService, this.orderService, this.deliveryService);
-            this.controller.ControllerContext = new ControllerContext(httpContext, new RouteData(), this.controller);
+            this.controller = Substitute.For<CheckoutV2Controller>(this.billingService, this.orderService, this.deliveryService);
         }
-
-        #region GetBillingOptions
-
+        
         [Fact]
-        public void GetBillingOptions_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
+        public void GetBillingOptions_ShouldCallExecuteMethod()
         {
-            // arrange
-            this.billingService.GetBillingOptions().Throws<NullReferenceException>();
-
             // act
-            var jsonResult = this.controller.GetBillingOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
+            this.controller.GetBillingOptions();
 
             // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(this.billingService.GetBillingOptions);
         }
 
         [Fact]
-        public void GetBillingOptions_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
+        public void GetDeliveryOptions_ShouldCallExecuteMethod()
         {
-            // arrange
-            var result = new Result<BillingInfo>
-            {
-                Success = false
-            };
-
-            this.billingService.GetBillingOptions().Returns(result);
-
-            // act
-            var jsonResult = this.controller.GetBillingOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
+           // act
+           this.controller.GetDeliveryOptions();
 
             // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(this.deliveryService.GetDeliveryOptions);
         }
 
         [Fact]
-        public void GetBillingOptions_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
+        public void GetShippingOptions_ShouldCallExecuteMethod()
         {
-            // arrange
-            var result = new Result<BillingInfo>();
-
-            this.billingService.GetBillingOptions().Returns(result);
-
             // act
-            var jsonResult = this.controller.GetBillingOptions() as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<BillingInfo>;
+            this.controller.GetShippingOptions();
 
             // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
-
-        #region GetDeliveryOptions
-
-        [Fact]
-        public void GetDeliveryOptions_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.deliveryService.GetDeliveryOptions().Throws<NullReferenceException>();
-
-            // act
-            var jsonResult = this.controller.GetBillingOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(this.deliveryService.GetShippingOptions);
         }
 
         [Fact]
-        public void GetDeliveryOptions_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
+        public void SetPaymentOptions_ShouldCallExecuteMethod()
         {
-            // arrange
-            var result = new Result<DeliveryInfo>
-            {
-                Success = false
-            };
-
-            this.deliveryService.GetDeliveryOptions().Returns(result);
-
             // act
-            var jsonResult = this.controller.GetDeliveryOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
+            this.controller.SetPaymentOptions(new SetPaymentOptionsRequest());
 
             // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
-        public void GetDeliveryOptions_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
+        public void SetShippingOptions_ShouldCallExecuteMethod()
         {
-            // arrange
-            var result = new Result<DeliveryInfo>();
-
-            this.deliveryService.GetDeliveryOptions().Returns(result);
-
             // act
-            var jsonResult = this.controller.GetDeliveryOptions() as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<DeliveryInfo>;
+            this.controller.SetShippingOptions(new SetShippingOptionsRequest());
 
             // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
-
-        #region GetShippingOptions
-
-        [Fact]
-        public void GetShippingOptions_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.deliveryService.GetShippingOptions().Throws<NullReferenceException>();
-
-            // act
-            var jsonResult = this.controller.GetBillingOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
-        public void GetShippingOptions_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
+        public void SubmitOrder_ShouldCallExecuteMethod()
         {
-            // arrange
-            var result = new Result<ShippingInfo>
-            {
-                Success = false
-            };
-
-            this.deliveryService.GetShippingOptions().Returns(result);
-
             // act
-            var jsonResult = this.controller.GetDeliveryOptions() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
+            this.controller.SubmitOrder();
 
             // assert
-            Assert.NotNull(errorResult);
+            this.controller.Received().Execute(this.orderService.SubmitOrder);
         }
-
-        [Fact]
-        public void GetShippingOptions_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
-        {
-            // arrange
-            var result = new Result<ShippingInfo>();
-
-            this.deliveryService.GetShippingOptions().Returns(result);
-
-            // act
-            var jsonResult = this.controller.GetShippingOptions() as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<ShippingInfo>;
-
-            // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
-
-        #region SetPaymentOptions
-
-        [Fact]
-        public void SetPaymentOptions_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.billingService.SetPaymentOptions(Arg.Any<Address>(), Arg.Any<FederatedPaymentInfo>())
-                .Throws<NullReferenceException>();
-
-            // act
-            var jsonResult = this.controller.SetPaymentOptions(new SetPaymentOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetPaymentOptions_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
-        {
-            // arrange
-            var result = new Result<VoidResult>
-            {
-                Success = false
-            };
-
-            this.billingService.SetPaymentOptions(Arg.Any<Address>(), Arg.Any<FederatedPaymentInfo>()).Returns(result);
-
-            // act
-            var jsonResult = this.controller.SetPaymentOptions(new SetPaymentOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetPaymentOptions_IfModelIsInvalid_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.controller.ModelState.AddModelError("key", "error");
-
-            // act
-            var jsonResult = this.controller.SetPaymentOptions(new SetPaymentOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetPaymentOptions_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
-        {
-            // arrange
-            var result = new Result<VoidResult>();
-
-            this.billingService.SetPaymentOptions(Arg.Any<Address>(), Arg.Any<FederatedPaymentInfo>()).Returns(result);
-
-            // act
-            var jsonResult = this.controller.SetPaymentOptions(new SetPaymentOptionsRequest()) as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<VoidResult>;
-
-            // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
-
-        #region SetShippingOptions
-
-        [Fact]
-        public void SetShippingOptions_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.deliveryService.SetShippingOptions(
-                    Arg.Any<string>(),
-                    Arg.Any<List<Address>>(),
-                    Arg.Any<List<ShippingMethod>>())
-                .Throws<NullReferenceException>();
-
-            // act
-            var jsonResult = this.controller.SetShippingOptions(new SetShippingOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetShippingOptions_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
-        {
-            // arrange
-            var result = new Result<VoidResult>
-            {
-                Success = false
-            };
-
-            this.deliveryService.SetShippingOptions(
-                    Arg.Any<string>(),
-                    Arg.Any<List<Address>>(),
-                    Arg.Any<List<ShippingMethod>>())
-                .Returns(result);
-
-            // act
-            var jsonResult = this.controller.SetShippingOptions(new SetShippingOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetShippingOptions_IfModelIsInvalid_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.controller.ModelState.AddModelError("key", "error");
-
-            // act
-            var jsonResult = this.controller.SetShippingOptions(new SetShippingOptionsRequest()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SetShippingOptions_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
-        {
-            // arrange
-            var result = new Result<VoidResult>();
-
-            this.deliveryService.SetShippingOptions(
-                    Arg.Any<string>(),
-                    Arg.Any<List<Address>>(),
-                    Arg.Any<List<ShippingMethod>>())
-                .Returns(result);
-
-            // act
-            var jsonResult = this.controller.SetShippingOptions(new SetShippingOptionsRequest()) as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<VoidResult>;
-
-            // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
-
-        #region SubmitOrder
-
-        [Fact]
-        public void SubmitOrder_IfExceptionIsThrownInService_ShouldReturnErrorResponse()
-        {
-            // arrange
-            this.orderService.SubmitOrder().Throws<NullReferenceException>();
-
-            // act
-            var jsonResult = this.controller.SubmitOrder() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SubmitOrder_IfServiceResultIsUnsuccessful_ShouldReturnErrorResponse()
-        {
-            // arrange
-            var result = new Result<SubmitOrderModel>
-            {
-                Success = false
-            };
-
-            this.orderService.SubmitOrder().Returns(result);
-
-            // act
-            var jsonResult = this.controller.SubmitOrder() as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void SubmitOrder_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
-        {
-            // arrange
-            var result = new Result<SubmitOrderModel>();
-
-            this.orderService.SubmitOrder().Returns(result);
-
-            // act
-            var jsonResult = this.controller.SubmitOrder() as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<SubmitOrderModel>;
-
-            // assert
-            Assert.NotNull(okResult);
-        }
-
-        #endregion
     }
 }

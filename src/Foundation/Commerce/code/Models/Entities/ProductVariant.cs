@@ -14,28 +14,53 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Providers;
+
     using Sitecore.Data.Items;
     using TypeLite;
+    using Wooli.Foundation.Connect.Models;
 
     [TsClass]
+    [ExcludeFromCodeCoverage]
     public class ProductVariant : BaseProduct
     {
+        [Obsolete("Use ProductVariant(Variant, ICurrencyProvider)")]
+
         public ProductVariant(Item sellableItem) : base(sellableItem)
         {
-            this.ProductVariantId = sellableItem.Name;
+            this.Initialize(sellableItem);
+        }
 
-            var variantProperties = sellableItem["VariationProperties"]?.Split('|') ?? new string[0];
-            var properties = variantProperties
-                .Where(variantPropertyName => !string.IsNullOrEmpty(variantPropertyName))
-                .ToDictionary(variantPropertyName => variantPropertyName, variantPropertyName => sellableItem[variantPropertyName]);
-
-            this.VariantProperties = properties;
+        public ProductVariant(Variant variant, ICurrencyProvider currencyProvider)
+            : base(variant, currencyProvider)
+        {
+            this.Initialize(variant.Item);
         }
 
         public string ProductVariantId { get; set; }
 
         public IDictionary<string, string> VariantProperties { get; set; }
+
+        private void Initialize(Item item)
+        {
+            this.ProductVariantId = item.Name;
+
+            var properties = new Dictionary<string, string>();
+            var variantProperties = item["VariationProperties"]?.Split('|') ?? new string[0];
+            foreach (var variantPropertyName in variantProperties)
+            {
+                if (!string.IsNullOrEmpty(variantPropertyName))
+                {
+                    var value = item[variantPropertyName];
+                    properties.Add(variantPropertyName, value);
+                }
+            }
+
+            this.VariantProperties = properties;
+        }
     }
 }

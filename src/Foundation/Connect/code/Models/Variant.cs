@@ -14,31 +14,17 @@
 
 namespace Wooli.Foundation.Connect.Models
 {
-    using Sitecore.Commerce.Entities.Inventory;
+    using System;
+
     using Sitecore.Data.Items;
 
-    public class Variant
+    public class Variant : BaseProduct
     {
-        public Variant(Item item)
-        {
-            this.Item = item;
-            this.VariantId = item.Name;
-        }
+        public Variant(Item item, string catalogName = null, decimal? customerAverageRating = null)
+            : base(item, catalogName, customerAverageRating)
+        { }
 
-        public decimal? AdjustedPrice { get; set; }
-
-        public string CurrencyCode { get; set; }
-
-        public decimal? CustomerAverageRating { get; set; }
-
-        public Item Item { get; protected set; }
-
-        public decimal? ListPrice { get; set; }
-
-        public StockStatus StockStatus { get; set; }
-
-        public string StockStatusName { get; set; }
-
-        public string VariantId { get; protected set; }
+        [Obsolete("Use Id property")]
+        public string VariantId => this.Id;
     }
 }

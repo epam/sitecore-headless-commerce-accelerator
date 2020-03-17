@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Catalog
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using Sitecore.Data.Items;
@@ -24,10 +24,10 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
-    [Obsolete("Use Entities.Category")]
-    public class CategoryModel
+    [ExcludeFromCodeCoverage]
+    public class Category
     {
-        public CategoryModel(Item categoryItem)
+        public Category(Item categoryItem)
         {
             Assert.ArgumentNotNull(categoryItem, nameof(categoryItem));
 

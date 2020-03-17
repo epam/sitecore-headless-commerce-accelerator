@@ -61,11 +61,11 @@ namespace Wooli.Foundation.Commerce.Repositories
             return this.GetProductModel(this.VisitorContext, productItem);
         }
 
-        public ProductModel GetProduct(string productd)
+        public ProductModel GetProduct(string productId)
         {
-            Assert.ArgumentNotNull(productd, nameof(productd));
+            Assert.ArgumentNotNull(productId, nameof(productId));
 
-            var productItem = this.searchManager.GetProduct(this.StorefrontContext.CatalogName, productd);
+            var productItem = this.searchManager.GetProduct(this.StorefrontContext.CatalogName, productId);
             if (productItem != null)
             {
                 return this.GetProductModel(this.VisitorContext, productItem);

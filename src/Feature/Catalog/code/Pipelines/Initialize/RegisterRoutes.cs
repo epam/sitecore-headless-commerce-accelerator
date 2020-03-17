@@ -14,7 +14,12 @@
 
 namespace Wooli.Feature.Catalog.Pipelines.Initialize
 {
+    using System.Web.Mvc;
     using System.Web.Routing;
+
+    using Controllers;
+
+    using Foundation.Commerce.Utils;
 
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
@@ -30,10 +35,16 @@ namespace Wooli.Feature.Catalog.Pipelines.Initialize
         {
             Assert.ArgumentNotNull(routeCollection, nameof(routeCollection));
 
-            ////routeCollection.MapRoute(
-            ////    $"{nameof(Feature)}.{nameof(Catalog)}.{nameof(ProductController)}",
-            ////    Constants.CommerceRoutePrefix + "/product/{action}/{id}",
-            ////    new { controller = "Product", id = RouteParameter.Optional });
+            const string SearchControllerName = "Search";
+
+            routeCollection.MapRoute(
+                nameof(SearchController),
+                Constants.CommerceRoutePrefix + $"/{SearchControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] { typeof(SearchController).Namespace },
+                defaults: new
+                {
+                    controller = SearchControllerName
+                });
 
             ////routeCollection.MapHttpRoute("CatalogItemResolverRoute", "product/{id}", new { id = UrlParameter.Optional });
         }

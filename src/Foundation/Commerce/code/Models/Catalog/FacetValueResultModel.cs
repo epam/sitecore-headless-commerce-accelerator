@@ -14,12 +14,15 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
+
     using Sitecore.ContentSearch.Linq;
     using Sitecore.Diagnostics;
 
     using TypeLite;
 
     [TsClass]
+    [Obsolete("Use Entities.FacetValueResult")]
     public class FacetValueResultModel
     {
         public int AggregateCount { get; protected set; }

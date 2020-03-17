@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
@@ -22,6 +23,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
+    [Obsolete("Use Entities.FacetResult")]
     public class FacetResultModel
     {
         public string DisplayName { get; set; }

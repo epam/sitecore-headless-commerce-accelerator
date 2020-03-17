@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
 
     using Connect.Models;
@@ -24,6 +25,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
+    [Obsolete("Use Entities.ProductListResult")]
     public class ProductListResultModel
     {
         public IList<ProductModel> ChildProducts { get; set; }

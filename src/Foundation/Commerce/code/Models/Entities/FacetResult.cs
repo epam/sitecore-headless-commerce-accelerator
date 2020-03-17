@@ -12,20 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Models.Entities
 {
-    using Models.Catalog;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Data.Items;
+    using TypeLite;
 
-    public interface ICatalogRepository
+    [TsClass]
+    [ExcludeFromCodeCoverage]
+    public class FacetResult
     {
-        ProductModel GetProduct(string productId);
+        public string DisplayName { get; set; }
 
-        ProductModel GetProduct(Item productItem);
+        public IList<FacetValueResult> FoundValues { get; set; }
 
-        ProductModel GetCurrentProduct();
-
-        CategoryModel GetCurrentCategory();
+        public string Name { get; set; }
     }
 }

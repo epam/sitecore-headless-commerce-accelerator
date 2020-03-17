@@ -62,6 +62,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -576,7 +579,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Mappers\CatalogEntityMapper.cs" />
+    <Compile Include="Mappers\ICatalogEntityMapper.cs" />
     <Compile Include="Models.Generated.cs" />
+    <Compile Include="Models\Requests\ProductsSearchRequest.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductColorsContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductContextExtension.cs" />
@@ -595,7 +602,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\unicorn\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Catalog\" />
   </ItemGroup>
@@ -611,6 +617,10 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
+      <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>Wooli.Foundation.Commerce</Name>

@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -23,6 +24,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
+    [Obsolete("Use Entities.BaseProduct")]
     public class BaseProductModel
     {
         public BaseProductModel(Item sellableItem)

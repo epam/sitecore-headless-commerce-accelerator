@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
 
     using Sitecore.Data.Items;
@@ -21,6 +22,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
+    [Obsolete("Use Entities.ProductVariant")]
     public class ProductVariantModel : BaseProductModel
     {
         public ProductVariantModel(Item sellableItem)

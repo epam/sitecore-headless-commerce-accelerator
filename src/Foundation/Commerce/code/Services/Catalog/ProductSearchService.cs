@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Services.Catalog
 {
-    using Models.Catalog;
+    using DependencyInjection;
 
-    using Sitecore.Data.Items;
+    using Models;
+    using Models.Entities;
 
-    public interface ICatalogRepository
+    [Service(typeof(IProductSearchService), Lifetime = Lifetime.Transient)]
+    public class ProductSearchService : IProductSearchService
     {
-        ProductModel GetProduct(string productId);
-
-        ProductModel GetProduct(Item productItem);
-
-        ProductModel GetCurrentProduct();
-
-        CategoryModel GetCurrentCategory();
+        public Result<ProductsSearchResult> GetProducts(ProductsSearchOptions options)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

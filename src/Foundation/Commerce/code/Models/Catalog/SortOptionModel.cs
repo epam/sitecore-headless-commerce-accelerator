@@ -14,12 +14,15 @@
 
 namespace Wooli.Foundation.Commerce.Models.Catalog
 {
+    using System;
+
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
     using TypeLite;
 
     [TsClass]
+    [Obsolete("Use Entities.SortOption")]
     public class SortOptionModel
     {
         public string DisplayName { get; set; }

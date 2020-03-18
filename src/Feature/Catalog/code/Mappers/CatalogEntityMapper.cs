@@ -21,6 +21,7 @@ namespace Wooli.Feature.Catalog.Mappers
     using AutoMapper;
 
     using Foundation.Commerce.Models.Entities;
+    using Foundation.Commerce.Models.Entities.Search;
     using Foundation.DependencyInjection;
 
     using Models.Requests;

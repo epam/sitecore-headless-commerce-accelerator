@@ -12,26 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Payment
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using Catalog;
 
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class CartLine
+    public class PaymentMethod
     {
-        public string Id { get; set; }
+        public string Description { get; set; }
 
-        public ProductModel Product { get; set; }
-
-        public ProductVariantModel Variant { get; set; }
-
-        public decimal Quantity { get; set; }
-
-        public TotalPrice Price { get; set; }
+        public string ExternalId { get; set; }
     }
 }

@@ -19,14 +19,21 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using Connect.Context;
     using Connect.Managers;
+
     using Context;
+
     using DependencyInjection;
+
     using ModelMappers;
+
     using Models;
     using Models.Entities;
+    using Models.Entities.Cart;
+
     using Sitecore.Diagnostics;
-    using Connect = Sitecore.Commerce.Engine.Connect.Entities;
+
     using CartResult = Sitecore.Commerce.Services.Carts.CartResult;
+    using Connect = Sitecore.Commerce.Engine.Connect.Entities;
 
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
     public class CartService : ICartService

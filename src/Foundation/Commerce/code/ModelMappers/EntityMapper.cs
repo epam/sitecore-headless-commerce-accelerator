@@ -23,11 +23,11 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using DependencyInjection;
 
-    using DocumentFormat.OpenXml.Wordprocessing;
-
     using Models;
     using Models.Checkout;
     using Models.Entities;
+    using Models.Entities.Addresses;
+    using Models.Entities.Cart;
 
     using Providers;
 
@@ -44,7 +44,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using Utils;
 
-    using Cart = Models.Entities.Cart;
+    using Cart = Models.Entities.Cart.Cart;
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
     using CountryRegionModel = Models.Region.CountryRegionModel;
     using FederatedPaymentInfo = Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo;
@@ -92,7 +92,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .IncludeBase<Sitecore.Commerce.Entities.Carts.Cart, Cart>()
                         .ReverseMap();
 
-                    cfg.CreateMap<CartLine, Models.Entities.CartLine>()
+                    cfg.CreateMap<CartLine, Models.Entities.Cart.CartLine>()
                         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ExternalCartLineId))
                         .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Total))
                         .ForMember(dest => dest.Product, opt => opt.Ignore())
@@ -106,8 +106,8 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                             })
                         .ReverseMap();
 
-                    cfg.CreateMap<CommerceCartLine, Models.Entities.CartLine>()
-                        .IncludeBase<CartLine, Models.Entities.CartLine>()
+                    cfg.CreateMap<CommerceCartLine, Models.Entities.Cart.CartLine>()
+                        .IncludeBase<CartLine, Models.Entities.Cart.CartLine>()
                         .ReverseMap();
 
                     #endregion
@@ -159,16 +159,16 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
                     #region Shipping
 
-                    cfg.CreateMap<ShippingMethod, Models.Entities.ShippingMethod>()
+                    cfg.CreateMap<ShippingMethod, Models.Entities.Shipping.ShippingMethod>()
                         .ReverseMap();
 
-                    cfg.CreateMap<ShippingInfo, Models.Entities.ShippingMethod>()
+                    cfg.CreateMap<ShippingInfo, Models.Entities.Shipping.ShippingMethod>()
                         .ReverseMap();
-                    cfg.CreateMap<CommerceShippingInfo, Models.Entities.ShippingMethod>()
+                    cfg.CreateMap<CommerceShippingInfo, Models.Entities.Shipping.ShippingMethod>()
                         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ShippingMethodName))
                         .ReverseMap();
 
-                    cfg.CreateMap<Models.Entities.ShippingMethod, ShippingInfoArgument>()
+                    cfg.CreateMap<Models.Entities.Shipping.ShippingMethod, ShippingInfoArgument>()
 
                         //.ForMember(dest => dest.LineIds,
                         //    opt => opt.MapFrom(src =>
@@ -192,9 +192,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                     cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
                         .ReverseMap();
 
-                    cfg.CreateMap<PaymentInfo, Models.Entities.FederatedPaymentInfo>()
+                    cfg.CreateMap<PaymentInfo, Models.Entities.Payment.FederatedPaymentInfo>()
                         .ReverseMap();
-                    cfg.CreateMap<FederatedPaymentInfo, Models.Entities.FederatedPaymentInfo>()
+                    cfg.CreateMap<FederatedPaymentInfo, Models.Entities.Payment.FederatedPaymentInfo>()
                         .ReverseMap();
                     #endregion
 

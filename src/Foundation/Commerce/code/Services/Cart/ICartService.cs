@@ -16,6 +16,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 {
     using Models;
     using Models.Entities;
+    using Models.Entities.Cart;
 
     /// <summary>
     /// Performs main operations with cart 

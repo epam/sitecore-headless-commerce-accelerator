@@ -12,42 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
 {
     using System.Diagnostics.CodeAnalysis;
 
     using TypeLite;
 
-    [TsClass]
     [ExcludeFromCodeCoverage]
-    public class Address
+    [TsClass]
+    public class ShippingMethod
     {
-        public string Name { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Address1 { get; set; }
-
-        public string Address2 { get; set; }
-
-        public string Country { get; set; }
-
-        public string CountryCode { get; set; }
-
-        public string City { get; set; }
-
-        public string State { get; set; }
-
-        public string ZipPostalCode { get; set; }
+        public string Description { get; set; }
 
         public string ExternalId { get; set; }
 
-        public string PartyId { get; set; }
-
-        public bool IsPrimary { get; set; }
-
-        public string Email { get; set; }
+        public string Name { get; set; }
     }
 }

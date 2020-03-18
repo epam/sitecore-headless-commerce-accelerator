@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
     using Models;
 
     using Models.Entities;
+    using Models.Entities.Catalog;
 
     /// <summary>
     /// Performs operations with catalog

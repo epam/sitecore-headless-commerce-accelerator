@@ -439,6 +439,8 @@
     <Compile Include="Services\Configuration\ConfigurationService.cs" />
     <Compile Include="Services\Configuration\IConfigurationProvider.cs" />
     <Compile Include="Services\Configuration\IConfigurationService.cs" />
+    <Compile Include="Services\Context\ISitecoreContext.cs" />
+    <Compile Include="Services\Context\SitecoreContext.cs" />
     <Compile Include="Services\Logging\CommonLogService.cs" />
     <Compile Include="Services\Logging\ILogService.cs" />
     <Compile Include="Services\Logging\LogService.cs" />

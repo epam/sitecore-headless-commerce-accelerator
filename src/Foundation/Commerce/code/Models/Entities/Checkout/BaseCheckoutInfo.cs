@@ -12,14 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Checkout
 {
-    public class FederatedPaymentInfo
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Addresses;
+
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
+    public class BaseCheckoutInfo
     {
-        public string CardToken { get; set; }
-
-        public string PartyId { get; set; }
-
-        public string PaymentMethodId { get; set; }
+        public List<Address> UserAddresses { get; set; }
     }
 }

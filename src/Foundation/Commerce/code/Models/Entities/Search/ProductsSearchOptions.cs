@@ -12,20 +12,28 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Search
 {
+    using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
 
-    using TypeLite;
-
     [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class ShippingMethod
+    public class ProductsSearchOptions
     {
-        public string Description { get; set; }
+        public string SearchKeyword { get; set; }
 
-        public string ExternalId { get; set; }
+        public int? PageNumber { get; set; }
 
-        public string Name { get; set; }
+        public NameValueCollection FacetValues { get; set; }
+
+        public string SortField { get; set; }
+
+        public int? PageSize { get; set; }
+
+        public SortDirection? SortDirection { get; set; }
+
+        public string CurrentCatalogItemId { get; set; }
+
+        public string CurrentItemId { get; set; }
     }
 }

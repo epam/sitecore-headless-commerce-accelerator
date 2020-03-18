@@ -17,8 +17,7 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
     using DependencyInjection;
 
     using Models;
-    using Models.Entities;
-
+    using Models.Entities.Catalog;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService

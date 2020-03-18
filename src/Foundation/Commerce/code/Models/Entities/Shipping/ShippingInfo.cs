@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,18 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
+    using Checkout;
 
     using TypeLite;
 
-    [TsClass]
     [ExcludeFromCodeCoverage]
-    public class FacetValueResult
+    [TsClass]
+    public class ShippingInfo : BaseCheckoutInfo
     {
-        public int AggregateCount { get; protected set; }
-
-        public string Name { get; protected set; }
+        public List<ShippingMethod> ShippingMethods { get; set; }
     }
 }

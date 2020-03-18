@@ -12,18 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Delivery
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
+    using Checkout;
+
+    using Shipping;
 
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class PaymentMethod
+    public class DeliveryInfo : BaseCheckoutInfo
     {
-        public string Description { get; set; }
+        public string NewPartyId { get; set; }
 
-        public string ExternalId { get; set; }
+        public IList<ShippingOption> ShippingOptions { get; set; }
     }
 }

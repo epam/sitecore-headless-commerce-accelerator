@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Cart
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -20,14 +20,22 @@ namespace Wooli.Foundation.Commerce.Models.Entities
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class ShippingOption
+    public class TotalPrice
     {
-        public string Description { get; set; }
+        public string CurrencyCode { get; set; }
 
-        public string Name { get; set; }
+        public string CurrencySymbol { get; set; }
 
-        public int ShippingOptionType { get; set; }
+        public decimal? Total { get; set; }
 
-        public string ShopName { get; set; }
+        public decimal? Subtotal { get; set; }
+
+        public decimal? HandlingTotal { get; set; }
+
+        public decimal? ShippingTotal { get; set; }
+
+        public decimal TaxTotal { get; set; }
+
+        public decimal? TotalSavings { get; set; }
     }
 }

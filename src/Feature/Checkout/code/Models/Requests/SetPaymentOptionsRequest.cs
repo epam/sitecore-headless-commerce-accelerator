@@ -15,6 +15,8 @@
 namespace Wooli.Feature.Checkout.Models.Requests
 {
     using Foundation.Commerce.Models.Entities;
+    using Foundation.Commerce.Models.Entities.Addresses;
+    using Foundation.Commerce.Models.Entities.Payment;
 
     public class SetPaymentOptionsRequest
     {

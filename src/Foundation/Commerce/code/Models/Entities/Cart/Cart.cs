@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,26 +12,37 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Cart
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
+    using Addresses;
+
+    using Payment;
+
+    using Shipping;
 
     using TypeLite;
 
-    [TsClass]
     [ExcludeFromCodeCoverage]
-    public class SortOption
+    [TsClass]
+    public class Cart
     {
-        public string DisplayName { get; set; }
+        public string Id { get; set; }
 
-        public bool IsSelected { get; set; }
+        public string Email { get; internal set; }
 
-        public string Name { get; set; }
+        public TotalPrice Price { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public SortDirection SortDirection { get; set; }
+        public IList<CartLine> CartLines { get; set; }
+
+        public IList<Address> Addresses { get; set; }
+
+        public IList<string> Adjustments { get; set; }
+
+        public IList<ShippingMethod> Shipping { get; set; }
+
+        public IList<FederatedPaymentInfo> Payment { get; set; }
     }
 }

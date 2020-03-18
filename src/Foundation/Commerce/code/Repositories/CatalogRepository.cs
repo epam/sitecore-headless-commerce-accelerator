@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
+    using Connect.Context;
     using Connect.Managers;
 
     using Context;

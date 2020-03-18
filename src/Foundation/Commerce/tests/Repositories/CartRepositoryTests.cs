@@ -19,6 +19,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Commerce.ModelMappers;
     using Commerce.Repositories;
 
+    using Connect.Context;
     using Connect.Managers;
 
     using Context;

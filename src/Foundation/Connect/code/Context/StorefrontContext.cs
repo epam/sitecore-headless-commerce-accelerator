@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Context
+namespace Wooli.Foundation.Connect.Context
 {
-    using Connect.Models;
-
     using DependencyInjection;
 
     using Glass.Mapper.Sc;
+
+    using Models;
 
     using Sitecore.Data.Items;
 

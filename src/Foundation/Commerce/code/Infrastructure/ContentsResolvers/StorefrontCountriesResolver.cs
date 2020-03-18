@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
     using System.Collections.Specialized;
 
+    using Connect.Context;
+
     using Context;
 
     using DependencyInjection;

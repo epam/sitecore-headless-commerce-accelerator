@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Connect.Context;
+
     using Context;
 
     using DependencyInjection;

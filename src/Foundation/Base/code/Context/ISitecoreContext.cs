@@ -12,23 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Mapping
+namespace Wooli.Foundation.Base.Context
 {
-    using System.Diagnostics.CodeAnalysis;
+    using Sitecore.Abstractions;
+    using Sitecore.Data;
+    using Sitecore.Globalization;
+    using Sitecore.Sites;
 
-    using AutoMapper;
-
-    [ExcludeFromCodeCoverage]
-    public class MapService : IMapService
+    /// <summary>
+    /// Proxy for static Sitecore.Context
+    /// </summary>
+    public interface ISitecoreContext
     {
-        public TDestination Map<TSource, TDestination>(TSource source)
-        {
-            return Mapper.Map<TSource, TDestination>(source);
-        }
+        Language Language { get; }
 
-        public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
-        {
-            return Mapper.Map(source, destination);
-        }
+        SiteContext Site { get; }
+
+        Database Database { get; }
+
+        BaseJob Job { get; }
     }
 }

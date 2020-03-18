@@ -22,6 +22,8 @@ namespace Wooli.Foundation.Base.Services.Configuration
 
     using Models.Configuration;
 
+    using Providers.Configuration;
+
     using Sitecore.DependencyInjection;
 
     [ExcludeFromCodeCoverage]

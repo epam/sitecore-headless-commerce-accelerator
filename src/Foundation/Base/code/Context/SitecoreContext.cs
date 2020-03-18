@@ -12,19 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Configuration
+namespace Wooli.Foundation.Base.Context
 {
-    /// <summary>
-    /// Get specific configuration node from Sitecore
-    /// </summary>
-    /// <typeparam name="TConfiguration"></typeparam>
-    public interface IConfigurationProvider<TConfiguration>
-        where TConfiguration : class
+    using System.Diagnostics.CodeAnalysis;
+
+    using DependencyInjection;
+
+    using Sitecore.Abstractions;
+    using Sitecore.Data;
+    using Sitecore.Globalization;
+    using Sitecore.Sites;
+
+    [Service(typeof(ISitecoreContext), Lifetime = Lifetime.Singleton)]
+    [ExcludeFromCodeCoverage]
+    public class SitecoreContext : ISitecoreContext
     {
-        /// <summary>
-        /// Get configuration node
-        /// </summary>
-        /// <returns>Configuration model.</returns>
-        TConfiguration Get();
+        public Language Language => Sitecore.Context.Language;
+
+        public SiteContext Site => Sitecore.Context.Site;
+
+        public Database Database => Sitecore.Context.Database;
+
+        public BaseJob Job => Sitecore.Context.Job;
     }
 }

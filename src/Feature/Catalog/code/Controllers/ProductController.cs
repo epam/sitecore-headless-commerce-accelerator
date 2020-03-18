@@ -32,18 +32,14 @@ namespace Wooli.Feature.Catalog.Controllers
         private readonly ICatalogRepository catalogRepository;
 
         private readonly IProductListRepository productListRepository;
-
-        private readonly IStorefrontContext storefrontContext;
-
+        
         private readonly IVisitorContext visitorContext;
 
         public ProductController(
-            IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             ICatalogRepository catalogRepository,
             IProductListRepository productListRepository)
         {
-            this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
             this.catalogRepository = catalogRepository;
             this.productListRepository = productListRepository;

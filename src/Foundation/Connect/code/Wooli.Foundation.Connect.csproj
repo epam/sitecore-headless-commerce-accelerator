@@ -562,6 +562,8 @@
     <Compile Include="Commerce.Extended.cs" />
     <Compile Include="Commerce.Generated.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Context\IStorefrontContext.cs" />
+    <Compile Include="Context\StorefrontContext.cs" />
     <Compile Include="Managers\AnalyticsManager.cs" />
     <Compile Include="Managers\CartManagerV2.cs" />
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />

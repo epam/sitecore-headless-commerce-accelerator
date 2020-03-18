@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     using Commerce.Services.Analytics;
 
+    using Connect.Context;
     using Connect.Managers;
 
     using Context;

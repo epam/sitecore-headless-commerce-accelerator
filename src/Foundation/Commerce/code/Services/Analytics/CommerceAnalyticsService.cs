@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
+    using Connect.Context;
     using Connect.Managers;
 
     using Context;

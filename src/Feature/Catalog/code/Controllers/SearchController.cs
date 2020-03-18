@@ -46,9 +46,13 @@ namespace Wooli.Feature.Catalog.Controllers
         [ActionName("products")]
         public ActionResult GetProducts(ProductsSearchRequest searchRequest)
         {
-            var searchOptions = this.catalogEntityMapper.Map<ProductsSearchRequest, ProductsSearchOptions>(searchRequest);
-
-            return this.Execute(() => this.productSearchService.GetProducts(searchOptions));
+            return this.Execute(
+                () =>
+                {
+                    var searchOptions =
+                        this.catalogEntityMapper.Map<ProductsSearchRequest, ProductsSearchOptions>(searchRequest);
+                    return this.productSearchService.GetProducts(searchOptions);
+                });
         }
     }
 }

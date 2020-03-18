@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Text.RegularExpressions;
     using System.Web.Security;
 
+    using Connect.Context;
     using Connect.Managers;
 
     using Context;

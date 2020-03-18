@@ -613,9 +613,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Contracts\ISiteContext.cs" />
-    <Compile Include="Context\Contracts\IStorefrontContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
-    <Compile Include="Context\StorefrontContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />

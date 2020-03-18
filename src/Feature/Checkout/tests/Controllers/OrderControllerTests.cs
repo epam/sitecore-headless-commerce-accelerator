@@ -33,7 +33,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     // TODO: Replace models with new one
     public class OrdersControllerTests
     {
-        private readonly Fixture fixture;
+        private readonly IFixture fixture;
 
         private readonly OrdersController controller;
 
@@ -52,7 +52,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetOrder(this.fixture.Create<string>());
 
             // assert
-            this.controller.Received().Execute(Arg.Any<Func<Result<CartModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<CartModel>>>());
         }
 
         [Fact]
@@ -62,7 +62,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetOrders(this.fixture.Create<GetOrdersRequest>());
 
             // assert
-            this.controller.Received().Execute(Arg.Any<Func<Result<OrderHistoryResultModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<OrderHistoryResultModel>>>());
         }
     }
 }

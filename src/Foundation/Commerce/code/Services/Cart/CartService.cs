@@ -87,7 +87,6 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         {
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
-            Assert.ArgumentNotNull(quantity, nameof(quantity));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLine = new Connect.CommerceCartLine(this.storefrontContext.CatalogName, productId, variantId == "-1" ? null : variantId, quantity);
@@ -101,7 +100,6 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         {
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
-            Assert.ArgumentNotNull(quantity, nameof(quantity));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLines = this.GetCartLinesByProduct(cartResult?.Cart?.Lines?.Cast<Connect.CommerceCartLine>(), productId, variantId).ToList();

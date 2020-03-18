@@ -275,6 +275,12 @@
     <Reference Include="Sitecore.Cloud.Nexus, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Cloud.Nexus.9.3.0\lib\net471\Sitecore.Cloud.Nexus.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.Connect.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -417,6 +423,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Globalization" />
     <Reference Include="System.Interactive.Async, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll</HintPath>
     </Reference>
@@ -528,6 +535,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\CartManagerV2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTest.cs" />
   </ItemGroup>
@@ -546,6 +554,16 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\code\Wooli.Foundation.Connect.csproj">
+      <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
+      <Name>Wooli.Foundation.Connect</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

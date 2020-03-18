@@ -20,6 +20,9 @@ namespace Wooli.Foundation.Commerce.Services.Billing
 
     using Models;
     using Models.Entities;
+    using Models.Entities.Addresses;
+    using Models.Entities.Billing;
+    using Models.Entities.Payment;
 
     [Service(typeof(IBillingService), Lifetime = Lifetime.Singleton)]
     public class BillingService : IBillingService

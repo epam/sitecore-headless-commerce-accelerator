@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
 {
     using System;
     using System.Collections.Generic;
@@ -22,6 +22,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities
     using Providers;
 
     using Sitecore.Data.Items;
+
     using TypeLite;
 
     [TsClass]

@@ -18,6 +18,9 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
     using Models;
     using Models.Entities;
+    using Models.Entities.Addresses;
+    using Models.Entities.Delivery;
+    using Models.Entities.Shipping;
 
     /// <summary>
     /// Performs main operations with delivery and shipping options

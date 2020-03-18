@@ -12,31 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities
+namespace Wooli.Foundation.Commerce.Models.Entities.Cart
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+
+    using Models.Catalog;
 
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class Cart
+    public class CartLine
     {
         public string Id { get; set; }
 
-        public string Email { get; internal set; }
+        public ProductModel Product { get; set; }
+
+        public ProductVariantModel Variant { get; set; }
+
+        public decimal Quantity { get; set; }
 
         public TotalPrice Price { get; set; }
-
-        public IList<CartLine> CartLines { get; set; }
-
-        public IList<Address> Addresses { get; set; }
-
-        public IList<string> Adjustments { get; set; }
-
-        public IList<ShippingMethod> Shipping { get; set; }
-
-        public IList<FederatedPaymentInfo> Payment { get; set; }
     }
 }

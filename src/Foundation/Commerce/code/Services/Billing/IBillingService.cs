@@ -16,6 +16,9 @@ namespace Wooli.Foundation.Commerce.Services.Billing
 {
     using Models;
     using Models.Entities;
+    using Models.Entities.Addresses;
+    using Models.Entities.Billing;
+    using Models.Entities.Payment;
 
     /// <summary>
     /// Performs main operations with billing and payment options

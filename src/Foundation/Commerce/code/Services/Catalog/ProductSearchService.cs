@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
 
     using Models;
     using Models.Entities;
+    using Models.Entities.Search;
 
     [Service(typeof(IProductSearchService), Lifetime = Lifetime.Transient)]
     public class ProductSearchService : IProductSearchService

@@ -21,6 +21,9 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
     using Models;
     using Models.Entities;
+    using Models.Entities.Addresses;
+    using Models.Entities.Delivery;
+    using Models.Entities.Shipping;
 
     [Service(typeof(IDeliveryService), Lifetime = Lifetime.Singleton)]
     public class DeliveryService : IDeliveryService

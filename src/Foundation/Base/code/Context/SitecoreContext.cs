@@ -12,8 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Context
+namespace Wooli.Foundation.Base.Context
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DependencyInjection;
 
     using Sitecore.Abstractions;
@@ -22,6 +24,7 @@ namespace Wooli.Foundation.Base.Services.Context
     using Sitecore.Sites;
 
     [Service(typeof(ISitecoreContext), Lifetime = Lifetime.Singleton)]
+    [ExcludeFromCodeCoverage]
     public class SitecoreContext : ISitecoreContext
     {
         public Language Language => Sitecore.Context.Language;

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Configuration
+namespace Wooli.Foundation.Base.Providers.Configuration
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

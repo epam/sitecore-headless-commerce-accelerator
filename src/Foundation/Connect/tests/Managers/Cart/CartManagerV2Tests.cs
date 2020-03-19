@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Managers
+namespace Wooli.Foundation.Connect.Tests.Managers.Cart
 {
     using System;
     using System.Collections.Generic;

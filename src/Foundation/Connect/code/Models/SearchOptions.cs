@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,18 +14,20 @@
 
 namespace Wooli.Foundation.Connect.Models
 {
-    using System;
+    using Sitecore.Commerce.CustomModels.Models;
 
-    using Sitecore.Data.Items;
-
-    public class Variant : BaseProduct
+    public class SearchOptions
     {
-        public Variant(Item item, string catalogName = null, decimal? customerAverageRating = null)
-            : base(item, catalogName, customerAverageRating)
-        {
-        }
+        /// <summary>Gets or sets the number of items to return</summary>
+        public int NumberOfItemsToReturn { get; set; }
 
-        [Obsolete("Use Id property")]
-        public string VariantId => this.Id;
+        /// <summary>Gets or sets the start page index</summary>
+        public int StartPageIndex { get; set; }
+
+        /// <summary>Gets or sets the sort field</summary>
+        public string SortField { get; set; }
+
+        /// <summary>Gets or sets the direction of the sort</summary>
+        public SortDirection SortDirection { get; set; }
     }
 }

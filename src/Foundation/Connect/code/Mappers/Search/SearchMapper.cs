@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models
+namespace Wooli.Foundation.Connect.Mappers.Search
 {
-    using System;
+    using AutoMapper;
+    using Mapper = Base.Mappers.Mapper;
 
-    using Sitecore.Data.Items;
-
-    public class Variant : BaseProduct
+    internal class SearchMapper : Mapper, ISearchMapper
     {
-        public Variant(Item item, string catalogName = null, decimal? customerAverageRating = null)
-            : base(item, catalogName, customerAverageRating)
+        public SearchMapper()
         {
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
-
-        [Obsolete("Use Id property")]
-        public string VariantId => this.Id;
     }
 }

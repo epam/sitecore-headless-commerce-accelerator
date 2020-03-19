@@ -1,5 +1,7 @@
 ﻿namespace Wooli.Foundation.Base.Mappers
 {
+    using AutoMapper;
+
     using Sitecore.Diagnostics;
 
     public abstract class Mapper : IMapper

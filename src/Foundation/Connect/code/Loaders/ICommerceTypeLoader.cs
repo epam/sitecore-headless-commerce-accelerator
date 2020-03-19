@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models
+namespace Wooli.Foundation.Connect.Loaders
 {
-    using System;
-
-    using Sitecore.Data.Items;
-
-    public class Variant : BaseProduct
+    /// <summary>
+    /// Proxy for static CommerceTypeLoader
+    /// </summary>
+    public interface ICommerceTypeLoader
     {
-        public Variant(Item item, string catalogName = null, decimal? customerAverageRating = null)
-            : base(item, catalogName, customerAverageRating)
-        {
-        }
-
-        [Obsolete("Use Id property")]
-        public string VariantId => this.Id;
+        /// <summary>Creates the instance.</summary>
+        /// <typeparam name="T">Interface type to be loaded.</typeparam>
+        /// <returns>An instance of type T.</returns>
+        T CreateInstance<T>();
     }
 }

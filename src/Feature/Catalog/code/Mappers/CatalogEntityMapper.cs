@@ -20,7 +20,6 @@ namespace Wooli.Feature.Catalog.Mappers
 
     using AutoMapper;
 
-    using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.DependencyInjection;
 
@@ -29,7 +28,7 @@ namespace Wooli.Feature.Catalog.Mappers
     using Mapper = Foundation.Base.Mappers.Mapper;
 
     [Service(typeof(ICatalogEntityMapper), Lifetime = Lifetime.Transient)]
-    public class CatalogEntityMapper : Mapper, ICatalogEntityMapper
+    public sealed class CatalogEntityMapper : Mapper, ICatalogEntityMapper
     {
         public CatalogEntityMapper()
         {

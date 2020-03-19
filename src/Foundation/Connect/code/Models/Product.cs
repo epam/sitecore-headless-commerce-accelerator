@@ -21,7 +21,11 @@ namespace Wooli.Foundation.Connect.Models
 
     public class Product : BaseProduct
     {
-        public Product(Item item, List<Variant> variants, string catalogName = null, decimal? customerAverageRating = null) 
+        public Product(
+            Item item,
+            List<Variant> variants,
+            string catalogName = null,
+            decimal? customerAverageRating = null)
             : base(item, catalogName, customerAverageRating)
         {
             this.Variants = variants;

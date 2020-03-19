@@ -576,6 +576,7 @@
     <Compile Include="Managers\Search\SearchManagerV2.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
+    <Compile Include="Mappers\Search\SearchProfile.cs" />
     <Compile Include="ModelMappers\ConnectEntityMapper.cs" />
     <Compile Include="ModelMappers\IConnectEntityMapper.cs" />
     <Compile Include="Models.Generated.cs" />

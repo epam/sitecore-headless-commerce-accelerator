@@ -1,10 +1,14 @@
 ﻿namespace Wooli.Foundation.Base.Mappers
 {
+    using AutoMapper;
+
     using Sitecore.Diagnostics;
 
     public abstract class Mapper : IMapper
     {
         protected AutoMapper.IMapper InnerMapper { get; set; }
+
+        public abstract MapperConfiguration Configuration { get; }
 
         public TResult Map<TSource, TResult>(TSource source)
         {

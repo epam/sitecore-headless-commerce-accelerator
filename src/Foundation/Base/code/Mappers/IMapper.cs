@@ -1,10 +1,17 @@
 ﻿namespace Wooli.Foundation.Base.Mappers
 {
+    using AutoMapper;
+
     /// <summary>
     /// Performs mapping operations
     /// </summary>
     public interface IMapper
     {
+        /// <summary>
+        /// Mapper configuration
+        /// </summary>
+        MapperConfiguration Configuration { get; }
+
         /// <summary>
         /// Maps source object to object of TResult type
         /// </summary>

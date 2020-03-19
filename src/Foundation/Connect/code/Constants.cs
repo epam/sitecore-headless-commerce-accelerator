@@ -19,5 +19,14 @@ namespace Wooli.Foundation.Connect
         public const string CommerceUsersDomainName = "CommerceUsers";
 
         public const string DefaultCartName = "Default";
+
+        public static class Search
+        {
+            public static class ItemType
+            {
+                public const string Product = "SellableItem";
+                public const string Category = "Category";
+            }
+        }
     }
 }

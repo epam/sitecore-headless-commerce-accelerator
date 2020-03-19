@@ -20,7 +20,6 @@ namespace Wooli.Feature.Catalog.Mappers
 
     using AutoMapper;
 
-    using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.DependencyInjection;
 
@@ -29,11 +28,13 @@ namespace Wooli.Feature.Catalog.Mappers
     using Mapper = Foundation.Base.Mappers.Mapper;
 
     [Service(typeof(ICatalogEntityMapper), Lifetime = Lifetime.Transient)]
-    public class CatalogEntityMapper : Mapper, ICatalogEntityMapper
+    public sealed class CatalogEntityMapper : Mapper, ICatalogEntityMapper
     {
+        public override MapperConfiguration Configuration { get; }
+
         public CatalogEntityMapper()
         {
-            var configuration = new MapperConfiguration(
+            this.Configuration = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.CreateMap<ProductsSearchRequest, ProductsSearchOptions>()
@@ -54,7 +55,7 @@ namespace Wooli.Feature.Catalog.Mappers
                         .ForMember(dest => dest.CurrentItemId, opt => opt.MapFrom(src => src.CurrentItemId));
                 });
 
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
+            this.InnerMapper = new AutoMapper.Mapper(this.Configuration);
         }
     }
 }

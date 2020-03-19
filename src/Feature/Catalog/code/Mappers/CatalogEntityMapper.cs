@@ -30,11 +30,9 @@ namespace Wooli.Feature.Catalog.Mappers
     [Service(typeof(ICatalogEntityMapper), Lifetime = Lifetime.Transient)]
     public sealed class CatalogEntityMapper : Mapper, ICatalogEntityMapper
     {
-        public override MapperConfiguration Configuration { get; }
-
         public CatalogEntityMapper()
         {
-            this.Configuration = new MapperConfiguration(
+            var configuration = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.CreateMap<ProductsSearchRequest, ProductsSearchOptions>()
@@ -55,7 +53,7 @@ namespace Wooli.Feature.Catalog.Mappers
                         .ForMember(dest => dest.CurrentItemId, opt => opt.MapFrom(src => src.CurrentItemId));
                 });
 
-            this.InnerMapper = new AutoMapper.Mapper(this.Configuration);
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
     }
 }

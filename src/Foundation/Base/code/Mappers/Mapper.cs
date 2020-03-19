@@ -8,8 +8,6 @@
     {
         protected AutoMapper.IMapper InnerMapper { get; set; }
 
-        public abstract MapperConfiguration Configuration { get; }
-
         public TResult Map<TSource, TResult>(TSource source)
         {
             Assert.IsNotNull(this.InnerMapper, "InnerMapper must be initialized");

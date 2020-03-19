@@ -26,11 +26,9 @@ namespace Wooli.Foundation.Connect.Mappers.Search
 
     internal class SearchMapper : Mapper, ISearchMapper
     {
-        public override sealed MapperConfiguration Configuration { get; }
-
         public SearchMapper()
         {
-            this.Configuration = new MapperConfiguration(
+            var configuration = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.CreateMap<SearchOptions, CommerceSearchOptions>()
@@ -42,7 +40,7 @@ namespace Wooli.Foundation.Connect.Mappers.Search
                         .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
                 });
 
-            this.InnerMapper = new AutoMapper.Mapper(this.Configuration);
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
     }
 }

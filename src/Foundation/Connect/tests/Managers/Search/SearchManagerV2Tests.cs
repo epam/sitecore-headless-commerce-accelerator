@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Tests.Managers.Search
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Base.Context;
@@ -60,9 +61,6 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
             this.fixture = new Fixture().Customize(new AutoDbCustomization());
 
             this.searchMapper = Substitute.For<ISearchMapper>();
-            this.searchMapper.Map<SearchOptions, CommerceSearchOptions>(Arg.Any<SearchOptions>())
-                .Returns(this.fixture.Create<CommerceSearchOptions>());
-
             this.sitecoreContext = Substitute.For<ISitecoreContext>();
             this.searchResponseProvider = Substitute.For<ISearchResponseProvider>();
             this.comerceSearchManager = Substitute.For<ICommerceSearchManager>();
@@ -90,6 +88,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 () => this.searchManager.GetProducts(null, this.fixture.Create<SearchOptions>()));
             Assert.Throws<ArgumentNullException>(
                 () => this.searchManager.GetProducts(this.fixture.Create<string>(), null));
+
 
             this.searchMapper.Received(0).Map<SearchOptions, CommerceSearchOptions>(Arg.Any<SearchOptions>());
             this.searchResultProvider.Received(0)
@@ -154,12 +153,12 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         [Fact]
         public void GetProducts_ShouldReturnNotNullSearchResults()
         {
-            //arrange
+            //act 
             var results = this.searchManager.GetProducts(
                 this.fixture.Create<string>(),
                 this.fixture.Create<SearchOptions>());
 
-            //act & assert
+            //assert
             Assert.NotNull(results);
         }
 
@@ -181,11 +180,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         [Fact]
         public void GetProductItem_IfProductNotFound_ShouldReturnNull()
         {
-            //arrange
+            //act
             var results = this.searchManager.GetProductItem(
                 this.fixture.Create<string>());
 
-            //act & assert
+            //assert
             Assert.Null(results);
             this.searchResultProvider.Received(1)
                 .GetSearchResult(

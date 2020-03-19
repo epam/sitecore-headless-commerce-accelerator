@@ -24,7 +24,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
     public interface ISearchManagerV2
     {
         /// <summary>
-        /// Get products from context catalog by keyword and search options
+        /// Gets products from context catalog by keyword and search options
         /// </summary>
         /// <param name="searchKeyword">Search by keyword</param>
         /// <param name="searchOptions">Search options: sorting, facets, etc.</param>
@@ -34,14 +34,14 @@ namespace Wooli.Foundation.Connect.Managers.Search
             SearchOptions searchOptions);
 
         /// <summary>
-        /// Get category item from context catalog by category name
+        /// Gets category item from context catalog by category name
         /// </summary>
         /// <param name="categoryName">Category name</param>
         /// <returns>Category item</returns>
         Item GetCategoryItem(string categoryName);
 
         /// <summary>
-        /// Get product item from context catalog by product id
+        /// Gets product item from context catalog by product id
         /// </summary>
         /// <param name="productId">Product product id</param>
         /// <returns>Product item</returns>

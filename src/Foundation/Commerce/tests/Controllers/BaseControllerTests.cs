@@ -36,7 +36,7 @@ namespace Wooli.Foundation.Commerce.Tests.Controllers
     {
         private readonly BaseController controller;
 
-        private readonly Fixture fixture;
+        private readonly IFixture fixture;
 
         public BaseControllerTests()
         {

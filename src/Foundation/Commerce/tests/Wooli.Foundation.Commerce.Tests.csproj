@@ -284,6 +284,9 @@
     <Reference Include="Sitecore.Commerce.Connect.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -559,6 +562,7 @@
     <Compile Include="Repositories\CartRepositoryTests.cs" />
     <Compile Include="Repositories\CatalogRepositoryTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
+    <Compile Include="Services\Cart\CartServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\license.xml">

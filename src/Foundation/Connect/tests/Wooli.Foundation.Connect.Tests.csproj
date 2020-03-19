@@ -555,6 +555,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
     <Compile Include="Managers\Search\SearchManagerV2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTest.cs" />

@@ -88,14 +88,6 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 () => this.searchManager.GetProducts(null, this.fixture.Create<SearchOptions>()));
             Assert.Throws<ArgumentNullException>(
                 () => this.searchManager.GetProducts(this.fixture.Create<string>(), null));
-
-
-            this.searchMapper.Received(0).Map<SearchOptions, CommerceSearchOptions>(Arg.Any<SearchOptions>());
-            this.searchResultProvider.Received(0)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-            this.searchResponseProvider.Received(0).CreateFromSearchResultsItems(Arg.Any<CommerceSearchOptions>(), Arg.Any<SearchResults<CommerceSellableItemSearchResultItem>>());
         }
 
         [Fact]

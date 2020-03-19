@@ -48,6 +48,9 @@ namespace Wooli.Foundation.Connect.Managers
 
         public CartResult LoadCart(string shopName, string customerId)
         {
+            Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
+            Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
+
             return this.Execute(
                 new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId),
                 this.cartServiceProvider.LoadCart);
@@ -55,6 +58,10 @@ namespace Wooli.Foundation.Connect.Managers
 
         public CartResult CreateOrResumeCart(string shopName, string userId, string customerId)
         {
+            Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
+            Assert.ArgumentNotNullOrEmpty(userId, nameof(userId));
+            Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
+
             return this.Execute(
                 new CreateOrResumeCartRequest(shopName, userId),
                 this.cartServiceProvider.CreateOrResumeCart);
@@ -62,31 +69,49 @@ namespace Wooli.Foundation.Connect.Managers
 
         public CartResult AddCartLines(Cart cart, IEnumerable<CartLine> cartLines)
         {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartLines, nameof(cartLines));
+
             return this.Execute(new AddCartLinesRequest(cart, cartLines), this.cartServiceProvider.AddCartLines);
         }
 
         public CartResult UpdateCartLines(Cart cart, IEnumerable<CartLine> cartLines)
         {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartLines, nameof(cartLines));
+
             return this.Execute(new UpdateCartLinesRequest(cart, cartLines), this.cartServiceProvider.UpdateCartLines);
         }
 
         public CartResult RemoveCartLines(Cart cart, IEnumerable<CartLine> cartLines)
         {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartLines, nameof(cartLines));
+
             return this.Execute(new RemoveCartLinesRequest(cart, cartLines), this.cartServiceProvider.RemoveCartLines);
         }
 
         public CartResult MergeCarts(Cart fromCart, Cart toCart)
         {
+            Assert.ArgumentNotNull(fromCart, nameof(fromCart));
+            Assert.ArgumentNotNull(toCart, nameof(toCart));
+
             return this.Execute(new MergeCartRequest(fromCart, toCart), this.cartServiceProvider.MergeCart);
         }
 
         public CartResult AddPromoCode(CommerceCart cart, string promoCode)
         {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
+
             return this.Execute(new AddPromoCodeRequest(cart, promoCode), this.cartServiceProvider.AddPromoCode);
         }
 
         public CartResult RemovePromoCode(CommerceCart cart, string promoCode)
         {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
+
             return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
         }
 

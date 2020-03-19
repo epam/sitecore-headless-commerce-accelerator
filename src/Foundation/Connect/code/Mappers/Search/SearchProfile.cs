@@ -15,14 +15,24 @@
 namespace Wooli.Foundation.Connect.Mappers.Search
 {
     using AutoMapper;
-    using Mapper = Base.Mappers.Mapper;
 
-    internal class SearchMapper : Mapper, ISearchMapper
+    using Models;
+
+    using Sitecore.Commerce.CustomModels.Models;
+    using Sitecore.Commerce.Engine.Connect;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
+
+    public class SearchProfile : Profile
     {
-        public SearchMapper()
+        public SearchProfile()
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
+            this.CreateMap<SearchOptions, CommerceSearchOptions>()
+                .ForMember(dest => dest.FacetFields, opt => opt.Ignore())
+                .ReverseMap();
+
+            this.CreateMap<CommerceConstants.SortDirection, SortDirection>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
         }
     }
 }

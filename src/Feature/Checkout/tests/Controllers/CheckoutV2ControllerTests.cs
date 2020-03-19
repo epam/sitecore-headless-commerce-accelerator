@@ -27,6 +27,8 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
     using NSubstitute;
 
+    using Ploeh.AutoFixture;
+
     using Xunit;
 
     public class CheckoutV2ControllerTests
@@ -39,12 +41,15 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
         private readonly CheckoutV2Controller controller;
 
+        private readonly IFixture fixture;
+
         public CheckoutV2ControllerTests()
         {
             this.billingService = Substitute.For<IBillingService>();
             this.deliveryService = Substitute.For<IDeliveryService>();
             this.orderService = Substitute.For<IOrderService>();
             this.controller = Substitute.For<CheckoutV2Controller>(this.billingService, this.orderService, this.deliveryService);
+            this.fixture = new Fixture();
         }
         
         [Fact]
@@ -54,7 +59,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetBillingOptions();
 
             // assert
-            this.controller.Received().Execute(this.billingService.GetBillingOptions);
+            this.controller.Received(1).Execute(this.billingService.GetBillingOptions);
         }
 
         [Fact]
@@ -64,7 +69,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
            this.controller.GetDeliveryOptions();
 
             // assert
-            this.controller.Received().Execute(this.deliveryService.GetDeliveryOptions);
+            this.controller.Received(1).Execute(this.deliveryService.GetDeliveryOptions);
         }
 
         [Fact]
@@ -74,27 +79,27 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetShippingOptions();
 
             // assert
-            this.controller.Received().Execute(this.deliveryService.GetShippingOptions);
+            this.controller.Received(1).Execute(this.deliveryService.GetShippingOptions);
         }
 
         [Fact]
         public void SetPaymentOptions_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.SetPaymentOptions(new SetPaymentOptionsRequest());
+            this.controller.SetPaymentOptions(this.fixture.Create<SetPaymentOptionsRequest>());
 
             // assert
-            this.controller.Received().Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
         public void SetShippingOptions_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.SetShippingOptions(new SetShippingOptionsRequest());
+            this.controller.SetShippingOptions(this.fixture.Create<SetShippingOptionsRequest>());
 
             // assert
-            this.controller.Received().Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
@@ -104,7 +109,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.SubmitOrder();
 
             // assert
-            this.controller.Received().Execute(this.orderService.SubmitOrder);
+            this.controller.Received(1).Execute(this.orderService.SubmitOrder);
         }
     }
 }

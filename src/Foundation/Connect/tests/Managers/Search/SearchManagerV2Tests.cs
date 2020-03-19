@@ -22,6 +22,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
 
     using Connect.Managers.Search;
     using Connect.Mappers.Search;
+    using Connect.Models.Search;
 
     using Loaders;
 
@@ -99,6 +100,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
             {
                 StartPageIndex = pageNumber
             };
+            var searchResponse = this.fixture.Create<SearchResponse>();
 
             this.searchMapper.Map<SearchOptions, CommerceSearchOptions>(Arg.Any<SearchOptions>())
                 .Returns(
@@ -106,12 +108,18 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                     {
                         StartPageIndex = searchOptions.StartPageIndex
                     });
+            this.searchMapper.Map<SearchResponse, SearchResultsV2>(searchResponse)
+                .Returns(
+                    new SearchResultsV2()
+                    {
+                        TotalItemCount = searchResponse.TotalItemCount
+                    });
 
             this.searchResponseProvider
                 .CreateFromSearchResultsItems(
                     Arg.Any<CommerceSearchOptions>(),
                     Arg.Any<SearchResults<CommerceSellableItemSearchResultItem>>())
-                .Returns(this.fixture.Create<SearchResponse>());
+                .Returns(searchResponse);
 
             //act
             var results = this.searchManager.GetProducts(
@@ -119,7 +127,9 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 searchOptions);
 
             //assert
-            Assert.True(results.CurrentPageNumber == pageNumber);
+            Assert.Equal(searchResponse.TotalItemCount, results.TotalItemCount);
+
+            this.searchMapper.Received(1).Map<SearchResponse, SearchResultsV2>(searchResponse);
         }
 
         [Fact]

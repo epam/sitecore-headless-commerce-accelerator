@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Connect.Managers
 
     using DependencyInjection;
 
-    using ModelMappers;
+    using Mappers;
 
     using Models;
 

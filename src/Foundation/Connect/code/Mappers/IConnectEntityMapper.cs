@@ -12,16 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.ModelMappers
+namespace Wooli.Foundation.Connect.Mappers
 {
     using System.Collections.Generic;
+
+    using Base.Mappers;
 
     using Models;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
 
-    public interface IConnectEntityMapper
+    public interface IConnectEntityMapper : IMapper
     {
         CommerceParty MapToCommerceParty(PartyEntity item);
 

@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Managers.Search
 {
     using Models;
+    using Models.Search;
 
     using Sitecore.Data.Items;
 
@@ -29,7 +30,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
         /// <param name="searchKeyword">Search by keyword</param>
         /// <param name="searchOptions">Search options: sorting, facets, etc.</param>
         /// <returns>Search results</returns>
-        SearchResults GetProducts(
+        SearchResultsV2 GetProducts(
             string searchKeyword,
             SearchOptions searchOptions);
 

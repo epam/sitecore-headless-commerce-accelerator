@@ -46,6 +46,17 @@ namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
                     controller = AccountControllerName
                 });
 
+            const string AccountsControllerName = "Accounts";
+
+            routeCollection.MapRoute(
+                nameof(AccountsController),
+                Constants.CommerceRoutePrefix + $"/{AccountsControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] { typeof(AccountsController).Namespace },
+                defaults: new
+                {
+                    controller = AccountsControllerName
+                });
+
             const string AuthenticationControllerName = "Authentication";
             const string AuthenticationPrefix = "auth";
 

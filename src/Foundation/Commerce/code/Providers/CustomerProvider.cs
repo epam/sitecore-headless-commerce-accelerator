@@ -14,43 +14,46 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Web;
 
     using Connect.Managers;
 
     using DependencyInjection;
 
-    using Models;
+    using ModelMappers.Users;
+
+    using Models.Entities.Users;
 
     using Sitecore;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Diagnostics;
-
-    using Constants = Utils.Constants;
 
     [Service(typeof(ICustomerProvider))]
     public class CustomerProvider : ICustomerProvider
     {
         private readonly IAccountManager accountManager;
 
-        public CustomerProvider(IAccountManager accountManager)
+        private readonly IUserMapper userMapper;
+
+        public CustomerProvider(IAccountManager accountManager, IUserMapper userMapper)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
+            Assert.ArgumentNotNull(userMapper, nameof(userMapper));
+
             this.accountManager = accountManager;
+            this.userMapper = userMapper;
         }
 
-        public CommerceUserModel GetCommerceUser(string contactIdOrName)
+        public User GetCommerceUser(string contactIdOrName)
         {
             Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
             var commerceUser = this.accountManager.GetUser(contactIdOrName);
 
-            return this.MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
+            return this.MapToUser(commerceUser.Result, contactIdOrName);
         }
 
-        public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
+        public User GetCurrentCommerceUser(HttpContextBase httpContext)
         {
             var user = Context.Data.User;
             if (user == null)
@@ -72,42 +75,17 @@ namespace Wooli.Foundation.Commerce.Providers
             return null;
         }
 
-        private string GetCustomerId(IList<string> customers)
-        {
-            // It is assumed that we have only one commerce customer per commerce user,
-            // so we select a first if it exists
-            return customers?.FirstOrDefault();
-        }
-
-        private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
+        private User MapToUser(CommerceUser commerceUser, string contactIdOrEmail)
         {
             if (commerceUser == null)
             {
-                return new CommerceUserModel
+                return new User
                 {
                     ContactId = contactIdOrEmail
                 };
             }
 
-            var customerId = this.GetCustomerId(commerceUser?.Customers);
-            var contactId = this.ParseContactId(commerceUser?.ExternalId);
-
-            return new CommerceUserModel
-            {
-                ContactId = contactId,
-                CustomerId = customerId,
-                Email = commerceUser.Email,
-                FirstName = commerceUser.FirstName,
-                LastName = commerceUser.LastName,
-                UserName = commerceUser.UserName
-            };
-        }
-
-        private string ParseContactId(string externalId)
-        {
-            // We extract contact id from externalId,
-            // it is not returned by current implementation of Sitecore.Commerce.Core
-            return externalId?.Replace(Constants.CommereceCustomerIdPrefix, string.Empty);
+            return this.userMapper.Map<CommerceUser, User>(commerceUser);
         }
     }
 }

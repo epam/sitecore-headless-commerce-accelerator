@@ -14,8 +14,11 @@
 
 namespace Wooli.Foundation.Commerce.Models
 {
+    using System;
+
     using TypeLite;
 
+    [Obsolete("Use Entity.Users.User")]
     [TsClass]
     public class CommerceUserModel
     {

@@ -626,6 +626,8 @@
     <Compile Include="ModelInitializers\CartModelBuilder.cs" />
     <Compile Include="ModelMappers\Contracts\IEntityMapper.cs" />
     <Compile Include="ModelMappers\EntityMapper.cs" />
+    <Compile Include="ModelMappers\Users\IUserMapper.cs" />
+    <Compile Include="ModelMappers\Users\UserMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\ChangePasswordResultModel.cs" />
@@ -643,7 +645,7 @@
     <Compile Include="Models\Catalog\ProductListResultModel.cs" />
     <Compile Include="Models\Catalog\ProductVariantModel.cs" />
     <Compile Include="Models\Catalog\ProductModel.cs" />
-    <Compile Include="Models\Entities\Account\User.cs" />
+    <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductsSearchOptions.cs" />
     <Compile Include="Models\Catalog\SortOptionModel.cs" />
@@ -688,6 +690,7 @@
     <Compile Include="Models\Entities\Search\SortOption.cs" />
     <Compile Include="Models\Entities\Cart\TotalPrice.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
+    <Compile Include="Models\Mappings\UserProfile.cs" />
     <Compile Include="Models\Region\CountryRegionModel.cs" />
     <Compile Include="Models\Region\SubdivisionModel.cs" />
     <Compile Include="Models\Result.cs" />

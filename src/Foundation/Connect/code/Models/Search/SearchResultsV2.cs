@@ -12,21 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Mappers.Search
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using AutoMapper;
+    using System.Collections.Generic;
 
-    using Models.Mappings;
+    using Sitecore.Data.Items;
 
-    using Mapper = Base.Mappers.Mapper;
-
-    internal class SearchMapper : Mapper, ISearchMapper
+    public class SearchResultsV2
     {
-        public SearchMapper()
-        {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
-            
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
+        public IList<Item> SearchResultItems { get; set; }
+
+        public IEnumerable<QueryFacet> QueryFacets { get; set; }
+
+        public int TotalItemCount { get; set; }
     }
 }

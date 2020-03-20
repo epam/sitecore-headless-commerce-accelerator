@@ -21,6 +21,7 @@ namespace Wooli.Foundation.Connect.Managers
     using DependencyInjection;
 
     using Models;
+    using Models.Search;
 
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect;

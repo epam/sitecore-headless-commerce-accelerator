@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using System;
     using System.Collections.Generic;
 
-    using Connect.Models;
+    using Connect.Models.Search;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Diagnostics;

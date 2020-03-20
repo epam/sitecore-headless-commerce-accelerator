@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.ModelMappers
+namespace Wooli.Foundation.Connect.Mappers
 {
     using System.Collections.Generic;
 
@@ -21,17 +21,18 @@ namespace Wooli.Foundation.Connect.ModelMappers
     using DependencyInjection;
 
     using Models;
+    using Models.Mappings;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
 
     using Utils;
 
-    [Service(typeof(IConnectEntityMapper))]
-    public class ConnectEntityMapper : IConnectEntityMapper
-    {
-        private readonly IMapper innerMapper;
+    using Mapper = Base.Mappers.Mapper;
 
+    [Service(typeof(IConnectEntityMapper))]
+    public class ConnectEntityMapper : Mapper, IConnectEntityMapper
+    {
         public ConnectEntityMapper()
         {
             var config = new MapperConfiguration(
@@ -51,27 +52,27 @@ namespace Wooli.Foundation.Connect.ModelMappers
                             opt => opt.MapFrom(
                                 src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
                 });
-            this.innerMapper = new Mapper(config);
+            this.InnerMapper = new AutoMapper.Mapper(config);
         }
 
         public CommerceParty MapToCommerceParty(PartyEntity item)
         {
-            return this.innerMapper.Map<CommerceParty>(item);
+            return this.InnerMapper.Map<CommerceParty>(item);
         }
 
         public IList<CommerceParty> MapToCommercePartyList(IEnumerable<PartyEntity> item)
         {
-            return this.innerMapper.Map<IList<CommerceParty>>(item);
+            return this.InnerMapper.Map<IList<CommerceParty>>(item);
         }
 
         public CommerceShippingInfo MapToCommerceShippingInfo(ShippingInfoArgument item)
         {
-            return this.innerMapper.Map<CommerceShippingInfo>(item);
+            return this.InnerMapper.Map<CommerceShippingInfo>(item);
         }
 
         public FederatedPaymentInfo MapToFederatedPaymentInfo(FederatedPaymentArgs item)
         {
-            return this.innerMapper.Map<FederatedPaymentInfo>(item);
+            return this.InnerMapper.Map<FederatedPaymentInfo>(item);
         }
     }
 }

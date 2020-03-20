@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Connect.Managers
 
     using Extensions.Extensions;
 
-    using ModelMappers;
+    using Mappers;
 
     using Models;
 

@@ -25,6 +25,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
     using Mappers.Search;
 
     using Models;
+    using Models.Search;
 
     using Providers.Search;
 
@@ -65,7 +66,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
 
-        public SearchResults GetProducts(
+        public SearchResultsV2 GetProducts(
             string searchKeyword,
             SearchOptions searchOptions)
         {
@@ -93,17 +94,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
 
-            if (searchResponse != null)
-            {
-                return new SearchResults(
-                    searchResponse.ResponseItems,
-                    searchResponse.TotalItemCount,
-                    searchResponse.TotalPageCount,
-                    commerceSearchOptions.StartPageIndex,
-                    searchResponse.Facets.ToList());
-            }
-
-            return new SearchResults();
+            return this.searchMapper.Map<SearchResponse, SearchResultsV2>(searchResponse);
         }
 
         public Item GetCategoryItem(string categoryName)

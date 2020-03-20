@@ -12,21 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Mappers.Search
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using AutoMapper;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Models.Mappings;
-
-    using Mapper = Base.Mappers.Mapper;
-
-    internal class SearchMapper : Mapper, ISearchMapper
+    [ExcludeFromCodeCoverage]
+    public class QueryFacet
     {
-        public SearchMapper()
-        {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
-            
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
+        public string Name { get; set; }
+
+        public string DisplayName { get; set; }
+
+        public List<FacetValue> FoundValues { get; set; }
     }
 }

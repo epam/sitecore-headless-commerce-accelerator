@@ -12,22 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using Sitecore.Commerce.CustomModels.Models;
+    using System.Diagnostics.CodeAnalysis;
 
-    public class SearchOptions
+    [ExcludeFromCodeCoverage]
+    public class FacetValue
     {
-        /// <summary>Gets or sets the number of items to return</summary>
-        public int NumberOfItemsToReturn { get; set; }
+        public int AggregateCount { get; set; }
 
-        /// <summary>Gets or sets the start page index</summary>
-        public int StartPageIndex { get; set; }
-
-        /// <summary>Gets or sets the sort field</summary>
-        public string SortField { get; set; }
-
-        /// <summary>Gets or sets the direction of the sort</summary>
-        public SortDirection SortDirection { get; set; }
+        public string Name { get; set; }
     }
 }

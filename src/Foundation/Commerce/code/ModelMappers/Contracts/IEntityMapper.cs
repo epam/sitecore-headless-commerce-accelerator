@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using Models;
     using Models.Checkout;
+    using Models.Entities.Users;
 
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
@@ -54,7 +55,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
         ShippingMethodModel MapToShippingMethodModel(ShippingInfo x);
 
-        CommerceUserModel MapToCommerceUserModel(CommerceUser x);
+        User MapToCommerceUserModel(CommerceUser x);
 
         IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
     }

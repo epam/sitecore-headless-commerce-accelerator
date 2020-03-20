@@ -14,12 +14,14 @@
 
 namespace Wooli.Foundation.Commerce.Models.Account
 {
+    using Entities.Users;
+
     using TypeLite;
 
     [TsClass]
     public class CreateAccountResultModel
     {
-        public CommerceUserModel AccountInfo { get; set; }
+        public User AccountInfo { get; set; }
 
         public bool Created { get; set; }
 

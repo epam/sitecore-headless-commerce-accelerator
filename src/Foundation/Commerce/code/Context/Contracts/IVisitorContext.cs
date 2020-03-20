@@ -15,11 +15,12 @@
 namespace Wooli.Foundation.Commerce.Context
 {
     using Models;
+    using Models.Entities.Users;
 
     public interface IVisitorContext
     {
         string ContactId { get; }
 
-        CommerceUserModel CurrentUser { get; set; }
+        User CurrentUser { get; set; }
     }
 }

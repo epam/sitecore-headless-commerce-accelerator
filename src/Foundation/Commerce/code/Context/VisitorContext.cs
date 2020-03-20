@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Context
     using DependencyInjection;
 
     using Models;
+    using Models.Entities.Users;
 
     using Providers;
 
@@ -43,9 +44,9 @@ namespace Wooli.Foundation.Commerce.Context
 
         public string ContactId => this.CurrentUser?.ContactId;
 
-        public CommerceUserModel CurrentUser
+        public User CurrentUser
         {
-            get => this.Items[CurrentUserItemKey] as CommerceUserModel;
+            get => this.Items[CurrentUserItemKey] as User;
             set => this.Items[CurrentUserItemKey] = value;
         }
     }

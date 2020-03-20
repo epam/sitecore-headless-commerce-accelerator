@@ -643,7 +643,6 @@
     <Compile Include="Models\Catalog\ProductListResultModel.cs" />
     <Compile Include="Models\Catalog\ProductVariantModel.cs" />
     <Compile Include="Models\Catalog\ProductModel.cs" />
-    <Compile Include="Models\Entities\Account\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductsSearchOptions.cs" />
     <Compile Include="Models\Catalog\SortOptionModel.cs" />
@@ -667,7 +666,7 @@
     <Compile Include="Models\Checkout\ShippingModel.cs" />
     <Compile Include="Models\Checkout\ShippingOptionModel.cs" />
     <Compile Include="Models\Checkout\SubmitOrderModel.cs" />
-    <Compile Include="Models\CommerceUserModel.cs" />
+    <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Addresses\Address.cs" />
     <Compile Include="Models\Entities\Checkout\BaseCheckoutInfo.cs" />
     <Compile Include="Models\Entities\Catalog\BaseProduct.cs" />

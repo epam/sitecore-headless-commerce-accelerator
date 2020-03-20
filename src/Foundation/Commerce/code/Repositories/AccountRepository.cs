@@ -32,6 +32,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Account;
     using Models.Checkout;
+    using Models.Entities.Users;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
@@ -283,11 +284,11 @@ namespace Wooli.Foundation.Commerce.Repositories
             return this.GetAddressList(userName);
         }
 
-        public Result<CommerceUserModel> UpdateAccountInfo(CommerceUserModel user)
+        public Result<User> UpdateAccountInfo(User user)
         {
             Assert.ArgumentNotNull(user, nameof(user));
 
-            var result = new Result<CommerceUserModel>();
+            var result = new Result<User>();
 
             var getUserResponse = this.accountManager.GetUser(user.ContactId);
 

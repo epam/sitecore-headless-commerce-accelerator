@@ -24,6 +24,7 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Repositories;
     using Foundation.Extensions.Extensions;
 
@@ -184,7 +185,7 @@ namespace Wooli.Feature.Account.Controllers
 
         [HttpPost]
         [ActionName("update")]
-        public ActionResult UpdateUser(CommerceUserModel user)
+        public ActionResult UpdateUser(User user)
         {
             try
             {

@@ -213,14 +213,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\Wooli\Wooli.Foundation.Account.config" />
+    <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Account.config" />
+    <None Include="Properties\PublishProfiles\LocalDev.pubxml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Infrastructure\Pipelines\Login\Login.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\LoginProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginPipelineArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

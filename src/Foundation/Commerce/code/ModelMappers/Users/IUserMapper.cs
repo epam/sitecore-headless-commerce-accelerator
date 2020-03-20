@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers
+namespace Wooli.Foundation.Commerce.ModelMappers.Users
 {
-    using System.Web;
+    using Account.Infrastructure.Pipelines.Login;
+
+    using Base.Mappers;
 
     using Models.Entities.Users;
 
-    public interface ICustomerProvider
+    /// <summary>
+    /// Performs mapping for user models
+    /// </summary>
+    public interface IUserMapper : IMapper
     {
-        User GetCommerceUser(string contactIdOrName);
-
-        User GetCurrentCommerceUser(HttpContextBase httpContext);
+        /// <summary>
+        /// Maps User to existed LoginPipelineArgs
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <param name="args">Login pipeline arguments</param>
+        void MapToLoginPipelineArgs(User user, LoginPipelineArgs args);
     }
 }

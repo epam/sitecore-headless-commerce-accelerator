@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers
+namespace Wooli.Feature.Account
 {
-    using System.Web;
-
-    using Models.Entities.Users;
-
-    public interface ICustomerProvider
+    public static class Constants
     {
-        User GetCommerceUser(string contactIdOrName);
-
-        User GetCurrentCommerceUser(HttpContextBase httpContext);
+        public static class Redirects
+        {
+            public const string SignIn = "/signIn";
+        }
     }
 }

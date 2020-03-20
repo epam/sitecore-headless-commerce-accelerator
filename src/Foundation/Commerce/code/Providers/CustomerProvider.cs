@@ -23,6 +23,7 @@ namespace Wooli.Foundation.Commerce.Providers
     using DependencyInjection;
 
     using Models;
+    using Models.Entities.Users;
 
     using Sitecore;
     using Sitecore.Commerce.Entities.Customers;
@@ -41,7 +42,7 @@ namespace Wooli.Foundation.Commerce.Providers
             this.accountManager = accountManager;
         }
 
-        public CommerceUserModel GetCommerceUser(string contactIdOrName)
+        public User GetCommerceUser(string contactIdOrName)
         {
             Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
@@ -50,7 +51,7 @@ namespace Wooli.Foundation.Commerce.Providers
             return this.MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
         }
 
-        public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
+        public User GetCurrentCommerceUser(HttpContextBase httpContext)
         {
             var user = Context.Data.User;
             if (user == null)
@@ -79,11 +80,11 @@ namespace Wooli.Foundation.Commerce.Providers
             return customers?.FirstOrDefault();
         }
 
-        private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
+        private User MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
         {
             if (commerceUser == null)
             {
-                return new CommerceUserModel
+                return new User
                 {
                     ContactId = contactIdOrEmail
                 };
@@ -92,7 +93,7 @@ namespace Wooli.Foundation.Commerce.Providers
             var customerId = this.GetCustomerId(commerceUser?.Customers);
             var contactId = this.ParseContactId(commerceUser?.ExternalId);
 
-            return new CommerceUserModel
+            return new User
             {
                 ContactId = contactId,
                 CustomerId = customerId,

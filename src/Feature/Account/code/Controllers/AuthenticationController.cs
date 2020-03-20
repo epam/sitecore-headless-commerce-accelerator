@@ -21,6 +21,7 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
+    using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Providers;
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Services.Tracking;
@@ -93,28 +94,28 @@ namespace Wooli.Feature.Account.Controllers
             return this.JsonOk(validateCredentialsResultDto);
         }
 
-        private void CompleteAuthentication(CommerceUserModel commerceUser)
+        private void CompleteAuthentication(User user)
         {
             var anonymousContact = this.visitorContext.ContactId;
-            this.visitorContext.CurrentUser = commerceUser;
+            this.visitorContext.CurrentUser = user;
 
             this.cartService.MergeCarts(anonymousContact);
 
-            this.commerceTrackingService.IdentifyAs("CommerceUser", commerceUser.UserName);
+            this.commerceTrackingService.IdentifyAs("CommerceUser", user.UserName);
         }
 
-        private bool LoginUser(UserLoginModel userLogin, out CommerceUserModel commerceUser)
+        private bool LoginUser(UserLoginModel userLogin, out User user)
         {
             var userName = Membership.GetUserNameByEmail(userLogin.Email);
             if (string.IsNullOrWhiteSpace(userName))
             {
-                commerceUser = null;
+                user = null;
                 return false;
             }
 
-            commerceUser = this.customerProvider.GetCommerceUser(userName);
+            user = this.customerProvider.GetCommerceUser(userName);
 
-            if (commerceUser == null)
+            if (user == null)
             {
                 return false;
             }

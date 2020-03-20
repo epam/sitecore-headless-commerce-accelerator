@@ -20,8 +20,9 @@ namespace Wooli.Foundation.Commerce.Services.Account
     using DependencyInjection;
 
     using Models;
-    using Models.Entities.Account;
     using Models.Entities.Addresses;
+
+    using User = Models.Entities.Users.User;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService

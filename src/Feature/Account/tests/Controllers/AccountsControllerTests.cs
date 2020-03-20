@@ -25,6 +25,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Entities.Addresses;
+    using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
 
     using Models.Requests;
@@ -125,7 +126,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
             this.controller.UpdateAccount(new UpdateAccountRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<CommerceUserModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>());
         }
 
         [Fact]

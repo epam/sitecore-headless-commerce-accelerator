@@ -19,6 +19,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Account;
     using Models.Checkout;
+    using Models.Entities.Users;
 
     public interface IAccountRepository
     {
@@ -32,7 +33,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         Result<IEnumerable<AddressModel>> RemoveCustomerAddress(string userName, AddressModel address);
 
-        Result<CommerceUserModel> UpdateAccountInfo(CommerceUserModel user);
+        Result<User> UpdateAccountInfo(User user);
 
         Result<IEnumerable<AddressModel>> UpdateAddress(string userName, AddressModel address);
 

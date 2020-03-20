@@ -28,6 +28,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using Models.Entities;
     using Models.Entities.Addresses;
     using Models.Entities.Cart;
+    using Models.Entities.Users;
 
     using Providers;
 
@@ -238,7 +239,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ShippingMethodName))
                         .ReverseMap();
 
-                    cfg.CreateMap<CommerceUser, CommerceUserModel>()
+                    cfg.CreateMap<CommerceUser, User>()
                         .ForMember(
                             dest => dest.ContactId,
                             opt => opt.MapFrom(
@@ -314,9 +315,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
             return this.innerMapper.Map<ShippingMethodModel>(x);
         }
 
-        public CommerceUserModel MapToCommerceUserModel(CommerceUser x)
+        public User MapToCommerceUserModel(CommerceUser x)
         {
-            return this.innerMapper.Map<CommerceUserModel>(x);
+            return this.innerMapper.Map<User>(x);
         }
 
         public IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> model)

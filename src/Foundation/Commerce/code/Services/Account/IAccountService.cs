@@ -17,8 +17,9 @@ namespace Wooli.Foundation.Commerce.Services.Account
     using System.Collections.Generic;
 
     using Models;
-    using Models.Entities.Account;
     using Models.Entities.Addresses;
+
+    using User = Models.Entities.Users.User;
 
     public interface IAccountService
     {

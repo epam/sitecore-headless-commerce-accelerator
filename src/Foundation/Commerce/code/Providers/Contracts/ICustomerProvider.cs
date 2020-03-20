@@ -17,11 +17,12 @@ namespace Wooli.Foundation.Commerce.Providers
     using System.Web;
 
     using Models;
+    using Models.Entities.Users;
 
     public interface ICustomerProvider
     {
-        CommerceUserModel GetCommerceUser(string contactIdOrName);
+        User GetCommerceUser(string contactIdOrName);
 
-        CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext);
+        User GetCurrentCommerceUser(HttpContextBase httpContext);
     }
 }

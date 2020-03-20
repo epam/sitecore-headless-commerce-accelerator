@@ -643,6 +643,7 @@
     <Compile Include="Models\Catalog\ProductListResultModel.cs" />
     <Compile Include="Models\Catalog\ProductVariantModel.cs" />
     <Compile Include="Models\Catalog\ProductModel.cs" />
+    <Compile Include="Models\Entities\Account\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductsSearchOptions.cs" />
     <Compile Include="Models\Catalog\SortOptionModel.cs" />
@@ -704,6 +705,8 @@
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Services\Account\AccountService.cs" />
+    <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsService.cs" />
     <Compile Include="Repositories\BaseCheckoutRepository.cs" />
     <Compile Include="Repositories\BaseCatalogRepository.cs" />

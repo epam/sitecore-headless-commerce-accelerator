@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers
+namespace Wooli.Foundation.Commerce.Tests.ModelMappers.Profiles
 {
-    using System.Web;
+    using AutoMapper;
 
-    using Models.Entities.Users;
+    using Commerce.ModelMappers.Profiles;
 
-    public interface ICustomerProvider
+    using Xunit;
+
+    public class UserProfileTests
     {
-        User GetCommerceUser(string contactIdOrName);
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(
+                cfg => { cfg.AddProfile<UserProfile>(); });
 
-        User GetCurrentCommerceUser(HttpContextBase httpContext);
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

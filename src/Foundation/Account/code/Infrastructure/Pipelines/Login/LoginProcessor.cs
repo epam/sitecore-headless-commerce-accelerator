@@ -17,20 +17,23 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
     using Authentication;
 
     using Base.Infrastructure.Pipelines;
+    using Base.Models.Logging;
+    using Base.Services.Logging;
 
     using Sitecore.Diagnostics;
 
-    public class Login : PipelineProcessor<LoginPipelineArgs>
+    public class LoginProcessor : SafePipelineProcessor<LoginPipelineArgs>
     {
         private readonly IAuthenticationService authenticationService;
 
-        public Login(IAuthenticationService authenticationService)
+        public LoginProcessor(IAuthenticationService authenticationService, ILogService<CommonLog> logService)
+            : base(logService)
         {
             Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
             this.authenticationService = authenticationService;
         }
 
-        public override void Process(LoginPipelineArgs args)
+        protected override void SafeProcess(LoginPipelineArgs args)
         {
             Assert.ArgumentNotNull(args, nameof(args));
 

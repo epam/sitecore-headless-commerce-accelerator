@@ -15,15 +15,15 @@
 namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 {
     using Account.Infrastructure.Pipelines.Login;
-
-    using Authentication;
-
+    
     using Base.Models.Logging;
     using Base.Services.Logging;
 
     using NSubstitute;
 
     using Ploeh.AutoFixture;
+
+    using Services.Authentication;
 
     using Xunit;
 

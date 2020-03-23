@@ -12,26 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Authentication
+namespace Wooli.Foundation.Account.Services.Session
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Web;
 
     using DependencyInjection;
 
-    using Sitecore.Security.Authentication;
-
     [ExcludeFromCodeCoverage]
-    [Service(typeof(IAuthenticationService), Lifetime = Lifetime.Transient)]
-    public class AuthenticationService : IAuthenticationService
+    [Service(typeof(ISessionService), Lifetime = Lifetime.Singleton)]
+    public class SessionService : ISessionService
     {
-        public void Logout()
+        public void Abandon()
         {
-            AuthenticationManager.Logout();
-        }
-
-        public bool Login(string userName, string password)
-        {
-            return AuthenticationManager.Login(userName, password);
+            HttpContext.Current?.Session.Abandon();
         }
     }
 }

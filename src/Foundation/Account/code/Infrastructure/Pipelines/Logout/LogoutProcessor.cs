@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
+namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Logout
 {
     using Base.Infrastructure.Pipelines;
     using Base.Models.Logging;
@@ -22,25 +22,20 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
 
     using Sitecore.Diagnostics;
 
-    public class LoginProcessor : SafePipelineProcessor<LoginPipelineArgs>
+    public class LogoutProcessor : SafePipelineProcessor<LogoutPipelineArgs>
     {
         private readonly IAuthenticationService authenticationService;
 
-        public LoginProcessor(IAuthenticationService authenticationService, ILogService<CommonLog> logService)
+        public LogoutProcessor(IAuthenticationService authenticationService, ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
             this.authenticationService = authenticationService;
         }
 
-        protected override void SafeProcess(LoginPipelineArgs args)
+        protected override void SafeProcess(LogoutPipelineArgs args)
         {
-            Assert.ArgumentNotNull(args, nameof(args));
-
-            if (!this.authenticationService.Login(args.UserName, args.Password))
-            {
-                args.AbortPipeline();
-            }
+            this.authenticationService.Logout();
         }
     }
 }

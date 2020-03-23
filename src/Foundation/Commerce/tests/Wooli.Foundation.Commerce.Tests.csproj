@@ -560,6 +560,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\EndVisit\EndVisitProcessorTests.cs" />
     <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="ModelMappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -585,6 +586,14 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Account\code\Wooli.Foundation.Account.csproj">
+      <Project>{74C245AA-2561-4A2A-ADBD-E7D4045F6227}</Project>
+      <Name>Wooli.Foundation.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Connect\code\Wooli.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
       <Name>Wooli.Foundation.Connect</Name>

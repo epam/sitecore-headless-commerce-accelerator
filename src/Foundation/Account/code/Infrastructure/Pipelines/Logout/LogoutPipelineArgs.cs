@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account
+namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Logout
 {
-    public static class Constants
-    {
-        public static class Pipelines
-        {
-            public const string Login = "wooli.foundation.account.login";
+    using System.Diagnostics.CodeAnalysis;
 
-            public const string Logout = "wooli.foundation.account.logout";
-        }
+    using Sitecore.Pipelines;
+
+    [ExcludeFromCodeCoverage]
+    public class LogoutPipelineArgs : PipelineArgs
+    {
     }
 }

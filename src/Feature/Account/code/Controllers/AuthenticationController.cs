@@ -17,7 +17,7 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
-    using Foundation.Account.Authentication;
+    using Foundation.Account.Services.Authentication;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;

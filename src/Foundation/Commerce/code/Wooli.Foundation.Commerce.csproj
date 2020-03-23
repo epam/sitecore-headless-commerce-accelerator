@@ -616,6 +616,7 @@
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Infrastructure\Pipelines\EndVisit\EndVisitProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
     <Compile Include="Infrastructure\ContentsResolvers\StorefrontCountriesResolver.cs" />

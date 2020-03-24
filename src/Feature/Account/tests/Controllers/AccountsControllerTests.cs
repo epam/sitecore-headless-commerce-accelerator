@@ -76,7 +76,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
             this.controller.ChangePassword(new ChangePasswordRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<ChangePasswordResultModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
@@ -86,7 +86,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
             this.controller.CreateAccount(new CreateAccountRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<CreateAccountResultModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>());
         }
 
         [Fact]
@@ -120,13 +120,13 @@ namespace Wooli.Feature.Account.Tests.Controllers
         }
 
         [Fact]
-        public void UpdateUser_ShouldCallExecuteMethod()
+        public void UpdateAccount_ShouldCallExecuteMethod()
         {
             // act
             this.controller.UpdateAccount(new UpdateAccountRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
             this.controller.ValidateEmail(new ValidateEmailRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<ValidateAccountResultModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
     }
 }

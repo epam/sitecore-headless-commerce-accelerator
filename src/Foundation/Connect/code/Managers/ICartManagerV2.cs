@@ -16,8 +16,11 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
+    using Models;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
 
     /// <summary>
@@ -51,6 +54,19 @@ namespace Wooli.Foundation.Connect.Managers
         CartResult AddCartLines(
             Cart cart,
             IEnumerable<CartLine> cartLines);
+
+        /// <summary>
+        /// Adds shipping info to the cart
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <param name="parties">Parties to add</param>
+        /// <param name="shippingOptionType">Shipping option type</param>
+        /// <param name="shippings">List of shipping info</param>
+        /// <returns>Add shipping info result</returns>
+        AddShippingInfoResult AddShippingInfo(
+            Cart cart,
+            ShippingOptionType shippingOptionType,
+            List<ShippingInfo> shippings);
 
         /// <summary>
         /// Updates cart line

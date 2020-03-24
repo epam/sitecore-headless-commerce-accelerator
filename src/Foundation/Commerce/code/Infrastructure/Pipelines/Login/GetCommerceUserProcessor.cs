@@ -48,14 +48,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
         {
             Assert.ArgumentNotNull(args, nameof(args));
 
-            var userName = Membership.GetUserNameByEmail(args.Email);
-            if (string.IsNullOrWhiteSpace(userName))
-            {
-                args.AbortPipeline();
-                return;
-            }
-
-            var user = this.customerProvider.GetCommerceUser(userName);
+            var user = this.customerProvider.GetUser(args.Email);
 
             if (user == null)
             {

@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Services.Order
 {
     using System;
 
+    using Base.Models;
+
     using Models;
     using Models.Checkout;
 

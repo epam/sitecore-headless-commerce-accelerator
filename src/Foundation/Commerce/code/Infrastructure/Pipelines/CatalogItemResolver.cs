@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
     using DependencyInjection;
 
-    using Extensions.Services;
+    using Foundation.Extensions.Services;
 
     using Providers;
 

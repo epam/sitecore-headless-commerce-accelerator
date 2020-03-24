@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 {
     using System.Collections.Generic;
 
+    using Base.Models;
+
     using Models;
     using Models.Entities;
     using Models.Entities.Addresses;

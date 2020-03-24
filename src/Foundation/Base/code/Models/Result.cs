@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Base.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Sitecore.Commerce.Services;
-
-    // TODO: Move to Foundation.Base
-    public class Result<T> where T : class
+    public class Result<T>
+        where T : class
     {
         public Result()
         {
@@ -56,22 +54,6 @@ namespace Wooli.Foundation.Commerce.Models
 
             this.Success = false;
             this.Errors.Add(error);
-        }
-
-        [Obsolete("This method is obsolete. Use SetErrors(IList<string> errors) instead.")]
-        public void SetErrors(ServiceProviderResult result)
-        {
-            this.Success = result.Success;
-            if (result.SystemMessages.Count <= 0)
-            {
-                return;
-            }
-
-            foreach (var systemMessage in result.SystemMessages)
-            {
-                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
-                this.SetError(message);
-            }
         }
 
         public void SetErrors(string area, Exception exception)

@@ -17,12 +17,16 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Linq;
 
+    using Base.Models;
+
     using Connect.Context;
     using Connect.Managers;
 
     using Context;
 
     using DependencyInjection;
+
+    using Extensions;
 
     using ModelInitializers;
 

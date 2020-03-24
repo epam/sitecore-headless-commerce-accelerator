@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Services.Billing
 {
     using System;
 
+    using Base.Models;
+
     using DependencyInjection;
 
     using Models;

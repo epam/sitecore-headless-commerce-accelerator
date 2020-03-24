@@ -18,6 +18,8 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Security;
 
     using Foundation.Account.Services.Authentication;
+    using Foundation.Account.Services.Login;
+    using Foundation.Account.Services.Logout;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
@@ -26,6 +28,8 @@ namespace Wooli.Feature.Account.Controllers
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
+
+    using Sitecore.Diagnostics;
 
     public class AuthenticationController : Controller
     {
@@ -106,21 +110,14 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool LoginUser(UserLoginModel userLogin, out User user)
         {
-            var userName = Membership.GetUserNameByEmail(userLogin.Email);
-            if (string.IsNullOrWhiteSpace(userName))
-            {
-                user = null;
-                return false;
-            }
-
-            user = this.customerProvider.GetCommerceUser(userName);
+            user = this.customerProvider.GetUser(userLogin.Email);
 
             if (user == null)
             {
                 return false;
             }
 
-            return this.authenticationService.Login(userName, userLogin.Password);
+            return this.authenticationService.Login(user.UserName, userLogin.Password);
         }
 
         private ActionResult RedirectOnSignIn(string returnUrl)

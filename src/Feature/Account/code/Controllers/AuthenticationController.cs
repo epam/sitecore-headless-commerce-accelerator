@@ -18,18 +18,13 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Security;
 
     using Foundation.Account.Services.Authentication;
-    using Foundation.Account.Services.Login;
-    using Foundation.Account.Services.Logout;
     using Foundation.Commerce.Context;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Providers;
     using Foundation.Commerce.Services.Cart;
     using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
-
-    using Sitecore.Diagnostics;
 
     public class AuthenticationController : Controller
     {

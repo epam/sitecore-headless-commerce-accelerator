@@ -572,6 +572,12 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="TypeLite, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.dll</HintPath>
+    </Reference>
+    <Reference Include="TypeLite.Net4, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -580,10 +586,13 @@
   <ItemGroup>
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Mappers\CatalogEntityMapper.cs" />
-    <Compile Include="Mappers\ICatalogEntityMapper.cs" />
+    <Compile Include="Mappers\SearchMapper.cs" />
+    <Compile Include="Mappers\ISearchMapper.cs" />
+    <Compile Include="Mappers\Profiles\SearchProfile.cs" />
     <Compile Include="Models.Generated.cs" />
-    <Compile Include="Models\Requests\ProductsSearchRequest.cs" />
+    <Compile Include="Models\Requests\Search\DTO\FacetDto.cs" />
+    <Compile Include="Models\Requests\Search\DTO\FacetValueDto.cs" />
+    <Compile Include="Models\Requests\Search\ProductsSearchRequest.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductColorsContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductContextExtension.cs" />

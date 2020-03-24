@@ -12,28 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Search
+namespace Wooli.Feature.Catalog.Mappers
 {
-    using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
 
+    using AutoMapper;
+
+    using Foundation.DependencyInjection;
+
+    using Profiles;
+
+    using Mapper = Foundation.Base.Mappers.Mapper;
+
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     [ExcludeFromCodeCoverage]
-    public class ProductsSearchOptions
+    public class SearchMapper : Mapper, ISearchMapper
     {
-        public string SearchKeyword { get; set; }
-
-        public int? PageNumber { get; set; }
-
-        public NameValueCollection FacetValues { get; set; }
-
-        public string SortField { get; set; }
-
-        public int? PageSize { get; set; }
-
-        public SortDirection? SortDirection { get; set; }
-
-        public string CurrentCatalogItemId { get; set; }
-
-        public string CurrentItemId { get; set; }
+        public SearchMapper()
+        {
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
+        }
     }
 }

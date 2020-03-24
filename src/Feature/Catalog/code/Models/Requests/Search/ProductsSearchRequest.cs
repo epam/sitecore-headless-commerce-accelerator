@@ -12,26 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Models.Requests
+namespace Wooli.Feature.Catalog.Models.Requests.Search
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
+
+    using DTO;
+
     using Foundation.Commerce.Models;
 
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
     public class ProductsSearchRequest
     {
         public string SearchKeyword { get; set; }
-
-        public int? Page { get; set; }
-
-        public string FacetValues { get; set; }
+        
+        public IEnumerable<FacetDto> Facets { get; set; }
 
         public string SortField { get; set; }
 
-        public int? PageSize { get; set; }
-
+        [EnumDataType(typeof(SortDirection))]
         public SortDirection? SortDirection { get; set; }
 
-        public string CurrentCatalogItemId { get; set; }
+        [Range(0, int.MaxValue)]
+        public int? PageNumber { get; set; }
 
-        public string CurrentItemId { get; set; }
+        [Range(1, int.MaxValue)]
+        public int? PageSize { get; set; }
     }
 }

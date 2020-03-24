@@ -17,32 +17,30 @@ namespace Wooli.Feature.Catalog.Controllers
     using System.Web.Mvc;
 
     using Foundation.Commerce.Controllers;
-    using Foundation.Commerce.Models.Entities;
     using Foundation.Commerce.Models.Entities.Search;
-    using Foundation.Commerce.Services.Catalog;
+    using Foundation.Commerce.Services.Search;
 
     using Mappers;
 
-    using Models.Requests;
+    using Models.Requests.Search;
 
     using Sitecore.Diagnostics;
 
     public class SearchController : BaseController
     {
         private readonly IProductSearchService productSearchService;
+        private readonly ISearchMapper searchMapper;
 
-        private readonly ICatalogEntityMapper catalogEntityMapper;
-
-        public SearchController(IProductSearchService productSearchService, ICatalogEntityMapper catalogEntityMapper)
+        public SearchController(IProductSearchService productSearchService, ISearchMapper searchMapper)
         {
             Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
-            Assert.ArgumentNotNull(catalogEntityMapper, nameof(catalogEntityMapper));
+            Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
             this.productSearchService = productSearchService;
-            this.catalogEntityMapper = catalogEntityMapper;
+            this.searchMapper = searchMapper;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("products")]
         public ActionResult GetProducts(ProductsSearchRequest searchRequest)
         {
@@ -50,7 +48,7 @@ namespace Wooli.Feature.Catalog.Controllers
                 () =>
                 {
                     var searchOptions =
-                        this.catalogEntityMapper.Map<ProductsSearchRequest, ProductsSearchOptions>(searchRequest);
+                        this.searchMapper.Map<ProductsSearchRequest, ProductSearchOptions>(searchRequest);
                     return this.productSearchService.GetProducts(searchOptions);
                 });
         }

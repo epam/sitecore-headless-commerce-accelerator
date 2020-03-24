@@ -12,14 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Mappers
+namespace Wooli.Feature.Catalog.Models.Requests.Search.DTO
 {
-    using Foundation.Base.Mappers;
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
 
-    /// <summary>
-    /// Performs mapping for catalog models
-    /// </summary>
-    public interface ICatalogEntityMapper : IMapper
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
+    public class FacetValueDto
     {
+        [Required]
+        public string Name { get; set; }
     }
 }

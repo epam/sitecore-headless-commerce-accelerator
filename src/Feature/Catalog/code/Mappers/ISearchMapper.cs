@@ -12,23 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Search
+namespace Wooli.Feature.Catalog.Mappers
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Foundation.Base.Mappers;
 
-    using Catalog;
-
-    using TypeLite;
-
-    [TsClass]
-    [ExcludeFromCodeCoverage]
-    public class ProductsSearchResult
+    public interface ISearchMapper : IMapper
     {
-        public IList<Product> Products { get; set; }
-
-        public IList<FacetResult> Facets { get; set; }
-
-        public int TotalItemCount { get; set; }
     }
 }

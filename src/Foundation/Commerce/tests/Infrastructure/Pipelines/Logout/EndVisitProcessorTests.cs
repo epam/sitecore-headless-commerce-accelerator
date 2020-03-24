@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.EndVisit
+namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Logout
 {
     using Account.Infrastructure.Pipelines.Logout;
     using Account.Services.Session;
 
-    using Commerce.Infrastructure.Pipelines.EndVisit;
+    using Commerce.Infrastructure.Pipelines.Logout;
     using Commerce.Services.Tracking;
 
     using NSubstitute;
@@ -26,6 +26,12 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.EndVisit
 
     public class EndVisitProcessorTests
     {
+        private readonly EndVisitProcessor endVisitProcessor;
+
+        private readonly ICommerceTrackingService trackingService;
+
+        private readonly ISessionService sessionService;
+
         public EndVisitProcessorTests()
         {
             this.trackingService = Substitute.For<ICommerceTrackingService>();
@@ -33,12 +39,6 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.EndVisit
 
             this.endVisitProcessor = new EndVisitProcessor(this.trackingService, this.sessionService);
         }
-
-        private readonly EndVisitProcessor endVisitProcessor;
-
-        private readonly ICommerceTrackingService trackingService;
-
-        private readonly ISessionService sessionService;
 
         [Fact]
         public void Process_IfArgsNotNull_ShouldCallAuthenticationServiceLogout()

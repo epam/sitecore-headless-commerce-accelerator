@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Controllers
+namespace Wooli.Foundation.Base.Tests.Controllers
 {
     using System;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    using Commerce.Controllers;
+    using Base.Controllers;
 
     using Extensions.Models;
 
@@ -31,7 +31,6 @@ namespace Wooli.Foundation.Commerce.Tests.Controllers
 
     using Xunit;
 
-    // TODO: Move to Foundation.Base
     public class BaseControllerTests
     {
         private readonly BaseController controller;

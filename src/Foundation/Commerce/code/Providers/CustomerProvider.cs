@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Providers
 {
     using System.Web;
+    using System.Web.Security;
 
     using Connect.Managers;
 
@@ -44,13 +45,17 @@ namespace Wooli.Foundation.Commerce.Providers
             this.userMapper = userMapper;
         }
 
-        public User GetCommerceUser(string contactIdOrName)
+        public User GetUser(string email)
         {
-            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
+            Assert.ArgumentNotNullOrEmpty(email, nameof(email));
 
-            var commerceUser = this.accountManager.GetUser(contactIdOrName);
+            var userName = Membership.GetUserNameByEmail(email);
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                return null;
+            }
 
-            return this.MapToUser(commerceUser.Result, contactIdOrName);
+            return this.GetCommerceUser(userName);
         }
 
         public User GetCurrentCommerceUser(HttpContextBase httpContext)
@@ -86,6 +91,15 @@ namespace Wooli.Foundation.Commerce.Providers
             }
 
             return this.userMapper.Map<CommerceUser, User>(commerceUser);
+        }
+
+        private User GetCommerceUser(string contactIdOrName)
+        {
+            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
+
+            var commerceUser = this.accountManager.GetUser(contactIdOrName);
+
+            return this.MapToUser(commerceUser.Result, contactIdOrName);
         }
     }
 }

@@ -559,8 +559,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseControllerTests.cs" />
-    <Compile Include="Infrastructure\Pipelines\EndVisit\EndVisitProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessorTests.cs" />
     <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="ModelMappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -615,8 +615,8 @@
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Infrastructure\Pipelines\EndVisit\EndVisitProcessor.cs" />
+    <Compile Include="Extensions\ResultExtension.cs" />
+    <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
     <Compile Include="Infrastructure\ContentsResolvers\StorefrontCountriesResolver.cs" />
@@ -697,9 +697,7 @@
     <Compile Include="ModelMappers\Profiles\UserProfile.cs" />
     <Compile Include="Models\Region\CountryRegionModel.cs" />
     <Compile Include="Models\Region\SubdivisionModel.cs" />
-    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\SortDirection.cs" />
-    <Compile Include="Models\VoidResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\ICurrencyProvider.cs" />
     <Compile Include="Providers\CurrencyProvider.cs" />

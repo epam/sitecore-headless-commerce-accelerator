@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Controllers
+namespace Wooli.Foundation.Base.Controllers
 {
     using System;
     using System.Linq;
@@ -23,7 +23,6 @@ namespace Wooli.Foundation.Commerce.Controllers
 
     using Models;
 
-    // TODO: Move to Foundation.Base
     public class BaseController : Controller
     {
         [NonAction]

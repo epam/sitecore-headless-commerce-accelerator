@@ -21,8 +21,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
     using Connect.Context;
     using Connect.Managers;
 
-    using Context;
-
     using Models.Catalog;
 
     using NSubstitute;
@@ -36,6 +34,12 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     public class CommerceAnalyticsServiceTests
     {
+        private readonly IAnalyticsManager analyticsManager;
+
+        private readonly IFixture fixture;
+
+        private readonly IStorefrontContext storefrontContext;
+
         public CommerceAnalyticsServiceTests()
         {
             this.fixture = new Fixture().Customize(new AutoDbCustomization());
@@ -45,12 +49,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
             this.analyticsManager = Substitute.For<IAnalyticsManager>();
         }
-
-        private readonly IAnalyticsManager analyticsManager;
-
-        private readonly IFixture fixture;
-
-        private readonly IStorefrontContext storefrontContext;
 
         [Fact]
         public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()

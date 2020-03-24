@@ -18,16 +18,16 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     using System.Collections.Generic;
     using System.Linq;
 
+    using Base.Models;
+
     using Commerce.ModelMappers;
+    using Commerce.Models.Entities.Cart;
     using Commerce.Services.Cart;
 
     using Connect.Context;
     using Connect.Managers;
 
     using Context;
-
-    using Models;
-    using Models.Entities.Cart;
 
     using NSubstitute;
 

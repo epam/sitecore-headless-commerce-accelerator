@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Providers
 
     public interface ICustomerProvider
     {
-        User GetCommerceUser(string contactIdOrName);
+        User GetUser(string email);
 
         User GetCurrentCommerceUser(HttpContextBase httpContext);
     }

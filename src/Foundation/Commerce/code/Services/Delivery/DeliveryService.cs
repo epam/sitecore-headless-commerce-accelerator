@@ -17,6 +17,8 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
     using System;
     using System.Collections.Generic;
 
+    using Base.Models;
+
     using DependencyInjection;
 
     using Models;

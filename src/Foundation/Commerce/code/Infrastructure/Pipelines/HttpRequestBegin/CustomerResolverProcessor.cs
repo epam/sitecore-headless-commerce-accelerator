@@ -16,7 +16,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
     using Context;
 
-    using Extensions.Infrastructure;
+    using Foundation.Extensions.Infrastructure;
 
     using Providers;
 

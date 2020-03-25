@@ -21,27 +21,28 @@ namespace Wooli.Foundation.Connect.Providers.Search
     using Sitecore.ContentSearch.SearchTypes;
 
     /// <summary>
-    /// Provides search result from name basing on search query
+    /// Provides search results basing on search query
     /// </summary>
-    /// <typeparam name="TResult">Type of search result</typeparam>
-    public interface ISearchResultProvider<TResult> where TResult : SearchResultItem
+    public interface ISearchResultProvider
     {
         /// <summary>
         /// Gets FirstOrDefault search result of type <see cref="T:TResult" /> basing on search query
         /// </summary>
-        /// <param name="buildQuery">Search query</param>
+        /// <typeparam name="TResult">Type of search result</typeparam>
+        /// <param name="searchQuery">Search query</param>
         /// <returns></returns>
-        TResult GetSearchResult(
+        TResult GetSearchResult<TResult>(
             Func<IQueryable<TResult>, IQueryable<TResult>>
-                buildQuery);
+                searchQuery) where TResult : SearchResultItem;
 
         /// <summary>
         /// Gets search results of <see cref="T:SearchResults&lt;TResult&rt;" /> basing on search query
         /// </summary>
-        /// <param name="buildQuery">Search query</param>
+        /// <typeparam name="TResult">Type of search result</typeparam>
+        /// <param name="searchQuery">Search query</param>
         /// <returns></returns>
-        SearchResults<TResult> GetSearchResults(
+        SearchResults<TResult> GetSearchResults<TResult>(
             Func<IQueryable<TResult>, IQueryable<TResult>>
-                buildQuery);
+                searchQuery) where TResult : SearchResultItem;
     }
 }

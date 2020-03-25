@@ -12,20 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Catalog
+namespace Wooli.Foundation.Connect.Builders.Search
 {
-    using DependencyInjection;
+    using Sitecore.ContentSearch.SearchTypes;
 
-    using Models;
-    using Models.Entities;
-    using Models.Entities.Search;
-
-    [Service(typeof(IProductSearchService), Lifetime = Lifetime.Transient)]
-    public class ProductSearchService : IProductSearchService
+    /// <summary>
+    /// Query builder interface
+    /// </summary>
+    /// <typeparam name="TResult"></typeparam>
+    /// <typeparam name="TOptions"></typeparam>
+    public interface IQueryBuilder<TResult, in TOptions> where TResult : SearchResultItem where TOptions : class
     {
-        public Result<ProductsSearchResult> GetProducts(ProductsSearchOptions options)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

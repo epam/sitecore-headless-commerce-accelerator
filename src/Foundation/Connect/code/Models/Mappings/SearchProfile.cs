@@ -15,23 +15,36 @@
 namespace Wooli.Foundation.Connect.Models.Mappings
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using AutoMapper;
 
     using Search;
 
-    using Sitecore.Commerce.CustomModels.Models;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data.Items;
+
+    using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 
     public class SearchProfile : Profile
     {
         public SearchProfile()
         {
             this.CreateMap<SearchOptions, CommerceSearchOptions>()
-                .ForMember(dest => dest.FacetFields, opt => opt.Ignore())
+                .ForMember(dest => dest.FacetFields, opt => opt.MapFrom(src => src.Facets))
                 .ReverseMap();
+
+            this.CreateMap<FacetValue, Sitecore.ContentSearch.Linq.FacetValue>()
+                .ForCtorParam("aggregate", opt => opt.MapFrom(src => src.AggregateCount));
+
+            this.CreateMap<Facet, CommerceQueryFacet>()
+                .ForMember(dest => dest.Values, opt => opt.MapFrom(src => src.FoundValues.Select(value => value.Name)))
+                .ForMember(dest => dest.FoundValues, opt => opt.Ignore())
+                .ForMember(dest => dest.DisplayName, opt => opt.Ignore());
+
+            this.CreateMap<CommerceQueryFacet, Facet>();
 
             this.CreateMap<CommerceConstants.SortDirection, SortDirection>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()))
@@ -44,9 +57,9 @@ namespace Wooli.Foundation.Connect.Models.Mappings
 
             this.CreateMap<Sitecore.ContentSearch.Linq.FacetValue, FacetValue>();
 
-            this.CreateMap<SearchResponse, SearchResultsV2>()
+            this.CreateMap<SearchResponse, SearchResultsV2<Product>>()
                 .ForMember(dest => dest.QueryFacets, opt => opt.MapFrom(src => src.Facets))
-                .ForMember(dest => dest.SearchResultItems, opt => opt.MapFrom(src => src.ResponseItems));
+                .ForMember(dest => dest.Results, opt => opt.Ignore());
         }
     }
 }

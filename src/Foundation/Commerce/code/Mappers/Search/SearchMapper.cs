@@ -12,22 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search 
+namespace Wooli.Foundation.Commerce.Mappers.Search
 {
-    using System.Collections.Generic;
+    using AutoMapper;
 
-    public class SearchOptions
+    using DependencyInjection;
+
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
+    public class SearchMapper : Base.Mappers.Mapper, ISearchMapper
     {
-        public string SearchKeyword { get; set; }
-        
-        public int NumberOfItemsToReturn { get; set; }
+        public SearchMapper()
+        {
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
 
-        public int StartPageIndex { get; set; }
-
-        public string SortField { get; set; }
-
-        public SortDirection SortDirection { get; set; }
-
-        public IEnumerable<Facet> Facets { get; set; }
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
+        }
     }
 }

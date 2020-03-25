@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
-    [Obsolete("Use Entities.FacetResult")]
+    [Obsolete("Use Entities.Facet")]
     public class FacetResultModel
     {
         public string DisplayName { get; set; }

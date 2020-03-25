@@ -14,12 +14,15 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
+    using DependencyInjection;
+
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.ContentSearch.Linq;
     using Sitecore.ContentSearch.SearchTypes;
 
-    internal class SearchResponseProvider : ISearchResponseProvider
+    [Service(typeof(ISearchResponseProvider), Lifetime = Lifetime.Singleton)]
+    public class SearchResponseProvider : ISearchResponseProvider
     {
         public SearchResponse CreateFromSearchResultsItems<T>(
             CommerceSearchOptions searchOptions,

@@ -12,29 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Catalog
+namespace Wooli.Foundation.Commerce.Providers.Search
 {
     using System;
 
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.Diagnostics;
+    using Models.Catalog;
 
-    using TypeLite;
+    using Sitecore.Data.Items;
+    using Wooli.Foundation.Commerce.Models.Entities.Search;
 
-    [TsClass]
-    [Obsolete("Use Entities.FacetValue")]
-    public class FacetValueResultModel
+    /// <summary>
+    /// Provides search setting 
+    /// </summary>
+    public interface ISearchSettingsProvider
     {
-        public int AggregateCount { get; protected set; }
+        [Obsolete("Use GetSearchSettings instead.")]
+        CategorySearchInformation GetCategorySearchInformation(Item categoryItem);
 
-        public string Name { get; protected set; }
-
-        public void Initialize(FacetValue queryFacet)
-        {
-            Assert.ArgumentNotNull(queryFacet, nameof(queryFacet));
-
-            this.Name = queryFacet.Name;
-            this.AggregateCount = queryFacet.AggregateCount;
-        }
+        /// <summary>
+        /// Gets search settings from current context Sitecore Catalog item
+        /// </summary>
+        /// <returns>GetProducts settings</returns>
+        SearchSettings GetSearchSettings();
     }
 }

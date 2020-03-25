@@ -12,22 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search 
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using System.Collections.Generic;
-
-    public class SearchOptions
+    public enum SortDirection
     {
-        public string SearchKeyword { get; set; }
-        
-        public int NumberOfItemsToReturn { get; set; }
-
-        public int StartPageIndex { get; set; }
-
-        public string SortField { get; set; }
-
-        public SortDirection SortDirection { get; set; }
-
-        public IEnumerable<Facet> Facets { get; set; }
+        Asc,
+        Desc
     }
 }

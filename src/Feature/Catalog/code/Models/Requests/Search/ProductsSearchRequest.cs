@@ -37,7 +37,7 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search
         [EnumDataType(typeof(SortDirection))]
         public SortDirection? SortDirection { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int? PageNumber { get; set; }
 
         [Range(1, int.MaxValue)]

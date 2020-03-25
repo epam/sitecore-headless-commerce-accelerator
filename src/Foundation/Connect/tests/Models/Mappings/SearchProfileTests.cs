@@ -5,6 +5,8 @@
 
     using AutoMapper;
 
+    using Connect.Models;
+
     using Ploeh.AutoFixture;
 
     using Sitecore.Commerce.Engine.Connect.Search;
@@ -57,7 +59,6 @@
             // assert
             Assert.Equal(commerceQueryFacet.DisplayName, queryFacet.DisplayName);
             Assert.Equal(commerceQueryFacet.Name, queryFacet.Name);
-            Assert.Empty(queryFacet.FoundValues);
         }
 
         [Fact]
@@ -103,11 +104,10 @@
             var searchResponse = SearchResponse.CreateFromSearchResultsItems(searchOptions, sitecoreSearchResult);
 
             // act
-            var searchResult = this.mapper.Map<SearchResponse, SearchResultsV2>(searchResponse);
+            var searchResult = this.mapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
 
             // assert
             Assert.Equal(searchResponse.TotalItemCount, searchResult.TotalItemCount);
-            Assert.Empty(searchResult.SearchResultItems);
         }
     }
 }

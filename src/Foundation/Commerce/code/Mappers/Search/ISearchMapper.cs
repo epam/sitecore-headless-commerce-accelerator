@@ -12,22 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Catalog
+namespace Wooli.Foundation.Commerce.Mappers.Search
 {
-    using Models;
-    using Models.Entities;
-    using Models.Entities.Search;
+    using Base.Mappers;
 
-    /// <summary>
-    /// Performs main operations with catalog
-    /// </summary>
-    public interface IProductSearchService
+    public interface ISearchMapper : IMapper
     {
-        /// <summary>
-        /// Gets product list by given search parameters
-        /// </summary>
-        /// <param name="options">Search parameters object</param>
-        /// <returns>List of products</returns>
-        Result<ProductsSearchResult> GetProducts(ProductsSearchOptions options);
     }
 }

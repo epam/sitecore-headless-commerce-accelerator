@@ -213,7 +213,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Pipelines\Login\LogoutProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Logout\LogoutProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

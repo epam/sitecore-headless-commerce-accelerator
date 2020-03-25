@@ -26,7 +26,21 @@ namespace Wooli.Foundation.Base.Controllers
     public class BaseController : Controller
     {
         [NonAction]
-        public virtual ActionResult Execute<TData>(Func<Result<TData>> action) where TData : class
+        public virtual ActionResult Execute<TData>(Func<Result<TData>> function) where TData : class
+        {
+            return this.Execute(
+                function,
+                result => result.Success
+                    ? this.JsonOk(result.Data)
+                    : this.JsonError(
+                        result.Errors?.ToArray(),
+                        HttpStatusCode.InternalServerError,
+                        tempData: result.Data));
+        }
+
+        [NonAction]
+        public virtual ActionResult Execute<TData>(Func<Result<TData>> function, Func<Result<TData>, ActionResult> resolve)
+            where TData : class
         {
             try
             {
@@ -38,14 +52,9 @@ namespace Wooli.Foundation.Base.Controllers
                     return this.JsonError(errorMessages, HttpStatusCode.BadRequest);
                 }
 
-                var result = action.Invoke();
+                var result = function.Invoke();
 
-                return result.Success
-                    ? this.JsonOk(result.Data)
-                    : this.JsonError(
-                        result.Errors?.ToArray(),
-                        HttpStatusCode.InternalServerError,
-                        tempData: result.Data);
+                return resolve(result);
             }
             catch (Exception exception)
             {

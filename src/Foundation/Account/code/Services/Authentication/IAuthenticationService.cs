@@ -14,22 +14,38 @@
 
 namespace Wooli.Foundation.Account.Services.Authentication
 {
+    using System;
+
+    using Base.Models;
+
+    using Models.Authentication;
+
     /// <summary>
-    /// Proxy service for static AuthenticationManager
+    /// Performs main authentication operations
     /// </summary>
     public interface IAuthenticationService
     {
         /// <summary>
-        /// Logs out the current user.
+        /// Performs user login
         /// </summary>
-        void Logout();
+        /// <param name="email">User's email</param>
+        /// <param name="password">User's password</param>
+        /// <returns>Result of login</returns>
+        Result<LoginResult> Login(string email, string password);
 
         /// <summary>
-        /// Logs in a user into the system if the <paramref name="password" /> is valid.
+        /// Performs current active user logout
         /// </summary>
-        /// <param name="userName">Name of the user.</param>
-        /// <param name="password">The password.</param>
-        /// <returns><c>true</c> if user was logged in, otherwise - <c>false</c>.</returns>
-        bool Login(string userName, string password);
+        /// <returns>Result of logout</returns>
+        Result<VoidResult> Logout();
+
+        /// <summary>
+        /// Validates user existence
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="password">User password</param>
+        /// <returns>True if user exists, otherwise - false</returns>
+        [Obsolete("Will be removed")]
+        bool ValidateUser(string email, string password);
     }
 }

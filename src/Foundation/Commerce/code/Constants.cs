@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Authentication
+namespace Wooli.Foundation.Commerce
 {
-    using System;
-
-    using TypeLite;
-
-    [Obsolete("Will be removed")]
-    [TsClass]
-    public class ValidateCredentialsResultModel
+    public static class Constants
     {
-        public bool HasValidCredentials { get; set; }
+        public static class Login
+        {
+            public const string CommerceUserSource = "CommerceUser";
+        }
     }
 }

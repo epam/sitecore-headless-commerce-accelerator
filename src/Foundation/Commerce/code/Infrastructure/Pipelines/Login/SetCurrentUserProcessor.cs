@@ -44,7 +44,6 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
             this.userMapper = userMapper;
         }
 
-
         protected override void SafeProcess(LoginPipelineArgs args)
         {
             Assert.ArgumentNotNull(args, nameof(args));

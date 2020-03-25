@@ -14,126 +14,83 @@
 
 namespace Wooli.Feature.Account.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
-    using System.Web.Security;
 
     using Foundation.Account.Services.Authentication;
-    using Foundation.Commerce.Context;
+    using Foundation.Base.Controllers;
     using Foundation.Commerce.Models.Authentication;
-    using Foundation.Commerce.Models.Entities.Users;
-    using Foundation.Commerce.Providers;
-    using Foundation.Commerce.Services.Cart;
-    using Foundation.Commerce.Services.Tracking;
     using Foundation.Extensions.Extensions;
 
-    public class AuthenticationController : Controller
+    using Models.Requests;
+
+    using Sitecore.Diagnostics;
+
+    public class AuthenticationController : BaseController
     {
         private readonly IAuthenticationService authenticationService;
 
-        private readonly ICartService cartService;
-
-        private readonly ICommerceTrackingService commerceTrackingService;
-
-        private readonly ICustomerProvider customerProvider;
-
-        private readonly IVisitorContext visitorContext;
-
         public AuthenticationController(
-            IAuthenticationService authenticationService,
-            ICartService cartService,
-            ICommerceTrackingService commerceTrackingService,
-            ICustomerProvider customerProvider,
-            IVisitorContext visitorContext)
+            IAuthenticationService authenticationService)
         {
+            Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
+
             this.authenticationService = authenticationService;
-            this.cartService = cartService;
-            this.customerProvider = customerProvider;
-            this.commerceTrackingService = commerceTrackingService;
-            this.visitorContext = visitorContext;
+        }
+
+        // TODO: Add error transfer to FE
+        [HttpPost]
+        [ActionName("login")]
+        public ActionResult Login(LoginRequest request, string returnUrl)
+        {
+            return this.Execute(
+                () => this.authenticationService.Login(request.Email, request.Password),
+                result => 
+                {
+                    if (result.Success)
+                    {
+                        return result.Data != null && result.Data.IsValidCredentials
+                            ? this.RedirectOnAuthentication(returnUrl)
+                            : this.JsonError(result.Errors?.ToArray(), HttpStatusCode.Forbidden);
+                    }
+
+                    return this.Redirect(Constants.Redirects.Login);
+                });
         }
 
         [HttpPost]
-        [ActionName("signIn")]
-        public ActionResult SignIn(UserLoginModel userLogin, string returnUrl)
+        [ActionName("logout")]
+        public ActionResult Logout()
         {
-            var userLoginResult = this.LoginUser(userLogin, out var commerceUserModel);
-
-            if (!userLoginResult || commerceUserModel == null)
-            {
-                return this.Redirect("/signIn");
-            }
-
-            this.CompleteAuthentication(commerceUserModel);
-
-            return this.RedirectOnSignIn(returnUrl);
+            return this.Execute(
+                () => this.authenticationService.Logout(),
+                result => this.RedirectOnAuthentication(null));
         }
 
-        [HttpPost]
-        [ActionName("signOut")]
-        public ActionResult SignOut()
-        {
-            this.visitorContext.CurrentUser = null;
-
-            this.commerceTrackingService.EndVisit(true);
-            this.Session.Abandon();
-            this.authenticationService.Logout();
-
-            return this.RedirectOnSignIn(null);
-        }
-
+        // TODO: Delete ValidateCredentials
+        [Obsolete("Will be removed")]
         [HttpPost]
         [ActionName("start")]
-        public ActionResult ValidateCredentials(UserLoginModel userLogin)
+        public ActionResult ValidateCredentials(LoginRequest request)
         {
             var validateCredentialsResultDto = new ValidateCredentialsResultModel
             {
-                HasValidCredentials = this.ValidateUser(userLogin)
+                HasValidCredentials = this.authenticationService.ValidateUser(request.Email, request.Password)
             };
 
             return this.JsonOk(validateCredentialsResultDto);
         }
 
-        private void CompleteAuthentication(User user)
-        {
-            var anonymousContact = this.visitorContext.ContactId;
-            this.visitorContext.CurrentUser = user;
-
-            this.cartService.MergeCarts(anonymousContact);
-
-            this.commerceTrackingService.IdentifyAs("CommerceUser", user.UserName);
-        }
-
-        private bool LoginUser(UserLoginModel userLogin, out User user)
-        {
-            user = this.customerProvider.GetUser(userLogin.Email);
-
-            if (user == null)
-            {
-                return false;
-            }
-
-            return this.authenticationService.Login(user.UserName, userLogin.Password);
-        }
-
-        private ActionResult RedirectOnSignIn(string returnUrl)
+        private ActionResult RedirectOnAuthentication(string returnUrl)
         {
             if (string.IsNullOrEmpty(returnUrl))
             {
-                return this.Redirect("/");
+                return this.Redirect(Constants.Redirects.CurrentPage);
             }
 
             return this.Redirect(returnUrl);
-        }
-
-        private bool ValidateUser(UserLoginModel userLogin)
-        {
-            var userName = Membership.GetUserNameByEmail(userLogin.Email);
-            if (!string.IsNullOrWhiteSpace(userName))
-            {
-                return Membership.ValidateUser(userName, userLogin.Password);
-            }
-
-            return false;
         }
     }
 }

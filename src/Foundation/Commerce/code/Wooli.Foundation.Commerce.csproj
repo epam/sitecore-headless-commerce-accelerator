@@ -612,6 +612,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
@@ -640,7 +641,6 @@
     <Compile Include="Models\Account\ValidateAccountResultModel.cs" />
     <Compile Include="Models\Account\CreateAccountModel.cs" />
     <Compile Include="Models\Account\CreateAccountResultModel.cs" />
-    <Compile Include="Models\Authentication\UserLoginModel.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
     <Compile Include="Models\Catalog\BaseProductModel.cs" />
     <Compile Include="Models\Catalog\CategorySearchInformation.cs" />

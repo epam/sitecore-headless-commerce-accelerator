@@ -218,14 +218,17 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\Authentication\AuthenticationService.cs" />
-    <Compile Include="Services\Authentication\IAuthenticationService.cs" />
+    <Compile Include="Models\Authentication\LoginResult.cs" />
+    <Compile Include="Managers\Authentication\AuthenticationManager.cs" />
+    <Compile Include="Managers\Authentication\IAuthenticationManager.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginPipelineArgs.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\LogoutPipelineArgs.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\LogoutProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Authentication\AuthenticationService.cs" />
+    <Compile Include="Services\Authentication\IAuthenticationService.cs" />
     <Compile Include="Services\Session\ISessionService.cs" />
     <Compile Include="Services\Session\SessionService.cs" />
   </ItemGroup>
@@ -242,6 +245,7 @@
       <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -18,24 +18,24 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Logout
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Services.Authentication;
+    using Managers.Authentication;
 
     using Sitecore.Diagnostics;
 
     public class LogoutProcessor : SafePipelineProcessor<LogoutPipelineArgs>
     {
-        private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationManager authenticationManager;
 
-        public LogoutProcessor(IAuthenticationService authenticationService, ILogService<CommonLog> logService)
+        public LogoutProcessor(IAuthenticationManager authenticationManager, ILogService<CommonLog> logService)
             : base(logService)
         {
-            Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
-            this.authenticationService = authenticationService;
+            Assert.ArgumentNotNull(authenticationManager, nameof(authenticationManager));
+            this.authenticationManager = authenticationManager;
         }
 
         protected override void SafeProcess(LogoutPipelineArgs args)
         {
-            this.authenticationService.Logout();
+            this.authenticationManager.Logout();
         }
     }
 }

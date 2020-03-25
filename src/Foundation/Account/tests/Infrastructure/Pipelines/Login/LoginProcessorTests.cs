@@ -15,15 +15,15 @@
 namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 {
     using Account.Infrastructure.Pipelines.Login;
-    
+
     using Base.Models.Logging;
     using Base.Services.Logging;
+
+    using Managers.Authentication;
 
     using NSubstitute;
 
     using Ploeh.AutoFixture;
-
-    using Services.Authentication;
 
     using Xunit;
 
@@ -31,7 +31,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
     {
         private readonly IFixture fixture;
 
-        private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationManager authenticationManager;
 
         private readonly ILogService<CommonLog> logService;
 
@@ -39,15 +39,15 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 
         public LoginProcessorTests()
         {
-            this.authenticationService = Substitute.For<IAuthenticationService>();
+            this.authenticationManager = Substitute.For<IAuthenticationManager>();
             this.logService = Substitute.For<ILogService<CommonLog>>();
             this.fixture = new Fixture();
 
-            this.loginProcessor = new LoginProcessor(this.authenticationService, this.logService);
+            this.loginProcessor = new LoginProcessor(this.authenticationManager, this.logService);
         }
 
         [Fact]
-        public void Process_IfArgsNotNull_ShouldCallAuthenticationServiceLogin()
+        public void Process_IfArgsNotNull_ShouldCallAuthenticationManagerLogin()
         {
             // arrange
             var loginArgs = new LoginPipelineArgs()
@@ -60,7 +60,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
             this.loginProcessor.Process(loginArgs);
 
             // assert
-            this.authenticationService.Received(1).Login(loginArgs.UserName, loginArgs.Password);
+            this.authenticationManager.Received(1).Login(loginArgs.UserName, loginArgs.Password);
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
         {
             // arrange
             var loginArgs = new LoginPipelineArgs();
-            this.authenticationService.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(false);
+            this.authenticationManager.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(false);
 
             // act
             this.loginProcessor.Process(loginArgs);
@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
         {
             // arrange
             var loginArgs = new LoginPipelineArgs();
-            this.authenticationService.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+            this.authenticationManager.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
 
             // act
             var exception = Record.Exception(() => this.loginProcessor.Process(loginArgs));

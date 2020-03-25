@@ -16,7 +16,7 @@ namespace Wooli.Feature.Checkout.Controllers
 {
     using System.Web.Mvc;
 
-    using Foundation.Commerce.Controllers;
+    using Foundation.Base.Controllers;
     using Foundation.Commerce.Services.Cart;
 
     using Models.Requests;

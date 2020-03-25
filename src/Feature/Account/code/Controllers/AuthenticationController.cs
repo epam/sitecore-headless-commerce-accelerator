@@ -17,9 +17,8 @@ namespace Wooli.Feature.Account.Controllers
     using System.Web.Mvc;
     using System.Web.Security;
 
-    using Foundation.Account.Authentication;
+    using Foundation.Account.Services.Authentication;
     using Foundation.Commerce.Context;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Authentication;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Providers;
@@ -106,21 +105,14 @@ namespace Wooli.Feature.Account.Controllers
 
         private bool LoginUser(UserLoginModel userLogin, out User user)
         {
-            var userName = Membership.GetUserNameByEmail(userLogin.Email);
-            if (string.IsNullOrWhiteSpace(userName))
-            {
-                user = null;
-                return false;
-            }
-
-            user = this.customerProvider.GetCommerceUser(userName);
+            user = this.customerProvider.GetUser(userLogin.Email);
 
             if (user == null)
             {
                 return false;
             }
 
-            return this.authenticationService.Login(userName, userLogin.Password);
+            return this.authenticationService.Login(user.UserName, userLogin.Password);
         }
 
         private ActionResult RedirectOnSignIn(string returnUrl)

@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Services.Cart
 {
+    using Base.Models;
+
     using Models;
     using Models.Entities;
     using Models.Entities.Cart;

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,12 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Account.Services.Session
 {
-    using TypeLite;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Web;
 
-    [TsClass]
-    public class VoidResult
+    using DependencyInjection;
+
+    [ExcludeFromCodeCoverage]
+    [Service(typeof(ISessionService), Lifetime = Lifetime.Singleton)]
+    public class SessionService : ISessionService
     {
+        public void Abandon()
+        {
+            HttpContext.Current?.Session.Abandon();
+        }
     }
 }

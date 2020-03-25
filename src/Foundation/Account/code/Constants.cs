@@ -19,6 +19,8 @@ namespace Wooli.Foundation.Account
         public static class Pipelines
         {
             public const string Login = "wooli.foundation.account.login";
+
+            public const string Logout = "wooli.foundation.account.logout";
         }
     }
 }

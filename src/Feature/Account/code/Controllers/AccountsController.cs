@@ -16,9 +16,9 @@ namespace Wooli.Feature.Account.Controllers
 {
     using System.Web.Mvc;
 
+    using Foundation.Base.Controllers;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
-    using Foundation.Commerce.Controllers;
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Services.Account;
 

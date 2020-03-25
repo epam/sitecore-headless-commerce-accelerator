@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using System;
     using System.Net.Mail;
 
-    using Extensions.Extensions;
+    using Foundation.Extensions.Extensions;
 
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect.Pipelines;
@@ -26,7 +26,6 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using Sitecore.Commerce.Services.Orders;
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
-    using Sitecore.Links;
     using Sitecore.Links.UrlBuilders;
 
     public class SendEmailProcessor : PipelineProcessor

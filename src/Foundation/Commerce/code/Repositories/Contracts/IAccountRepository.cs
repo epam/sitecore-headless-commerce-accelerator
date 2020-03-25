@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System.Collections.Generic;
 
+    using Base.Models;
+
     using Models;
     using Models.Account;
     using Models.Checkout;

@@ -12,24 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Authentication
+namespace Wooli.Foundation.Account.Services.Session
 {
     /// <summary>
-    /// Proxy service for static AuthenticationManager
+    /// Performs main operations during controller session
     /// </summary>
-    public interface IAuthenticationService
+    public interface ISessionService
     {
-        /// <summary>
-        /// Logs out the current user.
-        /// </summary>
-        void Logout();
-
-        /// <summary>
-        /// Logs in a user into the system if the <paramref name="password" /> is valid.
-        /// </summary>
-        /// <param name="userName">Name of the user.</param>
-        /// <param name="password">The password.</param>
-        /// <returns><c>true</c> if user was logged in, otherwise - <c>false</c>.</returns>
-        bool Login(string userName, string password);
+        /// <summary>Cancels the current session.</summary>
+        void Abandon();
     }
 }

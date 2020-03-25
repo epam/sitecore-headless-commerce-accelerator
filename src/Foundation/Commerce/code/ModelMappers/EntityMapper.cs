@@ -19,13 +19,14 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using AutoMapper;
 
+    using Base.Models;
+
     using Connect.Models;
 
     using DependencyInjection;
 
     using Models;
     using Models.Checkout;
-    using Models.Entities;
     using Models.Entities.Addresses;
     using Models.Entities.Cart;
     using Models.Entities.Users;

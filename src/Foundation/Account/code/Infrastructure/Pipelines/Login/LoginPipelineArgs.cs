@@ -21,6 +21,14 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
     [ExcludeFromCodeCoverage]
     public class LoginPipelineArgs : PipelineArgs
     {
+        public string ContactId { get; set; }
+
+        public string CustomerId { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public string Email { get; set; }
 
         public string UserName { get; set; }
@@ -29,6 +37,6 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
 
         public bool IsValid { get; set; }
 
-        public string RedirectTo { get; set; }
+        public string AnonymousContactId { get; set; }
     }
 }

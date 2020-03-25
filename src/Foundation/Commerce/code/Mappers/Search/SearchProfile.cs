@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Mappers.Search
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Connect.Models.Search;
@@ -25,6 +27,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
     using Facet = Models.Entities.Search.Facet;
     using FacetValue = Models.Entities.Search.FacetValue;
 
+    [ExcludeFromCodeCoverage]
     public class SearchProfile : Profile
     {
         public SearchProfile()

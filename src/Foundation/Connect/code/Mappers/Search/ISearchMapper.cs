@@ -16,6 +16,9 @@ namespace Wooli.Foundation.Connect.Mappers.Search
 {
     using Base.Mappers;
 
+    /// <summary>
+    /// Performs mapping for search models
+    /// </summary>
     public interface ISearchMapper : IMapper
     {
     }

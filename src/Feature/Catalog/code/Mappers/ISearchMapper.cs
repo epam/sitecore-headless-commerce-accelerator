@@ -16,6 +16,9 @@ namespace Wooli.Feature.Catalog.Mappers
 {
     using Foundation.Base.Mappers;
 
+    /// <summary>
+    /// Performs mapping for search models
+    /// </summary>
     public interface ISearchMapper : IMapper
     {
     }

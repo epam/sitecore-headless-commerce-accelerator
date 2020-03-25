@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using DependencyInjection;
 
     using Sitecore.Commerce.Engine.Connect.Search;
@@ -21,6 +23,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
     using Sitecore.ContentSearch.Linq;
     using Sitecore.ContentSearch.SearchTypes;
 
+    [ExcludeFromCodeCoverage]
     [Service(typeof(ISearchResponseProvider), Lifetime = Lifetime.Singleton)]
     public class SearchResponseProvider : ISearchResponseProvider
     {

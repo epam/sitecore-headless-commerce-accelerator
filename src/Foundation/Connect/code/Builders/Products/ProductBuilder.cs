@@ -43,6 +43,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
             this.catalogManager = catalogManager;
         }
 
+        //TODO: update build logic
         public IEnumerable<Product> Build(IEnumerable<Item> source)
         {
             var products = new List<Product>();

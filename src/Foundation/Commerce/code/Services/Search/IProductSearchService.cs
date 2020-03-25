@@ -16,16 +16,15 @@ namespace Wooli.Foundation.Commerce.Services.Search
 {
     using Base.Models;
 
-    using Models;
     using Models.Entities.Search;
 
     /// <summary>
-    /// Service for searching products
+    /// Performs products search
     /// </summary>
     public interface IProductSearchService
     {
         /// <summary>
-        /// Get products using searching options
+        /// Gets products using searching options
         /// </summary>
         /// <returns>Product search results</returns>
         Result<ProductSearchResults> GetProducts(ProductSearchOptions productSearchOptions);

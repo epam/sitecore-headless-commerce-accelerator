@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Models.Mappings
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using AutoMapper;
@@ -24,10 +25,10 @@ namespace Wooli.Foundation.Connect.Models.Mappings
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.Data.Items;
 
     using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 
+    [ExcludeFromCodeCoverage]
     public class SearchProfile : Profile
     {
         public SearchProfile()

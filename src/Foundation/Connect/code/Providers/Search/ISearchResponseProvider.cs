@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
     public interface ISearchResponseProvider
     {
         /// <summary>
-        /// Creates a new instance of the <see cref="T:Sitecore.Commerce.Engine.Connect.GetProducts.SearchResponse" /> class based on
+        /// Creates a new instance of the <see cref="T:Sitecore.Commerce.Engine.Connect.Search.SearchResponse" /> class based on
         /// search results of <see cref="T:Sitecore.ContentSearch.SearchTypes.SearchResultItem" /> objects.
         /// </summary>
         /// <param name="searchOptions">The commerce search options </param>
@@ -34,7 +34,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
         /// The type of items in the provided <paramref name="sitecoreSearchResults" />.  Must derive from
         /// <see cref="T:Sitecore.ContentSearch.SearchTypes.SearchResultItem" />.
         /// </typeparam>
-        /// <returns>A new instance of the <see cref="T:Sitecore.Commerce.Engine.Connect.GetProducts.SearchResponse" /> class.</returns>
+        /// <returns>A new instance of the <see cref="T:Sitecore.Commerce.Engine.Connect.Search.SearchResponse" /> class.</returns>
         SearchResponse CreateFromSearchResultsItems<T>(
             CommerceSearchOptions searchOptions,
             SearchResults<T> sitecoreSearchResults)

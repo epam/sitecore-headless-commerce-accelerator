@@ -16,7 +16,7 @@ namespace Wooli.Feature.Catalog.Controllers
 {
     using System.Web.Mvc;
 
-    using Foundation.Commerce.Controllers;
+    using Foundation.Base.Controllers;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
 

@@ -14,10 +14,13 @@
 
 namespace Wooli.Foundation.Commerce.Mappers.Search
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using DependencyInjection;
 
+    [ExcludeFromCodeCoverage]
     [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     public class SearchMapper : Base.Mappers.Mapper, ISearchMapper
     {

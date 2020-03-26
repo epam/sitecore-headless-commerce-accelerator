@@ -39,12 +39,9 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
 
             if (!this.authenticationManager.Login(args.UserName, args.Password))
             {
-                args.IsValidCredentials = false;
+                args.IsInvalidCredentials = true;
                 args.AbortPipeline();
-                return;
             }
-
-            args.IsValidCredentials = true;
         }
     }
 }

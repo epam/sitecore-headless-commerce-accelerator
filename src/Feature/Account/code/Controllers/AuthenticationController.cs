@@ -51,12 +51,12 @@ namespace Wooli.Feature.Account.Controllers
                 {
                     if (result.Success)
                     {
-                        return result.Data != null && result.Data.IsValidCredentials
-                            ? this.RedirectOnAuthentication(returnUrl)
-                            : this.JsonError(result.Errors?.ToArray(), HttpStatusCode.Forbidden);
+                        return this.RedirectOnAuthentication(returnUrl);
                     }
 
-                    return this.Redirect(Constants.Redirects.Login);
+                    return result.Data != null && result.Data.IsInvalidCredentials
+                        ? this.JsonError(result.Errors?.ToArray(), HttpStatusCode.Forbidden)
+                        : this.Redirect(Constants.Redirects.Login);
                 });
         }
 

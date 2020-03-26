@@ -57,7 +57,7 @@ namespace Wooli.Foundation.Account.Services.Authentication
                 args,
                 pipelineArgs => new LoginResult()
                 {
-                    IsValidCredentials = pipelineArgs.IsValidCredentials
+                    IsInvalidCredentials = pipelineArgs.IsInvalidCredentials
                 });
         }
 
@@ -85,9 +85,13 @@ namespace Wooli.Foundation.Account.Services.Authentication
             where TArgs : PipelineArgs
         {
             var errorMessages = args.GetMessages(PipelineMessageFilter.Errors);
+            var result = function?.Invoke(args);
             return args.Aborted
-                ? new Result<TResult>(null, errorMessages.Select(message => message.Text).ToList())
-                : new Result<TResult>(function?.Invoke(args));
+                ? new Result<TResult>(result, errorMessages.Select(message => message.Text).ToList())
+                {
+                    Success = false
+                }
+                : new Result<TResult>(result);
         }
     }
 }

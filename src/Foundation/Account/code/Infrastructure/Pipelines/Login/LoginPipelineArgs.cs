@@ -35,7 +35,7 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
 
         public string Password { get; set; }
 
-        public bool IsValidCredentials { get; set; }
+        public bool IsInvalidCredentials { get; set; }
 
         public string AnonymousContactId { get; set; }
     }

@@ -19,6 +19,6 @@ namespace Wooli.Foundation.Account.Models.Authentication
     [ExcludeFromCodeCoverage]
     public class LoginResult
     {
-        public bool IsValidCredentials { get; set; }
+        public bool IsInvalidCredentials { get; set; }
     }
 }

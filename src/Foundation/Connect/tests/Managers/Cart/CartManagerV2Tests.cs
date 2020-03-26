@@ -33,10 +33,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Carts;
 
     using Xunit;
+
+    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
     public class CartManagerV2Tests
     {
@@ -45,6 +48,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         private readonly IFixture fixture;
 
         private readonly CartResult cartResult;
+        private readonly AddShippingInfoResult addShippingInfoResult;
         private readonly AddPromoCodeResult addPromoCodeResult;
         private readonly RemovePromoCodeResult removePromoCodeResult;
 
@@ -80,10 +84,15 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
             connectServiceProvider.GetCommerceCartServiceProvider().Returns(cartServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
             this.cartResult = this.fixture.Build<CartResult>().With(res => res.Success, true).Create();
+            this.addShippingInfoResult = this.fixture.Build<AddShippingInfoResult>()
+                .With(res => res.Success, true)
+                .With(res => res.ShippingInfo, null)
+                .Create();
             this.addPromoCodeResult = this.fixture.Build<AddPromoCodeResult>().With(res => res.Success, true).Create();
             this.removePromoCodeResult = this.fixture.Build<RemovePromoCodeResult>().With(res => res.Success, true).Create();
             this.cartResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.addPromoCodeResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
+            this.addShippingInfoResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.removePromoCodeResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.logService = Substitute.For<ILogService<CommonLog>>();
             this.cartManager = new CartManagerV2(this.logService, connectServiceProvider);
@@ -91,6 +100,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
             cartServiceProvider.LoadCart(Arg.Any<LoadCartRequest>()).Returns(this.cartResult);
             cartServiceProvider.CreateOrResumeCart(Arg.Any<CreateOrResumeCartRequest>()).Returns(this.cartResult);
             cartServiceProvider.AddCartLines(Arg.Any<AddCartLinesRequest>()).Returns(this.cartResult);
+            cartServiceProvider.AddShippingInfo(Arg.Any<AddShippingInfoRequest>()).Returns(this.addShippingInfoResult);
             cartServiceProvider.UpdateCartLines(Arg.Any<UpdateCartLinesRequest>()).Returns(this.cartResult);
             cartServiceProvider.RemoveCartLines(Arg.Any<RemoveCartLinesRequest>()).Returns(this.cartResult);
             cartServiceProvider.MergeCart(Arg.Any<MergeCartRequest>()).Returns(this.cartResult);
@@ -241,6 +251,56 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
 
             // act
             this.cartManager.AddCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
+
+            // assert
+            this.logService.Received(1).Error(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void AddShippingInfo_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddShippingInfo(
+                    this.fixture.Create<Cart>(),
+                    this.fixture.Create<ShippingOptionType>(),
+                    null));
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddShippingInfo(
+                    this.fixture.Create<Cart>(),
+                    null,
+                    this.fixture.Create<List<ShippingInfo>>()));
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddShippingInfo(
+                    null,
+                    this.fixture.Create<ShippingOptionType>(),
+                    this.fixture.Create<List<ShippingInfo>>()));
+        }
+
+        [Fact]
+        public void AddShippingInfo_IfAddShippingInfoResultIsSuccessful_ShouldNotCallLogService()
+        {
+            // act
+            this.cartManager.AddShippingInfo(
+                this.fixture.Create<Cart>(),
+                this.fixture.Create<ShippingOptionType>(),
+                this.fixture.Create<List<ShippingInfo>>());
+
+            // assert
+            this.logService.Received(0).Error(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void AddShippingInfo_IfAddShippingInfoResultIsUnsuccessful_ShouldCallLogService()
+        {
+            // arrange
+            this.addShippingInfoResult.Success = false;
+
+            // act
+            this.cartManager.AddShippingInfo(
+                this.fixture.Create<Cart>(),
+                this.fixture.Create<ShippingOptionType>(),
+                this.fixture.Create<List<ShippingInfo>>());
 
             // assert
             this.logService.Received(1).Error(Arg.Any<string>());

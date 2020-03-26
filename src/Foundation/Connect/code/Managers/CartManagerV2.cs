@@ -28,8 +28,11 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
+
+    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
     [Service(typeof(ICartManagerV2))]
     public class CartManagerV2 : ICartManagerV2
@@ -75,6 +78,18 @@ namespace Wooli.Foundation.Connect.Managers
             return this.Execute(new AddCartLinesRequest(cart, cartLines), this.cartServiceProvider.AddCartLines);
         }
 
+        public AddShippingInfoResult AddShippingInfo(
+            Cart cart,
+            ShippingOptionType shippingOptionType,
+            List<ShippingInfo> shippings)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(shippingOptionType, nameof(shippingOptionType));
+            Assert.ArgumentNotNull(shippings, nameof(shippings));
+
+            return this.Execute(new AddShippingInfoRequest(cart, shippings, shippingOptionType), this.cartServiceProvider.AddShippingInfo);
+        }
+
         public CartResult UpdateCartLines(Cart cart, IEnumerable<CartLine> cartLines)
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
@@ -115,8 +130,10 @@ namespace Wooli.Foundation.Connect.Managers
             return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
         }
 
-        private CartResult Execute<TRequest>(TRequest request, Func<TRequest, CartResult> action)
+        //TODO: Remove Duplication of execute method from managers
+        private TResult Execute<TRequest, TResult>(TRequest request, Func<TRequest, TResult> action)
             where TRequest : CartRequest
+            where TResult : CartResult
         {
             var cartResult = action.Invoke(request);
             if (!cartResult.Success)

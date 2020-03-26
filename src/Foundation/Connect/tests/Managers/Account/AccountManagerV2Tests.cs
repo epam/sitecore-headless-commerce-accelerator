@@ -28,7 +28,6 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
     using Providers.Contracts;
 
     using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Customers;
 
     using Xunit;

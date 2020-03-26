@@ -12,23 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Billing
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using AutoMapper;
 
-    using Payment;
+    using Commerce.Mappers.Profiles;
 
-    using TypeLite;
+    using Xunit;
 
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class BillingInfo
+    public class PaymentProfileTests
     {
-        public string PaymentClientToken { get; set; }
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<PaymentProfile>());
 
-        public List<PaymentMethod> PaymentMethods { get; set; }
-
-        public List<PaymentOption> PaymentOptions { get; set; }
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

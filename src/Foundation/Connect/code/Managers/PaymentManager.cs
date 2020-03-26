@@ -23,7 +23,6 @@ namespace Wooli.Foundation.Connect.Managers
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Payments;
@@ -53,7 +52,7 @@ namespace Wooli.Foundation.Connect.Managers
         }
 
         public ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>> GetPaymentMethods(
-            Cart cart,
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             PaymentOption paymentOption)
         {
             var request = new GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
@@ -66,7 +65,7 @@ namespace Wooli.Foundation.Connect.Managers
 
         public ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(
             string shopName,
-            Cart cart)
+            Sitecore.Commerce.Entities.Carts.Cart cart)
         {
             var request = new GetPaymentOptionsRequest(shopName, cart);
             var paymentOptions = this.paymentServiceProvider.GetPaymentOptions(request);

@@ -12,23 +12,29 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Billing
+namespace Wooli.Foundation.Commerce.Mappers.Payment
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using AutoMapper;
 
-    using Payment;
+    using DependencyInjection;
 
-    using TypeLite;
+    using Profiles;
 
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class BillingInfo
+    using Mapper = Base.Mappers.Mapper;
+
+    [Service(typeof(IPaymentMapper), Lifetime = Lifetime.Singleton)]
+    public class PaymentMapper : Mapper, IPaymentMapper
     {
-        public string PaymentClientToken { get; set; }
+        public PaymentMapper()
+        {
+            var configuration = new MapperConfiguration(
+                cfg =>
+                {
+                    cfg.AddProfile<AddressProfile>();
+                    cfg.AddProfile<PaymentProfile>();
+                });
 
-        public List<PaymentMethod> PaymentMethods { get; set; }
-
-        public List<PaymentOption> PaymentOptions { get; set; }
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
+        }
     }
 }

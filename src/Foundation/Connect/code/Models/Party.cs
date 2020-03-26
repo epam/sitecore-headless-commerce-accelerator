@@ -14,9 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Models
 {
-    using Sitecore.Commerce.Entities;
-
-    public class PartyEntity : Party
+    public class Party : Sitecore.Commerce.Entities.Party
     {
         public string CountryCode { get; set; }
 

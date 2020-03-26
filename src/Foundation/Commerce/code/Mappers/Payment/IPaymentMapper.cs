@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Checkout.Models.Requests
+namespace Wooli.Foundation.Commerce.Mappers.Payment
 {
-    using Foundation.Commerce.Models.Entities;
-    using Foundation.Commerce.Models.Entities.Addresses;
-    using Foundation.Commerce.Models.Entities.Payment;
+    using Base.Mappers;
 
-    public class SetPaymentOptionsRequest
+    /// <summary>
+    /// Performs mapping for payment models
+    /// </summary>
+    public interface IPaymentMapper : IMapper
     {
-        public Address BillingAddress { get; set; }
-
-        public FederatedPaymentInfo FederatedPayment { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace Wooli.Foundation.Connect.Mappers
     using Models;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Entities.Carts;
 
     using Utils;
@@ -37,7 +38,7 @@ namespace Wooli.Foundation.Connect.Mappers
             var config = new MapperConfiguration(
                 cfg =>
                 {
-                    cfg.CreateMap<PartyEntity, CommerceParty>();
+                    cfg.CreateMap<Party, CommerceParty>();
                     cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
                         .ForMember(
                             dest => dest.PaymentMethodID,
@@ -50,16 +51,17 @@ namespace Wooli.Foundation.Connect.Mappers
                             dest => dest.LineIDs,
                             opt => opt.MapFrom(
                                 src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
+                    cfg.CreateMap<PaymentClientTokenResult, Models.Payment.PaymentClientTokenResult>();
                 });
             this.InnerMapper = new AutoMapper.Mapper(config);
         }
 
-        public CommerceParty MapToCommerceParty(PartyEntity item)
+        public CommerceParty MapToCommerceParty(Party item)
         {
             return this.InnerMapper.Map<CommerceParty>(item);
         }
 
-        public IList<CommerceParty> MapToCommercePartyList(IEnumerable<PartyEntity> item)
+        public IList<CommerceParty> MapToCommercePartyList(IEnumerable<Party> item)
         {
             return this.InnerMapper.Map<IList<CommerceParty>>(item);
         }

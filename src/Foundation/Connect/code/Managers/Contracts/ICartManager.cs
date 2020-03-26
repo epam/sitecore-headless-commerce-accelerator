@@ -23,44 +23,46 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
 
+    using Carts = Sitecore.Commerce.Entities.Carts;
+
     public interface ICartManager
     {
-        ManagerResponse<CartResult, Cart> AddLineItemsToCart(
-            Cart cart,
+        ManagerResponse<CartResult, Carts.Cart> AddLineItemsToCart(
+            Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink);
 
-        ManagerResponse<AddPaymentInfoResult, Cart> AddPaymentInfo(
+        ManagerResponse<AddPaymentInfoResult, Carts.Cart> AddPaymentInfo(
             string shopName,
-            Cart cart,
-            PartyEntity billingPartyEntity,
+            Carts.Cart cart,
+            Party billingPartyEntity,
             FederatedPaymentArgs federatedPaymentArgs);
 
-        ManagerResponse<AddPromoCodeResult, Cart> AddPromoCode(Cart cart, string promoCode);
+        ManagerResponse<AddPromoCodeResult, Carts.Cart> AddPromoCode(Carts.Cart cart, string promoCode);
 
-        ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(
-            Cart cart,
-            List<PartyEntity> partyEntityList,
+        ManagerResponse<AddShippingInfoResult, Carts.Cart> AddShippingInfo(
+            Carts.Cart cart,
+            List<Party> partyEntityList,
             ShippingOptionType shippingOptionType,
             List<ShippingInfoArgument> shippingInfoList);
 
-        ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId);
+        ManagerResponse<CartResult, Carts.Cart> CreateOrResumeCart(string shopName, string userId, string customerId);
 
-        ManagerResponse<CartResult, Cart> GetCurrentCart(string shopName, string customerId);
+        ManagerResponse<CartResult, Carts.Cart> GetCurrentCart(string shopName, string customerId);
 
-        ManagerResponse<CartResult, Cart> MergeCarts(
+        ManagerResponse<CartResult, Carts.Cart> MergeCarts(
             string shopName,
             string customerId,
             string anonymousVisitorId,
-            Cart anonymousVisitorCart);
+            Carts.Cart anonymousVisitorCart);
 
-        ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds);
+        ManagerResponse<CartResult, Carts.Cart> RemoveLineItemsFromCart(Carts.Cart cart, IEnumerable<string> cartLineIds);
 
-        ManagerResponse<CartResult, Cart> UpdateCart(string shopName, Cart currentCart, CartBase cartUpdate);
+        ManagerResponse<CartResult, Carts.Cart> UpdateCart(string shopName, Carts.Cart currentCart, CartBase cartUpdate);
 
-        ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(
-            Cart cart,
+        ManagerResponse<CartResult, Carts.Cart> UpdateLineItemsInCart(
+            Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink);

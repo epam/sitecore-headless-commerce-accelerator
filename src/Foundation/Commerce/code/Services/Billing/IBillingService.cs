@@ -16,8 +16,6 @@ namespace Wooli.Foundation.Commerce.Services.Billing
 {
     using Base.Models;
 
-    using Models;
-    using Models.Entities;
     using Models.Entities.Addresses;
     using Models.Entities.Billing;
     using Models.Entities.Payment;
@@ -28,17 +26,17 @@ namespace Wooli.Foundation.Commerce.Services.Billing
     public interface IBillingService
     {
         /// <summary>
-        /// Allows to get billing options
+        /// Allows to get billing info
         /// </summary>
         /// <returns>Billing options result</returns>
-        Result<BillingInfo> GetBillingOptions();
+        Result<BillingInfo> GetBillingInfo();
 
         /// <summary>
-        /// Sets payment options
+        /// Sets payment info
         /// </summary>
         /// <param name="billingAddress">Billing address</param>
         /// <param name="federatedPayment">Contains payment information</param>
-        /// <returns></returns>
-        Result<VoidResult> SetPaymentOptions(Address billingAddress, FederatedPaymentInfo federatedPayment);
+        /// <returns>Void result</returns>
+        Result<VoidResult> SetPaymentInfo(Address billingAddress, FederatedPaymentInfo federatedPayment);
     }
 }

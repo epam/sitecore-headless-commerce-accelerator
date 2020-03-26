@@ -48,10 +48,10 @@ namespace Wooli.Feature.Checkout.Controllers
         }
 
         [HttpGet]
-        [ActionName("billingOptions")]
-        public ActionResult GetBillingOptions()
+        [ActionName("billingInfo")]
+        public ActionResult GetBillingInfo()
         {
-            return this.Execute(this.billingService.GetBillingOptions);
+            return this.Execute(this.billingService.GetBillingInfo);
         }
 
         [HttpGet]
@@ -69,10 +69,10 @@ namespace Wooli.Feature.Checkout.Controllers
         }
 
         [HttpPost]
-        [ActionName("paymentOptions")]
-        public ActionResult SetPaymentOptions(SetPaymentOptionsRequest request)
+        [ActionName("paymentInfo")]
+        public ActionResult SetPaymentInfo(SetPaymentInfoRequest request)
         {
-            return this.Execute(() => this.billingService.SetPaymentOptions(request.BillingAddress, request.FederatedPayment));
+            return this.Execute(() => this.billingService.SetPaymentInfo(request.BillingAddress, request.FederatedPayment));
         }
 
         [HttpPost]

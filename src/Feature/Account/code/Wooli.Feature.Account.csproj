@@ -522,6 +522,7 @@
     <Compile Include="Models\Requests\ChangePasswordRequest.cs" />
     <Compile Include="Models\Requests\CreateAccountRequest.cs" />
     <Compile Include="Models\Requests\UpdateAccountRequest.cs" />
+    <Compile Include="Models\Requests\LoginRequest.cs" />
     <Compile Include="Models\Requests\ValidateEmailRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -16,7 +16,7 @@ export const signIn = (email: string, password: string) => {
   const form = document.createElement('form');
   form.style.visibility = 'hidden';
   form.method = 'POST';
-  form.action = `/apix/client/commerce/auth/signIn?returnUrl=${location.pathname}`;
+  form.action = `/apix/client/commerce/auth/login?returnUrl=${location.pathname}`;
 
   const emailInput = document.createElement('input');
   emailInput.name = 'email';

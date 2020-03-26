@@ -18,29 +18,33 @@ namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Services.Authentication;
+    using Managers.Authentication;
 
     using Sitecore.Diagnostics;
 
     public class LoginProcessor : SafePipelineProcessor<LoginPipelineArgs>
     {
-        private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationManager authenticationManager;
 
-        public LoginProcessor(IAuthenticationService authenticationService, ILogService<CommonLog> logService)
+        public LoginProcessor(IAuthenticationManager authenticationManager, ILogService<CommonLog> logService)
             : base(logService)
         {
-            Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
-            this.authenticationService = authenticationService;
+            Assert.ArgumentNotNull(authenticationManager, nameof(authenticationManager));
+            this.authenticationManager = authenticationManager;
         }
 
         protected override void SafeProcess(LoginPipelineArgs args)
         {
             Assert.ArgumentNotNull(args, nameof(args));
 
-            if (!this.authenticationService.Login(args.UserName, args.Password))
+            if (!this.authenticationManager.Login(args.UserName, args.Password))
             {
+                args.IsValidCredentials = false;
                 args.AbortPipeline();
+                return;
             }
+
+            args.IsValidCredentials = true;
         }
     }
 }

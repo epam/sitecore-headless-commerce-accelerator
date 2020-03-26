@@ -560,6 +560,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\GetCommerceUserProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\IdentifyCommerceUserProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessorTests.cs" />
     <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="ModelMappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

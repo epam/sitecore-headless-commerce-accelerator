@@ -12,22 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.ModelMappers.Profiles
+namespace Wooli.Feature.Catalog.Tests.Mappers.Profiles
 {
     using AutoMapper;
 
-    using Commerce.ModelMappers.Profiles;
+    using Catalog.Mappers.Profiles;
 
     using Xunit;
 
-    public class UserProfileTests
+    public class SearchProfileTests
     {
         [Fact]
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<UserProfile>(); });
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
 
             // act, assert
             configuration.AssertConfigurationIsValid();

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.ModelMappers.Profiles
+namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
     using System.Linq;
 

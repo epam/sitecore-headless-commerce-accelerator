@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Connect.Mappers
     using DependencyInjection;
 
     using Models;
-    using Models.Mappings;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;

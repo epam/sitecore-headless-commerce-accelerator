@@ -17,6 +17,7 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
     using System;
 
     using Catalog.Controllers;
+    using Catalog.Mappers;
 
     using Foundation.Base.Models;
     using Foundation.Commerce.Models;
@@ -33,6 +34,12 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
 
     public class SearchControllerTests
     {
+        private readonly IProductSearchService productSearchService;
+
+        private readonly ISearchMapper searchMapper;
+
+        private readonly SearchController controller;
+
         public SearchControllerTests()
         {
             this.productSearchService = Substitute.For<IProductSearchService>();
@@ -40,12 +47,6 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
 
             this.controller = Substitute.For<SearchController>(this.productSearchService, this.searchMapper);
         }
-
-        private readonly IProductSearchService productSearchService;
-
-        private readonly ISearchMapper searchMapper;
-
-        private readonly SearchController controller;
 
         [Fact]
         public void GetProducts_ShouldCallExecuteMethod()

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Mappers.Search
+namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -20,12 +20,12 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
 
     using Connect.Models.Search;
 
-    using Models.Entities.Catalog;
     using Models.Entities.Search;
 
     using Connect = Connect.Models;
     using Facet = Models.Entities.Search.Facet;
     using FacetValue = Models.Entities.Search.FacetValue;
+    using Product = Models.Entities.Catalog.Product;
 
     [ExcludeFromCodeCoverage]
     public class SearchProfile : Profile

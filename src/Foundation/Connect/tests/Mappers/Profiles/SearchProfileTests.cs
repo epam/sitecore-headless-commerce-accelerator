@@ -1,11 +1,13 @@
-﻿namespace Wooli.Foundation.Connect.Tests.Models.Mappings
+﻿namespace Wooli.Foundation.Connect.Tests.Mappers.Profiles
 {
-    using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
 
-    using Connect.Models;
+    using Connect.Mappers.Profiles;
+
+    using Models;
+    using Models.Search;
 
     using Ploeh.AutoFixture;
 
@@ -14,11 +16,9 @@
     using Sitecore.ContentSearch.Linq;
     using Sitecore.ContentSearch.SearchTypes;
 
-    using Wooli.Foundation.Connect.Models.Mappings;
-    using Wooli.Foundation.Connect.Models.Search;
     using Xunit;
 
-    using FacetValue = Connect.Models.Search.FacetValue;
+    using FacetValue = Models.Search.FacetValue;
 
     public class SearchProfileTests
     {

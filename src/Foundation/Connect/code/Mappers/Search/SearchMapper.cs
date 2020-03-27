@@ -14,22 +14,10 @@
 
 namespace Wooli.Foundation.Connect.Mappers.Search
 {
-    using AutoMapper;
+    using Base.Mappers;
 
-    using DependencyInjection;
+    using Profiles;
 
-    using Models.Mappings;
-
-    using Mapper = Base.Mappers.Mapper;
-
-    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
-    public class SearchMapper : Mapper, ISearchMapper
-    {
-        public SearchMapper()
-        {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
-            
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
-    }
+    internal class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
+    { }
 }

@@ -21,10 +21,10 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
     using Builders.Search;
 
     using Connect.Managers.Search;
-    using Connect.Models;
+    using Connect.Mappers.Search;
     using Connect.Models.Search;
 
-    using Mappers.Search;
+    using Models;
 
     using NSubstitute;
 

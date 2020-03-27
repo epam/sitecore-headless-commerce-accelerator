@@ -12,14 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace Wooli.Feature.Account.Mappers.Profiles
 {
-    using Foundation.Base.Mappers;
-    using Foundation.DependencyInjection;
+    using AutoMapper;
 
-    using Profiles;
+    using Foundation.Commerce.Models.Entities.Addresses;
 
-    [Service(typeof(IAccountMapper), Lifetime = Lifetime.Transient)]
-    public class AccountMapper : ProfileMapper<AddressProfile>, IAccountMapper
-    { }
+    using Models.Requests;
+
+    public class AddressProfile : Profile
+    {
+        public AddressProfile()
+        {
+            this.CreateMap<AddressRequest, Address>();
+        }
+    }
 }

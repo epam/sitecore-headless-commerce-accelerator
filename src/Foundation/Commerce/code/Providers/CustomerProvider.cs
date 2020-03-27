@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Commerce.Providers
 
     using DependencyInjection;
 
-    using ModelMappers.Users;
+    using Mappers.Users;
 
     using Models.Entities.Users;
 

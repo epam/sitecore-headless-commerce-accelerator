@@ -12,33 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.ModelMappers.Users
+namespace Wooli.Foundation.Base.Mappers
 {
-    using Account.Infrastructure.Pipelines.Login;
-
     using AutoMapper;
 
-    using DependencyInjection;
-
-    using Models.Entities.Users;
-
-    using Profiles;
-
-    using Mapper = Base.Mappers.Mapper;
-
-    [Service(typeof(IUserMapper), Lifetime = Lifetime.Transient)]
-    public class UserMapper : Mapper, IUserMapper
+    public abstract class ProfileMapper<TProfile> : Mapper
+        where TProfile : Profile, new()
     {
-        public UserMapper()
+        protected ProfileMapper()
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<UserProfile>());
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<TProfile>());
 
             this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
-
-        public void MapToLoginPipelineArgs(User user, LoginPipelineArgs args)
-        {
-            this.InnerMapper.Map(user, args);
         }
     }
 }

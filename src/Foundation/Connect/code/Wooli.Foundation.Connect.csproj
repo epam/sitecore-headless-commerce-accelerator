@@ -559,6 +559,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Products\IProductBuilder.cs" />
+    <Compile Include="Builders\Products\ProductBuilder.cs" />
+    <Compile Include="Builders\Search\ISearchQueryBuilder.cs" />
+    <Compile Include="Builders\Search\IQueryBuilder.cs" />
+    <Compile Include="Builders\Search\SearchQueryBuilder.cs" />
     <Compile Include="Commerce.Extended.cs" />
     <Compile Include="Commerce.Generated.cs" />
     <Compile Include="Constants.cs" />
@@ -588,10 +593,12 @@
     <Compile Include="Models\PartyEntity.cs" />
     <Compile Include="Models\FederatedPaymentArgs.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Search\Facet.cs" />
     <Compile Include="Models\Search\SearchOptions.cs" />
     <Compile Include="Models\Search\FacetValue.cs" />
     <Compile Include="Models\Search\QueryFacet.cs" />
     <Compile Include="Models\Search\SearchResultsV2.cs" />
+    <Compile Include="Models\Search\SortDirection.cs" />
     <Compile Include="Models\ShippingInfoArgument.cs" />
     <Compile Include="Models\Variant.cs" />
     <Compile Include="Managers\AccountManager.cs" />

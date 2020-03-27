@@ -12,22 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Catalog
+namespace Wooli.Foundation.Commerce.Mappers.Search
 {
-    using Base.Models;
+    using System.Diagnostics.CodeAnalysis;
+
+    using AutoMapper;
 
     using DependencyInjection;
 
-    using Models;
-    using Models.Entities;
-    using Models.Entities.Search;
-
-    [Service(typeof(IProductSearchService), Lifetime = Lifetime.Transient)]
-    public class ProductSearchService : IProductSearchService
+    [ExcludeFromCodeCoverage]
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
+    public class SearchMapper : Base.Mappers.Mapper, ISearchMapper
     {
-        public Result<ProductsSearchResult> GetProducts(ProductsSearchOptions options)
+        public SearchMapper()
         {
-            throw new System.NotImplementedException();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
     }
 }

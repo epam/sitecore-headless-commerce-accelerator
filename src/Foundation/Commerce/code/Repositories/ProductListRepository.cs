@@ -42,6 +42,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Sitecore.Diagnostics;
 
     using ProductModel = Models.Catalog.ProductModel;
+    using SortDirection = Models.SortDirection;
 
     [Service(typeof(IProductListRepository), Lifetime = Lifetime.Singleton)]
     public class ProductListRepository : BaseCatalogRepository, IProductListRepository

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,21 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Search
+namespace Wooli.Feature.Catalog.Models.Requests.Search
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
+
+    using DTO;
+
+    using Foundation.Commerce.Models;
 
     using TypeLite;
 
     [TsClass]
     [ExcludeFromCodeCoverage]
-    public class FacetResult
+    public class ProductsSearchRequest
     {
-        public string DisplayName { get; set; }
+        public string SearchKeyword { get; set; }
+        
+        public IEnumerable<FacetDto> Facets { get; set; }
 
-        public IList<FacetValueResult> FoundValues { get; set; }
+        public string SortField { get; set; }
 
-        public string Name { get; set; }
+        [EnumDataType(typeof(SortDirection))]
+        public SortDirection? SortDirection { get; set; }
+
+        [Range(1, int.MaxValue)]
+        public int? PageNumber { get; set; }
+
+        [Range(1, int.MaxValue)]
+        public int? PageSize { get; set; }
     }
 }

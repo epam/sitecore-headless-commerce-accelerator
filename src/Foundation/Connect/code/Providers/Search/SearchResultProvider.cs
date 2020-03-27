@@ -22,26 +22,27 @@ namespace Wooli.Foundation.Connect.Providers.Search
     using Sitecore.ContentSearch.SearchTypes;
     using Sitecore.Diagnostics;
 
-    public abstract class SearchResultProvider<TResult> : ISearchResultProvider<TResult>
-        where TResult : SearchResultItem
+    public abstract class SearchResultProvider : ISearchResultProvider
     {
         protected abstract ISearchIndex SearchIndex { get; set; }
 
-        public TResult GetSearchResult(Func<IQueryable<TResult>, IQueryable<TResult>> buildQuery)
+        public TResult GetSearchResult<TResult>(Func<IQueryable<TResult>, IQueryable<TResult>> searchQuery)
+            where TResult : SearchResultItem
         {
-            Assert.ArgumentNotNull(buildQuery, nameof(buildQuery));
+            Assert.ArgumentNotNull(searchQuery, nameof(searchQuery));
 
-            var searchResults = this.GetSearchResults(buildQuery);
+            var searchResults = this.GetSearchResults(searchQuery);
             return searchResults?.Hits?.Select(hit => hit.Document).FirstOrDefault();
         }
 
-        public SearchResults<TResult> GetSearchResults(Func<IQueryable<TResult>, IQueryable<TResult>> buildQuery)
+        public SearchResults<TResult> GetSearchResults<TResult>(Func<IQueryable<TResult>, IQueryable<TResult>> searchQuery)
+            where TResult : SearchResultItem
         {
-            Assert.ArgumentNotNull(buildQuery, nameof(buildQuery));
+            Assert.ArgumentNotNull(searchQuery, nameof(searchQuery));
 
             using (var searchContext = this.SearchIndex?.CreateSearchContext())
             {
-                var queryable = buildQuery.Invoke(searchContext?.GetQueryable<TResult>());
+                var queryable = searchQuery.Invoke(searchContext?.GetQueryable<TResult>());
                 return queryable.GetResults();
             }
         }

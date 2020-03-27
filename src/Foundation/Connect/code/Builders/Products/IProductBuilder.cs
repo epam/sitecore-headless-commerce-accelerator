@@ -12,22 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search
+namespace Wooli.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
 
-    public class SearchOptions
+    public interface IProductBuilder<in TSource, out TDestination> 
+        where TSource : class 
+        where TDestination : class
     {
-        public string SearchKeyword { get; set; }
-
-        public int NumberOfItemsToReturn { get; set; }
-
-        public int StartPageIndex { get; set; }
-
-        public string SortField { get; set; }
-
-        public SortDirection SortDirection { get; set; }
-
-        public IEnumerable<Facet> Facets { get; set; }
+        IEnumerable<TDestination> Build(IEnumerable<TSource> source);
     }
 }

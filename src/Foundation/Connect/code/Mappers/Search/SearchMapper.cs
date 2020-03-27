@@ -16,11 +16,14 @@ namespace Wooli.Foundation.Connect.Mappers.Search
 {
     using AutoMapper;
 
+    using DependencyInjection;
+
     using Models.Mappings;
 
     using Mapper = Base.Mappers.Mapper;
 
-    internal class SearchMapper : Mapper, ISearchMapper
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
+    public class SearchMapper : Mapper, ISearchMapper
     {
         public SearchMapper()
         {

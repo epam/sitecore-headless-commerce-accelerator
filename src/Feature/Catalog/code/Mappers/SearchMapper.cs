@@ -12,26 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Providers.Search
+namespace Wooli.Feature.Catalog.Mappers
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using DependencyInjection;
+    using AutoMapper;
 
-    using Sitecore.Commerce.Engine.Connect.Search;
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.ContentSearch.SearchTypes;
+    using Foundation.DependencyInjection;
 
+    using Profiles;
+
+    using Mapper = Foundation.Base.Mappers.Mapper;
+
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     [ExcludeFromCodeCoverage]
-    [Service(typeof(ISearchResponseProvider), Lifetime = Lifetime.Singleton)]
-    public class SearchResponseProvider : ISearchResponseProvider
+    public class SearchMapper : Mapper, ISearchMapper
     {
-        public SearchResponse CreateFromSearchResultsItems<T>(
-            CommerceSearchOptions searchOptions,
-            SearchResults<T> sitecoreSearchResults) where T : SearchResultItem
+        public SearchMapper()
         {
-            return SearchResponse.CreateFromSearchResultsItems(searchOptions, sitecoreSearchResults);
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
     }
 }

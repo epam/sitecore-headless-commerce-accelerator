@@ -15,18 +15,16 @@
 namespace Wooli.Foundation.Connect.Tests.Managers.Search
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
-    using Base.Context;
+    using Builders.Products;
+    using Builders.Search;
 
     using Connect.Managers.Search;
-    using Connect.Mappers.Search;
+    using Connect.Models;
     using Connect.Models.Search;
 
-    using Loaders;
-
-    using Models;
+    using Mappers.Search;
 
     using NSubstitute;
 
@@ -34,7 +32,6 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
 
     using Providers.Search;
 
-    using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.ContentSearch.Linq;
@@ -49,12 +46,10 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         private readonly IFixture fixture;
 
         private readonly ISearchMapper searchMapper;
-        private readonly ISitecoreContext sitecoreContext;
-        private readonly ICommerceTypeLoader commerceTypeLoader;
         private readonly ISearchResponseProvider searchResponseProvider;
-        private readonly ICommerceSearchManager comerceSearchManager;
-        private readonly ISearchResultProvider<CommerceSellableItemSearchResultItem> searchResultProvider;
-
+        private readonly ISearchResultProvider searchResultProvider;
+        private readonly IProductBuilder<Item, Product> productBuilder;
+        private readonly ISearchQueryBuilder queryBuilder;
         private readonly ISearchManagerV2 searchManager;
 
         public SearchManagerV2Tests()
@@ -62,21 +57,17 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
             this.fixture = new Fixture().Customize(new AutoDbCustomization());
 
             this.searchMapper = Substitute.For<ISearchMapper>();
-            this.sitecoreContext = Substitute.For<ISitecoreContext>();
             this.searchResponseProvider = Substitute.For<ISearchResponseProvider>();
-            this.comerceSearchManager = Substitute.For<ICommerceSearchManager>();
-            this.searchResultProvider = Substitute.For<ISearchResultProvider<CommerceSellableItemSearchResultItem>>();
-
-            this.commerceTypeLoader = Substitute.For<ICommerceTypeLoader>();
-            this.commerceTypeLoader.CreateInstance<ICommerceSearchManager>()
-                .Returns(this.comerceSearchManager);
-
+            this.productBuilder = Substitute.For<IProductBuilder<Item, Product>>();
+            this.searchResultProvider = Substitute.For<ISearchResultProvider>();
+            this.queryBuilder = Substitute.For<ISearchQueryBuilder>();
+            
             this.searchManager = new SearchManagerV2(
                 this.searchMapper,
-                this.sitecoreContext,
-                this.commerceTypeLoader,
                 this.searchResponseProvider,
-                this.searchResultProvider);
+                this.productBuilder,
+                this.searchResultProvider,
+                this.queryBuilder);
         }
 
         #region GetProducts
@@ -86,9 +77,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         {
             //act & assert
             Assert.Throws<ArgumentNullException>(
-                () => this.searchManager.GetProducts(null, this.fixture.Create<SearchOptions>()));
-            Assert.Throws<ArgumentNullException>(
-                () => this.searchManager.GetProducts(this.fixture.Create<string>(), null));
+                () => this.searchManager.GetProducts(null));
         }
 
         [Fact]
@@ -108,9 +97,9 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                     {
                         StartPageIndex = searchOptions.StartPageIndex
                     });
-            this.searchMapper.Map<SearchResponse, SearchResultsV2>(searchResponse)
+            this.searchMapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse)
                 .Returns(
-                    new SearchResultsV2()
+                    new SearchResultsV2<Product>
                     {
                         TotalItemCount = searchResponse.TotalItemCount
                     });
@@ -122,49 +111,14 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(searchResponse);
 
             //act
-            var results = this.searchManager.GetProducts(
-                this.fixture.Create<string>(),
-                searchOptions);
+            var results = this.searchManager.GetProducts(searchOptions);
 
             //assert
             Assert.Equal(searchResponse.TotalItemCount, results.TotalItemCount);
 
-            this.searchMapper.Received(1).Map<SearchResponse, SearchResultsV2>(searchResponse);
+            this.searchMapper.Received(1).Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
         }
 
-        /* not fit to current logic
-        [Fact]
-        public void GetProducts_IfSearchResponseIsNull_ShouldReturnEmptySearchResults()
-        {
-            //arrange
-            this.searchResponseProvider
-                .CreateFromSearchResultsItems(
-                    Arg.Any<CommerceSearchOptions>(),
-                    Arg.Any<SearchResults<CommerceSellableItemSearchResultItem>>())
-                .Returns(null as SearchResponse);
-
-            //act
-            var results = this.searchManager.GetProducts(
-                this.fixture.Create<string>(),
-                this.fixture.Create<SearchOptions>());
-
-            //assert
-            Assert.True(results.TotalItemCount == 0);
-            Assert.Empty(results.SearchResultItems);
-        }
-
-        [Fact]
-        public void GetProducts_ShouldReturnNotNullSearchResults()
-        {
-            //act 
-            var results = this.searchManager.GetProducts(
-                this.fixture.Create<string>(),
-                this.fixture.Create<SearchOptions>());
-
-            //assert
-            Assert.NotNull(results);
-        }
-        */
         #endregion
 
         #region GetProductItem
@@ -184,8 +138,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         public void GetProductItem_IfProductNotFound_ShouldReturnNull()
         {
             //act
-            var results = this.searchManager.GetProductItem(
-                this.fixture.Create<string>());
+            var results = this.searchManager.GetProductItem(this.fixture.Create<string>());
 
             //assert
             Assert.Null(results);
@@ -200,7 +153,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         {
             //arrange
             var commerceItem = Substitute.For<CommerceSellableItemSearchResultItem>();
-                commerceItem.GetItem().Returns(this.fixture.Create<Item>());
+            commerceItem.GetItem().Returns(this.fixture.Create<Item>());
 
             this.searchResultProvider.GetSearchResult(
                     Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
@@ -208,8 +161,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(commerceItem);
 
             //act
-            var results = this.searchManager.GetProductItem(
-                this.fixture.Create<string>());
+            var results = this.searchManager.GetProductItem(this.fixture.Create<string>());
 
             //assert
             Assert.NotNull(results);
@@ -234,13 +186,12 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                     Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
                         IQueryable<CommerceSellableItemSearchResultItem>>>());
         }
-        
+
         [Fact]
         public void GetCategoryItem_IfCategoryNotFound_ShouldReturnNull()
         {
             //arrange
-            var results = this.searchManager.GetCategoryItem(
-                this.fixture.Create<string>());
+            var results = this.searchManager.GetCategoryItem(this.fixture.Create<string>());
 
             //act & assert
             Assert.Null(results);
@@ -263,8 +214,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(commerceItem);
 
             //act
-            var results = this.searchManager.GetCategoryItem(
-                this.fixture.Create<string>());
+            var results = this.searchManager.GetCategoryItem(this.fixture.Create<string>());
 
             //assert
             Assert.NotNull(results);

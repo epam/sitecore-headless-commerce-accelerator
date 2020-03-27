@@ -16,11 +16,9 @@ namespace Wooli.Foundation.Connect.Models.Search
 {
     using System.Collections.Generic;
 
-    using Sitecore.Data.Items;
-
-    public class SearchResultsV2
+    public class SearchResultsV2<TEntity> where TEntity : class
     {
-        public IList<Item> SearchResultItems { get; set; }
+        public IList<TEntity> Results { get; set; }
 
         public IEnumerable<QueryFacet> QueryFacets { get; set; }
 

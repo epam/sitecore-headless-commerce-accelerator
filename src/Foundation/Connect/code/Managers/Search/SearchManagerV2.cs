@@ -16,11 +16,10 @@ namespace Wooli.Foundation.Connect.Managers.Search
 {
     using System.Linq;
 
-    using Base.Context;
+    using Builders.Products;
+    using Builders.Search;
 
     using DependencyInjection;
-
-    using Loaders;
 
     using Mappers.Search;
 
@@ -29,87 +28,67 @@ namespace Wooli.Foundation.Connect.Managers.Search
 
     using Providers.Search;
 
-    using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(ISearchManagerV2))]
+    [Service(typeof(ISearchManagerV2), Lifetime = Lifetime.Singleton)]
     public class SearchManagerV2 : ISearchManagerV2
     {
-        private readonly ICommerceSearchManager commerceSearchManager;
         private readonly ISearchMapper searchMapper;
+        private readonly ISearchQueryBuilder queryBuilder;
         private readonly ISearchResponseProvider searchResponseProvider;
-        private readonly ISearchResultProvider<CommerceSellableItemSearchResultItem> searchResultProvider;
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly ISearchResultProvider searchResultProvider;
+        private readonly IProductBuilder<Item, Product> productBuilder;
 
         public SearchManagerV2(
             ISearchMapper searchMapper,
-            ISitecoreContext sitecoreContext,
-            ICommerceTypeLoader commerceTypeLoader,
             ISearchResponseProvider searchResponseProvider,
-            ISearchResultProvider<CommerceSellableItemSearchResultItem> searchResultProvider)
+            IProductBuilder<Item, Product> productBuilder,
+            ISearchResultProvider searchResultProvider,
+            ISearchQueryBuilder queryBuilder)
         {
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
-            Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
-            Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
             Assert.ArgumentNotNull(searchResponseProvider, nameof(searchResponseProvider));
-            Assert.ArgumentNotNull(searchResultProvider, nameof(searchResultProvider));
+            Assert.ArgumentNotNull(searchResponseProvider, nameof(searchResponseProvider));
+            Assert.ArgumentNotNull(productBuilder, nameof(productBuilder));
+            Assert.ArgumentNotNull(queryBuilder, nameof(queryBuilder));
 
             this.searchMapper = searchMapper;
-            this.sitecoreContext = sitecoreContext;
             this.searchResponseProvider = searchResponseProvider;
             this.searchResultProvider = searchResultProvider;
-
-            this.commerceSearchManager = commerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
+            this.productBuilder = productBuilder;
+            this.queryBuilder = queryBuilder;
         }
 
-        public SearchResultsV2 GetProducts(
-            string searchKeyword,
-            SearchOptions searchOptions)
+        public SearchResultsV2<Product> GetProducts(SearchOptions searchOptions)
         {
-            Assert.ArgumentNotNull(searchKeyword, nameof(searchKeyword));
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
 
             var commerceSearchOptions = this.searchMapper.Map<SearchOptions, CommerceSearchOptions>(searchOptions);
 
-            var results = this.searchResultProvider.GetSearchResults(
-                queryable =>
-                {
-                    queryable = queryable
-                        .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
-                        .Where(item => item.Language == this.sitecoreContext.Language.Name);
-
-                    if (!string.IsNullOrWhiteSpace(searchKeyword))
-                    {
-                        queryable = queryable.Where(
-                            item => item.Name.Contains(searchKeyword) || item.DisplayName.Contains(searchKeyword));
-                    }
-
-                    return this.commerceSearchManager.AddSearchOptionsToQuery(queryable, commerceSearchOptions);
-                });
+            var results =
+                this.searchResultProvider.GetSearchResults<CommerceSellableItemSearchResultItem>(
+                    queryable => this.queryBuilder.BuildProductsQuery(
+                        queryable,
+                        searchOptions.SearchKeyword,
+                        commerceSearchOptions));
 
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
+            var searchResults = this.searchMapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
+            searchResults.Results = this.productBuilder.Build(searchResponse.ResponseItems).ToList();
 
-            return this.searchMapper.Map<SearchResponse, SearchResultsV2>(searchResponse);
+            return searchResults;
         }
 
         public Item GetCategoryItem(string categoryName)
         {
             Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
 
-            var result = this.searchResultProvider.GetSearchResult(
-                queryable =>
-                {
-                    return queryable
-                        .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Category)
-                        .Where(item => item.Language == this.sitecoreContext.Language.Name)
-                        .Where(item => item.Name == categoryName.ToLowerInvariant());
-                });
-
+            var result = this.searchResultProvider.GetSearchResult<CommerceSellableItemSearchResultItem>(
+                queryable => this.queryBuilder.BuildCategoryQuery(queryable, categoryName));
             return result?.GetItem();
         }
 
@@ -117,14 +96,8 @@ namespace Wooli.Foundation.Connect.Managers.Search
         {
             Assert.ArgumentNotNullOrEmpty(productId, nameof(productId));
 
-            var result = this.searchResultProvider.GetSearchResult(
-                queryable =>
-                {
-                    return queryable
-                        .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
-                        .Where(item => item.Language == this.sitecoreContext.Language.Name)
-                        .Where(item => item.Name == productId.ToLowerInvariant());
-                });
+            var result = this.searchResultProvider.GetSearchResult<CommerceSellableItemSearchResultItem>(
+                queryable => this.queryBuilder.BuildProductQuery(queryable, productId));
 
             return result?.GetItem();
         }

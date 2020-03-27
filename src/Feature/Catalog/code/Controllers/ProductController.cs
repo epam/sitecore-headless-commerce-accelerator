@@ -14,7 +14,6 @@
 
 namespace Wooli.Feature.Catalog.Controllers
 {
-    using System;
     using System.Collections.Specialized;
     using System.Net;
     using System.Web;
@@ -32,7 +31,7 @@ namespace Wooli.Feature.Catalog.Controllers
         private readonly ICatalogRepository catalogRepository;
 
         private readonly IProductListRepository productListRepository;
-        
+
         private readonly IVisitorContext visitorContext;
 
         public ProductController(

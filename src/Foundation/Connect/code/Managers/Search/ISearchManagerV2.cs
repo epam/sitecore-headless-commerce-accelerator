@@ -16,7 +16,6 @@ namespace Wooli.Foundation.Connect.Managers.Search
 {
     using Models;
     using Models.Search;
-
     using Sitecore.Data.Items;
 
     /// <summary>
@@ -27,12 +26,9 @@ namespace Wooli.Foundation.Connect.Managers.Search
         /// <summary>
         /// Gets products from context catalog by keyword and search options
         /// </summary>
-        /// <param name="searchKeyword">Search by keyword</param>
-        /// <param name="searchOptions">Search options: sorting, facets, etc.</param>
-        /// <returns>Search results</returns>
-        SearchResultsV2 GetProducts(
-            string searchKeyword,
-            SearchOptions searchOptions);
+        /// <param name="searchOptions">GetProducts options: sorting, keyword, facets, etc.</param>
+        /// <returns>GetProducts results</returns>
+        SearchResultsV2<Product> GetProducts(SearchOptions searchOptions);
 
         /// <summary>
         /// Gets category item from context catalog by category name

@@ -12,14 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Mappers
+namespace Wooli.Foundation.Connect.Builders.Search
 {
-    using Foundation.Base.Mappers;
+    using Sitecore.ContentSearch.SearchTypes;
 
     /// <summary>
-    /// Performs mapping for catalog models
+    /// Query builder interface
     /// </summary>
-    public interface ICatalogEntityMapper : IMapper
+    /// <typeparam name="TResult"></typeparam>
+    /// <typeparam name="TOptions"></typeparam>
+    public interface IQueryBuilder<TResult, in TOptions> where TResult : SearchResultItem where TOptions : class
     {
     }
 }

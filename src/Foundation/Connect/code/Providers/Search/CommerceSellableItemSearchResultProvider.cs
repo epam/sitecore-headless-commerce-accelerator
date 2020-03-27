@@ -18,23 +18,24 @@ namespace Wooli.Foundation.Connect.Providers.Search
 
     using DependencyInjection;
 
+    using Loaders;
+
     using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.ContentSearch;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(ISearchResultProvider<CommerceSellableItemSearchResultItem>), Lifetime = Lifetime.Singleton)]
+    [Service(typeof(ISearchResultProvider), Lifetime = Lifetime.Singleton)]
     public sealed class
-        CommerceSellableItemSearchResultProvider : SearchResultProvider<CommerceSellableItemSearchResultItem>
+        CommerceSellableItemSearchResultProvider : SearchResultProvider
     {
         public CommerceSellableItemSearchResultProvider(
-            ICommerceSearchManager commerceSearchManager,
+            ICommerceTypeLoader commerceTypeLoader,
             IStorefrontContext context)
         {
-            Assert.ArgumentNotNull(commerceSearchManager, nameof(commerceSearchManager));
+            Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
             Assert.ArgumentNotNull(context, nameof(context));
 
-            this.SearchIndex = commerceSearchManager.GetIndex(context.CatalogName);
+            this.SearchIndex = commerceTypeLoader.CreateInstance<ICommerceSearchManager>()?.GetIndex(context.CatalogName);
         }
 
         protected override ISearchIndex SearchIndex { get; set; }

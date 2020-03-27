@@ -1,10 +1,11 @@
 ﻿namespace Wooli.Foundation.Connect.Tests.Models.Mappings
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
+
+    using Connect.Models;
 
     using Ploeh.AutoFixture;
 
@@ -52,24 +53,12 @@
             // arrange
             var commerceQueryFacet = this.fixture.Create<CommerceQueryFacet>();
 
-
             // act
             var queryFacet = this.mapper.Map<CommerceQueryFacet, QueryFacet>(commerceQueryFacet);
 
             // assert
             Assert.Equal(commerceQueryFacet.DisplayName, queryFacet.DisplayName);
             Assert.Equal(commerceQueryFacet.Name, queryFacet.Name);
-
-            Assert.Equal(commerceQueryFacet.FoundValues.Count, queryFacet.FoundValues.Count);
-            for (int i = 0; i < commerceQueryFacet.FoundValues.Count; i++)
-            {
-                Assert.Equal(
-                    commerceQueryFacet.FoundValues[i].Name,
-                    queryFacet.FoundValues[i].Name);
-                Assert.Equal(
-                    commerceQueryFacet.FoundValues[i].AggregateCount,
-                    queryFacet.FoundValues[i].AggregateCount);
-            }
         }
 
         [Fact]
@@ -115,11 +104,10 @@
             var searchResponse = SearchResponse.CreateFromSearchResultsItems(searchOptions, sitecoreSearchResult);
 
             // act
-            var searchResult = this.mapper.Map<SearchResponse, SearchResultsV2>(searchResponse);
+            var searchResult = this.mapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
 
             // assert
             Assert.Equal(searchResponse.TotalItemCount, searchResult.TotalItemCount);
-            Assert.Empty(searchResult.SearchResultItems);
         }
     }
 }

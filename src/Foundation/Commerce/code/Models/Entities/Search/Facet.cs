@@ -14,16 +14,21 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities.Search
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     using TypeLite;
 
     [TsClass]
     [ExcludeFromCodeCoverage]
-    public class FacetValueResult
+    public class Facet
     {
-        public int AggregateCount { get; protected set; }
+        public string DisplayName { get; set; }
 
-        public string Name { get; protected set; }
+        public IList<FacetValue> FoundValues { get; set; }
+
+        public IList<object> Values { get; set; }
+
+        public string Name { get; set; }
     }
 }

@@ -12,22 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search
+namespace Wooli.Feature.Catalog.Models.Requests.Search.DTO
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
 
-    public class SearchOptions
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
+    public class FacetDto
     {
-        public string SearchKeyword { get; set; }
+        public IList<FacetValueDto> Values { get; set; }
 
-        public int NumberOfItemsToReturn { get; set; }
-
-        public int StartPageIndex { get; set; }
-
-        public string SortField { get; set; }
-
-        public SortDirection SortDirection { get; set; }
-
-        public IEnumerable<Facet> Facets { get; set; }
+        [Required]
+        public string Name { get; set; }
     }
 }

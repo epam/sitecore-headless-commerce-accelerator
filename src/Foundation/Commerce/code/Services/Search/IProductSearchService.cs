@@ -12,22 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search
+namespace Wooli.Foundation.Commerce.Services.Search
 {
-    using System.Collections.Generic;
+    using Base.Models;
 
-    public class SearchOptions
+    using Models.Entities.Search;
+
+    /// <summary>
+    /// Performs products search
+    /// </summary>
+    public interface IProductSearchService
     {
-        public string SearchKeyword { get; set; }
-
-        public int NumberOfItemsToReturn { get; set; }
-
-        public int StartPageIndex { get; set; }
-
-        public string SortField { get; set; }
-
-        public SortDirection SortDirection { get; set; }
-
-        public IEnumerable<Facet> Facets { get; set; }
+        /// <summary>
+        /// Gets products using searching options
+        /// </summary>
+        /// <returns>Product search results</returns>
+        Result<ProductSearchResults> GetProducts(ProductSearchOptions productSearchOptions);
     }
 }

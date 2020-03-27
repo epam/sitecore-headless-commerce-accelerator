@@ -592,7 +592,6 @@
     <Compile Include="Models\Search\Facet.cs" />
     <Compile Include="Models\Search\SearchOptions.cs" />
     <Compile Include="Models\Search\FacetValue.cs" />
-    <Compile Include="Models\Search\QueryFacet.cs" />
     <Compile Include="Models\Search\SearchResultsV2.cs" />
     <Compile Include="Models\Search\SortDirection.cs" />
     <Compile Include="Models\ShippingInfoArgument.cs" />

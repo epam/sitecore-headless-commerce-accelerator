@@ -41,6 +41,7 @@ namespace Wooli.Foundation.Connect.Models
 
         public decimal? ListPrice { get; set; }
 
+        //TODO: Create Connect.StockStatus, map and fix usages
         public StockStatus StockStatus { get; set; }
 
         public string StockStatusName { get; set; }

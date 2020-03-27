@@ -14,10 +14,9 @@
 
 namespace Wooli.Foundation.Commerce.Services.Search
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Base.Models;
+
+    using Builders.Search;
 
     using Connect.Managers.Search;
     using Connect.Models;
@@ -26,27 +25,35 @@ namespace Wooli.Foundation.Commerce.Services.Search
 
     using Mappers.Search;
 
-    using Models;
     using Models.Entities.Search;
 
     using Providers.Search;
+
+    using Sitecore.Diagnostics;
 
     using Connect = Connect.Models.Search;
 
     [Service(typeof(IProductSearchService), Lifetime = Lifetime.Singleton)]
     public class ProductSearchService : IProductSearchService
     {
-        private readonly ISearchManagerV2 searchManager;
-
-        private readonly ISearchMapper searchMapper;
         private readonly ISearchSettingsProvider searchSettingsProvider;
+        private readonly ISearchOptionsBuilder searchOptionsBuilder;
+        private readonly ISearchManagerV2 searchManager;
+        private readonly ISearchMapper searchMapper;
 
         public ProductSearchService(
             ISearchSettingsProvider searchSettingsProvider,
+            ISearchOptionsBuilder searchOptionsBuilder,
             ISearchManagerV2 searchManager,
             ISearchMapper searchMapper)
         {
+            Assert.ArgumentNotNull(searchSettingsProvider, nameof(searchSettingsProvider));
+            Assert.ArgumentNotNull(searchOptionsBuilder, nameof(searchOptionsBuilder));
+            Assert.ArgumentNotNull(searchManager, nameof(searchManager));
+            Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
+
             this.searchSettingsProvider = searchSettingsProvider;
+            this.searchOptionsBuilder = searchOptionsBuilder;
             this.searchManager = searchManager;
             this.searchMapper = searchMapper;
         }
@@ -54,66 +61,11 @@ namespace Wooli.Foundation.Commerce.Services.Search
         public Result<ProductSearchResults> GetProducts(ProductSearchOptions productSearchOptions)
         {
             var searchSettings = this.searchSettingsProvider.GetSearchSettings();
-
-            //TODO: create a search options builder/mapper and refactor
-            var searchOptions = this.ApplyDefaultSearchSettings(searchSettings, productSearchOptions);
-            searchOptions = this.ApplySearchKeyword(searchOptions, productSearchOptions.SearchKeyword);
-            searchOptions = this.ApplyFacets(searchOptions, productSearchOptions.Facets);
-            searchOptions = this.ApplySorting(
-                searchOptions,
-                productSearchOptions.SortDirection,
-                productSearchOptions.SortField);
-            //
-
+            var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
             var searchResults = this.searchManager.GetProducts(searchOptions);
+            var productSearchResults = this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults);
 
-            return new Result<ProductSearchResults>(
-                this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults));
-        }
-
-        private Connect.SearchOptions ApplyDefaultSearchSettings(
-            SearchSettings searchSettings,
-            ProductSearchOptions searchOptions)
-        {
-            var pageSize = searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage;
-            var startPageIndex = (searchOptions.PageNumber - 1) * pageSize;
-
-            return new Connect.SearchOptions
-            {
-                SortField = string.IsNullOrEmpty(searchOptions.SortField)
-                    ? searchSettings.SortFieldNames?.FirstOrDefault()
-                    : searchOptions.SortField,
-                StartPageIndex = startPageIndex >= 0 ? startPageIndex : 0,
-                NumberOfItemsToReturn = pageSize
-            };
-        }
-
-        private Connect.SearchOptions ApplySearchKeyword(Connect.SearchOptions searchOptions, string searchKeyword)
-        {
-            searchOptions.SearchKeyword = searchKeyword;
-            return searchOptions;
-        }
-
-        private Connect.SearchOptions ApplySorting(
-            Connect.SearchOptions searchOptions,
-            SortDirection sortDirection,
-            string sortField)
-        {
-            searchOptions.SortDirection = sortDirection == SortDirection.Asc
-                ? Connect.SortDirection.Asc
-                : Connect.SortDirection.Desc;
-            if (!string.IsNullOrWhiteSpace(sortField))
-            {
-                searchOptions.SortField = sortField;
-            }
-
-            return searchOptions;
-        }
-
-        private Connect.SearchOptions ApplyFacets(Connect.SearchOptions searchOptions, IEnumerable<Facet> facets)
-        {
-            searchOptions.Facets = this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(facets);
-            return searchOptions;
+            return new Result<ProductSearchResults>(productSearchResults);
         }
     }
 }

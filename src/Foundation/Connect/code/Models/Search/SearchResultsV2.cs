@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Connect.Models.Search
     {
         public IList<TEntity> Results { get; set; }
 
-        public IEnumerable<QueryFacet> QueryFacets { get; set; }
+        public IEnumerable<Facet> Facets { get; set; }
 
         public int TotalItemCount { get; set; }
     }

@@ -34,18 +34,18 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
         {
             this.CreateMap<FacetValue, Connect.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
-            
+
             this.CreateMap<SearchResultsV2<Connect.Product>, Product>();
 
-            this.CreateMap<QueryFacet, Facet>();
+            this.CreateMap<Connect.Product, Product>()
+                .ForMember(dest => dest.Variants, opt => opt.Ignore())
+                .ForSourceMember(dest => dest.Variants, opt => opt.Ignore());
 
             this.CreateMap<Connect.Product, Product>()
                 .ForCtorParam("sellableItem", opt => opt.MapFrom(src => src.Item));
 
-            this.CreateMap<Connect.Search.SearchResultsV2<Connect.Product>, ProductSearchResults>()
-                .ForMember(dest => dest.Facets, opt => opt.MapFrom(src => src.QueryFacets))
+            this.CreateMap<SearchResultsV2<Connect.Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
-
 
             this.CreateMap<Facet, Connect.Search.Facet>()
                 .ForMember(dest => dest.DisplayName, opt => opt.Ignore());

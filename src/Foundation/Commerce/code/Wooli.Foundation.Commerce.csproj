@@ -612,6 +612,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />

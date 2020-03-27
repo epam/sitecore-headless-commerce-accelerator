@@ -51,15 +51,9 @@ namespace Wooli.Foundation.Connect.Models.Mappings
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ToString()))
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src));
 
-            this.CreateMap<CommerceQueryFacet, QueryFacet>()
-                .ForMember(
-                    dest => dest.FoundValues,
-                    opt => opt.NullSubstitute(new List<Sitecore.ContentSearch.Linq.FacetValue>()));
-
             this.CreateMap<Sitecore.ContentSearch.Linq.FacetValue, FacetValue>();
 
             this.CreateMap<SearchResponse, SearchResultsV2<Product>>()
-                .ForMember(dest => dest.QueryFacets, opt => opt.MapFrom(src => src.Facets))
                 .ForMember(dest => dest.Results, opt => opt.Ignore());
         }
     }

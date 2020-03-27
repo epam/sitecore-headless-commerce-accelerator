@@ -54,7 +54,7 @@
             var commerceQueryFacet = this.fixture.Create<CommerceQueryFacet>();
 
             // act
-            var queryFacet = this.mapper.Map<CommerceQueryFacet, QueryFacet>(commerceQueryFacet);
+            var queryFacet = this.mapper.Map<CommerceQueryFacet, Facet>(commerceQueryFacet);
 
             // assert
             Assert.Equal(commerceQueryFacet.DisplayName, queryFacet.DisplayName);
@@ -69,7 +69,7 @@
             commerceQueryFacet.FoundValues = null;
 
             // act
-            var queryFacet = this.mapper.Map<CommerceQueryFacet, QueryFacet>(commerceQueryFacet);
+            var queryFacet = this.mapper.Map<CommerceQueryFacet, Facet>(commerceQueryFacet);
 
             // assert
             Assert.NotNull(queryFacet.FoundValues);

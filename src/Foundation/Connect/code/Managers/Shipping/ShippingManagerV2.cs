@@ -33,17 +33,15 @@ namespace Wooli.Foundation.Connect.Managers.Shipping
     using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
     [Service(typeof(IShippingManagerV2), Lifetime = Lifetime.Singleton)]
-    public class ShippingManagerV2 : IShippingManagerV2
+    public class ShippingManagerV2 : BaseManager, IShippingManagerV2
     {
         private readonly ShippingServiceProvider shippingServiceProvider;
-        private readonly ILogService<CommonLog> logService;
 
         public ShippingManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
+            : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            Assert.ArgumentNotNull(logService, nameof(logService));
 
-            this.logService = logService;
             this.shippingServiceProvider = connectServiceProvider.GetShippingServiceProvider();
         }
 
@@ -66,24 +64,6 @@ namespace Wooli.Foundation.Connect.Managers.Shipping
             Assert.ArgumentNotNull(cart, nameof(cart));
 
             return this.Execute(new GetShippingOptionsRequest(cart), this.shippingServiceProvider.GetShippingOptions);
-        }
-
-        //TODO: Remove Duplication of execute method from managers
-        private TResult Execute<TRequest, TResult>(TRequest request, Func<TRequest, TResult> action)
-            where TRequest : ServiceProviderRequest
-            where TResult : ServiceProviderResult
-        {
-            var providerResult = action.Invoke(request);
-
-            if (!providerResult.Success)
-            {
-                foreach (var systemMessage in providerResult.SystemMessages)
-                {
-                    this.logService.Error(systemMessage.Message);
-                }
-            }
-
-            return providerResult;
         }
     }
 }

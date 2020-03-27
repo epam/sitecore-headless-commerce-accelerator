@@ -216,6 +216,7 @@
     <Compile Include="Infrastructure\Pipelines\Logout\LogoutProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Authentication\AuthenticationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">

@@ -12,63 +12,70 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
+namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 {
     using Account.Infrastructure.Pipelines.Login;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Managers.Authentication;
+    using Commerce.Infrastructure.Pipelines.Login;
+    using Commerce.ModelMappers.Users;
+
+    using Models.Entities.Users;
 
     using NSubstitute;
 
     using Ploeh.AutoFixture;
 
+    using Providers;
+
     using Xunit;
 
-    public class LoginProcessorTests
+    public class GetCommerceUserProcessorTests
     {
         private readonly IFixture fixture;
 
-        private readonly IAuthenticationManager authenticationManager;
+        private readonly ICustomerProvider customerProvider;
+
+        private readonly IUserMapper userMapper;
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly LoginProcessor processor;
+        private readonly GetCommerceUserProcessor processor;
 
-        public LoginProcessorTests()
+        public GetCommerceUserProcessorTests()
         {
-            this.authenticationManager = Substitute.For<IAuthenticationManager>();
-            this.logService = Substitute.For<ILogService<CommonLog>>();
             this.fixture = new Fixture();
+            this.customerProvider = Substitute.For<ICustomerProvider>();
+            this.userMapper = Substitute.For<IUserMapper>();
+            this.logService = Substitute.For<ILogService<CommonLog>>();
 
-            this.processor = new LoginProcessor(this.authenticationManager, this.logService);
+            this.processor = new GetCommerceUserProcessor(this.customerProvider, this.userMapper, this.logService);
         }
 
         [Fact]
-        public void Process_IfArgsNotNull_ShouldCallAuthenticationManagerLogin()
+        public void Process_IfArgsNotNull_ShouldCallCustomerProviderGetUser()
         {
             // arrange
             var args = new LoginPipelineArgs()
             {
-                UserName = this.fixture.Create<string>(),
-                Password = this.fixture.Create<string>()
+                Email = this.fixture.Create<string>()
             };
 
             // act
             this.processor.Process(args);
 
             // assert
-            this.authenticationManager.Received(1).Login(args.UserName, args.Password);
+            this.customerProvider.Received(1).GetUser(args.Email);
         }
 
         [Fact]
-        public void Process_IfLoginReturnsFalse_ShouldAbortPipelineSetTrueToIsInvalidCredentials()
+        public void Process_IfCustomerProviderReturnsNull_ShouldAbortPipelineAndSetTrueToIsInvalidCredentials()
         {
             // arrange
             var args = new LoginPipelineArgs();
-            this.authenticationManager.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(false);
+            this.customerProvider.GetUser(Arg.Any<string>()).Returns((User)null);
 
             // act
             this.processor.Process(args);
@@ -79,17 +86,18 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
         }
 
         [Fact]
-        public void Process_IfLoginReturnsTrue_ShouldSetFalseToIsInvalidCredentials()
+        public void Process_IfCustomerProviderReturnsUser_ShouldCallMapToLoginPipelineArgs()
         {
             // arrange
             var args = new LoginPipelineArgs();
-            this.authenticationManager.Login(Arg.Any<string>(), Arg.Any<string>()).Returns(true);
+            var user = new User();
+            this.customerProvider.GetUser(Arg.Any<string>()).Returns(user);
 
             // act
             this.processor.Process(args);
 
             // assert
-            Assert.False(args.IsInvalidCredentials);
+            this.userMapper.Received(1).MapToLoginPipelineArgs(user, args);
         }
     }
 }

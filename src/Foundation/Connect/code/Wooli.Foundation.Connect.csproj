@@ -574,6 +574,7 @@
     <Compile Include="Managers\Account\AccountManagerV2.cs" />
     <Compile Include="Managers\Account\IAccountManagerV2.cs" />
     <Compile Include="Managers\AnalyticsManager.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\CartManagerV2.cs" />
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
     <Compile Include="Managers\Contracts\IAnalyticsManager.cs" />

@@ -35,17 +35,15 @@ namespace Wooli.Foundation.Connect.Managers
     using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
     [Service(typeof(ICartManagerV2))]
-    public class CartManagerV2 : ICartManagerV2
+    public class CartManagerV2 : BaseManager, ICartManagerV2
     {
         private readonly CommerceCartServiceProvider cartServiceProvider;
-        private readonly ILogService<CommonLog> logService;
 
         public CartManagerV2(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider)
+            : base(logService)
         {
-            Assert.ArgumentNotNull(logService, nameof(logService));
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
 
-            this.logService = logService;
             this.cartServiceProvider = connectServiceProvider.GetCommerceCartServiceProvider();
         }
 
@@ -128,23 +126,6 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
 
             return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
-        }
-
-        //TODO: Remove Duplication of execute method from managers
-        private TResult Execute<TRequest, TResult>(TRequest request, Func<TRequest, TResult> action)
-            where TRequest : CartRequest
-            where TResult : CartResult
-        {
-            var cartResult = action.Invoke(request);
-            if (!cartResult.Success)
-            {
-                foreach (var systemMessage in cartResult.SystemMessages)
-                {
-                    this.logService.Error(systemMessage.Message);
-                }
-            }
-
-            return cartResult;
         }
     }
 }

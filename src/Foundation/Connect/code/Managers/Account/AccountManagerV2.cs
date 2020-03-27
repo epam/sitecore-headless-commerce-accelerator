@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Managers.Account
 {
-    using System;
-
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -24,23 +22,20 @@ namespace Wooli.Foundation.Connect.Managers.Account
     using Providers.Contracts;
 
     using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IAccountManagerV2), Lifetime = Lifetime.Singleton)]
-    public class AccountManagerV2 : IAccountManagerV2
+    public class AccountManagerV2 : BaseManager, IAccountManagerV2
     {
         private readonly CustomerServiceProvider customerServiceProvider;
-        private readonly ILogService<CommonLog> logService;
 
         public AccountManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
+            : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            Assert.ArgumentNotNull(logService, nameof(logService));
 
             this.customerServiceProvider = connectServiceProvider.GetCustomerServiceProvider();
-            this.logService = logService;
         }
 
         public GetPartiesResult GetCustomerParties(string contactId)
@@ -84,24 +79,6 @@ namespace Wooli.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
 
             return this.Execute(new GetUserRequest(userName), this.customerServiceProvider.GetUser);
-        }
-
-        //TODO: Remove Duplication of execute method from managers
-        private TResult Execute<TRequest, TResult>(TRequest request, Func<TRequest, TResult> action)
-            where TRequest : ServiceProviderRequest
-            where TResult : ServiceProviderResult
-        {
-            var providerResult = action.Invoke(request);
-
-            if (!providerResult.Success)
-            {
-                foreach (var systemMessage in providerResult.SystemMessages)
-                {
-                    this.logService.Error(systemMessage.Message);
-                }
-            }
-
-            return providerResult;
         }
     }
 }

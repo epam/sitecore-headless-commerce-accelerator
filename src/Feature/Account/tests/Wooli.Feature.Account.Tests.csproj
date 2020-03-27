@@ -511,9 +511,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountsControllerTests.cs" />
+    <Compile Include="Controllers\AuthenticationControllerTests.cs" />
     <Compile Include="Mappers\AccountEntityMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\license.xml">
@@ -529,12 +529,13 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Sitecore.FakeDb.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Account\code\Wooli.Foundation.Account.csproj">
+      <Project>{74C245AA-2561-4A2A-ADBD-E7D4045F6227}</Project>
+      <Name>Wooli.Foundation.Account</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\Base\code\Wooli.Foundation.Base.csproj">
       <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
       <Name>Wooli.Foundation.Base</Name>
@@ -542,6 +543,10 @@
     <ProjectReference Include="..\..\..\Foundation\Commerce\code\Wooli.Foundation.Commerce.csproj">
       <Project>{4CD01A37-76D8-4A6A-8822-014369C4243D}</Project>
       <Name>Wooli.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
+      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
+      <Name>Wooli.Foundation.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\code\Wooli.Feature.Account.csproj">
       <Project>{f113fc93-32d0-417a-8093-d2c6cfdaeea9}</Project>

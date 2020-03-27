@@ -14,8 +14,11 @@
 
 namespace Wooli.Foundation.Commerce.Models.Authentication
 {
+    using System;
+
     using TypeLite;
 
+    [Obsolete("Will be removed")]
     [TsClass]
     public class ValidateCredentialsResultModel
     {

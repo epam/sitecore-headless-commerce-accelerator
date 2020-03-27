@@ -45,6 +45,7 @@ namespace Wooli.Foundation.Base.Infrastructure.Pipelines
             {
                 args.AddMessage(e.Message, PipelineMessageType.Error);
                 this.LogService.Error(e.Message);
+                args.AbortPipeline();
             }
         }
 

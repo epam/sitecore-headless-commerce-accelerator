@@ -12,31 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Login
+namespace Wooli.Foundation.Account.Models.Authentication
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Pipelines;
-
     [ExcludeFromCodeCoverage]
-    public class LoginPipelineArgs : PipelineArgs
+    public class LoginResult
     {
-        public string ContactId { get; set; }
-
-        public string CustomerId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string UserName { get; set; }
-
-        public string Password { get; set; }
-
         public bool IsInvalidCredentials { get; set; }
-
-        public string AnonymousContactId { get; set; }
     }
 }

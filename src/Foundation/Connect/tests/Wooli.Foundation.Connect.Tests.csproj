@@ -558,8 +558,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\Account\AccountManagerV2Tests.cs" />
     <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
     <Compile Include="Managers\Search\SearchManagerV2Tests.cs" />
+    <Compile Include="Managers\Shipping\ShippingManagerV2Tests.cs" />
     <Compile Include="Models\Mappings\SearchProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

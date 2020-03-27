@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     using TypeLite;
@@ -27,5 +28,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
         public string ExternalId { get; set; }
 
         public string Name { get; set; }
+
+        public List<string> LineIds { get; set; }
     }
 }

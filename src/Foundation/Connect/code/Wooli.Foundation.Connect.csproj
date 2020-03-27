@@ -571,6 +571,8 @@
     <Compile Include="Context\StorefrontContext.cs" />
     <Compile Include="Loaders\CommerceTypeLoader.cs" />
     <Compile Include="Loaders\ICommerceTypeLoader.cs" />
+    <Compile Include="Managers\Account\AccountManagerV2.cs" />
+    <Compile Include="Managers\Account\IAccountManagerV2.cs" />
     <Compile Include="Managers\AnalyticsManager.cs" />
     <Compile Include="Managers\CartManagerV2.cs" />
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
@@ -579,6 +581,8 @@
     <Compile Include="Managers\Search\ISearchManagerV2.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="Managers\Search\SearchManagerV2.cs" />
+    <Compile Include="Managers\Shipping\IShippingManagerV2.cs" />
+    <Compile Include="Managers\Shipping\ShippingManagerV2.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Mappers\ConnectEntityMapper.cs" />

@@ -17,13 +17,11 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using Checkout;
-
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class ShippingInfo : BaseCheckoutInfo
+    public class ShippingInfo
     {
         public List<ShippingMethod> ShippingMethods { get; set; }
     }

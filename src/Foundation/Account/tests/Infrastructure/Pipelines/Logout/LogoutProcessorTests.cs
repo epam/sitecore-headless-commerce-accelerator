@@ -12,22 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
+namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Logout
 {
     using Account.Infrastructure.Pipelines.Logout;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using NSubstitute;
+    using Managers.Authentication;
 
-    using Services.Authentication;
+    using NSubstitute;
 
     using Xunit;
 
     public class LogoutProcessorTests
     {
-        private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationManager authenticationManager;
 
         private readonly ILogService<CommonLog> logService;
 
@@ -35,14 +35,14 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 
         public LogoutProcessorTests()
         {
-            this.authenticationService = Substitute.For<IAuthenticationService>();
+            this.authenticationManager = Substitute.For<IAuthenticationManager>();
             this.logService = Substitute.For<ILogService<CommonLog>>();
 
-            this.logoutProcessor = new LogoutProcessor(this.authenticationService, this.logService);
+            this.logoutProcessor = new LogoutProcessor(this.authenticationManager, this.logService);
         }
 
         [Fact]
-        public void Process_IfArgsNotNull_ShouldCallAuthenticationServiceLogout()
+        public void Process_IfArgsNotNull_ShouldCallAuthenticationManagerLogout()
         {
             // arrange
             var loginArgs = new LogoutPipelineArgs();
@@ -51,7 +51,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
             this.logoutProcessor.Process(loginArgs);
 
             // assert
-            this.authenticationService.Received(1).Logout();
+            this.authenticationManager.Received(1).Logout();
         }
     }
 }

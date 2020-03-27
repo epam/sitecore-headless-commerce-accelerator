@@ -40,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
         {
             Assert.ArgumentNotNull(args, nameof(args));
 
-            this.commerceTrackingService.IdentifyAs("CommerceUser", args.UserName);
+            this.commerceTrackingService.IdentifyAs(Constants.Login.CommerceUserSource, args.UserName);
         }
     }
 }

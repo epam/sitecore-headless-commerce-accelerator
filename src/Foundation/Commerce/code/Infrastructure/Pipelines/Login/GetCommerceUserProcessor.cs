@@ -52,6 +52,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 
             if (user == null)
             {
+                args.IsInvalidCredentials = true;
                 args.AbortPipeline();
             }
             else

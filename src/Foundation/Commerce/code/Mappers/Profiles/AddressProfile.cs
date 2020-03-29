@@ -12,27 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
+namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using AutoMapper;
 
-    using TypeLite;
+    using Models.Entities.Addresses;
 
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class ShippingMethod
+    using Sitecore.Commerce.Engine.Connect.Entities;
+
+    public class AddressProfile : Profile
     {
-        public string Description { get; set; }
-
-        public string ExternalId { get; set; }
-
-        public string Name { get; set; }
-
-        public List<string> LineIds { get; set; }
-
-        public string PartyId { get; set; }
-
-        public string ShippingPreferenceType { get; set; }
+        public AddressProfile()
+        {
+            // TODO: Get rid of reference to Sitecore.Commerce.Engine.Connect
+            this.CreateMap<CommerceParty, Address>()
+                .ReverseMap();
+        }
     }
 }

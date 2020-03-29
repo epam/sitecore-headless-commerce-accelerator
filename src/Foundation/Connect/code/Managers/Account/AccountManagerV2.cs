@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Managers.Account
 {
+    using System.Collections.Generic;
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -21,6 +22,7 @@ namespace Wooli.Foundation.Connect.Managers.Account
 
     using Providers.Contracts;
 
+    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
@@ -43,20 +45,13 @@ namespace Wooli.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(contactId, nameof(contactId));
 
             var getUserResult = this.GetUser(contactId);
-
+            
             if (!getUserResult.Success || getUserResult.CommerceUser == null)
             {
-                var result = new GetPartiesResult
+                return new GetPartiesResult
                 {
-                    Success = false
+                    Parties = new List<Party>()
                 };
-
-                foreach (var message in getUserResult.SystemMessages)
-                {
-                    result.SystemMessages.Add(message);
-                }
-
-                return result;
             }
 
             var customer = new CommerceCustomer

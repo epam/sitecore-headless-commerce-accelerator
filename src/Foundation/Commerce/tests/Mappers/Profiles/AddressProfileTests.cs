@@ -12,27 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using AutoMapper;
 
-    using TypeLite;
+    using Commerce.Mappers.Profiles;
 
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class ShippingMethod
+    using Xunit;
+
+    public class AddressProfileTests
     {
-        public string Description { get; set; }
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(
+                cfg => { cfg.AddProfile<AddressProfile>(); });
 
-        public string ExternalId { get; set; }
-
-        public string Name { get; set; }
-
-        public List<string> LineIds { get; set; }
-
-        public string PartyId { get; set; }
-
-        public string ShippingPreferenceType { get; set; }
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

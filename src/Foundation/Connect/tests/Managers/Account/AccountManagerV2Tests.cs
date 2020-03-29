@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetCustomerParties_IfGetUserResultIsUnsuccessful_ShouldReturnUnsuccessfulGetPartiesResult()
+        public void GetCustomerParties_IfGetUserResultIsUnsuccessful_ShouldReturnEmptyGetPartiesResult()
         {
             // arrange
             this.getUserResult.Success = false;
@@ -91,7 +91,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
             var actualGetPartiesResult = this.accountManager.GetCustomerParties(this.fixture.Create<string>());
 
             // assert
-            Assert.False(actualGetPartiesResult.Success);
+            Assert.Empty(actualGetPartiesResult.Parties);
         }
 
         [Fact]

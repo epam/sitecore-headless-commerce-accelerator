@@ -629,6 +629,10 @@
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
+    <Compile Include="Mappers\Profiles\AddressProfile.cs" />
+    <Compile Include="Mappers\Profiles\ShippingProfile.cs" />
+    <Compile Include="Mappers\Shipping\IShippingMapper.cs" />
+    <Compile Include="Mappers\Shipping\ShippingMapper.cs" />
     <Compile Include="ModelInitializers\OrderModelBuilder.cs" />
     <Compile Include="ModelInitializers\Contracts\IOrderModelBuilder.cs" />
     <Compile Include="ModelInitializers\Contracts\ICartModelBuilder.cs" />

@@ -12,25 +12,29 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.ModelMappers.Profiles
+namespace Wooli.Foundation.Commerce.Mappers.Shipping
 {
     using AutoMapper;
 
-    using Commerce.ModelMappers.Profiles;
+    using DependencyInjection;
 
-    using Xunit;
+    using Profiles;
 
-    public class UserProfileTests
+    using Mapper = Base.Mappers.Mapper;
+
+    [Service(typeof(IShippingMapper), Lifetime = Lifetime.Transient)]
+    public class ShippingMapper : Mapper, IShippingMapper
     {
-        [Fact]
-        public void Configuration_ShouldBeValid()
+        public ShippingMapper()
         {
-            // arrange
             var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<UserProfile>(); });
+                cfg =>
+                {
+                    cfg.AddProfile<AddressProfile>();
+                    cfg.AddProfile<ShippingProfile>();
+                });
 
-            // act, assert
-            configuration.AssertConfigurationIsValid();
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
         }
     }
 }

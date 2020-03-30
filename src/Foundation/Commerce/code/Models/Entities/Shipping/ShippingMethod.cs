@@ -30,5 +30,9 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
         public string Name { get; set; }
 
         public List<string> LineIds { get; set; }
+
+        public string PartyId { get; set; }
+
+        public string ShippingPreferenceType { get; set; }
     }
 }

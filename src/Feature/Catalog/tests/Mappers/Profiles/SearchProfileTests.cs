@@ -12,19 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace Wooli.Feature.Catalog.Tests.Mappers.Profiles
 {
     using AutoMapper;
 
-    using Foundation.Commerce.Models.Entities.Addresses;
+    using Catalog.Mappers.Profiles;
 
-    using Models.Requests;
+    using Xunit;
 
-    public class AddressProfile : Profile
+    public class SearchProfileTests
     {
-        public AddressProfile()
+        [Fact]
+        public void Configuration_ShouldBeValid()
         {
-            this.CreateMap<AddressRequest, Address>();
+            // arrange
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+
+            // act, assert
+            configuration.AssertConfigurationIsValid();
         }
     }
 }

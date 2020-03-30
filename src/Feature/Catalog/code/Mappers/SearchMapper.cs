@@ -15,23 +15,14 @@
 namespace Wooli.Feature.Catalog.Mappers
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using AutoMapper;
-
+    
+    using Foundation.Base.Mappers;
     using Foundation.DependencyInjection;
 
     using Profiles;
 
-    using Mapper = Foundation.Base.Mappers.Mapper;
-
-    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Transient)]
     [ExcludeFromCodeCoverage]
-    public class SearchMapper : Mapper, ISearchMapper
-    {
-        public SearchMapper()
-        {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
-    }
+    public sealed class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
+    { }
 }

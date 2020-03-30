@@ -12,14 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace Wooli.Foundation.Base.Mappers
 {
-    using Foundation.Base.Mappers;
-    using Foundation.DependencyInjection;
+    using AutoMapper;
 
-    using Profiles;
+    public abstract class ProfileMapper<TProfile> : Mapper
+        where TProfile : Profile, new()
+    {
+        protected ProfileMapper()
+        {
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<TProfile>());
 
-    [Service(typeof(IAccountMapper), Lifetime = Lifetime.Transient)]
-    public class AccountMapper : ProfileMapper<AddressProfile>, IAccountMapper
-    { }
+            this.InnerMapper = new AutoMapper.Mapper(configuration);
+        }
+    }
 }

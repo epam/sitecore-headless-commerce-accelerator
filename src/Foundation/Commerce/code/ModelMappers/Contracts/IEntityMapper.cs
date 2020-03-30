@@ -18,7 +18,6 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using Connect.Models;
 
-    using Models;
     using Models.Checkout;
     using Models.Entities.Users;
 

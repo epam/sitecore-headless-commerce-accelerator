@@ -12,33 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.ModelMappers.Users
+namespace Wooli.Feature.Account.Tests.Mappers.Profiles
 {
-    using Account.Infrastructure.Pipelines.Login;
+    using Account.Mappers.Profiles;
 
     using AutoMapper;
 
-    using DependencyInjection;
+    using Xunit;
 
-    using Models.Entities.Users;
-
-    using Profiles;
-
-    using Mapper = Base.Mappers.Mapper;
-
-    [Service(typeof(IUserMapper), Lifetime = Lifetime.Transient)]
-    public class UserMapper : Mapper, IUserMapper
+    public class AddressProfileTests
     {
-        public UserMapper()
+        [Fact]
+        public void Configuration_ShouldBeValid()
         {
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<UserProfile>());
+            // arrange
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<AddressProfile>());
 
-            this.InnerMapper = new AutoMapper.Mapper(configuration);
-        }
-
-        public void MapToLoginPipelineArgs(User user, LoginPipelineArgs args)
-        {
-            this.InnerMapper.Map(user, args);
+            // act, assert
+            configuration.AssertConfigurationIsValid();
         }
     }
 }

@@ -12,14 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace Wooli.Foundation.Commerce.Mappers.Users
 {
-    using Foundation.Base.Mappers;
-    using Foundation.DependencyInjection;
+    using Account.Infrastructure.Pipelines.Login;
 
-    using Profiles;
+    using Base.Mappers;
 
-    [Service(typeof(IAccountMapper), Lifetime = Lifetime.Transient)]
-    public class AccountMapper : ProfileMapper<AddressProfile>, IAccountMapper
-    { }
+    using Models.Entities.Users;
+
+    /// <summary>
+    /// Performs mapping for user models
+    /// </summary>
+    public interface IUserMapper : IMapper
+    {
+        /// <summary>
+        /// Maps User to existed LoginPipelineArgs
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <param name="args">Login pipeline arguments</param>
+        void MapToLoginPipelineArgs(User user, LoginPipelineArgs args);
+    }
 }

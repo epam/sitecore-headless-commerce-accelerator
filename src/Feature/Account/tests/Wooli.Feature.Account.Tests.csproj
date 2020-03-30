@@ -512,7 +512,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountsControllerTests.cs" />
     <Compile Include="Controllers\AuthenticationControllerTests.cs" />
-    <Compile Include="Mappers\AccountEntityMapperTests.cs" />
+    <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

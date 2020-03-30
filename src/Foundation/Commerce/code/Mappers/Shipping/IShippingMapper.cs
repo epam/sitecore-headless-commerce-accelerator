@@ -12,24 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.ModelMappers.Users
+namespace Wooli.Foundation.Commerce.Mappers.Shipping
 {
-    using Account.Infrastructure.Pipelines.Login;
-
     using Base.Mappers;
 
-    using Models.Entities.Users;
-
     /// <summary>
-    /// Performs mapping for user models
+    /// Performs mapping for shipping models
     /// </summary>
-    public interface IUserMapper : IMapper
+    public interface IShippingMapper : IMapper
     {
-        /// <summary>
-        /// Maps User to existed LoginPipelineArgs
-        /// </summary>
-        /// <param name="user">User</param>
-        /// <param name="args">Login pipeline arguments</param>
-        void MapToLoginPipelineArgs(User user, LoginPipelineArgs args);
     }
 }

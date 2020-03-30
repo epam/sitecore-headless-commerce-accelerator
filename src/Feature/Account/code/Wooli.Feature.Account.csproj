@@ -515,7 +515,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
-    <Compile Include="Mappers\AddressProfile.cs" />
+    <Compile Include="Mappers\Profiles\AddressProfile.cs" />
     <Compile Include="Mappers\IAccountMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Requests\AddressRequest.cs" />

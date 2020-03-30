@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 
     using Context;
 
-    using ModelMappers.Users;
+    using Mappers.Users;
 
     using Models.Entities.Users;
 

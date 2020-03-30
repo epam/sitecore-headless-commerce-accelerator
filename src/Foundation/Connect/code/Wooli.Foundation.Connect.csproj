@@ -590,7 +590,7 @@
     <Compile Include="Mappers\IConnectEntityMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\BaseProduct.cs" />
-    <Compile Include="Models\Mappings\SearchProfile.cs" />
+    <Compile Include="Mappers\Profiles\SearchProfile.cs" />
     <Compile Include="Models\PartyEntity.cs" />
     <Compile Include="Models\FederatedPaymentArgs.cs" />
     <Compile Include="Models\Product.cs" />

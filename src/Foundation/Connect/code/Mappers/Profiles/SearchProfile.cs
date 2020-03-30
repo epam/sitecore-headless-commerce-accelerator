@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Mappings
+namespace Wooli.Foundation.Connect.Mappers.Profiles
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -20,12 +20,12 @@ namespace Wooli.Foundation.Connect.Models.Mappings
 
     using AutoMapper;
 
-    using Search;
+    using Models.Search;
 
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-
+    using Wooli.Foundation.Connect.Models;
     using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 
     [ExcludeFromCodeCoverage]

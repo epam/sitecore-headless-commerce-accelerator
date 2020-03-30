@@ -12,14 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using Foundation.Base.Mappers;
-    using Foundation.DependencyInjection;
+    using AutoMapper;
 
-    using Profiles;
+    using Commerce.Mappers.Profiles;
 
-    [Service(typeof(IAccountMapper), Lifetime = Lifetime.Transient)]
-    public class AccountMapper : ProfileMapper<AddressProfile>, IAccountMapper
-    { }
+    using Xunit;
+
+    public class UserProfileTests
+    {
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(
+                cfg => { cfg.AddProfile<UserProfile>(); });
+
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
+    }
 }

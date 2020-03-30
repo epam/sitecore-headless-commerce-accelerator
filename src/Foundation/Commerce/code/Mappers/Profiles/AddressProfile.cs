@@ -12,21 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Tests.Mappers
+namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
-    using Account.Mappers;
-
     using AutoMapper;
 
-    using Xunit;
+    using Models.Entities.Addresses;
 
-    public class AccountEntityMapperTests
+    using Sitecore.Commerce.Engine.Connect.Entities;
+
+    public class AddressProfile : Profile
     {
-        [Fact]
-        public void AddressProfile_Configuration_IsValid()
+        public AddressProfile()
         {
-            Mapper.Initialize(m => m.AddProfile<AddressProfile>());
-            Mapper.AssertConfigurationIsValid();
+            // TODO: Get rid of reference to Sitecore.Commerce.Engine.Connect
+            this.CreateMap<CommerceParty, Address>()
+                .ReverseMap();
         }
     }
 }

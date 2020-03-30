@@ -31,45 +31,30 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Shipping;
 
     using Xunit;
 
+    using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
+
     public class ShippingManagerV2Tests
     {
-        private readonly IShippingManagerV2 shippingManager;
+        private readonly ShippingManagerV2 shippingManager;
+        private readonly ShippingServiceProvider shippingServiceProvider;
         private readonly ILogService<CommonLog> logService;
 
         private readonly IFixture fixture;
 
-        private readonly GetShippingMethodsResult getShippingMethodsResult;
-        private readonly GetShippingOptionsResult getShippingOptionsResult;
-
         public ShippingManagerV2Tests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
-            var shippingServiceProvider = Substitute.For<ShippingServiceProvider>();
+            this.shippingServiceProvider = Substitute.For<ShippingServiceProvider>();
 
-            connectServiceProvider.GetShippingServiceProvider().Returns(shippingServiceProvider);
+            connectServiceProvider.GetShippingServiceProvider().Returns(this.shippingServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
-            this.getShippingMethodsResult = this.fixture.Build<GetShippingMethodsResult>()
-                .With(res => res.Success, true)
-                .With(res => res.ShippingMethods, null)
-                .Create();
-            this.getShippingOptionsResult = this.fixture.Build<GetShippingOptionsResult>()
-                .With(res => res.Success, true)
-                .With(res => res.ShippingOptions, null)
-                .Create();
-            this.getShippingMethodsResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            this.getShippingOptionsResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.logService = Substitute.For<ILogService<CommonLog>>();
-            this.shippingManager = new ShippingManagerV2(connectServiceProvider, this.logService);
 
-            shippingServiceProvider.GetShippingMethods(Arg.Any<GetShippingMethodsRequest>())
-                .Returns(this.getShippingMethodsResult);
-            shippingServiceProvider.GetShippingOptions(Arg.Any<GetShippingOptionsRequest>())
-                .Returns(this.getShippingOptionsResult);
+            this.shippingManager = Substitute.For<ShippingManagerV2>(connectServiceProvider, this.logService);
         }
 
         [Fact]
@@ -83,26 +68,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
         }
 
         [Fact]
-        public void GetShippingMethods_IfGetShippingMethodsResultIsSuccessful_ShouldNotCallLogService()
+        public void GetShippingMethods_ShouldCallExecuteMethod()
         {
             // act
             this.shippingManager.GetShippingMethods(this.fixture.Create<CommerceCart>(), this.fixture.Create<ShippingOptionType>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void GetShippingMethods_IfGetShippingMethodsResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.getShippingMethodsResult.Success = false;
-
-            // act
-            this.shippingManager.GetShippingMethods(this.fixture.Create<CommerceCart>(), this.fixture.Create<ShippingOptionType>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.shippingManager.Received(1).Execute(Arg.Any<GetShippingMethodsRequest>(), this.shippingServiceProvider.GetShippingMethods);
         }
 
         [Fact]
@@ -114,26 +86,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
         }
 
         [Fact]
-        public void GetShippingOptions_IfGetShippingOptionsResultIsSuccessful_ShouldNotCallLogService()
+        public void GetShippingOptions_ShouldCallExecuteMethod()
         {
             // act
             this.shippingManager.GetShippingOptions(this.fixture.Create<Cart>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void GetShippingOptions_IfGetShippingOptionsResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.getShippingOptionsResult.Success = false;
-
-            // act
-            this.shippingManager.GetShippingOptions(this.fixture.Create<CommerceCart>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.shippingManager.Received(1).Execute(Arg.Any<GetShippingOptionsRequest>(), this.shippingServiceProvider.GetShippingOptions);
         }
 
         //TODO: Refactor duplication of CreateOmitOnRecursionFixture

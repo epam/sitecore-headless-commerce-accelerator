@@ -560,6 +560,7 @@
   <ItemGroup>
     <Compile Include="Managers\Account\AccountManagerV2Tests.cs" />
     <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
+    <Compile Include="Managers\Inventory\InventoryManagerV2Tests.cs" />
     <Compile Include="Managers\Search\SearchManagerV2Tests.cs" />
     <Compile Include="Managers\Shipping\ShippingManagerV2Tests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />

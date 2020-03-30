@@ -12,27 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Shipping
+namespace Wooli.Foundation.Commerce.Mappers.Shipping
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Base.Mappers;
 
-    using TypeLite;
-
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class ShippingMethod
+    /// <summary>
+    /// Performs mapping for shipping models
+    /// </summary>
+    public interface IShippingMapper : IMapper
     {
-        public string Description { get; set; }
-
-        public string ExternalId { get; set; }
-
-        public string Name { get; set; }
-
-        public List<string> LineIds { get; set; }
-
-        public string PartyId { get; set; }
-
-        public string ShippingPreferenceType { get; set; }
     }
 }

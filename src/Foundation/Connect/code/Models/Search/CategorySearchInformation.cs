@@ -12,14 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using Connect.Models.Search;
+    using System.Collections.Generic;
 
-    using Models.Catalog;
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
 
-    public interface ISettingsProvider
+    using TypeLite;
+
+    [TsClass]
+    public class CategorySearchInformation
     {
-        int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation);
+        public int ItemsPerPage { get; set; }
+
+        public IList<CommerceQueryFacet> RequiredFacets { get; set; }
+
+        public IList<CommerceQuerySort> SortFields { get; set; }
     }
 }

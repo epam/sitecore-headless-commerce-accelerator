@@ -553,6 +553,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="TypeLite, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -594,6 +598,8 @@
     <Compile Include="Models\PartyEntity.cs" />
     <Compile Include="Models\FederatedPaymentArgs.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Search\CategorySearchInformation.cs" />
+    <Compile Include="Models\Search\SearchSettings.cs" />
     <Compile Include="Models\Search\Facet.cs" />
     <Compile Include="Models\Search\SearchOptions.cs" />
     <Compile Include="Models\Search\FacetValue.cs" />
@@ -626,8 +632,10 @@
     <Compile Include="Providers\Search\CommerceSellableItemSearchResultProvider.cs" />
     <Compile Include="Providers\Search\ISearchResponseProvider.cs" />
     <Compile Include="Providers\Search\ISearchResultProvider.cs" />
+    <Compile Include="Providers\Search\ISearchSettingsProvider.cs" />
     <Compile Include="Providers\Search\SearchResponseProvider.cs" />
     <Compile Include="Providers\Search\SearchResultProvider.cs" />
+    <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
     <Compile Include="Utils\CommerceRequestUtils.cs" />
     <Compile Include="Utils\SystemMessageExtensions.cs" />
   </ItemGroup>

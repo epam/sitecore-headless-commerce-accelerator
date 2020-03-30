@@ -1,12 +1,9 @@
-﻿namespace Wooli.Foundation.Commerce.Models.Entities.Search
+﻿namespace Wooli.Foundation.Connect.Models.Search
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using TypeLite;
-
     [ExcludeFromCodeCoverage]
-    [TsClass]
     public class SearchSettings
     {
         public IEnumerable<string> SortFieldNames { get; set; }

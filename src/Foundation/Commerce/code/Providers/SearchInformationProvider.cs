@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Providers
 {
     using System.Linq;
 
+    using Connect.Models.Search;
+
     using DependencyInjection;
 
     using Models.Catalog;

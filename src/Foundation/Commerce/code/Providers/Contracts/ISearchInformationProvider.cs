@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Providers
 {
+    using Connect.Models.Search;
+
     using Models.Catalog;
 
     using Sitecore.Data.Items;

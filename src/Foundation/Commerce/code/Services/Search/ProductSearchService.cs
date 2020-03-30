@@ -22,14 +22,13 @@ namespace Wooli.Foundation.Commerce.Services.Search
 
     using Connect.Managers.Search;
     using Connect.Models;
+    using Connect.Providers.Search;
 
     using DependencyInjection;
 
     using Mappers.Search;
 
     using Models.Entities.Search;
-
-    using Providers.Search;
 
     using Sitecore.Diagnostics;
 

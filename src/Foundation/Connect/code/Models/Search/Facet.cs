@@ -24,6 +24,8 @@ namespace Wooli.Foundation.Connect.Models.Search
 
         public IList<FacetValue> FoundValues { get; set; }
 
+        public IList<object> Values { get; set; }
+
         public string Name { get; set; }
     }
 }

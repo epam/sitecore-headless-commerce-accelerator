@@ -14,10 +14,16 @@
 
 namespace Wooli.Foundation.Connect.Mappers.Search
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Base.Mappers;
+
+    using DependencyInjection;
 
     using Profiles;
 
-    internal class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
+    [ExcludeFromCodeCoverage]
+    [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
+    public class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
     { }
 }

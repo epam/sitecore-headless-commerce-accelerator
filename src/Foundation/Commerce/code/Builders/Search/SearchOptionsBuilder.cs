@@ -43,12 +43,11 @@ namespace Wooli.Foundation.Commerce.Builders.Search
         {
             var pageSize = searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage;
             var startPageIndex = (searchOptions.PageNumber - 1) * pageSize;
-            var facets = searchOptions.Facets.Intersect(searchSettings.Facets);
 
             return new Connect.SearchOptions
             {
                 SearchKeyword = searchOptions.SearchKeyword,
-                Facets = this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(facets),
+                Facets = this.GetFacetsIntersection(searchSettings.Facets, searchOptions.Facets),
                 StartPageIndex = startPageIndex > 0 ? startPageIndex : 0,
                 NumberOfItemsToReturn = pageSize,
                 SortField = !string.IsNullOrEmpty(searchOptions.SortField)
@@ -58,6 +57,24 @@ namespace Wooli.Foundation.Commerce.Builders.Search
                     ? Connect.SortDirection.Asc
                     : Connect.SortDirection.Desc
             };
+        }
+
+        private IEnumerable<Connect.Facet> GetFacetsIntersection(IEnumerable<Facet> searchSettingsFacets, IEnumerable<Facet> searchOptionsFacets)
+        {
+            var facets = searchOptionsFacets.Where(
+                searchOptionsFacet =>
+            {
+                var searchSettingsFacet = searchSettingsFacets.FirstOrDefault(facet => facet.Name == searchOptionsFacet.Name);
+                if (searchSettingsFacet == null)
+                {
+                    return false;
+                }
+
+                searchOptionsFacet.DisplayName = searchSettingsFacet.DisplayName;
+                return true;
+            });
+
+            return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(facets);
         }
     }
 }

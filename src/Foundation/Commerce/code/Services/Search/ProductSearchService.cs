@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Commerce.Services.Search
 {
+    using System.Linq;
+
     using Base.Models;
 
     using Builders.Search;

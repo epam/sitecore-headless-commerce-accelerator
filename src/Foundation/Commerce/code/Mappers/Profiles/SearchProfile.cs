@@ -32,23 +32,34 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
     {
         public SearchProfile()
         {
+            #region Facet
+
+            this.CreateMap<Facet, Connect.Search.Facet>()
+                .ReverseMap();
+
+            #endregion
+
+            #region Facet Value
+
             this.CreateMap<FacetValue, Connect.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            this.CreateMap<SearchResultsV2<Connect.Product>, Product>();
+            #endregion
+
+            #region Products
 
             this.CreateMap<Connect.Product, Product>()
-                .ForMember(dest => dest.Variants, opt => opt.Ignore())
-                .ForSourceMember(dest => dest.Variants, opt => opt.Ignore());
+                .ForCtorParam("sellableItem", opt => opt.MapFrom(src => src.Item))
+                .ForMember(dest => dest.Variants, opt => opt.Ignore());
 
-            this.CreateMap<Connect.Product, Product>()
-                .ForCtorParam("sellableItem", opt => opt.MapFrom(src => src.Item));
+            #endregion
+
+            #region Search Results
 
             this.CreateMap<SearchResultsV2<Connect.Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
 
-            this.CreateMap<Facet, Connect.Search.Facet>()
-                .ForMember(dest => dest.DisplayName, opt => opt.Ignore());
+            #endregion
         }
     }
 }

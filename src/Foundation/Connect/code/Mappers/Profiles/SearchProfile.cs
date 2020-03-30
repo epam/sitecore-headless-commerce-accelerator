@@ -14,9 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Mappers.Profiles
 {
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
 
     using AutoMapper;
 
@@ -25,7 +23,7 @@ namespace Wooli.Foundation.Connect.Mappers.Profiles
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Wooli.Foundation.Connect.Models;
+    using Models;
     using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 
     [ExcludeFromCodeCoverage]
@@ -41,9 +39,7 @@ namespace Wooli.Foundation.Connect.Mappers.Profiles
                 .ForCtorParam("aggregate", opt => opt.MapFrom(src => src.AggregateCount));
 
             this.CreateMap<Facet, CommerceQueryFacet>()
-                .ForMember(dest => dest.Values, opt => opt.MapFrom(src => src.FoundValues.Select(value => value.Name)))
-                .ForMember(dest => dest.FoundValues, opt => opt.Ignore())
-                .ForMember(dest => dest.DisplayName, opt => opt.Ignore());
+                .ForMember(dest => dest.FoundValues, opt => opt.Ignore());
 
             this.CreateMap<CommerceQueryFacet, Facet>();
 

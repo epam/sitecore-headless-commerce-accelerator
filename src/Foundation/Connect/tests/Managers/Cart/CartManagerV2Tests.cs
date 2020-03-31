@@ -34,7 +34,6 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Carts;
 
     using Xunit;
@@ -43,14 +42,10 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
 
     public class CartManagerV2Tests
     {
-        private readonly ICartManagerV2 cartManager;
+        private readonly CartManagerV2 cartManager;
+        private readonly CommerceCartServiceProvider cartServiceProvider;
         private readonly ILogService<CommonLog> logService;
         private readonly IFixture fixture;
-
-        private readonly CartResult cartResult;
-        private readonly AddShippingInfoResult addShippingInfoResult;
-        private readonly AddPromoCodeResult addPromoCodeResult;
-        private readonly RemovePromoCodeResult removePromoCodeResult;
 
         public static IEnumerable<object[]> CartLinesParameters =>
             new List<object[]>
@@ -79,33 +74,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         public CartManagerV2Tests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
-            var cartServiceProvider = Substitute.For<CommerceCartServiceProvider>();
+            this.cartServiceProvider = Substitute.For<CommerceCartServiceProvider>();
 
-            connectServiceProvider.GetCommerceCartServiceProvider().Returns(cartServiceProvider);
+            connectServiceProvider.GetCommerceCartServiceProvider().Returns(this.cartServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
-            this.cartResult = this.fixture.Build<CartResult>().With(res => res.Success, true).Create();
-            this.addShippingInfoResult = this.fixture.Build<AddShippingInfoResult>()
-                .With(res => res.Success, true)
-                .With(res => res.ShippingInfo, null)
-                .Create();
-            this.addPromoCodeResult = this.fixture.Build<AddPromoCodeResult>().With(res => res.Success, true).Create();
-            this.removePromoCodeResult = this.fixture.Build<RemovePromoCodeResult>().With(res => res.Success, true).Create();
-            this.cartResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            this.addPromoCodeResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            this.addShippingInfoResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            this.removePromoCodeResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.logService = Substitute.For<ILogService<CommonLog>>();
-            this.cartManager = new CartManagerV2(this.logService, connectServiceProvider);
 
-            cartServiceProvider.LoadCart(Arg.Any<LoadCartRequest>()).Returns(this.cartResult);
-            cartServiceProvider.CreateOrResumeCart(Arg.Any<CreateOrResumeCartRequest>()).Returns(this.cartResult);
-            cartServiceProvider.AddCartLines(Arg.Any<AddCartLinesRequest>()).Returns(this.cartResult);
-            cartServiceProvider.AddShippingInfo(Arg.Any<AddShippingInfoRequest>()).Returns(this.addShippingInfoResult);
-            cartServiceProvider.UpdateCartLines(Arg.Any<UpdateCartLinesRequest>()).Returns(this.cartResult);
-            cartServiceProvider.RemoveCartLines(Arg.Any<RemoveCartLinesRequest>()).Returns(this.cartResult);
-            cartServiceProvider.MergeCart(Arg.Any<MergeCartRequest>()).Returns(this.cartResult);
-            cartServiceProvider.AddPromoCode(Arg.Any<AddPromoCodeRequest>()).Returns(this.addPromoCodeResult);
-            cartServiceProvider.RemovePromoCode(Arg.Any<RemovePromoCodeRequest>()).Returns(this.removePromoCodeResult);
+            this.cartManager = Substitute.For<CartManagerV2>(this.logService, connectServiceProvider);
         }
 
         [Theory]
@@ -135,26 +110,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void LoadCart_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void LoadCart_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.LoadCart(this.fixture.Create<string>(), this.fixture.Create<string>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void LoadCart_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.LoadCart(this.fixture.Create<string>(), this.fixture.Create<string>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<LoadCartByNameRequest>(), this.cartServiceProvider.LoadCart);
         }
 
         [Theory]
@@ -197,7 +159,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void CreateOrResumeCart_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void CreateOrResumeCart_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.CreateOrResumeCart(
@@ -206,23 +168,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
                 this.fixture.Create<string>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void CreateOrResumeCart_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.CreateOrResumeCart(
-                this.fixture.Create<string>(),
-                this.fixture.Create<string>(),
-                this.fixture.Create<string>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<CreateOrResumeCartRequest>(), this.cartServiceProvider.CreateOrResumeCart);
         }
 
         [Theory]
@@ -234,26 +180,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void AddCartLines_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void AddCartLines_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.AddCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void AddCartLines_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.AddCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<AddCartLinesRequest>(), this.cartServiceProvider.AddCartLines);
         }
 
         [Fact]
@@ -278,7 +211,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void AddShippingInfo_IfAddShippingInfoResultIsSuccessful_ShouldNotCallLogService()
+        public void AddShippingInfo_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.AddShippingInfo(
@@ -287,23 +220,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
                 this.fixture.Create<List<ShippingInfo>>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void AddShippingInfo_IfAddShippingInfoResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.addShippingInfoResult.Success = false;
-
-            // act
-            this.cartManager.AddShippingInfo(
-                this.fixture.Create<Cart>(),
-                this.fixture.Create<ShippingOptionType>(),
-                this.fixture.Create<List<ShippingInfo>>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<AddShippingInfoRequest>(), this.cartServiceProvider.AddShippingInfo);
         }
 
         [Theory]
@@ -315,26 +232,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void UpdateCartLines_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void UpdateCartLines_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.UpdateCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void UpdateCartLines_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.UpdateCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<UpdateCartLinesRequest>(), this.cartServiceProvider.UpdateCartLines);
         }
 
         [Theory]
@@ -346,26 +250,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void RemoveCartLines_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void RemoveCartLines_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.RemoveCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void RemoveCartLines_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.RemoveCartLines(this.fixture.Create<Cart>(), this.fixture.Create<IEnumerable<CartLine>>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<RemoveCartLinesRequest>(), this.cartServiceProvider.RemoveCartLines);
         }
 
         [Theory]
@@ -377,26 +268,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void MergeCarts_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void MergeCarts_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.MergeCarts(this.fixture.Create<Cart>(), this.fixture.Create<Cart>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void MergeCarts_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.cartResult.Success = false;
-
-            // act
-            this.cartManager.MergeCarts(this.fixture.Create<Cart>(), this.fixture.Create<Cart>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<MergeCartRequest>(), this.cartServiceProvider.MergeCart);
         }
 
         [Theory]
@@ -416,26 +294,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void AddPromoCode_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void AddPromoCode_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.AddPromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void AddPromoCode_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.addPromoCodeResult.Success = false;
-
-            // act
-            this.cartManager.AddPromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<AddPromoCodeRequest>(), this.cartServiceProvider.AddPromoCode);
         }
 
         [Theory]
@@ -455,26 +320,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         }
 
         [Fact]
-        public void RemovePromoCode_IfCartResultIsSuccessful_ShouldNotCallLogService()
+        public void RemovePromoCode_ShouldCallExecuteMethod()
         {
             // act
             this.cartManager.RemovePromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfCartResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.removePromoCodeResult.Success = false;
-
-            // act
-            this.cartManager.RemovePromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.cartManager.Received(1).Execute(Arg.Any<RemovePromoCodeRequest>(), this.cartServiceProvider.RemovePromoCode);
         }
 
         //TODO: Refactor duplication of CreateOmitOnRecursionFixture

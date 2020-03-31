@@ -35,13 +35,12 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
 
     public class AccountManagerV2Tests
     {
-        private readonly IAccountManagerV2 accountManager;
+        private readonly AccountManagerV2 accountManager;
         private readonly ILogService<CommonLog> logService;
         private readonly CustomerServiceProvider customerServiceProvider;
 
         private readonly IFixture fixture;
 
-        private readonly GetPartiesResult getPartiesResult;
         private readonly GetUserResult getUserResult;
 
         public AccountManagerV2Tests()
@@ -51,20 +50,15 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
             this.customerServiceProvider = Substitute.For<CustomerServiceProvider>();
             connectServiceProvider.GetCustomerServiceProvider().Returns(this.customerServiceProvider);
             this.fixture = new Fixture();
-            this.getPartiesResult = this.fixture.Build<GetPartiesResult>()
-                .With(res => res.Success, true)
-                .With(res => res.Parties, null)
-                .Create();
             this.getUserResult = this.fixture.Build<GetUserResult>()
                 .With(res => res.Success, true)
                 .Create();
-            this.getPartiesResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            this.getUserResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
             this.logService = Substitute.For<ILogService<CommonLog>>();
-            this.accountManager = new AccountManagerV2(connectServiceProvider, this.logService);
 
-            this.customerServiceProvider.GetParties(Arg.Any<GetPartiesRequest>()).Returns(this.getPartiesResult);
-            this.customerServiceProvider.GetUser(Arg.Any<GetUserRequest>()).Returns(this.getUserResult);
+            this.accountManager = Substitute.For<AccountManagerV2>(connectServiceProvider, this.logService);
+
+            this.accountManager.Execute(Arg.Any<GetUserRequest>(), this.customerServiceProvider.GetUser)
+                .Returns(this.getUserResult);
         }
 
         [Fact]
@@ -95,13 +89,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetCustomerParties_IfGetUserResultIsSuccessful_ShouldCallGetPartiesMethod()
+        public void GetCustomerParties_IfGetUserResultIsSuccessful_ShouldCallExecuteMethodWithGetPartiesMethod()
         {
             // act
             this.accountManager.GetCustomerParties(this.fixture.Create<string>());
 
             // assert
-            this.customerServiceProvider.Received(1).GetParties(Arg.Any<GetPartiesRequest>());
+            this.accountManager.Received(1).Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
         }
 
         [Fact]
@@ -112,26 +106,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetParties_IfGetPartiesResultIsSuccessful_ShouldNotCallLogService()
+        public void GetParties_ShouldCallExecuteMethod()
         {
             // act
             this.accountManager.GetParties(this.fixture.Create<CommerceCustomer>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void GetParties_IfGetPartiesResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.getPartiesResult.Success = false;
-
-            // act
-            this.accountManager.GetParties(this.fixture.Create<CommerceCustomer>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.accountManager.Received(1).Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
         }
 
         [Fact]
@@ -149,26 +130,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetUser_IfGetUserResultIsSuccessful_ShouldNotCallLogService()
+        public void GetUser_ShouldCallExecuteMethod()
         {
             // act
             this.accountManager.GetUser(this.fixture.Create<string>());
 
             // assert
-            this.logService.Received(0).Error(Arg.Any<string>());
-        }
-
-        [Fact]
-        public void GetUser_IfGetUserResultIsUnsuccessful_ShouldCallLogService()
-        {
-            // arrange
-            this.getUserResult.Success = false;
-
-            // act
-            this.accountManager.GetUser(this.fixture.Create<string>());
-
-            // assert
-            this.logService.Received(1).Error(Arg.Any<string>());
+            this.accountManager.Received(1).Execute(Arg.Any<GetUserRequest>(), this.customerServiceProvider.GetUser);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
     using Mappers.Search;
 
     using Models;
+    using Models.Catalog;
     using Models.Search;
 
     using Providers.Search;

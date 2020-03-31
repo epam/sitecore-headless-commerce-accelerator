@@ -14,9 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
-    using System;
-
-    using Sitecore.Data.Items;
     using Wooli.Foundation.Connect.Models.Search;
 
     /// <summary>
@@ -24,9 +21,6 @@ namespace Wooli.Foundation.Connect.Providers.Search
     /// </summary>
     public interface ISearchSettingsProvider
     {
-        [Obsolete("Use GetSearchSettings instead.")]
-        CategorySearchInformation GetCategorySearchInformation(Item categoryItem);
-
         /// <summary>
         /// Gets search settings from current context Sitecore Catalog item
         /// </summary>

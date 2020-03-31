@@ -18,9 +18,6 @@ namespace Wooli.Foundation.Connect.Models.Search
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
 
-    using TypeLite;
-
-    [TsClass]
     public class CategorySearchInformation
     {
         public int ItemsPerPage { get; set; }

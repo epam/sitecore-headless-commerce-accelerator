@@ -1,4 +1,4 @@
-﻿//    Copyright 2019 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,48 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
+namespace Wooli.Foundation.Connect.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    using Sitecore.Commerce.Entities.Inventory;
+    using Sitecore.Data.Items;
+
+    [ExcludeFromCodeCoverage]
     public class BaseProduct
     {
+        public BaseProduct()
+        {
+        }
+
+        [Obsolete("Use parameter-less constructor instead.")]
+        public BaseProduct(Item item)
+        {
+            this.Item = item;
+            this.Id = item.Name;
+        }
+
+        public string Id { get; set; }
+
         public string ProductId { get; set; }
+
+        public string SitecoreId { get; set; }
+
+        //TODO: Remove all references to Item
+        [Obsolete("Use simple type properties of current class instead.")]
+        public Item Item { get; set; }
 
         public string DisplayName { get; set; }
 
         public string Description { get; set; }
 
         public string Brand { get; set; }
+
+        public string CatalogName { get; set; }
+
+        public decimal? CustomerAverageRating { get; set; }
 
         public IList<string> Tags { get; set; }
 
@@ -35,9 +64,12 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
         public decimal? ListPrice { get; set; }
 
         public decimal? AdjustedPrice { get; set; }
+        
+        public string CurrencyCode { get; set; }
+        
+        //TODO: Create Connect.StockStatus, map and fix usages
+        public StockStatus StockStatus { get; set; }
 
         public string StockStatusName { get; set; }
-
-        public decimal? CustomerAverageRating { get; set; }
     }
 }

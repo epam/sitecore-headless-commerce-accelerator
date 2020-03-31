@@ -18,48 +18,31 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
 
-    using Connect.Models.Search;
-
+    using Models.Entities.Catalog;
     using Models.Entities.Search;
 
     using Connect = Connect.Models;
     using Facet = Models.Entities.Search.Facet;
     using FacetValue = Models.Entities.Search.FacetValue;
-    using Product = Models.Entities.Catalog.Product;
 
     [ExcludeFromCodeCoverage]
     public class SearchProfile : Profile
     {
         public SearchProfile()
         {
-            #region Facet
-
             this.CreateMap<Facet, Connect.Search.Facet>()
                 .ReverseMap();
-
-            #endregion
-
-            #region Facet Value
 
             this.CreateMap<FacetValue, Connect.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            #endregion
+            this.CreateMap<Connect.Catalog.Product, Product>();
 
-            #region Products
+            this.CreateMap<Connect.Catalog.Variant, Variant>()
+                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
 
-            this.CreateMap<Connect.Product, Product>()
-                .ForCtorParam("sellableItem", opt => opt.MapFrom(src => src.Item))
-                .ForMember(dest => dest.Variants, opt => opt.Ignore());
-
-            #endregion
-
-            #region Search Results
-
-            this.CreateMap<SearchResultsV2<Connect.Product>, ProductSearchResults>()
+            this.CreateMap<Connect.Search.SearchResultsV2<Connect.Catalog.Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
-
-            #endregion
         }
     }
 }

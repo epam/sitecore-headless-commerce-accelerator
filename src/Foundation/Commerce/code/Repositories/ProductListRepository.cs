@@ -22,6 +22,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Context;
     using Connect.Managers;
     using Connect.Models;
+    using Connect.Models.Catalog;
     using Connect.Models.Search;
 
     using Context;
@@ -135,7 +136,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                 foreach (var searchResultItem in searchResult.SearchResultItems)
                 {
                     var variants = new List<Variant>();
-                    var product = new Product(searchResultItem, variants);
+                    var product = new Product(searchResultItem);
+                    product.Variants = variants;
                     product.CatalogName = this.StorefrontContext.CatalogName;
                     product.CustomerAverageRating = this.CatalogManager.GetProductRating(searchResultItem);
                     products.Add(product);

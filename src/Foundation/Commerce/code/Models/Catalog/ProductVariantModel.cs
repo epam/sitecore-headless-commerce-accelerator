@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Models.Catalog
     using TypeLite;
 
     [TsClass]
-    [Obsolete("Use Entities.ProductVariant")]
+    [Obsolete("Use Entities.Variant")]
     public class ProductVariantModel : BaseProductModel
     {
         public ProductVariantModel(Item sellableItem)

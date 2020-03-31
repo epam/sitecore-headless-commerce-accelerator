@@ -14,14 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Services.Search
 {
-    using System.Linq;
-
     using Base.Models;
 
     using Builders.Search;
 
     using Connect.Managers.Search;
-    using Connect.Models;
+    using Connect.Models.Catalog;
     using Connect.Providers.Search;
 
     using DependencyInjection;
@@ -37,10 +35,10 @@ namespace Wooli.Foundation.Commerce.Services.Search
     [Service(typeof(IProductSearchService), Lifetime = Lifetime.Singleton)]
     public class ProductSearchService : IProductSearchService
     {
-        private readonly ISearchSettingsProvider searchSettingsProvider;
-        private readonly ISearchOptionsBuilder searchOptionsBuilder;
         private readonly ISearchManagerV2 searchManager;
         private readonly ISearchMapper searchMapper;
+        private readonly ISearchOptionsBuilder searchOptionsBuilder;
+        private readonly ISearchSettingsProvider searchSettingsProvider;
 
         public ProductSearchService(
             ISearchSettingsProvider searchSettingsProvider,
@@ -66,7 +64,8 @@ namespace Wooli.Foundation.Commerce.Services.Search
             var searchSettings = this.searchSettingsProvider.GetSearchSettings();
             var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
             var searchResults = this.searchManager.GetProducts(searchOptions);
-            var productSearchResults = this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults);
+            var productSearchResults =
+                this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults);
 
             return new Result<ProductSearchResults>(productSearchResults);
         }

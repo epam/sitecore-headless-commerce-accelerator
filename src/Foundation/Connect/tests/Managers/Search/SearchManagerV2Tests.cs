@@ -25,6 +25,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
     using Connect.Models.Search;
 
     using Models;
+    using Models.Catalog;
 
     using NSubstitute;
 

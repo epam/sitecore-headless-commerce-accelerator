@@ -42,7 +42,7 @@ namespace Wooli.Feature.Catalog.Controllers
 
         [HttpPost]
         [ActionName("products")]
-        public ActionResult GetProducts(ProductsSearchRequest searchRequest)
+        public ActionResult SearchProducts(ProductsSearchRequest searchRequest)
         {
             return this.Execute(
                 () =>

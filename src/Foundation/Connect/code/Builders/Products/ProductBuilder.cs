@@ -23,83 +23,72 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
     using Managers;
 
-    using Models;
+    using Models.Catalog;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IProductBuilder<Item, Product>), Lifetime = Lifetime.Singleton)]
-    public class ProductBuilder : IProductBuilder<Item, Product>
+    public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item, Product>
     {
-        private readonly IStorefrontContext storefrontContext;
-        private readonly IPricingManager pricingManager;
+        private readonly IProductBuilder<Item, Variant> variantBuilder;
 
         public ProductBuilder(
+            IProductBuilder<Item, Variant> variantBuilder,
             IStorefrontContext storefrontContext,
-            IPricingManager pricingManager)
+            IPricingManager pricingManager) : base(
+            storefrontContext,
+            pricingManager)
         {
-            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
-            Assert.ArgumentNotNull(pricingManager, nameof(pricingManager));
-
-            this.storefrontContext = storefrontContext;
-            this.pricingManager = pricingManager;
+            Assert.ArgumentNotNull(variantBuilder, nameof(variantBuilder));
+            this.variantBuilder = variantBuilder;
         }
 
         public IEnumerable<Product> Build(IEnumerable<Item> source)
         {
-            var products = source.Select(this.GetProduct).ToList();
+            Assert.ArgumentNotNull(source, nameof(source));
+
+            var products = source.Select(this.GetProductWithoutPrices).ToList();
             this.SetPrices(products);
-            //TODO: this.SetStockStatus(products);
 
             return products;
         }
-        
+
         public Product Build(Item source)
         {
-            var product = this.GetProduct(source);
+            Assert.ArgumentNotNull(source, nameof(source));
+
+            var product = this.GetProductWithoutPrices(source);
             this.SetPrices(product);
-            //TODO: this.SetStockStatus(product);
 
             return product;
         }
 
-        private Product GetProduct(Item source)
+        private Product GetProductWithoutPrices(Item source)
         {
-            var variants = new List<Variant>();
+            var product = this.BuildWithoutPrices<Product>(source);
+            this.SetVariants(product, source);
+
+            return product;
+        }
+
+        private void SetVariants(Product product, Item source)
+        {
             if (source.HasChildren)
             {
-                variants = this.GetVariants(source).ToList();
+                product.Variants = this.variantBuilder.Build(source.Children).ToList();
             }
-            var product = new Product(source, variants)
-            {
-                CatalogName = this.storefrontContext.CatalogName,
-                CustomerAverageRating = this.GetProductRating(source)
-            };
-
-            return product;
-        }
-
-        private IEnumerable<Variant> GetVariants(Item item)
-        {
-            return item.Children.Select(
-                variant => new Variant(variant)
-                {
-                    CatalogName = this.storefrontContext.CatalogName,
-                    CustomerAverageRating = this.GetProductRating(variant)
-                });
-        }
-
-        private decimal? GetProductRating(Item productItem)
-        {
-            return decimal.TryParse(productItem["Rating"], out var rating) ? (decimal?)rating : null;
         }
 
         private void SetPrices(Product product)
         {
+            if (product == null)
+            {
+                return;
+            }
+
             var includeVariants = product.Variants != null && product.Variants.Count > 0;
-            var productPrices = this.pricingManager.GetProductPrices(
+            var productPrices = this.PricingManager.GetProductPrices(
                     product.CatalogName,
                     product.Id,
                     includeVariants,
@@ -115,34 +104,6 @@ namespace Wooli.Foundation.Connect.Builders.Products
                     this.SetPrices(variant, productPrices);
                 }
             }
-        }
-
-        private void SetPrices(IList<Product> products)
-        {
-            var productsPrices = this.pricingManager.GetProductBulkPrices(
-                    products.Select(_ => _.CatalogName).FirstOrDefault(),
-                    products.Select(_ => _.Id),
-                    null)
-                ?.Result;
-            foreach (var product in products)
-            {
-                this.SetPrices(product, productsPrices);
-            }
-        }
-
-        private void SetPrices<TProduct>(TProduct product, IDictionary<string, Price> productsPrices)
-            where TProduct : BaseProduct
-        {
-            if (productsPrices == null || !productsPrices.Any() ||
-                !productsPrices.TryGetValue(product.Id, out var price))
-            {
-                return;
-            }
-
-            var commercePrice = price as CommercePrice;
-            product.CurrencyCode = price.CurrencyCode;
-            product.ListPrice = commercePrice?.Amount;
-            product.AdjustedPrice = commercePrice?.ListPrice;
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Wooli.Foundation.Connect.Mappers.Profiles
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Models;
+    using Models.Catalog;
+
     using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 
     [ExcludeFromCodeCoverage]

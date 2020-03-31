@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Managers.Search
 {
     using Models;
+    using Models.Catalog;
     using Models.Search;
     using Sitecore.Data.Items;
 

@@ -41,6 +41,9 @@ namespace Wooli.Foundation.Commerce.Builders.Search
 
         public Connect.SearchOptions Build(Connect.SearchSettings searchSettings, ProductSearchOptions searchOptions)
         {
+            Assert.ArgumentNotNull(searchSettings, nameof(searchSettings));
+            Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
+
             var pageSize = searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage;
             var startPageIndex = (searchOptions.PageNumber - 1) * pageSize;
 

@@ -24,10 +24,11 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
     using Commerce.Mappers.Search;
     using Commerce.Services.Search;
 
-    using Connect.Managers.Search;
     using Connect.Models.Catalog;
     using Connect.Models.Search;
     using Connect.Providers.Search;
+    using Connect.Services;
+    using Connect.Services.Search;
 
     using Models.Entities.Search;
 
@@ -39,7 +40,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
 
     public class ProductSearchServiceTests
     {
-        private readonly ISearchManagerV2 searchManager;
+        private readonly ISearchService searchManager;
         private readonly ISearchMapper searchMapper;
         private readonly ISearchOptionsBuilder searchOptionsBuilder;
         private readonly ISearchSettingsProvider searchSettingsProvider;
@@ -48,7 +49,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
 
         public ProductSearchServiceTests()
         {
-            this.searchManager = Substitute.For<ISearchManagerV2>();
+            this.searchManager = Substitute.For<ISearchService>();
             this.searchMapper = Substitute.For<ISearchMapper>();
             this.searchOptionsBuilder = Substitute.For<ISearchOptionsBuilder>();
             this.searchSettingsProvider = Substitute.For<ISearchSettingsProvider>();

@@ -18,9 +18,10 @@ namespace Wooli.Foundation.Commerce.Services.Search
 
     using Builders.Search;
 
-    using Connect.Managers.Search;
     using Connect.Models.Catalog;
     using Connect.Providers.Search;
+    using Connect.Services;
+    using Connect.Services.Search;
 
     using DependencyInjection;
 
@@ -35,7 +36,7 @@ namespace Wooli.Foundation.Commerce.Services.Search
     [Service(typeof(IProductSearchService), Lifetime = Lifetime.Singleton)]
     public class ProductSearchService : IProductSearchService
     {
-        private readonly ISearchManagerV2 searchManager;
+        private readonly ISearchService searchManager;
         private readonly ISearchMapper searchMapper;
         private readonly ISearchOptionsBuilder searchOptionsBuilder;
         private readonly ISearchSettingsProvider searchSettingsProvider;
@@ -43,7 +44,7 @@ namespace Wooli.Foundation.Commerce.Services.Search
         public ProductSearchService(
             ISearchSettingsProvider searchSettingsProvider,
             ISearchOptionsBuilder searchOptionsBuilder,
-            ISearchManagerV2 searchManager,
+            ISearchService searchManager,
             ISearchMapper searchMapper)
         {
             Assert.ArgumentNotNull(searchSettingsProvider, nameof(searchSettingsProvider));

@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Search
+namespace Wooli.Foundation.Connect.Services.Search
 {
-    using Models;
     using Models.Catalog;
     using Models.Search;
+
     using Sitecore.Data.Items;
 
     /// <summary>
     /// Performs search for products by specified parameters
     /// </summary>
-    public interface ISearchManagerV2
+    public interface ISearchService
     {
         /// <summary>
         /// Gets products from context catalog by keyword and search options

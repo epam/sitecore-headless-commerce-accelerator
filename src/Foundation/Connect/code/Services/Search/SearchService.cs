@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Search
+namespace Wooli.Foundation.Connect.Services.Search
 {
     using System.Linq;
 
@@ -23,7 +23,6 @@ namespace Wooli.Foundation.Connect.Managers.Search
 
     using Mappers.Search;
 
-    using Models;
     using Models.Catalog;
     using Models.Search;
 
@@ -34,8 +33,8 @@ namespace Wooli.Foundation.Connect.Managers.Search
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(ISearchManagerV2), Lifetime = Lifetime.Singleton)]
-    public class SearchManagerV2 : ISearchManagerV2
+    [Service(typeof(ISearchService), Lifetime = Lifetime.Singleton)]
+    public class SearchService : ISearchService
     {
         private readonly ISearchMapper searchMapper;
         private readonly ISearchQueryBuilder queryBuilder;
@@ -43,7 +42,7 @@ namespace Wooli.Foundation.Connect.Managers.Search
         private readonly ISearchResultProvider searchResultProvider;
         private readonly IProductBuilder<Item, Product> productBuilder;
 
-        public SearchManagerV2(
+        public SearchService(
             ISearchMapper searchMapper,
             ISearchResponseProvider searchResponseProvider,
             IProductBuilder<Item, Product> productBuilder,

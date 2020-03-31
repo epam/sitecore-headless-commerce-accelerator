@@ -584,6 +584,8 @@
     <Compile Include="Managers\Inventory\IInventoryManagerV2.cs" />
     <Compile Include="Managers\Inventory\InventoryManagerV2.cs" />
     <Compile Include="Services\Search\ISearchService.cs" />
+    <Compile Include="Managers\Pricing\IPricingManagerV2.cs" />
+    <Compile Include="Managers\Pricing\PricingManagerV2.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="Services\Search\SearchService.cs" />
     <Compile Include="Managers\Shipping\IShippingManagerV2.cs" />

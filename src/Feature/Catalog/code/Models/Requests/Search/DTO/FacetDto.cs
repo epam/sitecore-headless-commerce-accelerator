@@ -24,7 +24,8 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search.DTO
     [ExcludeFromCodeCoverage]
     public class FacetDto
     {
-        public IList<FacetValueDto> Values { get; set; }
+        [Required]
+        public IList<string> Values { get; set; }
 
         [Required]
         public string Name { get; set; }

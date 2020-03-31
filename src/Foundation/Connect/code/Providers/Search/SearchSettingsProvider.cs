@@ -12,23 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers.Search
+namespace Wooli.Foundation.Connect.Providers.Search
 {
     using System.Linq;
 
-    using Connect.Context;
+    using Context;
 
     using DependencyInjection;
 
-    using Models.Catalog;
-    using Models.Entities.Search;
+    using Models.Search;
 
     using Sitecore.Commerce;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Data.Items;
 
-    //TODO: move to Foundation.Connect
     [Service(typeof(ISearchSettingsProvider))]
     public class SearchSettingsProvider : ISearchSettingsProvider
     {

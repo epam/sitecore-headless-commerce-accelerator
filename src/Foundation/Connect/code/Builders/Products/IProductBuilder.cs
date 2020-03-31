@@ -20,6 +20,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
         where TSource : class 
         where TDestination : class
     {
-        IEnumerable<TDestination> Build(IEnumerable<TSource> source);
+        IEnumerable<TDestination> Build(IEnumerable<TSource> item);
+
+        TDestination Build(TSource source);
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,27 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers.Search
+namespace Wooli.Foundation.Commerce.Builders.Search
 {
-    using System;
+    using Connect.Models.Search;
 
-    using Models.Catalog;
-
-    using Sitecore.Data.Items;
-    using Wooli.Foundation.Commerce.Models.Entities.Search;
+    using Models.Entities.Search;
 
     /// <summary>
-    /// Provides search setting 
+    /// Search options builder
     /// </summary>
-    public interface ISearchSettingsProvider
+    public interface ISearchOptionsBuilder
     {
-        [Obsolete("Use GetSearchSettings instead.")]
-        CategorySearchInformation GetCategorySearchInformation(Item categoryItem);
-
         /// <summary>
-        /// Gets search settings from current context Sitecore Catalog item
+        /// Builds search options basing on products search options and default search settings
         /// </summary>
-        /// <returns>GetProducts settings</returns>
-        SearchSettings GetSearchSettings();
+        /// <param name="searchSettings">Predefined default search settings</param>
+        /// <param name="searchOptions">Product search options</param>
+        /// <returns>Search options</returns>
+        SearchOptions Build(SearchSettings searchSettings, ProductSearchOptions searchOptions);
     }
 }

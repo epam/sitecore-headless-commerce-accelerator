@@ -612,6 +612,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
@@ -650,7 +652,6 @@
     <Compile Include="Models\Account\CreateAccountResultModel.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
     <Compile Include="Models\Catalog\BaseProductModel.cs" />
-    <Compile Include="Models\Catalog\CategorySearchInformation.cs" />
     <Compile Include="Models\Catalog\CategoryModel.cs" />
     <Compile Include="Models\Catalog\FacetResultModel.cs" />
     <Compile Include="Models\Catalog\FacetValueResultModel.cs" />
@@ -696,7 +697,6 @@
     <Compile Include="Models\Entities\Catalog\Product.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchResults.cs" />
     <Compile Include="Models\Entities\Catalog\ProductVariant.cs" />
-    <Compile Include="Models\Entities\Search\SearchSettings.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingInfo.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingOption.cs" />
     <Compile Include="Models\Entities\Search\SortOption.cs" />
@@ -717,8 +717,6 @@
     <Compile Include="Providers\ItemTypeProvider.cs" />
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
-    <Compile Include="Providers\Search\ISearchSettingsProvider.cs" />
-    <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />

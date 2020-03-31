@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,18 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Models.Requests.Search.DTO
+namespace Wooli.Foundation.Connect.Models.Search
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
+    using System.Collections.Generic;
+
+    using Sitecore.Commerce.Engine.Connect.Search.Models;
 
     using TypeLite;
 
     [TsClass]
-    [ExcludeFromCodeCoverage]
-    public class FacetValueDto
+    public class CategorySearchInformation
     {
-        [Required]
-        public string Name { get; set; }
+        public int ItemsPerPage { get; set; }
+
+        public IList<CommerceQueryFacet> RequiredFacets { get; set; }
+
+        public IList<CommerceQuerySort> SortFields { get; set; }
     }
 }

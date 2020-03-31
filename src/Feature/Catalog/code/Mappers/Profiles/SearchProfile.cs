@@ -20,7 +20,6 @@ namespace Wooli.Feature.Catalog.Mappers.Profiles
 
     using Foundation.Commerce.Models.Entities.Search;
 
-    using Models.Requests.Search;
     using Models.Requests.Search.DTO;
 
     [ExcludeFromCodeCoverage]
@@ -32,12 +31,6 @@ namespace Wooli.Feature.Catalog.Mappers.Profiles
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Values, opt => opt.MapFrom(src => src.Values))
                 .ForAllOtherMembers(opt => opt.Ignore());
-
-            this.CreateMap<FacetValueDto, FacetValue>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForAllOtherMembers(opt => opt.Ignore());
-
-            this.CreateMap<ProductsSearchRequest, ProductSearchOptions>();
         }
     }
 }

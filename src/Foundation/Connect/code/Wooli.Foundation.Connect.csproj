@@ -583,6 +583,8 @@
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
     <Compile Include="Managers\Contracts\IAnalyticsManager.cs" />
     <Compile Include="Managers\ICartManagerV2.cs" />
+    <Compile Include="Managers\Inventory\IInventoryManagerV2.cs" />
+    <Compile Include="Managers\Inventory\InventoryManagerV2.cs" />
     <Compile Include="Managers\Search\ISearchManagerV2.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
     <Compile Include="Managers\Search\SearchManagerV2.cs" />

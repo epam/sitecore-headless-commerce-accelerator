@@ -19,23 +19,27 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
     using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;
 
+    using Sitecore.Diagnostics;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ICommerceAnalyticsService analyticsRepository;
+        private readonly ICommerceAnalyticsService analyticsService;
 
         private readonly ICatalogService catalogService;
 
         public CategoryContextExtension(
             ICatalogService catalogService,
-            ICommerceAnalyticsService analyticsRepository,
+            ICommerceAnalyticsService analyticsService,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
+            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
+            Assert.ArgumentNotNull(analyticsService, nameof(analyticsService));
+
             this.catalogService = catalogService;
-            this.analyticsRepository = analyticsRepository;
+            this.analyticsService = analyticsService;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
@@ -44,7 +48,7 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
             if (result.Success && result.Data != null)
             {
-                this.analyticsRepository.RaiseCategoryVisitedEvent(result.Data);
+                this.analyticsService.RaiseCategoryVisitedEvent(result.Data);
             }
 
             args.ContextData.Add("category", result.Data);

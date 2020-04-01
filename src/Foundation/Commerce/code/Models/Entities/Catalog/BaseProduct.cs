@@ -15,7 +15,12 @@
 namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    using TypeLite;
+
+    [TsClass]
+    [ExcludeFromCodeCoverage]
     public class BaseProduct
     {
         public string ProductId { get; set; }

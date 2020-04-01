@@ -564,6 +564,7 @@
     <Compile Include="Managers\Inventory\InventoryManagerV2Tests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
     <Compile Include="Services\Search\SearchServiceTests.cs" />
+    <Compile Include="Managers\Pricing\PricingManagerV2Tests.cs" />
     <Compile Include="Managers\Shipping\ShippingManagerV2Tests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

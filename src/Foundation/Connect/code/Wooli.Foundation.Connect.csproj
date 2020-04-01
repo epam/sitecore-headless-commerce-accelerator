@@ -553,17 +553,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TypeLite, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.dll</HintPath>
-    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Products\BaseProductBuilder.cs" />
     <Compile Include="Builders\Products\IProductBuilder.cs" />
+    <Compile Include="Builders\Products\VariantBuilder.cs" />
     <Compile Include="Builders\Products\ProductBuilder.cs" />
     <Compile Include="Builders\Search\ISearchQueryBuilder.cs" />
     <Compile Include="Builders\Search\IQueryBuilder.cs" />
@@ -585,9 +583,9 @@
     <Compile Include="Managers\ICartManagerV2.cs" />
     <Compile Include="Managers\Inventory\IInventoryManagerV2.cs" />
     <Compile Include="Managers\Inventory\InventoryManagerV2.cs" />
-    <Compile Include="Managers\Search\ISearchManagerV2.cs" />
+    <Compile Include="Services\Search\ISearchService.cs" />
     <Compile Include="Managers\PaymentManager.cs" />
-    <Compile Include="Managers\Search\SearchManagerV2.cs" />
+    <Compile Include="Services\Search\SearchService.cs" />
     <Compile Include="Managers\Shipping\IShippingManagerV2.cs" />
     <Compile Include="Managers\Shipping\ShippingManagerV2.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
@@ -595,11 +593,11 @@
     <Compile Include="Mappers\ConnectEntityMapper.cs" />
     <Compile Include="Mappers\IConnectEntityMapper.cs" />
     <Compile Include="Models.Generated.cs" />
-    <Compile Include="Models\BaseProduct.cs" />
+    <Compile Include="Models\Catalog\BaseProduct.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
     <Compile Include="Models\PartyEntity.cs" />
     <Compile Include="Models\FederatedPaymentArgs.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Catalog\Product.cs" />
     <Compile Include="Models\Search\CategorySearchInformation.cs" />
     <Compile Include="Models\Search\SearchSettings.cs" />
     <Compile Include="Models\Search\Facet.cs" />
@@ -608,7 +606,7 @@
     <Compile Include="Models\Search\SearchResultsV2.cs" />
     <Compile Include="Models\Search\SortDirection.cs" />
     <Compile Include="Models\ShippingInfoArgument.cs" />
-    <Compile Include="Models\Variant.cs" />
+    <Compile Include="Models\Catalog\Variant.cs" />
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="Managers\CartManager.cs" />
     <Compile Include="Managers\CatalogManager.cs" />

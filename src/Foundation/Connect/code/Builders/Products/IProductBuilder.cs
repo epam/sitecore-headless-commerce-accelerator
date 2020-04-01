@@ -16,8 +16,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
 
-    public interface IProductBuilder<in TSource, out TDestination> 
-        where TSource : class 
+    public interface IProductBuilder<in TSource, out TDestination>
+        where TSource : class
         where TDestination : class
     {
         IEnumerable<TDestination> Build(IEnumerable<TSource> item);

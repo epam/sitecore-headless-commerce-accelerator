@@ -25,7 +25,6 @@ namespace Wooli.Foundation.Connect.Providers.Search
     using Sitecore.Commerce;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Data.Items;
 
     [Service(typeof(ISearchSettingsProvider))]
     public class SearchSettingsProvider : ISearchSettingsProvider
@@ -42,22 +41,6 @@ namespace Wooli.Foundation.Connect.Providers.Search
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
 
-        public CategorySearchInformation GetCategorySearchInformation(Item categoryItem)
-        {
-            var commerceQueryFacets = this.commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
-            var commerceQuerySorts = this.commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
-            var itemsPerPageForItem = this.commerceSearchManager.GetItemsPerPageForItem(categoryItem);
-
-            var searchInformation = new CategorySearchInformation
-            {
-                ItemsPerPage = itemsPerPageForItem,
-                RequiredFacets = commerceQueryFacets,
-                SortFields = commerceQuerySorts
-            };
-
-            return searchInformation;
-        }
-
         public SearchSettings GetSearchSettings()
         {
             var catalog = this.storefrontContext.CurrentCatalogItem;
@@ -66,12 +49,14 @@ namespace Wooli.Foundation.Connect.Providers.Search
             {
                 SortFieldNames = this.commerceSearchManager.GetSortFieldsForItem(catalog)?.Select(field => field.Name),
                 ItemsPerPage = this.commerceSearchManager.GetItemsPerPageForItem(catalog),
-                Facets = this.commerceSearchManager.GetFacetFieldsForItem(catalog)?.Select(facet => new Facet
-                {
-                    Name = facet.Name,
-                    DisplayName = facet.DisplayName,
-                    Values = facet.Values
-                })
+                Facets = this.commerceSearchManager.GetFacetFieldsForItem(catalog)
+                    ?.Select(
+                        facet => new Facet
+                        {
+                            Name = facet.Name,
+                            DisplayName = facet.DisplayName,
+                            Values = facet.Values
+                        })
             };
 
             return searchPageSettings;

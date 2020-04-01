@@ -696,7 +696,7 @@
     <Compile Include="Models\Entities\Payment\PaymentOption.cs" />
     <Compile Include="Models\Entities\Catalog\Product.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchResults.cs" />
-    <Compile Include="Models\Entities\Catalog\ProductVariant.cs" />
+    <Compile Include="Models\Entities\Catalog\Variant.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingInfo.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingOption.cs" />
     <Compile Include="Models\Entities\Search\SortOption.cs" />

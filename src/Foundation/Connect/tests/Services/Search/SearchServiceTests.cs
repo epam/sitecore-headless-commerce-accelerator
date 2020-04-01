@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Managers.Search
+namespace Wooli.Foundation.Connect.Tests.Services.Search
 {
     using System;
     using System.Linq;
@@ -20,11 +20,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
     using Builders.Products;
     using Builders.Search;
 
-    using Connect.Managers.Search;
     using Connect.Mappers.Search;
-    using Connect.Models.Search;
+    using Connect.Services.Search;
 
-    using Models;
+    using Models.Catalog;
+    using Models.Search;
 
     using NSubstitute;
 
@@ -41,7 +41,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
 
     using Xunit;
 
-    public class SearchManagerV2Tests
+    public class SearchServiceTests
     {
         private readonly IFixture fixture;
 
@@ -50,9 +50,9 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         private readonly ISearchResultProvider searchResultProvider;
         private readonly IProductBuilder<Item, Product> productBuilder;
         private readonly ISearchQueryBuilder queryBuilder;
-        private readonly ISearchManagerV2 searchManager;
+        private readonly ISearchService searchService;
 
-        public SearchManagerV2Tests()
+        public SearchServiceTests()
         {
             this.fixture = new Fixture().Customize(new AutoDbCustomization());
 
@@ -62,7 +62,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
             this.searchResultProvider = Substitute.For<ISearchResultProvider>();
             this.queryBuilder = Substitute.For<ISearchQueryBuilder>();
             
-            this.searchManager = new SearchManagerV2(
+            this.searchService = new SearchService(
                 this.searchMapper,
                 this.searchResponseProvider,
                 this.productBuilder,
@@ -77,7 +77,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         {
             //act & assert
             Assert.Throws<ArgumentNullException>(
-                () => this.searchManager.GetProducts(null));
+                () => this.searchService.GetProducts(null));
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(searchResponse);
 
             //act
-            var results = this.searchManager.GetProducts(searchOptions);
+            var results = this.searchService.GetProducts(searchOptions);
 
             //assert
             Assert.Equal(searchResponse.TotalItemCount, results.TotalItemCount);
@@ -127,7 +127,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         public void GetProductItem_IfArgumentNull_ShouldThrowArgumentNullException()
         {
             //act & assert
-            Assert.Throws<ArgumentNullException>(() => this.searchManager.GetProductItem(null));
+            Assert.Throws<ArgumentNullException>(() => this.searchService.GetProductItem(null));
             this.searchResultProvider.Received(0)
                 .GetSearchResult(
                     Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
@@ -138,7 +138,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         public void GetProductItem_IfProductNotFound_ShouldReturnNull()
         {
             //act
-            var results = this.searchManager.GetProductItem(this.fixture.Create<string>());
+            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
 
             //assert
             Assert.Null(results);
@@ -161,7 +161,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(commerceItem);
 
             //act
-            var results = this.searchManager.GetProductItem(this.fixture.Create<string>());
+            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
 
             //assert
             Assert.NotNull(results);
@@ -180,7 +180,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         public void GetCategoryItem_IfArgumentNull_ShouldThrowArgumentNullException()
         {
             //act & assert
-            Assert.Throws<ArgumentNullException>(() => this.searchManager.GetCategoryItem(null));
+            Assert.Throws<ArgumentNullException>(() => this.searchService.GetCategoryItem(null));
             this.searchResultProvider.Received(0)
                 .GetSearchResult(
                     Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
@@ -191,7 +191,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
         public void GetCategoryItem_IfCategoryNotFound_ShouldReturnNull()
         {
             //arrange
-            var results = this.searchManager.GetCategoryItem(this.fixture.Create<string>());
+            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
 
             //act & assert
             Assert.Null(results);
@@ -214,7 +214,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Search
                 .Returns(commerceItem);
 
             //act
-            var results = this.searchManager.GetCategoryItem(this.fixture.Create<string>());
+            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
 
             //assert
             Assert.NotNull(results);

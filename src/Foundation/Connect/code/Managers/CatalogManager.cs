@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Connect.Managers
     using DependencyInjection;
 
     using Models;
+    using Models.Catalog;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
@@ -48,7 +49,7 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             var catalogName = products.Select(p => p.CatalogName).First();
-            var productIds = products.Select(p => p.ProductId);
+            var productIds = products.Select(p => p.Id);
             var productBulkPrices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null);
             var source = productBulkPrices == null || productBulkPrices.Result == null
                 ? new Dictionary<string, Price>()
@@ -56,7 +57,7 @@ namespace Wooli.Foundation.Connect.Managers
             foreach (var product in products)
             {
                 Price price;
-                if (source.Any() && source.TryGetValue(product.ProductId, out price))
+                if (source.Any() && source.TryGetValue(product.Id, out price))
                 {
                     var commercePrice = (CommercePrice)price;
                     product.CurrencyCode = price.CurrencyCode;
@@ -78,7 +79,7 @@ namespace Wooli.Foundation.Connect.Managers
             var includeVariants = product.Variants != null && product.Variants.Count > 0;
             var productPrices = this.pricingManager.GetProductPrices(
                 product.CatalogName,
-                product.ProductId,
+                product.Id,
                 includeVariants,
                 null);
             if (productPrices == null || !productPrices.ServiceProviderResult.Success || productPrices.Result == null)
@@ -86,7 +87,7 @@ namespace Wooli.Foundation.Connect.Managers
                 return;
             }
 
-            if (productPrices.Result.TryGetValue(product.ProductId, out var price))
+            if (productPrices.Result.TryGetValue(product.Id, out var price))
             {
                 var commercePrice = (CommercePrice)price;
                 product.CurrencyCode = price.CurrencyCode;
@@ -101,7 +102,7 @@ namespace Wooli.Foundation.Connect.Managers
 
             foreach (var variant in product.Variants)
             {
-                if (productPrices.Result.TryGetValue(variant.VariantId, out price))
+                if (productPrices.Result.TryGetValue(variant.Id, out price))
                 {
                     var commercePrice = (CommercePrice)price;
                     variant.CurrencyCode = commercePrice.CurrencyCode;
@@ -133,7 +134,7 @@ namespace Wooli.Foundation.Connect.Managers
                 new CommerceInventoryProduct
                 {
                     CatalogName = product.CatalogName,
-                    ProductId = product.ProductId
+                    ProductId = product.Id
                 }
             };
 
@@ -145,8 +146,8 @@ namespace Wooli.Foundation.Connect.Managers
                         new CommerceInventoryProduct
                         {
                             CatalogName = product.CatalogName,
-                            ProductId = product.ProductId,
-                            VariantId = productVariant.VariantId
+                            ProductId = product.Id,
+                            VariantId = productVariant.Id
                         });
                 }
             }
@@ -178,7 +179,7 @@ namespace Wooli.Foundation.Connect.Managers
                 }
                 else
                 {
-                    var variant = product.Variants?.FirstOrDefault(x => x.VariantId == variantId);
+                    var variant = product.Variants?.FirstOrDefault(x => x.Id == variantId);
                     if (variant != null)
                     {
                         variant.StockStatus = stockInformationItem.Status;

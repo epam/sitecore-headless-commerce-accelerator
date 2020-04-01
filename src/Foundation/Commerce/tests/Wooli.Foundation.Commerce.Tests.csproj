@@ -559,12 +559,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Search\SearchOptionsBuilderTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\GetCommerceUserProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\IdentifyCommerceUserProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessorTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
+    <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Mappers\Profiles\ShippingProfileTests.cs" />
     <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="Mappers\Profiles\UserProfileTests.cs" />
@@ -573,6 +575,7 @@
     <Compile Include="Repositories\CatalogRepositoryTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
+    <Compile Include="Services\Search\ProductSearchServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\license.xml">

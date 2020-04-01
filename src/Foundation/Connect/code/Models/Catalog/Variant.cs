@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
+namespace Wooli.Foundation.Connect.Models.Catalog
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using TypeLite;
+    using Sitecore.Data.Items;
 
-    [TsClass]
     [ExcludeFromCodeCoverage]
-    public class Product : BaseProduct
+    public class Variant : BaseProduct
     {
-        public string SitecoreId { get; set; }
+        public Variant()
+        {
+        }
 
-        public IList<Variant> Variants { get; set; }
+        [Obsolete("Use parameter-less constructor instead.")]
+        public Variant(Item item)
+            : base(item)
+        {
+        }
+
+        public IDictionary<string, string> Properties { get; set; }
     }
 }

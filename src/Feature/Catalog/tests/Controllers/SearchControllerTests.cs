@@ -20,11 +20,8 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
     using Catalog.Mappers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
-
-    using Mappers;
 
     using Models.Requests.Search;
 
@@ -49,10 +46,10 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
         }
 
         [Fact]
-        public void GetProducts_ShouldCallExecuteMethod()
+        public void SearchProducts_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.GetProducts(new ProductsSearchRequest());
+            this.controller.SearchProducts(new ProductsSearchRequest());
 
             // assert
             this.controller.Received().Execute(Arg.Any<Func<Result<ProductSearchResults>>>());

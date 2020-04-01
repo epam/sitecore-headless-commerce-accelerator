@@ -54,7 +54,7 @@ namespace Wooli.Foundation.Connect.Builders.Search
             if (!string.IsNullOrWhiteSpace(searchKeyword))
             {
                 queryable = queryable.Where(
-                    item => item.Name.Contains(searchKeyword) || item.DisplayName.Contains(searchKeyword));
+                    item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
             }
 
             return this.commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);

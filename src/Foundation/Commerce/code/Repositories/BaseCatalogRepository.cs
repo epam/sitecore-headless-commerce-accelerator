@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Context;
     using Connect.Managers;
     using Connect.Models;
+    using Connect.Models.Catalog;
 
     using Context;
 
@@ -93,7 +94,8 @@ namespace Wooli.Foundation.Commerce.Repositories
                 variantEntityList = this.LoadVariants(productItem);
             }
 
-            var product = new Product(productItem, variantEntityList);
+            var product = new Product(productItem);
+            product.Variants = variantEntityList;
             product.CatalogName = this.StorefrontContext.CatalogName;
 
             product.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
@@ -112,7 +114,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             foreach (var renderingModelVariant in renderingModel.Variants)
             {
                 var variant =
-                    product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
+                    product.Variants.FirstOrDefault(x => x.Id == renderingModelVariant.ProductVariantId);
                 if (variant == null)
                 {
                     continue;

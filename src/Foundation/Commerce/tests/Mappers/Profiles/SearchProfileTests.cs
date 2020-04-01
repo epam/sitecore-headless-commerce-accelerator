@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using AutoMapper;
 
-    using TypeLite;
+    using Commerce.Mappers.Profiles;
 
-    [TsClass]
-    [ExcludeFromCodeCoverage]
-    public class Product : BaseProduct
+    using Xunit;
+
+    public class SearchProfileTests
     {
-        public string SitecoreId { get; set; }
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
 
-        public IList<Variant> Variants { get; set; }
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

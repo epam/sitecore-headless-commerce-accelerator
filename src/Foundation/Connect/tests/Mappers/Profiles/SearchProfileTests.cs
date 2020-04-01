@@ -1,113 +1,35 @@
-﻿namespace Wooli.Foundation.Connect.Tests.Mappers.Profiles
-{
-    using System.Linq;
+﻿//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
 
+namespace Wooli.Foundation.Connect.Tests.Mappers.Profiles
+{
     using AutoMapper;
 
     using Connect.Mappers.Profiles;
 
-    using Models;
-    using Models.Search;
-
-    using Ploeh.AutoFixture;
-
-    using Sitecore.Commerce.Engine.Connect.Search;
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.ContentSearch.SearchTypes;
-
     using Xunit;
-
-    using FacetValue = Models.Search.FacetValue;
 
     public class SearchProfileTests
     {
-        private readonly IMapper mapper;
-
-        private readonly IFixture fixture;
-
-        public SearchProfileTests()
-        {
-            var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<SearchProfile>(); });
-
-            this.mapper = new Mapper(configuration);
-
-            this.fixture = new Fixture();
-        }
-
         [Fact]
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<SearchProfile>(); });
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
 
             // act, assert
             configuration.AssertConfigurationIsValid();
-        }
-
-        [Fact]
-        public void Map_IfCommerceQueryFacetObjectIsValid_ShouldReturnValidQueryFacetObject()
-        {
-            // arrange
-            var commerceQueryFacet = this.fixture.Create<CommerceQueryFacet>();
-
-            // act
-            var queryFacet = this.mapper.Map<CommerceQueryFacet, Facet>(commerceQueryFacet);
-
-            // assert
-            Assert.Equal(commerceQueryFacet.DisplayName, queryFacet.DisplayName);
-            Assert.Equal(commerceQueryFacet.Name, queryFacet.Name);
-        }
-
-        [Fact]
-        public void Map_IfCommerceQueryFacetFoundValuesIsNull_ShouldReturnEmptyFoundValues()
-        {
-            // arrange
-            var commerceQueryFacet = this.fixture.Create<CommerceQueryFacet>();
-            commerceQueryFacet.FoundValues = null;
-
-            // act
-            var queryFacet = this.mapper.Map<CommerceQueryFacet, Facet>(commerceQueryFacet);
-
-            // assert
-            Assert.NotNull(queryFacet.FoundValues);
-            Assert.Empty(queryFacet.FoundValues);
-        }
-
-        [Fact]
-        public void Map_IfLinqFacetValueObjectIsValid_ShouldReturnValidFacetValueObject()
-        {
-            // arrange
-            var linqFacetValue = new Sitecore.ContentSearch.Linq.FacetValue(
-                this.fixture.Create<string>(),
-                this.fixture.Create<int>());
-
-            // act
-            var facetValue = this.mapper.Map<Sitecore.ContentSearch.Linq.FacetValue, FacetValue>(linqFacetValue);
-
-            // assert
-            Assert.NotNull(facetValue);
-            Assert.Equal(linqFacetValue.Name, facetValue.Name);
-            Assert.Equal(linqFacetValue.AggregateCount, facetValue.AggregateCount);
-        }
-
-        [Fact]
-        public void Map_IfSearchResponseIsValid_ShouldReturnValidSearchResultsV2Object()
-        {
-            // arrange
-            var searchOptions = this.fixture.Create<CommerceSearchOptions>();
-            var sitecoreSearchResult = new SearchResults<SearchResultItem>(
-                Enumerable.Empty<SearchHit<SearchResultItem>>(),
-                this.fixture.Create<int>());
-            var searchResponse = SearchResponse.CreateFromSearchResultsItems(searchOptions, sitecoreSearchResult);
-
-            // act
-            var searchResult = this.mapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
-
-            // assert
-            Assert.Equal(searchResponse.TotalItemCount, searchResult.TotalItemCount);
         }
     }
 }

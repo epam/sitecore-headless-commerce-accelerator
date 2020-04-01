@@ -21,10 +21,10 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
 
     [TsClass]
     [ExcludeFromCodeCoverage]
-    public class Product : BaseProduct
+    public class Variant : BaseProduct
     {
-        public string SitecoreId { get; set; }
+        public string VariantId { get; set; }
 
-        public IList<Variant> Variants { get; set; }
+        public IDictionary<string, string> Properties { get; set; }
     }
 }

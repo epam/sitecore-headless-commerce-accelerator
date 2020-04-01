@@ -55,9 +55,9 @@ namespace Wooli.Foundation.Commerce.Repositories
             this.SitecoreService = sitecoreService;
         }
 
-        public ICatalogManager CatalogManager { get; }
-
         public ICurrencyProvider CurrencyProvider { get; }
+
+        public ICatalogManager CatalogManager { get; }
 
         public ISiteContext SiteContext { get; }
 

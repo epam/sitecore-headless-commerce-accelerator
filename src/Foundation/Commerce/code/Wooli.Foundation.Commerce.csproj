@@ -628,6 +628,9 @@
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
+    <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
+    <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
+    <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
@@ -725,13 +728,11 @@
     <Compile Include="Repositories\BaseCatalogRepository.cs" />
     <Compile Include="Repositories\BillingRepository.cs" />
     <Compile Include="Repositories\CartRepository.cs" />
-    <Compile Include="Repositories\CatalogRepository.cs" />
     <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
     <Compile Include="Services\Analytics\ICommerceAnalyticsService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\CheckoutRepository.cs" />
     <Compile Include="Repositories\Contracts\IBillingRepository.cs" />
-    <Compile Include="Repositories\Contracts\ICatalogRepository.cs" />
     <Compile Include="Repositories\Contracts\ICheckoutRepository.cs" />
     <Compile Include="Repositories\Contracts\IDeliveryRepository.cs" />
     <Compile Include="Repositories\Contracts\IProductListRepository.cs" />

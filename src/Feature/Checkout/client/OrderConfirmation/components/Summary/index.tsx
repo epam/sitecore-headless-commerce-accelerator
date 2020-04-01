@@ -62,7 +62,7 @@ class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                     {
                                         order.cartLines.map((cartLine, index) => (
                                             <div
-                                                key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.productVariantId}`}
+                                                key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}
                                                 className={classnames({
                                                     'product-item-bg': index % 2 === 0,
                                                     'product-item-wrapper': true,
@@ -81,20 +81,20 @@ class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                                 </div>
                                                 <div className="col-md-3">
                                                     <div className="product-features">
-                                                        {cartLine.variant.variantProperties.color && (
+                                                        {cartLine.variant.properties.color && (
                                                             <span className="color">
                                                                 <Text field={fields.colorTitle} tag="span" className="color-title" />
                                                                 <span
                                                                     className={classnames({ 'color-name': true, 'selected': true })}
-                                                                    style={{ background: resolveColor(cartLine.variant.variantProperties.color, this.props.sitecoreContext) }}
+                                                                    style={{ background: resolveColor(cartLine.variant.properties.color, this.props.sitecoreContext) }}
                                                                 />
                                                             </span>
                                                         )}
-                                                        {cartLine.variant.variantProperties.size && (
+                                                        {cartLine.variant.properties.size && (
                                                             <span className="size">
                                                                 <Text field={fields.sizeTitle} tag="strong" />
                                                                 {' '}
-                                                                <span>{cartLine.variant.variantProperties.size}</span>
+                                                                <span>{cartLine.variant.properties.size}</span>
                                                             </span>
                                                         )}
                                                         <span className="quantity">

@@ -27,6 +27,8 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
     using Repositories;
 
+    using Services.Catalog;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Diagnostics;
@@ -34,18 +36,18 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
     [Service(typeof(ICartModelBuilder))]
     public class CartModelBuilder : ICartModelBuilder
     {
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICatalogService catalogService;
 
         private readonly ICurrencyProvider currencyProvider;
 
         private readonly IEntityMapper entityMapper;
 
         public CartModelBuilder(
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IEntityMapper entityMapper,
             ICurrencyProvider currencyProvider)
         {
-            this.catalogRepository = catalogRepository;
+            this.catalogService = catalogService;
             this.entityMapper = entityMapper;
             this.currencyProvider = currencyProvider;
         }
@@ -93,12 +95,15 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
             var commerceCartProduct = model.Product as CommerceCartProduct;
 
-            var product = this.catalogRepository.GetProduct(model.Product.ProductId);
-            result.Product = product;
-            result.Variant =
-                product.Variants?.FirstOrDefault(x => x.ProductVariantId == commerceCartProduct?.ProductVariantId);
-            result.Quantity = model.Quantity;
-
+            var productResult = this.catalogService.GetProduct(model.Product.ProductId);
+            if (productResult.Success && productResult.Data != null)
+            {
+                result.Product = productResult.Data;
+                result.Variant =
+                    productResult.Data.Variants?.FirstOrDefault(x => x.VariantId == commerceCartProduct?.ProductVariantId);
+                result.Quantity = model.Quantity;
+            }
+            
             var price = new CartPriceModel();
             price.Initialize(model.Total, this.currencyProvider);
             result.Price = price;

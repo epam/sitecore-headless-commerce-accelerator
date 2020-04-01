@@ -45,7 +45,7 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
     const addToCartModel: ShoppingCart.CartItemDto = {
       productId,
       quantity,
-      variantId: productVariant.productVariantId,
+      variantId: productVariant.variantId,
     };
 
     this.props.AddToCart(addToCartModel);

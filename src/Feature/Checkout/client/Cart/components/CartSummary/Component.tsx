@@ -36,7 +36,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
     const updateCartLineModel: ShoppingCartApi.CartItemDto = {
       productId: cartLine.product.productId,
       quantity: 0,
-      variantId: cartLine.variant.productVariantId,
+      variantId: cartLine.variant.variantId,
     };
     this.props.UpdateCartLine(updateCartLineModel);
   }
@@ -74,14 +74,14 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                               <div className="heading-productTitle">{cartLine.variant.displayName || cartLine.product.displayName}</div>
                             </div>
                             <div className="product-options">
-                              {cartLine.variant.variantProperties.color && (
+                              {cartLine.variant.properties.color && (
                                 <div className="option">
-                                  Color:<span style={{ backgroundColor: resolveColor(cartLine.variant.variantProperties.color, this.props.sitecoreContext) }} className="color" />
+                                  Color:<span style={{ backgroundColor: resolveColor(cartLine.variant.properties.color, this.props.sitecoreContext) }} className="color" />
                                 </div>
                               )}
-                              {cartLine.variant.variantProperties.size && (
+                              {cartLine.variant.properties.size && (
                                 <div className="option">
-                                  Size:<span className="size">{cartLine.variant.variantProperties.size}</span>
+                                  Size:<span className="size">{cartLine.variant.properties.size}</span>
                                 </div>
                               )}
                             </div>

@@ -35,6 +35,8 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using Repositories;
 
+    using Services.Catalog;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
@@ -58,16 +60,16 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
     {
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICatalogService catalogService;
         private readonly ICurrencyProvider currencyProvider;
         private readonly IMapper innerMapper;
 
-        public EntityMapper(ICatalogRepository catalogRepository, ICurrencyProvider currencyProvider)
+        public EntityMapper(ICatalogService catalogService, ICurrencyProvider currencyProvider)
         {
-            Assert.ArgumentNotNull(catalogRepository, nameof(catalogRepository));
+            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
             Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
 
-            this.catalogRepository = catalogRepository;
+            this.catalogService = catalogService;
             this.currencyProvider = currencyProvider;
 
             var config = new MapperConfiguration(
@@ -102,9 +104,13 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .AfterMap(
                             (src, dest) =>
                             {
-                                dest.Product = this.catalogRepository.GetProduct(src.Product.ProductId);
-                                dest.Variant = dest.Product.Variants?.FirstOrDefault(
-                                    x => x.ProductVariantId == (src.Product as CommerceCartProduct)?.ProductVariantId);
+                                var result = this.catalogService.GetProduct(src.Product.ProductId);
+                                if (result.Success && result.Data != null)
+                                {
+                                    dest.Product = result.Data;
+                                        dest.Variant = dest.Product.Variants?.FirstOrDefault(
+                                            x => x.VariantId == (src.Product as CommerceCartProduct)?.ProductVariantId);
+                                }
                             })
                         .ReverseMap();
 

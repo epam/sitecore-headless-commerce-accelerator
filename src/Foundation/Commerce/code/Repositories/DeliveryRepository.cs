@@ -37,6 +37,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Checkout;
 
+    using Services.Catalog;
+
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Diagnostics;
 
@@ -48,7 +50,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         public DeliveryRepository(
             IShippingManager shippingManager,
             ICartManager cartManager,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IAccountManager accountManager,
             ICartModelBuilder cartModelBuilder,
             IEntityMapper entityMapper,
@@ -56,7 +58,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             IVisitorContext visitorContext)
             : base(
                 cartManager,
-                catalogRepository,
+                catalogService,
                 accountManager,
                 cartModelBuilder,
                 entityMapper,

@@ -566,13 +566,13 @@
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessorTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
+    <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Mappers\Profiles\ShippingProfileTests.cs" />
     <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="Mappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CartRepositoryTests.cs" />
-    <Compile Include="Repositories\CatalogRepositoryTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
     <Compile Include="Services\Search\ProductSearchServiceTests.cs" />

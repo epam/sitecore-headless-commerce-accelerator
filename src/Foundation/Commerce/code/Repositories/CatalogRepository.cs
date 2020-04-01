@@ -39,11 +39,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             ISiteContext siteContext,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
-            ICatalogManager catalogManager,
             ISitecoreService sitecoreService,
             ISearchManager searchManager,
             ICurrencyProvider currencyProvider)
-            : base(currencyProvider, siteContext, storefrontContext, visitorContext, catalogManager, sitecoreService)
+            : base(currencyProvider, siteContext, storefrontContext, visitorContext, sitecoreService)
         {
             this.searchManager = searchManager;
         }
@@ -54,14 +53,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
             return this.GetCategoryModel(categoryItem);
         }
-
-        public ProductModel GetCurrentProduct()
-        {
-            var productItem = this.SiteContext.CurrentProductItem;
-
-            return this.GetProductModel(this.VisitorContext, productItem);
-        }
-
+        
         public ProductModel GetProduct(string productId)
         {
             Assert.ArgumentNotNull(productId, nameof(productId));

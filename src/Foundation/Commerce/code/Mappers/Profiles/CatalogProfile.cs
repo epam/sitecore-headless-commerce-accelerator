@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,25 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Analytics
+namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    using AutoMapper;
+
     using Models.Entities.Catalog;
 
-    /// <summary>
-    /// Raise commerce related analytics events
-    /// </summary>
-    public interface ICommerceAnalyticsService
-    {
-        /// <summary>
-        /// Raise "Category Visited" event.
-        /// </summary>
-        /// <param name="category">Category model.</param>
-        void RaiseCategoryVisitedEvent(Category category);
+    using Connect = Connect.Models.Catalog;
 
-        /// <summary>
-        /// Raise "Product Visited" event.
-        /// </summary>
-        /// <param name="product">Product model.</param>
-        void RaiseProductVisitedEvent(Product product);
+    [ExcludeFromCodeCoverage]
+    public class CatalogProfile : Profile
+    {
+        public CatalogProfile()
+        {
+            this.CreateMap<Connect.Variant, Variant>()
+                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
+
+            this.CreateMap<Connect.Product, Product>();
+        }
     }
 }

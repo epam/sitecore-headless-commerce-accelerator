@@ -16,8 +16,8 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Cart
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Models.Catalog;
-
+    using Catalog;
+    
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
@@ -26,9 +26,9 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Cart
     {
         public string Id { get; set; }
 
-        public ProductModel Product { get; set; }
+        public Product Product { get; set; }
 
-        public ProductVariantModel Variant { get; set; }
+        public Variant Variant { get; set; }
 
         public decimal Quantity { get; set; }
 

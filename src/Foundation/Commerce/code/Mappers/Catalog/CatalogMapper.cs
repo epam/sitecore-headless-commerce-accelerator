@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Mappers.Catalog
 {
-    using Models.Catalog;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Data.Items;
+    using Base.Mappers;
 
-    public interface ICatalogRepository
-    {
-        ProductModel GetProduct(string productId);
+    using DependencyInjection;
 
-        ProductModel GetProduct(Item productItem);
-        
-        CategoryModel GetCurrentCategory();
-    }
+    using Profiles;
+
+    [ExcludeFromCodeCoverage]
+    [Service(typeof(ICatalogMapper), Lifetime = Lifetime.Singleton)]
+    public class CatalogMapper : ProfileMapper<CatalogProfile>, ICatalogMapper
+    { }
 }

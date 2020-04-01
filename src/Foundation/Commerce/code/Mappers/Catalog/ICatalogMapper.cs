@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,25 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Analytics
+namespace Wooli.Foundation.Commerce.Mappers.Catalog
 {
-    using Models.Entities.Catalog;
+    using Base.Mappers;
 
     /// <summary>
-    /// Raise commerce related analytics events
+    /// Performs mapping for product and category models
     /// </summary>
-    public interface ICommerceAnalyticsService
+    public interface ICatalogMapper : IMapper
     {
-        /// <summary>
-        /// Raise "Category Visited" event.
-        /// </summary>
-        /// <param name="category">Category model.</param>
-        void RaiseCategoryVisitedEvent(Category category);
-
-        /// <summary>
-        /// Raise "Product Visited" event.
-        /// </summary>
-        /// <param name="product">Product model.</param>
-        void RaiseProductVisitedEvent(Product product);
     }
 }

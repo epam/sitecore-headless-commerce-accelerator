@@ -22,6 +22,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
     using Connect.Managers;
 
     using Models.Catalog;
+    using Models.Entities.Catalog;
 
     using NSubstitute;
 
@@ -54,7 +55,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()
         {
             // arrange
-            var category = new CategoryModel(this.fixture.Create<Item>());
+            var category = new Category(this.fixture.Create<Item>());
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act
@@ -69,7 +70,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseCategoryVisitedEvent_IfCategoryIsNull_ShouldThrowException()
         {
             // arrange
-            CategoryModel category = null;
+            Category category = null;
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act & assert
@@ -82,7 +83,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseProductVisitedEvent_IfProductIsNotNull_ShouldRaiseEvent()
         {
             // arrange
-            var product = new ProductModel(this.fixture.Create<Item>());
+            var product = new Product();
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act
@@ -97,7 +98,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseProductVisitedEvent_IfProductIsNull_ShouldThrowException()
         {
             // arrange
-            ProductModel product = null;
+            Product product = null;
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act & assert

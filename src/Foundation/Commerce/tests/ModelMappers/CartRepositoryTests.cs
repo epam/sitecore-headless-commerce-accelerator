@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
     using Commerce.ModelMappers;
     using Commerce.Repositories;
+    using Commerce.Services.Catalog;
 
     using Models.Checkout;
 
@@ -33,11 +34,11 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
     {
         public AddressPartyMapperTests()
         {
-            this.catalogRepository = Substitute.For<ICatalogRepository>();
+            this.catalogService = Substitute.For<ICatalogService>();
             this.currencyProvider = Substitute.For<ICurrencyProvider>();
         }
 
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICatalogService catalogService;
         private readonly ICurrencyProvider currencyProvider;
 
         [Fact]
@@ -51,7 +52,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
+            var addressPartyMapper = new EntityMapper(this.catalogService, this.currencyProvider);
             var result = addressPartyMapper.MapToParty(input);
 
             // Assert
@@ -72,7 +73,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
+            var addressPartyMapper = new EntityMapper(this.catalogService, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert
@@ -97,7 +98,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
             };
 
             // Execute
-            var addressPartyMapper = new EntityMapper(this.catalogRepository, this.currencyProvider);
+            var addressPartyMapper = new EntityMapper(this.catalogService, this.currencyProvider);
             var result = addressPartyMapper.MapToShippingInfoArgument(input);
 
             // Assert

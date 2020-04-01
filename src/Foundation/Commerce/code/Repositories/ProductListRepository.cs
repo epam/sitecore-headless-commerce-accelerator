@@ -152,7 +152,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     productModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
                     productModel.ListPrice = product.ListPrice;
                     productModel.AdjustedPrice = product.AdjustedPrice;
-                    productModel.StockStatusName = product.StockStatusName;
+                    productModel.StockStatusName = product.StockStatus?.Name;
                     productModel.CustomerAverageRating = product.CustomerAverageRating;
                     result.Add(productModel);
                 }

@@ -108,7 +108,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             renderingModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
             renderingModel.ListPrice = product.ListPrice;
             renderingModel.AdjustedPrice = product.AdjustedPrice;
-            renderingModel.StockStatusName = product.StockStatusName;
+            renderingModel.StockStatusName = product.StockStatus?.Name;
             renderingModel.CustomerAverageRating = product.CustomerAverageRating;
 
             foreach (var renderingModelVariant in renderingModel.Variants)
@@ -124,7 +124,7 @@ namespace Wooli.Foundation.Commerce.Repositories
                     this.CurrencyProvider.GetCurrencySymbolByCode(variant.CurrencyCode);
                 renderingModelVariant.ListPrice = variant.ListPrice;
                 renderingModelVariant.AdjustedPrice = variant.AdjustedPrice;
-                renderingModelVariant.StockStatusName = variant.StockStatusName;
+                renderingModelVariant.StockStatusName = variant.StockStatus?.Name;
                 renderingModelVariant.CustomerAverageRating = variant.CustomerAverageRating;
             }
 

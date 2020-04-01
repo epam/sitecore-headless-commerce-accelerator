@@ -27,6 +27,7 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Data.Items;
+    using StockStatus = Models.Catalog.StockStatus;
 
     [Service(typeof(ICatalogManager))]
     public class CatalogManager : ICatalogManager
@@ -174,16 +175,22 @@ namespace Wooli.Foundation.Connect.Managers
 
                 if (string.IsNullOrEmpty(variantId))
                 {
-                    product.StockStatus = stockInformationItem.Status;
-                    product.StockStatusName = stockInformationItem.Status.Name;
+                    product.StockStatus = new StockStatus()
+                    {
+                        Name = stockInformationItem.Status.Name,
+                        Value = stockInformationItem.Status.Value
+                    };
                 }
                 else
                 {
                     var variant = product.Variants?.FirstOrDefault(x => x.Id == variantId);
                     if (variant != null)
                     {
-                        variant.StockStatus = stockInformationItem.Status;
-                        variant.StockStatusName = stockInformationItem.Status.Name;
+                        variant.StockStatus = new StockStatus()
+                        {
+                            Name = stockInformationItem.Status.Name,
+                            Value = stockInformationItem.Status.Value
+                        };
                     }
                 }
             }

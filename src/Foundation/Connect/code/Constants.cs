@@ -28,5 +28,17 @@ namespace Wooli.Foundation.Connect
                 public const string Category = "Category";
             }
         }
+
+        public static class Pricing
+        {
+            public static class PricingTypes
+            {
+                public const string List = "List";
+                public const string Adjusted = "Adjusted";
+                public const string LowestPricedVariant = "LowestPricedVariant";
+                public const string LowestPricedVariantListPrice = "LowestPricedVariantListPrice";
+                public const string HighestPricedVariant = "HighestPricedVariant";
+            }
+        }
     }
 }

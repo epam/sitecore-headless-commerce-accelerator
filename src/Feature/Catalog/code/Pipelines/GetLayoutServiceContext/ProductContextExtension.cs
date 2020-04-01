@@ -25,7 +25,6 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly ICommerceAnalyticsService analyticsService;
-
         private readonly ICatalogService catalogService;
 
         public ProductContextExtension(

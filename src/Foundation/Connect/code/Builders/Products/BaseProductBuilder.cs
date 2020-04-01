@@ -61,7 +61,10 @@ namespace Wooli.Foundation.Connect.Builders.Products
             var entity = new TEntity();
             this.Initialize(entity, source);
             this.SetCatalogName(entity);
-            entity.StockStatusName = "InStock";
+            entity.StockStatus = new StockStatus
+            {
+                Name = "InStock"
+            };
             //TODO: this.SetCurrency(entity)
             //TODO: this.SetStockStatus(entity)
 

@@ -28,7 +28,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
     [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     public class SearchMapper : Mapper, ISearchMapper
     {
-        protected SearchMapper()
+        public SearchMapper()
         {
             var configuration = new MapperConfiguration(cfg =>
             {

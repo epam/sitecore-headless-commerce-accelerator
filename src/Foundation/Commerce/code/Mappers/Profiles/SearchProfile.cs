@@ -36,19 +36,6 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<FacetValue, Connect.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            this.CreateMap<Connect.Catalog.BaseProduct, BaseProduct>()
-                .ForMember(
-                    dest => dest.StockStatusName,
-                    opt => opt.MapFrom(
-                        src => src.StockStatus != null ? src.StockStatus.Name : null));
-
-            this.CreateMap<Connect.Catalog.Product, Product>()
-                .IncludeBase<Connect.Catalog.BaseProduct, BaseProduct>();
-
-            this.CreateMap<Connect.Catalog.Variant, Variant>()
-                .IncludeBase<Connect.Catalog.BaseProduct, BaseProduct>()
-                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
-
             this.CreateMap<Connect.Search.SearchResultsV2<Connect.Catalog.Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
         }

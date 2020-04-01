@@ -27,10 +27,18 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
     {
         public CatalogProfile()
         {
-            this.CreateMap<Connect.Variant, Variant>()
-                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
+            this.CreateMap<Connect.BaseProduct, BaseProduct>()
+                .ForMember(
+                    dest => dest.StockStatusName,
+                    opt => opt.MapFrom(
+                        src => src.StockStatus != null ? src.StockStatus.Name : null));
 
-            this.CreateMap<Connect.Product, Product>();
+            this.CreateMap<Connect.Product, Product>()
+                .IncludeBase<Connect.BaseProduct, BaseProduct>();
+
+            this.CreateMap<Connect.Variant, Variant>()
+                .IncludeBase<Connect.BaseProduct, BaseProduct>()
+                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

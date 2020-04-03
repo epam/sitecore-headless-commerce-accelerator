@@ -42,7 +42,7 @@ const mapToProductSearchRequest = (params: SearchProductsParams): ProductsSearch
     pageNumber: params.pg,
     pageSize: +params.ps,
     searchKeyword: params.q ? params.q : '',
-    sortDirection: params.sd === SortDirection.Asc.toLocaleString() ? SortDirection.Asc : SortDirection.Desc,
+    sortDirection: !params.sd || params.sd === SortDirection.Asc.toLocaleString() ? SortDirection.Asc : SortDirection.Desc,
     sortField: params.s
   };
 };

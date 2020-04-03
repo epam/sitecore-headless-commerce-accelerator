@@ -12,20 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models
+namespace Wooli.Foundation.Commerce.Models.Entities.Search
 {
-    using System;
-
-    using Sitecore.Data.Items;
-
-    public class Variant : BaseProduct
+    public enum SortDirection
     {
-        public Variant(Item item, string catalogName = null, decimal? customerAverageRating = null)
-            : base(item, catalogName, customerAverageRating)
-        {
-        }
+        Asc,
 
-        [Obsolete("Use Id property")]
-        public string VariantId => this.Id;
+        Desc
     }
 }

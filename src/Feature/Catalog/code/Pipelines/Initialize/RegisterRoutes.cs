@@ -35,15 +35,15 @@ namespace Wooli.Feature.Catalog.Pipelines.Initialize
         {
             Assert.ArgumentNotNull(routeCollection, nameof(routeCollection));
 
-            const string SearchControllerName = "Search";
+            const string searchControllerName = "Search";
 
             routeCollection.MapRoute(
                 nameof(SearchController),
-                Constants.CommerceRoutePrefix + $"/{SearchControllerName.ToLowerInvariant()}" + "/{action}",
+                Constants.CommerceRoutePrefix + $"/{searchControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(SearchController).Namespace },
                 defaults: new
                 {
-                    controller = SearchControllerName
+                    controller = searchControllerName
                 });
         }
     }

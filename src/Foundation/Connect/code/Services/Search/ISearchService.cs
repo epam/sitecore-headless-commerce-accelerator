@@ -34,7 +34,7 @@ namespace Wooli.Foundation.Connect.Services.Search
         /// <summary>
         /// Gets product item from context catalog by product id
         /// </summary>
-        /// <param name="productId">Product product id</param>
+        /// <param name="productId">Product id</param>
         /// <returns>Product item</returns>
         Item GetProductItem(string productId);
 

@@ -649,6 +649,9 @@
     <Compile Include="ModelMappers\EntityMapper.cs" />
     <Compile Include="Mappers\Users\IUserMapper.cs" />
     <Compile Include="Mappers\Users\UserMapper.cs" />
+    <Compile Include="Mappers\Order\IOrderMapper.cs" />
+    <Compile Include="Mappers\Order\OrderMapper.cs" />
+    <Compile Include="Mappers\Profiles\OrderProfile.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Account\ChangePasswordModel.cs" />
     <Compile Include="Models\Account\ChangePasswordResultModel.cs" />
@@ -664,6 +667,8 @@
     <Compile Include="Models\Catalog\ProductListResultModel.cs" />
     <Compile Include="Models\Catalog\ProductVariantModel.cs" />
     <Compile Include="Models\Catalog\ProductModel.cs" />
+    <Compile Include="Models\Entities\Order\Order.cs" />
+    <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchOptions.cs" />
@@ -806,7 +811,7 @@
       <Name>Wooli.Foundation.Connect</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
-      <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
+      <Project>{a5a4dceb-88ed-4b5f-a06d-dbcbc828d45f}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">

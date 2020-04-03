@@ -40,11 +40,6 @@ namespace Wooli.Foundation.Base.Models
 
         public IList<string> Errors { get; set; } = new List<string>();
 
-        public void SetResult(T result)
-        {
-            this.Data = result;
-        }
-
         public void SetError(string error)
         {
             if (string.IsNullOrEmpty(error))
@@ -72,6 +67,11 @@ namespace Wooli.Foundation.Base.Models
             {
                 this.SetError(error);
             }
+        }
+
+        public void SetResult(T result)
+        {
+            this.Data = result;
         }
     }
 }

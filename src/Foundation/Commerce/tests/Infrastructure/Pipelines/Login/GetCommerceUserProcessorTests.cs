@@ -34,15 +34,15 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     public class GetCommerceUserProcessorTests
     {
-        private readonly IFixture fixture;
-
         private readonly ICustomerProvider customerProvider;
 
-        private readonly IUserMapper userMapper;
+        private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
         private readonly GetCommerceUserProcessor processor;
+
+        private readonly IUserMapper userMapper;
 
         public GetCommerceUserProcessorTests()
         {
@@ -58,7 +58,7 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
         public void Process_IfArgsNotNull_ShouldCallCustomerProviderGetUser()
         {
             // arrange
-            var args = new LoginPipelineArgs()
+            var args = new LoginPipelineArgs
             {
                 Email = this.fixture.Create<string>()
             };

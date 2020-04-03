@@ -21,20 +21,17 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using Utils;
 
-    using ShippingMethod = Models.Entities.Shipping.ShippingMethod;
-    using ShippingOption = Models.Entities.Shipping.ShippingOption;
-
     public class ShippingProfile : Profile
     {
         public ShippingProfile()
         {
-            this.CreateMap<Sitecore.Commerce.Entities.Shipping.ShippingMethod, ShippingMethod>()
+            this.CreateMap<ShippingMethod, Models.Entities.Shipping.ShippingMethod>()
                 .ForMember(dest => dest.LineIds, opt => opt.Ignore())
                 .ForMember(dest => dest.PartyId, opt => opt.Ignore())
                 .ForMember(dest => dest.ShippingPreferenceType, opt => opt.Ignore());
 
             // TODO: Get Rid of reference to Sitecore.Commerce.Engine.Connect
-            this.CreateMap<ShippingMethod, CommerceShippingInfo>()
+            this.CreateMap<Models.Entities.Shipping.ShippingMethod, CommerceShippingInfo>()
                 .ForMember(
                     dest => dest.ShippingOptionType,
                     opt => opt.MapFrom(src => src.ShippingPreferenceType))
@@ -44,8 +41,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
                 .ForMember(dest => dest.ElectronicDeliveryEmailContent, opt => opt.Ignore())
                 .ForMember(dest => dest.ShippingProviderID, opt => opt.Ignore());
 
-
-            this.CreateMap<Sitecore.Commerce.Entities.Shipping.ShippingOption, ShippingOption>();
+            this.CreateMap<ShippingOption, Models.Entities.Shipping.ShippingOption>();
 
             this.CreateMap<string, ShippingOptionType>()
                 .ConvertUsing(ConnectOptionTypeHelper.ToShippingOptionType);

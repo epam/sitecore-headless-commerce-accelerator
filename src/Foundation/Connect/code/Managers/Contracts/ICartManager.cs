@@ -23,46 +23,56 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
 
-    using Carts = Sitecore.Commerce.Entities.Carts;
-
     public interface ICartManager
     {
-        ManagerResponse<CartResult, Carts.Cart> AddLineItemsToCart(
-            Carts.Cart cart,
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> AddLineItemsToCart(
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink);
 
-        ManagerResponse<AddPaymentInfoResult, Carts.Cart> AddPaymentInfo(
+        ManagerResponse<AddPaymentInfoResult, Sitecore.Commerce.Entities.Carts.Cart> AddPaymentInfo(
             string shopName,
-            Carts.Cart cart,
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             Party billingPartyEntity,
             FederatedPaymentArgs federatedPaymentArgs);
 
-        ManagerResponse<AddPromoCodeResult, Carts.Cart> AddPromoCode(Carts.Cart cart, string promoCode);
+        ManagerResponse<AddPromoCodeResult, Sitecore.Commerce.Entities.Carts.Cart> AddPromoCode(
+            Sitecore.Commerce.Entities.Carts.Cart cart,
+            string promoCode);
 
-        ManagerResponse<AddShippingInfoResult, Carts.Cart> AddShippingInfo(
-            Carts.Cart cart,
+        ManagerResponse<AddShippingInfoResult, Sitecore.Commerce.Entities.Carts.Cart> AddShippingInfo(
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             List<Party> partyEntityList,
             ShippingOptionType shippingOptionType,
             List<ShippingInfoArgument> shippingInfoList);
 
-        ManagerResponse<CartResult, Carts.Cart> CreateOrResumeCart(string shopName, string userId, string customerId);
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> CreateOrResumeCart(
+            string shopName,
+            string userId,
+            string customerId);
 
-        ManagerResponse<CartResult, Carts.Cart> GetCurrentCart(string shopName, string customerId);
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> GetCurrentCart(
+            string shopName,
+            string customerId);
 
-        ManagerResponse<CartResult, Carts.Cart> MergeCarts(
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> MergeCarts(
             string shopName,
             string customerId,
             string anonymousVisitorId,
-            Carts.Cart anonymousVisitorCart);
+            Sitecore.Commerce.Entities.Carts.Cart anonymousVisitorCart);
 
-        ManagerResponse<CartResult, Carts.Cart> RemoveLineItemsFromCart(Carts.Cart cart, IEnumerable<string> cartLineIds);
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> RemoveLineItemsFromCart(
+            Sitecore.Commerce.Entities.Carts.Cart cart,
+            IEnumerable<string> cartLineIds);
 
-        ManagerResponse<CartResult, Carts.Cart> UpdateCart(string shopName, Carts.Cart currentCart, CartBase cartUpdate);
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> UpdateCart(
+            string shopName,
+            Sitecore.Commerce.Entities.Carts.Cart currentCart,
+            CartBase cartUpdate);
 
-        ManagerResponse<CartResult, Carts.Cart> UpdateLineItemsInCart(
-            Carts.Cart cart,
+        ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> UpdateLineItemsInCart(
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink);

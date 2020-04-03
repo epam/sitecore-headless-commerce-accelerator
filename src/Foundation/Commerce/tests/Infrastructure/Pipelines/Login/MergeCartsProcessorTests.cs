@@ -37,13 +37,13 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     public class MergeCartsProcessorTests
     {
-        private readonly MergeCartsProcessor processor;
+        private readonly ICartService cartService;
 
         private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly ICartService cartService;
+        private readonly MergeCartsProcessor processor;
 
         public MergeCartsProcessorTests()
         {
@@ -52,22 +52,6 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
             this.cartService = Substitute.For<ICartService>();
 
             this.processor = new MergeCartsProcessor(this.cartService, this.logService);
-        }
-
-        [Fact]
-        public void Process_IfAnonymousContactIdIsNull_ShouldNotCallCrtServiceMergeCarts()
-        {
-            // arrange
-            var args = new LoginPipelineArgs
-            {
-                AnonymousContactId = null
-            };
-
-            // act
-            this.processor.Process(args);
-
-            // assert
-            this.cartService.DidNotReceive().MergeCarts(Arg.Any<string>());
         }
 
         [Fact]
@@ -87,23 +71,19 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
         }
 
         [Fact]
-        public void Process_IfCartServiceMergeCartWasSuccess_ShouldNotAbortPipeline()
+        public void Process_IfAnonymousContactIdIsNull_ShouldNotCallCrtServiceMergeCarts()
         {
             // arrange
             var args = new LoginPipelineArgs
             {
-                AnonymousContactId = this.fixture.Create<string>()
+                AnonymousContactId = null
             };
-            var successResult = this.fixture.Build<Result<Cart>>()
-                .With(result => result.Success, true)
-                .Create();
-            this.cartService.MergeCarts(args.AnonymousContactId).Returns(successResult);
 
             // act
             this.processor.Process(args);
 
             // assert
-            Assert.False(args.Aborted);
+            this.cartService.DidNotReceive().MergeCarts(Arg.Any<string>());
         }
 
         [Fact]
@@ -127,6 +107,26 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
             Assert.Equal(
                 failResult.Errors,
                 args.GetMessages(PipelineMessageFilter.Warnings).Select(pipelineMessage => pipelineMessage.Text));
+        }
+
+        [Fact]
+        public void Process_IfCartServiceMergeCartWasSuccess_ShouldNotAbortPipeline()
+        {
+            // arrange
+            var args = new LoginPipelineArgs
+            {
+                AnonymousContactId = this.fixture.Create<string>()
+            };
+            var successResult = this.fixture.Build<Result<Cart>>()
+                .With(result => result.Success, true)
+                .Create();
+            this.cartService.MergeCarts(args.AnonymousContactId).Returns(successResult);
+
+            // act
+            this.processor.Process(args);
+
+            // assert
+            Assert.False(args.Aborted);
         }
     }
 }

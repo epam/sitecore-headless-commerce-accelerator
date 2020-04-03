@@ -23,8 +23,6 @@ namespace Wooli.Feature.Account.Tests.Controllers
     using Foundation.Base.Models;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
-    using Foundation.Commerce.Models;
-    using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
@@ -37,28 +35,21 @@ namespace Wooli.Feature.Account.Tests.Controllers
 
     public class AccountsControllerTests
     {
-        public AccountsControllerTests()
-        {
-            this.accountService = Substitute.For<IAccountService>();
-            this.mapper = Substitute.For<IAccountMapper>();
-            this.visitorContext = Substitute.For<IVisitorContext>();
-            this.trackingService = Substitute.For<ITrackingService>();
-            this.controller = Substitute.For<AccountsController>(
-                this.accountService,
-                this.mapper,
-                this.visitorContext,
-                this.trackingService);
-        }
-
         private readonly AccountsController controller;
 
-        private readonly IAccountService accountService;
+        public AccountsControllerTests()
+        {
+            var accountService = Substitute.For<IAccountService>();
+            var mapper = Substitute.For<IAccountMapper>();
+            var visitorContext = Substitute.For<IVisitorContext>();
+            var trackingService = Substitute.For<ITrackingService>();
 
-        private readonly IAccountMapper mapper;
-
-        private readonly IVisitorContext visitorContext;
-
-        private readonly ITrackingService trackingService;
+            this.controller = Substitute.For<AccountsController>(
+                accountService,
+                mapper,
+                visitorContext,
+                trackingService);
+        }
 
         [Fact]
         public void AddAddress_ShouldCallExecuteMethod()
@@ -111,16 +102,6 @@ namespace Wooli.Feature.Account.Tests.Controllers
         }
 
         [Fact]
-        public void UpdateAddress_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controller.UpdateAddress(new AddressRequest());
-
-            // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<IEnumerable<Address>>>>());
-        }
-
-        [Fact]
         public void UpdateAccount_ShouldCallExecuteMethod()
         {
             // act
@@ -128,6 +109,16 @@ namespace Wooli.Feature.Account.Tests.Controllers
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
+        }
+
+        [Fact]
+        public void UpdateAddress_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controller.UpdateAddress(new AddressRequest());
+
+            // assert
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<IEnumerable<Address>>>>());
         }
 
         [Fact]

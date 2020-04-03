@@ -38,11 +38,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
 
     public class PricingManagerV2Tests
     {
-        private readonly PricingManagerV2 pricingManager;
-        private readonly PricingServiceProvider pricingServiceProvider;
+        private readonly IFixture fixture;
+
         private readonly ILogService<CommonLog> logService;
 
-        private readonly IFixture fixture;
+        private readonly PricingManagerV2 pricingManager;
+
+        private readonly PricingServiceProvider pricingServiceProvider;
 
         public PricingManagerV2Tests()
         {
@@ -62,7 +64,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
             {
                 new object[] { null, Enumerable.Empty<string>(), new string[0] },
                 new object[] { "1", null, new string[0] },
-                new object[] { "1", Enumerable.Empty<string>(), null },
+                new object[] { "1", Enumerable.Empty<string>(), null }
             };
 
         public static IEnumerable<object[]> GetProductPricesParameters =>
@@ -70,20 +72,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
             {
                 new object[] { null, "1", new string[0] },
                 new object[] { "1", null, new string[0] },
-                new object[] { "1", "1", null },
+                new object[] { "1", "1", null }
             };
-
-        [Theory]
-        [MemberData(nameof(GetProductBulkPricesParameters))]
-        public void GetProductBulkPrices_IfParameterIsNull_ShouldThrowArgumentNullException(
-            string catalogName, 
-            IEnumerable<string> productIds, 
-            string[] priceTypeIds)
-        {
-            // act, assert
-            Assert.Throws<ArgumentNullException>(
-                () => this.pricingManager.GetProductBulkPrices(catalogName, productIds, priceTypeIds));
-        }
 
         [Fact]
         public void GetProductBulkPrices_IfCatalogNameIsEmpty_ShouldThrowArgumentException()
@@ -93,6 +83,18 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
                 () => this.pricingManager.GetProductBulkPrices(
                     string.Empty,
                     this.fixture.Create<IEnumerable<string>>()));
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProductBulkPricesParameters))]
+        public void GetProductBulkPrices_IfParameterIsNull_ShouldThrowArgumentNullException(
+            string catalogName,
+            IEnumerable<string> productIds,
+            string[] priceTypeIds)
+        {
+            // act, assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.pricingManager.GetProductBulkPrices(catalogName, productIds, priceTypeIds));
         }
 
         [Fact]
@@ -109,21 +111,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
         }
 
         [Theory]
-        [MemberData(nameof(GetProductPricesParameters))]
-        public void GetProductPrices_IfParameterIsNull_ShouldThrowArgumentNullException(
-            string catalogName, 
-            string productId,
-            string[] priceTypeIds)
-        {
-            // act, assert
-            Assert.Throws<ArgumentNullException>(
-                () => this.pricingManager.GetProductPrices(catalogName, productId, false, priceTypeIds));
-        }
-
-        [Theory]
         [InlineData("", "1")]
         [InlineData("1", "")]
-        public void GetProductPrices_IfParameterIsEmpty_ShouldThrowArgumentException(string catalogName, string productId)
+        public void GetProductPrices_IfParameterIsEmpty_ShouldThrowArgumentException(
+            string catalogName,
+            string productId)
         {
             // act, assert
             Assert.Throws<ArgumentException>(
@@ -131,6 +123,18 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
                     catalogName,
                     productId,
                     false));
+        }
+
+        [Theory]
+        [MemberData(nameof(GetProductPricesParameters))]
+        public void GetProductPrices_IfParameterIsNull_ShouldThrowArgumentNullException(
+            string catalogName,
+            string productId,
+            string[] priceTypeIds)
+        {
+            // act, assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.pricingManager.GetProductPrices(catalogName, productId, false, priceTypeIds));
         }
 
         [Fact]

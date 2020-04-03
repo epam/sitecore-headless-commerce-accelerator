@@ -16,7 +16,6 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
-    using Models;
     using Models.Search;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;

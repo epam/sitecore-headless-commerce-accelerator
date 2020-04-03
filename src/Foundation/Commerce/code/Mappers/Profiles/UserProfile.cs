@@ -24,7 +24,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using Sitecore.Commerce.Entities.Customers;
 
-    using Constants = Utils.Constants;
+    using Utils;
 
     public class UserProfile : Profile
     {
@@ -49,12 +49,14 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
                 .ForAllOtherMembers(opt => opt.Ignore());
 
             this.CreateMap<CommerceUser, User>()
+
                 // It is assumed that we have only one commerce customer per commerce user,
                 // so we select a first if it exists
                 .ForMember(
                     dest => dest.CustomerId,
                     opt =>
                         opt.MapFrom(src => src.Customers != null ? src.Customers.FirstOrDefault() : null))
+
                 // We extract contact id from externalId,
                 // it is not returned by current implementation of Sitecore.Commerce.Core
                 .ForMember(
@@ -62,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
                     opt =>
                         opt.MapFrom(
                             src => src.ExternalId != null
-                                ? src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)
+                                ? src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)
                                 : null));
         }
     }

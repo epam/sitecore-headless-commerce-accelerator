@@ -30,11 +30,12 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
     {
         public SearchMapper()
         {
-            var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<SearchProfile>();
-                cfg.AddProfile<CatalogProfile>();
-            });
+            var configuration = new MapperConfiguration(
+                cfg =>
+                {
+                    cfg.AddProfile<SearchProfile>();
+                    cfg.AddProfile<CatalogProfile>();
+                });
 
             this.InnerMapper = new AutoMapper.Mapper(configuration);
         }

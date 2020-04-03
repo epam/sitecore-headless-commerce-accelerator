@@ -45,11 +45,16 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
     {
         private readonly IFixture fixture;
 
-        private readonly ISearchMapper searchMapper;
-        private readonly ISearchResponseProvider searchResponseProvider;
-        private readonly ISearchResultProvider searchResultProvider;
         private readonly IProductBuilder<Item, Product> productBuilder;
+
         private readonly ISearchQueryBuilder queryBuilder;
+
+        private readonly ISearchMapper searchMapper;
+
+        private readonly ISearchResponseProvider searchResponseProvider;
+
+        private readonly ISearchResultProvider searchResultProvider;
+
         private readonly ISearchService searchService;
 
         public SearchServiceTests()
@@ -61,7 +66,7 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
             this.productBuilder = Substitute.For<IProductBuilder<Item, Product>>();
             this.searchResultProvider = Substitute.For<ISearchResultProvider>();
             this.queryBuilder = Substitute.For<ISearchQueryBuilder>();
-            
+
             this.searchService = new SearchService(
                 this.searchMapper,
                 this.searchResponseProvider,
@@ -70,14 +75,109 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
                 this.queryBuilder);
         }
 
-        #region GetProducts
+        [Fact]
+        public void GetCategoryItem_IfArgumentNull_ShouldThrowArgumentNullException()
+        {
+            //act & assert
+            Assert.Throws<ArgumentNullException>(() => this.searchService.GetCategoryItem(null));
+            this.searchResultProvider.Received(0)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
+
+        [Fact]
+        public void GetCategoryItem_IfCategoryNotFound_ShouldReturnNull()
+        {
+            //arrange
+            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
+
+            //act & assert
+            Assert.Null(results);
+            this.searchResultProvider.Received(1)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
+
+        [Fact]
+        public void GetProductItem_IfArgumentNull_ShouldThrowArgumentNullException()
+        {
+            //act & assert
+            Assert.Throws<ArgumentNullException>(() => this.searchService.GetProductItem(null));
+            this.searchResultProvider.Received(0)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
+
+        [Fact]
+        public void GetProductItem_IfCategoryIsFound_ShouldReturnItem()
+        {
+            //arrange
+            var commerceItem = Substitute.For<CommerceSellableItemSearchResultItem>();
+            commerceItem.GetItem().Returns(this.fixture.Create<Item>());
+
+            this.searchResultProvider.GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>())
+                .Returns(commerceItem);
+
+            //act
+            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
+
+            //assert
+            Assert.NotNull(results);
+            Assert.False(ID.IsNullOrEmpty(results.ID));
+            this.searchResultProvider.Received(1)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
+
+        [Fact]
+        public void GetProductItem_IfProductIsFound_ShouldReturnItem()
+        {
+            //arrange
+            var commerceItem = Substitute.For<CommerceSellableItemSearchResultItem>();
+            commerceItem.GetItem().Returns(this.fixture.Create<Item>());
+
+            this.searchResultProvider.GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>())
+                .Returns(commerceItem);
+
+            //act
+            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
+
+            //assert
+            Assert.NotNull(results);
+            Assert.False(ID.IsNullOrEmpty(results.ID));
+            this.searchResultProvider.Received(1)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
+
+        [Fact]
+        public void GetProductItem_IfProductNotFound_ShouldReturnNull()
+        {
+            //act
+            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
+
+            //assert
+            Assert.Null(results);
+            this.searchResultProvider.Received(1)
+                .GetSearchResult(
+                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
+                        IQueryable<CommerceSellableItemSearchResultItem>>>());
+        }
 
         [Fact]
         public void GetProducts_IfArgumentNull_ShouldThrowArgumentNullException()
         {
             //act & assert
-            Assert.Throws<ArgumentNullException>(
-                () => this.searchService.GetProducts(null));
+            Assert.Throws<ArgumentNullException>(() => this.searchService.GetProducts(null));
         }
 
         [Fact]
@@ -118,113 +218,5 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
 
             this.searchMapper.Received(1).Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
         }
-
-        #endregion
-
-        #region GetProductItem
-
-        [Fact]
-        public void GetProductItem_IfArgumentNull_ShouldThrowArgumentNullException()
-        {
-            //act & assert
-            Assert.Throws<ArgumentNullException>(() => this.searchService.GetProductItem(null));
-            this.searchResultProvider.Received(0)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        [Fact]
-        public void GetProductItem_IfProductNotFound_ShouldReturnNull()
-        {
-            //act
-            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
-
-            //assert
-            Assert.Null(results);
-            this.searchResultProvider.Received(1)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        [Fact]
-        public void GetProductItem_IfProductIsFound_ShouldReturnItem()
-        {
-            //arrange
-            var commerceItem = Substitute.For<CommerceSellableItemSearchResultItem>();
-            commerceItem.GetItem().Returns(this.fixture.Create<Item>());
-
-            this.searchResultProvider.GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>())
-                .Returns(commerceItem);
-
-            //act
-            var results = this.searchService.GetProductItem(this.fixture.Create<string>());
-
-            //assert
-            Assert.NotNull(results);
-            Assert.False(ID.IsNullOrEmpty(results.ID));
-            this.searchResultProvider.Received(1)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        #endregion
-
-        #region GetCategoryItem
-
-        [Fact]
-        public void GetCategoryItem_IfArgumentNull_ShouldThrowArgumentNullException()
-        {
-            //act & assert
-            Assert.Throws<ArgumentNullException>(() => this.searchService.GetCategoryItem(null));
-            this.searchResultProvider.Received(0)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        [Fact]
-        public void GetCategoryItem_IfCategoryNotFound_ShouldReturnNull()
-        {
-            //arrange
-            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
-
-            //act & assert
-            Assert.Null(results);
-            this.searchResultProvider.Received(1)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        [Fact]
-        public void GetProductItem_IfCategoryIsFound_ShouldReturnItem()
-        {
-            //arrange
-            var commerceItem = Substitute.For<CommerceSellableItemSearchResultItem>();
-            commerceItem.GetItem().Returns(this.fixture.Create<Item>());
-
-            this.searchResultProvider.GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>())
-                .Returns(commerceItem);
-
-            //act
-            var results = this.searchService.GetCategoryItem(this.fixture.Create<string>());
-
-            //assert
-            Assert.NotNull(results);
-            Assert.False(ID.IsNullOrEmpty(results.ID));
-            this.searchResultProvider.Received(1)
-                .GetSearchResult(
-                    Arg.Any<Func<IQueryable<CommerceSellableItemSearchResultItem>,
-                        IQueryable<CommerceSellableItemSearchResultItem>>>());
-        }
-
-        #endregion
     }
 }

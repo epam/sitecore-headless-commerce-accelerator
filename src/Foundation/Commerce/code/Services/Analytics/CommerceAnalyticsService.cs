@@ -17,11 +17,8 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
     using Connect.Context;
     using Connect.Managers;
 
-    using Context;
-
     using DependencyInjection;
 
-    using Models.Catalog;
     using Models.Entities.Catalog;
 
     using Sitecore.Commerce;

@@ -26,8 +26,7 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<ShippingProfile>(); });
+            var configuration = new MapperConfiguration(cfg => { cfg.AddProfile<ShippingProfile>(); });
 
             // act, assert
             configuration.AssertConfigurationIsValid();

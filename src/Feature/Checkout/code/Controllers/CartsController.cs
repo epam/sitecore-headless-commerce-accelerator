@@ -20,6 +20,7 @@ namespace Wooli.Feature.Checkout.Controllers
     using Foundation.Commerce.Services.Cart;
 
     using Models.Requests;
+
     using Sitecore.Diagnostics;
 
     public class CartsController : BaseController
@@ -32,32 +33,12 @@ namespace Wooli.Feature.Checkout.Controllers
             this.cartService = cartService;
         }
 
-        [HttpGet]
-        [ActionName("cart")]
-        public ActionResult GetCart()
-        {
-            return this.Execute(this.cartService.GetCart);
-        }
-
         [HttpPost]
         [ActionName("cartLines")]
         public ActionResult AddCartLine(AddCartLineRequest request)
         {
-            return this.Execute(() => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
-        }
-
-        [HttpPut]
-        [ActionName("cartLines")]
-        public ActionResult UpdateCartLine(UpdateCartLineRequest request)
-        {
-            return this.Execute(() => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
-        }
-
-        [HttpDelete]
-        [ActionName("cartLines")]
-        public ActionResult RemoveCartLine(RemoveCartLineRequest request)
-        {
-            return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
+            return this.Execute(
+                () => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpPost]
@@ -67,11 +48,33 @@ namespace Wooli.Feature.Checkout.Controllers
             return this.Execute(() => this.cartService.AddPromoCode(request.PromoCode));
         }
 
+        [HttpGet]
+        [ActionName("cart")]
+        public ActionResult GetCart()
+        {
+            return this.Execute(this.cartService.GetCart);
+        }
+
+        [HttpDelete]
+        [ActionName("cartLines")]
+        public ActionResult RemoveCartLine(RemoveCartLineRequest request)
+        {
+            return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
+        }
+
         [HttpDelete]
         [ActionName("promoCodes")]
         public ActionResult RemovePromoCode(PromoCodeRequest request)
         {
             return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));
+        }
+
+        [HttpPut]
+        [ActionName("cartLines")]
+        public ActionResult UpdateCartLine(UpdateCartLineRequest request)
+        {
+            return this.Execute(
+                () => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
     }
 }

@@ -35,7 +35,8 @@ namespace Wooli.Foundation.Connect.Providers.Search
             Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
             Assert.ArgumentNotNull(context, nameof(context));
 
-            this.SearchIndex = commerceTypeLoader.CreateInstance<ICommerceSearchManager>()?.GetIndex(context.CatalogName);
+            this.SearchIndex = commerceTypeLoader.CreateInstance<ICommerceSearchManager>()
+                ?.GetIndex(context.CatalogName);
         }
 
         protected override ISearchIndex SearchIndex { get; set; }

@@ -51,8 +51,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             IPageTypeProvider pageTypeProvider,
             IStorefrontContext storefrontContext,
             ISiteDefinitionsProvider siteDefinitionsProvider,
-            ISiteContext siteContext,
-            IAnalyticsManager analyticsManager)
+            ISiteContext siteContext)
         {
             this.searchManager = searchManager;
             this.pageTypeProvider = pageTypeProvider;
@@ -84,11 +83,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             var currentItem = Context.Item;
             while (currentItem != null && currentItem.ID != rootItem.ID)
             {
-                var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
+                var urlSegment = urlSegments.LastOrDefault()?.TrimEnd('/');
 
                 this.ProcessItem(currentItem, urlSegment, this.storefrontContext.CatalogName);
 
-                if (urlSegments?.Length > 0)
+                if (urlSegments.Length > 0)
                 {
                     urlSegments = urlSegments.Take(urlSegments.Length - 1).ToArray();
                 }

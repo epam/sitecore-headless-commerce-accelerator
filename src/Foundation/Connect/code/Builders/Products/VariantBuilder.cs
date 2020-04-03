@@ -65,16 +65,6 @@ namespace Wooli.Foundation.Connect.Builders.Products
             return variant;
         }
 
-        private void SetVariantProperties(Variant entity, Item source)
-        {
-            var properties = source["VariationProperties"]?.Split('|') ?? new string[0];
-
-            entity.Properties = properties.Where(property => !string.IsNullOrEmpty(property))
-                .ToDictionary(
-                    propertyName => propertyName,
-                    propertyName => source[propertyName]);
-        }
-
         private void SetPrices(Variant variant)
         {
             if (variant == null)
@@ -90,6 +80,16 @@ namespace Wooli.Foundation.Connect.Builders.Products
                 ?.Result;
 
             this.SetPrices(variant, prices);
+        }
+
+        private void SetVariantProperties(Variant entity, Item source)
+        {
+            var properties = source["VariationProperties"]?.Split('|') ?? new string[0];
+
+            entity.Properties = properties.Where(property => !string.IsNullOrEmpty(property))
+                .ToDictionary(
+                    propertyName => propertyName,
+                    propertyName => source[propertyName]);
         }
     }
 }

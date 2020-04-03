@@ -25,7 +25,6 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using DependencyInjection;
 
-    using Models;
     using Models.Checkout;
     using Models.Entities.Addresses;
     using Models.Entities.Cart;
@@ -33,12 +32,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
     using Providers;
 
-    using Repositories;
-
     using Services.Catalog;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Prices;
@@ -51,27 +47,17 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using Cart = Models.Entities.Cart.Cart;
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
     using CountryRegionModel = Models.Region.CountryRegionModel;
-    using FederatedPaymentInfo = Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo;
-    using Party = Connect.Models.Party;
-    using ShippingInfo = Sitecore.Commerce.Entities.Carts.ShippingInfo;
-    using ShippingMethod = Sitecore.Commerce.Entities.Shipping.ShippingMethod;
-    using ShippingOption = Sitecore.Commerce.Entities.Shipping.ShippingOption;
     using SubdivisionModel = Models.Region.SubdivisionModel;
 
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
     {
-        private readonly ICatalogService catalogService;
-        private readonly ICurrencyProvider currencyProvider;
         private readonly IMapper innerMapper;
 
         public EntityMapper(ICatalogService catalogService, ICurrencyProvider currencyProvider)
         {
             Assert.ArgumentNotNull(catalogService, nameof(catalogService));
             Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
-
-            this.catalogService = catalogService;
-            this.currencyProvider = currencyProvider;
 
             var config = new MapperConfiguration(
                 cfg =>
@@ -90,7 +76,9 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Total))
                         .ForMember(dest => dest.CartLines, opt => opt.MapFrom(src => src.Lines))
                         .ForMember(dest => dest.Addresses, opt => opt.MapFrom(src => src.Parties))
-                        .ForMember(dest => dest.Adjustments, opt => opt.MapFrom(src => src.Adjustments.Select(a => a.Description).ToList()))
+                        .ForMember(
+                            dest => dest.Adjustments,
+                            opt => opt.MapFrom(src => src.Adjustments.Select(a => a.Description).ToList()))
                         .ReverseMap();
 
                     cfg.CreateMap<CommerceCart, Cart>()
@@ -105,12 +93,12 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .AfterMap(
                             (src, dest) =>
                             {
-                                var result = this.catalogService.GetProduct(src.Product.ProductId);
+                                var result = catalogService.GetProduct(src.Product.ProductId);
                                 if (result.Success && result.Data != null)
                                 {
                                     dest.Product = result.Data;
-                                        dest.Variant = dest.Product.Variants?.FirstOrDefault(
-                                            x => x.VariantId == (src.Product as CommerceCartProduct)?.ProductVariantId);
+                                    dest.Variant = dest.Product.Variants?.FirstOrDefault(
+                                        x => x.VariantId == (src.Product as CommerceCartProduct)?.ProductVariantId);
                                 }
                             })
                         .ReverseMap();
@@ -141,7 +129,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .AfterMap(
                             (src, dest) =>
                             {
-                                dest.CurrencySymbol = this.currencyProvider.GetCurrencySymbolByCode(dest.CurrencyCode);
+                                dest.CurrencySymbol = currencyProvider.GetCurrencySymbolByCode(dest.CurrencyCode);
                             });
 
                     cfg.CreateMap<CommerceTotal, TotalPrice>()
@@ -205,6 +193,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .ReverseMap();
                     cfg.CreateMap<FederatedPaymentInfo, Models.Entities.Payment.FederatedPaymentInfo>()
                         .ReverseMap();
+
                     #endregion
 
                     cfg.CreateMap<Sitecore.Commerce.Entities.Party, AddressModel>()
@@ -252,7 +241,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                             dest => dest.ContactId,
                             opt => opt.MapFrom(
                                 src =>
-                                    src.ExternalId.Replace(Constants.CommereceCustomerIdPrefix, string.Empty)))
+                                    src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)))
                         .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                         .ReverseMap();
 

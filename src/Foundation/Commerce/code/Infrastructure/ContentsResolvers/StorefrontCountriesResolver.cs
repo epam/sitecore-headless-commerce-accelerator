@@ -18,8 +18,6 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 
     using Connect.Context;
 
-    using Context;
-
     using DependencyInjection;
 
     using ModelMappers;

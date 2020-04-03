@@ -35,6 +35,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
     public class SearchSettingsProvider : ISearchSettingsProvider
     {
         private readonly ICommerceSearchManager commerceSearchManager;
+
         private readonly IStorefrontContext storefrontContext;
 
         public SearchSettingsProvider(IStorefrontContext storefrontContext)

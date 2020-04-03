@@ -19,7 +19,6 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using Checkout.Controllers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Services.Order;
 
@@ -34,9 +33,9 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     // TODO: Replace models with new one
     public class OrdersControllerTests
     {
-        private readonly IFixture fixture;
-
         private readonly OrdersController controller;
+
+        private readonly IFixture fixture;
 
         public OrdersControllerTests()
         {

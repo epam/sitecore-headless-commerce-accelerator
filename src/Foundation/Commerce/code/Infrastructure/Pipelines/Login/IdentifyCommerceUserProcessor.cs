@@ -28,7 +28,9 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
     {
         private readonly ICommerceTrackingService commerceTrackingService;
 
-        public IdentifyCommerceUserProcessor(ICommerceTrackingService commerceTrackingService, ILogService<CommonLog> logService)
+        public IdentifyCommerceUserProcessor(
+            ICommerceTrackingService commerceTrackingService,
+            ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(commerceTrackingService, nameof(commerceTrackingService));

@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Search
     public class ProductSearchOptions
     {
         public string SearchKeyword { get; set; }
-        
+
         public IEnumerable<Facet> Facets { get; set; }
 
         public Guid CategoryId { get; set; }

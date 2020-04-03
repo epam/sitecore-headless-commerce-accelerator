@@ -20,18 +20,16 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Payments;
 
-    using Carts = Sitecore.Commerce.Entities.Carts;
-
     public interface IPaymentManager
     {
         ManagerResponse<ServiceProviderResult, string> GetPaymentClientToken();
 
         ManagerResponse<GetPaymentMethodsResult, IEnumerable<PaymentMethod>> GetPaymentMethods(
-            Carts.Cart cart,
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             PaymentOption paymentOption);
 
         ManagerResponse<GetPaymentOptionsResult, IEnumerable<PaymentOption>> GetPaymentOptions(
             string shopName,
-            Carts.Cart cart);
+            Sitecore.Commerce.Entities.Carts.Cart cart);
     }
 }

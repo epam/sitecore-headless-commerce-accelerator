@@ -18,13 +18,12 @@ namespace Wooli.Foundation.Connect.Mappers.Profiles
 
     using AutoMapper;
 
+    using Models.Catalog;
     using Models.Search;
 
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Models;
-    using Models.Catalog;
 
     using SortDirection = Sitecore.Commerce.CustomModels.Models.SortDirection;
 

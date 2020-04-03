@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Connect.Managers.Account
 {
     using System.Collections.Generic;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -45,7 +46,7 @@ namespace Wooli.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(contactId, nameof(contactId));
 
             var getUserResult = this.GetUser(contactId);
-            
+
             if (!getUserResult.Success || getUserResult.CommerceUser == null)
             {
                 return new GetPartiesResult
@@ -61,7 +62,7 @@ namespace Wooli.Foundation.Connect.Managers.Account
 
             return this.GetParties(customer);
         }
-        
+
         public GetPartiesResult GetParties(CommerceCustomer customer)
         {
             Assert.ArgumentNotNull(customer, nameof(customer));

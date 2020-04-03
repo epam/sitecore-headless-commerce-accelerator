@@ -19,6 +19,7 @@ namespace Wooli.Feature.Account
         public static class Redirects
         {
             public const string Login = "/login";
+
             public const string CurrentPage = "/";
         }
     }

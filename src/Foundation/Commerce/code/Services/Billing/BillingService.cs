@@ -18,15 +18,14 @@ namespace Wooli.Foundation.Commerce.Services.Billing
     using System.Collections.Generic;
     using System.Linq;
 
-    using Connect.Context;
-    using Connect.Managers.Payment;
-
-    using Context;
-
     using Base.Models;
 
+    using Connect.Context;
     using Connect.Managers.Cart;
+    using Connect.Managers.Payment;
     using Connect.Models;
+
+    using Context;
 
     using DependencyInjection;
 
@@ -35,23 +34,25 @@ namespace Wooli.Foundation.Commerce.Services.Billing
     using Models.Entities.Addresses;
     using Models.Entities.Billing;
 
+    using Sitecore;
     using Sitecore.Commerce.Entities.Carts;
-    using Sitecore.Diagnostics;
-
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Diagnostics;
 
     using FederatedPaymentInfo = Models.Entities.Payment.FederatedPaymentInfo;
-    using PaymentOption = Models.Entities.Payment.PaymentOption;
-    using PaymentMethod = Models.Entities.Payment.PaymentMethod;
 
     [Service(typeof(IBillingService), Lifetime = Lifetime.Singleton)]
     public class BillingService : IBillingService
     {
         private readonly ICartManagerV2 cartManager;
-        private readonly IPaymentMapper paymentMapper;
+
         private readonly IPaymentManagerV2 paymentManager;
+
+        private readonly IPaymentMapper paymentMapper;
+
         private readonly IStorefrontContext storefrontContext;
+
         private readonly IVisitorContext visitorContext;
 
         public BillingService(
@@ -79,7 +80,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             var model = new BillingInfo();
             var result = new Result<BillingInfo>(model);
 
-            if (!Sitecore.Context.PageMode.IsExperienceEditor)
+            if (!Context.PageMode.IsExperienceEditor)
             {
                 result.SetResult(model);
                 var cartResult = this.cartManager.LoadCart(
@@ -151,7 +152,9 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             }
 
             var party = this.CreatePartyFromAddress(billingAddress);
-            var federatedPaymentInfo = this.paymentMapper.Map<FederatedPaymentInfo, Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo>(federatedPayment);
+            var federatedPaymentInfo =
+                this.paymentMapper.Map<FederatedPaymentInfo, Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo>(
+                    federatedPayment);
             var addPaymentInfoResult = this.cartManager.AddPaymentInfo(cartResult.Cart, party, federatedPaymentInfo);
 
             if (!addPaymentInfoResult.Success)
@@ -162,6 +165,59 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             }
 
             return result;
+        }
+
+        private void AddPaymentClientToken(Result<BillingInfo> result)
+        {
+            var getPaymentClientTokenResult = this.paymentManager.GetPaymentClientToken();
+
+            if (getPaymentClientTokenResult.Success)
+            {
+                result.Data.PaymentClientToken = getPaymentClientTokenResult.ClientToken;
+            }
+            else
+            {
+                result.SetErrors(getPaymentClientTokenResult.SystemMessages.Select(m => m.Message).ToList());
+            }
+        }
+
+        private void AddPaymentMethods(Result<BillingInfo> result, Cart cart)
+        {
+            var paymentOption = new PaymentOption
+            {
+                PaymentOptionType = PaymentOptionType.PayCard
+            };
+
+            var getPaymentMethodsResult = this.paymentManager.GetPaymentMethods(cart, paymentOption);
+
+            if (getPaymentMethodsResult.Success)
+            {
+                result.Data.PaymentMethods =
+                    this.paymentMapper
+                        .Map<IReadOnlyCollection<PaymentMethod>, List<Models.Entities.Payment.PaymentMethod>
+                        >(getPaymentMethodsResult.PaymentMethods);
+            }
+            else
+            {
+                result.SetErrors(getPaymentMethodsResult.SystemMessages.Select(m => m.Message).ToList());
+            }
+        }
+
+        private void AddPaymentOptions(Result<BillingInfo> result, Cart cart)
+        {
+            var getPaymentOptionsResult = this.paymentManager.GetPaymentOptions(this.storefrontContext.ShopName, cart);
+
+            if (getPaymentOptionsResult.Success)
+            {
+                result.Data.PaymentOptions =
+                    this.paymentMapper
+                        .Map<IReadOnlyCollection<PaymentOption>, List<Models.Entities.Payment.PaymentOption>
+                        >(getPaymentOptionsResult.PaymentOptions);
+            }
+            else
+            {
+                result.SetErrors(getPaymentOptionsResult.SystemMessages.Select(m => m.Message).ToList());
+            }
         }
 
         private Party CreatePartyFromAddress(Address address)
@@ -189,59 +245,6 @@ namespace Wooli.Foundation.Commerce.Services.Billing
                         ? this.visitorContext.CurrentUser.Email
                         : email
                 });
-        }
-
-        private void AddPaymentOptions(Result<BillingInfo> result, Cart cart)
-        {
-            var getPaymentOptionsResult = this.paymentManager.GetPaymentOptions(this.storefrontContext.ShopName, cart);
-
-            if (getPaymentOptionsResult.Success)
-            {
-                result.Data.PaymentOptions =
-                    this.paymentMapper
-                        .Map<IReadOnlyCollection<Sitecore.Commerce.Entities.Payments.PaymentOption>, List<PaymentOption>
-                        >(getPaymentOptionsResult.PaymentOptions);
-            }
-            else
-            {
-                result.SetErrors(getPaymentOptionsResult.SystemMessages.Select(m => m.Message).ToList());
-            }
-        }
-
-        private void AddPaymentMethods(Result<BillingInfo> result, Cart cart)
-        {
-            var paymentOption = new Sitecore.Commerce.Entities.Payments.PaymentOption
-            {
-                PaymentOptionType = PaymentOptionType.PayCard
-            };
-
-            var getPaymentMethodsResult = this.paymentManager.GetPaymentMethods(cart, paymentOption);
-
-            if (getPaymentMethodsResult.Success)
-            {
-                result.Data.PaymentMethods =
-                    this.paymentMapper
-                        .Map<IReadOnlyCollection<Sitecore.Commerce.Entities.Payments.PaymentMethod>, List<PaymentMethod>
-                        >(getPaymentMethodsResult.PaymentMethods);
-            }
-            else
-            {
-                result.SetErrors(getPaymentMethodsResult.SystemMessages.Select(m => m.Message).ToList());
-            }
-        }
-
-        private void AddPaymentClientToken(Result<BillingInfo> result)
-        {
-            var getPaymentClientTokenResult = this.paymentManager.GetPaymentClientToken();
-
-            if (getPaymentClientTokenResult.Success)
-            {
-                result.Data.PaymentClientToken = getPaymentClientTokenResult.ClientToken;
-            }
-            else
-            {
-                result.SetErrors(getPaymentClientTokenResult.SystemMessages.Select(m => m.Message).ToList());
-            }
         }
     }
 }

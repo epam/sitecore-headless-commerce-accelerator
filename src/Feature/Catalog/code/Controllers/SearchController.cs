@@ -29,6 +29,7 @@ namespace Wooli.Feature.Catalog.Controllers
     public class SearchController : BaseController
     {
         private readonly IProductSearchService productSearchService;
+
         private readonly ISearchMapper searchMapper;
 
         public SearchController(IProductSearchService productSearchService, ISearchMapper searchMapper)

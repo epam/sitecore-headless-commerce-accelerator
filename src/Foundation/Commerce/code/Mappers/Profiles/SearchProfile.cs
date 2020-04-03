@@ -18,7 +18,9 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
 
-    using Models.Entities.Catalog;
+    using Connect.Models.Catalog;
+    using Connect.Models.Search;
+
     using Models.Entities.Search;
 
     using Connect = Connect.Models;
@@ -30,13 +32,13 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
     {
         public SearchProfile()
         {
-            this.CreateMap<Facet, Connect.Search.Facet>()
+            this.CreateMap<Facet, Foundation.Connect.Models.Search.Facet>()
                 .ReverseMap();
 
-            this.CreateMap<FacetValue, Connect.Search.FacetValue>()
+            this.CreateMap<FacetValue, Foundation.Connect.Models.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            this.CreateMap<Connect.Search.SearchResultsV2<Connect.Catalog.Product>, ProductSearchResults>()
+            this.CreateMap<SearchResultsV2<Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
         }
     }

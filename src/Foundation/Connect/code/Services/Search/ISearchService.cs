@@ -25,13 +25,6 @@ namespace Wooli.Foundation.Connect.Services.Search
     public interface ISearchService
     {
         /// <summary>
-        /// Gets products from context catalog by keyword and search options
-        /// </summary>
-        /// <param name="searchOptions">GetProducts options: sorting, keyword, facets, etc.</param>
-        /// <returns>GetProducts results</returns>
-        SearchResultsV2<Product> GetProducts(SearchOptions searchOptions);
-
-        /// <summary>
         /// Gets category item from context catalog by category name
         /// </summary>
         /// <param name="categoryName">Category name</param>
@@ -44,5 +37,12 @@ namespace Wooli.Foundation.Connect.Services.Search
         /// <param name="productId">Product product id</param>
         /// <returns>Product item</returns>
         Item GetProductItem(string productId);
+
+        /// <summary>
+        /// Gets products from context catalog by keyword and search options
+        /// </summary>
+        /// <param name="searchOptions">GetProducts options: sorting, keyword, facets, etc.</param>
+        /// <returns>GetProducts results</returns>
+        SearchResultsV2<Product> GetProducts(SearchOptions searchOptions);
     }
 }

@@ -18,7 +18,6 @@ namespace Wooli.Foundation.Connect.Models.Catalog
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Data.Items;
 
     [ExcludeFromCodeCoverage]
@@ -65,9 +64,9 @@ namespace Wooli.Foundation.Connect.Models.Catalog
         public decimal? ListPrice { get; set; }
 
         public decimal? AdjustedPrice { get; set; }
-        
+
         public string CurrencyCode { get; set; }
-        
+
         public StockStatus StockStatus { get; set; }
     }
 }

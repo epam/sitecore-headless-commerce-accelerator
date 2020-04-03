@@ -37,11 +37,15 @@ namespace Wooli.Foundation.Connect.Services.Search
     [Service(typeof(ISearchService), Lifetime = Lifetime.Singleton)]
     public class SearchService : ISearchService
     {
-        private readonly ISearchMapper searchMapper;
-        private readonly ISearchQueryBuilder queryBuilder;
-        private readonly ISearchResponseProvider searchResponseProvider;
-        private readonly ISearchResultProvider searchResultProvider;
         private readonly IProductBuilder<Item, Product> productBuilder;
+
+        private readonly ISearchQueryBuilder queryBuilder;
+
+        private readonly ISearchMapper searchMapper;
+
+        private readonly ISearchResponseProvider searchResponseProvider;
+
+        private readonly ISearchResultProvider searchResultProvider;
 
         public SearchService(
             ISearchMapper searchMapper,

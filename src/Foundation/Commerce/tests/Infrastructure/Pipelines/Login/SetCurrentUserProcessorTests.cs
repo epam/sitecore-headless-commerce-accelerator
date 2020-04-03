@@ -34,15 +34,15 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     public class SetCurrentUserProcessorTests
     {
-        private readonly SetCurrentUserProcessor processor;
-
         private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly IVisitorContext visitorContext;
+        private readonly SetCurrentUserProcessor processor;
 
         private readonly IUserMapper userMapper;
+
+        private readonly IVisitorContext visitorContext;
 
         public SetCurrentUserProcessorTests()
         {
@@ -52,6 +52,19 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
             this.userMapper = Substitute.For<IUserMapper>();
 
             this.processor = new SetCurrentUserProcessor(this.visitorContext, this.userMapper, this.logService);
+        }
+
+        [Fact]
+        public void Process_IfArgsIsNotNull_ShouldCallUserMapperMap()
+        {
+            // arrange
+            var args = new LoginPipelineArgs();
+
+            // act
+            this.processor.Process(args);
+
+            // assert
+            this.userMapper.Received(1).Map<LoginPipelineArgs, User>(args);
         }
 
         [Fact]
@@ -67,19 +80,6 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
             // assert
             Assert.Equal(contactId, args.AnonymousContactId);
-        }
-
-        [Fact]
-        public void Process_IfArgsIsNotNull_ShouldCallUserMapperMap()
-        {
-            // arrange
-            var args = new LoginPipelineArgs();
-
-            // act
-            this.processor.Process(args);
-
-            // assert
-            this.userMapper.Received(1).Map<LoginPipelineArgs, User>(args);
         }
 
         [Fact]

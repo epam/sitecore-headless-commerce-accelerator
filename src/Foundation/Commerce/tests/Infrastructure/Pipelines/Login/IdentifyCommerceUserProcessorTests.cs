@@ -30,12 +30,13 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     public class IdentifyCommerceUserProcessorTests
     {
-        private readonly IdentifyCommerceUserProcessor processor;
-
         private readonly ICommerceTrackingService commerceTrackingService;
-        private readonly ILogService<CommonLog> logService;
 
         private readonly IFixture fixture;
+
+        private readonly ILogService<CommonLog> logService;
+
+        private readonly IdentifyCommerceUserProcessor processor;
 
         public IdentifyCommerceUserProcessorTests()
         {
@@ -50,7 +51,7 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
         public void Process_IfArgsNotNull_ShouldCallCommerceTrackingServiceIdentifyAs()
         {
             // arrange
-            var args = new LoginPipelineArgs()
+            var args = new LoginPipelineArgs
             {
                 UserName = this.fixture.Create<string>()
             };

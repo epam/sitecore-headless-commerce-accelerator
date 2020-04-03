@@ -26,6 +26,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Logout
     public class EndVisitProcessor : PipelineProcessor<LogoutPipelineArgs>
     {
         private readonly ISessionService sessionService;
+
         private readonly ICommerceTrackingService trackingService;
 
         public EndVisitProcessor(ICommerceTrackingService trackingService, ISessionService sessionService)

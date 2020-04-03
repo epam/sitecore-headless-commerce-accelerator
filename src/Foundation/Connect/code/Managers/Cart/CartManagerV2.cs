@@ -41,9 +41,13 @@ namespace Wooli.Foundation.Connect.Managers.Cart
     public class CartManagerV2 : BaseManager, ICartManagerV2
     {
         private readonly CommerceCartServiceProvider cartServiceProvider;
+
         private readonly IConnectEntityMapper connectMapper;
 
-        public CartManagerV2(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectMapper)
+        public CartManagerV2(
+            ILogService<CommonLog> logService,
+            IConnectServiceProvider connectServiceProvider,
+            IConnectEntityMapper connectMapper)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
@@ -115,7 +119,9 @@ namespace Wooli.Foundation.Connect.Managers.Cart
             Assert.ArgumentNotNull(shippingOptionType, nameof(shippingOptionType));
             Assert.ArgumentNotNull(shippings, nameof(shippings));
 
-            return this.Execute(new AddShippingInfoRequest(cart, shippings, shippingOptionType), this.cartServiceProvider.AddShippingInfo);
+            return this.Execute(
+                new AddShippingInfoRequest(cart, shippings, shippingOptionType),
+                this.cartServiceProvider.AddShippingInfo);
         }
 
         public CartResult UpdateCart(Cart cart, CartBase cartUpdate)
@@ -170,7 +176,9 @@ namespace Wooli.Foundation.Connect.Managers.Cart
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
 
-            return this.Execute(new RemovePaymentInfoRequest(cart, cart.Payment), this.cartServiceProvider.RemovePaymentInfo);
+            return this.Execute(
+                new RemovePaymentInfoRequest(cart, cart.Payment),
+                this.cartServiceProvider.RemovePaymentInfo);
         }
     }
 }

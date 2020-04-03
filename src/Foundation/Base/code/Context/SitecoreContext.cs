@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Base.Context
 
     using DependencyInjection;
 
+    using Sitecore;
     using Sitecore.Abstractions;
     using Sitecore.Data;
     using Sitecore.Globalization;
@@ -27,12 +28,12 @@ namespace Wooli.Foundation.Base.Context
     [ExcludeFromCodeCoverage]
     public class SitecoreContext : ISitecoreContext
     {
-        public Language Language => Sitecore.Context.Language;
+        public Language Language => Context.Language;
 
-        public SiteContext Site => Sitecore.Context.Site;
+        public SiteContext Site => Context.Site;
 
-        public Database Database => Sitecore.Context.Database;
+        public Database Database => Context.Database;
 
-        public BaseJob Job => Sitecore.Context.Job;
+        public BaseJob Job => Context.Job;
     }
 }

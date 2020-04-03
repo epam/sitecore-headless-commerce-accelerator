@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Tests.Managers
 {
-    using System.Collections.Generic;
-
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -31,11 +29,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers
 
     public class BaseManagerTests
     {
-        private readonly TestManager manager;
+        private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly IFixture fixture;
+        private readonly TestManager manager;
 
         public BaseManagerTests()
         {
@@ -81,7 +79,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers
         private class TestManager : BaseManager
         {
             public TestManager(ILogService<CommonLog> logService) : base(logService)
-            { }
+            {
+            }
         }
     }
 }

@@ -19,7 +19,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Connect.Context;
     using Connect.Managers;
-    using Connect.Models;
     using Connect.Models.Catalog;
 
     using Context;
@@ -32,8 +31,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using ProductModel = Models.Catalog.ProductModel;
 
     public class BaseCatalogRepository
     {

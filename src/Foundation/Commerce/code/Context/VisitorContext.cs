@@ -19,7 +19,6 @@ namespace Wooli.Foundation.Commerce.Context
 
     using DependencyInjection;
 
-    using Models;
     using Models.Entities.Users;
 
     using Providers;

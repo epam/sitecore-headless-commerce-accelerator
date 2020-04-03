@@ -21,10 +21,11 @@ namespace Wooli.Foundation.Connect.Managers.Payment
 
     using Mappers;
 
+    using Models.Payment;
+
     using Providers.Contracts;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Services;
@@ -36,10 +37,14 @@ namespace Wooli.Foundation.Connect.Managers.Payment
     [Service(typeof(IPaymentManagerV2), Lifetime = Lifetime.Singleton)]
     public class PaymentManagerV2 : BaseManager, IPaymentManagerV2
     {
-        private readonly PaymentServiceProvider paymentServiceProvider;
         private readonly IConnectEntityMapper connectMapper;
 
-        public PaymentManagerV2(IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectMapper, ILogService<CommonLog> logService) : base(logService)
+        private readonly PaymentServiceProvider paymentServiceProvider;
+
+        public PaymentManagerV2(
+            IConnectServiceProvider connectServiceProvider,
+            IConnectEntityMapper connectMapper,
+            ILogService<CommonLog> logService) : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             Assert.ArgumentNotNull(connectMapper, nameof(connectMapper));
@@ -48,19 +53,22 @@ namespace Wooli.Foundation.Connect.Managers.Payment
             this.connectMapper = connectMapper;
         }
 
-        public Models.Payment.PaymentClientTokenResult GetPaymentClientToken()
+        public PaymentClientTokenResult GetPaymentClientToken()
         {
             return this.Execute(
                 new ServiceProviderRequest(),
                 req =>
                 {
                     var serviceProviderResult =
-                        this.paymentServiceProvider.RunPipeline<ServiceProviderRequest, PaymentClientTokenResult>(
-                            "commerce.payments.getClientToken",
-                            req);
+                        this.paymentServiceProvider
+                            .RunPipeline<ServiceProviderRequest, Sitecore.Commerce.Engine.Connect.Pipelines.Arguments.
+                                PaymentClientTokenResult>(
+                                "commerce.payments.getClientToken",
+                                req);
 
                     return this.connectMapper
-                        .Map<PaymentClientTokenResult, Models.Payment.PaymentClientTokenResult>(serviceProviderResult);
+                        .Map<Sitecore.Commerce.Engine.Connect.Pipelines.Arguments.PaymentClientTokenResult,
+                            PaymentClientTokenResult>(serviceProviderResult);
                 });
         }
 

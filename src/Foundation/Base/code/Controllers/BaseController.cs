@@ -39,7 +39,9 @@ namespace Wooli.Foundation.Base.Controllers
         }
 
         [NonAction]
-        public virtual ActionResult Execute<TData>(Func<Result<TData>> function, Func<Result<TData>, ActionResult> resolve)
+        public virtual ActionResult Execute<TData>(
+            Func<Result<TData>> function,
+            Func<Result<TData>, ActionResult> resolve)
             where TData : class
         {
             try

@@ -29,23 +29,6 @@ namespace Wooli.Foundation.Connect.Managers.Cart
     public interface ICartManagerV2
     {
         /// <summary>
-        /// Loads cart
-        /// </summary>
-        /// <param name="shopName">Shop name</param>
-        /// <param name="customerId">Customer id</param>
-        /// <returns>Cart result</returns>
-        CartResult LoadCart(string shopName, string customerId);
-
-        /// <summary>
-        /// Creates or resumes cart
-        /// </summary>
-        /// <param name="shopName">Shop name</param>
-        /// <param name="customerId">Customer id</param>
-        /// <param name="userId">User id</param>
-        /// <returns>Cart result</returns>
-        CartResult CreateOrResumeCart(string shopName, string userId, string customerId);
-
-        /// <summary>
         /// Adds cart line
         /// </summary>
         /// <param name="cart">Cart</param>
@@ -65,6 +48,14 @@ namespace Wooli.Foundation.Connect.Managers.Cart
         AddPaymentInfoResult AddPaymentInfo(Cart cart, Party party, FederatedPaymentInfo federatedPaymentInfo);
 
         /// <summary>
+        /// Adds promo code
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <param name="promoCode">Promo code</param>
+        /// <returns>Cart result</returns>
+        CartResult AddPromoCode(CommerceCart cart, string promoCode);
+
+        /// <summary>
         /// Adds shipping info to the cart
         /// </summary>
         /// <param name="cart">Cart</param>
@@ -75,6 +66,54 @@ namespace Wooli.Foundation.Connect.Managers.Cart
             Cart cart,
             ShippingOptionType shippingOptionType,
             List<ShippingInfo> shippings);
+
+        /// <summary>
+        /// Creates or resumes cart
+        /// </summary>
+        /// <param name="shopName">Shop name</param>
+        /// <param name="customerId">Customer id</param>
+        /// <param name="userId">User id</param>
+        /// <returns>Cart result</returns>
+        CartResult CreateOrResumeCart(string shopName, string userId, string customerId);
+
+        /// <summary>
+        /// Loads cart
+        /// </summary>
+        /// <param name="shopName">Shop name</param>
+        /// <param name="customerId">Customer id</param>
+        /// <returns>Cart result</returns>
+        CartResult LoadCart(string shopName, string customerId);
+
+        /// <summary>
+        /// Merges carts
+        /// </summary>
+        /// <param name="fromCart">Source cart</param>
+        /// <param name="toCart">Destination cart</param>
+        /// <returns>Cart result</returns>
+        CartResult MergeCarts(Cart fromCart, Cart toCart);
+
+        /// <summary>
+        /// Removes cart line
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <param name="cartLines">Cart line</param>
+        /// <returns>Cart result</returns>
+        CartResult RemoveCartLines(Cart cart, IEnumerable<CartLine> cartLines);
+
+        /// <summary>
+        /// Removes all payment info from cart
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <returns>Cart result</returns>
+        CartResult RemovePaymentInfo(Cart cart);
+
+        /// <summary>
+        /// Removes promo code
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <param name="promoCode">Promo code</param>
+        /// <returns>Cart result</returns>
+        CartResult RemovePromoCode(CommerceCart cart, string promoCode);
 
         /// <summary>
         /// Updates cart
@@ -93,44 +132,5 @@ namespace Wooli.Foundation.Connect.Managers.Cart
         CartResult UpdateCartLines(
             Cart cart,
             IEnumerable<CartLine> cartLines);
-
-        /// <summary>
-        /// Removes cart line
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <param name="cartLines">Cart line</param>
-        /// <returns>Cart result</returns>
-        CartResult RemoveCartLines(Cart cart, IEnumerable<CartLine> cartLines);
-
-        /// <summary>
-        /// Merges carts
-        /// </summary>
-        /// <param name="fromCart">Source cart</param>
-        /// <param name="toCart">Destination cart</param>
-        /// <returns>Cart result</returns>
-        CartResult MergeCarts(Cart fromCart, Cart toCart);
-
-        /// <summary>
-        /// Adds promo code
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <param name="promoCode">Promo code</param>
-        /// <returns>Cart result</returns>
-        CartResult AddPromoCode(CommerceCart cart, string promoCode);
-
-        /// <summary>
-        /// Removes promo code
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <param name="promoCode">Promo code</param>
-        /// <returns>Cart result</returns>
-        CartResult RemovePromoCode(CommerceCart cart, string promoCode);
-
-        /// <summary>
-        /// Removes all payment info from cart
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <returns>Cart result</returns>
-        CartResult RemovePaymentInfo(Cart cart);
     }
 }

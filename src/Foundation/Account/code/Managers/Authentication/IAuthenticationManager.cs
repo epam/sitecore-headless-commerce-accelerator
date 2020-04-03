@@ -20,16 +20,16 @@ namespace Wooli.Foundation.Account.Managers.Authentication
     public interface IAuthenticationManager
     {
         /// <summary>
-        /// Logs out the current user.
-        /// </summary>
-        void Logout();
-
-        /// <summary>
         /// Logs in a user into the system if the <paramref name="password" /> is valid.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="password">The password.</param>
         /// <returns><c>true</c> if user was logged in, otherwise - <c>false</c>.</returns>
         bool Login(string userName, string password);
+
+        /// <summary>
+        /// Logs out the current user.
+        /// </summary>
+        void Logout();
     }
 }

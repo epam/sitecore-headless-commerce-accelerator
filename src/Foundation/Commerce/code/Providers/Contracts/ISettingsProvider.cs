@@ -16,8 +16,6 @@ namespace Wooli.Foundation.Commerce.Providers
 {
     using Connect.Models.Search;
 
-    using Models.Catalog;
-
     public interface ISettingsProvider
     {
         int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation);

@@ -21,5 +21,6 @@ namespace Wooli.Feature.Account.Mappers
 
     [Service(typeof(IAccountMapper), Lifetime = Lifetime.Transient)]
     public class AccountMapper : ProfileMapper<AddressProfile>, IAccountMapper
-    { }
+    {
+    }
 }

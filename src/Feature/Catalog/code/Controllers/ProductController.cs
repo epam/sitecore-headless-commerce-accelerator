@@ -22,13 +22,14 @@ namespace Wooli.Feature.Catalog.Controllers
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models;
     using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Catalog;
     using Foundation.Commerce.Utils;
     using Foundation.Extensions.Extensions;
 
     [RoutePrefix(Constants.CommerceRoutePrefix + "/product")]
     public class ProductController : ApiController
     {
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICatalogService catalogService;
 
         private readonly IProductListRepository productListRepository;
 
@@ -36,24 +37,24 @@ namespace Wooli.Feature.Catalog.Controllers
 
         public ProductController(
             IVisitorContext visitorContext,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IProductListRepository productListRepository)
         {
             this.visitorContext = visitorContext;
-            this.catalogRepository = catalogRepository;
+            this.catalogService = catalogService;
             this.productListRepository = productListRepository;
         }
 
         [Route("get/{id}")]
         public IHttpActionResult Get(string id)
         {
-            var productModel = this.catalogRepository.GetProduct(id);
-            if (productModel == null)
+            var result = this.catalogService.GetProduct(id);
+            if (!result.Success || result.Data == null)
             {
                 return this.JsonError("Not Found", HttpStatusCode.NotFound);
             }
 
-            return this.JsonOk(productModel);
+            return this.JsonOk(result.Data);
         }
 
         [Route("search")]

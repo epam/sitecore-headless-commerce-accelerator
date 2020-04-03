@@ -36,6 +36,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Checkout;
 
+    using Services.Catalog;
+
     using Sitecore;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
@@ -47,7 +49,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         public BillingRepository(
             IPaymentManager paymentManager,
             ICartManager cartManager,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IAccountManager accountManager,
             ICartModelBuilder cartModelBuilder,
             IEntityMapper entityMapper,
@@ -55,7 +57,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             IVisitorContext visitorContext)
             : base(
                 cartManager,
-                catalogRepository,
+                catalogService,
                 accountManager,
                 cartModelBuilder,
                 entityMapper,

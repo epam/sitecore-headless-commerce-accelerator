@@ -16,37 +16,42 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Services.Analytics;
+    using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;
 
+    using Sitecore.Diagnostics;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ICommerceAnalyticsService analyticsRepository;
+        private readonly ICommerceAnalyticsService analyticsService;
 
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICatalogService catalogService;
 
         public CategoryContextExtension(
-            ICatalogRepository catalogRepository,
-            ICommerceAnalyticsService analyticsRepository,
+            ICatalogService catalogService,
+            ICommerceAnalyticsService analyticsService,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
-            this.catalogRepository = catalogRepository;
-            this.analyticsRepository = analyticsRepository;
+            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
+            Assert.ArgumentNotNull(analyticsService, nameof(analyticsService));
+
+            this.catalogService = catalogService;
+            this.analyticsService = analyticsService;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            var model = this.catalogRepository.GetCurrentCategory();
+            var result = this.catalogService.GetCurrentCategory();
 
-            if (model != null)
+            if (result.Success && result.Data != null)
             {
-                this.analyticsRepository.RaiseCategoryVisitedEvent(model);
+                this.analyticsService.RaiseCategoryVisitedEvent(result.Data);
             }
 
-            args.ContextData.Add("category", model);
+            args.ContextData.Add("category", result.Data);
         }
     }
 }

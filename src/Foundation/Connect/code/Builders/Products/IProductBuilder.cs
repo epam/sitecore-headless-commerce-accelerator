@@ -16,12 +16,29 @@ namespace Wooli.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
 
+    using Models.Catalog;
+
+    /// <summary>
+    /// Builds product or variant entities from TSource
+    /// </summary>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TDestination"></typeparam>
     public interface IProductBuilder<in TSource, out TDestination>
         where TSource : class
-        where TDestination : class
+        where TDestination : BaseProduct
     {
-        IEnumerable<TDestination> Build(IEnumerable<TSource> item);
+        /// <summary>
+        /// Builds enumerable of product or variant entities from TSource
+        /// </summary>
+        /// <param name="source">Source model</param>
+        /// <returns></returns>
+        IEnumerable<TDestination> Build(IEnumerable<TSource> source);
 
+        /// <summary>
+        /// Builds product or variant entity from TSource
+        /// </summary>
+        /// <param name="source">Source model</param>
+        /// <returns></returns>
         TDestination Build(TSource source);
     }
 }

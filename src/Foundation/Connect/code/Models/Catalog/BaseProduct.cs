@@ -37,6 +37,7 @@ namespace Wooli.Foundation.Connect.Models.Catalog
 
         public string Id { get; set; }
 
+        //TODO: move to variants
         public string ProductId { get; set; }
 
         public string SitecoreId { get; set; }

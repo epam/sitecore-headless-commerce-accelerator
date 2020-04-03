@@ -12,26 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Cart
+namespace Wooli.Foundation.Commerce.Mappers.Catalog
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Catalog;
-    
-    using TypeLite;
+    using Base.Mappers;
+
+    using DependencyInjection;
+
+    using Profiles;
 
     [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class CartLine
-    {
-        public string Id { get; set; }
-
-        public Product Product { get; set; }
-
-        public Variant Variant { get; set; }
-
-        public decimal Quantity { get; set; }
-
-        public TotalPrice Price { get; set; }
-    }
+    [Service(typeof(ICatalogMapper), Lifetime = Lifetime.Singleton)]
+    public class CatalogMapper : ProfileMapper<CatalogProfile>, ICatalogMapper
+    { }
 }

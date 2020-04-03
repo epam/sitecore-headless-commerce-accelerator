@@ -18,6 +18,8 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
 
     using Catalog;
 
+    using Entities.Catalog;
+
     using TypeLite;
 
     [TsClass]
@@ -26,9 +28,9 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
     {
         public string Id { get; set; }
 
-        public ProductModel Product { get; set; }
+        public Product Product { get; set; }
 
-        public ProductVariantModel Variant { get; set; }
+        public Variant Variant { get; set; }
 
         public decimal Quantity { get; set; }
 

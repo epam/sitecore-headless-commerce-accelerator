@@ -45,7 +45,7 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
       const updateCartLineModel: ShoppingCartApi.CartItemDto = {
         productId: cartLine.product.productId,
         quantity,
-        variantId: cartLine.variant.productVariantId,
+        variantId: cartLine.variant.variantId,
       };
       this.props.UpdateCartLine(updateCartLineModel);
     }

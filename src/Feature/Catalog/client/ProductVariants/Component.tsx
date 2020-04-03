@@ -47,7 +47,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
               <ul className="colors-list">
                 {variants &&
                   variants.map((variant, variantIndex) => {
-                    const colorName = variant.variantProperties['Color'];
+                    const colorName = variant.properties['Color'];
                     const colorValue = resolveColor(colorName, this.props.sitecoreContext);
                     return (
                       <li key={variantIndex} className="colors-listitem">

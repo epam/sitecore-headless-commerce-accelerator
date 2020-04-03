@@ -33,6 +33,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Checkout;
 
+    using Services.Catalog;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
 
     [Service(typeof(ICartRepository))]
@@ -40,7 +42,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     {
         public CartRepository(
             ICartManager cartManager,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IAccountManager accountManager,
             ICartModelBuilder cartModelBuilder,
             IEntityMapper entityMapper,
@@ -48,7 +50,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             IVisitorContext visitorContext)
             : base(
                 cartManager,
-                catalogRepository,
+                catalogService,
                 accountManager,
                 cartModelBuilder,
                 entityMapper,

@@ -14,39 +14,42 @@
 
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
-    using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Services.Analytics;
+    using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;
 
+    using Sitecore.Diagnostics;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ICommerceAnalyticsService analyticsRepository;
-
-        private readonly ICatalogRepository catalogRepository;
+        private readonly ICommerceAnalyticsService analyticsService;
+        private readonly ICatalogService catalogService;
 
         public ProductContextExtension(
-            ICatalogRepository catalogRepository,
-            ICommerceAnalyticsService analyticsRepository,
+            ICatalogService catalogService,
+            ICommerceAnalyticsService analyticsService,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
-            this.catalogRepository = catalogRepository;
-            this.analyticsRepository = analyticsRepository;
+            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
+            Assert.ArgumentNotNull(analyticsService, nameof(analyticsService));
+
+            this.catalogService = catalogService;
+            this.analyticsService = analyticsService;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            var model = this.catalogRepository.GetCurrentProduct();
+            var result = this.catalogService.GetCurrentProduct();
 
-            if (model != null)
+            if (result.Success && result.Data != null)
             {
-                this.analyticsRepository.RaiseProductVisitedEvent(model);
+                this.analyticsService.RaiseProductVisitedEvent(result.Data);
             }
 
-            args.ContextData.Add("product", model);
+            args.ContextData.Add("product", result.Data);
         }
     }
 }

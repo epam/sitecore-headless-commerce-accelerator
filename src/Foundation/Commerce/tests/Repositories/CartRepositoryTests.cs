@@ -16,8 +16,11 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
     using System.Collections.Generic;
 
+    using Base.Models;
+
     using Commerce.ModelMappers;
     using Commerce.Repositories;
+    using Commerce.Services.Catalog;
 
     using Connect.Context;
     using Connect.Managers;
@@ -28,6 +31,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
 
     using Models.Catalog;
     using Models.Checkout;
+    using Models.Entities.Catalog;
 
     using NSubstitute;
 
@@ -48,7 +52,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             const string ProductIdValue = "productId";
 
             var cartManager = Substitute.For<ICartManager>();
-            var catalogRepository = Substitute.For<ICatalogRepository>();
+            var catalogService = Substitute.For<ICatalogService>();
             var accountManager = Substitute.For<IAccountManager>();
             var addressPartyMapper = Substitute.For<IEntityMapper>();
             var cartModelBuilder = Substitute.For<ICartModelBuilder>();
@@ -92,7 +96,11 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                                 Cart = cart
                             },
                             cart));
-                catalogRepository.GetProduct(ProductIdValue).Returns(new ProductModel(productItem));
+                var product = new Product
+                {
+                    ProductId = ProductIdValue
+                };
+                catalogService.GetProduct(ProductIdValue).Returns(new Result<Product>(product));
                 cartModelBuilder.Initialize(Arg.Any<Cart>())
                     .Returns(
                         new CartModel
@@ -101,7 +109,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                             {
                                 new CartLineModel
                                 {
-                                    Product = new ProductModel(productItem)
+                                    Product = product
                                 }
                             }
                         });
@@ -109,7 +117,7 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
                 // Execute
                 var repository = new CartRepository(
                     cartManager,
-                    catalogRepository,
+                    catalogService,
                     accountManager,
                     cartModelBuilder,
                     addressPartyMapper,

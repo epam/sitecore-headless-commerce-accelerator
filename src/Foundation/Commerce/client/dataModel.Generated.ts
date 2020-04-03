@@ -161,10 +161,10 @@
         imageUrls: string[];
         listPrice: number;
         productId: string;
-        productVariantId: string;
+        variantId: string;
         stockStatusName: string;
         tags: string[];
-        variantProperties: { [key: string]: string };
+        properties: { [key: string]: string };
     }
     export interface SetPaymentArgs {
         billingAddress: AddressModel;

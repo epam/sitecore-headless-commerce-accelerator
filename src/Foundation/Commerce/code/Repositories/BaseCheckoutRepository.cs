@@ -34,6 +34,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Checkout;
 
+    using Services.Catalog;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Carts;
@@ -44,13 +46,13 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         protected readonly ICartModelBuilder CartModelBuilder;
 
-        protected readonly ICatalogRepository CatalogRepository;
+        protected readonly ICatalogService CatalogService;
 
         protected readonly IEntityMapper EntityMapper;
 
         protected BaseCheckoutRepository(
             ICartManager cartManager,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IAccountManager accountManager,
             ICartModelBuilder cartModelBuilder,
             IEntityMapper entityMapper,
@@ -61,7 +63,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             this.StorefrontContext = storefrontContext;
             this.VisitorContext = visitorContext;
             this.CartManager = cartManager;
-            this.CatalogRepository = catalogRepository;
+            this.CatalogService = catalogService;
             this.CartModelBuilder = cartModelBuilder;
             this.EntityMapper = entityMapper;
         }

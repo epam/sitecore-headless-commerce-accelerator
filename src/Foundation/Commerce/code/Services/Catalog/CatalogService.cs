@@ -16,27 +16,70 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
 {
     using Base.Models;
 
+    using Connect.Builders.Products;
+    using Connect.Services.Search;
+
+    using Context;
+
     using DependencyInjection;
 
-    using Models;
+    using Mappers.Catalog;
+
     using Models.Entities.Catalog;
+
+    using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
+    using Connect = Connect.Models.Catalog;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService
     {
+        private readonly ISiteContext siteContext;
+        private readonly ICatalogMapper catalogMapper;
+        private readonly ISearchService searchService;
+        private readonly IProductBuilder<Item, Connect.Product> productBuilder;
+
+        public CatalogService(ISiteContext siteContext, ICatalogMapper catalogMapper, ISearchService searchService, IProductBuilder<Item, Connect.Product> productBuilder)
+        {
+            Assert.ArgumentNotNull(siteContext, nameof(siteContext));
+            Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
+            Assert.ArgumentNotNull(searchService, nameof(searchService));
+            Assert.ArgumentNotNull(productBuilder, nameof(productBuilder));
+
+            this.siteContext = siteContext;
+            this.catalogMapper = catalogMapper;
+            this.searchService = searchService;
+            this.productBuilder = productBuilder;
+        }
+
         public Result<Product> GetProduct(string productId)
         {
-            throw new System.NotImplementedException();
+            var item = this.searchService.GetProductItem(productId);
+            if (item == null)
+            {
+                return new Result<Product>(null);
+            }
+
+            var product = this.productBuilder.Build(item);
+            return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
         }
 
         public Result<Product> GetCurrentProduct()
         {
-            throw new System.NotImplementedException();
+            var item = this.siteContext.CurrentProductItem;
+            if (item == null)
+            {
+                return new Result<Product>(null);
+            }
+
+            var product = this.productBuilder.Build(item);
+            return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
         }
 
         public Result<Category> GetCurrentCategory()
         {
-            throw new System.NotImplementedException();
+            var categoryItem = this.siteContext.CurrentCategoryItem;
+            return categoryItem != null ? new Result<Category>(new Category(categoryItem)) : new Result<Category>(null);
         }
     }
 }

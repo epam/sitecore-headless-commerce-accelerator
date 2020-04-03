@@ -35,6 +35,8 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Models;
     using Models.Checkout;
 
+    using Services.Catalog;
+
     using Sitecore.Diagnostics;
 
     [Service(typeof(IOrderRepository), Lifetime = Lifetime.Singleton)]
@@ -47,7 +49,7 @@ namespace Wooli.Foundation.Commerce.Repositories
         public OrderRepository(
             IOrderManager orderManager,
             ICartManager cartManager,
-            ICatalogRepository catalogRepository,
+            ICatalogService catalogService,
             IAccountManager accountManager,
             ICartModelBuilder cartModelBuilder,
             IOrderModelBuilder orderModelBuilder,
@@ -56,7 +58,7 @@ namespace Wooli.Foundation.Commerce.Repositories
             IVisitorContext visitorContext)
             : base(
                 cartManager,
-                catalogRepository,
+                catalogService,
                 accountManager,
                 cartModelBuilder,
                 entityMapper,

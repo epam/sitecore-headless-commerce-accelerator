@@ -22,6 +22,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
     using DependencyInjection;
 
     using Models.Catalog;
+    using Models.Entities.Catalog;
 
     using Sitecore.Commerce;
 
@@ -41,7 +42,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
             this.storefrontContext = storefrontContext;
         }
 
-        public void RaiseCategoryVisitedEvent(CategoryModel category)
+        public void RaiseCategoryVisitedEvent(Category category)
         {
             Assert.ArgumentNotNull(category, nameof(category));
 
@@ -51,7 +52,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
                 category.Name);
         }
 
-        public void RaiseProductVisitedEvent(ProductModel product)
+        public void RaiseProductVisitedEvent(Product product)
         {
             Assert.ArgumentNotNull(product, nameof(product));
 

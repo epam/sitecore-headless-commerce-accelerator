@@ -45,7 +45,7 @@ namespace Wooli.Foundation.Account.Services.Authentication
 
         public Result<LoginResult> Login(string email, string password)
         {
-            var args = new LoginPipelineArgs()
+            var args = new LoginPipelineArgs
             {
                 Email = email,
                 Password = password
@@ -55,7 +55,7 @@ namespace Wooli.Foundation.Account.Services.Authentication
 
             return this.ResolveResult(
                 args,
-                pipelineArgs => new LoginResult()
+                pipelineArgs => new LoginResult
                 {
                     IsInvalidCredentials = pipelineArgs.IsInvalidCredentials
                 });

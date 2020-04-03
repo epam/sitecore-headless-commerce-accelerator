@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Managers.Shipping
 {
-    using System;
-
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -26,7 +24,6 @@ namespace Wooli.Foundation.Connect.Managers.Shipping
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Diagnostics;
 

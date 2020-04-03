@@ -17,11 +17,7 @@ namespace Wooli.Foundation.Commerce.Providers
     using Connect.Context;
     using Connect.Models.Search;
 
-    using Context;
-
     using DependencyInjection;
-
-    using Models.Catalog;
 
     [Service(typeof(ISettingsProvider))]
     public class SettingsProvider : ISettingsProvider

@@ -20,7 +20,6 @@ namespace Wooli.Foundation.Commerce.Services.Search
 
     using Connect.Models.Catalog;
     using Connect.Providers.Search;
-    using Connect.Services;
     using Connect.Services.Search;
 
     using DependencyInjection;
@@ -37,8 +36,11 @@ namespace Wooli.Foundation.Commerce.Services.Search
     public class ProductSearchService : IProductSearchService
     {
         private readonly ISearchService searchManager;
+
         private readonly ISearchMapper searchMapper;
+
         private readonly ISearchOptionsBuilder searchOptionsBuilder;
+
         private readonly ISearchSettingsProvider searchSettingsProvider;
 
         public ProductSearchService(

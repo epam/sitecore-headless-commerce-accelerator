@@ -30,8 +30,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<Connect.BaseProduct, BaseProduct>()
                 .ForMember(
                     dest => dest.StockStatusName,
-                    opt => opt.MapFrom(
-                        src => src.StockStatus != null ? src.StockStatus.Name : null));
+                    opt => opt.MapFrom(src => src.StockStatus != null ? src.StockStatus.Name : null));
 
             this.CreateMap<Connect.Product, Product>()
                 .IncludeBase<Connect.BaseProduct, BaseProduct>();

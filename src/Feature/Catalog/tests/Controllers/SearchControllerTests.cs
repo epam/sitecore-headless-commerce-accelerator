@@ -31,11 +31,11 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
 
     public class SearchControllerTests
     {
+        private readonly SearchController controller;
+
         private readonly IProductSearchService productSearchService;
 
         private readonly ISearchMapper searchMapper;
-
-        private readonly SearchController controller;
 
         public SearchControllerTests()
         {

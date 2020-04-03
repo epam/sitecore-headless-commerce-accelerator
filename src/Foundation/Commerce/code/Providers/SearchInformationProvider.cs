@@ -20,8 +20,6 @@ namespace Wooli.Foundation.Commerce.Providers
 
     using DependencyInjection;
 
-    using Models.Catalog;
-
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Data.Items;

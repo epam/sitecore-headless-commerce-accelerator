@@ -35,13 +35,13 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     {
         private readonly IBillingService billingService;
 
-        private readonly IDeliveryService deliveryService;
-
-        private readonly IOrderService orderService;
-
         private readonly CheckoutV2Controller controller;
 
+        private readonly IDeliveryService deliveryService;
+
         private readonly IFixture fixture;
+
+        private readonly IOrderService orderService;
 
         public CheckoutV2ControllerTests()
         {

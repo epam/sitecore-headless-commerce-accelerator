@@ -117,6 +117,15 @@ namespace Wooli.Feature.Account.Controllers
 
         [HttpPut]
         [Authorize]
+        [ActionName("account")]
+        public ActionResult UpdateAccount(UpdateAccountRequest request)
+        {
+            return this.Execute(
+                () => this.accountService.UpdateAccount(request.ContactId, request.FirstName, request.LastName));
+        }
+
+        [HttpPut]
+        [Authorize]
         [ActionName("address")]
         public ActionResult UpdateAddress(AddressRequest request)
         {
@@ -124,15 +133,6 @@ namespace Wooli.Feature.Account.Controllers
                 () => this.accountService.UpdateAddress(
                     this.visitorContext.ContactId,
                     this.mapper.Map<AddressRequest, Address>(request)));
-        }
-
-        [HttpPut]
-        [Authorize]
-        [ActionName("account")]
-        public ActionResult UpdateAccount(UpdateAccountRequest request)
-        {
-            return this.Execute(
-                () => this.accountService.UpdateAccount(request.ContactId, request.FirstName, request.LastName));
         }
 
         [HttpPost]

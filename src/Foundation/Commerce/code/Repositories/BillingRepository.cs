@@ -33,7 +33,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using ModelMappers;
 
-    using Models;
     using Models.Checkout;
 
     using Services.Catalog;
@@ -91,7 +90,6 @@ namespace Wooli.Foundation.Commerce.Repositories
                     var cartResult = currentCart.Result;
                     if (cartResult.Lines != null && cartResult.Lines.Any())
                     {
-                        ////result.Initialize(result, visitorContext);
                         this.AddPaymentOptions(result, cartResult);
                         if (result.Success)
                         {
@@ -103,13 +101,6 @@ namespace Wooli.Foundation.Commerce.Repositories
                                 {
                                     this.AddUserInfo(result.Data, result);
                                 }
-
-                                ////if (result.Success)
-                                ////{
-                                ////    this.AddAvailableCountries((BaseCheckoutDataJsonResult)model);
-                                ////    if (result.Success)
-                                ////        this.CheckForDigitalProductInCart(model, cartResult);
-                                ////}
                             }
                         }
                     }

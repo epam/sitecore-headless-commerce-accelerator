@@ -19,7 +19,6 @@ namespace Wooli.Foundation.Connect.Managers
 
     using DependencyInjection;
 
-    using Models;
     using Models.Catalog;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
@@ -27,6 +26,7 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Data.Items;
+
     using StockStatus = Models.Catalog.StockStatus;
 
     [Service(typeof(ICatalogManager))]
@@ -175,7 +175,7 @@ namespace Wooli.Foundation.Connect.Managers
 
                 if (string.IsNullOrEmpty(variantId))
                 {
-                    product.StockStatus = new StockStatus()
+                    product.StockStatus = new StockStatus
                     {
                         Name = stockInformationItem.Status.Name,
                         Value = stockInformationItem.Status.Value
@@ -186,7 +186,7 @@ namespace Wooli.Foundation.Connect.Managers
                     var variant = product.Variants?.FirstOrDefault(x => x.Id == variantId);
                     if (variant != null)
                     {
-                        variant.StockStatus = new StockStatus()
+                        variant.StockStatus = new StockStatus
                         {
                             Name = stockInformationItem.Status.Name,
                             Value = stockInformationItem.Status.Value

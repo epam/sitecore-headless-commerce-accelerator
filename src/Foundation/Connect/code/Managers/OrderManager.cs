@@ -27,8 +27,6 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services.Orders;
     using Sitecore.Diagnostics;
 
-    using Carts = Sitecore.Commerce.Entities.Carts;
-
     [Service(typeof(IOrderManager))]
     public class OrderManager : IOrderManager
     {
@@ -99,7 +97,8 @@ namespace Wooli.Foundation.Connect.Managers
             return new ManagerResponse<GetVisitorOrdersResult, OrderHeader[]>(visitorOrders, array);
         }
 
-        public ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Carts.Cart cart)
+        public ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(
+            Sitecore.Commerce.Entities.Carts.Cart cart)
         {
             var request = new SubmitVisitorOrderRequest(cart);
             try

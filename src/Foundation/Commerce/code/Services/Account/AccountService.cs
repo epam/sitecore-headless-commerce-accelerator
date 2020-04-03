@@ -21,11 +21,8 @@ namespace Wooli.Foundation.Commerce.Services.Account
 
     using DependencyInjection;
 
-    using Models;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
-
-    using User = Models.Entities.Users.User;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService

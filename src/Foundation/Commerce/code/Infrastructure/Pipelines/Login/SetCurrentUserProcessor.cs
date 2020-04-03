@@ -30,11 +30,14 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 
     public class SetCurrentUserProcessor : SafePipelineProcessor<LoginPipelineArgs>
     {
-        private readonly IVisitorContext visitorContext;
-
         private readonly IUserMapper userMapper;
 
-        public SetCurrentUserProcessor(IVisitorContext visitorContext, IUserMapper userMapper, ILogService<CommonLog> logService)
+        private readonly IVisitorContext visitorContext;
+
+        public SetCurrentUserProcessor(
+            IVisitorContext visitorContext,
+            IUserMapper userMapper,
+            ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));

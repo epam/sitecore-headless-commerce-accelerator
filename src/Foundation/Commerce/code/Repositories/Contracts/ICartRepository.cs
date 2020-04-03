@@ -18,7 +18,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Base.Models;
 
-    using Models;
     using Models.Checkout;
 
     [Obsolete("This repository is obsolete. Use ICartService instead.")]

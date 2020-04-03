@@ -29,17 +29,25 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+
     using Connect = Connect.Models.Catalog;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService
     {
-        private readonly ISiteContext siteContext;
         private readonly ICatalogMapper catalogMapper;
-        private readonly ISearchService searchService;
+
         private readonly IProductBuilder<Item, Connect.Product> productBuilder;
 
-        public CatalogService(ISiteContext siteContext, ICatalogMapper catalogMapper, ISearchService searchService, IProductBuilder<Item, Connect.Product> productBuilder)
+        private readonly ISearchService searchService;
+
+        private readonly ISiteContext siteContext;
+
+        public CatalogService(
+            ISiteContext siteContext,
+            ICatalogMapper catalogMapper,
+            ISearchService searchService,
+            IProductBuilder<Item, Connect.Product> productBuilder)
         {
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));

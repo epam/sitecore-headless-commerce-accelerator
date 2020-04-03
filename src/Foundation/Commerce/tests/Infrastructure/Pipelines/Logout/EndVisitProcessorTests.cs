@@ -28,9 +28,9 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Logout
     {
         private readonly EndVisitProcessor endVisitProcessor;
 
-        private readonly ICommerceTrackingService trackingService;
-
         private readonly ISessionService sessionService;
+
+        private readonly ICommerceTrackingService trackingService;
 
         public EndVisitProcessorTests()
         {

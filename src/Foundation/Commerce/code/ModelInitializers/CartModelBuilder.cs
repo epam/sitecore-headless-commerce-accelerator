@@ -25,8 +25,6 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
 
     using Providers;
 
-    using Repositories;
-
     using Services.Catalog;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
@@ -100,10 +98,11 @@ namespace Wooli.Foundation.Commerce.ModelInitializers
             {
                 result.Product = productResult.Data;
                 result.Variant =
-                    productResult.Data.Variants?.FirstOrDefault(x => x.VariantId == commerceCartProduct?.ProductVariantId);
+                    productResult.Data.Variants?.FirstOrDefault(
+                        x => x.VariantId == commerceCartProduct?.ProductVariantId);
                 result.Quantity = model.Quantity;
             }
-            
+
             var price = new CartPriceModel();
             price.Initialize(model.Total, this.currencyProvider);
             result.Price = price;

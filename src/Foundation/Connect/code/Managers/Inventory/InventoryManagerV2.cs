@@ -42,7 +42,7 @@ namespace Wooli.Foundation.Connect.Managers.Inventory
         }
 
         public GetStockInformationResult GetStockInformation(
-            string shopName, 
+            string shopName,
             IEnumerable<CommerceInventoryProduct> inventoryProducts,
             StockDetailsLevel detailsLevel)
         {

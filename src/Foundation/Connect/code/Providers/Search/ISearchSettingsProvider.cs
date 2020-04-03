@@ -14,10 +14,10 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
-    using Wooli.Foundation.Connect.Models.Search;
+    using Models.Search;
 
     /// <summary>
-    /// Provides search setting 
+    /// Provides search setting
     /// </summary>
     public interface ISearchSettingsProvider
     {

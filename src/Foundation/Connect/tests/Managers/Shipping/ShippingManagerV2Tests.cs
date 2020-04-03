@@ -39,10 +39,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
 
     public class ShippingManagerV2Tests
     {
-        private readonly ShippingManagerV2 shippingManager;
-        private readonly ShippingServiceProvider shippingServiceProvider;
-
         private readonly IFixture fixture;
+
+        private readonly ShippingManagerV2 shippingManager;
+
+        private readonly ShippingServiceProvider shippingServiceProvider;
 
         public ShippingManagerV2Tests()
         {
@@ -71,18 +72,20 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
         public void GetShippingMethods_ShouldCallExecuteMethod()
         {
             // act
-            this.shippingManager.GetShippingMethods(this.fixture.Create<CommerceCart>(), this.fixture.Create<ShippingOptionType>());
+            this.shippingManager.GetShippingMethods(
+                this.fixture.Create<CommerceCart>(),
+                this.fixture.Create<ShippingOptionType>());
 
             // assert
-            this.shippingManager.Received(1).Execute(Arg.Any<GetShippingMethodsRequest>(), this.shippingServiceProvider.GetShippingMethods);
+            this.shippingManager.Received(1)
+                .Execute(Arg.Any<GetShippingMethodsRequest>(), this.shippingServiceProvider.GetShippingMethods);
         }
 
         [Fact]
         public void GetShippingOptions_IfParameterIsNull_ShouldThrowArgumentNullException()
         {
             // act & assert
-            Assert.Throws<ArgumentNullException>(
-                () => this.shippingManager.GetShippingOptions(null));
+            Assert.Throws<ArgumentNullException>(() => this.shippingManager.GetShippingOptions(null));
         }
 
         [Fact]
@@ -92,7 +95,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
             this.shippingManager.GetShippingOptions(this.fixture.Create<Cart>());
 
             // assert
-            this.shippingManager.Received(1).Execute(Arg.Any<GetShippingOptionsRequest>(), this.shippingServiceProvider.GetShippingOptions);
+            this.shippingManager.Received(1)
+                .Execute(Arg.Any<GetShippingOptionsRequest>(), this.shippingServiceProvider.GetShippingOptions);
         }
 
         //TODO: Refactor duplication of CreateOmitOnRecursionFixture
@@ -104,7 +108,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
         {
             var result = new Fixture();
 
-            result.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+            result.Behaviors.OfType<ThrowingRecursionBehavior>()
+                .ToList()
                 .ForEach(b => result.Behaviors.Remove(b));
             result.Behaviors.Add(new OmitOnRecursionBehavior());
 

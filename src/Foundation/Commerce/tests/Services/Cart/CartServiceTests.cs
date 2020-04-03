@@ -21,13 +21,14 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     using Base.Models;
 
     using Commerce.ModelMappers;
-    using Commerce.Models.Entities.Cart;
     using Commerce.Services.Cart;
 
     using Connect.Context;
     using Connect.Managers.Cart;
 
     using Context;
+
+    using Models.Entities.Cart;
 
     using NSubstitute;
 
@@ -43,13 +44,18 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     public class CartServiceTests
     {
         private readonly ICartManagerV2 cartManager;
-        private readonly ICartService cartService;
-        private readonly IEntityMapper entityMapper;
-        private readonly IFixture fixture;
-        private readonly IVisitorContext visitorContext;
 
         private readonly CartResult cartResult;
+
+        private readonly ICartService cartService;
+
         private readonly CommerceCart commerceCart;
+
+        private readonly IEntityMapper entityMapper;
+
+        private readonly IFixture fixture;
+
+        private readonly IVisitorContext visitorContext;
 
         public CartServiceTests()
         {
@@ -69,66 +75,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.commerceCart = this.fixture.Create<CommerceCart>();
             this.cartResult.Cart = this.commerceCart;
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(this.cartResult);
-        }
-
-        [Fact]
-        public void GetCart_ShouldCallMapWithCartManagerResult()
-        {
-            // act
-            this.cartService.GetCart();
-
-            // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(this.cartResult);
-        }
-
-        [Fact]
-        public void MergeCarts_IfAnonymousContactIdIsNull_ShouldThrowArgumentNullException()
-        {
-            // arrange
-            string anonymousContactId = null;
-
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartService.MergeCarts(anonymousContactId));
-        }
-
-        [Theory]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void MergeCarts_IfSrcCartResultIsUnsuccessful_ShouldCallMapWithSrcCart(bool destCartSuccess)
-        {
-            // arrange
-            var arrange = this.ArrangeForMergeCarts(destCartSuccess: destCartSuccess);
-
-            // act
-            this.cartService.MergeCarts(this.fixture.Create<string>());
-
-            // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.SrcCartResult);
-        }
-
-        [Fact]
-        public void MergeCarts_IfSrcCartResultIsSuccessfulAndDestCartResultIsUnsuccessful_ShouldCallMapWithDestCart()
-        {
-            // arrange
-            var arrange = this.ArrangeForMergeCarts(true);
-
-            // act
-            this.cartService.MergeCarts(this.fixture.Create<string>());
-
-            // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.DestCartResult);
-        }
-
-        [Fact]
-        public void MergeCarts_IfSrcCartResultIsSuccessfulAndDestCartResultIsSuccessful_ShouldCallMapWithMergedCart()
-        {
-            // arrange
-            var arrange = this.ArrangeForMergeCarts(true, true);
-            // act
-            this.cartService.MergeCarts(this.fixture.Create<string>());
-
-            // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.MergedCartResult);
         }
 
         [Theory]
@@ -152,7 +98,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             var addCartLineResult = this.fixture.Create<CartResult>();
 
             this.cartManager.AddCartLines(
-                    Arg.Any<Sitecore.Commerce.Entities.Carts.Cart>(),
+                    Arg.Any<CommerceCarts.Cart>(),
                     Arg.Any<IEnumerable<CommerceCarts.CartLine>>())
                 .Returns(addCartLineResult);
 
@@ -163,43 +109,125 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(addCartLineResult);
         }
 
+        [Fact]
+        public void AddPromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.cartService.AddPromoCode(null));
+        }
+
+        [Fact]
+        public void AddPromoCode_IfValidPromoCodeWasPassed_ShouldCallAddPromoCodeMethod()
+        {
+            // act
+            this.cartService.AddPromoCode(this.fixture.Create<string>());
+
+            // assert
+            this.cartManager.Received(1).AddPromoCode(this.commerceCart, Arg.Any<string>());
+        }
+
+        [Fact]
+        public void GetCart_ShouldCallMapWithCartManagerResult()
+        {
+            // act
+            this.cartService.GetCart();
+
+            // assert
+            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(this.cartResult);
+        }
+
+        [Fact]
+        public void MergeCarts_IfAnonymousContactIdIsNull_ShouldThrowArgumentNullException()
+        {
+            // arrange
+            string anonymousContactId = null;
+
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.cartService.MergeCarts(anonymousContactId));
+        }
+
+        [Fact]
+        public void MergeCarts_IfSrcCartResultIsSuccessfulAndDestCartResultIsSuccessful_ShouldCallMapWithMergedCart()
+        {
+            // arrange
+            var arrange = this.ArrangeForMergeCarts(true, true);
+
+            // act
+            this.cartService.MergeCarts(this.fixture.Create<string>());
+
+            // assert
+            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.MergedCartResult);
+        }
+
+        [Fact]
+        public void MergeCarts_IfSrcCartResultIsSuccessfulAndDestCartResultIsUnsuccessful_ShouldCallMapWithDestCart()
+        {
+            // arrange
+            var arrange = this.ArrangeForMergeCarts(true);
+
+            // act
+            this.cartService.MergeCarts(this.fixture.Create<string>());
+
+            // assert
+            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.DestCartResult);
+        }
+
+        [Theory]
+        [InlineData(false)]
+        [InlineData(true)]
+        public void MergeCarts_IfSrcCartResultIsUnsuccessful_ShouldCallMapWithSrcCart(bool destCartSuccess)
+        {
+            // arrange
+            var arrange = this.ArrangeForMergeCarts(destCartSuccess: destCartSuccess);
+
+            // act
+            this.cartService.MergeCarts(this.fixture.Create<string>());
+
+            // assert
+            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.SrcCartResult);
+        }
+
         [Theory]
         [InlineData(null, null)]
         [InlineData(null, "1")]
         [InlineData("1", null)]
-        public void UpdateCartLine_IfParameterIsNull_ShouldThrowArgumentNullException(string productId, string variantId)
+        public void RemoveCartLine_IfParameterIsNull_ShouldThrowArgumentNullException(
+            string productId,
+            string variantId)
         {
             // act & assert
-            Assert.Throws<ArgumentNullException>(
-                () => this.cartService.UpdateCartLine(productId, variantId, this.fixture.Create<decimal>()));
+            Assert.Throws<ArgumentNullException>(() => this.cartService.RemoveCartLine(productId, variantId));
         }
 
         [Fact]
-        public void UpdateCartLine_IfQuantityIsZeroAndExistingProductIdAndVariantIdPassed_ShouldCallRemoveCartLinesMethod()
+        public void RemoveCartLine_IfValidProductIdAndVariantIdWerePassed_ShouldCallRemoveCartLineMethod()
         {
             // arrange
-            var arrange = this.ArrangeForUpdateCartLine();
+            this.cartResult.Cart.Lines = new List<CommerceCarts.CartLine>();
 
             // act
-            this.cartService.UpdateCartLine(arrange.ProductId, arrange.VariantId, 0);
+            this.cartService.RemoveCartLine(this.fixture.Create<string>(), this.fixture.Create<string>());
 
             // assert
             this.cartManager.Received(1)
-                .RemoveCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .RemoveCartLines(this.cartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
         }
 
         [Fact]
-        public void UpdateCartLine_IfQuantityIsNonZeroAndExistingProductIdAndVariantIdPassed_ShouldCallUpdateCartLinesMethod()
+        public void RemovePromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
         {
-            // arrange
-            var arrange = this.ArrangeForUpdateCartLine();
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.cartService.RemovePromoCode(null));
+        }
 
+        [Fact]
+        public void RemovePromoCode_IfValidPromoCodeWasPassed_ShouldCallRemovePromoCodeMethod()
+        {
             // act
-            this.cartService.UpdateCartLine(arrange.ProductId, arrange.VariantId, 2);
+            this.cartService.RemovePromoCode(this.fixture.Create<string>());
 
             // assert
-            this.cartManager.Received(1)
-                .UpdateCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+            this.cartManager.Received(1).RemovePromoCode(this.commerceCart, Arg.Any<string>());
         }
 
         [Fact]
@@ -223,75 +251,43 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
         [InlineData(null, null)]
         [InlineData(null, "1")]
         [InlineData("1", null)]
-        public void RemoveCartLine_IfParameterIsNull_ShouldThrowArgumentNullException(string productId, string variantId)
+        public void UpdateCartLine_IfParameterIsNull_ShouldThrowArgumentNullException(
+            string productId,
+            string variantId)
         {
             // act & assert
             Assert.Throws<ArgumentNullException>(
-                () => this.cartService.RemoveCartLine(productId, variantId));
+                () => this.cartService.UpdateCartLine(productId, variantId, this.fixture.Create<decimal>()));
         }
 
         [Fact]
-        public void RemoveCartLine_IfValidProductIdAndVariantIdWerePassed_ShouldCallRemoveCartLineMethod()
+        public void
+            UpdateCartLine_IfQuantityIsNonZeroAndExistingProductIdAndVariantIdPassed_ShouldCallUpdateCartLinesMethod()
         {
             // arrange
-            this.cartResult.Cart.Lines = new List<CommerceCarts.CartLine>();
+            var arrange = this.ArrangeForUpdateCartLine();
 
             // act
-            this.cartService.RemoveCartLine(this.fixture.Create<string>(), this.fixture.Create<string>());
+            this.cartService.UpdateCartLine(arrange.ProductId, arrange.VariantId, 2);
 
             // assert
             this.cartManager.Received(1)
-                .RemoveCartLines(this.cartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .UpdateCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
         }
 
         [Fact]
-        public void AddPromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
+        public void
+            UpdateCartLine_IfQuantityIsZeroAndExistingProductIdAndVariantIdPassed_ShouldCallRemoveCartLinesMethod()
         {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartService.AddPromoCode(null));
-        }
+            // arrange
+            var arrange = this.ArrangeForUpdateCartLine();
 
-        [Fact]
-        public void AddPromoCode_IfValidPromoCodeWasPassed_ShouldCallAddPromoCodeMethod()
-        {
             // act
-            this.cartService.AddPromoCode(this.fixture.Create<string>());
+            this.cartService.UpdateCartLine(arrange.ProductId, arrange.VariantId, 0);
 
             // assert
-            this.cartManager.Received(1).AddPromoCode(this.commerceCart, Arg.Any<string>());
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartService.RemovePromoCode(null));
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfValidPromoCodeWasPassed_ShouldCallRemovePromoCodeMethod()
-        {
-            // act
-            this.cartService.RemovePromoCode(this.fixture.Create<string>());
-
-            // assert
-            this.cartManager.Received(1).RemovePromoCode(this.commerceCart, Arg.Any<string>());
-        }
-
-        //TODO: Refactor duplication of CreateOmitOnRecursionFixture
-        /// <summary>
-        /// Creates OmitOnRecursionBehavior as opposite to ThrowingRecursionBehavior with default recursion depth of 1.
-        /// </summary>
-        /// <returns></returns>
-        private IFixture CreateOmitOnRecursionFixture()
-        {
-            var result = new Fixture();
-
-            result.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                .ForEach(b => result.Behaviors.Remove(b));
-            result.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            return result;
+            this.cartManager.Received(1)
+                .RemoveCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
         }
 
         private (CartResult SrcCartResult, CartResult DestCartResult, CartResult MergedCartResult) ArrangeForMergeCarts(
@@ -334,6 +330,23 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(loadCartResult);
 
             return (loadCartResult, productId, variantId);
+        }
+
+        //TODO: Refactor duplication of CreateOmitOnRecursionFixture
+        /// <summary>
+        /// Creates OmitOnRecursionBehavior as opposite to ThrowingRecursionBehavior with default recursion depth of 1.
+        /// </summary>
+        /// <returns></returns>
+        private IFixture CreateOmitOnRecursionFixture()
+        {
+            var result = new Fixture();
+
+            result.Behaviors.OfType<ThrowingRecursionBehavior>()
+                .ToList()
+                .ForEach(b => result.Behaviors.Remove(b));
+            result.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            return result;
         }
     }
 }

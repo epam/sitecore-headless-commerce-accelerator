@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 {
-    using System.Web.Security;
-
     using Account.Infrastructure.Pipelines.Login;
 
     using Base.Infrastructure.Pipelines;
@@ -34,7 +32,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 
         private readonly IUserMapper userMapper;
 
-        public GetCommerceUserProcessor(ICustomerProvider customerProvider, IUserMapper userMapper, ILogService<CommonLog> logService)
+        public GetCommerceUserProcessor(
+            ICustomerProvider customerProvider,
+            IUserMapper userMapper,
+            ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(customerProvider, nameof(customerProvider));

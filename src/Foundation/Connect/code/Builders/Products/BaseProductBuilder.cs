@@ -37,6 +37,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
     public abstract class BaseProductBuilder
     {
         protected readonly IPricingManager PricingManager;
+
         private readonly IStorefrontContext storefrontContext;
 
         protected BaseProductBuilder(
@@ -65,6 +66,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
             {
                 Name = "InStock"
             };
+
             //TODO: this.SetCurrency(entity)
             //TODO: this.SetStockStatus(entity)
 

@@ -29,9 +29,9 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Logout
     {
         private readonly IAuthenticationManager authenticationManager;
 
-        private readonly ILogService<CommonLog> logService;
-
         private readonly LogoutProcessor logoutProcessor;
+
+        private readonly ILogService<CommonLog> logService;
 
         public LogoutProcessorTests()
         {

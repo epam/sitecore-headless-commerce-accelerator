@@ -25,15 +25,12 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Connect.Context;
     using Connect.Managers;
 
-    using Context;
-
     using DependencyInjection;
 
     using Extensions;
 
     using ModelMappers;
 
-    using Models;
     using Models.Account;
     using Models.Checkout;
     using Models.Entities.Users;
@@ -54,7 +51,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         public AccountRepository(
             IAccountManager accountManager,
-            IVisitorContext visitorContext,
             IStorefrontContext storefrontContext,
             IEntityMapper entityMapper)
         {

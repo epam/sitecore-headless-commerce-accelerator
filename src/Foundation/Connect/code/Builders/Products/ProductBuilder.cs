@@ -72,14 +72,6 @@ namespace Wooli.Foundation.Connect.Builders.Products
             return product;
         }
 
-        private void SetVariants(Product product, Item source)
-        {
-            if (source.HasChildren)
-            {
-                product.Variants = this.variantBuilder.Build(source.Children).ToList();
-            }
-        }
-
         private void SetPrices(Product product)
         {
             if (product == null)
@@ -103,6 +95,14 @@ namespace Wooli.Foundation.Connect.Builders.Products
                 {
                     this.SetPrices(variant, productPrices);
                 }
+            }
+        }
+
+        private void SetVariants(Product product, Item source)
+        {
+            if (source.HasChildren)
+            {
+                product.Variants = this.variantBuilder.Build(source.Children).ToList();
             }
         }
     }

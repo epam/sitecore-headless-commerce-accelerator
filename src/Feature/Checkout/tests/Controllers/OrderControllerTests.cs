@@ -33,9 +33,9 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     // TODO: Replace models with new one
     public class OrdersControllerTests
     {
-        private readonly IFixture fixture;
-
         private readonly OrdersController controller;
+
+        private readonly IFixture fixture;
 
         public OrdersControllerTests()
         {

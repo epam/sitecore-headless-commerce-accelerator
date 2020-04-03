@@ -14,7 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Models.Search
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 

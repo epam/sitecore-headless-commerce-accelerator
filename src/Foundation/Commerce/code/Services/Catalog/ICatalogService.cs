@@ -16,9 +16,6 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
 {
     using Base.Models;
 
-    using Models;
-
-    using Models.Entities;
     using Models.Entities.Catalog;
 
     /// <summary>
@@ -27,11 +24,10 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
     public interface ICatalogService
     {
         /// <summary>
-        /// Gets product model by Id
+        /// Gets current context category
         /// </summary>
-        /// <param name="productId">Product Id</param>
-        /// <returns>Product result</returns>
-        Result<Product> GetProduct(string productId);
+        /// <returns>Category result</returns>
+        Result<Category> GetCurrentCategory();
 
         /// <summary>
         /// Gets current context product
@@ -40,9 +36,10 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
         Result<Product> GetCurrentProduct();
 
         /// <summary>
-        /// Gets current context category
+        /// Gets product model by Id
         /// </summary>
-        /// <returns>Category result</returns>
-        Result<Category> GetCurrentCategory();
+        /// <param name="productId">Product Id</param>
+        /// <returns>Product result</returns>
+        Result<Product> GetProduct(string productId);
     }
 }

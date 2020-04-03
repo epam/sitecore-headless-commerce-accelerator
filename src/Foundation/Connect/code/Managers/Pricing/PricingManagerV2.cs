@@ -35,7 +35,7 @@ namespace Wooli.Foundation.Connect.Managers.Pricing
     {
         private readonly PricingServiceProvider pricingServiceProvider;
 
-        public PricingManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService) 
+        public PricingManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));

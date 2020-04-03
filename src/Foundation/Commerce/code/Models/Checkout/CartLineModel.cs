@@ -16,8 +16,6 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using System;
 
-    using Catalog;
-
     using Entities.Catalog;
 
     using TypeLite;

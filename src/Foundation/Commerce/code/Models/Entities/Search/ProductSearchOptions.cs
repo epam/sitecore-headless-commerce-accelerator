@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities.Search
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
@@ -23,6 +24,8 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Search
         public string SearchKeyword { get; set; }
 
         public IEnumerable<Facet> Facets { get; set; }
+
+        public Guid CategoryId { get; set; }
 
         public string SortField { get; set; }
 

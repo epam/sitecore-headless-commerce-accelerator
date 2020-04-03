@@ -64,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Services.Search
         {
             Assert.ArgumentNotNull(productSearchOptions, nameof(productSearchOptions));
 
-            var searchSettings = this.searchSettingsProvider.GetSearchSettings();
+            var searchSettings = this.searchSettingsProvider.GetSearchSettings(productSearchOptions.CategoryId);
             var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
             var searchResults = this.searchManager.GetProducts(searchOptions);
             var productSearchResults =

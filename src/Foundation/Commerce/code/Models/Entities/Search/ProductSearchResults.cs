@@ -30,5 +30,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Search
         public IList<Facet> Facets { get; set; }
 
         public int TotalItemCount { get; set; }
+
+        public int TotalPageCount { get; set; }
     }
 }

@@ -18,29 +18,10 @@ namespace Wooli.Foundation.Connect.Builders.Search
 
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
 
     public interface ISearchQueryBuilder : IQueryBuilder<CommerceSellableItemSearchResultItem, CommerceSearchOptions>
     {
-        /// <summary>
-        /// Builds category search query basing on category name
-        /// </summary>
-        /// <param name="queryable">Query to update</param>
-        /// <param name="categoryName">Category name</param>
-        /// <returns>Updated search query</returns>
-        IQueryable<CommerceSellableItemSearchResultItem> BuildCategoryQuery(
-            IQueryable<CommerceSellableItemSearchResultItem> queryable,
-            string categoryName);
-
-        /// <summary>
-        /// Builds product search query basing on product id
-        /// </summary>
-        /// <param name="queryable">Query to update</param>
-        /// <param name="productId">Product id</param>
-        /// <returns>Updated search query</returns>
-        IQueryable<CommerceSellableItemSearchResultItem> BuildProductQuery(
-            IQueryable<CommerceSellableItemSearchResultItem> queryable,
-            string productId);
-
         //TODO: create method Build with TSearchOptions and option per current method
 
         /// <summary>
@@ -48,11 +29,25 @@ namespace Wooli.Foundation.Connect.Builders.Search
         /// </summary>
         /// <param name="queryable">Query to update</param>
         /// <param name="searchKeyword">Search searchKeyword</param>
+        /// <param name="categoryId">Category id</param>
         /// <param name="options">Search options</param>
         /// <returns>Updated search query</returns>
-        IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(
-            IQueryable<CommerceSellableItemSearchResultItem> queryable,
-            string searchKeyword,
-            CommerceSearchOptions options);
+        IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string searchKeyword, ID categoryId, CommerceSearchOptions options);
+
+        /// <summary>
+        /// Builds product search query basing on product id
+        /// </summary>
+        /// <param name="queryable">Query to update</param>
+        /// <param name="productId">Product id</param>
+        /// <returns>Updated search query</returns>
+        IQueryable<CommerceSellableItemSearchResultItem> BuildProductQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string productId);
+
+        /// <summary>
+        /// Builds category search query basing on category name
+        /// </summary>
+        /// <param name="queryable">Query to update</param>
+        /// <param name="categoryName">Category name</param>
+        /// <returns>Updated search query</returns>
+        IQueryable<CommerceSellableItemSearchResultItem> BuildCategoryQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string categoryName);
     }
 }

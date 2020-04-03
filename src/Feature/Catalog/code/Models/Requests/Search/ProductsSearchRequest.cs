@@ -14,6 +14,7 @@
 
 namespace Wooli.Feature.Catalog.Models.Requests.Search
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
@@ -32,12 +33,14 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search
 
         public IEnumerable<FacetDto> Facets { get; set; }
 
+        public Guid CategoryId { get; set; }
+
         public string SortField { get; set; }
 
         [EnumDataType(typeof(SortDirection))]
         public SortDirection? SortDirection { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Range(0, int.MaxValue)]
         public int? PageNumber { get; set; }
 
         [Range(1, int.MaxValue)]

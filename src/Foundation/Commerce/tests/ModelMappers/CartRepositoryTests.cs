@@ -17,7 +17,6 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
     using System.Collections.Generic;
 
     using Commerce.ModelMappers;
-    using Commerce.Repositories;
     using Commerce.Services.Catalog;
 
     using Models.Checkout;
@@ -32,14 +31,15 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 
     public class AddressPartyMapperTests
     {
+        private readonly ICatalogService catalogService;
+
+        private readonly ICurrencyProvider currencyProvider;
+
         public AddressPartyMapperTests()
         {
             this.catalogService = Substitute.For<ICatalogService>();
             this.currencyProvider = Substitute.For<ICurrencyProvider>();
         }
-
-        private readonly ICatalogService catalogService;
-        private readonly ICurrencyProvider currencyProvider;
 
         [Fact]
         public void MapToParty_ValidInputObject_ObjectIsMappedCorrectly()

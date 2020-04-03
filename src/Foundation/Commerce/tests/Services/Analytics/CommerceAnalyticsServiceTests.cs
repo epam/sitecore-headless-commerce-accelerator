@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
     using Connect.Context;
     using Connect.Managers;
 
-    using Models.Catalog;
     using Models.Entities.Catalog;
 
     using NSubstitute;

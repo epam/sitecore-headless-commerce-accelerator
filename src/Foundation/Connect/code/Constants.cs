@@ -25,6 +25,7 @@ namespace Wooli.Foundation.Connect
             public static class ItemType
             {
                 public const string Product = "SellableItem";
+
                 public const string Category = "Category";
             }
         }
@@ -34,9 +35,13 @@ namespace Wooli.Foundation.Connect
             public static class PricingTypes
             {
                 public const string List = "List";
+
                 public const string Adjusted = "Adjusted";
+
                 public const string LowestPricedVariant = "LowestPricedVariant";
+
                 public const string LowestPricedVariantListPrice = "LowestPricedVariantListPrice";
+
                 public const string HighestPricedVariant = "HighestPricedVariant";
             }
         }

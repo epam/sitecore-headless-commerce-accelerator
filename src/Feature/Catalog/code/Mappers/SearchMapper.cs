@@ -15,7 +15,7 @@
 namespace Wooli.Feature.Catalog.Mappers
 {
     using System.Diagnostics.CodeAnalysis;
-    
+
     using Foundation.Base.Mappers;
     using Foundation.DependencyInjection;
 
@@ -24,5 +24,6 @@ namespace Wooli.Feature.Catalog.Mappers
     [Service(typeof(ISearchMapper), Lifetime = Lifetime.Transient)]
     [ExcludeFromCodeCoverage]
     public sealed class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
-    { }
+    {
+    }
 }

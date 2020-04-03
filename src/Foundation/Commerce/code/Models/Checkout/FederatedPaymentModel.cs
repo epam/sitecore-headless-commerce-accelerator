@@ -25,11 +25,5 @@ namespace Wooli.Foundation.Commerce.Models.Checkout
         public string PartyID { get; set; }
 
         public string PaymentMethodId { get; set; }
-
-        ////public IList<string> LineIDs { get; set; } = new List<string>();
-
-        ////public string PaymentMethodID { get; set; }
-
-        ////public string PaymentProviderID { get; set; }
     }
 }

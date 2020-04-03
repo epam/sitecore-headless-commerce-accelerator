@@ -45,8 +45,6 @@ namespace Wooli.Feature.Catalog.Pipelines.Initialize
                 {
                     controller = SearchControllerName
                 });
-
-            ////routeCollection.MapHttpRoute("CatalogItemResolverRoute", "product/{id}", new { id = UrlParameter.Optional });
         }
     }
 }

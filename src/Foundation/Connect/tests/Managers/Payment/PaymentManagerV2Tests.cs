@@ -43,10 +43,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
 
     public class PaymentManagerV2Tests
     {
-        private readonly PaymentManagerV2 paymentManager;
-        private readonly PaymentServiceProvider paymentServiceProvider;
-
         private readonly IFixture fixture;
+
+        private readonly PaymentManagerV2 paymentManager;
+
+        private readonly PaymentServiceProvider paymentServiceProvider;
 
         public PaymentManagerV2Tests()
         {
@@ -89,10 +90,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
         public void GetPaymentMethods_ShouldCallExecuteMethod()
         {
             // act
-            this.paymentManager.GetPaymentMethods(this.fixture.Create<CommerceCart>(), this.fixture.Create<PaymentOption>());
+            this.paymentManager.GetPaymentMethods(
+                this.fixture.Create<CommerceCart>(),
+                this.fixture.Create<PaymentOption>());
 
             // assert
-            this.paymentManager.Received(1).Execute(Arg.Any<GetPaymentMethodsRequest>(), this.paymentServiceProvider.GetPaymentMethods);
+            this.paymentManager.Received(1)
+                .Execute(Arg.Any<GetPaymentMethodsRequest>(), this.paymentServiceProvider.GetPaymentMethods);
         }
 
         [Fact]
@@ -117,10 +121,11 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
         public void GetPaymentOptions_ShouldCallExecuteMethod()
         {
             // act
-            this.paymentManager.GetPaymentOptions(this.fixture.Create<string>(),this.fixture.Create<Cart>());
+            this.paymentManager.GetPaymentOptions(this.fixture.Create<string>(), this.fixture.Create<Cart>());
 
             // assert
-            this.paymentManager.Received(1).Execute(Arg.Any<GetPaymentOptionsRequest>(), this.paymentServiceProvider.GetPaymentOptions);
+            this.paymentManager.Received(1)
+                .Execute(Arg.Any<GetPaymentOptionsRequest>(), this.paymentServiceProvider.GetPaymentOptions);
         }
 
         //TODO: Refactor duplication of CreateOmitOnRecursionFixture
@@ -132,7 +137,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
         {
             var result = new Fixture();
 
-            result.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+            result.Behaviors.OfType<ThrowingRecursionBehavior>()
+                .ToList()
                 .ForEach(b => result.Behaviors.Remove(b));
             result.Behaviors.Add(new OmitOnRecursionBehavior());
 

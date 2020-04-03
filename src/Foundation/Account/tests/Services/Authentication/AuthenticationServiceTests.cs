@@ -28,15 +28,15 @@ namespace Wooli.Foundation.Account.Tests.Services.Authentication
 
     public class AuthenticationServiceTests
     {
-        private readonly IPipelineService pipelineService;
-
         private readonly AuthenticationService authenticationService;
-
-        private readonly IFixture fixture;
 
         private readonly string email;
 
+        private readonly IFixture fixture;
+
         private readonly string password;
+
+        private readonly IPipelineService pipelineService;
 
         public AuthenticationServiceTests()
         {
@@ -47,57 +47,6 @@ namespace Wooli.Foundation.Account.Tests.Services.Authentication
 
             this.email = this.fixture.Create<string>();
             this.password = this.fixture.Create<string>();
-        }
-
-        [Fact]
-        public void Logout_ShouldRunLogoutPipeline()
-        {
-            // act
-            this.authenticationService.Logout();
-
-            // assert
-            this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.Logout, Arg.Any<LogoutPipelineArgs>());
-        }
-
-        [Fact]
-        public void Login_ShouldRunLoginPipeline()
-        {
-            // act
-            this.authenticationService.Login(this.email, this.password);
-
-            // assert
-            this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.Login, Arg.Any<LoginPipelineArgs>());
-        }
-
-        [Fact]
-        public void Logout_IfPipelineAborted_ShouldReturnFailResult()
-        {
-            // arrange
-            this.pipelineService
-                .When(x => x.RunPipeline(Constants.Pipelines.Logout, Arg.Any<LogoutPipelineArgs>()))
-                .Do(
-                    info =>
-                    {
-                        var args = info[1] as LogoutPipelineArgs;
-
-                        args.AbortPipeline();
-                    });
-
-            // act
-            var result = this.authenticationService.Logout();
-
-            // assert
-            Assert.False(result.Success);
-        }
-
-        [Fact]
-        public void Logout_IfPipelineNotAborted_ShouldReturnSuccessResult()
-        {
-            // act
-            var result = this.authenticationService.Logout();
-
-            // assert
-            Assert.True(result.Success);
         }
 
         [Fact]
@@ -152,6 +101,57 @@ namespace Wooli.Foundation.Account.Tests.Services.Authentication
 
             // assert
             Assert.True(result.Success);
+        }
+
+        [Fact]
+        public void Login_ShouldRunLoginPipeline()
+        {
+            // act
+            this.authenticationService.Login(this.email, this.password);
+
+            // assert
+            this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.Login, Arg.Any<LoginPipelineArgs>());
+        }
+
+        [Fact]
+        public void Logout_IfPipelineAborted_ShouldReturnFailResult()
+        {
+            // arrange
+            this.pipelineService
+                .When(x => x.RunPipeline(Constants.Pipelines.Logout, Arg.Any<LogoutPipelineArgs>()))
+                .Do(
+                    info =>
+                    {
+                        var args = info[1] as LogoutPipelineArgs;
+
+                        args.AbortPipeline();
+                    });
+
+            // act
+            var result = this.authenticationService.Logout();
+
+            // assert
+            Assert.False(result.Success);
+        }
+
+        [Fact]
+        public void Logout_IfPipelineNotAborted_ShouldReturnSuccessResult()
+        {
+            // act
+            var result = this.authenticationService.Logout();
+
+            // assert
+            Assert.True(result.Success);
+        }
+
+        [Fact]
+        public void Logout_ShouldRunLogoutPipeline()
+        {
+            // act
+            this.authenticationService.Logout();
+
+            // assert
+            this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.Logout, Arg.Any<LogoutPipelineArgs>());
         }
     }
 }

@@ -80,6 +80,15 @@ namespace Wooli.Foundation.Commerce.Providers
             return null;
         }
 
+        private User GetCommerceUser(string contactIdOrName)
+        {
+            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
+
+            var commerceUser = this.accountManager.GetUser(contactIdOrName);
+
+            return this.MapToUser(commerceUser.Result, contactIdOrName);
+        }
+
         private User MapToUser(CommerceUser commerceUser, string contactIdOrEmail)
         {
             if (commerceUser == null)
@@ -91,15 +100,6 @@ namespace Wooli.Foundation.Commerce.Providers
             }
 
             return this.userMapper.Map<CommerceUser, User>(commerceUser);
-        }
-
-        private User GetCommerceUser(string contactIdOrName)
-        {
-            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
-
-            var commerceUser = this.accountManager.GetUser(contactIdOrName);
-
-            return this.MapToUser(commerceUser.Result, contactIdOrName);
         }
     }
 }

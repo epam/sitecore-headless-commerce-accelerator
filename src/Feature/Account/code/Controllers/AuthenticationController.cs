@@ -32,8 +32,7 @@ namespace Wooli.Feature.Account.Controllers
     {
         private readonly IAuthenticationService authenticationService;
 
-        public AuthenticationController(
-            IAuthenticationService authenticationService)
+        public AuthenticationController(IAuthenticationService authenticationService)
         {
             Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
 
@@ -47,7 +46,7 @@ namespace Wooli.Feature.Account.Controllers
         {
             return this.Execute(
                 () => this.authenticationService.Login(request.Email, request.Password),
-                result => 
+                result =>
                 {
                     if (result.Success)
                     {

@@ -16,7 +16,6 @@ namespace Wooli.Foundation.Connect.Managers
 {
     using System.Collections.Generic;
 
-    using Models;
     using Models.Catalog;
 
     using Sitecore.Commerce.Services.Prices;

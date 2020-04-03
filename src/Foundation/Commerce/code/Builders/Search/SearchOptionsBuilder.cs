@@ -62,20 +62,23 @@ namespace Wooli.Foundation.Commerce.Builders.Search
             };
         }
 
-        private IEnumerable<Connect.Facet> GetFacetsIntersection(IEnumerable<Connect.Facet> searchSettingsFacets, IEnumerable<Facet> searchOptionsFacets)
+        private IEnumerable<Connect.Facet> GetFacetsIntersection(
+            IEnumerable<Connect.Facet> searchSettingsFacets,
+            IEnumerable<Facet> searchOptionsFacets)
         {
             var facets = searchOptionsFacets.Where(
                 searchOptionsFacet =>
-            {
-                var searchSettingsFacet = searchSettingsFacets.FirstOrDefault(facet => facet.Name == searchOptionsFacet.Name);
-                if (searchSettingsFacet == null)
                 {
-                    return false;
-                }
+                    var searchSettingsFacet =
+                        searchSettingsFacets.FirstOrDefault(facet => facet.Name == searchOptionsFacet.Name);
+                    if (searchSettingsFacet == null)
+                    {
+                        return false;
+                    }
 
-                searchOptionsFacet.DisplayName = searchSettingsFacet.DisplayName;
-                return true;
-            });
+                    searchOptionsFacet.DisplayName = searchSettingsFacet.DisplayName;
+                    return true;
+                });
 
             return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(facets);
         }

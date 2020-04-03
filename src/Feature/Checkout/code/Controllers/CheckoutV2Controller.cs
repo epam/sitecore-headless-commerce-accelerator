@@ -29,9 +29,9 @@ namespace Wooli.Feature.Checkout.Controllers
     {
         private readonly IBillingService billingService;
 
-        private readonly IOrderService orderService;
-
         private readonly IDeliveryService deliveryService;
+
+        private readonly IOrderService orderService;
 
         public CheckoutV2Controller(
             IBillingService billingService,
@@ -72,7 +72,8 @@ namespace Wooli.Feature.Checkout.Controllers
         [ActionName("paymentInfo")]
         public ActionResult SetPaymentInfo(SetPaymentInfoRequest request)
         {
-            return this.Execute(() => this.billingService.SetPaymentInfo(request.BillingAddress, request.FederatedPayment));
+            return this.Execute(
+                () => this.billingService.SetPaymentInfo(request.BillingAddress, request.FederatedPayment));
         }
 
         [HttpPost]

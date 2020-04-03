@@ -18,8 +18,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
 
     using Base.Models;
 
-    using Builders.Search;
-
     using Commerce.Builders.Search;
     using Commerce.Mappers.Search;
     using Commerce.Services.Search;
@@ -27,7 +25,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
     using Connect.Models.Catalog;
     using Connect.Models.Search;
     using Connect.Providers.Search;
-    using Connect.Services;
     using Connect.Services.Search;
 
     using Models.Entities.Search;
@@ -40,12 +37,17 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
 
     public class ProductSearchServiceTests
     {
-        private readonly ISearchService searchManager;
-        private readonly ISearchMapper searchMapper;
-        private readonly ISearchOptionsBuilder searchOptionsBuilder;
-        private readonly ISearchSettingsProvider searchSettingsProvider;
-        private readonly IProductSearchService service;
         private readonly IFixture fixture;
+
+        private readonly ISearchService searchManager;
+
+        private readonly ISearchMapper searchMapper;
+
+        private readonly ISearchOptionsBuilder searchOptionsBuilder;
+
+        private readonly ISearchSettingsProvider searchSettingsProvider;
+
+        private readonly IProductSearchService service;
 
         public ProductSearchServiceTests()
         {
@@ -54,7 +56,11 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
             this.searchOptionsBuilder = Substitute.For<ISearchOptionsBuilder>();
             this.searchSettingsProvider = Substitute.For<ISearchSettingsProvider>();
 
-            this.service = new ProductSearchService(this.searchSettingsProvider, this.searchOptionsBuilder, this.searchManager, this.searchMapper);
+            this.service = new ProductSearchService(
+                this.searchSettingsProvider,
+                this.searchOptionsBuilder,
+                this.searchManager,
+                this.searchMapper);
             this.fixture = new Fixture();
         }
 
@@ -65,15 +71,15 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
             Assert.Throws<ArgumentNullException>(() => this.service.GetProducts(null));
         }
 
-        [Fact] 
-        public void GetProducts_ShouldCallSearchSettingsProvider()
+        [Fact]
+        public void GetProducts_ShouldCallGetProducts()
         {
             // act 
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert
-            this.searchSettingsProvider.Received(1)
-                .GetSearchSettings();
+            this.searchManager.Received(1)
+                .GetProducts(Arg.Any<SearchOptions>());
         }
 
         [Fact]
@@ -88,14 +94,14 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
         }
 
         [Fact]
-        public void GetProducts_ShouldCallGetProducts()
+        public void GetProducts_ShouldCallSearchSettingsProvider()
         {
             // act 
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert
-            this.searchManager.Received(1)
-                .GetProducts(Arg.Any<SearchOptions>());
+            this.searchSettingsProvider.Received(1)
+                .GetSearchSettings();
         }
 
         [Fact]

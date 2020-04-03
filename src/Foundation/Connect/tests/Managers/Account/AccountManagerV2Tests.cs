@@ -35,12 +35,14 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
     public class AccountManagerV2Tests
     {
         private readonly AccountManagerV2 accountManager;
-        private readonly ILogService<CommonLog> logService;
+
         private readonly CustomerServiceProvider customerServiceProvider;
 
         private readonly IFixture fixture;
 
         private readonly GetUserResult getUserResult;
+
+        private readonly ILogService<CommonLog> logService;
 
         public AccountManagerV2Tests()
         {
@@ -61,17 +63,14 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetCustomerParties_IfParameterIsNull_ShouldThrowArgumentNullException()
+        public void GetCustomerParties_IfGetUserResultIsSuccessful_ShouldCallExecuteMethodWithGetPartiesMethod()
         {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.accountManager.GetCustomerParties(null));
-        }
+            // act
+            this.accountManager.GetCustomerParties(this.fixture.Create<string>());
 
-        [Fact]
-        public void GetCustomerParties_IfParameterIsEmpty_ShouldThrowArgumentException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentException>(() => this.accountManager.GetCustomerParties(string.Empty));
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
         }
 
         [Fact]
@@ -88,13 +87,17 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         }
 
         [Fact]
-        public void GetCustomerParties_IfGetUserResultIsSuccessful_ShouldCallExecuteMethodWithGetPartiesMethod()
+        public void GetCustomerParties_IfParameterIsEmpty_ShouldThrowArgumentException()
         {
-            // act
-            this.accountManager.GetCustomerParties(this.fixture.Create<string>());
+            // act & assert
+            Assert.Throws<ArgumentException>(() => this.accountManager.GetCustomerParties(string.Empty));
+        }
 
-            // assert
-            this.accountManager.Received(1).Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
+        [Fact]
+        public void GetCustomerParties_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.GetCustomerParties(null));
         }
 
         [Fact]
@@ -111,14 +114,8 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
             this.accountManager.GetParties(this.fixture.Create<CommerceCustomer>());
 
             // assert
-            this.accountManager.Received(1).Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
-        }
-
-        [Fact]
-        public void GetUser_IfParameterIsNull_ShouldThrowArgumentNullException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.accountManager.GetUser(null));
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
         }
 
         [Fact]
@@ -126,6 +123,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
         {
             // act & assert
             Assert.Throws<ArgumentException>(() => this.accountManager.GetUser(string.Empty));
+        }
+
+        [Fact]
+        public void GetUser_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.GetUser(null));
         }
 
         [Fact]

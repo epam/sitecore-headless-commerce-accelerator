@@ -21,13 +21,13 @@ namespace Wooli.Feature.Account.Controllers
 
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Repositories;
     using Foundation.Extensions.Extensions;
 
+    [Obsolete("Use AccountsController instead")]
     public class AccountController : Controller
     {
         private readonly IAccountRepository accountRepository;

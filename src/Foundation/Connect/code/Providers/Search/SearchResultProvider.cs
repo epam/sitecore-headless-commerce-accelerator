@@ -35,7 +35,8 @@ namespace Wooli.Foundation.Connect.Providers.Search
             return searchResults?.Hits?.Select(hit => hit.Document).FirstOrDefault();
         }
 
-        public SearchResults<TResult> GetSearchResults<TResult>(Func<IQueryable<TResult>, IQueryable<TResult>> searchQuery)
+        public SearchResults<TResult> GetSearchResults<TResult>(
+            Func<IQueryable<TResult>, IQueryable<TResult>> searchQuery)
             where TResult : SearchResultItem
         {
             Assert.ArgumentNotNull(searchQuery, nameof(searchQuery));

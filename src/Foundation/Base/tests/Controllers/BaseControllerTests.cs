@@ -50,18 +50,7 @@ namespace Wooli.Foundation.Base.Tests.Controllers
         }
 
         [Fact]
-        public void Execute_IfExceptionIsThrownInFunction_ShouldReturnErrorResponse()
-        {
-            // act
-            var jsonResult = this.controller.Execute<object>(() => throw new NotImplementedException()) as JsonResult;
-            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
-
-            // assert
-            Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void Execute_IfFunctionResultIsUnsuccessful_ShouldReturnErrorResponse()
+        public void Execute_IfActionResultIsUnsuccessful_ShouldReturnErrorResponse()
         {
             // arrange
             var result = new Result<object>
@@ -71,6 +60,17 @@ namespace Wooli.Foundation.Base.Tests.Controllers
 
             // act
             var jsonResult = this.controller.Execute(() => result) as JsonResult;
+            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
+
+            // assert
+            Assert.NotNull(errorResult);
+        }
+
+        [Fact]
+        public void Execute_IfExceptionIsThrownInAction_ShouldReturnErrorResponse()
+        {
+            // act
+            var jsonResult = this.controller.Execute<object>(() => throw new NotImplementedException()) as JsonResult;
             var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert
@@ -89,17 +89,6 @@ namespace Wooli.Foundation.Base.Tests.Controllers
 
             // assert
             Assert.NotNull(errorResult);
-        }
-
-        [Fact]
-        public void Execute_IfFunctionResultIsSuccessful_ShouldReturnSuccessResponse()
-        {
-            // act
-            var jsonResult = this.controller.Execute(() => new Result<object>()) as JsonResult;
-            var okResult = jsonResult?.Data as OkJsonResultModel<object>;
-
-            // assert
-            Assert.NotNull(okResult);
         }
 
         [Fact]
@@ -123,11 +112,22 @@ namespace Wooli.Foundation.Base.Tests.Controllers
             // act
             var jsonResult = this.controller.Execute<object>(
                 () => throw new NotImplementedException(),
-                result => this.controller.JsonOk<object>(null)) as JsonResult;
+                result => this.controller.JsonOk<object>()) as JsonResult;
             var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert
             Assert.NotNull(errorResult);
+        }
+
+        [Fact]
+        public void Execute_IfServiceResultIsSuccessful_ShouldReturnSuccessResponse()
+        {
+            // act
+            var jsonResult = this.controller.Execute(() => new Result<object>()) as JsonResult;
+            var okResult = jsonResult?.Data as OkJsonResultModel<object>;
+
+            // assert
+            Assert.NotNull(okResult);
         }
     }
 }

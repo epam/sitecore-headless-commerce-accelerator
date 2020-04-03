@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Commerce.Models.Entities.Cart
     using System.Diagnostics.CodeAnalysis;
 
     using Catalog;
-    
+
     using TypeLite;
 
     [ExcludeFromCodeCoverage]

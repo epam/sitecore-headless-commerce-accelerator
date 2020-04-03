@@ -25,5 +25,6 @@ namespace Wooli.Foundation.Commerce.Mappers.Catalog
     [ExcludeFromCodeCoverage]
     [Service(typeof(ICatalogMapper), Lifetime = Lifetime.Singleton)]
     public class CatalogMapper : ProfileMapper<CatalogProfile>, ICatalogMapper
-    { }
+    {
+    }
 }

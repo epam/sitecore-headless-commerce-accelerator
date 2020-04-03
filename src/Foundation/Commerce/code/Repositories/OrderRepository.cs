@@ -32,7 +32,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using ModelMappers;
 
-    using Models;
     using Models.Checkout;
 
     using Services.Catalog;

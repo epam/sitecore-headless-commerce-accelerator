@@ -25,5 +25,6 @@ namespace Wooli.Foundation.Connect.Mappers.Search
     [ExcludeFromCodeCoverage]
     [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     public class SearchMapper : ProfileMapper<SearchProfile>, ISearchMapper
-    { }
+    {
+    }
 }

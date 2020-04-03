@@ -29,6 +29,6 @@ namespace Wooli.Foundation.Commerce.Utils
 
         public const string CommerceRoutePrefix = "apix/client/commerce";
 
-        public const string CommereceCustomerIdPrefix = "Entity-Customer-";
+        public const string CommerceCustomerIdPrefix = "Entity-Customer-";
     }
 }

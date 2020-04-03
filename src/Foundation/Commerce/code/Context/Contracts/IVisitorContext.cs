@@ -14,7 +14,6 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
-    using Models;
     using Models.Entities.Users;
 
     public interface IVisitorContext

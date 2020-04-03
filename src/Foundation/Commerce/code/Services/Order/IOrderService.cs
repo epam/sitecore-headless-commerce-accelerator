@@ -18,7 +18,6 @@ namespace Wooli.Foundation.Commerce.Services.Order
 
     using Base.Models;
 
-    using Models;
     using Models.Checkout;
 
     /// <summary>
@@ -30,13 +29,13 @@ namespace Wooli.Foundation.Commerce.Services.Order
         Result<CartModel> GetOrderDetails(string trackingId);
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="fromDate"></param>
         /// <param name="untilDate"></param>
         /// <param name="page"></param>
         /// <param name="count"></param>
         /// <returns></returns>
+
         // TODO: Refactor return type
         Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count);
 
@@ -44,6 +43,7 @@ namespace Wooli.Foundation.Commerce.Services.Order
         /// Submits current user order
         /// </summary>
         /// <returns>Submit order result</returns>
+
         // TODO: Refactor return type
         Result<SubmitOrderModel> SubmitOrder();
     }

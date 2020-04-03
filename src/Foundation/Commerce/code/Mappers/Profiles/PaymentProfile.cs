@@ -20,6 +20,9 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using Models.Entities.Payment;
 
+    using PaymentMethod = Sitecore.Commerce.Entities.Payments.PaymentMethod;
+    using PaymentOption = Sitecore.Commerce.Entities.Payments.PaymentOption;
+
     public class PaymentProfile : Profile
     {
         public PaymentProfile()
@@ -35,9 +38,9 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
                 .ForMember(dest => dest.LineIDs, opt => opt.Ignore())
                 .ForMember(dest => dest.PaymentProviderID, opt => opt.Ignore());
 
-            this.CreateMap<Sitecore.Commerce.Entities.Payments.PaymentOption, PaymentOption>();
+            this.CreateMap<PaymentOption, Models.Entities.Payment.PaymentOption>();
 
-            this.CreateMap<Sitecore.Commerce.Entities.Payments.PaymentMethod, PaymentMethod>();
+            this.CreateMap<PaymentMethod, Models.Entities.Payment.PaymentMethod>();
         }
     }
 }

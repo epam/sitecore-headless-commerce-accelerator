@@ -14,6 +14,7 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
+    using System;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
@@ -22,6 +23,7 @@ namespace Wooli.Feature.Checkout.Controllers
     using Foundation.Commerce.Repositories;
     using Foundation.Extensions.Extensions;
 
+    [Obsolete("Use CheckoutControllerV2 instead")]
     public class CheckoutController : Controller
     {
         private readonly IBillingRepository billingRepository;

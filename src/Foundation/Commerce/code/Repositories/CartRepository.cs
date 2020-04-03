@@ -30,7 +30,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using ModelMappers;
 
-    using Models;
     using Models.Checkout;
 
     using Services.Catalog;
@@ -93,7 +92,6 @@ namespace Wooli.Foundation.Commerce.Repositories
         {
             var cart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
 
-            // ManagerResponse<CartResult, Cart> cart = this.CartManager.CreateOrResumeCart(this.StorefrontContext.ShopName,this.VisitorContext.CurrentUser.ContactId,  this.VisitorContext.ContactId);
             var result = this.GetCart(cart.ServiceProviderResult, cart.Result);
 
             if (result.Success)

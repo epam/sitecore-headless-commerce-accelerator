@@ -20,7 +20,6 @@ namespace Wooli.Foundation.Commerce.Services.Order
 
     using DependencyInjection;
 
-    using Models;
     using Models.Checkout;
 
     // TODO: Create Entities for OrderService in scope of refactoring of OrderRepository and CheckoutRepository

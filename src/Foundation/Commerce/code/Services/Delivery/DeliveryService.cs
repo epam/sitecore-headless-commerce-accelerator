@@ -18,15 +18,14 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
     using System.Collections.Generic;
     using System.Linq;
 
+    using Base.Models;
+
     using Connect.Context;
     using Connect.Managers.Account;
+    using Connect.Managers.Cart;
     using Connect.Managers.Shipping;
 
     using Context;
-
-    using Base.Models;
-
-    using Connect.Managers.Cart;
 
     using DependencyInjection;
 
@@ -35,25 +34,29 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
     using Models.Entities.Addresses;
     using Models.Entities.Checkout;
     using Models.Entities.Delivery;
-    using Models.Entities.Shipping;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Diagnostics;
 
-    using Cart = Sitecore.Commerce.Entities.Carts.Cart;
+    using ShippingInfo = Models.Entities.Shipping.ShippingInfo;
     using ShippingMethod = Models.Entities.Shipping.ShippingMethod;
-    using ShippingOption = Models.Entities.Shipping.ShippingOption;
 
     [Service(typeof(IDeliveryService), Lifetime = Lifetime.Singleton)]
     public class DeliveryService : IDeliveryService
     {
         private readonly IAccountManagerV2 accountManager;
+
         private readonly ICartManagerV2 cartManager;
-        private readonly IShippingMapper shippingMapper;
+
         private readonly IShippingManagerV2 shippingManager;
+
+        private readonly IShippingMapper shippingMapper;
+
         private readonly IStorefrontContext storefrontContext;
+
         private readonly IVisitorContext visitorContext;
 
         public DeliveryService(
@@ -183,7 +186,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
                 shippingMethod.LineIds = cart.Lines.Select(lineItem => lineItem.ExternalCartLineId).ToList();
                 shippings.Add(this.shippingMapper.Map<ShippingMethod, CommerceShippingInfo>(shippingMethod));
             }
-            
+
             var addShippingInfoResult = this.cartManager.AddShippingInfo(cart, shippingOptionType, shippings);
 
             if (!addShippingInfoResult.Success)
@@ -206,8 +209,8 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             {
                 result.Data.ShippingOptions =
                     this.shippingMapper
-                        .Map<IReadOnlyCollection<Sitecore.Commerce.Entities.Shipping.ShippingOption>,
-                            List<ShippingOption>>(getShippingOptionsResult.ShippingOptions);
+                        .Map<IReadOnlyCollection<ShippingOption>,
+                            List<Models.Entities.Shipping.ShippingOption>>(getShippingOptionsResult.ShippingOptions);
             }
         }
 

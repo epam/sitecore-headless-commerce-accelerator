@@ -29,7 +29,6 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
 
     using ModelInitializers;
 
-    using Models.Catalog;
     using Models.Checkout;
     using Models.Entities.Catalog;
 

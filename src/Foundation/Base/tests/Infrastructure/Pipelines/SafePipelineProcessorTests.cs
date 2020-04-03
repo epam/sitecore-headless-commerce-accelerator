@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Base.Tests.Infrastructure.Pipelines
 {
+    using System;
+
     using Base.Infrastructure.Pipelines;
 
     using Models.Logging;
@@ -36,7 +38,8 @@ namespace Wooli.Foundation.Base.Tests.Infrastructure.Pipelines
         }
 
         [Fact]
-        public void Process_IfSafeProcessThrowsException_ShouldWriteExceptionToLogNotThrowExceptionAddMessageToArgsAbortPipeline()
+        public void
+            Process_IfSafeProcessThrowsException_ShouldWriteExceptionToLogNotThrowExceptionAddMessageToArgsAbortPipeline()
         {
             // arrange
             var processor = new ThrowsExceptionProcessor(this.logService);
@@ -56,11 +59,12 @@ namespace Wooli.Foundation.Base.Tests.Infrastructure.Pipelines
         {
             public ThrowsExceptionProcessor(ILogService<CommonLog> logService)
                 : base(logService)
-            { }
+            {
+            }
 
             protected override void SafeProcess(PipelineArgs args)
             {
-                throw new System.NotImplementedException();
+                throw new NotImplementedException();
             }
         }
     }

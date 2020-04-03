@@ -21,42 +21,41 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using Models.Checkout;
     using Models.Entities.Users;
 
-    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Shipping;
 
     using CountryRegionModel = Models.Region.CountryRegionModel;
-    using Party = Connect.Models.Party;
+    using Party = Sitecore.Commerce.Entities.Party;
 
     public interface IEntityMapper
     {
         TResult Map<TResult, TSource>(TSource source) where TSource : class;
 
-        Party MapToPartyEntity(AddressModel item);
+        AddressModel MapToAddress(Party item);
 
-        List<Party> MapToPartyEntityList(IEnumerable<AddressModel> items);
+        User MapToCommerceUserModel(CommerceUser x);
 
-        Sitecore.Commerce.Entities.Party MapToParty(AddressModel item);
+        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
+
+        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
+
+        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
+
+        Party MapToParty(AddressModel item);
+
+        Connect.Models.Party MapToPartyEntity(AddressModel item);
+
+        List<Connect.Models.Party> MapToPartyEntityList(IEnumerable<AddressModel> items);
 
         ShippingInfoArgument MapToShippingInfoArgument(ShippingMethodModel item);
 
         List<ShippingInfoArgument> MapToShippingInfoArgumentList(IEnumerable<ShippingMethodModel> items);
 
-        AddressModel MapToAddress(Sitecore.Commerce.Entities.Party item);
-
-        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
-
         ShippingMethodModel MapToShippingMethodModel(ShippingMethod shippingMethod);
-
-        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
-
-        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
 
         ShippingMethodModel MapToShippingMethodModel(ShippingInfo x);
 
-        User MapToCommerceUserModel(CommerceUser x);
-
-        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
+        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
     }
 }

@@ -37,12 +37,13 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Inventory
 
     public class InventoryManagerV2Tests
     {
-        private readonly InventoryServiceProvider inventoryServiceProvider;
-        private readonly ILogService<CommonLog> logService;
+        private readonly IFixture fixture;
 
         private readonly InventoryManagerV2 inventoryManager;
 
-        private readonly IFixture fixture;
+        private readonly InventoryServiceProvider inventoryServiceProvider;
+
+        private readonly ILogService<CommonLog> logService;
 
         public InventoryManagerV2Tests()
         {

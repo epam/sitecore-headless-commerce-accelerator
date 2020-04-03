@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Connect.Context;
     using Connect.Managers;
-    using Connect.Models;
     using Connect.Models.Catalog;
     using Connect.Models.Search;
 
@@ -31,7 +30,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Glass.Mapper.Sc;
 
-    using Models;
     using Models.Catalog;
 
     using Providers;
@@ -42,7 +40,6 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using ProductModel = Models.Catalog.ProductModel;
     using SortDirection = Models.SortDirection;
 
     [Service(typeof(IProductListRepository), Lifetime = Lifetime.Singleton)]
@@ -53,8 +50,6 @@ namespace Wooli.Foundation.Commerce.Repositories
         private readonly ISearchManager searchManager;
 
         private readonly ISettingsProvider settingsProvider;
-
-        private readonly ISiteContext siteContext;
 
         private readonly IStorefrontContext storefrontContext;
 
@@ -74,7 +69,6 @@ namespace Wooli.Foundation.Commerce.Repositories
             this.searchInformationProvider = searchInformationProvider;
             this.settingsProvider = settingsProvider;
             this.searchManager = searchManager;
-            this.siteContext = siteContext;
         }
 
         public ProductListResultModel GetProductList(
@@ -98,10 +92,6 @@ namespace Wooli.Foundation.Commerce.Repositories
             var currentCatalogItem = specifiedCatalogItem ?? this.storefrontContext.CurrentCatalogItem;
             model.CurrentCatalogItemId = currentCatalogItem.ID.Guid.ToString("D");
 
-            // var currentItem = Sitecore.Context.Database.GetItem(currentItemId);
-
-            // this.siteContext.CurrentCategoryItem = currentCatalogItem;
-            // this.siteContext.CurrentItem = currentItem;
             var searchInformation = this.searchInformationProvider.GetCategorySearchInformation(currentCatalogItem);
             this.GetSortParameters(searchInformation, ref sortField, ref sortDirection);
 
@@ -145,7 +135,6 @@ namespace Wooli.Foundation.Commerce.Repositories
 
                 this.CatalogManager.GetProductBulkPrices(products);
 
-                // this.InventoryManager.GetProductsStockStatus(products, currentStorefront.UseIndexFileForProductStatusInLists);
                 foreach (var product in products)
                 {
                     var productModel = new ProductModel(product.Item);

@@ -29,9 +29,9 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 
     public class LoginProcessorTests
     {
-        private readonly IFixture fixture;
-
         private readonly IAuthenticationManager authenticationManager;
+
+        private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
@@ -50,7 +50,7 @@ namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
         public void Process_IfArgsNotNull_ShouldCallAuthenticationManagerLogin()
         {
             // arrange
-            var args = new LoginPipelineArgs()
+            var args = new LoginPipelineArgs
             {
                 UserName = this.fixture.Create<string>(),
                 Password = this.fixture.Create<string>()

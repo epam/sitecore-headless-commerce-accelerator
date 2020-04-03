@@ -14,8 +14,6 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Login
 {
-    using System.Linq;
-
     using Account.Infrastructure.Pipelines.Login;
 
     using Base.Infrastructure.Pipelines;

@@ -561,6 +561,7 @@
   <ItemGroup>
     <Compile Include="Builders\Products\BaseProductBuilder.cs" />
     <Compile Include="Builders\Products\IProductBuilder.cs" />
+    <Compile Include="Builders\Products\IVariantBuilder.cs" />
     <Compile Include="Builders\Products\VariantBuilder.cs" />
     <Compile Include="Builders\Products\ProductBuilder.cs" />
     <Compile Include="Builders\Search\ISearchQueryBuilder.cs" />
@@ -585,6 +586,8 @@
     <Compile Include="Managers\Inventory\InventoryManagerV2.cs" />
     <Compile Include="Managers\Payment\IPaymentManagerV2.cs" />
     <Compile Include="Managers\Payment\PaymentManagerV2.cs" />
+    <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
+    <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Models\Catalog\StockStatus.cs" />
     <Compile Include="Models\Payment\PaymentClientTokenResult.cs" />

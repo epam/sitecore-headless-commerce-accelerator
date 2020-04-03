@@ -18,25 +18,13 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
     using Models.Catalog;
 
-    /// <summary>
-    /// Builds product or variant entities from TSource
-    /// </summary>
-    /// <typeparam name="TSource"></typeparam>
-    public interface IProductBuilder<in TSource>
-        where TSource : class
+    public interface IVariantBuilder<in TSource>
     {
         /// <summary>
-        /// Builds product entity from TSource
-        /// </summary>
-        /// <param name="source">Source model</param>
-        /// <returns></returns>
-        Product Build(TSource source);
-
-        /// <summary>
-        /// Builds enumerable of product entities without variants from TSource
+        /// Builds enumerable of variant entities without prices and stock status from TSource
         /// </summary>
         /// <param name="sources">Source model</param>
         /// <returns></returns>
-        IEnumerable<Product> BuildWithoutVariants(IEnumerable<TSource> sources);
+        IEnumerable<Variant> Build(IEnumerable<TSource> sources);
     }
 }

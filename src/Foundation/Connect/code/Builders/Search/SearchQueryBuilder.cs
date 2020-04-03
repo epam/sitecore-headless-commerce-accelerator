@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Builders.Search
 {
+    using System;
     using System.Linq;
 
     using Base.Context;
@@ -25,6 +26,7 @@ namespace Wooli.Foundation.Connect.Builders.Search
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
     using Sitecore.Diagnostics;
 
     [Service(typeof(ISearchQueryBuilder), Lifetime = Lifetime.Singleton)]
@@ -45,11 +47,15 @@ namespace Wooli.Foundation.Connect.Builders.Search
             this.commerceSearchManager = commerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
-        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string searchKeyword, CommerceSearchOptions searchOptions)
+        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string searchKeyword, ID categoryId, CommerceSearchOptions searchOptions)
         {
             queryable = queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
                 .Where(item => item.Language == this.sitecoreContext.Language.Name);
+
+            queryable = !ID.IsNullOrEmpty(categoryId)
+                ? queryable.Where(item => item.Parent == categoryId)
+                : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
 
             if (!string.IsNullOrWhiteSpace(searchKeyword))
             {

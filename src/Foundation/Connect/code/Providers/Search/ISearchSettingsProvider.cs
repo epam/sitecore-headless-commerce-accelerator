@@ -14,6 +14,8 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
+    using System;
+
     using Wooli.Foundation.Connect.Models.Search;
 
     /// <summary>
@@ -22,9 +24,10 @@ namespace Wooli.Foundation.Connect.Providers.Search
     public interface ISearchSettingsProvider
     {
         /// <summary>
-        /// Gets search settings from current context Sitecore Catalog item
+        /// Gets search settings from current context Sitecore Catalog item or category item if specified
         /// </summary>
+        /// <param name="categoryId">Category id item</param>
         /// <returns>GetProducts settings</returns>
-        SearchSettings GetSearchSettings();
+        SearchSettings GetSearchSettings(Guid categoryId);
     }
 }

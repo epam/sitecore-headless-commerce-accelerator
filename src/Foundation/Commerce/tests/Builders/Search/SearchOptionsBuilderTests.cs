@@ -80,6 +80,7 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             Assert.True(searchOptions.SearchKeyword == productSearchOptions.SearchKeyword);
         }
 
+
         [Theory]
         [InlineData(0)]
         [InlineData(-1)]
@@ -116,25 +117,36 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             Assert.True(searchOptions.NumberOfItemsToReturn == productSearchOptions.PageSize);
         }
 
+        [Fact]
+        public void Build_ShouldSetCategoryIdToSearchOptionsCategoryId()
+        {
+            //arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+
+            // act 
+            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
+
+            // assert
+            Assert.True(searchOptions.CategoryId == productSearchOptions.CategoryId);
+        }
+
         [Theory]
-        [InlineData(0, 0)]
-        [InlineData(0, 1)]
-        [InlineData(1, 1)]
-        [InlineData(2, 1)]
-        public void Build_ShouldSetStartPageIndexIsMoreOrEqualThanZero(int pageNumber, int pageSize)
+        [InlineData(0)]
+        [InlineData(1)]
+        public void Build_ShouldSetStartPageIndexIsEqualToPageNumber(int pageNumber)
         {
             //arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
-            productSearchOptions.PageSize = pageSize;
             productSearchOptions.PageNumber = pageNumber;
 
             // act 
             var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
 
             // assert
-            Assert.True(searchOptions.StartPageIndex >= 0);
+            Assert.True(searchOptions.StartPageIndex == pageNumber);
         }
 
         [Theory]

@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Models.Search
 {
+    using System;
     using System.Collections.Generic;
 
     public class SearchOptions
@@ -21,6 +22,8 @@ namespace Wooli.Foundation.Connect.Models.Search
         public string SearchKeyword { get; set; }
 
         public int NumberOfItemsToReturn { get; set; }
+
+        public Guid CategoryId { get; set; }
 
         public int StartPageIndex { get; set; }
 

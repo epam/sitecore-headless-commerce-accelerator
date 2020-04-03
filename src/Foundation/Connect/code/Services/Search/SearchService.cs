@@ -30,6 +30,7 @@ namespace Wooli.Foundation.Connect.Services.Search
 
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
@@ -73,6 +74,7 @@ namespace Wooli.Foundation.Connect.Services.Search
                     queryable => this.queryBuilder.BuildProductsQuery(
                         queryable,
                         searchOptions.SearchKeyword,
+                        ID.Parse(searchOptions.CategoryId),
                         commerceSearchOptions));
 
             var searchResponse =

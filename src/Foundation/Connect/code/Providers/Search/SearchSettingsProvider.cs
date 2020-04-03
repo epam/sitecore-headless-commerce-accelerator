@@ -14,17 +14,22 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
+    using System;
     using System.Linq;
 
     using Context;
 
     using DependencyInjection;
 
+    using Glass.Mapper.Sc.Web;
+
     using Models.Search;
 
     using Sitecore.Commerce;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
 
     [Service(typeof(ISearchSettingsProvider))]
     public class SearchSettingsProvider : ISearchSettingsProvider
@@ -35,15 +40,18 @@ namespace Wooli.Foundation.Connect.Providers.Search
         public SearchSettingsProvider(IStorefrontContext storefrontContext)
         {
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+
             this.storefrontContext = storefrontContext;
 
             this.commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
 
-        public SearchSettings GetSearchSettings()
+        public SearchSettings GetSearchSettings(Guid categoryId)
         {
-            var catalog = this.storefrontContext.CurrentCatalogItem;
+            var catalog = categoryId == Guid.Empty
+                ? this.storefrontContext.CurrentCatalogItem
+                : Sitecore.Context.Database.GetItem(new ID(categoryId));
 
             var searchPageSettings = new SearchSettings
             {

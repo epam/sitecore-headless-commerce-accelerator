@@ -14,24 +14,60 @@
 
 import axios from 'axios';
 
+import { ProductsSearchRequest, SortDirection } from 'Feature/Catalog/client/dataModel.Generated';
+import { Facet, ProductListResultModel, ProductSearchResults } from 'Foundation/Commerce/client/dataModel.Generated';
 import { Result } from 'Foundation/Integration/client';
+import { SearchProductsParams } from './models';
 
-import { ProductListResultModel } from 'Foundation/Commerce/client/dataModel.Generated';
-import { SearchProductsParams, SearchProductsResponse } from './models';
+const parseFacets = (facetsString: string): Facet[] => {
+  const facets: Facet[] = [];
+
+  const facetString = facetsString.split('&');
+  for (const facet of facetString) {
+    const pair = facet.split('=');
+    facets.push({
+      displayName: null,
+      foundValues: [],
+      name: decodeURIComponent(pair[0]),
+      values: [decodeURIComponent(pair[1])]
+    });
+  }
+  return facets;
+};
+
+const mapToProductSearchRequest = (params: SearchProductsParams): ProductsSearchRequest => {
+  return {
+    categoryId: params.cci,
+    facets: params.f ? parseFacets(params.f) : [],
+    pageNumber: params.pg,
+    pageSize: +params.ps,
+    searchKeyword: params.q ? params.q : '',
+    sortDirection: params.sd === SortDirection.Asc.toLocaleString() ? SortDirection.Asc : SortDirection.Desc,
+    sortField: params.s
+  };
+};
 
 export const searchProducts = async (params: SearchProductsParams): Promise<Result<ProductListResultModel>> => {
   try {
     params.pg = params.pg || 0;
 
-    const response = await axios.get<SearchProductsResponse>('/apix/client/commerce/product/search', {
-      params,
-    });
+    const request = mapToProductSearchRequest(params);
+    const response = await axios.post<Result<ProductSearchResults>>('/apix/client/commerce/search/products', request);
 
     const { data } = response;
-    if (data.status !== 'ok') {
-      return { error: new Error('Failure') };
+    if (!data.data || data.error) {
+      return { error: new Error(data.error.message) };
     }
-    return { data: data.data };
+    return { data: {
+      childProducts: data.data.products,
+      currentCatalogItemId: request.categoryId,
+      currentPageNumber: request.pageNumber,
+      facets: data.data.facets,
+      searchKeyword: request.searchKeyword,
+      sortOptions: 0,
+      totalItemCount: data.data.totalItemCount,
+      totalPageCount: data.data.totalPageCount
+    } };
   } catch (e) {
     return { error: e };
   }

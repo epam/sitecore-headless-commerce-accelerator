@@ -127,13 +127,49 @@
         paymentOptionTypeName: string;
     }
     export interface ProductListResultModel {
-        childProducts: ProductModel[];
+        childProducts: Product[];
         currentCatalogItemId: string;
         currentPageNumber: number;
-        facets: FacetResultModel[];
-        maxPageSize: number;
+        facets: Facet[];
         searchKeyword: string;
-        sortOptions: SortOptionModel[];
+        sortOptions: number;
+        totalItemCount: number;
+        totalPageCount: number;
+    }
+    export interface BaseProduct {
+        adjustedPrice: number;
+        brand: string;
+        currencySymbol: string;
+        customerAverageRating: number;
+        description: string;
+        displayName: string;
+        imageUrls: string[];
+        listPrice: number;
+        productId: string;
+        stockStatusName: string;
+        tags: string[];
+    }
+    export interface Variant extends BaseProduct {
+        properties: { [key: string]: string };
+        variantId: string;
+    }
+    export interface Product extends BaseProduct {
+        sitecoreId: string;
+        variants: Variant[];
+    }
+    export interface FacetValue {
+        aggregateCount: number;
+        name: string;
+    }
+    export interface Facet {
+        displayName: string;
+        foundValues: FacetValue[];
+        name: string;
+        values: any[];
+    }
+    export interface ProductSearchResults {
+        facets: Facet[];
+        products: Product[];
         totalItemCount: number;
         totalPageCount: number;
     }

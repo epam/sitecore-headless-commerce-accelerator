@@ -73,7 +73,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
 
             // assert
             this.searchSettingsProvider.Received(1)
-                .GetSearchSettings();
+                .GetSearchSettings(Arg.Any<Guid>());
         }
 
         [Fact]

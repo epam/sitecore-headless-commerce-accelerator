@@ -22,6 +22,7 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search
     using DTO;
 
     using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Entities.Search;
 
     using TypeLite;
 

@@ -605,7 +605,6 @@
     <Compile Include="Models\Party.cs" />
     <Compile Include="Models\FederatedPaymentArgs.cs" />
     <Compile Include="Models\Catalog\Product.cs" />
-    <Compile Include="Models\Search\CategorySearchInformation.cs" />
     <Compile Include="Models\Search\SearchSettings.cs" />
     <Compile Include="Models\Search\Facet.cs" />
     <Compile Include="Models\Search\SearchOptions.cs" />
@@ -621,7 +620,6 @@
     <Compile Include="Managers\Contracts\IInventoryManager.cs" />
     <Compile Include="Managers\Contracts\IOrderManager.cs" />
     <Compile Include="Managers\Contracts\IPricingManager.cs" />
-    <Compile Include="Managers\Contracts\ISearchManager.cs" />
     <Compile Include="Managers\Contracts\IAccountManager.cs" />
     <Compile Include="Managers\Contracts\ICatalogManager.cs" />
     <Compile Include="Managers\Contracts\IShippingManager.cs" />
@@ -629,7 +627,6 @@
     <Compile Include="Managers\ManagerResponse.cs" />
     <Compile Include="Managers\OrderManager.cs" />
     <Compile Include="Managers\PricingManager.cs" />
-    <Compile Include="Managers\SearchManager.cs" />
     <Compile Include="Managers\ShippingManager.cs" />
     <Compile Include="Models\CartLineArgument.cs" />
     <Compile Include="Models\Search\SearchResults.cs" />

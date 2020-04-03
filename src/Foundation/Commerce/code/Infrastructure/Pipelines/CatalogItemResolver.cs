@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
     using Connect.Context;
     using Connect.Managers;
+    using Connect.Services.Search;
 
     using Context;
 
@@ -38,7 +39,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
     {
         private readonly IPageTypeProvider pageTypeProvider;
 
-        private readonly ISearchManager searchManager;
+        private readonly ISearchService searchService;
 
         private readonly ISiteContext siteContext;
 
@@ -47,13 +48,13 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
         private readonly IStorefrontContext storefrontContext;
 
         public CatalogItemResolver(
-            ISearchManager searchManager,
+            ISearchService searchService,
             IPageTypeProvider pageTypeProvider,
             IStorefrontContext storefrontContext,
             ISiteDefinitionsProvider siteDefinitionsProvider,
             ISiteContext siteContext)
         {
-            this.searchManager = searchManager;
+            this.searchService = searchService;
             this.pageTypeProvider = pageTypeProvider;
             this.storefrontContext = storefrontContext;
             this.siteDefinitionsProvider = siteDefinitionsProvider;
@@ -110,16 +111,16 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
                 return;
             }
 
-            Item catalogItem;
+            Item currentItem;
             switch (contextItemType)
             {
                 case Constants.ItemType.Category:
-                    catalogItem = this.searchManager.GetCategory(catalogName, itemName);
-                    this.siteContext.CurrentCategoryItem = catalogItem;
+                    currentItem = this.searchService.GetCategoryItem(itemName);
+                    this.siteContext.CurrentCategoryItem = currentItem;
                     break;
                 case Constants.ItemType.Product:
-                    catalogItem = this.searchManager.GetProduct(catalogName, itemName);
-                    this.siteContext.CurrentProductItem = catalogItem;
+                    currentItem = this.searchService.GetProductItem(itemName);
+                    this.siteContext.CurrentProductItem = currentItem;
                     break;
                 default:
                     return;
@@ -127,7 +128,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 
             if (this.siteContext.CurrentItem == null)
             {
-                this.siteContext.CurrentItem = catalogItem;
+                this.siteContext.CurrentItem = currentItem;
             }
         }
     }

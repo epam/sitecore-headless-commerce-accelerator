@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
     using Base.Models;
 
     using Connect.Context;
-    using Connect.Managers;
+    using Connect.Managers.Cart;
 
     using Context;
 
@@ -28,8 +28,6 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using ModelMappers;
 
-    using Models;
-    using Models.Entities;
     using Models.Entities.Cart;
 
     using Sitecore.Diagnostics;

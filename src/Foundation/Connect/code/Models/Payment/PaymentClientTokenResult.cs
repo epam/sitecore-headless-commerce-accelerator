@@ -12,23 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Billing
+namespace Wooli.Foundation.Connect.Models.Payment
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Sitecore.Commerce.Services.Payments;
 
-    using Payment;
-
-    using TypeLite;
-
-    [ExcludeFromCodeCoverage]
-    [TsClass]
-    public class BillingInfo
+    public class PaymentClientTokenResult : PaymentResult
     {
-        public string PaymentClientToken { get; set; }
-
-        public List<PaymentMethod> PaymentMethods { get; set; }
-
-        public List<PaymentOption> PaymentOptions { get; set; }
+        public string ClientToken { get; set; }
     }
 }

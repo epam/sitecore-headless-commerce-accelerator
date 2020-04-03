@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     using Commerce.Services.Cart;
 
     using Connect.Context;
-    using Connect.Managers;
+    using Connect.Managers.Cart;
 
     using Context;
 

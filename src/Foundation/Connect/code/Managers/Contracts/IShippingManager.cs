@@ -18,7 +18,6 @@ namespace Wooli.Foundation.Connect.Managers
 
     using Models;
 
-    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
 
@@ -26,11 +25,12 @@ namespace Wooli.Foundation.Connect.Managers
     {
         ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(
             string shopName,
-            Cart cart,
+            Sitecore.Commerce.Entities.Carts.Cart cart,
             ShippingOptionType shippingOptionType,
-            PartyEntity address,
+            Party address,
             List<string> cartLineExternalIdList);
 
-        ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart);
+        ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(
+            Sitecore.Commerce.Entities.Carts.Cart cart);
     }
 }

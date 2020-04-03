@@ -21,7 +21,10 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Connect.Managers;
+    using Connect.Managers.Cart;
+    using Connect.Mappers;
+
+    using Models;
 
     using NSubstitute;
 
@@ -44,7 +47,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
     {
         private readonly CartManagerV2 cartManager;
         private readonly CommerceCartServiceProvider cartServiceProvider;
-        private readonly ILogService<CommonLog> logService;
+
         private readonly IFixture fixture;
 
         public static IEnumerable<object[]> CartLinesParameters =>
@@ -74,13 +77,50 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         public CartManagerV2Tests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
+            var logService = Substitute.For<ILogService<CommonLog>>();
+            var connectMapper = Substitute.For<IConnectEntityMapper>();
+
             this.cartServiceProvider = Substitute.For<CommerceCartServiceProvider>();
 
             connectServiceProvider.GetCommerceCartServiceProvider().Returns(this.cartServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
-            this.logService = Substitute.For<ILogService<CommonLog>>();
 
-            this.cartManager = Substitute.For<CartManagerV2>(this.logService, connectServiceProvider);
+            this.cartManager = Substitute.For<CartManagerV2>(logService, connectServiceProvider, connectMapper);
+        }
+
+        [Fact]
+        public void AddPaymentInfo_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddPaymentInfo(
+                    null,
+                    this.fixture.Create<Party>(),
+                    this.fixture.Create<FederatedPaymentInfo>()));
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddPaymentInfo(
+                    this.fixture.Create<Cart>(),
+                    null,
+                    this.fixture.Create<FederatedPaymentInfo>()));
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.AddPaymentInfo(
+                    this.fixture.Create<Cart>(),
+                    this.fixture.Create<Party>(),
+                    null));
+        }
+
+        [Fact]
+        public void AddPaymentInfo_ShouldCallExecuteMethod()
+        {
+            // act
+            this.cartManager.AddPaymentInfo(
+                this.fixture.Create<Cart>(),
+                this.fixture.Create<Party>(),
+                this.fixture.Create<FederatedPaymentInfo>());
+
+            // assert
+            this.cartManager.Received(1)
+                .Execute(Arg.Any<AddPaymentInfoRequest>(), this.cartServiceProvider.AddPaymentInfo);
         }
 
         [Theory]
@@ -303,6 +343,24 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
             this.cartManager.Received(1).Execute(Arg.Any<AddPromoCodeRequest>(), this.cartServiceProvider.AddPromoCode);
         }
 
+        [Fact]
+        public void RemovePaymentInfo_IfCartIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.cartManager.RemovePaymentInfo(null));
+        }
+
+        [Fact]
+        public void RemovePaymentInfo_ShouldCallExecuteMethod()
+        {
+            // act
+            this.cartManager.RemovePaymentInfo(this.fixture.Create<Cart>());
+
+            // assert
+            this.cartManager.Received(1)
+                .Execute(Arg.Any<RemovePaymentInfoRequest>(), this.cartServiceProvider.RemovePaymentInfo);
+        }
+
         [Theory]
         [MemberData(nameof(PromoCodeParameters))]
         public void RemovePromoCode_IfParameterIsNull_ShouldThrowArgumentNullException(CommerceCart cart, string promoCode)
@@ -327,6 +385,27 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
 
             // assert
             this.cartManager.Received(1).Execute(Arg.Any<RemovePromoCodeRequest>(), this.cartServiceProvider.RemovePromoCode);
+        }
+
+        [Fact]
+        public void UpdateCart_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.UpdateCart(null, this.fixture.Create<CartBase>()));
+            Assert.Throws<ArgumentNullException>(
+                () => this.cartManager.UpdateCart(this.fixture.Create<Cart>(), null));
+        }
+
+        [Fact]
+        public void UpdateCart_ShouldCallExecuteMethod()
+        {
+            // act
+            this.cartManager.UpdateCart(this.fixture.Create<Cart>(), this.fixture.Create<CartBase>());
+
+            // assert
+            this.cartManager.Received(1)
+                .Execute(Arg.Any<UpdateCartRequest>(), this.cartServiceProvider.UpdateCart);
         }
 
         //TODO: Refactor duplication of CreateOmitOnRecursionFixture

@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Shipping
 
     using Mapper = Base.Mappers.Mapper;
 
-    [Service(typeof(IShippingMapper), Lifetime = Lifetime.Transient)]
+    [Service(typeof(IShippingMapper), Lifetime = Lifetime.Singleton)]
     public class ShippingMapper : Mapper, IShippingMapper
     {
         public ShippingMapper()

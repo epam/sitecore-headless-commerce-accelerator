@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers
+namespace Wooli.Foundation.Connect.Managers.Cart
 {
     using System.Collections.Generic;
 
@@ -56,10 +56,18 @@ namespace Wooli.Foundation.Connect.Managers
             IEnumerable<CartLine> cartLines);
 
         /// <summary>
+        /// Adds payment info to the cart
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <param name="party">Party</param>
+        /// <param name="federatedPaymentInfo">Federated payment info</param>
+        /// <returns>Add payment info result</returns>
+        AddPaymentInfoResult AddPaymentInfo(Cart cart, Party party, FederatedPaymentInfo federatedPaymentInfo);
+
+        /// <summary>
         /// Adds shipping info to the cart
         /// </summary>
         /// <param name="cart">Cart</param>
-        /// <param name="parties">Parties to add</param>
         /// <param name="shippingOptionType">Shipping option type</param>
         /// <param name="shippings">List of shipping info</param>
         /// <returns>Add shipping info result</returns>
@@ -67,6 +75,14 @@ namespace Wooli.Foundation.Connect.Managers
             Cart cart,
             ShippingOptionType shippingOptionType,
             List<ShippingInfo> shippings);
+
+        /// <summary>
+        /// Updates cart
+        /// </summary>
+        /// <param name="cart">Cart to update</param>
+        /// <param name="cartUpdate">Cart update</param>
+        /// <returns>Updated cart result</returns>
+        CartResult UpdateCart(Cart cart, CartBase cartUpdate);
 
         /// <summary>
         /// Updates cart line
@@ -109,5 +125,12 @@ namespace Wooli.Foundation.Connect.Managers
         /// <param name="promoCode">Promo code</param>
         /// <returns>Cart result</returns>
         CartResult RemovePromoCode(CommerceCart cart, string promoCode);
+
+        /// <summary>
+        /// Removes all payment info from cart
+        /// </summary>
+        /// <param name="cart">Cart</param>
+        /// <returns>Cart result</returns>
+        CartResult RemovePaymentInfo(Cart cart);
     }
 }

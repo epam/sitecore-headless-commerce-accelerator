@@ -18,8 +18,6 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
     using Base.Models;
 
-    using Models;
-    using Models.Entities;
     using Models.Entities.Addresses;
     using Models.Entities.Delivery;
     using Models.Entities.Shipping;

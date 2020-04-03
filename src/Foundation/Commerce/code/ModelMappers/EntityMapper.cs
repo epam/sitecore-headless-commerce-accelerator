@@ -50,6 +50,7 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
     using CountryRegionModel = Models.Region.CountryRegionModel;
     using FederatedPaymentInfo = Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo;
+    using Party = Connect.Models.Party;
     using ShippingInfo = Sitecore.Commerce.Entities.Carts.ShippingInfo;
     using ShippingMethod = Sitecore.Commerce.Entities.Shipping.ShippingMethod;
     using ShippingOption = Sitecore.Commerce.Entities.Shipping.ShippingOption;
@@ -147,14 +148,14 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 
                     #region Address
 
-                    cfg.CreateMap<Party, Address>()
+                    cfg.CreateMap<Sitecore.Commerce.Entities.Party, Address>()
                         .ReverseMap();
 
                     cfg.CreateMap<CommerceParty, Address>()
-                        .IncludeBase<Party, Address>()
+                        .IncludeBase<Sitecore.Commerce.Entities.Party, Address>()
                         .ReverseMap();
 
-                    cfg.CreateMap<PartyEntity, Address>()
+                    cfg.CreateMap<Party, Address>()
                         .ReverseMap();
 
                     #endregion
@@ -200,10 +201,10 @@ namespace Wooli.Foundation.Commerce.ModelMappers
                         .ReverseMap();
                     #endregion
 
-                    cfg.CreateMap<Party, AddressModel>()
+                    cfg.CreateMap<Sitecore.Commerce.Entities.Party, AddressModel>()
                         .ReverseMap();
 
-                    cfg.CreateMap<PartyEntity, AddressModel>()
+                    cfg.CreateMap<Party, AddressModel>()
                         .ReverseMap();
                     cfg.CreateMap<CommerceParty, AddressModel>()
                         .ReverseMap();
@@ -261,22 +262,22 @@ namespace Wooli.Foundation.Commerce.ModelMappers
             return this.innerMapper.Map<TResult>(source);
         }
 
-        public PartyEntity MapToPartyEntity(AddressModel item)
-        {
-            return this.innerMapper.Map<PartyEntity>(item);
-        }
-
-        public List<PartyEntity> MapToPartyEntityList(IEnumerable<AddressModel> items)
-        {
-            return items?.Select(this.MapToPartyEntity).ToList();
-        }
-
-        public Party MapToParty(AddressModel item)
+        public Party MapToPartyEntity(AddressModel item)
         {
             return this.innerMapper.Map<Party>(item);
         }
 
-        public AddressModel MapToAddress(Party item)
+        public List<Party> MapToPartyEntityList(IEnumerable<AddressModel> items)
+        {
+            return items?.Select(this.MapToPartyEntity).ToList();
+        }
+
+        public Sitecore.Commerce.Entities.Party MapToParty(AddressModel item)
+        {
+            return this.innerMapper.Map<Sitecore.Commerce.Entities.Party>(item);
+        }
+
+        public AddressModel MapToAddress(Sitecore.Commerce.Entities.Party item)
         {
             return this.innerMapper.Map<AddressModel>(item);
         }

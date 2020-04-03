@@ -27,22 +27,23 @@ namespace Wooli.Foundation.Commerce.ModelMappers
     using Sitecore.Commerce.Entities.Shipping;
 
     using CountryRegionModel = Models.Region.CountryRegionModel;
+    using Party = Connect.Models.Party;
 
     public interface IEntityMapper
     {
         TResult Map<TResult, TSource>(TSource source) where TSource : class;
 
-        PartyEntity MapToPartyEntity(AddressModel item);
+        Party MapToPartyEntity(AddressModel item);
 
-        List<PartyEntity> MapToPartyEntityList(IEnumerable<AddressModel> items);
+        List<Party> MapToPartyEntityList(IEnumerable<AddressModel> items);
 
-        Party MapToParty(AddressModel item);
+        Sitecore.Commerce.Entities.Party MapToParty(AddressModel item);
 
         ShippingInfoArgument MapToShippingInfoArgument(ShippingMethodModel item);
 
         List<ShippingInfoArgument> MapToShippingInfoArgumentList(IEnumerable<ShippingMethodModel> items);
 
-        AddressModel MapToAddress(Party item);
+        AddressModel MapToAddress(Sitecore.Commerce.Entities.Party item);
 
         FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
 

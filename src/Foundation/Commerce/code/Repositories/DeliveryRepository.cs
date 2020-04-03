@@ -133,7 +133,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
                 var shippingOptionType =
                     ConnectOptionTypeHelper.ToShippingOptionType(getShippingArgs.ShippingPreferenceType);
-                PartyEntity address = null;
+                Party address = null;
                 if (getShippingArgs.ShippingAddress != null)
                 {
                     address = this.EntityMapper.MapToPartyEntity(getShippingArgs.ShippingAddress);

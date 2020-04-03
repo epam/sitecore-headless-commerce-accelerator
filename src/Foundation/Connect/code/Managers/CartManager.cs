@@ -42,6 +42,7 @@ namespace Wooli.Foundation.Connect.Managers
     using Utils;
 
     using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
+    using Carts = Sitecore.Commerce.Entities.Carts;
 
     [Service(typeof(ICartManager))]
     public class CartManager : ICartManager
@@ -65,8 +66,8 @@ namespace Wooli.Foundation.Connect.Managers
             this.connectEntityMapper = connectEntityMapper;
         }
 
-        public ManagerResponse<CartResult, Cart> AddLineItemsToCart(
-            Cart cart,
+        public ManagerResponse<CartResult, Carts.Cart> AddLineItemsToCart(
+            Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink)
@@ -98,13 +99,13 @@ namespace Wooli.Foundation.Connect.Managers
                 cartResult.SystemMessages.LogSystemMessages(cartResult);
             }
 
-            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(cartResult, cartResult.Cart);
         }
 
-        public ManagerResponse<AddPaymentInfoResult, Cart> AddPaymentInfo(
+        public ManagerResponse<AddPaymentInfoResult, Carts.Cart> AddPaymentInfo(
             string shopName,
-            Cart cart,
-            PartyEntity billingPartyEntity,
+            Carts.Cart cart,
+            Party billingPartyEntity,
             FederatedPaymentArgs federatedPaymentArgs)
         {
             var payments = new List<PaymentInfo>();
@@ -135,21 +136,21 @@ namespace Wooli.Foundation.Connect.Managers
                 paymentInfoResult.SystemMessages.LogSystemMessages(paymentInfoResult);
             }
 
-            return new ManagerResponse<AddPaymentInfoResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
+            return new ManagerResponse<AddPaymentInfoResult, Carts.Cart>(paymentInfoResult, paymentInfoResult.Cart);
         }
 
-        public ManagerResponse<AddPromoCodeResult, Cart> AddPromoCode(Cart cart, string promoCode)
+        public ManagerResponse<AddPromoCodeResult, Carts.Cart> AddPromoCode(Carts.Cart cart, string promoCode)
         {
             var commerceCart = (CommerceCart)cart;
             var request = new AddPromoCodeRequest(commerceCart, promoCode);
             var result = this.cartServiceProvider.AddPromoCode(request);
 
-            return new ManagerResponse<AddPromoCodeResult, Cart>(result, result.Cart);
+            return new ManagerResponse<AddPromoCodeResult, Carts.Cart>(result, result.Cart);
         }
 
-        public ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(
-            Cart cart,
-            List<PartyEntity> partyEntityList,
+        public ManagerResponse<AddShippingInfoResult, Carts.Cart> AddShippingInfo(
+            Carts.Cart cart,
+            List<Party> partyEntityList,
             ShippingOptionType shippingOptionType,
             List<ShippingInfoArgument> shippingInfoList)
         {
@@ -190,18 +191,18 @@ namespace Wooli.Foundation.Connect.Managers
                 shippingInfoResult.SystemMessages.LogSystemMessages(this);
             }
 
-            return new ManagerResponse<AddShippingInfoResult, Cart>(shippingInfoResult, shippingInfoResult.Cart);
+            return new ManagerResponse<AddShippingInfoResult, Carts.Cart>(shippingInfoResult, shippingInfoResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId)
+        public ManagerResponse<CartResult, Carts.Cart> CreateOrResumeCart(string shopName, string userId, string customerId)
         {
             var request = new CreateOrResumeCartRequest(shopName, userId, Constants.DefaultCartName, customerId);
             var cartResult = this.cartServiceProvider.CreateOrResumeCart(request);
 
-            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(cartResult, cartResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> GetCurrentCart(string shopName, string customerId)
+        public ManagerResponse<CartResult, Carts.Cart> GetCurrentCart(string shopName, string customerId)
         {
             var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
 
@@ -215,14 +216,14 @@ namespace Wooli.Foundation.Connect.Managers
 
             cartResult.Cart.GetProperties().Add("PromoCodes", stringList);
 
-            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(cartResult, cartResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> MergeCarts(
+        public ManagerResponse<CartResult, Carts.Cart> MergeCarts(
             string shopName,
             string customerId,
             string anonymousVisitorId,
-            Cart anonymousVisitorCart)
+            Carts.Cart anonymousVisitorCart)
         {
             Assert.ArgumentNotNullOrEmpty(anonymousVisitorId, "anonymousVisitorId");
             var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
@@ -231,7 +232,7 @@ namespace Wooli.Foundation.Connect.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 Log.Warn("Cart Not Found Error", this.GetType());
-                return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+                return new ManagerResponse<CartResult, Carts.Cart>(cartResult, cartResult.Cart);
             }
 
             var commerceCart = (CommerceCart)cartResult.Cart;
@@ -253,10 +254,10 @@ namespace Wooli.Foundation.Connect.Managers
                 }
             }
 
-            return new ManagerResponse<CartResult, Cart>(newCartResult, newCartResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(newCartResult, newCartResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds)
+        public ManagerResponse<CartResult, Carts.Cart> RemoveLineItemsFromCart(Carts.Cart cart, IEnumerable<string> cartLineIds)
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(cartLineIds, nameof(cartLineIds));
@@ -271,18 +272,18 @@ namespace Wooli.Foundation.Connect.Managers
 
             var request = new RemoveCartLinesRequest(cart, cartLineList);
             var serviceProviderResult = this.cartServiceProvider.RemoveCartLines(request);
-            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(serviceProviderResult, serviceProviderResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> UpdateCart(string shopName, Cart currentCart, CartBase cartUpdate)
+        public ManagerResponse<CartResult, Carts.Cart> UpdateCart(string shopName, Carts.Cart currentCart, CartBase cartUpdate)
         {
             var request = new UpdateCartRequest(currentCart, cartUpdate);
             var serviceProviderResult = this.cartServiceProvider.UpdateCart(request);
-            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(serviceProviderResult, serviceProviderResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(
-            Cart cart,
+        public ManagerResponse<CartResult, Carts.Cart> UpdateLineItemsInCart(
+            Carts.Cart cart,
             IEnumerable<CartLineArgument> cartLines,
             string giftCardProductId,
             string giftCardPageLink)
@@ -321,27 +322,27 @@ namespace Wooli.Foundation.Connect.Managers
                 updateCartResult.SystemMessages.LogSystemMessages(this);
             }
 
-            return new ManagerResponse<CartResult, Cart>(updateCartResult, updateCartResult.Cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(updateCartResult, updateCartResult.Cart);
         }
 
-        public virtual ManagerResponse<CartResult, Cart> RemoveAllPaymentMethods(Cart cart)
+        public virtual ManagerResponse<CartResult, Carts.Cart> RemoveAllPaymentMethods(Carts.Cart cart)
         {
             RemovePaymentInfoResult paymentInfoResult = null;
             if (cart.Payment != null && cart.Payment.Any())
             {
                 var request = new RemovePaymentInfoRequest(cart, cart.Payment);
                 paymentInfoResult = this.cartServiceProvider.RemovePaymentInfo(request);
-                return new ManagerResponse<CartResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
+                return new ManagerResponse<CartResult, Carts.Cart>(paymentInfoResult, paymentInfoResult.Cart);
             }
 
             paymentInfoResult = new RemovePaymentInfoResult
             {
                 Success = true
             };
-            return new ManagerResponse<CartResult, Cart>(paymentInfoResult, cart);
+            return new ManagerResponse<CartResult, Carts.Cart>(paymentInfoResult, cart);
         }
 
-        protected virtual Cart RemoveAllShipmentFromCart(Cart cart)
+        protected virtual Carts.Cart RemoveAllShipmentFromCart(Carts.Cart cart)
         {
             if (cart.Shipping != null && cart.Shipping.Any())
             {

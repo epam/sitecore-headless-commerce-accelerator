@@ -16,7 +16,7 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
 {
     using System.Collections.Generic;
 
-    using Commerce.ModelMappers;
+    using Commerce.Mappers;
     using Commerce.Services.Catalog;
 
     using Models.Checkout;

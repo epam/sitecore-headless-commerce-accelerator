@@ -29,7 +29,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Extensions;
 
-    using ModelMappers;
+    using Mappers;
 
     using Models.Account;
     using Models.Checkout;

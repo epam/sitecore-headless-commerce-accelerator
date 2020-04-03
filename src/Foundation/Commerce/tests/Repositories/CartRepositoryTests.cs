@@ -18,7 +18,8 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
 
     using Base.Models;
 
-    using Commerce.ModelMappers;
+    using Commerce.Builders.Cart;
+    using Commerce.Mappers;
     using Commerce.Repositories;
     using Commerce.Services.Catalog;
 
@@ -26,8 +27,6 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
     using Connect.Managers;
 
     using Context;
-
-    using ModelInitializers;
 
     using Models.Checkout;
     using Models.Entities.Catalog;

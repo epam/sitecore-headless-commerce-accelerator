@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Commerce.Builders.Search
 
     using Mappers.Search;
 
-    using Models;
     using Models.Entities.Search;
 
     using Sitecore.Diagnostics;
@@ -49,7 +48,8 @@ namespace Wooli.Foundation.Commerce.Builders.Search
                 SearchKeyword = searchOptions.SearchKeyword,
                 Facets = this.GetFacetsIntersection(searchSettings.Facets, searchOptions.Facets),
                 StartPageIndex = searchOptions.PageNumber,
-                NumberOfItemsToReturn = searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage,
+                NumberOfItemsToReturn =
+                    searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage,
                 CategoryId = searchOptions.CategoryId,
                 SortField = !string.IsNullOrEmpty(searchOptions.SortField)
                     ? searchOptions.SortField

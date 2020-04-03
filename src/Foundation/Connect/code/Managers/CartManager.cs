@@ -49,7 +49,7 @@ namespace Wooli.Foundation.Connect.Managers
         private readonly CommerceCartServiceProvider cartServiceProvider;
 
         private readonly IConnectEntityMapper connectEntityMapper;
-        
+
         public CartManager(
             IConnectServiceProvider connectServiceProvider,
             IConnectEntityMapper connectEntityMapper)

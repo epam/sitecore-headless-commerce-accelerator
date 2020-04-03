@@ -14,7 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Builders.Search
 {
-    using System;
     using System.Linq;
 
     using Base.Context;
@@ -47,7 +46,12 @@ namespace Wooli.Foundation.Connect.Builders.Search
             this.commerceSearchManager = commerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
-        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string searchKeyword, ID categoryId, CommerceSearchOptions searchOptions)
+
+        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductsQuery(
+            IQueryable<CommerceSellableItemSearchResultItem> queryable,
+            string searchKeyword,
+            ID categoryId,
+            CommerceSearchOptions searchOptions)
         {
             queryable = queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
@@ -66,7 +70,9 @@ namespace Wooli.Foundation.Connect.Builders.Search
             return this.commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
         }
 
-        public IQueryable<CommerceSellableItemSearchResultItem> BuildCategoryQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string categoryName)
+        public IQueryable<CommerceSellableItemSearchResultItem> BuildCategoryQuery(
+            IQueryable<CommerceSellableItemSearchResultItem> queryable,
+            string categoryName)
         {
             return queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Category)
@@ -74,7 +80,9 @@ namespace Wooli.Foundation.Connect.Builders.Search
                 .Where(item => item.Name == categoryName.ToLowerInvariant());
         }
 
-        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductQuery(IQueryable<CommerceSellableItemSearchResultItem> queryable, string productId)
+        public IQueryable<CommerceSellableItemSearchResultItem> BuildProductQuery(
+            IQueryable<CommerceSellableItemSearchResultItem> queryable,
+            string productId)
         {
             return queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)

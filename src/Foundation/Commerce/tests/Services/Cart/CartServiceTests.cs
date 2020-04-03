@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
     using Base.Models;
 
-    using Commerce.ModelMappers;
+    using Commerce.Mappers;
     using Commerce.Services.Cart;
 
     using Connect.Context;

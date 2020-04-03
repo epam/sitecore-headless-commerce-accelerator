@@ -20,6 +20,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Base.Models;
 
+    using Builders.Cart;
+
     using Connect.Context;
     using Connect.Managers;
     using Connect.Models;
@@ -30,9 +32,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Extensions;
 
-    using ModelInitializers;
-
-    using ModelMappers;
+    using Mappers;
 
     using Models.Checkout;
 

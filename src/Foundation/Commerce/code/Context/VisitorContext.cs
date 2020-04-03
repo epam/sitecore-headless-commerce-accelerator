@@ -25,10 +25,6 @@ namespace Wooli.Foundation.Commerce.Context
     public class VisitorContext : IVisitorContext
     {
         private const string CurrentUserItemKey = "_CurrentCommerceUser";
-        
-        public VisitorContext()
-        {
-        }
 
         private IDictionary Items => HttpContext.Current.Items;
 

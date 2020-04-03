@@ -68,89 +68,6 @@ namespace Wooli.Feature.Account.Tests.Controllers
         }
 
         [Fact]
-        public void Login_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controllerSubstitute.Login(this.loginRequest, this.returnUrl);
-
-            // assert
-            this.controllerSubstitute.Received(1).Execute(
-                Arg.Any<Func<Result<LoginResult>>>(),
-                Arg.Any<Func<Result<LoginResult>, ActionResult>>());
-        }
-
-        [Fact]
-        public void Logout_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controllerSubstitute.Logout();
-
-            // assert
-            this.controllerSubstitute.Received(1).Execute(
-                Arg.Any<Func<Result<VoidResult>>>(), 
-                Arg.Any<Func<Result<VoidResult>, ActionResult>>());
-        }
-
-        [Fact]
-        public void Logout_ShouldRedirectToCurrentPage()
-        {
-            // act
-            var result = this.controller.Logout() as RedirectResult;
-
-            // assert
-            Assert.NotNull(result);
-            Assert.Equal(Constants.Redirects.CurrentPage, result?.Url);
-        }
-
-        [Fact]
-        public void Login_ShouldCallAuthenticationServiceLogin()
-        {
-            // act
-            this.controller.Login(this.loginRequest, this.returnUrl);
-
-            // assert
-            this.authenticationService.Received(1).Login(this.loginRequest.Email, this.loginRequest.Password);
-        }
-
-        [Fact]
-        public void Login_IfLoginIsNotSuccess_ShouldRedirectToLoginPage()
-        {
-            // arrange
-            var failResult = new Result<LoginResult>()
-            {
-                Success = false
-            };
-            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
-                .Returns(failResult);
-
-            // act
-            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
-
-            // assert
-            Assert.NotNull(actionResult);
-            Assert.Equal(Constants.Redirects.Login, actionResult?.Url);
-        }
-
-        [Fact]
-        public void Login_IfAuthenticationServiceLoginIsSuccessAndCredentialsAreValid_ShouldRedirectToReturnUrl()
-        {
-            // arrange
-            var loginResult = this.fixture.Build<LoginResult>()
-                .With(result => result.IsInvalidCredentials, false)
-                .Create();
-            var successResult = new Result<LoginResult>(loginResult); 
-            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
-                .Returns(successResult);
-
-            // act
-            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
-
-            // assert
-            Assert.NotNull(actionResult);
-            Assert.Equal(this.returnUrl, actionResult?.Url);
-        }
-
-        [Fact]
         public void Login_IfAuthenticationServiceLoginIsNotSuccessAndCredentialsAreNotValid_ShouldReturnErrorResponse()
         {
             // arrange
@@ -171,6 +88,91 @@ namespace Wooli.Feature.Account.Tests.Controllers
             // assert
             Assert.NotNull(errorResult);
             Assert.Equal(HttpStatusCode.Forbidden, jsonResult?.StatusCode);
+        }
+
+        [Fact]
+        public void Login_IfAuthenticationServiceLoginIsSuccessAndCredentialsAreValid_ShouldRedirectToReturnUrl()
+        {
+            // arrange
+            var loginResult = this.fixture.Build<LoginResult>()
+                .With(result => result.IsInvalidCredentials, false)
+                .Create();
+            var successResult = new Result<LoginResult>(loginResult);
+            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
+                .Returns(successResult);
+
+            // act
+            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
+
+            // assert
+            Assert.NotNull(actionResult);
+            Assert.Equal(this.returnUrl, actionResult?.Url);
+        }
+
+        [Fact]
+        public void Login_IfLoginIsNotSuccess_ShouldRedirectToLoginPage()
+        {
+            // arrange
+            var failResult = new Result<LoginResult>
+            {
+                Success = false
+            };
+            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
+                .Returns(failResult);
+
+            // act
+            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
+
+            // assert
+            Assert.NotNull(actionResult);
+            Assert.Equal(Constants.Redirects.Login, actionResult?.Url);
+        }
+
+        [Fact]
+        public void Login_ShouldCallAuthenticationServiceLogin()
+        {
+            // act
+            this.controller.Login(this.loginRequest, this.returnUrl);
+
+            // assert
+            this.authenticationService.Received(1).Login(this.loginRequest.Email, this.loginRequest.Password);
+        }
+
+        [Fact]
+        public void Login_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controllerSubstitute.Login(this.loginRequest, this.returnUrl);
+
+            // assert
+            this.controllerSubstitute.Received(1)
+                .Execute(
+                    Arg.Any<Func<Result<LoginResult>>>(),
+                    Arg.Any<Func<Result<LoginResult>, ActionResult>>());
+        }
+
+        [Fact]
+        public void Logout_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controllerSubstitute.Logout();
+
+            // assert
+            this.controllerSubstitute.Received(1)
+                .Execute(
+                    Arg.Any<Func<Result<VoidResult>>>(),
+                    Arg.Any<Func<Result<VoidResult>, ActionResult>>());
+        }
+
+        [Fact]
+        public void Logout_ShouldRedirectToCurrentPage()
+        {
+            // act
+            var result = this.controller.Logout() as RedirectResult;
+
+            // assert
+            Assert.NotNull(result);
+            Assert.Equal(Constants.Redirects.CurrentPage, result?.Url);
         }
     }
 }

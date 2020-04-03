@@ -20,6 +20,7 @@ namespace Wooli.Feature.Checkout.Controllers
     using Foundation.Commerce.Services.Cart;
 
     using Models.Requests;
+
     using Sitecore.Diagnostics;
 
     public class CartsController : BaseController
@@ -43,14 +44,16 @@ namespace Wooli.Feature.Checkout.Controllers
         [ActionName("cartLines")]
         public ActionResult AddCartLine(AddCartLineRequest request)
         {
-            return this.Execute(() => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
+            return this.Execute(
+                () => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpPut]
         [ActionName("cartLines")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)
         {
-            return this.Execute(() => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
+            return this.Execute(
+                () => this.cartService.UpdateCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
 
         [HttpDelete]

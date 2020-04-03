@@ -29,7 +29,7 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search
     public class ProductsSearchRequest
     {
         public string SearchKeyword { get; set; }
-        
+
         public IEnumerable<FacetDto> Facets { get; set; }
 
         public string SortField { get; set; }

@@ -19,7 +19,6 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using Checkout.Controllers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Services.Order;
 

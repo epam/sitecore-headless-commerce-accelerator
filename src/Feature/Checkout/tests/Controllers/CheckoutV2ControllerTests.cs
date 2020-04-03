@@ -19,7 +19,6 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using Checkout.Controllers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Services.Billing;
     using Foundation.Commerce.Services.Delivery;
     using Foundation.Commerce.Services.Order;
@@ -49,10 +48,13 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.billingService = Substitute.For<IBillingService>();
             this.deliveryService = Substitute.For<IDeliveryService>();
             this.orderService = Substitute.For<IOrderService>();
-            this.controller = Substitute.For<CheckoutV2Controller>(this.billingService, this.orderService, this.deliveryService);
+            this.controller = Substitute.For<CheckoutV2Controller>(
+                this.billingService,
+                this.orderService,
+                this.deliveryService);
             this.fixture = new Fixture();
         }
-        
+
         [Fact]
         public void GetBillingInfo_ShouldCallExecuteMethod()
         {
@@ -66,8 +68,8 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         [Fact]
         public void GetDeliveryOptions_ShouldCallExecuteMethod()
         {
-           // act
-           this.controller.GetDeliveryOptions();
+            // act
+            this.controller.GetDeliveryOptions();
 
             // assert
             this.controller.Received(1).Execute(this.deliveryService.GetDeliveryOptions);

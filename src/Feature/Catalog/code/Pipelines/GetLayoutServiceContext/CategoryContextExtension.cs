@@ -14,7 +14,6 @@
 
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
-    using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Services.Analytics;
     using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;

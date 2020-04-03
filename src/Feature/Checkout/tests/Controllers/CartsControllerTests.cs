@@ -19,7 +19,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using Checkout.Controllers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Entities.Cart;
     using Foundation.Commerce.Services.Cart;
 
     using Models.Requests;
@@ -27,7 +27,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
     using NSubstitute;
 
     using Ploeh.AutoFixture;
-    using Wooli.Foundation.Commerce.Models.Entities.Cart;
+
     using Xunit;
 
     public class CartsControllerTests
@@ -43,6 +43,16 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.cartService = Substitute.For<ICartService>();
             this.controller = Substitute.For<CartsController>(this.cartService);
             this.fixture = new Fixture();
+        }
+
+        [Fact]
+        public void AddPromoCode_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controller.AddPromoCode(this.fixture.Create<PromoCodeRequest>());
+
+            // assert
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
         }
 
         [Fact]
@@ -81,16 +91,6 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         {
             // act
             this.controller.RemoveCartLine(this.fixture.Create<RemoveCartLineRequest>());
-
-            // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
-        }
-
-        [Fact]
-        public void AddPromoCode_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controller.AddPromoCode(this.fixture.Create<PromoCodeRequest>());
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());

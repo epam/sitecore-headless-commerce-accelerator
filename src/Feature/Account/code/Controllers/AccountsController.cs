@@ -40,17 +40,17 @@ namespace Wooli.Feature.Account.Controllers
 
         public AccountsController(
             IAccountService accountService,
-            IAccountMapper mapper,
+            IAccountMapper accountMapper,
             IVisitorContext visitorContext,
             ITrackingService trackingService)
         {
             Assert.ArgumentNotNull(accountService, nameof(accountService));
-            Assert.ArgumentNotNull(mapper, nameof(mapper));
+            Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
             Assert.ArgumentNotNull(trackingService, nameof(trackingService));
 
             this.accountService = accountService;
-            this.mapper = mapper;
+            this.mapper = accountMapper;
             this.visitorContext = visitorContext;
             this.trackingService = trackingService;
         }

@@ -30,7 +30,7 @@ namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 
     public class FormatRenderingParamsTests
     {
-        // [Fact]
+        [Fact]
         public void FormatRenderingParameters_Parameters_ProcessedLowerCaseParameterKeys()
         {
             var configuration = Substitute.For<IConfiguration>();

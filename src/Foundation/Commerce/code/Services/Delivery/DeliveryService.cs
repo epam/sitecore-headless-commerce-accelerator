@@ -19,13 +19,14 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
     using System.Linq;
 
     using Connect.Context;
-    using Connect.Managers;
     using Connect.Managers.Account;
     using Connect.Managers.Shipping;
 
     using Context;
 
     using Base.Models;
+
+    using Connect.Managers.Cart;
 
     using DependencyInjection;
 
@@ -193,7 +194,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             return result;
         }
 
-        protected virtual void AddShippingOptions(Result<DeliveryInfo> result, Cart cart)
+        private void AddShippingOptions(Result<DeliveryInfo> result, Cart cart)
         {
             var getShippingOptionsResult = this.shippingManager.GetShippingOptions(cart);
 
@@ -210,7 +211,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             }
         }
 
-        protected virtual void AddUserInfo<T>(BaseCheckoutInfo baseCheckoutInfo, Result<T> result)
+        private void AddUserInfo<T>(BaseCheckoutInfo baseCheckoutInfo, Result<T> result)
             where T : class
         {
             var getPartiesResult = this.accountManager.GetCustomerParties(this.visitorContext.ContactId);
@@ -226,7 +227,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             }
         }
 
-        protected virtual Cart RemoveAllShipmentFromCart(Cart cart)
+        private Cart RemoveAllShipmentFromCart(Cart cart)
         {
             if (cart.Shipping != null && cart.Shipping.Any())
             {

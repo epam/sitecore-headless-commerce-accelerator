@@ -54,13 +54,13 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         }
         
         [Fact]
-        public void GetBillingOptions_ShouldCallExecuteMethod()
+        public void GetBillingInfo_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.GetBillingOptions();
+            this.controller.GetBillingInfo();
 
             // assert
-            this.controller.Received(1).Execute(this.billingService.GetBillingOptions);
+            this.controller.Received(1).Execute(this.billingService.GetBillingInfo);
         }
 
         [Fact]
@@ -84,10 +84,10 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         }
 
         [Fact]
-        public void SetPaymentOptions_ShouldCallExecuteMethod()
+        public void SetPaymentInfo_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.SetPaymentOptions(this.fixture.Create<SetPaymentOptionsRequest>());
+            this.controller.SetPaymentInfo(this.fixture.Create<SetPaymentInfoRequest>());
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());

@@ -26,13 +26,13 @@ namespace Wooli.Foundation.Connect.Managers
     using Providers.Contracts;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Commerce.Services.Shipping.Generics;
     using Sitecore.Diagnostics;
 
     using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
+    using Carts = Sitecore.Commerce.Entities.Carts;
 
     [Service(typeof(IShippingManager))]
     public class ShippingManager : IShippingManager
@@ -51,9 +51,9 @@ namespace Wooli.Foundation.Connect.Managers
 
         public ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods(
             string shopName,
-            Cart cart,
+            Carts.Cart cart,
             ShippingOptionType shippingOptionType,
-            PartyEntity address,
+            Party address,
             List<string> cartLineExternalIdList)
         {
             if (cartLineExternalIdList != null && cartLineExternalIdList.Any())
@@ -79,7 +79,7 @@ namespace Wooli.Foundation.Connect.Managers
                 shippingMethods.ShippingMethods);
         }
 
-        public virtual ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart)
+        public virtual ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Carts.Cart cart)
         {
             var request = new GetShippingOptionsRequest(cart);
             var shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);

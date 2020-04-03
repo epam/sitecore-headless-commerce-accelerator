@@ -631,6 +631,9 @@
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
+    <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
+    <Compile Include="Mappers\Payment\PaymentMapper.cs" />
+    <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />

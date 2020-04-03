@@ -41,20 +41,20 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
     {
         private readonly ShippingManagerV2 shippingManager;
         private readonly ShippingServiceProvider shippingServiceProvider;
-        private readonly ILogService<CommonLog> logService;
 
         private readonly IFixture fixture;
 
         public ShippingManagerV2Tests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
+            var logService = Substitute.For<ILogService<CommonLog>>();
+
             this.shippingServiceProvider = Substitute.For<ShippingServiceProvider>();
 
             connectServiceProvider.GetShippingServiceProvider().Returns(this.shippingServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
-            this.logService = Substitute.For<ILogService<CommonLog>>();
 
-            this.shippingManager = Substitute.For<ShippingManagerV2>(connectServiceProvider, this.logService);
+            this.shippingManager = Substitute.For<ShippingManagerV2>(connectServiceProvider, logService);
         }
 
         [Fact]

@@ -25,9 +25,9 @@ namespace Wooli.Foundation.Connect.Mappers
 
     public interface IConnectEntityMapper : IMapper
     {
-        CommerceParty MapToCommerceParty(PartyEntity item);
+        CommerceParty MapToCommerceParty(Party item);
 
-        IList<CommerceParty> MapToCommercePartyList(IEnumerable<PartyEntity> item);
+        IList<CommerceParty> MapToCommercePartyList(IEnumerable<Party> item);
 
         CommerceShippingInfo MapToCommerceShippingInfo(ShippingInfoArgument item);
 

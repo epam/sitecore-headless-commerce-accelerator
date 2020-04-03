@@ -12,15 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers
+namespace Wooli.Foundation.Connect.Managers.Cart
 {
-    using System;
     using System.Collections.Generic;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
 
     using DependencyInjection;
+
+    using Mappers;
+
+    using Models;
 
     using Providers.Contracts;
 
@@ -34,17 +37,20 @@ namespace Wooli.Foundation.Connect.Managers
 
     using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
-    [Service(typeof(ICartManagerV2))]
+    [Service(typeof(ICartManagerV2), Lifetime = Lifetime.Singleton)]
     public class CartManagerV2 : BaseManager, ICartManagerV2
     {
         private readonly CommerceCartServiceProvider cartServiceProvider;
+        private readonly IConnectEntityMapper connectMapper;
 
-        public CartManagerV2(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider)
+        public CartManagerV2(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectMapper)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
+            Assert.ArgumentNotNull(connectMapper, nameof(connectMapper));
 
             this.cartServiceProvider = connectServiceProvider.GetCommerceCartServiceProvider();
+            this.connectMapper = connectMapper;
         }
 
         public CartResult LoadCart(string shopName, string customerId)
@@ -76,6 +82,30 @@ namespace Wooli.Foundation.Connect.Managers
             return this.Execute(new AddCartLinesRequest(cart, cartLines), this.cartServiceProvider.AddCartLines);
         }
 
+        public AddPaymentInfoResult AddPaymentInfo(
+            Cart cart,
+            Party party,
+            FederatedPaymentInfo federatedPaymentInfo)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(party, nameof(party));
+            Assert.ArgumentNotNull(federatedPaymentInfo, nameof(federatedPaymentInfo));
+
+            var commerceParty = this.connectMapper.Map<Party, CommerceParty>(party);
+
+            federatedPaymentInfo.PartyID = party.PartyId;
+            federatedPaymentInfo.Amount = cart.Total.Amount;
+
+            cart.Parties.Add(commerceParty);
+
+            var payments = new List<PaymentInfo>
+            {
+                federatedPaymentInfo
+            };
+
+            return this.Execute(new AddPaymentInfoRequest(cart, payments), this.cartServiceProvider.AddPaymentInfo);
+        }
+
         public AddShippingInfoResult AddShippingInfo(
             Cart cart,
             ShippingOptionType shippingOptionType,
@@ -86,6 +116,14 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNull(shippings, nameof(shippings));
 
             return this.Execute(new AddShippingInfoRequest(cart, shippings, shippingOptionType), this.cartServiceProvider.AddShippingInfo);
+        }
+
+        public CartResult UpdateCart(Cart cart, CartBase cartUpdate)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartUpdate, nameof(cartUpdate));
+
+            return this.Execute(new UpdateCartRequest(cart, cartUpdate), this.cartServiceProvider.UpdateCart);
         }
 
         public CartResult UpdateCartLines(Cart cart, IEnumerable<CartLine> cartLines)
@@ -126,6 +164,13 @@ namespace Wooli.Foundation.Connect.Managers
             Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
 
             return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
+        }
+
+        public CartResult RemovePaymentInfo(Cart cart)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+
+            return this.Execute(new RemovePaymentInfoRequest(cart, cart.Payment), this.cartServiceProvider.RemovePaymentInfo);
         }
     }
 }

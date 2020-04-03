@@ -16,6 +16,8 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
     using AutoMapper;
 
+    using Connect.Models;
+
     using Models.Entities.Addresses;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
@@ -27,6 +29,11 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             // TODO: Get rid of reference to Sitecore.Commerce.Engine.Connect
             this.CreateMap<CommerceParty, Address>()
                 .ReverseMap();
+
+            this.CreateMap<Address, Party>()
+                .ForMember(dest => dest.Company, opt => opt.Ignore())
+                .ForMember(dest => dest.PhoneNumber, opt => opt.Ignore())
+                .ForMember(dest => dest.Facet, opt => opt.Ignore());
         }
     }
 }

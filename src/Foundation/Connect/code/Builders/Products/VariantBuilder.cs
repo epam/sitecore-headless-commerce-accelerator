@@ -21,65 +21,37 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
     using DependencyInjection;
 
-    using Managers;
+    using Mappers.Catalog;
 
     using Models.Catalog;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IProductBuilder<Item, Variant>), Lifetime = Lifetime.Singleton)]
-    public class VariantBuilder : BaseProductBuilder, IProductBuilder<Item, Variant>
+    [Service(typeof(IVariantBuilder<Item>), Lifetime = Lifetime.Singleton)]
+    public class VariantBuilder : BaseProductBuilder, IVariantBuilder<Item>
     {
         public VariantBuilder(
             IStorefrontContext storefrontContext,
-            IPricingManager pricingManager) : base(storefrontContext, pricingManager)
+            ICatalogMapper catalogMapper) : base(storefrontContext, catalogMapper)
         {
         }
 
-        public IEnumerable<Variant> Build(IEnumerable<Item> source)
+        public IEnumerable<Variant> Build(IEnumerable<Item> sources)
         {
-            Assert.ArgumentNotNull(source, nameof(source));
+            Assert.ArgumentNotNull(sources, nameof(sources));
 
-            var variants = source.Select(this.BuildVariantWithoutPrices).ToList();
-            this.SetPrices(variants);
+            var variants = sources.Select(this.InitializeVariant).ToList();
 
             return variants;
         }
 
-        public Variant Build(Item source)
+        private Variant InitializeVariant(Item source)
         {
-            Assert.ArgumentNotNull(source, nameof(source));
-
-            var variant = this.BuildVariantWithoutPrices(source);
-            this.SetPrices(variant);
-
-            return variant;
-        }
-
-        private Variant BuildVariantWithoutPrices(Item source)
-        {
-            var variant = this.BuildWithoutPrices<Variant>(source);
+            var variant = this.Initialize<Variant>(source);
             this.SetVariantProperties(variant, source);
 
             return variant;
-        }
-
-        private void SetPrices(Variant variant)
-        {
-            if (variant == null)
-            {
-                return;
-            }
-
-            var prices = this.PricingManager.GetProductPrices(
-                    variant.CatalogName,
-                    variant.Id,
-                    false,
-                    null)
-                ?.Result;
-
-            this.SetPrices(variant, prices);
         }
 
         private void SetVariantProperties(Variant entity, Item source)

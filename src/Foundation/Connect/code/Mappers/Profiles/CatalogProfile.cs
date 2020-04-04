@@ -14,15 +14,28 @@
 
 namespace Wooli.Foundation.Connect.Mappers.Profiles
 {
+    using System.Collections.Generic;
+
     using AutoMapper;
 
-    using Sitecore.Commerce.Entities.Inventory;
+    using Models.Catalog;
+
+    using Sitecore.Commerce.Engine.Connect.Entities;
+
+    using StockStatus = Sitecore.Commerce.Entities.Inventory.StockStatus;
 
     public class CatalogProfile : Profile
     {
         public CatalogProfile()
         {
             this.CreateMap<StockStatus, Models.Catalog.StockStatus>();
+
+            this.CreateMap<Product, CommerceInventoryProduct>()
+                .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.VariantId, opt => opt.Ignore());
+
+            this.CreateMap<Variant, CommerceInventoryProduct>()
+                .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

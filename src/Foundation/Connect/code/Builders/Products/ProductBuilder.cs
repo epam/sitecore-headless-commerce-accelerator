@@ -22,57 +22,106 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using DependencyInjection;
 
     using Managers;
+    using Managers.Inventory;
+
+    using Mappers.Catalog;
 
     using Models.Catalog;
 
+    using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IProductBuilder<Item, Product>), Lifetime = Lifetime.Singleton)]
-    public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item, Product>
+    [Service(typeof(IProductBuilder<Item>), Lifetime = Lifetime.Singleton)]
+    public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item>
     {
-        private readonly IProductBuilder<Item, Variant> variantBuilder;
+        private readonly IPricingManager pricingManager;
+        private readonly IInventoryManagerV2 inventoryManager;
+        private readonly IVariantBuilder<Item> variantBuilder;
 
         public ProductBuilder(
-            IProductBuilder<Item, Variant> variantBuilder,
+            IVariantBuilder<Item> variantBuilder,
             IStorefrontContext storefrontContext,
-            IPricingManager pricingManager) : base(
+            IPricingManager pricingManager,
+            IInventoryManagerV2 inventoryManager,
+            ICatalogMapper catalogMapper) : base(
             storefrontContext,
-            pricingManager)
+            catalogMapper)
         {
             Assert.ArgumentNotNull(variantBuilder, nameof(variantBuilder));
+            Assert.ArgumentNotNull(inventoryManager, nameof(inventoryManager));
+            Assert.ArgumentNotNull(pricingManager, nameof(pricingManager));
+
             this.variantBuilder = variantBuilder;
-        }
-
-        public IEnumerable<Product> Build(IEnumerable<Item> source)
-        {
-            Assert.ArgumentNotNull(source, nameof(source));
-
-            var products = source.Select(this.GetProductWithoutPrices).ToList();
-            this.SetPrices(products);
-
-            return products;
+            this.inventoryManager = inventoryManager;
+            this.pricingManager = pricingManager;
         }
 
         public Product Build(Item source)
         {
             Assert.ArgumentNotNull(source, nameof(source));
 
-            var product = this.GetProductWithoutPrices(source);
-            this.SetPrices(product);
+            var product = this.InitializeProduct(source, true);
+            this.SetPricesWithVariants(product);
+            this.SetStockStatus(product);
 
             return product;
         }
 
-        private Product GetProductWithoutPrices(Item source)
+        public IEnumerable<Product> BuildWithoutVariants(IEnumerable<Item> sources)
         {
-            var product = this.BuildWithoutPrices<Product>(source);
-            this.SetVariants(product, source);
+            Assert.ArgumentNotNull(sources, nameof(sources));
+
+            var products = sources.Select(source => this.InitializeProduct(source, false)).ToList();
+            this.SetPricesWithoutVariants(products);
+            this.SetStockStatus(products);
+
+            return products;
+        }
+
+        private Product InitializeProduct(Item source, bool includeVariants)
+        {
+            var product = this.Initialize<Product>(source);
+
+            if (includeVariants)
+            {
+                this.SetVariants(product, source);
+            }
+            else
+            {
+                product.Variants = new List<Variant>();
+            }
 
             return product;
         }
 
-        private void SetPrices(Product product)
+        private void SetVariants(Product product, Item source)
+        {
+            if (source.HasChildren)
+            {
+                product.Variants = this.variantBuilder.Build(source.Children).ToList();
+            }
+        }
+
+        private void SetPricesWithoutVariants(IList<Product> products)
+        {
+            if (products == null || !products.Any())
+            {
+                return;
+            }
+
+            var catalogName = products.Select(product => product.CatalogName).FirstOrDefault();
+            var productIds = products.Select(product => product.Id);
+            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null)?.Result;
+
+            foreach (var product in products)
+            {
+                this.SetPrices(product, prices);
+            }
+        }
+
+        private void SetPricesWithVariants(Product product)
         {
             if (product == null)
             {
@@ -80,7 +129,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
             }
 
             var includeVariants = product.Variants != null && product.Variants.Count > 0;
-            var productPrices = this.PricingManager.GetProductPrices(
+            var productPrices = this.pricingManager.GetProductPrices(
                     product.CatalogName,
                     product.Id,
                     includeVariants,
@@ -98,11 +147,82 @@ namespace Wooli.Foundation.Connect.Builders.Products
             }
         }
 
-        private void SetVariants(Product product, Item source)
+        private void SetStockStatus(Product product)
         {
-            if (source.HasChildren)
+            this.SetStockStatus(new List<Product> { product });
+        }
+
+        private void SetStockStatus(IEnumerable<Product> products)
+        {
+            var productsList = products.ToList();
+            var inventoryProducts = this.GetInventoryProducts(productsList);
+
+            var stockInformation = this.GetStockInformation(inventoryProducts);
+
+            if (stockInformation == null)
             {
-                product.Variants = this.variantBuilder.Build(source.Children).ToList();
+                return;
+            }
+
+            this.SetStockStatus(productsList, stockInformation);
+        }
+
+        private IEnumerable<CommerceInventoryProduct> GetInventoryProducts(IEnumerable<Product> products)
+        {
+            var inventoryProducts = new List<CommerceInventoryProduct>();
+
+            foreach (var product in products)
+            {
+                this.AddProduct(inventoryProducts, product);
+            }
+
+            return inventoryProducts;
+        }
+
+        private void AddProduct(List<CommerceInventoryProduct> products, Product product)
+        {
+            products.Add(this.CatalogMapper.Map<Product, CommerceInventoryProduct>(product));
+
+            foreach (var productVariant in product.Variants)
+            {
+                products.Add(this.CatalogMapper.Map<Variant, CommerceInventoryProduct>(productVariant));
+            }
+        }
+
+        private IEnumerable<StockInformation> GetStockInformation(IEnumerable<CommerceInventoryProduct> inventoryProducts)
+        {
+            if (inventoryProducts == null)
+            {
+                return Enumerable.Empty<StockInformation>();
+            }
+
+            var shopName = this.StorefrontContext.ShopName;
+            return this.inventoryManager
+                .GetStockInformation(shopName, inventoryProducts, StockDetailsLevel.StatusAndAvailability)
+                ?.StockInformation;
+        }
+
+        private void SetStockStatus(List<Product> products, IEnumerable<StockInformation> stockInformation)
+        {
+            foreach (var information in stockInformation)
+            {
+                if (information.Product is CommerceInventoryProduct inventoryProduct)
+                {
+                    var product = products.FirstOrDefault(p => p.Id == inventoryProduct.ProductId);
+                    if (product != null)
+                    {
+                        if (string.IsNullOrEmpty(inventoryProduct.VariantId))
+                        {
+                            this.SetStockStatus(product, information);
+                        }
+                        else
+                        {
+                            var variant = product.Variants.FirstOrDefault(v => v.Id == inventoryProduct.VariantId);
+
+                            this.SetStockStatus(variant, information);
+                        }
+                    }
+                }
             }
         }
     }

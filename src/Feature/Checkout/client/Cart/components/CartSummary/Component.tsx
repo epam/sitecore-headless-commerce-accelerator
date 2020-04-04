@@ -97,7 +97,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                                 <span className="label">Item Price:</span>
                                 <span className="amount">
                                   <span className="currency">{cartLine.variant.currencySymbol}</span>
-                                  {cartLine.variant.listPrice.toFixed(2)}
+                                  {cartLine.variant.adjustedPrice.toFixed(2)}
                                 </span>
                               </div>
                               <div className="product-total">

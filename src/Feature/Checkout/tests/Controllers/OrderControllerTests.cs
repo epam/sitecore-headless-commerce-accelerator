@@ -15,11 +15,12 @@
 namespace Wooli.Feature.Checkout.Tests.Controllers
 {
     using System;
+    using System.Collections.Generic;
 
     using Checkout.Controllers;
 
     using Foundation.Base.Models;
-    using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Models.Entities.Order;
     using Foundation.Commerce.Services.Order;
 
     using Models.Requests;
@@ -52,7 +53,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetOrder(this.fixture.Create<string>());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<CartModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<Order>>>());
         }
 
         [Fact]
@@ -62,7 +63,7 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
             this.controller.GetOrders(this.fixture.Create<GetOrdersRequest>());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<OrderHistoryResultModel>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<IList<Order>>>>());
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Wooli.Feature.Checkout.Controllers
         [ActionName("order")]
         public ActionResult GetOrder(string id)
         {
-            return this.Execute(() => this.orderService.GetOrderDetails(id));
+            return this.Execute(() => this.orderService.GetOrder(id));
         }
 
         [HttpGet]

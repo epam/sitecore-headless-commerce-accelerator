@@ -15,30 +15,159 @@
 namespace Wooli.Foundation.Commerce.Services.Order
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Base.Models;
+    using Base.Models.Logging;
+    using Base.Services.Logging;
+
+    using Connect.Context;
+    using Connect.Managers;
+    using Connect.Managers.Cart;
+
+    using Context;
 
     using DependencyInjection;
 
-    using Models.Checkout;
+    using Mappers.Order;
 
-    // TODO: Create Entities for OrderService in scope of refactoring of OrderRepository and CheckoutRepository
+    using Models.Entities.Order;
+
+    using Newtonsoft.Json;
+
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IOrderService), Lifetime = Lifetime.Singleton)]
     public class OrderService : IOrderService
     {
-        public Result<CartModel> GetOrderDetails(string trackingId)
+        private readonly ICartManagerV2 cartManager;
+
+        private readonly ILogService<CommonLog> logService;
+
+        private readonly IOrderMapper mapper;
+
+        private readonly IOrderManagerV2 orderManager;
+
+        private readonly IStorefrontContext storefrontContext;
+
+        private readonly IVisitorContext visitorContext;
+
+        public OrderService(
+            IOrderMapper orderMapper,
+            ILogService<CommonLog> logService,
+            IOrderManagerV2 orderManager,
+            ICartManagerV2 cartManager,
+            IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext)
         {
-            throw new NotImplementedException();
+            Assert.ArgumentNotNull(orderManager, nameof(orderManager));
+            Assert.ArgumentNotNull(cartManager, nameof(cartManager));
+            Assert.ArgumentNotNull(orderMapper, nameof(orderMapper));
+            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
+
+            this.orderManager = orderManager;
+            this.logService = logService;
+            this.mapper = orderMapper;
+            this.cartManager = cartManager;
+            this.storefrontContext = storefrontContext;
+            this.visitorContext = visitorContext;
         }
 
-        public Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)
+        public Result<Order> GetOrder(string orderId)
         {
-            throw new NotImplementedException();
+            Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
+
+            var result = new Result<Order>();
+
+            var orderResult = this.orderManager.GetOrder(
+                orderId,
+                this.visitorContext.ContactId,
+                this.storefrontContext.ShopName);
+
+            if (!orderResult.Success)
+            {
+                result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
+            }
+
+            result.SetResult(this.mapper.Map(orderResult.Order));
+
+            return result;
         }
 
-        public Result<SubmitOrderModel> SubmitOrder()
+        public Result<IList<Order>> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)
         {
-            throw new NotImplementedException();
+            var result = new Result<IList<Order>>();
+
+            var headersResult = this.orderManager.GetOrdersHeaders(
+                this.visitorContext.ContactId,
+                this.storefrontContext.ShopName);
+
+            if (headersResult.Success)
+            {
+                IList<Order> orders = headersResult.OrderHeaders
+                    .Where(header => fromDate == null || header.OrderDate >= fromDate)
+                    .Where(header => untilDate == null || header.OrderDate <= untilDate)
+                    .Skip(page * count)
+                    .Take(count)
+                    .Select(
+                        header =>
+                        {
+                            var orderResult = this.orderManager.GetOrder(
+                                header.OrderID,
+                                this.visitorContext.ContactId,
+                                this.storefrontContext.ShopName);
+
+                            if (!orderResult.Success)
+                            {
+                                result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
+                            }
+
+                            return this.mapper.Map(orderResult.Order);
+                        })
+                    .ToList();
+
+                result.SetResult(orders);
+            }
+            else
+            {
+                result.SetErrors(headersResult.SystemMessages.Select(sm => sm.Message).ToList());
+            }
+
+            return result;
+        }
+
+        public Result<OrderConfirmation> SubmitOrder()
+        {
+            var result = new Result<OrderConfirmation>();
+
+            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+
+            if (cartResult.Success)
+            {
+                var submitResult = this.orderManager.SubmitVisitorOrder(cartResult.Cart);
+
+                if (submitResult.Success)
+                {
+                    result.SetResult(
+                        new OrderConfirmation
+                        {
+                            ConfirmationId = submitResult.Order.TrackingNumber
+                        });
+                }
+                else
+                {
+                    this.logService.Error(JsonConvert.SerializeObject(submitResult.CartWithErrors));
+                    result.SetErrors(submitResult.SystemMessages.Select(sm => sm.Message).ToList());
+                }
+            }
+            else
+            {
+                result.SetErrors(cartResult.SystemMessages.Select(sm => sm.Message).ToList());
+            }
+
+            return result;
         }
     }
 }

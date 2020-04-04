@@ -15,36 +15,38 @@
 namespace Wooli.Foundation.Commerce.Services.Order
 {
     using System;
+    using System.Collections.Generic;
 
     using Base.Models;
 
-    using Models.Checkout;
+    using Models.Entities.Order;
 
     /// <summary>
     /// Performs main operations during checkout process
     /// </summary>
     public interface IOrderService
     {
-        // TODO: Refactor return type
-        Result<CartModel> GetOrderDetails(string trackingId);
+        /// <summary>
+        /// Get order by id
+        /// </summary>
+        /// <param name="orderId">Order's id</param>
+        /// <returns>Order</returns>
+        Result<Order> GetOrder(string orderId);
 
         /// <summary>
+        /// Get list of orders
         /// </summary>
-        /// <param name="fromDate"></param>
-        /// <param name="untilDate"></param>
-        /// <param name="page"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
-
-        // TODO: Refactor return type
-        Result<OrderHistoryResultModel> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count);
+        /// <param name="fromDate">Date for filter from</param>
+        /// <param name="untilDate">Date for filter until</param>
+        /// <param name="page">current page</param>
+        /// <param name="count">numbers of item per page</param>
+        /// <returns>List of Orders</returns>
+        Result<IList<Order>> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count);
 
         /// <summary>
         /// Submits current user order
         /// </summary>
-        /// <returns>Submit order result</returns>
-
-        // TODO: Refactor return type
-        Result<SubmitOrderModel> SubmitOrder();
+        /// <returns>Order's submit confirmation</returns>
+        Result<OrderConfirmation> SubmitOrder();
     }
 }

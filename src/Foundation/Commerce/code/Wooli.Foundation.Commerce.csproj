@@ -630,9 +630,12 @@
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
+    <Compile Include="Mappers\Order\IOrderMapper.cs" />
+    <Compile Include="Mappers\Order\OrderMapper.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
     <Compile Include="Mappers\Payment\PaymentMapper.cs" />
+    <Compile Include="Mappers\Profiles\OrderProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
@@ -657,6 +660,8 @@
     <Compile Include="Models\Account\CreateAccountModel.cs" />
     <Compile Include="Models\Account\CreateAccountResultModel.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
+    <Compile Include="Models\Entities\Order\Order.cs" />
+    <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchOptions.cs" />

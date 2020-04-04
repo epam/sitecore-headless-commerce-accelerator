@@ -56,7 +56,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                   <figcaption>
                     <div className="price">
                       <div className="price__full">
-                        <span className="price__currency">$</span>
+                        <span className="price__currency">{cartLine.price.currencySymbol}</span>
                         <span className="price__amount">{cartLine.price.total}</span>
                       </div>
                     </div>

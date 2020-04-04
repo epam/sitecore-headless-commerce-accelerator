@@ -20,17 +20,26 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using Models.Entities.Catalog;
 
+    using Providers;
+
+    using Sitecore.Diagnostics;
+
     using Connect = Connect.Models.Catalog;
 
     [ExcludeFromCodeCoverage]
     public class CatalogProfile : Profile
     {
-        public CatalogProfile()
+        public CatalogProfile(ICurrencyProvider currencyProvider)
         {
+            Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
+
             this.CreateMap<Connect.BaseProduct, BaseProduct>()
                 .ForMember(
                     dest => dest.StockStatusName,
-                    opt => opt.MapFrom(src => src.StockStatus != null ? src.StockStatus.Name : null));
+                    opt => opt.MapFrom(src => src.StockStatus != null ? src.StockStatus.Name : null))
+                .ForMember(
+                    dest => dest.CurrencySymbol,
+                    opt => opt.MapFrom(src => currencyProvider.GetCurrencySymbolByCode(src.CurrencyCode)));
 
             this.CreateMap<Connect.Product, Product>()
                 .IncludeBase<Connect.BaseProduct, BaseProduct>();

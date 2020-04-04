@@ -85,7 +85,6 @@ namespace Wooli.Foundation.Connect.Builders.Products
             }
 
             var commercePrice = price as CommercePrice;
-            // TODO: Add setting of currency symbol
             product.CurrencyCode = price.CurrencyCode;
             product.ListPrice = commercePrice?.Amount;
             product.AdjustedPrice = commercePrice?.ListPrice;

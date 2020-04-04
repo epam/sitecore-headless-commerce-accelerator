@@ -22,19 +22,25 @@ namespace Wooli.Foundation.Commerce.Mappers.Search
 
     using Profiles;
 
+    using Providers;
+
+    using Sitecore.Diagnostics;
+
     using Mapper = Base.Mappers.Mapper;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(ISearchMapper), Lifetime = Lifetime.Singleton)]
     public class SearchMapper : Mapper, ISearchMapper
     {
-        public SearchMapper()
+        public SearchMapper(ICurrencyProvider currencyProvider)
         {
+            Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
+
             var configuration = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.AddProfile<SearchProfile>();
-                    cfg.AddProfile<CatalogProfile>();
+                    cfg.AddProfile(new CatalogProfile(currencyProvider));
                 });
 
             this.InnerMapper = new AutoMapper.Mapper(configuration);

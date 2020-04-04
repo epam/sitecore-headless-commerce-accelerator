@@ -16,15 +16,30 @@ namespace Wooli.Foundation.Commerce.Mappers.Catalog
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Base.Mappers;
+    using AutoMapper;
 
     using DependencyInjection;
 
     using Profiles;
 
+    using Providers;
+
+    using Sitecore.Diagnostics;
+
+    using Mapper = Base.Mappers.Mapper;
+
     [ExcludeFromCodeCoverage]
     [Service(typeof(ICatalogMapper), Lifetime = Lifetime.Singleton)]
-    public class CatalogMapper : ProfileMapper<CatalogProfile>, ICatalogMapper
+    public class CatalogMapper : Mapper, ICatalogMapper
     {
+        public CatalogMapper(ICurrencyProvider currencyProvider)
+        {
+            Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
+
+            var mapperConfiguration = new MapperConfiguration(
+                cfg => cfg.AddProfile(new CatalogProfile(currencyProvider)));
+
+            this.InnerMapper = new AutoMapper.Mapper(mapperConfiguration);
+        }
     }
 }

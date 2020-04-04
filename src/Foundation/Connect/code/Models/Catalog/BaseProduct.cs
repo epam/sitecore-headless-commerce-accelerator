@@ -59,8 +59,6 @@ namespace Wooli.Foundation.Connect.Models.Catalog
 
         public IList<string> ImageUrls { get; set; }
 
-        public string CurrencySymbol { get; set; }
-
         public decimal? ListPrice { get; set; }
 
         public decimal? AdjustedPrice { get; set; }

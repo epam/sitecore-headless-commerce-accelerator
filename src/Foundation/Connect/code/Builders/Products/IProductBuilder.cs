@@ -22,23 +22,21 @@ namespace Wooli.Foundation.Connect.Builders.Products
     /// Builds product or variant entities from TSource
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
-    /// <typeparam name="TDestination"></typeparam>
-    public interface IProductBuilder<in TSource, out TDestination>
+    public interface IProductBuilder<in TSource>
         where TSource : class
-        where TDestination : BaseProduct
     {
         /// <summary>
-        /// Builds enumerable of product or variant entities from TSource
+        /// Builds product entity from TSource
         /// </summary>
         /// <param name="source">Source model</param>
         /// <returns></returns>
-        IEnumerable<TDestination> Build(IEnumerable<TSource> source);
+        Product Build(TSource source);
 
         /// <summary>
-        /// Builds product or variant entity from TSource
+        /// Builds enumerable of product entities without variants from TSource
         /// </summary>
-        /// <param name="source">Source model</param>
+        /// <param name="sources">Source model</param>
         /// <returns></returns>
-        TDestination Build(TSource source);
+        IEnumerable<Product> BuildWithoutVariants(IEnumerable<TSource> sources);
     }
 }

@@ -30,14 +30,13 @@ namespace Wooli.Foundation.Connect.Services.Search
 
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
     [Service(typeof(ISearchService), Lifetime = Lifetime.Singleton)]
     public class SearchService : ISearchService
     {
-        private readonly IProductBuilder<Item, Product> productBuilder;
-
         private readonly ISearchQueryBuilder queryBuilder;
 
         private readonly ISearchMapper searchMapper;
@@ -45,11 +44,13 @@ namespace Wooli.Foundation.Connect.Services.Search
         private readonly ISearchResponseProvider searchResponseProvider;
 
         private readonly ISearchResultProvider searchResultProvider;
+        
+        private readonly IProductBuilder<Item> productBuilder;
 
         public SearchService(
             ISearchMapper searchMapper,
             ISearchResponseProvider searchResponseProvider,
-            IProductBuilder<Item, Product> productBuilder,
+            IProductBuilder<Item> productBuilder,
             ISearchResultProvider searchResultProvider,
             ISearchQueryBuilder queryBuilder)
         {
@@ -77,12 +78,13 @@ namespace Wooli.Foundation.Connect.Services.Search
                     queryable => this.queryBuilder.BuildProductsQuery(
                         queryable,
                         searchOptions.SearchKeyword,
+                        ID.Parse(searchOptions.CategoryId),
                         commerceSearchOptions));
 
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
             var searchResults = this.searchMapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
-            searchResults.Results = this.productBuilder.Build(searchResponse.ResponseItems).ToList();
+            searchResults.Results = this.productBuilder.BuildWithoutVariants(searchResponse.ResponseItems).ToList();
 
             return searchResults;
         }

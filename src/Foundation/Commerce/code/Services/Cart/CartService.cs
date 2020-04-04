@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using DependencyInjection;
 
-    using ModelMappers;
+    using Mappers;
 
     using Models.Entities.Cart;
 

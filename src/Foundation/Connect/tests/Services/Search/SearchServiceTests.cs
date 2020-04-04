@@ -45,8 +45,6 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
     {
         private readonly IFixture fixture;
 
-        private readonly IProductBuilder<Item, Product> productBuilder;
-
         private readonly ISearchQueryBuilder queryBuilder;
 
         private readonly ISearchMapper searchMapper;
@@ -54,7 +52,7 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
         private readonly ISearchResponseProvider searchResponseProvider;
 
         private readonly ISearchResultProvider searchResultProvider;
-
+        private readonly IProductBuilder<Item> productBuilder;
         private readonly ISearchService searchService;
 
         public SearchServiceTests()
@@ -63,7 +61,7 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
 
             this.searchMapper = Substitute.For<ISearchMapper>();
             this.searchResponseProvider = Substitute.For<ISearchResponseProvider>();
-            this.productBuilder = Substitute.For<IProductBuilder<Item, Product>>();
+            this.productBuilder = Substitute.For<IProductBuilder<Item>>();
             this.searchResultProvider = Substitute.For<ISearchResultProvider>();
             this.queryBuilder = Substitute.For<ISearchQueryBuilder>();
 

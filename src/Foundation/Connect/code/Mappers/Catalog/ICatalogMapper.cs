@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,18 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Search
+namespace Wooli.Foundation.Connect.Mappers.Catalog
 {
-    using System.Collections.Generic;
+    using Base.Mappers;
 
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-
-    public class CategorySearchInformation
+    /// <summary>
+    /// Performs mapping for catalog models
+    /// </summary>
+    public interface ICatalogMapper : IMapper
     {
-        public int ItemsPerPage { get; set; }
-
-        public IList<CommerceQueryFacet> RequiredFacets { get; set; }
-
-        public IList<CommerceQuerySort> SortFields { get; set; }
     }
 }

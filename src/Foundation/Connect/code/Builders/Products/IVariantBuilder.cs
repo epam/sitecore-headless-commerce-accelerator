@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,12 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers
+namespace Wooli.Foundation.Connect.Builders.Products
 {
-    using Connect.Models.Search;
+    using System.Collections.Generic;
 
-    public interface ISettingsProvider
+    using Models.Catalog;
+
+    public interface IVariantBuilder<in TSource>
     {
-        int GetDefaultItemsPerPage(int? pageSize, CategorySearchInformation searchInformation);
+        /// <summary>
+        /// Builds enumerable of variant entities without prices and stock status from TSource
+        /// </summary>
+        /// <param name="sources">Source model</param>
+        /// <returns></returns>
+        IEnumerable<Variant> Build(IEnumerable<TSource> sources);
     }
 }

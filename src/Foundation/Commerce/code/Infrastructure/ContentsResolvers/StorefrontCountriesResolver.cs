@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 
     using DependencyInjection;
 
-    using ModelMappers;
+    using Mappers;
 
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;

@@ -21,23 +21,10 @@ namespace Wooli.Foundation.Commerce.Context
 
     using Models.Entities.Users;
 
-    using Providers;
-
     [Service(typeof(IVisitorContext))]
     public class VisitorContext : IVisitorContext
     {
         private const string CurrentUserItemKey = "_CurrentCommerceUser";
-
-        private const string ExperienceEditorVisitorTrackingId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
-
-        private const string StaticVisitorId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
-
-        private readonly ICustomerProvider customerProvider;
-
-        public VisitorContext(ICustomerProvider customerProvider)
-        {
-            this.customerProvider = customerProvider;
-        }
 
         private IDictionary Items => HttpContext.Current.Items;
 

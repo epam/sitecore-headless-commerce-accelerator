@@ -50,17 +50,12 @@ namespace Wooli.Foundation.Connect.Managers
 
         private readonly IConnectEntityMapper connectEntityMapper;
 
-        private readonly ISearchManager searchManager;
-
         public CartManager(
-            ISearchManager searchManager,
             IConnectServiceProvider connectServiceProvider,
             IConnectEntityMapper connectEntityMapper)
         {
-            Assert.ArgumentNotNull(searchManager, nameof(searchManager));
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             Assert.ArgumentNotNull(connectEntityMapper, nameof(connectEntityMapper));
-            this.searchManager = searchManager;
             this.cartServiceProvider = connectServiceProvider.GetCommerceCartServiceProvider();
             this.connectEntityMapper = connectEntityMapper;
         }

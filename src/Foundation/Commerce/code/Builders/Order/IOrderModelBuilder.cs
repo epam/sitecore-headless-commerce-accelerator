@@ -12,26 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Repositories
+namespace Wooli.Foundation.Commerce.Builders.Order
 {
-    using System.Collections.Specialized;
+    using Models.Checkout;
 
-    using Context;
+    using Sitecore.Commerce.Entities.Orders;
 
-    using Models;
-    using Models.Catalog;
-
-    public interface IProductListRepository
+    public interface IOrderModelBuilder
     {
-        ProductListResultModel GetProductList(
-            IVisitorContext visitorContext,
-            string currentItemId,
-            string currentCatalogItemId,
-            string searchKeyword,
-            int? pageNumber,
-            NameValueCollection facetValues,
-            string sortField,
-            int? pageSize,
-            SortDirection? sortDirection);
+        OrderModel Initialize(Order model);
     }
 }

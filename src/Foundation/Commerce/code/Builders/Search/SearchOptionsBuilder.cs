@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Commerce.Builders.Search
 
     using Mappers.Search;
 
-    using Models;
     using Models.Entities.Search;
 
     using Sitecore.Diagnostics;
@@ -44,15 +43,14 @@ namespace Wooli.Foundation.Commerce.Builders.Search
             Assert.ArgumentNotNull(searchSettings, nameof(searchSettings));
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
 
-            var pageSize = searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage;
-            var startPageIndex = (searchOptions.PageNumber - 1) * pageSize;
-
             return new Connect.SearchOptions
             {
                 SearchKeyword = searchOptions.SearchKeyword,
                 Facets = this.GetFacetsIntersection(searchSettings.Facets, searchOptions.Facets),
-                StartPageIndex = startPageIndex > 0 ? startPageIndex : 0,
-                NumberOfItemsToReturn = pageSize,
+                StartPageIndex = searchOptions.PageNumber,
+                NumberOfItemsToReturn =
+                    searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage,
+                CategoryId = searchOptions.CategoryId,
                 SortField = !string.IsNullOrEmpty(searchOptions.SortField)
                     ? searchOptions.SortField
                     : searchSettings.SortFieldNames?.FirstOrDefault(),
@@ -66,6 +64,11 @@ namespace Wooli.Foundation.Commerce.Builders.Search
             IEnumerable<Connect.Facet> searchSettingsFacets,
             IEnumerable<Facet> searchOptionsFacets)
         {
+            if (searchOptionsFacets == null || !searchOptionsFacets.Any())
+            {
+                return searchSettingsFacets;
+            }
+
             var facets = searchOptionsFacets.Where(
                 searchOptionsFacet =>
                 {

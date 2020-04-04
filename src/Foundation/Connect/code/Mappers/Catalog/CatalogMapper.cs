@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,26 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Catalog
+namespace Wooli.Foundation.Connect.Mappers.Catalog
 {
-    using System;
+    using Base.Mappers;
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
+    using DependencyInjection;
 
-    using TypeLite;
+    using Profiles;
 
-    [TsClass]
-    [Obsolete("Use Entities.SortOption")]
-    public class SortOptionModel
+    [Service(typeof(ICatalogMapper), Lifetime = Lifetime.Singleton)]
+    public class CatalogMapper : ProfileMapper<CatalogProfile>, ICatalogMapper
     {
-        public string DisplayName { get; set; }
-
-        public bool IsSelected { get; set; }
-
-        public string Name { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public SortDirection SortDirection { get; set; }
     }
 }

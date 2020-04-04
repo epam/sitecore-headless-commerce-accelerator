@@ -36,18 +36,15 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
     public class CatalogService : ICatalogService
     {
         private readonly ICatalogMapper catalogMapper;
-
-        private readonly IProductBuilder<Item, Connect.Product> productBuilder;
-
         private readonly ISearchService searchService;
-
         private readonly ISiteContext siteContext;
+        private readonly IProductBuilder<Item> productBuilder;
 
         public CatalogService(
-            ISiteContext siteContext,
-            ICatalogMapper catalogMapper,
+            ISiteContext siteContext, 
+            ICatalogMapper catalogMapper, 
             ISearchService searchService,
-            IProductBuilder<Item, Connect.Product> productBuilder)
+            IProductBuilder<Item> productBuilder)
         {
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));

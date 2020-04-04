@@ -34,11 +34,9 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
 
     public class SearchOptionsBuilderTests
     {
-        private readonly ISearchOptionsBuilder builder;
-
-        private readonly IFixture fixture;
-
         private readonly ISearchMapper searchMapper;
+        private readonly ISearchOptionsBuilder builder;
+        private readonly IFixture fixture;
 
         public SearchOptionsBuilderTests()
         {
@@ -56,6 +54,32 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             Assert.Throws<ArgumentNullException>(
                 () => this.builder.Build(this.fixture.Create<Connect.SearchSettings>(), null));
         }
+
+        [Fact]
+        public void Build_ShouldReturnSearchOptions()
+        {
+            // act 
+            var searchOptions = this.builder.Build(
+                this.fixture.Create<Connect.SearchSettings>(),
+                this.fixture.Create<ProductSearchOptions>());
+
+            // assert
+            Assert.NotNull(searchOptions);
+        }
+
+        [Fact]
+        public void Build_ShouldMapSearchKeyword()
+        {
+            //arrange
+            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+
+            // act 
+            var searchOptions = this.builder.Build(this.fixture.Create<Connect.SearchSettings>(), productSearchOptions);
+
+            // assert
+            Assert.True(searchOptions.SearchKeyword == productSearchOptions.SearchKeyword);
+        }
+
 
         [Theory]
         [InlineData(0)]
@@ -94,7 +118,7 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
         }
 
         [Fact]
-        public void Build_IfSortFieldIsNotEmptyInSearchOptions_ShouldSetSortFieldFromSearchOptions()
+        public void Build_ShouldSetCategoryIdToSearchOptionsCategoryId()
         {
             //arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
@@ -104,7 +128,25 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
 
             // assert
-            Assert.True(searchOptions.SortField == productSearchOptions.SortField);
+            Assert.True(searchOptions.CategoryId == productSearchOptions.CategoryId);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        public void Build_ShouldSetStartPageIndexIsEqualToPageNumber(int pageNumber)
+        {
+            //arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+
+            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.PageNumber = pageNumber;
+
+            // act 
+            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
+
+            // assert
+            Assert.True(searchOptions.StartPageIndex == pageNumber);
         }
 
         [Theory]
@@ -131,16 +173,17 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
         }
 
         [Fact]
-        public void Build_ShouldMapSearchKeyword()
+        public void Build_IfSortFieldIsNotEmptyInSearchOptions_ShouldSetSortFieldFromSearchOptions()
         {
             //arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
 
             // act 
-            var searchOptions = this.builder.Build(this.fixture.Create<Connect.SearchSettings>(), productSearchOptions);
+            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
 
             // assert
-            Assert.True(searchOptions.SearchKeyword == productSearchOptions.SearchKeyword);
+            Assert.True(searchOptions.SortField == productSearchOptions.SortField);
         }
 
         [Theory]
@@ -162,18 +205,6 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
                     productSearchOptions.SortDirection == SortDirection.Asc) ||
                 (searchOptions.SortDirection == Connect.SortDirection.Desc &&
                     productSearchOptions.SortDirection == SortDirection.Desc));
-        }
-
-        [Fact]
-        public void Build_ShouldReturnSearchOptions()
-        {
-            // act 
-            var searchOptions = this.builder.Build(
-                this.fixture.Create<Connect.SearchSettings>(),
-                this.fixture.Create<ProductSearchOptions>());
-
-            // assert
-            Assert.NotNull(searchOptions);
         }
 
         [Fact]
@@ -214,39 +245,6 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             Assert.NotEmpty(searchOptions.Facets.FirstOrDefault(facet => facet.Name == commonFacet.Name).Values);
         }
 
-        [Theory]
-        [InlineData(0, 0)]
-        [InlineData(0, 1)]
-        [InlineData(1, 1)]
-        [InlineData(2, 1)]
-        public void Build_ShouldSetStartPageIndexIsMoreOrEqualThanZero(int pageNumber, int pageSize)
-        {
-            //arrange
-            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
-
-            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
-            productSearchOptions.PageSize = pageSize;
-            productSearchOptions.PageNumber = pageNumber;
-
-            // act 
-            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
-
-            // assert
-            Assert.True(searchOptions.StartPageIndex >= 0);
-        }
-
-        private IEnumerable<Facet> ArrangeSearchOptionsFacets(string commonFacetName, IEnumerable<object> values)
-        {
-            var productSearchOptionsFacets = this.fixture.Create<IList<Facet>>().ToList();
-            productSearchOptionsFacets.Add(
-                new Facet
-                {
-                    Name = commonFacetName,
-                    Values = this.fixture.Create<IList<object>>()
-                });
-            return productSearchOptionsFacets;
-        }
-
         private IEnumerable<Connect.Facet> ArrangeSearchSettingsFacets(
             string commonFacetName,
             string commonFacetDisplayName)
@@ -259,6 +257,18 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
                     DisplayName = commonFacetDisplayName
                 });
             return searchSettingsFacets;
+        }
+
+        private IEnumerable<Facet> ArrangeSearchOptionsFacets(string commonFacetName, IEnumerable<object> values)
+        {
+            var productSearchOptionsFacets = this.fixture.Create<IList<Facet>>().ToList();
+            productSearchOptionsFacets.Add(
+                new Facet
+                {
+                    Name = commonFacetName,
+                    Values = this.fixture.Create<IList<object>>()
+                });
+            return productSearchOptionsFacets;
         }
     }
 }

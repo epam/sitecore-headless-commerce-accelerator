@@ -73,7 +73,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                 <ProductRating rating={selectedCatalogItem.customerAverageRating} />
                 <p className="product-price">
                   <span className="price-label">Sale</span>
-                  <span className="price-value">{selectedCatalogItem.currencySymbol} {selectedCatalogItem.listPrice.toFixed(2)}</span>
+                  <span className="price-value">{selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}</span>
                 </p>
                 <div className="product-params">
                   <Placeholder name="product-properties" {...this.props} />

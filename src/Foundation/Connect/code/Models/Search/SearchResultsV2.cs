@@ -23,5 +23,7 @@ namespace Wooli.Foundation.Connect.Models.Search
         public IEnumerable<Facet> Facets { get; set; }
 
         public int TotalItemCount { get; set; }
+
+        public int TotalPageCount { get; set; }
     }
 }

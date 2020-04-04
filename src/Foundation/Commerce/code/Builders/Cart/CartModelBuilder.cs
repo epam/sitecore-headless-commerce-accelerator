@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.ModelInitializers
+namespace Wooli.Foundation.Commerce.Builders.Cart
 {
     using System.Collections.Generic;
     using System.Linq;
 
     using DependencyInjection;
 
-    using ModelMappers;
+    using Mappers;
 
     using Models.Checkout;
 

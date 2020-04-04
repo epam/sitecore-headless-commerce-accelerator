@@ -22,75 +22,109 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using Extensions.Extensions;
 
     using Managers;
+    using Managers.Inventory;
+
+    using Mappers.Catalog;
 
     using Models.Catalog;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+
+    using StockStatus = Models.Catalog.StockStatus;
 
     /// <summary>
     /// Sets Base Product properties
     /// </summary>
     public abstract class BaseProductBuilder
     {
-        protected readonly IPricingManager PricingManager;
-
-        private readonly IStorefrontContext storefrontContext;
+        protected readonly ICatalogMapper CatalogMapper;
+        protected readonly IStorefrontContext StorefrontContext;
 
         protected BaseProductBuilder(
             IStorefrontContext storefrontContext,
-            IPricingManager pricingManager)
+            ICatalogMapper catalogMapper)
         {
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
-            Assert.ArgumentNotNull(pricingManager, nameof(pricingManager));
+            Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
 
-            this.storefrontContext = storefrontContext;
-            this.PricingManager = pricingManager;
+            this.StorefrontContext = storefrontContext;
+            this.CatalogMapper = catalogMapper;
         }
 
         /// <summary>
-        /// Builds entity of TEntity type without setting prices
+        /// Initialize entity of TProduct from source item and catalog data
         /// </summary>
-        /// <typeparam name="TEntity">BaseProduct or it derivatives</typeparam>
         /// <param name="source">Item to set properties from</param>
-        /// <returns>Entity of TEntity type without prices set</returns>
-        protected TEntity BuildWithoutPrices<TEntity>(Item source) where TEntity : BaseProduct, new()
+        /// <returns>Entity of TProduct type</returns>
+        protected TProduct Initialize<TProduct>(Item source)
+            where TProduct : BaseProduct, new()
         {
-            var entity = new TEntity();
+            var entity = new TProduct();
             this.Initialize(entity, source);
             this.SetCatalogName(entity);
-            entity.StockStatus = new StockStatus
-            {
-                Name = "InStock"
-            };
-
-            //TODO: this.SetCurrency(entity)
-            //TODO: this.SetStockStatus(entity)
 
             return entity;
         }
 
         /// <summary>
+        /// Sets prices to product
+        /// </summary>
+        /// <param name="product">Product to set properties to</param>
+        /// <param name="prices">Prices dictionary with product id as key</param>
+        protected void SetPrices(BaseProduct product, IDictionary<string, Price> prices)
+        {
+            if (prices == null || !prices.Any() ||
+                !prices.TryGetValue(product.Id, out var price))
+            {
+                return;
+            }
+
+            var commercePrice = price as CommercePrice;
+            // TODO: Add setting of currency symbol
+            product.CurrencyCode = price.CurrencyCode;
+            product.ListPrice = commercePrice?.Amount;
+            product.AdjustedPrice = commercePrice?.ListPrice;
+        }
+
+        /// <summary>
+        /// Sets stock status to product
+        /// </summary>
+        /// <param name="product">Product to set stock status</param>
+        /// <param name="stockInformation">Stock information</param>
+        protected void SetStockStatus(BaseProduct product, StockInformation stockInformation)
+        {
+            if (stockInformation == null || product == null)
+            {
+                return;
+            }
+
+            product.StockStatus =
+                this.CatalogMapper.Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
+                    stockInformation.Status);
+        }
+
+        /// <summary>
         /// Initialize properties directly from item fields. Alternative to GlassMapper for product entities.
         /// </summary>
-        /// <typeparam name="TEntity">BaseProduct or it derivatives</typeparam>
-        /// <param name="entity">Entity to set properties to</param>
+        /// <param name="product">Product to set properties to</param>
         /// <param name="source">Item to set properties from</param>
-        protected void Initialize<TEntity>(TEntity entity, Item source) where TEntity : BaseProduct
+        private void Initialize(BaseProduct product, Item source)
         {
-            entity.Id = source.Name;
-            entity.ProductId = source["ProductId"];
-            entity.SitecoreId = source["SitecoreId"];
+            product.Id = source.Name;
+            product.ProductId = source["ProductId"];
+            product.SitecoreId = source["SitecoreId"];
 
-            entity.DisplayName = source["DisplayName"];
-            entity.Description = source["Description"];
-            entity.Brand = source["Brand"];
-            entity.Tags = source["Tags"]?.Split('|').ToList();
-            entity.CustomerAverageRating = decimal.TryParse(source["Rating"], out var rating) ? (decimal?)rating : null;
-            entity.ImageUrls = source.ExtractMediaItems(
+            product.DisplayName = source["DisplayName"];
+            product.Description = source["Description"];
+            product.Brand = source["Brand"];
+            product.Tags = source["Tags"]?.Split('|').ToList();
+            product.CustomerAverageRating = decimal.TryParse(source["Rating"], out var rating) ? (decimal?)rating : null;
+            product.ImageUrls = source.ExtractMediaItems(
                     x =>
                     {
                         var imagesField = (MultilistField)source.Fields["Images"];
@@ -103,55 +137,10 @@ namespace Wooli.Foundation.Connect.Builders.Products
         /// <summary>
         /// Sets catalog name from context
         /// </summary>
-        /// <typeparam name="TEntity">BaseProduct or it derivatives</typeparam>
-        /// <param name="entity">Entity to set properties to</param>
-        protected void SetCatalogName<TEntity>(TEntity entity) where TEntity : BaseProduct
+        /// <param name="product">Product to set properties to</param>
+        private void SetCatalogName(BaseProduct product)
         {
-            entity.CatalogName = this.storefrontContext.CatalogName;
-        }
-
-        /// <summary>
-        /// Sets prices using bulk prices manager method for getting them
-        /// </summary>
-        /// <typeparam name="TEntity">BaseProduct or it derivatives</typeparam>
-        /// <param name="entities">Entity to set properties to</param>
-        protected void SetPrices<TEntity>(IList<TEntity> entities) where TEntity : BaseProduct
-        {
-            if (entities == null || !entities.Any())
-            {
-                return;
-            }
-
-            var prices = this.PricingManager.GetProductBulkPrices(
-                    entities.Select(_ => _.CatalogName).FirstOrDefault(),
-                    entities.Select(_ => _.Id),
-                    null)
-                ?.Result;
-            foreach (var entity in entities)
-            {
-                this.SetPrices(entity, prices);
-            }
-        }
-
-        /// <summary>
-        /// Sets prices to entity
-        /// </summary>
-        /// <typeparam name="TEntity">BaseProduct or it derivatives</typeparam>
-        /// <param name="entity">Entity to set properties to</param>
-        /// <param name="prices">Prices dictionary with product id as key</param>
-        protected void SetPrices<TEntity>(TEntity entity, IDictionary<string, Price> prices)
-            where TEntity : BaseProduct
-        {
-            if (prices == null || !prices.Any() ||
-                !prices.TryGetValue(entity.Id, out var price))
-            {
-                return;
-            }
-
-            var commercePrice = price as CommercePrice;
-            entity.CurrencyCode = price.CurrencyCode;
-            entity.ListPrice = commercePrice?.Amount;
-            entity.AdjustedPrice = commercePrice?.ListPrice;
+            product.CatalogName = this.StorefrontContext.CatalogName;
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Wooli.Foundation.Connect.Mappers
     using Models;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Entities.Carts;
 
     using Utils;
@@ -51,7 +50,6 @@ namespace Wooli.Foundation.Connect.Mappers
                             dest => dest.LineIDs,
                             opt => opt.MapFrom(
                                 src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
-                    cfg.CreateMap<PaymentClientTokenResult, Models.Payment.PaymentClientTokenResult>();
                 });
             this.InnerMapper = new AutoMapper.Mapper(config);
         }

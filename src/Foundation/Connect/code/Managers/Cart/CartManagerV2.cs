@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers.Cart
 
     using DependencyInjection;
 
-    using Mappers;
+    using Mappers.Cart;
 
     using Models;
 
@@ -42,19 +42,19 @@ namespace Wooli.Foundation.Connect.Managers.Cart
     {
         private readonly CommerceCartServiceProvider cartServiceProvider;
 
-        private readonly IConnectEntityMapper connectMapper;
+        private readonly ICartMapper cartMapper;
 
         public CartManagerV2(
             ILogService<CommonLog> logService,
             IConnectServiceProvider connectServiceProvider,
-            IConnectEntityMapper connectMapper)
+            ICartMapper cartMapper)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            Assert.ArgumentNotNull(connectMapper, nameof(connectMapper));
+            Assert.ArgumentNotNull(cartMapper, nameof(cartMapper));
 
             this.cartServiceProvider = connectServiceProvider.GetCommerceCartServiceProvider();
-            this.connectMapper = connectMapper;
+            this.cartMapper = cartMapper;
         }
 
         public CartResult LoadCart(string shopName, string customerId)
@@ -95,7 +95,7 @@ namespace Wooli.Foundation.Connect.Managers.Cart
             Assert.ArgumentNotNull(party, nameof(party));
             Assert.ArgumentNotNull(federatedPaymentInfo, nameof(federatedPaymentInfo));
 
-            var commerceParty = this.connectMapper.Map<Party, CommerceParty>(party);
+            var commerceParty = this.cartMapper.Map<Party, CommerceParty>(party);
 
             federatedPaymentInfo.PartyID = party.PartyId;
             federatedPaymentInfo.Amount = cart.Total.Amount;

@@ -205,22 +205,21 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
+            Assert.Equal(submitOrderResult.Order.TrackingNumber, result.Data.ConfirmationId);
         }
 
-        //TODO: fix UT
-        //[Fact]
-        //public void SubmitOrder_IfSubmitOrderFalse_ShouldReturnFalseResult()
-        //{
-        //    // arrange
-        //    var submitOrderResult = this.InitSubmitOrder(true, false);
+        [Fact]
+        public void SubmitOrder_IfSubmitOrderFalse_ShouldReturnFalseResult()
+        {
+            // arrange
+            var submitOrderResult = this.InitSubmitOrder(true, false);
 
-        //    // act
-        //    var result = this.service.SubmitOrder();
+            // act
+            var result = this.service.SubmitOrder();
 
-        //    // assert
-        //    Assert.False(result.Success);
-        //    Assert.Equal(submitOrderResult.Order.TrackingNumber, result.Data.ConfirmationId);
-        //}
+            // assert
+            Assert.False(result.Success);
+        }
 
         private (string, GetVisitorOrderResult) InitGetOrder(bool success)
         {
@@ -308,8 +307,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
 
             var submitOrderResult = this.fixture
                 .Build<SubmitVisitorOrderResult>()
-                .With(cr => cr.Order, Substitute.For<Order>())
-                .With(cr => cr.CartWithErrors, Substitute.For<Cart>())
+                .With(cr => cr.Order, new Order())
+                .With(cr => cr.CartWithErrors, new Cart())
                 .With(cr => cr.Success, submitOrderSuccess)
                 .Create();
 

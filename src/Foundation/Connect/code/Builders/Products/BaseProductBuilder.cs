@@ -21,9 +21,6 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
     using Extensions.Extensions;
 
-    using Managers;
-    using Managers.Inventory;
-
     using Mappers.Catalog;
 
     using Models.Catalog;
@@ -78,7 +75,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
         /// <param name="prices">Prices dictionary with product id as key</param>
         protected void SetPrices(BaseProduct product, IDictionary<string, Price> prices)
         {
-            if (prices == null || !prices.Any() ||
+            if (product?.Id == null || prices == null || !prices.Any() ||
                 !prices.TryGetValue(product.Id, out var price))
             {
                 return;

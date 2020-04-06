@@ -558,6 +558,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Products\BaseProductBuilderTests.cs" />
+    <Compile Include="Builders\Products\ProductBuilderTests.cs" />
+    <Compile Include="Builders\Products\VariantBuilderTests.cs" />
     <Compile Include="Managers\Account\AccountManagerV2Tests.cs" />
     <Compile Include="Managers\BaseManagerTests.cs" />
     <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />

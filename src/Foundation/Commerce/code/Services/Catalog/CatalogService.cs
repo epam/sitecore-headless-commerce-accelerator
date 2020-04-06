@@ -84,7 +84,7 @@ namespace Wooli.Foundation.Commerce.Services.Catalog
         public Result<Category> GetCurrentCategory()
         {
             var categoryItem = this.siteContext.CurrentCategoryItem;
-            return categoryItem != null ? new Result<Category>(new Category(categoryItem)) : new Result<Category>(null);
+            return categoryItem != null ? new Result<Category>(this.catalogMapper.Map<Item, Category>(categoryItem)) : new Result<Category>(null);
         }
     }
 }

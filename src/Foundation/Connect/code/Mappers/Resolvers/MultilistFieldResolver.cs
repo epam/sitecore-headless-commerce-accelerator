@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,27 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Catalog
+namespace Wooli.Foundation.Connect.Mappers.Resolvers
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
 
-    using TypeLite;
+    using AutoMapper;
 
-    [TsClass]
-    [ExcludeFromCodeCoverage]
-    public class Category
+    public class MultilistFieldResolver : IMemberValueResolver<object, object, string, IList<string>>
     {
-        public IList<string> ChildrenCategoryList { get; set; }
-
-        public string Description { get; set; }
-
-        public string DisplayName { get; set; }
-
-        public string Name { get; set; }
-
-        public IList<string> ParentCatalogList { get; set; }
-
-        public string SitecoreId { get; set; }
+        public IList<string> Resolve(object source, object destination, string sourceMember, IList<string> destinationMember, ResolutionContext context)
+        {
+            return sourceMember?.Split('|') ?? new string[] { };
+        }
     }
 }

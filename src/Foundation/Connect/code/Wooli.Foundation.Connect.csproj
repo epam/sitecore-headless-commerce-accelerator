@@ -595,6 +595,7 @@
     <Compile Include="Mappers\Profiles\AddressProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
+    <Compile Include="Mappers\Resolvers\MultilistFieldResolver.cs" />
     <Compile Include="Models\Catalog\StockStatus.cs" />
     <Compile Include="Models\Payment\PaymentClientTokenResult.cs" />
     <Compile Include="Services\Search\ISearchService.cs" />

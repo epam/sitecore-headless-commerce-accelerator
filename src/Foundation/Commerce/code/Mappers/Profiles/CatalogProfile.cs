@@ -18,10 +18,13 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
 
+    using Connect.Mappers.Resolvers;
+
     using Models.Entities.Catalog;
 
     using Providers;
 
+    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
     using Connect = Connect.Models.Catalog;
@@ -47,6 +50,18 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<Connect.Variant, Variant>()
                 .IncludeBase<Connect.BaseProduct, BaseProduct>()
                 .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
+
+            this.CreateMap<Item, Category>()
+                .ForMember(dest => dest.SitecoreId, opt => opt.MapFrom(src => src["SitecoreId"]))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src["Name"]))
+                .ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src["DisplayName"]))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src["Description"]))
+                .ForMember(
+                    dest => dest.ParentCatalogList,
+                    opt => opt.ResolveUsing<MultilistFieldResolver, string>(src => src["ParentCatalogList"]))
+                .ForMember(
+                    dest => dest.ChildrenCategoryList,
+                    opt => opt.ResolveUsing<MultilistFieldResolver, string>(src => src["ChildrenCategoryList"]));
         }
     }
 }

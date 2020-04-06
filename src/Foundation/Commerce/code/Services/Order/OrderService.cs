@@ -119,13 +119,15 @@ namespace Wooli.Foundation.Commerce.Services.Order
                                 this.visitorContext.ContactId,
                                 this.storefrontContext.ShopName);
 
-                            if (!orderResult.Success)
+                            if (orderResult.Success)
                             {
-                                result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
+                                return this.mapper.Map(orderResult.Order);
                             }
 
-                            return this.mapper.Map(orderResult.Order);
+                            result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
+                            return null;
                         })
+                    .Where(order => order != null)
                     .ToList();
 
                 result.SetResult(orders);

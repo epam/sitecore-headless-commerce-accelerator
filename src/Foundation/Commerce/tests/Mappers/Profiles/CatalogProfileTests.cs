@@ -18,6 +18,10 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 
     using Commerce.Mappers.Profiles;
 
+    using NSubstitute;
+
+    using Providers;
+
     using Xunit;
 
     public class CatalogProfileTests
@@ -26,7 +30,8 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<CatalogProfile>());
+            var currencyProvider = Substitute.For<ICurrencyProvider>();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(new CatalogProfile(currencyProvider)));
 
             // act, assert
             configuration.AssertConfigurationIsValid();

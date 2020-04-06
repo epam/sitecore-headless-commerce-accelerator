@@ -40,6 +40,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
         private readonly IInventoryManagerV2 inventoryManager;
         private readonly IVariantBuilder<Item> variantBuilder;
 
+        private readonly string[] priceTypes = new[] { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
+
         public ProductBuilder(
             IVariantBuilder<Item> variantBuilder,
             IStorefrontContext storefrontContext,
@@ -113,7 +115,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
             var catalogName = products.Select(product => product.CatalogName).FirstOrDefault();
             var productIds = products.Select(product => product.Id);
-            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null)?.Prices;
+            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, this.priceTypes)?.Prices;
 
             foreach (var product in products)
             {
@@ -133,7 +135,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
                     product.CatalogName,
                     product.Id,
                     includeVariants,
-                    null)
+                    this.priceTypes)
                 ?.Prices;
 
             this.SetPrices(product, productPrices);

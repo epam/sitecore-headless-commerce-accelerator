@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
     using Base.Services.Logging;
 
     using Connect.Managers.Cart;
-    using Connect.Mappers;
+    using Connect.Mappers.Cart;
 
     using Models;
 
@@ -55,14 +55,14 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Cart
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
-            var connectMapper = Substitute.For<IConnectEntityMapper>();
+            var cartMapper = Substitute.For<ICartMapper>();
 
             this.cartServiceProvider = Substitute.For<CommerceCartServiceProvider>();
 
             connectServiceProvider.GetCommerceCartServiceProvider().Returns(this.cartServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
 
-            this.cartManager = Substitute.For<CartManagerV2>(logService, connectServiceProvider, connectMapper);
+            this.cartManager = Substitute.For<CartManagerV2>(logService, connectServiceProvider, cartMapper);
         }
 
         public static IEnumerable<object[]> CartLinesParameters =>

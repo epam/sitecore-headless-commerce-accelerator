@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Connect.Managers.Payment
 
     using DependencyInjection;
 
-    using Mappers;
+    using Mappers.Payment;
 
     using Models.Payment;
 
@@ -37,20 +37,20 @@ namespace Wooli.Foundation.Connect.Managers.Payment
     [Service(typeof(IPaymentManagerV2), Lifetime = Lifetime.Singleton)]
     public class PaymentManagerV2 : BaseManager, IPaymentManagerV2
     {
-        private readonly IConnectEntityMapper connectMapper;
+        private readonly IPaymentMapper paymentMapper;
 
         private readonly PaymentServiceProvider paymentServiceProvider;
 
         public PaymentManagerV2(
             IConnectServiceProvider connectServiceProvider,
-            IConnectEntityMapper connectMapper,
+            IPaymentMapper paymentMapper,
             ILogService<CommonLog> logService) : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
-            Assert.ArgumentNotNull(connectMapper, nameof(connectMapper));
+            Assert.ArgumentNotNull(paymentMapper, nameof(paymentMapper));
 
             this.paymentServiceProvider = connectServiceProvider.GetPaymentServiceProvider();
-            this.connectMapper = connectMapper;
+            this.paymentMapper = paymentMapper;
         }
 
         public PaymentClientTokenResult GetPaymentClientToken()
@@ -66,7 +66,7 @@ namespace Wooli.Foundation.Connect.Managers.Payment
                                 "commerce.payments.getClientToken",
                                 req);
 
-                    return this.connectMapper
+                    return this.paymentMapper
                         .Map<Sitecore.Commerce.Engine.Connect.Pipelines.Arguments.PaymentClientTokenResult,
                             PaymentClientTokenResult>(serviceProviderResult);
                 });

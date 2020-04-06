@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
     using Base.Services.Logging;
 
     using Connect.Managers.Payment;
-    using Connect.Mappers;
+    using Connect.Mappers.Payment;
 
     using Models.Payment;
 
@@ -53,14 +53,14 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
-            var connectMapper = Substitute.For<IConnectEntityMapper>();
+            var paymentMapper = Substitute.For<IPaymentMapper>();
 
             this.paymentServiceProvider = Substitute.For<PaymentServiceProvider>();
 
             connectServiceProvider.GetPaymentServiceProvider().Returns(this.paymentServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
 
-            this.paymentManager = Substitute.For<PaymentManagerV2>(connectServiceProvider, connectMapper, logService);
+            this.paymentManager = Substitute.For<PaymentManagerV2>(connectServiceProvider, paymentMapper, logService);
         }
 
         [Fact]

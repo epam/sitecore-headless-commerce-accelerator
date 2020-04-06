@@ -54,7 +54,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseCategoryVisitedEvent_IfCategoryIsNotNull_ShouldRaiseEvent()
         {
             // arrange
-            var category = new Category(this.fixture.Create<Item>());
+            var category = this.fixture.Create<Category>();
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act
@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         public void RaiseProductVisitedEvent_IfProductIsNotNull_ShouldRaiseEvent()
         {
             // arrange
-            var product = new Product();
+            var product = this.fixture.Create<Product>();
             var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act

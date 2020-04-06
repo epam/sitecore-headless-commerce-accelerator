@@ -14,6 +14,12 @@
 
 namespace Wooli.Foundation.Commerce.Models.Entities.Payment
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    using TypeLite;
+
+    [ExcludeFromCodeCoverage]
+    [TsClass]
     public class FederatedPaymentInfo
     {
         public string CardToken { get; set; }

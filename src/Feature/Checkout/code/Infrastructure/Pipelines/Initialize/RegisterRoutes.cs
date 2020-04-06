@@ -37,20 +37,20 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             const string CheckoutControllerName = "Checkout";
 
-            routeCollection.MapRoute(
-                nameof(CheckoutController),
-                Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(CheckoutController).Namespace },
-                defaults: new
-                {
-                    controller = CheckoutControllerName
-                });
+            //routeCollection.MapRoute(
+            //    nameof(CheckoutController),
+            //    Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
+            //    namespaces: new[] { typeof(CheckoutController).Namespace },
+            //    defaults: new
+            //    {
+            //        controller = CheckoutControllerName
+            //    });
 
             const string CheckoutV2ControllerName = "CheckoutV2";
 
             routeCollection.MapRoute(
                 nameof(CheckoutV2Controller),
-                Constants.CommerceRoutePrefix + $"/{CheckoutV2ControllerName.ToLowerInvariant()}" + "/{action}",
+                Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CheckoutV2Controller).Namespace },
                 defaults: new
                 {

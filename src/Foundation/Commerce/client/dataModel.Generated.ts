@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -229,7 +229,24 @@
     export interface ShippingModel extends BaseCheckoutModel {
         shippingMethods: ShippingMethodModel[];
     }
+    export interface ShippingInfo {
+        shippingMethods: ShippingMethod[];
+    }
     export interface ShippingOptionModel {
+        description: string;
+        name: string;
+        shippingOptionType: number;
+        shopName: string;
+    }
+    export interface ShippingMethod {
+        description: string;
+        externalId: string;
+        lineIds: string[];
+        name: string;
+        partyId: string;
+        shippingPreferenceType: string;
+    }
+    export interface ShippingOption {
         description: string;
         name: string;
         shippingOptionType: number;
@@ -238,15 +255,56 @@
     export interface SortOptionModel {
         displayName: string;
         isSelected: boolean;
+    }
+    export interface FederatedPaymentInfo {
+        cardToken: string;
+        partyId: string;
+        paymentMethodId: string;
+    }
+    export interface PaymentMethod {
+        description: string;
+        externalId: string;
+    }
+    export interface PaymentOption {
+        description: string;
         name: string;
-        sortDirection: SortDirection;
+        paymentOptionTypeName: string;
+    }
+    // tslint:disable-next-line: no-use-before-declare
+    export interface DeliveryInfo extends BaseCheckoutInfo {
+        newPartyId: string;
+        shippingOptions: ShippingOption[];
     }
     export interface SubdivisionModel {
         code: string;
         name: string;
     }
+    export interface BaseCheckoutInfo {
+        userAddresses: Address[];
+    }
+    export interface Address {
+        address1: string;
+        address2: string;
+        city: string;
+        country: string;
+        countryCode: string;
+        email: string;
+        externalId: string;
+        firstName: string;
+        isPrimary: boolean;
+        lastName: string;
+        name: string;
+        partyId: string;
+        state: string;
+        zipPostalCode: string;
+    }
     export interface SubmitOrderModel {
         confirmationId: string;
+    }
+    export interface BillingInfo {
+        paymentClientToken: string;
+        paymentMethods: PaymentMethod[];
+        paymentOptions: PaymentOption[];
     }
     export interface VoidResult {
     }
@@ -275,6 +333,15 @@
     export interface UserLoginModel {
         email: string;
         password: string;
+    }
+    export interface Order {
+        isOfflineOrder: boolean;
+        orderDate: Date;
+        orderID: string;
+        trackingNumber: string;
+    }
+    export interface OrderConfirmation {
+        confirmationId: string;
     }
     export interface ValidateCredentialsResultModel {
         hasValidCredentials: boolean;

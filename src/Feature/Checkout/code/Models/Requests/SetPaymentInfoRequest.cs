@@ -14,9 +14,15 @@
 
 namespace Wooli.Feature.Checkout.Models.Requests
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Payment;
 
+    using TypeLite;
+
+    [ExcludeFromCodeCoverage]
+    [TsClass]
     public class SetPaymentInfoRequest
     {
         public Address BillingAddress { get; set; }

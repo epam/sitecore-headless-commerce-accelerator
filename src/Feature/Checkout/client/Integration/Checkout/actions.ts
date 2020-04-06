@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,7 @@ export const SubmitStep: actionCreators.SubmitStep = (stepValues: Models.StepVal
   type: sagaActionTypes.SUBMIT_STEP,
 });
 
-export const GetDeliveryDataRequest: actionCreators.GetCheckoutDataRequest = () => ({
+export const GetDeliveryInfoRequest: actionCreators.GetCheckoutDataRequest = () => ({
   payload: {
     delivery: {
       status: LoadingStatus.Loading,
@@ -43,7 +43,7 @@ export const GetDeliveryDataRequest: actionCreators.GetCheckoutDataRequest = () 
   type: reducerActionTypes.GET_CHECKOUT_DATA_REQUEST,
 });
 
-export const GetShippingMethodsDataRequest: actionCreators.GetCheckoutDataRequest = () => ({
+export const GetShippingInfoRequest: actionCreators.GetCheckoutDataRequest = () => ({
   payload: {
     shipping: {
       status: LoadingStatus.Loading,
@@ -52,7 +52,7 @@ export const GetShippingMethodsDataRequest: actionCreators.GetCheckoutDataReques
   type: reducerActionTypes.GET_CHECKOUT_DATA_REQUEST,
 });
 
-export const GetBillingDataRequest: actionCreators.GetCheckoutDataRequest = () => ({
+export const GetBillingInfoRequest: actionCreators.GetCheckoutDataRequest = () => ({
   payload: {
     billing: {
       status: LoadingStatus.Loading,
@@ -61,7 +61,7 @@ export const GetBillingDataRequest: actionCreators.GetCheckoutDataRequest = () =
   type: reducerActionTypes.GET_CHECKOUT_DATA_REQUEST,
 });
 
-export const GetDeliveryDataFailure: actionCreators.GetCheckoutDataFailure = (error: string, stack?: string) => ({
+export const GetDeliveryInfoFailure: actionCreators.GetCheckoutDataFailure = (error: string, stack?: string) => ({
   payload: {
     delivery: {
       error,
@@ -72,7 +72,7 @@ export const GetDeliveryDataFailure: actionCreators.GetCheckoutDataFailure = (er
   type: reducerActionTypes.GET_CHECKOUT_DATA_FAILURE,
 });
 
-export const GetShippingMethodsDataFailure: actionCreators.GetCheckoutDataFailure = (
+export const GetShippingInfoFailure: actionCreators.GetCheckoutDataFailure = (
   error: string,
   stack?: string
 ) => ({
@@ -86,7 +86,7 @@ export const GetShippingMethodsDataFailure: actionCreators.GetCheckoutDataFailur
   type: reducerActionTypes.GET_CHECKOUT_DATA_FAILURE,
 });
 
-export const GetBillingDataFailure: actionCreators.GetCheckoutDataFailure = (error: string, stack?: string) => ({
+export const GetBillingInfoFailure: actionCreators.GetCheckoutDataFailure = (error: string, stack?: string) => ({
   payload: {
     billing: {
       error,
@@ -97,7 +97,7 @@ export const GetBillingDataFailure: actionCreators.GetCheckoutDataFailure = (err
   type: reducerActionTypes.GET_CHECKOUT_DATA_FAILURE,
 });
 
-export const GetDeliveryDataSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.DeliveryModel) => ({
+export const GetDeliveryInfoSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.DeliveryInfo) => ({
   payload: {
     delivery: {
       data,
@@ -107,7 +107,7 @@ export const GetDeliveryDataSuccess: actionCreators.GetCheckoutDataSuccess = (da
   type: reducerActionTypes.GET_CHECKOUT_DATA_SUCCESS,
 });
 
-export const GetShippingMethodsDataSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.ShippingModel) => ({
+export const GetShippingInfoSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.ShippingInfo) => ({
   payload: {
     shipping: {
       data,
@@ -117,7 +117,7 @@ export const GetShippingMethodsDataSuccess: actionCreators.GetCheckoutDataSucces
   type: reducerActionTypes.GET_CHECKOUT_DATA_SUCCESS,
 });
 
-export const GetBillingDataSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.BillingModel) => ({
+export const GetBillingInfoSuccess: actionCreators.GetCheckoutDataSuccess = (data: Commerce.BillingInfo) => ({
   payload: {
     billing: {
       data,

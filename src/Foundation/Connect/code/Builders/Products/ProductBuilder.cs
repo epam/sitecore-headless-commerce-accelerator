@@ -21,8 +21,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
     using DependencyInjection;
 
-    using Managers;
     using Managers.Inventory;
+    using Managers.Pricing;
 
     using Mappers.Catalog;
 
@@ -36,14 +36,14 @@ namespace Wooli.Foundation.Connect.Builders.Products
     [Service(typeof(IProductBuilder<Item>), Lifetime = Lifetime.Singleton)]
     public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item>
     {
-        private readonly IPricingManager pricingManager;
+        private readonly IPricingManagerV2 pricingManager;
         private readonly IInventoryManagerV2 inventoryManager;
         private readonly IVariantBuilder<Item> variantBuilder;
 
         public ProductBuilder(
             IVariantBuilder<Item> variantBuilder,
             IStorefrontContext storefrontContext,
-            IPricingManager pricingManager,
+            IPricingManagerV2 pricingManager,
             IInventoryManagerV2 inventoryManager,
             ICatalogMapper catalogMapper) : base(
             storefrontContext,
@@ -113,7 +113,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
             var catalogName = products.Select(product => product.CatalogName).FirstOrDefault();
             var productIds = products.Select(product => product.Id);
-            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null)?.Result;
+            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null)?.Prices;
 
             foreach (var product in products)
             {
@@ -134,7 +134,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
                     product.Id,
                     includeVariants,
                     null)
-                ?.Result;
+                ?.Prices;
 
             this.SetPrices(product, productPrices);
 

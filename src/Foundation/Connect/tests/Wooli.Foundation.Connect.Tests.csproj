@@ -562,6 +562,7 @@
     <Compile Include="Managers\BaseManagerTests.cs" />
     <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
     <Compile Include="Managers\Inventory\InventoryManagerV2Tests.cs" />
+    <Compile Include="Managers\Order\OrderManagerV2Tests.cs" />
     <Compile Include="Managers\Payment\PaymentManagerV2Tests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />

@@ -23,8 +23,8 @@ namespace Wooli.Foundation.Commerce.Services.Order
     using Base.Services.Logging;
 
     using Connect.Context;
-    using Connect.Managers;
     using Connect.Managers.Cart;
+    using Connect.Managers.Order;
 
     using Context;
 

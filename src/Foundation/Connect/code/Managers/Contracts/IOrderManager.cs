@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers
 
     public interface IOrderManager
     {
-        ManagerResponse<GetVisitorOrderResult, Order> GetOrderDetails(
+        ManagerResponse<GetVisitorOrderResult, Sitecore.Commerce.Entities.Orders.Order> GetOrderDetails(
             string orderId,
             string customerId,
             string shopName);
@@ -34,6 +34,7 @@ namespace Wooli.Foundation.Connect.Managers
             int page,
             int count);
 
-        ManagerResponse<SubmitVisitorOrderResult, Order> SubmitVisitorOrder(Sitecore.Commerce.Entities.Carts.Cart cart);
+        ManagerResponse<SubmitVisitorOrderResult, Sitecore.Commerce.Entities.Orders.Order> SubmitVisitorOrder(
+            Sitecore.Commerce.Entities.Carts.Cart cart);
     }
 }

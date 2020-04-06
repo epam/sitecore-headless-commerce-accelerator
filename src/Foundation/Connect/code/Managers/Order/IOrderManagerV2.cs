@@ -12,8 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers
+namespace Wooli.Foundation.Connect.Managers.Order
 {
+    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Orders;
 
     /// <summary>
@@ -22,27 +23,27 @@ namespace Wooli.Foundation.Connect.Managers
     public interface IOrderManagerV2
     {
         /// <summary>
-        /// Get order by id
+        /// Gets order by id
         /// </summary>
-        /// <param name="orderId"></param>
-        /// <param name="customerId"></param>
-        /// <param name="shopName"></param>
+        /// <param name="orderId">Order id</param>
+        /// <param name="customerId">Customer id</param>
+        /// <param name="shopName">Shop name</param>
         /// <returns>Get visitor order result</returns>
         GetVisitorOrderResult GetOrder(string orderId, string customerId, string shopName);
 
         /// <summary>
-        /// Get headers of the orders
+        /// Gets headers of the orders
         /// </summary>
-        /// <param name="customerId"></param>
-        /// <param name="shopName"></param>
+        /// <param name="customerId">Customer id</param>
+        /// <param name="shopName">Shop name</param>
         /// <returns>Get visitor orders result</returns>
         GetVisitorOrdersResult GetOrdersHeaders(string customerId, string shopName);
 
         /// <summary>
-        /// Submit order
+        /// Submits order
         /// </summary>
-        /// <param name="cart"></param>
+        /// <param name="cart">Cart for submit</param>
         /// <returns>Submit visitor order result</returns>
-        SubmitVisitorOrderResult SubmitVisitorOrder(Sitecore.Commerce.Entities.Carts.Cart cart);
+        SubmitVisitorOrderResult SubmitVisitorOrder(Cart cart);
     }
 }

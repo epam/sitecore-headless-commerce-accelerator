@@ -20,12 +20,15 @@ namespace Wooli.Foundation.Connect.Managers.Order
     using Base.Models.Logging;
     using Base.Services.Logging;
 
+    using DependencyInjection;
+
     using Providers.Contracts;
 
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Orders;
     using Sitecore.Diagnostics;
 
+    [Service(typeof(IOrderManagerV2), Lifetime = Lifetime.Singleton)]
     public class OrderManagerV2 : BaseManager, IOrderManagerV2
     {
         private readonly OrderServiceProvider orderServiceProvider;

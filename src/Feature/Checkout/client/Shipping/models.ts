@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,8 +23,8 @@ export interface ShippingDataSource extends Jss.BaseDataSourceItem {
 
 export interface ShippingOwnProps extends Jss.Rendering<ShippingDataSource> {}
 export interface ShippingStateProps {
-  deliveryData: Checkout.Data<Commerce.DeliveryModel>;
-  shippingData: Checkout.Data<Commerce.ShippingModel>;
+  deliveryInfo: Checkout.Data<Commerce.DeliveryInfo>;
+  shippingInfo: Checkout.Data<Commerce.ShippingInfo>;
   isSubmitting: boolean;
   isLoading: boolean;
   commerceUser: Commerce.CommerceUserModel;

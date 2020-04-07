@@ -82,7 +82,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             this.shippingManager = shippingManager;
         }
 
-        public Result<DeliveryInfo> GetDeliveryOptions()
+        public Result<DeliveryInfo> GetDeliveryInfo()
         {
             var model = new DeliveryInfo
             {
@@ -115,7 +115,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             return result;
         }
 
-        public Result<ShippingInfo> GetShippingOptions()
+        public Result<ShippingInfo> GetShippingInfo()
         {
             var model = new ShippingInfo();
             var result = new Result<ShippingInfo>(model);
@@ -221,8 +221,12 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
             if (getPartiesResult.Success)
             {
-                baseCheckoutInfo.UserAddresses =
-                    this.shippingMapper.Map<IReadOnlyCollection<Party>, List<Address>>(getPartiesResult.Parties);
+                // Mapping of each Party to Address instead of mapping collection
+                // because Runtime Polymorphism in AutoMapper doesn't work correctly for collections. 
+                // Here Party is actually CommerceParty
+                baseCheckoutInfo.UserAddresses = getPartiesResult.Parties
+                    .Select(party => this.shippingMapper.Map<Party, Address>(party))
+                    .ToList();
             }
             else
             {

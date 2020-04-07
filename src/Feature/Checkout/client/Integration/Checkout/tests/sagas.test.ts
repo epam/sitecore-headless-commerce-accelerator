@@ -1,60 +1,59 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { cloneableGenerator, SagaIteratorClone } from '@redux-saga/testing-utils';
 import { all, call, fork, put, select } from 'redux-saga/effects';
 
+import { AddressModel } from 'Foundation/Commerce/client';
+import { LoadingStatus } from 'Foundation/Integration/client';
+import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
+
+import { SetShippingOptionsRequest } from 'Feature/Checkout/client/dataModel.Generated';
 import { Checkout } from 'Feature/Checkout/client/Integration/api';
 
+import { CheckoutStepType, StepValuesPayload } from '..';
+import { CreditCard } from '../../api/Checkout';
 import * as actions from '../actions';
 import * as sagas from '../sagas';
 import * as selectors from '../selectors';
-
-import { LoadingStatus } from 'Foundation/Integration/client';
-import { CheckoutStepType, StepValuesPayload } from '..';
-
-import { cloneableGenerator, SagaIteratorClone } from '@redux-saga/testing-utils';
-import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
-
-import { AddressModel, SetShippingArgs } from 'Foundation/Commerce/client';
-import { CreditCard } from '../../api/Checkout';
 
 describe('getCheckoutData', () => {
 
     const gen = sagas.getCheckoutData();
 
-    test('should select checkoutDeliveryData', () => {
-        const expected = select(selectors.checkoutDeliveryData);
+    test('should select checkoutDeliveryInfo', () => {
+        const expected = select(selectors.checkoutDeliveryInfo);
         const actual = gen.next();
         expect(actual.value).toEqual(expected);
     });
 
-    test('shoud put GetDeliveryDataRequest when it is not loaded', () => {
-        const expected = put(actions.GetDeliveryDataRequest());
+    test('should put GetDeliveryInfoRequest when it is not loaded', () => {
+        const expected = put(actions.GetDeliveryInfoRequest());
         const actual = gen.next({
             status: LoadingStatus.NotLoaded
         });
         expect(actual.value).toEqual(expected);
     });
 
-    test('shoud select checkoutShippingData', () => {
-        const expected = select(selectors.checkoutShippingData);
+    test('should select checkoutShippingInfo', () => {
+        const expected = select(selectors.checkoutShippingInfo);
         const actual = gen.next();
         expect(actual.value).toEqual(expected);
     });
 
-    test('shoud put GetShippingMethodsDataRequest when it is not loaded', () => {
-        const expected = put(actions.GetShippingMethodsDataRequest());
+    test('should put GetShippingInfoRequest when it is not loaded', () => {
+        const expected = put(actions.GetShippingInfoRequest());
         const actual = gen.next({
             status: LoadingStatus.NotLoaded
         });
@@ -62,13 +61,13 @@ describe('getCheckoutData', () => {
     });
 
     test('should select billingState', () => {
-        const expected = select(selectors.checkoutBillingData);
+        const expected = select(selectors.checkoutBillingInfo);
         const actual = gen.next();
         expect(actual.value).toEqual(expected);
     });
 
-    test('should put GetBillingDataRequest when it is not loaded', () => {
-        const expected = put(actions.GetBillingDataRequest());
+    test('should put GetBillingInfoRequest when it is not loaded', () => {
+        const expected = put(actions.GetBillingInfoRequest());
         const actual = gen.next({
             status: LoadingStatus.NotLoaded
         });
@@ -77,19 +76,19 @@ describe('getCheckoutData', () => {
 
     test('should call all: delivery, shipping, billing', () => {
         const expected = all([
-            call(Checkout.getDeliveryData),
-            call(Checkout.getShippingMethods),
-            call(Checkout.getBillingData)
+            call(Checkout.getDeliveryInfo),
+            call(Checkout.getShippingInfo),
+            call(Checkout.getBillingInfo)
         ]);
         const actual = gen.next({});
         expect(actual.value).toEqual(expected);
     });
 
-    test('should fork all: handleDeliveryDataResult, handleShippingDataResult, handleBillingDataResult', () => {
+    test('should fork all: handleDeliveryInfoResult, handleShippingInfoResult, handleBillingInfoResult', () => {
         const expected = all([
-            fork(sagas.handleDeliveryDataResult, {}),
-            fork(sagas.handleShippingDataResult, {}),
-            fork(sagas.handleBillingDataResult, {})
+            fork(sagas.handleDeliveryInfoResult, {}),
+            fork(sagas.handleShippingInfoResult, {}),
+            fork(sagas.handleBillingInfoResult, {})
         ]);
         const actual = gen.next([{}, {}, {}]);
         expect(actual.value).toEqual(expected);
@@ -103,8 +102,8 @@ describe('initStep', () => {
         const initBillingAction = actions.InitStep(CheckoutStepType.Billing);
         const gen = cloneableGenerator(sagas.initStep)(initBillingAction);
         test('should select stepValues', () => testSelectStepValues(gen));
-        test('should put ChangeRoute to Shipping, when Billing init without Fulfilment data', () => testPutChangeRouteToShipping(gen, {}));
-        test('should put SetCurrentStep, when Billing init with Fulfilment data', () => {
+        test('should put ChangeRoute to Shipping, when Billing init without Fulfillment info', () => testPutChangeRouteToShipping(gen, {}));
+        test('should put SetCurrentStep, when Billing init with Fulfillment info', () => {
             const expected = put(actions.SetCurrentStep(initBillingAction.payload));
             const actual = gen.next({ shipping: {} });
             expect(actual.value).toEqual(expected);
@@ -116,10 +115,10 @@ describe('initStep', () => {
         const initPaymentAction = actions.InitStep(CheckoutStepType.Payment);
         const gen = cloneableGenerator(sagas.initStep)(initPaymentAction);
         test('should select stepValues', () => testSelectStepValues(gen));
-        test('should put ChangeRoute to Shipping, when Payment init without Billing and Fulfilment data', () => testPutChangeRouteToShipping(gen, {}));
-        test('should put ChangeRoute to Shipping, when Payment init with Billing data but without Fulfilment data', () => testPutChangeRouteToShipping(gen, { billing: {} }));
-        test('should put ChangeRoute to Shipping, when Payment init with Fulfilment data but without Billing data', () => testPutChangeRouteToShipping(gen, { fulfillment: {} }));
-        test('should put SetCurrentStep, when Payment init with Fulfilment and Billing data', () => {
+        test('should put ChangeRoute to Shipping, when Payment init without Billing and Fulfillment info', () => testPutChangeRouteToShipping(gen, {}));
+        test('should put ChangeRoute to Shipping, when Payment init with Billing info but without Fulfillment info', () => testPutChangeRouteToShipping(gen, { billing: {} }));
+        test('should put ChangeRoute to Shipping, when Payment init with Fulfillment info but without Billing info', () => testPutChangeRouteToShipping(gen, { fulfillment: {} }));
+        test('should put SetCurrentStep, when Payment init with Fulfillment and Billing info', () => {
             const expected = put(actions.SetCurrentStep(initPaymentAction.payload));
             const actual = gen.next({ shipping: {}, billing: {} });
             expect(actual.value).toEqual(expected);
@@ -207,26 +206,26 @@ describe('submitFulfillmentStep', () => {
         };
         const gen = cloneableGenerator(sagas.submitFulfillmentStep)(payload.shipping);
 
-        test('should select checkoutShippingData', () => verifyShouldSelect(gen, selectors.checkoutShippingData, {}));
-        test('should throw exception, when shippingData was not loaded', () => {
+        test('should select checkoutShippingInfo', () => verifyShouldSelect(gen, selectors.checkoutShippingInfo, {}));
+        test('should throw exception, when shippingInfo was not loaded', () => {
             try {
                 gen.clone().next({});
             } catch (e) {
-                expect((e as Error).message).toContain('ShippingData was not loaded');
+                expect((e as Error).message).toContain('ShippingInfo was not loaded');
             }
         });
 
-        test('should select checkoutDeliveryData', () => verifyShouldSelect(gen, selectors.checkoutDeliveryData, { data: { } }));
+        test('should select checkoutDeliveryInfo', () => verifyShouldSelect(gen, selectors.checkoutDeliveryInfo, { data: { } }));
         // tslint:disable-next-line
-        test('should throw exception, when deliveryData was not loaded', () => {
+        test('should throw exception, when deliveryInfo was not loaded', () => {
             try {
                 gen.clone().next({});
             } catch (e) {
-                expect((e as Error).message).toContain('DeliveryData was not loaded');
+                expect((e as Error).message).toContain('DeliveryInfo was not loaded');
             }
         });
 
-        test('should put SubmitStepRequest, when shippingData and deliveryData were loaded', () => {
+        test('should put SubmitStepRequest, when shippingInfo and deliveryInfo were loaded', () => {
             const expected = put(actions.SubmitStepRequest());
             const actual = gen.next({ data: { newPartyId: 'TEST2', shippingMethods: [] } });
             expect(actual.value).toEqual(expected);
@@ -245,18 +244,18 @@ describe('submitFulfillmentStep', () => {
             shippingPreferenceType: '1',
         } as any;
 
-        test('should call setShippingMethods', () => {
-            const fakeShippingArgs: SetShippingArgs = {
+        test('should call setShippingOptions', () => {
+            const fakeShippingArgs: SetShippingOptionsRequest = {
                 orderShippingPreferenceType: '1',
                 shippingAddresses: [address],
                 shippingMethods: [shippingMethod]
             };
-            const expected = call(Checkout.setShippingMethods, fakeShippingArgs);
+            const expected = call(Checkout.setShippingOptions, fakeShippingArgs);
             const actual = gen.next();
             expect(actual.value).toEqual(expected);
         });
 
-        test('should SubmitStepFailure, when setShippingMethods result has error', () => {
+        test('should SubmitStepFailure, when setShippingOptions result has error', () => {
             const fakeMessage = 'fakeMessage';
             const fakeStack = 'fakeStack';
             const expected = put(actions.SubmitStepFailure(fakeMessage, fakeStack));
@@ -336,7 +335,7 @@ describe('submitPaymentStep', () => {
 
     test('should select stepValues', () => verifyShouldSelect(gen, selectors.stepValues, {}));
 
-    test('should select checkoutBillingData', () => verifyShouldSelect(gen, selectors.checkoutBillingData, stepValues));
+    test('should select checkoutBillingInfo', () => verifyShouldSelect(gen, selectors.checkoutBillingInfo, stepValues));
 
     test('should call submitCreditCard', () => {
         const fakeToken = 'fakeToken';

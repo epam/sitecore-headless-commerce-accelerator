@@ -45,18 +45,29 @@ Func<TsGenerator> getGenerator = () => {
 
 Action<FilePath, FilePath> generateTypeScript = (assemblyName, targetFile) =>
 {
-    var assembly = Assembly.LoadFrom(assemblyName.FullPath);
+    try
+    {
+        var assembly = Assembly.LoadFrom(assemblyName.FullPath);
 
-    var ts = TypeScript.Definitions(getGenerator())
-        .For(assembly)
-        .WithMemberFormatter(x => new CamelCasePropertyNamesContractResolver().GetResolvedPropertyName(x.Name))
-        .WithIndentation(new string(' ', 4))
-        .WithModuleNameFormatter(module => string.Empty)
-        .WithVisibility((tsClass, typeName) => true);
+        var ts = TypeScript.Definitions(getGenerator())
+            .For(assembly)
+            .WithMemberFormatter(x => new CamelCasePropertyNamesContractResolver().GetResolvedPropertyName(x.Name))
+            .WithIndentation(new string(' ', 4))
+            .WithModuleNameFormatter(module => string.Empty)
+            .WithVisibility((tsClass, typeName) => true);
 
-    string typeScriptCode = ts.Generate();
+        string typeScriptCode = ts.Generate();
 
-    string result = $"// tslint:disable:indent array-type\n" + typeScriptCode;
+        string result = $"// tslint:disable:indent array-type\n" + typeScriptCode;
 
-    FileWriteText(targetFile.FullPath, result);
+        FileWriteText(targetFile.FullPath, result);
+    }
+    catch(ReflectionTypeLoadException loadException)
+    {
+        foreach(var e in loadException.LoaderExceptions)
+        {
+            Error(e.Message);
+        }
+        throw;
+	}
 };

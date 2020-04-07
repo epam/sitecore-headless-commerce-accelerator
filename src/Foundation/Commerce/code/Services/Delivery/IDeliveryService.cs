@@ -28,16 +28,16 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
     public interface IDeliveryService
     {
         /// <summary>
-        /// Gets delivery options
+        /// Gets delivery info
         /// </summary>
-        /// <returns>Delivery model result</returns>
-        Result<DeliveryInfo> GetDeliveryOptions();
+        /// <returns>Delivery info result</returns>
+        Result<DeliveryInfo> GetDeliveryInfo();
 
         /// <summary>
-        /// Gets shipping options
+        /// Gets shipping info
         /// </summary>
-        /// <returns>Shipping model result</returns>
-        Result<ShippingInfo> GetShippingOptions();
+        /// <returns>Shipping info result</returns>
+        Result<ShippingInfo> GetShippingInfo();
 
         /// <summary>
         /// Sets shipping options during checkout

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,14 +15,14 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { Checkout } from 'Feature/Checkout/client/Integration/api';
 import * as Commerce from 'Foundation/Commerce/client';
-
 import { Action, LoadingStatus, Result } from 'Foundation/Integration/client';
-
 import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
-import { CreditCard } from '../api/Checkout';
 
+import { Checkout } from 'Feature/Checkout/client/Integration/api';
+
+import { SetPaymentInfoRequest, SetShippingOptionsRequest } from '../../dataModel.Generated';
+import { CreditCard } from '../api/Checkout';
 import * as actions from './actions';
 import { sagaActionTypes } from './constants';
 import {
@@ -37,75 +37,75 @@ import {
 } from './models';
 import * as selectors from './selectors';
 
-export function* handleDeliveryDataResult(deliveryDataResponse: Result<Commerce.DeliveryModel>) {
-  const { data, error } = deliveryDataResponse;
+export function* handleDeliveryInfoResult(deliveryInfoResponse: Result<Commerce.DeliveryInfo>) {
+  const { data, error } = deliveryInfoResponse;
   if (error) {
-    return yield put(actions.GetDeliveryDataFailure(error.message || 'Error Occured'));
+    return yield put(actions.GetDeliveryInfoFailure(error.message || 'Error Occurred'));
   }
 
-  yield put(actions.GetDeliveryDataSuccess(data));
+  yield put(actions.GetDeliveryInfoSuccess(data));
 }
 
-export function* handleShippingDataResult(shippingResponse: Result<Commerce.ShippingModel>) {
+export function* handleShippingInfoResult(shippingResponse: Result<Commerce.ShippingInfo>) {
   const { data, error } = shippingResponse;
   if (error) {
-    return yield put(actions.GetShippingMethodsDataFailure(error.message || 'Error Occured'));
+    return yield put(actions.GetShippingInfoFailure(error.message || 'Error Occurred'));
   }
 
-  yield put(actions.GetShippingMethodsDataSuccess(data));
+  yield put(actions.GetShippingInfoSuccess(data));
 }
 
-export function* handleBillingDataResult(billingDataResponse: Result<Commerce.BillingModel>) {
-  const { data, error }: Result<Commerce.BillingModel> = billingDataResponse;
+export function* handleBillingInfoResult(billingInfoResponse: Result<Commerce.BillingInfo>) {
+  const { data, error }: Result<Commerce.BillingInfo> = billingInfoResponse;
 
   if (error) {
-    return yield put(actions.GetBillingDataFailure(error.message || 'Error Occured'));
+    return yield put(actions.GetBillingInfoFailure(error.message || 'Error Occurred'));
   }
 
-  yield put(actions.GetBillingDataSuccess(data));
+  yield put(actions.GetBillingInfoSuccess(data));
 }
 
 export function* getCheckoutData() {
   const apiCalls = [];
   const resultIndex = {
-    billingDataIndex: -1,
-    deliveryDataIndex: -1,
-    shippingDataIndex: -1,
+    billingInfoIndex: -1,
+    deliveryInfoIndex: -1,
+    shippingInfoIndex: -1,
   };
 
-  const deliveryDataState: Data<Commerce.DeliveryModel> = yield select(selectors.checkoutDeliveryData);
-  if (deliveryDataState.status === LoadingStatus.NotLoaded) {
-    yield put(actions.GetDeliveryDataRequest());
-    resultIndex.deliveryDataIndex = apiCalls.push(call(Checkout.getDeliveryData)) - 1;
+  const deliveryInfoState: Data<Commerce.DeliveryInfo> = yield select(selectors.checkoutDeliveryInfo);
+  if (deliveryInfoState.status === LoadingStatus.NotLoaded) {
+    yield put(actions.GetDeliveryInfoRequest());
+    resultIndex.deliveryInfoIndex = apiCalls.push(call(Checkout.getDeliveryInfo)) - 1;
   }
 
-  const shippingState: Data<Commerce.ShippingModel> = yield select(selectors.checkoutShippingData);
-  if (shippingState.status === LoadingStatus.NotLoaded) {
-    yield put(actions.GetShippingMethodsDataRequest());
-    resultIndex.shippingDataIndex = apiCalls.push(call(Checkout.getShippingMethods)) - 1;
+  const shippingInfoState: Data<Commerce.ShippingInfo> = yield select(selectors.checkoutShippingInfo);
+  if (shippingInfoState.status === LoadingStatus.NotLoaded) {
+    yield put(actions.GetShippingInfoRequest());
+    resultIndex.shippingInfoIndex = apiCalls.push(call(Checkout.getShippingInfo)) - 1;
   }
 
-  const billingState: Data<Commerce.BillingModel> = yield select(selectors.checkoutBillingData);
-  if (billingState.status === LoadingStatus.NotLoaded) {
-    yield put(actions.GetBillingDataRequest());
-    resultIndex.billingDataIndex = apiCalls.push(call(Checkout.getBillingData)) - 1;
+  const billingInfoState: Data<Commerce.BillingInfo> = yield select(selectors.checkoutBillingInfo);
+  if (billingInfoState.status === LoadingStatus.NotLoaded) {
+    yield put(actions.GetBillingInfoRequest());
+    resultIndex.billingInfoIndex = apiCalls.push(call(Checkout.getBillingInfo)) - 1;
   }
-  const resultList: Array<Result<Commerce.DeliveryModel | Commerce.ShippingModel | Commerce.BillingModel>> = yield all(
+  const resultList: Array<Result<Commerce.DeliveryInfo | Commerce.ShippingInfo | Commerce.BillingInfo>> = yield all(
     apiCalls
   );
 
-  const { billingDataIndex, deliveryDataIndex, shippingDataIndex } = resultIndex;
+  const { billingInfoIndex, deliveryInfoIndex, shippingInfoIndex } = resultIndex;
   const resultHandlers = resultList.map((result, index) => {
-    if (index === deliveryDataIndex) {
-      return fork(handleDeliveryDataResult, result as Result<Commerce.DeliveryModel>);
+    if (index === deliveryInfoIndex) {
+      return fork(handleDeliveryInfoResult, result as Result<Commerce.DeliveryInfo>);
     }
 
-    if (index === shippingDataIndex) {
-      return fork(handleShippingDataResult, result as Result<Commerce.ShippingModel>);
+    if (index === shippingInfoIndex) {
+      return fork(handleShippingInfoResult, result as Result<Commerce.ShippingInfo>);
     }
 
-    if (index === billingDataIndex) {
-      return fork(handleBillingDataResult, result as Result<Commerce.BillingModel>);
+    if (index === billingInfoIndex) {
+      return fork(handleBillingInfoResult, result as Result<Commerce.BillingInfo>);
     }
 
     return null;
@@ -138,14 +138,14 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
 
   const { address, shippingMethod } = fulfillment;
 
-  const shippingData: Data<Commerce.ShippingModel> = yield select(selectors.checkoutShippingData);
-  if (!shippingData.data) {
-    throw new Error('ShippingData was not loaded');
+  const shippingInfo: Data<Commerce.ShippingInfo> = yield select(selectors.checkoutShippingInfo);
+  if (!shippingInfo.data) {
+    throw new Error('ShippingInfo was not loaded');
   }
 
-  const deliveryData: Data<Commerce.DeliveryModel> = yield select(selectors.checkoutDeliveryData);
-  if (!deliveryData.data) {
-    throw new Error('DeliveryData was not loaded');
+  const deliveryInfo: Data<Commerce.DeliveryInfo> = yield select(selectors.checkoutDeliveryInfo);
+  if (!deliveryInfo.data) {
+    throw new Error('DeliveryInfo was not loaded');
   }
 
   if (!address.name) {
@@ -153,21 +153,21 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
   }
 
   if (!address.partyId) {
-    address.partyId = deliveryData.data.newPartyId;
-    address.externalId = deliveryData.data.newPartyId;
+    address.partyId = deliveryInfo.data.newPartyId;
+    address.externalId = deliveryInfo.data.newPartyId;
   }
 
   shippingMethod.partyId = address.externalId;
   shippingMethod.shippingPreferenceType = '1';
 
-  const setShippingArgs: Commerce.SetShippingArgs = {
+  const setShippingOptionsRequest: SetShippingOptionsRequest = {
     orderShippingPreferenceType: '1',
     shippingAddresses: [address],
     shippingMethods: [shippingMethod],
   };
 
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Commerce.SetShippingModel> = yield call(Checkout.setShippingMethods, setShippingArgs);
+  const { error }: Result<Commerce.VoidResult> = yield call(Checkout.setShippingOptions, setShippingOptionsRequest);
 
   if (error) {
     yield put(actions.SubmitStepFailure(error.message, error.stack));
@@ -204,13 +204,13 @@ export function* submitPaymentStep(payment: PaymentStep): SagaIterator {
     throw new Error('billing address was not setup');
   }
 
-  const checkoutBillingData: Data<Commerce.BillingModel> = yield select(selectors.checkoutBillingData);
-  if (!checkoutBillingData.data) {
-    throw new Error('CheckoutBillingData was not loaded');
+  const checkoutBillingInfo: Data<Commerce.BillingInfo> = yield select(selectors.checkoutBillingInfo);
+  if (!checkoutBillingInfo.data) {
+    throw new Error('CheckoutBillingInfo was not loaded');
   }
 
   const creditCard: CreditCard = {
-    authToken: checkoutBillingData.data.paymentClientToken,
+    authToken: checkoutBillingInfo.data.paymentClientToken,
     cvv: payment.creditCard.securityCode,
     expirationDate: `${payment.creditCard.expiresMonth}/${payment.creditCard.expiresYear}`,
     number: payment.creditCard.cardNumber,
@@ -225,21 +225,21 @@ export function* submitPaymentStep(payment: PaymentStep): SagaIterator {
   yield fork(handleCreditCard, payment, billingAddress, cardToken);
 }
 
-export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce.AddressModel, cardToken: string) {
-  const setPaymentArgs: Commerce.SetPaymentArgs = {
+export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce.Address, cardToken: string) {
+  const setPaymentInfoRequest: SetPaymentInfoRequest = {
     billingAddress,
     federatedPayment: {
       cardToken,
-      partyID: null,
+      partyId: null,
       paymentMethodId: '',
     },
   };
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Commerce.SetPaymentArgs> = yield call(Checkout.setPaymentMethods, setPaymentArgs);
+  const { error }: Result<Commerce.SetPaymentArgs> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
     yield put(actions.SubmitStepFailure(error.message || 'can not update shipping details'));
   } else {
-    const { data, error: placeOrderError }: Result<Commerce.SubmitOrderModel> = yield call(Checkout.submitOrder);
+    const { data, error: placeOrderError }: Result<Commerce.OrderConfirmation> = yield call(Checkout.submitOrder);
     if (data) {
       yield put(actions.SetStepValues({ payment }));
       yield put(actions.SubmitStepSuccess());

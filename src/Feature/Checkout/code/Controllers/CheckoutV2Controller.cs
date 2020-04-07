@@ -55,17 +55,17 @@ namespace Wooli.Feature.Checkout.Controllers
         }
 
         [HttpGet]
-        [ActionName("deliveryOptions")]
-        public ActionResult GetDeliveryOptions()
+        [ActionName("deliveryInfo")]
+        public ActionResult GetDeliveryInfo()
         {
-            return this.Execute(this.deliveryService.GetDeliveryOptions);
+            return this.Execute(this.deliveryService.GetDeliveryInfo);
         }
 
         [HttpGet]
-        [ActionName("shippingOptions")]
-        public ActionResult GetShippingOptions()
+        [ActionName("shippingInfo")]
+        public ActionResult GetShippingInfo()
         {
-            return this.Execute(this.deliveryService.GetShippingOptions);
+            return this.Execute(this.deliveryService.GetShippingInfo);
         }
 
         [HttpPost]

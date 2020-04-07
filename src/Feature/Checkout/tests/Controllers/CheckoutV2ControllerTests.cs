@@ -66,23 +66,23 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
         }
 
         [Fact]
-        public void GetDeliveryOptions_ShouldCallExecuteMethod()
+        public void GetDeliveryInfo_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.GetDeliveryOptions();
+            this.controller.GetDeliveryInfo();
 
             // assert
-            this.controller.Received(1).Execute(this.deliveryService.GetDeliveryOptions);
+            this.controller.Received(1).Execute(this.deliveryService.GetDeliveryInfo);
         }
 
         [Fact]
-        public void GetShippingOptions_ShouldCallExecuteMethod()
+        public void GetShippingInfo_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.GetShippingOptions();
+            this.controller.GetShippingInfo();
 
             // assert
-            this.controller.Received(1).Execute(this.deliveryService.GetShippingOptions);
+            this.controller.Received(1).Execute(this.deliveryService.GetShippingInfo);
         }
 
         [Fact]

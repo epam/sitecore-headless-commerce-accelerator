@@ -36,17 +36,17 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
     using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
     using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
 
-    public class PricingManagerV2Tests
+    public class PricingManagerTests
     {
         private readonly IFixture fixture;
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly PricingManagerV2 pricingManager;
+        private readonly PricingManager pricingManager;
 
         private readonly PricingServiceProvider pricingServiceProvider;
 
-        public PricingManagerV2Tests()
+        public PricingManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             this.pricingServiceProvider = Substitute.For<PricingServiceProvider>();
@@ -56,7 +56,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
 
             this.fixture = new Fixture();
 
-            this.pricingManager = Substitute.For<PricingManagerV2>(connectServiceProvider, this.logService);
+            this.pricingManager = Substitute.For<PricingManager>(connectServiceProvider, this.logService);
         }
 
         public static IEnumerable<object[]> GetProductBulkPricesParameters =>

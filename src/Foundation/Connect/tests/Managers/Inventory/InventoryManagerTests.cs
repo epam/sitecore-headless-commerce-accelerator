@@ -35,17 +35,17 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Inventory
 
     using Xunit;
 
-    public class InventoryManagerV2Tests
+    public class InventoryManagerTests
     {
         private readonly IFixture fixture;
 
-        private readonly InventoryManagerV2 inventoryManager;
+        private readonly InventoryManager inventoryManager;
 
         private readonly InventoryServiceProvider inventoryServiceProvider;
 
         private readonly ILogService<CommonLog> logService;
 
-        public InventoryManagerV2Tests()
+        public InventoryManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             this.inventoryServiceProvider = Substitute.For<InventoryServiceProvider>();
@@ -55,7 +55,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Inventory
             this.logService = Substitute.For<ILogService<CommonLog>>();
             this.fixture = new Fixture();
 
-            this.inventoryManager = Substitute.For<InventoryManagerV2>(connectServiceProvider, this.logService);
+            this.inventoryManager = Substitute.For<InventoryManager>(connectServiceProvider, this.logService);
         }
 
         public static IEnumerable<object[]> GetStockInformationParameters =>

@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Connect.Managers.Inventory
     /// <summary>
     /// Executes InventoryServiceProvider methods
     /// </summary>
-    public interface IInventoryManagerV2
+    public interface IInventoryManager
     {
         /// <summary>
         /// Gets stock information about inventory products

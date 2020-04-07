@@ -508,7 +508,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CartsControllerTests.cs" />
-    <Compile Include="Controllers\CheckoutV2ControllerTests.cs" />
+    <Compile Include="Controllers\CheckoutControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

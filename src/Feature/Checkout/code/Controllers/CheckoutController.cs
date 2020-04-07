@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,121 +14,84 @@
 
 namespace Wooli.Feature.Checkout.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Net;
     using System.Web.Mvc;
 
-    using Foundation.Commerce.Models.Checkout;
-    using Foundation.Commerce.Repositories;
-    using Foundation.Extensions.Extensions;
+    using Foundation.Base.Controllers;
+    using Foundation.Commerce.Services.Billing;
+    using Foundation.Commerce.Services.Delivery;
+    using Foundation.Commerce.Services.Order;
 
-    [Obsolete("Use CheckoutControllerV2 instead")]
-    public class CheckoutController : Controller
+    using Models.Requests;
+
+    using Sitecore.Diagnostics;
+
+    public class CheckoutController : BaseController
     {
-        private readonly IBillingRepository billingRepository;
+        private readonly IBillingService billingService;
 
-        private readonly ICheckoutRepository checkoutRepository;
+        private readonly IDeliveryService deliveryService;
 
-        private readonly IDeliveryRepository deliveryRepository;
+        private readonly IOrderService orderService;
 
         public CheckoutController(
-            ICheckoutRepository checkoutRepository,
-            IDeliveryRepository deliveryRepository,
-            IBillingRepository billingRepository)
+            IBillingService billingService,
+            IOrderService orderService,
+            IDeliveryService deliveryService)
         {
-            this.checkoutRepository = checkoutRepository;
-            this.deliveryRepository = deliveryRepository;
-            this.billingRepository = billingRepository;
+            Assert.ArgumentNotNull(billingService, nameof(billingService));
+            Assert.ArgumentNotNull(orderService, nameof(orderService));
+            Assert.ArgumentNotNull(deliveryService, nameof(deliveryService));
+
+            this.billingService = billingService;
+            this.orderService = orderService;
+            this.deliveryService = deliveryService;
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.ActionName("getBillingData")]
-        public ActionResult GetBillingData()
+        [HttpGet]
+        [ActionName("billingInfo")]
+        public ActionResult GetBillingInfo()
         {
-            var result = this.billingRepository.GetBillingData();
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(this.billingService.GetBillingInfo);
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.ActionName("getDeliveryData")]
-        public ActionResult GetDeliveryData()
+        [HttpGet]
+        [ActionName("deliveryInfo")]
+        public ActionResult GetDeliveryInfo()
         {
-            var result = this.deliveryRepository.GetDeliveryData();
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(this.deliveryService.GetDeliveryInfo);
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.ActionName("getShippingMethods")]
-        public ActionResult GetShippingMethods()
+        [HttpGet]
+        [ActionName("shippingInfo")]
+        public ActionResult GetShippingInfo()
         {
-            var shippingArgs = new GetShippingArgs
-            {
-                ShippingPreferenceType = "1"
-            };
-
-            var result = this.deliveryRepository.GetShippingMethods(shippingArgs);
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(this.deliveryService.GetShippingInfo);
         }
 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.ActionName("setPaymentMethods")]
-        public ActionResult SetPaymentMethods(SetPaymentArgs paymentArgs)
+        [HttpPost]
+        [ActionName("paymentInfo")]
+        public ActionResult SetPaymentInfo(SetPaymentInfoRequest request)
         {
-            var result = this.billingRepository.SetPaymentMethods(paymentArgs);
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(
+                () => this.billingService.SetPaymentInfo(request.BillingAddress, request.FederatedPayment));
         }
 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.ActionName("setShippingMethods")]
-        public ActionResult SetShippingMethods(SetShippingArgs args)
+        [HttpPost]
+        [ActionName("shippingOptions")]
+        public ActionResult SetShippingOptions(SetShippingOptionsRequest request)
         {
-            var result = this.deliveryRepository.SetShippingMethods(args);
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(
+                () => this.deliveryService.SetShippingOptions(
+                    request.OrderShippingPreferenceType,
+                    request.ShippingAddresses,
+                    request.ShippingMethods));
         }
 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.ActionName("submitOrder")]
+        [HttpPost]
+        [ActionName("orders")]
         public ActionResult SubmitOrder()
         {
-            var result = this.checkoutRepository.SubmitOrder();
-
-            if (result.Success)
-            {
-                return this.JsonOk(result.Data);
-            }
-
-            return this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError, tempData: result.Data);
+            return this.Execute(this.orderService.SubmitOrder);
         }
     }
 }

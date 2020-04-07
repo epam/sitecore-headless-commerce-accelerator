@@ -31,11 +31,11 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
     using Xunit;
 
-    public class CheckoutV2ControllerTests
+    public class CheckoutControllerTests
     {
         private readonly IBillingService billingService;
 
-        private readonly CheckoutV2Controller controller;
+        private readonly CheckoutController controller;
 
         private readonly IDeliveryService deliveryService;
 
@@ -43,12 +43,12 @@ namespace Wooli.Feature.Checkout.Tests.Controllers
 
         private readonly IOrderService orderService;
 
-        public CheckoutV2ControllerTests()
+        public CheckoutControllerTests()
         {
             this.billingService = Substitute.For<IBillingService>();
             this.deliveryService = Substitute.For<IDeliveryService>();
             this.orderService = Substitute.For<IOrderService>();
-            this.controller = Substitute.For<CheckoutV2Controller>(
+            this.controller = Substitute.For<CheckoutController>(
                 this.billingService,
                 this.orderService,
                 this.deliveryService);

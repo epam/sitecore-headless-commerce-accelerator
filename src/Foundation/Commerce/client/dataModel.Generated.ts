@@ -33,11 +33,6 @@
     export interface BaseCheckoutModel {
         userAddresses: AddressModel[];
     }
-    export interface BillingModel extends BaseCheckoutModel {
-        paymentClientToken: string;
-        paymentMethods: PaymentMethodModel[];
-        paymentOptions: PaymentOptionModel[];
-    }
     export interface CartLineModel {
         id: string;
         price: CartPriceModel;
@@ -90,10 +85,6 @@
         name: string;
         subdivisions: SubdivisionModel[];
     }
-    export interface DeliveryModel extends BaseCheckoutModel {
-        newPartyId: string;
-        shippingOptions: ShippingOptionModel[];
-    }
     export interface FacetResultModel {
         displayName: string;
         foundValues: FacetValueResultModel[];
@@ -109,22 +100,27 @@
         partyID: string;
         paymentMethodId: string;
     }
-    export interface GetShippingArgs {
-        shippingAddress: AddressModel;
-        shippingPreferenceType: string;
-    }
     export interface OrderModel extends CartModel {
         status: string;
         trackingNumber: string;
     }
-    export interface PaymentMethodModel {
+    export interface ShippingMethodModel {
         description: string;
+        electronicDeliveryEmail: string;
+        electronicDeliveryEmailContent: string;
         externalId: string;
+        lineIds: string[];
+        name: string;
+        partyId: string;
+        shippingOptionId: string;
+        shippingPreferenceType: string;
+        shopName: string;
     }
-    export interface PaymentOptionModel {
+    export interface ShippingOptionModel {
         description: string;
         name: string;
-        paymentOptionTypeName: string;
+        shippingOptionType: number;
+        shopName: string;
     }
     export interface ProductListResultModel {
         childProducts: Product[];
@@ -202,41 +198,8 @@
         tags: string[];
         properties: { [key: string]: string };
     }
-    export interface SetPaymentArgs {
-        billingAddress: AddressModel;
-        federatedPayment: FederatedPaymentModel;
-    }
-    export interface SetShippingArgs {
-        orderShippingPreferenceType: string;
-        shippingAddresses: AddressModel[];
-        shippingMethods: ShippingMethodModel[];
-    }
-    export interface SetShippingModel {
-        success: boolean;
-    }
-    export interface ShippingMethodModel {
-        description: string;
-        electronicDeliveryEmail: string;
-        electronicDeliveryEmailContent: string;
-        externalId: string;
-        lineIds: string[];
-        name: string;
-        partyId: string;
-        shippingOptionId: string;
-        shippingPreferenceType: string;
-        shopName: string;
-    }
-    export interface ShippingModel extends BaseCheckoutModel {
-        shippingMethods: ShippingMethodModel[];
-    }
     export interface ShippingInfo {
         shippingMethods: ShippingMethod[];
-    }
-    export interface ShippingOptionModel {
-        description: string;
-        name: string;
-        shippingOptionType: number;
-        shopName: string;
     }
     export interface ShippingMethod {
         description: string;
@@ -297,9 +260,6 @@
         partyId: string;
         state: string;
         zipPostalCode: string;
-    }
-    export interface SubmitOrderModel {
-        confirmationId: string;
     }
     export interface BillingInfo {
         paymentClientToken: string;

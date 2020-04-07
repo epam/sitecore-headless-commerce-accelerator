@@ -44,11 +44,6 @@ namespace Wooli.Foundation.Connect.Context
             this.sitecoreService.GetItem<IStorefrontModel>(
                 $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
 
-        // ToDo: implement logic for getting current catalog item
-        public int DefaultItemsPerPage => 0;
-
-        public string SelectedCurrency => "USD";
-
         // ToDo: implement logic for getting current shop
         public string ShopName => "Wooli";
     }

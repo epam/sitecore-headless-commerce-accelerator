@@ -85,7 +85,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             {
                 var urlSegment = urlSegments.LastOrDefault()?.TrimEnd('/');
 
-                this.ProcessItem(currentItem, urlSegment, this.storefrontContext.CatalogName);
+                this.ProcessItem(currentItem, urlSegment);
 
                 if (urlSegments.Length > 0)
                 {
@@ -96,7 +96,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             }
         }
 
-        private void ProcessItem(Item item, string urlSegment, string catalogName)
+        private void ProcessItem(Item item, string urlSegment)
         {
             var contextItemType = this.pageTypeProvider.ResolveByItem(item);
             if (contextItemType == Constants.ItemType.Unknown)

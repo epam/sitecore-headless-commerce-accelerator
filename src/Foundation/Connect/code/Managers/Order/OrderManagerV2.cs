@@ -14,9 +14,6 @@
 
 namespace Wooli.Foundation.Connect.Managers.Order
 {
-    using System;
-    using System.Linq;
-
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -63,56 +60,9 @@ namespace Wooli.Foundation.Connect.Managers.Order
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
 
-            try
-            {
-                return this.Execute(
-                    new SubmitVisitorOrderRequest(cart),
-                    this.orderServiceProvider.SubmitVisitorOrder);
-            }
-            catch (Exception ex)
-            {
-                this.LogService.Error(ex.Message);
-
-                // ToDo: fix issues during order submitting: down there: temp implementation of the submit result
-                if (this.TryResolveSubmittedOrder(cart, out var managerResponse))
-                {
-                    return managerResponse;
-                }
-
-                throw;
-            }
-        }
-
-        private bool TryResolveSubmittedOrder(CartBase cart, out SubmitVisitorOrderResult managerResponse)
-        {
-            var getVisitorOrdersResult = this.GetOrdersHeaders(cart.CustomerId, cart.ShopName);
-
-            if (getVisitorOrdersResult.Success)
-            {
-                // Getting the latest order
-                var orderHeader = getVisitorOrdersResult.OrderHeaders
-                    .OrderByDescending(x => x.OrderDate)
-                    .FirstOrDefault();
-
-                if (orderHeader != null)
-                {
-                    var getVisitorOrderResult = this.GetOrder(orderHeader.OrderID, orderHeader.CustomerId, orderHeader.ShopName);
-
-                    if (getVisitorOrderResult.Order != null)
-                    {
-                        managerResponse = new SubmitVisitorOrderResult
-                        {
-                            Order = getVisitorOrderResult.Order,
-                            Success = true
-                        };
-
-                        return true;
-                    }
-                }
-            }
-
-            managerResponse = null;
-            return false;
+            return this.Execute(
+                new SubmitVisitorOrderRequest(cart),
+                this.orderServiceProvider.SubmitVisitorOrder);
         }
     }
 }

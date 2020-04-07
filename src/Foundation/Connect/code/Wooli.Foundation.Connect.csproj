@@ -659,9 +659,6 @@
     <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Connect.Commerce.Serialization.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Connect.Fixes.config">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

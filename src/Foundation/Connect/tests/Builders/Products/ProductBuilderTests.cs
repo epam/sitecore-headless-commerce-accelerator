@@ -40,8 +40,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     public class ProductBuilderTests : BaseProductBuilderTests
     {
         private readonly IVariantBuilder<Item> variantBuilder;
-        private readonly IPricingManagerV2 pricingManager;
-        private readonly IInventoryManagerV2 inventoryManager;
+        private readonly IPricingManager pricingManager;
+        private readonly IInventoryManager inventoryManager;
 
         private readonly ProductBuilder productBuilder;
 
@@ -52,8 +52,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
         public ProductBuilderTests()
         {
             this.variantBuilder = Substitute.For<IVariantBuilder<Item>>();
-            this.pricingManager = Substitute.For<IPricingManagerV2>();
-            this.inventoryManager = Substitute.For<IInventoryManagerV2>();
+            this.pricingManager = Substitute.For<IPricingManager>();
+            this.inventoryManager = Substitute.For<IInventoryManager>();
 
             this.getProductBulkPricesResult = this.Fixture.Create<GetProductBulkPricesResult>();
             this.pricingManager

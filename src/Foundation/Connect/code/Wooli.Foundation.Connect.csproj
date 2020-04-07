@@ -582,8 +582,8 @@
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
     <Compile Include="Managers\Contracts\IAnalyticsManager.cs" />
     <Compile Include="Managers\Cart\ICartManagerV2.cs" />
-    <Compile Include="Managers\Inventory\IInventoryManagerV2.cs" />
-    <Compile Include="Managers\Inventory\InventoryManagerV2.cs" />
+    <Compile Include="Managers\Inventory\IInventoryManager.cs" />
+    <Compile Include="Managers\Inventory\InventoryManager.cs" />
     <Compile Include="Managers\Order\OrderManagerV2.cs" />
     <Compile Include="Managers\Payment\IPaymentManagerV2.cs" />
     <Compile Include="Managers\Payment\PaymentManagerV2.cs" />
@@ -628,11 +628,9 @@
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="Managers\CartManager.cs" />
     <Compile Include="Managers\Contracts\ICartManager.cs" />
-    <Compile Include="Managers\Contracts\IInventoryManager.cs" />
     <Compile Include="Managers\Contracts\IOrderManager.cs" />
     <Compile Include="Managers\Contracts\IAccountManager.cs" />
     <Compile Include="Managers\Contracts\IShippingManager.cs" />
-    <Compile Include="Managers\InventoryManager.cs" />
     <Compile Include="Managers\ManagerResponse.cs" />
     <Compile Include="Managers\OrderManager.cs" />
     <Compile Include="Managers\ShippingManager.cs" />

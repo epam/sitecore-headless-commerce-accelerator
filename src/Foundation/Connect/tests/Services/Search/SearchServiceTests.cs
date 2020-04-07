@@ -17,9 +17,8 @@ namespace Wooli.Foundation.Connect.Tests.Services.Search
     using System;
     using System.Linq;
 
-    using Builders.Products;
-    using Builders.Search;
-
+    using Connect.Builders.Products;
+    using Connect.Builders.Search;
     using Connect.Mappers.Search;
     using Connect.Services.Search;
 

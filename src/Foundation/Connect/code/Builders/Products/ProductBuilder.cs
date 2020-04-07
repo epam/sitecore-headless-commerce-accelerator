@@ -36,11 +36,11 @@ namespace Wooli.Foundation.Connect.Builders.Products
     [Service(typeof(IProductBuilder<Item>), Lifetime = Lifetime.Singleton)]
     public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item>
     {
+        private static readonly string[] PriceTypes = { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
+
         private readonly IPricingManagerV2 pricingManager;
         private readonly IInventoryManagerV2 inventoryManager;
         private readonly IVariantBuilder<Item> variantBuilder;
-
-        private readonly string[] priceTypes = new[] { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
 
         public ProductBuilder(
             IVariantBuilder<Item> variantBuilder,
@@ -100,10 +100,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
         private void SetVariants(Product product, Item source)
         {
-            if (source.HasChildren)
-            {
-                product.Variants = this.variantBuilder.Build(source.Children).ToList();
-            }
+            product.Variants = source.HasChildren ? this.variantBuilder.Build(source.Children).ToList() : new List<Variant>();
         }
 
         private void SetPricesWithoutVariants(IList<Product> products)
@@ -115,7 +112,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
             var catalogName = products.Select(product => product.CatalogName).FirstOrDefault();
             var productIds = products.Select(product => product.Id);
-            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, this.priceTypes)?.Prices;
+            var prices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, PriceTypes)?.Prices;
 
             foreach (var product in products)
             {
@@ -134,8 +131,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
             var productPrices = this.pricingManager.GetProductPrices(
                     product.CatalogName,
                     product.Id,
-                    includeVariants,
-                    this.priceTypes)
+                    includeVariants, 
+                    PriceTypes)
                 ?.Prices;
 
             this.SetPrices(product, productPrices);

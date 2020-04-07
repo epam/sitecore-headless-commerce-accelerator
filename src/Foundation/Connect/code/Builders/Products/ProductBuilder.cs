@@ -38,14 +38,14 @@ namespace Wooli.Foundation.Connect.Builders.Products
     {
         private static readonly string[] PriceTypes = { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
 
-        private readonly IPricingManagerV2 pricingManager;
+        private readonly IPricingManager pricingManager;
         private readonly IInventoryManagerV2 inventoryManager;
         private readonly IVariantBuilder<Item> variantBuilder;
 
         public ProductBuilder(
             IVariantBuilder<Item> variantBuilder,
             IStorefrontContext storefrontContext,
-            IPricingManagerV2 pricingManager,
+            IPricingManager pricingManager,
             IInventoryManagerV2 inventoryManager,
             ICatalogMapper catalogMapper) : base(
             storefrontContext,

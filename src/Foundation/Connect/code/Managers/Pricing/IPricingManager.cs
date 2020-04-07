@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers.Pricing
     /// <summary>
     /// Gets pricing of catalog products
     /// </summary>
-    public interface IPricingManagerV2
+    public interface IPricingManager
     {
         /// <summary>
         /// Gets product bulk prices

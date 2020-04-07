@@ -24,8 +24,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
     using Commerce.Services.Order;
 
     using Connect.Context;
-    using Connect.Managers;
     using Connect.Managers.Cart;
+    using Connect.Managers.Order;
 
     using Context;
 
@@ -47,8 +47,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
 
         private readonly Fixture fixture;
 
-        private readonly ILogService<CommonLog> logService;
-
         private readonly IOrderMapper mapper;
 
         private readonly IOrderManagerV2 orderManager;
@@ -66,11 +64,11 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
             this.cartManager = Substitute.For<ICartManagerV2>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.visitorContext = Substitute.For<IVisitorContext>();
-            this.logService = Substitute.For<ILogService<CommonLog>>();
+            var logService = Substitute.For<ILogService<CommonLog>>();
 
             this.service = new OrderService(
                 this.mapper,
-                this.logService,
+                logService,
                 this.orderManager,
                 this.cartManager,
                 this.storefrontContext,
@@ -195,6 +193,19 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
         }
 
         [Fact]
+        public void SubmitOrder_IfSubmitOrderFalse_ShouldReturnFalseResult()
+        {
+            // arrange
+            var submitOrderResult = this.InitSubmitOrder(true, false);
+
+            // act
+            var result = this.service.SubmitOrder();
+
+            // assert
+            Assert.False(result.Success);
+        }
+
+        [Fact]
         public void SubmitOrder_IfSubmitOrderSuccess_ShouldReturnSuccessResult()
         {
             // arrange
@@ -206,19 +217,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
             // assert
             Assert.True(result.Success);
             Assert.Equal(submitOrderResult.Order.TrackingNumber, result.Data.ConfirmationId);
-        }
-
-        [Fact]
-        public void SubmitOrder_IfSubmitOrderFalse_ShouldReturnFalseResult()
-        {
-            // arrange
-            var submitOrderResult = this.InitSubmitOrder(true, false);
-
-            // act
-            var result = this.service.SubmitOrder();
-
-            // assert
-            Assert.False(result.Success);
         }
 
         private (string, GetVisitorOrderResult) InitGetOrder(bool success)

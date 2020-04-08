@@ -1,0 +1,29 @@
+# Universal Windows Platform
+# Build a Universal Windows Platform project using Visual Studio.
+# Variables with address and credentials stored in Azure secrets
+
+trigger: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  build_cake: './src/build.cake'
+  default_ip: '192.168.50.4'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      #Change IP server address
+      (Get-Content $(build_cake) -replace $(default_ip), $env:HOST_NETWORK_ADDRESS | Set-Content
+  displayName: Config preparation
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Test changes
+      Get-Content $(build_cake)
+  displayName: Result test

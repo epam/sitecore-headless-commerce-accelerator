@@ -51,7 +51,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
         private readonly ICartManagerV2 cartManager;
 
-        private readonly IShippingManagerV2 shippingManager;
+        private readonly IShippingManager shippingManager;
 
         private readonly IShippingMapper shippingMapper;
 
@@ -65,7 +65,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             IShippingMapper shippingMapper,
-            IShippingManagerV2 shippingManager)
+            IShippingManager shippingManager)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));

@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Connect.Managers.Payment
     /// <summary>
     /// Performs operations related to payment
     /// </summary>
-    public interface IPaymentManagerV2
+    public interface IPaymentManager
     {
         /// <summary>
         /// Gets client token for payment by card

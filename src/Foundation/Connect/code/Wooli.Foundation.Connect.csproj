@@ -584,8 +584,8 @@
     <Compile Include="Managers\Inventory\IInventoryManager.cs" />
     <Compile Include="Managers\Inventory\InventoryManager.cs" />
     <Compile Include="Managers\Order\OrderManagerV2.cs" />
-    <Compile Include="Managers\Payment\IPaymentManagerV2.cs" />
-    <Compile Include="Managers\Payment\PaymentManagerV2.cs" />
+    <Compile Include="Managers\Payment\IPaymentManager.cs" />
+    <Compile Include="Managers\Payment\PaymentManager.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
@@ -603,8 +603,8 @@
     <Compile Include="Managers\Pricing\PricingManager.cs" />
     <Compile Include="Managers\Order\IOrderManagerV2.cs" />
     <Compile Include="Services\Search\SearchService.cs" />
-    <Compile Include="Managers\Shipping\IShippingManagerV2.cs" />
-    <Compile Include="Managers\Shipping\ShippingManagerV2.cs" />
+    <Compile Include="Managers\Shipping\IShippingManager.cs" />
+    <Compile Include="Managers\Shipping\ShippingManager.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Mappers\ConnectEntityMapper.cs" />

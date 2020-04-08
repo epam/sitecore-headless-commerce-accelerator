@@ -235,7 +235,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
     },
   };
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Commerce.SetPaymentArgs> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
+  const { error }: Result<Commerce.VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
     yield put(actions.SubmitStepFailure(error.message || 'can not update shipping details'));
   } else {

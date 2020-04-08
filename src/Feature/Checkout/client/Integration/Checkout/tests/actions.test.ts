@@ -106,16 +106,16 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_SUCCESS with Delivery Loaded', () => {
-        const expectedDeliveryModel: Commerce.DeliveryModel = {
+        const expectedDeliveryInfo: Commerce.DeliveryInfo = {
             newPartyId: 'fakeId',
             shippingOptions: [],
             userAddresses: []
         };
-        const actual = actions.GetDeliveryInfoSuccess(expectedDeliveryModel);
+        const actual = actions.GetDeliveryInfoSuccess(expectedDeliveryInfo);
         expect(actual).toEqual({
             payload: {
                 delivery: {
-                    data: expectedDeliveryModel,
+                    data: expectedDeliveryInfo,
                     status: LoadingStatus.Loaded
                 }
             },

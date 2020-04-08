@@ -715,11 +715,9 @@
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsService.cs" />
     <Compile Include="Repositories\BaseCheckoutRepository.cs" />
-    <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
     <Compile Include="Services\Analytics\ICommerceAnalyticsService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\Contracts\ICartRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Context\Contracts\IVisitorContext.cs" />
     <Compile Include="Services\Cart\CartService.cs" />

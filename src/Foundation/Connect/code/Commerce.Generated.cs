@@ -1392,7 +1392,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ed3ebccd-a230-4659-923f-014707e1945d</para>
         /// </summary>
         [SitecoreField("Selected Catalogs")]
-        object /* UNKNOWN TYPE: Catalog Selection Control */ SelectedCatalogs {get; set;}
+        IEnumerable<string> SelectedCatalogs {get; set;}
 
     }
 
@@ -1421,7 +1421,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ed3ebccd-a230-4659-923f-014707e1945d</para>
         /// </summary>
         [SitecoreField("Selected Catalogs")]
-        public virtual object /* UNKNOWN TYPE: Catalog Selection Control */ SelectedCatalogs {get; set;}
+        public virtual IEnumerable<string> SelectedCatalogs {get; set;}
         public const string SelectedCatalogsFieldId = "ed3ebccd-a230-4659-923f-014707e1945d";
         public const string SelectedCatalogsFieldName = "Selected Catalogs";
 
@@ -7559,7 +7559,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 3a6ff55f-4354-46f2-bf70-d6550d834922</para>
         /// </summary>
         [SitecoreField("WebsiteUrl")]
-        Glass.Mapper.Sc.Fields.Link WebsiteUrl {get; set;}
+        Link WebsiteUrl {get; set;}
 
     }
 
@@ -7628,7 +7628,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 3a6ff55f-4354-46f2-bf70-d6550d834922</para>
         /// </summary>
         [SitecoreField("WebsiteUrl")]
-        public virtual Glass.Mapper.Sc.Fields.Link WebsiteUrl {get; set;}
+        public virtual Link WebsiteUrl {get; set;}
         public const string WebsiteUrlFieldId = "3a6ff55f-4354-46f2-bf70-d6550d834922";
         public const string WebsiteUrlFieldName = "WebsiteUrl";
 

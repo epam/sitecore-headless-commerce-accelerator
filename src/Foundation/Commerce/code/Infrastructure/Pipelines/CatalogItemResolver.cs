@@ -16,7 +16,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
     using System.Linq;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Services.Search;
 
     using Context;

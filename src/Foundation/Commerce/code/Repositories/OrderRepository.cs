@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using Builders.Cart;
     using Builders.Order;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers;
 
     using Context;

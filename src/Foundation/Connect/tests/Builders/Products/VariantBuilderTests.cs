@@ -18,18 +18,11 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     using System.Linq;
 
     using Connect.Builders.Products;
-    using Connect.Mappers.Catalog;
-
-    using Context;
-
-    using NSubstitute;
 
     using Ploeh.AutoFixture;
 
-    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;
-    using Sitecore.FakeDb.AutoFixture;
 
     using Xunit;
 
@@ -40,8 +33,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
         private readonly Dictionary<string, string> variantProperties;
 
         public VariantBuilderTests()
-        { 
-            this.variantBuilder = new VariantBuilder(this.StorefrontContext, this.CatalogMapper);
+        {
+            this.variantBuilder = new VariantBuilder(this.CatalogContext, this.CatalogMapper);
 
             this.variantProperties = new Dictionary<string, string>();
             this.variantProperties.Add(this.Fixture.Create<string>(), this.Fixture.Create<string>());
@@ -54,12 +47,20 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
             // arrange
             var dbItem = this.InitializeVariantItem();
 
-            using (var db = new Db() { dbItem })
+            using (var db = new Db
+            {
+                dbItem
+            })
             {
                 var item = db.GetItem(dbItem.ID);
 
                 // act
-                var variants = this.variantBuilder.Build(new List<Item>() { item })?.ToList();
+                var variants = this.variantBuilder.Build(
+                        new List<Item>
+                        {
+                            item
+                        })
+                    ?.ToList();
                 var variant = variants?.FirstOrDefault();
 
                 // assert

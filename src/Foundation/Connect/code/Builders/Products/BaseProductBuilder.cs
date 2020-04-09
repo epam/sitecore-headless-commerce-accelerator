@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using System.Collections.Generic;
     using System.Linq;
 
-    using Context;
+    using Context.Catalog;
 
     using Extensions.Extensions;
 
@@ -39,17 +39,17 @@ namespace Wooli.Foundation.Connect.Builders.Products
     /// </summary>
     public abstract class BaseProductBuilder
     {
+        protected readonly ICatalogContext CatalogContext;
         protected readonly ICatalogMapper CatalogMapper;
-        protected readonly IStorefrontContext StorefrontContext;
 
         protected BaseProductBuilder(
-            IStorefrontContext storefrontContext,
+            ICatalogContext catalogContext,
             ICatalogMapper catalogMapper)
         {
-            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
 
-            this.StorefrontContext = storefrontContext;
+            this.CatalogContext = catalogContext;
             this.CatalogMapper = catalogMapper;
         }
 
@@ -136,7 +136,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
         /// <param name="product">Product to set properties to</param>
         private void SetCatalogName(BaseProduct product)
         {
-            product.CatalogName = this.StorefrontContext.CatalogName;
+            product.CatalogName = this.CatalogContext.CatalogName;
         }
     }
 }

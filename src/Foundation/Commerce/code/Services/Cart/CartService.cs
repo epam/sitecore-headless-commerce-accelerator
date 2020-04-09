@@ -21,7 +21,8 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using Builders.Cart;
 
-    using Connect.Context;
+    using Connect.Context.Catalog;
+    using Connect.Context.Storefront;
     using Connect.Managers.Cart;
 
     using Context;
@@ -41,6 +42,8 @@ namespace Wooli.Foundation.Commerce.Services.Cart
     {
         private readonly ICartManagerV2 cartManager;
 
+        private readonly ICatalogContext catalogContext;
+
         private readonly IStorefrontContext storefrontContext;
 
         private readonly IVisitorContext visitorContext;
@@ -50,23 +53,26 @@ namespace Wooli.Foundation.Commerce.Services.Cart
         public CartService(
             ICartManagerV2 cartManager,
             IStorefrontContext storefrontContext,
+            ICatalogContext catalogContext,
             IVisitorContext visitorContext,
             ICartBuilder<Connect.Cart> cartBuilder)
         {
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
             Assert.ArgumentNotNull(cartBuilder, nameof(cartBuilder));
 
             this.cartManager = cartManager;
             this.storefrontContext = storefrontContext;
+            this.catalogContext = catalogContext;
             this.visitorContext = visitorContext;
             this.cartBuilder = cartBuilder;
         }
 
         public Result<Cart> GetCart()
         {
-            //TODO: Cart caching 
+            // TODO: Cart caching 
             var response = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             return this.BuildResult(response);
         }
@@ -95,7 +101,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLine = new CommerceConnect.CommerceCartLine(
-                this.storefrontContext.CatalogName,
+                this.catalogContext.CatalogName,
                 productId,
                 variantId == "-1" ? null : variantId,
                 quantity);
@@ -117,8 +123,8 @@ namespace Wooli.Foundation.Commerce.Services.Cart
                     variantId)
                 .ToList();
 
-            //TODO: this condition used because for any REMOVE action on FE used UPDATE controller method with 0 quantity. It should be refactored.
-            //If remove this line now, results in analytics table will look like "Items removed: 0"
+            // TODO: this condition used because for any REMOVE action on FE used UPDATE controller method with 0 quantity. It should be refactored.
+            // If remove this line now, results in analytics table will look like "Items removed: 0"
             if (quantity != 0)
             {
                 cartLines.ForEach(cartLine => cartLine.Quantity = quantity);

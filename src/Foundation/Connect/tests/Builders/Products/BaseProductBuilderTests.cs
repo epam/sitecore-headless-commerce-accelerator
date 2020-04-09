@@ -15,12 +15,11 @@
 namespace Wooli.Foundation.Connect.Tests.Builders.Products
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using Connect.Builders.Products;
     using Connect.Mappers.Catalog;
 
-    using Context;
+    using Context.Catalog;
 
     using Models.Catalog;
 
@@ -35,7 +34,6 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;
     using Sitecore.FakeDb.AutoFixture;
-    using Sitecore.Shell.Framework.Commands;
 
     using Xunit;
 
@@ -43,26 +41,26 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
 
     public class BaseProductBuilderTests
     {
-        protected readonly IStorefrontContext StorefrontContext;
+        protected readonly ICatalogContext CatalogContext;
         protected readonly ICatalogMapper CatalogMapper;
 
         protected readonly IFixture Fixture;
 
         public BaseProductBuilderTests()
         {
-            this.StorefrontContext = Substitute.For<IStorefrontContext>();
+            this.CatalogContext = Substitute.For<ICatalogContext>();
             this.CatalogMapper = Substitute.For<ICatalogMapper>();
 
             this.Fixture = new Fixture().Customize(new AutoDbCustomization());
 
-            this.StorefrontContext.CatalogName.Returns(this.Fixture.Create<string>());
+            this.CatalogContext.CatalogName.Returns(this.Fixture.Create<string>());
         }
 
         public static IEnumerable<object[]> SetStockStatusParameters => new List<object[]>
         {
             new object[] { null, new StockInformation() },
-            new object[] { new TestBaseProduct(), null }, 
-            new object[] { null, null }, 
+            new object[] { new TestBaseProduct(), null },
+            new object[] { null, null }
         };
 
         public static IEnumerable<object[]> SetPricesPricesParameters => new List<object[]>
@@ -75,13 +73,13 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
                 {
                     { "1", new Price() }
                 }
-            },
+            }
         };
 
         public static IEnumerable<object[]> SetPricesProductParameters => new List<object[]>
         {
             new object[] { null },
-            new object[] { new TestBaseProduct() },
+            new object[] { new TestBaseProduct() }
         };
 
         [Fact]
@@ -90,9 +88,12 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
             // arrange
             var dbItem = this.InitializeBaseProductItem();
 
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
 
-            using (var db = new Db() { dbItem })
+            using (var db = new Db
+            {
+                dbItem
+            })
             {
                 var productItem = db.GetItem(dbItem.ID);
 
@@ -111,43 +112,20 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
                 Assert.Equal(product.CustomerAverageRating, decimal.Parse(productItem["Rating"]));
                 Assert.Empty(product.ImageUrls);
 
-                Assert.Equal(product.CatalogName, this.StorefrontContext.CatalogName);
+                Assert.Equal(product.CatalogName, this.CatalogContext.CatalogName);
             }
         }
 
-        [Fact]
-        public void SetStockStatus_IfParametersNotNull_ShouldSetStockStatus()
-        {
-            // arrange
-            var product = new TestBaseProduct();
-            var stockInformation = this.Fixture.Create<StockInformation>();
-            var stockStatus = this.Fixture.Create<StockStatus>();
-            this.CatalogMapper
-                .Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
-                    Arg.Any<Sitecore.Commerce.Entities.Inventory.StockStatus>())
-                .Returns(stockStatus);
-
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
-
-            // act
-            builder.SetStockStatus(product, stockInformation);
-
-            // assert
-            this.CatalogMapper.Received(1)
-                .Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
-                    Arg.Any<Sitecore.Commerce.Entities.Inventory.StockStatus>());
-            Assert.Equal(stockStatus, product.StockStatus);
-        }
-
         [Theory]
-        [MemberData(nameof(SetStockStatusParameters))]
-        public void SetStockStatus_IfParameterIsNull_ShouldNotThrowException(BaseProduct product, StockInformation stockInformation)
+        [MemberData(nameof(SetPricesPricesParameters))]
+        public void SetPrices_IfDictionaryHasNotProductPrice_ShouldNotThrowException(Dictionary<string, Price> prices)
         {
             // arrange
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
+            var product = this.Fixture.Create<TestBaseProduct>();
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
 
             // act
-            var exception = Record.Exception(() => builder.SetStockStatus(product, stockInformation));
+            var exception = Record.Exception(() => builder.SetPrices(product, prices));
 
             // assert
             Assert.Null(exception);
@@ -168,7 +146,7 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
                 { product.Id, price }
             };
 
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
 
             // act
             builder.SetPrices(product, prices);
@@ -180,12 +158,12 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
         }
 
         [Theory]
-        [MemberData(nameof(SetPricesPricesParameters))]
-        public void SetPrices_IfDictionaryHasNotProductPrice_ShouldNotThrowException(Dictionary<string, Price> prices)
+        [MemberData(nameof(SetPricesProductParameters))]
+        public void SetPrices_IfProductInvalid_ShouldNotThrowException(BaseProduct product)
         {
             // arrange
-            var product = this.Fixture.Create<TestBaseProduct>();
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
+            var prices = this.Fixture.Create<Dictionary<string, Price>>();
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
 
             // act
             var exception = Record.Exception(() => builder.SetPrices(product, prices));
@@ -195,18 +173,42 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
         }
 
         [Theory]
-        [MemberData(nameof(SetPricesProductParameters))]
-        public void SetPrices_IfProductInvalid_ShouldNotThrowException(BaseProduct product)
+        [MemberData(nameof(SetStockStatusParameters))]
+        public void SetStockStatus_IfParameterIsNull_ShouldNotThrowException(BaseProduct product,
+            StockInformation stockInformation)
         {
             // arrange
-            var prices = this.Fixture.Create<Dictionary<string, Price>>();
-            var builder = new TestBaseProductBuilder(this.StorefrontContext, this.CatalogMapper);
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
 
             // act
-            var exception = Record.Exception(() => builder.SetPrices(product, prices));
+            var exception = Record.Exception(() => builder.SetStockStatus(product, stockInformation));
 
             // assert
             Assert.Null(exception);
+        }
+
+        [Fact]
+        public void SetStockStatus_IfParametersNotNull_ShouldSetStockStatus()
+        {
+            // arrange
+            var product = new TestBaseProduct();
+            var stockInformation = this.Fixture.Create<StockInformation>();
+            var stockStatus = this.Fixture.Create<StockStatus>();
+            this.CatalogMapper
+                .Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
+                    Arg.Any<Sitecore.Commerce.Entities.Inventory.StockStatus>())
+                .Returns(stockStatus);
+
+            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+
+            // act
+            builder.SetStockStatus(product, stockInformation);
+
+            // assert
+            this.CatalogMapper.Received(1)
+                .Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
+                    Arg.Any<Sitecore.Commerce.Entities.Inventory.StockStatus>());
+            Assert.Equal(stockStatus, product.StockStatus);
         }
 
         protected DbItem InitializeBaseProductItem()
@@ -220,14 +222,14 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
                 { "Brand", this.Fixture.Create<string>() },
                 { "Tags", this.Fixture.Create<string>() },
                 { "Rating", this.Fixture.Create<decimal>().ToString() },
-                { "Images", string.Empty },
+                { "Images", string.Empty }
             };
         }
 
         private class TestBaseProductBuilder : BaseProductBuilder
         {
-            public TestBaseProductBuilder(IStorefrontContext storefrontContext, ICatalogMapper catalogMapper) : base(
-                storefrontContext,
+            public TestBaseProductBuilder(ICatalogContext catalogContext, ICatalogMapper catalogMapper) : base(
+                catalogContext,
                 catalogMapper)
             {
             }
@@ -237,14 +239,14 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
                 return this.Initialize<TestBaseProduct>(source);
             }
 
-            public new void SetStockStatus(BaseProduct product, StockInformation stockInformation)
-            {
-                base.SetStockStatus(product, stockInformation);
-            }
-
             public new void SetPrices(BaseProduct product, IDictionary<string, Price> prices)
             {
                 base.SetPrices(product, prices);
+            }
+
+            public new void SetStockStatus(BaseProduct product, StockInformation stockInformation)
+            {
+                base.SetStockStatus(product, stockInformation);
             }
         }
 

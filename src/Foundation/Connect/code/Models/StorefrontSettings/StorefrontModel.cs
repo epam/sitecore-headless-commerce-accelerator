@@ -20,9 +20,14 @@ namespace Wooli.Foundation.Connect.Models
 
     public partial class StorefrontModel
     {
-        private const string CountryRegionConfigurationQuery = "./*[@@templatename='" + Models.CountryRegionConfigurationModel.TemplateName + "']";
-        private const string CurrenciesDisplayAdjustmentsQuery = "./*[@@templatename='" + Models.CurrenciesDisplayAdjustmentsModel.TemplateName  + "']";
-        private const string PaymentConfigurationQuery = "./*[@@templatename='" + Models.PaymentConfigurationModel.TemplateName  + "']";
+        private const string CountryRegionConfigurationQuery =
+            "./*[@@templatename='" + CountryRegionConfigurationModel.TemplateName + "']";
+
+        private const string CurrenciesDisplayAdjustmentsQuery =
+            "./*[@@templatename='" + CurrenciesDisplayAdjustmentsModel.TemplateName + "']";
+
+        private const string PaymentConfigurationQuery =
+            "./*[@@templatename='" + PaymentConfigurationModel.TemplateName + "']";
 
         [SitecoreQuery(CountryRegionConfigurationQuery, IsRelative = true)]
         public virtual CountryRegionConfigurationModel CountriesRegionsSettings { get; set; }

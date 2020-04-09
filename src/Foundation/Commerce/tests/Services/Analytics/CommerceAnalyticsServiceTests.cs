@@ -18,7 +18,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     using Commerce.Services.Analytics;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers;
 
     using Models.Entities.Catalog;
@@ -27,7 +27,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     using Ploeh.AutoFixture;
 
-    using Sitecore.Data.Items;
     using Sitecore.FakeDb.AutoFixture;
 
     using Xunit;

@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers.Shipping
     /// <summary>
     /// Executes ShippingServiceProvider methods
     /// </summary>
-    public interface IShippingManagerV2
+    public interface IShippingManager
     {
         /// <summary>
         /// Gets shipping methods

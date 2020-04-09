@@ -34,14 +34,14 @@ namespace Wooli.Foundation.Connect.Managers.Payment
 
     using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
 
-    [Service(typeof(IPaymentManagerV2), Lifetime = Lifetime.Singleton)]
-    public class PaymentManagerV2 : BaseManager, IPaymentManagerV2
+    [Service(typeof(IPaymentManager), Lifetime = Lifetime.Singleton)]
+    public class PaymentManager : BaseManager, IPaymentManager
     {
         private readonly IPaymentMapper paymentMapper;
 
         private readonly PaymentServiceProvider paymentServiceProvider;
 
-        public PaymentManagerV2(
+        public PaymentManager(
             IConnectServiceProvider connectServiceProvider,
             IPaymentMapper paymentMapper,
             ILogService<CommonLog> logService) : base(logService)

@@ -29,12 +29,12 @@ namespace Wooli.Foundation.Connect.Managers.Shipping
 
     using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
-    [Service(typeof(IShippingManagerV2), Lifetime = Lifetime.Singleton)]
-    public class ShippingManagerV2 : BaseManager, IShippingManagerV2
+    [Service(typeof(IShippingManager), Lifetime = Lifetime.Singleton)]
+    public class ShippingManager : BaseManager, IShippingManager
     {
         private readonly ShippingServiceProvider shippingServiceProvider;
 
-        public ShippingManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
+        public ShippingManager(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));

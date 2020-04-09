@@ -37,15 +37,15 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
 
     using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
-    public class ShippingManagerV2Tests
+    public class ShippingManagerTests
     {
         private readonly IFixture fixture;
 
-        private readonly ShippingManagerV2 shippingManager;
+        private readonly ShippingManager shippingManager;
 
         private readonly ShippingServiceProvider shippingServiceProvider;
 
-        public ShippingManagerV2Tests()
+        public ShippingManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
@@ -55,7 +55,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
             connectServiceProvider.GetShippingServiceProvider().Returns(this.shippingServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
 
-            this.shippingManager = Substitute.For<ShippingManagerV2>(connectServiceProvider, logService);
+            this.shippingManager = Substitute.For<ShippingManager>(connectServiceProvider, logService);
         }
 
         [Fact]

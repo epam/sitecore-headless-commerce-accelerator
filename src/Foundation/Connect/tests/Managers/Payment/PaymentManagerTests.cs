@@ -41,15 +41,15 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
 
     using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
 
-    public class PaymentManagerV2Tests
+    public class PaymentManagerTests
     {
         private readonly IFixture fixture;
 
-        private readonly PaymentManagerV2 paymentManager;
+        private readonly PaymentManager paymentManager;
 
         private readonly PaymentServiceProvider paymentServiceProvider;
 
-        public PaymentManagerV2Tests()
+        public PaymentManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
@@ -60,7 +60,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Payment
             connectServiceProvider.GetPaymentServiceProvider().Returns(this.paymentServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
 
-            this.paymentManager = Substitute.For<PaymentManagerV2>(connectServiceProvider, paymentMapper, logService);
+            this.paymentManager = Substitute.For<PaymentManager>(connectServiceProvider, paymentMapper, logService);
         }
 
         [Fact]

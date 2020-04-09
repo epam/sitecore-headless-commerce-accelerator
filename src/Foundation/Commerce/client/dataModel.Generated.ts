@@ -80,10 +80,10 @@
         firstName: string;
         lastName: string;
     }
-    export interface CountryRegionModel {
+    export interface CountryRegion {
         countryCode: string;
         name: string;
-        subdivisions: SubdivisionModel[];
+        subdivisions: Subdivision[];
     }
     export interface FacetResultModel {
         displayName: string;
@@ -238,7 +238,7 @@
         newPartyId: string;
         shippingOptions: ShippingOption[];
     }
-    export interface SubdivisionModel {
+    export interface Subdivision {
         code: string;
         name: string;
     }

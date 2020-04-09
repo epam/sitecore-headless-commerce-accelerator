@@ -471,6 +471,8 @@
     <Compile Include="Providers\Configuration\IConfigurationProvider.cs" />
     <Compile Include="Context\ISitecoreContext.cs" />
     <Compile Include="Context\SitecoreContext.cs" />
+    <Compile Include="Providers\Object\IObjectProvider.cs" />
+    <Compile Include="Providers\Object\ObjectProvider.cs" />
     <Compile Include="Services\Configuration\ConfigurationService.cs" />
     <Compile Include="Services\Configuration\IConfigurationService.cs" />
     <Compile Include="Services\Logging\CommonLogService.cs" />

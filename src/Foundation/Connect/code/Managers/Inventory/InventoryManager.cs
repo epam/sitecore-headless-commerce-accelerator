@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers.Inventory
 
     using DependencyInjection;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;

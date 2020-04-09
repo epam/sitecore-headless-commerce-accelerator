@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,15 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Region
+namespace Wooli.Foundation.Commerce.Mappers.Region
 {
-    using TypeLite;
+    using Base.Mappers;
 
-    [TsClass]
-    public class SubdivisionModel
+    public interface IRegionMapper : IMapper
     {
-        public string Code { get; set; }
-
-        public string Name { get; set; }
     }
 }

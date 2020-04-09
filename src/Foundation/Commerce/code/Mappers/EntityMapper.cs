@@ -46,8 +46,6 @@ namespace Wooli.Foundation.Commerce.Mappers
 
     using Cart = Models.Entities.Cart.Cart;
     using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
-    using CountryRegionModel = Models.Region.CountryRegionModel;
-    using SubdivisionModel = Models.Region.SubdivisionModel;
 
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper
@@ -244,9 +242,6 @@ namespace Wooli.Foundation.Commerce.Mappers
                                     src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)))
                         .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
                         .ReverseMap();
-
-                    cfg.CreateMap<ICountryRegionModel, CountryRegionModel>();
-                    cfg.CreateMap<ISubdivisionModel, SubdivisionModel>();
                 });
 
             this.innerMapper = new Mapper(config);
@@ -315,11 +310,6 @@ namespace Wooli.Foundation.Commerce.Mappers
         public User MapToCommerceUserModel(CommerceUser x)
         {
             return this.innerMapper.Map<User>(x);
-        }
-
-        public IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> model)
-        {
-            return this.innerMapper.Map<IEnumerable<CountryRegionModel>>(model);
         }
     }
 }

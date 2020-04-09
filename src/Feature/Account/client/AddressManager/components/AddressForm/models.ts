@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { AddressModel, CountryRegionModel } from 'Foundation/Commerce/client';
+import { AddressModel, CountryRegion } from 'Foundation/Commerce/client';
 
 export interface AddressFromProps {
-  countries: CountryRegionModel[];
+  countries: CountryRegion[];
   defaultValues?: AddressModel;
   SubmitAction: (address: AddressModel) => void;
   ToggleForm: () => void;

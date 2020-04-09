@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Region
+namespace Wooli.Foundation.Commerce.Models.Entities.Region
 {
     using System.Collections.Generic;
 
     using TypeLite;
 
     [TsClass]
-    public class CountryRegionModel
+    public class CountryRegion
     {
         public string CountryCode { get; set; }
 
         public string Name { get; set; }
 
-        public IEnumerable<SubdivisionModel> Subdivisions { get; set; }
+        public IEnumerable<Subdivision> Subdivisions { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Connect.Managers.Payment
 
     using Models.Payment;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;

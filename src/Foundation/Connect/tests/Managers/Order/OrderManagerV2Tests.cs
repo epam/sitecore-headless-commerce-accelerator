@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Order
 
     using Ploeh.AutoFixture;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Services.Orders;
 

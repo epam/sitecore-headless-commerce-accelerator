@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+namespace Wooli.Foundation.Base.Providers.Object
 {
-    using Models;
-
-    using Sitecore.Data.Items;
-
-    public interface IStorefrontContext
+    /// <summary>
+    /// Provides objects from configuration
+    /// </summary>
+    public interface IObjectProvider
     {
-        string CatalogName { get; }
-
-        Item CurrentCatalogItem { get; }
-
-        StorefrontModel StorefrontConfiguration { get; }
-
-        string ShopName { get; }
+        /// <summary>
+        /// Gets instance of specified type from configuration
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="configPath">Config path to object node</param>
+        /// <returns>Instance of T type</returns>
+        T GetObject<T>(string configPath) where T : class;
     }
 }

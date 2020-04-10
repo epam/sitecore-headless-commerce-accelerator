@@ -566,6 +566,7 @@
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessorTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
+    <Compile Include="Mappers\Profiles\CartProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\RegionProfileTests.cs" />

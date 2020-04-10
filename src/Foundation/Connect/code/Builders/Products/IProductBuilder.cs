@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using Models.Catalog;
 
     /// <summary>
-    /// Builds product or variant entities from TSource
+    /// Builds product entities from TSource
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
     public interface IProductBuilder<in TSource>

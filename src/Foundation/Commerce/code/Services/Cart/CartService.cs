@@ -19,6 +19,8 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using Base.Models;
 
+    using Builders.Cart;
+
     using Connect.Context;
     using Connect.Managers.Cart;
 
@@ -26,48 +28,47 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
     using DependencyInjection;
 
-    using Mappers;
-
     using Models.Entities.Cart;
 
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
-    using Connect = Sitecore.Commerce.Engine.Connect.Entities;
+    using CommerceConnect = Sitecore.Commerce.Engine.Connect.Entities;
+    using Connect = Sitecore.Commerce.Entities.Carts;
 
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
     public class CartService : ICartService
     {
         private readonly ICartManagerV2 cartManager;
 
-        private readonly IEntityMapper entityMapper;
-
         private readonly IStorefrontContext storefrontContext;
 
         private readonly IVisitorContext visitorContext;
 
+        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+
         public CartService(
             ICartManagerV2 cartManager,
-            IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
-            IVisitorContext visitorContext)
+            IVisitorContext visitorContext,
+            ICartBuilder<Connect.Cart> cartBuilder)
         {
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
-            Assert.ArgumentNotNull(entityMapper, nameof(entityMapper));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
+            Assert.ArgumentNotNull(cartBuilder, nameof(cartBuilder));
 
             this.cartManager = cartManager;
-            this.entityMapper = entityMapper;
             this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
+            this.cartBuilder = cartBuilder;
         }
 
         public Result<Cart> GetCart()
         {
             //TODO: Cart caching 
             var response = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> MergeCarts(string anonymousContactId)
@@ -80,12 +81,11 @@ namespace Wooli.Foundation.Commerce.Services.Cart
                 this.visitorContext.ContactId);
             if (!sourceCartResult.Success || !destinationCartResult.Success)
             {
-                return this.entityMapper.Map<Result<Cart>, CartResult>(
-                    sourceCartResult.Success ? destinationCartResult : sourceCartResult);
+                return this.BuildResult(sourceCartResult.Success ? destinationCartResult : sourceCartResult);
             }
 
             var response = this.cartManager.MergeCarts(sourceCartResult.Cart, destinationCartResult.Cart);
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> AddCartLine(string productId, string variantId, decimal quantity)
@@ -94,7 +94,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(variantId, nameof(variantId));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var cartLine = new Connect.CommerceCartLine(
+            var cartLine = new CommerceConnect.CommerceCartLine(
                 this.storefrontContext.CatalogName,
                 productId,
                 variantId == "-1" ? null : variantId,
@@ -102,7 +102,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
             var response = this.cartManager.AddCartLines(cartResult?.Cart, new[] { cartLine });
 
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> UpdateCartLine(string productId, string variantId, decimal quantity)
@@ -112,7 +112,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLines = this.GetCartLinesByProduct(
-                    cartResult?.Cart?.Lines?.Cast<Connect.CommerceCartLine>(),
+                    cartResult?.Cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
                     productId,
                     variantId)
                 .ToList();
@@ -130,7 +130,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
                     : this.cartManager.UpdateCartLines(cartResult?.Cart, cartLines)
                 : this.cartManager.AddCartLines(cartResult?.Cart, cartLines);
 
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> RemoveCartLine(string productId, string variantId)
@@ -140,14 +140,14 @@ namespace Wooli.Foundation.Commerce.Services.Cart
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
             var cartLines = this.GetCartLinesByProduct(
-                    cartResult?.Cart?.Lines?.Cast<Connect.CommerceCartLine>(),
+                    cartResult?.Cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
                     productId,
                     variantId)
                 .ToList();
 
             var response = this.cartManager.RemoveCartLines(cartResult?.Cart, cartLines);
 
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> AddPromoCode(string promoCode)
@@ -155,9 +155,9 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.AddPromoCode(cartResult?.Cart as Connect.CommerceCart, promoCode);
+            var response = this.cartManager.AddPromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, promoCode);
 
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
         public Result<Cart> RemovePromoCode(string promoCode)
@@ -165,13 +165,13 @@ namespace Wooli.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.RemovePromoCode(cartResult?.Cart as Connect.CommerceCart, promoCode);
+            var response = this.cartManager.RemovePromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, promoCode);
 
-            return this.entityMapper.Map<Result<Cart>, CartResult>(response);
+            return this.BuildResult(response);
         }
 
-        private IEnumerable<Connect.CommerceCartLine> GetCartLinesByProduct(
-            IEnumerable<Connect.CommerceCartLine> cartLines,
+        private IEnumerable<CommerceConnect.CommerceCartLine> GetCartLinesByProduct(
+            IEnumerable<CommerceConnect.CommerceCartLine> cartLines,
             string productId,
             string variantId)
         {
@@ -179,9 +179,15 @@ namespace Wooli.Foundation.Commerce.Services.Cart
                 .Where(
                     cartLine =>
                     {
-                        var product = cartLine.Product as Connect.CommerceCartProduct;
+                        var product = cartLine.Product as CommerceConnect.CommerceCartProduct;
                         return product?.ProductId == productId && product?.ProductVariantId == variantId;
                     });
+        }
+
+        private Result<Cart> BuildResult(CartResult cartResult)
+        {
+            var cart = this.cartBuilder.Build(cartResult?.Cart);
+            return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
         }
     }
 }

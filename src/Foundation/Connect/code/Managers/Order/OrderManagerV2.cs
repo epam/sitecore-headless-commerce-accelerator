@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Connect.Managers.Order
 
     using DependencyInjection;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Orders;

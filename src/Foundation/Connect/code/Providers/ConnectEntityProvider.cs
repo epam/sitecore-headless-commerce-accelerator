@@ -12,44 +12,42 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Providers.Configuration
+namespace Wooli.Foundation.Connect.Providers
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
+    using Base.Providers.Object;
 
-    using Models.Configuration;
+    using DependencyInjection;
 
-    using Object;
-
-    using Sitecore.Configuration;
+    using Sitecore.Commerce.Multishop;
+    using Sitecore.Commerce.Providers;
     using Sitecore.Diagnostics;
 
-    [ExcludeFromCodeCoverage]
-    public abstract class ConfigurationProvider<TConfiguration> : IConfigurationProvider<TConfiguration>
-        where TConfiguration : Configuration, new()
+    [Service(typeof(IConnectEntityProvider), Lifetime = Lifetime.Singleton)]
+    public class ConnectEntityProvider : IConnectEntityProvider
     {
         private readonly IObjectProvider objectProvider;
 
-        private readonly Lazy<TConfiguration> configuration;
-
-        protected ConfigurationProvider(IObjectProvider objectProvider)
+        public ConnectEntityProvider(IObjectProvider objectProvider)
         {
             Assert.ArgumentNotNull(objectProvider, nameof(objectProvider));
 
             this.objectProvider = objectProvider;
-            this.configuration = new Lazy<TConfiguration>(this.Read, true);
         }
 
-        protected abstract string Path { get; set; }
-
-        public TConfiguration Get()
+        public IShopProvider GetShopProvider()
         {
-            return this.configuration.Value;
+            return this.GetEntity<IShopProvider>("shopProvider");
         }
 
-        private TConfiguration Read()
+        public IConnectStorefrontContext GetConnectStorefrontContext()
         {
-            return this.objectProvider.GetObject<TConfiguration>(this.Path);
+            return this.GetEntity<IConnectStorefrontContext>("connectStorefrontContext");
+        }
+
+        private TEntity GetEntity<TEntity>(string entityName)
+            where TEntity : class
+        {
+            return this.objectProvider.GetObject<TEntity>(entityName);
         }
     }
 }

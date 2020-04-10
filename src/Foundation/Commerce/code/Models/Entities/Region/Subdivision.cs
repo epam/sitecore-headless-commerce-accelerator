@@ -12,20 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+namespace Wooli.Foundation.Commerce.Models.Entities.Region
 {
-    using Models;
+    using TypeLite;
 
-    using Sitecore.Data.Items;
-
-    public interface IStorefrontContext
+    [TsClass]
+    public class Subdivision
     {
-        string CatalogName { get; }
+        public string Code { get; set; }
 
-        Item CurrentCatalogItem { get; }
-
-        StorefrontModel StorefrontConfiguration { get; }
-
-        string ShopName { get; }
+        public string Name { get; set; }
     }
 }

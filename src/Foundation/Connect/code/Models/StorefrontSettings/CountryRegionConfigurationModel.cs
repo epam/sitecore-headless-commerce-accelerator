@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+// ReSharper disable CheckNamespace
+
+namespace Wooli.Foundation.Connect.Models
 {
-    using Models;
+    using System.Collections.Generic;
 
-    using Sitecore.Data.Items;
+    using Glass.Mapper.Sc.Configuration.Attributes;
 
-    public interface IStorefrontContext
+    public partial class CountryRegionConfigurationModel
     {
-        string CatalogName { get; }
-
-        Item CurrentCatalogItem { get; }
-
-        StorefrontModel StorefrontConfiguration { get; }
-
-        string ShopName { get; }
+        [SitecoreField(CountriesRegionsFieldName)]
+        public virtual IEnumerable<CountryRegionModel> CountryRegionsValues { get; set; }
     }
 }

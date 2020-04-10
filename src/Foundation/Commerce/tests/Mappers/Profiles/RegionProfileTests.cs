@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,20 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
 {
-    using Models;
+    using AutoMapper;
 
-    using Sitecore.Data.Items;
+    using Commerce.Mappers.Profiles;
 
-    public interface IStorefrontContext
+    using Xunit;
+
+    public class RegionProfileTests
     {
-        string CatalogName { get; }
+        [Fact]
+        public void Configuration_ShouldBeValid()
+        {
+            // arrange
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<RegionProfile>());
 
-        Item CurrentCatalogItem { get; }
-
-        StorefrontModel StorefrontConfiguration { get; }
-
-        string ShopName { get; }
+            // act, assert
+            configuration.AssertConfigurationIsValid();
+        }
     }
 }

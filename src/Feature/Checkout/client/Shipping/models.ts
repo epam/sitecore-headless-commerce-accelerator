@@ -18,7 +18,7 @@ import * as Jss from 'Foundation/ReactJss/client';
 import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 
 export interface ShippingDataSource extends Jss.BaseDataSourceItem {
-  countries: Commerce.CountryRegionModel[];
+  countries: Commerce.CountryRegion[];
 }
 
 export interface ShippingOwnProps extends Jss.Rendering<ShippingDataSource> {}

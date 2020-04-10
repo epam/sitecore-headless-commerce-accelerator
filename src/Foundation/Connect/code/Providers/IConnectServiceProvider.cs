@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Providers.Contracts
+namespace Wooli.Foundation.Connect.Providers
 {
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Services.Carts;

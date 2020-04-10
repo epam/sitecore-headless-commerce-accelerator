@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Shipping
 
     using Ploeh.AutoFixture;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;

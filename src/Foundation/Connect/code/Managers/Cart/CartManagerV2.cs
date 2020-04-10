@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Connect.Managers.Cart
 
     using Models;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;

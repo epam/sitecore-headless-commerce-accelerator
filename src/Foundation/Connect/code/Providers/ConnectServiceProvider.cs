@@ -14,7 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Providers
 {
-    using Contracts;
+    using Base.Providers.Object;
 
     using DependencyInjection;
 
@@ -29,10 +29,20 @@ namespace Wooli.Foundation.Connect.Providers
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Configuration;
+    using Sitecore.Diagnostics;
 
-    [Service(typeof(IConnectServiceProvider))]
+    [Service(typeof(IConnectServiceProvider), Lifetime = Lifetime.Singleton)]
     public class ConnectServiceProvider : IConnectServiceProvider
     {
+        private readonly IObjectProvider objectProvider;
+
+        public ConnectServiceProvider(IObjectProvider objectProvider)
+        {
+            Assert.ArgumentNotNull(objectProvider, nameof(objectProvider));
+
+            this.objectProvider = objectProvider;
+        }
+
         public CartServiceProvider GetCartServiceProvider()
         {
             return this.GetConnectServiceProvider<CartServiceProvider>("cartServiceProvider");
@@ -68,20 +78,20 @@ namespace Wooli.Foundation.Connect.Providers
             return this.GetConnectServiceProvider<PaymentServiceProvider>("paymentServiceProvider");
         }
 
-        public virtual PricingServiceProvider GetPricingServiceProvider()
+        public PricingServiceProvider GetPricingServiceProvider()
         {
             return this.GetConnectServiceProvider<PricingServiceProvider>("pricingServiceProvider");
         }
 
-        public virtual ShippingServiceProvider GetShippingServiceProvider()
+        public ShippingServiceProvider GetShippingServiceProvider()
         {
             return this.GetConnectServiceProvider<ShippingServiceProvider>("shippingServiceProvider");
         }
 
-        protected virtual TServiceProvider GetConnectServiceProvider<TServiceProvider>(string serviceProviderName)
+        private TServiceProvider GetConnectServiceProvider<TServiceProvider>(string serviceProviderName)
             where TServiceProvider : ServiceProvider
         {
-            return (TServiceProvider)Factory.CreateObject(serviceProviderName, true);
+            return this.objectProvider.GetObject<TServiceProvider>(serviceProviderName);
         }
     }
 }

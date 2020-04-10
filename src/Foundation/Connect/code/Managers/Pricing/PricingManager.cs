@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Connect.Managers.Pricing
 
     using DependencyInjection;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Diagnostics;

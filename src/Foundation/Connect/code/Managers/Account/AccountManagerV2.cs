@@ -21,7 +21,7 @@ namespace Wooli.Foundation.Connect.Managers.Account
 
     using DependencyInjection;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;

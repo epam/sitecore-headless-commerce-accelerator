@@ -18,17 +18,13 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     using System.Collections.Generic;
     using System.Linq;
 
-    using Base.Models;
-
-    using Commerce.Mappers;
+    using Commerce.Builders.Cart;
     using Commerce.Services.Cart;
 
     using Connect.Context;
     using Connect.Managers.Cart;
 
     using Context;
-
-    using Models.Entities.Cart;
 
     using NSubstitute;
 
@@ -39,7 +35,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
     using Xunit;
 
-    using CommerceCarts = Sitecore.Commerce.Entities.Carts;
+    using Connect = Sitecore.Commerce.Entities.Carts;
 
     public class CartServiceTests
     {
@@ -51,7 +47,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
         private readonly CommerceCart commerceCart;
 
-        private readonly IEntityMapper entityMapper;
+        private readonly ICartBuilder<Connect.Cart> cartBuilder;
 
         private readonly IFixture fixture;
 
@@ -62,14 +58,14 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             var storefrontContext = Substitute.For<IStorefrontContext>();
 
             this.cartManager = Substitute.For<ICartManagerV2>();
-            this.entityMapper = Substitute.For<IEntityMapper>();
+            this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
             this.fixture = this.CreateOmitOnRecursionFixture();
             this.visitorContext = Substitute.For<IVisitorContext>();
             this.cartService = new CartService(
                 this.cartManager,
-                this.entityMapper,
                 storefrontContext,
-                this.visitorContext);
+                this.visitorContext,
+                this.cartBuilder);
 
             this.cartResult = this.fixture.Create<CartResult>();
             this.commerceCart = this.fixture.Create<CommerceCart>();
@@ -98,15 +94,15 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             var addCartLineResult = this.fixture.Create<CartResult>();
 
             this.cartManager.AddCartLines(
-                    Arg.Any<CommerceCarts.Cart>(),
-                    Arg.Any<IEnumerable<CommerceCarts.CartLine>>())
+                    Arg.Any<Connect.Cart>(),
+                    Arg.Any<IEnumerable<Connect.CartLine>>())
                 .Returns(addCartLineResult);
 
             // act
             this.cartService.AddCartLine(productId, variantId, quantity);
 
             // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(addCartLineResult);
+            this.cartBuilder.Received(1).Build(addCartLineResult.Cart);
         }
 
         [Fact]
@@ -133,7 +129,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartService.GetCart();
 
             // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(this.cartResult);
+            this.cartBuilder.Received(1).Build(this.cartResult.Cart);
         }
 
         [Fact]
@@ -156,7 +152,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.MergedCartResult);
+            this.cartBuilder.Received(1).Build(arrange.MergedCartResult.Cart);
         }
 
         [Fact]
@@ -169,7 +165,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.DestCartResult);
+            this.cartBuilder.Received(1).Build(arrange.DestCartResult.Cart);
         }
 
         [Theory]
@@ -184,7 +180,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.entityMapper.Received(1).Map<Result<Cart>, CartResult>(arrange.SrcCartResult);
+            this.cartBuilder.Received(1).Build(arrange.SrcCartResult.Cart);
         }
 
         [Theory]
@@ -203,14 +199,14 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
         public void RemoveCartLine_IfValidProductIdAndVariantIdWerePassed_ShouldCallRemoveCartLineMethod()
         {
             // arrange
-            this.cartResult.Cart.Lines = new List<CommerceCarts.CartLine>();
+            this.cartResult.Cart.Lines = new List<Connect.CartLine>();
 
             // act
             this.cartService.RemoveCartLine(this.fixture.Create<string>(), this.fixture.Create<string>());
 
             // assert
             this.cartManager.Received(1)
-                .RemoveCartLines(this.cartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .RemoveCartLines(this.cartResult.Cart, Arg.Any<IEnumerable<Connect.CartLine>>());
         }
 
         [Fact]
@@ -244,7 +240,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
             // assert
             this.cartManager.Received(1)
-                .AddCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .AddCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<Connect.CartLine>>());
         }
 
         [Theory]
@@ -272,7 +268,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
             // assert
             this.cartManager.Received(1)
-                .UpdateCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .UpdateCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<Connect.CartLine>>());
         }
 
         [Fact]
@@ -287,7 +283,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
 
             // assert
             this.cartManager.Received(1)
-                .RemoveCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<CommerceCarts.CartLine>>());
+                .RemoveCartLines(arrange.LoadCartResult.Cart, Arg.Any<IEnumerable<Connect.CartLine>>());
         }
 
         private (CartResult SrcCartResult, CartResult DestCartResult, CartResult MergedCartResult) ArrangeForMergeCarts(
@@ -304,8 +300,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(managerSrcCartResult);
             this.cartManager.LoadCart(Arg.Any<string>(), this.visitorContext.ContactId).Returns(managerDestCartResult);
             this.cartManager.MergeCarts(
-                    Arg.Any<CommerceCarts.Cart>(),
-                    Arg.Any<CommerceCarts.Cart>())
+                    Arg.Any<Connect.Cart>(),
+                    Arg.Any<Connect.Cart>())
                 .Returns(mergedCartResult);
 
             return (managerSrcCartResult, managerDestCartResult, mergedCartResult);
@@ -323,7 +319,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
                 .Create();
 
             cartLine.Product = cartProduct;
-            loadCartResult.Cart.Lines = new List<CommerceCarts.CartLine>
+            loadCartResult.Cart.Lines = new List<Connect.CartLine>
             {
                 cartLine
             };

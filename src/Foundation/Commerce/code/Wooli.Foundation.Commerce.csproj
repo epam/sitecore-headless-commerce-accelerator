@@ -612,6 +612,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\Cart\CartBuilder.cs" />
+    <Compile Include="Builders\Cart\ICartBuilder.cs" />
     <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
     <Compile Include="Constants.cs" />
@@ -628,10 +630,13 @@
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
+    <Compile Include="Mappers\Cart\CartMapper.cs" />
+    <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
     <Compile Include="Mappers\Order\IOrderMapper.cs" />
     <Compile Include="Mappers\Order\OrderMapper.cs" />
+    <Compile Include="Mappers\Profiles\CartProfile.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
     <Compile Include="Mappers\Payment\PaymentMapper.cs" />

@@ -53,6 +53,9 @@ namespace Wooli.Foundation.Connect.Builders.Search
             ID categoryId,
             CommerceSearchOptions searchOptions)
         {
+            Assert.ArgumentNotNull(queryable, nameof(queryable));
+            Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
+
             queryable = queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
                 .Where(item => item.Language == this.sitecoreContext.Language.Name);
@@ -74,6 +77,9 @@ namespace Wooli.Foundation.Connect.Builders.Search
             IQueryable<CommerceSellableItemSearchResultItem> queryable,
             string categoryName)
         {
+            Assert.ArgumentNotNull(queryable, nameof(queryable));
+            Assert.ArgumentNotNull(categoryName, nameof(categoryName));
+
             return queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Category)
                 .Where(item => item.Language == this.sitecoreContext.Language.Name)
@@ -84,6 +90,9 @@ namespace Wooli.Foundation.Connect.Builders.Search
             IQueryable<CommerceSellableItemSearchResultItem> queryable,
             string productId)
         {
+            Assert.ArgumentNotNull(queryable, nameof(queryable));
+            Assert.ArgumentNotNull(productId, nameof(productId));
+
             return queryable
                 .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
                 .Where(item => item.Language == this.sitecoreContext.Language.Name)

@@ -576,11 +576,11 @@
     <Compile Include="Loaders\ICommerceTypeLoader.cs" />
     <Compile Include="Managers\Account\AccountManagerV2.cs" />
     <Compile Include="Managers\Account\IAccountManagerV2.cs" />
-    <Compile Include="Managers\AnalyticsManager.cs" />
+    <Compile Include="Managers\Analytics\AnalyticsManager.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\Cart\CartManagerV2.cs" />
     <Compile Include="Managers\Contracts\IPaymentManager.cs" />
-    <Compile Include="Managers\Contracts\IAnalyticsManager.cs" />
+    <Compile Include="Managers\Analytics\IAnalyticsManager.cs" />
     <Compile Include="Managers\Cart\ICartManagerV2.cs" />
     <Compile Include="Managers\Inventory\IInventoryManager.cs" />
     <Compile Include="Managers\Inventory\InventoryManager.cs" />

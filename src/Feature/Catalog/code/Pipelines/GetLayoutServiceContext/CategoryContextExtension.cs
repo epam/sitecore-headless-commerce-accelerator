@@ -24,13 +24,13 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ICommerceAnalyticsService analyticsService;
+        private readonly IAnalyticsService analyticsService;
 
         private readonly ICatalogService catalogService;
 
         public CategoryContextExtension(
             ICatalogService catalogService,
-            ICommerceAnalyticsService analyticsService,
+            IAnalyticsService analyticsService,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {

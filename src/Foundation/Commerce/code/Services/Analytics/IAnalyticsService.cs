@@ -14,23 +14,33 @@
 
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
+    using Base.Models;
+
     using Models.Entities.Catalog;
 
     /// <summary>
     /// Raise commerce related analytics events
     /// </summary>
-    public interface ICommerceAnalyticsService
+    public interface IAnalyticsService
     {
         /// <summary>
         /// Raise "Category Visited" event.
         /// </summary>
         /// <param name="category">Category model.</param>
-        void RaiseCategoryVisitedEvent(Category category);
+        Result<VoidResult> RaiseCategoryVisitedEvent(Category category);
 
         /// <summary>
         /// Raise "Product Visited" event.
         /// </summary>
         /// <param name="product">Product model.</param>
-        void RaiseProductVisitedEvent(Product product);
+        Result<VoidResult> RaiseProductVisitedEvent(Product product);
+
+        /// <summary>
+        /// Raise "Search initiated" event.
+        /// </summary>
+        /// <param name="searchKeyword">Search keyword</param>
+        /// <param name="totalItemCount">Total item count</param>
+        /// <returns></returns>
+        Result<VoidResult> RaiseSearchInitiatedEvent(string searchKeyword, int totalItemCount);
     }
 }

@@ -73,15 +73,19 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<Total, TotalPrice>()
                 .ForMember(dest => dest.Total, opt => opt.MapFrom(src => src.Amount))
                 .ForMember(dest => dest.TaxTotal, opt => opt.MapFrom(src => src.TaxTotal.Amount))
+                .ForMember(dest => dest.CurrencyCode, opt => opt.MapFrom(src => src.CurrencyCode))
                 .ForMember(
                     dest => dest.CurrencySymbol,
                     opt => opt.MapFrom(src => currencyProvider.GetCurrencySymbolByCode(src.CurrencyCode)))
-                .ForSourceMember(src => src.Description, opt => opt.Ignore());
+                .ForAllOtherMembers(opt => opt.Ignore());
 
             this.CreateMap<CommerceTotal, TotalPrice>()
                 .ForMember(
                     dest => dest.TotalSavings,
                     opt => opt.MapFrom(src => src.LineItemDiscountAmount + src.OrderLevelDiscountAmount))
+                .ForMember(dest => dest.Subtotal, opt => opt.MapFrom(src => src.Subtotal))
+                .ForMember(dest => dest.HandlingTotal, opt => opt.MapFrom(src => src.HandlingTotal))
+                .ForMember(dest => dest.ShippingTotal, opt => opt.MapFrom(src => src.ShippingTotal))
                 .IncludeBase<Total, TotalPrice>();
         }
     }

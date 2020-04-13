@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+namespace Wooli.Foundation.Connect.Context.Storefront
 {
     using DependencyInjection;
 
@@ -24,14 +24,13 @@ namespace Wooli.Foundation.Connect.Context
 
     using Sitecore.Commerce.Multishop;
     using Sitecore.Commerce.Providers;
-    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {
-        private readonly IShopProvider shopProvider;
         private readonly IConnectStorefrontContext connectStorefrontContext;
+        private readonly IShopProvider shopProvider;
         private readonly ISitecoreService sitecoreService;
 
         public StorefrontContext(ISitecoreService sitecoreService, IConnectEntityProvider connectEntityProvider)
@@ -43,17 +42,6 @@ namespace Wooli.Foundation.Connect.Context
             this.shopProvider = connectEntityProvider.GetShopProvider();
             this.connectStorefrontContext = connectEntityProvider.GetConnectStorefrontContext();
         }
-
-        // TODO: Move to CatalogContext
-        // ToDo: implement logic for getting current catalog
-        // It is assumed that we have only one selected catalog
-        public string CatalogName => "Habitat_Master";
-
-        // TODO: Move to CatalogContext
-        // ToDo: implement logic for getting current catalog item
-        // It is assumed that we have only one selected catalog
-        public Item CurrentCatalogItem =>
-            this.sitecoreService.Database.GetItem($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
 
         public StorefrontModel StorefrontConfiguration
         {

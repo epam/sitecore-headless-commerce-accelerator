@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
 
     using Base.Models;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers.Cart;
     using Connect.Managers.Payment;
     using Connect.Models;
@@ -194,8 +194,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             {
                 result.Data.PaymentMethods =
                     this.paymentMapper
-                        .Map<IReadOnlyCollection<PaymentMethod>, List<Models.Entities.Payment.PaymentMethod>
-                        >(getPaymentMethodsResult.PaymentMethods);
+                        .Map<IReadOnlyCollection<PaymentMethod>, List<Models.Entities.Payment.PaymentMethod>>(getPaymentMethodsResult.PaymentMethods);
             }
             else
             {
@@ -211,8 +210,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             {
                 result.Data.PaymentOptions =
                     this.paymentMapper
-                        .Map<IReadOnlyCollection<PaymentOption>, List<Models.Entities.Payment.PaymentOption>
-                        >(getPaymentOptionsResult.PaymentOptions);
+                        .Map<IReadOnlyCollection<PaymentOption>, List<Models.Entities.Payment.PaymentOption>>(getPaymentOptionsResult.PaymentOptions);
             }
             else
             {

@@ -21,6 +21,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     using Connect.Managers.Inventory;
     using Connect.Managers.Pricing;
 
+    using Context.Storefront;
+
     using Models.Catalog;
 
     using NSubstitute;
@@ -29,7 +31,6 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
-    using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Data.Items;
@@ -39,21 +40,22 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
 
     public class ProductBuilderTests : BaseProductBuilderTests
     {
-        private readonly IVariantBuilder<Item> variantBuilder;
-        private readonly IPricingManager pricingManager;
         private readonly IInventoryManager inventoryManager;
-
+        private readonly IPricingManager pricingManager;
         private readonly ProductBuilder productBuilder;
+        private readonly IVariantBuilder<Item> variantBuilder;
+        private readonly IStorefrontContext storefrontContext;
 
         private readonly GetProductBulkPricesResult getProductBulkPricesResult;
-        private readonly GetStockInformationResult getStockInformationResult;
         private readonly GetProductPricesResult getProductPricesResult;
+        private readonly GetStockInformationResult getStockInformationResult;
 
         public ProductBuilderTests()
         {
             this.variantBuilder = Substitute.For<IVariantBuilder<Item>>();
             this.pricingManager = Substitute.For<IPricingManager>();
             this.inventoryManager = Substitute.For<IInventoryManager>();
+            this.storefrontContext = Substitute.For<IStorefrontContext>();
 
             this.getProductBulkPricesResult = this.Fixture.Create<GetProductBulkPricesResult>();
             this.pricingManager
@@ -75,9 +77,10 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
 
             this.productBuilder = new ProductBuilder(
                 this.variantBuilder,
-                this.StorefrontContext,
+                this.CatalogContext,
                 this.pricingManager,
                 this.inventoryManager,
+                this.storefrontContext,
                 this.CatalogMapper);
         }
 
@@ -89,7 +92,7 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
             this.variantBuilder.Build(Arg.Any<IEnumerable<Item>>()).Returns(variants);
             var dbItem = this.InitializeProductItem();
 
-            using (var db = new Db()
+            using (var db = new Db
             {
                 dbItem
             })
@@ -122,7 +125,7 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
             var items = this.Fixture.Create<List<Item>>();
 
             // act
-            var products = this.productBuilder.BuildWithoutVariants(items).ToList(); 
+            var products = this.productBuilder.BuildWithoutVariants(items).ToList();
 
             // assert
             Assert.NotNull(products);

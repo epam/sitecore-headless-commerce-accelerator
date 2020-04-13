@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
     using System;
     using System.Linq;
 
-    using Context;
+    using Context.Catalog;
 
     using DependencyInjection;
 
@@ -32,15 +32,14 @@ namespace Wooli.Foundation.Connect.Providers.Search
     [Service(typeof(ISearchSettingsProvider))]
     public class SearchSettingsProvider : ISearchSettingsProvider
     {
+        private readonly ICatalogContext catalogContext;
         private readonly ICommerceSearchManager commerceSearchManager;
 
-        private readonly IStorefrontContext storefrontContext;
-
-        public SearchSettingsProvider(IStorefrontContext storefrontContext)
+        public SearchSettingsProvider(ICatalogContext catalogContext)
         {
-            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
 
-            this.storefrontContext = storefrontContext;
+            this.catalogContext = catalogContext;
 
             this.commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
@@ -49,7 +48,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
         public SearchSettings GetSearchSettings(Guid categoryId)
         {
             var catalog = categoryId == Guid.Empty
-                ? this.storefrontContext.CurrentCatalogItem
+                ? this.catalogContext.CatalogItem
                 : Context.Database.GetItem(new ID(categoryId));
 
             var searchPageSettings = new SearchSettings

@@ -14,7 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Providers.Search
 {
-    using Context;
+    using Context.Catalog;
 
     using DependencyInjection;
 
@@ -30,7 +30,7 @@ namespace Wooli.Foundation.Connect.Providers.Search
     {
         public CommerceSellableItemSearchResultProvider(
             ICommerceTypeLoader commerceTypeLoader,
-            IStorefrontContext context)
+            ICatalogContext context)
         {
             Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
             Assert.ArgumentNotNull(context, nameof(context));

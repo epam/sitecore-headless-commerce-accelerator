@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using System.Collections.Generic;
     using System.Linq;
 
-    using Context;
+    using Context.Catalog;
 
     using DependencyInjection;
 
@@ -32,8 +32,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
     public class VariantBuilder : BaseProductBuilder, IVariantBuilder<Item>
     {
         public VariantBuilder(
-            IStorefrontContext storefrontContext,
-            ICatalogMapper catalogMapper) : base(storefrontContext, catalogMapper)
+            ICatalogContext catalogContext,
+            ICatalogMapper catalogMapper) : base(catalogContext, catalogMapper)
         {
         }
 

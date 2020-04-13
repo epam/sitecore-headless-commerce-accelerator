@@ -20,7 +20,7 @@ namespace Wooli.Foundation.Commerce.Services.Delivery
 
     using Base.Models;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers.Account;
     using Connect.Managers.Cart;
     using Connect.Managers.Shipping;

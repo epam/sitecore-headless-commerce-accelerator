@@ -25,6 +25,48 @@ Sitecore.Parameters.InitParams(
 );
 
 // //////////////////////////////////////////////////
+// Extensions
+// //////////////////////////////////////////////////
+
+Task("Generate-Client-Models")
+    .Does(() =>
+    {
+        var regex = @"^.+[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\](client|code)[/\\].+$";
+
+        var templateFiles = GetFiles($"./../src/*/*/client/**/*.tt");
+        Information($"Found files: {templateFiles.Count}");
+
+        foreach (var templateFile in templateFiles)
+        {
+            Information($"Running client generation in {templateFile}.");
+
+            Regex fileRegex = new Regex(regex);
+            System.Text.RegularExpressions.Match match = fileRegex.Match(templateFile.FullPath);
+            var layer = match.Groups["layerName"];
+            var project = match.Groups["projectName"];
+
+            var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
+            var dllFile = GetFiles($"./../src/{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
+
+            generateTypeScript(dllFile, tsFile);
+        }
+    });
+
+Task("Generate-Commerce-Code")
+    .Does(() =>
+    {
+        Sitecore.Utils.AssertIfNullOrEmpty(Sitecore.Parameters.SrcDir, "SrcDir", "SRC_DIR");
+
+        var settings = new NpmRunScriptSettings();
+
+        settings.ScriptName = "sc:codegen:commerce";
+        settings.LogLevel = NpmLogLevel.Error;
+        settings.FromPath(Sitecore.Parameters.SrcDir);
+
+        NpmRunScript(settings);
+    });
+
+// //////////////////////////////////////////////////
 // Tasks
 // //////////////////////////////////////////////////
 
@@ -88,30 +130,6 @@ Task("Build-and-Publish") // LocalDev
     .IsDependentOn("005-Publish")
     ;
 
-Task("Generate-Client-Models")
-    .Does(() =>
-        {
-            var regex = @"^.+[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\](client|code)[/\\].+$";
-
-            var templateFiles = GetFiles($"./*/*/client/**/*.tt");
-            Information($"Found files: {templateFiles.Count}");
-
-            foreach (var templateFile in templateFiles)
-            {
-                Information($"Running client generation in {templateFile}.");
-
-                Regex fileRegex = new Regex(regex);
-                System.Text.RegularExpressions.Match match = fileRegex.Match(templateFile.FullPath);
-                var layer = match.Groups["layerName"];
-                var project = match.Groups["projectName"];
-
-                var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
-                var dllFile = GetFiles($"./{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
-
-                generateTypeScript(dllFile, tsFile);
-            }
-        })
-        ;
 
 
 // //////////////////////////////////////////////////

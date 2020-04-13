@@ -12,20 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context
+namespace Wooli.Foundation.Connect.Context.Storefront
 {
     using Models;
 
-    using Sitecore.Data.Items;
-
+    /// <summary>
+    /// Represents storefront context
+    /// </summary>
     public interface IStorefrontContext
     {
-        string CatalogName { get; }
-
-        Item CurrentCatalogItem { get; }
-
+        /// <summary>
+        /// Gets current storefront configuration
+        /// </summary>
         StorefrontModel StorefrontConfiguration { get; }
 
+        /// <summary>
+        /// Gets current shop name
+        /// </summary>
         string ShopName { get; }
     }
 }

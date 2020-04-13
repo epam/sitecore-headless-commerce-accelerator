@@ -23,7 +23,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Order
     using Commerce.Mappers.Order;
     using Commerce.Services.Order;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers.Cart;
     using Connect.Managers.Order;
 

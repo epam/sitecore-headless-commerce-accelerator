@@ -21,7 +21,8 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
     using Commerce.Builders.Cart;
     using Commerce.Services.Cart;
 
-    using Connect.Context;
+    using Connect.Context.Catalog;
+    using Connect.Context.Storefront;
     using Connect.Managers.Cart;
 
     using Context;
@@ -56,6 +57,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
         public CartServiceTests()
         {
             var storefrontContext = Substitute.For<IStorefrontContext>();
+            var catalogContext = Substitute.For<ICatalogContext>();
 
             this.cartManager = Substitute.For<ICartManagerV2>();
             this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
@@ -64,6 +66,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Cart
             this.cartService = new CartService(
                 this.cartManager,
                 storefrontContext,
+                catalogContext,
                 this.visitorContext,
                 this.cartBuilder);
 

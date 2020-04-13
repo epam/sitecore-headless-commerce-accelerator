@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,10 +13,10 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce/client';
+import { LoadingStatus } from 'Foundation/Integration/client';
+
 import * as actions from '../actions';
 import { reducerActionTypes, sagaActionTypes } from '../constants';
-
-import { LoadingStatus } from 'Foundation/Integration/client';
 import * as Models from '../models';
 
 describe('Checkout Data actions', () => {
@@ -28,7 +28,7 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_REQUEST with Delivery Loading', () => {
-        const actual = actions.GetDeliveryDataRequest();
+        const actual = actions.GetDeliveryInfoRequest();
         expect(actual).toEqual({
             payload: {
                 delivery: {
@@ -40,7 +40,7 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_REQUEST with Shipping Loading', () => {
-        const actual = actions.GetShippingMethodsDataRequest();
+        const actual = actions.GetShippingInfoRequest();
         expect(actual).toEqual({
             payload: {
                 shipping: {
@@ -52,7 +52,7 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_REQUEST with Billing Loading', () => {
-        const actual = actions.GetBillingDataRequest();
+        const actual = actions.GetBillingInfoRequest();
         expect(actual).toEqual({
             payload: {
                 billing: {
@@ -65,7 +65,7 @@ describe('Checkout Data actions', () => {
 
     test('should return action for GET_CHECKOUT_DATA_FAILURE with delivery error', () => {
         const fakeError = 'fakeError';
-        const actual = actions.GetDeliveryDataFailure(fakeError);
+        const actual = actions.GetDeliveryInfoFailure(fakeError);
         expect(actual).toEqual({
             payload: {
                 delivery: {
@@ -79,7 +79,7 @@ describe('Checkout Data actions', () => {
 
     test('should return action for GET_CHECKOUT_DATA_FAILURE with shipping error', () => {
         const fakeError = 'fakeError';
-        const actual = actions.GetShippingMethodsDataFailure(fakeError);
+        const actual = actions.GetShippingInfoFailure(fakeError);
         expect(actual).toEqual({
             payload: {
                 shipping: {
@@ -93,7 +93,7 @@ describe('Checkout Data actions', () => {
 
     test('should return action for GET_CHECKOUT_DATA_FAILURE with billing error', () => {
         const fakeError = 'fakeError';
-        const actual = actions.GetBillingDataFailure(fakeError);
+        const actual = actions.GetBillingInfoFailure(fakeError);
         expect(actual).toEqual({
             payload: {
                 billing: {
@@ -106,16 +106,16 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_SUCCESS with Delivery Loaded', () => {
-        const expectedDeliveryModel: Commerce.DeliveryModel = {
+        const expectedDeliveryInfo: Commerce.DeliveryInfo = {
             newPartyId: 'fakeId',
             shippingOptions: [],
             userAddresses: []
         };
-        const actual = actions.GetDeliveryDataSuccess(expectedDeliveryModel);
+        const actual = actions.GetDeliveryInfoSuccess(expectedDeliveryInfo);
         expect(actual).toEqual({
             payload: {
                 delivery: {
-                    data: expectedDeliveryModel,
+                    data: expectedDeliveryInfo,
                     status: LoadingStatus.Loaded
                 }
             },
@@ -124,11 +124,10 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_SUCCESS with Shipping Loaded', () => {
-        const expectedShippingModel: Commerce.ShippingModel = {
+        const expectedShippingModel: Commerce.ShippingInfo = {
             shippingMethods: [],
-            userAddresses: []
         };
-        const actual = actions.GetShippingMethodsDataSuccess(expectedShippingModel);
+        const actual = actions.GetShippingInfoSuccess(expectedShippingModel);
         expect(actual).toEqual({
             payload: {
                 shipping: {
@@ -141,17 +140,16 @@ describe('Checkout Data actions', () => {
     });
 
     test('should return action for GET_CHECKOUT_DATA_SUCCESS with Billing Loaded', () => {
-        const expectedBillingModel: Commerce.BillingModel = {
+        const expectedBillingInfo: Commerce.BillingInfo = {
             paymentClientToken: 'fakeToken',
             paymentMethods: [],
             paymentOptions: [],
-            userAddresses: []
         };
-        const actual = actions.GetBillingDataSuccess(expectedBillingModel);
+        const actual = actions.GetBillingInfoSuccess(expectedBillingInfo);
         expect(actual).toEqual({
             payload: {
                 billing: {
-                    data: expectedBillingModel,
+                    data: expectedBillingInfo,
                     status: LoadingStatus.Loaded
                 }
             },

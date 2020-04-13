@@ -18,7 +18,7 @@ import { LoadingStatus } from 'Foundation/Integration/client';
 import * as Jss from 'Foundation/ReactJss/client';
 
 export interface AddressDataSource extends Jss.BaseDataSourceItem {
-  countries: Commerce.CountryRegionModel[];
+  countries: Commerce.CountryRegion[];
 }
 
 export interface AddressManagerOwnProps extends Jss.Rendering<AddressDataSource> {}

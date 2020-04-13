@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,15 +16,17 @@ import * as Commerce from 'Foundation/Commerce/client';
 
 import { Response } from '../models';
 
-export interface DeliveryDataResponse extends Response<Commerce.DeliveryModel> {}
+export interface DeliveryInfoResponse extends Response<Commerce.DeliveryInfo> {}
 
-export interface ShippingMethodsResponse extends Response<Commerce.ShippingModel> {}
+export interface ShippingInfoResponse extends Response<Commerce.ShippingInfo> {}
 
-export interface SetShippingMethodsResponse extends Response<Commerce.SetShippingModel> {}
+export interface SetShippingOptionsResponse extends Response<Commerce.VoidResult> {}
 
-export interface BillingDataResponse extends Response<Commerce.BillingModel> {}
+export interface BillingInfoResponse extends Response<Commerce.BillingInfo> {}
 
-export interface SetPaymentMethodsResponse extends Response<Commerce.VoidResult> {}
+export interface SetPaymentInfoResponse extends Response<Commerce.VoidResult> {}
+
+export interface SubmitOrderResponse extends Response<Commerce.OrderConfirmation> {}
 
 export interface CreditCard {
     cvv: string;

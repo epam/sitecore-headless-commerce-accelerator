@@ -26,7 +26,7 @@ namespace Wooli.Foundation.Connect.Managers
 
     using Models;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;

@@ -24,11 +24,7 @@ namespace Wooli.Foundation.Connect.Context
 
         Item CurrentCatalogItem { get; }
 
-        IStorefrontModel CurrentStorefront { get; }
-
-        int DefaultItemsPerPage { get; }
-
-        string SelectedCurrency { get; }
+        StorefrontModel StorefrontConfiguration { get; }
 
         string ShopName { get; }
     }

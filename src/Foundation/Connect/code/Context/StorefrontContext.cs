@@ -20,36 +20,57 @@ namespace Wooli.Foundation.Connect.Context
 
     using Models;
 
+    using Providers;
+
+    using Sitecore.Commerce.Multishop;
+    using Sitecore.Commerce.Providers;
     using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
 
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {
+        private readonly IShopProvider shopProvider;
+        private readonly IConnectStorefrontContext connectStorefrontContext;
         private readonly ISitecoreService sitecoreService;
 
-        public StorefrontContext(ISitecoreService sitecoreService)
+        public StorefrontContext(ISitecoreService sitecoreService, IConnectEntityProvider connectEntityProvider)
         {
+            Assert.ArgumentNotNull(connectEntityProvider, nameof(connectEntityProvider));
+            Assert.ArgumentNotNull(sitecoreService, nameof(sitecoreService));
+
             this.sitecoreService = sitecoreService;
+            this.shopProvider = connectEntityProvider.GetShopProvider();
+            this.connectStorefrontContext = connectEntityProvider.GetConnectStorefrontContext();
         }
 
+        // TODO: Move to CatalogContext
         // ToDo: implement logic for getting current catalog
+        // It is assumed that we have only one selected catalog
         public string CatalogName => "Habitat_Master";
 
+        // TODO: Move to CatalogContext
         // ToDo: implement logic for getting current catalog item
+        // It is assumed that we have only one selected catalog
         public Item CurrentCatalogItem =>
             this.sitecoreService.Database.GetItem($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
 
-        // ToDo: implement logic for getting current storefront settings
-        public IStorefrontModel CurrentStorefront =>
-            this.sitecoreService.GetItem<IStorefrontModel>(
-                $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
+        public StorefrontModel StorefrontConfiguration
+        {
+            get
+            {
+                var storefrontConfigurationItem = this.connectStorefrontContext.StorefrontConfiguration;
+                return this.sitecoreService.GetItem<StorefrontModel>(storefrontConfigurationItem);
+            }
+        }
 
-        // ToDo: implement logic for getting current catalog item
-        public int DefaultItemsPerPage => 0;
-
-        public string SelectedCurrency => "USD";
-
-        // ToDo: implement logic for getting current shop
-        public string ShopName => "Wooli";
+        public string ShopName
+        {
+            get
+            {
+                var shop = this.shopProvider.GetShop();
+                return shop.Name;
+            }
+        }
     }
 }

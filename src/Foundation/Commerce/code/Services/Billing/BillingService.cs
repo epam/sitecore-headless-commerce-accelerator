@@ -47,7 +47,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
     {
         private readonly ICartManagerV2 cartManager;
 
-        private readonly IPaymentManagerV2 paymentManager;
+        private readonly IPaymentManager paymentManager;
 
         private readonly IPaymentMapper paymentMapper;
 
@@ -60,7 +60,7 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             IPaymentMapper paymentMapper,
-            IPaymentManagerV2 paymentManager)
+            IPaymentManager paymentManager)
         {
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
             Assert.ArgumentNotNull(paymentMapper, nameof(paymentMapper));

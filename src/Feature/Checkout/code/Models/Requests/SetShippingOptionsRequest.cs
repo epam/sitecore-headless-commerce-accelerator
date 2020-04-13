@@ -15,10 +15,15 @@
 namespace Wooli.Feature.Checkout.Models.Requests
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Shipping;
 
+    using TypeLite;
+
+    [ExcludeFromCodeCoverage]
+    [TsClass]
     public class SetShippingOptionsRequest
     {
         public string OrderShippingPreferenceType { get; set; }

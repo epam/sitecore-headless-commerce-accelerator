@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
+    using System.Collections.Generic;
     using System.Collections.Specialized;
 
     using Connect.Context;
@@ -21,19 +22,24 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
     using DependencyInjection;
 
     using Mappers;
+    using Mappers.Region;
+
+    using Models.Entities.Region;
 
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
+    using Wooli.Foundation.Connect.Models;
 
+    // TODO: Remove redundant code, refactoring
     [Service(Lifetime = Lifetime.Transient)]
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
     {
-        private readonly IEntityMapper mapper;
+        private readonly IRegionMapper mapper;
 
         private readonly IStorefrontContext storefrontContext;
 
-        public StorefrontCountriesContentsResolver(IStorefrontContext storefrontContext, IEntityMapper mapper)
+        public StorefrontCountriesContentsResolver(IStorefrontContext storefrontContext, IRegionMapper mapper)
         {
             this.storefrontContext = storefrontContext;
             this.mapper = mapper;
@@ -49,11 +55,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 
         public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
         {
-            var model = this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
+            var settings = this.storefrontContext.StorefrontConfiguration.CountriesRegionsSettings.CountryRegionsValues;
 
             return new
             {
-                Countries = this.mapper.MapToCountryRegionModel(model)
+                Countries = this.mapper.Map<IEnumerable<CountryRegionModel>, IEnumerable<CountryRegion>>(settings)
             };
         }
     }

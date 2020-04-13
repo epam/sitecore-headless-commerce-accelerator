@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,19 +13,20 @@
 //    limitations under the License.
 
 import axios from 'axios';
+import Braintree from 'braintree-web';
 
 import * as Commerce from 'Foundation/Commerce/client';
 import { Result } from 'Foundation/Integration/client';
 
-import Braintree from 'braintree-web';
+import { SetPaymentInfoRequest, SetShippingOptionsRequest } from 'Feature/Checkout/client/dataModel.Generated';
 
-import { BillingDataResponse, CreditCard, DeliveryDataResponse, SetShippingMethodsResponse, ShippingMethodsResponse } from './models';
+import { BillingInfoResponse, CreditCard, DeliveryInfoResponse, SetPaymentInfoResponse, SetShippingOptionsResponse, ShippingInfoResponse, SubmitOrderResponse } from './models';
 
 const routeBase = '/apix/client/commerce/checkout';
 
-export const getDeliveryData = async (): Promise<Result<Commerce.DeliveryModel>> => {
+export const getDeliveryInfo = async (): Promise<Result<Commerce.DeliveryInfo>> => {
   try {
-    const response = await axios.get<DeliveryDataResponse>(`${routeBase}/getDeliveryData`);
+    const response = await axios.get<DeliveryInfoResponse>(`${routeBase}/deliveryInfo`);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -37,9 +38,9 @@ export const getDeliveryData = async (): Promise<Result<Commerce.DeliveryModel>>
   }
 };
 
-export const getShippingMethods = async (): Promise<Result<Commerce.ShippingModel>> => {
+export const getShippingInfo = async (): Promise<Result<Commerce.ShippingInfo>> => {
   try {
-    const response = await axios.get<ShippingMethodsResponse>(`${routeBase}/getShippingMethods`);
+    const response = await axios.get<ShippingInfoResponse>(`${routeBase}/shippingInfo`);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -51,9 +52,9 @@ export const getShippingMethods = async (): Promise<Result<Commerce.ShippingMode
   }
 };
 
-export const setShippingMethods = async (requestPayload: Commerce.SetShippingArgs): Promise<Result<Commerce.SetShippingModel>> => {
+export const setShippingOptions = async (requestPayload: SetShippingOptionsRequest): Promise<Result<Commerce.VoidResult>> => {
   try {
-    const response = await axios.post<SetShippingMethodsResponse>(`${routeBase}/setShippingMethods`, requestPayload);
+    const response = await axios.post<SetShippingOptionsResponse>(`${routeBase}/shippingOptions`, requestPayload);
     const { data } = response;
     if (data.status !== 'ok') {
       return { error: new Error('Failure') };
@@ -64,9 +65,9 @@ export const setShippingMethods = async (requestPayload: Commerce.SetShippingArg
   }
 };
 
-export const getBillingData = async (): Promise<Result<Commerce.BillingModel>> => {
+export const getBillingInfo = async (): Promise<Result<Commerce.BillingInfo>> => {
   try {
-    const response = await axios.get<BillingDataResponse>(`${routeBase}/getBillingData`);
+    const response = await axios.get<BillingInfoResponse>(`${routeBase}/billingInfo`);
     const { data } = response;
     if (data.status !== 'ok') {
       return { error: new Error('Failure') };
@@ -100,9 +101,9 @@ export const submitCreditCard = async (creditCard: CreditCard): Promise<Result<s
     });
 };
 
-export const setPaymentMethods = async (requestPayload: Commerce.SetPaymentArgs): Promise<Result<Commerce.VoidResult>> => {
+export const setPaymentInfo = async (requestPayload: SetPaymentInfoRequest): Promise<Result<Commerce.VoidResult>> => {
   try {
-    const response = await axios.post<any>(`${routeBase}/setPaymentMethods`, requestPayload);
+    const response = await axios.post<SetPaymentInfoResponse>(`${routeBase}/paymentInfo`, requestPayload);
     const { data } = response;
     if (data.status !== 'ok') {
       return { error: new Error('Failure') };
@@ -113,9 +114,9 @@ export const setPaymentMethods = async (requestPayload: Commerce.SetPaymentArgs)
   }
 };
 
-export const submitOrder = async (): Promise<Result<Commerce.SubmitOrderModel>> => {
+export const submitOrder = async (): Promise<Result<Commerce.OrderConfirmation>> => {
   try {
-    const response = await axios.post<any>(`${routeBase}/submitOrder`);
+    const response = await axios.post<SubmitOrderResponse>(`${routeBase}/orders`);
     const { data } = response;
     if (data.status !== 'ok') {
       return { error: new Error('Failure') };

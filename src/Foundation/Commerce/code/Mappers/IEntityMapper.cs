@@ -25,7 +25,6 @@ namespace Wooli.Foundation.Commerce.Mappers
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Shipping;
 
-    using CountryRegionModel = Models.Region.CountryRegionModel;
     using Party = Sitecore.Commerce.Entities.Party;
 
     public interface IEntityMapper
@@ -35,8 +34,6 @@ namespace Wooli.Foundation.Commerce.Mappers
         AddressModel MapToAddress(Party item);
 
         User MapToCommerceUserModel(CommerceUser x);
-
-        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
 
         FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
 

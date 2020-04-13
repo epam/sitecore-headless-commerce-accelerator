@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +43,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   protected safeRender() {
-    const { deliveryData, isSubmitting, isLoading, fields, shippingData } = this.props;
+    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo } = this.props;
 
     return (
       <Form>
@@ -163,10 +163,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   <option disabled={true} value="">
                     Select Option
                   </option>
-                  {deliveryData &&
-                    deliveryData.data &&
-                    deliveryData.data.userAddresses &&
-                    deliveryData.data.userAddresses.map((address, index) => (
+                  {deliveryInfo &&
+                    deliveryInfo.data &&
+                    deliveryInfo.data.userAddresses &&
+                    deliveryInfo.data.userAddresses.map((address, index) => (
                       <option key={index} value={address.partyId}>
                         {`${address.firstName} ${address.lastName}, ${address.address1}, ${address.state}, ${
                           address.country
@@ -212,10 +212,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   <option disabled={true} value="">
                     Select Option
                   </option>
-                  {shippingData &&
-                    shippingData.data &&
-                    shippingData.data.shippingMethods &&
-                    shippingData.data.shippingMethods.map((shippingMethod, index) => (
+                  {shippingInfo &&
+                    shippingInfo.data &&
+                    shippingInfo.data.shippingMethods &&
+                    shippingInfo.data.shippingMethods.map((shippingMethod, index) => (
                       <option key={index} value={shippingMethod.externalId}>
                         {shippingMethod.name}
                       </option>
@@ -250,10 +250,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   // tslint:disable-next-line:cognitive-complexity
   private handleSaveAndContinueClick(formValues: FormValues) {
-    const { SubmitStep, shippingData } = this.props;
+    const { SubmitStep, shippingInfo } = this.props;
 
     const selectedShippingMethodId = formValues[FIELDS.SELECTED_SHIPPING_METHOD];
-    const shippingMethod = shippingData.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
+    const shippingMethod = shippingInfo.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
 
     const useForBillingAddress: boolean = formValues[FIELDS.USE_FOR_BILLING] as boolean;
     const saveToMyAccount: boolean = formValues[FIELDS.SAVE_TO_MY_ACCOUNT] as boolean;
@@ -277,16 +277,16 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   private getShippingAddress(formValues: FormValues) {
-    const { deliveryData } = this.props;
+    const { deliveryInfo } = this.props;
 
     const addressTypeValue: string = formValues[FIELDS.ADDRESS_TYPE] as string;
 
     if (addressTypeValue === ADDRESS_TYPE.SAVED) {
       const selectedAddress = formValues[FIELDS.SELECTED_ADDRESS];
       return (
-        deliveryData.data &&
-        deliveryData.data.userAddresses &&
-        deliveryData.data.userAddresses.find((a) => a.partyId === selectedAddress)
+        deliveryInfo.data &&
+        deliveryInfo.data.userAddresses &&
+        deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress)
       );
     }
 

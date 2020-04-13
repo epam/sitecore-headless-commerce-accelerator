@@ -27,7 +27,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Pricing
 
     using Ploeh.AutoFixture;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Services.Prices;
 

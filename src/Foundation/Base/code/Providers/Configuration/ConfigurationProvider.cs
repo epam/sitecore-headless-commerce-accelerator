@@ -19,16 +19,24 @@ namespace Wooli.Foundation.Base.Providers.Configuration
 
     using Models.Configuration;
 
+    using Object;
+
     using Sitecore.Configuration;
+    using Sitecore.Diagnostics;
 
     [ExcludeFromCodeCoverage]
     public abstract class ConfigurationProvider<TConfiguration> : IConfigurationProvider<TConfiguration>
         where TConfiguration : Configuration, new()
     {
+        private readonly IObjectProvider objectProvider;
+
         private readonly Lazy<TConfiguration> configuration;
 
-        protected ConfigurationProvider()
+        protected ConfigurationProvider(IObjectProvider objectProvider)
         {
+            Assert.ArgumentNotNull(objectProvider, nameof(objectProvider));
+
+            this.objectProvider = objectProvider;
             this.configuration = new Lazy<TConfiguration>(this.Read, true);
         }
 
@@ -41,8 +49,7 @@ namespace Wooli.Foundation.Base.Providers.Configuration
 
         private TConfiguration Read()
         {
-            var xmlNode = Factory.GetConfigNode(this.Path);
-            return xmlNode != null ? Factory.CreateObject<TConfiguration>(xmlNode) : null;
+            return this.objectProvider.GetObject<TConfiguration>(this.Path);
         }
     }
 }

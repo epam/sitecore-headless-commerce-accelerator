@@ -445,8 +445,8 @@ namespace Wooli.Foundation.Commerce.Repositories
 
         private void UpdateCommerceParty(CommerceParty partyForUpdate, AddressModel address)
         {
-            var countryRegionModel = this.storefrontContext.CurrentStorefront
-                .CountriesRegionsConfiguration.CountriesRegionsModel.FirstOrDefault(
+            var countryRegionModel = this.storefrontContext.StorefrontConfiguration
+                .CountriesRegionsSettings.CountryRegionsValues.FirstOrDefault(
                     c => c.CountryCode == address.CountryCode);
             var subdivisionModel = countryRegionModel?.Subdivisions.FirstOrDefault(s => s.Code == address.State);
 

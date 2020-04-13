@@ -25,7 +25,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Account
 
     using Ploeh.AutoFixture;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;

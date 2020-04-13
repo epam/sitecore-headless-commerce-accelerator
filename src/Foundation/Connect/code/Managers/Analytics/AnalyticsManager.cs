@@ -19,7 +19,7 @@ namespace Wooli.Foundation.Connect.Managers.Analytics
 
     using DependencyInjection;
 
-    using Providers.Contracts;
+    using Providers;
 
     using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Diagnostics;

@@ -67,6 +67,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "058d0739-66f0-4029-afa1-0b9630b47e10";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Available Catalog
+        /// </summary>
+        public const string TemplateName = "Available Catalog";
+
     }
 
 
@@ -95,6 +100,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "c9983ee2-a307-4d4e-8ae6-fe269a7a2f73";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Available Catalogs Folder
+        /// </summary>
+        public const string TemplateName = "Available Catalogs Folder";
+
     }
 
 
@@ -108,7 +118,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 4f17697f-bd00-4d76-b4f5-1b53c0c8d884</para>
         /// </summary>
@@ -132,14 +142,880 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "ec3a4a56-12d5-4883-b809-501f85043ced";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce Boolean Setting Item
+        /// </summary>
+        public const string TemplateName = "Commerce Boolean Setting Item";
+
+        /// <summary>
         /// The Value field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 4f17697f-bd00-4d76-b4f5-1b53c0c8d884</para>
         /// </summary>
         [SitecoreField("Value")]
-        public bool Value {get; set;}
+        public virtual bool Value {get; set;}
         public const string ValueFieldId = "4f17697f-bd00-4d76-b4f5-1b53c0c8d884";
         public const string ValueFieldName = "Value";
+
+    }
+
+
+    /// <summary>
+    /// ICommerceBundleModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Catalog/Commerce Bundle</para>
+    /// <para>ID: 61f5ce3e-e550-4ced-8983-20242893a459</para>
+    /// </summary>
+    [SitecoreType(TemplateId="61f5ce3e-e550-4ced-8983-20242893a459")]
+    public partial interface ICommerceBundleModel: ICommerceCatalogSystemModel, ICommerceSearchSettingsModel, IConnectSellableItemModel, IGlassBase
+    {
+
+        /// <summary>
+        /// The AreaServed field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
+        /// </summary>
+        [SitecoreField("AreaServed")]
+        string AreaServed {get; set;}
+
+        /// <summary>
+        /// The Brand field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
+        /// </summary>
+        [SitecoreField("Brand")]
+        string Brand {get; set;}
+
+        /// <summary>
+        /// The Bundle Items field.
+        /// <para>Field Type: Name Value List</para>
+        /// <para>Field ID: 5c465da7-e530-418d-a1a1-ec567e77e401</para>
+        /// </summary>
+        [SitecoreField("Bundle Items")]
+        System.Collections.Specialized.NameValueCollection BundleItems {get; set;}
+
+        /// <summary>
+        /// The Color field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
+        /// </summary>
+        [SitecoreField("Color")]
+        string Color {get; set;}
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The DimensionsUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
+        /// </summary>
+        [SitecoreField("DimensionsUnitOfMeasure")]
+        string DimensionsUnitOfMeasure {get; set;}
+
+        /// <summary>
+        /// The DisambiguatingDescription field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
+        /// </summary>
+        [SitecoreField("DisambiguatingDescription")]
+        string DisambiguatingDescription {get; set;}
+
+        /// <summary>
+        /// The DisplayInProductList field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
+        /// </summary>
+        [SitecoreField("DisplayInProductList")]
+        bool DisplayInProductList {get; set;}
+
+        /// <summary>
+        /// The DisplayName field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
+        /// </summary>
+        [SitecoreField("DisplayName")]
+        string DisplayName {get; set;}
+
+        /// <summary>
+        /// The DisplayOnSite field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
+        /// </summary>
+        [SitecoreField("DisplayOnSite")]
+        bool DisplayOnSite {get; set;}
+
+        /// <summary>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
+        /// </summary>
+        [SitecoreField("Height")]
+        float Height {get; set;}
+
+        /// <summary>
+        /// The ISBN field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
+        /// </summary>
+        [SitecoreField("ISBN")]
+        string ISBN {get; set;}
+
+        /// <summary>
+        /// The ISSN field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
+        /// </summary>
+        [SitecoreField("ISSN")]
+        string ISSN {get; set;}
+
+        /// <summary>
+        /// The Images field.
+        /// <para>Field Type: Treelist</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
+        /// </summary>
+        [SitecoreField("Images")]
+        IEnumerable<Guid> Images {get; set;}
+
+        /// <summary>
+        /// The InstallationSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
+        /// </summary>
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The Items Per Page field.
+        /// <para>Field Type: Commerce Int64 Control</para>
+        /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
+        /// </summary>
+        [SitecoreField("Items Per Page")]
+        long ItemsPerPage {get; set;}
+
+        /// <summary>
+        /// The LEICode field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
+        /// </summary>
+        [SitecoreField("LEICode")]
+        string LEICode {get; set;}
+
+        /// <summary>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
+        /// </summary>
+        [SitecoreField("Length")]
+        float Length {get; set;}
+
+        /// <summary>
+        /// The Manufacturer field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
+        /// </summary>
+        [SitecoreField("Manufacturer")]
+        string Manufacturer {get; set;}
+
+        /// <summary>
+        /// The Name field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
+        /// </summary>
+        [SitecoreField("Name")]
+        string Name {get; set;}
+
+        /// <summary>
+        /// The ParentCatalogList field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
+        /// </summary>
+        [SitecoreField("ParentCatalogList")]
+        string ParentCatalogList {get; set;}
+
+        /// <summary>
+        /// The ParentCategoryList field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
+        /// </summary>
+        [SitecoreField("ParentCategoryList")]
+        string ParentCategoryList {get; set;}
+
+        /// <summary>
+        /// The ProductId field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
+        /// </summary>
+        [SitecoreField("ProductId")]
+        string ProductId {get; set;}
+
+        /// <summary>
+        /// The RelatedSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
+        /// </summary>
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+
+        /// <summary>
+        /// The Runtime Search Facets field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
+        /// </summary>
+        [SitecoreField("Runtime Search Facets")]
+        IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+
+        /// <summary>
+        /// The SKU field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
+        /// </summary>
+        [SitecoreField("SKU")]
+        string SKU {get; set;}
+
+        /// <summary>
+        /// The SitecoreId field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
+        /// </summary>
+        [SitecoreField("SitecoreId")]
+        string SitecoreId {get; set;}
+
+        /// <summary>
+        /// The Size field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
+        /// </summary>
+        [SitecoreField("Size")]
+        string Size {get; set;}
+
+        /// <summary>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
+        /// </summary>
+        [SitecoreField("SizeOnDisk")]
+        float SizeOnDisk {get; set;}
+
+        /// <summary>
+        /// The SizeOnDiskUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
+        /// </summary>
+        [SitecoreField("SizeOnDiskUnitOfMeasure")]
+        string SizeOnDiskUnitOfMeasure {get; set;}
+
+        /// <summary>
+        /// The Sort Fields field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
+        /// </summary>
+        [SitecoreField("Sort Fields")]
+        IEnumerable<Guid> SortFields {get; set;}
+
+        /// <summary>
+        /// The Style field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
+        /// </summary>
+        [SitecoreField("Style")]
+        string Style {get; set;}
+
+        /// <summary>
+        /// The Tags field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
+        /// </summary>
+        [SitecoreField("Tags")]
+        string Tags {get; set;}
+
+        /// <summary>
+        /// The TaxID field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
+        /// </summary>
+        [SitecoreField("TaxID")]
+        string TaxID {get; set;}
+
+        /// <summary>
+        /// The TrainingSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
+        /// </summary>
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+
+        /// <summary>
+        /// The TypeOfGood field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
+        /// </summary>
+        [SitecoreField("TypeOfGood")]
+        string TypeOfGood {get; set;}
+
+        /// <summary>
+        /// The VariationProperties field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
+        /// </summary>
+        [SitecoreField("VariationProperties")]
+        string VariationProperties {get; set;}
+
+        /// <summary>
+        /// The WarrantySellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
+        /// </summary>
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+
+        /// <summary>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
+        /// </summary>
+        [SitecoreField("Weight")]
+        float Weight {get; set;}
+
+        /// <summary>
+        /// The WeightUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
+        /// </summary>
+        [SitecoreField("WeightUnitOfMeasure")]
+        string WeightUnitOfMeasure {get; set;}
+
+        /// <summary>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
+        /// </summary>
+        [SitecoreField("Width")]
+        float Width {get; set;}
+
+        /// <summary>
+        /// The gtin12 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
+        /// </summary>
+        [SitecoreField("gtin12")]
+        string Gtin12 {get; set;}
+
+        /// <summary>
+        /// The gtin13 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
+        /// </summary>
+        [SitecoreField("gtin13")]
+        string Gtin13 {get; set;}
+
+        /// <summary>
+        /// The gtin8 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
+        /// </summary>
+        [SitecoreField("gtin8")]
+        string Gtin8 {get; set;}
+
+        /// <summary>
+        /// The mbm field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
+        /// </summary>
+        [SitecoreField("mbm")]
+        string Mbm {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// CommerceBundleModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Catalog/Commerce Bundle</para>
+    /// <para>ID: 61f5ce3e-e550-4ced-8983-20242893a459</para>
+    /// </summary>
+    [SitecoreType(TemplateId="61f5ce3e-e550-4ced-8983-20242893a459")]
+    public partial class CommerceBundleModel: GlassBase, ICommerceBundleModel
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/Commerce/Catalog/Commerce Bundle
+        /// </summary>
+        public const string TemplateId = "61f5ce3e-e550-4ced-8983-20242893a459";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Bundle
+        /// </summary>
+        public const string TemplateName = "Commerce Bundle";
+
+        /// <summary>
+        /// The AreaServed field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
+        /// </summary>
+        [SitecoreField("AreaServed")]
+        public virtual string AreaServed {get; set;}
+        public const string AreaServedFieldId = "51b2a635-a407-8ae0-d95a-3350dac257a7";
+        public const string AreaServedFieldName = "AreaServed";
+
+        /// <summary>
+        /// The Brand field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
+        /// </summary>
+        [SitecoreField("Brand")]
+        public virtual string Brand {get; set;}
+        public const string BrandFieldId = "91c94ffd-986d-fd65-72fe-27c348874999";
+        public const string BrandFieldName = "Brand";
+
+        /// <summary>
+        /// The Bundle Items field.
+        /// <para>Field Type: Name Value List</para>
+        /// <para>Field ID: 5c465da7-e530-418d-a1a1-ec567e77e401</para>
+        /// </summary>
+        [SitecoreField("Bundle Items")]
+        public virtual System.Collections.Specialized.NameValueCollection BundleItems {get; set;}
+        public const string BundleItemsFieldId = "5c465da7-e530-418d-a1a1-ec567e77e401";
+        public const string BundleItemsFieldName = "Bundle Items";
+
+        /// <summary>
+        /// The Color field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
+        /// </summary>
+        [SitecoreField("Color")]
+        public virtual string Color {get; set;}
+        public const string ColorFieldId = "4edc4293-0bb6-a995-8014-bf1678a30054";
+        public const string ColorFieldName = "Color";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public virtual string Description {get; set;}
+        public const string DescriptionFieldId = "0758db64-0746-2bbb-241b-2abd830a33c6";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The DimensionsUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
+        /// </summary>
+        [SitecoreField("DimensionsUnitOfMeasure")]
+        public virtual string DimensionsUnitOfMeasure {get; set;}
+        public const string DimensionsUnitOfMeasureFieldId = "0220347b-dc95-2645-0b29-25ab118480e9";
+        public const string DimensionsUnitOfMeasureFieldName = "DimensionsUnitOfMeasure";
+
+        /// <summary>
+        /// The DisambiguatingDescription field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
+        /// </summary>
+        [SitecoreField("DisambiguatingDescription")]
+        public virtual string DisambiguatingDescription {get; set;}
+        public const string DisambiguatingDescriptionFieldId = "ad35b098-a3e2-a7f6-9bd4-56028f63bff6";
+        public const string DisambiguatingDescriptionFieldName = "DisambiguatingDescription";
+
+        /// <summary>
+        /// The DisplayInProductList field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
+        /// </summary>
+        [SitecoreField("DisplayInProductList")]
+        public virtual bool DisplayInProductList {get; set;}
+        public const string DisplayInProductListFieldId = "12e7727e-741f-ae2d-7f59-b39f7234f53c";
+        public const string DisplayInProductListFieldName = "DisplayInProductList";
+
+        /// <summary>
+        /// The DisplayName field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
+        /// </summary>
+        [SitecoreField("DisplayName")]
+        public virtual string DisplayName {get; set;}
+        public const string DisplayNameFieldId = "4faf0196-c1bb-8764-f658-ee6ec2e91a51";
+        public const string DisplayNameFieldName = "DisplayName";
+
+        /// <summary>
+        /// The DisplayOnSite field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
+        /// </summary>
+        [SitecoreField("DisplayOnSite")]
+        public virtual bool DisplayOnSite {get; set;}
+        public const string DisplayOnSiteFieldId = "3dbba730-7800-f912-b345-3937f7feb0f3";
+        public const string DisplayOnSiteFieldName = "DisplayOnSite";
+
+        /// <summary>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
+        /// </summary>
+        [SitecoreField("Height")]
+        public virtual float Height {get; set;}
+        public const string HeightFieldId = "8c73f916-a727-463d-bb56-6b4496b8c494";
+        public const string HeightFieldName = "Height";
+
+        /// <summary>
+        /// The ISBN field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
+        /// </summary>
+        [SitecoreField("ISBN")]
+        public virtual string ISBN {get; set;}
+        public const string ISBNFieldId = "ec3578e4-eaf0-07e5-536a-92de2a2a3802";
+        public const string ISBNFieldName = "ISBN";
+
+        /// <summary>
+        /// The ISSN field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
+        /// </summary>
+        [SitecoreField("ISSN")]
+        public virtual string ISSN {get; set;}
+        public const string ISSNFieldId = "441ed7b5-6784-e325-d426-ea06a3d6a249";
+        public const string ISSNFieldName = "ISSN";
+
+        /// <summary>
+        /// The Images field.
+        /// <para>Field Type: Treelist</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
+        /// </summary>
+        [SitecoreField("Images")]
+        public virtual IEnumerable<Guid> Images {get; set;}
+        public const string ImagesFieldId = "32c66add-862f-4590-9e27-5cf74e8ecdd4";
+        public const string ImagesFieldName = "Images";
+
+        /// <summary>
+        /// The InstallationSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
+        /// </summary>
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+        public const string InstallationSellableItemToSellableItemFieldId = "1c796e6b-a31c-422b-9b68-7e0a9b4c9c56";
+        public const string InstallationSellableItemToSellableItemFieldName = "InstallationSellableItemToSellableItem";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "a39c3a8b-e06c-ad06-4b25-42760c00654e";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
+
+        /// <summary>
+        /// The Items Per Page field.
+        /// <para>Field Type: Commerce Int64 Control</para>
+        /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
+        /// </summary>
+        [SitecoreField("Items Per Page")]
+        public virtual long ItemsPerPage {get; set;}
+        public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
+        public const string ItemsPerPageFieldName = "Items Per Page";
+
+        /// <summary>
+        /// The LEICode field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
+        /// </summary>
+        [SitecoreField("LEICode")]
+        public virtual string LEICode {get; set;}
+        public const string LEICodeFieldId = "f0c245a4-1ce9-2620-910c-16ba93a90c15";
+        public const string LEICodeFieldName = "LEICode";
+
+        /// <summary>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
+        /// </summary>
+        [SitecoreField("Length")]
+        public virtual float Length {get; set;}
+        public const string LengthFieldId = "f79e6d2d-d728-0be1-ed5f-70826d3604c1";
+        public const string LengthFieldName = "Length";
+
+        /// <summary>
+        /// The Manufacturer field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
+        /// </summary>
+        [SitecoreField("Manufacturer")]
+        public virtual string Manufacturer {get; set;}
+        public const string ManufacturerFieldId = "65ef80be-8e5e-a767-5097-2e2000fd8054";
+        public const string ManufacturerFieldName = "Manufacturer";
+
+        /// <summary>
+        /// The Name field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
+        /// </summary>
+        [SitecoreField("Name")]
+        public virtual string Name {get; set;}
+        public const string NameFieldId = "01d789fd-74e0-117e-2eb4-6612a1642643";
+        public const string NameFieldName = "Name";
+
+        /// <summary>
+        /// The ParentCatalogList field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
+        /// </summary>
+        [SitecoreField("ParentCatalogList")]
+        public virtual string ParentCatalogList {get; set;}
+        public const string ParentCatalogListFieldId = "a7c26e68-f587-b3a5-a48d-6c9b08752472";
+        public const string ParentCatalogListFieldName = "ParentCatalogList";
+
+        /// <summary>
+        /// The ParentCategoryList field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
+        /// </summary>
+        [SitecoreField("ParentCategoryList")]
+        public virtual string ParentCategoryList {get; set;}
+        public const string ParentCategoryListFieldId = "f4b64d68-f727-7a2d-f1e2-628e5704aa18";
+        public const string ParentCategoryListFieldName = "ParentCategoryList";
+
+        /// <summary>
+        /// The ProductId field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
+        /// </summary>
+        [SitecoreField("ProductId")]
+        public virtual string ProductId {get; set;}
+        public const string ProductIdFieldId = "b9ad0613-0584-6c55-d180-1c7d0215d9e7";
+        public const string ProductIdFieldName = "ProductId";
+
+        /// <summary>
+        /// The RelatedSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
+        /// </summary>
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+        public const string RelatedSellableItemToSellableItemFieldId = "e94356c0-50cf-4fc7-b403-49eed5d4ffc1";
+        public const string RelatedSellableItemToSellableItemFieldName = "RelatedSellableItemToSellableItem";
+
+        /// <summary>
+        /// The Runtime Search Facets field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
+        /// </summary>
+        [SitecoreField("Runtime Search Facets")]
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
+        public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
+
+        /// <summary>
+        /// The SKU field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
+        /// </summary>
+        [SitecoreField("SKU")]
+        public virtual string SKU {get; set;}
+        public const string SKUFieldId = "c717dd15-78a2-f0b1-f943-24c55760b57b";
+        public const string SKUFieldName = "SKU";
+
+        /// <summary>
+        /// The SitecoreId field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
+        /// </summary>
+        [SitecoreField("SitecoreId")]
+        public virtual string SitecoreId {get; set;}
+        public const string SitecoreIdFieldId = "f41b1b99-0107-dd43-f234-adae63d913f3";
+        public const string SitecoreIdFieldName = "SitecoreId";
+
+        /// <summary>
+        /// The Size field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
+        /// </summary>
+        [SitecoreField("Size")]
+        public virtual string Size {get; set;}
+        public const string SizeFieldId = "4ac9c17f-7481-3296-909e-e2b763ef5496";
+        public const string SizeFieldName = "Size";
+
+        /// <summary>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
+        /// </summary>
+        [SitecoreField("SizeOnDisk")]
+        public virtual float SizeOnDisk {get; set;}
+        public const string SizeOnDiskFieldId = "f5bcb9c4-079e-e969-1196-dd450dc1f35d";
+        public const string SizeOnDiskFieldName = "SizeOnDisk";
+
+        /// <summary>
+        /// The SizeOnDiskUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
+        /// </summary>
+        [SitecoreField("SizeOnDiskUnitOfMeasure")]
+        public virtual string SizeOnDiskUnitOfMeasure {get; set;}
+        public const string SizeOnDiskUnitOfMeasureFieldId = "044436e3-3d78-6c11-eb67-ea2b50690cb8";
+        public const string SizeOnDiskUnitOfMeasureFieldName = "SizeOnDiskUnitOfMeasure";
+
+        /// <summary>
+        /// The Sort Fields field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
+        /// </summary>
+        [SitecoreField("Sort Fields")]
+        public virtual IEnumerable<Guid> SortFields {get; set;}
+        public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
+        public const string SortFieldsFieldName = "Sort Fields";
+
+        /// <summary>
+        /// The Style field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
+        /// </summary>
+        [SitecoreField("Style")]
+        public virtual string Style {get; set;}
+        public const string StyleFieldId = "4e367298-f552-ad36-58b9-109231349772";
+        public const string StyleFieldName = "Style";
+
+        /// <summary>
+        /// The Tags field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
+        /// </summary>
+        [SitecoreField("Tags")]
+        public virtual string Tags {get; set;}
+        public const string TagsFieldId = "8d4aaea6-6658-7905-192d-c8c1b65ef353";
+        public const string TagsFieldName = "Tags";
+
+        /// <summary>
+        /// The TaxID field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
+        /// </summary>
+        [SitecoreField("TaxID")]
+        public virtual string TaxID {get; set;}
+        public const string TaxIDFieldId = "497e7361-e277-22a4-7116-7ed6fd2a0165";
+        public const string TaxIDFieldName = "TaxID";
+
+        /// <summary>
+        /// The TrainingSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
+        /// </summary>
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+        public const string TrainingSellableItemToSellableItemFieldId = "d263e02e-62cb-4a44-a775-8ecc45f633ae";
+        public const string TrainingSellableItemToSellableItemFieldName = "TrainingSellableItemToSellableItem";
+
+        /// <summary>
+        /// The TypeOfGood field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
+        /// </summary>
+        [SitecoreField("TypeOfGood")]
+        public virtual string TypeOfGood {get; set;}
+        public const string TypeOfGoodFieldId = "74960d25-406b-e2fe-b935-839f847f2160";
+        public const string TypeOfGoodFieldName = "TypeOfGood";
+
+        /// <summary>
+        /// The VariationProperties field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
+        /// </summary>
+        [SitecoreField("VariationProperties")]
+        public virtual string VariationProperties {get; set;}
+        public const string VariationPropertiesFieldId = "0185d335-4545-edd6-76a8-460db418966a";
+        public const string VariationPropertiesFieldName = "VariationProperties";
+
+        /// <summary>
+        /// The WarrantySellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
+        /// </summary>
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+        public const string WarrantySellableItemToSellableItemFieldId = "b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8";
+        public const string WarrantySellableItemToSellableItemFieldName = "WarrantySellableItemToSellableItem";
+
+        /// <summary>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
+        /// </summary>
+        [SitecoreField("Weight")]
+        public virtual float Weight {get; set;}
+        public const string WeightFieldId = "69500c30-0bb8-9de5-5993-93e520dffbbe";
+        public const string WeightFieldName = "Weight";
+
+        /// <summary>
+        /// The WeightUnitOfMeasure field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
+        /// </summary>
+        [SitecoreField("WeightUnitOfMeasure")]
+        public virtual string WeightUnitOfMeasure {get; set;}
+        public const string WeightUnitOfMeasureFieldId = "ba62e090-8d9c-b6f1-3a31-b2aae7257d57";
+        public const string WeightUnitOfMeasureFieldName = "WeightUnitOfMeasure";
+
+        /// <summary>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
+        /// </summary>
+        [SitecoreField("Width")]
+        public virtual float Width {get; set;}
+        public const string WidthFieldId = "3af28db3-a880-fdb9-0774-707d8df3ea05";
+        public const string WidthFieldName = "Width";
+
+        /// <summary>
+        /// The gtin12 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
+        /// </summary>
+        [SitecoreField("gtin12")]
+        public virtual string Gtin12 {get; set;}
+        public const string Gtin12FieldId = "834b5692-725c-1804-2e3e-6c990c5389a7";
+        public const string Gtin12FieldName = "gtin12";
+
+        /// <summary>
+        /// The gtin13 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
+        /// </summary>
+        [SitecoreField("gtin13")]
+        public virtual string Gtin13 {get; set;}
+        public const string Gtin13FieldId = "ec986263-4af7-a347-b55e-47b4e76b1579";
+        public const string Gtin13FieldName = "gtin13";
+
+        /// <summary>
+        /// The gtin8 field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
+        /// </summary>
+        [SitecoreField("gtin8")]
+        public virtual string Gtin8 {get; set;}
+        public const string Gtin8FieldId = "f6c26bd2-6746-ee58-7cd8-43f5602c9ab5";
+        public const string Gtin8FieldName = "gtin8";
+
+        /// <summary>
+        /// The mbm field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
+        /// </summary>
+        [SitecoreField("mbm")]
+        public virtual string Mbm {get; set;}
+        public const string MbmFieldId = "7c0ec773-db26-76b0-eb1f-9fc36b8519fc";
+        public const string MbmFieldName = "mbm";
 
     }
 
@@ -154,7 +1030,15 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The CategoryTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 2eacfeb4-2e9e-4144-a146-c2bf062463dc</para>
+        /// </summary>
+        [SitecoreField("CategoryTemplate")]
+        Guid CategoryTemplate {get; set;}
+
+        /// <summary>
+        /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: fc2e2d4b-892c-7289-5ae5-eedfbf03fba9</para>
         /// </summary>
@@ -162,7 +1046,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenSellableItemList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6dd90593-2f79-71c4-57ea-1c7588f3c744</para>
         /// </summary>
@@ -170,7 +1054,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenSellableItemList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DefaultInventorySetName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc</para>
         /// </summary>
@@ -178,7 +1062,7 @@ namespace Wooli.Foundation.Connect.Models
         string DefaultInventorySetName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 017f96a6-a1a7-0ea0-7cca-b5815429790f</para>
         /// </summary>
@@ -186,15 +1070,31 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DynamicBundleTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 42ce4524-eda0-4fd2-8caa-391f9493f45e</para>
+        /// </summary>
+        [SitecoreField("DynamicBundleTemplate")]
+        Guid DynamicBundleTemplate {get; set;}
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0e2b7597-e069-73db-c8fd-c82281e5aade</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        long ItemsPerPage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c79a4081-2ca3-ddd7-27b1-8f50445ac6c4</para>
         /// </summary>
@@ -202,7 +1102,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The PriceBookName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 9b7f96be-c555-0714-35bf-4b8fd84ca824</para>
         /// </summary>
@@ -210,7 +1110,23 @@ namespace Wooli.Foundation.Connect.Models
         string PriceBookName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: f522cfb3-460f-48a4-a5d0-03c7435e2c87</para>
+        /// </summary>
+        [SitecoreField("ProductTemplate")]
+        Guid ProductTemplate {get; set;}
+
+        /// <summary>
+        /// The ProductVariantTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 5cdc49e3-f0cd-44b2-b420-e5318af5af66</para>
+        /// </summary>
+        [SitecoreField("ProductVariantTemplate")]
+        Guid ProductVariantTemplate {get; set;}
+
+        /// <summary>
+        /// The PromotionBookName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: bec285f9-c23f-3552-f161-897a2ed6385d</para>
         /// </summary>
@@ -218,7 +1134,7 @@ namespace Wooli.Foundation.Connect.Models
         string PromotionBookName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Runtime Search Facets field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
@@ -226,7 +1142,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RuntimeSearchFacets {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a4e3d554-971d-9639-8831-bc5bac143980</para>
         /// </summary>
@@ -234,12 +1150,28 @@ namespace Wooli.Foundation.Connect.Models
         string SitecoreId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Sort Fields field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
         IEnumerable<Guid> SortFields {get; set;}
+
+        /// <summary>
+        /// The StaticBundleTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 6a9641e4-12a7-41d4-bca9-85759f798e75</para>
+        /// </summary>
+        [SitecoreField("StaticBundleTemplate")]
+        Guid StaticBundleTemplate {get; set;}
+
+        /// <summary>
+        /// The Website Search Scope field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: fe5208d1-d7f6-4e5d-8a43-95652c35d0b3</para>
+        /// </summary>
+        [SitecoreField("Website Search Scope")]
+        Guid WebsiteSearchScope {get; set;}
 
     }
 
@@ -258,12 +1190,27 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "93af861a-b6f4-45be-887d-d93d4b95b39d";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Catalog
+        /// </summary>
+        public const string TemplateName = "Commerce Catalog";
+
+        /// <summary>
+        /// The CategoryTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 2eacfeb4-2e9e-4144-a146-c2bf062463dc</para>
+        /// </summary>
+        [SitecoreField("CategoryTemplate")]
+        public virtual Guid CategoryTemplate {get; set;}
+        public const string CategoryTemplateFieldId = "2eacfeb4-2e9e-4144-a146-c2bf062463dc";
+        public const string CategoryTemplateFieldName = "CategoryTemplate";
+
+        /// <summary>
         /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: fc2e2d4b-892c-7289-5ae5-eedfbf03fba9</para>
         /// </summary>
         [SitecoreField("ChildrenCategoryList")]
-        public string ChildrenCategoryList {get; set;}
+        public virtual string ChildrenCategoryList {get; set;}
         public const string ChildrenCategoryListFieldId = "fc2e2d4b-892c-7289-5ae5-eedfbf03fba9";
         public const string ChildrenCategoryListFieldName = "ChildrenCategoryList";
 
@@ -273,7 +1220,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6dd90593-2f79-71c4-57ea-1c7588f3c744</para>
         /// </summary>
         [SitecoreField("ChildrenSellableItemList")]
-        public string ChildrenSellableItemList {get; set;}
+        public virtual string ChildrenSellableItemList {get; set;}
         public const string ChildrenSellableItemListFieldId = "6dd90593-2f79-71c4-57ea-1c7588f3c744";
         public const string ChildrenSellableItemListFieldName = "ChildrenSellableItemList";
 
@@ -283,7 +1230,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc</para>
         /// </summary>
         [SitecoreField("DefaultInventorySetName")]
-        public string DefaultInventorySetName {get; set;}
+        public virtual string DefaultInventorySetName {get; set;}
         public const string DefaultInventorySetNameFieldId = "399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc";
         public const string DefaultInventorySetNameFieldName = "DefaultInventorySetName";
 
@@ -293,9 +1240,29 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 017f96a6-a1a7-0ea0-7cca-b5815429790f</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "017f96a6-a1a7-0ea0-7cca-b5815429790f";
         public const string DisplayNameFieldName = "DisplayName";
+
+        /// <summary>
+        /// The DynamicBundleTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 42ce4524-eda0-4fd2-8caa-391f9493f45e</para>
+        /// </summary>
+        [SitecoreField("DynamicBundleTemplate")]
+        public virtual Guid DynamicBundleTemplate {get; set;}
+        public const string DynamicBundleTemplateFieldId = "42ce4524-eda0-4fd2-8caa-391f9493f45e";
+        public const string DynamicBundleTemplateFieldName = "DynamicBundleTemplate";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0e2b7597-e069-73db-c8fd-c82281e5aade</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "0e2b7597-e069-73db-c8fd-c82281e5aade";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
 
         /// <summary>
         /// The Items Per Page field.
@@ -303,7 +1270,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        public object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        public virtual long ItemsPerPage {get; set;}
         public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
         public const string ItemsPerPageFieldName = "Items Per Page";
 
@@ -313,7 +1280,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c79a4081-2ca3-ddd7-27b1-8f50445ac6c4</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "c79a4081-2ca3-ddd7-27b1-8f50445ac6c4";
         public const string NameFieldName = "Name";
 
@@ -323,9 +1290,29 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 9b7f96be-c555-0714-35bf-4b8fd84ca824</para>
         /// </summary>
         [SitecoreField("PriceBookName")]
-        public string PriceBookName {get; set;}
+        public virtual string PriceBookName {get; set;}
         public const string PriceBookNameFieldId = "9b7f96be-c555-0714-35bf-4b8fd84ca824";
         public const string PriceBookNameFieldName = "PriceBookName";
+
+        /// <summary>
+        /// The ProductTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: f522cfb3-460f-48a4-a5d0-03c7435e2c87</para>
+        /// </summary>
+        [SitecoreField("ProductTemplate")]
+        public virtual Guid ProductTemplate {get; set;}
+        public const string ProductTemplateFieldId = "f522cfb3-460f-48a4-a5d0-03c7435e2c87";
+        public const string ProductTemplateFieldName = "ProductTemplate";
+
+        /// <summary>
+        /// The ProductVariantTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 5cdc49e3-f0cd-44b2-b420-e5318af5af66</para>
+        /// </summary>
+        [SitecoreField("ProductVariantTemplate")]
+        public virtual Guid ProductVariantTemplate {get; set;}
+        public const string ProductVariantTemplateFieldId = "5cdc49e3-f0cd-44b2-b420-e5318af5af66";
+        public const string ProductVariantTemplateFieldName = "ProductVariantTemplate";
 
         /// <summary>
         /// The PromotionBookName field.
@@ -333,7 +1320,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: bec285f9-c23f-3552-f161-897a2ed6385d</para>
         /// </summary>
         [SitecoreField("PromotionBookName")]
-        public string PromotionBookName {get; set;}
+        public virtual string PromotionBookName {get; set;}
         public const string PromotionBookNameFieldId = "bec285f9-c23f-3552-f161-897a2ed6385d";
         public const string PromotionBookNameFieldName = "PromotionBookName";
 
@@ -343,7 +1330,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
         [SitecoreField("Runtime Search Facets")]
-        public IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
         public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
         public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
 
@@ -353,7 +1340,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a4e3d554-971d-9639-8831-bc5bac143980</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "a4e3d554-971d-9639-8831-bc5bac143980";
         public const string SitecoreIdFieldName = "SitecoreId";
 
@@ -363,9 +1350,29 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
-        public IEnumerable<Guid> SortFields {get; set;}
+        public virtual IEnumerable<Guid> SortFields {get; set;}
         public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
         public const string SortFieldsFieldName = "Sort Fields";
+
+        /// <summary>
+        /// The StaticBundleTemplate field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: 6a9641e4-12a7-41d4-bca9-85759f798e75</para>
+        /// </summary>
+        [SitecoreField("StaticBundleTemplate")]
+        public virtual Guid StaticBundleTemplate {get; set;}
+        public const string StaticBundleTemplateFieldId = "6a9641e4-12a7-41d4-bca9-85759f798e75";
+        public const string StaticBundleTemplateFieldName = "StaticBundleTemplate";
+
+        /// <summary>
+        /// The Website Search Scope field.
+        /// <para>Field Type: Droptree</para>
+        /// <para>Field ID: fe5208d1-d7f6-4e5d-8a43-95652c35d0b3</para>
+        /// </summary>
+        [SitecoreField("Website Search Scope")]
+        public virtual Guid WebsiteSearchScope {get; set;}
+        public const string WebsiteSearchScopeFieldId = "fe5208d1-d7f6-4e5d-8a43-95652c35d0b3";
+        public const string WebsiteSearchScopeFieldName = "Website Search Scope";
 
     }
 
@@ -380,7 +1387,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Selected Catalogs field.
         /// <para>Field Type: Catalog Selection Control</para>
         /// <para>Field ID: ed3ebccd-a230-4659-923f-014707e1945d</para>
         /// </summary>
@@ -404,12 +1411,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "334e2b54-f913-411d-b159-a7b16d65242c";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Catalog Folder
+        /// </summary>
+        public const string TemplateName = "Commerce Catalog Folder";
+
+        /// <summary>
         /// The Selected Catalogs field.
         /// <para>Field Type: Catalog Selection Control</para>
         /// <para>Field ID: ed3ebccd-a230-4659-923f-014707e1945d</para>
         /// </summary>
         [SitecoreField("Selected Catalogs")]
-        public object /* UNKNOWN TYPE: Catalog Selection Control */ SelectedCatalogs {get; set;}
+        public virtual object /* UNKNOWN TYPE: Catalog Selection Control */ SelectedCatalogs {get; set;}
         public const string SelectedCatalogsFieldId = "ed3ebccd-a230-4659-923f-014707e1945d";
         public const string SelectedCatalogsFieldName = "Selected Catalogs";
 
@@ -426,7 +1438,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Catalog field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 8bbc9900-067f-40ea-8500-8b2c247636f7</para>
         /// </summary>
@@ -450,12 +1462,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "f8c2d048-1934-4eb1-9c5f-8c67db673a30";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce Catalog Setting Item
+        /// </summary>
+        public const string TemplateName = "Commerce Catalog Setting Item";
+
+        /// <summary>
         /// The Catalog field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 8bbc9900-067f-40ea-8500-8b2c247636f7</para>
         /// </summary>
         [SitecoreField("Catalog")]
-        public string Catalog {get; set;}
+        public virtual string Catalog {get; set;}
         public const string CatalogFieldId = "8bbc9900-067f-40ea-8500-8b2c247636f7";
         public const string CatalogFieldName = "Catalog";
 
@@ -487,6 +1504,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "f59aaf15-c16c-40b8-bc3c-fbf0bff66269";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Catalog System
+        /// </summary>
+        public const string TemplateName = "Commerce Catalog System";
+
     }
 
 
@@ -500,7 +1522,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 380bfbfd-20c3-2b97-c9b0-cfe8db35d65f</para>
         /// </summary>
@@ -508,7 +1530,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenSellableItemList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 355d27e4-f53a-356e-3472-20d0f3bd3af9</para>
         /// </summary>
@@ -516,7 +1538,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenSellableItemList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a121d29c-aad3-8dbd-43ba-714e9bd10421</para>
         /// </summary>
@@ -524,7 +1546,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 139045ba-30cf-4487-fa47-0d5aea7426bc</para>
         /// </summary>
@@ -532,15 +1554,15 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        long ItemsPerPage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ac4289d3-915b-f062-7d77-379b4a46ba66</para>
         /// </summary>
@@ -548,7 +1570,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCatalogList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 66ccfa57-93e4-8211-b7ce-c2666f167e88</para>
         /// </summary>
@@ -556,7 +1578,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCatalogList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 46e1891c-387f-49e1-f543-a9e7e837eed0</para>
         /// </summary>
@@ -564,7 +1586,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Runtime Search Facets field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
@@ -572,7 +1594,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RuntimeSearchFacets {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d0f601a9-f362-6417-e836-e7190268211c</para>
         /// </summary>
@@ -580,7 +1602,7 @@ namespace Wooli.Foundation.Connect.Models
         string SitecoreId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Sort Fields field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
@@ -604,12 +1626,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "4c4fd207-a9f7-443d-b32a-50aa33523661";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Category
+        /// </summary>
+        public const string TemplateName = "Commerce Category";
+
+        /// <summary>
         /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 380bfbfd-20c3-2b97-c9b0-cfe8db35d65f</para>
         /// </summary>
         [SitecoreField("ChildrenCategoryList")]
-        public string ChildrenCategoryList {get; set;}
+        public virtual string ChildrenCategoryList {get; set;}
         public const string ChildrenCategoryListFieldId = "380bfbfd-20c3-2b97-c9b0-cfe8db35d65f";
         public const string ChildrenCategoryListFieldName = "ChildrenCategoryList";
 
@@ -619,7 +1646,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 355d27e4-f53a-356e-3472-20d0f3bd3af9</para>
         /// </summary>
         [SitecoreField("ChildrenSellableItemList")]
-        public string ChildrenSellableItemList {get; set;}
+        public virtual string ChildrenSellableItemList {get; set;}
         public const string ChildrenSellableItemListFieldId = "355d27e4-f53a-356e-3472-20d0f3bd3af9";
         public const string ChildrenSellableItemListFieldName = "ChildrenSellableItemList";
 
@@ -629,7 +1656,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a121d29c-aad3-8dbd-43ba-714e9bd10421</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "a121d29c-aad3-8dbd-43ba-714e9bd10421";
         public const string DescriptionFieldName = "Description";
 
@@ -639,7 +1666,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 139045ba-30cf-4487-fa47-0d5aea7426bc</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "139045ba-30cf-4487-fa47-0d5aea7426bc";
         public const string DisplayNameFieldName = "DisplayName";
 
@@ -649,7 +1676,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        public object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        public virtual long ItemsPerPage {get; set;}
         public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
         public const string ItemsPerPageFieldName = "Items Per Page";
 
@@ -659,7 +1686,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ac4289d3-915b-f062-7d77-379b4a46ba66</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "ac4289d3-915b-f062-7d77-379b4a46ba66";
         public const string NameFieldName = "Name";
 
@@ -669,7 +1696,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 66ccfa57-93e4-8211-b7ce-c2666f167e88</para>
         /// </summary>
         [SitecoreField("ParentCatalogList")]
-        public string ParentCatalogList {get; set;}
+        public virtual string ParentCatalogList {get; set;}
         public const string ParentCatalogListFieldId = "66ccfa57-93e4-8211-b7ce-c2666f167e88";
         public const string ParentCatalogListFieldName = "ParentCatalogList";
 
@@ -679,7 +1706,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 46e1891c-387f-49e1-f543-a9e7e837eed0</para>
         /// </summary>
         [SitecoreField("ParentCategoryList")]
-        public string ParentCategoryList {get; set;}
+        public virtual string ParentCategoryList {get; set;}
         public const string ParentCategoryListFieldId = "46e1891c-387f-49e1-f543-a9e7e837eed0";
         public const string ParentCategoryListFieldName = "ParentCategoryList";
 
@@ -689,7 +1716,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
         [SitecoreField("Runtime Search Facets")]
-        public IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
         public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
         public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
 
@@ -699,7 +1726,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d0f601a9-f362-6417-e836-e7190268211c</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "d0f601a9-f362-6417-e836-e7190268211c";
         public const string SitecoreIdFieldName = "SitecoreId";
 
@@ -709,7 +1736,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
-        public IEnumerable<Guid> SortFields {get; set;}
+        public virtual IEnumerable<Guid> SortFields {get; set;}
         public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
         public const string SortFieldsFieldName = "Sort Fields";
 
@@ -741,6 +1768,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "e9dabeae-fed4-416c-9bca-ae7c6950e18a";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Commerce Control Panel Folder
+        /// </summary>
+        public const string TemplateName = "Commerce Control Panel Folder";
+
     }
 
 
@@ -754,7 +1786,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Datetime</para>
         /// <para>Field ID: d1b895f9-8487-4308-8fcb-f73f45bb7cd9</para>
         /// </summary>
@@ -778,12 +1810,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "ed7ef43b-d2d4-4f5d-a8a2-afeeb2f611d0";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce DateTime Setting Item
+        /// </summary>
+        public const string TemplateName = "Commerce DateTime Setting Item";
+
+        /// <summary>
         /// The Value field.
         /// <para>Field Type: Datetime</para>
         /// <para>Field ID: d1b895f9-8487-4308-8fcb-f73f45bb7cd9</para>
         /// </summary>
         [SitecoreField("Value")]
-        public DateTime Value {get; set;}
+        public virtual DateTime Value {get; set;}
         public const string ValueFieldId = "d1b895f9-8487-4308-8fcb-f73f45bb7cd9";
         public const string ValueFieldName = "Value";
 
@@ -815,6 +1852,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "bff2d09d-0b61-4b88-b60b-630d0160b4f4";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Commerce Engine Settings/Commerce Engine Settings Folder
+        /// </summary>
+        public const string TemplateName = "Commerce Engine Settings Folder";
+
     }
 
 
@@ -828,7 +1870,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Assign To All Product Types field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: a0f35a32-14b5-4147-9851-7e0bbdc17efc</para>
         /// </summary>
@@ -836,7 +1878,7 @@ namespace Wooli.Foundation.Connect.Models
         bool AssignToAllProductTypes {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Base Property field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: d8a78e27-f87f-409b-a4df-d69335dd466f</para>
         /// </summary>
@@ -844,7 +1886,7 @@ namespace Wooli.Foundation.Connect.Models
         bool BaseProperty {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Display On Site field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: ff45e279-7051-42ad-bf91-117f5ec4bd16</para>
         /// </summary>
@@ -852,7 +1894,7 @@ namespace Wooli.Foundation.Connect.Models
         bool DisplayOnSite {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Free Text Searchable field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 81180d30-1185-426f-ae2d-7da7741399a1</para>
         /// </summary>
@@ -860,7 +1902,7 @@ namespace Wooli.Foundation.Connect.Models
         bool FreeTextSearchable {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Is Required field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 63cb4f24-a2d2-4082-9821-8f350a781e48</para>
         /// </summary>
@@ -868,7 +1910,7 @@ namespace Wooli.Foundation.Connect.Models
         bool IsRequired {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Managed by External Commerce System field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 09e76fed-d919-4277-b6bf-748628dfd8ed</para>
         /// </summary>
@@ -876,7 +1918,7 @@ namespace Wooli.Foundation.Connect.Models
         bool ManagedByExternalCommerceSystem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Specification Searchable field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 7ee38888-5f13-4cb1-bad0-09f5b7759856</para>
         /// </summary>
@@ -900,12 +1942,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "6a553ec0-2ab9-49d6-be0e-a472e5e24213";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Fields/Commerce Field
+        /// </summary>
+        public const string TemplateName = "Commerce Field";
+
+        /// <summary>
         /// The Assign To All Product Types field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: a0f35a32-14b5-4147-9851-7e0bbdc17efc</para>
         /// </summary>
         [SitecoreField("Assign To All Product Types")]
-        public bool AssignToAllProductTypes {get; set;}
+        public virtual bool AssignToAllProductTypes {get; set;}
         public const string AssignToAllProductTypesFieldId = "a0f35a32-14b5-4147-9851-7e0bbdc17efc";
         public const string AssignToAllProductTypesFieldName = "Assign To All Product Types";
 
@@ -915,7 +1962,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d8a78e27-f87f-409b-a4df-d69335dd466f</para>
         /// </summary>
         [SitecoreField("Base Property")]
-        public bool BaseProperty {get; set;}
+        public virtual bool BaseProperty {get; set;}
         public const string BasePropertyFieldId = "d8a78e27-f87f-409b-a4df-d69335dd466f";
         public const string BasePropertyFieldName = "Base Property";
 
@@ -925,7 +1972,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ff45e279-7051-42ad-bf91-117f5ec4bd16</para>
         /// </summary>
         [SitecoreField("Display On Site")]
-        public bool DisplayOnSite {get; set;}
+        public virtual bool DisplayOnSite {get; set;}
         public const string DisplayOnSiteFieldId = "ff45e279-7051-42ad-bf91-117f5ec4bd16";
         public const string DisplayOnSiteFieldName = "Display On Site";
 
@@ -935,7 +1982,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 81180d30-1185-426f-ae2d-7da7741399a1</para>
         /// </summary>
         [SitecoreField("Free Text Searchable")]
-        public bool FreeTextSearchable {get; set;}
+        public virtual bool FreeTextSearchable {get; set;}
         public const string FreeTextSearchableFieldId = "81180d30-1185-426f-ae2d-7da7741399a1";
         public const string FreeTextSearchableFieldName = "Free Text Searchable";
 
@@ -945,7 +1992,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 63cb4f24-a2d2-4082-9821-8f350a781e48</para>
         /// </summary>
         [SitecoreField("Is Required")]
-        public bool IsRequired {get; set;}
+        public virtual bool IsRequired {get; set;}
         public const string IsRequiredFieldId = "63cb4f24-a2d2-4082-9821-8f350a781e48";
         public const string IsRequiredFieldName = "Is Required";
 
@@ -955,7 +2002,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 09e76fed-d919-4277-b6bf-748628dfd8ed</para>
         /// </summary>
         [SitecoreField("Managed by External Commerce System")]
-        public bool ManagedByExternalCommerceSystem {get; set;}
+        public virtual bool ManagedByExternalCommerceSystem {get; set;}
         public const string ManagedByExternalCommerceSystemFieldId = "09e76fed-d919-4277-b6bf-748628dfd8ed";
         public const string ManagedByExternalCommerceSystemFieldName = "Managed by External Commerce System";
 
@@ -965,9 +2012,60 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7ee38888-5f13-4cb1-bad0-09f5b7759856</para>
         /// </summary>
         [SitecoreField("Specification Searchable")]
-        public bool SpecificationSearchable {get; set;}
+        public virtual bool SpecificationSearchable {get; set;}
         public const string SpecificationSearchableFieldId = "7ee38888-5f13-4cb1-bad0-09f5b7759856";
         public const string SpecificationSearchableFieldName = "Specification Searchable";
+
+    }
+
+
+    /// <summary>
+    /// ICommerceIndexingSettingsModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Settings/Commerce Indexing Settings</para>
+    /// <para>ID: c8206dfc-92cd-4bee-afa3-3c86f340665a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c8206dfc-92cd-4bee-afa3-3c86f340665a")]
+    public partial interface ICommerceIndexingSettingsModel: IGlassBase
+    {
+
+        /// <summary>
+        /// The ExcludeDuplicateSearchResults field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: caffd21c-01dc-4d67-9426-752f5cca21c4</para>
+        /// </summary>
+        [SitecoreField("ExcludeDuplicateSearchResults")]
+        bool ExcludeDuplicateSearchResults {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// CommerceIndexingSettingsModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Settings/Commerce Indexing Settings</para>
+    /// <para>ID: c8206dfc-92cd-4bee-afa3-3c86f340665a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c8206dfc-92cd-4bee-afa3-3c86f340665a")]
+    public partial class CommerceIndexingSettingsModel: GlassBase, ICommerceIndexingSettingsModel
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/Commerce/Settings/Commerce Indexing Settings
+        /// </summary>
+        public const string TemplateId = "c8206dfc-92cd-4bee-afa3-3c86f340665a";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce Indexing Settings
+        /// </summary>
+        public const string TemplateName = "Commerce Indexing Settings";
+
+        /// <summary>
+        /// The ExcludeDuplicateSearchResults field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: caffd21c-01dc-4d67-9426-752f5cca21c4</para>
+        /// </summary>
+        [SitecoreField("ExcludeDuplicateSearchResults")]
+        public virtual bool ExcludeDuplicateSearchResults {get; set;}
+        public const string ExcludeDuplicateSearchResultsFieldId = "caffd21c-01dc-4d67-9426-752f5cca21c4";
+        public const string ExcludeDuplicateSearchResultsFieldName = "ExcludeDuplicateSearchResults";
 
     }
 
@@ -997,6 +2095,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "4288e630-621f-4107-9b1f-413d446acf75";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Inventory/Commerce Inventory System
+        /// </summary>
+        public const string TemplateName = "Commerce Inventory System";
+
     }
 
 
@@ -1025,6 +2128,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "ac480a37-481d-4bb3-aec5-d35fb363835f";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Commerce Item
+        /// </summary>
+        public const string TemplateName = "Commerce Item";
+
     }
 
 
@@ -1038,7 +2146,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The CategoryDatasource field.
         /// <para>Field Type: Datasource</para>
         /// <para>Field ID: 2882072b-e310-406b-8dd9-b22c9ea4a0f3</para>
         /// </summary>
@@ -1062,12 +2170,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "e55834fb-7c93-44a2-87c0-62beba282ced";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Navigation Item
+        /// </summary>
+        public const string TemplateName = "Commerce Navigation Item";
+
+        /// <summary>
         /// The CategoryDatasource field.
         /// <para>Field Type: Datasource</para>
         /// <para>Field ID: 2882072b-e310-406b-8dd9-b22c9ea4a0f3</para>
         /// </summary>
         [SitecoreField("CategoryDatasource")]
-        public object /* UNKNOWN TYPE: Datasource */ CategoryDatasource {get; set;}
+        public virtual object /* UNKNOWN TYPE: Datasource */ CategoryDatasource {get; set;}
         public const string CategoryDatasourceFieldId = "2882072b-e310-406b-8dd9-b22c9ea4a0f3";
         public const string CategoryDatasourceFieldName = "CategoryDatasource";
 
@@ -1084,15 +2197,15 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
         string AreaServed {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Brand field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
@@ -1100,15 +2213,15 @@ namespace Wooli.Foundation.Connect.Models
         string Brand {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
         string Color {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
@@ -1116,31 +2229,31 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
         string DimensionsUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
         string DisambiguatingDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
         bool DisplayInProductList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
@@ -1148,23 +2261,23 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
         bool DisplayOnSite {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        string Height {get; set;}
+        float Height {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISBN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
@@ -1172,7 +2285,7 @@ namespace Wooli.Foundation.Connect.Models
         string ISBN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISSN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
@@ -1180,31 +2293,39 @@ namespace Wooli.Foundation.Connect.Models
         string ISSN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
         IEnumerable<Guid> Images {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        IEnumerable<Guid> InstallationProduct {get; set;}
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        long ItemsPerPage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LEICode field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
@@ -1212,15 +2333,15 @@ namespace Wooli.Foundation.Connect.Models
         string LEICode {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        string Length {get; set;}
+        float Length {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Manufacturer field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
@@ -1228,7 +2349,7 @@ namespace Wooli.Foundation.Connect.Models
         string Manufacturer {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
@@ -1236,7 +2357,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCatalogList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
@@ -1244,7 +2365,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCatalogList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
@@ -1252,7 +2373,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
@@ -1260,15 +2381,15 @@ namespace Wooli.Foundation.Connect.Models
         string ProductId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        IEnumerable<Guid> RelatedProduct {get; set;}
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Runtime Search Facets field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
@@ -1276,7 +2397,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RuntimeSearchFacets {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SKU field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
@@ -1284,7 +2405,7 @@ namespace Wooli.Foundation.Connect.Models
         string SKU {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
@@ -1292,31 +2413,31 @@ namespace Wooli.Foundation.Connect.Models
         string SitecoreId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
         string Size {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        string SizeOnDisk {get; set;}
+        float SizeOnDisk {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
         string SizeOnDiskUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Sort Fields field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
@@ -1324,23 +2445,23 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> SortFields {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
         string Style {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// The Tags field.
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
         string Tags {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TaxID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
@@ -1348,15 +2469,15 @@ namespace Wooli.Foundation.Connect.Models
         string TaxID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        IEnumerable<Guid> TrainingProduct {get; set;}
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TypeOfGood field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
@@ -1364,7 +2485,7 @@ namespace Wooli.Foundation.Connect.Models
         string TypeOfGood {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The VariationProperties field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
@@ -1372,39 +2493,39 @@ namespace Wooli.Foundation.Connect.Models
         string VariationProperties {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        IEnumerable<Guid> WarrantyProduct {get; set;}
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        string Weight {get; set;}
+        float Weight {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
         string WeightUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        string Width {get; set;}
+        float Width {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin12 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
@@ -1412,7 +2533,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin12 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin13 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
@@ -1420,7 +2541,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin13 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin8 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
@@ -1428,7 +2549,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin8 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The mbm field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
@@ -1452,13 +2573,18 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "225f8638-2611-4841-9b89-19a5440a1da1";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Product
+        /// </summary>
+        public const string TemplateName = "Commerce Product";
+
+        /// <summary>
         /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
-        public string AreaServed {get; set;}
-        public const string AreaServedFieldId = "34a04f75-1a2f-bec3-3e85-8919a93db149";
+        public virtual string AreaServed {get; set;}
+        public const string AreaServedFieldId = "51b2a635-a407-8ae0-d95a-3350dac257a7";
         public const string AreaServedFieldName = "AreaServed";
 
         /// <summary>
@@ -1467,18 +2593,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
         [SitecoreField("Brand")]
-        public string Brand {get; set;}
+        public virtual string Brand {get; set;}
         public const string BrandFieldId = "91c94ffd-986d-fd65-72fe-27c348874999";
         public const string BrandFieldName = "Brand";
 
         /// <summary>
         /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
-        public string Color {get; set;}
-        public const string ColorFieldId = "18c2687c-6421-5b7e-7009-12b058695a0f";
+        public virtual string Color {get; set;}
+        public const string ColorFieldId = "4edc4293-0bb6-a995-8014-bf1678a30054";
         public const string ColorFieldName = "Color";
 
         /// <summary>
@@ -1487,38 +2613,38 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "0758db64-0746-2bbb-241b-2abd830a33c6";
         public const string DescriptionFieldName = "Description";
 
         /// <summary>
         /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
-        public string DimensionsUnitOfMeasure {get; set;}
-        public const string DimensionsUnitOfMeasureFieldId = "93993d4f-367b-41be-44de-4fd08781ef23";
+        public virtual string DimensionsUnitOfMeasure {get; set;}
+        public const string DimensionsUnitOfMeasureFieldId = "0220347b-dc95-2645-0b29-25ab118480e9";
         public const string DimensionsUnitOfMeasureFieldName = "DimensionsUnitOfMeasure";
 
         /// <summary>
         /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
-        public string DisambiguatingDescription {get; set;}
-        public const string DisambiguatingDescriptionFieldId = "0ce2f07d-7057-f418-3857-1c05f2be205b";
+        public virtual string DisambiguatingDescription {get; set;}
+        public const string DisambiguatingDescriptionFieldId = "ad35b098-a3e2-a7f6-9bd4-56028f63bff6";
         public const string DisambiguatingDescriptionFieldName = "DisambiguatingDescription";
 
         /// <summary>
         /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
-        public bool DisplayInProductList {get; set;}
-        public const string DisplayInProductListFieldId = "615782bd-2206-34a4-f4f4-c03d855a1c23";
+        public virtual bool DisplayInProductList {get; set;}
+        public const string DisplayInProductListFieldId = "12e7727e-741f-ae2d-7f59-b39f7234f53c";
         public const string DisplayInProductListFieldName = "DisplayInProductList";
 
         /// <summary>
@@ -1527,28 +2653,28 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "4faf0196-c1bb-8764-f658-ee6ec2e91a51";
         public const string DisplayNameFieldName = "DisplayName";
 
         /// <summary>
         /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
-        public bool DisplayOnSite {get; set;}
-        public const string DisplayOnSiteFieldId = "804487cc-37cb-1426-0ed8-1aac29392ff9";
+        public virtual bool DisplayOnSite {get; set;}
+        public const string DisplayOnSiteFieldId = "3dbba730-7800-f912-b345-3937f7feb0f3";
         public const string DisplayOnSiteFieldName = "DisplayOnSite";
 
         /// <summary>
         /// The Height field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        public string Height {get; set;}
-        public const string HeightFieldId = "abce7957-b4a9-da52-ee90-4eecc1b76626";
+        public virtual float Height {get; set;}
+        public const string HeightFieldId = "8c73f916-a727-463d-bb56-6b4496b8c494";
         public const string HeightFieldName = "Height";
 
         /// <summary>
@@ -1557,7 +2683,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
         [SitecoreField("ISBN")]
-        public string ISBN {get; set;}
+        public virtual string ISBN {get; set;}
         public const string ISBNFieldId = "ec3578e4-eaf0-07e5-536a-92de2a2a3802";
         public const string ISBNFieldName = "ISBN";
 
@@ -1567,29 +2693,39 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
         [SitecoreField("ISSN")]
-        public string ISSN {get; set;}
+        public virtual string ISSN {get; set;}
         public const string ISSNFieldId = "441ed7b5-6784-e325-d426-ea06a3d6a249";
         public const string ISSNFieldName = "ISSN";
 
         /// <summary>
         /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
-        public IEnumerable<Guid> Images {get; set;}
-        public const string ImagesFieldId = "0994454d-f497-4e08-9fda-279c07473f57";
+        public virtual IEnumerable<Guid> Images {get; set;}
+        public const string ImagesFieldId = "32c66add-862f-4590-9e27-5cf74e8ecdd4";
         public const string ImagesFieldName = "Images";
 
         /// <summary>
-        /// The InstallationProduct field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        public IEnumerable<Guid> InstallationProduct {get; set;}
-        public const string InstallationProductFieldId = "20d54d2f-4ba7-486b-9e62-b8e2147c3b53";
-        public const string InstallationProductFieldName = "InstallationProduct";
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+        public const string InstallationSellableItemToSellableItemFieldId = "1c796e6b-a31c-422b-9b68-7e0a9b4c9c56";
+        public const string InstallationSellableItemToSellableItemFieldName = "InstallationSellableItemToSellableItem";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "a39c3a8b-e06c-ad06-4b25-42760c00654e";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
 
         /// <summary>
         /// The Items Per Page field.
@@ -1597,7 +2733,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        public object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        public virtual long ItemsPerPage {get; set;}
         public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
         public const string ItemsPerPageFieldName = "Items Per Page";
 
@@ -1607,18 +2743,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
         [SitecoreField("LEICode")]
-        public string LEICode {get; set;}
+        public virtual string LEICode {get; set;}
         public const string LEICodeFieldId = "f0c245a4-1ce9-2620-910c-16ba93a90c15";
         public const string LEICodeFieldName = "LEICode";
 
         /// <summary>
         /// The Length field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        public string Length {get; set;}
-        public const string LengthFieldId = "de29dd83-9d7c-ce01-3da3-a51797ac3029";
+        public virtual float Length {get; set;}
+        public const string LengthFieldId = "f79e6d2d-d728-0be1-ed5f-70826d3604c1";
         public const string LengthFieldName = "Length";
 
         /// <summary>
@@ -1627,7 +2763,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
         [SitecoreField("Manufacturer")]
-        public string Manufacturer {get; set;}
+        public virtual string Manufacturer {get; set;}
         public const string ManufacturerFieldId = "65ef80be-8e5e-a767-5097-2e2000fd8054";
         public const string ManufacturerFieldName = "Manufacturer";
 
@@ -1637,7 +2773,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "01d789fd-74e0-117e-2eb4-6612a1642643";
         public const string NameFieldName = "Name";
 
@@ -1647,7 +2783,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
         [SitecoreField("ParentCatalogList")]
-        public string ParentCatalogList {get; set;}
+        public virtual string ParentCatalogList {get; set;}
         public const string ParentCatalogListFieldId = "a7c26e68-f587-b3a5-a48d-6c9b08752472";
         public const string ParentCatalogListFieldName = "ParentCatalogList";
 
@@ -1657,7 +2793,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
         [SitecoreField("ParentCategoryList")]
-        public string ParentCategoryList {get; set;}
+        public virtual string ParentCategoryList {get; set;}
         public const string ParentCategoryListFieldId = "f4b64d68-f727-7a2d-f1e2-628e5704aa18";
         public const string ParentCategoryListFieldName = "ParentCategoryList";
 
@@ -1667,19 +2803,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
         [SitecoreField("ProductId")]
-        public string ProductId {get; set;}
+        public virtual string ProductId {get; set;}
         public const string ProductIdFieldId = "b9ad0613-0584-6c55-d180-1c7d0215d9e7";
         public const string ProductIdFieldName = "ProductId";
 
         /// <summary>
-        /// The RelatedProduct field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        public IEnumerable<Guid> RelatedProduct {get; set;}
-        public const string RelatedProductFieldId = "3d81a95e-089e-47bc-b81f-9ffb01cafab9";
-        public const string RelatedProductFieldName = "RelatedProduct";
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+        public const string RelatedSellableItemToSellableItemFieldId = "e94356c0-50cf-4fc7-b403-49eed5d4ffc1";
+        public const string RelatedSellableItemToSellableItemFieldName = "RelatedSellableItemToSellableItem";
 
         /// <summary>
         /// The Runtime Search Facets field.
@@ -1687,7 +2823,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
         [SitecoreField("Runtime Search Facets")]
-        public IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
         public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
         public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
 
@@ -1697,7 +2833,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
         [SitecoreField("SKU")]
-        public string SKU {get; set;}
+        public virtual string SKU {get; set;}
         public const string SKUFieldId = "c717dd15-78a2-f0b1-f943-24c55760b57b";
         public const string SKUFieldName = "SKU";
 
@@ -1707,38 +2843,38 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "f41b1b99-0107-dd43-f234-adae63d913f3";
         public const string SitecoreIdFieldName = "SitecoreId";
 
         /// <summary>
         /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
-        public string Size {get; set;}
-        public const string SizeFieldId = "0bd653f8-06d7-b42e-5c4c-dede6fb46e87";
+        public virtual string Size {get; set;}
+        public const string SizeFieldId = "4ac9c17f-7481-3296-909e-e2b763ef5496";
         public const string SizeFieldName = "Size";
 
         /// <summary>
         /// The SizeOnDisk field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        public string SizeOnDisk {get; set;}
-        public const string SizeOnDiskFieldId = "49799db4-fdb5-3725-d068-7d4a24538184";
+        public virtual float SizeOnDisk {get; set;}
+        public const string SizeOnDiskFieldId = "f5bcb9c4-079e-e969-1196-dd450dc1f35d";
         public const string SizeOnDiskFieldName = "SizeOnDisk";
 
         /// <summary>
         /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
-        public string SizeOnDiskUnitOfMeasure {get; set;}
-        public const string SizeOnDiskUnitOfMeasureFieldId = "454c4392-624f-875c-940c-9dbd03efc6d7";
+        public virtual string SizeOnDiskUnitOfMeasure {get; set;}
+        public const string SizeOnDiskUnitOfMeasureFieldId = "044436e3-3d78-6c11-eb67-ea2b50690cb8";
         public const string SizeOnDiskUnitOfMeasureFieldName = "SizeOnDiskUnitOfMeasure";
 
         /// <summary>
@@ -1747,27 +2883,27 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
-        public IEnumerable<Guid> SortFields {get; set;}
+        public virtual IEnumerable<Guid> SortFields {get; set;}
         public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
         public const string SortFieldsFieldName = "Sort Fields";
 
         /// <summary>
         /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
-        public string Style {get; set;}
-        public const string StyleFieldId = "32d0f413-d17d-1aa2-a325-e7761de7a293";
+        public virtual string Style {get; set;}
+        public const string StyleFieldId = "4e367298-f552-ad36-58b9-109231349772";
         public const string StyleFieldName = "Style";
 
         /// <summary>
         /// The Tags field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
-        public string Tags {get; set;}
+        public virtual string Tags {get; set;}
         public const string TagsFieldId = "8d4aaea6-6658-7905-192d-c8c1b65ef353";
         public const string TagsFieldName = "Tags";
 
@@ -1777,19 +2913,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
         [SitecoreField("TaxID")]
-        public string TaxID {get; set;}
+        public virtual string TaxID {get; set;}
         public const string TaxIDFieldId = "497e7361-e277-22a4-7116-7ed6fd2a0165";
         public const string TaxIDFieldName = "TaxID";
 
         /// <summary>
-        /// The TrainingProduct field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        public IEnumerable<Guid> TrainingProduct {get; set;}
-        public const string TrainingProductFieldId = "277486dd-0f1e-4060-a365-a4d6f7bbc165";
-        public const string TrainingProductFieldName = "TrainingProduct";
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+        public const string TrainingSellableItemToSellableItemFieldId = "d263e02e-62cb-4a44-a775-8ecc45f633ae";
+        public const string TrainingSellableItemToSellableItemFieldName = "TrainingSellableItemToSellableItem";
 
         /// <summary>
         /// The TypeOfGood field.
@@ -1797,7 +2933,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
         [SitecoreField("TypeOfGood")]
-        public string TypeOfGood {get; set;}
+        public virtual string TypeOfGood {get; set;}
         public const string TypeOfGoodFieldId = "74960d25-406b-e2fe-b935-839f847f2160";
         public const string TypeOfGoodFieldName = "TypeOfGood";
 
@@ -1807,48 +2943,48 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
         [SitecoreField("VariationProperties")]
-        public string VariationProperties {get; set;}
+        public virtual string VariationProperties {get; set;}
         public const string VariationPropertiesFieldId = "0185d335-4545-edd6-76a8-460db418966a";
         public const string VariationPropertiesFieldName = "VariationProperties";
 
         /// <summary>
-        /// The WarrantyProduct field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        public IEnumerable<Guid> WarrantyProduct {get; set;}
-        public const string WarrantyProductFieldId = "05e7dca5-cf02-4fde-997a-1c461310e0eb";
-        public const string WarrantyProductFieldName = "WarrantyProduct";
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+        public const string WarrantySellableItemToSellableItemFieldId = "b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8";
+        public const string WarrantySellableItemToSellableItemFieldName = "WarrantySellableItemToSellableItem";
 
         /// <summary>
         /// The Weight field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        public string Weight {get; set;}
-        public const string WeightFieldId = "24f62de6-bfc8-84dc-4df9-6748a2e506b1";
+        public virtual float Weight {get; set;}
+        public const string WeightFieldId = "69500c30-0bb8-9de5-5993-93e520dffbbe";
         public const string WeightFieldName = "Weight";
 
         /// <summary>
         /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
-        public string WeightUnitOfMeasure {get; set;}
-        public const string WeightUnitOfMeasureFieldId = "6de02d9d-8010-64e1-7c7e-49463022468a";
+        public virtual string WeightUnitOfMeasure {get; set;}
+        public const string WeightUnitOfMeasureFieldId = "ba62e090-8d9c-b6f1-3a31-b2aae7257d57";
         public const string WeightUnitOfMeasureFieldName = "WeightUnitOfMeasure";
 
         /// <summary>
         /// The Width field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        public string Width {get; set;}
-        public const string WidthFieldId = "d9e49d64-4870-c4c0-4dff-78e86d1db3e1";
+        public virtual float Width {get; set;}
+        public const string WidthFieldId = "3af28db3-a880-fdb9-0774-707d8df3ea05";
         public const string WidthFieldName = "Width";
 
         /// <summary>
@@ -1857,7 +2993,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
         [SitecoreField("gtin12")]
-        public string Gtin12 {get; set;}
+        public virtual string Gtin12 {get; set;}
         public const string Gtin12FieldId = "834b5692-725c-1804-2e3e-6c990c5389a7";
         public const string Gtin12FieldName = "gtin12";
 
@@ -1867,7 +3003,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
         [SitecoreField("gtin13")]
-        public string Gtin13 {get; set;}
+        public virtual string Gtin13 {get; set;}
         public const string Gtin13FieldId = "ec986263-4af7-a347-b55e-47b4e76b1579";
         public const string Gtin13FieldName = "gtin13";
 
@@ -1877,7 +3013,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
         [SitecoreField("gtin8")]
-        public string Gtin8 {get; set;}
+        public virtual string Gtin8 {get; set;}
         public const string Gtin8FieldId = "f6c26bd2-6746-ee58-7cd8-43f5602c9ab5";
         public const string Gtin8FieldName = "gtin8";
 
@@ -1887,7 +3023,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
         [SitecoreField("mbm")]
-        public string Mbm {get; set;}
+        public virtual string Mbm {get; set;}
         public const string MbmFieldId = "7c0ec773-db26-76b0-eb1f-9fc36b8519fc";
         public const string MbmFieldName = "mbm";
 
@@ -1904,15 +3040,15 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
         string AreaServed {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Brand field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
@@ -1920,15 +3056,15 @@ namespace Wooli.Foundation.Connect.Models
         string Brand {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
         string Color {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
@@ -1936,31 +3072,31 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
         string DimensionsUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
         string DisambiguatingDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
         bool DisplayInProductList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
@@ -1968,23 +3104,23 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
         bool DisplayOnSite {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        string Height {get; set;}
+        float Height {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISBN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
@@ -1992,7 +3128,7 @@ namespace Wooli.Foundation.Connect.Models
         string ISBN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISSN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
@@ -2000,31 +3136,39 @@ namespace Wooli.Foundation.Connect.Models
         string ISSN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
         IEnumerable<Guid> Images {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        IEnumerable<Guid> InstallationProduct {get; set;}
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        long ItemsPerPage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LEICode field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
@@ -2032,15 +3176,15 @@ namespace Wooli.Foundation.Connect.Models
         string LEICode {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        string Length {get; set;}
+        float Length {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Manufacturer field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
@@ -2048,7 +3192,7 @@ namespace Wooli.Foundation.Connect.Models
         string Manufacturer {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
@@ -2056,7 +3200,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCatalogList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
@@ -2064,7 +3208,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCatalogList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
@@ -2072,7 +3216,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
@@ -2080,15 +3224,15 @@ namespace Wooli.Foundation.Connect.Models
         string ProductId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        IEnumerable<Guid> RelatedProduct {get; set;}
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Runtime Search Facets field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
@@ -2096,7 +3240,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RuntimeSearchFacets {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SKU field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
@@ -2104,7 +3248,7 @@ namespace Wooli.Foundation.Connect.Models
         string SKU {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
@@ -2112,31 +3256,31 @@ namespace Wooli.Foundation.Connect.Models
         string SitecoreId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
         string Size {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        string SizeOnDisk {get; set;}
+        float SizeOnDisk {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
         string SizeOnDiskUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Sort Fields field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
@@ -2144,23 +3288,23 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> SortFields {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
         string Style {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// The Tags field.
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
         string Tags {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TaxID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
@@ -2168,15 +3312,15 @@ namespace Wooli.Foundation.Connect.Models
         string TaxID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        IEnumerable<Guid> TrainingProduct {get; set;}
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TypeOfGood field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
@@ -2184,7 +3328,7 @@ namespace Wooli.Foundation.Connect.Models
         string TypeOfGood {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The VariationProperties field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
@@ -2192,39 +3336,39 @@ namespace Wooli.Foundation.Connect.Models
         string VariationProperties {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        IEnumerable<Guid> WarrantyProduct {get; set;}
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        string Weight {get; set;}
+        float Weight {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
         string WeightUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        string Width {get; set;}
+        float Width {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin12 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
@@ -2232,7 +3376,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin12 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin13 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
@@ -2240,7 +3384,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin13 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin8 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
@@ -2248,7 +3392,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin8 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The mbm field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
@@ -2272,13 +3416,18 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "c92e6cd7-7f14-46e7-bbf5-29ce31262ef4";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/Commerce Product Variant
+        /// </summary>
+        public const string TemplateName = "Commerce Product Variant";
+
+        /// <summary>
         /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
-        public string AreaServed {get; set;}
-        public const string AreaServedFieldId = "34a04f75-1a2f-bec3-3e85-8919a93db149";
+        public virtual string AreaServed {get; set;}
+        public const string AreaServedFieldId = "51b2a635-a407-8ae0-d95a-3350dac257a7";
         public const string AreaServedFieldName = "AreaServed";
 
         /// <summary>
@@ -2287,18 +3436,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
         [SitecoreField("Brand")]
-        public string Brand {get; set;}
+        public virtual string Brand {get; set;}
         public const string BrandFieldId = "91c94ffd-986d-fd65-72fe-27c348874999";
         public const string BrandFieldName = "Brand";
 
         /// <summary>
         /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
-        public string Color {get; set;}
-        public const string ColorFieldId = "18c2687c-6421-5b7e-7009-12b058695a0f";
+        public virtual string Color {get; set;}
+        public const string ColorFieldId = "4edc4293-0bb6-a995-8014-bf1678a30054";
         public const string ColorFieldName = "Color";
 
         /// <summary>
@@ -2307,38 +3456,38 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "0758db64-0746-2bbb-241b-2abd830a33c6";
         public const string DescriptionFieldName = "Description";
 
         /// <summary>
         /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
-        public string DimensionsUnitOfMeasure {get; set;}
-        public const string DimensionsUnitOfMeasureFieldId = "93993d4f-367b-41be-44de-4fd08781ef23";
+        public virtual string DimensionsUnitOfMeasure {get; set;}
+        public const string DimensionsUnitOfMeasureFieldId = "0220347b-dc95-2645-0b29-25ab118480e9";
         public const string DimensionsUnitOfMeasureFieldName = "DimensionsUnitOfMeasure";
 
         /// <summary>
         /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
-        public string DisambiguatingDescription {get; set;}
-        public const string DisambiguatingDescriptionFieldId = "0ce2f07d-7057-f418-3857-1c05f2be205b";
+        public virtual string DisambiguatingDescription {get; set;}
+        public const string DisambiguatingDescriptionFieldId = "ad35b098-a3e2-a7f6-9bd4-56028f63bff6";
         public const string DisambiguatingDescriptionFieldName = "DisambiguatingDescription";
 
         /// <summary>
         /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
-        public bool DisplayInProductList {get; set;}
-        public const string DisplayInProductListFieldId = "615782bd-2206-34a4-f4f4-c03d855a1c23";
+        public virtual bool DisplayInProductList {get; set;}
+        public const string DisplayInProductListFieldId = "12e7727e-741f-ae2d-7f59-b39f7234f53c";
         public const string DisplayInProductListFieldName = "DisplayInProductList";
 
         /// <summary>
@@ -2347,28 +3496,28 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "4faf0196-c1bb-8764-f658-ee6ec2e91a51";
         public const string DisplayNameFieldName = "DisplayName";
 
         /// <summary>
         /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
-        public bool DisplayOnSite {get; set;}
-        public const string DisplayOnSiteFieldId = "804487cc-37cb-1426-0ed8-1aac29392ff9";
+        public virtual bool DisplayOnSite {get; set;}
+        public const string DisplayOnSiteFieldId = "3dbba730-7800-f912-b345-3937f7feb0f3";
         public const string DisplayOnSiteFieldName = "DisplayOnSite";
 
         /// <summary>
         /// The Height field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        public string Height {get; set;}
-        public const string HeightFieldId = "abce7957-b4a9-da52-ee90-4eecc1b76626";
+        public virtual float Height {get; set;}
+        public const string HeightFieldId = "8c73f916-a727-463d-bb56-6b4496b8c494";
         public const string HeightFieldName = "Height";
 
         /// <summary>
@@ -2377,7 +3526,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
         [SitecoreField("ISBN")]
-        public string ISBN {get; set;}
+        public virtual string ISBN {get; set;}
         public const string ISBNFieldId = "ec3578e4-eaf0-07e5-536a-92de2a2a3802";
         public const string ISBNFieldName = "ISBN";
 
@@ -2387,29 +3536,39 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
         [SitecoreField("ISSN")]
-        public string ISSN {get; set;}
+        public virtual string ISSN {get; set;}
         public const string ISSNFieldId = "441ed7b5-6784-e325-d426-ea06a3d6a249";
         public const string ISSNFieldName = "ISSN";
 
         /// <summary>
         /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
-        public IEnumerable<Guid> Images {get; set;}
-        public const string ImagesFieldId = "0994454d-f497-4e08-9fda-279c07473f57";
+        public virtual IEnumerable<Guid> Images {get; set;}
+        public const string ImagesFieldId = "32c66add-862f-4590-9e27-5cf74e8ecdd4";
         public const string ImagesFieldName = "Images";
 
         /// <summary>
-        /// The InstallationProduct field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        public IEnumerable<Guid> InstallationProduct {get; set;}
-        public const string InstallationProductFieldId = "20d54d2f-4ba7-486b-9e62-b8e2147c3b53";
-        public const string InstallationProductFieldName = "InstallationProduct";
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+        public const string InstallationSellableItemToSellableItemFieldId = "1c796e6b-a31c-422b-9b68-7e0a9b4c9c56";
+        public const string InstallationSellableItemToSellableItemFieldName = "InstallationSellableItemToSellableItem";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "a39c3a8b-e06c-ad06-4b25-42760c00654e";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
 
         /// <summary>
         /// The Items Per Page field.
@@ -2417,7 +3576,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        public object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        public virtual long ItemsPerPage {get; set;}
         public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
         public const string ItemsPerPageFieldName = "Items Per Page";
 
@@ -2427,18 +3586,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
         [SitecoreField("LEICode")]
-        public string LEICode {get; set;}
+        public virtual string LEICode {get; set;}
         public const string LEICodeFieldId = "f0c245a4-1ce9-2620-910c-16ba93a90c15";
         public const string LEICodeFieldName = "LEICode";
 
         /// <summary>
         /// The Length field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        public string Length {get; set;}
-        public const string LengthFieldId = "de29dd83-9d7c-ce01-3da3-a51797ac3029";
+        public virtual float Length {get; set;}
+        public const string LengthFieldId = "f79e6d2d-d728-0be1-ed5f-70826d3604c1";
         public const string LengthFieldName = "Length";
 
         /// <summary>
@@ -2447,7 +3606,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
         [SitecoreField("Manufacturer")]
-        public string Manufacturer {get; set;}
+        public virtual string Manufacturer {get; set;}
         public const string ManufacturerFieldId = "65ef80be-8e5e-a767-5097-2e2000fd8054";
         public const string ManufacturerFieldName = "Manufacturer";
 
@@ -2457,7 +3616,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "01d789fd-74e0-117e-2eb4-6612a1642643";
         public const string NameFieldName = "Name";
 
@@ -2467,7 +3626,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
         [SitecoreField("ParentCatalogList")]
-        public string ParentCatalogList {get; set;}
+        public virtual string ParentCatalogList {get; set;}
         public const string ParentCatalogListFieldId = "a7c26e68-f587-b3a5-a48d-6c9b08752472";
         public const string ParentCatalogListFieldName = "ParentCatalogList";
 
@@ -2477,7 +3636,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
         [SitecoreField("ParentCategoryList")]
-        public string ParentCategoryList {get; set;}
+        public virtual string ParentCategoryList {get; set;}
         public const string ParentCategoryListFieldId = "f4b64d68-f727-7a2d-f1e2-628e5704aa18";
         public const string ParentCategoryListFieldName = "ParentCategoryList";
 
@@ -2487,19 +3646,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
         [SitecoreField("ProductId")]
-        public string ProductId {get; set;}
+        public virtual string ProductId {get; set;}
         public const string ProductIdFieldId = "b9ad0613-0584-6c55-d180-1c7d0215d9e7";
         public const string ProductIdFieldName = "ProductId";
 
         /// <summary>
-        /// The RelatedProduct field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        public IEnumerable<Guid> RelatedProduct {get; set;}
-        public const string RelatedProductFieldId = "3d81a95e-089e-47bc-b81f-9ffb01cafab9";
-        public const string RelatedProductFieldName = "RelatedProduct";
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+        public const string RelatedSellableItemToSellableItemFieldId = "e94356c0-50cf-4fc7-b403-49eed5d4ffc1";
+        public const string RelatedSellableItemToSellableItemFieldName = "RelatedSellableItemToSellableItem";
 
         /// <summary>
         /// The Runtime Search Facets field.
@@ -2507,7 +3666,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
         [SitecoreField("Runtime Search Facets")]
-        public IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
         public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
         public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
 
@@ -2517,7 +3676,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
         [SitecoreField("SKU")]
-        public string SKU {get; set;}
+        public virtual string SKU {get; set;}
         public const string SKUFieldId = "c717dd15-78a2-f0b1-f943-24c55760b57b";
         public const string SKUFieldName = "SKU";
 
@@ -2527,38 +3686,38 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "f41b1b99-0107-dd43-f234-adae63d913f3";
         public const string SitecoreIdFieldName = "SitecoreId";
 
         /// <summary>
         /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
-        public string Size {get; set;}
-        public const string SizeFieldId = "0bd653f8-06d7-b42e-5c4c-dede6fb46e87";
+        public virtual string Size {get; set;}
+        public const string SizeFieldId = "4ac9c17f-7481-3296-909e-e2b763ef5496";
         public const string SizeFieldName = "Size";
 
         /// <summary>
         /// The SizeOnDisk field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        public string SizeOnDisk {get; set;}
-        public const string SizeOnDiskFieldId = "49799db4-fdb5-3725-d068-7d4a24538184";
+        public virtual float SizeOnDisk {get; set;}
+        public const string SizeOnDiskFieldId = "f5bcb9c4-079e-e969-1196-dd450dc1f35d";
         public const string SizeOnDiskFieldName = "SizeOnDisk";
 
         /// <summary>
         /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
-        public string SizeOnDiskUnitOfMeasure {get; set;}
-        public const string SizeOnDiskUnitOfMeasureFieldId = "454c4392-624f-875c-940c-9dbd03efc6d7";
+        public virtual string SizeOnDiskUnitOfMeasure {get; set;}
+        public const string SizeOnDiskUnitOfMeasureFieldId = "044436e3-3d78-6c11-eb67-ea2b50690cb8";
         public const string SizeOnDiskUnitOfMeasureFieldName = "SizeOnDiskUnitOfMeasure";
 
         /// <summary>
@@ -2567,27 +3726,27 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
-        public IEnumerable<Guid> SortFields {get; set;}
+        public virtual IEnumerable<Guid> SortFields {get; set;}
         public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
         public const string SortFieldsFieldName = "Sort Fields";
 
         /// <summary>
         /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
-        public string Style {get; set;}
-        public const string StyleFieldId = "32d0f413-d17d-1aa2-a325-e7761de7a293";
+        public virtual string Style {get; set;}
+        public const string StyleFieldId = "4e367298-f552-ad36-58b9-109231349772";
         public const string StyleFieldName = "Style";
 
         /// <summary>
         /// The Tags field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
-        public string Tags {get; set;}
+        public virtual string Tags {get; set;}
         public const string TagsFieldId = "8d4aaea6-6658-7905-192d-c8c1b65ef353";
         public const string TagsFieldName = "Tags";
 
@@ -2597,19 +3756,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
         [SitecoreField("TaxID")]
-        public string TaxID {get; set;}
+        public virtual string TaxID {get; set;}
         public const string TaxIDFieldId = "497e7361-e277-22a4-7116-7ed6fd2a0165";
         public const string TaxIDFieldName = "TaxID";
 
         /// <summary>
-        /// The TrainingProduct field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        public IEnumerable<Guid> TrainingProduct {get; set;}
-        public const string TrainingProductFieldId = "277486dd-0f1e-4060-a365-a4d6f7bbc165";
-        public const string TrainingProductFieldName = "TrainingProduct";
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+        public const string TrainingSellableItemToSellableItemFieldId = "d263e02e-62cb-4a44-a775-8ecc45f633ae";
+        public const string TrainingSellableItemToSellableItemFieldName = "TrainingSellableItemToSellableItem";
 
         /// <summary>
         /// The TypeOfGood field.
@@ -2617,7 +3776,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
         [SitecoreField("TypeOfGood")]
-        public string TypeOfGood {get; set;}
+        public virtual string TypeOfGood {get; set;}
         public const string TypeOfGoodFieldId = "74960d25-406b-e2fe-b935-839f847f2160";
         public const string TypeOfGoodFieldName = "TypeOfGood";
 
@@ -2627,48 +3786,48 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
         [SitecoreField("VariationProperties")]
-        public string VariationProperties {get; set;}
+        public virtual string VariationProperties {get; set;}
         public const string VariationPropertiesFieldId = "0185d335-4545-edd6-76a8-460db418966a";
         public const string VariationPropertiesFieldName = "VariationProperties";
 
         /// <summary>
-        /// The WarrantyProduct field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        public IEnumerable<Guid> WarrantyProduct {get; set;}
-        public const string WarrantyProductFieldId = "05e7dca5-cf02-4fde-997a-1c461310e0eb";
-        public const string WarrantyProductFieldName = "WarrantyProduct";
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+        public const string WarrantySellableItemToSellableItemFieldId = "b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8";
+        public const string WarrantySellableItemToSellableItemFieldName = "WarrantySellableItemToSellableItem";
 
         /// <summary>
         /// The Weight field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        public string Weight {get; set;}
-        public const string WeightFieldId = "24f62de6-bfc8-84dc-4df9-6748a2e506b1";
+        public virtual float Weight {get; set;}
+        public const string WeightFieldId = "69500c30-0bb8-9de5-5993-93e520dffbbe";
         public const string WeightFieldName = "Weight";
 
         /// <summary>
         /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
-        public string WeightUnitOfMeasure {get; set;}
-        public const string WeightUnitOfMeasureFieldId = "6de02d9d-8010-64e1-7c7e-49463022468a";
+        public virtual string WeightUnitOfMeasure {get; set;}
+        public const string WeightUnitOfMeasureFieldId = "ba62e090-8d9c-b6f1-3a31-b2aae7257d57";
         public const string WeightUnitOfMeasureFieldName = "WeightUnitOfMeasure";
 
         /// <summary>
         /// The Width field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        public string Width {get; set;}
-        public const string WidthFieldId = "d9e49d64-4870-c4c0-4dff-78e86d1db3e1";
+        public virtual float Width {get; set;}
+        public const string WidthFieldId = "3af28db3-a880-fdb9-0774-707d8df3ea05";
         public const string WidthFieldName = "Width";
 
         /// <summary>
@@ -2677,7 +3836,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
         [SitecoreField("gtin12")]
-        public string Gtin12 {get; set;}
+        public virtual string Gtin12 {get; set;}
         public const string Gtin12FieldId = "834b5692-725c-1804-2e3e-6c990c5389a7";
         public const string Gtin12FieldName = "gtin12";
 
@@ -2687,7 +3846,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
         [SitecoreField("gtin13")]
-        public string Gtin13 {get; set;}
+        public virtual string Gtin13 {get; set;}
         public const string Gtin13FieldId = "ec986263-4af7-a347-b55e-47b4e76b1579";
         public const string Gtin13FieldName = "gtin13";
 
@@ -2697,7 +3856,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
         [SitecoreField("gtin8")]
-        public string Gtin8 {get; set;}
+        public virtual string Gtin8 {get; set;}
         public const string Gtin8FieldId = "f6c26bd2-6746-ee58-7cd8-43f5602c9ab5";
         public const string Gtin8FieldName = "gtin8";
 
@@ -2707,7 +3866,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
         [SitecoreField("mbm")]
-        public string Mbm {get; set;}
+        public virtual string Mbm {get; set;}
         public const string MbmFieldId = "7c0ec773-db26-76b0-eb1f-9fc36b8519fc";
         public const string MbmFieldName = "mbm";
 
@@ -2739,6 +3898,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "774e6d37-f59e-432d-bfe5-89a25b50abcb";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce Setting Item
+        /// </summary>
+        public const string TemplateName = "Commerce Setting Item";
+
     }
 
 
@@ -2767,6 +3931,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "fabaa220-6fd2-4138-b307-752f6da5ba30";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce Settings Folder
+        /// </summary>
+        public const string TemplateName = "Commerce Settings Folder";
+
     }
 
 
@@ -2780,7 +3949,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 48a49b5c-6df0-4cab-aae7-e9bc0e380b3f</para>
         /// </summary>
@@ -2804,12 +3973,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "4cf8d7c4-dae3-4d41-84ac-8ee42af19f50";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Settings/Commerce String Setting Item
+        /// </summary>
+        public const string TemplateName = "Commerce String Setting Item";
+
+        /// <summary>
         /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 48a49b5c-6df0-4cab-aae7-e9bc0e380b3f</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "48a49b5c-6df0-4cab-aae7-e9bc0e380b3f";
         public const string ValueFieldName = "Value";
 
@@ -2826,7 +4000,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 4b1331ac-a540-448c-884a-9f6cdc067842</para>
         /// </summary>
@@ -2834,7 +4008,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 290defd0-7b9a-4541-a326-87c44bee5309</para>
         /// </summary>
@@ -2858,12 +4032,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "5dd201a0-5b3d-4e82-8cca-608d5905c3a1";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Commerce Engine Settings/Commerce Term/Commerce Term
+        /// </summary>
+        public const string TemplateName = "Commerce Term";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 4b1331ac-a540-448c-884a-9f6cdc067842</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "4b1331ac-a540-448c-884a-9f6cdc067842";
         public const string DescriptionFieldName = "Description";
 
@@ -2873,7 +4052,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 290defd0-7b9a-4541-a326-87c44bee5309</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "290defd0-7b9a-4541-a326-87c44bee5309";
         public const string ValueFieldName = "Value";
 
@@ -2905,6 +4084,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "aa15bad2-8e72-4999-86ef-2b3f0cd1a425";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Commerce Engine Settings/Commerce Term/Commerce Terms Folder
+        /// </summary>
+        public const string TemplateName = "Commerce Terms Folder";
+
     }
 
 
@@ -2918,15 +4102,15 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        long ItemsPerPage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Runtime Search Facets field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
@@ -2934,7 +4118,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RuntimeSearchFacets {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Sort Fields field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
@@ -2958,12 +4142,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "cb5f3e43-eaf7-4edb-8235-674745d95059";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog/CommerceSearchSettings
+        /// </summary>
+        public const string TemplateName = "CommerceSearchSettings";
+
+        /// <summary>
         /// The Items Per Page field.
         /// <para>Field Type: Commerce Int64 Control</para>
         /// <para>Field ID: 08b14202-d89b-42a5-a7ad-cd1f389ddb07</para>
         /// </summary>
         [SitecoreField("Items Per Page")]
-        public object /* UNKNOWN TYPE: Commerce Int64 Control */ ItemsPerPage {get; set;}
+        public virtual long ItemsPerPage {get; set;}
         public const string ItemsPerPageFieldId = "08b14202-d89b-42a5-a7ad-cd1f389ddb07";
         public const string ItemsPerPageFieldName = "Items Per Page";
 
@@ -2973,7 +4162,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7e48ee19-93fc-4071-a192-470f1259eae0</para>
         /// </summary>
         [SitecoreField("Runtime Search Facets")]
-        public IEnumerable<Guid> RuntimeSearchFacets {get; set;}
+        public virtual IEnumerable<Guid> RuntimeSearchFacets {get; set;}
         public const string RuntimeSearchFacetsFieldId = "7e48ee19-93fc-4071-a192-470f1259eae0";
         public const string RuntimeSearchFacetsFieldName = "Runtime Search Facets";
 
@@ -2983,7 +4172,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 05124b76-fa67-4123-87b9-16e1883e9244</para>
         /// </summary>
         [SitecoreField("Sort Fields")]
-        public IEnumerable<Guid> SortFields {get; set;}
+        public virtual IEnumerable<Guid> SortFields {get; set;}
         public const string SortFieldsFieldId = "05124b76-fa67-4123-87b9-16e1883e9244";
         public const string SortFieldsFieldName = "Sort Fields";
 
@@ -2993,14 +4182,14 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// IConnectCatalogModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCatalog</para>
-    /// <para>ID: a5fa3c0d-2deb-4dfa-9805-0225f8fcd071</para>
+    /// <para>ID: 52c23764-55ae-f760-fe2d-8dad44485bd7</para>
     /// </summary>
-    [SitecoreType(TemplateId="a5fa3c0d-2deb-4dfa-9805-0225f8fcd071")]
+    [SitecoreType(TemplateId="52c23764-55ae-f760-fe2d-8dad44485bd7")]
     public partial interface IConnectCatalogModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: fc2e2d4b-892c-7289-5ae5-eedfbf03fba9</para>
         /// </summary>
@@ -3008,7 +4197,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenSellableItemList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6dd90593-2f79-71c4-57ea-1c7588f3c744</para>
         /// </summary>
@@ -3016,7 +4205,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenSellableItemList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DefaultInventorySetName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc</para>
         /// </summary>
@@ -3024,7 +4213,7 @@ namespace Wooli.Foundation.Connect.Models
         string DefaultInventorySetName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 017f96a6-a1a7-0ea0-7cca-b5815429790f</para>
         /// </summary>
@@ -3032,7 +4221,15 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0e2b7597-e069-73db-c8fd-c82281e5aade</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c79a4081-2ca3-ddd7-27b1-8f50445ac6c4</para>
         /// </summary>
@@ -3040,7 +4237,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The PriceBookName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 9b7f96be-c555-0714-35bf-4b8fd84ca824</para>
         /// </summary>
@@ -3048,7 +4245,7 @@ namespace Wooli.Foundation.Connect.Models
         string PriceBookName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The PromotionBookName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: bec285f9-c23f-3552-f161-897a2ed6385d</para>
         /// </summary>
@@ -3056,7 +4253,7 @@ namespace Wooli.Foundation.Connect.Models
         string PromotionBookName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a4e3d554-971d-9639-8831-bc5bac143980</para>
         /// </summary>
@@ -3069,15 +4266,20 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// ConnectCatalogModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCatalog</para>
-    /// <para>ID: a5fa3c0d-2deb-4dfa-9805-0225f8fcd071</para>
+    /// <para>ID: 52c23764-55ae-f760-fe2d-8dad44485bd7</para>
     /// </summary>
-    [SitecoreType(TemplateId="a5fa3c0d-2deb-4dfa-9805-0225f8fcd071")]
+    [SitecoreType(TemplateId="52c23764-55ae-f760-fe2d-8dad44485bd7")]
     public partial class ConnectCatalogModel: GlassBase, IConnectCatalogModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/ConnectCatalog
         /// </summary>
-        public const string TemplateId = "a5fa3c0d-2deb-4dfa-9805-0225f8fcd071";
+        public const string TemplateId = "52c23764-55ae-f760-fe2d-8dad44485bd7";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/ConnectCatalog
+        /// </summary>
+        public const string TemplateName = "ConnectCatalog";
 
         /// <summary>
         /// The ChildrenCategoryList field.
@@ -3085,7 +4287,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: fc2e2d4b-892c-7289-5ae5-eedfbf03fba9</para>
         /// </summary>
         [SitecoreField("ChildrenCategoryList")]
-        public string ChildrenCategoryList {get; set;}
+        public virtual string ChildrenCategoryList {get; set;}
         public const string ChildrenCategoryListFieldId = "fc2e2d4b-892c-7289-5ae5-eedfbf03fba9";
         public const string ChildrenCategoryListFieldName = "ChildrenCategoryList";
 
@@ -3095,7 +4297,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6dd90593-2f79-71c4-57ea-1c7588f3c744</para>
         /// </summary>
         [SitecoreField("ChildrenSellableItemList")]
-        public string ChildrenSellableItemList {get; set;}
+        public virtual string ChildrenSellableItemList {get; set;}
         public const string ChildrenSellableItemListFieldId = "6dd90593-2f79-71c4-57ea-1c7588f3c744";
         public const string ChildrenSellableItemListFieldName = "ChildrenSellableItemList";
 
@@ -3105,7 +4307,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc</para>
         /// </summary>
         [SitecoreField("DefaultInventorySetName")]
-        public string DefaultInventorySetName {get; set;}
+        public virtual string DefaultInventorySetName {get; set;}
         public const string DefaultInventorySetNameFieldId = "399bd0d9-3ca1-e9d8-cd5b-51fd64c8e8dc";
         public const string DefaultInventorySetNameFieldName = "DefaultInventorySetName";
 
@@ -3115,9 +4317,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 017f96a6-a1a7-0ea0-7cca-b5815429790f</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "017f96a6-a1a7-0ea0-7cca-b5815429790f";
         public const string DisplayNameFieldName = "DisplayName";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0e2b7597-e069-73db-c8fd-c82281e5aade</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "0e2b7597-e069-73db-c8fd-c82281e5aade";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
 
         /// <summary>
         /// The Name field.
@@ -3125,7 +4337,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c79a4081-2ca3-ddd7-27b1-8f50445ac6c4</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "c79a4081-2ca3-ddd7-27b1-8f50445ac6c4";
         public const string NameFieldName = "Name";
 
@@ -3135,7 +4347,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 9b7f96be-c555-0714-35bf-4b8fd84ca824</para>
         /// </summary>
         [SitecoreField("PriceBookName")]
-        public string PriceBookName {get; set;}
+        public virtual string PriceBookName {get; set;}
         public const string PriceBookNameFieldId = "9b7f96be-c555-0714-35bf-4b8fd84ca824";
         public const string PriceBookNameFieldName = "PriceBookName";
 
@@ -3145,7 +4357,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: bec285f9-c23f-3552-f161-897a2ed6385d</para>
         /// </summary>
         [SitecoreField("PromotionBookName")]
-        public string PromotionBookName {get; set;}
+        public virtual string PromotionBookName {get; set;}
         public const string PromotionBookNameFieldId = "bec285f9-c23f-3552-f161-897a2ed6385d";
         public const string PromotionBookNameFieldName = "PromotionBookName";
 
@@ -3155,7 +4367,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a4e3d554-971d-9639-8831-bc5bac143980</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "a4e3d554-971d-9639-8831-bc5bac143980";
         public const string SitecoreIdFieldName = "SitecoreId";
 
@@ -3165,14 +4377,14 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// IConnectCategoryModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCategory</para>
-    /// <para>ID: 974d5b5b-b6e9-45ad-944d-1c2252daf88e</para>
+    /// <para>ID: 1758d817-9f18-8287-bf4c-f3775542fd3b</para>
     /// </summary>
-    [SitecoreType(TemplateId="974d5b5b-b6e9-45ad-944d-1c2252daf88e")]
+    [SitecoreType(TemplateId="1758d817-9f18-8287-bf4c-f3775542fd3b")]
     public partial interface IConnectCategoryModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 380bfbfd-20c3-2b97-c9b0-cfe8db35d65f</para>
         /// </summary>
@@ -3180,7 +4392,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ChildrenSellableItemList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 355d27e4-f53a-356e-3472-20d0f3bd3af9</para>
         /// </summary>
@@ -3188,7 +4400,7 @@ namespace Wooli.Foundation.Connect.Models
         string ChildrenSellableItemList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a121d29c-aad3-8dbd-43ba-714e9bd10421</para>
         /// </summary>
@@ -3196,7 +4408,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 139045ba-30cf-4487-fa47-0d5aea7426bc</para>
         /// </summary>
@@ -3204,7 +4416,7 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ac4289d3-915b-f062-7d77-379b4a46ba66</para>
         /// </summary>
@@ -3212,7 +4424,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCatalogList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 66ccfa57-93e4-8211-b7ce-c2666f167e88</para>
         /// </summary>
@@ -3220,7 +4432,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCatalogList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 46e1891c-387f-49e1-f543-a9e7e837eed0</para>
         /// </summary>
@@ -3228,7 +4440,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d0f601a9-f362-6417-e836-e7190268211c</para>
         /// </summary>
@@ -3241,15 +4453,20 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// ConnectCategoryModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectCategory</para>
-    /// <para>ID: 974d5b5b-b6e9-45ad-944d-1c2252daf88e</para>
+    /// <para>ID: 1758d817-9f18-8287-bf4c-f3775542fd3b</para>
     /// </summary>
-    [SitecoreType(TemplateId="974d5b5b-b6e9-45ad-944d-1c2252daf88e")]
+    [SitecoreType(TemplateId="1758d817-9f18-8287-bf4c-f3775542fd3b")]
     public partial class ConnectCategoryModel: GlassBase, IConnectCategoryModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/ConnectCategory
         /// </summary>
-        public const string TemplateId = "974d5b5b-b6e9-45ad-944d-1c2252daf88e";
+        public const string TemplateId = "1758d817-9f18-8287-bf4c-f3775542fd3b";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/ConnectCategory
+        /// </summary>
+        public const string TemplateName = "ConnectCategory";
 
         /// <summary>
         /// The ChildrenCategoryList field.
@@ -3257,7 +4474,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 380bfbfd-20c3-2b97-c9b0-cfe8db35d65f</para>
         /// </summary>
         [SitecoreField("ChildrenCategoryList")]
-        public string ChildrenCategoryList {get; set;}
+        public virtual string ChildrenCategoryList {get; set;}
         public const string ChildrenCategoryListFieldId = "380bfbfd-20c3-2b97-c9b0-cfe8db35d65f";
         public const string ChildrenCategoryListFieldName = "ChildrenCategoryList";
 
@@ -3267,7 +4484,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 355d27e4-f53a-356e-3472-20d0f3bd3af9</para>
         /// </summary>
         [SitecoreField("ChildrenSellableItemList")]
-        public string ChildrenSellableItemList {get; set;}
+        public virtual string ChildrenSellableItemList {get; set;}
         public const string ChildrenSellableItemListFieldId = "355d27e4-f53a-356e-3472-20d0f3bd3af9";
         public const string ChildrenSellableItemListFieldName = "ChildrenSellableItemList";
 
@@ -3277,7 +4494,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a121d29c-aad3-8dbd-43ba-714e9bd10421</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "a121d29c-aad3-8dbd-43ba-714e9bd10421";
         public const string DescriptionFieldName = "Description";
 
@@ -3287,7 +4504,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 139045ba-30cf-4487-fa47-0d5aea7426bc</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "139045ba-30cf-4487-fa47-0d5aea7426bc";
         public const string DisplayNameFieldName = "DisplayName";
 
@@ -3297,7 +4514,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ac4289d3-915b-f062-7d77-379b4a46ba66</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "ac4289d3-915b-f062-7d77-379b4a46ba66";
         public const string NameFieldName = "Name";
 
@@ -3307,7 +4524,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 66ccfa57-93e4-8211-b7ce-c2666f167e88</para>
         /// </summary>
         [SitecoreField("ParentCatalogList")]
-        public string ParentCatalogList {get; set;}
+        public virtual string ParentCatalogList {get; set;}
         public const string ParentCatalogListFieldId = "66ccfa57-93e4-8211-b7ce-c2666f167e88";
         public const string ParentCatalogListFieldName = "ParentCatalogList";
 
@@ -3317,7 +4534,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 46e1891c-387f-49e1-f543-a9e7e837eed0</para>
         /// </summary>
         [SitecoreField("ParentCategoryList")]
-        public string ParentCategoryList {get; set;}
+        public virtual string ParentCategoryList {get; set;}
         public const string ParentCategoryListFieldId = "46e1891c-387f-49e1-f543-a9e7e837eed0";
         public const string ParentCategoryListFieldName = "ParentCategoryList";
 
@@ -3327,7 +4544,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d0f601a9-f362-6417-e836-e7190268211c</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "d0f601a9-f362-6417-e836-e7190268211c";
         public const string SitecoreIdFieldName = "SitecoreId";
 
@@ -3337,22 +4554,22 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// IConnectSellableItemModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem</para>
-    /// <para>ID: afe11274-7cf0-4067-9b1b-4abf7ed0da10</para>
+    /// <para>ID: ab1c3209-f138-b1b6-e05e-6e12d29257bc</para>
     /// </summary>
-    [SitecoreType(TemplateId="afe11274-7cf0-4067-9b1b-4abf7ed0da10")]
-    public partial interface IConnectSellableItemModel: IIdentifiersModel, IDisplayPropertiesModel, IImagesModel, IItemSpecificationsModel, IInstallationProductModel, IRelatedProductModel, ITrainingProductModel, IWarrantyProductModel, IGlassBase
+    [SitecoreType(TemplateId="ab1c3209-f138-b1b6-e05e-6e12d29257bc")]
+    public partial interface IConnectSellableItemModel: IDisplayPropertiesModel, IImagesModel, IItemSpecificationsModel, IIdentifiersModel, IInstallationSellableItemToSellableItemModel, IRelatedSellableItemToSellableItemModel, ITrainingSellableItemToSellableItemModel, IWarrantySellableItemToSellableItemModel, IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
         string AreaServed {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Brand field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
@@ -3360,15 +4577,15 @@ namespace Wooli.Foundation.Connect.Models
         string Brand {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
         string Color {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
@@ -3376,31 +4593,31 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
         string DimensionsUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
         string DisambiguatingDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
         bool DisplayInProductList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
@@ -3408,23 +4625,23 @@ namespace Wooli.Foundation.Connect.Models
         string DisplayName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
         bool DisplayOnSite {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        string Height {get; set;}
+        float Height {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISBN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
@@ -3432,7 +4649,7 @@ namespace Wooli.Foundation.Connect.Models
         string ISBN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISSN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
@@ -3440,23 +4657,31 @@ namespace Wooli.Foundation.Connect.Models
         string ISSN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
         IEnumerable<Guid> Images {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        IEnumerable<Guid> InstallationProduct {get; set;}
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        string ItemDefinitions {get; set;}
+
+        /// <summary>
+        /// The LEICode field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
@@ -3464,15 +4689,15 @@ namespace Wooli.Foundation.Connect.Models
         string LEICode {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        string Length {get; set;}
+        float Length {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Manufacturer field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
@@ -3480,7 +4705,7 @@ namespace Wooli.Foundation.Connect.Models
         string Manufacturer {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
@@ -3488,7 +4713,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCatalogList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
@@ -3496,7 +4721,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCatalogList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ParentCategoryList field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
@@ -3504,7 +4729,7 @@ namespace Wooli.Foundation.Connect.Models
         string ParentCategoryList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
@@ -3512,15 +4737,15 @@ namespace Wooli.Foundation.Connect.Models
         string ProductId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        IEnumerable<Guid> RelatedProduct {get; set;}
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SKU field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
@@ -3528,7 +4753,7 @@ namespace Wooli.Foundation.Connect.Models
         string SKU {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SitecoreId field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
@@ -3536,47 +4761,47 @@ namespace Wooli.Foundation.Connect.Models
         string SitecoreId {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
         string Size {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        string SizeOnDisk {get; set;}
+        float SizeOnDisk {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
         string SizeOnDiskUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
         string Style {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// The Tags field.
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
         string Tags {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TaxID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
@@ -3584,15 +4809,15 @@ namespace Wooli.Foundation.Connect.Models
         string TaxID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        IEnumerable<Guid> TrainingProduct {get; set;}
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TypeOfGood field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
@@ -3600,7 +4825,7 @@ namespace Wooli.Foundation.Connect.Models
         string TypeOfGood {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The VariationProperties field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
@@ -3608,39 +4833,39 @@ namespace Wooli.Foundation.Connect.Models
         string VariationProperties {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        IEnumerable<Guid> WarrantyProduct {get; set;}
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        string Weight {get; set;}
+        float Weight {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
         string WeightUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        string Width {get; set;}
+        float Width {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin12 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
@@ -3648,7 +4873,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin12 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin13 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
@@ -3656,7 +4881,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin13 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin8 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
@@ -3664,7 +4889,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin8 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The mbm field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
@@ -3677,24 +4902,29 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// ConnectSellableItemModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem</para>
-    /// <para>ID: afe11274-7cf0-4067-9b1b-4abf7ed0da10</para>
+    /// <para>ID: ab1c3209-f138-b1b6-e05e-6e12d29257bc</para>
     /// </summary>
-    [SitecoreType(TemplateId="afe11274-7cf0-4067-9b1b-4abf7ed0da10")]
+    [SitecoreType(TemplateId="ab1c3209-f138-b1b6-e05e-6e12d29257bc")]
     public partial class ConnectSellableItemModel: GlassBase, IConnectSellableItemModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem
         /// </summary>
-        public const string TemplateId = "afe11274-7cf0-4067-9b1b-4abf7ed0da10";
+        public const string TemplateId = "ab1c3209-f138-b1b6-e05e-6e12d29257bc";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem
+        /// </summary>
+        public const string TemplateName = "ConnectSellableItem";
 
         /// <summary>
         /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
-        public string AreaServed {get; set;}
-        public const string AreaServedFieldId = "34a04f75-1a2f-bec3-3e85-8919a93db149";
+        public virtual string AreaServed {get; set;}
+        public const string AreaServedFieldId = "51b2a635-a407-8ae0-d95a-3350dac257a7";
         public const string AreaServedFieldName = "AreaServed";
 
         /// <summary>
@@ -3703,18 +4933,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 91c94ffd-986d-fd65-72fe-27c348874999</para>
         /// </summary>
         [SitecoreField("Brand")]
-        public string Brand {get; set;}
+        public virtual string Brand {get; set;}
         public const string BrandFieldId = "91c94ffd-986d-fd65-72fe-27c348874999";
         public const string BrandFieldName = "Brand";
 
         /// <summary>
         /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
-        public string Color {get; set;}
-        public const string ColorFieldId = "18c2687c-6421-5b7e-7009-12b058695a0f";
+        public virtual string Color {get; set;}
+        public const string ColorFieldId = "4edc4293-0bb6-a995-8014-bf1678a30054";
         public const string ColorFieldName = "Color";
 
         /// <summary>
@@ -3723,38 +4953,38 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0758db64-0746-2bbb-241b-2abd830a33c6</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "0758db64-0746-2bbb-241b-2abd830a33c6";
         public const string DescriptionFieldName = "Description";
 
         /// <summary>
         /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
-        public string DimensionsUnitOfMeasure {get; set;}
-        public const string DimensionsUnitOfMeasureFieldId = "93993d4f-367b-41be-44de-4fd08781ef23";
+        public virtual string DimensionsUnitOfMeasure {get; set;}
+        public const string DimensionsUnitOfMeasureFieldId = "0220347b-dc95-2645-0b29-25ab118480e9";
         public const string DimensionsUnitOfMeasureFieldName = "DimensionsUnitOfMeasure";
 
         /// <summary>
         /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
-        public string DisambiguatingDescription {get; set;}
-        public const string DisambiguatingDescriptionFieldId = "0ce2f07d-7057-f418-3857-1c05f2be205b";
+        public virtual string DisambiguatingDescription {get; set;}
+        public const string DisambiguatingDescriptionFieldId = "ad35b098-a3e2-a7f6-9bd4-56028f63bff6";
         public const string DisambiguatingDescriptionFieldName = "DisambiguatingDescription";
 
         /// <summary>
         /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
-        public bool DisplayInProductList {get; set;}
-        public const string DisplayInProductListFieldId = "615782bd-2206-34a4-f4f4-c03d855a1c23";
+        public virtual bool DisplayInProductList {get; set;}
+        public const string DisplayInProductListFieldId = "12e7727e-741f-ae2d-7f59-b39f7234f53c";
         public const string DisplayInProductListFieldName = "DisplayInProductList";
 
         /// <summary>
@@ -3763,28 +4993,28 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 4faf0196-c1bb-8764-f658-ee6ec2e91a51</para>
         /// </summary>
         [SitecoreField("DisplayName")]
-        public string DisplayName {get; set;}
+        public virtual string DisplayName {get; set;}
         public const string DisplayNameFieldId = "4faf0196-c1bb-8764-f658-ee6ec2e91a51";
         public const string DisplayNameFieldName = "DisplayName";
 
         /// <summary>
         /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
-        public bool DisplayOnSite {get; set;}
-        public const string DisplayOnSiteFieldId = "804487cc-37cb-1426-0ed8-1aac29392ff9";
+        public virtual bool DisplayOnSite {get; set;}
+        public const string DisplayOnSiteFieldId = "3dbba730-7800-f912-b345-3937f7feb0f3";
         public const string DisplayOnSiteFieldName = "DisplayOnSite";
 
         /// <summary>
         /// The Height field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        public string Height {get; set;}
-        public const string HeightFieldId = "abce7957-b4a9-da52-ee90-4eecc1b76626";
+        public virtual float Height {get; set;}
+        public const string HeightFieldId = "8c73f916-a727-463d-bb56-6b4496b8c494";
         public const string HeightFieldName = "Height";
 
         /// <summary>
@@ -3793,7 +5023,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
         [SitecoreField("ISBN")]
-        public string ISBN {get; set;}
+        public virtual string ISBN {get; set;}
         public const string ISBNFieldId = "ec3578e4-eaf0-07e5-536a-92de2a2a3802";
         public const string ISBNFieldName = "ISBN";
 
@@ -3803,29 +5033,39 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
         [SitecoreField("ISSN")]
-        public string ISSN {get; set;}
+        public virtual string ISSN {get; set;}
         public const string ISSNFieldId = "441ed7b5-6784-e325-d426-ea06a3d6a249";
         public const string ISSNFieldName = "ISSN";
 
         /// <summary>
         /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
-        public IEnumerable<Guid> Images {get; set;}
-        public const string ImagesFieldId = "0994454d-f497-4e08-9fda-279c07473f57";
+        public virtual IEnumerable<Guid> Images {get; set;}
+        public const string ImagesFieldId = "32c66add-862f-4590-9e27-5cf74e8ecdd4";
         public const string ImagesFieldName = "Images";
 
         /// <summary>
-        /// The InstallationProduct field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        public IEnumerable<Guid> InstallationProduct {get; set;}
-        public const string InstallationProductFieldId = "20d54d2f-4ba7-486b-9e62-b8e2147c3b53";
-        public const string InstallationProductFieldName = "InstallationProduct";
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+        public const string InstallationSellableItemToSellableItemFieldId = "1c796e6b-a31c-422b-9b68-7e0a9b4c9c56";
+        public const string InstallationSellableItemToSellableItemFieldName = "InstallationSellableItemToSellableItem";
+
+        /// <summary>
+        /// The ItemDefinitions field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: a39c3a8b-e06c-ad06-4b25-42760c00654e</para>
+        /// </summary>
+        [SitecoreField("ItemDefinitions")]
+        public virtual string ItemDefinitions {get; set;}
+        public const string ItemDefinitionsFieldId = "a39c3a8b-e06c-ad06-4b25-42760c00654e";
+        public const string ItemDefinitionsFieldName = "ItemDefinitions";
 
         /// <summary>
         /// The LEICode field.
@@ -3833,18 +5073,18 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
         [SitecoreField("LEICode")]
-        public string LEICode {get; set;}
+        public virtual string LEICode {get; set;}
         public const string LEICodeFieldId = "f0c245a4-1ce9-2620-910c-16ba93a90c15";
         public const string LEICodeFieldName = "LEICode";
 
         /// <summary>
         /// The Length field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        public string Length {get; set;}
-        public const string LengthFieldId = "de29dd83-9d7c-ce01-3da3-a51797ac3029";
+        public virtual float Length {get; set;}
+        public const string LengthFieldId = "f79e6d2d-d728-0be1-ed5f-70826d3604c1";
         public const string LengthFieldName = "Length";
 
         /// <summary>
@@ -3853,7 +5093,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 65ef80be-8e5e-a767-5097-2e2000fd8054</para>
         /// </summary>
         [SitecoreField("Manufacturer")]
-        public string Manufacturer {get; set;}
+        public virtual string Manufacturer {get; set;}
         public const string ManufacturerFieldId = "65ef80be-8e5e-a767-5097-2e2000fd8054";
         public const string ManufacturerFieldName = "Manufacturer";
 
@@ -3863,7 +5103,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 01d789fd-74e0-117e-2eb4-6612a1642643</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "01d789fd-74e0-117e-2eb4-6612a1642643";
         public const string NameFieldName = "Name";
 
@@ -3873,7 +5113,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a7c26e68-f587-b3a5-a48d-6c9b08752472</para>
         /// </summary>
         [SitecoreField("ParentCatalogList")]
-        public string ParentCatalogList {get; set;}
+        public virtual string ParentCatalogList {get; set;}
         public const string ParentCatalogListFieldId = "a7c26e68-f587-b3a5-a48d-6c9b08752472";
         public const string ParentCatalogListFieldName = "ParentCatalogList";
 
@@ -3883,7 +5123,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f4b64d68-f727-7a2d-f1e2-628e5704aa18</para>
         /// </summary>
         [SitecoreField("ParentCategoryList")]
-        public string ParentCategoryList {get; set;}
+        public virtual string ParentCategoryList {get; set;}
         public const string ParentCategoryListFieldId = "f4b64d68-f727-7a2d-f1e2-628e5704aa18";
         public const string ParentCategoryListFieldName = "ParentCategoryList";
 
@@ -3893,19 +5133,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b9ad0613-0584-6c55-d180-1c7d0215d9e7</para>
         /// </summary>
         [SitecoreField("ProductId")]
-        public string ProductId {get; set;}
+        public virtual string ProductId {get; set;}
         public const string ProductIdFieldId = "b9ad0613-0584-6c55-d180-1c7d0215d9e7";
         public const string ProductIdFieldName = "ProductId";
 
         /// <summary>
-        /// The RelatedProduct field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        public IEnumerable<Guid> RelatedProduct {get; set;}
-        public const string RelatedProductFieldId = "3d81a95e-089e-47bc-b81f-9ffb01cafab9";
-        public const string RelatedProductFieldName = "RelatedProduct";
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+        public const string RelatedSellableItemToSellableItemFieldId = "e94356c0-50cf-4fc7-b403-49eed5d4ffc1";
+        public const string RelatedSellableItemToSellableItemFieldName = "RelatedSellableItemToSellableItem";
 
         /// <summary>
         /// The SKU field.
@@ -3913,7 +5153,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
         [SitecoreField("SKU")]
-        public string SKU {get; set;}
+        public virtual string SKU {get; set;}
         public const string SKUFieldId = "c717dd15-78a2-f0b1-f943-24c55760b57b";
         public const string SKUFieldName = "SKU";
 
@@ -3923,57 +5163,57 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f41b1b99-0107-dd43-f234-adae63d913f3</para>
         /// </summary>
         [SitecoreField("SitecoreId")]
-        public string SitecoreId {get; set;}
+        public virtual string SitecoreId {get; set;}
         public const string SitecoreIdFieldId = "f41b1b99-0107-dd43-f234-adae63d913f3";
         public const string SitecoreIdFieldName = "SitecoreId";
 
         /// <summary>
         /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
-        public string Size {get; set;}
-        public const string SizeFieldId = "0bd653f8-06d7-b42e-5c4c-dede6fb46e87";
+        public virtual string Size {get; set;}
+        public const string SizeFieldId = "4ac9c17f-7481-3296-909e-e2b763ef5496";
         public const string SizeFieldName = "Size";
 
         /// <summary>
         /// The SizeOnDisk field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        public string SizeOnDisk {get; set;}
-        public const string SizeOnDiskFieldId = "49799db4-fdb5-3725-d068-7d4a24538184";
+        public virtual float SizeOnDisk {get; set;}
+        public const string SizeOnDiskFieldId = "f5bcb9c4-079e-e969-1196-dd450dc1f35d";
         public const string SizeOnDiskFieldName = "SizeOnDisk";
 
         /// <summary>
         /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
-        public string SizeOnDiskUnitOfMeasure {get; set;}
-        public const string SizeOnDiskUnitOfMeasureFieldId = "454c4392-624f-875c-940c-9dbd03efc6d7";
+        public virtual string SizeOnDiskUnitOfMeasure {get; set;}
+        public const string SizeOnDiskUnitOfMeasureFieldId = "044436e3-3d78-6c11-eb67-ea2b50690cb8";
         public const string SizeOnDiskUnitOfMeasureFieldName = "SizeOnDiskUnitOfMeasure";
 
         /// <summary>
         /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
-        public string Style {get; set;}
-        public const string StyleFieldId = "32d0f413-d17d-1aa2-a325-e7761de7a293";
+        public virtual string Style {get; set;}
+        public const string StyleFieldId = "4e367298-f552-ad36-58b9-109231349772";
         public const string StyleFieldName = "Style";
 
         /// <summary>
         /// The Tags field.
-        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field Type: Multi-Line Text</para>
         /// <para>Field ID: 8d4aaea6-6658-7905-192d-c8c1b65ef353</para>
         /// </summary>
         [SitecoreField("Tags")]
-        public string Tags {get; set;}
+        public virtual string Tags {get; set;}
         public const string TagsFieldId = "8d4aaea6-6658-7905-192d-c8c1b65ef353";
         public const string TagsFieldName = "Tags";
 
@@ -3983,19 +5223,19 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
         [SitecoreField("TaxID")]
-        public string TaxID {get; set;}
+        public virtual string TaxID {get; set;}
         public const string TaxIDFieldId = "497e7361-e277-22a4-7116-7ed6fd2a0165";
         public const string TaxIDFieldName = "TaxID";
 
         /// <summary>
-        /// The TrainingProduct field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        public IEnumerable<Guid> TrainingProduct {get; set;}
-        public const string TrainingProductFieldId = "277486dd-0f1e-4060-a365-a4d6f7bbc165";
-        public const string TrainingProductFieldName = "TrainingProduct";
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+        public const string TrainingSellableItemToSellableItemFieldId = "d263e02e-62cb-4a44-a775-8ecc45f633ae";
+        public const string TrainingSellableItemToSellableItemFieldName = "TrainingSellableItemToSellableItem";
 
         /// <summary>
         /// The TypeOfGood field.
@@ -4003,7 +5243,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 74960d25-406b-e2fe-b935-839f847f2160</para>
         /// </summary>
         [SitecoreField("TypeOfGood")]
-        public string TypeOfGood {get; set;}
+        public virtual string TypeOfGood {get; set;}
         public const string TypeOfGoodFieldId = "74960d25-406b-e2fe-b935-839f847f2160";
         public const string TypeOfGoodFieldName = "TypeOfGood";
 
@@ -4013,48 +5253,48 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0185d335-4545-edd6-76a8-460db418966a</para>
         /// </summary>
         [SitecoreField("VariationProperties")]
-        public string VariationProperties {get; set;}
+        public virtual string VariationProperties {get; set;}
         public const string VariationPropertiesFieldId = "0185d335-4545-edd6-76a8-460db418966a";
         public const string VariationPropertiesFieldName = "VariationProperties";
 
         /// <summary>
-        /// The WarrantyProduct field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        public IEnumerable<Guid> WarrantyProduct {get; set;}
-        public const string WarrantyProductFieldId = "05e7dca5-cf02-4fde-997a-1c461310e0eb";
-        public const string WarrantyProductFieldName = "WarrantyProduct";
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+        public const string WarrantySellableItemToSellableItemFieldId = "b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8";
+        public const string WarrantySellableItemToSellableItemFieldName = "WarrantySellableItemToSellableItem";
 
         /// <summary>
         /// The Weight field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        public string Weight {get; set;}
-        public const string WeightFieldId = "24f62de6-bfc8-84dc-4df9-6748a2e506b1";
+        public virtual float Weight {get; set;}
+        public const string WeightFieldId = "69500c30-0bb8-9de5-5993-93e520dffbbe";
         public const string WeightFieldName = "Weight";
 
         /// <summary>
         /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
-        public string WeightUnitOfMeasure {get; set;}
-        public const string WeightUnitOfMeasureFieldId = "6de02d9d-8010-64e1-7c7e-49463022468a";
+        public virtual string WeightUnitOfMeasure {get; set;}
+        public const string WeightUnitOfMeasureFieldId = "ba62e090-8d9c-b6f1-3a31-b2aae7257d57";
         public const string WeightUnitOfMeasureFieldName = "WeightUnitOfMeasure";
 
         /// <summary>
         /// The Width field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        public string Width {get; set;}
-        public const string WidthFieldId = "d9e49d64-4870-c4c0-4dff-78e86d1db3e1";
+        public virtual float Width {get; set;}
+        public const string WidthFieldId = "3af28db3-a880-fdb9-0774-707d8df3ea05";
         public const string WidthFieldName = "Width";
 
         /// <summary>
@@ -4063,7 +5303,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
         [SitecoreField("gtin12")]
-        public string Gtin12 {get; set;}
+        public virtual string Gtin12 {get; set;}
         public const string Gtin12FieldId = "834b5692-725c-1804-2e3e-6c990c5389a7";
         public const string Gtin12FieldName = "gtin12";
 
@@ -4073,7 +5313,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
         [SitecoreField("gtin13")]
-        public string Gtin13 {get; set;}
+        public virtual string Gtin13 {get; set;}
         public const string Gtin13FieldId = "ec986263-4af7-a347-b55e-47b4e76b1579";
         public const string Gtin13FieldName = "gtin13";
 
@@ -4083,7 +5323,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
         [SitecoreField("gtin8")]
-        public string Gtin8 {get; set;}
+        public virtual string Gtin8 {get; set;}
         public const string Gtin8FieldId = "f6c26bd2-6746-ee58-7cd8-43f5602c9ab5";
         public const string Gtin8FieldName = "gtin8";
 
@@ -4093,7 +5333,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
         [SitecoreField("mbm")]
-        public string Mbm {get; set;}
+        public virtual string Mbm {get; set;}
         public const string MbmFieldId = "7c0ec773-db26-76b0-eb1f-9fc36b8519fc";
         public const string MbmFieldName = "mbm";
 
@@ -4125,6 +5365,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "d7640afe-63c0-4cdf-876f-c17c5d3fa5c4";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/Countries-Regions Folder
+        /// </summary>
+        public const string TemplateName = "Countries-Regions Folder";
+
     }
 
 
@@ -4138,7 +5383,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Country Code field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6364fd2c-7b9e-482d-b96b-7c324d49011e</para>
         /// </summary>
@@ -4146,7 +5391,7 @@ namespace Wooli.Foundation.Connect.Models
         string CountryCode {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 9f6720cc-654f-4fdd-9848-7039da6a0e7b</para>
         /// </summary>
@@ -4170,12 +5415,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "1f8158d8-4139-46be-94af-9ff80501f5de";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/Country-Region
+        /// </summary>
+        public const string TemplateName = "Country-Region";
+
+        /// <summary>
         /// The Country Code field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6364fd2c-7b9e-482d-b96b-7c324d49011e</para>
         /// </summary>
         [SitecoreField("Country Code")]
-        public string CountryCode {get; set;}
+        public virtual string CountryCode {get; set;}
         public const string CountryCodeFieldId = "6364fd2c-7b9e-482d-b96b-7c324d49011e";
         public const string CountryCodeFieldName = "Country Code";
 
@@ -4185,7 +5435,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 9f6720cc-654f-4fdd-9848-7039da6a0e7b</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "9f6720cc-654f-4fdd-9848-7039da6a0e7b";
         public const string NameFieldName = "Name";
 
@@ -4202,7 +5452,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Countries-Regions field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 6d8c6738-20ec-4ca0-b9ee-dc6b64ca224f</para>
         /// </summary>
@@ -4226,12 +5476,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "762364a6-3ccb-43d2-9acb-c889db0f7fcf";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Country-Region Configuration
+        /// </summary>
+        public const string TemplateName = "Country-Region Configuration";
+
+        /// <summary>
         /// The Countries-Regions field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 6d8c6738-20ec-4ca0-b9ee-dc6b64ca224f</para>
         /// </summary>
         [SitecoreField("Countries-Regions")]
-        public IEnumerable<Guid> CountriesRegions {get; set;}
+        public virtual IEnumerable<Guid> CountriesRegions {get; set;}
         public const string CountriesRegionsFieldId = "6d8c6738-20ec-4ca0-b9ee-dc6b64ca224f";
         public const string CountriesRegionsFieldName = "Countries-Regions";
 
@@ -4263,6 +5518,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "128c8948-5304-473e-93d1-914cc5f29b90";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Currency Display Overrides/Currencies Display Adjustments
+        /// </summary>
+        public const string TemplateName = "Currencies Display Adjustments";
+
     }
 
 
@@ -4276,7 +5536,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Currency Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 510e3fca-7730-4be6-9b74-7d1ab7287f47</para>
         /// </summary>
@@ -4284,7 +5544,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencyDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Number Format field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 2ba6f36e-ba91-41a9-a252-2358456799f1</para>
         /// </summary>
@@ -4292,7 +5552,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencyNumberFormat {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Symbol field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 360ec3f9-fe2c-41bc-a00d-424b24fa9579</para>
         /// </summary>
@@ -4300,7 +5560,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencySymbol {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Symbol Position field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: e505daf1-5476-4b05-af5d-f3425859eb91</para>
         /// </summary>
@@ -4324,12 +5584,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "59e0ae1a-6a2a-4c7b-931a-5def873b9df6";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Currency Display Overrides/Currency
+        /// </summary>
+        public const string TemplateName = "Currency";
+
+        /// <summary>
         /// The Currency Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 510e3fca-7730-4be6-9b74-7d1ab7287f47</para>
         /// </summary>
         [SitecoreField("Currency Description")]
-        public string CurrencyDescription {get; set;}
+        public virtual string CurrencyDescription {get; set;}
         public const string CurrencyDescriptionFieldId = "510e3fca-7730-4be6-9b74-7d1ab7287f47";
         public const string CurrencyDescriptionFieldName = "Currency Description";
 
@@ -4339,7 +5604,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 2ba6f36e-ba91-41a9-a252-2358456799f1</para>
         /// </summary>
         [SitecoreField("Currency Number Format")]
-        public string CurrencyNumberFormat {get; set;}
+        public virtual string CurrencyNumberFormat {get; set;}
         public const string CurrencyNumberFormatFieldId = "2ba6f36e-ba91-41a9-a252-2358456799f1";
         public const string CurrencyNumberFormatFieldName = "Currency Number Format";
 
@@ -4349,7 +5614,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 360ec3f9-fe2c-41bc-a00d-424b24fa9579</para>
         /// </summary>
         [SitecoreField("Currency Symbol")]
-        public string CurrencySymbol {get; set;}
+        public virtual string CurrencySymbol {get; set;}
         public const string CurrencySymbolFieldId = "360ec3f9-fe2c-41bc-a00d-424b24fa9579";
         public const string CurrencySymbolFieldName = "Currency Symbol";
 
@@ -4359,7 +5624,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: e505daf1-5476-4b05-af5d-f3425859eb91</para>
         /// </summary>
         [SitecoreField("Currency Symbol Position")]
-        public string CurrencySymbolPosition {get; set;}
+        public virtual string CurrencySymbolPosition {get; set;}
         public const string CurrencySymbolPositionFieldId = "e505daf1-5476-4b05-af5d-f3425859eb91";
         public const string CurrencySymbolPositionFieldName = "Currency Symbol Position";
 
@@ -4376,7 +5641,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Currency Set field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: f8abfa72-0fba-44a5-9122-cf11acb0ea61</para>
         /// </summary>
@@ -4400,12 +5665,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "81afaa32-f1b0-47de-a8e6-3e443a06510e";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Currency Configuration
+        /// </summary>
+        public const string TemplateName = "Currency Configuration";
+
+        /// <summary>
         /// The Currency Set field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: f8abfa72-0fba-44a5-9122-cf11acb0ea61</para>
         /// </summary>
         [SitecoreField("Currency Set")]
-        public Guid CurrencySet {get; set;}
+        public virtual Guid CurrencySet {get; set;}
         public const string CurrencySetFieldId = "f8abfa72-0fba-44a5-9122-cf11acb0ea61";
         public const string CurrencySetFieldName = "Currency Set";
 
@@ -4422,7 +5692,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Currency Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3e688ef7-75f1-4fcb-bfd2-6b1f00416fcc</para>
         /// </summary>
@@ -4430,7 +5700,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencyDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Number Format field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ba9b8563-b162-4aab-bcb9-f5ea65bc6240</para>
         /// </summary>
@@ -4438,7 +5708,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencyNumberFormat {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Symbol field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: fa180bca-7f42-4816-8f0e-bdd955bacab6</para>
         /// </summary>
@@ -4446,7 +5716,7 @@ namespace Wooli.Foundation.Connect.Models
         string CurrencySymbol {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Currency Symbol Position field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c1e67a7d-da01-4948-8179-c5441d55fec5</para>
         /// </summary>
@@ -4470,12 +5740,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "14f76173-7cb4-4774-8add-ce721fc9b1ce";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Currency Display Overrides/Currency Display
+        /// </summary>
+        public const string TemplateName = "Currency Display";
+
+        /// <summary>
         /// The Currency Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3e688ef7-75f1-4fcb-bfd2-6b1f00416fcc</para>
         /// </summary>
         [SitecoreField("Currency Description")]
-        public string CurrencyDescription {get; set;}
+        public virtual string CurrencyDescription {get; set;}
         public const string CurrencyDescriptionFieldId = "3e688ef7-75f1-4fcb-bfd2-6b1f00416fcc";
         public const string CurrencyDescriptionFieldName = "Currency Description";
 
@@ -4485,7 +5760,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ba9b8563-b162-4aab-bcb9-f5ea65bc6240</para>
         /// </summary>
         [SitecoreField("Currency Number Format")]
-        public string CurrencyNumberFormat {get; set;}
+        public virtual string CurrencyNumberFormat {get; set;}
         public const string CurrencyNumberFormatFieldId = "ba9b8563-b162-4aab-bcb9-f5ea65bc6240";
         public const string CurrencyNumberFormatFieldName = "Currency Number Format";
 
@@ -4495,7 +5770,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: fa180bca-7f42-4816-8f0e-bdd955bacab6</para>
         /// </summary>
         [SitecoreField("Currency Symbol")]
-        public string CurrencySymbol {get; set;}
+        public virtual string CurrencySymbol {get; set;}
         public const string CurrencySymbolFieldId = "fa180bca-7f42-4816-8f0e-bdd955bacab6";
         public const string CurrencySymbolFieldName = "Currency Symbol";
 
@@ -4505,7 +5780,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c1e67a7d-da01-4948-8179-c5441d55fec5</para>
         /// </summary>
         [SitecoreField("Currency Symbol Position")]
-        public string CurrencySymbolPosition {get; set;}
+        public virtual string CurrencySymbolPosition {get; set;}
         public const string CurrencySymbolPositionFieldId = "c1e67a7d-da01-4948-8179-c5441d55fec5";
         public const string CurrencySymbolPositionFieldName = "Currency Symbol Position";
 
@@ -4522,7 +5797,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Currencies field.
         /// <para>Field Type: Currency Multilist Control</para>
         /// <para>Field ID: 3fac8159-f5c1-471d-a26c-4c3c3d494532</para>
         /// </summary>
@@ -4530,7 +5805,7 @@ namespace Wooli.Foundation.Connect.Models
         object /* UNKNOWN TYPE: Currency Multilist Control */ Currencies {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Default Currency field.
         /// <para>Field Type: Currency Droplist Control</para>
         /// <para>Field ID: 9cc02000-c6fb-41b6-b3b2-f1e9b2dff4d1</para>
         /// </summary>
@@ -4538,7 +5813,7 @@ namespace Wooli.Foundation.Connect.Models
         object /* UNKNOWN TYPE: Currency Droplist Control */ DefaultCurrency {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 8d70dd9b-709e-427d-848d-32bd8aaed724</para>
         /// </summary>
@@ -4562,12 +5837,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "2e5cb4cd-59d1-4ae0-9967-831bed5b7945";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Currency/Currency Set
+        /// </summary>
+        public const string TemplateName = "Currency Set";
+
+        /// <summary>
         /// The Currencies field.
         /// <para>Field Type: Currency Multilist Control</para>
         /// <para>Field ID: 3fac8159-f5c1-471d-a26c-4c3c3d494532</para>
         /// </summary>
         [SitecoreField("Currencies")]
-        public object /* UNKNOWN TYPE: Currency Multilist Control */ Currencies {get; set;}
+        public virtual object /* UNKNOWN TYPE: Currency Multilist Control */ Currencies {get; set;}
         public const string CurrenciesFieldId = "3fac8159-f5c1-471d-a26c-4c3c3d494532";
         public const string CurrenciesFieldName = "Currencies";
 
@@ -4577,7 +5857,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 9cc02000-c6fb-41b6-b3b2-f1e9b2dff4d1</para>
         /// </summary>
         [SitecoreField("Default Currency")]
-        public object /* UNKNOWN TYPE: Currency Droplist Control */ DefaultCurrency {get; set;}
+        public virtual object /* UNKNOWN TYPE: Currency Droplist Control */ DefaultCurrency {get; set;}
         public const string DefaultCurrencyFieldId = "9cc02000-c6fb-41b6-b3b2-f1e9b2dff4d1";
         public const string DefaultCurrencyFieldName = "Default Currency";
 
@@ -4587,7 +5867,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8d70dd9b-709e-427d-848d-32bd8aaed724</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "8d70dd9b-709e-427d-848d-32bd8aaed724";
         public const string DescriptionFieldName = "Description";
 
@@ -4619,6 +5899,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "cd71e410-4c40-4cad-ade8-4e54a14b116a";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Currency/Currency Sets Folder
+        /// </summary>
+        public const string TemplateName = "Currency Sets Folder";
+
     }
 
 
@@ -4647,62 +5932,67 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "b678ecfb-87a3-4f27-b3fb-2877f332c950";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Currency/Currency Settings Folder
+        /// </summary>
+        public const string TemplateName = "Currency Settings Folder";
+
     }
 
 
     /// <summary>
     /// IDisplayPropertiesModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/DisplayProperties</para>
-    /// <para>ID: 2ee6e282-37cc-40d6-bdd3-7375b55a724c</para>
+    /// <para>ID: 5167bd1a-a92d-50ab-a3f9-781cacfee2cc</para>
     /// </summary>
-    [SitecoreType(TemplateId="2ee6e282-37cc-40d6-bdd3-7375b55a724c")]
+    [SitecoreType(TemplateId="5167bd1a-a92d-50ab-a3f9-781cacfee2cc")]
     public partial interface IDisplayPropertiesModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
         string Color {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
         string DisambiguatingDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
         bool DisplayInProductList {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
         bool DisplayOnSite {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
         string Size {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
         string Style {get; set;}
@@ -4713,74 +6003,79 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// DisplayPropertiesModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/DisplayProperties</para>
-    /// <para>ID: 2ee6e282-37cc-40d6-bdd3-7375b55a724c</para>
+    /// <para>ID: 5167bd1a-a92d-50ab-a3f9-781cacfee2cc</para>
     /// </summary>
-    [SitecoreType(TemplateId="2ee6e282-37cc-40d6-bdd3-7375b55a724c")]
+    [SitecoreType(TemplateId="5167bd1a-a92d-50ab-a3f9-781cacfee2cc")]
     public partial class DisplayPropertiesModel: GlassBase, IDisplayPropertiesModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/DisplayProperties
         /// </summary>
-        public const string TemplateId = "2ee6e282-37cc-40d6-bdd3-7375b55a724c";
+        public const string TemplateId = "5167bd1a-a92d-50ab-a3f9-781cacfee2cc";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/DisplayProperties
+        /// </summary>
+        public const string TemplateName = "DisplayProperties";
 
         /// <summary>
         /// The Color field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 18c2687c-6421-5b7e-7009-12b058695a0f</para>
+        /// <para>Field ID: 4edc4293-0bb6-a995-8014-bf1678a30054</para>
         /// </summary>
         [SitecoreField("Color")]
-        public string Color {get; set;}
-        public const string ColorFieldId = "18c2687c-6421-5b7e-7009-12b058695a0f";
+        public virtual string Color {get; set;}
+        public const string ColorFieldId = "4edc4293-0bb6-a995-8014-bf1678a30054";
         public const string ColorFieldName = "Color";
 
         /// <summary>
         /// The DisambiguatingDescription field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0ce2f07d-7057-f418-3857-1c05f2be205b</para>
+        /// <para>Field ID: ad35b098-a3e2-a7f6-9bd4-56028f63bff6</para>
         /// </summary>
         [SitecoreField("DisambiguatingDescription")]
-        public string DisambiguatingDescription {get; set;}
-        public const string DisambiguatingDescriptionFieldId = "0ce2f07d-7057-f418-3857-1c05f2be205b";
+        public virtual string DisambiguatingDescription {get; set;}
+        public const string DisambiguatingDescriptionFieldId = "ad35b098-a3e2-a7f6-9bd4-56028f63bff6";
         public const string DisambiguatingDescriptionFieldName = "DisambiguatingDescription";
 
         /// <summary>
         /// The DisplayInProductList field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 615782bd-2206-34a4-f4f4-c03d855a1c23</para>
+        /// <para>Field ID: 12e7727e-741f-ae2d-7f59-b39f7234f53c</para>
         /// </summary>
         [SitecoreField("DisplayInProductList")]
-        public bool DisplayInProductList {get; set;}
-        public const string DisplayInProductListFieldId = "615782bd-2206-34a4-f4f4-c03d855a1c23";
+        public virtual bool DisplayInProductList {get; set;}
+        public const string DisplayInProductListFieldId = "12e7727e-741f-ae2d-7f59-b39f7234f53c";
         public const string DisplayInProductListFieldName = "DisplayInProductList";
 
         /// <summary>
         /// The DisplayOnSite field.
         /// <para>Field Type: Checkbox</para>
-        /// <para>Field ID: 804487cc-37cb-1426-0ed8-1aac29392ff9</para>
+        /// <para>Field ID: 3dbba730-7800-f912-b345-3937f7feb0f3</para>
         /// </summary>
         [SitecoreField("DisplayOnSite")]
-        public bool DisplayOnSite {get; set;}
-        public const string DisplayOnSiteFieldId = "804487cc-37cb-1426-0ed8-1aac29392ff9";
+        public virtual bool DisplayOnSite {get; set;}
+        public const string DisplayOnSiteFieldId = "3dbba730-7800-f912-b345-3937f7feb0f3";
         public const string DisplayOnSiteFieldName = "DisplayOnSite";
 
         /// <summary>
         /// The Size field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0bd653f8-06d7-b42e-5c4c-dede6fb46e87</para>
+        /// <para>Field ID: 4ac9c17f-7481-3296-909e-e2b763ef5496</para>
         /// </summary>
         [SitecoreField("Size")]
-        public string Size {get; set;}
-        public const string SizeFieldId = "0bd653f8-06d7-b42e-5c4c-dede6fb46e87";
+        public virtual string Size {get; set;}
+        public const string SizeFieldId = "4ac9c17f-7481-3296-909e-e2b763ef5496";
         public const string SizeFieldName = "Size";
 
         /// <summary>
         /// The Style field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 32d0f413-d17d-1aa2-a325-e7761de7a293</para>
+        /// <para>Field ID: 4e367298-f552-ad36-58b9-109231349772</para>
         /// </summary>
         [SitecoreField("Style")]
-        public string Style {get; set;}
-        public const string StyleFieldId = "32d0f413-d17d-1aa2-a325-e7761de7a293";
+        public virtual string Style {get; set;}
+        public const string StyleFieldId = "4e367298-f552-ad36-58b9-109231349772";
         public const string StyleFieldName = "Style";
 
     }
@@ -4796,7 +6091,15 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: dd8ff6da-9e67-4b19-8409-58f4b271c14a</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -4804,7 +6107,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b6c749f8-d9d7-477a-8c02-58914020fa6f</para>
         /// </summary>
@@ -4828,12 +6131,27 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "c715d20b-2e73-4046-9b87-749a11c27c5c";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Division
+        /// </summary>
+        public const string TemplateName = "Division";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: dd8ff6da-9e67-4b19-8409-58f4b271c14a</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public virtual string Description {get; set;}
+        public const string DescriptionFieldId = "dd8ff6da-9e67-4b19-8409-58f4b271c14a";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -4843,7 +6161,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b6c749f8-d9d7-477a-8c02-58914020fa6f</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "b6c749f8-d9d7-477a-8c02-58914020fa6f";
         public const string NameFieldName = "Name";
 
@@ -4875,6 +6193,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "bf890455-a0ae-4502-8619-c952594605cb";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Divisions
+        /// </summary>
+        public const string TemplateName = "Divisions";
+
     }
 
 
@@ -4888,7 +6211,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Allow items to be delivered Individually field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 769b63db-453f-44e6-aa90-cbc916e47f7d</para>
         /// </summary>
@@ -4896,7 +6219,7 @@ namespace Wooli.Foundation.Connect.Models
         bool AllowItemsToBeDeliveredIndividually {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Fulfillment Options field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 0452eb98-bc28-4fd8-a3b4-533f26c62705</para>
         /// </summary>
@@ -4920,12 +6243,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "a2a80c92-826a-4928-beed-6e46fff31919";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Fulfillment Configuration
+        /// </summary>
+        public const string TemplateName = "Fulfillment Configuration";
+
+        /// <summary>
         /// The Allow items to be delivered Individually field.
         /// <para>Field Type: Checkbox</para>
         /// <para>Field ID: 769b63db-453f-44e6-aa90-cbc916e47f7d</para>
         /// </summary>
         [SitecoreField("Allow items to be delivered Individually")]
-        public bool AllowItemsToBeDeliveredIndividually {get; set;}
+        public virtual bool AllowItemsToBeDeliveredIndividually {get; set;}
         public const string AllowItemsToBeDeliveredIndividuallyFieldId = "769b63db-453f-44e6-aa90-cbc916e47f7d";
         public const string AllowItemsToBeDeliveredIndividuallyFieldName = "Allow items to be delivered Individually";
 
@@ -4935,7 +6263,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0452eb98-bc28-4fd8-a3b4-533f26c62705</para>
         /// </summary>
         [SitecoreField("Fulfillment Options")]
-        public IEnumerable<Guid> FulfillmentOptions {get; set;}
+        public virtual IEnumerable<Guid> FulfillmentOptions {get; set;}
         public const string FulfillmentOptionsFieldId = "0452eb98-bc28-4fd8-a3b4-533f26c62705";
         public const string FulfillmentOptionsFieldName = "Fulfillment Options";
 
@@ -4952,7 +6280,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 19110ebd-4668-429d-9237-e8dfe81c09a8</para>
         /// </summary>
@@ -4976,12 +6304,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "79c4bb54-df7d-4825-bfa7-32ff9b051299";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Method
+        /// </summary>
+        public const string TemplateName = "Fulfillment Method";
+
+        /// <summary>
         /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 19110ebd-4668-429d-9237-e8dfe81c09a8</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "19110ebd-4668-429d-9237-e8dfe81c09a8";
         public const string TitleFieldName = "Title";
 
@@ -4998,7 +6331,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3a5cf40a-d1ce-4db6-af7c-77923f546743</para>
         /// </summary>
@@ -5006,7 +6339,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Fulfillment Option Type field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: ef1e0a0b-ac9a-4171-9cbc-00da3d85250a</para>
         /// </summary>
@@ -5014,7 +6347,7 @@ namespace Wooli.Foundation.Connect.Models
         Guid FulfillmentOptionType {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f311c61a-08dd-411a-b280-42e335ec6118</para>
         /// </summary>
@@ -5038,12 +6371,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "7cc3185b-6def-4d8e-bf12-d981dfd2b614";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Option
+        /// </summary>
+        public const string TemplateName = "Fulfillment Option";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3a5cf40a-d1ce-4db6-af7c-77923f546743</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "3a5cf40a-d1ce-4db6-af7c-77923f546743";
         public const string DescriptionFieldName = "Description";
 
@@ -5053,7 +6391,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ef1e0a0b-ac9a-4171-9cbc-00da3d85250a</para>
         /// </summary>
         [SitecoreField("Fulfillment Option Type")]
-        public Guid FulfillmentOptionType {get; set;}
+        public virtual Guid FulfillmentOptionType {get; set;}
         public const string FulfillmentOptionTypeFieldId = "ef1e0a0b-ac9a-4171-9cbc-00da3d85250a";
         public const string FulfillmentOptionTypeFieldName = "Fulfillment Option Type";
 
@@ -5063,7 +6401,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f311c61a-08dd-411a-b280-42e335ec6118</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "f311c61a-08dd-411a-b280-42e335ec6118";
         public const string TitleFieldName = "Title";
 
@@ -5080,7 +6418,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 349b8cb1-a03b-41f9-bba3-0f92df4f21ea</para>
         /// </summary>
@@ -5088,7 +6426,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Type ID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b282baad-f8eb-4fd6-a42d-88a6714426db</para>
         /// </summary>
@@ -5112,12 +6450,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "389ac363-2868-4180-8a70-8ce1c57d2223";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Option Type
+        /// </summary>
+        public const string TemplateName = "Fulfillment Option Type";
+
+        /// <summary>
         /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 349b8cb1-a03b-41f9-bba3-0f92df4f21ea</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "349b8cb1-a03b-41f9-bba3-0f92df4f21ea";
         public const string NameFieldName = "Name";
 
@@ -5127,7 +6470,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b282baad-f8eb-4fd6-a42d-88a6714426db</para>
         /// </summary>
         [SitecoreField("Type ID")]
-        public string TypeID {get; set;}
+        public virtual string TypeID {get; set;}
         public const string TypeIDFieldId = "b282baad-f8eb-4fd6-a42d-88a6714426db";
         public const string TypeIDFieldName = "Type ID";
 
@@ -5159,6 +6502,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "3f2dcd1f-1966-4192-a279-ac6b7397bdbb";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Option Types Folder
+        /// </summary>
+        public const string TemplateName = "Fulfillment Option Types Folder";
+
     }
 
 
@@ -5187,6 +6535,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "310b1cbc-e05d-4b95-8e2a-d2e9bda1bf0d";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Fulfillment/Fulfillment Options Folder
+        /// </summary>
+        public const string TemplateName = "Fulfillment Options Folder";
+
     }
 
 
@@ -5200,7 +6553,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: dada97b4-46a4-4f5f-a96f-64fde1e9d837</para>
         /// </summary>
@@ -5208,7 +6561,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6cbb88aa-3a9f-4769-9996-6ed459bed324</para>
         /// </summary>
@@ -5232,12 +6585,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "0a5feaa1-1b35-441a-9cc0-8fc259a15213";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Identification Type
+        /// </summary>
+        public const string TemplateName = "Identification Type";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: dada97b4-46a4-4f5f-a96f-64fde1e9d837</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "dada97b4-46a4-4f5f-a96f-64fde1e9d837";
         public const string DescriptionFieldName = "Description";
 
@@ -5247,7 +6605,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6cbb88aa-3a9f-4769-9996-6ed459bed324</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "6cbb88aa-3a9f-4769-9996-6ed459bed324";
         public const string NameFieldName = "Name";
 
@@ -5279,20 +6637,25 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "29fe9b4e-bda0-420f-97ca-ce1421cd9cc8";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Identification Types
+        /// </summary>
+        public const string TemplateName = "Identification Types";
+
     }
 
 
     /// <summary>
     /// IIdentifiersModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Identifiers</para>
-    /// <para>ID: c36d6eee-9384-4b62-9449-849748de272c</para>
+    /// <para>ID: 22a19087-e0ea-d4bb-0d39-61f1e506bc6f</para>
     /// </summary>
-    [SitecoreType(TemplateId="c36d6eee-9384-4b62-9449-849748de272c")]
+    [SitecoreType(TemplateId="22a19087-e0ea-d4bb-0d39-61f1e506bc6f")]
     public partial interface IIdentifiersModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The ISBN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
@@ -5300,7 +6663,7 @@ namespace Wooli.Foundation.Connect.Models
         string ISBN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ISSN field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
@@ -5308,7 +6671,7 @@ namespace Wooli.Foundation.Connect.Models
         string ISSN {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LEICode field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
@@ -5316,7 +6679,7 @@ namespace Wooli.Foundation.Connect.Models
         string LEICode {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SKU field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
@@ -5324,7 +6687,7 @@ namespace Wooli.Foundation.Connect.Models
         string SKU {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The TaxID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
@@ -5332,7 +6695,7 @@ namespace Wooli.Foundation.Connect.Models
         string TaxID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin12 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
@@ -5340,7 +6703,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin12 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin13 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
@@ -5348,7 +6711,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin13 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The gtin8 field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
@@ -5356,7 +6719,7 @@ namespace Wooli.Foundation.Connect.Models
         string Gtin8 {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The mbm field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
@@ -5369,15 +6732,20 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// IdentifiersModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Identifiers</para>
-    /// <para>ID: c36d6eee-9384-4b62-9449-849748de272c</para>
+    /// <para>ID: 22a19087-e0ea-d4bb-0d39-61f1e506bc6f</para>
     /// </summary>
-    [SitecoreType(TemplateId="c36d6eee-9384-4b62-9449-849748de272c")]
+    [SitecoreType(TemplateId="22a19087-e0ea-d4bb-0d39-61f1e506bc6f")]
     public partial class IdentifiersModel: GlassBase, IIdentifiersModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Identifiers
         /// </summary>
-        public const string TemplateId = "c36d6eee-9384-4b62-9449-849748de272c";
+        public const string TemplateId = "22a19087-e0ea-d4bb-0d39-61f1e506bc6f";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Identifiers
+        /// </summary>
+        public const string TemplateName = "Identifiers";
 
         /// <summary>
         /// The ISBN field.
@@ -5385,7 +6753,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec3578e4-eaf0-07e5-536a-92de2a2a3802</para>
         /// </summary>
         [SitecoreField("ISBN")]
-        public string ISBN {get; set;}
+        public virtual string ISBN {get; set;}
         public const string ISBNFieldId = "ec3578e4-eaf0-07e5-536a-92de2a2a3802";
         public const string ISBNFieldName = "ISBN";
 
@@ -5395,7 +6763,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 441ed7b5-6784-e325-d426-ea06a3d6a249</para>
         /// </summary>
         [SitecoreField("ISSN")]
-        public string ISSN {get; set;}
+        public virtual string ISSN {get; set;}
         public const string ISSNFieldId = "441ed7b5-6784-e325-d426-ea06a3d6a249";
         public const string ISSNFieldName = "ISSN";
 
@@ -5405,7 +6773,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f0c245a4-1ce9-2620-910c-16ba93a90c15</para>
         /// </summary>
         [SitecoreField("LEICode")]
-        public string LEICode {get; set;}
+        public virtual string LEICode {get; set;}
         public const string LEICodeFieldId = "f0c245a4-1ce9-2620-910c-16ba93a90c15";
         public const string LEICodeFieldName = "LEICode";
 
@@ -5415,7 +6783,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: c717dd15-78a2-f0b1-f943-24c55760b57b</para>
         /// </summary>
         [SitecoreField("SKU")]
-        public string SKU {get; set;}
+        public virtual string SKU {get; set;}
         public const string SKUFieldId = "c717dd15-78a2-f0b1-f943-24c55760b57b";
         public const string SKUFieldName = "SKU";
 
@@ -5425,7 +6793,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 497e7361-e277-22a4-7116-7ed6fd2a0165</para>
         /// </summary>
         [SitecoreField("TaxID")]
-        public string TaxID {get; set;}
+        public virtual string TaxID {get; set;}
         public const string TaxIDFieldId = "497e7361-e277-22a4-7116-7ed6fd2a0165";
         public const string TaxIDFieldName = "TaxID";
 
@@ -5435,7 +6803,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 834b5692-725c-1804-2e3e-6c990c5389a7</para>
         /// </summary>
         [SitecoreField("gtin12")]
-        public string Gtin12 {get; set;}
+        public virtual string Gtin12 {get; set;}
         public const string Gtin12FieldId = "834b5692-725c-1804-2e3e-6c990c5389a7";
         public const string Gtin12FieldName = "gtin12";
 
@@ -5445,7 +6813,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ec986263-4af7-a347-b55e-47b4e76b1579</para>
         /// </summary>
         [SitecoreField("gtin13")]
-        public string Gtin13 {get; set;}
+        public virtual string Gtin13 {get; set;}
         public const string Gtin13FieldId = "ec986263-4af7-a347-b55e-47b4e76b1579";
         public const string Gtin13FieldName = "gtin13";
 
@@ -5455,7 +6823,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f6c26bd2-6746-ee58-7cd8-43f5602c9ab5</para>
         /// </summary>
         [SitecoreField("gtin8")]
-        public string Gtin8 {get; set;}
+        public virtual string Gtin8 {get; set;}
         public const string Gtin8FieldId = "f6c26bd2-6746-ee58-7cd8-43f5602c9ab5";
         public const string Gtin8FieldName = "gtin8";
 
@@ -5465,7 +6833,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7c0ec773-db26-76b0-eb1f-9fc36b8519fc</para>
         /// </summary>
         [SitecoreField("mbm")]
-        public string Mbm {get; set;}
+        public virtual string Mbm {get; set;}
         public const string MbmFieldId = "7c0ec773-db26-76b0-eb1f-9fc36b8519fc";
         public const string MbmFieldName = "mbm";
 
@@ -5475,16 +6843,16 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// IImagesModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Images</para>
-    /// <para>ID: 7611325a-07ca-405e-9300-b3fff4a1f24f</para>
+    /// <para>ID: df6fcaac-cb44-16cf-204f-13a46138105e</para>
     /// </summary>
-    [SitecoreType(TemplateId="7611325a-07ca-405e-9300-b3fff4a1f24f")]
+    [SitecoreType(TemplateId="df6fcaac-cb44-16cf-204f-13a46138105e")]
     public partial interface IImagesModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
         IEnumerable<Guid> Images {get; set;}
@@ -5495,71 +6863,81 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// ImagesModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Images</para>
-    /// <para>ID: 7611325a-07ca-405e-9300-b3fff4a1f24f</para>
+    /// <para>ID: df6fcaac-cb44-16cf-204f-13a46138105e</para>
     /// </summary>
-    [SitecoreType(TemplateId="7611325a-07ca-405e-9300-b3fff4a1f24f")]
+    [SitecoreType(TemplateId="df6fcaac-cb44-16cf-204f-13a46138105e")]
     public partial class ImagesModel: GlassBase, IImagesModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Images
         /// </summary>
-        public const string TemplateId = "7611325a-07ca-405e-9300-b3fff4a1f24f";
+        public const string TemplateId = "df6fcaac-cb44-16cf-204f-13a46138105e";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/Images
+        /// </summary>
+        public const string TemplateName = "Images";
 
         /// <summary>
         /// The Images field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 0994454d-f497-4e08-9fda-279c07473f57</para>
+        /// <para>Field ID: 32c66add-862f-4590-9e27-5cf74e8ecdd4</para>
         /// </summary>
         [SitecoreField("Images")]
-        public IEnumerable<Guid> Images {get; set;}
-        public const string ImagesFieldId = "0994454d-f497-4e08-9fda-279c07473f57";
+        public virtual IEnumerable<Guid> Images {get; set;}
+        public const string ImagesFieldId = "32c66add-862f-4590-9e27-5cf74e8ecdd4";
         public const string ImagesFieldName = "Images";
 
     }
 
 
     /// <summary>
-    /// IInstallationProductModel Interface
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationProduct</para>
-    /// <para>ID: cefb688e-fffd-4ad7-94a1-fc9ed2e02ced</para>
+    /// IInstallationSellableItemToSellableItemModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationSellableItemToSellableItem</para>
+    /// <para>ID: fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc</para>
     /// </summary>
-    [SitecoreType(TemplateId="cefb688e-fffd-4ad7-94a1-fc9ed2e02ced")]
-    public partial interface IInstallationProductModel: IGlassBase
+    [SitecoreType(TemplateId="fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc")]
+    public partial interface IInstallationSellableItemToSellableItemModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The InstallationSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        IEnumerable<Guid> InstallationProduct {get; set;}
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
 
     }
 
 
     /// <summary>
-    /// InstallationProductModel Class
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationProduct</para>
-    /// <para>ID: cefb688e-fffd-4ad7-94a1-fc9ed2e02ced</para>
+    /// InstallationSellableItemToSellableItemModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationSellableItemToSellableItem</para>
+    /// <para>ID: fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc</para>
     /// </summary>
-    [SitecoreType(TemplateId="cefb688e-fffd-4ad7-94a1-fc9ed2e02ced")]
-    public partial class InstallationProductModel: GlassBase, IInstallationProductModel
+    [SitecoreType(TemplateId="fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc")]
+    public partial class InstallationSellableItemToSellableItemModel: GlassBase, IInstallationSellableItemToSellableItemModel
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationProduct
+        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationSellableItemToSellableItem
         /// </summary>
-        public const string TemplateId = "cefb688e-fffd-4ad7-94a1-fc9ed2e02ced";
+        public const string TemplateId = "fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc";
 
         /// <summary>
-        /// The InstallationProduct field.
-        /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 20d54d2f-4ba7-486b-9e62-b8e2147c3b53</para>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationSellableItemToSellableItem
         /// </summary>
-        [SitecoreField("InstallationProduct")]
-        public IEnumerable<Guid> InstallationProduct {get; set;}
-        public const string InstallationProductFieldId = "20d54d2f-4ba7-486b-9e62-b8e2147c3b53";
-        public const string InstallationProductFieldName = "InstallationProduct";
+        public const string TemplateName = "InstallationSellableItemToSellableItem";
+
+        /// <summary>
+        /// The InstallationSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: 1c796e6b-a31c-422b-9b68-7e0a9b4c9c56</para>
+        /// </summary>
+        [SitecoreField("InstallationSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> InstallationSellableItemToSellableItem {get; set;}
+        public const string InstallationSellableItemToSellableItemFieldId = "1c796e6b-a31c-422b-9b68-7e0a9b4c9c56";
+        public const string InstallationSellableItemToSellableItemFieldName = "InstallationSellableItemToSellableItem";
 
     }
 
@@ -5589,6 +6967,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "c5e8c469-5580-4755-93c5-f62e11d014a5";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Inventory/InventoryCatalog
+        /// </summary>
+        public const string TemplateName = "InventoryCatalog";
+
     }
 
 
@@ -5617,89 +7000,94 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "a42418bc-e80e-4df6-bb19-9e60d6a4d346";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Inventory/InventorySku
+        /// </summary>
+        public const string TemplateName = "InventorySku";
+
     }
 
 
     /// <summary>
     /// IItemSpecificationsModel Interface
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/ItemSpecifications</para>
-    /// <para>ID: 0b0600a4-a6e2-4bcc-b770-a857c96fbebf</para>
+    /// <para>ID: 9e417068-104a-55a5-6ed6-afa497046d1e</para>
     /// </summary>
-    [SitecoreType(TemplateId="0b0600a4-a6e2-4bcc-b770-a857c96fbebf")]
+    [SitecoreType(TemplateId="9e417068-104a-55a5-6ed6-afa497046d1e")]
     public partial interface IItemSpecificationsModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
         string AreaServed {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
         string DimensionsUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// The Height field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        string Height {get; set;}
+        float Height {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// The Length field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        string Length {get; set;}
+        float Length {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// The SizeOnDisk field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        string SizeOnDisk {get; set;}
+        float SizeOnDisk {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
         string SizeOnDiskUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// The Weight field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        string Weight {get; set;}
+        float Weight {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
         string WeightUnitOfMeasure {get; set;}
 
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// The Width field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        string Width {get; set;}
+        float Width {get; set;}
 
     }
 
@@ -5707,104 +7095,109 @@ namespace Wooli.Foundation.Connect.Models
     /// <summary>
     /// ItemSpecificationsModel Class
     /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/ItemSpecifications</para>
-    /// <para>ID: 0b0600a4-a6e2-4bcc-b770-a857c96fbebf</para>
+    /// <para>ID: 9e417068-104a-55a5-6ed6-afa497046d1e</para>
     /// </summary>
-    [SitecoreType(TemplateId="0b0600a4-a6e2-4bcc-b770-a857c96fbebf")]
+    [SitecoreType(TemplateId="9e417068-104a-55a5-6ed6-afa497046d1e")]
     public partial class ItemSpecificationsModel: GlassBase, IItemSpecificationsModel
     {
         /// <summary>
         /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/ItemSpecifications
         /// </summary>
-        public const string TemplateId = "0b0600a4-a6e2-4bcc-b770-a857c96fbebf";
+        public const string TemplateId = "9e417068-104a-55a5-6ed6-afa497046d1e";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/ItemSpecifications
+        /// </summary>
+        public const string TemplateName = "ItemSpecifications";
 
         /// <summary>
         /// The AreaServed field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 34a04f75-1a2f-bec3-3e85-8919a93db149</para>
+        /// <para>Field ID: 51b2a635-a407-8ae0-d95a-3350dac257a7</para>
         /// </summary>
         [SitecoreField("AreaServed")]
-        public string AreaServed {get; set;}
-        public const string AreaServedFieldId = "34a04f75-1a2f-bec3-3e85-8919a93db149";
+        public virtual string AreaServed {get; set;}
+        public const string AreaServedFieldId = "51b2a635-a407-8ae0-d95a-3350dac257a7";
         public const string AreaServedFieldName = "AreaServed";
 
         /// <summary>
         /// The DimensionsUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 93993d4f-367b-41be-44de-4fd08781ef23</para>
+        /// <para>Field ID: 0220347b-dc95-2645-0b29-25ab118480e9</para>
         /// </summary>
         [SitecoreField("DimensionsUnitOfMeasure")]
-        public string DimensionsUnitOfMeasure {get; set;}
-        public const string DimensionsUnitOfMeasureFieldId = "93993d4f-367b-41be-44de-4fd08781ef23";
+        public virtual string DimensionsUnitOfMeasure {get; set;}
+        public const string DimensionsUnitOfMeasureFieldId = "0220347b-dc95-2645-0b29-25ab118480e9";
         public const string DimensionsUnitOfMeasureFieldName = "DimensionsUnitOfMeasure";
 
         /// <summary>
         /// The Height field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: abce7957-b4a9-da52-ee90-4eecc1b76626</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c73f916-a727-463d-bb56-6b4496b8c494</para>
         /// </summary>
         [SitecoreField("Height")]
-        public string Height {get; set;}
-        public const string HeightFieldId = "abce7957-b4a9-da52-ee90-4eecc1b76626";
+        public virtual float Height {get; set;}
+        public const string HeightFieldId = "8c73f916-a727-463d-bb56-6b4496b8c494";
         public const string HeightFieldName = "Height";
 
         /// <summary>
         /// The Length field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: de29dd83-9d7c-ce01-3da3-a51797ac3029</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f79e6d2d-d728-0be1-ed5f-70826d3604c1</para>
         /// </summary>
         [SitecoreField("Length")]
-        public string Length {get; set;}
-        public const string LengthFieldId = "de29dd83-9d7c-ce01-3da3-a51797ac3029";
+        public virtual float Length {get; set;}
+        public const string LengthFieldId = "f79e6d2d-d728-0be1-ed5f-70826d3604c1";
         public const string LengthFieldName = "Length";
 
         /// <summary>
         /// The SizeOnDisk field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 49799db4-fdb5-3725-d068-7d4a24538184</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: f5bcb9c4-079e-e969-1196-dd450dc1f35d</para>
         /// </summary>
         [SitecoreField("SizeOnDisk")]
-        public string SizeOnDisk {get; set;}
-        public const string SizeOnDiskFieldId = "49799db4-fdb5-3725-d068-7d4a24538184";
+        public virtual float SizeOnDisk {get; set;}
+        public const string SizeOnDiskFieldId = "f5bcb9c4-079e-e969-1196-dd450dc1f35d";
         public const string SizeOnDiskFieldName = "SizeOnDisk";
 
         /// <summary>
         /// The SizeOnDiskUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 454c4392-624f-875c-940c-9dbd03efc6d7</para>
+        /// <para>Field ID: 044436e3-3d78-6c11-eb67-ea2b50690cb8</para>
         /// </summary>
         [SitecoreField("SizeOnDiskUnitOfMeasure")]
-        public string SizeOnDiskUnitOfMeasure {get; set;}
-        public const string SizeOnDiskUnitOfMeasureFieldId = "454c4392-624f-875c-940c-9dbd03efc6d7";
+        public virtual string SizeOnDiskUnitOfMeasure {get; set;}
+        public const string SizeOnDiskUnitOfMeasureFieldId = "044436e3-3d78-6c11-eb67-ea2b50690cb8";
         public const string SizeOnDiskUnitOfMeasureFieldName = "SizeOnDiskUnitOfMeasure";
 
         /// <summary>
         /// The Weight field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 24f62de6-bfc8-84dc-4df9-6748a2e506b1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 69500c30-0bb8-9de5-5993-93e520dffbbe</para>
         /// </summary>
         [SitecoreField("Weight")]
-        public string Weight {get; set;}
-        public const string WeightFieldId = "24f62de6-bfc8-84dc-4df9-6748a2e506b1";
+        public virtual float Weight {get; set;}
+        public const string WeightFieldId = "69500c30-0bb8-9de5-5993-93e520dffbbe";
         public const string WeightFieldName = "Weight";
 
         /// <summary>
         /// The WeightUnitOfMeasure field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6de02d9d-8010-64e1-7c7e-49463022468a</para>
+        /// <para>Field ID: ba62e090-8d9c-b6f1-3a31-b2aae7257d57</para>
         /// </summary>
         [SitecoreField("WeightUnitOfMeasure")]
-        public string WeightUnitOfMeasure {get; set;}
-        public const string WeightUnitOfMeasureFieldId = "6de02d9d-8010-64e1-7c7e-49463022468a";
+        public virtual string WeightUnitOfMeasure {get; set;}
+        public const string WeightUnitOfMeasureFieldId = "ba62e090-8d9c-b6f1-3a31-b2aae7257d57";
         public const string WeightUnitOfMeasureFieldName = "WeightUnitOfMeasure";
 
         /// <summary>
         /// The Width field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: d9e49d64-4870-c4c0-4dff-78e86d1db3e1</para>
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 3af28db3-a880-fdb9-0774-707d8df3ea05</para>
         /// </summary>
         [SitecoreField("Width")]
-        public string Width {get; set;}
-        public const string WidthFieldId = "d9e49d64-4870-c4c0-4dff-78e86d1db3e1";
+        public virtual float Width {get; set;}
+        public const string WidthFieldId = "3af28db3-a880-fdb9-0774-707d8df3ea05";
         public const string WidthFieldName = "Width";
 
     }
@@ -5820,7 +7213,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Language Set field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: 03265dc1-ccfe-470d-aed1-ea9aab5b3f55</para>
         /// </summary>
@@ -5844,12 +7237,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "9c514ff0-fbf7-42f1-82f6-156272f70caa";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Language Configuration
+        /// </summary>
+        public const string TemplateName = "Language Configuration";
+
+        /// <summary>
         /// The Language Set field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: 03265dc1-ccfe-470d-aed1-ea9aab5b3f55</para>
         /// </summary>
         [SitecoreField("Language Set")]
-        public Guid LanguageSet {get; set;}
+        public virtual Guid LanguageSet {get; set;}
         public const string LanguageSetFieldId = "03265dc1-ccfe-470d-aed1-ea9aab5b3f55";
         public const string LanguageSetFieldName = "Language Set";
 
@@ -5866,7 +7264,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Default Language field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 3a621478-cc5c-4777-8cb3-a7911ae264e2</para>
         /// </summary>
@@ -5874,7 +7272,7 @@ namespace Wooli.Foundation.Connect.Models
         string DefaultLanguage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 86088f94-b8ea-45ef-8daf-ac792b66d9ba</para>
         /// </summary>
@@ -5882,7 +7280,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Fallback Language field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: ffd6d079-7dbc-4f1e-b46e-75745b71b1e6</para>
         /// </summary>
@@ -5890,7 +7288,7 @@ namespace Wooli.Foundation.Connect.Models
         string FallbackLanguage {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Languages field.
         /// <para>Field Type: Language Multilist Control</para>
         /// <para>Field ID: 12b7253c-1e8c-43c1-a733-124957d529fb</para>
         /// </summary>
@@ -5914,12 +7312,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "d8abc594-0fbf-4407-b0e0-7fe4feaeb2ed";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Language/Language Set
+        /// </summary>
+        public const string TemplateName = "Language Set";
+
+        /// <summary>
         /// The Default Language field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 3a621478-cc5c-4777-8cb3-a7911ae264e2</para>
         /// </summary>
         [SitecoreField("Default Language")]
-        public string DefaultLanguage {get; set;}
+        public virtual string DefaultLanguage {get; set;}
         public const string DefaultLanguageFieldId = "3a621478-cc5c-4777-8cb3-a7911ae264e2";
         public const string DefaultLanguageFieldName = "Default Language";
 
@@ -5929,7 +7332,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 86088f94-b8ea-45ef-8daf-ac792b66d9ba</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "86088f94-b8ea-45ef-8daf-ac792b66d9ba";
         public const string DescriptionFieldName = "Description";
 
@@ -5939,7 +7342,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ffd6d079-7dbc-4f1e-b46e-75745b71b1e6</para>
         /// </summary>
         [SitecoreField("Fallback Language")]
-        public string FallbackLanguage {get; set;}
+        public virtual string FallbackLanguage {get; set;}
         public const string FallbackLanguageFieldId = "ffd6d079-7dbc-4f1e-b46e-75745b71b1e6";
         public const string FallbackLanguageFieldName = "Fallback Language";
 
@@ -5949,7 +7352,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 12b7253c-1e8c-43c1-a733-124957d529fb</para>
         /// </summary>
         [SitecoreField("Languages")]
-        public object /* UNKNOWN TYPE: Language Multilist Control */ Languages {get; set;}
+        public virtual object /* UNKNOWN TYPE: Language Multilist Control */ Languages {get; set;}
         public const string LanguagesFieldId = "12b7253c-1e8c-43c1-a733-124957d529fb";
         public const string LanguagesFieldName = "Languages";
 
@@ -5981,6 +7384,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "8a9db89c-887d-4894-8208-e03f830b8861";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Language/Language Sets Folder
+        /// </summary>
+        public const string TemplateName = "Language Sets Folder";
+
     }
 
 
@@ -5994,7 +7402,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7a3b32c4-ceaa-4759-9e6c-f2012fc40c91</para>
         /// </summary>
@@ -6002,7 +7410,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Short field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d8034d94-f87f-47e2-a884-f11abee21138</para>
         /// </summary>
@@ -6026,12 +7434,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "b95d069c-7867-4140-816d-6b204949b522";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Lookup Value
+        /// </summary>
+        public const string TemplateName = "Lookup Value";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7a3b32c4-ceaa-4759-9e6c-f2012fc40c91</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "7a3b32c4-ceaa-4759-9e6c-f2012fc40c91";
         public const string DescriptionFieldName = "Description";
 
@@ -6041,7 +7454,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d8034d94-f87f-47e2-a884-f11abee21138</para>
         /// </summary>
         [SitecoreField("Short")]
-        public string Short {get; set;}
+        public virtual string Short {get; set;}
         public const string ShortFieldId = "d8034d94-f87f-47e2-a884-f11abee21138";
         public const string ShortFieldName = "Short";
 
@@ -6058,7 +7471,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 545f0965-e7a6-4231-9a13-4f7ff48c006f</para>
         /// </summary>
@@ -6082,12 +7495,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "ab6feece-afa4-49b8-b96d-f15e28eaefcd";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Lookup Values
+        /// </summary>
+        public const string TemplateName = "Lookup Values";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 545f0965-e7a6-4231-9a13-4f7ff48c006f</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "545f0965-e7a6-4231-9a13-4f7ff48c006f";
         public const string DescriptionFieldName = "Description";
 
@@ -6104,7 +7522,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Rich Text</para>
         /// <para>Field ID: 465f8abe-79fb-4c68-8dfa-5890bb7f2a60</para>
         /// </summary>
@@ -6112,7 +7530,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -6120,7 +7538,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: eca748ca-62b5-4f86-a213-796b668a0ad8</para>
         /// </summary>
@@ -6128,7 +7546,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductURLMacro field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 991e7d30-115b-444a-bfd5-3831727e78e1</para>
         /// </summary>
@@ -6136,12 +7554,12 @@ namespace Wooli.Foundation.Connect.Models
         string ProductURLMacro {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The WebsiteUrl field.
         /// <para>Field Type: General Link</para>
         /// <para>Field ID: 3a6ff55f-4354-46f2-bf70-d6550d834922</para>
         /// </summary>
         [SitecoreField("WebsiteUrl")]
-        Link WebsiteUrl {get; set;}
+        Glass.Mapper.Sc.Fields.Link WebsiteUrl {get; set;}
 
     }
 
@@ -6160,12 +7578,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "8ecdc0a6-3a85-4f89-8f49-8a53aa75595e";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Manufacturer
+        /// </summary>
+        public const string TemplateName = "Manufacturer";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Rich Text</para>
         /// <para>Field ID: 465f8abe-79fb-4c68-8dfa-5890bb7f2a60</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "465f8abe-79fb-4c68-8dfa-5890bb7f2a60";
         public const string DescriptionFieldName = "Description";
 
@@ -6175,7 +7598,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -6185,7 +7608,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: eca748ca-62b5-4f86-a213-796b668a0ad8</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "eca748ca-62b5-4f86-a213-796b668a0ad8";
         public const string NameFieldName = "Name";
 
@@ -6195,7 +7618,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 991e7d30-115b-444a-bfd5-3831727e78e1</para>
         /// </summary>
         [SitecoreField("ProductURLMacro")]
-        public string ProductURLMacro {get; set;}
+        public virtual string ProductURLMacro {get; set;}
         public const string ProductURLMacroFieldId = "991e7d30-115b-444a-bfd5-3831727e78e1";
         public const string ProductURLMacroFieldName = "ProductURLMacro";
 
@@ -6205,7 +7628,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 3a6ff55f-4354-46f2-bf70-d6550d834922</para>
         /// </summary>
         [SitecoreField("WebsiteUrl")]
-        public Link WebsiteUrl {get; set;}
+        public virtual Glass.Mapper.Sc.Fields.Link WebsiteUrl {get; set;}
         public const string WebsiteUrlFieldId = "3a6ff55f-4354-46f2-bf70-d6550d834922";
         public const string WebsiteUrlFieldName = "WebsiteUrl";
 
@@ -6237,6 +7660,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "6addbd3c-6a82-4361-a361-6c89b4cb05b2";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Manufacturers
+        /// </summary>
+        public const string TemplateName = "Manufacturers";
+
     }
 
 
@@ -6250,7 +7678,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Payment Options field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: ee2d99c3-35c0-4467-8532-0e2aa960bb87</para>
         /// </summary>
@@ -6274,12 +7702,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "2c7e608f-5450-4f6c-a990-b53526e7d35f";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Payment Configuration
+        /// </summary>
+        public const string TemplateName = "Payment Configuration";
+
+        /// <summary>
         /// The Payment Options field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: ee2d99c3-35c0-4467-8532-0e2aa960bb87</para>
         /// </summary>
         [SitecoreField("Payment Options")]
-        public IEnumerable<Guid> PaymentOptions {get; set;}
+        public virtual IEnumerable<Guid> PaymentOptions {get; set;}
         public const string PaymentOptionsFieldId = "ee2d99c3-35c0-4467-8532-0e2aa960bb87";
         public const string PaymentOptionsFieldName = "Payment Options";
 
@@ -6296,7 +7729,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7207ec3e-f92a-4193-9be9-f5c2140e4793</para>
         /// </summary>
@@ -6320,12 +7753,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "38cbae5f-0de6-40c2-b0c8-8cd8039fbd27";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Method
+        /// </summary>
+        public const string TemplateName = "Payment Method";
+
+        /// <summary>
         /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7207ec3e-f92a-4193-9be9-f5c2140e4793</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "7207ec3e-f92a-4193-9be9-f5c2140e4793";
         public const string TitleFieldName = "Title";
 
@@ -6342,7 +7780,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: e8e394f9-1771-4a65-b802-dc33969b9589</para>
         /// </summary>
@@ -6350,7 +7788,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Payment Option Type field.
         /// <para>Field Type: Droplink</para>
         /// <para>Field ID: 3c9ab946-f6bb-4a99-a5b6-c7fd79e2de4b</para>
         /// </summary>
@@ -6358,7 +7796,7 @@ namespace Wooli.Foundation.Connect.Models
         Guid PaymentOptionType {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 8bb2cc42-f0d1-4d31-a94f-da60bd47ec2d</para>
         /// </summary>
@@ -6382,12 +7820,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "b4fb6139-9750-4dac-ad16-1e4663e22dce";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Option
+        /// </summary>
+        public const string TemplateName = "Payment Option";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: e8e394f9-1771-4a65-b802-dc33969b9589</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "e8e394f9-1771-4a65-b802-dc33969b9589";
         public const string DescriptionFieldName = "Description";
 
@@ -6397,7 +7840,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 3c9ab946-f6bb-4a99-a5b6-c7fd79e2de4b</para>
         /// </summary>
         [SitecoreField("Payment Option Type")]
-        public Guid PaymentOptionType {get; set;}
+        public virtual Guid PaymentOptionType {get; set;}
         public const string PaymentOptionTypeFieldId = "3c9ab946-f6bb-4a99-a5b6-c7fd79e2de4b";
         public const string PaymentOptionTypeFieldName = "Payment Option Type";
 
@@ -6407,7 +7850,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8bb2cc42-f0d1-4d31-a94f-da60bd47ec2d</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "8bb2cc42-f0d1-4d31-a94f-da60bd47ec2d";
         public const string TitleFieldName = "Title";
 
@@ -6424,7 +7867,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 985da69e-3b93-40d3-bf7b-e8b2c45fef73</para>
         /// </summary>
@@ -6432,7 +7875,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Type ID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a4fdfec1-f911-43cb-b4e1-e24b34c52443</para>
         /// </summary>
@@ -6456,12 +7899,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "d096418c-c1b3-4fc4-b45d-76e9707a4ad3";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Option Type
+        /// </summary>
+        public const string TemplateName = "Payment Option Type";
+
+        /// <summary>
         /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 985da69e-3b93-40d3-bf7b-e8b2c45fef73</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "985da69e-3b93-40d3-bf7b-e8b2c45fef73";
         public const string NameFieldName = "Name";
 
@@ -6471,7 +7919,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a4fdfec1-f911-43cb-b4e1-e24b34c52443</para>
         /// </summary>
         [SitecoreField("Type ID")]
-        public string TypeID {get; set;}
+        public virtual string TypeID {get; set;}
         public const string TypeIDFieldId = "a4fdfec1-f911-43cb-b4e1-e24b34c52443";
         public const string TypeIDFieldName = "Type ID";
 
@@ -6503,6 +7951,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "237a09ab-fb5d-47cd-8096-0a8d65cc321b";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Option Types Folder
+        /// </summary>
+        public const string TemplateName = "Payment Option Types Folder";
+
     }
 
 
@@ -6531,6 +7984,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "9589531a-14f5-4313-b0d3-2bc5624d0706";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Payment/Payment Options Folder
+        /// </summary>
+        public const string TemplateName = "Payment Options Folder";
+
     }
 
 
@@ -6544,7 +8002,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The BrandName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 8f6025b8-1039-46ab-a606-849bfe0c6292</para>
         /// </summary>
@@ -6552,7 +8010,7 @@ namespace Wooli.Foundation.Connect.Models
         string BrandName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Divisions field.
         /// <para>Field Type: Treelist</para>
         /// <para>Field ID: 0f949b65-ee6c-4d70-b692-54d801ba812c</para>
         /// </summary>
@@ -6560,7 +8018,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> Divisions {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -6568,7 +8026,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Full Description field.
         /// <para>Field Type: Rich Text</para>
         /// <para>Field ID: 25fe6930-d1f7-4924-95f9-770aa320a1f9</para>
         /// </summary>
@@ -6576,7 +8034,7 @@ namespace Wooli.Foundation.Connect.Models
         string FullDescription {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Identification field.
         /// <para>Field Type: Name Lookup Value List</para>
         /// <para>Field ID: 89d22f6f-409f-4463-bb09-0a79f29b9707</para>
         /// </summary>
@@ -6584,7 +8042,7 @@ namespace Wooli.Foundation.Connect.Models
         System.Collections.Specialized.NameValueCollection Identification {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Manufacturer field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: ea45edf7-cd8b-433f-99a6-ebfe3c7ce3a5</para>
         /// </summary>
@@ -6592,7 +8050,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> Manufacturer {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ModelName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 7b3fad93-dcb0-4d8d-8181-13738502bea5</para>
         /// </summary>
@@ -6600,7 +8058,7 @@ namespace Wooli.Foundation.Connect.Models
         string ModelName {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: e2cea8d5-65f4-4789-a778-b1b400b56928</para>
         /// </summary>
@@ -6608,7 +8066,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductClasses field.
         /// <para>Field Type: Treelist</para>
         /// <para>Field ID: 891039c9-fe24-46b6-a5de-ba958a6925cf</para>
         /// </summary>
@@ -6616,7 +8074,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> ProductClasses {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ProductType field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: d5806f22-e082-4c82-87bd-439a62ef92c6</para>
         /// </summary>
@@ -6624,7 +8082,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> ProductType {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Short Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 87cf462a-a37a-4731-bf0b-370d3d7a9873</para>
         /// </summary>
@@ -6648,12 +8106,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "47d1a39e-3b4b-4428-a9f8-b446256c9581";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product
+        /// </summary>
+        public const string TemplateName = "Product";
+
+        /// <summary>
         /// The BrandName field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 8f6025b8-1039-46ab-a606-849bfe0c6292</para>
         /// </summary>
         [SitecoreField("BrandName")]
-        public string BrandName {get; set;}
+        public virtual string BrandName {get; set;}
         public const string BrandNameFieldId = "8f6025b8-1039-46ab-a606-849bfe0c6292";
         public const string BrandNameFieldName = "BrandName";
 
@@ -6663,7 +8126,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 0f949b65-ee6c-4d70-b692-54d801ba812c</para>
         /// </summary>
         [SitecoreField("Divisions")]
-        public IEnumerable<Guid> Divisions {get; set;}
+        public virtual IEnumerable<Guid> Divisions {get; set;}
         public const string DivisionsFieldId = "0f949b65-ee6c-4d70-b692-54d801ba812c";
         public const string DivisionsFieldName = "Divisions";
 
@@ -6673,7 +8136,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -6683,7 +8146,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 25fe6930-d1f7-4924-95f9-770aa320a1f9</para>
         /// </summary>
         [SitecoreField("Full Description")]
-        public string FullDescription {get; set;}
+        public virtual string FullDescription {get; set;}
         public const string FullDescriptionFieldId = "25fe6930-d1f7-4924-95f9-770aa320a1f9";
         public const string FullDescriptionFieldName = "Full Description";
 
@@ -6693,7 +8156,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 89d22f6f-409f-4463-bb09-0a79f29b9707</para>
         /// </summary>
         [SitecoreField("Identification")]
-        public System.Collections.Specialized.NameValueCollection Identification {get; set;}
+        public virtual System.Collections.Specialized.NameValueCollection Identification {get; set;}
         public const string IdentificationFieldId = "89d22f6f-409f-4463-bb09-0a79f29b9707";
         public const string IdentificationFieldName = "Identification";
 
@@ -6703,7 +8166,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: ea45edf7-cd8b-433f-99a6-ebfe3c7ce3a5</para>
         /// </summary>
         [SitecoreField("Manufacturer")]
-        public IEnumerable<Guid> Manufacturer {get; set;}
+        public virtual IEnumerable<Guid> Manufacturer {get; set;}
         public const string ManufacturerFieldId = "ea45edf7-cd8b-433f-99a6-ebfe3c7ce3a5";
         public const string ManufacturerFieldName = "Manufacturer";
 
@@ -6713,7 +8176,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 7b3fad93-dcb0-4d8d-8181-13738502bea5</para>
         /// </summary>
         [SitecoreField("ModelName")]
-        public string ModelName {get; set;}
+        public virtual string ModelName {get; set;}
         public const string ModelNameFieldId = "7b3fad93-dcb0-4d8d-8181-13738502bea5";
         public const string ModelNameFieldName = "ModelName";
 
@@ -6723,7 +8186,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: e2cea8d5-65f4-4789-a778-b1b400b56928</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "e2cea8d5-65f4-4789-a778-b1b400b56928";
         public const string NameFieldName = "Name";
 
@@ -6733,7 +8196,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 891039c9-fe24-46b6-a5de-ba958a6925cf</para>
         /// </summary>
         [SitecoreField("ProductClasses")]
-        public IEnumerable<Guid> ProductClasses {get; set;}
+        public virtual IEnumerable<Guid> ProductClasses {get; set;}
         public const string ProductClassesFieldId = "891039c9-fe24-46b6-a5de-ba958a6925cf";
         public const string ProductClassesFieldName = "ProductClasses";
 
@@ -6743,7 +8206,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d5806f22-e082-4c82-87bd-439a62ef92c6</para>
         /// </summary>
         [SitecoreField("ProductType")]
-        public IEnumerable<Guid> ProductType {get; set;}
+        public virtual IEnumerable<Guid> ProductType {get; set;}
         public const string ProductTypeFieldId = "d5806f22-e082-4c82-87bd-439a62ef92c6";
         public const string ProductTypeFieldName = "ProductType";
 
@@ -6753,7 +8216,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 87cf462a-a37a-4731-bf0b-370d3d7a9873</para>
         /// </summary>
         [SitecoreField("Short Description")]
-        public string ShortDescription {get; set;}
+        public virtual string ShortDescription {get; set;}
         public const string ShortDescriptionFieldId = "87cf462a-a37a-4731-bf0b-370d3d7a9873";
         public const string ShortDescriptionFieldName = "Short Description";
 
@@ -6770,7 +8233,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3e873f0e-4a03-4169-91af-fae982f9cbe3</para>
         /// </summary>
@@ -6778,7 +8241,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -6786,7 +8249,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalParentID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 008f1da3-097e-4fec-8322-9303308c63ea</para>
         /// </summary>
@@ -6794,7 +8257,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalParentID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6a65dfc6-6a35-4e8d-93ea-d1d4f40711c2</para>
         /// </summary>
@@ -6818,12 +8281,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "d5b1659a-83e7-485f-ad9a-555eecb564bf";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Classification
+        /// </summary>
+        public const string TemplateName = "Product Classification";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3e873f0e-4a03-4169-91af-fae982f9cbe3</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "3e873f0e-4a03-4169-91af-fae982f9cbe3";
         public const string DescriptionFieldName = "Description";
 
@@ -6833,7 +8301,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -6843,7 +8311,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 008f1da3-097e-4fec-8322-9303308c63ea</para>
         /// </summary>
         [SitecoreField("ExternalParentID")]
-        public string ExternalParentID {get; set;}
+        public virtual string ExternalParentID {get; set;}
         public const string ExternalParentIDFieldId = "008f1da3-097e-4fec-8322-9303308c63ea";
         public const string ExternalParentIDFieldName = "ExternalParentID";
 
@@ -6853,7 +8321,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6a65dfc6-6a35-4e8d-93ea-d1d4f40711c2</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "6a65dfc6-6a35-4e8d-93ea-d1d4f40711c2";
         public const string NameFieldName = "Name";
 
@@ -6870,7 +8338,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d918b5f7-75e9-4345-913c-b79e1171cc42</para>
         /// </summary>
@@ -6878,7 +8346,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -6886,7 +8354,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 44c7d49f-0c37-4a56-b135-aa831e7f1eb9</para>
         /// </summary>
@@ -6910,12 +8378,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "cf8fec2c-96fc-46c8-8a49-7bf908482f4b";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product ClassificationGroup
+        /// </summary>
+        public const string TemplateName = "Product ClassificationGroup";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d918b5f7-75e9-4345-913c-b79e1171cc42</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "d918b5f7-75e9-4345-913c-b79e1171cc42";
         public const string DescriptionFieldName = "Description";
 
@@ -6925,7 +8398,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -6935,7 +8408,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 44c7d49f-0c37-4a56-b135-aa831e7f1eb9</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "44c7d49f-0c37-4a56-b135-aa831e7f1eb9";
         public const string NameFieldName = "Name";
 
@@ -6952,7 +8425,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 645563ed-597b-4095-acc8-eda71049c3d3</para>
         /// </summary>
@@ -6960,7 +8433,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -6968,7 +8441,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3308641b-eb85-4fe7-8d0d-543e5b7ea4b6</para>
         /// </summary>
@@ -6992,12 +8465,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "89c74115-3e03-4d1d-bd99-29aafcf9a649";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Classifications
+        /// </summary>
+        public const string TemplateName = "Product Classifications";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 645563ed-597b-4095-acc8-eda71049c3d3</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "645563ed-597b-4095-acc8-eda71049c3d3";
         public const string DescriptionFieldName = "Description";
 
@@ -7007,7 +8485,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7017,7 +8495,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 3308641b-eb85-4fe7-8d0d-543e5b7ea4b6</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "3308641b-eb85-4fe7-8d0d-543e5b7ea4b6";
         public const string NameFieldName = "Name";
 
@@ -7034,7 +8512,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7042,7 +8520,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Group field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
@@ -7050,7 +8528,7 @@ namespace Wooli.Foundation.Connect.Models
         string Group {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Key field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
@@ -7058,7 +8536,7 @@ namespace Wooli.Foundation.Connect.Models
         string Key {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LookupValue field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
@@ -7066,7 +8544,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> LookupValue {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
@@ -7090,12 +8568,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "9ca86513-c986-4bf3-9f9c-9791aa7ea352";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Classifications Specification
+        /// </summary>
+        public const string TemplateName = "Product Classifications Specification";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7105,7 +8588,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
         [SitecoreField("Group")]
-        public string Group {get; set;}
+        public virtual string Group {get; set;}
         public const string GroupFieldId = "6486cbd0-3e73-4293-9da9-52249bba163d";
         public const string GroupFieldName = "Group";
 
@@ -7115,7 +8598,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
         [SitecoreField("Key")]
-        public string Key {get; set;}
+        public virtual string Key {get; set;}
         public const string KeyFieldId = "88892c6a-f865-493e-82b7-5c21e67c2fa4";
         public const string KeyFieldName = "Key";
 
@@ -7125,7 +8608,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
         [SitecoreField("LookupValue")]
-        public IEnumerable<Guid> LookupValue {get; set;}
+        public virtual IEnumerable<Guid> LookupValue {get; set;}
         public const string LookupValueFieldId = "8377b000-0ee9-4f77-9eba-2b0822669f84";
         public const string LookupValueFieldName = "LookupValue";
 
@@ -7135,7 +8618,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "59b79baf-4f30-4eca-961d-4afab14d157c";
         public const string ValueFieldName = "Value";
 
@@ -7152,7 +8635,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7160,7 +8643,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Group field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
@@ -7168,7 +8651,7 @@ namespace Wooli.Foundation.Connect.Models
         string Group {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Key field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
@@ -7176,7 +8659,7 @@ namespace Wooli.Foundation.Connect.Models
         string Key {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LookupValue field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
@@ -7184,7 +8667,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> LookupValue {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
@@ -7208,12 +8691,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "157c6369-db59-4299-8238-365d964c0965";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Global Specification
+        /// </summary>
+        public const string TemplateName = "Product Global Specification";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7223,7 +8711,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
         [SitecoreField("Group")]
-        public string Group {get; set;}
+        public virtual string Group {get; set;}
         public const string GroupFieldId = "6486cbd0-3e73-4293-9da9-52249bba163d";
         public const string GroupFieldName = "Group";
 
@@ -7233,7 +8721,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
         [SitecoreField("Key")]
-        public string Key {get; set;}
+        public virtual string Key {get; set;}
         public const string KeyFieldId = "88892c6a-f865-493e-82b7-5c21e67c2fa4";
         public const string KeyFieldName = "Key";
 
@@ -7243,7 +8731,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
         [SitecoreField("LookupValue")]
-        public IEnumerable<Guid> LookupValue {get; set;}
+        public virtual IEnumerable<Guid> LookupValue {get; set;}
         public const string LookupValueFieldId = "8377b000-0ee9-4f77-9eba-2b0822669f84";
         public const string LookupValueFieldName = "LookupValue";
 
@@ -7253,7 +8741,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "59b79baf-4f30-4eca-961d-4afab14d157c";
         public const string ValueFieldName = "Value";
 
@@ -7270,7 +8758,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 609c7279-6e83-4ed2-9f7e-7e9bef1397f0</para>
         /// </summary>
@@ -7278,7 +8766,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 1ac1bfa4-4113-4c66-afe2-f3f3c0266c73</para>
         /// </summary>
@@ -7286,7 +8774,7 @@ namespace Wooli.Foundation.Connect.Models
         string Name {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The RelatedProducts field.
         /// <para>Field Type: Multilist with Search</para>
         /// <para>Field ID: b039e503-5eaf-4688-80a1-b9f32de6d800</para>
         /// </summary>
@@ -7294,7 +8782,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> RelatedProducts {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Type field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 9d507af0-463a-4151-aaa2-8c5ad6632e36</para>
         /// </summary>
@@ -7318,12 +8806,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "93703013-77b6-48b5-8338-c29a5d15a1a6";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Relation
+        /// </summary>
+        public const string TemplateName = "Product Relation";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 609c7279-6e83-4ed2-9f7e-7e9bef1397f0</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "609c7279-6e83-4ed2-9f7e-7e9bef1397f0";
         public const string DescriptionFieldName = "Description";
 
@@ -7333,7 +8826,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 1ac1bfa4-4113-4c66-afe2-f3f3c0266c73</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "1ac1bfa4-4113-4c66-afe2-f3f3c0266c73";
         public const string NameFieldName = "Name";
 
@@ -7343,7 +8836,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: b039e503-5eaf-4688-80a1-b9f32de6d800</para>
         /// </summary>
         [SitecoreField("RelatedProducts")]
-        public IEnumerable<Guid> RelatedProducts {get; set;}
+        public virtual IEnumerable<Guid> RelatedProducts {get; set;}
         public const string RelatedProductsFieldId = "b039e503-5eaf-4688-80a1-b9f32de6d800";
         public const string RelatedProductsFieldName = "RelatedProducts";
 
@@ -7353,7 +8846,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 9d507af0-463a-4151-aaa2-8c5ad6632e36</para>
         /// </summary>
         [SitecoreField("Type")]
-        public string Type {get; set;}
+        public virtual string Type {get; set;}
         public const string TypeFieldId = "9d507af0-463a-4151-aaa2-8c5ad6632e36";
         public const string TypeFieldName = "Type";
 
@@ -7370,7 +8863,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 62c925b2-b720-465b-8047-e776be22bd79</para>
         /// </summary>
@@ -7394,12 +8887,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "6e5fbb20-2d51-4b63-8563-65e6e8c61dfd";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Relations
+        /// </summary>
+        public const string TemplateName = "Product Relations";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 62c925b2-b720-465b-8047-e776be22bd79</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "62c925b2-b720-465b-8047-e776be22bd79";
         public const string DescriptionFieldName = "Description";
 
@@ -7431,6 +8929,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "f599bf48-d6fe-40dc-9f78-cf2d56bfb657";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Repository
+        /// </summary>
+        public const string TemplateName = "Product Repository";
+
     }
 
 
@@ -7444,7 +8947,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7452,7 +8955,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Resource field.
         /// <para>Field Type: Image</para>
         /// <para>Field ID: fef7847e-3ac3-4c79-be15-bf407c461de6</para>
         /// </summary>
@@ -7460,7 +8963,7 @@ namespace Wooli.Foundation.Connect.Models
         Image Resource {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Type field.
         /// <para>Field Type: Droplist</para>
         /// <para>Field ID: 10870bdb-03dc-4eb0-922e-c891a3b96f37</para>
         /// </summary>
@@ -7468,7 +8971,7 @@ namespace Wooli.Foundation.Connect.Models
         string Type {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The URI field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: d2a79cb7-a015-4ba4-b63d-beb127bf5f0e</para>
         /// </summary>
@@ -7492,12 +8995,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "0d52eb5c-a153-4688-a217-151a17de321e";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Resource
+        /// </summary>
+        public const string TemplateName = "Product Resource";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7507,7 +9015,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: fef7847e-3ac3-4c79-be15-bf407c461de6</para>
         /// </summary>
         [SitecoreField("Resource")]
-        public Image Resource {get; set;}
+        public virtual Image Resource {get; set;}
         public const string ResourceFieldId = "fef7847e-3ac3-4c79-be15-bf407c461de6";
         public const string ResourceFieldName = "Resource";
 
@@ -7517,7 +9025,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 10870bdb-03dc-4eb0-922e-c891a3b96f37</para>
         /// </summary>
         [SitecoreField("Type")]
-        public string Type {get; set;}
+        public virtual string Type {get; set;}
         public const string TypeFieldId = "10870bdb-03dc-4eb0-922e-c891a3b96f37";
         public const string TypeFieldName = "Type";
 
@@ -7527,7 +9035,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: d2a79cb7-a015-4ba4-b63d-beb127bf5f0e</para>
         /// </summary>
         [SitecoreField("URI")]
-        public string URI {get; set;}
+        public virtual string URI {get; set;}
         public const string URIFieldId = "d2a79cb7-a015-4ba4-b63d-beb127bf5f0e";
         public const string URIFieldName = "URI";
 
@@ -7544,7 +9052,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Main image field.
         /// <para>Field Type: Droptree</para>
         /// <para>Field ID: bb61c579-50c7-40e7-b32e-a66bdc5d2dc3</para>
         /// </summary>
@@ -7568,12 +9076,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "fbca6069-d6c5-493e-83d7-c4a079e2717f";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Resources
+        /// </summary>
+        public const string TemplateName = "Product Resources";
+
+        /// <summary>
         /// The Main image field.
         /// <para>Field Type: Droptree</para>
         /// <para>Field ID: bb61c579-50c7-40e7-b32e-a66bdc5d2dc3</para>
         /// </summary>
         [SitecoreField("Main image")]
-        public Guid MainImage {get; set;}
+        public virtual Guid MainImage {get; set;}
         public const string MainImageFieldId = "bb61c579-50c7-40e7-b32e-a66bdc5d2dc3";
         public const string MainImageFieldName = "Main image";
 
@@ -7590,7 +9103,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7598,7 +9111,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Group field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
@@ -7606,7 +9119,7 @@ namespace Wooli.Foundation.Connect.Models
         string Group {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Key field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
@@ -7614,7 +9127,7 @@ namespace Wooli.Foundation.Connect.Models
         string Key {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LookupValue field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
@@ -7622,7 +9135,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> LookupValue {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
@@ -7646,12 +9159,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "687ebd28-8c90-4203-8527-a809d9b99680";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Specification
+        /// </summary>
+        public const string TemplateName = "Product Specification";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7661,7 +9179,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
         [SitecoreField("Group")]
-        public string Group {get; set;}
+        public virtual string Group {get; set;}
         public const string GroupFieldId = "6486cbd0-3e73-4293-9da9-52249bba163d";
         public const string GroupFieldName = "Group";
 
@@ -7671,7 +9189,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
         [SitecoreField("Key")]
-        public string Key {get; set;}
+        public virtual string Key {get; set;}
         public const string KeyFieldId = "88892c6a-f865-493e-82b7-5c21e67c2fa4";
         public const string KeyFieldName = "Key";
 
@@ -7681,7 +9199,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
         [SitecoreField("LookupValue")]
-        public IEnumerable<Guid> LookupValue {get; set;}
+        public virtual IEnumerable<Guid> LookupValue {get; set;}
         public const string LookupValueFieldId = "8377b000-0ee9-4f77-9eba-2b0822669f84";
         public const string LookupValueFieldName = "LookupValue";
 
@@ -7691,7 +9209,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "59b79baf-4f30-4eca-961d-4afab14d157c";
         public const string ValueFieldName = "Value";
 
@@ -7708,7 +9226,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 92630a4a-369d-47ce-9ff1-a72a7dd67969</para>
         /// </summary>
@@ -7716,7 +9234,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The VariantSpecifications field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 95cf928f-0ca7-4daf-b6b1-8dfe31ac9523</para>
         /// </summary>
@@ -7740,12 +9258,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "a1441a78-21ac-483c-89a6-d46521818b94";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Specifications
+        /// </summary>
+        public const string TemplateName = "Product Specifications";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 92630a4a-369d-47ce-9ff1-a72a7dd67969</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "92630a4a-369d-47ce-9ff1-a72a7dd67969";
         public const string DescriptionFieldName = "Description";
 
@@ -7755,7 +9278,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 95cf928f-0ca7-4daf-b6b1-8dfe31ac9523</para>
         /// </summary>
         [SitecoreField("VariantSpecifications")]
-        public IEnumerable<Guid> VariantSpecifications {get; set;}
+        public virtual IEnumerable<Guid> VariantSpecifications {get; set;}
         public const string VariantSpecificationsFieldId = "95cf928f-0ca7-4daf-b6b1-8dfe31ac9523";
         public const string VariantSpecificationsFieldName = "VariantSpecifications";
 
@@ -7772,7 +9295,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Rich Text</para>
         /// <para>Field ID: ec7d4ac3-83b6-4653-944a-097aafdfff07</para>
         /// </summary>
@@ -7780,7 +9303,7 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7788,7 +9311,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The ExternalParentID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 5d89d406-b223-426e-a029-ce7138a9bab2</para>
         /// </summary>
@@ -7796,7 +9319,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalParentID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 93e7751e-aec7-4ea7-b5d8-b6d6653b3e8b</para>
         /// </summary>
@@ -7820,12 +9343,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "2fc31cad-946f-4944-9a98-3da167bebc34";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Type
+        /// </summary>
+        public const string TemplateName = "Product Type";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Rich Text</para>
         /// <para>Field ID: ec7d4ac3-83b6-4653-944a-097aafdfff07</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "ec7d4ac3-83b6-4653-944a-097aafdfff07";
         public const string DescriptionFieldName = "Description";
 
@@ -7835,7 +9363,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7845,7 +9373,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 5d89d406-b223-426e-a029-ce7138a9bab2</para>
         /// </summary>
         [SitecoreField("ExternalParentID")]
-        public string ExternalParentID {get; set;}
+        public virtual string ExternalParentID {get; set;}
         public const string ExternalParentIDFieldId = "5d89d406-b223-426e-a029-ce7138a9bab2";
         public const string ExternalParentIDFieldName = "ExternalParentID";
 
@@ -7855,7 +9383,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 93e7751e-aec7-4ea7-b5d8-b6d6653b3e8b</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "93e7751e-aec7-4ea7-b5d8-b6d6653b3e8b";
         public const string NameFieldName = "Name";
 
@@ -7872,7 +9400,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -7880,7 +9408,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Group field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
@@ -7888,7 +9416,7 @@ namespace Wooli.Foundation.Connect.Models
         string Group {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Key field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
@@ -7896,7 +9424,7 @@ namespace Wooli.Foundation.Connect.Models
         string Key {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The LookupValue field.
         /// <para>Field Type: Treelist with Search</para>
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
@@ -7904,7 +9432,7 @@ namespace Wooli.Foundation.Connect.Models
         IEnumerable<Guid> LookupValue {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Value field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
@@ -7928,12 +9456,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "c696bec3-0414-4a3d-a4fe-3583a7ae051d";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Type Specification
+        /// </summary>
+        public const string TemplateName = "Product Type Specification";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -7943,7 +9476,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 6486cbd0-3e73-4293-9da9-52249bba163d</para>
         /// </summary>
         [SitecoreField("Group")]
-        public string Group {get; set;}
+        public virtual string Group {get; set;}
         public const string GroupFieldId = "6486cbd0-3e73-4293-9da9-52249bba163d";
         public const string GroupFieldName = "Group";
 
@@ -7953,7 +9486,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 88892c6a-f865-493e-82b7-5c21e67c2fa4</para>
         /// </summary>
         [SitecoreField("Key")]
-        public string Key {get; set;}
+        public virtual string Key {get; set;}
         public const string KeyFieldId = "88892c6a-f865-493e-82b7-5c21e67c2fa4";
         public const string KeyFieldName = "Key";
 
@@ -7963,7 +9496,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 8377b000-0ee9-4f77-9eba-2b0822669f84</para>
         /// </summary>
         [SitecoreField("LookupValue")]
-        public IEnumerable<Guid> LookupValue {get; set;}
+        public virtual IEnumerable<Guid> LookupValue {get; set;}
         public const string LookupValueFieldId = "8377b000-0ee9-4f77-9eba-2b0822669f84";
         public const string LookupValueFieldName = "LookupValue";
 
@@ -7973,7 +9506,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 59b79baf-4f30-4eca-961d-4afab14d157c</para>
         /// </summary>
         [SitecoreField("Value")]
-        public string Value {get; set;}
+        public virtual string Value {get; set;}
         public const string ValueFieldId = "59b79baf-4f30-4eca-961d-4afab14d157c";
         public const string ValueFieldName = "Value";
 
@@ -8005,6 +9538,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "26d1e614-5ae9-4e58-90ab-6cf9b9b6f938";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Product Types
+        /// </summary>
+        public const string TemplateName = "Product Types";
+
     }
 
 
@@ -8033,51 +9571,61 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "4d21ad2a-ba49-4dfc-9db9-c299c7fb7f6e";
 
-    }
-
-
-    /// <summary>
-    /// IRelatedProductModel Interface
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedProduct</para>
-    /// <para>ID: ec6f7e80-3072-4614-849d-b925c9757690</para>
-    /// </summary>
-    [SitecoreType(TemplateId="ec6f7e80-3072-4614-849d-b925c9757690")]
-    public partial interface IRelatedProductModel: IGlassBase
-    {
-
         /// <summary>
-        /// The  field.
-        /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Products
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        IEnumerable<Guid> RelatedProduct {get; set;}
+        public const string TemplateName = "Products";
 
     }
 
 
     /// <summary>
-    /// RelatedProductModel Class
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedProduct</para>
-    /// <para>ID: ec6f7e80-3072-4614-849d-b925c9757690</para>
+    /// IRelatedSellableItemToSellableItemModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedSellableItemToSellableItem</para>
+    /// <para>ID: 77ea73ec-711d-23b0-ff53-071ad53c7e18</para>
     /// </summary>
-    [SitecoreType(TemplateId="ec6f7e80-3072-4614-849d-b925c9757690")]
-    public partial class RelatedProductModel: GlassBase, IRelatedProductModel
+    [SitecoreType(TemplateId="77ea73ec-711d-23b0-ff53-071ad53c7e18")]
+    public partial interface IRelatedSellableItemToSellableItemModel: IGlassBase
     {
-        /// <summary>
-        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedProduct
-        /// </summary>
-        public const string TemplateId = "ec6f7e80-3072-4614-849d-b925c9757690";
 
         /// <summary>
-        /// The RelatedProduct field.
+        /// The RelatedSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 3d81a95e-089e-47bc-b81f-9ffb01cafab9</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
         /// </summary>
-        [SitecoreField("RelatedProduct")]
-        public IEnumerable<Guid> RelatedProduct {get; set;}
-        public const string RelatedProductFieldId = "3d81a95e-089e-47bc-b81f-9ffb01cafab9";
-        public const string RelatedProductFieldName = "RelatedProduct";
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// RelatedSellableItemToSellableItemModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedSellableItemToSellableItem</para>
+    /// <para>ID: 77ea73ec-711d-23b0-ff53-071ad53c7e18</para>
+    /// </summary>
+    [SitecoreType(TemplateId="77ea73ec-711d-23b0-ff53-071ad53c7e18")]
+    public partial class RelatedSellableItemToSellableItemModel: GlassBase, IRelatedSellableItemToSellableItemModel
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedSellableItemToSellableItem
+        /// </summary>
+        public const string TemplateId = "77ea73ec-711d-23b0-ff53-071ad53c7e18";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/RelatedSellableItemToSellableItem
+        /// </summary>
+        public const string TemplateName = "RelatedSellableItemToSellableItem";
+
+        /// <summary>
+        /// The RelatedSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: e94356c0-50cf-4fc7-b403-49eed5d4ffc1</para>
+        /// </summary>
+        [SitecoreField("RelatedSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> RelatedSellableItemToSellableItem {get; set;}
+        public const string RelatedSellableItemToSellableItemFieldId = "e94356c0-50cf-4fc7-b403-49eed5d4ffc1";
+        public const string RelatedSellableItemToSellableItemFieldName = "RelatedSellableItemToSellableItem";
 
     }
 
@@ -8107,6 +9655,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "a0a1342a-6339-445c-94a1-31cb7756aa0b";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Resource Folder
+        /// </summary>
+        public const string TemplateName = "Resource Folder";
+
     }
 
 
@@ -8134,6 +9687,11 @@ namespace Wooli.Foundation.Connect.Models
         /// The TemplateId string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Shared Settings Folder
         /// </summary>
         public const string TemplateId = "14fdf1e0-a529-423f-9c8c-0d77fb870bbf";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Shared Settings Folder
+        /// </summary>
+        public const string TemplateName = "Shared Settings Folder";
 
     }
 
@@ -8163,6 +9721,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "b2cabedf-3e90-403c-b4ab-fa9d865bf94b";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Sitecore Commerce Folder
+        /// </summary>
+        public const string TemplateName = "Sitecore Commerce Folder";
+
     }
 
 
@@ -8176,7 +9739,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 02eaa1d4-a90a-4124-b2ba-3453794daf10</para>
         /// </summary>
@@ -8200,12 +9763,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "284f5f48-7d2e-48d3-b3f5-c8f45549a2a0";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Specification
+        /// </summary>
+        public const string TemplateName = "Specification";
+
+        /// <summary>
         /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 02eaa1d4-a90a-4124-b2ba-3453794daf10</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "02eaa1d4-a90a-4124-b2ba-3453794daf10";
         public const string NameFieldName = "Name";
 
@@ -8222,7 +9790,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -8230,7 +9798,7 @@ namespace Wooli.Foundation.Connect.Models
         string ExternalID {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f3f37114-38b0-43df-b9c7-512b62081bf1</para>
         /// </summary>
@@ -8254,12 +9822,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "64ee9778-10d3-492a-a52e-d229ce8b9fad";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Specification Lookup
+        /// </summary>
+        public const string TemplateName = "Specification Lookup";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -8269,7 +9842,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: f3f37114-38b0-43df-b9c7-512b62081bf1</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "f3f37114-38b0-43df-b9c7-512b62081bf1";
         public const string NameFieldName = "Name";
 
@@ -8301,6 +9874,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "a8a3d56b-bca0-4877-b137-86992f341d81";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Specification Lookups
+        /// </summary>
+        public const string TemplateName = "Specification Lookups";
+
     }
 
 
@@ -8314,7 +9892,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 796b8793-0846-4396-a771-2361a4d55bc7</para>
         /// </summary>
@@ -8322,7 +9900,15 @@ namespace Wooli.Foundation.Connect.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Environment field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b7829557-7e81-4e30-9cd6-c05a4e5a1c9c</para>
+        /// </summary>
+        [SitecoreField("Environment")]
+        string Environment {get; set;}
+
+        /// <summary>
+        /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: a68724cc-9513-46f5-aa82-d26c0644b21d</para>
         /// </summary>
@@ -8346,14 +9932,29 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "59190273-fdcc-4048-9537-7edbdf94b22d";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Storefront
+        /// </summary>
+        public const string TemplateName = "Storefront";
+
+        /// <summary>
         /// The Description field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 796b8793-0846-4396-a771-2361a4d55bc7</para>
         /// </summary>
         [SitecoreField("Description")]
-        public string Description {get; set;}
+        public virtual string Description {get; set;}
         public const string DescriptionFieldId = "796b8793-0846-4396-a771-2361a4d55bc7";
         public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The Environment field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b7829557-7e81-4e30-9cd6-c05a4e5a1c9c</para>
+        /// </summary>
+        [SitecoreField("Environment")]
+        public virtual string Environment {get; set;}
+        public const string EnvironmentFieldId = "b7829557-7e81-4e30-9cd6-c05a4e5a1c9c";
+        public const string EnvironmentFieldName = "Environment";
 
         /// <summary>
         /// The Title field.
@@ -8361,7 +9962,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: a68724cc-9513-46f5-aa82-d26c0644b21d</para>
         /// </summary>
         [SitecoreField("Title")]
-        public string Title {get; set;}
+        public virtual string Title {get; set;}
         public const string TitleFieldId = "a68724cc-9513-46f5-aa82-d26c0644b21d";
         public const string TitleFieldName = "Title";
 
@@ -8393,6 +9994,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "bcd02ed8-8a10-4128-87e6-9f1c37c8ee72";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Configuration/Storefront Configuration
+        /// </summary>
+        public const string TemplateName = "Storefront Configuration";
+
     }
 
 
@@ -8420,6 +10026,11 @@ namespace Wooli.Foundation.Connect.Models
         /// The TemplateId string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront Settings Folder
         /// </summary>
         public const string TemplateId = "867dacb1-9a99-4151-beaa-e39f5048f5a4";
+
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront Settings Folder
+        /// </summary>
+        public const string TemplateName = "Storefront Settings Folder";
 
     }
 
@@ -8449,6 +10060,11 @@ namespace Wooli.Foundation.Connect.Models
         /// </summary>
         public const string TemplateId = "9ea426e4-4576-4a7e-b08d-1af21c714a1a";
 
+        /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Storefront Settings/Storefront/Storefronts Folder
+        /// </summary>
+        public const string TemplateName = "Storefronts Folder";
+
     }
 
 
@@ -8462,7 +10078,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Code field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3860ab02-9645-47bf-9224-3e3d4c3c6bd3</para>
         /// </summary>
@@ -8470,7 +10086,7 @@ namespace Wooli.Foundation.Connect.Models
         string Code {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 725bc3bc-0dcb-40a7-b6d8-64a254e10b1a</para>
         /// </summary>
@@ -8494,12 +10110,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "cc933745-4840-4bd7-962a-24b27c7eca6d";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/Subdivision
+        /// </summary>
+        public const string TemplateName = "Subdivision";
+
+        /// <summary>
         /// The Code field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 3860ab02-9645-47bf-9224-3e3d4c3c6bd3</para>
         /// </summary>
         [SitecoreField("Code")]
-        public string Code {get; set;}
+        public virtual string Code {get; set;}
         public const string CodeFieldId = "3860ab02-9645-47bf-9224-3e3d4c3c6bd3";
         public const string CodeFieldName = "Code";
 
@@ -8509,7 +10130,7 @@ namespace Wooli.Foundation.Connect.Models
         /// <para>Field ID: 725bc3bc-0dcb-40a7-b6d8-64a254e10b1a</para>
         /// </summary>
         [SitecoreField("Name")]
-        public string Name {get; set;}
+        public virtual string Name {get; set;}
         public const string NameFieldId = "725bc3bc-0dcb-40a7-b6d8-64a254e10b1a";
         public const string NameFieldName = "Name";
 
@@ -8526,7 +10147,7 @@ namespace Wooli.Foundation.Connect.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
@@ -8550,12 +10171,17 @@ namespace Wooli.Foundation.Connect.Models
         public const string TemplateId = "240334a5-cfe8-4450-bb85-253d620cba02";
 
         /// <summary>
+        /// The TemplateName string for /sitecore/templates/CommerceConnect/Products/Synchronization
+        /// </summary>
+        public const string TemplateName = "Synchronization";
+
+        /// <summary>
         /// The ExternalID field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: f2f908f1-806e-4706-911b-6794b73576d0</para>
         /// </summary>
         [SitecoreField("ExternalID")]
-        public string ExternalID {get; set;}
+        public virtual string ExternalID {get; set;}
         public const string ExternalIDFieldId = "f2f908f1-806e-4706-911b-6794b73576d0";
         public const string ExternalIDFieldName = "ExternalID";
 
@@ -8563,93 +10189,103 @@ namespace Wooli.Foundation.Connect.Models
 
 
     /// <summary>
-    /// ITrainingProductModel Interface
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingProduct</para>
-    /// <para>ID: 9b6da275-8f16-41e4-a560-a787d6445c88</para>
+    /// ITrainingSellableItemToSellableItemModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingSellableItemToSellableItem</para>
+    /// <para>ID: 352df5d5-6ed5-8e49-82a8-12716cafd370</para>
     /// </summary>
-    [SitecoreType(TemplateId="9b6da275-8f16-41e4-a560-a787d6445c88")]
-    public partial interface ITrainingProductModel: IGlassBase
+    [SitecoreType(TemplateId="352df5d5-6ed5-8e49-82a8-12716cafd370")]
+    public partial interface ITrainingSellableItemToSellableItemModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The TrainingSellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        IEnumerable<Guid> TrainingProduct {get; set;}
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
 
     }
 
 
     /// <summary>
-    /// TrainingProductModel Class
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingProduct</para>
-    /// <para>ID: 9b6da275-8f16-41e4-a560-a787d6445c88</para>
+    /// TrainingSellableItemToSellableItemModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingSellableItemToSellableItem</para>
+    /// <para>ID: 352df5d5-6ed5-8e49-82a8-12716cafd370</para>
     /// </summary>
-    [SitecoreType(TemplateId="9b6da275-8f16-41e4-a560-a787d6445c88")]
-    public partial class TrainingProductModel: GlassBase, ITrainingProductModel
+    [SitecoreType(TemplateId="352df5d5-6ed5-8e49-82a8-12716cafd370")]
+    public partial class TrainingSellableItemToSellableItemModel: GlassBase, ITrainingSellableItemToSellableItemModel
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingProduct
+        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingSellableItemToSellableItem
         /// </summary>
-        public const string TemplateId = "9b6da275-8f16-41e4-a560-a787d6445c88";
+        public const string TemplateId = "352df5d5-6ed5-8e49-82a8-12716cafd370";
 
         /// <summary>
-        /// The TrainingProduct field.
-        /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 277486dd-0f1e-4060-a365-a4d6f7bbc165</para>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/TrainingSellableItemToSellableItem
         /// </summary>
-        [SitecoreField("TrainingProduct")]
-        public IEnumerable<Guid> TrainingProduct {get; set;}
-        public const string TrainingProductFieldId = "277486dd-0f1e-4060-a365-a4d6f7bbc165";
-        public const string TrainingProductFieldName = "TrainingProduct";
+        public const string TemplateName = "TrainingSellableItemToSellableItem";
+
+        /// <summary>
+        /// The TrainingSellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: d263e02e-62cb-4a44-a775-8ecc45f633ae</para>
+        /// </summary>
+        [SitecoreField("TrainingSellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> TrainingSellableItemToSellableItem {get; set;}
+        public const string TrainingSellableItemToSellableItemFieldId = "d263e02e-62cb-4a44-a775-8ecc45f633ae";
+        public const string TrainingSellableItemToSellableItemFieldName = "TrainingSellableItemToSellableItem";
 
     }
 
 
     /// <summary>
-    /// IWarrantyProductModel Interface
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantyProduct</para>
-    /// <para>ID: 0e14c388-1a9d-49cd-86ad-4b00c4169b61</para>
+    /// IWarrantySellableItemToSellableItemModel Interface
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantySellableItemToSellableItem</para>
+    /// <para>ID: 6c15c683-c8ba-c9d3-f733-67165729c1ca</para>
     /// </summary>
-    [SitecoreType(TemplateId="0e14c388-1a9d-49cd-86ad-4b00c4169b61")]
-    public partial interface IWarrantyProductModel: IGlassBase
+    [SitecoreType(TemplateId="6c15c683-c8ba-c9d3-f733-67165729c1ca")]
+    public partial interface IWarrantySellableItemToSellableItemModel: IGlassBase
     {
 
         /// <summary>
-        /// The  field.
+        /// The WarrantySellableItemToSellableItem field.
         /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        IEnumerable<Guid> WarrantyProduct {get; set;}
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
 
     }
 
 
     /// <summary>
-    /// WarrantyProductModel Class
-    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantyProduct</para>
-    /// <para>ID: 0e14c388-1a9d-49cd-86ad-4b00c4169b61</para>
+    /// WarrantySellableItemToSellableItemModel Class
+    /// <para>Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantySellableItemToSellableItem</para>
+    /// <para>ID: 6c15c683-c8ba-c9d3-f733-67165729c1ca</para>
     /// </summary>
-    [SitecoreType(TemplateId="0e14c388-1a9d-49cd-86ad-4b00c4169b61")]
-    public partial class WarrantyProductModel: GlassBase, IWarrantyProductModel
+    [SitecoreType(TemplateId="6c15c683-c8ba-c9d3-f733-67165729c1ca")]
+    public partial class WarrantySellableItemToSellableItemModel: GlassBase, IWarrantySellableItemToSellableItemModel
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantyProduct
+        /// The TemplateId string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantySellableItemToSellableItem
         /// </summary>
-        public const string TemplateId = "0e14c388-1a9d-49cd-86ad-4b00c4169b61";
+        public const string TemplateId = "6c15c683-c8ba-c9d3-f733-67165729c1ca";
 
         /// <summary>
-        /// The WarrantyProduct field.
-        /// <para>Field Type: TreelistEx</para>
-        /// <para>Field ID: 05e7dca5-cf02-4fde-997a-1c461310e0eb</para>
+        /// The TemplateName string for /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/WarrantySellableItemToSellableItem
         /// </summary>
-        [SitecoreField("WarrantyProduct")]
-        public IEnumerable<Guid> WarrantyProduct {get; set;}
-        public const string WarrantyProductFieldId = "05e7dca5-cf02-4fde-997a-1c461310e0eb";
-        public const string WarrantyProductFieldName = "WarrantyProduct";
+        public const string TemplateName = "WarrantySellableItemToSellableItem";
+
+        /// <summary>
+        /// The WarrantySellableItemToSellableItem field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8</para>
+        /// </summary>
+        [SitecoreField("WarrantySellableItemToSellableItem")]
+        public virtual IEnumerable<Guid> WarrantySellableItemToSellableItem {get; set;}
+        public const string WarrantySellableItemToSellableItemFieldId = "b6fdfabd-82a8-4bc6-8ff9-6292923ce9e8";
+        public const string WarrantySellableItemToSellableItemFieldName = "WarrantySellableItemToSellableItem";
 
     }
 

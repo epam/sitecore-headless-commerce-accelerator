@@ -5,7 +5,7 @@
 trigger: none
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'vs2017-win2016'
 
 variables:
   build_cake: './src/build.cake'
@@ -17,7 +17,7 @@ steps:
     targetType: 'inline'
     script: |
       #Change IP server address
-      (Get-Content $(build_cake) -replace $(default_ip), $(HOST_NETWORK_ADDRESS) | Set-Content
+      (Get-Content $(build_cake)) -replace $(default_ip), $(HOST_NETWORK_ADDRESS) | Set-Content $(build_cake)
   displayName: Config preparation
 
 - task: PowerShell@2

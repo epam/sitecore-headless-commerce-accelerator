@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Extensions from 'Foundation/Base/client';
 import * as Commerce from 'Foundation/Commerce/client';
-import * as Extensions from 'Foundation/Extensions/client';
 
 export interface CreateAccountResponse extends Extensions.OkJsonResultModel<Commerce.CreateAccountResultModel> {}
 

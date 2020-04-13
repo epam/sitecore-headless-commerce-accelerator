@@ -1,8 +1,8 @@
----
-ID: "d9c0ad79-0f2d-44a4-87ed-1424fbba184f"
-Parent: "441ff12d-0754-4eb2-b842-2862ffa3891c"
-Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
-Path: /sitecore/system/Settings/Wooli/Foundation/Extensions
+﻿---
+ID: "8df90deb-f4a0-4a55-81d4-81cb4c7513a1"
+Parent: "dec6afd4-412f-4009-a897-d252b327dad5"
+Template: "93227c5d-4fef-474d-94c0-f252ec8e8219"
+Path: /sitecore/layout/Layouts/Wooli/Foundation/Base
 DB: master
 Languages:
 - Language: en

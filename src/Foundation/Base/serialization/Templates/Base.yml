@@ -1,8 +1,8 @@
----
+﻿---
 ID: "d2be47b2-f122-4264-a068-fd5832f64911"
 Parent: "583858b9-8282-415c-b28d-5e412e672335"
 Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
-Path: /sitecore/templates/Wooli/Foundation/Extensions
+Path: /sitecore/templates/Wooli/Foundation/Base
 DB: master
 Languages:
 - Language: en

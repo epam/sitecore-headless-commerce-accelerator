@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Foundation.Extensions.Models
+namespace Wooli.Foundation.Base.Models
 {
     using System;
     using System.Collections.Generic;

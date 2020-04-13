@@ -1,8 +1,8 @@
----
-ID: "1a6aa791-1498-4ca6-8496-d66818f8fe0f"
-Parent: "d6a1aa65-1c77-4bb4-8848-2ca15ae39e22"
-Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
-Path: /sitecore/layout/Renderings/Wooli/Foundation/Extensions
+﻿---
+ID: "5e011080-2b54-4b69-8031-ce7f74189381"
+Parent: "a5a0091c-c054-4189-a2d6-ba612352b8a5"
+Template: "c3b037a0-46e5-4b67-ac7a-a144b962a56f"
+Path: /sitecore/layout/Placeholder Settings/Wooli/Foundation/Base
 DB: master
 Languages:
 - Language: en
@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20170511T175500Z
+      Value: 20170511T174958Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

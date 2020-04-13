@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
 
 import { currentOrder } from 'Feature/Checkout/client/Integration/Order';
 import * as OrderActions from 'Feature/Checkout/client/Integration/Order/actions';
-import * as Extensions from 'Foundation/Extensions/client';
+import * as Extensions from 'Foundation/Base/client';
 
 import { OrderConfirmationControl } from './Component';
 import { AppState, OrderConfirmationDispatchProps, OrderConfirmationOwnProps, OrderConfirmationStateProps } from './models';

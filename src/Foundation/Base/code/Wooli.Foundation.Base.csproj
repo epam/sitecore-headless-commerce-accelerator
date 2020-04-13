@@ -471,6 +471,7 @@
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
+    <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Configuration\Configuration.cs" />
     <Compile Include="Models\Logging\Log.cs" />
     <Compile Include="Models\Logging\CommonLog.cs" />

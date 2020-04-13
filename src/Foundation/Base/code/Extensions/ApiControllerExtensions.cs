@@ -26,9 +26,7 @@ namespace Wooli.Foundation.Base.Extensions
     using Models.Result;
 
     using Sitecore.Diagnostics;
-
-    using Constants = Base.Constants;
-
+    
     public static class ApiControllerExtensions
     {
         private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter = new JsonMediaTypeFormatter

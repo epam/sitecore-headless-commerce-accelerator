@@ -17,7 +17,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss/client';
 
 import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME } from 'Feature/Catalog/client/Integration/ProductsSearch';
-import { tryParseUrlSearch } from 'Foundation/Extensions/client';
+import { tryParseUrlSearch } from 'Foundation/Base/client';
 
 import { ProductsSearchOwnState, ProductsSearchProps } from './models';
 import './styles.scss';

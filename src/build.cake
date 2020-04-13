@@ -75,6 +75,9 @@ Task("000-Clean")
     .IsDependentOn(Sitecore.Tasks.CleanWildcardFoldersTaskName)
     .Does(() => {
         DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Unicorn\*");
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Foundation\Wooli\*");
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Feature\Wooli\*");
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\Wooli\*");
     });
 
 Task("001-Restore")

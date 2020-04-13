@@ -17,7 +17,7 @@ import { push } from 'connected-react-router';
 import queryString from 'query-string';
 import { apply, fork, put, takeEvery } from 'redux-saga/effects';
 
-import * as Extensions from 'Foundation/Extensions/client';
+import * as Extensions from 'Foundation/Base/client';
 import { Action } from 'Foundation/Integration/client';
 
 import dataProvider from '../dataProvider';

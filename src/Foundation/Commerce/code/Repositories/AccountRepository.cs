@@ -21,6 +21,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Web.Security;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Connect.Context.Storefront;
     using Connect.Managers;

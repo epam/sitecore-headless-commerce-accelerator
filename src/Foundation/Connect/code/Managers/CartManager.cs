@@ -18,9 +18,9 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
-    using DependencyInjection;
+    using Base.Extensions;
 
-    using Extensions.Extensions;
+    using DependencyInjection;
 
     using Mappers;
 

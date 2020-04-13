@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
     using System.Linq;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Connect.Context.Storefront;
     using Connect.Managers.Analytics;

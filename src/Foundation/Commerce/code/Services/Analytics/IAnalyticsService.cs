@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Services.Analytics
 {
     using Base.Models;
+    using Base.Models.Result;
 
     using Models.Entities.Catalog;
 

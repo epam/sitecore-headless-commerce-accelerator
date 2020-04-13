@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     using Base.Models;
     using Base.Models.Logging;
+    using Base.Models.Result;
     using Base.Services.Logging;
 
     using Commerce.Infrastructure.Pipelines.Login;

@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Models.Checkout;
 

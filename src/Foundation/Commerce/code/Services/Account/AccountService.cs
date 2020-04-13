@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Services.Account
     using System.Collections.Generic;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using DependencyInjection;
 

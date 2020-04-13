@@ -16,14 +16,14 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
     using System.Linq;
 
+    using Base.Providers.SiteDefinitions;
+
     using Connect.Context.Storefront;
     using Connect.Services.Search;
 
     using Context;
 
     using DependencyInjection;
-
-    using Foundation.Extensions.Services;
 
     using Providers;
 

@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
     using System;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Builders.Search;
 

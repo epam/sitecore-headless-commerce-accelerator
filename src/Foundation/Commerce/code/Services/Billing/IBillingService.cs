@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Services.Billing
 {
     using Base.Models;
+    using Base.Models.Result;
 
     using Models.Entities.Addresses;
     using Models.Entities.Billing;

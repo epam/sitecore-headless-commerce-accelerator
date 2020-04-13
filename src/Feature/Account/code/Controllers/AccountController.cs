@@ -19,13 +19,13 @@ namespace Wooli.Feature.Account.Controllers
     using System.Net;
     using System.Web.Mvc;
 
+    using Foundation.Base.Extensions;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Checkout;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Repositories;
-    using Foundation.Extensions.Extensions;
 
     [Obsolete("Use AccountsController instead")]
     public class AccountController : Controller

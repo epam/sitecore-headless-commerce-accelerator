@@ -95,8 +95,8 @@ Task("003-Tests")
     ;
 
 Task("004-Packages")
-    .IsDependentOn(Sitecore.Tasks.CopyShipFilesTaskName)
-    .IsDependentOn(Sitecore.Tasks.CopySpeRemotingFilesTaskName)
+    //.IsDependentOn(Sitecore.Tasks.CopyShipFilesTaskName)
+    //.IsDependentOn(Sitecore.Tasks.CopySpeRemotingFilesTaskName)
     .IsDependentOn(Sitecore.Tasks.PrepareWebConfigTask)
     .IsDependentOn(Sitecore.Tasks.RunPackagesInstallationTask)
     ;
@@ -120,7 +120,7 @@ Task("Default") // LocalDev
     .IsDependentOn("001-Restore")
     .IsDependentOn("002-Build")
     .IsDependentOn("003-Tests")
-    //.IsDependentOn("004-Packages")
+    .IsDependentOn("004-Packages")
     .IsDependentOn("005-Publish")
     .IsDependentOn("006-Sync-Content")
     ;

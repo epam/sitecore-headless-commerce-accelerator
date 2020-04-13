@@ -27,12 +27,14 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
         /// Raise "Category Visited" event.
         /// </summary>
         /// <param name="category">Category model.</param>
+        /// <returns>Void result</returns>
         Result<VoidResult> RaiseCategoryVisitedEvent(Category category);
 
         /// <summary>
         /// Raise "Product Visited" event.
         /// </summary>
         /// <param name="product">Product model.</param>
+        /// <returns>Void result</returns>
         Result<VoidResult> RaiseProductVisitedEvent(Product product);
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
         /// </summary>
         /// <param name="searchKeyword">Search keyword</param>
         /// <param name="totalItemCount">Total item count</param>
-        /// <returns></returns>
+        /// <returns>Void result</returns>
         Result<VoidResult> RaiseSearchInitiatedEvent(string searchKeyword, int totalItemCount);
     }
 }

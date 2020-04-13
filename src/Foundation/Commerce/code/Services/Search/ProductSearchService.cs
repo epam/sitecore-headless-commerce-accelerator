@@ -35,7 +35,7 @@ namespace Wooli.Foundation.Commerce.Services.Search
     [Service(typeof(IProductSearchService), Lifetime = Lifetime.Singleton)]
     public class ProductSearchService : IProductSearchService
     {
-        private readonly ISearchService searchManager;
+        private readonly ISearchService searchService;
 
         private readonly ISearchMapper searchMapper;
 
@@ -46,17 +46,17 @@ namespace Wooli.Foundation.Commerce.Services.Search
         public ProductSearchService(
             ISearchSettingsProvider searchSettingsProvider,
             ISearchOptionsBuilder searchOptionsBuilder,
-            ISearchService searchManager,
+            ISearchService searchService,
             ISearchMapper searchMapper)
         {
             Assert.ArgumentNotNull(searchSettingsProvider, nameof(searchSettingsProvider));
             Assert.ArgumentNotNull(searchOptionsBuilder, nameof(searchOptionsBuilder));
-            Assert.ArgumentNotNull(searchManager, nameof(searchManager));
+            Assert.ArgumentNotNull(searchService, nameof(searchService));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
             this.searchSettingsProvider = searchSettingsProvider;
             this.searchOptionsBuilder = searchOptionsBuilder;
-            this.searchManager = searchManager;
+            this.searchService = searchService;
             this.searchMapper = searchMapper;
         }
 
@@ -66,11 +66,9 @@ namespace Wooli.Foundation.Commerce.Services.Search
 
             var searchSettings = this.searchSettingsProvider.GetSearchSettings(productSearchOptions.CategoryId);
             var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
-            var searchResults = this.searchManager.GetProducts(searchOptions);
-            var productSearchResults =
-                this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults);
-
-            return new Result<ProductSearchResults>(productSearchResults);
+            var searchResults = this.searchService.GetProducts(searchOptions);
+            
+            return new Result<ProductSearchResults>(this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults));
         }
     }
 }

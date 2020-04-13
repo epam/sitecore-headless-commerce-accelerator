@@ -721,10 +721,10 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
-    <Compile Include="Services\Analytics\CommerceAnalyticsService.cs" />
+    <Compile Include="Services\Analytics\AnalyticsService.cs" />
     <Compile Include="Repositories\BaseCheckoutRepository.cs" />
     <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
-    <Compile Include="Services\Analytics\ICommerceAnalyticsService.cs" />
+    <Compile Include="Services\Analytics\IAnalyticsService.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Context\Contracts\IVisitorContext.cs" />

@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     using Connect.Context.Storefront;
     using Connect.Managers;
+    using Connect.Managers.Analytics;
 
     using Models.Entities.Catalog;
 
@@ -27,6 +28,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
 
     using Ploeh.AutoFixture;
 
+    using Sitecore.Commerce.Services.Catalog;
     using Sitecore.FakeDb.AutoFixture;
 
     using Xunit;
@@ -46,7 +48,18 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
 
+            var successfulResult = new CatalogResult
+            {
+                Success = true
+            };
+
             this.analyticsManager = Substitute.For<IAnalyticsManager>();
+            this.analyticsManager.VisitedCategoryPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
+                .Returns(successfulResult);
+            this.analyticsManager.VisitedProductDetailsPage(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
+                .Returns(successfulResult);
+            this.analyticsManager.SearchInitiated(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>())
+                .Returns(successfulResult);
         }
 
         [Fact]
@@ -54,7 +67,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         {
             // arrange
             var category = this.fixture.Create<Category>();
-            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+            var service = new AnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act
             service.RaiseCategoryVisitedEvent(category);
@@ -69,7 +82,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         {
             // arrange
             Category category = null;
-            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+            var service = new AnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseCategoryVisitedEvent(category); });
@@ -82,7 +95,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         {
             // arrange
             var product = this.fixture.Create<Product>();
-            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+            var service = new AnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act
             service.RaiseProductVisitedEvent(product);
@@ -97,7 +110,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Analytics
         {
             // arrange
             Product product = null;
-            var service = new CommerceAnalyticsService(this.analyticsManager, this.storefrontContext);
+            var service = new AnalyticsService(this.analyticsManager, this.storefrontContext);
 
             // act & assert
             Assert.ThrowsAny<ArgumentNullException>(() => { service.RaiseProductVisitedEvent(product); });

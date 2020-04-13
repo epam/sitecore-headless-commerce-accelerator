@@ -617,10 +617,6 @@
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Foundation\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>Wooli.Foundation.GlassMapper</Name>

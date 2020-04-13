@@ -18,6 +18,7 @@ namespace Wooli.Foundation.Commerce.Services.Cart
     using System.Linq;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Builders.Cart;
 

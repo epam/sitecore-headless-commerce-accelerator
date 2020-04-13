@@ -20,6 +20,7 @@ namespace Wooli.Feature.Catalog.Tests.Controllers
     using Catalog.Mappers;
 
     using Foundation.Base.Models;
+    using Foundation.Base.Models.Result;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
 

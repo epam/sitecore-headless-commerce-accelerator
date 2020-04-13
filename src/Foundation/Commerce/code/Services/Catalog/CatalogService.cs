@@ -15,6 +15,7 @@
 namespace Wooli.Foundation.Commerce.Services.Catalog
 {
     using Base.Models;
+    using Base.Models.Result;
 
     using Connect.Builders.Products;
     using Connect.Services.Search;

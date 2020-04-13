@@ -12,12 +12,32 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Models
+namespace Wooli.Foundation.Base.Infrastructure.Pipelines
 {
     using System.Collections.Generic;
 
-    public class ErrorsJsonResultModel : ErrorJsonResultModel
+    using Sitecore;
+    using Sitecore.Pipelines.HttpRequest;
+
+    public abstract class SiteSpecificPipelineProcessor : HttpRequestProcessor
     {
-        public IList<string> Errors { get; set; }
+        protected SiteSpecificPipelineProcessor()
+        {
+            this.Sites = new List<string>();
+        }
+
+        public List<string> Sites { get; set; }
+
+        public override sealed void Process(HttpRequestArgs args)
+        {
+            if (!this.Sites.Contains(Context.Site?.Name))
+            {
+                return;
+            }
+
+            this.DoProcess(args);
+        }
+
+        protected abstract void DoProcess(HttpRequestArgs args);
     }
 }

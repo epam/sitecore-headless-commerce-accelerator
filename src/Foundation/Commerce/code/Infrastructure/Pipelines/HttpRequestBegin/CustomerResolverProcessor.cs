@@ -14,10 +14,10 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
+    using Base.Infrastructure.Pipelines;
+
     using Context;
-
-    using Foundation.Extensions.Infrastructure;
-
+    
     using Providers;
 
     using Sitecore;

@@ -689,10 +689,6 @@
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{b4cd14e8-725d-401c-8d99-f20ef83e3ff5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

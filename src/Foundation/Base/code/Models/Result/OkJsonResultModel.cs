@@ -12,20 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Extensions
+namespace Wooli.Foundation.Base.Models.Result
 {
-    public enum LinkFieldOption
+    public class OkJsonResultModel<TData> : JsonResultModel
     {
-        Text,
-
-        LinkType,
-
-        Class,
-
-        Alt,
-
-        Target,
-
-        QueryString
+        public TData Data { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace Wooli.Foundation.Commerce.Services.Order
 
     using Base.Models;
     using Base.Models.Logging;
+    using Base.Models.Result;
     using Base.Services.Logging;
 
     using Connect.Context.Storefront;

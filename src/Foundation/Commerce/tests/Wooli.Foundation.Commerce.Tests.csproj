@@ -610,10 +610,6 @@
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
       <Name>Wooli.Foundation.Connect</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>Wooli.Foundation.GlassMapper</Name>

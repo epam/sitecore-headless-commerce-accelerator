@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions
+namespace Wooli.Foundation.Base
 {
     using Microsoft.Extensions.DependencyInjection;
 
-    using Services;
+    using Providers.SiteDefinitions;
 
     using Sitecore.DependencyInjection;
 

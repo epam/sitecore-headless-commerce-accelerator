@@ -539,18 +539,12 @@
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>Wooli.Foundation.Commerce</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{b4cd14e8-725d-401c-8d99-f20ef83e3ff5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\code\Wooli.Feature.Catalog.csproj">
       <Project>{61042c03-f29b-4215-8a26-09395550b64f}</Project>
       <Name>Wooli.Feature.Catalog</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

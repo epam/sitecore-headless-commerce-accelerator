@@ -25,8 +25,7 @@ namespace Wooli.Feature.Account.Tests.Controllers
     using Foundation.Account.Models.Authentication;
     using Foundation.Account.Services.Authentication;
     using Foundation.Base.Models;
-    using Foundation.Extensions.Controllers.ActionResult;
-    using Foundation.Extensions.Models;
+    using Foundation.Base.Models.Result;
 
     using Models.Requests;
 

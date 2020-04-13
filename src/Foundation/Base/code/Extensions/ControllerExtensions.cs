@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Extensions
+namespace Wooli.Foundation.Base.Extensions
 {
     using System;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
 
-    using Controllers.ActionResult;
-
-    using Models;
+    using Models.Result;
 
     public static class ControllerExtensions
     {

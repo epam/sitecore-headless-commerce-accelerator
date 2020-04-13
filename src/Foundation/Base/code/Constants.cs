@@ -12,20 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Services
+namespace Wooli.Foundation.Base
 {
-    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
-    using Models;
-
-    using Sitecore.Data.Items;
-
-    public interface ISiteDefinitionsProvider
+    public class Constants
     {
-        IEnumerable<SiteDefinition> SiteDefinitions { get; }
-
-        SiteDefinition GetContextSiteDefinition(Item item);
-
-        SiteDefinition GetCurrentSiteDefinition();
+        public static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
     }
 }

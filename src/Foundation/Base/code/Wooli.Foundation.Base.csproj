@@ -452,20 +452,36 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Base.config" />
+    <Content Include="App_Config\Include\Foundation\Wooli\Foundation.Base.Serialization.config" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Extensions\FieldExtensions.cs" />
+    <Compile Include="Extensions\ItemExtensions.cs" />
+    <Compile Include="Extensions\LinkFieldOption.cs" />
+    <Compile Include="Extensions\SiteExtensions.cs" />
     <Compile Include="Infrastructure\Pipelines\PipelineProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SafePipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\SiteSpecificPipelineProcessor.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\Mapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
     <Compile Include="Models\Configuration\Configuration.cs" />
     <Compile Include="Models\Logging\Log.cs" />
     <Compile Include="Models\Logging\CommonLog.cs" />
-    <Compile Include="Models\Result.cs" />
-    <Compile Include="Models\VoidResult.cs" />
+    <Compile Include="Models\Result\Result.cs" />
+    <Compile Include="Models\Result\CamelCasePropertyJsonResult.cs" />
+    <Compile Include="Models\Result\ErrorJsonResultModel.cs" />
+    <Compile Include="Models\Result\ErrorsJsonResultModel.cs" />
+    <Compile Include="Models\Result\JsonResultModel.cs" />
+    <Compile Include="Models\Result\OkJsonResultModel.cs" />
+    <Compile Include="Models\Result\VoidResult.cs" />
+    <Compile Include="Models\SiteDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Configuration\ConfigurationProvider.cs" />
     <Compile Include="Providers\Configuration\IConfigurationProvider.cs" />
@@ -473,6 +489,9 @@
     <Compile Include="Context\SitecoreContext.cs" />
     <Compile Include="Providers\Object\IObjectProvider.cs" />
     <Compile Include="Providers\Object\ObjectProvider.cs" />
+    <Compile Include="Providers\SiteDefinitions\ISiteDefinitionsProvider.cs" />
+    <Compile Include="Providers\SiteDefinitions\SiteDefinitionsProvider.cs" />
+    <Compile Include="ServicesConfigurator.cs" />
     <Compile Include="Services\Configuration\ConfigurationService.cs" />
     <Compile Include="Services\Configuration\IConfigurationService.cs" />
     <Compile Include="Services\Logging\CommonLogService.cs" />
@@ -496,10 +515,6 @@
     <ProjectReference Include="..\..\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

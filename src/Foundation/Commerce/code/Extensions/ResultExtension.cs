@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Commerce.Extensions
     using System;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Sitecore.Commerce.Services;
     using Sitecore.Diagnostics;

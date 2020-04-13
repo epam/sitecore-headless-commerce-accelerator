@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Controllers.ActionResult
+namespace Wooli.Foundation.Base.Models.Result
 {
     using System;
     using System.Net;
     using System.Web.Mvc;
-
+    
     using Newtonsoft.Json;
 
     using Sitecore.Diagnostics;
 
-    using Utils;
+    using Constants = Base.Constants;
 
     public class CamelCasePropertyJsonResult : JsonResult
     {

@@ -19,9 +19,9 @@ namespace Wooli.Feature.Checkout.Controllers
     using System.Net;
     using System.Web.Http;
 
+    using Foundation.Base.Extensions;
     using Foundation.Commerce.Repositories;
     using Foundation.Commerce.Utils;
-    using Foundation.Extensions.Extensions;
 
     [Obsolete("Use OrdersController instead")]
     [RoutePrefix(Constants.CommerceRoutePrefix + "/order")]

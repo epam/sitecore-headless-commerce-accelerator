@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Models
+namespace Wooli.Foundation.Base.Models.Result
 {
-    using TypeLite;
-
-    [TsClass]
-    public class VoidResult
+    public class JsonResultModel
     {
+        public string Status { get; set; }
+
+        public object TempData { get; set; }
     }
 }

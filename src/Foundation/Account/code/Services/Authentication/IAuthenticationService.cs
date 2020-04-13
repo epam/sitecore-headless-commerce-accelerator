@@ -17,6 +17,7 @@ namespace Wooli.Foundation.Account.Services.Authentication
     using System;
 
     using Base.Models;
+    using Base.Models.Result;
 
     using Models.Authentication;
 

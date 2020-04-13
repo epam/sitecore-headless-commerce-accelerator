@@ -21,10 +21,9 @@ namespace Wooli.Foundation.Base.Tests.Controllers
 
     using Base.Controllers;
 
-    using Extensions.Extensions;
-    using Extensions.Models;
+    using Extensions;
 
-    using Models;
+    using Models.Result;
 
     using NSubstitute;
 

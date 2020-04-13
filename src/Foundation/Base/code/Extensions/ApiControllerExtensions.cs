@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Extensions
+namespace Wooli.Foundation.Base.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -22,12 +22,12 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Net.Http.Formatting;
     using System.Web.Http;
     using System.Web.Http.Results;
-
-    using Models;
+    
+    using Models.Result;
 
     using Sitecore.Diagnostics;
 
-    using Utils;
+    using Constants = Base.Constants;
 
     public static class ApiControllerExtensions
     {

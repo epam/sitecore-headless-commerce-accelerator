@@ -21,8 +21,8 @@ namespace Wooli.Feature.Account.Controllers
 
     using Foundation.Account.Services.Authentication;
     using Foundation.Base.Controllers;
+    using Foundation.Base.Extensions;
     using Foundation.Commerce.Models.Authentication;
-    using Foundation.Extensions.Extensions;
 
     using Models.Requests;
 

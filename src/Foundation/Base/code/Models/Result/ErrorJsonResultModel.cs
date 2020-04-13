@@ -12,16 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Extensions.Utils
+namespace Wooli.Foundation.Base.Models.Result
 {
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
-
-    public class Constants
+    public class ErrorJsonResultModel : JsonResultModel
     {
-        public static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver()
-        };
+        public string Error { get; set; }
+
+        public string ExceptionMessage { get; set; }
     }
 }

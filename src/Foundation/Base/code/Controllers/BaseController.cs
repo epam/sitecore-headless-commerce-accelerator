@@ -19,9 +19,10 @@ namespace Wooli.Foundation.Base.Controllers
     using System.Net;
     using System.Web.Mvc;
 
-    using Extensions.Extensions;
+    using Extensions;
 
     using Models;
+    using Models.Result;
 
     public class BaseController : Controller
     {

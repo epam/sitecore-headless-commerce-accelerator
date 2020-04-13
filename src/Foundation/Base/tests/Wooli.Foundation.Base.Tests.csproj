@@ -246,10 +246,6 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\code\Wooli.Foundation.Extensions.csproj">
-      <Project>{B4CD14E8-725D-401C-8D99-F20EF83E3FF5}</Project>
-      <Name>Wooli.Foundation.Extensions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\code\Wooli.Foundation.Base.csproj">
       <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
       <Name>Wooli.Foundation.Base</Name>

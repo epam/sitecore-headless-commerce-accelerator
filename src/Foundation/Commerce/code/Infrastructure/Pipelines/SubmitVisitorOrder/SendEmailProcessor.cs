@@ -17,7 +17,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using System;
     using System.Net.Mail;
 
-    using Foundation.Extensions.Extensions;
+    using Base.Extensions;
 
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect.Pipelines;

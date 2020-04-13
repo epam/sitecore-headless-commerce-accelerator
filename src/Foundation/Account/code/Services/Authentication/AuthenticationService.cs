@@ -19,6 +19,7 @@ namespace Wooli.Foundation.Account.Services.Authentication
     using System.Web.Security;
 
     using Base.Models;
+    using Base.Models.Result;
     using Base.Services.Pipeline;
 
     using DependencyInjection;

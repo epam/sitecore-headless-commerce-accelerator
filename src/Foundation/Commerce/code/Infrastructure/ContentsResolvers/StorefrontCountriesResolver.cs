@@ -17,11 +17,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
     using System.Collections.Generic;
     using System.Collections.Specialized;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
+    using Connect.Models;
 
     using DependencyInjection;
 
-    using Mappers;
     using Mappers.Region;
 
     using Models.Entities.Region;
@@ -29,7 +29,6 @@ namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
-    using Wooli.Foundation.Connect.Models;
 
     // TODO: Remove redundant code, refactoring
     [Service(Lifetime = Lifetime.Transient)]

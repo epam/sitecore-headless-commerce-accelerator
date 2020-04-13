@@ -569,8 +569,10 @@
     <Compile Include="Builders\Search\SearchQueryBuilder.cs" />
     <Compile Include="Commerce.Generated.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Context\IStorefrontContext.cs" />
-    <Compile Include="Context\StorefrontContext.cs" />
+    <Compile Include="Context\Catalog\CatalogContext.cs" />
+    <Compile Include="Context\Catalog\ICatalogContext.cs" />
+    <Compile Include="Context\Storefront\IStorefrontContext.cs" />
+    <Compile Include="Context\Storefront\StorefrontContext.cs" />
     <Compile Include="Loaders\CommerceTypeLoader.cs" />
     <Compile Include="Loaders\ICommerceTypeLoader.cs" />
     <Compile Include="Managers\Account\AccountManagerV2.cs" />
@@ -596,6 +598,7 @@
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Resolvers\MultilistFieldResolver.cs" />
     <Compile Include="Models\Catalog\StockStatus.cs" />
+    <Compile Include="Models\CatalogSettings\CommerceCatalogFolderModel.cs" />
     <Compile Include="Models\Payment\PaymentClientTokenResult.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionConfigurationModel.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionModel.cs" />

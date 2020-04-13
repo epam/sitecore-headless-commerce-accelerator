@@ -22,7 +22,7 @@ namespace Wooli.Foundation.Commerce.Repositories
 
     using Base.Models;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers;
 
     using DependencyInjection;

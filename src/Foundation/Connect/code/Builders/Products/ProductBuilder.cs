@@ -17,7 +17,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using System.Collections.Generic;
     using System.Linq;
 
-    using Context;
+    using Context.Catalog;
+    using Context.Storefront;
 
     using DependencyInjection;
 
@@ -38,26 +39,30 @@ namespace Wooli.Foundation.Connect.Builders.Products
     {
         private static readonly string[] PriceTypes = { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
 
-        private readonly IPricingManager pricingManager;
         private readonly IInventoryManager inventoryManager;
+        private readonly IPricingManager pricingManager;
+        private readonly IStorefrontContext storefrontContext;
         private readonly IVariantBuilder<Item> variantBuilder;
 
         public ProductBuilder(
             IVariantBuilder<Item> variantBuilder,
-            IStorefrontContext storefrontContext,
+            ICatalogContext catalogContext,
             IPricingManager pricingManager,
             IInventoryManager inventoryManager,
+            IStorefrontContext storefrontContext,
             ICatalogMapper catalogMapper) : base(
-            storefrontContext,
+            catalogContext,
             catalogMapper)
         {
             Assert.ArgumentNotNull(variantBuilder, nameof(variantBuilder));
             Assert.ArgumentNotNull(inventoryManager, nameof(inventoryManager));
             Assert.ArgumentNotNull(pricingManager, nameof(pricingManager));
+            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
 
             this.variantBuilder = variantBuilder;
             this.inventoryManager = inventoryManager;
             this.pricingManager = pricingManager;
+            this.storefrontContext = storefrontContext;
         }
 
         public Product Build(Item source)
@@ -195,7 +200,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
                 return Enumerable.Empty<StockInformation>();
             }
 
-            var shopName = this.StorefrontContext.ShopName;
+            var shopName = this.storefrontContext.ShopName;
             return this.inventoryManager
                 .GetStockInformation(shopName, inventoryProducts, StockDetailsLevel.StatusAndAvailability)
                 ?.StockInformation;

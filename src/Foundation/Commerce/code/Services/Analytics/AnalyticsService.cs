@@ -18,14 +18,14 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
 
     using Base.Models;
 
-    using Connect.Context;
+    using Connect.Context.Storefront;
     using Connect.Managers.Analytics;
 
     using DependencyInjection;
 
     using Models.Entities.Catalog;
 
-    using Sitecore.Commerce;
+    using Sitecore.Diagnostics;
 
     [Service(typeof(IAnalyticsService), Lifetime = Lifetime.Singleton)]
     public class AnalyticsService : IAnalyticsService
@@ -83,8 +83,8 @@ namespace Wooli.Foundation.Commerce.Services.Analytics
 
         public Result<VoidResult> RaiseSearchInitiatedEvent(string searchKeyword, int totalItemCount)
         {
-            Sitecore.Diagnostics.Assert.ArgumentNotNull(searchKeyword, nameof(searchKeyword));
-            Sitecore.Diagnostics.Assert.ArgumentNotNull(totalItemCount, nameof(totalItemCount));
+            Assert.ArgumentNotNull(searchKeyword, nameof(searchKeyword));
+            Assert.ArgumentNotNull(totalItemCount, nameof(totalItemCount));
 
             var result = new Result<VoidResult>();
 

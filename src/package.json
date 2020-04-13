@@ -12,6 +12,7 @@
     "start": "node ./scripts/webpack/environments/development/server.js --project=Wooli --env=local",
     "build:Debug": "copyfiles -f  ./Project/Wooli/client/public/**/* ./Project/Wooli/client/build/ && cross-env NODE_ENV=production webpack",
     "sc:codegen": "gulp --gulpfile ./scripts/code-generation/codeGen.js",
+    "sc:codegen:commerce": "gulp --gulpfile ./scripts/code-generation/commerceCodeGen.js",
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",
     "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js"

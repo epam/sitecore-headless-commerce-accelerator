@@ -27,7 +27,7 @@ namespace Wooli.Foundation.Connect.Managers.Analytics
         /// <param name="shopName">Shop name</param>
         /// <param name="categoryId">Category id</param>
         /// <param name="categoryName">Category name</param>
-        /// <returns></returns>
+        /// <returns>The result of the catalog service provider.</returns>
         CatalogResult VisitedCategoryPage(string shopName, string categoryId, string categoryName);
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Wooli.Foundation.Connect.Managers.Analytics
         /// <param name="shopName"></param>
         /// <param name="productId"></param>
         /// <param name="productName"></param>
-        /// <returns></returns>
+        /// <returns>The result of the catalog service provider.</returns>
         CatalogResult VisitedProductDetailsPage(string shopName, string productId, string productName);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Wooli.Foundation.Connect.Managers.Analytics
         /// <param name="shopName">Shop name</param>
         /// <param name="searchKeyword">Search keyword</param>
         /// <param name="totalItemsCount">Search total items count</param>
-        /// <returns>The service response.</returns>
+        /// <returns>The result of the catalog service provider.</returns>
         CatalogResult SearchInitiated(
             string shopName,
             string searchKeyword,

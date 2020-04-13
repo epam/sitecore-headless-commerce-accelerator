@@ -51,6 +51,12 @@
     <Reference Include="FiftyOne.Foundation, Version=3.2.17.2, Culture=neutral, PublicKeyToken=e0b3a8da0bbce49c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\51Degrees.mobi-core.3.2.17.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.Sc.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -516,6 +522,10 @@
     <ProjectReference Include="..\..\DependencyInjection\code\Wooli.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>Wooli.Foundation.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
+      <Project>{0044b0ca-abe2-4365-b1b2-1e347993b4aa}</Project>
+      <Name>Wooli.Foundation.GlassMapper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -562,6 +562,7 @@
     <Compile Include="Builders\Products\ProductBuilderTests.cs" />
     <Compile Include="Builders\Products\VariantBuilderTests.cs" />
     <Compile Include="Builders\Search\SearchQueryBuilderTests.cs" />
+    <Compile Include="Context\Storefront\StorefrontContextTests.cs" />
     <Compile Include="Managers\Account\AccountManagerV2Tests.cs" />
     <Compile Include="Managers\BaseManagerTests.cs" />
     <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
@@ -597,6 +598,10 @@
     <ProjectReference Include="..\..\Base\code\Wooli.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>Wooli.Foundation.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GlassMapper\code\Wooli.Foundation.GlassMapper.csproj">
+      <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
+      <Name>Wooli.Foundation.GlassMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\code\Wooli.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>

@@ -17,10 +17,9 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
     using AutoMapper;
 
     using Commerce.Mappers.Profiles;
+    using Commerce.Providers;
 
     using NSubstitute;
-
-    using Providers;
 
     using Xunit;
 

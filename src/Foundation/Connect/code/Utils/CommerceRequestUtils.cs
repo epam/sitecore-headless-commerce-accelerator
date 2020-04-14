@@ -21,6 +21,7 @@ namespace Wooli.Foundation.Connect.Utils
 
     public class CommerceRequestUtils
     {
+        [Obsolete("Use Commerce.Providers.StorefrontSettingsProvider")]
         public static string GetPaymentOptionId(string paymentType)
         {
             var paymentOptions = Context.Database.GetItem(

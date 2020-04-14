@@ -17,6 +17,9 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
     using AutoMapper;
 
     using Commerce.Mappers.Profiles;
+    using Commerce.Providers.StorefrontSettings;
+
+    using NSubstitute;
 
     using Xunit;
 
@@ -26,7 +29,9 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<PaymentProfile>());
+            var storefrontSettingsProvider = Substitute.For<IStorefrontSettingsProvider>();
+            var configuration =
+                new MapperConfiguration(cfg => cfg.AddProfile(new PaymentProfile(storefrontSettingsProvider)));
 
             // act, assert
             configuration.AssertConfigurationIsValid();

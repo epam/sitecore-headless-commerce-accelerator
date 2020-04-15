@@ -17,13 +17,12 @@ namespace Wooli.Foundation.Commerce.Tests.ModelMappers
     using System.Collections.Generic;
 
     using Commerce.Mappers;
+    using Commerce.Providers;
     using Commerce.Services.Catalog;
 
     using Models.Checkout;
 
     using NSubstitute;
-
-    using Providers;
 
     using Sitecore.Commerce.Entities.Shipping;
 

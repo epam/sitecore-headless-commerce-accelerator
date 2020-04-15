@@ -21,14 +21,13 @@ namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     using Commerce.Infrastructure.Pipelines.Login;
     using Commerce.Mappers.Users;
+    using Commerce.Providers;
 
     using Models.Entities.Users;
 
     using NSubstitute;
 
     using Ploeh.AutoFixture;
-
-    using Providers;
 
     using Xunit;
 

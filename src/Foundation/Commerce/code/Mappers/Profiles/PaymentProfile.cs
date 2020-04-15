@@ -18,9 +18,10 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
 
-    using Connect.Utils;
+    using Providers.StorefrontSettings;
 
     using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Diagnostics;
 
     using FederatedPaymentInfo = Models.Entities.Payment.FederatedPaymentInfo;
     using PaymentMethod = Sitecore.Commerce.Entities.Payments.PaymentMethod;
@@ -29,13 +30,16 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
     [ExcludeFromCodeCoverage]
     public class PaymentProfile : Profile
     {
-        public PaymentProfile()
+        public PaymentProfile(IStorefrontSettingsProvider storefrontSettingsProvider)
         {
-            // TODO: Create SharedSettingsProvider instead of CommerceRequestUtils 
+            Assert.ArgumentNotNull(storefrontSettingsProvider, nameof(storefrontSettingsProvider));
+
             this.CreateMap<FederatedPaymentInfo, Sitecore.Commerce.Entities.Carts.FederatedPaymentInfo>()
                 .ForMember(
                     dest => dest.PaymentMethodID,
-                    opt => opt.MapFrom(src => CommerceRequestUtils.GetPaymentOptionId("Federated")))
+                    opt => opt.MapFrom(
+                        src => storefrontSettingsProvider.GetPaymentOptionId(
+                            Constants.StorefrontSettings.FederatedPaymentOptionTitle)))
                 .ForMember(dest => dest.Amount, opt => opt.Ignore())
                 .ForMember(dest => dest.AuthorizationResult, opt => opt.Ignore())
                 .ForMember(dest => dest.ExternalId, opt => opt.Ignore())

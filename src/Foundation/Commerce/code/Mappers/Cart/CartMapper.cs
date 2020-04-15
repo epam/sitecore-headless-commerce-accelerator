@@ -21,6 +21,7 @@ namespace Wooli.Foundation.Commerce.Mappers.Cart
     using Profiles;
 
     using Providers;
+    using Providers.StorefrontSettings;
 
     using Sitecore.Diagnostics;
 
@@ -29,16 +30,17 @@ namespace Wooli.Foundation.Commerce.Mappers.Cart
     [Service(typeof(ICartMapper), Lifetime = Lifetime.Singleton)]
     public class CartMapper : Mapper, ICartMapper
     {
-        public CartMapper(ICurrencyProvider currencyProvider)
+        public CartMapper(ICurrencyProvider currencyProvider, IStorefrontSettingsProvider storefrontSettingsProvider)
         {
             Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
+            Assert.ArgumentNotNull(storefrontSettingsProvider, nameof(storefrontSettingsProvider));
 
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new CartProfile(currencyProvider));
                 cfg.AddProfile<AddressProfile>();
                 cfg.AddProfile<ShippingProfile>();
-                cfg.AddProfile<PaymentProfile>();
+                cfg.AddProfile(new PaymentProfile(storefrontSettingsProvider));
             });
             this.InnerMapper = new AutoMapper.Mapper(mapperConfiguration);
         }

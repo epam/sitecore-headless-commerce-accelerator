@@ -12,18 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce
+namespace Wooli.Foundation.Commerce.Providers.StorefrontSettings
 {
-    public static class Constants
-    {
-        public static class Login
-        {
-            public const string CommerceUserSource = "CommerceUser";
-        }
+    using Models.Entities.Addresses;
 
-        public static class StorefrontSettings
-        {
-            public const string FederatedPaymentOptionTitle = "Federated";
-        }
+    /// <summary>
+    /// Provides storefront settings
+    /// </summary>
+    public interface IStorefrontSettingsProvider
+    {
+        /// <summary>
+        /// Gets payment option id
+        /// </summary>
+        /// <param name="optionTitle">Payment option title</param>
+        /// <returns>Payment option id</returns>
+        string GetPaymentOptionId(string optionTitle);
     }
 }

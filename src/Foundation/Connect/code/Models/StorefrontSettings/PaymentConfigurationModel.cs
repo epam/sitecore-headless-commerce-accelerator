@@ -12,18 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce
-{
-    public static class Constants
-    {
-        public static class Login
-        {
-            public const string CommerceUserSource = "CommerceUser";
-        }
+// ReSharper disable CheckNamespace
 
-        public static class StorefrontSettings
-        {
-            public const string FederatedPaymentOptionTitle = "Federated";
-        }
+namespace Wooli.Foundation.Connect.Models
+{
+    using System.Collections.Generic;
+
+    using Glass.Mapper.Sc.Configuration.Attributes;
+
+    public partial class PaymentConfigurationModel
+    {
+        [SitecoreField(PaymentOptionsFieldName)]
+        public virtual IEnumerable<PaymentOptionModel> SelectedPaymentOptions { get; set; }
     }
 }

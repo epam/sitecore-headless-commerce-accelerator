@@ -36,7 +36,6 @@ namespace Wooli.Foundation.Connect.Models
         [SitecoreQuery(CurrenciesDisplayAdjustmentsQuery, IsRelative = true)]
         public virtual CurrenciesDisplayAdjustmentsModel CurrenciesDisplaySettings { get; set; }
 
-        // TODO: Use this configuration in payment
         [SitecoreQuery(PaymentConfigurationQuery, IsRelative = true)]
         public virtual PaymentConfigurationModel PaymentSettings { get; set; }
     }

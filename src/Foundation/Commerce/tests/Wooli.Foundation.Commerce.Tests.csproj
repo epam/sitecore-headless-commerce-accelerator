@@ -577,6 +577,7 @@
     <Compile Include="Mappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Mappers\Profiles\OrderProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProviderTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
     <Compile Include="Services\Order\OrderServiceTests.cs" />

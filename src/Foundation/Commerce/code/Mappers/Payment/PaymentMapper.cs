@@ -20,18 +20,24 @@ namespace Wooli.Foundation.Commerce.Mappers.Payment
 
     using Profiles;
 
+    using Providers.StorefrontSettings;
+
+    using Sitecore.Diagnostics;
+
     using Mapper = Base.Mappers.Mapper;
 
     [Service(typeof(IPaymentMapper), Lifetime = Lifetime.Singleton)]
     public class PaymentMapper : Mapper, IPaymentMapper
     {
-        public PaymentMapper()
+        public PaymentMapper(IStorefrontSettingsProvider storefrontSettingsProvider)
         {
+            Assert.ArgumentNotNull(storefrontSettingsProvider, nameof(storefrontSettingsProvider));
+
             var configuration = new MapperConfiguration(
                 cfg =>
                 {
                     cfg.AddProfile<AddressProfile>();
-                    cfg.AddProfile<PaymentProfile>();
+                    cfg.AddProfile(new PaymentProfile(storefrontSettingsProvider));
                 });
 
             this.InnerMapper = new AutoMapper.Mapper(configuration);

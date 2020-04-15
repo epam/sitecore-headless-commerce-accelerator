@@ -14,6 +14,7 @@
 
 namespace Wooli.Foundation.Connect.Mappers
 {
+    using System;
     using System.Collections.Generic;
 
     using Base.Mappers;
@@ -23,6 +24,7 @@ namespace Wooli.Foundation.Connect.Mappers
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
 
+    [Obsolete("Use specified mappers")]
     public interface IConnectEntityMapper : IMapper
     {
         CommerceParty MapToCommerceParty(Party item);

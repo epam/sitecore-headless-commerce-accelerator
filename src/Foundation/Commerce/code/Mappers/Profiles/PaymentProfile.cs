@@ -14,15 +14,19 @@
 
 namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Connect.Utils;
 
-    using Models.Entities.Payment;
+    using Sitecore.Commerce.Entities.Carts;
 
+    using FederatedPaymentInfo = Models.Entities.Payment.FederatedPaymentInfo;
     using PaymentMethod = Sitecore.Commerce.Entities.Payments.PaymentMethod;
     using PaymentOption = Sitecore.Commerce.Entities.Payments.PaymentOption;
 
+    [ExcludeFromCodeCoverage]
     public class PaymentProfile : Profile
     {
         public PaymentProfile()
@@ -41,6 +45,10 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<PaymentOption, Models.Entities.Payment.PaymentOption>();
 
             this.CreateMap<PaymentMethod, Models.Entities.Payment.PaymentMethod>();
+
+            this.CreateMap<PaymentInfo, FederatedPaymentInfo>()
+                .ForMember(dest => dest.CardToken, opt => opt.Ignore())
+                .ReverseMap();
         }
     }
 }

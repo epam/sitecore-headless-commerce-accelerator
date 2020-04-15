@@ -14,13 +14,18 @@
 
 namespace Wooli.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+
     using AutoMapper;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
 
     using Utils;
 
+    [ExcludeFromCodeCoverage]
     public class ShippingProfile : Profile
     {
         public ShippingProfile()
@@ -30,21 +35,28 @@ namespace Wooli.Foundation.Commerce.Mappers.Profiles
                 .ForMember(dest => dest.PartyId, opt => opt.Ignore())
                 .ForMember(dest => dest.ShippingPreferenceType, opt => opt.Ignore());
 
-            // TODO: Get Rid of reference to Sitecore.Commerce.Engine.Connect
+            this.CreateMap<Models.Entities.Shipping.ShippingMethod, ShippingInfo>()
+                .ForMember(dest => dest.ShippingMethodID, opt => opt.MapFrom(src => src.ExternalId))
+                .ForMember(dest => dest.ShippingProviderID, opt => opt.Ignore())
+                .ReverseMap();
+
             this.CreateMap<Models.Entities.Shipping.ShippingMethod, CommerceShippingInfo>()
                 .ForMember(
                     dest => dest.ShippingOptionType,
                     opt => opt.MapFrom(src => src.ShippingPreferenceType))
-                .ForMember(dest => dest.ShippingMethodID, opt => opt.MapFrom(src => src.ExternalId))
                 .ForMember(dest => dest.ShippingMethodName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.ElectronicDeliveryEmail, opt => opt.Ignore())
                 .ForMember(dest => dest.ElectronicDeliveryEmailContent, opt => opt.Ignore())
-                .ForMember(dest => dest.ShippingProviderID, opt => opt.Ignore());
+                .IncludeBase<Models.Entities.Shipping.ShippingMethod, ShippingInfo>()
+                .ReverseMap();
 
             this.CreateMap<ShippingOption, Models.Entities.Shipping.ShippingOption>();
 
             this.CreateMap<string, ShippingOptionType>()
                 .ConvertUsing(ConnectOptionTypeHelper.ToShippingOptionType);
+
+            this.CreateMap<ShippingOptionType, string>()
+                .ConstructUsing(src => src.Value.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

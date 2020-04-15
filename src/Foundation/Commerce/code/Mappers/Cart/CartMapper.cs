@@ -33,7 +33,13 @@ namespace Wooli.Foundation.Commerce.Mappers.Cart
         {
             Assert.ArgumentNotNull(currencyProvider, nameof(currencyProvider));
 
-            var mapperConfiguration = new MapperConfiguration(cfg => cfg.AddProfile(new CartProfile(currencyProvider)));
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new CartProfile(currencyProvider));
+                cfg.AddProfile<AddressProfile>();
+                cfg.AddProfile<ShippingProfile>();
+                cfg.AddProfile<PaymentProfile>();
+            });
             this.InnerMapper = new AutoMapper.Mapper(mapperConfiguration);
         }
     }

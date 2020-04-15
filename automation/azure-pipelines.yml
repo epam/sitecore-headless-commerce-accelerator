@@ -67,4 +67,4 @@ steps:
     targetType: 'inline'
     script: 'cmdkey /delete:$env:HOST_NETWORK_ADDRESS'
   displayName: Remove windows credentials from agent
-  condition: always
+  condition: always()

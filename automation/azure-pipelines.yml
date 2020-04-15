@@ -12,10 +12,10 @@ variables:
 
 steps:
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: '(Invoke-WebRequest -uri "https://api.ipify.org/").Content'
+#- task: PowerShell@2
+#  inputs:
+#    targetType: 'inline'
+#    script: '(Invoke-WebRequest -uri "https://api.ipify.org/").Content'
 
 - task: UseNode@1
   inputs:

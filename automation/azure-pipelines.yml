@@ -58,7 +58,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'copy ./src/* \\$(HOST_NETWORK_ADDRESS)\c$\vagrant\src -Force -Recurse'
+    script: 'copy ./src/* c:\vagrant\src -Force -Recurse'
     errorActionPreference: 'continue'
   displayName: Copy src for Wooli-Unicorn
 

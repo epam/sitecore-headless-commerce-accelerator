@@ -9,6 +9,7 @@ pool:
 variables:
   build_cake: './src/build.cake'
   default_ip: '192.168.50.4'
+  default_url: 'https://sc9.local'
 
 steps:
 
@@ -16,6 +17,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: '(Invoke-WebRequest -uri "https://api.ipify.org/").Content'
+  displayName: Check agent IP address
 
 - task: UseNode@1
   inputs:
@@ -34,6 +36,7 @@ steps:
     script: |
       (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", $env:agent_buildTools | Set-Content $(build_cake)
       (Get-Content $(build_cake)) -replace "$(default_ip)", $env:HOST_NETWORK_ADDRESS | Set-Content $(build_cake)
+      (Get-Content $(build_cake)) -replace "$(default_url)", $env:sitecore_url | Set-Content $(build_cake)
       move $(license_file.secureFilePath) ./src/
   displayName: Config preparation
 

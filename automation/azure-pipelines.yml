@@ -1,6 +1,5 @@
-# Universal Windows Platform
-# Build a Universal Windows Platform project using Visual Studio.
-# Variables with address and credentials stored in Azure secrets
+# Build using Visual Studio 2017 on Windows Server 2016.
+# Variables with password stored in Azure secrets
 
 trigger: none
 
@@ -28,6 +27,7 @@ steps:
   inputs:
     secureFile: 'license.xml'
   displayName: Download license
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
@@ -50,6 +50,13 @@ steps:
     errorActionPreference: 'continue'
     workingDirectory: './src/'
   displayName: Build
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'copy ./src/* \\$(HOST_NETWORK_ADDRESS)\c$\vagrant\src -Force -Recurse'
+    errorActionPreference: 'continue'
+  displayName: Copy src for Wooli-Unicorn
 
 - task: PowerShell@2
   inputs:

@@ -17,9 +17,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     using System.Collections.Generic;
 
     using Connect.Builders.Products;
+    using Connect.Context.Catalog;
     using Connect.Mappers.Catalog;
-
-    using Context.Catalog;
 
     using Models.Catalog;
 

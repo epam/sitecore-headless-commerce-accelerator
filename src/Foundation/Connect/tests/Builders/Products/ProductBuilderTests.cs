@@ -18,10 +18,9 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
     using System.Linq;
 
     using Connect.Builders.Products;
+    using Connect.Context.Storefront;
     using Connect.Managers.Inventory;
     using Connect.Managers.Pricing;
-
-    using Context.Storefront;
 
     using Models.Catalog;
 

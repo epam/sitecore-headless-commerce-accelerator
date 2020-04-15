@@ -50,6 +50,7 @@ steps:
     errorActionPreference: 'continue'
     workingDirectory: './src/'
   displayName: Build
+  continueOnError: true
 
 - task: PowerShell@2
   inputs:
@@ -63,3 +64,4 @@ steps:
     targetType: 'inline'
     script: 'cmdkey /delete:$env:HOST_NETWORK_ADDRESS'
   displayName: Remove windows credentials from agent
+  condition: always

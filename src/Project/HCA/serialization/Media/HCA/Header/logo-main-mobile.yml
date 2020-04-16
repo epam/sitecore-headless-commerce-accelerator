@@ -1,0 +1,43 @@
+﻿---
+ID: "3bd521f9-edde-49d6-a995-9c5b85eb5aae"
+Parent: "6f334d14-7c5d-4964-8194-4a831541ba22"
+Template: "f1828a2c-7e5d-4bbd-98ca-320474871548"
+Path: "/sitecore/media library/HCA/Project/HCA/Header/logo-main-mobile"
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: "-/media/3BD521F9EDDE49D6A9959C5B85EB5AAE.ashx?h=16&thn=1&w=16"
+- ID: "22eac599-f13b-4607-a89d-c091763a467d"
+  Hint: Width
+  Value: 309
+- ID: "40e50ed9-ba07-4702-992e-a912738d32dc"
+  Hint: Blob
+  BlobID: "2c156be4-bfef-4278-acf0-b221731fa4f3"
+  Value: iVBORw0KGgoAAAANSUhEUgAAATUAAABVCAMAAAAfQoPYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAC9FBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAABJe1cxAAAA+nRSTlMAH1J+pMPc5/D869m9nnVKFRpPe6LA2+X97L+hGRFc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
+- ID: "6954b7c7-2487-423f-8600-436cb3b6dc0e"
+  Hint: Size
+  Value: 4128
+- ID: "6f47a0a5-9c94-4b48-abeb-42d38def6054"
+  Hint: Mime Type
+  Value: image/png
+- ID: "c06867fe-9a43-4c7d-b739-48780492d06f"
+  Hint: Extension
+  Value: png
+- ID: "cb09946f-3218-4823-87d2-d5007c199a96"
+  Hint: Dimensions
+  Value: 309 x 85
+- ID: "de2ca9e4-c117-4c8a-a139-1ff4b199d15a"
+  Hint: Height
+  Value: 85
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T072935Z
+    - ID: "65885c44-8fcd-4a7f-94f1-ee63703fe193"
+      Hint: Alt
+      Value: HCA logo

@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
-import { MenuItem } from '../../models';
+import * as Jss from 'Foundation/ReactJss/client';
+
+import { MenuItemDataSource } from '../../models';
 
 export interface NavMainProps {
-    menuItems: {
-        items: [MenuItem]
-    };
+    menuItems: Jss.GraphQLListField<MenuItemDataSource>;
 }
 
-export interface NavMainState extends JSS.SafePureComponentState {}
+export interface NavMainState extends Jss.SafePureComponentState {}

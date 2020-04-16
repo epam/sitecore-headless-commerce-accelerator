@@ -20,29 +20,23 @@ import * as Jss from 'Foundation/ReactJss/client';
 
 import { GlobalShoppingCartState } from 'Feature/Checkout/client/Integration/ShoppingCart';
 
+export interface GlobalHeaderDataSource extends Jss.BaseDataSourceItem {
+  logo: Jss.GraphQLField<Jss.ImageField>;
+  mobileLogo: Jss.GraphQLField<Jss.ImageField>;
+  menuItems: Jss.GraphQLListField<MenuItemDataSource>;
+}
+
+export interface MenuItemDataSource extends Jss.BaseDataSourceItem {
+  title: Jss.GraphQLField<Jss.TextField>;
+  image: Jss.GraphQLField<Jss.ImageField>;
+  commerceCategories: Jss.GraphQLListField<CommerceCategory>;
+}
+
 export interface CommerceCategory extends Jss.BaseDataSourceItem {
   name: string;
 }
 
-export interface MenuItem extends Jss.BaseDataSourceItem {
-  title: Jss.GraphQLField<Jss.TextField>;
-  image:  Jss.GraphQLField<Jss.ImageField>;
-  commerceCategories: {
-    items: [CommerceCategory]
-  };
-}
-
-export interface GlobalHeaderDataSource extends Jss.BaseDataSourceItem {
-  data: {
-    datasource: {
-      menuItems: {
-        items: [MenuItem]
-      };
-    }
-  };
-}
-
-export interface GlobalHeaderOwnProps extends RouterProps, Jss.Rendering<GlobalHeaderDataSource> {}
+export interface GlobalHeaderOwnProps extends RouterProps, Jss.GraphQLRendering<GlobalHeaderDataSource> {}
 
 export interface GlobalHeaderStateProps {
   commerceUser: Commerce.CommerceUserModel;
@@ -50,6 +44,7 @@ export interface GlobalHeaderStateProps {
   authProcess: AuthProcessState;
   cartQuantity: number;
 }
+
 export interface GlobalHeaderDispatchProps {
   StartAuthentication: (email: string, password: string) => void;
   ChangeRoute: (newRoute: string) => void;

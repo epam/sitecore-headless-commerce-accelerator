@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Mappers
+namespace HCA.Foundation.Commerce.Mappers
 {
     using System.Collections.Generic;
     using System.Linq;
 
     using AutoMapper;
-
-    using Base.Models;
 
     using Connect.Models;
 
@@ -27,7 +25,6 @@ namespace Wooli.Foundation.Commerce.Mappers
 
     using Models.Checkout;
     using Models.Entities.Addresses;
-    using Models.Entities.Cart;
     using Models.Entities.Users;
 
     using Providers;
@@ -37,15 +34,10 @@ namespace Wooli.Foundation.Commerce.Mappers
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
     using Utils;
-
-    using Cart = Models.Entities.Cart.Cart;
-    using CartLine = Sitecore.Commerce.Entities.Carts.CartLine;
 
     [Service(typeof(IEntityMapper))]
     public class EntityMapper : IEntityMapper

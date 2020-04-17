@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wooli.Foundation.GlassMapper")]
-[assembly: AssemblyDescription("Wooli.Foundation.GlassMapper")]
+[assembly: AssemblyTitle("HCA.Foundation.GlassMapper")]
+[assembly: AssemblyDescription("HCA.Foundation.GlassMapper")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Wooli.Foundation.GlassMapper")]
+[assembly: AssemblyProduct("HCA.Foundation.GlassMapper")]
 [assembly: AssemblyCopyright("Copyright 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

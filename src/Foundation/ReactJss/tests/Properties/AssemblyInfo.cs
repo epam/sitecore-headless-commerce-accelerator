@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wooli.Foundation.ReactJss.Tests")]
-[assembly: AssemblyDescription("Wooli.Foundation.ReactJss.Tests")]
+[assembly: AssemblyTitle("HCA.Foundation.ReactJss.Tests")]
+[assembly: AssemblyDescription("HCA.Foundation.ReactJss.Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("Wooli.Foundation.ReactJss.Tests")]
+[assembly: AssemblyProduct("HCA.Foundation.ReactJss.Tests")]
 [assembly: AssemblyCopyright("Copyright �  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

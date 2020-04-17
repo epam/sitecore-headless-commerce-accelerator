@@ -1,25 +1,22 @@
 ﻿//    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Services.Search
+namespace HCA.Foundation.Commerce.Tests.Services.Search
 {
     using System;
 
-    using Base.Models;
     using Base.Models.Result;
-
-    using Builders.Search;
 
     using Commerce.Builders.Search;
     using Commerce.Mappers.Search;
@@ -28,7 +25,6 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
     using Connect.Models.Catalog;
     using Connect.Models.Search;
     using Connect.Providers.Search;
-    using Connect.Services;
     using Connect.Services.Search;
 
     using Models.Entities.Search;
@@ -55,7 +51,11 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
             this.searchOptionsBuilder = Substitute.For<ISearchOptionsBuilder>();
             this.searchSettingsProvider = Substitute.For<ISearchSettingsProvider>();
 
-            this.service = new ProductSearchService(this.searchSettingsProvider, this.searchOptionsBuilder, this.searchManager, this.searchMapper);
+            this.service = new ProductSearchService(
+                this.searchSettingsProvider,
+                this.searchOptionsBuilder,
+                this.searchManager,
+                this.searchMapper);
             this.fixture = new Fixture();
         }
 
@@ -66,10 +66,10 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
             Assert.Throws<ArgumentNullException>(() => this.service.GetProducts(null));
         }
 
-        [Fact] 
+        [Fact]
         public void GetProducts_ShouldCallSearchSettingsProvider()
         {
-            // act 
+            // act
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert
@@ -80,7 +80,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
         [Fact]
         public void GetProducts_ShouldCallSearchOptionsBuilder()
         {
-            // act 
+            // act
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert
@@ -91,7 +91,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
         [Fact]
         public void GetProducts_ShouldCallGetProducts()
         {
-            // act 
+            // act
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert
@@ -102,7 +102,7 @@ namespace Wooli.Foundation.Commerce.Tests.Services.Search
         [Fact]
         public void GetProducts_ShouldMapSearchResultsToProductSearchResults()
         {
-            // act 
+            // act
             this.service.GetProducts(this.fixture.Create<ProductSearchOptions>());
 
             // assert

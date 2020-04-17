@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
+namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 {
     using System.Linq;
 
     using Account.Infrastructure.Pipelines.Login;
 
-    using Base.Models;
     using Base.Models.Logging;
     using Base.Models.Result;
     using Base.Services.Logging;

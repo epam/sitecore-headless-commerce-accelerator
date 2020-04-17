@@ -119,7 +119,7 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
         method="POST"
         action={`/apix/client/commerce/auth/login?returnUrl=${returnUrl}`}
       >
-        <Jss.Text tag="h2" field={{ value: 'Welcome to Wooli', editable: 'Welcome to Wooli' }} />
+        <Jss.Text tag="h2" field={{ value: 'Welcome to HCA', editable: 'Welcome to HCA' }} />
         <input
           ref={this.emailRef}
           type="email"

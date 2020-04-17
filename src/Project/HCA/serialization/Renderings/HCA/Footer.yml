@@ -1,0 +1,18 @@
+﻿---
+ID: "8923317e-48a7-4a3c-80eb-af11d35f3d9e"
+Parent: "6193f6dc-e4a5-4dcc-bb8a-458b57fb2c14"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Footer
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Footer
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180418T153941Z

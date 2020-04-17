@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Feature.Account.Models
+namespace HCA.Feature.Account.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,6 +39,6 @@ namespace Wooli.Feature.Account.Models
     using Sitecore.Data.Items;
  
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
     
 }

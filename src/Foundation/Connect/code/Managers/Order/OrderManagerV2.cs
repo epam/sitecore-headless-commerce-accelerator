@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Order
+namespace HCA.Foundation.Connect.Managers.Order
 {
     using System;
     using System.Linq;
@@ -99,7 +99,10 @@ namespace Wooli.Foundation.Connect.Managers.Order
 
                 if (orderHeader != null)
                 {
-                    var getVisitorOrderResult = this.GetOrder(orderHeader.OrderID, orderHeader.CustomerId, orderHeader.ShopName);
+                    var getVisitorOrderResult = this.GetOrder(
+                        orderHeader.OrderID,
+                        orderHeader.CustomerId,
+                        orderHeader.ShopName);
 
                     if (getVisitorOrderResult.Order != null)
                     {

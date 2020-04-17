@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Services.Order
+namespace HCA.Foundation.Commerce.Tests.Services.Order
 {
     using System;
     using System.Collections.Generic;

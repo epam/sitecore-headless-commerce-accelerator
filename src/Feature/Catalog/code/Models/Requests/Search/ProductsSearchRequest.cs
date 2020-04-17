@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Models.Requests.Search
+namespace HCA.Feature.Catalog.Models.Requests.Search
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,6 @@ namespace Wooli.Feature.Catalog.Models.Requests.Search
 
     using DTO;
 
-    using Foundation.Commerce.Models;
     using Foundation.Commerce.Models.Entities.Search;
 
     using TypeLite;

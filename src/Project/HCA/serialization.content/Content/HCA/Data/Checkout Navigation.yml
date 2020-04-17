@@ -1,0 +1,35 @@
+﻿---
+ID: "c74bb736-5c99-475f-8ffd-b73d02ed286c"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "57cfa14b-718e-43c4-a1e0-5553ec8000b8"
+Path: /sitecore/content/HCA/Data/Checkout Navigation
+DB: master
+SharedFields:
+- ID: "55a6fd7a-07be-4fcd-ab3a-138b4ecbdc6b"
+  Hint: Checkout Steps
+  Type: Multilist
+  Value: |
+    {2A1BA192-C700-4DB8-BFBD-56AA18AC082E}
+    {905AE517-341C-451A-B357-4C13FFB07E1C}
+    {0D0EDC44-D253-4C82-9DBD-4DA508BFEE5C}
+    {8ECD2465-0259-49E4-BC4D-6B37F380AC59}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180508T095034Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "cb7502d8-cf47-4919-a528-ac7dcc1b636a"
+      Hint: Back To Link
+      Value: |
+        <link text="Back To Shopping Cart" anchor="" linktype="internal" class="" title=""  querystring="" id="{A622392A-F426-40A9-96BA-5E7FCABA8854}" />
+    - ID: "da2a953e-b11a-4be5-8dba-f2e2c45233b8"
+      Hint: Info Link
+      Value: |
+        <link text="Privacy" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{9DE58D08-0DFD-4F1F-938F-0233898E472A}" />

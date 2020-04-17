@@ -57,7 +57,7 @@ export default class GlobalHeaderControl extends JSS.SafePureComponent<GlobalHea
             <div className="wrap">
               <SearchMain ChangeRoute={ChangeRoute} />
               <NavigationLink to="/" className="logo">
-                <img src={LogoMain} alt="Wooli Logo" />
+                <img src={LogoMain} alt="HCA Logo" />
               </NavigationLink>
               <NavMain menuItems={this.props.fields.data.datasource.menuItems} />
             </div>
@@ -77,7 +77,7 @@ export default class GlobalHeaderControl extends JSS.SafePureComponent<GlobalHea
             <i className="fa fa-bars" />
           </a>
           <NavigationLink to="/" className="logo">
-            <img src={LogoMainMobile} alt="Wooli Logo" />
+            <img src={LogoMainMobile} alt="HCA Logo" />
           </NavigationLink>
         </header>
         <div id="closeOverlay" onClick={(e) => this.closeMenu(e)}>

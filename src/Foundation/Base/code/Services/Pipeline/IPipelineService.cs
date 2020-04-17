@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Services.Pipeline
+namespace HCA.Foundation.Base.Services.Pipeline
 {
     using Sitecore.Pipelines;
 

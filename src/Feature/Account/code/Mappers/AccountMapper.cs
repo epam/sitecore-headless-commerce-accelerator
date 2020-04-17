@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers
+namespace HCA.Feature.Account.Mappers
 {
     using Foundation.Base.Mappers;
     using Foundation.DependencyInjection;

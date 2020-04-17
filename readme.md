@@ -136,8 +136,8 @@ To bootstrap the Commerce Server follow these instructions:
 5. Change default IP address to VM address (if it's different) in
 - .\src\publishsettings.targets: `192.168.50.4 -> VM IP`;
 - .\src\build.cake: `192.168.50.4 -> VM IP`.
-6. Create a symbol link with `unicorn-wooli` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc).
-7. In IIS bind **wooli.local** to the site, add **wooli.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), Wooli - is internal name of the Headless Commerce Accelerator.
+6. Create a symbol link with `unicorn-hca` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc).
+7. In IIS bind **hca.local** to the site, add **hca.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), HCA - is internal name of the Headless Commerce Accelerator.
 8. Run `.\src\build.ps1` in PowerShell with administration privileges (script will restore **NuGet** packages, install **npm** dependencies and run deployment process). Next time cake scripts can be run from Visual Studio (install [Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandTaskRunner)) or from Visual Studio Code (install [Cake Build](https://marketplace.visualstudio.com/items?itemName=cake-build.cake-vscode)) or from PowerShell.
 9. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.
 10. Publish content tree & Rebuild all the indexes in sitecore indexing manager.

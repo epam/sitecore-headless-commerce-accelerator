@@ -32,7 +32,7 @@ export default class GlobalFooterControl extends JSS.SafePureComponent<GlobalFoo
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">Gift Cards</a></li>
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">Find a Store</a></li>
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">Sign Up for Email</a></li>
-                                        <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">Join Wooli</a></li>
+                                        <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">Join HCA</a></li>
                                     </ul>
                                 </div>
                                 <div className="col-xs-4 footer-links-col">
@@ -48,7 +48,7 @@ export default class GlobalFooterControl extends JSS.SafePureComponent<GlobalFoo
                                 <div className="col-xs-4 footer-links-col">
                                     <ul className="footer-links-list">
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">News</a></li>
-                                        <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">About Wooli</a></li>
+                                        <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-primary">About HCA</a></li>
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-secondary">Careers</a></li>
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-secondary">Investors</a></li>
                                         <li className="footer-list-item"><a href="" title="" className="footer-link footer-link-secondary">Supply Chain</a></li>
@@ -68,7 +68,7 @@ export default class GlobalFooterControl extends JSS.SafePureComponent<GlobalFoo
                     </div>
                     <div className="row">
                         <div className="col-xs-12">
-                            <p className="footer-copyright">© 2018 wooli™ All Rights Reserved Terms and Conditions</p>
+                            <p className="footer-copyright">© 2020 Headless Commerce Accelerator™ All Rights Reserved Terms and Conditions</p>
                         </div>
                     </div>
                 </div>

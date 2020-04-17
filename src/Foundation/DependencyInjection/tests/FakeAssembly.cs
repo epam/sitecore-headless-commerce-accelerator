@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.DependencyInjection.Tests
+namespace HCA.Foundation.DependencyInjection.Tests
 {
     using System.Reflection;
     using System.Runtime.Serialization;

@@ -2,7 +2,7 @@
 ID: "57cfa14b-718e-43c4-a1e0-5553ec8000b8"
 Parent: "a3dc8822-12ae-4097-a0c6-24919c9d071f"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation
+Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation
 DB: master
 SharedFields:
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"

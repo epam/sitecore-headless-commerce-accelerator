@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Order
+namespace HCA.Foundation.Connect.Managers.Order
 {
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Orders;

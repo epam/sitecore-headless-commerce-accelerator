@@ -20,7 +20,7 @@ DO NOT CHANGE THIS FILE - UPDATE GlassMapperScCustom.cs
 
 **************************************/
 
-namespace Wooli.Foundation.GlassMapper.App_Start
+namespace HCA.Foundation.GlassMapper.App_Start
 {
     using System.Linq;
 

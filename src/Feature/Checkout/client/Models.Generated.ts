@@ -2,7 +2,7 @@
 
 import * as ReactJssModule from 'Foundation/ReactJss/client';
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation
+// Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation
 // ID: 57cfa14b-718e-43c4-a1e0-5553ec8000b8
 export interface CheckoutNavigationDataSource extends ReactJssModule.BaseDataSourceItem {
 
@@ -23,7 +23,7 @@ export interface CheckoutNavigationDataSource extends ReactJssModule.BaseDataSou
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation
+// Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation
 // ID: 57cfa14b-718e-43c4-a1e0-5553ec8000b8
 export interface CheckoutNavigationRenderingParams extends ReactJssModule.BaseRenderingParam {
 
@@ -44,7 +44,7 @@ export interface CheckoutNavigationRenderingParams extends ReactJssModule.BaseRe
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation
+// Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation
 // ID: 57cfa14b-718e-43c4-a1e0-5553ec8000b8
 export const CheckoutNavigationTemplate = {
     templateId: '57cfa14b-718e-43c4-a1e0-5553ec8000b8',
@@ -69,7 +69,7 @@ export const CheckoutNavigationTemplate = {
 
 };
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step
+// Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step
 // ID: 41bec638-40fe-4a75-ace5-f3377299d8fa
 export interface CheckoutStepDataSource extends ReactJssModule.BaseDataSourceItem {
 
@@ -80,7 +80,7 @@ export interface CheckoutStepDataSource extends ReactJssModule.BaseDataSourceIte
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step
+// Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step
 // ID: 41bec638-40fe-4a75-ace5-f3377299d8fa
 export interface CheckoutStepRenderingParams extends ReactJssModule.BaseRenderingParam {
 
@@ -91,7 +91,7 @@ export interface CheckoutStepRenderingParams extends ReactJssModule.BaseRenderin
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step
+// Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step
 // ID: 41bec638-40fe-4a75-ace5-f3377299d8fa
 export const CheckoutStepTemplate = {
     templateId: '41bec638-40fe-4a75-ace5-f3377299d8fa',

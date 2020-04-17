@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Builders.Products
+namespace HCA.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -37,7 +37,10 @@ namespace Wooli.Foundation.Connect.Builders.Products
     [Service(typeof(IProductBuilder<Item>), Lifetime = Lifetime.Singleton)]
     public class ProductBuilder : BaseProductBuilder, IProductBuilder<Item>
     {
-        private static readonly string[] PriceTypes = { Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted };
+        private static readonly string[] PriceTypes =
+        {
+            Constants.Pricing.PricingTypes.List, Constants.Pricing.PricingTypes.Adjusted
+        };
 
         private readonly IInventoryManager inventoryManager;
         private readonly IPricingManager pricingManager;
@@ -105,7 +108,9 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
         private void SetVariants(Product product, Item source)
         {
-            product.Variants = source.HasChildren ? this.variantBuilder.Build(source.Children).ToList() : new List<Variant>();
+            product.Variants = source.HasChildren
+                ? this.variantBuilder.Build(source.Children).ToList()
+                : new List<Variant>();
         }
 
         private void SetPricesWithoutVariants(IList<Product> products)
@@ -136,7 +141,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
             var productPrices = this.pricingManager.GetProductPrices(
                     product.CatalogName,
                     product.Id,
-                    includeVariants, 
+                    includeVariants,
                     PriceTypes)
                 ?.Prices;
 
@@ -153,7 +158,11 @@ namespace Wooli.Foundation.Connect.Builders.Products
 
         private void SetStockStatus(Product product)
         {
-            this.SetStockStatus(new List<Product> { product });
+            this.SetStockStatus(
+                new List<Product>
+                {
+                    product
+                });
         }
 
         private void SetStockStatus(IEnumerable<Product> products)
@@ -193,7 +202,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
             }
         }
 
-        private IEnumerable<StockInformation> GetStockInformation(IEnumerable<CommerceInventoryProduct> inventoryProducts)
+        private IEnumerable<StockInformation> GetStockInformation(
+            IEnumerable<CommerceInventoryProduct> inventoryProducts)
         {
             if (inventoryProducts == null)
             {

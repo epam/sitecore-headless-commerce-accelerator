@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Analytics
+namespace HCA.Foundation.Commerce.Services.Analytics
 {
     using Connect.Context.Storefront;
     using Connect.Managers;

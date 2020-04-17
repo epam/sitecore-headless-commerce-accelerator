@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Builders.Products
+namespace HCA.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -32,7 +32,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using StockStatus = Models.Catalog.StockStatus;
+    using StockStatus = Sitecore.Commerce.Entities.Inventory.StockStatus;
 
     /// <summary>
     /// Sets Base Product properties
@@ -100,8 +100,7 @@ namespace Wooli.Foundation.Connect.Builders.Products
             }
 
             product.StockStatus =
-                this.CatalogMapper.Map<Sitecore.Commerce.Entities.Inventory.StockStatus, StockStatus>(
-                    stockInformation.Status);
+                this.CatalogMapper.Map<StockStatus, Models.Catalog.StockStatus>(stockInformation.Status);
         }
 
         /// <summary>
@@ -119,7 +118,8 @@ namespace Wooli.Foundation.Connect.Builders.Products
             product.Description = source["Description"];
             product.Brand = source["Brand"];
             product.Tags = source["Tags"]?.Split('|').ToList();
-            product.CustomerAverageRating = decimal.TryParse(source["Rating"], out var rating) ? (decimal?)rating : null;
+            product.CustomerAverageRating =
+                decimal.TryParse(source["Rating"], out var rating) ? (decimal?)rating : null;
             product.ImageUrls = source.ExtractMediaItems(
                     x =>
                     {

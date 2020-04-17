@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.DependencyInjection.Infrastructure
+namespace HCA.Foundation.DependencyInjection.Infrastructure
 {
     using System.Web.Http.Controllers;
     using System.Web.Mvc;

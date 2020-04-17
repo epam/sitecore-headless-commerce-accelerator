@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
+namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
     using Base.Infrastructure.Pipelines;
 
     using Context;
-    
+
     using Providers;
 
     using Sitecore;

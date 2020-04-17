@@ -1,0 +1,65 @@
+﻿---
+ID: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Parent: "bbf003f2-f4d3-415f-8136-357b71508316"
+Template: "83883836-8f50-4bb8-bf62-369b7661e815"
+Path: /sitecore/content/HCA/Home
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 50
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{3EF1A39A-6C46-47C9-A3CD-317F24FF29C8}">
+        <r
+          ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
+          id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
+          par=""
+          ph="/wooli-content"
+          uid="{199E0A94-CE23-4D8A-B7C7-153C56B3E5EB}" />
+        <r
+          ds=""
+          id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
+          ph="/wooli-content"
+          uid="{D3FFFCA6-C5DA-47AA-A22A-C4D6FFDF07C9}" />
+        <r
+          id="{8923317E-48A7-4A3C-80EB-AF11D35F3D9E}"
+          ph="/wooli-content"
+          uid="{518F6EF4-ED27-43C5-95F0-47528B13C441}" />
+        <r
+          ds="{2D486B55-4287-49AB-8678-5D02B69E35C8}"
+          id="{CA206F0B-DB50-4D56-B7D6-30AABC01C5E6}"
+          par=""
+          ph="/wooli-content/w-col-wide-{D3FFFCA6-C5DA-47AA-A22A-C4D6FFDF07C9}-0"
+          uid="{D298DEF9-6F79-4352-97CA-2FBF89F396E9}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <p
+              uid="{7C92BA41-44DD-47AD-A232-65143CBBF3F4}"
+              p:before="*"
+              s:key="undefined"
+              s:md="/sitecore/layout/Placeholder Settings/HCA/Project/HCA/wooli-content" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180418T153723Z

@@ -2,7 +2,7 @@
 ID: "f88d9d4e-a15c-47e7-8e0a-d0f85a8234cd"
 Parent: "925b369f-6427-4f37-827d-30ff9d12def6"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
-Path: "/sitecore/layout/Placeholder Settings/Wooli/Feature/PageContent/w-col-1"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/PageContent/w-col-1"
 DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"

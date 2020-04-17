@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.Logout
+namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Logout
 {
     using Account.Infrastructure.Pipelines.Logout;
     using Account.Services.Session;

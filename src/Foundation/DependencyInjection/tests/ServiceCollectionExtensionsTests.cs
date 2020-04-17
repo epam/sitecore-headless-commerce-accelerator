@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.DependencyInjection.Tests
+namespace HCA.Foundation.DependencyInjection.Tests
 {
     using Microsoft.Extensions.DependencyInjection;
 
@@ -25,7 +25,7 @@ namespace Wooli.Foundation.DependencyInjection.Tests
         [Theory]
         [InlineData("*AnotherSimpleTestClass")]
         [InlineData("*Another*")]
-        [InlineData("Wooli.*Another*")]
+        [InlineData("HCA.*Another*")]
         public void AddByWildcard_ValidTypes_ServicesCollectionWithMatchingType(string pattern)
         {
             IServiceCollection serviceCollection = new ServiceCollection();

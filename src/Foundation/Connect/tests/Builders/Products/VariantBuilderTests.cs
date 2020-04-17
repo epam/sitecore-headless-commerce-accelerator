@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Builders.Products
+namespace HCA.Foundation.Connect.Tests.Builders.Products
 {
     using System.Collections.Generic;
     using System.Linq;

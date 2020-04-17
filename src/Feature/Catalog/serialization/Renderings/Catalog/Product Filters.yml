@@ -2,7 +2,7 @@
 ID: "1c8d57c1-e884-48cc-9e45-e8472f07bd09"
 Parent: "a30f65cc-dcf5-4769-8679-947561dca7ec"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/Wooli/Feature/Catalog/Product Filters
+Path: /sitecore/layout/Renderings/HCA/Feature/Catalog/Product Filters
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Providers.StorefrontSettings
+namespace HCA.Foundation.Commerce.Tests.Providers.StorefrontSettings
 {
     using System.Collections.Generic;
     using System.Linq;

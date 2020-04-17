@@ -1,0 +1,46 @@
+﻿---
+ID: "8ecd2465-0259-49e4-bc4d-6b37f380ac59"
+Parent: "9de58d08-0dfd-4f1f-938f-0233898e472a"
+Template: "d5440345-d25e-4a9b-b8e4-5c2aef3c9178"
+Path: /sitecore/content/HCA/Home/Checkout/Confirmation
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{D8830798-2CEC-4965-9841-814483AF86CC}"
+          p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
+          s:ph="/wooli-content" />
+        <r
+          uid="{413F9EAA-53B5-49D5-84C8-E9F674EF3763}"
+          p:after="r[@uid='{D8830798-2CEC-4965-9841-814483AF86CC}']"
+          s:id="{B1737F32-C7B0-464C-B271-7E0C3FEDF95F}"
+          s:ph="/wooli-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
+        <r
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T144313Z
+    - ID: "69f49102-c8c0-4e55-8f8e-c9cb130071e4"
+      Hint: Checkout Step Name
+      Value: Confirmation

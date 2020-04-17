@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Mappers.Profiles
+namespace HCA.Feature.Account.Mappers.Profiles
 {
     using AutoMapper;
 

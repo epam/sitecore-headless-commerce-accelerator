@@ -1,4 +1,4 @@
-# Wooli
+# HCA
 
 ## Front-end
 
@@ -10,7 +10,7 @@ In [package.json](package.json) file you can find most frequently used commands 
 
 | Command | Description |
 | --- | --- |
-| `start` | Starts local development server with configuration for project **Wooli** and env **local**. Configuration information stores in [manifest.json](Project/Wooli/client/manifest.json) file |
+| `start` | Starts local development server with configuration for project **HCA** and env **local**. Configuration information stores in [manifest.json](Project/HCA/client/manifest.json) file |
 | `build:Debug` | Builds client code in Debug mode |
 | `sc:codegen` | Starts *.ts and *.cs models generation for sitecore templates |
 | `test` | Runs client tests |

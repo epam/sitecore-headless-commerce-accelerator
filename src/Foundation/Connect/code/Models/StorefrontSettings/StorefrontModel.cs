@@ -14,7 +14,7 @@
 
 // ReSharper disable CheckNamespace
 
-namespace Wooli.Foundation.Connect.Models
+namespace HCA.Foundation.Connect.Models
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

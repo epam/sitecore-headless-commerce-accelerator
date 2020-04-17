@@ -2,7 +2,7 @@
 ID: "74c3a511-d920-445c-9faf-285397aefd27"
 Parent: "eaf52b0e-7c8e-44a1-82d3-0a824c5844c5"
 Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
-Path: /sitecore/system/Settings/Wooli/Feature
+Path: /sitecore/system/Settings/HCA/Feature
 DB: master
 Languages:
 - Language: en

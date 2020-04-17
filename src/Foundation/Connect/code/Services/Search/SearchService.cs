@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Services.Search
+namespace HCA.Foundation.Connect.Services.Search
 {
     using System.Linq;
 
@@ -44,7 +44,7 @@ namespace Wooli.Foundation.Connect.Services.Search
         private readonly ISearchResponseProvider searchResponseProvider;
 
         private readonly ISearchResultProvider searchResultProvider;
-        
+
         private readonly IProductBuilder<Item> productBuilder;
 
         public SearchService(

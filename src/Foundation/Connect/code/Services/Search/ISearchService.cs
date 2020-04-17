@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Services.Search
+namespace HCA.Foundation.Connect.Services.Search
 {
     using Models.Catalog;
     using Models.Search;

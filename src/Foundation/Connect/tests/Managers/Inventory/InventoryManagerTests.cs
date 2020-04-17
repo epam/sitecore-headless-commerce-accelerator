@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Managers.Inventory
+namespace HCA.Foundation.Connect.Tests.Managers.Inventory
 {
     using System;
     using System.Collections.Generic;

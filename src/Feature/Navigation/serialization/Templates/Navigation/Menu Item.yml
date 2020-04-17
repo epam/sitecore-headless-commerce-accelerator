@@ -2,7 +2,7 @@
 ID: "5dccb05c-59f3-4579-aea3-6e5dc934c7b0"
 Parent: "04f900a7-cea1-43a5-94f8-99ccce443364"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/Wooli/Feature/Navigation/Menu Item
+Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item
 DB: master
 SharedFields:
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"

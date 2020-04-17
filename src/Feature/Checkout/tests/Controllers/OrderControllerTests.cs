@@ -12,14 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Checkout.Tests.Controllers
+namespace HCA.Feature.Checkout.Tests.Controllers
 {
     using System;
     using System.Collections.Generic;
 
     using Checkout.Controllers;
 
-    using Foundation.Base.Models;
     using Foundation.Base.Models.Result;
     using Foundation.Commerce.Models.Entities.Order;
     using Foundation.Commerce.Services.Order;

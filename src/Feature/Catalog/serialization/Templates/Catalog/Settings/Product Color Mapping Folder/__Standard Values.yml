@@ -2,7 +2,7 @@
 ID: "3e49fa1a-a09a-4fc3-890f-298936a7815c"
 Parent: "93687745-63f3-4022-8cb0-29848c918a18"
 Template: "93687745-63f3-4022-8cb0-29848c918a18"
-Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping Folder/__Standard Values
+Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping Folder/__Standard Values
 DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"

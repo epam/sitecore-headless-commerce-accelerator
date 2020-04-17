@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Context.Catalog
+namespace HCA.Foundation.Connect.Context.Catalog
 {
     using Sitecore.Data.Items;
 

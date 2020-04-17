@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Payment
+namespace HCA.Foundation.Connect.Models.Payment
 {
     using Sitecore.Commerce.Services.Payments;
 

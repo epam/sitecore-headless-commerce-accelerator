@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wooli.Foundation.DependencyInjection.Tests")]
-[assembly: AssemblyDescription("Wooli.Foundation.DependencyInjection.Tests")]
+[assembly: AssemblyTitle("HCA.Foundation.DependencyInjection.Tests")]
+[assembly: AssemblyDescription("HCA.Foundation.DependencyInjection.Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("Wooli.Foundation.DependencyInjection.Tests")]
+[assembly: AssemblyProduct("HCA.Foundation.DependencyInjection.Tests")]
 [assembly: AssemblyCopyright("Copyright �  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

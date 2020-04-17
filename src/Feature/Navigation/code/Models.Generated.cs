@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Feature.Navigation.Models
+namespace HCA.Feature.Navigation.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,12 +39,12 @@ namespace Wooli.Feature.Navigation.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>
     /// IGlobalHeader Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Global Header</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Global Header</para>
     /// <para>ID: 77eee1b3-ede2-41fc-b2fe-1f77832e09e5</para>
     /// </summary>
     [SitecoreType(TemplateId="77eee1b3-ede2-41fc-b2fe-1f77832e09e5")]
@@ -64,14 +64,14 @@ namespace Wooli.Feature.Navigation.Models
 
     /// <summary>
     /// GlobalHeader Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Global Header</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Global Header</para>
     /// <para>ID: 77eee1b3-ede2-41fc-b2fe-1f77832e09e5</para>
     /// </summary>
     [SitecoreType(TemplateId="77eee1b3-ede2-41fc-b2fe-1f77832e09e5")]
     public partial class GlobalHeader: GlassBase, IGlobalHeader
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Navigation/Global Header
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Global Header
         /// </summary>
         public const string TemplateId = "77eee1b3-ede2-41fc-b2fe-1f77832e09e5";
 
@@ -90,7 +90,7 @@ namespace Wooli.Feature.Navigation.Models
 
     /// <summary>
     /// IMenuItem Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Menu Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item</para>
     /// <para>ID: 5dccb05c-59f3-4579-aea3-6e5dc934c7b0</para>
     /// </summary>
     [SitecoreType(TemplateId="5dccb05c-59f3-4579-aea3-6e5dc934c7b0")]
@@ -126,14 +126,14 @@ namespace Wooli.Feature.Navigation.Models
 
     /// <summary>
     /// MenuItem Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Menu Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item</para>
     /// <para>ID: 5dccb05c-59f3-4579-aea3-6e5dc934c7b0</para>
     /// </summary>
     [SitecoreType(TemplateId="5dccb05c-59f3-4579-aea3-6e5dc934c7b0")]
     public partial class MenuItem: GlassBase, IMenuItem
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Navigation/Menu Item
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Menu Item
         /// </summary>
         public const string TemplateId = "5dccb05c-59f3-4579-aea3-6e5dc934c7b0";
 
@@ -172,7 +172,7 @@ namespace Wooli.Feature.Navigation.Models
 
     /// <summary>
     /// IMenuItemFolder Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Menu Item Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder</para>
     /// <para>ID: b1142e79-d313-41b1-b3c2-268ebb80c489</para>
     /// </summary>
     [SitecoreType(TemplateId="b1142e79-d313-41b1-b3c2-268ebb80c489")]
@@ -184,14 +184,14 @@ namespace Wooli.Feature.Navigation.Models
 
     /// <summary>
     /// MenuItemFolder Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Navigation/Menu Item Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder</para>
     /// <para>ID: b1142e79-d313-41b1-b3c2-268ebb80c489</para>
     /// </summary>
     [SitecoreType(TemplateId="b1142e79-d313-41b1-b3c2-268ebb80c489")]
     public partial class MenuItemFolder: GlassBase, IMenuItemFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Navigation/Menu Item Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder
         /// </summary>
         public const string TemplateId = "b1142e79-d313-41b1-b3c2-268ebb80c489";
 

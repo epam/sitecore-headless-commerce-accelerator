@@ -1,0 +1,30 @@
+﻿---
+ID: "4ba60d18-6973-4a69-9d14-ba602bed362a"
+Parent: "28a8c141-f104-4433-b50e-dbff74b4fef9"
+Template: "1daeff25-b075-4c13-b41a-72b553b22542"
+Path: /sitecore/content/HCA/Home/Shop/*/*
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{EEE36796-277B-4CAD-B3D5-F36571861114}"
+          s:ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
+          s:id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
+          s:par="" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180425T131555Z

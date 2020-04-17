@@ -2,7 +2,7 @@
 
 import * as ReactJssModule from 'Foundation/ReactJss/client';
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout
+// Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
 // ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c
 export interface GridLayoutDataSource extends ReactJssModule.BaseDataSourceItem {
 
@@ -23,7 +23,7 @@ export interface GridLayoutDataSource extends ReactJssModule.BaseDataSourceItem 
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout
+// Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
 // ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c
 export interface GridLayoutRenderingParams extends ReactJssModule.BaseRenderingParam {
 
@@ -44,7 +44,7 @@ export interface GridLayoutRenderingParams extends ReactJssModule.BaseRenderingP
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout
+// Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
 // ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c
 export const GridLayoutTemplate = {
     templateId: '61ed6a03-bbdb-4937-87fa-db5c53fc870c',
@@ -69,7 +69,7 @@ export const GridLayoutTemplate = {
 
 };
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home
 // ID: 309e5f2f-cb6f-4e51-9a39-185be515f278
 export interface HomeDataSource extends ReactJssModule.BaseDataSourceItem {
 
@@ -125,7 +125,7 @@ export interface HomeDataSource extends ReactJssModule.BaseDataSourceItem {
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home
 // ID: 309e5f2f-cb6f-4e51-9a39-185be515f278
 export interface HomeRenderingParams extends ReactJssModule.BaseRenderingParam {
 
@@ -181,7 +181,7 @@ export interface HomeRenderingParams extends ReactJssModule.BaseRenderingParam {
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home
 // ID: 309e5f2f-cb6f-4e51-9a39-185be515f278
 export const HomeTemplate = {
     templateId: '309e5f2f-cb6f-4e51-9a39-185be515f278',
@@ -248,19 +248,19 @@ export const HomeTemplate = {
 
 };
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home Folder
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder
 // ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
 export interface HomeFolderDataSource extends ReactJssModule.BaseDataSourceItem {
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home Folder
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder
 // ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
 export interface HomeFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
 
 }
 
-// Path: /sitecore/templates/Wooli/Feature/PageContent/Home Folder
+// Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder
 // ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
 export const HomeFolderTemplate = {
     templateId: '3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2',

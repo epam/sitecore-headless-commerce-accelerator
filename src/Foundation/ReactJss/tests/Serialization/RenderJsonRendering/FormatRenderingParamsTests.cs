@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
+namespace HCA.Foundation.ReactJss.Tests.Serialization.RenderJsonRendering
 {
     using System.Collections.Generic;
 

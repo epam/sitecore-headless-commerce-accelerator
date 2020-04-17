@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Models.Requests.Search.DTO
+namespace HCA.Feature.Catalog.Models.Requests.Search.DTO
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

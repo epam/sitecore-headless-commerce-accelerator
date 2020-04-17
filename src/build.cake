@@ -18,7 +18,7 @@ Sitecore.Constants.SetNames();
 Sitecore.Parameters.InitParams(
     context: Context,
     msBuildToolVersion: MSBuildToolVersion.VS2019,
-    solutionName: "Wooli",
+    solutionName: "HCA",
     scSiteUrl: "https://sc9.local", // default URL exposed from the box
     unicornSerializationRoot: "unicorn-wooli",
     publishingTargetDir: "\\\\192.168.50.4\\c$\\inetpub\\wwwroot\\sc9.local"
@@ -74,10 +74,19 @@ Task("000-Clean")
     .IsDependentOn(Sitecore.Tasks.ConfigureToolsTaskName)
     .IsDependentOn(Sitecore.Tasks.CleanWildcardFoldersTaskName)
     .Does(() => {
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Unicorn\*");
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Foundation\Wooli\*");
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Feature\Wooli\*");
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\Wooli\*");
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Unicorn\*");    
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");        
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");        
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");      
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\bin\HCA.*");
+        
+        //TODO: REMOVE
+            DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Foundation\Wooli\*");
+            DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Feature\Wooli\*");
+            DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\Wooli\*");   
+            DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\bin\Wooli.*");   
+            DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\dist\Wooli\*");   
+        //
     });
 
 Task("001-Restore")
@@ -129,8 +138,7 @@ Task("Default") // LocalDev
     ;
 
 Task("Build-and-Publish") // LocalDev
-    .IsDependentOn("002-Build")
-    .IsDependentOn("005-Publish")
+    .IsDependentOn("006-Sync-Content")
     ;
 
 

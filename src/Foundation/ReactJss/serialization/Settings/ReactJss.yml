@@ -2,7 +2,7 @@
 ID: "bb3e0c04-91b4-4ae2-ad10-b990028d9110"
 Parent: "441ff12d-0754-4eb2-b842-2862ffa3891c"
 Template: "c3b037a0-46e5-4b67-ac7a-a144b962a56f"
-Path: /sitecore/system/Settings/Wooli/Foundation/ReactJss
+Path: /sitecore/system/Settings/HCA/Foundation/ReactJss
 DB: master
 Languages:
 - Language: en

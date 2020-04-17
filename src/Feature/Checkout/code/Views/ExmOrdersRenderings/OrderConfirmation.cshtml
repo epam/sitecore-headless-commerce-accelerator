@@ -1,0 +1,12 @@
+﻿@using Glass.Mapper.Sc.Web.Mvc
+@model HCA.Feature.Checkout.Models.OrderConfirmation
+
+@if (Model == null)
+{
+    <h2>Datasource is not configured</h2>
+    return;
+}
+
+<div>
+    @Html.Glass().Editable(m => m.MessageBody)
+</div>

@@ -1,0 +1,14 @@
+﻿---
+ID: "027a1ff5-3f03-492d-b36a-96e2c636e212"
+Parent: "adf9845e-01a0-4d81-a6ff-8ec0123f8806"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/content/HCA/HCA Email/Messages/2020
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T135145Z

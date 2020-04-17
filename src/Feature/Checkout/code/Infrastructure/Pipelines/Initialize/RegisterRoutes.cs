@@ -14,6 +14,7 @@
 
 namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using System.Web.Routing;
 
@@ -24,6 +25,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
 
+    [ExcludeFromCodeCoverage]
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)

@@ -527,6 +527,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Wooli\Layouts\JssLayout.cshtml" />
+    <Content Include="Views\Wooli\Layouts\EXM\New Order Placed Layout.cshtml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>

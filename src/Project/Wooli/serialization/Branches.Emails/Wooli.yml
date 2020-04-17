@@ -1,0 +1,14 @@
+﻿---
+ID: "9cfe4894-eaa8-4ac8-b465-4e795d449a44"
+Parent: "0e7d733a-84f6-4898-9019-fc5190685e53"
+Template: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e"
+Path: /sitecore/templates/Branches/System/Email/Messages/Wooli/Project/Wooli
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200416T142824Z

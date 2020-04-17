@@ -1,0 +1,12 @@
+﻿@model Wooli.Feature.Checkout.Models.ViewModels.OrderConfirmationViewModel
+
+@if (Model == null)
+{
+    <h2>Datasource is not configured</h2>
+    return;
+}
+
+<div>
+    <h2>@Model.MessageTitle</h2>
+    <p>@Html.Raw(Model.MessageBody)</p>
+</div>

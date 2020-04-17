@@ -1,0 +1,25 @@
+﻿---
+ID: "99c26435-ddf2-4f68-8a91-1f8011b21fb8"
+Parent: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Path: /sitecore/templates/System/Email/Messages/Inner Content/Wooli/Feature/Checkout/Order Confirmation/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T091114Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "c45e80a4-b42a-4f5c-af99-6432ac59d8bd"
+      Hint: Message Title
+      Value: "Dear $firstname$, thank you for your order!"
+    - ID: "caaec975-c52a-43f5-b8f9-22883a8356c5"
+      Hint: Message Body
+      Value: |
+        Your order was successfully registered. Click <a href="/Checkout/Confirmation?trackingNumber=$orderTrackingNumber$">here</a> for more details.

@@ -1,0 +1,14 @@
+﻿---
+ID: "ee95d34a-2fc3-44ff-a8b6-b2424efe25b5"
+Parent: "c1b8669b-c41a-4ed3-bf0d-e859cf880d42"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Marketing Control Panel/Campaigns/Emails/2020
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T180557Z

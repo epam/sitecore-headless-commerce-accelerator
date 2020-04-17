@@ -1,0 +1,18 @@
+﻿---
+ID: "77652b4f-bdef-43c3-a108-013d4878b0a3"
+Parent: "c94c9f49-7ef9-474c-ae97-7f1c8997d920"
+Template: "3a45a723-64ee-4919-9d41-02fd40fd1466"
+Path: /sitecore/layout/Layouts/System/Email/Wooli/Project/Wooli/New Order Placed
+DB: master
+SharedFields:
+- ID: "a036b2bc-ba04-44f6-a75f-bae6cd242abf"
+  Hint: Path
+  Value: /Views/Wooli/Layouts/EXM/New Order Placed Layout.cshtml
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T104439Z

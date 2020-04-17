@@ -1,0 +1,28 @@
+﻿---
+ID: "17e5cd93-6b00-4b2b-a248-38705deec603"
+Parent: "40d6fca5-a257-4ee7-85de-dbcfe5394117"
+Template: "9795c562-98d9-4a9e-bc9c-c6b7a079fdf4"
+Path: /sitecore/content/Wooli/Wooli Email/Message Types/Automated/Default
+DB: master
+BranchID: "f8fae92a-4f10-470c-ad5c-7ed9e6b636af"
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {8C18055A-EB1E-4358-BC12-26B4E2568910}
+    {FD58C821-8FAA-4C51-B368-5FC25CA6AAE0}
+    {89F09F47-6ACA-41A9-ACC6-2E33A0334C0C}
+    {F868C724-50D0-4347-9C9B-BABB8DB705FE}
+    {A87CD7DC-8D14-4A55-90D2-145B049EF3F2}
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{704AA7E8-2DA5-49EF-9C72-A18ED69DDB90}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200414T112820Z

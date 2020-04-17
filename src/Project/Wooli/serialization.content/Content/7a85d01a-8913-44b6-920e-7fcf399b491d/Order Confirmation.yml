@@ -1,0 +1,19 @@
+﻿---
+ID: "d196508b-c26c-42b6-b50f-82fc6e49514b"
+Parent: "7a85d01a-8913-44b6-920e-7fcf399b491d"
+Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Path: /sitecore/content/Wooli/Wooli Email/Messages/2020/04/15T13514595/New Order Placed/Message Root/Order Confirmation
+DB: master
+BranchID: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
+SharedFields:
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{6207F692-4AF1-4B2D-9B16-95E4863433A6}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T135146Z

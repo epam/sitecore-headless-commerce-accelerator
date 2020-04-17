@@ -1,0 +1,18 @@
+﻿---
+ID: "6c5e21e3-32c5-4b7c-a11b-d7e17720b541"
+Parent: "678f515f-8a5d-453a-a73b-d7357fd9b940"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/content/Wooli/Wooli Email/Messages/2020/04/15T13514595
+DB: master
+SharedFields:
+- ID: "6fd695e7-7f6d-4ca5-8b49-a829e5950ae9"
+  Hint: __Subitems Sorting
+  Value: "{32416A95-4197-4D33-8CE7-7BB4FFEBEB42}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T135145Z

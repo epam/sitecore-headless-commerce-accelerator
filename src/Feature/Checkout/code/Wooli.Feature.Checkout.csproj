@@ -276,6 +276,9 @@
     <Reference Include="Sitecore.ContentSearch.Linq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.Linq.9.3.0\lib\net471\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.EmailCampaign, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.EmailCampaign.9.3.0\lib\net471\Sitecore.EmailCampaign.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ExperienceEditor, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ExperienceEditor.9.3.0\lib\net471\Sitecore.ExperienceEditor.dll</HintPath>
     </Reference>
@@ -567,6 +570,7 @@
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ExmOrdersController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Infrastructure\Pipelines\ContentsResolvers\CheckoutNavigationResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\CommerceUserContextExtension.cs" />
@@ -580,6 +584,7 @@
     <Compile Include="Models\Requests\UpdateCartLineRequest.cs" />
     <Compile Include="Models\Requests\AddCartLineRequest.cs" />
     <Compile Include="Models\Requests\CartLineRequest.cs" />
+    <Compile Include="Models\ViewModels\OrderConfirmationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -590,13 +595,12 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Checkout\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\ExmOrders\OrderConfirmation.cshtml" />
     <None Include="Views\Web.config" />
     <Content Include="App_Config\Include\Feature\Wooli\Feature.Checkout.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">

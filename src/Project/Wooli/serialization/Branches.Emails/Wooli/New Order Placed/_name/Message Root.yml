@@ -1,0 +1,38 @@
+﻿---
+ID: "48501984-93c0-46d6-80e6-db435099c576"
+Parent: "284f83d9-2bf9-4e01-a760-44af73f3372b"
+Template: "3f12d78c-b7b7-4157-98fc-da3322ee1a5b"
+Path: /sitecore/templates/Branches/System/Email/Messages/Wooli/Project/Wooli/New Order Placed/$name/Message Root
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{77652B4F-BDEF-43C3-A108-013D4878B0A3}">
+        <p
+          uid="{426EE9F6-F5D6-48AD-9A3E-008CB994C896}"
+          key="msg-body"
+          md="{2CF42009-E42B-44F6-B2ED-30F16FAE0FEC}" />
+        <r
+          ds="{6207F692-4AF1-4B2D-9B16-95E4863433A6}"
+          id="{F95F67A4-AB31-4B56-A70E-D69396922643}"
+          par=""
+          ph="msg-body"
+          uid="{8CBEDF0F-1A40-4B95-8497-48DE2BB84C62}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T082658Z
+    - ID: "c0bfd467-0b74-4efe-b7c9-1ecf7f0e5370"
+      Hint: Subject
+      Value: Order confirmation

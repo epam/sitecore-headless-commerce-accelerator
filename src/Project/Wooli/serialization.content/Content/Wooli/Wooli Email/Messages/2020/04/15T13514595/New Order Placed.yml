@@ -1,0 +1,80 @@
+﻿---
+ID: "4f743c22-9661-44d3-94b5-b29ae6e79270"
+Parent: "6c5e21e3-32c5-4b7c-a11b-d7e17720b541"
+Template: "078d8a76-f971-4891-b422-76c0bcf9fa03"
+Path: /sitecore/content/Wooli/Wooli Email/Messages/2020/04/15T13514595/New Order Placed
+DB: master
+BranchID: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/shopping_cart_full.png
+- ID: "0934bec4-325a-427b-95bb-46f78cea9591"
+  Hint: Message Type
+  Value: "{B2F77E26-C5AC-4A6B-BBB3-F290100EB3D8}"
+- ID: "09ad7c00-a8de-46f7-bc54-e7572e38c136"
+  Hint: Body
+  Value: "{7A85D01A-8913-44B6-920E-7FCF399B491D}"
+- ID: "21f2a1e0-ac16-443b-b7a9-83504159f2bb"
+  Hint: Device
+  Value: "{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+- ID: "2bbf5276-ed11-4cd0-946f-66678b524457"
+  Hint: Campaign Position
+  Value: "{C1B8669B-C41A-4ED3-BF0D-E859CF880D42}"
+- ID: "6ec7a9e6-9fd5-4892-bbf6-11e76e0e5db8"
+  Hint: Start Time
+  Value: 20200416T092146Z
+- ID: "78f0b1f8-fdf4-4c1c-bec6-1ac68a210a52"
+  Hint: Campaign
+  Value: "{9B657F34-8CDE-4FAB-BFC9-32C64EA545A4}"
+- ID: "9c6106ea-7a5a-48e2-8cad-f0f693b1e2d4"
+  Hint: __Read Only
+  Type: Checkbox
+  Value: 1
+- ID: "af0fe26a-a78b-491d-885c-03d95bc17342"
+  Hint: State
+  Value: Active
+- ID: "e2d1d8a4-24aa-4536-a420-7eadd8719cf6"
+  Hint: Service Message
+  Type: Checkbox
+  Value: 1
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{77652B4F-BDEF-43C3-A108-013D4878B0A3}">
+        <p
+          uid="{426EE9F6-F5D6-48AD-9A3E-008CB994C896}"
+          key="msg-body"
+          md="{2CF42009-E42B-44F6-B2ED-30F16FAE0FEC}" />
+        <r
+          id="{69EB7A6D-ACEF-4D06-A923-804918AA245E}"
+          ph="msg-body"
+          uid="{E0EA794C-D987-4196-B5FF-E76B31E88508}" />
+        <r
+          id="{F95F67A4-AB31-4B56-A70E-D69396922643}"
+          ph="msg-body"
+          uid="{8CBEDF0F-1A40-4B95-8497-48DE2BB84C62}" />
+      </d>
+    </r>
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{284F83D9-2BF9-4E01-A760-44AF73F3372B}"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: New Order Placed
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "0d844c9c-bd6c-49b8-9475-947da791f268"
+      Hint: From Address
+      Value: wooli@devmail.epam.com
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T135146Z

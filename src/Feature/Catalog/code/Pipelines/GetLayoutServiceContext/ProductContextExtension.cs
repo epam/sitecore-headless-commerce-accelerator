@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,22 +14,24 @@
 
 namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using Foundation.Commerce.Repositories;
+    using Foundation.Commerce.Services.Analytics;
+    using Foundation.ReactJss.Infrastructure;
+
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.ReactJss.Infrastructure;
-
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
+        private readonly ICommerceAnalyticsService analyticsRepository;
+
         private readonly ICatalogRepository catalogRepository;
-        private readonly IAnalyticsRepository analyticsRepository;
 
         public ProductContextExtension(
             ICatalogRepository catalogRepository,
-            IAnalyticsRepository analyticsRepository,
-            IConfigurationResolver configurationResolver) : base(configurationResolver)
+            ICommerceAnalyticsService analyticsRepository,
+            IConfigurationResolver configurationResolver)
+            : base(configurationResolver)
         {
             this.catalogRepository = catalogRepository;
             this.analyticsRepository = analyticsRepository;
@@ -37,12 +39,13 @@ namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            ProductModel model = this.catalogRepository.GetCurrentProduct();
+            var model = this.catalogRepository.GetCurrentProduct();
 
             if (model != null)
             {
                 this.analyticsRepository.RaiseProductVisitedEvent(model);
             }
+
             args.ContextData.Add("product", model);
         }
     }

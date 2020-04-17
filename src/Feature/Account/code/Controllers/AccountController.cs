@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,135 +15,45 @@
 namespace Wooli.Feature.Account.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
 
-    using Sitecore.Analytics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Account;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Extensions.Extensions;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
+    using Foundation.Base.Services.Tracking;
+    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models;
+    using Foundation.Commerce.Models.Account;
+    using Foundation.Commerce.Models.Checkout;
+    using Foundation.Commerce.Repositories;
+    using Foundation.Extensions.Extensions;
 
     public class AccountController : Controller
     {
-        private readonly IAccountRepositry accountRepositry;
+        private readonly IAccountRepository accountRepository;
+
+        private readonly ITrackingService trackingService;
 
         private readonly IVisitorContext visitorContext;
 
         public AccountController(
-            IAccountRepositry accountRepositry,
-            IVisitorContext visitorContex)
+            IAccountRepository accountRepository,
+            IVisitorContext visitorContext,
+            ITrackingService trackingService)
         {
-            this.accountRepositry = accountRepositry;
-            this.visitorContext = visitorContex;
-        }
-
-
-        [HttpPost]
-        [ActionName("create")]
-        public ActionResult CreateAccount(CreateAccountModel createAccountModel)
-        {
-            try
-            {
-                this.EnsureTracker();
-
-                Result<CreateAccountResultModel> createAccountResult =
-                    this.accountRepositry.CreateAccount(createAccountModel);
-
-                if (!createAccountResult.Success)
-                {
-                    return this.JsonError(createAccountResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
-
-                return this.JsonOk(createAccountResult.Data);
-            }
-            catch (Exception ex)
-            {
-                return this.JsonError(ex.Message, HttpStatusCode.BadRequest, ex);
-            }
+            this.accountRepository = accountRepository;
+            this.visitorContext = visitorContext;
+            this.trackingService = trackingService;
         }
 
         [HttpPost]
-        [ActionName("validate")]
-        public ActionResult ValidateAccount(ValidateAccountModel validateAccountModel)
-        {
-            try
-            {
-                this.EnsureTracker();
-                Result<ValidateAccountResultModel> accountExists = this.accountRepositry.ValidateAccount(validateAccountModel);
-
-                if (!accountExists.Success)
-                {
-                    return this.JsonError(accountExists.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
-
-                return this.JsonOk(accountExists.Data);
-            }
-            catch (Exception ex)
-            {
-                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        [HttpPost]
-        [ActionName("update")]
-        public ActionResult UpdateUser(CommerceUserModel user)
-        {
-            try
-            {
-                this.EnsureTracker();
-                var updateUserResult = this.accountRepositry.UpdateAccountInfo(user);
-
-                if (!updateUserResult.Success)
-                {
-                    return this.JsonError(updateUserResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
-
-                return this.JsonOk(updateUserResult.Data);
-            }
-            catch (Exception ex)
-            {
-                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        [HttpPost]
-        [ActionName("change-password")]
-        public ActionResult ChangePassword(ChangePasswordModel changePassword)
-        {
-            try
-            {
-                this.EnsureTracker();
-                var ñhangePasswordResult = this.accountRepositry.ChangePassword(changePassword);
-
-                if (!ñhangePasswordResult.Success)
-                {
-                    return this.JsonError(ñhangePasswordResult.Errors.ToArray(), HttpStatusCode.BadRequest);
-                }
-
-                return this.JsonOk(ñhangePasswordResult.Data);
-            }
-            catch (Exception ex)
-            {
-                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
-        [HttpPost]
-        [ActionName("address/add")]
+        [ActionName("address-add")]
         public ActionResult AddAddress(AddressModel newAddress)
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                var contactId = this.visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> addAddressResult = this.accountRepositry.AddCustomerAddress(contactId, newAddress);
+                var addAddressResult = this.accountRepository.AddCustomerAddress(contactId, newAddress);
 
                 if (!addAddressResult.Success)
                 {
@@ -158,15 +68,60 @@ namespace Wooli.Feature.Account.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("change-password")]
+        public ActionResult ChangePassword(ChangePasswordModel changePassword)
+        {
+            try
+            {
+                this.trackingService.EnsureTracker();
+                var changePasswordResult = this.accountRepository.ChangePassword(changePassword);
+
+                if (!changePasswordResult.Success)
+                {
+                    return this.JsonError(changePasswordResult.Errors.ToArray(), HttpStatusCode.BadRequest);
+                }
+
+                return this.JsonOk(changePasswordResult.Data);
+            }
+            catch (Exception ex)
+            {
+                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("create")]
+        public ActionResult CreateAccount(CreateAccountModel createAccountModel)
+        {
+            try
+            {
+                this.trackingService.EnsureTracker();
+
+                var createAccountResult = this.accountRepository.CreateAccount(createAccountModel);
+
+                if (!createAccountResult.Success)
+                {
+                    return this.JsonError(createAccountResult.Errors.ToArray(), HttpStatusCode.BadRequest);
+                }
+
+                return this.JsonOk(createAccountResult.Data);
+            }
+            catch (Exception ex)
+            {
+                return this.JsonError(ex.Message, HttpStatusCode.BadRequest, ex);
+            }
+        }
+
         [HttpGet]
-        [ActionName("address/list")]
+        [ActionName("address-list")]
         public ActionResult GetAddressList()
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                var contactId = this.visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> getAddressListResult = this.accountRepositry.GetAddressList(contactId);
+                var getAddressListResult = this.accountRepository.GetAddressList(contactId);
 
                 if (!getAddressListResult.Success)
                 {
@@ -182,14 +137,37 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("address/update")]
+        [ActionName("address-remove")]
+        public ActionResult RemoveAddress(AddressModel address)
+        {
+            try
+            {
+                var contactId = this.visitorContext.ContactId;
+
+                var removeAddressResult = this.accountRepository.RemoveCustomerAddress(contactId, address);
+
+                if (!removeAddressResult.Success)
+                {
+                    return this.JsonError(removeAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
+                }
+
+                return this.JsonOk(removeAddressResult.Data);
+            }
+            catch (Exception ex)
+            {
+                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("address-update")]
         public ActionResult UpdateAddress(AddressModel address)
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                var contactId = this.visitorContext.ContactId;
 
-                Result<IEnumerable<AddressModel>> updateAddressResult = this.accountRepositry.UpdateAddress(contactId, address);
+                var updateAddressResult = this.accountRepository.UpdateAddress(contactId, address);
 
                 if (!updateAddressResult.Success)
                 {
@@ -205,21 +183,20 @@ namespace Wooli.Feature.Account.Controllers
         }
 
         [HttpPost]
-        [ActionName("address/remove")]
-        public ActionResult RemoveAddress(AddressModel address)
+        [ActionName("update")]
+        public ActionResult UpdateUser(CommerceUserModel user)
         {
             try
             {
-                string contactId = this.visitorContext.ContactId;
+                this.trackingService.EnsureTracker();
+                var updateUserResult = this.accountRepository.UpdateAccountInfo(user);
 
-                Result<IEnumerable<AddressModel>> removeAddressResult = this.accountRepositry.RemoveCustomerAddress(contactId, address);
-
-                if (!removeAddressResult.Success)
+                if (!updateUserResult.Success)
                 {
-                    return this.JsonError(removeAddressResult.Errors.ToArray(), HttpStatusCode.BadRequest);
+                    return this.JsonError(updateUserResult.Errors.ToArray(), HttpStatusCode.BadRequest);
                 }
 
-                return this.JsonOk(removeAddressResult.Data);
+                return this.JsonOk(updateUserResult.Data);
             }
             catch (Exception ex)
             {
@@ -227,11 +204,25 @@ namespace Wooli.Feature.Account.Controllers
             }
         }
 
-        private void EnsureTracker()
+        [HttpPost]
+        [ActionName("validate")]
+        public ActionResult ValidateAccount(ValidateAccountModel validateAccountModel)
         {
-            if (!Tracker.IsActive)
+            try
             {
-                Tracker.StartTracking();
+                this.trackingService.EnsureTracker();
+                var accountExists = this.accountRepository.ValidateAccount(validateAccountModel);
+
+                if (!accountExists.Success)
+                {
+                    return this.JsonError(accountExists.Errors.ToArray(), HttpStatusCode.BadRequest);
+                }
+
+                return this.JsonOk(accountExists.Data);
+            }
+            catch (Exception ex)
+            {
+                return this.JsonError(ex.Message, HttpStatusCode.InternalServerError, ex);
             }
         }
     }

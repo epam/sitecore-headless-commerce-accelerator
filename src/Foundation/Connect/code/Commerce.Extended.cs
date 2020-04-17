@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 // ReSharper disable CheckNamespace
+
 #pragma warning disable 1591
 #pragma warning disable 0108
 
@@ -34,7 +35,7 @@ namespace Wooli.Foundation.Connect.Models
         public virtual IEnumerable<ICommerceProductVariantModel> Variants { get; set; }
     }
 
-   public partial interface ICountryRegionModel
+    public partial interface ICountryRegionModel
     {
         [SitecoreChildren(InferType = true)]
         IEnumerable<ISubdivisionModel> Subdivisions { get; set; }
@@ -54,7 +55,7 @@ namespace Wooli.Foundation.Connect.Models
 
     public partial class StorefrontModel
     {
-        //TODO Fix to relative query
+        // TODO Fix to relative query
         [SitecoreQuery("./#Country-Region configuration#", IsRelative = true)]
         public ICountryRegionConfigurationModel CountriesRegionsConfiguration { get; set; }
     }
@@ -70,5 +71,4 @@ namespace Wooli.Foundation.Connect.Models
         [SitecoreField("Countries-Regions")]
         public IEnumerable<ICountryRegionModel> CountriesRegionsModel { get; set; }
     }
-    
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,18 +16,17 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
 {
     using System;
     using System.Net;
-    using System.Web;
     using System.Web.Mvc;
 
     using Newtonsoft.Json;
 
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Extensions.Utils;
+    using Utils;
 
     public class CamelCasePropertyJsonResult : JsonResult
     {
-        private static readonly JsonSerializerSettings JsonSerialiserSettings = Constants.JsonSerialiserSettings;
+        private static readonly JsonSerializerSettings JsonSerializerSettings = Constants.JsonSerializerSettings;
 
         public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
 
@@ -35,7 +34,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
         {
             Assert.ArgumentNotNull(context, nameof(context));
 
-            if (this.JsonRequestBehavior == JsonRequestBehavior.DenyGet
+            if ((this.JsonRequestBehavior == JsonRequestBehavior.DenyGet)
                 && string.Equals(context.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 throw new InvalidOperationException("GET is not allowed.");
@@ -46,7 +45,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
                 return;
             }
 
-            HttpResponseBase response = context.HttpContext.Response;
+            var response = context.HttpContext.Response;
 
             if (this.ContentEncoding != null)
             {
@@ -56,7 +55,7 @@ namespace Wooli.Foundation.Extensions.Controllers.ActionResult
             response.StatusCode = (int)this.StatusCode;
             response.ContentType = string.IsNullOrEmpty(this.ContentType) ? "application/json" : this.ContentType;
 
-            JsonSerializer scriptSerializer = JsonSerializer.Create(JsonSerialiserSettings);
+            var scriptSerializer = JsonSerializer.Create(JsonSerializerSettings);
             scriptSerializer.Serialize(response.Output, this.Data);
         }
     }

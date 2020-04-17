@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -25,21 +25,20 @@ namespace Wooli.Foundation.Connect.Models
             this.VariantId = item.Name;
         }
 
-        public Item Item { get; protected set; }
-
-        public string VariantId { get; protected set; }
+        public decimal? AdjustedPrice { get; set; }
 
         public string CurrencyCode { get; set; }
 
-        public decimal? ListPrice { get; set; }
+        public decimal? CustomerAverageRating { get; set; }
 
-        public decimal? AdjustedPrice { get; set; }
+        public Item Item { get; protected set; }
+
+        public decimal? ListPrice { get; set; }
 
         public StockStatus StockStatus { get; set; }
 
         public string StockStatusName { get; set; }
 
-        public decimal? CustomerAverageRating { get; set; }
-
+        public string VariantId { get; protected set; }
     }
 }

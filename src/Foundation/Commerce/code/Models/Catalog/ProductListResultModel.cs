@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,39 +12,43 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
+
+    using Connect.Models;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Diagnostics;
 
     using TypeLite;
 
-    using Wooli.Foundation.Connect.Models;
-
     [TsClass]
     public class ProductListResultModel
     {
+        public IList<ProductModel> ChildProducts { get; set; }
+
         public string CurrentCatalogItemId { get; set; }
 
-        public string SearchKeyword { get; set; }
+        public int CurrentPageNumber { get; set; }
+
+        public IList<FacetResultModel> Facets { get; set; }
 
         public int? MaxPageSize { get; set; }
 
-        public int CurrentPageNumber { get; set; }
+        public string SearchKeyword { get; set; }
+
+        public IList<SortOptionModel> SortOptions { get; set; }
 
         public int TotalItemCount { get; set; }
 
         public int TotalPageCount { get; set; }
 
-        public IList<ProductModel> ChildProducts { get; set; }
-
-        public IList<FacetResultModel> Facets { get; set; }
-
-        public IList<SortOptionModel> SortOptions { get; set; }
-
-        public void Initialize(CommerceSearchOptions commerceSearchOptions, SearchResults searchResults, IList<ProductModel> productEntityList, string searchKeyword = null)
+        public void Initialize(
+            CommerceSearchOptions commerceSearchOptions,
+            SearchResults searchResults,
+            IList<ProductModel> productEntityList,
+            string searchKeyword = null)
         {
             Assert.ArgumentNotNull(commerceSearchOptions, nameof(commerceSearchOptions));
             Assert.ArgumentNotNull(searchResults, nameof(searchResults));
@@ -60,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Models
             this.ChildProducts = productEntityList ?? new List<ProductModel>();
 
             var facets = new List<FacetResultModel>();
-            foreach (CommerceQueryFacet queryFacet in searchResults.Facets)
+            foreach (var queryFacet in searchResults.Facets)
             {
                 var facetModel = new FacetResultModel();
                 facetModel.Initialize(queryFacet);

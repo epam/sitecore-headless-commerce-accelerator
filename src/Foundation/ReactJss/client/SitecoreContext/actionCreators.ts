@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,10 +14,11 @@
 
 import { Action } from 'Foundation/Integration/client';
 
-import { Sitecore, SitecorePayload } from '../models';
+import { ChangeRoutePayload, Sitecore, SitecorePayload } from '../models';
 
 export type InitializationComplete = () => Action;
-export type ChangeRoute = (newRoute: string) => Action<string>;
+// tslint:disable-next-line:bool-param-default
+export type ChangeRoute = (newRoute: string, shouldPushNewRoute?: boolean) => Action<ChangeRoutePayload>;
 
 export type SetLoadedUrl = (loadedUrl: string) => Action<SitecorePayload>;
 export type GetSitecoreContextSuccess = (sitecoreContext: Sitecore<{}, {}>) => Action<SitecorePayload>;

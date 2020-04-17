@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using System;
     using System.Net.Mail;
 
+    using Extensions.Extensions;
+
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities.Orders;
@@ -25,26 +27,28 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
-    
-    using Wooli.Foundation.Extensions.Extensions;
+    using Sitecore.Links.UrlBuilders;
 
     public class SendEmailProcessor : PipelineProcessor
     {
-        private static readonly string SendConfirmationFrom = Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.From");
-        private static readonly string SendConfirmationSubject = Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.Subject");
+        private static readonly string SendConfirmationFrom =
+            Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.From");
+
+        private static readonly string SendConfirmationSubject =
+            Settings.GetSetting("Wooli.Foundation.Commerce.SendConfirmation.Subject");
 
         public override void Process(ServicePipelineArgs args)
         {
-            var order = GetOrderFromArgs(args);
+            var order = this.GetOrderFromArgs(args);
 
-            if (order == null || order.Total == null)
+            if ((order == null) || (order.Total == null))
             {
                 return;
             }
 
             try
             {
-                var body = BuildBody(order);
+                var body = this.BuildBody(order);
                 var emailMessage = new MailMessage(SendConfirmationFrom, order.Email, SendConfirmationSubject, body)
                 {
                     IsBodyHtml = true
@@ -52,7 +56,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
                 MainUtil.SendMail(emailMessage);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error("Send order confirmation email failed!", ex, this);
             }
@@ -60,7 +64,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
         private string BuildBody(Order order)
         {
-            var options = new UrlOptions
+            var options = new ItemUrlBuilderOptions
             {
                 AlwaysIncludeServerUrl = true
             };
@@ -74,7 +78,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
         private Order GetOrderFromArgs(ServicePipelineArgs args)
         {
-            if (args == null || !(args.Result is SubmitVisitorOrderResult))
+            if ((args == null) || !(args.Result is SubmitVisitorOrderResult))
             {
                 return null;
             }

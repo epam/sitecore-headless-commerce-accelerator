@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -27,11 +27,17 @@ namespace Wooli.Foundation.Connect.Models
 
         private IList<Item> searchResultItems;
 
-        public SearchResults() : this(null, 0, 0, 0, null)
+        public SearchResults()
+            : this(null, 0, 0, 0, null)
         {
         }
 
-        public SearchResults(List<Item> searchResultItems, int totalItemCount, int totalPageCount, int currentPageNumber, IEnumerable<CommerceQueryFacet> facets)
+        public SearchResults(
+            List<Item> searchResultItems,
+            int totalItemCount,
+            int totalPageCount,
+            int currentPageNumber,
+            IEnumerable<CommerceQueryFacet> facets)
         {
             this.SearchResultItems = searchResultItems ?? new List<Item>();
             this.TotalPageCount = totalPageCount;
@@ -40,15 +46,21 @@ namespace Wooli.Foundation.Connect.Models
             this.CurrentPageNumber = currentPageNumber;
         }
 
+        public int CurrentPageNumber { get; set; }
+
         public string DisplayName { get; set; }
 
+        public IEnumerable<CommerceQueryFacet> Facets
+        {
+            get => this.facets;
+            set
+            {
+                Assert.ArgumentNotNull(value, nameof(value));
+                this.facets = value;
+            }
+        }
+
         public Item NamedSearchItem { get; set; }
-
-        public int TotalItemCount { get; set; }
-
-        public int TotalPageCount { get; set; }
-
-        public int CurrentPageNumber { get; set; }
 
         public IList<Item> SearchResultItems
         {
@@ -60,14 +72,8 @@ namespace Wooli.Foundation.Connect.Models
             }
         }
 
-        public IEnumerable<CommerceQueryFacet> Facets
-        {
-            get => this.facets;
-            set
-            {
-                Assert.ArgumentNotNull(value, nameof(value));
-                this.facets = value;
-            }
-        }
+        public int TotalItemCount { get; set; }
+
+        public int TotalPageCount { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
 {
     using System.Collections.Generic;
 
+    using Helpers;
+
     using Sitecore.Diagnostics;
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.Presentation.Pipelines.RenderJsonRendering;
-
-    using Wooli.Foundation.ReactJss.Helpers;
 
     public class FormatRenderingParams : BaseRenderJsonRendering
     {
@@ -40,10 +40,10 @@ namespace Wooli.Foundation.ReactJss.Serialization.RenderJsonRendering
         {
             var renderingParams = new Dictionary<string, string>();
 
-            foreach (KeyValuePair<string, string> originalRenderingParam in originalRenderingParams)
+            foreach (var originalRenderingParam in originalRenderingParams)
             {
-                string key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
-                string value = originalRenderingParam.Value;
+                var key = StringHelper.ConvertToCamelCase(originalRenderingParam.Key);
+                var value = originalRenderingParam.Value;
 
                 renderingParams[key] = value;
             }

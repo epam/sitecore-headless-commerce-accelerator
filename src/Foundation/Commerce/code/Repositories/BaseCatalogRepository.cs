@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,18 +17,21 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System.Collections.Generic;
     using System.Linq;
 
+    using Connect.Managers;
+    using Connect.Models;
+
+    using Context;
+
     using Glass.Mapper.Sc;
+
+    using Models.Catalog;
+
+    using Providers;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
-
-    using ProductModel = Wooli.Foundation.Commerce.Models.ProductModel;
+    using ProductModel = Models.Catalog.ProductModel;
 
     public class BaseCatalogRepository
     {
@@ -40,27 +43,39 @@ namespace Wooli.Foundation.Commerce.Repositories
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             ICatalogManager catalogManager,
-            ISitecoreContext sitecoreContext)
+            ISitecoreService sitecoreService)
         {
             this.CurrencyProvider = currencyProvider;
             this.SiteContext = siteContext;
             this.StorefrontContext = storefrontContext;
             this.VisitorContext = visitorContext;
             this.CatalogManager = catalogManager;
-            this.SitecoreContext = sitecoreContext;
+            this.SitecoreService = sitecoreService;
         }
-
-        public ICurrencyProvider CurrencyProvider { get; }
 
         public ICatalogManager CatalogManager { get; }
 
+        public ICurrencyProvider CurrencyProvider { get; }
+
         public ISiteContext SiteContext { get; }
 
-        public ISitecoreContext SitecoreContext { get; }
+        public ISitecoreService SitecoreService { get; }
 
         public IStorefrontContext StorefrontContext { get; }
 
         public IVisitorContext VisitorContext { get; }
+
+        protected CategoryModel GetCategoryModel(Item categoryItem)
+        {
+            if (categoryItem == null)
+            {
+                return null;
+            }
+
+            var categoryModel = new CategoryModel(categoryItem);
+
+            return categoryModel;
+        }
 
         protected virtual ProductModel GetProductModel(IVisitorContext visitorContext, Item productItem)
         {
@@ -85,17 +100,15 @@ namespace Wooli.Foundation.Commerce.Repositories
             this.CatalogManager.GetProductPrice(product);
             this.CatalogManager.GetStockInfo(product, this.StorefrontContext.ShopName);
 
-            var renderingModel = new ProductModel();
-            var model = this.SitecoreContext.Cast<ICommerceProductModel>(productItem);
+            var renderingModel = new ProductModel(productItem);
 
-            renderingModel.Initialize(model);
             renderingModel.CurrencySymbol = this.CurrencyProvider.GetCurrencySymbolByCode(product.CurrencyCode);
             renderingModel.ListPrice = product.ListPrice;
             renderingModel.AdjustedPrice = product.AdjustedPrice;
             renderingModel.StockStatusName = product.StockStatusName;
             renderingModel.CustomerAverageRating = product.CustomerAverageRating;
 
-            foreach (ProductVariantModel renderingModelVariant in renderingModel.Variants)
+            foreach (var renderingModelVariant in renderingModel.Variants)
             {
                 var variant = product.Variants.FirstOrDefault(x => x.VariantId == renderingModelVariant.ProductVariantId);
                 if (variant == null)
@@ -125,20 +138,6 @@ namespace Wooli.Foundation.Commerce.Repositories
             }
 
             return variants;
-        }
-
-        protected CategoryModel GetCategoryModel(Item categoryItem)
-        {
-            var glassModel = this.SitecoreContext.Cast<IConnectCategoryModel>(categoryItem);
-            if (glassModel == null)
-            {
-                return null;
-            }
-
-            var categoryModel = new CategoryModel();
-            categoryModel.Initialize(glassModel);
-
-            return categoryModel;
         }
     }
 }

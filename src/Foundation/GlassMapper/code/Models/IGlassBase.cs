@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -26,35 +26,35 @@ namespace Wooli.Foundation.GlassMapper.Models
 
     public interface IGlassBase
     {
-        [SitecoreId]
-        Guid Id { get; }
-
-        [SitecoreInfo(SitecoreInfoType.Name)]
-        string ItemName { get; set; }
-
-        [SitecoreItem]
-        Item Item { get; }
-
-        [SitecoreParent]
-        Item Parent { get; }
+        [SitecoreInfo(SitecoreInfoType.BaseTemplateIds)]
+        IEnumerable<Guid> BaseTemplateIds { get; }
 
         [SitecoreChildren]
         IEnumerable<Item> Children { get; }
 
+        [SitecoreId]
+        Guid Id { get; }
+
+        [SitecoreItem]
+        Item Item { get; }
+
+        [SitecoreInfo(SitecoreInfoType.Name)]
+        string ItemName { get; set; }
+
+        [SitecoreInfo(SitecoreInfoType.TemplateId)]
+        Guid ItemTemplateId { get; }
+
         [SitecoreInfo(SitecoreInfoType.Language)]
         Language Language { get; }
 
-        [SitecoreInfo(SitecoreInfoType.Version)]
-        int Version { get; }
+        [SitecoreParent]
+        Item Parent { get; }
 
         [SitecoreInfo(SitecoreInfoType.Url)]
         string Url { get; }
 
-        [SitecoreInfo(SitecoreInfoType.BaseTemplateIds)]
-        IEnumerable<Guid> BaseTemplateIds { get; }
-
-        [SitecoreInfo(SitecoreInfoType.TemplateId)]
-        Guid ItemTemplateId { get; }
+        [SitecoreInfo(SitecoreInfoType.Version)]
+        int Version { get; }
 
         bool InheritsTemplate(Guid templateGuid);
 

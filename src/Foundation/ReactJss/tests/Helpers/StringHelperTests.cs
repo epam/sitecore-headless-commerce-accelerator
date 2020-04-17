@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,48 +14,12 @@
 
 namespace Wooli.Foundation.ReactJss.Tests.Helpers
 {
-    using Wooli.Foundation.ReactJss.Helpers;
+    using ReactJss.Helpers;
 
     using Xunit;
 
     public class StringHelperTests
     {
-        [Theory]
-        [InlineData("lower")]
-        [InlineData("12345")]
-        public void IsLower_LowerString_ReturnsTrue(string str)
-        {
-            bool result = str.IsLower();
-            Assert.True(result);
-        }
-
-        [Theory]
-        [InlineData("notLower")]
-        [InlineData("UPPER")]
-        public void IsLower_NotLowerString_ReturnsFalse(string str)
-        {
-            bool result = str.IsLower();
-            Assert.False(result);
-        }
-
-        [Theory]
-        [InlineData("UPPER")]
-        [InlineData("12345")]
-        public void IsUpper_UpperString_ReturnsTrue(string str)
-        {
-            bool result = str.IsUpper();
-            Assert.True(result);
-        }
-
-        [Theory]
-        [InlineData("notUpper")]
-        [InlineData("lower")]
-        public void IsUpper_NotUpperString_ReturnsFalse(string str)
-        {
-            bool result = str.IsUpper();
-            Assert.False(result);
-        }
-
         [Theory]
         [InlineData("OneWord", "oneWord")]
         [InlineData("Two Words", "twoWords")]
@@ -68,8 +32,44 @@ namespace Wooli.Foundation.ReactJss.Tests.Helpers
         [InlineData(null, null)]
         public void ConvertToCamelCase_InputString_ReturnsCorrectValue(string str, string expected)
         {
-            string result = StringHelper.ConvertToCamelCase(str);
+            var result = StringHelper.ConvertToCamelCase(str);
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData("lower")]
+        [InlineData("12345")]
+        public void IsLower_LowerString_ReturnsTrue(string str)
+        {
+            var result = str.IsLower();
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineData("notLower")]
+        [InlineData("UPPER")]
+        public void IsLower_NotLowerString_ReturnsFalse(string str)
+        {
+            var result = str.IsLower();
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("notUpper")]
+        [InlineData("lower")]
+        public void IsUpper_NotUpperString_ReturnsFalse(string str)
+        {
+            var result = str.IsUpper();
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("UPPER")]
+        [InlineData("12345")]
+        public void IsUpper_UpperString_ReturnsTrue(string str)
+        {
+            var result = str.IsUpper();
+            Assert.True(result);
         }
     }
 }

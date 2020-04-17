@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,16 +14,14 @@
 
 namespace Wooli.Foundation.Connect.Models
 {
-    using System;
-
     public class CartLineArgument
     {
         public string CatalogName { get; set; }
 
         public string ProductId { get; set; }
 
-        public string VariantId { get; set; }
+        public decimal Quantity { get; set; }
 
-        public Decimal Quantity { get; set; }
+        public string VariantId { get; set; }
     }
 }

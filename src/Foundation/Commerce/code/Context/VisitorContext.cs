@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,17 +17,20 @@ namespace Wooli.Foundation.Commerce.Context
     using System.Collections;
     using System.Web;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
+    using DependencyInjection;
+
+    using Models;
+
+    using Providers;
 
     [Service(typeof(IVisitorContext))]
     public class VisitorContext : IVisitorContext
     {
-        private const string StaticVisitorId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
+        private const string CurrentUserItemKey = "_CurrentCommerceUser";
+
         private const string ExperienceEditorVisitorTrackingId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
 
-        private const string CurrentUserItemKey = "_CurrentCommerceUser";
+        private const string StaticVisitorId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
 
         private readonly ICustomerProvider customerProvider;
 

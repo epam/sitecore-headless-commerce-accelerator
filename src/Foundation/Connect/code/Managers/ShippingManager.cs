@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,6 +17,14 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using ModelMappers;
+
+    using Models;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
@@ -24,22 +32,19 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services.Shipping.Generics;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Connect.ModelMappers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Connect.Providers;
-    using Wooli.Foundation.DependencyInjection;
+    using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
     [Service(typeof(IShippingManager))]
     public class ShippingManager : IShippingManager
     {
         private readonly IConnectEntityMapper connectEntityMapper;
 
-        private ShippingServiceProvider shippingServiceProvider;
+        private readonly ShippingServiceProvider shippingServiceProvider;
 
         public ShippingManager(IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectEntityMapper)
         {
-            Assert.ArgumentNotNull((object)connectServiceProvider, nameof(connectServiceProvider));
-            Assert.ArgumentNotNull((object)connectEntityMapper, nameof(connectEntityMapper));
+            Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
+            Assert.ArgumentNotNull(connectEntityMapper, nameof(connectEntityMapper));
             this.connectEntityMapper = connectEntityMapper;
             this.shippingServiceProvider = connectServiceProvider.GetShippingServiceProvider();
         }
@@ -51,8 +56,7 @@ namespace Wooli.Foundation.Connect.Managers
             PartyEntity address,
             List<string> cartLineExternalIdList)
         {
-
-            if (cartLineExternalIdList != null && cartLineExternalIdList.Any<string>())
+            if ((cartLineExternalIdList != null) && cartLineExternalIdList.Any())
             {
             }
 
@@ -62,21 +66,30 @@ namespace Wooli.Foundation.Connect.Managers
                 commerceParty = this.connectEntityMapper.MapToCommerceParty(address);
             }
 
-            var shippingOption = new ShippingOption { ShippingOptionType = shippingOptionType };
-            var request = new Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest(shippingOption, commerceParty, cart as CommerceCart);
-            GetShippingMethodsResult shippingMethods = this.shippingServiceProvider.GetShippingMethods<GetShippingMethodsRequest, GetShippingMethodsResult>(request);
-            return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(shippingMethods, shippingMethods.ShippingMethods);
-
+            var shippingOption = new ShippingOption
+            {
+                ShippingOptionType = shippingOptionType
+            };
+            var request = new GetShippingMethodsRequest(shippingOption, commerceParty, cart as CommerceCart);
+            var shippingMethods = this.shippingServiceProvider
+                .GetShippingMethods<Sitecore.Commerce.Services.Shipping.GetShippingMethodsRequest, GetShippingMethodsResult>(
+                    request);
+            return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(
+                shippingMethods,
+                shippingMethods.ShippingMethods);
         }
 
         public virtual ManagerResponse<GetShippingOptionsResult, List<ShippingOption>> GetShippingPreferences(Cart cart)
         {
             var request = new GetShippingOptionsRequest(cart);
-            GetShippingOptionsResult shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
-            if (shippingOptions.Success && shippingOptions.ShippingOptions != null)
+            var shippingOptions = this.shippingServiceProvider.GetShippingOptions(request);
+            if (shippingOptions.Success && (shippingOptions.ShippingOptions != null))
             {
-                return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(shippingOptions, shippingOptions.ShippingOptions.ToList());
+                return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(
+                    shippingOptions,
+                    shippingOptions.ShippingOptions.ToList());
             }
+
             return new ManagerResponse<GetShippingOptionsResult, List<ShippingOption>>(shippingOptions, null);
         }
     }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,30 +16,42 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
 {
     using System.Linq;
 
+    using Connect.Managers;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using Extensions.Services;
+
+    using Providers;
+
     using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
-    using Wooli.Foundation.Extensions.Services;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
-    {       
-        private readonly ISearchManager searchManager;
-
+    {
         private readonly IPageTypeProvider pageTypeProvider;
 
-        private readonly IStorefrontContext storefrontContext;
-
-        private readonly ISiteDefinitionsProvider siteDefinitionsProvider;
+        private readonly ISearchManager searchManager;
 
         private readonly ISiteContext siteContext;
 
-        public CatalogItemResolver(ISearchManager searchManager, IPageTypeProvider pageTypeProvider, IStorefrontContext storefrontContext, ISiteDefinitionsProvider siteDefinitionsProvider, ISiteContext siteContext, IAnalyticsManager analyticsManager)
+        private readonly ISiteDefinitionsProvider siteDefinitionsProvider;
+
+        private readonly IStorefrontContext storefrontContext;
+
+        public CatalogItemResolver(
+            ISearchManager searchManager,
+            IPageTypeProvider pageTypeProvider,
+            IStorefrontContext storefrontContext,
+            ISiteDefinitionsProvider siteDefinitionsProvider,
+            ISiteContext siteContext,
+            IAnalyticsManager analyticsManager)
         {
             this.searchManager = searchManager;
             this.pageTypeProvider = pageTypeProvider;
@@ -57,7 +69,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
                 return;
             }
 
-            Item rootItem = this.siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
+            var rootItem = this.siteDefinitionsProvider.GetCurrentSiteDefinition()?.RootItem;
             if (rootItem == null)
             {
                 return;
@@ -68,10 +80,10 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
                 return;
             }
 
-            Item currentItem = Context.Item;
-            while (currentItem != null && currentItem.ID != rootItem.ID)
+            var currentItem = Context.Item;
+            while ((currentItem != null) && (currentItem.ID != rootItem.ID))
             {
-                string urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
+                var urlSegment = urlSegments?.LastOrDefault()?.TrimEnd('/');
 
                 this.ProcessItem(currentItem, urlSegment, this.storefrontContext.CatalogName);
 
@@ -87,7 +99,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
         private void ProcessItem(Item item, string urlSegment, string catalogName)
         {
             var contextItemType = this.pageTypeProvider.ResolveByItem(item);
-            if (contextItemType == Utils.Constants.ItemType.Unknown)
+            if (contextItemType == Constants.ItemType.Unknown)
             {
                 return;
             }
@@ -101,11 +113,11 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines
             Item catalogItem;
             switch (contextItemType)
             {
-                case Utils.Constants.ItemType.Category:
+                case Constants.ItemType.Category:
                     catalogItem = this.searchManager.GetCategory(catalogName, itemName);
                     this.siteContext.CurrentCategoryItem = catalogItem;
                     break;
-                case Utils.Constants.ItemType.Product:
+                case Constants.ItemType.Product:
                     catalogItem = this.searchManager.GetProduct(catalogName, itemName);
                     this.siteContext.CurrentProductItem = catalogItem;
                     break;

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,28 +17,34 @@ namespace Wooli.Foundation.Commerce.Context
     using System.Collections;
     using System.Web;
 
+    using DependencyInjection;
+
+    using Providers;
+
+    using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.DependencyInjection;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
     {
-        private const string CurrentProductItemKey = "_CurrentProductItem";
         private const string CurrentCategoryItemKey = "_CurrentCategoryItem";
+
         private const string CurrentItemKey = "_CurrentItem";
+
+        private const string CurrentProductItemKey = "_CurrentProductItem";
+
         private const string IsCategoryKey = "_IsCategory";
+
         private const string IsProductKey = "_IsProduct";
 
         public SiteContext(IItemTypeProvider itemTypeProvider)
         {
-            Assert.ArgumentNotNull((object)itemTypeProvider, "itemTypeProvider must not be null");
+            Assert.ArgumentNotNull(itemTypeProvider, "itemTypeProvider must not be null");
             this.ItemTypeProvider = itemTypeProvider;
         }
-
-        public IItemTypeProvider ItemTypeProvider { get; set; }
 
         public Item CurrentCategoryItem
         {
@@ -46,11 +52,7 @@ namespace Wooli.Foundation.Commerce.Context
             set => this.Items[CurrentCategoryItemKey] = value;
         }
 
-        public Item CurrentProductItem
-        {
-            get => this.Items[CurrentProductItemKey] as Item;
-            set => this.Items[CurrentProductItemKey] = value;
-        }
+        public virtual HttpContext CurrentContext => HttpContext.Current;
 
         public Item CurrentItem
         {
@@ -61,8 +63,8 @@ namespace Wooli.Foundation.Commerce.Context
                 if (value != null)
                 {
                     var itemType = this.ItemTypeProvider.ResolveByItem(value);
-                    this.Items[IsCategoryKey] = itemType == Utils.Constants.ItemType.Category;
-                    this.Items[IsProductKey] = itemType == Utils.Constants.ItemType.Product;
+                    this.Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
+                    this.Items[IsProductKey] = itemType == Constants.ItemType.Product;
                 }
                 else
                 {
@@ -72,9 +74,11 @@ namespace Wooli.Foundation.Commerce.Context
             }
         }
 
-        public virtual HttpContext CurrentContext => HttpContext.Current;
-
-        public string VirtualFolder => Sitecore.Context.Site.VirtualFolder;
+        public Item CurrentProductItem
+        {
+            get => this.Items[CurrentProductItemKey] as Item;
+            set => this.Items[CurrentProductItemKey] = value;
+        }
 
         public bool IsCategory
         {
@@ -103,5 +107,9 @@ namespace Wooli.Foundation.Commerce.Context
         }
 
         public IDictionary Items => HttpContext.Current.Items;
+
+        public IItemTypeProvider ItemTypeProvider { get; set; }
+
+        public string VirtualFolder => Context.Site.VirtualFolder;
     }
 }

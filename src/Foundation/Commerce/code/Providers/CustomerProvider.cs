@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,41 +18,41 @@ namespace Wooli.Foundation.Commerce.Providers
     using System.Linq;
     using System.Web;
 
+    using Connect.Managers;
+
+    using DependencyInjection;
+
+    using Models;
+
+    using Sitecore;
     using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
-
-    using Constants = Wooli.Foundation.Commerce.Utils.Constants;
+    using Constants = Utils.Constants;
 
     [Service(typeof(ICustomerProvider))]
     public class CustomerProvider : ICustomerProvider
     {
-        #region fields
-
         private readonly IAccountManager accountManager;
-
-        #endregion
-
-        #region constructors
 
         public CustomerProvider(IAccountManager accountManager)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             this.accountManager = accountManager;
-
         }
 
-        #endregion
+        public CommerceUserModel GetCommerceUser(string contactIdOrName)
+        {
+            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
-        #region interface methods
+            var commerceUser = this.accountManager.GetUser(contactIdOrName);
+
+            return this.MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
+        }
 
         public CommerceUserModel GetCurrentCommerceUser(HttpContextBase httpContext)
         {
-            var user = Sitecore.Context.Data.User;
+            var user = Context.Data.User;
             if (user == null)
             {
                 return null;
@@ -72,20 +72,6 @@ namespace Wooli.Foundation.Commerce.Providers
             return null;
         }
 
-        public CommerceUserModel GetCommerceUser(string contactIdOrName)
-        {
-            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
-
-            ManagerResponse<GetUserResult, CommerceUser> commerceUser =
-                this.accountManager.GetUser(contactIdOrName);
-
-            return this.MapToCommerceUserModel(commerceUser.Result, contactIdOrName);
-        }
-
-        #endregion
-
-        #region private methods
-
         private string GetCustomerId(IList<string> customers)
         {
             // It is assumed that we have only one commerce customer per commerce user,
@@ -93,23 +79,18 @@ namespace Wooli.Foundation.Commerce.Providers
             return customers?.FirstOrDefault();
         }
 
-        private string ParseContactId(string externalId)
-        {
-            // We extract contact id from externalId,
-            // it is not returned by current implementation of Sitecore.Commerce.Core
-            return externalId?.Replace(Constants.CommereceCustomerIdPrefix, string.Empty);
-        }
-
         private CommerceUserModel MapToCommerceUserModel(CommerceUser commerceUser, string contactIdOrEmail)
         {
             if (commerceUser == null)
             {
-                return new CommerceUserModel { ContactId = contactIdOrEmail };
+                return new CommerceUserModel
+                {
+                    ContactId = contactIdOrEmail
+                };
             }
 
-            string customerId = this.GetCustomerId(commerceUser?.Customers);
-            string contactId = this.ParseContactId(commerceUser?.ExternalId);
-           
+            var customerId = this.GetCustomerId(commerceUser?.Customers);
+            var contactId = this.ParseContactId(commerceUser?.ExternalId);
 
             return new CommerceUserModel
             {
@@ -122,6 +103,11 @@ namespace Wooli.Foundation.Commerce.Providers
             };
         }
 
-        #endregion
+        private string ParseContactId(string externalId)
+        {
+            // We extract contact id from externalId,
+            // it is not returned by current implementation of Sitecore.Commerce.Core
+            return externalId?.Replace(Constants.CommereceCustomerIdPrefix, string.Empty);
+        }
     }
 }

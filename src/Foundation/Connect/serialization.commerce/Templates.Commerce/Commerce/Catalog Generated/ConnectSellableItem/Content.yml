@@ -1,6 +1,6 @@
 ﻿---
-ID: "9cf9b7c9-4033-4cc3-a67a-0281a587a493"
-Parent: "fba5f258-0014-4089-ac06-1849683accbe"
+ID: "76dbf03b-bc79-4315-a9c6-5848b029832e"
+Parent: "ab1c3209-f138-b1b6-e05e-6e12d29257bc"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
 Path: /sitecore/templates/Commerce/Catalog Generated/ConnectSellableItem/Content
 DB: master
@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20190621T165118Z
+      Value: 20200212T094448Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

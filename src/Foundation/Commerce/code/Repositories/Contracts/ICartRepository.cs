@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,20 +14,21 @@
 
 namespace Wooli.Foundation.Commerce.Repositories
 {
-    using Wooli.Foundation.Commerce.Models;
+    using Models;
+    using Models.Checkout;
 
     public interface ICartRepository
     {
-        CartModel GetCurrentCart();
-
         Result<CartModel> AddProductVariantToCart(string productId, string variantId, decimal quantity);
-
-        Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity);
-
-        Result<CartModel> RemoveProductVariantFromCart(string cartLineId);
 
         Result<CartModel> AddPromoCode(string promoCode);
 
+        CartModel GetCurrentCart();
+
         void MergeCarts(string anonymousContactId);
+
+        Result<CartModel> RemoveProductVariantFromCart(string cartLineId);
+
+        Result<CartModel> UpdateProductVariantQuantity(string productId, string variantId, decimal quantity);
     }
 }

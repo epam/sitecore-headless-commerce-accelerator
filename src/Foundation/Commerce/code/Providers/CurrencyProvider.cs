@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ namespace Wooli.Foundation.Commerce.Providers
     using System.Globalization;
     using System.Linq;
 
-    using Wooli.Foundation.DependencyInjection;
+    using DependencyInjection;
 
     [Service(typeof(ICurrencyProvider), Lifetime = Lifetime.Singleton)]
     public class CurrencyProvider : ICurrencyProvider
@@ -29,10 +29,9 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             var symbolsByCodeDict = new Dictionary<string, string>();
 
-            IEnumerable<RegionInfo> regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Select(x => new RegionInfo(x.LCID));
+            var regions = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(x => new RegionInfo(x.LCID));
 
-            foreach (RegionInfo region in regions)
+            foreach (var region in regions)
             {
                 if (!symbolsByCodeDict.ContainsKey(region.ISOCurrencySymbol))
                 {

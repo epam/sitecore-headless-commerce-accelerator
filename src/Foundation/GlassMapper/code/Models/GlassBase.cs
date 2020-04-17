@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -27,35 +27,35 @@ namespace Wooli.Foundation.GlassMapper.Models
 
     public abstract class GlassBase : IGlassBase
     {
-        [SitecoreId]
-        public virtual Guid Id { get; set; }
-
-        [SitecoreInfo(SitecoreInfoType.Name)]
-        public virtual string ItemName { get; set; }
-
-        [SitecoreItem]
-        public virtual Item Item { get; set; }
-
-        [SitecoreParent]
-        public virtual Item Parent { get; set; }
+        [SitecoreInfo(SitecoreInfoType.BaseTemplateIds)]
+        public virtual IEnumerable<Guid> BaseTemplateIds { get; set; }
 
         [SitecoreChildren]
         public virtual IEnumerable<Item> Children { get; set; }
 
+        [SitecoreId]
+        public virtual Guid Id { get; set; }
+
+        [SitecoreItem]
+        public virtual Item Item { get; set; }
+
+        [SitecoreInfo(SitecoreInfoType.Name)]
+        public virtual string ItemName { get; set; }
+
+        [SitecoreInfo(SitecoreInfoType.TemplateId)]
+        public virtual Guid ItemTemplateId { get; set; }
+
         [SitecoreInfo(SitecoreInfoType.Language)]
         public virtual Language Language { get; set; }
 
-        [SitecoreInfo(SitecoreInfoType.Version)]
-        public virtual int Version { get; set; }
+        [SitecoreParent]
+        public virtual Item Parent { get; set; }
 
         [SitecoreInfo(SitecoreInfoType.Url)]
         public virtual string Url { get; set; }
 
-        [SitecoreInfo(SitecoreInfoType.BaseTemplateIds)]
-        public virtual IEnumerable<Guid> BaseTemplateIds { get; set; }
-
-        [SitecoreInfo(SitecoreInfoType.TemplateId)]
-        public virtual Guid ItemTemplateId { get; set; }
+        [SitecoreInfo(SitecoreInfoType.Version)]
+        public virtual int Version { get; set; }
 
         public virtual bool InheritsTemplate(Guid templateGuid)
         {

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,12 +16,13 @@ namespace Wooli.Foundation.Commerce.Providers
 {
     using System.Linq;
 
+    using DependencyInjection;
+
+    using Models.Catalog;
+
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Data.Items;
-
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(ISearchInformationProvider))]
     public class SearchInformationProvider : ISearchInformationProvider
@@ -38,7 +39,7 @@ namespace Wooli.Foundation.Commerce.Providers
         {
             var commerceQueryFacets = this.commerceSearchManager.GetFacetFieldsForItem(categoryItem).ToList();
             var commerceQuerySorts = this.commerceSearchManager.GetSortFieldsForItem(categoryItem).ToList();
-            int itemsPerPageForItem = this.commerceSearchManager.GetItemsPerPageForItem(categoryItem);
+            var itemsPerPageForItem = this.commerceSearchManager.GetItemsPerPageForItem(categoryItem);
 
             var searchInformation = new CategorySearchInformation
             {

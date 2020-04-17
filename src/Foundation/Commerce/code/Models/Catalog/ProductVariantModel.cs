@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,75 +12,38 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
-    using System.Linq;
 
-    using Sitecore.Diagnostics;
+    using Sitecore.Data.Items;
 
     using TypeLite;
 
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Extensions.Extensions;
-
     [TsClass]
-    public class ProductVariantModel
+    public class ProductVariantModel : BaseProductModel
     {
-        public string ProductVariantId { get; set; }
-
-        public string ProductId { get; set; }
-
-        public string DisplayName { get; set; }
-
-        public string Description { get; set; }
-
-        public string Brand { get; set; }
-
-        public IList<string> Tags { get; set; }
-
-        public IList<string> ImageUrls { get; set; }
-
-        public IDictionary<string, string> VariantProperties { get; set; }
-
-        public string CurrencySymbol { get; set; }
-
-        public decimal? ListPrice { get; set; }
-
-        public decimal? AdjustedPrice { get; set; }
-
-        public string StockStatusName { get; set; }
-
-        public decimal? CustomerAverageRating { get; set; }
-
-        public void Initialize(ICommerceProductVariantModel sellableItemModel)
+        public ProductVariantModel(Item sellableItem)
+            : base(sellableItem)
         {
-            Assert.ArgumentNotNull(sellableItemModel, nameof(sellableItemModel));
-
-            this.ProductVariantId = sellableItemModel.ItemName;
-            this.ProductId = sellableItemModel.ProductId;
-            this.DisplayName = sellableItemModel.DisplayName;
-            this.Description = sellableItemModel.Description;
-            this.Brand = sellableItemModel.Brand;
-
-            this.Tags = sellableItemModel.Tags?.Split('|').ToList();
-
-            this.ImageUrls = sellableItemModel
-                .ExtractMediaItems(x => x.Images)
-                .Select(x => x.ImageUrl())
-                .ToList();
+            this.ProductVariantId = sellableItem.Name;
 
             var properties = new Dictionary<string, string>();
-            foreach (string variantPropertyName in sellableItemModel.VariationProperties?.Split('|') ?? new string[0])
+            var variantProperties = sellableItem["VariationProperties"]?.Split('|') ?? new string[0];
+            foreach (var variantPropertyName in variantProperties)
             {
                 if (!string.IsNullOrEmpty(variantPropertyName))
                 {
-                    string value = sellableItemModel.Item[variantPropertyName];
+                    var value = sellableItem[variantPropertyName];
                     properties.Add(variantPropertyName, value);
                 }
             }
 
             this.VariantProperties = properties;
         }
+
+        public string ProductVariantId { get; set; }
+
+        public IDictionary<string, string> VariantProperties { get; set; }
     }
 }

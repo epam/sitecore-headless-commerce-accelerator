@@ -1,11 +1,11 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +17,8 @@ import createSagaMiddleware, { END, SagaMiddleware } from 'redux-saga';
 
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory, createMemoryHistory, History } from 'history';
+
+import customRouterMiddleware from 'Foundation/ReactJss/client/SitecoreContext/routerMiddleware';
 
 import { AppState } from '../models';
 
@@ -44,7 +46,7 @@ export default class AppStore {
     this.routerHistory = ssr ? createMemoryHistory() : createBrowserHistory();
     this.routerMiddleware = routerMiddleware(this.routerHistory);
 
-    const middlewares = [this.sagaMiddleware, this.routerMiddleware];
+    const middlewares = [this.sagaMiddleware, this.routerMiddleware, customRouterMiddleware];
 
     const composeEnhancers = this.getComposeEnhancer();
 

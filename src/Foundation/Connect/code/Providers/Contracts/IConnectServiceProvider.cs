@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Services.Catalog;
-
-namespace Wooli.Foundation.Connect.Providers
+namespace Wooli.Foundation.Connect.Providers.Contracts
 {
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Services.Carts;
+    using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Commerce.Services.Orders;
@@ -27,22 +26,22 @@ namespace Wooli.Foundation.Connect.Providers
 
     public interface IConnectServiceProvider
     {
-        PricingServiceProvider GetPricingServiceProvider();
+        CartServiceProvider GetCartServiceProvider();
 
-        InventoryServiceProvider GetInventoryServiceProvider();
+        CatalogServiceProvider GetCatalogServiceProvider();
 
         CommerceCartServiceProvider GetCommerceCartServiceProvider();
 
-        CartServiceProvider GetCartServiceProvider();
-
         CustomerServiceProvider GetCustomerServiceProvider();
+
+        InventoryServiceProvider GetInventoryServiceProvider();
 
         OrderServiceProvider GetOrderServiceProvider();
 
-        ShippingServiceProvider GetShippingServiceProvider();
-
         PaymentServiceProvider GetPaymentServiceProvider();
 
-        CatalogServiceProvider GetCatalogServiceProvider();
+        PricingServiceProvider GetPricingServiceProvider();
+
+        ShippingServiceProvider GetShippingServiceProvider();
     }
 }

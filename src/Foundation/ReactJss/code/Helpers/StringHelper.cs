@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -29,22 +29,19 @@ namespace Wooli.Foundation.ReactJss.Helpers
                 return phrase;
             }
 
-            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var splittedPhrase = phrase.Split(' ', '-', '.');
             var sb = new StringBuilder();
 
             var isFirst = true;
-            foreach (string s in splittedPhrase)
+            foreach (var s in splittedPhrase)
             {
                 if (s.Length <= 0)
                 {
                     continue;
                 }
 
-                string modifiedValue = !isFirst
-                    ? FormatFirstChar(s, x => x.ToUpper())
-                    : (s.IsUpper()
-                        ? s.ToLower()
-                        : FormatFirstChar(s, x => x.ToLower()));
+                var modifiedValue = !isFirst ? FormatFirstChar(s, x => x.ToUpper()) :
+                                    s.IsUpper() ? s.ToLower() : FormatFirstChar(s, x => x.ToLower());
 
                 sb.Append(modifiedValue);
 
@@ -54,14 +51,14 @@ namespace Wooli.Foundation.ReactJss.Helpers
             return sb.ToString();
         }
 
-        public static bool IsUpper(this string str)
-        {
-            return str.All(ch => !char.IsLower(ch));
-        }
-
         public static bool IsLower(this string str)
         {
             return str.All(ch => !char.IsUpper(ch));
+        }
+
+        public static bool IsUpper(this string str)
+        {
+            return str.All(ch => !char.IsLower(ch));
         }
 
         private static string FormatFirstChar(string str, Func<string, string> formatter)
@@ -69,9 +66,9 @@ namespace Wooli.Foundation.ReactJss.Helpers
             Assert.ArgumentNotNullOrEmpty(str, nameof(str));
             Assert.ArgumentNotNull(formatter, nameof(formatter));
 
-            string firstPart = formatter(str.Substring(0, 1));
-            string lastPart = str.Substring(1);
-            string resultString = firstPart + lastPart;
+            var firstPart = formatter(str.Substring(0, 1));
+            var lastPart = str.Substring(1);
+            var resultString = firstPart + lastPart;
 
             return resultString;
         }

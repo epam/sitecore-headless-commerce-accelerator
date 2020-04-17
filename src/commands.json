@@ -1,0 +1,14 @@
+{
+  "commands": {
+    "Full-Deploy": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \".\\build.ps1 -Target=Default\""
+    },
+    "Deploy-Without-Content": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \".\\build.ps1 -Target=Build-And-Publish\""
+    }
+  }
+}

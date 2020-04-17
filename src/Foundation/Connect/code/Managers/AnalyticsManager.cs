@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,14 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.Commerce.Services.Catalog;
-using Sitecore.Commerce.Services.Payments;
-using Sitecore.Diagnostics;
-using Wooli.Foundation.Connect.Providers;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Foundation.Connect.Managers
 {
+    using DependencyInjection;
+
+    using Providers.Contracts;
+
+    using Sitecore.Commerce.Services.Catalog;
+    using Sitecore.Diagnostics;
+
     [Service(typeof(IAnalyticsManager))]
     public class AnalyticsManager : IAnalyticsManager
     {
@@ -27,32 +28,26 @@ namespace Wooli.Foundation.Connect.Managers
 
         public AnalyticsManager(IConnectServiceProvider connectServiceProvider)
         {
-            Assert.ArgumentNotNull((object)connectServiceProvider, nameof(connectServiceProvider));
+            Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
             this.catalogServiceProvider = connectServiceProvider.GetCatalogServiceProvider();
         }
 
-        public void VisitedProductDetailsPage(
-            string shopName,
-            string productId,
-            string productName)
-        {
-            Assert.IsNotNullOrEmpty(productId, nameof(productId));
-            Assert.IsNotNullOrEmpty(productName, nameof(productName));
-            VisitedProductDetailsPageRequest request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
-            
-            this.catalogServiceProvider.VisitedProductDetailsPage(request);
-        }
-
-        public void VisitedCategoryPage(
-            string shopName,
-            string categoryId,
-            string categoryName)
+        public void VisitedCategoryPage(string shopName, string categoryId, string categoryName)
         {
             Assert.IsNotNullOrEmpty(categoryId, nameof(categoryId));
             Assert.IsNotNullOrEmpty(categoryName, nameof(categoryName));
-            VisitedCategoryPageRequest request = new VisitedCategoryPageRequest(shopName, categoryId, categoryName);
+            var request = new VisitedCategoryPageRequest(shopName, categoryId, categoryName);
 
             this.catalogServiceProvider.VisitedCategoryPage(request);
+        }
+
+        public void VisitedProductDetailsPage(string shopName, string productId, string productName)
+        {
+            Assert.IsNotNullOrEmpty(productId, nameof(productId));
+            Assert.IsNotNullOrEmpty(productName, nameof(productName));
+            var request = new VisitedProductDetailsPageRequest(shopName, productId, productName, null, null);
+
+            this.catalogServiceProvider.VisitedProductDetailsPage(request);
         }
     }
 }

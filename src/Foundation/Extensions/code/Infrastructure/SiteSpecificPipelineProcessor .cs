@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,20 +16,21 @@ namespace Wooli.Foundation.Extensions.Infrastructure
 {
     using System.Collections.Generic;
 
+    using Sitecore;
     using Sitecore.Pipelines.HttpRequest;
 
     public abstract class SiteSpecificPipelineProcessor : HttpRequestProcessor
     {
-        public List<string> Sites { get; set; }
-
         protected SiteSpecificPipelineProcessor()
         {
             this.Sites = new List<string>();
         }
 
+        public List<string> Sites { get; set; }
+
         public override sealed void Process(HttpRequestArgs args)
         {
-            if (!this.Sites.Contains(Sitecore.Context.Site?.Name))
+            if (!this.Sites.Contains(Context.Site?.Name))
             {
                 return;
             }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,16 +16,16 @@ namespace Wooli.Foundation.Extensions.Services
 {
     using System.Collections.Generic;
 
-    using Sitecore.Data.Items;
+    using Models;
 
-    using Wooli.Foundation.Extensions.Models;
+    using Sitecore.Data.Items;
 
     public interface ISiteDefinitionsProvider
     {
         IEnumerable<SiteDefinition> SiteDefinitions { get; }
 
-        SiteDefinition GetCurrentSiteDefinition();
-
         SiteDefinition GetContextSiteDefinition(Item item);
+
+        SiteDefinition GetCurrentSiteDefinition();
     }
 }

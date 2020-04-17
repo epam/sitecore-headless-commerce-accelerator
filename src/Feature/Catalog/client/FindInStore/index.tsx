@@ -20,7 +20,7 @@ import * as JSS from 'Foundation/ReactJss/client';
 class FindInStoreControl extends JSS.SafePureComponent<any, any> {
   protected safeRender() {
     return (
-      <a href="#" className="link-find btn animated">
+      <a href="#" className="btn animated">
         <span>Find in Store</span>
       </a>
     );

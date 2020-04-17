@@ -343,9 +343,8 @@ fieldset[disabled] a.btn {
   @include button-variant($btn-green-color, $btn-green-bg, $btn-green-border);
 }
 
-.btn-green.btn-add,
-btn-green.btn-quickView,
-btn-green.btn-viewProduct {
+.btn-teal.btn-quickView,
+.btn-teal.btn-viewProduct {
   font-weight: normal;
   transform-origin: center center;
   transition: all 0.5s ease 0s;
@@ -353,9 +352,9 @@ btn-green.btn-viewProduct {
   -webkit-transition: all 0.5s ease 0s;
   &:hover,
   &:focus {
-    color: $btn-green-bg;
-    background: #fff;
-    border-color: #99CC00;
+    color: $btn-teal-bg;
+    background: $btn-teal-color;
+    border-color: $btn-teal-border;
     span {}
   }
   &:focus {
@@ -374,8 +373,8 @@ btn-green.btn-viewProduct {
   &:hover,
   &:focus {
     color: $btn-green-bg;
-    background: #fff;
-    border-color: #99CC00;
+    background: $btn-green-color;
+    border-color: $btn-green-border;
     span {}
   }
   &:focus {

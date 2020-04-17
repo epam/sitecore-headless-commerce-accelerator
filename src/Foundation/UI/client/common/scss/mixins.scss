@@ -67,17 +67,6 @@
       border-color: $color;
     }
   }
-
-  &.disabled,
-  &:disabled {
-    &:focus,
-    &.focus {
-      border-color: lighten($color, 20%);
-    }
-    &:hover {
-      border-color: lighten($color, 20%);
-    }
-  }
 }
 
 @mixin button-animated-variant($color, $border-width, $padding-y, $padding-x) {

@@ -156,7 +156,7 @@ input[type="radio"] {
     }
   }
   & + label:hover:before {
-    background-color: lighten($teal, 15%);
+    background-color: $teal-light;
   }
   &:checked + label:before {
     background-color: $teal;
@@ -232,7 +232,7 @@ input[type="checkbox"] {
     }
   }
   & + label:hover:before {
-    background-color: lighten($teal, 15%);
+    background-color: $teal-light;
   }
   &:checked + label:before {
     background-color: $teal;

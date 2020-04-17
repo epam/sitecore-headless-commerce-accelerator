@@ -129,44 +129,23 @@ ol.inline > li {
   z-index: 10000;
 }
 
-.rainbow-bar {
+.color-bar {
   display: block;
   position: relative; // position: absolute; inside
 
   &:after {
     content: '';
+    background: $teal;
     display: block;
     height: 1px;
     width: 100%;
     position: absolute;
     top: 0;
   }
-  // setting a gradient, which consists from 3 parts
-  &-3 {
-    &:after {
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#99cc00+33,eda61d+34,eda61d+66,3399ff+67 */
-      background: $green; /* Old browsers */
-      background: -moz-linear-gradient(left,  $green 33%, $orange 33%, $orange 67%, $blue 67%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(left,  $green 33%,$orange 33%,$orange 67%,$blue 67%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to right,  $green 33%,$orange 33%,$orange 67%,$blue 67%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$green}', endColorstr='#{$blue}',GradientType=1 ); /* IE6-9 */
-    }
-  }
-  // setting a gradient, which consists from 4 parts
-  &-4 {
-    &:after {
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#99cc00+25,eda61d+26,eda61d+50,3399ff+51,3399ff+75,61279e+76 */
-      background: $green; /* Old browsers */
-      background: -moz-linear-gradient(left,  $green 25%, $orange 25%, $orange 50%, $blue 50%, $blue 75%, $purple 75%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(left,  $green 25%,$orange 25%,$orange 50%,$blue 50%,$blue 75%,$purple 75%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to right,  $green 25%,$orange 25%,$orange 50%,$blue 50%,$blue 75%,$purple 75%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$green}', endColorstr='#{$purple}',GradientType=1 ); /* IE6-9 */
-    }
-  }
 }
 
-// .rainbow-title should be used as a wrapper to .rainbow-bar
-.rainbow-title {
+// .color-title should be used as a wrapper to .color-bar
+.color-title {
   @include  clearfix;
   position: relative;
   font-size: 26px;
@@ -176,11 +155,11 @@ ol.inline > li {
     float: left;
     margin: 0;
     padding-right: 17px;
-    font-size: inherit;  //should be inherited from .rainbow-title, so .rainbow-bar could be positioned properly
+    font-size: inherit;  //should be inherited from .color-title, so .color-bar could be positioned properly
     line-height: 1em;
   }
-  .rainbow-bar {
-    overflow: hidden; // cause of ov:h, .rainbow-title uses all free space after floated title
+  .color-bar {
+    overflow: hidden; // cause of ov:h, .color-title uses all free space after floated title
     font-size: inherit;
     height: 1em;
     &:after {

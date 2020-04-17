@@ -46,7 +46,7 @@
     .sort-visible &-sort,
     &:hover {
       color: #fff;
-      background: $green;
+      background: $teal;
     }
   }
 }
@@ -191,7 +191,7 @@
       line-height: 50px;
       text-transform: uppercase;
       &:hover {
-        color: $green;
+        color: $teal;
       }
     }
   }
@@ -336,7 +336,7 @@
       margin: 0;
       padding: 10px 15px;
       &:hover {
-        color: $green;
+        color: $teal;
       }
 
       // styles for plus icon and it's animation
@@ -359,7 +359,7 @@
     /* Styles for .filter_toggle in mobile side-panel if filter is in open state */
     .is-open & {
       @media (max-width: $screen-sm-max) {
-        color: $green;
+        color: $teal;
       }
     }
     .is-open &:after {
@@ -389,15 +389,15 @@
       line-height: 25px;
     }
 
-    /* green color on hover and open states */
+    /* teal color on hover and open states */
     .filter_toggle:hover & {
       @media (max-width: $screen-sm-max) {
-        color: $green;
+        color: $teal;
       }
     }
     .is-open & {
       @media (max-width: $screen-sm-max) {
-        color: $green;
+        color: $teal;
       }
     }
   }
@@ -465,7 +465,7 @@
   }
 
   .stars {
-    color: $green;
+    color: $teal;
 
     .fa-star {
       margin-right: 3px;

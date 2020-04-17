@@ -86,7 +86,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: $green;
+            background: $teal;
             transform: scale3d(0, 1, 1);
             transition: transform .3s;
         }
@@ -118,7 +118,7 @@
         margin-right: 13px;
         text-align: left;
         & .star {
-            color: $green;
+            color: $teal;
         }
     }
     .review-read {
@@ -294,57 +294,13 @@
     // #Links
     .links {
         @include clearfix;
-        & > a {
-            width: 100%;
-            @media (min-width: $screen-xs-min) {
-                width: auto;
-            }
-        }
-    }
-    a.link {
-
-        &-add {
-            display: block;
-            float: left;
-            padding: 8px 23px;
-            margin-right: 16px;
-            margin-bottom: 24px;
-            font-size: 20px;
-            font-family: $sans-serif;
-            font-weight: 500;
-            text-align: center;
-            text-transform: uppercase;
-            background: $green;
-            color: #fff;
-            border: 3px solid $green;
-            transition: background .2s, border-color .2s;
-
-            &:hover {
-                background: #698c00;
-                border-color: #698c00;
-                transition: background .2s, border-color .2s;
-            }
-        }
-        &-find {
-            line-height: inherit;
-            color: $green;
-
-            &:hover, &:focus {
-                background-color: $green;
-                color:#fff;
-            }
-            &:before,
-            &:after,
-            span:before,
-            span:after {
-                background-color: $green;
-            }
-            &:hover {
-                background-color: $green;
-            }
-            span {
-                padding: 16px 26px;
-                font-size: 20px;
+        & > .btn {
+            width: auto;
+            @media (max-width: $screen-xs-min) {
+                width: 100%;
+                + .btn {
+                    margin-left: 0;
+                }
             }
         }
     }
@@ -415,7 +371,7 @@
             letter-spacing: 0.04em;
         }
         &.in-stock h4{
-            color: $green;
+            color: $teal;
         }
         &.out-of-stock h4{
             color: $red;
@@ -434,7 +390,7 @@
     display: block;
     font-size: 52px;
     font-family: $phosphate;
-    color: $green;
+    color: $teal;
     text-transform: uppercase;
     @media (min-width: $screen-md-min) {
         display: none;

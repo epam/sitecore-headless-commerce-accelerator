@@ -33,13 +33,13 @@ class SliderHomeControl extends Jss.SafePureComponent<SliderHomeControlProps, Sl
         return (
             <div className="slider sub-categories top-picks">
                 <div className="slider-header">
-                    <div className="rainbow-title">
+                    <div className="color-title">
                     <Text
                         field={fields.sliderHeader}
                         tag="h2"
                         className="title"
                     />
-                    <div className="rainbow-bar rainbow-bar-4" />
+                    <div className="color-bar" />
                     </div>
                 </div>
 

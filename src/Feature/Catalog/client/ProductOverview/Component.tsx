@@ -22,7 +22,7 @@ import * as JSS from 'Foundation/ReactJss/client';
 import { Common } from 'Feature/Catalog/client/Integration';
 
 import { ProductOverviewProps, ProductOverviewState } from './models';
-import './style.scss';
+import './styles.scss';
 
 import GlassesImg from 'Foundation/UI/client/common/media/images/glasses-for-slider.png';
 import { ProductGallery } from './components/ProductGallery';

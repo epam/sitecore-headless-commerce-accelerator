@@ -43,7 +43,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
                 <h2>Congratulations!</h2>
                 <h2>Your Account was successfully created!</h2>
                 <h4>Email: {commerceUser.email}</h4>
-                <NavigationLink className="btn btn-outline-green" to="/account">
+                <NavigationLink className="btn btn-outline-teal" to="/account">
                   Go to Account Settings
                 </NavigationLink>
               </div>
@@ -101,7 +101,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
                 </div>
                 <Submit
                   disabled={submitButtonDisabled}
-                  className="btn btn-outline-green"
+                  className="btn btn-outline-teal"
                   onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
                 >
                   {loading && <i className="fa fa-spinner fa-spin" />} Sign up!

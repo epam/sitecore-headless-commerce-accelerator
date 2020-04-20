@@ -35,12 +35,12 @@
       padding-top: 4px;
       font-size: 14px;
       font-weight: 900;
-      color: $blue;
+      color: $teal;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $blue-hover);
+      @include underline($bg: $teal-hover);
       &:hover {
-        color: $blue-hover;
+        color: $teal-hover;
         transition: color .2s;
       }
     }
@@ -80,12 +80,12 @@
     .edit-link {
       font-size: 14px;
       font-weight: 900;
-      color: $blue;
+      color: $teal;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $blue-hover);
+      @include underline($bg: $teal-hover);
       &:hover {
-        color: $blue-hover;
+        color: $teal-hover;
         transition: color .2s;
       }
     }

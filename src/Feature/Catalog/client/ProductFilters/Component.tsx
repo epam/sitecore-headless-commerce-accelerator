@@ -39,7 +39,7 @@ export default class ProductFiltersComponent extends Jss.SafePureComponent<
     const { isLoading, facets } = this.props;
     return (
       <div className="filters">
-        <section className="productGridFilter fitness-theme">
+        <section className="productGridFilter">
           <h2 className="productGridFilter_title">Filters</h2>
           {isLoading && <div className="overlay" />}
           {facets.map((facet, index) => (

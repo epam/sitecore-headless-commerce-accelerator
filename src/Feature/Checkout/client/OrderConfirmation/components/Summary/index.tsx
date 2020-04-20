@@ -51,9 +51,9 @@ class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-md-12">
-                                            <div className="rainbow-title">
+                                            <div className="color-title">
                                                 <Text field={{ value: 'Order Summary' }} tag="h1" className="title wishlist-title" />
-                                                <div className="rainbow-bar rainbow-bar-4" />
+                                                <div className="color-bar" />
                                             </div>
                                         </div>
                                     </div>

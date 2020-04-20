@@ -89,20 +89,6 @@ header#header-mobile{
   right: 0;
   left: 0;
   z-index: 1000;
-  &:after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 200px;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right,  $green 20%,$orange 20%,$orange 40%,$blue 40%,$blue 60%,$purple 60%,$purple 80%,$red 80%);
-    @media (min-width: 521px){
-      left: auto;
-      width: 250px;
-    }
-  }
   a{
     display: block;
     height: 50px;

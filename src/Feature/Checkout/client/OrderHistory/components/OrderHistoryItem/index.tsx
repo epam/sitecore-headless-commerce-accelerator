@@ -31,8 +31,8 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
         </div>
         <div className="order-list-item-header__content">
           <div className="order-list-item-header__content-line">
-            <span className="orange">{order.status}</span>
-            <span className="green">
+            <span className="status">{order.status}</span>
+            <span className="price">
               {order.price.currencySymbol} {order.price.total}
             </span>
           </div>
@@ -51,7 +51,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                   </span>
                   <div className="img-wrap">
                     <img src={!!cartLine.variant.imageUrls[0] ? cartLine.variant.imageUrls[0] : 'http://via.placeholder.com/350x150'} alt="product image" />
-                    <NavigationLink className="btn btn-green btn-viewProduct" to={`/product/${cartLine.product.productId}`}>View Product</NavigationLink>
+                    <NavigationLink className="btn btn-teal btn-viewProduct" to={`/product/${cartLine.product.productId}`}>View Product</NavigationLink>
                   </div>
                   <figcaption>
                     <div className="price">

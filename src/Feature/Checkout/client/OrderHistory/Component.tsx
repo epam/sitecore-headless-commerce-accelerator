@@ -36,9 +36,9 @@ export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps
     const { orders, isLastPage, isLoading } = this.props;
     return (
       <div className="order-history">
-        <div className="rainbow-title">
+        <div className="color-title">
           <Text tag="h1" field={{ value: 'Order History' }} className="title" />
-          <div className="rainbow-bar rainbow-bar-4" />
+          <div className="color-bar" />
         </div>
         <div className="order-list">
           {orders &&
@@ -57,7 +57,7 @@ export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps
         )}
         {!isLastPage && !isLoading &&  (
           <div className="order-history-loadMore">
-            <a className="btn btn-outline-green btn-block btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
+            <a className="btn btn-outline-teal btn-block btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
               Load more
           </a>
           </div>

@@ -31,13 +31,13 @@ class SliderControl extends Jss.SafePureComponent<SliderControlProps, SliderCont
     return (
       <div className="slider sub-categories">
         <div className="slider-header">
-          <div className="rainbow-title">
+          <div className="color-title">
             <Text
               field={{ value: 'Digital Training' }}
               tag="h2"
               className="title"
             />
-            <div className="rainbow-bar rainbow-bar-4" />
+            <div className="color-bar" />
           </div>
         </div>
 

@@ -61,12 +61,12 @@
       margin: 0;
     }
     .details {
-      color: $blue;
+      color: $teal;
       transition: color .2s;
 
-      @include underline($bg: $blue-hover);
+      @include underline($bg: $teal-hover);
       &:hover {
-        color: $blue-hover;
+        color: $teal-hover;
         transition: color .2s;
       }
     }

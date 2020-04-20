@@ -103,13 +103,26 @@ nav#nav-main > ul {
           display:block;
         }
         span.title{
+          cursor: default;
           padding: 10px 0 5px;
+          position: relative;
           margin-left: 25px;
           margin-right: 25px;
           text-transform: uppercase;
           display: block;
           border-style: solid;
-          color:rgba(255,255,255,.5);
+          color:rgb(255, 255, 255);
+          &:after {
+            content: '';
+            margin-bottom: 5px;
+            margin-top: 5px;
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, .5);
+          }
         }
       }
       aside {
@@ -135,10 +148,55 @@ nav#nav-main > ul {
       left:0px;
     }
     //no room to the right
-    &.sport:hover, &.home:hover{
-      .dropdown{
-        left: auto;
-        right: 0;
+    &.menu-item {
+      &.right-item:hover {
+        .dropdown{
+          left: auto;
+          right: 0;
+        }
+      }
+      &:hover {
+        background-color: $grey;
+      }
+      .dropdown {
+        background-color: $grey;
+        @media (max-width: $screen-sm-max){
+          background: #fff;
+          nav{
+            border-style: solid;
+            border-bottom-width: 10px;
+          }
+          span.title{
+            color: $dark-grey;
+            border-top-width: 1px;
+            margin-top: 5px;
+          }
+          li{
+            text-transform: none;
+          }
+          a{
+            color:#898b8e;
+          }
+          a:hover {
+            color: #111;
+          }
+        }
+      }
+      @media (max-width: $screen-sm-max) {
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: #999;
+        }
+        .dropdown{
+          span.title:after {
+            display: none;
+          }
+        }
       }
     }
     &.fitness {
@@ -154,88 +212,6 @@ nav#nav-main > ul {
       }
       a:hover {
         color: $green-light;
-      }
-    }
-    &.outdoor {
-      background-color: $orange;
-      span.title{
-        border-color: $orange;
-      }
-      .dropdown {
-        background-color: $orange;
-      }
-      nav{
-        border-bottom-color: $orange;
-      }
-      a:hover {
-        color: $orange-light;
-      }
-    }
-    &.travel {
-      background-color: $blue;
-      span.title{
-        border-color: $blue;
-      }
-      .dropdown {
-        background-color: $blue;
-      }
-      nav{
-        border-bottom-color: $blue;
-      }
-      a:hover {
-        color: $blue-light;
-      }
-    }
-    &.sport {
-      background-color: $purple;
-      span.title{
-        border-color: $purple;
-      }
-      .dropdown {
-        background-color: $purple;
-      }
-      nav{
-        border-bottom-color: $purple;
-      }
-      a:hover {
-        color: $purple-light;
-      }
-    }
-    &.home {
-      background-color: $red;
-      .dropdown {
-        background-color: $red;
-      }
-      nav{
-        border-bottom-color: $red;
-      }
-      a:hover {
-        color: $red-light;
-      }
-    }
-    &.fitness, &.outdoor, &.travel, &.sport, &.home{
-      .dropdown{
-        @media (max-width: $screen-sm-max){
-          background: #fff;
-          nav{
-            border-style: solid;
-            border-bottom-width: 10px;
-          }
-          span.title{
-            color: #54565b;
-            border-top-width: 1px;
-            margin-top: 5px;
-          }
-          li{
-            text-transform: none;
-          }
-          a{
-            color:#898b8e;
-          }
-          a:hover {
-            color: #111; //TODO: placeholder because I dont know
-          }
-        }
       }
     }
   }

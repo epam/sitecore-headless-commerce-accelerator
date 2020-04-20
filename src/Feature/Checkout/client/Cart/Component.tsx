@@ -32,9 +32,9 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
       <>
         <div className="row">
           <div className="col-xs-12">
-            <header className="rainbow-title">
+            <header className="color-title">
               <h1 className="title">Shopping Cart</h1>
-              <div className="rainbow-bar rainbow-bar-3" />
+              <div className="color-bar" />
             </header>
           </div>
         </div>

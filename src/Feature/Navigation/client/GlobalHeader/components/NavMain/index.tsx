@@ -14,6 +14,8 @@
 
 import * as React from 'react';
 
+import classNames from 'classnames';
+
 import * as JSS from 'Foundation/ReactJss/client';
 import { NavigationLink } from 'Foundation/UI/client';
 
@@ -30,7 +32,6 @@ export default class NavMain extends JSS.SafePureComponent<NavMainProps, NavMain
 }
   protected safeRender() {
     const { menuItems } = this.props;
-    const menuStyles = ['fitness', 'outdoor', 'travel', 'sport', 'home'];
 
     return (
       <nav id="nav-main">
@@ -40,7 +41,7 @@ export default class NavMain extends JSS.SafePureComponent<NavMainProps, NavMain
               const { title, image } = menuItem;
 
               return (
-                <li key={menuItemIndex} className={menuStyles[menuItemIndex]}>
+                <li key={menuItemIndex} className={classNames('menu-item', {'right-item': menuItemIndex > (menuItems.items.length / 2)})}>
                   <a href="">{title.jss.value}</a>
                   <i simple-drawer="simple-drawer" className="fa fa-caret-down" onClick={(e) => this.dropMenu(e)}/>
                   <div className="dropdown">

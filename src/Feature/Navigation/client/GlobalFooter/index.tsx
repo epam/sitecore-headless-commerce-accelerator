@@ -23,7 +23,7 @@ export default class GlobalFooterControl extends JSS.SafePureComponent<GlobalFoo
     protected safeRender() {
         return (
             <footer id="footer-main" className="footer-main">
-                <div className="footer-wrap rainbow-bar rainbow-bar-3">
+                <div className="footer-wrap color-bar">
                     <div className="row footer-columns">
                         <div className="col-md-9">
                             <div className="row footer-links-row">

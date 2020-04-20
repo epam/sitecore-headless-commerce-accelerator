@@ -26,9 +26,9 @@ class ListingControl extends Jss.SafePureComponent<ListingControlProps, ListingC
     return (
       <section className="listing-wishlist-grid">
         <header className="teal-thick-theme">
-            <div className="rainbow-title">
+            <div className="color-title">
                 <Text field={{ value: 'Wishlist' }} tag="h1" className="title wishlist-title"/>
-                <div className="rainbow-bar rainbow-bar-4" />
+                <div className="color-bar" />
             </div>
             <div className="wishlist-filter">
                 <Text field={{ value: 'Sorted by:' }} tag="div" className="label" />

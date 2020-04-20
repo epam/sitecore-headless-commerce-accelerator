@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,9 +14,12 @@
 
 namespace Wooli.Foundation.Connect.Managers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    using DependencyInjection;
+
+    using Models;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
@@ -24,19 +27,14 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Data.Items;
 
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ICatalogManager))]
     public class CatalogManager : ICatalogManager
     {
-        private readonly IPricingManager pricingManager;
-
         private readonly IInventoryManager inventoryManager;
 
-        public CatalogManager(
-            IPricingManager pricingManager,
-            IInventoryManager inventoryManager)
+        private readonly IPricingManager pricingManager;
+
+        public CatalogManager(IPricingManager pricingManager, IInventoryManager inventoryManager)
         {
             this.pricingManager = pricingManager;
             this.inventoryManager = inventoryManager;
@@ -44,40 +42,51 @@ namespace Wooli.Foundation.Connect.Managers
 
         public ManagerResponse<GetProductBulkPricesResult, bool> GetProductBulkPrices(List<Product> products)
         {
-            if (products == null || !products.Any())
+            if ((products == null) || !products.Any())
             {
                 return new ManagerResponse<GetProductBulkPricesResult, bool>(new GetProductBulkPricesResult(), true);
             }
-                
-            string catalogName = products.Select((p => p.CatalogName)).First().ToString();
-            var productIds = products.Select((p => p.ProductId));
+
+            var catalogName = products.Select(p => p.CatalogName).First();
+            var productIds = products.Select(p => p.ProductId);
             var productBulkPrices = this.pricingManager.GetProductBulkPrices(catalogName, productIds, null);
-            IDictionary<string, Price> source = productBulkPrices == null || productBulkPrices.Result == null ? new Dictionary<string, Price>() : productBulkPrices.Result;
-            foreach (Product product in products)
+            var source = (productBulkPrices == null) || (productBulkPrices.Result == null)
+                             ? new Dictionary<string, Price>()
+                             : productBulkPrices.Result;
+            foreach (var product in products)
             {
                 Price price;
                 if (source.Any() && source.TryGetValue(product.ProductId, out price))
                 {
-                    CommercePrice commercePrice = (CommercePrice)price;
+                    var commercePrice = (CommercePrice)price;
                     product.CurrencyCode = price.CurrencyCode;
-                    product.ListPrice = new Decimal?(commercePrice.Amount);
-                    product.AdjustedPrice = new Decimal?(commercePrice.ListPrice);
+                    product.ListPrice = commercePrice.Amount;
+                    product.AdjustedPrice = commercePrice.ListPrice;
                 }
             }
+
             return new ManagerResponse<GetProductBulkPricesResult, bool>(new GetProductBulkPricesResult(), true);
         }
 
         public void GetProductPrice(Product product)
         {
             if (product == null)
+            {
                 return;
+            }
 
-            bool includeVariants = product.Variants != null && product.Variants.Count > 0;
-            ManagerResponse<GetProductPricesResult, IDictionary<string, Price>> productPrices = this.pricingManager.GetProductPrices(product.CatalogName, product.ProductId, includeVariants, null);
-            if (productPrices == null || !productPrices.ServiceProviderResult.Success || productPrices.Result == null)
+            var includeVariants = (product.Variants != null) && (product.Variants.Count > 0);
+            var productPrices = this.pricingManager.GetProductPrices(
+                product.CatalogName,
+                product.ProductId,
+                includeVariants,
+                null);
+            if ((productPrices == null) || !productPrices.ServiceProviderResult.Success || (productPrices.Result == null))
+            {
                 return;
+            }
 
-            if (productPrices.Result.TryGetValue(product.ProductId, out Price price))
+            if (productPrices.Result.TryGetValue(product.ProductId, out var price))
             {
                 var commercePrice = (CommercePrice)price;
                 product.CurrencyCode = price.CurrencyCode;
@@ -86,13 +95,15 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             if (!includeVariants)
+            {
                 return;
+            }
 
-            foreach (Variant variant in product.Variants)
+            foreach (var variant in product.Variants)
             {
                 if (productPrices.Result.TryGetValue(variant.VariantId, out price))
                 {
-                    CommercePrice commercePrice = (CommercePrice)price;
+                    var commercePrice = (CommercePrice)price;
                     variant.CurrencyCode = commercePrice.CurrencyCode;
                     variant.ListPrice = commercePrice.Amount;
                     variant.AdjustedPrice = commercePrice.ListPrice;
@@ -102,11 +113,11 @@ namespace Wooli.Foundation.Connect.Managers
 
         public decimal? GetProductRating(Item productItem)
         {
-            if (decimal.TryParse(productItem["Rating"], out decimal result))
+            if (decimal.TryParse(productItem["Rating"], out var result))
             {
                 return result;
             }
-                
+
             return null;
         }
 
@@ -128,33 +139,38 @@ namespace Wooli.Foundation.Connect.Managers
 
             if (product.Variants != null)
             {
-                foreach (Variant productVariant in product.Variants)
+                foreach (var productVariant in product.Variants)
                 {
-                    inventortyProducts.Add(new CommerceInventoryProduct
-                    {
-                        CatalogName = product.CatalogName,
-                        ProductId = product.ProductId,
-                        VariantId = productVariant.VariantId
-                    });
+                    inventortyProducts.Add(
+                        new CommerceInventoryProduct
+                        {
+                            CatalogName = product.CatalogName,
+                            ProductId = product.ProductId,
+                            VariantId = productVariant.VariantId
+                        });
                 }
             }
 
-            var stockInformationResponse = this.inventoryManager.GetStockInformation(shopName, inventortyProducts, StockDetailsLevel.StatusAndAvailability);
-            if (!stockInformationResponse.ServiceProviderResult.Success || stockInformationResponse.Result == null)
+            var stockInformationResponse = this.inventoryManager.GetStockInformation(
+                shopName,
+                inventortyProducts,
+                StockDetailsLevel.StatusAndAvailability);
+            if (!stockInformationResponse.ServiceProviderResult.Success || (stockInformationResponse.Result == null))
             {
                 return;
             }
 
             var stockInformationItems = stockInformationResponse.Result;
-            foreach (StockInformation stockInformationItem in stockInformationItems)
+            foreach (var stockInformationItem in stockInformationItems)
             {
-                if (stockInformationItem == null || stockInformationItem.Status == null)
+                if ((stockInformationItem == null) || (stockInformationItem.Status == null))
                 {
                     return;
                 }
 
-                var commerceInvertaryProduct = stockInformationItem.Product as CommerceInventoryProduct;
-                string variantId = commerceInvertaryProduct?.VariantId;
+                var commerceInverterProduct = stockInformationItem.Product as CommerceInventoryProduct;
+                var variantId = commerceInverterProduct?.VariantId;
+
                 if (string.IsNullOrEmpty(variantId))
                 {
                     product.StockStatus = stockInformationItem.Status;
@@ -162,7 +178,7 @@ namespace Wooli.Foundation.Connect.Managers
                 }
                 else
                 {
-                    Variant variant = product.Variants?.FirstOrDefault(x => x.VariantId == variantId);
+                    var variant = product.Variants?.FirstOrDefault(x => x.VariantId == variantId);
                     if (variant != null)
                     {
                         variant.StockStatus = stockInformationItem.Status;

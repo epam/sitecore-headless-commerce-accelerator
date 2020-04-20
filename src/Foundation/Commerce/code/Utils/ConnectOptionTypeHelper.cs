@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,14 +23,38 @@ namespace Wooli.Foundation.Commerce.Utils
     {
         public static ShippingOptionType ToShippingOptionType(string optionTypeName)
         {
-            if (string.Equals(optionTypeName, ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(
+                optionTypeName,
+                ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.ShipToAddress;
-            if (string.Equals(optionTypeName, ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            }
+
+            if (string.Equals(
+                optionTypeName,
+                ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.PickupFromStore;
-            if (string.Equals(optionTypeName, ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            }
+
+            if (string.Equals(
+                optionTypeName,
+                ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.ElectronicDelivery;
-            if (string.Equals(optionTypeName, ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            }
+
+            if (string.Equals(
+                optionTypeName,
+                ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture),
+                StringComparison.OrdinalIgnoreCase))
+            {
                 return ShippingOptionType.DeliverItemsIndividually;
+            }
+
             return ShippingOptionType.None;
         }
     }

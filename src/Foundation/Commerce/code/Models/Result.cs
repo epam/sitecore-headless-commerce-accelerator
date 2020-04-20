@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -20,18 +20,14 @@ namespace Wooli.Foundation.Commerce.Models
 
     using Sitecore.Commerce.Services;
 
-    public class Result<T> where T : class
+    public class Result<T>
+        where T : class
     {
-        public bool Success { get; set; } = true;
-
         public T Data { get; private set; }
 
         public IList<string> Errors { get; set; } = new List<string>();
 
-        public void SetResult(T result)
-        {
-            this.Data = result;
-        }
+        public bool Success { get; set; } = true;
 
         public void SetError(string error)
         {
@@ -52,9 +48,9 @@ namespace Wooli.Foundation.Commerce.Models
                 return;
             }
 
-            foreach (SystemMessage systemMessage in result.SystemMessages)
+            foreach (var systemMessage in result.SystemMessages)
             {
-                string message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
+                var message = !string.IsNullOrEmpty(systemMessage.Message) ? systemMessage.Message : null;
                 this.SetError(message);
             }
         }
@@ -71,10 +67,15 @@ namespace Wooli.Foundation.Commerce.Models
                 return;
             }
 
-            foreach (string error in errors)
+            foreach (var error in errors)
             {
                 this.SetError(error);
             }
+        }
+
+        public void SetResult(T result)
+        {
+            this.Data = result;
         }
     }
 }

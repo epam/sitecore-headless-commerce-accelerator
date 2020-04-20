@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ export const signIn = (email: string, password: string) => {
   const form = document.createElement('form');
   form.style.visibility = 'hidden';
   form.method = 'POST';
-  form.action = `/apix/client/commerce/auth/signin?returnUrl=${location.pathname}`;
+  form.action = `/apix/client/commerce/auth/signIn?returnUrl=${location.pathname}`;
 
   const emailInput = document.createElement('input');
   emailInput.name = 'email';

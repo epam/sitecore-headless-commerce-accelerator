@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,31 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Linq;
-using Glass.Mapper.Sc;
-using Newtonsoft.Json.Linq;
-using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.LayoutService.Configuration;
-using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
-using Wooli.Feature.Checkout.Models;
-using Wooli.Foundation.DependencyInjection;
-
 namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 {
+    using System.Linq;
+
+    using Foundation.DependencyInjection;
+
+    using Glass.Mapper.Sc;
+
+    using Models;
+
+    using Newtonsoft.Json.Linq;
+
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
+    using Sitecore.LayoutService.Configuration;
+    using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
+    using Sitecore.Mvc.Presentation;
+
     [Service(Lifetime = Lifetime.Transient)]
     public class CheckoutNavigationResolver : RenderingContentsResolver
     {
-        private readonly ISitecoreContext sitecoreContext;
-        public CheckoutNavigationResolver(ISitecoreContext sitecoreContext)
+        private readonly ISitecoreService sitecoreService;
+
+        public CheckoutNavigationResolver(ISitecoreService sitecoreService)
         {
-            this.sitecoreContext = sitecoreContext;
+            this.sitecoreService = sitecoreService;
         }
 
-        protected override JObject ProcessItem(Item item,
-            Sitecore.Mvc.Presentation.Rendering rendering,
-            IRenderingConfiguration renderingConfig)
+        protected override JObject ProcessItem(Item item, Rendering rendering, IRenderingConfiguration renderingConfig)
         {
             var processedItem = base.ProcessItem(item, rendering, renderingConfig);
             if (!item.DescendsFrom(new ID(CheckoutNavigation.TemplateId)))
@@ -44,14 +48,14 @@ namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
                 return processedItem;
             }
 
-            var checkoutNavigation = this.sitecoreContext.Cast<ICheckoutNavigation>(item);
+            var checkoutNavigation = this.sitecoreService.GetItem<ICheckoutNavigation>(item);
             var checkoutSteps = checkoutNavigation?.CheckoutSteps;
-            if (checkoutSteps == null || !checkoutSteps.Any())
+            if ((checkoutSteps == null) || !checkoutSteps.Any())
             {
                 return processedItem;
             }
 
-            var firstStep = this.sitecoreContext.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
+            var firstStep = this.sitecoreService.GetItem<ICheckoutStep>(checkoutSteps.ElementAt(0));
             processedItem.Add("url", firstStep.Url);
 
             return processedItem;

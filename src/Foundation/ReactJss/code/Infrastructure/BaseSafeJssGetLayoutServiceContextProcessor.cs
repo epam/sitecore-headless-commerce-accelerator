@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -28,9 +28,7 @@ namespace Wooli.Foundation.ReactJss.Infrastructure
         {
         }
 
-        protected override void DoProcess(
-            GetLayoutServiceContextArgs args,
-            AppConfiguration application)
+        protected override void DoProcess(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
             try
             {
@@ -44,5 +42,4 @@ namespace Wooli.Foundation.ReactJss.Infrastructure
 
         protected abstract void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application);
     }
-
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,6 +18,10 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using Models;
+
     using Sitecore;
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
@@ -28,60 +32,38 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(typeof(ISearchManager))]
     public class SearchManager : ISearchManager
     {
-        public const string ProductCommerceSearchItemType = "SellableItem";
         public const string CategoryCommerceSearchItemType = "Category";
 
-        public SearchResults GetProducts(
-            string catalogName,
-            ID categoryId,
-            CommerceSearchOptions searchOptions,
-            string searchKeyword)
+        public const string ProductCommerceSearchItemType = "SellableItem";
+
+        public Item GetCategory(string catalogName, string categoryName)
         {
-            Assert.ArgumentNotNull(catalogName, nameof(catalogName));
+            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
+            Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
 
-            var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
+            Item productItem = null;
 
-            var queryable = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
-            if (!ID.IsNullOrEmpty(categoryId))
+            var searchResultItem = this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
+                .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
+
+            if (searchResultItem != null)
             {
-                queryable = queryable.Where(x => x.CommerceAncestorIds.Contains(categoryId));
+                productItem = searchResultItem.GetItem();
             }
 
-            if (!string.IsNullOrEmpty(searchKeyword))
-            {
-                queryable = queryable.Where(item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
-            }
-
-            queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
-
-            var results = queryable.GetResults();
-
-            var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
-            if (searchResultsItems != null)
-            {
-                return new SearchResults(
-                    searchResultsItems.ResponseItems,
-                    searchResultsItems.TotalItemCount,
-                    searchResultsItems.TotalPageCount,
-                    searchOptions.StartPageIndex,
-                    searchResultsItems.Facets.ToList());
-            }
-
-            return new SearchResults();
+            return productItem;
         }
 
-        public SearchResults SearchCatalogItemsByKeyword(
-            string catalogName,
-            string keyword,
-            CommerceSearchOptions searchOptions)
+        public List<Item> GetCategoryChildCategories(ID categoryId)
         {
-            // ToDo: implement or remove
+            throw new NotImplementedException();
+        }
+
+        public List<Item> GetNavigationCategories()
+        {
             throw new NotImplementedException();
         }
 
@@ -103,31 +85,49 @@ namespace Wooli.Foundation.Connect.Managers
             return productItem;
         }
 
-        public Item GetCategory(string catalogName, string categoryName)
+        public SearchResults GetProducts(
+            string catalogName,
+            ID categoryId,
+            CommerceSearchOptions searchOptions,
+            string searchKeyword)
         {
-            Assert.ArgumentNotNullOrEmpty(catalogName, nameof(catalogName));
-            Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
+            Assert.ArgumentNotNull(catalogName, nameof(catalogName));
 
-            Item productItem = null;
+            var commerceSearchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
 
-            var searchResultItem = this.GetBaseQueryable(catalogName, CategoryCommerceSearchItemType)
-                .FirstOrDefault(item => string.Equals(item.Name, categoryName.ToLowerInvariant()));
+            var queryable = this.GetBaseQueryable(catalogName, ProductCommerceSearchItemType);
 
-            if (searchResultItem != null)
+            queryable = !ID.IsNullOrEmpty(categoryId)
+                            ? queryable.Where(item => item.Parent == categoryId)
+                            : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
+
+            if (!string.IsNullOrEmpty(searchKeyword))
             {
-                productItem = searchResultItem.GetItem();
+                queryable = queryable.Where(
+                    item => item.Name.Contains(searchKeyword) || item["_displayname"].Contains(searchKeyword));
             }
 
-            return productItem;
+            queryable = commerceSearchManager.AddSearchOptionsToQuery(queryable, searchOptions);
+
+            var results = queryable.GetResults();
+
+            var searchResultsItems = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
+            if (searchResultsItems != null)
+            {
+                return new SearchResults(
+                    searchResultsItems.ResponseItems,
+                    searchResultsItems.TotalItemCount,
+                    searchResultsItems.TotalPageCount,
+                    searchOptions.StartPageIndex,
+                    searchResultsItems.Facets.ToList());
+            }
+
+            return new SearchResults();
         }
 
-        public List<Item> GetNavigationCategories()
+        public SearchResults SearchCatalogItemsByKeyword(string catalogName, string keyword, CommerceSearchOptions searchOptions)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Item> GetCategoryChildCategories(ID categoryId)
-        {
+            // ToDo: implement or remove
             throw new NotImplementedException();
         }
 

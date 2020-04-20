@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,17 +14,20 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
-    using Sitecore.Pipelines.HttpRequest;
+    using Context;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Extensions.Infrastructure;
+    using Extensions.Infrastructure;
+
+    using Providers;
+
+    using Sitecore;
+    using Sitecore.Pipelines.HttpRequest;
 
     public class CustomerResolverProcessor : SiteSpecificPipelineProcessor
     {
-        private readonly IVisitorContext visitorContext;
-
         private readonly ICustomerProvider customerProvider;
+
+        private readonly IVisitorContext visitorContext;
 
         public CustomerResolverProcessor(IVisitorContext visitorContext, ICustomerProvider customerProvider)
         {
@@ -39,7 +42,7 @@ namespace Wooli.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
                 return;
             }
 
-            if (!Sitecore.Context.PageMode.IsNormal)
+            if (!Context.PageMode.IsNormal)
             {
                 return;
             }

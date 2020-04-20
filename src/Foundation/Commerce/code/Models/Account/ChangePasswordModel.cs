@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ namespace Wooli.Foundation.Commerce.Models.Account
     {
         public string Email { get; set; }
 
-        public string OldPassword { get; set; }
-
         public string NewPassword { get; set; }
+
+        public string OldPassword { get; set; }
     }
 }

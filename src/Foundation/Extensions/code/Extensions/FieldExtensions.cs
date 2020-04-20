@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,8 +15,10 @@
 namespace Wooli.Foundation.Extensions.Extensions
 {
     using System;
+
     using Sitecore;
     using Sitecore.Data.Fields;
+    using Sitecore.Links.UrlBuilders;
     using Sitecore.Resources.Media;
 
     public static class FieldExtensions
@@ -28,7 +30,7 @@ namespace Wooli.Foundation.Extensions.Extensions
                 throw new ArgumentNullException(nameof(imageField));
             }
 
-            var options = MediaUrlOptions.Empty;
+            var options = MediaUrlBuilderOptions.Empty;
 
             if (int.TryParse(imageField.Width, out var width))
             {
@@ -43,14 +45,16 @@ namespace Wooli.Foundation.Extensions.Extensions
             return imageField.ImageUrl(options);
         }
 
-        public static string ImageUrl(this ImageField imageField, MediaUrlOptions options)
+        public static string ImageUrl(this ImageField imageField, MediaUrlBuilderOptions builderOptions)
         {
             if (imageField?.MediaItem == null)
             {
                 throw new ArgumentNullException(nameof(imageField));
             }
 
-            return options == null ? imageField.ImageUrl() : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, options));
+            return builderOptions == null
+                       ? imageField.ImageUrl()
+                       : HashingUtils.ProtectAssetUrl(MediaManager.GetMediaUrl(imageField.MediaItem, builderOptions));
         }
 
         public static bool IsChecked(this Field checkboxField)

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,12 +18,14 @@ namespace Wooli.Foundation.Connect.ModelMappers
 
     using AutoMapper;
 
+    using DependencyInjection;
+
+    using Models;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
 
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Utils;
 
     [Service(typeof(IConnectEntityMapper))]
     public class ConnectEntityMapper : IConnectEntityMapper
@@ -34,14 +36,18 @@ namespace Wooli.Foundation.Connect.ModelMappers
         {
             var config = new MapperConfiguration(
                 cfg =>
-                    {
-                        cfg.CreateMap<PartyEntity, CommerceParty>();
-                        cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
-                            .ForMember(dest => dest.PaymentMethodID, opt => opt.MapFrom(src => CommerceRequestUtils.GetPaymentOptionId("Federated")));
-                        cfg.CreateMap<ShippingInfoArgument, CommerceShippingInfo>()
-                            .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingPreferenceType))
-                            .ForMember(dest => dest.LineIDs, opt => opt.MapFrom(src => (src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()))); ;
-                    });
+                {
+                    cfg.CreateMap<PartyEntity, CommerceParty>();
+                    cfg.CreateMap<FederatedPaymentArgs, FederatedPaymentInfo>()
+                        .ForMember(
+                            dest => dest.PaymentMethodID,
+                            opt => opt.MapFrom(src => CommerceRequestUtils.GetPaymentOptionId("Federated")));
+                    cfg.CreateMap<ShippingInfoArgument, CommerceShippingInfo>()
+                        .ForMember(dest => dest.ShippingOptionType, opt => opt.MapFrom(src => src.ShippingPreferenceType))
+                        .ForMember(
+                            dest => dest.LineIDs,
+                            opt => opt.MapFrom(src => src.LineIds != null ? new List<string>(src.LineIds) : new List<string>()));
+                });
             this.innerMapper = new Mapper(config);
         }
 
@@ -55,14 +61,14 @@ namespace Wooli.Foundation.Connect.ModelMappers
             return this.innerMapper.Map<IList<CommerceParty>>(item);
         }
 
-        public FederatedPaymentInfo MapToFederatedPaymentInfo(FederatedPaymentArgs item)
-        {
-            return this.innerMapper.Map<FederatedPaymentInfo>(item);
-        }
-
         public CommerceShippingInfo MapToCommerceShippingInfo(ShippingInfoArgument item)
         {
             return this.innerMapper.Map<CommerceShippingInfo>(item);
+        }
+
+        public FederatedPaymentInfo MapToFederatedPaymentInfo(FederatedPaymentArgs item)
+        {
+            return this.innerMapper.Map<FederatedPaymentInfo>(item);
         }
     }
 }

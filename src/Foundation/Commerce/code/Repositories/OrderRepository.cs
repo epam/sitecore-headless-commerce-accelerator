@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,19 +16,21 @@ namespace Wooli.Foundation.Commerce.Repositories
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    using Sitecore.Commerce.Entities.Orders;
-    using Sitecore.Commerce.Services.Orders;
+    using Connect.Managers;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
     using Sitecore.Diagnostics;
-
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Commerce.Models.Checkout;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
 
     [Service(typeof(IOrderRepository), Lifetime = Lifetime.Singleton)]
     public class OrderRepository : BaseCheckoutRepository, IOrderRepository
@@ -47,7 +49,14 @@ namespace Wooli.Foundation.Commerce.Repositories
             IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext, visitorContext)
+            : base(
+                cartManager,
+                catalogRepository,
+                accountManager,
+                cartModelBuilder,
+                entityMapper,
+                storefrontContext,
+                visitorContext)
         {
             this.orderManager = orderManager;
             this.orderModelBuilder = orderModelBuilder;
@@ -60,7 +69,10 @@ namespace Wooli.Foundation.Commerce.Repositories
             var result = new Result<CartModel>();
             try
             {
-                ManagerResponse<GetVisitorOrderResult, Order> orderDetails = this.orderManager.GetOrderDetails(trackingId, this.VisitorContext.ContactId, this.StorefrontContext.ShopName);
+                var orderDetails = this.orderManager.GetOrderDetails(
+                    trackingId,
+                    this.VisitorContext.ContactId,
+                    this.StorefrontContext.ShopName);
 
                 var order = orderDetails.Result;
                 if (order != null)
@@ -87,7 +99,13 @@ namespace Wooli.Foundation.Commerce.Repositories
             var result = new Result<OrderHistoryResultModel>();
             try
             {
-                var orderHeaders = this.orderManager.GetVisitorOrders(this.VisitorContext.ContactId, this.StorefrontContext.ShopName, fromDate, untilDate, page, count);
+                var orderHeaders = this.orderManager.GetVisitorOrders(
+                    this.VisitorContext.ContactId,
+                    this.StorefrontContext.ShopName,
+                    fromDate,
+                    untilDate,
+                    page,
+                    count);
 
                 if (orderHeaders.Result == null)
                 {
@@ -96,9 +114,12 @@ namespace Wooli.Foundation.Commerce.Repositories
                 }
 
                 var ordersList = new List<CartModel>();
-                foreach (OrderHeader orderHeader in orderHeaders.Result)
+                foreach (var orderHeader in orderHeaders.Result)
                 {
-                    ManagerResponse<GetVisitorOrderResult, Order> orderDetails = this.orderManager.GetOrderDetails(orderHeader.OrderID, this.VisitorContext.ContactId, this.StorefrontContext.ShopName);
+                    var orderDetails = this.orderManager.GetOrderDetails(
+                        orderHeader.OrderID,
+                        this.VisitorContext.ContactId,
+                        this.StorefrontContext.ShopName);
 
                     var order = orderDetails.Result;
                     if (order != null)

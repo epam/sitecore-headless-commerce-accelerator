@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -73,6 +73,11 @@ export interface Sitecore<TContext, TRoute> extends SitecoreContext<TContext>, S
 }
 
 export interface SitecorePayload extends Partial<Sitecore<{}, {}>> {}
+
+export interface ChangeRoutePayload {
+  newRoute: string;
+  shouldPushNewRoute: boolean;
+}
 
 export interface SitecoreState<TContext = {}, TRoute = {}> {
   sitecore: Sitecore<TContext, TRoute>;

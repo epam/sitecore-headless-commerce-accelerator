@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ namespace Wooli.Feature.Catalog.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Color HEX field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 634fdabf-59c5-4b31-9878-3c370fea110f</para>
         /// </summary>
@@ -60,7 +60,7 @@ namespace Wooli.Feature.Catalog.Models
         string ColorHEX {get; set;}
 
         /// <summary>
-        /// The  field.
+        /// The Color Name field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ba711f5f-bc6f-4bb0-9628-1f135ec399fa</para>
         /// </summary>
@@ -89,7 +89,7 @@ namespace Wooli.Feature.Catalog.Models
         /// <para>Field ID: 634fdabf-59c5-4b31-9878-3c370fea110f</para>
         /// </summary>
         [SitecoreField("Color HEX")]
-        public string ColorHEX {get; set;}
+        public virtual string ColorHEX {get; set;}
         public const string ColorHEXFieldId = "634fdabf-59c5-4b31-9878-3c370fea110f";
         public const string ColorHEXFieldName = "Color HEX";
 
@@ -99,7 +99,7 @@ namespace Wooli.Feature.Catalog.Models
         /// <para>Field ID: ba711f5f-bc6f-4bb0-9628-1f135ec399fa</para>
         /// </summary>
         [SitecoreField("Color Name")]
-        public string ColorName {get; set;}
+        public virtual string ColorName {get; set;}
         public const string ColorNameFieldId = "ba711f5f-bc6f-4bb0-9628-1f135ec399fa";
         public const string ColorNameFieldName = "Color Name";
 

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ namespace Wooli.Foundation.Commerce.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The Control Panel Configuration field.
         /// <para>Field Type: Droptree</para>
         /// <para>Field ID: cf39528f-dcd5-489c-8188-6d8980d903e3</para>
         /// </summary>
@@ -81,7 +81,7 @@ namespace Wooli.Foundation.Commerce.Models
         /// <para>Field ID: cf39528f-dcd5-489c-8188-6d8980d903e3</para>
         /// </summary>
         [SitecoreField("Control Panel Configuration")]
-        public Guid ControlPanelConfiguration {get; set;}
+        public virtual Guid ControlPanelConfiguration {get; set;}
         public const string ControlPanelConfigurationFieldId = "cf39528f-dcd5-489c-8188-6d8980d903e3";
         public const string ControlPanelConfigurationFieldName = "Control Panel Configuration";
 
@@ -98,7 +98,7 @@ namespace Wooli.Foundation.Commerce.Models
     {
 
         /// <summary>
-        /// The  field.
+        /// The DefaultUser field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b99ca0c7-ee56-466b-99e5-d30dfddb75ae</para>
         /// </summary>
@@ -127,7 +127,7 @@ namespace Wooli.Foundation.Commerce.Models
         /// <para>Field ID: b99ca0c7-ee56-466b-99e5-d30dfddb75ae</para>
         /// </summary>
         [SitecoreField("DefaultUser")]
-        public string DefaultUser {get; set;}
+        public virtual string DefaultUser {get; set;}
         public const string DefaultUserFieldId = "b99ca0c7-ee56-466b-99e5-d30dfddb75ae";
         public const string DefaultUserFieldName = "DefaultUser";
 

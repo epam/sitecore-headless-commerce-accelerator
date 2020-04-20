@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,17 +17,20 @@ namespace Wooli.Foundation.Commerce.Repositories
     using System;
     using System.Linq;
 
-    using Sitecore.Commerce.Entities.Orders;
-    using Sitecore.Commerce.Services.Carts;
-    using Sitecore.Commerce.Services.Orders;
-    using Sitecore.Diagnostics;
+    using Connect.Managers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelInitilizers;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.DependencyInjection;
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelInitializers;
+
+    using ModelMappers;
+
+    using Models;
+    using Models.Checkout;
+
+    using Sitecore.Diagnostics;
 
     [Service(typeof(ICheckoutRepository), Lifetime = Lifetime.Singleton)]
     public class CheckoutRepository : BaseCheckoutRepository, ICheckoutRepository
@@ -41,7 +44,14 @@ namespace Wooli.Foundation.Commerce.Repositories
             IEntityMapper entityMapper,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
-            : base(cartManager, catalogRepository, accountManager, cartModelBuilder, entityMapper, storefrontContext, visitorContext)
+            : base(
+                cartManager,
+                catalogRepository,
+                accountManager,
+                cartModelBuilder,
+                entityMapper,
+                storefrontContext,
+                visitorContext)
         {
             this.OrderManager = orderManager;
         }
@@ -54,14 +64,16 @@ namespace Wooli.Foundation.Commerce.Repositories
             var model = new SubmitOrderModel();
             try
             {
-                ManagerResponse<CartResult, Sitecore.Commerce.Entities.Carts.Cart> currentCart = this.CartManager.GetCurrentCart(this.StorefrontContext.ShopName, this.VisitorContext.ContactId);
+                var currentCart = this.CartManager.GetCurrentCart(
+                    this.StorefrontContext.ShopName,
+                    this.VisitorContext.ContactId);
                 if (!currentCart.ServiceProviderResult.Success)
                 {
                     result.SetErrors(currentCart.ServiceProviderResult);
                     return result;
                 }
 
-                ManagerResponse<SubmitVisitorOrderResult, Order> managerResponse = this.OrderManager.SubmitVisitorOrder(currentCart.Result);
+                var managerResponse = this.OrderManager.SubmitVisitorOrder(currentCart.Result);
                 if (managerResponse.ServiceProviderResult.Success || !managerResponse.ServiceProviderResult.SystemMessages.Any())
                 {
                     model.Temp = managerResponse.Result;

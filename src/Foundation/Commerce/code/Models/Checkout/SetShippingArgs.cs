@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,9 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Commerce.Models.Checkout
 {
     using System.Collections.Generic;
+
     using TypeLite;
 
     [TsClass]
@@ -22,8 +23,8 @@ namespace Wooli.Foundation.Commerce.Models
     {
         public string OrderShippingPreferenceType { get; set; }
 
-        public List<ShippingMethodModel> ShippingMethods { get; set; }
-
         public List<AddressModel> ShippingAddresses { get; set; }
+
+        public List<ShippingMethodModel> ShippingMethods { get; set; }
     }
 }

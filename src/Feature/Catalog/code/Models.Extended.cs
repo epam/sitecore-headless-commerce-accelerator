@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 // ReSharper disable CheckNamespace
+
 #pragma warning disable 1591
 #pragma warning disable 0108
 
@@ -25,7 +26,7 @@ namespace Wooli.Feature.Catalog.Models
     public partial interface IProductColorMappingFolder
     {
         [SitecoreChildren(InferType = true)]
-        IEnumerable<IProductColorMapping> Mappings { get; set; } 
+        IEnumerable<IProductColorMapping> Mappings { get; set; }
     }
 
     public partial class ProductColorMappingFolder

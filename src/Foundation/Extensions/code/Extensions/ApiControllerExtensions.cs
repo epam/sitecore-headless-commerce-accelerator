@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,19 +23,25 @@ namespace Wooli.Foundation.Extensions.Extensions
     using System.Web.Http;
     using System.Web.Http.Results;
 
+    using Models;
+
     using Sitecore.Diagnostics;
 
-    using Wooli.Foundation.Extensions.Models;
-    using Wooli.Foundation.Extensions.Utils;
+    using Utils;
 
     public static class ApiControllerExtensions
     {
         private static readonly JsonMediaTypeFormatter JsonMediaTypeFormatter = new JsonMediaTypeFormatter
         {
-            SerializerSettings = Constants.JsonSerialiserSettings
+            SerializerSettings = Constants.JsonSerializerSettings
         };
 
-        public static IHttpActionResult JsonError(this ApiController controller, string[] errorMessages, HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static IHttpActionResult JsonError(
+            this ApiController controller,
+            string[] errorMessages,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorsJsonResultModel
             {
@@ -46,10 +52,22 @@ namespace Wooli.Foundation.Extensions.Extensions
                 TempData = tempData
             };
 
-            return ResolveDependencies(controller, (negotiator, request, formatters) => new NegotiatedContentResult<ErrorsJsonResultModel>(statusCode, result, negotiator, request, formatters));
+            return ResolveDependencies(
+                controller,
+                (negotiator, request, formatters) => new NegotiatedContentResult<ErrorsJsonResultModel>(
+                    statusCode,
+                    result,
+                    negotiator,
+                    request,
+                    formatters));
         }
 
-        public static IHttpActionResult JsonError(this ApiController controller, string errorMessage, HttpStatusCode statusCode, Exception e = null, object tempData = null)
+        public static IHttpActionResult JsonError(
+            this ApiController controller,
+            string errorMessage,
+            HttpStatusCode statusCode,
+            Exception e = null,
+            object tempData = null)
         {
             var result = new ErrorJsonResultModel
             {
@@ -59,7 +77,14 @@ namespace Wooli.Foundation.Extensions.Extensions
                 TempData = tempData
             };
 
-            return ResolveDependencies(controller, (negotiator, request, formatters) => new NegotiatedContentResult<ErrorJsonResultModel>(statusCode, result, negotiator, request, formatters));
+            return ResolveDependencies(
+                controller,
+                (negotiator, request, formatters) => new NegotiatedContentResult<ErrorJsonResultModel>(
+                    statusCode,
+                    result,
+                    negotiator,
+                    request,
+                    formatters));
         }
 
         public static IHttpActionResult JsonOk<TData>(this ApiController controller, TData data = null)
@@ -71,37 +96,44 @@ namespace Wooli.Foundation.Extensions.Extensions
                 Data = data
             };
 
-            return ResolveDependencies(controller, (negotiator, request, formatters) => new OkNegotiatedContentResult<OkJsonResultModel<TData>>(result, negotiator, request, formatters));
+            return ResolveDependencies(
+                controller,
+                (negotiator, request, formatters) =>
+                    new OkNegotiatedContentResult<OkJsonResultModel<TData>>(result, negotiator, request, formatters));
         }
 
-        private static IHttpActionResult ResolveDependencies(ApiController controller, Func<IContentNegotiator, HttpRequestMessage, IEnumerable<MediaTypeFormatter>, IHttpActionResult> resultFunc)
+        private static IHttpActionResult ResolveDependencies(
+            ApiController controller,
+            Func<IContentNegotiator, HttpRequestMessage, IEnumerable<MediaTypeFormatter>, IHttpActionResult> resultFunc)
         {
             Assert.ArgumentNotNull(controller, nameof(controller));
             Assert.ArgumentNotNull(resultFunc, nameof(resultFunc));
 
             // Extracting default configuration from controller
-            HttpConfiguration configuration = controller.Configuration;
+            var configuration = controller.Configuration;
             if (configuration == null)
             {
-                throw new InvalidOperationException($"The controller {controller.GetType().FullName} configuration must not be null.");
+                throw new InvalidOperationException(
+                    $"The controller {controller.GetType().FullName} configuration must not be null.");
             }
 
-            IContentNegotiator contentNegotiator = configuration.Services.GetContentNegotiator();
+            var contentNegotiator = configuration.Services.GetContentNegotiator();
             if (contentNegotiator == null)
             {
-                throw new InvalidOperationException($"The controller {controller.GetType().FullName} do not have a content configuration.");
+                throw new InvalidOperationException(
+                    $"The controller {controller.GetType().FullName} do not have a content configuration.");
             }
 
-            HttpRequestMessage request = controller.Request;
+            var request = controller.Request;
             if (request == null)
             {
                 throw new InvalidOperationException($"The controller {controller.GetType().FullName} request must not be null.");
             }
 
             // Modifying custom configuration
-            JsonMediaTypeFormatter defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
+            var defaultJsonMediaTypeFormatter = configuration.Formatters.JsonFormatter;
             IList<MediaTypeFormatter> formatters = configuration.Formatters.ToList();
-            int indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
+            var indexOfJsonMediaTypeFormatter = formatters.IndexOf(defaultJsonMediaTypeFormatter);
             formatters[indexOfJsonMediaTypeFormatter] = JsonMediaTypeFormatter;
 
             return resultFunc(contentNegotiator, request, formatters);

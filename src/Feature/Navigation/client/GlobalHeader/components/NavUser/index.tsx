@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
 
   private renderUserInfoForm() {
     return (
-      <form method="POST" action="/apix/client/commerce/auth/signout" className="sign-out-form">
+      <form method="POST" action="/apix/client/commerce/auth/signOut" className="sign-out-form">
         <NavigationLink to="/account" className="btn btn-green">
         <Jss.Text tag="span" field={{ value: 'My Account', editable: 'My Account' }} />
         </NavigationLink>
@@ -117,7 +117,7 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
         ref={this.signInformRef}
         className={classnames('form-member-sign-in', { 'invalid-form': !formValid })}
         method="POST"
-        action={`/apix/client/commerce/auth/signin?returnUrl=${returnUrl}`}
+        action={`/apix/client/commerce/auth/signIn?returnUrl=${returnUrl}`}
       >
         <Jss.Text tag="h2" field={{ value: 'Welcome to Wooli', editable: 'Welcome to Wooli' }} />
         <input

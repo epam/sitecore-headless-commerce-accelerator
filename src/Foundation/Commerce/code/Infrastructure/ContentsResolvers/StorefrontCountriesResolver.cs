@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,49 +14,47 @@
 
 namespace Wooli.Foundation.Commerce.Infrastructure.ContentsResolvers
 {
-    using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Linq;
+
+    using Context;
+
+    using DependencyInjection;
+
+    using ModelMappers;
 
     using Sitecore.LayoutService.Configuration;
     using Sitecore.LayoutService.ItemRendering.ContentsResolvers;
     using Sitecore.Mvc.Presentation;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.ModelMappers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
-
     [Service(Lifetime = Lifetime.Transient)]
     public class StorefrontCountriesContentsResolver : IRenderingContentsResolver
     {
-        private readonly IStorefrontContext storefrontContext;
-
         private readonly IEntityMapper mapper;
 
-        public StorefrontCountriesContentsResolver(
-            IStorefrontContext storefrontContext,
-            IEntityMapper mapper)
+        private readonly IStorefrontContext storefrontContext;
+
+        public StorefrontCountriesContentsResolver(IStorefrontContext storefrontContext, IEntityMapper mapper)
         {
             this.storefrontContext = storefrontContext;
             this.mapper = mapper;
         }
 
-
-        public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
-        {
-            IEnumerable<ICountryRegionModel> model =
-                this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
-
-            return new { Countries = this.mapper.MapToCountryRegionModel(model) };
-        }
-
         public bool IncludeServerUrlInMediaUrls { get; set; }
-
-        public bool UseContextItem { get; set; }
 
         public string ItemSelectorQuery { get; set; }
 
         public NameValueCollection Parameters { get; set; }
+
+        public bool UseContextItem { get; set; }
+
+        public object ResolveContents(Rendering rendering, IRenderingConfiguration renderingConfig)
+        {
+            var model = this.storefrontContext.CurrentStorefront.CountriesRegionsConfiguration.CountriesRegionsModel;
+
+            return new
+            {
+                Countries = this.mapper.MapToCountryRegionModel(model)
+            };
+        }
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,14 +16,8 @@ namespace Wooli.Foundation.Connect.Managers
 {
     public interface IAnalyticsManager
     {
-        void VisitedProductDetailsPage(
-            string shopName,
-            string productId,
-            string productName);
+        void VisitedCategoryPage(string shopName, string categoryId, string categoryName);
 
-        void VisitedCategoryPage(
-            string shopName,
-            string categoryId,
-            string categoryName);
+        void VisitedProductDetailsPage(string shopName, string productId, string productName);
     }
 }

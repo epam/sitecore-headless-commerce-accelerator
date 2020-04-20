@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,40 +16,44 @@ namespace Wooli.Foundation.Commerce.ModelMappers
 {
     using System.Collections.Generic;
 
+    using Connect.Models;
+
+    using Models;
+    using Models.Checkout;
+
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Entities.Shipping;
 
-    using Wooli.Foundation.Commerce.Models;
-    using Wooli.Foundation.Connect.Models;
+    using CountryRegionModel = Models.Region.CountryRegionModel;
 
     public interface IEntityMapper
     {
+        AddressModel MapToAddress(Party item);
+
+        CommerceUserModel MapToCommerceUserModel(CommerceUser x);
+
+        IEnumerable<CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
+
+        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
+
+        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
+
+        Party MapToParty(AddressModel item);
+
         PartyEntity MapToPartyEntity(AddressModel item);
 
         List<PartyEntity> MapToPartyEntityList(IEnumerable<AddressModel> items);
-
-        Party MapToParty(AddressModel item);
 
         ShippingInfoArgument MapToShippingInfoArgument(ShippingMethodModel item);
 
         List<ShippingInfoArgument> MapToShippingInfoArgumentList(IEnumerable<ShippingMethodModel> items);
 
-        AddressModel MapToAddress(Party item);
-
-        FederatedPaymentArgs MapToFederatedPaymentArgs(FederatedPaymentModel model);
-
         ShippingMethodModel MapToShippingMethodModel(ShippingMethod shippingMethod);
-
-        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
-
-        FederatedPaymentModel MapToFederatedPayment(PaymentInfo x);
 
         ShippingMethodModel MapToShippingMethodModel(ShippingInfo x);
 
-        CommerceUserModel MapToCommerceUserModel(CommerceUser x);
-
-        IEnumerable<Models.CountryRegionModel> MapToCountryRegionModel(IEnumerable<ICountryRegionModel> x);
+        ShippingOptionModel MapToShippingOptionModel(ShippingOption shipppingOption);
     }
 }

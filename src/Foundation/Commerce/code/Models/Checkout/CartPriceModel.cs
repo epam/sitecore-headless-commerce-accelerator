@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,14 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Commerce.Models.Checkout
 {
+    using Providers;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Diagnostics;
-    using TypeLite;
 
-    using Wooli.Foundation.Commerce.Providers;
+    using TypeLite;
 
     [TsClass]
     public class CartPriceModel
@@ -28,21 +29,20 @@ namespace Wooli.Foundation.Commerce.Models
 
         public string CurrencySymbol { get; set; }
 
-        public decimal? Total { get; set; }
-
-        public decimal? Subtotal { get; set; }
-
         public decimal? HandlingTotal { get; set; }
 
         public decimal? ShippingTotal { get; set; }
 
+        public decimal? Subtotal { get; set; }
+
         public decimal TaxTotal { get; set; }
-
-        public decimal? TotalSavings { get; set; }
-
 
         [TsIgnore]
         public object Temp { get; set; }
+
+        public decimal? Total { get; set; }
+
+        public decimal? TotalSavings { get; set; }
 
         public void Initialize(Total model, ICurrencyProvider currencyProvider)
         {

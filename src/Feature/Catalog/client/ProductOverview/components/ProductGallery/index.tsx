@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -36,6 +36,11 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
   protected safeRender() {
     const { images } = this.props;
     const { activeImageIndex } = this.state;
+
+    if (!images || images.length <= 0) {
+      return null;
+    }
+
     return (
       <div className="product-gallery">
         <div className="product-gallery-header">

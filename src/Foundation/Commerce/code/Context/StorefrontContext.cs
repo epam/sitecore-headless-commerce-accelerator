@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,39 +14,42 @@
 
 namespace Wooli.Foundation.Commerce.Context
 {
+    using Connect.Models;
+
+    using DependencyInjection;
+
     using Glass.Mapper.Sc;
 
-    using Wooli.Foundation.Connect;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.DependencyInjection;
+    using Sitecore.Data.Items;
 
     [Service(typeof(IStorefrontContext), Lifetime = Lifetime.Transient)]
     public class StorefrontContext : IStorefrontContext
     {
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly ISitecoreService sitecoreService;
 
-        public StorefrontContext(ISitecoreContext sitecoreContext)
+        public StorefrontContext(ISitecoreService sitecoreService)
         {
-            this.sitecoreContext = sitecoreContext;
+            this.sitecoreService = sitecoreService;
         }
 
         // ToDo: implement logic for getting current catalog
         public string CatalogName => "Habitat_Master";
 
-        // ToDo: implement logic for getting current shop
-        public string ShopName => "Wooli";
+        // ToDo: implement logic for getting current catalog item
+        public Item CurrentCatalogItem =>
+            this.sitecoreService.Database.GetItem($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
 
         // ToDo: implement logic for getting current storefront settings
-        public IStorefrontModel CurrentStorefront 
-            => this.sitecoreContext.GetItem<IStorefrontModel>($"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
-
-        // ToDo: implement logic for getting current catalog item
-        public ICommerceCatalogModel CurrentCatalog 
-            => this.sitecoreContext.GetItem<ICommerceCatalogModel>($"/sitecore/Commerce/Catalog Management/Catalogs/{this.CatalogName}");
-
-        public string SelectedCurrency => "USD";
+        public IStorefrontModel CurrentStorefront =>
+            this.sitecoreService.GetItem<IStorefrontModel>(
+                $"/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/{this.ShopName}");
 
         // ToDo: implement logic for getting current catalog item
         public int DefaultItemsPerPage => 0;
+
+        public string SelectedCurrency => "USD";
+
+        // ToDo: implement logic for getting current shop
+        public string ShopName => "Wooli";
     }
 }

@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models
+namespace Wooli.Foundation.Commerce.Models.Catalog
 {
     using System.Collections.Generic;
 
     using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.ContentSearch.Linq;
     using Sitecore.Diagnostics;
 
     using TypeLite;
@@ -25,13 +24,13 @@ namespace Wooli.Foundation.Commerce.Models
     [TsClass]
     public class FacetResultModel
     {
-        public string Name { get; set; }
-
         public string DisplayName { get; set; }
 
-        public IList<object> Values { get; set; }
-
         public IList<FacetValueResultModel> FoundValues { get; set; }
+
+        public string Name { get; set; }
+
+        public IList<object> Values { get; set; }
 
         public void Initialize(CommerceQueryFacet commerceQueryFacet)
         {
@@ -42,7 +41,7 @@ namespace Wooli.Foundation.Commerce.Models
             this.Values = commerceQueryFacet.Values;
 
             var foundValues = new List<FacetValueResultModel>();
-            foreach (FacetValue facetValue in commerceQueryFacet.FoundValues)
+            foreach (var facetValue in commerceQueryFacet.FoundValues)
             {
                 var facetValueResultModel = new FacetValueResultModel();
                 facetValueResultModel.Initialize(facetValue);

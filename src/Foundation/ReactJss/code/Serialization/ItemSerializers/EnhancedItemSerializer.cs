@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,23 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Sitecore.LayoutService.Serialization;
-
 namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
 {
-    using System.Collections.Generic;
     using System.IO;
 
-    using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+    using Sitecore.LayoutService.Serialization;
     using Sitecore.LayoutService.Serialization.ItemSerializers;
     using Sitecore.LayoutService.Serialization.Pipelines.GetFieldSerializer;
 
     public class EnhancedItemSerializer : DefaultItemSerializer
     {
-        public EnhancedItemSerializer(IGetFieldSerializerPipeline getFieldSerializerPipeline) : base(
-            getFieldSerializerPipeline)
+        public EnhancedItemSerializer(IGetFieldSerializerPipeline getFieldSerializerPipeline)
+            : base(getFieldSerializerPipeline)
         {
         }
 
@@ -44,9 +41,9 @@ namespace Wooli.Foundation.ReactJss.Serialization.ItemSerializers
                     writer.WritePropertyName("id");
                     writer.WriteValue(item.ID.Guid.ToString("D", null));
 
-                    IEnumerable<Field> itemFields = this.GetItemFields(item);
+                    var itemFields = this.GetItemFields(item);
                     var options = new SerializationOptions();
-                    foreach (Field itemField in itemFields)
+                    foreach (var itemField in itemFields)
                     {
                         this.SerializeField(itemField, writer, options);
                     }

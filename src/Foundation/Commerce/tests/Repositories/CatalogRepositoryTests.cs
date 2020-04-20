@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,17 +14,19 @@
 
 namespace Wooli.Foundation.Commerce.Tests.Repositories
 {
+    using Commerce.Repositories;
+
+    using Connect.Managers;
+
+    using Context;
+
     using Glass.Mapper.Sc;
 
     using NSubstitute;
 
-    using Sitecore.FakeDb;
+    using Providers;
 
-    using Wooli.Foundation.Commerce.Context;
-    using Wooli.Foundation.Commerce.Providers;
-    using Wooli.Foundation.Commerce.Repositories;
-    using Wooli.Foundation.Connect.Managers;
-    using Wooli.Foundation.Connect.Models;
+    using Sitecore.FakeDb;
 
     using Xunit;
 
@@ -39,24 +41,29 @@ namespace Wooli.Foundation.Commerce.Tests.Repositories
             var storefrontContext = Substitute.For<IStorefrontContext>();
             var visitorContext = Substitute.For<IVisitorContext>();
             var catalogManager = Substitute.For<ICatalogManager>();
-            var sitecoreContext = Substitute.For<ISitecoreContext>();
+            var sitecoreService = Substitute.For<ISitecoreService>();
             var searchManager = Substitute.For<ISearchManager>();
 
             var productItem = new DbItem("ProductItem");
-            using (var db = new Db { productItem })
+            productItem.Fields.Add("ProductId", "productId");
+
+            using (var db = new Db
             {
-                storefrontContext
-                    .CatalogName
-                    .Returns("storeName");
-                searchManager
-                    .GetProduct("storeName", "productId")
-                    .Returns(db.GetItem(productItem.ID));
-                sitecoreContext
-                    .Cast<ICommerceProductModel>(db.GetItem(productItem.ID))
-                    .Returns(new CommerceProductModel { Item = db.GetItem(productItem.ID), ProductId = "productId" });
+                productItem
+            })
+            {
+                storefrontContext.CatalogName.Returns("storeName");
+                searchManager.GetProduct("storeName", "productId").Returns(db.GetItem(productItem.ID));
 
                 // Execute
-                var repository = new CatalogRepository(siteContext, storefrontContext, visitorContext, catalogManager, sitecoreContext, searchManager, currencyProvider);
+                var repository = new CatalogRepository(
+                    siteContext,
+                    storefrontContext,
+                    visitorContext,
+                    catalogManager,
+                    sitecoreService,
+                    searchManager,
+                    currencyProvider);
                 var result = repository.GetProduct("productId");
 
                 // Assert

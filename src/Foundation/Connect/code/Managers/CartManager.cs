@@ -1,4 +1,4 @@
-//    Copyright 2019 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -18,10 +18,19 @@ namespace Wooli.Foundation.Connect.Managers
     using System.Collections.Generic;
     using System.Linq;
 
+    using DependencyInjection;
+
+    using Extensions.Extensions;
+
+    using ModelMappers;
+
+    using Models;
+
+    using Providers.Contracts;
+
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
     using Sitecore.Commerce.Engine.Connect.Services.Carts;
-    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
@@ -29,24 +38,24 @@ namespace Wooli.Foundation.Connect.Managers
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
-    using Wooli.Foundation.Commerce.Utils;
-    using Wooli.Foundation.Connect.ModelMappers;
-    using Wooli.Foundation.Connect.Models;
-    using Wooli.Foundation.Connect.Providers;
-    using Wooli.Foundation.DependencyInjection;
-    using Wooli.Foundation.Extensions.Extensions;
 
+    using Utils;
+
+    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
     [Service(typeof(ICartManager))]
     public class CartManager : ICartManager
     {
-        private readonly ISearchManager searchManager;
         private readonly CommerceCartServiceProvider cartServiceProvider;
+
         private readonly IConnectEntityMapper connectEntityMapper;
+
+        private readonly ISearchManager searchManager;
 
         public CartManager(
             ISearchManager searchManager,
-            IConnectServiceProvider connectServiceProvider, IConnectEntityMapper connectEntityMapper)
+            IConnectServiceProvider connectServiceProvider,
+            IConnectEntityMapper connectEntityMapper)
         {
             Assert.ArgumentNotNull(searchManager, nameof(searchManager));
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));
@@ -56,21 +65,29 @@ namespace Wooli.Foundation.Connect.Managers
             this.connectEntityMapper = connectEntityMapper;
         }
 
-        public ManagerResponse<CartResult, Cart> AddLineItemsToCart(Cart cart, IEnumerable<CartLineArgument> cartLines, string giftCardProductId, string giftCardPageLink)
+        public ManagerResponse<CartResult, Cart> AddLineItemsToCart(
+            Cart cart,
+            IEnumerable<CartLineArgument> cartLines,
+            string giftCardProductId,
+            string giftCardPageLink)
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(cartLines, nameof(cartLines));
 
             var cartLineList = new List<CartLine>();
 
-            foreach (CartLineArgument cartLine in cartLines)
+            foreach (var cartLine in cartLines)
             {
                 Assert.ArgumentNotNullOrEmpty(cartLine.ProductId, "inputModel.ProductId");
                 Assert.ArgumentNotNullOrEmpty(cartLine.CatalogName, "inputModel.CatalogName");
                 Assert.ArgumentNotNull(cartLine.Quantity, "inputModel.Quantity");
-                decimal quantity = cartLine.Quantity;
+                var quantity = cartLine.Quantity;
 
-                var commerceCartLine = new CommerceCartLine(cartLine.CatalogName, cartLine.ProductId, cartLine.VariantId == "-1" ? null : cartLine.VariantId, quantity);
+                var commerceCartLine = new CommerceCartLine(
+                    cartLine.CatalogName,
+                    cartLine.ProductId,
+                    cartLine.VariantId == "-1" ? null : cartLine.VariantId,
+                    quantity);
                 cartLineList.Add(commerceCartLine);
             }
 
@@ -84,111 +101,42 @@ namespace Wooli.Foundation.Connect.Managers
             return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(Cart cart, IEnumerable<CartLineArgument> cartLines, string giftCardProductId, string giftCardPageLink)
+        public ManagerResponse<AddPaymentInfoResult, Cart> AddPaymentInfo(
+            string shopName,
+            Cart cart,
+            PartyEntity billingPartyEntity,
+            FederatedPaymentArgs federatedPaymentArgs)
         {
-            Assert.ArgumentNotNull(cart, nameof(cart));
-            Assert.ArgumentNotNull(cartLines, nameof(cartLines));
+            var payments = new List<PaymentInfo>();
+            cart = this.RemoveAllPaymentMethods(cart).Result;
 
-            var cartLineList = new List<CartLine>();
-            foreach (CartLineArgument cartLine in cartLines)
+            if ((federatedPaymentArgs != null)
+                && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken)
+                && (billingPartyEntity != null))
             {
-                Assert.ArgumentNotNullOrEmpty(cartLine.ProductId, "inputModel.ProductId");
-                Assert.ArgumentNotNullOrEmpty(cartLine.CatalogName, "inputModel.CatalogName");
-                Assert.ArgumentNotNull(cartLine.Quantity, "inputModel.Quantity");
-                decimal quantity = cartLine.Quantity;
-
-                bool Selector(CartLine x)
+                var commerceParty = this.connectEntityMapper.MapToCommerceParty(billingPartyEntity);
+                commerceParty.PartyId = Guid.NewGuid().ToString().Replace("-", string.Empty);
+                commerceParty.ExternalId = commerceParty.PartyId;
+                if (string.IsNullOrWhiteSpace(commerceParty.Name))
                 {
-                    var product = (CommerceCartProduct)x.Product;
-                    return x.Product.ProductId == cartLine.ProductId && product.ProductVariantId == cartLine.VariantId && product.ProductCatalog == cartLine.CatalogName;
+                    commerceParty.Name = $"billing{commerceParty.PartyId}";
                 }
 
-                CartLine commerceCartLine = cart.Lines.FirstOrDefault(Selector)
-                    ?? new CommerceCartLine(cartLine.CatalogName, cartLine.ProductId, cartLine.VariantId == "-1" ? null : cartLine.VariantId, quantity);
-                commerceCartLine.Quantity = quantity;
-                cartLineList.Add(commerceCartLine);
+                cart.Parties.Add(commerceParty);
+                var federatedPaymentInfo = this.connectEntityMapper.MapToFederatedPaymentInfo(federatedPaymentArgs);
+                federatedPaymentInfo.PartyID = commerceParty.PartyId;
+                federatedPaymentInfo.Amount = cart.Total.Amount;
+                payments.Add(federatedPaymentInfo);
             }
 
-            var request = new UpdateCartLinesRequest(cart, cartLineList);
-            var updateCartResult = this.cartServiceProvider.UpdateCartLines(request);
-            if (!updateCartResult.Success)
+            var request = new AddPaymentInfoRequest(cart, payments);
+            var paymentInfoResult = this.cartServiceProvider.AddPaymentInfo(request);
+            if (!paymentInfoResult.Success)
             {
-                updateCartResult.SystemMessages.LogSystemMessages(this);
-            }
-            
-            return new ManagerResponse<CartResult, Cart>(updateCartResult, updateCartResult.Cart);
-        }
-
-        public ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds)
-        {
-            Assert.ArgumentNotNull(cart, nameof(cart));
-            Assert.ArgumentNotNull(cartLineIds, nameof(cartLineIds));
-
-            var cartLineList = new List<CartLine>();
-
-            foreach (string cartLineId in cartLineIds)
-            {
-                var cartLine = cart.Lines.FirstOrDefault(line => line.ExternalCartLineId == cartLineId);
-                cartLineList.Add(cartLine);
+                paymentInfoResult.SystemMessages.LogSystemMessages(paymentInfoResult);
             }
 
-            var request = new RemoveCartLinesRequest(cart, cartLineList);
-            var serviceProviderResult = this.cartServiceProvider.RemoveCartLines(request);
-            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
-        }
-
-        public ManagerResponse<CartResult, Cart> GetCurrentCart(string shopName, string customerId)
-        {
-            var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
-
-            var cartResult = this.cartServiceProvider.LoadCart(request);
-            var stringList = new List<string>();
-
-            if (cartResult.Cart is CommerceCart cart && cart.OrderForms.Count > 0)
-            {
-                stringList.AddRange(cart.OrderForms[0].PromoCodes ?? Enumerable.Empty<string>());
-            }
-
-            cartResult.Cart.GetProperties().Add("PromoCodes", stringList);
-
-            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
-        }
-
-        public ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId)
-        {
-            var request = new CreateOrResumeCartRequest(shopName, userId, Constants.DefaultCartName, customerId);
-            var cartResult = this.cartServiceProvider.CreateOrResumeCart(request);
-
-            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
-        }
-
-        public ManagerResponse<CartResult, Cart> MergeCarts(string shopName, string customerId, string anonymousVisitorId, Cart anonymousVisitorCart)
-        {
-            Assert.ArgumentNotNullOrEmpty(anonymousVisitorId, "anonymousVisitorId");
-            var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
-            var cartResult = this.cartServiceProvider.LoadCart(request);
-
-            if (!cartResult.Success || cartResult.Cart == null)
-            {
-                Log.Warn("Cart Not Found Error", this.GetType());
-                return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
-            }
-            var commerceCart = (CommerceCart)cartResult.Cart;
-            var newCartResult = new CartResult
-            {
-                Cart = commerceCart,
-                Success = true
-            };
-            if (customerId != anonymousVisitorId)
-            {
-                bool flag = anonymousVisitorCart is CommerceCart && ((CommerceCart)anonymousVisitorCart).OrderForms.Any((of => of.PromoCodes.Any()));
-                if (anonymousVisitorCart != null && anonymousVisitorCart.Lines.Any() | flag && (commerceCart.ShopName == anonymousVisitorCart.ShopName || commerceCart.ExternalId != anonymousVisitorCart.ExternalId))
-                {
-                    newCartResult = this.cartServiceProvider.MergeCart(new MergeCartRequest(anonymousVisitorCart, commerceCart));
-                }
-            }
-
-            return new ManagerResponse<CartResult, Cart>(newCartResult, newCartResult.Cart);
+            return new ManagerResponse<AddPaymentInfoResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
         }
 
         public ManagerResponse<AddPromoCodeResult, Cart> AddPromoCode(Cart cart, string promoCode)
@@ -200,89 +148,18 @@ namespace Wooli.Foundation.Connect.Managers
             return new ManagerResponse<AddPromoCodeResult, Cart>(result, result.Cart);
         }
 
-        public ManagerResponse<CartResult, Cart> UpdateCart(string shopName, Cart currentCart, CartBase cartUpdate)
-        {
-            var request = new UpdateCartRequest(currentCart, cartUpdate);
-            CartResult serviceProviderResult = this.cartServiceProvider.UpdateCart(request);
-            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
-        
-        }
-
-        public ManagerResponse<AddPaymentInfoResult, Cart> AddPaymentInfo(string shopName, Cart cart, PartyEntity billingPartyEntity, FederatedPaymentArgs federatedPaymentArgs)
-        {
-            List<PaymentInfo> payments = new List<PaymentInfo>();
-            cart = this.RemoveAllPaymentMethods(cart).Result;
-
-            if (federatedPaymentArgs != null && !string.IsNullOrEmpty(federatedPaymentArgs.CardToken) && billingPartyEntity != null)
-            {
-                CommerceParty commerceParty = this.connectEntityMapper.MapToCommerceParty(billingPartyEntity);
-                commerceParty.PartyId = Guid.NewGuid().ToString().Replace("-", string.Empty);
-                commerceParty.ExternalId = commerceParty.PartyId;
-                if (string.IsNullOrWhiteSpace(commerceParty.Name))
-                {
-                    commerceParty.Name = $"billing{commerceParty.PartyId}";
-                }
-                cart.Parties.Add(commerceParty);
-                FederatedPaymentInfo federatedPaymentInfo = this.connectEntityMapper.MapToFederatedPaymentInfo(federatedPaymentArgs);
-                federatedPaymentInfo.PartyID = commerceParty.PartyId;
-                federatedPaymentInfo.Amount = cart.Total.Amount;
-                payments.Add(federatedPaymentInfo);
-            }
-
-            var request = new AddPaymentInfoRequest(cart, payments);
-            AddPaymentInfoResult paymentInfoResult = this.cartServiceProvider.AddPaymentInfo(request);
-            if (!paymentInfoResult.Success)
-            {
-                paymentInfoResult.SystemMessages.LogSystemMessages(paymentInfoResult);
-            }
-
-            return new ManagerResponse<AddPaymentInfoResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
-        }
-
-        public virtual ManagerResponse<CartResult, Cart> RemoveAllPaymentMethods(Cart cart)
-        {
-
-            RemovePaymentInfoResult paymentInfoResult = null;
-            if (cart.Payment != null && cart.Payment.Any())
-            {
-                var request = new RemovePaymentInfoRequest(cart, cart.Payment);
-                paymentInfoResult = this.cartServiceProvider.RemovePaymentInfo(request);
-                return new ManagerResponse<CartResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
-            }
-
-            paymentInfoResult = new RemovePaymentInfoResult { Success = true };
-            return new ManagerResponse<CartResult, Cart>(paymentInfoResult, cart);
-        }
-
-
-        private string GetProductLink(Item productItem, string productId, string giftCardProductId, string giftCardPageLink)
-        {
-            return !productId.Equals(giftCardProductId, StringComparison.OrdinalIgnoreCase)
-                ? LinkManager.GetDynamicUrl(productItem)
-                : giftCardPageLink;
-        }
-
-        private string GetImageLink(Item productItem)
-        {
-            var field = (MultilistField)productItem.Fields["Images"];
-            if (field != null && field.TargetIDs.Any())
-            {
-                var mediaItem = (MediaItem)productItem.Database.GetItem(field.TargetIDs[0]);
-
-                return mediaItem.ImageUrl(300, 300);
-            }
-                
-            return string.Empty;
-        }
-
-        public ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(Cart cart, List<PartyEntity> partyEntityList, ShippingOptionType shippingOptionType, List<ShippingInfoArgument> shippingInfoList)
+        public ManagerResponse<AddShippingInfoResult, Cart> AddShippingInfo(
+            Cart cart,
+            List<PartyEntity> partyEntityList,
+            ShippingOptionType shippingOptionType,
+            List<ShippingInfoArgument> shippingInfoList)
         {
             Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(shippingOptionType, nameof(shippingOptionType));
             Assert.ArgumentNotNull(shippingInfoList, nameof(shippingInfoList));
             cart = this.RemoveAllShipmentFromCart(cart);
 
-            if (partyEntityList != null && partyEntityList.Any())
+            if ((partyEntityList != null) && partyEntityList.Any())
             {
                 var cartParties = cart.Parties.ToList();
                 var commercePartyList = this.connectEntityMapper.MapToCommercePartyList(partyEntityList);
@@ -292,9 +169,9 @@ namespace Wooli.Foundation.Connect.Managers
 
             if (shippingOptionType != ShippingOptionType.DeliverItemsIndividually)
             {
-                foreach (ShippingInfoArgument shippingInfo in shippingInfoList)
+                foreach (var shippingInfo in shippingInfoList)
                 {
-                    shippingInfo.LineIds = cart.Lines.Cast<CartLine>().Select(lineItem => lineItem.ExternalCartLineId).ToList();
+                    shippingInfo.LineIds = cart.Lines.Select(lineItem => lineItem.ExternalCartLineId).ToList();
                 }
             }
 
@@ -305,8 +182,8 @@ namespace Wooli.Foundation.Connect.Managers
                 shippings.Add(this.connectEntityMapper.MapToCommerceShippingInfo(shippingInfo));
             }
 
-            var addShippingInfoRequest = new Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest(cart, shippings, shippingOptionType);
-            
+            var addShippingInfoRequest = new AddShippingInfoRequest(cart, shippings, shippingOptionType);
+
             var shippingInfoResult = this.cartServiceProvider.AddShippingInfo(addShippingInfoRequest);
 
             if (!shippingInfoResult.Success)
@@ -317,17 +194,166 @@ namespace Wooli.Foundation.Connect.Managers
             return new ManagerResponse<AddShippingInfoResult, Cart>(shippingInfoResult, shippingInfoResult.Cart);
         }
 
+        public ManagerResponse<CartResult, Cart> CreateOrResumeCart(string shopName, string userId, string customerId)
+        {
+            var request = new CreateOrResumeCartRequest(shopName, userId, Constants.DefaultCartName, customerId);
+            var cartResult = this.cartServiceProvider.CreateOrResumeCart(request);
+
+            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+        }
+
+        public ManagerResponse<CartResult, Cart> GetCurrentCart(string shopName, string customerId)
+        {
+            var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
+
+            var cartResult = this.cartServiceProvider.LoadCart(request);
+            var stringList = new List<string>();
+
+            if (cartResult.Cart is CommerceCart cart && (cart.OrderForms.Count > 0))
+            {
+                stringList.AddRange(cart.OrderForms[0].PromoCodes ?? Enumerable.Empty<string>());
+            }
+
+            cartResult.Cart.GetProperties().Add("PromoCodes", stringList);
+
+            return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+        }
+
+        public ManagerResponse<CartResult, Cart> MergeCarts(
+            string shopName,
+            string customerId,
+            string anonymousVisitorId,
+            Cart anonymousVisitorCart)
+        {
+            Assert.ArgumentNotNullOrEmpty(anonymousVisitorId, "anonymousVisitorId");
+            var request = new LoadCartByNameRequest(shopName, Constants.DefaultCartName, customerId);
+            var cartResult = this.cartServiceProvider.LoadCart(request);
+
+            if (!cartResult.Success || (cartResult.Cart == null))
+            {
+                Log.Warn("Cart Not Found Error", this.GetType());
+                return new ManagerResponse<CartResult, Cart>(cartResult, cartResult.Cart);
+            }
+
+            var commerceCart = (CommerceCart)cartResult.Cart;
+            var newCartResult = new CartResult
+            {
+                Cart = commerceCart,
+                Success = true
+            };
+            if (customerId != anonymousVisitorId)
+            {
+                var flag = anonymousVisitorCart is CommerceCart
+                           && ((CommerceCart)anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
+                if ((anonymousVisitorCart != null)
+                    && (anonymousVisitorCart.Lines.Any() | flag)
+                    && ((commerceCart.ShopName == anonymousVisitorCart.ShopName)
+                        || (commerceCart.ExternalId != anonymousVisitorCart.ExternalId)))
+                {
+                    newCartResult = this.cartServiceProvider.MergeCart(new MergeCartRequest(anonymousVisitorCart, commerceCart));
+                }
+            }
+
+            return new ManagerResponse<CartResult, Cart>(newCartResult, newCartResult.Cart);
+        }
+
+        public virtual ManagerResponse<CartResult, Cart> RemoveAllPaymentMethods(Cart cart)
+        {
+            RemovePaymentInfoResult paymentInfoResult = null;
+            if ((cart.Payment != null) && cart.Payment.Any())
+            {
+                var request = new RemovePaymentInfoRequest(cart, cart.Payment);
+                paymentInfoResult = this.cartServiceProvider.RemovePaymentInfo(request);
+                return new ManagerResponse<CartResult, Cart>(paymentInfoResult, paymentInfoResult.Cart);
+            }
+
+            paymentInfoResult = new RemovePaymentInfoResult
+            {
+                Success = true
+            };
+            return new ManagerResponse<CartResult, Cart>(paymentInfoResult, cart);
+        }
+
+        public ManagerResponse<CartResult, Cart> RemoveLineItemsFromCart(Cart cart, IEnumerable<string> cartLineIds)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartLineIds, nameof(cartLineIds));
+
+            var cartLineList = new List<CartLine>();
+
+            foreach (var cartLineId in cartLineIds)
+            {
+                var cartLine = cart.Lines.FirstOrDefault(line => line.ExternalCartLineId == cartLineId);
+                cartLineList.Add(cartLine);
+            }
+
+            var request = new RemoveCartLinesRequest(cart, cartLineList);
+            var serviceProviderResult = this.cartServiceProvider.RemoveCartLines(request);
+            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
+        }
+
+        public ManagerResponse<CartResult, Cart> UpdateCart(string shopName, Cart currentCart, CartBase cartUpdate)
+        {
+            var request = new UpdateCartRequest(currentCart, cartUpdate);
+            var serviceProviderResult = this.cartServiceProvider.UpdateCart(request);
+            return new ManagerResponse<CartResult, Cart>(serviceProviderResult, serviceProviderResult.Cart);
+        }
+
+        public ManagerResponse<CartResult, Cart> UpdateLineItemsInCart(
+            Cart cart,
+            IEnumerable<CartLineArgument> cartLines,
+            string giftCardProductId,
+            string giftCardPageLink)
+        {
+            Assert.ArgumentNotNull(cart, nameof(cart));
+            Assert.ArgumentNotNull(cartLines, nameof(cartLines));
+
+            var cartLineList = new List<CartLine>();
+            foreach (var cartLine in cartLines)
+            {
+                Assert.ArgumentNotNullOrEmpty(cartLine.ProductId, "inputModel.ProductId");
+                Assert.ArgumentNotNullOrEmpty(cartLine.CatalogName, "inputModel.CatalogName");
+                Assert.ArgumentNotNull(cartLine.Quantity, "inputModel.Quantity");
+                var quantity = cartLine.Quantity;
+
+                bool Selector(CartLine x)
+                {
+                    var product = (CommerceCartProduct)x.Product;
+                    return (x.Product.ProductId == cartLine.ProductId)
+                           && (product.ProductVariantId == cartLine.VariantId)
+                           && (product.ProductCatalog == cartLine.CatalogName);
+                }
+
+                var commerceCartLine = cart.Lines.FirstOrDefault(Selector)
+                                       ?? new CommerceCartLine(
+                                           cartLine.CatalogName,
+                                           cartLine.ProductId,
+                                           cartLine.VariantId == "-1" ? null : cartLine.VariantId,
+                                           quantity);
+                commerceCartLine.Quantity = quantity;
+                cartLineList.Add(commerceCartLine);
+            }
+
+            var request = new UpdateCartLinesRequest(cart, cartLineList);
+            var updateCartResult = this.cartServiceProvider.UpdateCartLines(request);
+            if (!updateCartResult.Success)
+            {
+                updateCartResult.SystemMessages.LogSystemMessages(this);
+            }
+
+            return new ManagerResponse<CartResult, Cart>(updateCartResult, updateCartResult.Cart);
+        }
+
         protected virtual Cart RemoveAllShipmentFromCart(Cart cart)
         {
-            if (cart.Shipping != null && cart.Shipping.Any())
+            if ((cart.Shipping != null) && cart.Shipping.Any())
             {
                 var list = cart.Parties.ToList();
 
-                foreach (ShippingInfo shippingInfo in cart.Shipping)
+                foreach (var shippingInfo in cart.Shipping)
                 {
-                    ShippingInfo shipment = shippingInfo;
-                    Party party = list.Find(
-                        (cp => cp.PartyId.Equals(shipment.PartyID, StringComparison.OrdinalIgnoreCase)));
+                    var shipment = shippingInfo;
+                    var party = list.Find(cp => cp.PartyId.Equals(shipment.PartyID, StringComparison.OrdinalIgnoreCase));
                     if (party != null)
                     {
                         list.Remove(party);
@@ -339,6 +365,26 @@ namespace Wooli.Foundation.Connect.Managers
             }
 
             return cart;
+        }
+
+        private string GetImageLink(Item productItem)
+        {
+            var field = (MultilistField)productItem.Fields["Images"];
+            if ((field != null) && field.TargetIDs.Any())
+            {
+                var mediaItem = (MediaItem)productItem.Database.GetItem(field.TargetIDs[0]);
+
+                return mediaItem.ImageUrl(300, 300);
+            }
+
+            return string.Empty;
+        }
+
+        private string GetProductLink(Item productItem, string productId, string giftCardProductId, string giftCardPageLink)
+        {
+            return !productId.Equals(giftCardProductId, StringComparison.OrdinalIgnoreCase)
+                       ? LinkManager.GetDynamicUrl(productItem)
+                       : giftCardPageLink;
         }
     }
 }

@@ -1,3 +1,5 @@
+![Headless Commerce Accelerator Homepage](./Homepage.png)
+
 ## Headless Commerce Accelerator for Sitecore Experience Commerce
 
 * Enables a JSS-based eCommerce site that is headless, meaning it is decoupled from Sitecore servers

@@ -1,0 +1,14 @@
+﻿---
+ID: "6f334d14-7c5d-4964-8194-4a831541ba22"
+Parent: "08c3adee-b8fe-4953-810e-94ae52c14f7f"
+Template: "fe5dd826-48c6-436d-b87a-7c4210c7413b"
+Path: /sitecore/media library/HCA/Project/HCA/Header
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T072809Z

@@ -52,12 +52,28 @@ namespace HCA.Feature.Navigation.Models
     {
 
         /// <summary>
+        /// The Logo field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: e3d69d99-45fc-4349-8114-6bd764a1db5e</para>
+        /// </summary>
+        [SitecoreField("Logo")]
+        Image Logo {get; set;}
+
+        /// <summary>
         /// The Menu Items field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
         /// </summary>
         [SitecoreField("Menu Items")]
         IEnumerable<Guid> MenuItems {get; set;}
+
+        /// <summary>
+        /// The Mobile Logo field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 767046a1-f0a7-4942-bfd8-3ac44b70f29f</para>
+        /// </summary>
+        [SitecoreField("Mobile Logo")]
+        Image MobileLogo {get; set;}
 
     }
 
@@ -76,6 +92,16 @@ namespace HCA.Feature.Navigation.Models
         public const string TemplateId = "77eee1b3-ede2-41fc-b2fe-1f77832e09e5";
 
         /// <summary>
+        /// The Logo field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: e3d69d99-45fc-4349-8114-6bd764a1db5e</para>
+        /// </summary>
+        [SitecoreField("Logo")]
+        public virtual Image Logo {get; set;}
+        public const string LogoFieldId = "e3d69d99-45fc-4349-8114-6bd764a1db5e";
+        public const string LogoFieldName = "Logo";
+
+        /// <summary>
         /// The Menu Items field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
@@ -84,6 +110,16 @@ namespace HCA.Feature.Navigation.Models
         public virtual IEnumerable<Guid> MenuItems {get; set;}
         public const string MenuItemsFieldId = "35033e47-38f6-4912-b14d-e23b5c7390d7";
         public const string MenuItemsFieldName = "Menu Items";
+
+        /// <summary>
+        /// The Mobile Logo field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 767046a1-f0a7-4942-bfd8-3ac44b70f29f</para>
+        /// </summary>
+        [SitecoreField("Mobile Logo")]
+        public virtual Image MobileLogo {get; set;}
+        public const string MobileLogoFieldId = "767046a1-f0a7-4942-bfd8-3ac44b70f29f";
+        public const string MobileLogoFieldName = "Mobile Logo";
 
     }
 

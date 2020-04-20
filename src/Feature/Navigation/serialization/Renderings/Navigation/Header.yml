@@ -8,6 +8,45 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Header
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query GlobalNavigation($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on GlobalHeader {
+          id
+          logo {
+            jss
+          }
+          mobileLogo {
+            jss
+          }
+          menuItems {
+            items: targetItems {
+              ... on MenuItem {
+                id
+                title {
+                  jss
+                }
+                image {
+                  jss
+                }
+                commerceCategories {
+                  items:  targetItems {
+                    ... on CommerceCategory {
+                      id
+                     name: displayName
+                    }
+                  
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: Datasource Template
   Value: /sitecore/templates/HCA/Feature/Navigation/Global Header
@@ -19,38 +58,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "17bb046a-a32a-41b3-8315-81217947611b"
-      Hint: ComponentQuery
-      Value: |
-        query GlobalNavigation($datasource: String!) {
-          datasource(value: $datasource) {
-            ... on GlobalHeader {
-              id
-              menuItems {
-                items: targetItems {
-                  ... on MenuItem {
-                    id
-                    title {
-                      jss
-                    }
-                    image {
-                      jss
-                    }
-                    commerceCategories {
-                      items: targetItems {
-                        ... on CommerceCategory {
-                          id
-                         name: displayName
-                        }
-                      
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180428T094728Z

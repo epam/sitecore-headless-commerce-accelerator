@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Image } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
@@ -21,9 +22,6 @@ import NavMain from './components/NavMain';
 import NavUser from './components/NavUser';
 import NavUtility from './components/NavUtility';
 import SearchMain from './components/SearchMain';
-
-import LogoMainMobile from 'Foundation/UI/client/common/media/images/logo-main-mobile.png';
-import LogoMain from 'Foundation/UI/client/common/media/images/logo-main.png';
 
 import { GlobalHeaderProps, GlobalHeaderState } from './models';
 import './styles.scss';
@@ -46,7 +44,9 @@ export default class GlobalHeaderControl extends JSS.SafePureComponent<GlobalHea
   }
 
   protected safeRender() {
-    const { ChangeRoute, returnUrl, StartAuthentication, authProcess, cartQuantity, commerceUser } = this.props;
+    const { ChangeRoute, returnUrl, StartAuthentication, authProcess, cartQuantity, commerceUser, fields } = this.props;
+    const { datasource } = fields.data;
+
     return (
       <>
         <header id="header-main">
@@ -57,9 +57,9 @@ export default class GlobalHeaderControl extends JSS.SafePureComponent<GlobalHea
             <div className="wrap">
               <SearchMain ChangeRoute={ChangeRoute} />
               <NavigationLink to="/" className="logo">
-                <img src={LogoMain} alt="HCA Logo" />
+                <Image media={datasource.logo.jss} />
               </NavigationLink>
-              <NavMain menuItems={this.props.fields.data.datasource.menuItems} />
+              <NavMain menuItems={datasource.menuItems} />
             </div>
           </div>
           <div className="wrap">
@@ -77,7 +77,7 @@ export default class GlobalHeaderControl extends JSS.SafePureComponent<GlobalHea
             <i className="fa fa-bars" />
           </a>
           <NavigationLink to="/" className="logo">
-            <img src={LogoMainMobile} alt="HCA Logo" />
+            <Image media={datasource.mobileLogo.jss} />
           </NavigationLink>
         </header>
         <div id="closeOverlay" onClick={(e) => this.closeMenu(e)}>

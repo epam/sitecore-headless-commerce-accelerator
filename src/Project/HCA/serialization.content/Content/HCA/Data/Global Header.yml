@@ -16,6 +16,15 @@ SharedFields:
     {26AC44E4-4579-44FF-B746-70B157600190}
 Languages:
 - Language: en
+  Fields:
+  - ID: "767046a1-f0a7-4942-bfd8-3ac44b70f29f"
+    Hint: Mobile Logo
+    Value: |
+      <image mediaid="{3BD521F9-EDDE-49D6-A995-9C5B85EB5AAE}" />
+  - ID: "e3d69d99-45fc-4349-8114-6bd764a1db5e"
+    Hint: Logo
+    Value: |
+      <image mediaid="{DFB1D217-25B4-4F12-BE23-BA39451BF247}" />
   Versions:
   - Version: 1
     Fields:

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,12 @@ export interface BaseDataSourceItem {
   id: string;
 }
 
+export interface GraphQLDataSourceItem<TDataSourceItem> {
+  data: {
+    datasource: TDataSourceItem;
+  };
+}
+
 export interface BaseRenderingParam {
   caching?: string;
 }
@@ -30,6 +36,10 @@ export interface Item<TDataSourceItem> {
 
 export interface GraphQLField<TFieldValue> {
   jss: TFieldValue;
+}
+
+export interface GraphQLListField<TFieldValue> {
+  items: TFieldValue[];
 }
 
 export interface ItemList<TDataSourceItem> extends Array<Item<TDataSourceItem>> {}
@@ -47,6 +57,9 @@ export interface Rendering<TDataSourceItem extends BaseDataSourceItem> extends I
   routeFields: any;
   sitecoreContext: any;
 }
+
+export interface GraphQLRendering<TDataSourceItem extends BaseDataSourceItem>
+  extends Item<GraphQLDataSourceItem<TDataSourceItem>> {}
 
 export interface RenderingWithParams<
   TDataSourceItem extends BaseDataSourceItem,

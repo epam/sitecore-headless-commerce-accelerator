@@ -18,9 +18,9 @@ namespace HCA.Foundation.Account
     {
         public static class Pipelines
         {
-            public const string Login = "HCA.foundation.account.login";
+            public const string Login = "hca.foundation.account.login";
 
-            public const string Logout = "HCA.foundation.account.logout";
+            public const string Logout = "hca.foundation.account.logout";
         }
     }
 }

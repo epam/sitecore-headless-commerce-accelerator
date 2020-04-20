@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Feature.PageContent.Models
+namespace HCA.Feature.PageContent.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,12 +39,12 @@ namespace Wooli.Feature.PageContent.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>
     /// IGridLayout Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout</para>
     /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
     /// </summary>
     [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
@@ -80,14 +80,14 @@ namespace Wooli.Feature.PageContent.Models
 
     /// <summary>
     /// GridLayout Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout</para>
     /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
     /// </summary>
     [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
     public partial class GridLayout: GlassBase, IGridLayout
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
         /// </summary>
         public const string TemplateId = "61ed6a03-bbdb-4937-87fa-db5c53fc870c";
 
@@ -126,7 +126,7 @@ namespace Wooli.Feature.PageContent.Models
 
     /// <summary>
     /// IHome Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Home</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home</para>
     /// <para>ID: 309e5f2f-cb6f-4e51-9a39-185be515f278</para>
     /// </summary>
     [SitecoreType(TemplateId="309e5f2f-cb6f-4e51-9a39-185be515f278")]
@@ -218,14 +218,14 @@ namespace Wooli.Feature.PageContent.Models
 
     /// <summary>
     /// Home Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Home</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home</para>
     /// <para>ID: 309e5f2f-cb6f-4e51-9a39-185be515f278</para>
     /// </summary>
     [SitecoreType(TemplateId="309e5f2f-cb6f-4e51-9a39-185be515f278")]
     public partial class Home: GlassBase, IHome
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/PageContent/Home
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Home
         /// </summary>
         public const string TemplateId = "309e5f2f-cb6f-4e51-9a39-185be515f278";
 
@@ -334,7 +334,7 @@ namespace Wooli.Feature.PageContent.Models
 
     /// <summary>
     /// IHomeFolder Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Home Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder</para>
     /// <para>ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2</para>
     /// </summary>
     [SitecoreType(TemplateId="3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2")]
@@ -346,14 +346,14 @@ namespace Wooli.Feature.PageContent.Models
 
     /// <summary>
     /// HomeFolder Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/PageContent/Home Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder</para>
     /// <para>ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2</para>
     /// </summary>
     [SitecoreType(TemplateId="3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2")]
     public partial class HomeFolder: GlassBase, IHomeFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/PageContent/Home Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Home Folder
         /// </summary>
         public const string TemplateId = "3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2";
 

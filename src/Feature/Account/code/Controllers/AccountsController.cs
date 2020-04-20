@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Controllers
+namespace HCA.Feature.Account.Controllers
 {
     using System.Web.Mvc;
 

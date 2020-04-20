@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.ReactJss.Infrastructure
+namespace HCA.Foundation.ReactJss.Infrastructure
 {
     using System;
 

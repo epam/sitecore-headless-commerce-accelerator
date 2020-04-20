@@ -1,0 +1,38 @@
+﻿---
+ID: "4cb38cb2-7c75-41f9-83d5-97564548fc3a"
+Parent: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/templates/HCA/Project/HCA/Pages/Page/__Standard Values
+DB: master
+SharedFields:
+- ID: "ca9b9f52-4fb0-4f87-a79f-24dea62cda65"
+  Hint: __Default workflow
+  Value: 
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{3EF1A39A-6C46-47C9-A3CD-317F24FF29C8}">
+        <r
+          ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
+          id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
+          par=""
+          ph="/wooli-content"
+          uid="{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}" />
+        <r
+          id="{8923317E-48A7-4A3C-80EB-AF11D35F3D9E}"
+          ph="/wooli-content"
+          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180418T155707Z

@@ -2,7 +2,7 @@
 ID: "aa0f5052-3f98-4e0b-85e3-fa52ca478dea"
 Parent: "ca944848-e9d7-4844-af89-bd261db413cf"
 Template: "1404a77a-d5fd-46b3-aa4c-200f3d519979"
-Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/Wooli/Feature/Checkout
+Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Feature/Checkout
 DB: master
 Languages:
 - Language: en

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers.StorefrontSettings
+namespace HCA.Foundation.Commerce.Providers.StorefrontSettings
 {
     using System;
     using System.Linq;
@@ -20,8 +20,6 @@ namespace Wooli.Foundation.Commerce.Providers.StorefrontSettings
     using Connect.Context.Storefront;
 
     using DependencyInjection;
-
-    using Models.Entities.Addresses;
 
     using Sitecore.Diagnostics;
 
@@ -39,7 +37,8 @@ namespace Wooli.Foundation.Commerce.Providers.StorefrontSettings
 
         public string GetPaymentOptionId(string optionTitle)
         {
-            var paymentOptions = this.storefrontContext.StorefrontConfiguration?.PaymentSettings?.SelectedPaymentOptions?.ToList();
+            var paymentOptions = this.storefrontContext.StorefrontConfiguration?.PaymentSettings?.SelectedPaymentOptions
+                ?.ToList();
             if (paymentOptions != null && paymentOptions.Any())
             {
                 var paymentOption = paymentOptions.FirstOrDefault(

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Infrastructure.Pipelines.Initialize
+namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
 {
     using System.Web.Mvc;
     using System.Web.Routing;

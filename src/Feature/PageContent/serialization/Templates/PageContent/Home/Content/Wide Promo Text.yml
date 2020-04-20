@@ -2,7 +2,7 @@
 ID: "bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32"
 Parent: "72ac59b6-aa0d-499b-8f5a-30e0d3f7e0cf"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Wooli/Feature/PageContent/Home/Content/Wide Promo Text
+Path: /sitecore/templates/HCA/Feature/PageContent/Home/Content/Wide Promo Text
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"

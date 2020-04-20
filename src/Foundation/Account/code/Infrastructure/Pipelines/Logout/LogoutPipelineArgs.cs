@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Infrastructure.Pipelines.Logout
+namespace HCA.Foundation.Account.Infrastructure.Pipelines.Logout
 {
     using System.Diagnostics.CodeAnalysis;
 

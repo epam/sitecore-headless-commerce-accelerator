@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Pricing
+namespace HCA.Foundation.Connect.Managers.Pricing
 {
     using System;
     using System.Collections.Generic;

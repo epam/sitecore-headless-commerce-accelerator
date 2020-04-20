@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Pipelines.GetLayoutServiceContext
+namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Collections.Generic;
 

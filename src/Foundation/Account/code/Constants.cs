@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account
+namespace HCA.Foundation.Account
 {
     public static class Constants
     {
         public static class Pipelines
         {
-            public const string Login = "wooli.foundation.account.login";
+            public const string Login = "hca.foundation.account.login";
 
-            public const string Logout = "wooli.foundation.account.logout";
+            public const string Logout = "hca.foundation.account.logout";
         }
     }
 }

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Builders.Cart
+namespace HCA.Foundation.Commerce.Builders.Cart
 {
     using Models.Entities.Cart;
 

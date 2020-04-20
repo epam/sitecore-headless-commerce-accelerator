@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Models.Logging
+namespace HCA.Foundation.Base.Models.Logging
 {
     using System.Diagnostics.CodeAnalysis;
 

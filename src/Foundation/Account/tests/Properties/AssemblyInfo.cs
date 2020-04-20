@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wooli.Foundation.Account.Tests")]
+[assembly: AssemblyTitle("HCA.Foundation.Account.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("Wooli.Foundation.Account.Tests")]
+[assembly: AssemblyProduct("HCA.Foundation.Account.Tests")]
 [assembly: AssemblyCopyright("Copyright © EPAM Systems 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

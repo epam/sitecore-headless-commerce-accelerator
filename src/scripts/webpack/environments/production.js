@@ -46,9 +46,9 @@ const clientWebpackConfigFactory = (projectManifest) => {
     },
     output: {
       path: path.resolve(__dirname, clientOutputPath),
-      // wooli is hadcoded here, because we have to specify the solution name
+      // hca is hadcoded here, because we have to specify the solution name
       // TODO: remove hardcoded solution name from the publicPath
-      publicPath: `/dist/wooli/project/${name.toLowerCase()}`,
+      publicPath: `/dist/hca/project/${name.toLowerCase()}`,
       filename: '[name].bundle.js',
     },
     optimization: {

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Providers.Configuration
+namespace HCA.Foundation.Base.Providers.Configuration
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Base.Providers.Configuration
 
     using Object;
 
-    using Sitecore.Configuration;
     using Sitecore.Diagnostics;
 
     [ExcludeFromCodeCoverage]

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Context.Catalog
+namespace HCA.Foundation.Connect.Tests.Context.Catalog
 {
     using System.Collections.Generic;
     using System.Linq;

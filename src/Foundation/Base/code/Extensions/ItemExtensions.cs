@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Extensions
+namespace HCA.Foundation.Base.Extensions
 {
     using System;
     using System.Collections.Generic;

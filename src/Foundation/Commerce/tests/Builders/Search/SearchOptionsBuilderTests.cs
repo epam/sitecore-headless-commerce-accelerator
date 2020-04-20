@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Builders.Search
+namespace HCA.Foundation.Commerce.Tests.Builders.Search
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
     using Commerce.Builders.Search;
     using Commerce.Mappers.Search;
 
-    using Models;
     using Models.Entities.Search;
 
     using NSubstitute;
@@ -79,7 +78,6 @@ namespace Wooli.Foundation.Commerce.Tests.Builders.Search
             // assert
             Assert.True(searchOptions.SearchKeyword == productSearchOptions.SearchKeyword);
         }
-
 
         [Theory]
         [InlineData(0)]

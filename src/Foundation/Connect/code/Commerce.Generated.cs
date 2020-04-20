@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Foundation.Connect.Models
+namespace HCA.Foundation.Connect.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace Wooli.Foundation.Connect.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>

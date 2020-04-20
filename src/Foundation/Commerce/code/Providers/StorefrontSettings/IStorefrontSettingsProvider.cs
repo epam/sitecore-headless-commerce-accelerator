@@ -12,10 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Providers.StorefrontSettings
+namespace HCA.Foundation.Commerce.Providers.StorefrontSettings
 {
-    using Models.Entities.Addresses;
-
     /// <summary>
     /// Provides storefront settings
     /// </summary>

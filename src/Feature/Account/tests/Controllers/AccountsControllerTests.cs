@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Account.Tests.Controllers
+namespace HCA.Feature.Account.Tests.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,6 @@ namespace Wooli.Feature.Account.Tests.Controllers
     using Account.Controllers;
     using Account.Mappers;
 
-    using Foundation.Base.Models;
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;

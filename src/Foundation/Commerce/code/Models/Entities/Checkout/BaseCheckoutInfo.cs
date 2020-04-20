@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Models.Entities.Checkout
+namespace HCA.Foundation.Commerce.Models.Entities.Checkout
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

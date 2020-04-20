@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Repositories
+namespace HCA.Foundation.Commerce.Tests.Repositories
 {
     using Commerce.Repositories;
 

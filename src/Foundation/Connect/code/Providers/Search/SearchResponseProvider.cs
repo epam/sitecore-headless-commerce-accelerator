@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Providers.Search
+namespace HCA.Foundation.Connect.Providers.Search
 {
     using System.Diagnostics.CodeAnalysis;
 

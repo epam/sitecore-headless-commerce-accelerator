@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Managers.Order
+namespace HCA.Foundation.Connect.Tests.Managers.Order
 {
     using System;
 
@@ -27,6 +27,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Order
 
     using Providers;
 
+    using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services.Orders;
 
     using Xunit;
@@ -133,7 +134,7 @@ namespace Wooli.Foundation.Connect.Tests.Managers.Order
         public void SubmitVisitorOrder_ShouldCallExecuteMethod()
         {
             // act
-            this.manager.SubmitVisitorOrder(new Sitecore.Commerce.Entities.Carts.Cart());
+            this.manager.SubmitVisitorOrder(new Cart());
 
             // assert
             this.manager.Received(1)

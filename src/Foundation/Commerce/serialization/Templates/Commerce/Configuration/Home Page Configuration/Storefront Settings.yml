@@ -2,7 +2,7 @@
 ID: "5e556a27-3572-45d8-8060-b7594b702da3"
 Parent: "c188ca00-aaa5-4385-bb4e-60d7e0244e4c"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Home Page Configuration/Storefront Settings
+Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration/Storefront Settings
 DB: master
 Languages:
 - Language: en

@@ -2,7 +2,7 @@
 ID: "e3538fc5-6e16-4d93-a988-7bc57e184e87"
 Parent: "f4ba5f16-0a33-46e3-ad7a-60ce4ed52bda"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/Wooli/Feature/Account/Change User Information Form
+Path: /sitecore/layout/Renderings/HCA/Feature/Account/Change User Information Form
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"

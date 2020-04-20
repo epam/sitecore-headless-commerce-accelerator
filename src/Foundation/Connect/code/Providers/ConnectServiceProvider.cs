@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Providers
+namespace HCA.Foundation.Connect.Providers
 {
     using Base.Providers.Object;
 
@@ -28,7 +28,6 @@ namespace Wooli.Foundation.Connect.Providers
     using Sitecore.Commerce.Services.Payments;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
-    using Sitecore.Configuration;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IConnectServiceProvider), Lifetime = Lifetime.Singleton)]

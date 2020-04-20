@@ -2,7 +2,7 @@
 ID: "9c0c3096-1e35-44ba-9b5c-ba70c6ea846f"
 Parent: "f4ba5f16-0a33-46e3-ad7a-60ce4ed52bda"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: "/sitecore/layout/Renderings/Wooli/Feature/Account/Sign-up Form"
+Path: "/sitecore/layout/Renderings/HCA/Feature/Account/Sign-up Form"
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"

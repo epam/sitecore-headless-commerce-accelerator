@@ -2,7 +2,7 @@
 ID: "f762a837-25c0-4575-ab67-f59574032e4a"
 Parent: "e3689be4-ca41-4ede-a758-c7e8f6028bfd"
 Template: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e"
-Path: /sitecore/templates/Branches/Wooli/Foundation/Commerce
+Path: /sitecore/templates/Branches/HCA/Foundation/Commerce
 DB: master
 Languages:
 - Language: en

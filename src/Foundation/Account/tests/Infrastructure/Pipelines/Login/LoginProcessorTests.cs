@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Tests.Infrastructure.Pipelines.Login
+namespace HCA.Foundation.Account.Tests.Infrastructure.Pipelines.Login
 {
     using Account.Infrastructure.Pipelines.Login;
 

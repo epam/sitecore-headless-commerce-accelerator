@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Controllers
+namespace HCA.Foundation.Base.Controllers
 {
     using System;
     using System.Linq;
@@ -21,7 +21,6 @@ namespace Wooli.Foundation.Base.Controllers
 
     using Extensions;
 
-    using Models;
     using Models.Result;
 
     public class BaseController : Controller

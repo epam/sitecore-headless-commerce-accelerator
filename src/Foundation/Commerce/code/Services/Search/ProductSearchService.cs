@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Search
+namespace HCA.Foundation.Commerce.Services.Search
 {
-    using Base.Models;
     using Base.Models.Result;
 
     using Builders.Search;
@@ -68,8 +67,9 @@ namespace Wooli.Foundation.Commerce.Services.Search
             var searchSettings = this.searchSettingsProvider.GetSearchSettings(productSearchOptions.CategoryId);
             var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
             var searchResults = this.searchService.GetProducts(searchOptions);
-            
-            return new Result<ProductSearchResults>(this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults));
+
+            return new Result<ProductSearchResults>(
+                this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults));
         }
     }
 }

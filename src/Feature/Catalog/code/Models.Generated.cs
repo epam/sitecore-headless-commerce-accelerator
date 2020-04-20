@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Feature.Catalog.Models
+namespace HCA.Feature.Catalog.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,12 +39,12 @@ namespace Wooli.Feature.Catalog.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>
     /// IProductColorMapping Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping</para>
     /// <para>ID: ca4b8e4a-bfec-474a-8a85-e7df2d9c1404</para>
     /// </summary>
     [SitecoreType(TemplateId="ca4b8e4a-bfec-474a-8a85-e7df2d9c1404")]
@@ -72,14 +72,14 @@ namespace Wooli.Feature.Catalog.Models
 
     /// <summary>
     /// ProductColorMapping Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping</para>
     /// <para>ID: ca4b8e4a-bfec-474a-8a85-e7df2d9c1404</para>
     /// </summary>
     [SitecoreType(TemplateId="ca4b8e4a-bfec-474a-8a85-e7df2d9c1404")]
     public partial class ProductColorMapping: GlassBase, IProductColorMapping
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping
         /// </summary>
         public const string TemplateId = "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404";
 
@@ -108,7 +108,7 @@ namespace Wooli.Feature.Catalog.Models
 
     /// <summary>
     /// IProductColorMappingFolder Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping Folder</para>
     /// <para>ID: 93687745-63f3-4022-8cb0-29848c918a18</para>
     /// </summary>
     [SitecoreType(TemplateId="93687745-63f3-4022-8cb0-29848c918a18")]
@@ -120,14 +120,14 @@ namespace Wooli.Feature.Catalog.Models
 
     /// <summary>
     /// ProductColorMappingFolder Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping Folder</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping Folder</para>
     /// <para>ID: 93687745-63f3-4022-8cb0-29848c918a18</para>
     /// </summary>
     [SitecoreType(TemplateId="93687745-63f3-4022-8cb0-29848c918a18")]
     public partial class ProductColorMappingFolder: GlassBase, IProductColorMappingFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping Folder
         /// </summary>
         public const string TemplateId = "93687745-63f3-4022-8cb0-29848c918a18";
 

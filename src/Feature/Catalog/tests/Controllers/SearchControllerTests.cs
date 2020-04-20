@@ -12,14 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Catalog.Tests.Controllers
+namespace HCA.Feature.Catalog.Tests.Controllers
 {
     using System;
 
     using Catalog.Controllers;
     using Catalog.Mappers;
 
-    using Foundation.Base.Models;
     using Foundation.Base.Models.Result;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;

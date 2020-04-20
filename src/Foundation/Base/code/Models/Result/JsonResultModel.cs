@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Base.Models.Result
+namespace HCA.Foundation.Base.Models.Result
 {
     public class JsonResultModel
     {

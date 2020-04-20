@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Inventory
+namespace HCA.Foundation.Connect.Managers.Inventory
 {
     using System.Collections.Generic;
 

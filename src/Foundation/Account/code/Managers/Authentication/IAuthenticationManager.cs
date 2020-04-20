@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Account.Managers.Authentication
+namespace HCA.Foundation.Account.Managers.Authentication
 {
     /// <summary>
     /// Proxy for static AuthenticationManager

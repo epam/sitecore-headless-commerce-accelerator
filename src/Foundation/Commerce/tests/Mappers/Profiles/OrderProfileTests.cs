@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
+namespace HCA.Foundation.Commerce.Tests.Mappers.Profiles
 {
     using AutoMapper;
 
@@ -26,8 +26,7 @@ namespace Wooli.Foundation.Commerce.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(
-                cfg => { cfg.AddProfile<OrderProfile>(); });
+            var configuration = new MapperConfiguration(cfg => { cfg.AddProfile<OrderProfile>(); });
 
             // act, assert
             configuration.AssertConfigurationIsValid();

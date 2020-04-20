@@ -19,11 +19,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wooli.Foundation.Connect")]
-[assembly: AssemblyDescription("Wooli.Foundation.Connect")]
+[assembly: AssemblyTitle("HCA.Foundation.Connect")]
+[assembly: AssemblyDescription("HCA.Foundation.Connect")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("Wooli.Foundation.Connect")]
+[assembly: AssemblyProduct("HCA.Foundation.Connect")]
 [assembly: AssemblyCopyright("Copyright �  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -45,4 +45,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("Wooli.Foundation.Connect.Tests")]
+[assembly: InternalsVisibleTo("HCA.Foundation.Connect.Tests")]

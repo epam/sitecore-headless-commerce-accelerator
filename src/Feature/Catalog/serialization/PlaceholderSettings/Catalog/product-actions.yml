@@ -2,7 +2,7 @@
 ID: "1ac5575a-9610-4bba-860b-70bc4953782b"
 Parent: "a5d2a17d-9104-434b-8b19-c77c09f0e796"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
-Path: "/sitecore/layout/Placeholder Settings/Wooli/Feature/Catalog/product-actions"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Catalog/product-actions"
 DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"

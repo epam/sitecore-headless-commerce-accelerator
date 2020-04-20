@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Builders.Products
+namespace HCA.Foundation.Connect.Builders.Products
 {
     using System.Collections.Generic;
 

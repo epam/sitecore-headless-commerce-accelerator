@@ -12,35 +12,34 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Mappers.Profiles
+namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
     using System.Diagnostics.CodeAnalysis;
 
     using AutoMapper;
 
-    using Connect.Models;
-
     using Models.Entities.Addresses;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
+    using Sitecore.Commerce.Entities;
 
     [ExcludeFromCodeCoverage]
     public class AddressProfile : Profile
     {
         public AddressProfile()
         {
-            this.CreateMap<Sitecore.Commerce.Entities.Party, Address>()
+            this.CreateMap<Party, Address>()
                 .ForMember(dest => dest.Name, opt => opt.Ignore())
                 .ForMember(dest => dest.CountryCode, opt => opt.Ignore())
                 .ReverseMap();
 
             this.CreateMap<CommerceParty, Address>()
-                .IncludeBase<Sitecore.Commerce.Entities.Party, Address>()
+                .IncludeBase<Party, Address>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.CountryCode, opt => opt.MapFrom(src => src.CountryCode))
                 .ReverseMap();
 
-            this.CreateMap<Address, Party>()
+            this.CreateMap<Address, Connect.Models.Party>()
                 .ForMember(dest => dest.Company, opt => opt.Ignore())
                 .ForMember(dest => dest.PhoneNumber, opt => opt.Ignore())
                 .ForMember(dest => dest.Facet, opt => opt.Ignore())

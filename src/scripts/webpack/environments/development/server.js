@@ -9,13 +9,13 @@ const devServerOptionsBuilder = require('./devServerOptions');
 const { ManifestsManager } = require('./utils');
 
 // import project manifests
-const wooliManifest = require('./../../../../Project/Wooli/client/manifest');
+const hcaManifest = require('./../../../../Project/HCA/client/manifest');
 
 // get params
 const { project, env } = yargs.argv;
 const staticContent = !!yargs.argv['static-content'];
 
-const manifestsManager = new ManifestsManager([wooliManifest]);
+const manifestsManager = new ManifestsManager([hcaManifest]);
 
 try {
   const DEFAULT_PORT = 8080;

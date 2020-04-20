@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
+namespace HCA.Feature.Checkout.Infrastructure.Pipelines.ContentsResolvers
 {
     using System.Linq;
 

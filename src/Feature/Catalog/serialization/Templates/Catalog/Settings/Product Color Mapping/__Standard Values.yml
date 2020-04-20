@@ -2,7 +2,7 @@
 ID: "a9d59828-f14d-4dbd-90d0-58f596c66ae6"
 Parent: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
 Template: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
-Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping/__Standard Values
+Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping/__Standard Values
 DB: master
 Languages:
 - Language: en

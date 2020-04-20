@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Feature.Checkout.Models
+namespace HCA.Feature.Checkout.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,12 +39,12 @@ namespace Wooli.Feature.Checkout.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>
     /// ICheckoutNavigation Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation</para>
     /// <para>ID: 57cfa14b-718e-43c4-a1e0-5553ec8000b8</para>
     /// </summary>
     [SitecoreType(TemplateId="57cfa14b-718e-43c4-a1e0-5553ec8000b8")]
@@ -80,14 +80,14 @@ namespace Wooli.Feature.Checkout.Models
 
     /// <summary>
     /// CheckoutNavigation Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation</para>
     /// <para>ID: 57cfa14b-718e-43c4-a1e0-5553ec8000b8</para>
     /// </summary>
     [SitecoreType(TemplateId="57cfa14b-718e-43c4-a1e0-5553ec8000b8")]
     public partial class CheckoutNavigation: GlassBase, ICheckoutNavigation
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Checkout/Data Sources/Checkout Navigation
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation
         /// </summary>
         public const string TemplateId = "57cfa14b-718e-43c4-a1e0-5553ec8000b8";
 
@@ -126,7 +126,7 @@ namespace Wooli.Feature.Checkout.Models
 
     /// <summary>
     /// ICheckoutStep Interface
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step</para>
     /// <para>ID: 41bec638-40fe-4a75-ace5-f3377299d8fa</para>
     /// </summary>
     [SitecoreType(TemplateId="41bec638-40fe-4a75-ace5-f3377299d8fa")]
@@ -146,14 +146,14 @@ namespace Wooli.Feature.Checkout.Models
 
     /// <summary>
     /// CheckoutStep Class
-    /// <para>Path: /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step</para>
     /// <para>ID: 41bec638-40fe-4a75-ace5-f3377299d8fa</para>
     /// </summary>
     [SitecoreType(TemplateId="41bec638-40fe-4a75-ace5-f3377299d8fa")]
     public partial class CheckoutStep: GlassBase, ICheckoutStep
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Feature/Checkout/Abstract/_Checkout Step
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step
         /// </summary>
         public const string TemplateId = "41bec638-40fe-4a75-ace5-f3377299d8fa";
 

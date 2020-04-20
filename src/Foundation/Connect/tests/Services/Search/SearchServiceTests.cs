@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Services.Search
+namespace HCA.Foundation.Connect.Tests.Services.Search
 {
     using System;
     using System.Linq;
-    using Builders.Search;
+
     using Connect.Builders.Products;
     using Connect.Builders.Search;
     using Connect.Mappers.Search;

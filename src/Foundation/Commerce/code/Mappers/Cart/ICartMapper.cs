@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Mappers.Cart
+namespace HCA.Foundation.Commerce.Mappers.Cart
 {
     using Base.Mappers;
 

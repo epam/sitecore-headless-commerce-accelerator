@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Tests.Builders.Products
+namespace HCA.Foundation.Connect.Tests.Builders.Products
 {
     using System.Collections.Generic;
 
@@ -173,7 +173,8 @@ namespace Wooli.Foundation.Connect.Tests.Builders.Products
 
         [Theory]
         [MemberData(nameof(SetStockStatusParameters))]
-        public void SetStockStatus_IfParameterIsNull_ShouldNotThrowException(BaseProduct product,
+        public void SetStockStatus_IfParameterIsNull_ShouldNotThrowException(
+            BaseProduct product,
             StockInformation stockInformation)
         {
             // arrange

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce
+namespace HCA.Foundation.Commerce
 {
     public static class Constants
     {

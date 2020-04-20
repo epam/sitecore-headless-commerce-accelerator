@@ -2,7 +2,7 @@
 ID: "b99ca0c7-ee56-466b-99e5-d30dfddb75ae"
 Parent: "b8655cbd-077a-4510-a238-f0f0fcc6749a"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Login/Settings/DefaultUser
+Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login/Settings/DefaultUser
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"

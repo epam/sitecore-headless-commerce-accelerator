@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Models.Catalog
+namespace HCA.Foundation.Connect.Models.Catalog
 {
     using System;
     using System.Collections.Generic;

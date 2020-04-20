@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Mappers.Resolvers
+namespace HCA.Foundation.Connect.Mappers.Resolvers
 {
     using System.Collections.Generic;
 
@@ -20,7 +20,12 @@ namespace Wooli.Foundation.Connect.Mappers.Resolvers
 
     public class MultilistFieldResolver : IMemberValueResolver<object, object, string, IList<string>>
     {
-        public IList<string> Resolve(object source, object destination, string sourceMember, IList<string> destinationMember, ResolutionContext context)
+        public IList<string> Resolve(
+            object source,
+            object destination,
+            string sourceMember,
+            IList<string> destinationMember,
+            ResolutionContext context)
         {
             return sourceMember?.Split('|') ?? new string[] { };
         }

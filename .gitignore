@@ -120,8 +120,8 @@ Code Generation Templates/*.tt
 /license.xml
 
 # Front-end artifacts
-/src/Project/Wooli/client/build
-/src/Project/Wooli/code/dist/
+/src/Project/HCA/client/build
+/src/Project/HCA/code/dist/
 
 # Development environment
 /src/scripts/webpack/environments/development/sitecore-context.json

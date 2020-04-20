@@ -2,7 +2,7 @@
 ID: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
 Parent: "a9610f6d-b2a2-42d3-a1e7-ed3daec17074"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/Wooli/Feature/Catalog/Settings/Product Color Mapping
+Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping
 DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"

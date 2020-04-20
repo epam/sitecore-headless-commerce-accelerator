@@ -17,7 +17,7 @@
 #pragma warning disable 1591
 #pragma warning disable 0108
 
-namespace Wooli.Feature.Catalog.Models
+namespace HCA.Feature.Catalog.Models
 {
     using System.Collections.Generic;
 

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Connect.Managers.Shipping
+namespace HCA.Foundation.Connect.Managers.Shipping
 {
     using Base.Models.Logging;
     using Base.Services.Logging;

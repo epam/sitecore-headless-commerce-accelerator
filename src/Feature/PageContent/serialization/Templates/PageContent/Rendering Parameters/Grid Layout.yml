@@ -2,7 +2,7 @@
 ID: "61ed6a03-bbdb-4937-87fa-db5c53fc870c"
 Parent: "6c871244-64d8-4175-a8f3-ff7eec595cf4"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/Wooli/Feature/PageContent/Rendering Parameters/Grid Layout
+Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
 DB: master
 SharedFields:
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"

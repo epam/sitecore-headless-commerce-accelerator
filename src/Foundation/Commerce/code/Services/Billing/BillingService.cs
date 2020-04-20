@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace Wooli.Foundation.Commerce.Services.Billing
+namespace HCA.Foundation.Commerce.Services.Billing
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Base.Models;
     using Base.Models.Result;
 
     using Connect.Context.Storefront;
@@ -195,7 +194,8 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             {
                 result.Data.PaymentMethods =
                     this.paymentMapper
-                        .Map<IReadOnlyCollection<PaymentMethod>, List<Models.Entities.Payment.PaymentMethod>>(getPaymentMethodsResult.PaymentMethods);
+                        .Map<IReadOnlyCollection<PaymentMethod>, List<Models.Entities.Payment.PaymentMethod>>(
+                            getPaymentMethodsResult.PaymentMethods);
             }
             else
             {
@@ -211,7 +211,8 @@ namespace Wooli.Foundation.Commerce.Services.Billing
             {
                 result.Data.PaymentOptions =
                     this.paymentMapper
-                        .Map<IReadOnlyCollection<PaymentOption>, List<Models.Entities.Payment.PaymentOption>>(getPaymentOptionsResult.PaymentOptions);
+                        .Map<IReadOnlyCollection<PaymentOption>, List<Models.Entities.Payment.PaymentOption>>(
+                            getPaymentOptionsResult.PaymentOptions);
             }
             else
             {

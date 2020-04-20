@@ -24,7 +24,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wooli.Foundation.Commerce.Models
+namespace HCA.Foundation.Commerce.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,12 +39,12 @@ namespace Wooli.Foundation.Commerce.Models
     using Sitecore.Data.Items;
 
     using System.CodeDom.Compiler;
-    using Wooli.Foundation.GlassMapper.Models;
+    using HCA.Foundation.GlassMapper.Models;
 
 
     /// <summary>
     /// IHomePageConfiguration Interface
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Home Page Configuration</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration</para>
     /// <para>ID: c188ca00-aaa5-4385-bb4e-60d7e0244e4c</para>
     /// </summary>
     [SitecoreType(TemplateId="c188ca00-aaa5-4385-bb4e-60d7e0244e4c")]
@@ -64,14 +64,14 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// HomePageConfiguration Class
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Home Page Configuration</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration</para>
     /// <para>ID: c188ca00-aaa5-4385-bb4e-60d7e0244e4c</para>
     /// </summary>
     [SitecoreType(TemplateId="c188ca00-aaa5-4385-bb4e-60d7e0244e4c")]
     public partial class HomePageConfiguration: GlassBase, IHomePageConfiguration
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Home Page Configuration
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration
         /// </summary>
         public const string TemplateId = "c188ca00-aaa5-4385-bb4e-60d7e0244e4c";
 
@@ -90,7 +90,7 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// ILogin Interface
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Login</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login</para>
     /// <para>ID: 3fbc5bfa-6e94-493a-9128-f6356f5f3d16</para>
     /// </summary>
     [SitecoreType(TemplateId="3fbc5bfa-6e94-493a-9128-f6356f5f3d16")]
@@ -110,14 +110,14 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// Login Class
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Login</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login</para>
     /// <para>ID: 3fbc5bfa-6e94-493a-9128-f6356f5f3d16</para>
     /// </summary>
     [SitecoreType(TemplateId="3fbc5bfa-6e94-493a-9128-f6356f5f3d16")]
     public partial class Login: GlassBase, ILogin
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Foundation/Commerce/Configuration/Login
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login
         /// </summary>
         public const string TemplateId = "3fbc5bfa-6e94-493a-9128-f6356f5f3d16";
 
@@ -136,7 +136,7 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// ICategoryItem Interface
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Category Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Category Item</para>
     /// <para>ID: f5ea378c-547f-4482-9de6-14eb416a9b30</para>
     /// </summary>
     [SitecoreType(TemplateId="f5ea378c-547f-4482-9de6-14eb416a9b30")]
@@ -148,14 +148,14 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// CategoryItem Class
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Category Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Category Item</para>
     /// <para>ID: f5ea378c-547f-4482-9de6-14eb416a9b30</para>
     /// </summary>
     [SitecoreType(TemplateId="f5ea378c-547f-4482-9de6-14eb416a9b30")]
     public partial class CategoryItem: GlassBase, ICategoryItem
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Category Item
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Category Item
         /// </summary>
         public const string TemplateId = "f5ea378c-547f-4482-9de6-14eb416a9b30";
 
@@ -164,7 +164,7 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// IProductItem Interface
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Product Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Product Item</para>
     /// <para>ID: 97fb3bfc-0774-495c-99f6-c63739985173</para>
     /// </summary>
     [SitecoreType(TemplateId="97fb3bfc-0774-495c-99f6-c63739985173")]
@@ -176,14 +176,14 @@ namespace Wooli.Foundation.Commerce.Models
 
     /// <summary>
     /// ProductItem Class
-    /// <para>Path: /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Product Item</para>
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Product Item</para>
     /// <para>ID: 97fb3bfc-0774-495c-99f6-c63739985173</para>
     /// </summary>
     [SitecoreType(TemplateId="97fb3bfc-0774-495c-99f6-c63739985173")]
     public partial class ProductItem: GlassBase, IProductItem
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/Wooli/Foundation/Commerce/Context Resolving/_Product Item
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Product Item
         /// </summary>
         public const string TemplateId = "97fb3bfc-0774-495c-99f6-c63739985173";
 

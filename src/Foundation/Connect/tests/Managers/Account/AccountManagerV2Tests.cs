@@ -15,6 +15,8 @@
 namespace HCA.Foundation.Connect.Tests.Managers.Account
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
@@ -27,6 +29,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
 
     using Providers;
 
+    using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;
 
@@ -40,31 +43,174 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
 
         private readonly IFixture fixture;
 
-        private readonly GetUserResult getUserResult;
-
-        private readonly ILogService<CommonLog> logService;
-
         public AccountManagerV2Tests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
+            var logService = Substitute.For<ILogService<CommonLog>>();
 
             this.customerServiceProvider = Substitute.For<CustomerServiceProvider>();
             connectServiceProvider.GetCustomerServiceProvider().Returns(this.customerServiceProvider);
+
+            this.accountManager = Substitute.For<AccountManagerV2>(connectServiceProvider, logService);
+
             this.fixture = new Fixture();
-            this.getUserResult = this.fixture.Build<GetUserResult>()
-                .With(res => res.Success, true)
-                .Create();
-            this.logService = Substitute.For<ILogService<CommonLog>>();
-
-            this.accountManager = Substitute.For<AccountManagerV2>(connectServiceProvider, this.logService);
-
-            this.accountManager.Execute(Arg.Any<GetUserRequest>(), this.customerServiceProvider.GetUser)
-                .Returns(this.getUserResult);
         }
+
+        public static IEnumerable<object[]> PartiesParameters =>
+            new List<object[]>
+            {
+                new object[] { null, Enumerable.Empty<Party>() },
+                new object[] { new CommerceCustomer(), null }
+            };
+
+        #region GetUsers
+
+        [Fact]
+        public void GetUsers_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.GetUsers(this.fixture.Create<UserSearchCriteria>());
+
+            // assert
+            this.accountManager.Received(1).Execute(Arg.Any<GetUsersRequest>(), this.customerServiceProvider.GetUsers);
+        }
+
+        #endregion
+
+        #region AddParties
+
+        [Theory]
+        [MemberData(nameof(PartiesParameters))]
+        public void AddParties_IfParameterIsNull_ShouldThrowArgumentNullException(
+            CommerceCustomer customer,
+            IEnumerable<Party> parties)
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.AddParties(customer, parties));
+        }
+
+        [Fact]
+        public void AddParties_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.AddParties(this.fixture.Create<CommerceCustomer>(), this.fixture.Create<List<Party>>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<AddPartiesRequest>(), this.customerServiceProvider.AddParties);
+        }
+
+        #endregion
+
+        #region CreateUser
+
+        [Theory]
+        [InlineData("", "1", "1", "1")]
+        [InlineData("1", "", "1", "1")]
+        [InlineData("1", "1", "", "1")]
+        [InlineData("1", "1", "1", "")]
+        public void CreateUser_IfParameterIsEmpty_ShouldThrowArgumentException(
+            string userName,
+            string email,
+            string password,
+            string shopName)
+        {
+            // act & assert
+            Assert.Throws<ArgumentException>(() => this.accountManager.CreateUser(userName, email, password, shopName));
+        }
+
+        [Theory]
+        [InlineData(null, "1", "1", "1")]
+        [InlineData("1", null, "1", "1")]
+        [InlineData("1", "1", null, "1")]
+        [InlineData("1", "1", "1", null)]
+        public void CreateUser_IfParameterIsNull_ShouldThrowArgumentNullException(
+            string userName,
+            string email,
+            string password,
+            string shopName)
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(
+                () => this.accountManager.CreateUser(userName, email, password, shopName));
+        }
+
+        [Fact]
+        public void CreateUser_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.CreateUser(
+                this.fixture.Create<string>(),
+                this.fixture.Create<string>(),
+                this.fixture.Create<string>(),
+                this.fixture.Create<string>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<CreateUserRequest>(), this.customerServiceProvider.CreateUser);
+        }
+
+        #endregion
+
+        #region EnableUser
+
+        [Fact]
+        public void EnableUser_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.EnableUser(null));
+        }
+
+        [Fact]
+        public void EnableUser_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.EnableUser(this.fixture.Create<CommerceUser>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<EnableUserRequest>(), this.customerServiceProvider.EnableUser);
+        }
+
+        #endregion
+
+        #region GetCustomer
+
+        [Fact]
+        public void GetCustomer_IfParameterIsEmpty_ShouldThrowArgumentException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentException>(() => this.accountManager.GetCustomer(string.Empty));
+        }
+
+        [Fact]
+        public void GetCustomer_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.GetCustomer(null));
+        }
+
+        [Fact]
+        public void GetCustomer_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.GetCustomer(this.fixture.Create<string>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<GetCustomerRequest>(), this.customerServiceProvider.GetCustomer);
+        }
+
+        #endregion
+
+        #region GetCustomerParties
 
         [Fact]
         public void GetCustomerParties_IfGetUserResultIsSuccessful_ShouldCallExecuteMethodWithGetPartiesMethod()
         {
+            // arrange
+            this.InitGetCustomerParties(true);
+
             // act
             this.accountManager.GetCustomerParties(this.fixture.Create<string>());
 
@@ -77,7 +223,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
         public void GetCustomerParties_IfGetUserResultIsUnsuccessful_ShouldReturnEmptyGetPartiesResult()
         {
             // arrange
-            this.getUserResult.Success = false;
+            this.InitGetCustomerParties(false);
 
             // act
             var actualGetPartiesResult = this.accountManager.GetCustomerParties(this.fixture.Create<string>());
@@ -100,6 +246,20 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
             Assert.Throws<ArgumentNullException>(() => this.accountManager.GetCustomerParties(null));
         }
 
+        private void InitGetCustomerParties(bool getUserSuccess)
+        {
+            var getUserResult = this.fixture.Build<GetUserResult>()
+                .With(res => res.Success, getUserSuccess)
+                .Create();
+
+            this.accountManager.Execute(Arg.Any<GetUserRequest>(), this.customerServiceProvider.GetUser)
+                .Returns(getUserResult);
+        }
+
+        #endregion
+
+        #region GetParties
+
         [Fact]
         public void GetParties_IfParameterIsNull_ShouldThrowArgumentNullException()
         {
@@ -117,6 +277,10 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
             this.accountManager.Received(1)
                 .Execute(Arg.Any<GetPartiesRequest>(), this.customerServiceProvider.GetParties);
         }
+
+        #endregion
+
+        #region GetUser
 
         [Fact]
         public void GetUser_IfParameterIsEmpty_ShouldThrowArgumentException()
@@ -141,5 +305,83 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
             // assert
             this.accountManager.Received(1).Execute(Arg.Any<GetUserRequest>(), this.customerServiceProvider.GetUser);
         }
+
+        #endregion
+
+        #region RemoveParties
+
+        [Theory]
+        [MemberData(nameof(PartiesParameters))]
+        public void RemoveParties_IfParameterIsNull_ShouldThrowArgumentNullException(
+            CommerceCustomer customer,
+            IEnumerable<Party> parties)
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.RemoveParties(customer, parties));
+        }
+
+        [Fact]
+        public void RemoveParties_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.RemoveParties(
+                this.fixture.Create<CommerceCustomer>(),
+                this.fixture.Create<List<Party>>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<RemovePartiesRequest>(), this.customerServiceProvider.RemoveParties);
+        }
+
+        #endregion
+
+        #region UpdateParties
+
+        [Theory]
+        [MemberData(nameof(PartiesParameters))]
+        public void UpdateParties_IfParameterIsNull_ShouldThrowArgumentNullException(
+            CommerceCustomer customer,
+            IEnumerable<Party> parties)
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.UpdateParties(customer, parties));
+        }
+
+        [Fact]
+        public void UpdateParties_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.UpdateParties(
+                this.fixture.Create<CommerceCustomer>(),
+                this.fixture.Create<List<Party>>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<UpdatePartiesRequest>(), this.customerServiceProvider.UpdateParties);
+        }
+
+        #endregion
+
+        #region UpdateUser
+
+        [Fact]
+        public void UpdateUser_IfParameterIsNull_ShouldThrowArgumentNullException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.accountManager.UpdateUser(null));
+        }
+
+        [Fact]
+        public void UpdateUser_ShouldCallExecuteMethod()
+        {
+            // act
+            this.accountManager.UpdateUser(this.fixture.Create<CommerceUser>());
+
+            // assert
+            this.accountManager.Received(1)
+                .Execute(Arg.Any<UpdateUserRequest>(), this.customerServiceProvider.UpdateUser);
+        }
+
+        #endregion
     }
 }

@@ -20,7 +20,7 @@ import * as Models from 'Foundation/Commerce/client';
 export interface OrderHistoryOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 
 export interface OrderHistoryStateProps {
-  orders: Models.OrderModel[];
+  orders: Models.Order[];
   isLoading: boolean;
   isLastPage: boolean;
 }

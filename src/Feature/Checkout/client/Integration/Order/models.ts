@@ -21,7 +21,7 @@ export interface OrderRequestPayload {
 }
 
 export interface OrderSuccessPayload extends Status {
-  order?: Commerce.OrderModel;
+  order?: Commerce.Order;
   trackingNumber?: string;
 }
 

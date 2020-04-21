@@ -14,13 +14,13 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Order from 'Feature/Checkout/client/Integration/Order';
-import { CartModel } from 'Foundation/Commerce/client';
+import * as Orders from 'Feature/Checkout/client/Integration/Order';
+import { Order } from 'Foundation/Commerce/client';
 
 export interface OrderConfirmationOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 
 export interface OrderConfirmationStateProps {
-  currentOrder: CartModel;
+  currentOrder: Order;
   trackingNumber: string;
 }
 
@@ -31,4 +31,4 @@ export interface OrderConfirmationDispatchProps {
 export interface OrderConfirmationProps extends OrderConfirmationOwnProps, OrderConfirmationStateProps, OrderConfirmationDispatchProps {}
 export interface OrderConfirmationState extends JSS.SafePureComponentState {}
 
-export interface AppState extends Order.GlobalCurrentOrderState, JSS.RoutingState {}
+export interface AppState extends Orders.GlobalCurrentOrderState, JSS.RoutingState {}

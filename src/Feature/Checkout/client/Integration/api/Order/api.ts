@@ -19,11 +19,11 @@ import { Result } from 'Foundation/Integration/client';
 
 import { GetOrderResponse, GetOrdersResponse } from './models';
 
-const routeBase = '/apix/client/commerce/order';
+const routeBase = '/apix/client/commerce/orders';
 
-export const getOrder = async (trackingNumber: string): Promise<Result<Commerce.OrderModel>> => {
+export const getOrder = async (trackingNumber: string): Promise<Result<Commerce.Order>> => {
   try {
-    const response = await axios.get<GetOrderResponse>(`${routeBase}/get/${trackingNumber}`);
+    const response = await axios.get<GetOrderResponse>(`${routeBase}/${trackingNumber}`);
 
     const { data } = response;
     if (data.status !== 'ok') {
@@ -35,9 +35,9 @@ export const getOrder = async (trackingNumber: string): Promise<Result<Commerce.
   }
 };
 
-export const getOrders = async (page: number, count: number): Promise<Result<Commerce.OrderHistoryResultModel>> => {
+export const getOrders = async (page: number, count: number): Promise<Result<Commerce.Order[]>> => {
   try {
-    const response = await axios.get<GetOrdersResponse>(`${routeBase}/get`, {
+    const response = await axios.get<GetOrdersResponse>(`${routeBase}`, {
       params: {
         count,
         page

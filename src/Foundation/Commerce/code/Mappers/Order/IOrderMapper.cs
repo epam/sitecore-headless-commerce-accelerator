@@ -17,16 +17,25 @@ namespace HCA.Foundation.Commerce.Mappers.Order
     using Base.Mappers;
 
     using Models.Entities.Order;
+    using Models.Entities.Cart;
 
-    using SitecoreOrder = Sitecore.Commerce.Entities.Orders.Order;
+    using Sitecore = Sitecore.Commerce.Entities.Orders;
 
     public interface IOrderMapper : IMapper
     {
         /// <summary>
+        /// Map Sitecore Cart entity to local Order entity
+        /// </summary>
+        /// <param name="cart">HCA Cart entity</param>
+        /// <returns>Order entity</returns>
+        Order Map(Cart cart);
+
+        /// <summary>
         /// Map Sitecore Order entity to local Order entity
         /// </summary>
         /// <param name="order">Sitecore Order entity</param>
+        /// <param name="result">Order entity for map to</param>
         /// <returns>Order entity</returns>
-        Order Map(SitecoreOrder order);
+        Order Map(Sitecore.Order order, Order result);   
     }
 }

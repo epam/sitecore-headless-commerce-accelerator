@@ -17,15 +17,19 @@ namespace HCA.Foundation.Commerce.Models.Entities.Order
     using System;
     using System.Diagnostics.CodeAnalysis;
 
+    using Cart;
+
     using TypeLite;
 
     [ExcludeFromCodeCoverage]
     [TsClass]
-    public class Order
+    public class Order : Cart
     {
         public string OrderID { get; set; }
 
         public DateTime OrderDate { get; set; }
+
+        public string Status { get; set; }
 
         public string TrackingNumber { get; set; }
 

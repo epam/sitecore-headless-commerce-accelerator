@@ -13,4 +13,4 @@
 //    limitations under the License.
 
 import * as Models from 'Foundation/Commerce/client';
-export interface OrderHistoryItemProps extends Models.OrderModel {}
+export interface OrderHistoryItemProps extends Models.Order {}

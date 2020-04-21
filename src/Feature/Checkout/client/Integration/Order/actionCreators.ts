@@ -21,4 +21,4 @@ export type GetOrder = (trackingNumber: string) => Action<Models.OrderRequestPay
 
 export type GetOrderRequest = (trackingNumber: string) => Action<StatusPayload>;
 
-export type GetOrderSuccess = (value: Commerce.OrderModel) => Action<Models.OrderSuccessPayload>;
+export type GetOrderSuccess = (value: Commerce.Order) => Action<Models.OrderSuccessPayload>;

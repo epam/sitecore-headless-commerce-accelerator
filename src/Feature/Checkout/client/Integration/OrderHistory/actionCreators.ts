@@ -22,7 +22,7 @@ export type GetOrderHistory = () => Action<Models.OrderHistoryRequestPayload>;
 export type GetOrderHistoryRequest = () => Action<StatusPayload>;
 
 export type GetOrderHistorySuccess = (
-  orders: Commerce.OrderModel[],
+  orders: Commerce.Order[],
   currentPageNumber: number,
   isLastPage: boolean
 ) => Action<Models.OrderHistorySuccessPayload>;

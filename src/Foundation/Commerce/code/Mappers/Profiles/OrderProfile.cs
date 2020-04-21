@@ -16,15 +16,21 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
     using AutoMapper;
 
+    using Models.Entities.Cart;
     using Models.Entities.Order;
-
-    using SitecoreOrder = Sitecore.Commerce.Entities.Orders.Order;
 
     public class OrderProfile : Profile
     {
         public OrderProfile()
         {
-            this.CreateMap<SitecoreOrder, Order>();
+            this.CreateMap<Cart, Order>()
+                .ForMember(dest => dest.OrderID, opt => opt.Ignore())
+                .ForMember(dest => dest.OrderDate, opt => opt.Ignore())
+                .ForMember(dest => dest.Status, opt => opt.Ignore())
+                .ForMember(dest => dest.TrackingNumber, opt => opt.Ignore())
+                .ForMember(dest => dest.IsOfflineOrder, opt => opt.Ignore());
+
+            this.CreateMap<Sitecore.Commerce.Entities.Orders.Order, Order>();
         }
     }
 }

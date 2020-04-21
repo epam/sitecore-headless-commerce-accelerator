@@ -44,7 +44,7 @@ export const GetOrderFailure: FailureType = (error: string, stack?) => ({
   type: actionTypes.GET_ORDER_FAILURE,
 });
 
-export const GetOrderSuccess: actionCreators.GetOrderSuccess = (order: Commerce.OrderModel) => ({
+export const GetOrderSuccess: actionCreators.GetOrderSuccess = (order: Commerce.Order) => ({
   payload: {
     order,
     status: LoadingStatus.Loaded,

@@ -16,6 +16,6 @@ import * as Commerce from 'Foundation/Commerce/client';
 
 import { Response } from '../models';
 
-export interface GetOrderResponse extends Response<Commerce.OrderModel> {}
+export interface GetOrderResponse extends Response<Commerce.Order> {}
 
-export interface GetOrdersResponse extends Response<Commerce.OrderHistoryResultModel> {}
+export interface GetOrdersResponse extends Response<Commerce.Order[]> {}

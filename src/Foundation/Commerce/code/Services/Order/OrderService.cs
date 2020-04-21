@@ -22,6 +22,8 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Base.Models.Result;
     using Base.Services.Logging;
 
+    using Builders.Order;
+
     using Connect.Context.Storefront;
     using Connect.Managers.Cart;
     using Connect.Managers.Order;
@@ -29,8 +31,6 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Context;
 
     using DependencyInjection;
-
-    using Mappers.Order;
 
     using Models.Entities.Order;
 
@@ -41,11 +41,11 @@ namespace HCA.Foundation.Commerce.Services.Order
     [Service(typeof(IOrderService), Lifetime = Lifetime.Singleton)]
     public class OrderService : IOrderService
     {
+        private readonly IOrderBuilder builder;
+
         private readonly ICartManagerV2 cartManager;
 
         private readonly ILogService<CommonLog> logService;
-
-        private readonly IOrderMapper mapper;
 
         private readonly IOrderManagerV2 orderManager;
 
@@ -54,7 +54,7 @@ namespace HCA.Foundation.Commerce.Services.Order
         private readonly IVisitorContext visitorContext;
 
         public OrderService(
-            IOrderMapper orderMapper,
+            IOrderBuilder orderBuilder,
             ILogService<CommonLog> logService,
             IOrderManagerV2 orderManager,
             ICartManagerV2 cartManager,
@@ -63,13 +63,13 @@ namespace HCA.Foundation.Commerce.Services.Order
         {
             Assert.ArgumentNotNull(orderManager, nameof(orderManager));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
-            Assert.ArgumentNotNull(orderMapper, nameof(orderMapper));
+            Assert.ArgumentNotNull(orderBuilder, nameof(orderBuilder));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
             this.orderManager = orderManager;
             this.logService = logService;
-            this.mapper = orderMapper;
+            this.builder = orderBuilder;
             this.cartManager = cartManager;
             this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
@@ -91,7 +91,7 @@ namespace HCA.Foundation.Commerce.Services.Order
                 result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
             }
 
-            result.SetResult(this.mapper.Map(orderResult.Order));
+            result.SetResult(this.builder.Build(orderResult.Order));
 
             return result;
         }
@@ -121,7 +121,7 @@ namespace HCA.Foundation.Commerce.Services.Order
 
                             if (orderResult.Success)
                             {
-                                return this.mapper.Map(orderResult.Order);
+                                return this.builder.Build(orderResult.Order);
                             }
 
                             result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());

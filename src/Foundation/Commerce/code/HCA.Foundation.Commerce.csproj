@@ -632,11 +632,14 @@
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
+    <Compile Include="Mappers\Account\AccountMapper.cs" />
+    <Compile Include="Mappers\Account\IAccountMapper.cs" />
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
     <Compile Include="Mappers\Order\IOrderMapper.cs" />
     <Compile Include="Mappers\Order\OrderMapper.cs" />
     <Compile Include="Mappers\Profiles\CartProfile.cs" />
+    <Compile Include="Mappers\Profiles\AccountProfile.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
     <Compile Include="Mappers\Payment\PaymentMapper.cs" />

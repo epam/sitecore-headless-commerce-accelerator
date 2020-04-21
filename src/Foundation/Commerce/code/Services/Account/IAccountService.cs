@@ -29,7 +29,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         Result<User> CreateAccount(string email, string firstName, string lastName, string password);
 
-        Result<IEnumerable<Address>> GetAddress(string userName);
+        Result<IEnumerable<Address>> GetAddresses(string userName);
 
         Result<IEnumerable<Address>> RemoveAddress(string userName, Address address);
 

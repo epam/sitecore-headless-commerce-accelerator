@@ -14,11 +14,11 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Users
 {
-    using Account.Infrastructure.Pipelines.Login;
-
     using Base.Mappers;
 
     using DependencyInjection;
+
+    using Foundation.Account.Infrastructure.Pipelines.Login;
 
     using Models.Entities.Users;
 

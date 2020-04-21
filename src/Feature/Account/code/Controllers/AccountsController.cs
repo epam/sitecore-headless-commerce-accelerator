@@ -99,9 +99,9 @@ namespace HCA.Feature.Account.Controllers
         [HttpGet]
         [AllowAnonymous]
         [ActionName("address")]
-        public ActionResult GetAddress()
+        public ActionResult GetAddresses()
         {
-            return this.Execute(() => this.accountService.GetAddress(this.visitorContext.ContactId));
+            return this.Execute(() => this.accountService.GetAddresses(this.visitorContext.ContactId));
         }
 
         [HttpDelete]

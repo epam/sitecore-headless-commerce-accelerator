@@ -35,7 +35,7 @@ export function* getCurrentOrder(requestData: Action<OrderRequestPayload>) {
     }
 
     yield put(actions.GetOrderRequest(requestDataModel.requestTrackingNumber));
-    const { data, error }: Result<Commerce.OrderModel> = yield call(Order.getOrder, requestDataModel.requestTrackingNumber);
+    const { data, error }: Result<Commerce.Order> = yield call(Order.getOrder, requestDataModel.requestTrackingNumber);
 
     if (error) {
       return yield put(actions.GetOrderFailure(error.message || 'Error Occured'));

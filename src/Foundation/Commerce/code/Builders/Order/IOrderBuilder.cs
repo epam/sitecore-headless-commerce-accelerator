@@ -12,11 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce/client';
-import * as JSS from 'Foundation/ReactJss/client';
+namespace HCA.Foundation.Commerce.Builders.Order
+{
+    using Models.Entities.Order;
 
-export interface ThankYouMessageProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
-    order: Commerce.Order;
+    /// <summary>
+    /// Builds Order entities
+    /// </summary>
+    public interface IOrderBuilder
+    {
+        /// <summary>
+        /// Builds Order entity
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <returns>Instance of Order type</returns>
+        Order Build(Sitecore.Commerce.Entities.Orders.Order source);
+    }
 }
-
-export interface ThankYouMessageState extends JSS.SafePureComponentState {}

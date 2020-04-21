@@ -44,7 +44,7 @@ export const GetOrderHistoryFailure: FailureType = (error: string, stack?) => ({
 });
 
 export const GetOrderHistorySuccess: actionCreators.GetOrderHistorySuccess = (
-  orders: Commerce.OrderModel[],
+  orders: Commerce.Order[],
   currentPageNumber: number,
   isLastPage: boolean
 ) => ({

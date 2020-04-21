@@ -20,7 +20,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Commerce.Mappers.Order;
+    using Commerce.Builders.Order;
     using Commerce.Services.Order;
 
     using Connect.Context.Storefront;
@@ -43,11 +43,11 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
     public class OrderServiceTests
     {
+        private readonly IOrderBuilder builder;
+
         private readonly ICartManagerV2 cartManager;
 
         private readonly Fixture fixture;
-
-        private readonly IOrderMapper mapper;
 
         private readonly IOrderManagerV2 orderManager;
 
@@ -59,7 +59,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
         public OrderServiceTests()
         {
-            this.mapper = Substitute.For<IOrderMapper>();
+            this.builder = Substitute.For<IOrderBuilder>();
             this.orderManager = Substitute.For<IOrderManagerV2>();
             this.cartManager = Substitute.For<ICartManagerV2>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
@@ -67,7 +67,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
             var logService = Substitute.For<ILogService<CommonLog>>();
 
             this.service = new OrderService(
-                this.mapper,
+                this.builder,
                 logService,
                 this.orderManager,
                 this.cartManager,
@@ -121,7 +121,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.mapper.Received(1).Map(orderResult.Order);
+            this.builder.Received(1).Build(orderResult.Order);
         }
 
         [Fact]
@@ -162,7 +162,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.mapper.Received(1).Map(orderResult.Order);
+            this.builder.Received(1).Build(orderResult.Order);
         }
 
         [Fact]
@@ -176,7 +176,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.mapper.Received(3).Map(orderResult.Order);
+            this.builder.Received(3).Build(orderResult.Order);
         }
 
         [Fact]

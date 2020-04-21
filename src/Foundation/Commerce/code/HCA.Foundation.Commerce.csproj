@@ -614,6 +614,8 @@
   <ItemGroup>
     <Compile Include="Builders\Cart\CartBuilder.cs" />
     <Compile Include="Builders\Cart\ICartBuilder.cs" />
+    <Compile Include="Builders\Order\OrderBuilder.cs" />
+    <Compile Include="Builders\Order\IOrderBuilder.cs" />
     <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
     <Compile Include="Constants.cs" />

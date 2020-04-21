@@ -30,15 +30,14 @@ export function* getOrderHistory(requestData: Action<OrderHistoryRequestPayload>
   try {
     yield put(actions.GetOrderHistoryRequest());
     const firstPageNumber = 0;
-    const { data, error }: Result<Commerce.OrderHistoryResultModel> = yield call(Order.getOrders, firstPageNumber, ItemsPerPage);
+    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, firstPageNumber, ItemsPerPage);
 
     if (error) {
       return yield put(actions.GetOrderHistoryFailure(error.message || 'Error Occured'));
     }
 
-    const orders = data.orders as Commerce.OrderModel[];
-    const isLastPage = !orders || orders.length < ItemsPerPage;
-    yield put(actions.GetOrderHistorySuccess(orders, data.currentPageNumber, isLastPage));
+    const isLastPage = !data || data.length < ItemsPerPage;
+    yield put(actions.GetOrderHistorySuccess(data, firstPageNumber, isLastPage));
   } catch (e) {
     yield put(actions.GetOrderHistoryFailure(e.message));
   }
@@ -50,17 +49,16 @@ export function* loadMoreHistory() {
     currentPageNumber++;
 
     yield put(actions.GetOrderHistoryRequest());
-    const { data, error }: Result<Commerce.OrderHistoryResultModel> = yield call(Order.getOrders, currentPageNumber, ItemsPerPage);
+    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, currentPageNumber, ItemsPerPage);
 
     if (error) {
       return yield put(actions.GetOrderHistoryFailure(error.message || 'Error Occured'));
     }
 
-    const existingOrders: Commerce.OrderModel[] = yield select(selectors.orderHistoryList);
-    const newOrders = data.orders as Commerce.OrderModel[];
-    const orders = [...existingOrders, ...newOrders];
-    const isLastPage = !newOrders || newOrders.length < ItemsPerPage;
-    yield put(actions.GetOrderHistorySuccess(orders, data.currentPageNumber, isLastPage));
+    const existingOrders: Commerce.Order[] = yield select(selectors.orderHistoryList);
+    const orders = [...existingOrders, ...data];
+    const isLastPage = !data || data.length < ItemsPerPage;
+    yield put(actions.GetOrderHistorySuccess(orders, currentPageNumber, isLastPage));
   } catch (e) {
     yield put(actions.GetOrderHistoryFailure(e.message));
   }

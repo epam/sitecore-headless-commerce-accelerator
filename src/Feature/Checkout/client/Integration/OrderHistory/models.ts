@@ -20,7 +20,7 @@ export interface OrderHistoryRequestPayload {
 }
 
 export interface OrderHistorySuccessPayload extends Status {
-  orders?: Commerce.OrderModel[];
+  orders?: Commerce.Order[];
   currentPageNumber: number;
   isLastPage: boolean;
 }

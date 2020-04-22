@@ -28,12 +28,12 @@ namespace HCA.Foundation.Connect.Managers.Order
     using Sitecore.Commerce.Services.Orders;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IOrderManagerV2), Lifetime = Lifetime.Singleton)]
-    public class OrderManagerV2 : BaseManager, IOrderManagerV2
+    [Service(typeof(IOrderManager), Lifetime = Lifetime.Singleton)]
+    public class OrderManager : BaseManager, IOrderManager
     {
         private readonly OrderServiceProvider orderServiceProvider;
 
-        public OrderManagerV2(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider) : base(
+        public OrderManager(ILogService<CommonLog> logService, IConnectServiceProvider connectServiceProvider) : base(
             logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));

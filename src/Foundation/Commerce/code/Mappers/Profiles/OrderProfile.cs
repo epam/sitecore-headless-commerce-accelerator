@@ -30,7 +30,13 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                 .ForMember(dest => dest.TrackingNumber, opt => opt.Ignore())
                 .ForMember(dest => dest.IsOfflineOrder, opt => opt.Ignore());
 
-            this.CreateMap<Sitecore.Commerce.Entities.Orders.Order, Order>();
+            this.CreateMap<Sitecore.Commerce.Entities.Orders.Order, Order>()
+                .ForMember(dest => dest.OrderID, opt => opt.MapFrom(src => src.OrderID))
+                .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.TrackingNumber, opt => opt.MapFrom(src => src.TrackingNumber))
+                .ForMember(dest => dest.IsOfflineOrder, opt => opt.MapFrom(src => src.IsOfflineOrder))
+                .ForAllOtherMembers(opt => opt.Ignore());
         }
     }
 }

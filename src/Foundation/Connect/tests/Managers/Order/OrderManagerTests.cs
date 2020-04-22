@@ -32,22 +32,22 @@ namespace HCA.Foundation.Connect.Tests.Managers.Order
 
     using Xunit;
 
-    public class OrderManagerV2Tests
+    public class OrderManagerTests
     {
         private readonly IFixture fixture;
 
-        private readonly OrderManagerV2 manager;
+        private readonly OrderManager manager;
 
         private readonly OrderServiceProvider orderServiceProvider;
 
-        public OrderManagerV2Tests()
+        public OrderManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
             this.orderServiceProvider = Substitute.For<OrderServiceProvider>();
             connectServiceProvider.GetOrderServiceProvider().Returns(this.orderServiceProvider);
 
-            this.manager = Substitute.For<OrderManagerV2>(logService, connectServiceProvider);
+            this.manager = Substitute.For<OrderManager>(logService, connectServiceProvider);
 
             this.fixture = new Fixture();
         }

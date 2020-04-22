@@ -732,8 +732,6 @@
     <Compile Include="Repositories\BaseCheckoutRepository.cs" />
     <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
     <Compile Include="Services\Analytics\IAnalyticsService.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Repositories\Contracts\IOrderRepository.cs" />
     <Compile Include="Context\Contracts\IVisitorContext.cs" />
     <Compile Include="Services\Cart\CartService.cs" />
     <Compile Include="Services\Cart\ICartService.cs" />

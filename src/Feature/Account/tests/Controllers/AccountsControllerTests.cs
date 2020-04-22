@@ -85,7 +85,7 @@ namespace HCA.Feature.Account.Tests.Controllers
         public void GetAddressList_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.GetAddress();
+            this.controller.GetAddresses();
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<IEnumerable<Address>>>>());

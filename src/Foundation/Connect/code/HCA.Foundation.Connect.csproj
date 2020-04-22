@@ -584,7 +584,7 @@
     <Compile Include="Managers\Cart\ICartManagerV2.cs" />
     <Compile Include="Managers\Inventory\IInventoryManager.cs" />
     <Compile Include="Managers\Inventory\InventoryManager.cs" />
-    <Compile Include="Managers\Order\OrderManagerV2.cs" />
+    <Compile Include="Managers\Order\OrderManager.cs" />
     <Compile Include="Managers\Payment\IPaymentManager.cs" />
     <Compile Include="Managers\Payment\PaymentManager.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
@@ -609,7 +609,7 @@
     <Compile Include="Services\Search\ISearchService.cs" />
     <Compile Include="Managers\Pricing\IPricingManager.cs" />
     <Compile Include="Managers\Pricing\PricingManager.cs" />
-    <Compile Include="Managers\Order\IOrderManagerV2.cs" />
+    <Compile Include="Managers\Order\IOrderManager.cs" />
     <Compile Include="Services\Search\SearchService.cs" />
     <Compile Include="Managers\Shipping\IShippingManager.cs" />
     <Compile Include="Managers\Shipping\ShippingManager.cs" />
@@ -634,10 +634,8 @@
     <Compile Include="Managers\AccountManager.cs" />
     <Compile Include="Managers\CartManager.cs" />
     <Compile Include="Managers\Contracts\ICartManager.cs" />
-    <Compile Include="Managers\Contracts\IOrderManager.cs" />
     <Compile Include="Managers\Contracts\IAccountManager.cs" />
     <Compile Include="Managers\ManagerResponse.cs" />
-    <Compile Include="Managers\OrderManager.cs" />
     <Compile Include="Models\CartLineArgument.cs" />
     <Compile Include="Models\Search\SearchResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

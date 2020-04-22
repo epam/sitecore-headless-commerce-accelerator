@@ -47,7 +47,7 @@ namespace HCA.Foundation.Commerce.Services.Order
 
         private readonly ILogService<CommonLog> logService;
 
-        private readonly IOrderManagerV2 orderManager;
+        private readonly IOrderManager orderManager;
 
         private readonly IStorefrontContext storefrontContext;
 
@@ -56,7 +56,7 @@ namespace HCA.Foundation.Commerce.Services.Order
         public OrderService(
             IOrderBuilder orderBuilder,
             ILogService<CommonLog> logService,
-            IOrderManagerV2 orderManager,
+            IOrderManager orderManager,
             ICartManagerV2 cartManager,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)

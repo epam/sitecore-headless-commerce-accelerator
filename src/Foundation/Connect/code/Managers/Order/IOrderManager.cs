@@ -20,7 +20,7 @@ namespace HCA.Foundation.Connect.Managers.Order
     /// <summary>
     /// Performs main operations during checkout process
     /// </summary>
-    public interface IOrderManagerV2
+    public interface IOrderManager
     {
         /// <summary>
         /// Gets order by id

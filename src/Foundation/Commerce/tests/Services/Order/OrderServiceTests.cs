@@ -49,7 +49,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
         private readonly Fixture fixture;
 
-        private readonly IOrderManagerV2 orderManager;
+        private readonly IOrderManager orderManager;
 
         private readonly OrderService service;
 
@@ -60,7 +60,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
         public OrderServiceTests()
         {
             this.builder = Substitute.For<IOrderBuilder>();
-            this.orderManager = Substitute.For<IOrderManagerV2>();
+            this.orderManager = Substitute.For<IOrderManager>();
             this.cartManager = Substitute.For<ICartManagerV2>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.visitorContext = Substitute.For<IVisitorContext>();

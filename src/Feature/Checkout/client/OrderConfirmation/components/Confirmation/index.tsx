@@ -23,7 +23,7 @@ import { ConfirmationProps, ConfirmationState } from './models';
 
 class ConfirmationControl extends Jss.SafePureComponent<ConfirmationProps, ConfirmationState> {
   public safeRender() {
-    const { addresses, payments, price, shippings } = this.props.order;
+    const { addresses, payment, price, shipping } = this.props.order;
     return (
       <div className="order-confirmation-wrapper">
         <section className="container">
@@ -43,10 +43,10 @@ class ConfirmationControl extends Jss.SafePureComponent<ConfirmationProps, Confi
                 <div className="order-confirmation-container">
                   <div className="col-md-6">
                     <div className="info-colomn1">
-                      {shippings.map((shipping, i) => {
-                        const address = addresses.find((item) => item.partyId === shipping.partyId);
+                      {shipping.map((shippingMethod, i) => {
+                        const address = addresses.find((item) => item.partyId === shippingMethod.partyId);
                         return (
-                          <div className="shipping-info" key={`${shipping.externalId}-${i}`}>
+                          <div className="shipping-info" key={`${shippingMethod.externalId}-${i}`}>
                             <div className="info1">
                               <Text field={{ value: 'Shipping To:' }} tag="span" className="title-text" />
                               <Text field={{ value: 'Address:' }} tag="span" className="subtitle-text" />
@@ -55,16 +55,16 @@ class ConfirmationControl extends Jss.SafePureComponent<ConfirmationProps, Confi
                               <span>{address.city}, {address.state} {address.zipPostalCode}</span>
                             </div>
                             <div className="info2">
-                              <span>Method: {shipping.name}</span>
+                              <span>Method: {shippingMethod.name}</span>
                               <span>Status: Pending</span>
                             </div>
                           </div>
                         );
                       })}
-                      {payments.map((payment, i) => {
-                        const address = addresses.find((item) => item.partyId === payment.partyID);
+                      {payment.map((paymentInfo, i) => {
+                        const address = addresses.find((item) => item.partyId === paymentInfo.partyId);
                         return (
-                          <div className="billing-info" key={`${payment.paymentMethodId}-${i}`}>
+                          <div className="billing-info" key={`${paymentInfo.paymentMethodId}-${i}`}>
                             <div className="info1">
                               <Text field={{ value: 'Billing Information:' }} tag="span" className="title-text" />
                               <Text field={{ value: 'Address:' }} tag="span" className="subtitle-text" />

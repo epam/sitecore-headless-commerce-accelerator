@@ -1,0 +1,19 @@
+﻿---
+ID: "aa596fa5-fe34-4db3-9983-93b40632d758"
+Parent: "ad36634a-9d3b-4e47-96da-853df8022ad6"
+Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Path: /sitecore/content/HCA/HCA Email/Messages/2020/04/23T14554907/New Order Placed/Message Root/Order Confirmation
+DB: master
+BranchID: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
+SharedFields:
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{6207F692-4AF1-4B2D-9B16-95E4863433A6}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200423T163501Z

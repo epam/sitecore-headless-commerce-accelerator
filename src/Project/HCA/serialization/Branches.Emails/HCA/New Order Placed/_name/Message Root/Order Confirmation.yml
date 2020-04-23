@@ -1,0 +1,14 @@
+﻿---
+ID: "6207f692-4af1-4b2d-9b16-95e4863433a6"
+Parent: "48501984-93c0-46d6-80e6-db435099c576"
+Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Path: /sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA/New Order Placed/$name/Message Root/Order Confirmation
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T110930Z

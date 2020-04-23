@@ -1,0 +1,14 @@
+﻿---
+ID: "7e232177-7918-4f12-9b0c-4140763592d0"
+Parent: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout/Order Confirmation/Data
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200415T090908Z

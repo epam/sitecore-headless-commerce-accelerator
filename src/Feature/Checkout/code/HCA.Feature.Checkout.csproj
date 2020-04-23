@@ -80,6 +80,9 @@
     <Reference Include="Glass.Mapper.Sc, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper.Sc.Mvc, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Mvc.5.6.160\lib\net471\Glass.Mapper.Sc.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -276,6 +279,9 @@
     <Reference Include="Sitecore.ContentSearch.Linq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.Linq.9.3.0\lib\net471\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.EmailCampaign, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.EmailCampaign.9.3.0\lib\net471\Sitecore.EmailCampaign.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ExperienceEditor, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ExperienceEditor.9.3.0\lib\net471\Sitecore.ExperienceEditor.dll</HintPath>
     </Reference>
@@ -453,6 +459,7 @@
     <Reference Include="System.Interactive.Async.Providers, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Interactive.Async.Providers.3.1.1\lib\net45\System.Interactive.Async.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
@@ -494,6 +501,8 @@
     <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding" />
+    <Reference Include="System.Security.Cryptography.Primitives" />
     <Reference Include="System.Security.Cryptography.Xml, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Security.Cryptography.Xml.4.5.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
     </Reference>
@@ -564,8 +573,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Context\ExmContext.cs" />
+    <Compile Include="Context\IExmContext.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ExmOrdersRenderingsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Infrastructure\Pipelines\ContentsResolvers\CheckoutNavigationResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\CommerceUserContextExtension.cs" />
@@ -580,6 +593,8 @@
     <Compile Include="Models\Requests\AddCartLineRequest.cs" />
     <Compile Include="Models\Requests\CartLineRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\IOrderEmailUtils.cs" />
+    <Compile Include="Utils\OrderEmailUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\HCA\Feature.Checkout.config">
@@ -596,6 +611,7 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\ExmOrdersRenderings\OrderConfirmation.cshtml" />
     <None Include="Views\Web.config" />
     <Content Include="App_Config\Include\Feature\HCA\Feature.Checkout.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">

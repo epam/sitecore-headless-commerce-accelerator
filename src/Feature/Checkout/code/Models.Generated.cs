@@ -125,6 +125,52 @@ namespace HCA.Feature.Checkout.Models
 
 
     /// <summary>
+    /// IOrderConfirmation Interface
+    /// <para>Path: /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout/Order Confirmation</para>
+    /// <para>ID: 79e38394-2c8e-400e-bdf5-15e608e3a9a3</para>
+    /// </summary>
+    [SitecoreType(TemplateId="79e38394-2c8e-400e-bdf5-15e608e3a9a3")]
+    public partial interface IOrderConfirmation: IGlassBase
+    {
+
+        /// <summary>
+        /// The Message Body field.
+        /// <para>Field Type: Rich Text</para>
+        /// <para>Field ID: caaec975-c52a-43f5-b8f9-22883a8356c5</para>
+        /// </summary>
+        [SitecoreField("Message Body")]
+        string MessageBody {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// OrderConfirmation Class
+    /// <para>Path: /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout/Order Confirmation</para>
+    /// <para>ID: 79e38394-2c8e-400e-bdf5-15e608e3a9a3</para>
+    /// </summary>
+    [SitecoreType(TemplateId="79e38394-2c8e-400e-bdf5-15e608e3a9a3")]
+    public partial class OrderConfirmation: GlassBase, IOrderConfirmation
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout/Order Confirmation
+        /// </summary>
+        public const string TemplateId = "79e38394-2c8e-400e-bdf5-15e608e3a9a3";
+
+        /// <summary>
+        /// The Message Body field.
+        /// <para>Field Type: Rich Text</para>
+        /// <para>Field ID: caaec975-c52a-43f5-b8f9-22883a8356c5</para>
+        /// </summary>
+        [SitecoreField("Message Body")]
+        public virtual string MessageBody {get; set;}
+        public const string MessageBodyFieldId = "caaec975-c52a-43f5-b8f9-22883a8356c5";
+        public const string MessageBodyFieldName = "Message Body";
+
+    }
+
+
+    /// <summary>
     /// ICheckoutStep Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step</para>
     /// <para>ID: 41bec638-40fe-4a75-ace5-f3377299d8fa</para>

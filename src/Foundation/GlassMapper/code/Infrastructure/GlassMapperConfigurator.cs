@@ -16,6 +16,7 @@ namespace HCA.Foundation.GlassMapper.Infrastructure
 {
     using Glass.Mapper.Sc;
     using Glass.Mapper.Sc.Web;
+    using Glass.Mapper.Sc.Web.Mvc;
 
     using Microsoft.Extensions.DependencyInjection;
 
@@ -32,6 +33,12 @@ namespace HCA.Foundation.GlassMapper.Infrastructure
                 {
                     var sitecoreService = provider.GetService<ISitecoreService>();
                     return new RequestContext(sitecoreService);
+                });
+            serviceCollection.AddTransient<IMvcContext>(
+                provider =>
+                {
+                    var sitecoreService = provider.GetService<ISitecoreService>();
+                    return new MvcContext(sitecoreService);
                 });
 
             serviceCollection.AddTransient<IGlassHtml, GlassHtml>();

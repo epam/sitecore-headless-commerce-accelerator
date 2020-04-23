@@ -9,8 +9,16 @@ pool:
 variables:
   build_cake: './src/build.cake'
   quotes_regexp: '"([^"]+)"'
-  publishingTargetDir_String: '\s*publishingTargetDir: $(quotes_regexp)\s*'
-  scSiteUrl_String: '\s*scSiteUrl: $(quotes_regexp)\s*'
+  sitecore_webroot: 'C:\inetpub\wwwroot\sc9.local'
+  shops_String: 'shopsServiceUrl'
+  ops_String: 'commerceOpsServiceUrl'
+  minions_String: 'commerceMinionsServiceUrl'
+  identity_String: 'sitecoreIdentityServerUrl'
+  project_name: 'wooli' 
+  project_manifest: './src/Project/$(project_name)/client/manifest.json'
+  project_site_config: '$(sitecore_webroot)\App_Config\Include\Project\$(project_name)\Project.$(project_name).Site.config'
+  commerce_engine_config: '$(sitecore_webroot)\App_Config\Include\Y.Commerce.Engine\Sitecore.Commerce.Engine.Connect.config'
+  auth_server_config: '$(sitecore_webroot)\App_Config\Sitecore\Owin.Authentication.IdentityServer\Sitecore.Owin.Authentication.IdentityServer.config'
 
 steps:
 
@@ -36,8 +44,9 @@ steps:
     targetType: 'inline'
     script: |
       (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", $(agent_buildTools) | Set-Content $(build_cake)
-      (Get-Content $(build_cake)) -replace '$(publishingTargetDir_String)', $(publishingTargetDir) | Set-Content $(build_cake)
-      (Get-Content $(build_cake)) -replace '$(scSiteUrl_String)', $(scSiteUrl) | Set-Content $(build_cake)
+      (Get-Content $(build_cake)) -replace 'publishingTargetDir: $(quotes_regexp)','publishingTargetDir: "$(publishingTargetDir)"' | Set-Content $(build_cake)
+      (Get-Content $(build_cake)) -replace 'scSiteUrl: $(quotes_regexp)', 'scSiteUrl: "https://$(scSiteUrl)"' | Set-Content $(build_cake)
+      (Get-Content $(project_manifest)) -replace '"url": $(quotes_regexp)', '"url": "https://$(host_name)"' | Set-Content $(project_manifest)
       move /Y $(license_file.secureFilePath) ./src/
   displayName: Config preparation
 
@@ -59,9 +68,14 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'copy ./src/build.ps1 c:\vagrant\src -Force -Recurse'
-    errorActionPreference: 'continue'
-  displayName: Copy src for Wooli-Unicorn
+    script: |
+      (Get-Content $(project_site_config)) -replace 'hostName: $(quotes_regexp)', 'hostName="$(host_name)"' | Set-Content $(project_site_config)
+      (Get-Content $(auth_server_config)) -replace 'sc.variable name="identityServerAuthority" value=$(quotes_regexp)', 'sc.variable name="identityServerAuthority" value="https://$(identity_host_name)"' | Set-Content $(auth_server_config)
+      (Get-Content $(commerce_engine_config)) -replace '<shopsServiceUrl>.*</shopsServiceUrl>', '<shopsServiceUrl>https://$(authoring_host_name)</shopsServiceUrl>' | Set-Content $(commerce_engine_config)
+      (Get-Content $(commerce_engine_config)) -replace '<commerceOpsServiceUrl>.*</commerceOpsServiceUrl>', '<commerceOpsServiceUrl>https://$(ops_host_name)</commerceOpsServiceUrl>' | Set-Content $(commerce_engine_config)
+      (Get-Content $(commerce_engine_config)) -replace '<commerceMinionsServiceUrl>.*</commerceMinionsServiceUrl>', '<commerceMinionsServiceUrl>https://$(minions_host_name)</commerceMinionsServiceUrl>' | Set-Content $(commerce_engine_config)
+      (Get-Content $(commerce_engine_config)) -replace '<sitecoreIdentityServerUrl>.*</sitecoreIdentityServerUrl>', '<sitecoreIdentityServerUrl>https://$(identity_host_name)</sitecoreIdentityServerUrl>' | Set-Content $(commerce_engine_config)
+  displayName: Change default addresses for HCA
 
 - task: PowerShell@2
   inputs:

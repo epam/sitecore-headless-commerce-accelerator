@@ -28,6 +28,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using Sitecore.Diagnostics;
     using Sitecore.Links.UrlBuilders;
 
+    [Obsolete("Use Automation Plan")]
     public class SendEmailProcessor : PipelineProcessor
     {
         private static readonly string SendConfirmationFrom =

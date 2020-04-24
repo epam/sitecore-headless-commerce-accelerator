@@ -14,7 +14,6 @@ variables:
   ops_String: 'commerceOpsServiceUrl'
   minions_String: 'commerceMinionsServiceUrl'
   identity_String: 'sitecoreIdentityServerUrl'
-  project_name: 'wooli' 
   project_manifest: './src/Project/$(project_name)/client/manifest.json'
   project_site_config: '$(sitecore_webroot)\App_Config\Include\Project\$(project_name)\Project.$(project_name).Site.config'
   commerce_engine_config: '$(sitecore_webroot)\App_Config\Include\Y.Commerce.Engine\Sitecore.Commerce.Engine.Connect.config'
@@ -43,7 +42,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", $(agent_buildTools) | Set-Content $(build_cake)
+      (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
       (Get-Content $(build_cake)) -replace 'publishingTargetDir: $(quotes_regexp)','publishingTargetDir: "$(publishingTargetDir)"' | Set-Content $(build_cake)
       (Get-Content $(build_cake)) -replace 'scSiteUrl: $(quotes_regexp)', 'scSiteUrl: "https://$(scSiteUrl)"' | Set-Content $(build_cake)
       (Get-Content $(project_manifest)) -replace '"url": $(quotes_regexp)', '"url": "https://$(host_name)"' | Set-Content $(project_manifest)

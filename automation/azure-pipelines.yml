@@ -46,7 +46,7 @@ steps:
       (Get-Content $(build_cake)) -replace 'publishingTargetDir: $(quotes_regexp)','publishingTargetDir: "$(publishingTargetDir)"' | Set-Content $(build_cake)
       (Get-Content $(build_cake)) -replace 'scSiteUrl: $(quotes_regexp)', 'scSiteUrl: "https://$(scSiteUrl)"' | Set-Content $(build_cake)
       (Get-Content $(project_manifest)) -replace '"url": $(quotes_regexp)', '"url": "https://$(host_name)"' | Set-Content $(project_manifest)
-      move /Y $(license_file.secureFilePath) ./src/
+      move $(license_file.secureFilePath) ./src/ -Force
   displayName: Config preparation
 
 - task: PowerShell@2

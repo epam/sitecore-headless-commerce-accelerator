@@ -1,7 +1,8 @@
 # Build using Visual Studio 2017 on Windows Server 2016.
 # Variables with password stored in Azure secrets
 
-trigger: autodeploy_9.3
+trigger:
+- autodeploy_9.3
 
 pool:
   vmImage: 'vs2017-win2016'

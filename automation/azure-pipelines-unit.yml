@@ -19,17 +19,15 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: './src/build.ps1'
-    # arguments: '-Target 002-Build'
-    errorActionPreference: 'continue'
-    workingDirectory: './src/'
-  displayName: Build
-  continueOnError: true
+    targetType: 'inline'
+    script: |
+      (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", $(agent_buildTools) | Set-Content $(build_cake)
+  displayName: Config preparation
 
 - task: PowerShell@2
   inputs:
     filePath: './src/build.ps1'
-    arguments: '-Target 003-Tests'
+    arguments: '-Target Unit-Test'
     errorActionPreference: 'continue'
     workingDirectory: './src/'
   displayName: Build

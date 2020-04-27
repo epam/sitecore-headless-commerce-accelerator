@@ -87,6 +87,12 @@ Task("Build-and-Publish") // LocalDev
     .IsDependentOn("005-Publish")
     ;
 
+Task("Unit-Test") // LocalDev
+    .IsDependentOn("001-Restore")
+    .IsDependentOn("002-Build")
+    .IsDependentOn("003-Tests")
+    ;
+
 // //////////////////////////////////////////////////
 // Execution
 // //////////////////////////////////////////////////

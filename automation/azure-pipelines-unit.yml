@@ -20,7 +20,7 @@ steps:
 - task: PowerShell@2
   inputs:
     filePath: './src/build.ps1'
-    arguments: '-Target 002-Build'
+    # arguments: '-Target 002-Build'
     errorActionPreference: 'continue'
     workingDirectory: './src/'
   displayName: Build

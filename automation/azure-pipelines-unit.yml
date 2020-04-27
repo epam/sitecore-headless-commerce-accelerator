@@ -15,3 +15,12 @@ steps:
   inputs:
     script: '"C:\Program Files\nodejs\npm.cmd" --version'
   displayName: Installing Node 10
+
+
+- task: PowerShell@2
+  inputs:
+    filePath: './src/build.ps1 --Target 002-Build'
+    errorActionPreference: 'continue'
+    workingDirectory: './src/'
+  displayName: Build
+  continueOnError: true

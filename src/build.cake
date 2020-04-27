@@ -16,7 +16,7 @@ var Target = ArgumentOrEnvironmentVariable("target", "", "Default");
 Sitecore.Constants.SetNames();
 Sitecore.Parameters.InitParams(
     context: Context,
-    msBuildToolVersion: MSBuildToolVersion.VS2019,
+    msBuildToolVersion: MSBuildToolVersion.VS2017,
     solutionName: "Wooli",
     scSiteUrl: "https://sc9.local", // default URL exposed from the box
     unicornSerializationRoot: "unicorn-wooli",

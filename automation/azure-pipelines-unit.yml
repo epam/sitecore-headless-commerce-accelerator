@@ -1,0 +1,17 @@
+# Build using Visual Studio 2017 on Windows Server 2016.
+# Variables with password stored in Azure secrets
+
+trigger: none
+
+pool:
+  name: vs2017-win2016
+
+variables:
+  build_cake: './src/build.cake'
+
+steps:
+
+- task: UseNode@1
+  inputs:
+    script: '"C:\Program Files\nodejs\npm.cmd" --version'
+  displayName: Installing Node 10

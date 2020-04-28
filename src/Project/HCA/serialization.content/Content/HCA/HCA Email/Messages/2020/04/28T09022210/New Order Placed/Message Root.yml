@@ -1,8 +1,8 @@
 ﻿---
-ID: "ad36634a-9d3b-4e47-96da-853df8022ad6"
-Parent: "0b919706-dde5-4682-b83a-f1429a990427"
+ID: "e940bef4-82c1-419c-b452-cc858b94cc72"
+Parent: "f8ebf305-bbf0-4f02-8f54-397277ad549a"
 Template: "3f12d78c-b7b7-4157-98fc-da3322ee1a5b"
-Path: /sitecore/content/HCA/HCA Email/Messages/2020/04/23T14554907/New Order Placed/Message Root
+Path: /sitecore/content/HCA/HCA Email/Messages/2020/04/28T09022210/New Order Placed/Message Root
 DB: master
 BranchID: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
 SharedFields:
@@ -23,7 +23,7 @@ SharedFields:
           key="msg-body"
           md="{2CF42009-E42B-44F6-B2ED-30F16FAE0FEC}" />
         <r
-          ds="{AA596FA5-FE34-4DB3-9983-93B40632D758}"
+          ds="{381D9518-67BB-415F-AE88-B81348AF7788}"
           id="{F95F67A4-AB31-4B56-A70E-D69396922643}"
           par=""
           ph="msg-body"
@@ -40,7 +40,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200423T163501Z
+      Value: 20200428T090222Z
     - ID: "c0bfd467-0b74-4efe-b7c9-1ecf7f0e5370"
       Hint: Subject
       Value: Order confirmation

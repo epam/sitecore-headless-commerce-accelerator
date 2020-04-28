@@ -1,8 +1,8 @@
 ﻿---
-ID: "0b919706-dde5-4682-b83a-f1429a990427"
-Parent: "39e37ba2-d303-4dd5-b02e-bac239bc6cf1"
+ID: "f8ebf305-bbf0-4f02-8f54-397277ad549a"
+Parent: "54f316b7-5c26-4834-8d93-e2f7b95142dc"
 Template: "078d8a76-f971-4891-b422-76c0bcf9fa03"
-Path: /sitecore/content/HCA/HCA Email/Messages/2020/04/23T14554907/New Order Placed
+Path: /sitecore/content/HCA/HCA Email/Messages/2020/04/28T09022210/New Order Placed
 DB: master
 BranchID: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
 SharedFields:
@@ -14,7 +14,7 @@ SharedFields:
   Value: "{B2F77E26-C5AC-4A6B-BBB3-F290100EB3D8}"
 - ID: "09ad7c00-a8de-46f7-bc54-e7572e38c136"
   Hint: Body
-  Value: "{AD36634A-9D3B-4E47-96DA-853DF8022AD6}"
+  Value: "{E940BEF4-82C1-419C-B452-CC858B94CC72}"
 - ID: "21f2a1e0-ac16-443b-b7a9-83504159f2bb"
   Hint: Device
   Value: "{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
@@ -23,10 +23,10 @@ SharedFields:
   Value: "{C1B8669B-C41A-4ED3-BF0D-E859CF880D42}"
 - ID: "6ec7a9e6-9fd5-4892-bbf6-11e76e0e5db8"
   Hint: Start Time
-  Value: 20200423T163525Z
+  Value: 20200428T090254Z
 - ID: "78f0b1f8-fdf4-4c1c-bec6-1ac68a210a52"
   Hint: Campaign
-  Value: "{49C2F127-0754-4132-B1F7-B5DF6697ABEF}"
+  Value: "{556186B2-8131-4487-AE28-A36533ED4926}"
 - ID: "9c6106ea-7a5a-48e2-8cad-f0f693b1e2d4"
   Hint: __Read Only
   Type: Checkbox
@@ -51,7 +51,7 @@ SharedFields:
           key="msg-body"
           md="{2CF42009-E42B-44F6-B2ED-30F16FAE0FEC}" />
         <r
-          ds="{AA596FA5-FE34-4DB3-9983-93B40632D758}"
+          ds="{381D9518-67BB-415F-AE88-B81348AF7788}"
           id="{F95F67A4-AB31-4B56-A70E-D69396922643}"
           par=""
           ph="msg-body"
@@ -75,7 +75,7 @@ Languages:
       Value: "no-reply@devmail.hca.com"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200423T163501Z
+      Value: 20200428T090222Z
     - ID: "8436a90c-85c0-4f16-8373-393c4c0a82c6"
       Hint: From Name
       Value: HCA

@@ -30,6 +30,7 @@ steps:
     script: |
       #(Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
       move $(license_file.secureFilePath) ./src/ -Force
+    failOnStderr: true
   displayName: Config preparation
 
 - task: PowerShell@2

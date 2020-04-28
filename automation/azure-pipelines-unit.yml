@@ -39,4 +39,3 @@ steps:
     failOnStderr: true
     workingDirectory: './src/'
   displayName: Build
-  continueOnError: true

@@ -28,16 +28,27 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
+      (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
       move $(license_file.secureFilePath) ./src/ -Force
   displayName: Config preparation
 
 - task: PowerShell@2
   inputs:
-    targetType: 'inline'
-    script: |
-      ./src/build.ps1 -Target Unit-Test
-      2>$1 | Write-Host
-    ignoreLASTEXITCODE: true
+    filePath: './src/build.ps1'
+    arguments: '-Target 001-Restore'
+    workingDirectory: './src/'
+  displayName: Restore
+
+- task: PowerShell@2
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 002-Build'
     workingDirectory: './src/'
   displayName: Build
+
+- task: PowerShell@2
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 003-Tests'
+    workingDirectory: './src/'
+  displayName: Test

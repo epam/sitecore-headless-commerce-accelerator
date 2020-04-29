@@ -36,6 +36,5 @@ steps:
   inputs:
     filePath: './src/build.ps1'
     arguments: '-Target Unit-Test'
-    failOnStderr: true
     workingDirectory: './src/'
   displayName: Build

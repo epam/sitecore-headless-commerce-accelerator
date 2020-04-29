@@ -27,9 +27,9 @@ const colorValues: { [key: string]: string } = {
     Yellow: '#FFFF00'
 };
 
-export const resolveColor = (colorName: string, context: models.ProductColorsContext) => {
+export const resolveColor = (colorName: string, productColors: models.ProductColors) => {
     if (colorName) {
-        const colorFromContext = context.productColors[colorName];
+        const colorFromContext = productColors[colorName];
         if (colorFromContext) {
             return colorFromContext;
         }

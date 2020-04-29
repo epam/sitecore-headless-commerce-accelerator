@@ -18,10 +18,10 @@ import * as Jss from 'Foundation/ReactJss/client';
 
 import './styles.scss';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import { ConfirmationProps, ConfirmationState } from './models';
 
-class ConfirmationControl extends Jss.SafePureComponent<ConfirmationProps, ConfirmationState> {
+export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, ConfirmationState> {
   public safeRender() {
     const { addresses, payment, price, shipping } = this.props.order;
     return (
@@ -133,5 +133,3 @@ class ConfirmationControl extends Jss.SafePureComponent<ConfirmationProps, Confi
     );
   }
 }
-
-export const Confirmation = withExperienceEditorChromes(ConfirmationControl);

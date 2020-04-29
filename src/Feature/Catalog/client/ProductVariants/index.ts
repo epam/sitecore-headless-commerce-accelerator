@@ -12,13 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
-import ProductVariantsComponent from './Component';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
+import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
+
+import ProductVariantsComponent from './Component';
 import { AppState, ProductVariantsDispatchProps, ProductVariantsOwnProps, ProductVariantsStateProps } from './models';
 
 const mapStateToProps = (state: AppState): ProductVariantsStateProps => {
@@ -42,6 +44,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<ProductVariantsStateProps, ProductVariantsDispatchProps, ProductVariantsOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(ProductVariantsComponent);
+);
 
-export const ProductVariants = withExperienceEditorChromes(connectedToStore);
+export const ProductVariants = compose(connectedToStore, renderingWithContext)(ProductVariantsComponent);

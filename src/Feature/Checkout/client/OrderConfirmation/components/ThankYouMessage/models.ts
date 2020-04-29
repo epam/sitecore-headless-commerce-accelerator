@@ -15,7 +15,7 @@
 import * as Commerce from 'Foundation/Commerce/client';
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface ThankYouMessageProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface ThankYouMessageProps {
     order: Commerce.Order;
 }
 

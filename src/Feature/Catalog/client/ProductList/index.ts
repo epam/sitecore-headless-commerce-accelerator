@@ -14,6 +14,8 @@
 
 import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import * as commonSelectors from 'Feature/Catalog/client/Integration/common/selectors';
@@ -60,6 +62,6 @@ const mapDispatchToProps = (dispatch: any) =>
 const connectedToStore = connect<ProductListStateProps, ProductListDispatchProps, ProductListOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(ProductListComponent);
+);
 
-export const ProductList = withExperienceEditorChromes(connectedToStore);
+export const ProductList = compose(withRouter, withExperienceEditorChromes, connectedToStore)(ProductListComponent);

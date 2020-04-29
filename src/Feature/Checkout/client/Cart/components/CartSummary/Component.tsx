@@ -42,7 +42,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
   }
 
   public safeRender() {
-    const { cartLines, isLoading } = this.props;
+    const { cartLines, isLoading, productColors } = this.props;
     return (
       <>
         {isLoading && (
@@ -76,7 +76,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                             <div className="product-options">
                               {cartLine.variant.properties.color && (
                                 <div className="option">
-                                  Color:<span style={{ backgroundColor: resolveColor(cartLine.variant.properties.color, this.props.sitecoreContext) }} className="color" />
+                                  Color:<span style={{ backgroundColor: resolveColor(cartLine.variant.properties.color, productColors) }} className="color" />
                                 </div>
                               )}
                               {cartLine.variant.properties.size && (

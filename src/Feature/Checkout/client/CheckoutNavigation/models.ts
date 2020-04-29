@@ -19,6 +19,6 @@ export interface CheckoutNavigationDatasource extends Models.CheckoutNavigationD
     checkoutSteps: JSS.ItemList<Models.CheckoutStepDataSource>;
 }
 
-export interface NavigationControlProps extends JSS.Rendering<CheckoutNavigationDatasource> {}
+export interface NavigationControlProps extends JSS.RenderingWithContext<CheckoutNavigationDatasource> {}
 
 export interface NavigationControlState extends JSS.SafePureComponentState {}

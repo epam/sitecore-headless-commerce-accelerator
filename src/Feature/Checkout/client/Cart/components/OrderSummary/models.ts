@@ -20,6 +20,7 @@ import * as DataModels from 'Feature/Checkout/client/dataModel.Generated';
 
 export interface OrderSummaryOwnProps {
   price: ShoppingCart.ShoppingCartPrice;
+  rendering: any;
 }
 export interface OrderSummaryStateProps {
   isLoading: boolean;

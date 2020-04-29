@@ -27,5 +27,4 @@ export interface OptionParameters {
 export interface JssDataApi {
   getRouteData: (route: string, language: string, options?: OptionParameters) => Promise<any>;
   getPlaceholderData: (placeholderName: string, route: string, language: string, options?: OptionParameters) => Promise<any>;
-  getItemData: (itemPath: string, language: string, options?: OptionParameters) => Promise<any>;
 }

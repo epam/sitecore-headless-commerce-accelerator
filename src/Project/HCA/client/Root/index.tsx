@@ -14,12 +14,14 @@
 
 import * as React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import componentFactory from './../componentFactory';
+import { Provider } from 'react-redux';
 
 import { SitecoreContext } from '@sitecore-jss/sitecore-jss-react';
 
-import { Provider } from 'react-redux';
+import SitecoreContextFactory from 'Foundation/ReactJss/client/SitecoreContextFactory';
+
 import { RootProps } from '../models';
+import componentFactory from './../componentFactory';
 import ActionTypes from './actionTypes';
 
 class Root extends React.Component<RootProps> {
@@ -35,7 +37,7 @@ class Root extends React.Component<RootProps> {
     return (
       <ApolloProvider client={this.props.graphQLClient}>
         <Provider store={this.props.store}>
-          <SitecoreContext componentFactory={componentFactory}>{this.props.children}</SitecoreContext>
+          <SitecoreContext componentFactory={componentFactory} contextFactory={SitecoreContextFactory}>{this.props.children}</SitecoreContext>
         </Provider>
       </ApolloProvider>
     );

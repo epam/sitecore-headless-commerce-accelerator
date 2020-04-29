@@ -14,22 +14,20 @@
 
 import * as React from 'react';
 
-import { Image, Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Image, Text } from '@sitecore-jss/sitecore-jss-react';
 import { PromoDControlProps, PromoDControlState } from './models';
 
 import * as Jss from 'Foundation/ReactJss/client';
 
 import './styles.scss';
 
-class PromoDControl extends Jss.SafePureComponent<PromoDControlProps, PromoDControlState> {
+export class PromoD extends Jss.SafePureComponent<PromoDControlProps, PromoDControlState> {
     public safeRender() {
-        const { image, isEditing } = this.props;
+        const { image } = this.props;
         return (
-            <figure className={isEditing ? '' : 'promo-d'}>
+            <figure className="promo-d">
                 <a href="#">
-                    {isEditing
-                        ? <Image media={image} />
-                        : <img src={image.value.src} alt={image.value.alt} />}
+                    <Image media={image} />
                     <figcaption>
                         <h2 className="promo-d-text">
                             <Text
@@ -59,5 +57,3 @@ class PromoDControl extends Jss.SafePureComponent<PromoDControlProps, PromoDCont
         );
     }
 }
-
-export const PromoD = withExperienceEditorChromes(PromoDControl);

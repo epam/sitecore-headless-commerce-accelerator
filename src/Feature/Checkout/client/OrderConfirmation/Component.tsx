@@ -44,16 +44,16 @@ export class OrderConfirmationControl extends Jss.SafePureComponent<OrderConfirm
   }
 
   public safeRender() {
-    const { currentOrder, ...otherProps } = this.props;
+    const { currentOrder, sitecoreContext } = this.props;
     if (!currentOrder) {
       return null;
     }
 
     return (
       <>
-        <ThankYouMessage order={currentOrder} {...otherProps} />
-        <Summary order={currentOrder} {...otherProps} />
-        <Confirmation order={currentOrder} {...otherProps} />
+        <ThankYouMessage order={currentOrder} />
+        <Summary order={currentOrder} productColors={sitecoreContext.productColors} />
+        <Confirmation order={currentOrder} />
       </>
     );
   }

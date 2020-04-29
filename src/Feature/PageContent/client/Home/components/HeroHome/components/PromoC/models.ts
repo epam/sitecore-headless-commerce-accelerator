@@ -14,9 +14,8 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface PromoCControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface PromoCControlProps {
   image: JSS.ImageField;
-  isEditing: boolean;
 }
 
 export interface PromoCControlState extends JSS.SafePureComponentState {}

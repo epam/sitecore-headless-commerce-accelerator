@@ -12,14 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { Location } from 'history';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
+
+import * as Extensions from 'Foundation/Base/client';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import { currentOrder } from 'Feature/Checkout/client/Integration/Order';
 import * as OrderActions from 'Feature/Checkout/client/Integration/Order/actions';
-import * as Extensions from 'Foundation/Base/client';
 
 import { OrderConfirmationControl } from './Component';
 import { AppState, OrderConfirmationDispatchProps, OrderConfirmationOwnProps, OrderConfirmationStateProps } from './models';
@@ -47,6 +49,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<OrderConfirmationStateProps, OrderConfirmationDispatchProps, OrderConfirmationOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(OrderConfirmationControl);
+);
 
-export const OrderConfirmation = withExperienceEditorChromes(connectedToStore);
+export const OrderConfirmation = compose(connectedToStore, renderingWithContext)(OrderConfirmationControl);

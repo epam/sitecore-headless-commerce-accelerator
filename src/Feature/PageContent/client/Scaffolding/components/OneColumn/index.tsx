@@ -30,7 +30,7 @@ class OneColumnComponent extends JSS.SafePureComponent<GridControlProps, GridCon
         >
           <div className="row">
             <div className="col-md-12">
-              <Placeholder name="w-col-wide" {...this.props} />
+              <Placeholder name="w-col-wide" rendering={this.props.rendering} />
             </div>
           </div>
         </div>

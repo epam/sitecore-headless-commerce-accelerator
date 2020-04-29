@@ -16,14 +16,13 @@ import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import { registerCommerceInterceptor } from 'Foundation/Commerce/client';
 import * as Jss from 'Foundation/ReactJss/client';
 import { SITECORE_ROUTES } from 'Foundation/ReactJss/client/SitecoreContext';
-
-import { Layout, LoadingBar, NotFound, ServerError } from './../../components';
-
-import { registerCommerceInterceptor } from 'Foundation/Commerce/client';
+import SitecoreContextFactory from 'Foundation/ReactJss/client/SitecoreContextFactory';
 
 import { AppProps } from './../../../models';
+import { Layout, LoadingBar, NotFound, ServerError } from './../../components';
 
 const { SitecoreContext } = Jss;
 
@@ -37,6 +36,13 @@ class App extends Jss.SafePureComponent<AppProps, {}> {
   }
 
   public safeRender() {
+    const sitecoreContext = {
+      ...this.props.sitecoreContext,
+      routeFields: this.props.routeFields
+    };
+
+    SitecoreContextFactory.setSitecoreContext(sitecoreContext);
+
     return (
       <>
         <LoadingBar loading={this.props.isLoading} />

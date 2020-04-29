@@ -16,7 +16,6 @@ import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classNames from 'classnames';
 import * as React from 'react';
 
-import { ProductContext } from 'Foundation/Commerce/client/models';
 import * as JSS from 'Foundation/ReactJss/client';
 
 import { Common } from 'Feature/Catalog/client/Integration';
@@ -40,7 +39,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   }
   // tslint:disable-next-line:no-big-function
   protected safeRender() {
-    const { product } = this.props.sitecoreContext as ProductContext;
+    const { product } = this.props.sitecoreContext;
     const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
 
@@ -76,10 +75,10 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                   <span className="price-value">{selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}</span>
                 </p>
                 <div className="product-params">
-                  <Placeholder name="product-properties" {...this.props} />
+                  <Placeholder name="product-properties" rendering={this.props.rendering} />
                   <div className="property-selectors" />
                   <div className="links">
-                    <Placeholder name="product-actions" {...this.props} />
+                    <Placeholder name="product-actions" rendering={this.props.rendering} />
                   </div>
                 </div>
               </div>

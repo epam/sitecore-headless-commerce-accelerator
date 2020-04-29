@@ -34,8 +34,10 @@ steps:
 
 - task: PowerShell@2
   inputs:
-    filePath: './src/build.ps1'
-    arguments: '-Target Unit-Test'
+    targetType: 'inline'
+    script: |
+      ./src/build.ps1 -Target Unit-Test
+      2>$1 | Write-Host
     ignoreLASTEXITCODE: true
     workingDirectory: './src/'
   displayName: Build

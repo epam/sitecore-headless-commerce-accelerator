@@ -54,9 +54,9 @@ export interface GlobalAccountState {
 
 export interface AppState extends SitecoreState<Commerce.CommerceUserContext> {}
 
-export interface CreateAccountPayload extends Commerce.CreateAccountModel {}
-export interface ValidateAccountPayload extends Commerce.ValidateAccountModel {}
-export interface ValidateAccountResultPayload extends Status, Partial<Commerce.ValidateAccountModel> {}
+export interface CreateAccountPayload extends Commerce.CreateAccountRequest {}
+export interface ValidateEmailPayload extends Commerce.ValidateEmailRequest {}
+export interface ValidateAccountResultPayload extends Status, Partial<Commerce.ValidateEmailRequest> {}
 export interface ChangePasswordPayload {
   oldPassword: string;
   newPassword: string;
@@ -64,7 +64,7 @@ export interface ChangePasswordPayload {
 
 export interface AddressPayload {
   items: {
-    [key: string]: Commerce.AddressModel;
+    [key: string]: Commerce.Address;
   };
 }
 

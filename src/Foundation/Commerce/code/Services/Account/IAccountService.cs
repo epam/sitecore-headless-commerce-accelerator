@@ -18,6 +18,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
     using Base.Models.Result;
 
+    using Models.Account;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
@@ -31,12 +32,12 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         Result<IEnumerable<Address>> GetAddresses(string userName);
 
-        Result<IEnumerable<Address>> RemoveAddress(string userName, Address address);
+        Result<IEnumerable<Address>> RemoveAddress(string userName, string externalId);
 
         Result<VoidResult> UpdateAccount(string contactId, string firstName, string lastName);
 
         Result<IEnumerable<Address>> UpdateAddress(string userName, Address address);
 
-        Result<VoidResult> ValidateEmail(string email);
+        Result<ValidateEmailResult> ValidateEmail(string email);
     }
 }

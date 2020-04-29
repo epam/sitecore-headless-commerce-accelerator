@@ -131,7 +131,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             string userName,
             bool addPartiesResultSuccess = true)
         {
-            var (customerResult, _) = this.InitGetAddresses(userName);
+            this.InitGetAddresses(userName);
 
             var addPartiesResult = this.fixture
                 .Build<AddPartiesResult>()
@@ -145,7 +145,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             }
 
             this.accountManager
-                .AddParties(customerResult.CommerceCustomer, Arg.Any<List<Party>>())
+                .AddParties(Arg.Any<CommerceCustomer>(), Arg.Any<List<Party>>())
                 .Returns(addPartiesResult);
 
             this.mapper
@@ -355,7 +355,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
         }
 
         [Fact]
-        public void GetAddresses_IfCustomerResultFail_ShouldReturnFailResult()
+        public void GetAddresses_IfGetPartiesResultFail_ShouldReturnFailResult()
         {
             // act
             var userName = this.fixture.Create<string>();
@@ -370,26 +370,11 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
         }
 
         [Fact]
-        public void GetAddresses_IfGetPartiesResultFail_ShouldReturnFailResult()
-        {
-            // act
-            var userName = this.fixture.Create<string>();
-            this.InitGetAddresses(userName, true, true, false);
-
-            // assert
-            var result = this.service.GetAddresses(userName);
-
-            // assert
-            Assert.False(result.Success);
-            Assert.NotEmpty(result.Errors);
-        }
-
-        [Fact]
         public void GetAddresses_IfManagersResultSuccess_ShouldReturnSuccessResult()
         {
             // act
             var userName = this.fixture.Create<string>();
-            var (_, getPartiesResult) = this.InitGetAddresses(userName);
+            var getPartiesResult = this.InitGetAddresses(userName);
 
             // assert
             var result = this.service.GetAddresses(userName);
@@ -401,10 +386,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.mapper.Received(getPartiesResult.Parties.Count).Map<Party, Address>(Arg.Any<Party>());
         }
 
-        private (GetCustomerResult, GetPartiesResult) InitGetAddresses(
+        private GetPartiesResult InitGetAddresses(
             string userName,
             bool userResultSuccess = true,
-            bool customerResultSuccess = true,
             bool getPartiesResultSuccess = true)
         {
             var externalId = this.fixture.Create<string>();
@@ -426,27 +410,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.accountManager
                 .GetUser(userName)
                 .Returns(userResult);
-
-            var commerceCustomer = this.fixture
-                .Build<CommerceCustomer>()
-                .With(cc => cc.ExternalId, externalId)
-                .With(cc => cc.Parties, this.fixture.CreateMany<CustomerParty>().ToList())
-                .Create();
-            var customerResult = this.fixture
-                .Build<GetCustomerResult>()
-                .With(gcr => gcr.Success, customerResultSuccess)
-                .With(gcr => gcr.CommerceCustomer, commerceCustomer)
-                .Create();
-
-            if (!customerResultSuccess)
-            {
-                customerResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
-            }
-
-            this.accountManager
-                .GetCustomer(externalId)
-                .Returns(customerResult);
-
+            
             var getPartiesResult = this.fixture
                 .Build<GetPartiesResult>()
                 .With(gur => gur.Success, getPartiesResultSuccess)
@@ -459,30 +423,33 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             }
 
             this.accountManager
-                .GetParties(customerResult.CommerceCustomer)
+                .GetParties(Arg.Any<CommerceCustomer>())
                 .Returns(getPartiesResult);
 
-            return (customerResult, getPartiesResult);
+            return getPartiesResult;
         }
 
         #endregion
 
         #region RemoveAddress
 
-        [Fact]
-        public void RemoveAddress_IfParameterIsEmpty_ShouldThrowArgumentException()
+        [Theory]
+        [InlineData(null, "1")]
+        [InlineData("1", null)]
+        public void RemoveAddress_IfParameterIsEmpty_ShouldThrowArgumentException(string userName, string externalId)
         {
             // act & assert
-            Assert.Throws<ArgumentException>(
-                () => this.service.RemoveAddress(string.Empty, this.fixture.Create<Address>()));
+            Assert.Throws<ArgumentNullException>(
+                () => this.service.RemoveAddress(userName, externalId));
         }
 
         [Theory]
-        [MemberData(nameof(AddressParameters))]
-        public void RemoveAddress_IfParameterIsNull_ShouldThrowArgumentNullException(string userName, Address address)
+        [InlineData(null, "1")]
+        [InlineData("1", null)]
+        public void RemoveAddress_IfParameterIsNull_ShouldThrowArgumentNullException(string userName, string externalId)
         {
             // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.service.RemoveAddress(userName, address));
+            Assert.Throws<ArgumentNullException>(() => this.service.RemoveAddress(userName, externalId));
         }
 
         [Fact]
@@ -490,11 +457,11 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
         {
             // act
             var userName = this.fixture.Create<string>();
-            var address = this.fixture.Create<Address>();
+            var externalId = this.fixture.Create<string>();
             this.InitRemoveAddress(userName, false);
 
             // assert
-            var result = this.service.RemoveAddress(userName, address);
+            var result = this.service.RemoveAddress(userName, externalId);
 
             // assert
             Assert.False(result.Success);
@@ -506,11 +473,11 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
         {
             // act
             var userName = this.fixture.Create<string>();
-            var address = this.fixture.Create<Address>();
+            var externalId = this.fixture.Create<string>();
             this.InitRemoveAddress(userName);
 
             // assert
-            var result = this.service.RemoveAddress(userName, address);
+            var result = this.service.RemoveAddress(userName, externalId);
 
             // assert
             Assert.True(result.Success);
@@ -522,7 +489,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             string userName,
             bool removePartyResultSuccess = true)
         {
-            var (customerResult, _) = this.InitGetAddresses(userName);
+            this.InitGetAddresses(userName);
 
             var removePartyResponse = this.fixture
                 .Build<CustomerResult>()
@@ -535,7 +502,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             }
 
             this.accountManager
-                .RemoveParties(customerResult.CommerceCustomer, Arg.Any<List<Party>>())
+                .RemoveParties(Arg.Any<CommerceCustomer>(), Arg.Any<List<Party>>())
                 .Returns(removePartyResponse);
         }
 
@@ -727,7 +694,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             Address address,
             bool updatePartyResponseSuccess = true)
         {
-            var (customerResult, getPartiesResult) = this.InitGetAddresses(userName);
+            var getPartiesResult = this.InitGetAddresses(userName);
 
             if (address != null)
             {
@@ -751,7 +718,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             }
 
             this.accountManager
-                .UpdateParties(customerResult.CommerceCustomer, Arg.Any<List<Party>>())
+                .UpdateParties(Arg.Any<CommerceCustomer>(), Arg.Any<List<Party>>())
                 .Returns(updatePartyResponse);
 
             this.mapper
@@ -801,7 +768,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             var result = this.service.ValidateEmail(email);
 
             // assert
-            Assert.False(result.Success);
+            Assert.True(result.Data.InUse);
         }
 
         [Fact]
@@ -818,7 +785,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             var result = this.service.ValidateEmail(email);
 
             // assert
-            Assert.True(result.Success);
+            Assert.False(result.Data.InUse);
         }
 
         #endregion

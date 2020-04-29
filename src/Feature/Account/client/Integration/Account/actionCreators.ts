@@ -20,45 +20,45 @@ import {
   ChangePasswordPayload,
   CreateAccountPayload,
   UpdateAccountPayload,
-  ValidateAccountPayload,
   ValidateAccountResultPayload,
+  ValidateEmailPayload,
 } from './models';
 
-export type CreateAccount = (createAccountModel: Commerce.CreateAccountModel) => Action<CreateAccountPayload>;
+export type CreateAccount = (createAccountRequest: Commerce.CreateAccountRequest) => Action<CreateAccountPayload>;
 export type UpdateAccount = (firstName: string, lastName: string) => Action<UpdateAccountPayload>;
-export type AccountValidation = (email: string) => Action<ValidateAccountPayload>;
+export type EmailValidation = (email: string) => Action<ValidateEmailPayload>;
 export type ChangePassword = (oldPassword: string, newPassword: string) => Action<ChangePasswordPayload>;
 export type VerifyCommerceUser = () => Action;
 export type GetAddressList = () => Action;
-export type UpdateAddress = (address: Commerce.AddressModel) => Action<Commerce.AddressModel>;
-export type AddAddress = (address: Commerce.AddressModel) => Action<Commerce.AddressModel>;
-export type RemoveAddress = (address: Commerce.AddressModel) => Action<Commerce.AddressModel>;
+export type UpdateAddress = (address: Commerce.Address) => Action<Commerce.Address>;
+export type AddAddress = (address: Commerce.Address) => Action<Commerce.Address>;
+export type RemoveAddress = (externalId: string) => Action<string>;
 
 export type CreateAccountRequest = StatusType;
 export type CreateAccountFailure = FailureType;
-export type CreateAccountSuccess = (commerceUser: Commerce.CommerceUserModel) => Action;
+export type CreateAccountSuccess = (user: Commerce.User) => Action;
 
 export type UpdateAccountRequest = StatusType;
 export type UpdateAccountFailure = FailureType;
 export type UpdateAccountSuccess = StatusType;
 
-export type AccountValidationRequest = (email: string) => Action<ValidateAccountResultPayload>;
-export type AccountValidationFailure = FailureType;
-export type AccountValidationSuccess = (invalid: boolean, inUse: boolean) => Action<ValidateAccountResultPayload>;
+export type EmailValidationRequest = (email: string) => Action<ValidateAccountResultPayload>;
+export type EmailValidationFailure = FailureType;
+export type EmailValidationSuccess = (invalid: boolean, inUse: boolean) => Action<ValidateAccountResultPayload>;
 
 export type GetAddressListRequest = StatusType;
 export type GetAddressListFailure = FailureType;
-export type GetAddressListSuccess = (addressList: Commerce.AddressModel[]) => Action<AddressPayload>;
+export type GetAddressListSuccess = (addressList: Commerce.Address[]) => Action<AddressPayload>;
 export type UpdateAddressRequest = StatusType;
 export type UpdateAddressFailure = FailureType;
-export type UpdateAddressSuccess = (addressList: Commerce.AddressModel[]) => Action<AddressPayload>;
+export type UpdateAddressSuccess = (addressList: Commerce.Address[]) => Action<AddressPayload>;
 export type AddAddressRequest = StatusType;
 export type AddAddressFailure = FailureType;
-export type AddAddressSuccess = (addressList: Commerce.AddressModel[]) => Action<AddressPayload>;
+export type AddAddressSuccess = (addressList: Commerce.Address[]) => Action<AddressPayload>;
 
 export type RemoveAddressRequest = StatusType;
 export type RemoveAddressFailure = FailureType;
-export type RemoveAddressSuccess = (addressList: Commerce.AddressModel[]) => Action<AddressPayload>;
+export type RemoveAddressSuccess = (addressList: Commerce.Address[]) => Action<AddressPayload>;
 
 export type ChangePasswordRequest = StatusType;
 export type ChangePasswordFailure = FailureType;

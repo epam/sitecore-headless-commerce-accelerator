@@ -12,10 +12,9 @@ variables:
 
 steps:
 
-#- task: UseNode@1
-#  inputs:
-#    script: '"C:\Program Files\nodejs\npm.cmd" --version'
-#  displayName: Installing Node 10
+- task: UseNode@1
+  inputs:
+  displayName: Installing Node 10
 
 
 - task: DownloadSecureFile@1

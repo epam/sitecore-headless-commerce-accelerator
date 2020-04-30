@@ -12,10 +12,9 @@ variables:
 
 steps:
 
-- task: UseNode@1
+- task: CmdLine@2
   inputs:
     script: 'npm install gulp --save-dev'
-    version: '12.x'
 
 #- task: UseNode@1
 #  inputs:

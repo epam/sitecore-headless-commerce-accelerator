@@ -14,6 +14,7 @@ steps:
 
 - task: UseNode@1
   inputs:
+    script: 'npm --version'
   displayName: Installing Node 10
 
 

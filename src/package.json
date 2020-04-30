@@ -14,7 +14,8 @@
     "sc:codegen": "gulp --gulpfile ./scripts/code-generation/codeGen.js",
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",
-    "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js"
+    "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
     "@sitecore-jss/sitecore-jss-react": "^13.0.0",
@@ -124,5 +125,8 @@
   },
   "engines": {
     "node": "^0.12.0"
+  },
+    "resolutions": {
+    "graceful-fs": "4.2.3"
   }
 }

@@ -30,3 +30,21 @@ steps:
     arguments: '-Target 001-Restore'
     workingDirectory: './src/'
   displayName: Restore
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/tools'
+    artifact: 'tools'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/packages'
+    artifact: 'packages'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/node_modules'
+    artifact: 'node_modules'
+    publishLocation: 'pipeline'

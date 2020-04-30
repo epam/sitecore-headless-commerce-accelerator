@@ -14,8 +14,13 @@ steps:
 
 - task: UseNode@1
   inputs:
-    script: '"C:\Program Files\nodejs\npm.cmd" --version'
-  displayName: Installing Node 10
+    script: 'npm install gulp --save-dev'
+    version: '12.x'
+
+#- task: UseNode@1
+#  inputs:
+#    script: '"C:\Program Files\nodejs\npm.cmd" --version'
+#  displayName: Installing Node 10
 
 
 - task: DownloadSecureFile@1
@@ -23,6 +28,8 @@ steps:
   name: license_file
   inputs:
     secureFile: 'license.xml'
+
+
 
 - task: DownloadPipelineArtifact@2
   displayName: Download node modules

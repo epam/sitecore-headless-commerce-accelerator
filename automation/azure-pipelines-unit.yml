@@ -12,10 +12,6 @@ variables:
 
 steps:
 
-- task: CmdLine@2
-  inputs:
-    script: 'npm install gulp --save-dev'
-
 #- task: UseNode@1
 #  inputs:
 #    script: '"C:\Program Files\nodejs\npm.cmd" --version'

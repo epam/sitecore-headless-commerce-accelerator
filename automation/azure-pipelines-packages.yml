@@ -32,18 +32,18 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/s/tools'
+    targetPath: '$(Pipeline.Workspace)/s/src/tools'
     artifact: 'tools'
     publishLocation: 'pipeline'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/s/packages'
+    targetPath: '$(Pipeline.Workspace)/s/src/packages'
     artifact: 'packages'
     publishLocation: 'pipeline'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)/s/node_modules'
+    targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
     artifact: 'node_modules'
     publishLocation: 'pipeline'

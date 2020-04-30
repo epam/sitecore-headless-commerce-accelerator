@@ -726,12 +726,9 @@
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
-    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />
-    <Compile Include="Repositories\BaseCheckoutRepository.cs" />
-    <Compile Include="Repositories\Contracts\IAccountRepository.cs" />
     <Compile Include="Services\Analytics\IAnalyticsService.cs" />
     <Compile Include="Context\Contracts\IVisitorContext.cs" />
     <Compile Include="Services\Cart\CartService.cs" />

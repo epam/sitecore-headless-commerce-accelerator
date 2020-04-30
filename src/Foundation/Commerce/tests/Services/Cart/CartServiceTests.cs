@@ -40,7 +40,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
     public class CartServiceTests
     {
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly CartResult cartResult;
 
@@ -59,7 +59,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             var storefrontContext = Substitute.For<IStorefrontContext>();
             var catalogContext = Substitute.For<ICatalogContext>();
 
-            this.cartManager = Substitute.For<ICartManagerV2>();
+            this.cartManager = Substitute.For<ICartManager>();
             this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
             this.fixture = this.CreateOmitOnRecursionFixture();
             this.visitorContext = Substitute.For<IVisitorContext>();

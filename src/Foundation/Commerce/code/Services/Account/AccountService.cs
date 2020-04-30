@@ -41,14 +41,14 @@ namespace HCA.Foundation.Commerce.Services.Account
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService
     {
-        private readonly IAccountManagerV2 accountManager;
+        private readonly IAccountManager accountManager;
 
         private readonly IAccountMapper mapper;
 
         private readonly IStorefrontContext storefrontContext;
 
         public AccountService(
-            IAccountManagerV2 accountManager,
+            IAccountManager accountManager,
             IAccountMapper accountMapper,
             IStorefrontContext storefrontContext)
         {
@@ -306,7 +306,7 @@ namespace HCA.Foundation.Commerce.Services.Account
             {
                 result.Data.InUse = true;
             }
-            
+
             return result;
         }
 

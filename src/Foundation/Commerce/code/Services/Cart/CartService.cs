@@ -40,7 +40,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
     public class CartService : ICartService
     {
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly ICatalogContext catalogContext;
 
@@ -51,7 +51,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
         private readonly ICartBuilder<Connect.Cart> cartBuilder;
 
         public CartService(
-            ICartManagerV2 cartManager,
+            ICartManager cartManager,
             IStorefrontContext storefrontContext,
             ICatalogContext catalogContext,
             IVisitorContext visitorContext,

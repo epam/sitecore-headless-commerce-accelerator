@@ -45,7 +45,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     {
         private readonly IOrderBuilder builder;
 
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly Fixture fixture;
 
@@ -61,7 +61,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
         {
             this.builder = Substitute.For<IOrderBuilder>();
             this.orderManager = Substitute.For<IOrderManager>();
-            this.cartManager = Substitute.For<ICartManagerV2>();
+            this.cartManager = Substitute.For<ICartManager>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.visitorContext = Substitute.For<IVisitorContext>();
             var logService = Substitute.For<ILogService<CommonLog>>();

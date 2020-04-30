@@ -42,7 +42,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
     public class AccountServiceTests
     {
-        private readonly IAccountManagerV2 accountManager;
+        private readonly IAccountManager accountManager;
 
         private readonly Fixture fixture;
 
@@ -56,7 +56,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
         {
             this.fixture = new Fixture();
 
-            this.accountManager = Substitute.For<IAccountManagerV2>();
+            this.accountManager = Substitute.For<IAccountManager>();
             this.mapper = Substitute.For<IAccountMapper>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());

@@ -564,9 +564,9 @@
     <Compile Include="Builders\Search\SearchQueryBuilderTests.cs" />
     <Compile Include="Context\Storefront\StorefrontContextTests.cs" />
     <Compile Include="Context\Catalog\CatalogContextTests.cs" />
-    <Compile Include="Managers\Account\AccountManagerV2Tests.cs" />
+    <Compile Include="Managers\Account\AccountManagerTests.cs" />
     <Compile Include="Managers\BaseManagerTests.cs" />
-    <Compile Include="Managers\Cart\CartManagerV2Tests.cs" />
+    <Compile Include="Managers\Cart\CartManagerTests.cs" />
     <Compile Include="Managers\Inventory\InventoryManagerTests.cs" />
     <Compile Include="Managers\Order\OrderManagerTests.cs" />
     <Compile Include="Managers\Payment\PaymentManagerTests.cs" />

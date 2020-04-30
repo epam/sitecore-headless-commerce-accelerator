@@ -34,18 +34,7 @@ namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
         private void RegisterHttpRoutes(RouteCollection routeCollection)
         {
             Assert.ArgumentNotNull(routeCollection, nameof(routeCollection));
-
-            const string AccountControllerName = "Account";
-
-            routeCollection.MapRoute(
-                nameof(AccountController),
-                Constants.CommerceRoutePrefix + $"/{AccountControllerName.ToLowerInvariant()}" + "/{action}",
-                namespaces: new[] { typeof(AccountController).Namespace },
-                defaults: new
-                {
-                    controller = AccountControllerName
-                });
-
+            
             const string AccountsControllerName = "Accounts";
 
             routeCollection.MapRoute(

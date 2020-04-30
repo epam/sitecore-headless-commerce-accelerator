@@ -510,7 +510,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />

@@ -47,9 +47,9 @@ namespace HCA.Foundation.Commerce.Services.Delivery
     [Service(typeof(IDeliveryService), Lifetime = Lifetime.Singleton)]
     public class DeliveryService : IDeliveryService
     {
-        private readonly IAccountManagerV2 accountManager;
+        private readonly IAccountManager accountManager;
 
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly IShippingManager shippingManager;
 
@@ -60,8 +60,8 @@ namespace HCA.Foundation.Commerce.Services.Delivery
         private readonly IVisitorContext visitorContext;
 
         public DeliveryService(
-            IAccountManagerV2 accountManager,
-            ICartManagerV2 cartManager,
+            IAccountManager accountManager,
+            ICartManager cartManager,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             IShippingMapper shippingMapper,

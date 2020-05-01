@@ -39,7 +39,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     }
   }
   public safeRender() {
-    const { fields } = this.props;
+    const { fields, commerceUser } = this.props;
     return (
       <Form className="teal-thick-theme">
         <section className="billing">
@@ -137,7 +137,18 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
                 <div className="col-ms-6">
                   <div className="sub-text">
                     <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
-                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                    {commerceUser && commerceUser.customerId ? (
+                      <Input
+                        name={FIELDS.EMAIL}
+                        type="email"
+                        disabled={true}
+                        value={commerceUser.email}
+                        required={true}
+                        maxLength={100}
+                      />
+                    ) : (
+                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                    )}
                     <Text field={{ value: 'For order status and updates' }} tag="sub" />
                   </div>
                 </div>

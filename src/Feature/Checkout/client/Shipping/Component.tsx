@@ -42,8 +42,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     }
   }
 
+  // tslint:disable-next-line: no-big-function
   protected safeRender() {
-    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo } = this.props;
+    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser } = this.props;
 
     return (
       <Form>
@@ -145,7 +146,18 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-ms-6">
                 <div className="sub-text">
                   <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
-                  <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  {commerceUser && commerceUser.customerId ? (
+                    <Input
+                      name={FIELDS.EMAIL}
+                      type="email"
+                      disabled={true}
+                      value={commerceUser.email}
+                      required={true}
+                      maxLength={100}
+                    />
+                  ) : (
+                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>

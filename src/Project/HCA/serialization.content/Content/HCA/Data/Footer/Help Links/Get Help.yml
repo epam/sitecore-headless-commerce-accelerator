@@ -5,15 +5,7 @@ Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
 Path: /sitecore/content/HCA/Data/Footer/Help Links/Get Help
 DB: master
 SharedFields:
-- ID: "59c90da9-7201-4915-b904-73405da46bb1"
-  Hint: Uri
-  Value: |
-    <link text="Get Help" linktype="external" url="" anchor="" target="" />
 - ID: "743716bb-160d-4e5c-be88-a4fe043ba2c1"
-  Hint: Is Primary
-  Type: Checkbox
-  Value: 1
-- ID: "8a2048ce-4884-4f3b-9c8b-91044e883ffa"
   Hint: Is Primary
   Type: Checkbox
   Value: 1
@@ -29,10 +21,3 @@ Languages:
       Hint: Uri
       Value: |
         <link linktype="external" text="Get Help" url="" anchor="" target="" />
-    - ID: "8a2048ce-4884-4f3b-9c8b-91044e883ffa"
-      Hint: Is Primary
-      Type: Checkbox
-      Value: 1
-    - ID: "9b52fb12-446c-4f64-9608-d898531bab84"
-      Hint: Title
-      Value: Get Help

@@ -24,10 +24,3 @@ Languages:
       Hint: Uri
       Value: |
         <link text="News" linktype="external" url="" anchor="" target="" />
-    - ID: "8a2048ce-4884-4f3b-9c8b-91044e883ffa"
-      Hint: Is Primary
-      Type: Checkbox
-      Value: 1
-    - ID: "9b52fb12-446c-4f64-9608-d898531bab84"
-      Hint: Title
-      Value: News

@@ -5,6 +5,14 @@ Template: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
 Path: /sitecore/content/HCA/Data/Footer/Social Networks
 DB: master
 SharedFields:
+- ID: "69e30764-9342-4ade-9c1b-db74d087537d"
+  Hint: Links
+  Type: Multilist
+  Value: |
+    {A2C8C164-E3B2-48E0-A5B9-14CBFAE28D26}
+    {55D79260-F5D4-45E2-B148-67598686DEB9}
+    {FE745AEC-A7BD-42C1-9316-41A715302486}
+    {650C64F9-79BE-4F53-A6D2-08B8F78526C7}
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 700
@@ -20,14 +28,6 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "69e30764-9342-4ade-9c1b-db74d087537d"
-      Hint: Links
-      Type: Multilist
-      Value: |
-        {A2C8C164-E3B2-48E0-A5B9-14CBFAE28D26}
-        {55D79260-F5D4-45E2-B148-67598686DEB9}
-        {FE745AEC-A7BD-42C1-9316-41A715302486}
-        {650C64F9-79BE-4F53-A6D2-08B8F78526C7}
     - ID: "ef68acf6-1155-4c4c-9e38-fe1dcccb7d1f"
-      Hint: Title
+      Hint: Section Title
       Value: Social Networks

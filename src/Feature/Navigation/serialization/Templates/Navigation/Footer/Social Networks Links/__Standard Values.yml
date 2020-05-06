@@ -17,5 +17,5 @@ Languages:
       Value: |
         sitecore\Admin
     - ID: "ef68acf6-1155-4c4c-9e38-fe1dcccb7d1f"
-      Hint: Title
+      Hint: Section Title
       Value: $name

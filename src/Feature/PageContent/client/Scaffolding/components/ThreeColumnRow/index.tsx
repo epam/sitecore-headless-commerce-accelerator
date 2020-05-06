@@ -25,13 +25,13 @@ class ThreeColumnRowComponent extends JSS.SafePureComponent<GridControlProps, Gr
     return (
       <div className={classnames('row', { [this.props.params.wrapperClass]: !!this.props.params.wrapperClass })}>
         <div className={this.props.params.firstColumnClass || 'col-xs-4'}>
-          <Placeholder name="w-col-1" {...this.props} />
+          <Placeholder name="w-col-1" rendering={this.props.rendering} />
         </div>
         <div className={this.props.params.secondColumnClass || 'col-xs-4'}>
-          <Placeholder name="w-col-2" {...this.props} />
+          <Placeholder name="w-col-2" rendering={this.props.rendering} />
         </div>
         <div className={this.props.params.thirdColumnClass || 'col-xs-4'}>
-          <Placeholder name="w-col-3" {...this.props} />
+          <Placeholder name="w-col-3" rendering={this.props.rendering} />
         </div>
       </div>
     );

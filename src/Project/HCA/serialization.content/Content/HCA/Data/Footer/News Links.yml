@@ -5,6 +5,12 @@ Template: "316ff1db-aec1-4b16-9bbf-972f07bcead8"
 Path: /sitecore/content/HCA/Data/Footer/News Links
 DB: master
 SharedFields:
+- ID: "6eb6810e-1468-42ad-a0f6-b347a88f729a"
+  Hint: Links
+  Type: Multilist
+  Value: |
+    {2240C82B-E4FC-4B52-A482-384EC1E6C3B9}
+    {2FFF1049-08EB-4078-9183-5A45E743EABF}
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 400
@@ -20,9 +26,3 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "6eb6810e-1468-42ad-a0f6-b347a88f729a"
-      Hint: Links
-      Type: Multilist
-      Value: |
-        {2240C82B-E4FC-4B52-A482-384EC1E6C3B9}
-        {2FFF1049-08EB-4078-9183-5A45E743EABF}

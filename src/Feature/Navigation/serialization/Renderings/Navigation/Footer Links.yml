@@ -1,0 +1,58 @@
+﻿---
+ID: "2b2aabc0-81f7-4893-b53a-a3e26b3d6663"
+Parent: "7ca13274-c949-49bf-836d-e32d49bc6782"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/Navigation/Footer Links
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Footer Links
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: |
+    {F88D9D4E-A15C-47E7-8E0A-D0F85A8234CD}
+    {8B7849B4-A190-472C-9871-F96A8A2C79FE}
+    {EFE7E9B9-DAFD-46E7-B7AF-4A3FA070BDC6}
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query FooterLinks($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on FooterLinks {
+          id
+          links {
+            items: targetItems {
+              ... on FooterLink {
+                id
+                isPrimary {
+                  jss
+                }
+                uri {
+                  jss
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/Navigation/Footer/Footer Links
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']/*[@@name='Footer']/*[@@templateid='{316FF1DB-AEC1-4B16-9BBF-972F07BCEAD8}']"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 50
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T200824Z

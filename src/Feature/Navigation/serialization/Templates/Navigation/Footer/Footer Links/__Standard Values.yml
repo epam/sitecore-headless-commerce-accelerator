@@ -1,0 +1,23 @@
+﻿---
+ID: "4fc3016c-282f-4af6-9bae-331e3d4953df"
+Parent: "316ff1db-aec1-4b16-9bbf-972f07bcead8"
+Template: "316ff1db-aec1-4b16-9bbf-972f07bcead8"
+Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Footer Links/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{2C9C975E-89D7-4C96-BF7B-74AC622D54AB}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200430T175701Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -1,0 +1,29 @@
+﻿---
+ID: "2fff1049-08eb-4078-9183-5a45e743eabf"
+Parent: "c5fe58aa-6401-4932-871f-d0d6623dce5e"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/News Links/About HCA
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 50
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190731Z
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link text="About HCA" linktype="external" url="" anchor="" target="" />
+    - ID: "8a2048ce-4884-4f3b-9c8b-91044e883ffa"
+      Hint: Is Primary
+      Type: Checkbox
+      Value: 0
+    - ID: "9b52fb12-446c-4f64-9608-d898531bab84"
+      Hint: Title
+      Value: About HCA

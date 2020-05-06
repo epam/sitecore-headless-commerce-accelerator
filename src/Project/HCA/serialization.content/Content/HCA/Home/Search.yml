@@ -14,37 +14,32 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
-          uid="{0AC8584D-F870-4025-9A20-1F07AB56F967}"
+          uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
           p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
-          s:ds=""
-          s:id="{A8ADE3C6-7AD9-4507-BA0D-BD4EC8C1B38E}"
-          s:par="Wrapper Class=wooli&amp;First Column Class&amp;Second Column Class"
-          s:ph="/wooli-content" />
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="wooli-content" />
         <r
           uid="{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}"
-          p:after="r[@uid='{0AC8584D-F870-4025-9A20-1F07AB56F967}']"
+          p:after="r[@uid='{57257C7A-D47B-4800-9E33-F5C2D599683C}']"
           s:ds=""
           s:id="{B2EDE051-9A8B-4502-9D6B-39759BCFF123}"
           s:par="Wrapper Class=wooli&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10"
-          s:ph="/wooli-content" />
+          s:ph="/main-content" />
         <r
-          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
-          p:after="r[@uid='{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}']" />
+          uid="{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}"
+          p:after="r[@uid='{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}']"
+          s:id="{82234EFA-DF55-4255-AEA5-FADDD6A59B7D}"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
         <r
           uid="{F4AFBAD1-F563-4B30-89F9-64800D674A73}"
-          p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']"
+          p:after="r[@uid='{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}']"
           s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
-          s:ph="/wooli-content/w-col-1-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
+          s:ph="/main-content/w-col-1-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
         <r
           uid="{9ADD87FA-468C-4848-A836-8DBCAA098786}"
           p:after="r[@uid='{F4AFBAD1-F563-4B30-89F9-64800D674A73}']"
           s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
-          s:ph="/wooli-content/w-col-2-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
-        <r
-          uid="{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}"
-          p:after="*[1=2]"
-          s:id="{82234EFA-DF55-4255-AEA5-FADDD6A59B7D}"
-          s:ph="/wooli-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
+          s:ph="/main-content/w-col-2-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
       </d>
     </r>
 Languages:
@@ -52,25 +47,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
-      Hint: __Final Renderings
-      Type: Layout
-      Value: |
-        <r xmlns:p="p" xmlns:s="s"
-          p:p="1">
-          <d
-            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-            <r
-              uid="{0AC8584D-F870-4025-9A20-1F07AB56F967}">
-              <p:d />
-            </r>
-            <r
-              uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
-              p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
-              s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
-              s:ph="wooli-content" />
-          </d>
-        </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180528T143408Z

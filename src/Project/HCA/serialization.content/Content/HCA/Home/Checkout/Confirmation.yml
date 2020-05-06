@@ -22,12 +22,16 @@ SharedFields:
           s:ds=""
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
           s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
-          s:ph="/wooli-content" />
+          s:ph="/main-content" />
         <r
           uid="{413F9EAA-53B5-49D5-84C8-E9F674EF3763}"
           p:after="r[@uid='{D8830798-2CEC-4965-9841-814483AF86CC}']"
           s:id="{B1737F32-C7B0-464C-B271-7E0C3FEDF95F}"
-          s:ph="/wooli-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
+          s:ph="/main-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
+        <r
+          uid="{D4C73864-01C2-49D4-A5F3-89E2D3B755BB}">
+          <p:d />
+        </r>
         <r
           uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
           p:after="*[1=2]" />

@@ -19,8 +19,12 @@ import * as Catalog from 'Feature/Catalog/client';
 import * as Checkout from 'Feature/Checkout/client';
 import * as PageContent from 'Feature/PageContent/client';
 
+import Copyright from 'Feature/Navigation/client/Copyright';
 import GlobalFooter from 'Feature/Navigation/client/GlobalFooter';
 import GlobalHeader from 'Feature/Navigation/client/GlobalHeader';
+
+import FooterLinks from 'Feature/Navigation/client/FooterLinks';
+import SocialNetworksLinks from 'Feature/Navigation/client/SocialNetworksLinks';
 
 const components = new Map<string, React.ComponentType<{}>>();
 
@@ -31,11 +35,17 @@ const components = new Map<string, React.ComponentType<{}>>();
 components.set('One Column', PageContent.OneColumn);
 components.set('Two Column', PageContent.TwoColumn);
 components.set('Two Column Row', PageContent.TwoColumnRow);
+components.set('Three Column Row', PageContent.ThreeColumnRow);
 
 // Page Content
-components.set('Header', GlobalHeader);
-components.set('Footer', GlobalFooter);
 components.set('Home', PageContent.Home);
+components.set('Header', GlobalHeader);
+
+// Footer renderings
+components.set('Footer', GlobalFooter);
+components.set('Copyright', Copyright);
+components.set('Footer Links', FooterLinks);
+components.set('Social Networks Links', SocialNetworksLinks);
 
 // Catalog renderings
 components.set('Find In Store', Catalog.FindInStore);

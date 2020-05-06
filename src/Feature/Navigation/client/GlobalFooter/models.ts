@@ -12,8 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
+import * as Jss from 'Foundation/ReactJss/client';
 
-export interface GlobalFooterProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface GlobalFooterDataSource extends Jss.BaseDataSourceItem { }
 
-export interface GlobalFooterState extends JSS.SafePureComponentState {}
+export interface GlobalFooterProps extends Jss.Rendering<Jss.BaseDataSourceItem> { }
+
+export interface GlobalFooterState extends Jss.SafePureComponentState { }

@@ -18,10 +18,9 @@ import * as Jss from 'Foundation/ReactJss/client';
 
 import './styles.scss';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { ThankYouMessageProps, ThankYouMessageState } from './models';
 
-class ThankYouMessageControl extends Jss.SafePureComponent<ThankYouMessageProps, ThankYouMessageState> {
+export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps, ThankYouMessageState> {
   public safeRender() {
     const { order } = this.props;
     return (
@@ -54,5 +53,3 @@ class ThankYouMessageControl extends Jss.SafePureComponent<ThankYouMessageProps,
     );
   }
 }
-
-export const ThankYouMessage = withExperienceEditorChromes(ThankYouMessageControl);

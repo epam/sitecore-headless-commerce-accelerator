@@ -32,34 +32,33 @@ import './styles.scss';
 
 class HeroHomeControl extends Jss.SafePureComponent<HeroHomeControlProps, HeroHomeControlState> {
     public safeRender() {
-        const { fields, sitecoreContext } = this.props;
-        const isEditing = sitecoreContext.pageEditing;
+        const { fields } = this.props;
         return (
             <section className="hero-home-wrap">
                 <div className="promo-row">
                     <div className="promo-lg-half">
-                        <MainPromoSlider image={fields.mainPromoImage} text={fields.mainPromoText} isEditing={isEditing} />
+                        <MainPromoSlider image={fields.mainPromoImage} text={fields.mainPromoText} />
                     </div>
                     <div className="promo-lg-half">
                         <div className="promo-row">
                             <div className="promo-sm-full">
-                                <WidePromo image={fields.widePromoImage} text={fields.widePromoText}  isEditing={isEditing} />
+                                <WidePromo image={fields.widePromoImage} text={fields.widePromoText} />
                             </div>
                         </div>
                         <div className="promo-row">
                             <div className="promo-sm-half">
-                                <PromoA image={fields.promoAImage} text={fields.promoAText} isEditing={isEditing} />
+                                <PromoA image={fields.promoAImage} text={fields.promoAText} />
                             </div>
                             <div className="promo-sm-half">
-                                <PromoB image={fields.promoBImage} isEditing={isEditing} />
+                                <PromoB image={fields.promoBImage} />
                             </div>
                         </div>
                         <div className="promo-row">
                             <div className="promo-sm-half">
-                                <PromoC image={fields.promoCImage} isEditing={isEditing} />
+                                <PromoC image={fields.promoCImage} />
                             </div>
                             <div className="promo-sm-half">
-                                <PromoD image={fields.promoDImage} isEditing={isEditing} />
+                                <PromoD image={fields.promoDImage} />
                             </div>
                         </div>
                     </div>

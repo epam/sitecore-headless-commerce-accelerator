@@ -25,10 +25,10 @@ class TwoColumnRowComponent extends JSS.SafePureComponent<GridControlProps, Grid
     return (
       <div className={classnames('row', { [this.props.params.wrapperClass]: !!this.props.params.wrapperClass })}>
         <div className={this.props.params.firstColumnClass || 'col-md-8'}>
-          <Placeholder name="w-col-1" {...this.props} />
+          <Placeholder name="w-col-1" rendering={this.props.rendering} />
         </div>
         <div className={this.props.params.secondColumnClass || 'col-md-4'}>
-          <Placeholder name="w-col-2" {...this.props} />
+          <Placeholder name="w-col-2" rendering={this.props.rendering} />
         </div>
       </div>
     );

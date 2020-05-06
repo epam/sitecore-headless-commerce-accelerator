@@ -14,10 +14,9 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface WidePromoControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface WidePromoControlProps {
   image: JSS.ImageField;
   text: JSS.TextField;
-  isEditing: boolean;
 }
 
 export interface WidePromoControlState extends JSS.SafePureComponentState {}

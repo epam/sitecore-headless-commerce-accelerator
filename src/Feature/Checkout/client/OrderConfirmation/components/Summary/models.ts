@@ -15,8 +15,9 @@
 import * as Commerce from 'Foundation/Commerce/client';
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface SummaryProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
-    order: Commerce.CartModel;
+export interface SummaryProps {
+    order: Commerce.Cart;
+    productColors: Commerce.ProductColors;
 }
 
 export interface SummaryState extends JSS.SafePureComponentState {}

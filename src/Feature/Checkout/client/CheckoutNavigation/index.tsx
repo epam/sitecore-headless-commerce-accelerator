@@ -12,14 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
+import * as Jss from 'Foundation/ReactJss/client';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { NavigationLink } from 'Foundation/UI/client';
+
 import { NavigationControlProps, NavigationControlState } from './models';
-
-import * as Jss from 'Foundation/ReactJss/client';
-
 import './styles.scss';
 
 class NavigationControl extends Jss.SafePureComponent<NavigationControlProps, NavigationControlState> {
@@ -31,7 +30,7 @@ class NavigationControl extends Jss.SafePureComponent<NavigationControlProps, Na
           {checkoutSteps &&
             checkoutSteps.map((checkoutStep, checkoutStepIndex) => {
               const { checkoutStepName } = checkoutStep.fields;
-              const stepClassName = this.props.routeFields.id === checkoutStep.fields.id ? 'active' : '';
+              const stepClassName = this.props.sitecoreContext.routeFields.id === checkoutStep.fields.id ? 'active' : '';
               return (
                 <li key={checkoutStepIndex} className={stepClassName}>
                   {/*<NavigationLink to={checkoutStep.url}>{checkoutStepName.value}</NavigationLink>*/}
@@ -52,4 +51,4 @@ class NavigationControl extends Jss.SafePureComponent<NavigationControlProps, Na
   }
 }
 
-export const CheckoutNavigation = withExperienceEditorChromes(NavigationControl);
+export const CheckoutNavigation = Jss.renderingWithContext(NavigationControl);

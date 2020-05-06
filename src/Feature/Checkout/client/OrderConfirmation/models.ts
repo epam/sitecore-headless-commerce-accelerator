@@ -15,9 +15,9 @@
 import * as JSS from 'Foundation/ReactJss/client';
 
 import * as Orders from 'Feature/Checkout/client/Integration/Order';
-import { Order } from 'Foundation/Commerce/client';
+import { Order, ProductColorsContext } from 'Foundation/Commerce/client';
 
-export interface OrderConfirmationOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface OrderConfirmationOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductColorsContext> {}
 
 export interface OrderConfirmationStateProps {
   currentOrder: Order;

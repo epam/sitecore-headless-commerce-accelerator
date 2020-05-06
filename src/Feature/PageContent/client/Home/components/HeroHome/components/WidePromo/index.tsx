@@ -14,22 +14,20 @@
 
 import * as React from 'react';
 
-import { Image, Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Image, Text } from '@sitecore-jss/sitecore-jss-react';
 import { WidePromoControlProps, WidePromoControlState } from './models';
 
 import * as Jss from 'Foundation/ReactJss/client';
 
 import './styles.scss';
 
-class WidePromoControl extends Jss.SafePureComponent<WidePromoControlProps, WidePromoControlState> {
+export class WidePromo extends Jss.SafePureComponent<WidePromoControlProps, WidePromoControlState> {
     public safeRender() {
-        const { image, isEditing, text } = this.props;
+        const { image, text } = this.props;
         return (
-            <figure className={isEditing ? '' : 'wide-promo'}>
+            <figure className="wide-promo">
                 <a href="#">
-                    {isEditing
-                        ? <Image media={image} />
-                        : <img src={image.value.src} alt={image.value.alt} />}
+                    <Image media={image} />
                     <figcaption>
                         <h2 className="main-promo-text">
                             <span className="text-style1" />
@@ -45,5 +43,3 @@ class WidePromoControl extends Jss.SafePureComponent<WidePromoControlProps, Wide
         );
     }
 }
-
-export const WidePromo = withExperienceEditorChromes(WidePromoControl);

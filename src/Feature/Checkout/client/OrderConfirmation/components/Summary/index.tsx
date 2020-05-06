@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 import * as React from 'react';
 
@@ -38,7 +38,7 @@ const fields = {
     },
 };
 
-class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
+export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
     public safeRender() {
         const { order } = this.props;
 
@@ -86,7 +86,7 @@ class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                                                 <Text field={fields.colorTitle} tag="span" className="color-title" />
                                                                 <span
                                                                     className={classnames({ 'color-name': true, 'selected': true })}
-                                                                    style={{ background: resolveColor(cartLine.variant.properties.color, this.props.sitecoreContext) }}
+                                                                    style={{ background: resolveColor(cartLine.variant.properties.color, this.props.productColors) }}
                                                                 />
                                                             </span>
                                                         )}
@@ -133,5 +133,3 @@ class SummaryControl extends Jss.SafePureComponent<SummaryProps, SummaryState> {
         );
     }
 }
-
-export const Summary = withExperienceEditorChromes(SummaryControl);

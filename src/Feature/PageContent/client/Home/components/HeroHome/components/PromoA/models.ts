@@ -14,10 +14,9 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface PromoAControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface PromoAControlProps {
   image: JSS.ImageField;
   text: JSS.TextField;
-  isEditing: boolean;
 }
 
 export interface PromoAControlState extends JSS.SafePureComponentState {}

@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { ProductContext } from 'Foundation/Commerce/client/models';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
+
+import { renderingWithContext } from 'Foundation/ReactJss/client/Enhancers/rendering';
 
 import { ProductInformationControlProps, ProductInformationControlState } from './models';
 import './styles.scss';
 
 class ProductInformationControl extends JSS.SafePureComponent<ProductInformationControlProps, ProductInformationControlState> {
   protected safeRender() {
-    const { product } = this.props.sitecoreContext as ProductContext;
+    const { product } = this.props.sitecoreContext;
     return (
         <section className="product-description">
             <div className="row">
@@ -101,4 +101,4 @@ class ProductInformationControl extends JSS.SafePureComponent<ProductInformation
   }
 }
 
-export const ProductInformation =  withExperienceEditorChromes(ProductInformationControl);
+export const ProductInformation = renderingWithContext(ProductInformationControl);

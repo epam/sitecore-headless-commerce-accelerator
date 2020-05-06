@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { ComponentRendering } from '@sitecore-jss/sitecore-jss-react';
 import * as Router from 'connected-react-router';
 
 import { Status } from 'Foundation/Integration/client';
@@ -48,14 +49,8 @@ export interface DictionaryItem {
   dictionary: { [key: string]: string };
 }
 
-export interface Rendering<TDataSourceItem extends BaseDataSourceItem> extends Item<TDataSourceItem> {
-  actionCallback: any;
-  actions?: any;
-  dictionary: { [key: string]: string };
-  language: any;
-  rendering: any;
-  routeFields: any;
-  sitecoreContext: any;
+export interface Rendering<TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem> extends Item<TDataSourceItem> {
+  rendering: ComponentRendering;
 }
 
 export interface GraphQLRendering<TDataSourceItem extends BaseDataSourceItem>
@@ -66,6 +61,18 @@ export interface RenderingWithParams<
   TParameters extends BaseRenderingParam
 > extends Rendering<TDataSourceItem> {
   params: TParameters;
+}
+
+export interface RouteFields<TRouteFields extends BaseDataSourceItem = BaseDataSourceItem> {
+  routeFields: TRouteFields;
+}
+
+export interface RenderingWithContext<
+  TDataSourceItem extends BaseDataSourceItem,
+  TCustomData = {},
+  TRouteFields extends BaseDataSourceItem = BaseDataSourceItem
+> extends Rendering<TDataSourceItem> {
+  sitecoreContext: RouteFields<TRouteFields> & TCustomData;
 }
 
 export interface Field<TFieldValue> {

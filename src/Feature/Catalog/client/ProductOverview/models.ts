@@ -17,8 +17,9 @@ import * as JSS from 'Foundation/ReactJss/client';
 import { ProductVariantModel } from 'Foundation/Commerce/client/dataModel.Generated';
 
 import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
+import { ProductContext } from 'Foundation/Commerce/client';
 
-export interface ProductOverviewOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface ProductOverviewOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
 export interface ProductOverviewStateProps {
   selectedVariant: ProductVariantModel;
 }

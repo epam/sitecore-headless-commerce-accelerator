@@ -14,6 +14,8 @@
 
 import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import * as ProductSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
@@ -45,6 +47,6 @@ const mapDispatchToProps = (dispatch: any) =>
 const connectedToStore = connect<ProductFiltersStateProps, ProductFiltersDispatchProps, ProductFiltersOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(ProductFiltersComponent);
+);
 
-export const ProductFilters = withExperienceEditorChromes(connectedToStore);
+export const ProductFilters = compose(withRouter, withExperienceEditorChromes, connectedToStore)(ProductFiltersComponent);

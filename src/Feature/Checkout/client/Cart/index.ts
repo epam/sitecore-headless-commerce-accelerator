@@ -12,9 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
+
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
 
@@ -36,8 +38,6 @@ const mapDispatchToProps = (dispatch: any) =>
     dispatch
   );
 
-const connectedToStore = connect<CartStateProps, CartDispatchProps, CartOwnProps>(mapStateToProps, mapDispatchToProps)(
-  CartComponent
-);
+const connectedToStore = connect<CartStateProps, CartDispatchProps, CartOwnProps>(mapStateToProps, mapDispatchToProps);
 
-export const Cart = withExperienceEditorChromes(connectedToStore);
+export const Cart = compose(connectedToStore, renderingWithContext)(CartComponent);

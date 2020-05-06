@@ -12,11 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import { ProductVariant } from 'Feature/Catalog/client/Integration';
+import { renderingWithContext } from 'Foundation/ReactJss/client/Enhancers/rendering';
 import ProductOverviewComponent from './Component';
 
 import { AppState, ProductOverviewDispatchProps, ProductOverviewOwnProps, ProductOverviewStateProps } from './models';
@@ -36,6 +37,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<ProductOverviewStateProps, ProductOverviewDispatchProps, ProductOverviewOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(ProductOverviewComponent);
+);
 
-export const ProductOverview = withExperienceEditorChromes(connectedToStore);
+export const ProductOverview = compose(renderingWithContext, connectedToStore)(ProductOverviewComponent);

@@ -26,7 +26,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     this.props.LoadCart();
   }
   public safeRender() {
-    const { shoppingCartData } = this.props;
+    const { shoppingCartData, sitecoreContext } = this.props;
 
     return (
       <>
@@ -42,10 +42,10 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           {!!shoppingCartData && (
             <>
               <div className="col-md-8">
-                {shoppingCartData.cartLines && <CartSummary cartLines={shoppingCartData.cartLines} {...this.props} />}
+                {shoppingCartData.cartLines && <CartSummary cartLines={shoppingCartData.cartLines} productColors={sitecoreContext.productColors} />}
               </div>
               <div className="col-md-4">
-                {shoppingCartData.price && <OrderSummary price={shoppingCartData.price} {...this.props} />}
+                {shoppingCartData.price && <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />}
               </div>
             </>
           )}

@@ -16,7 +16,7 @@
 
 import { dataApi } from '@sitecore-jss/sitecore-jss-react';
 
-const { fetchRouteData, fetchPlaceholderData, fetchItemData } = dataApi;
+const { fetchRouteData, fetchPlaceholderData } = dataApi;
 
 import dataFetcher from './dataFetcher';
 import { JssDataApi, OptionParameters } from './models';
@@ -38,11 +38,6 @@ export default class DataApi implements JssDataApi {
   public async getPlaceholderData(placeholderName: string, route: string, language: string, options: OptionParameters = {}) {
     const fetchOptions = this.getFetchOptions(language, options);
     return fetchPlaceholderData(placeholderName, route, fetchOptions);
-  }
-
-  public async getItemData(itemPath: string, language: string, options: OptionParameters = {}) {
-    const fetchOptions = this.getFetchOptions(language, options);
-    return fetchItemData(itemPath, fetchOptions);
   }
 
   private getFetchOptions(language: string, options: OptionParameters = {}) {

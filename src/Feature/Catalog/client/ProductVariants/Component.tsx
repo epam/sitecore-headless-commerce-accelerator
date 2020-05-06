@@ -37,7 +37,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
   }
 
   protected safeRender() {
-    const { variants } = this.props;
+    const { variants, sitecoreContext } = this.props;
     return (
       <>
         {variants &&
@@ -48,7 +48,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
                 {variants &&
                   variants.map((variant, variantIndex) => {
                     const colorName = variant.properties['Color'];
-                    const colorValue = resolveColor(colorName, this.props.sitecoreContext);
+                    const colorValue = resolveColor(colorName, sitecoreContext.productColors);
                     return (
                       <li key={variantIndex} className="colors-listitem">
                         <span

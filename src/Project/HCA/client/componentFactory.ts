@@ -12,8 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
-
 import * as Account from 'Feature/Account/client';
 import * as Catalog from 'Feature/Catalog/client';
 import * as Checkout from 'Feature/Checkout/client';
@@ -22,7 +20,7 @@ import * as PageContent from 'Feature/PageContent/client';
 import GlobalFooter from 'Feature/Navigation/client/GlobalFooter';
 import GlobalHeader from 'Feature/Navigation/client/GlobalHeader';
 
-const components = new Map<string, React.ComponentType<{}>>();
+const components = new Map<string, any>();
 
 // add components to the map
 // components.set('Component', <Component />);

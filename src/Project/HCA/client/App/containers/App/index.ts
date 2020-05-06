@@ -33,7 +33,7 @@ const mapStateToProps = (state: AppState): AppStateProps => {
     isLoading: sitecore.status === LoadingStatus.Loading,
     language: viewBag.language || 'EN',
     rendering: sitecore.route,
-    routeFields: sitecore.route && state.sitecore.route.fields,
+    routeFields: sitecore.route && sitecore.route.fields,
     sitecoreContext: state.sitecore.context,
   };
 };

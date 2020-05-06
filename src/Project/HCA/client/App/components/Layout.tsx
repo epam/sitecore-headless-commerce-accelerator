@@ -27,7 +27,7 @@ export default class Layout extends React.Component<LayoutProps> {
           <title>{title}</title>
         </Helmet>
         <VisitorIdentification />
-        <Placeholder name="main-content" {...this.props} />
+        <Placeholder name="main-content" rendering={this.props.rendering} {...this.props} />
       </React.Fragment>
     );
   }

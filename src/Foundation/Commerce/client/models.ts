@@ -27,5 +27,9 @@ export interface CommerceUserContext {
 }
 
 export interface ProductColorsContext {
-  productColors: { [key: string]: string };
+  productColors: ProductColors;
+}
+
+export interface ProductColors {
+  [key: string]: string;
 }

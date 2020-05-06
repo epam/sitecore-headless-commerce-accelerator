@@ -31,8 +31,9 @@ export * from './controls/Link/models';
 export * from './controls/Text/models';
 
 // enhancers
-export * from './enhancers/commonComponent';
-export * from './enhancers/ErrorHandler';
+export * from './Enhancers/commonComponent';
+export * from './Enhancers/ErrorHandler';
+export * from './Enhancers/rendering';
 
 // component
 export * from './Components/SafePureComponent';

@@ -75,7 +75,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </div>
         </div>
         <div className="orderSummary-checkout">
-          <Placeholder name="order-actions" {...this.props} />
+          <Placeholder name="order-actions" rendering={this.props.rendering} />
         </div>
       </section>
     );

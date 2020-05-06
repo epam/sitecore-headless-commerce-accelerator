@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-declare module 'data-api-alias';
-declare module 'isomorphic-fetch';
-declare module 'i18next-fetch-backend';
+import * as React from 'react';
 
-declare module '*.html' {
-    const value: string;
-    export default value;
-}
+import { withExperienceEditorChromes, withSitecoreContext } from '@sitecore-jss/sitecore-jss-react';
 
-declare module '*.json';
+export const rendering = <P, S = {}>(component: React.ComponentClass<P, S>) => withExperienceEditorChromes(component) as React.ComponentClass<P, S>;
+
+export const renderingWithContext = <P extends { sitecoreContext: any }, S = {}>(
+    component: React.ComponentClass<P, S>,
+    options?: { updatable?: boolean }
+  ) => withSitecoreContext(options)(rendering(component));

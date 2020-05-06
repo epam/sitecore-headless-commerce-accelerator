@@ -14,7 +14,7 @@
 
 import { RoutingState, SitecoreState } from './models';
 
-export const sitecore = <TContext>(state: SitecoreState<TContext>) => state.sitecore;
+export const sitecore = <TContext, TRoute>(state: SitecoreState<TContext, TRoute>) => state.sitecore;
 export const sitecoreContext = <TContext>(state: SitecoreState<TContext>) => sitecore(state).context;
 export const sitecoreRoute = <TRoute>(state: SitecoreState<{}, TRoute>) => sitecore(state).route;
 export const loadedUrl = (state: SitecoreState<{}, {}>) => sitecore(state).loadedUrl;

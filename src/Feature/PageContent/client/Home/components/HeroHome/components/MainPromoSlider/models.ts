@@ -14,10 +14,9 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface MainPromoSliderControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface MainPromoSliderControlProps {
   image: JSS.ImageField;
   text: JSS.TextField;
-  isEditing: boolean;
 }
 
 export interface MainPromoSliderControlState extends JSS.SafePureComponentState {}

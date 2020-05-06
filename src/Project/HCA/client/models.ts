@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { RouteData } from '@sitecore-jss/sitecore-jss-react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Store } from 'redux';
 
@@ -43,7 +44,7 @@ export interface SitecoreRoute {
   placeholders: object;
 }
 
-export interface SitecoreState extends Jss.SitecoreState<SitecoreContext, SitecoreRoute> {}
+export interface SitecoreState extends Jss.SitecoreState<SitecoreContext, RouteData> {}
 
 export interface Dictionary {
   dictionary: {
@@ -77,7 +78,7 @@ export interface ViewRenderResults {
 }
 
 export interface AppStateProps extends Dictionary {
-  rendering: object;
+  rendering: RouteData;
   routeFields: object;
   sitecoreContext: SitecoreContext;
   language: string;

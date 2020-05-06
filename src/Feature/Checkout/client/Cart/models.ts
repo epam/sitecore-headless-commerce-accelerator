@@ -14,9 +14,11 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
+import { ProductColorsContext } from 'Foundation/Commerce/client';
+
 import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
 
-export interface CartOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface CartOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductColorsContext> {}
 export interface CartStateProps {
   shoppingCartData: ShoppingCart.ShoppingCartData;
 }

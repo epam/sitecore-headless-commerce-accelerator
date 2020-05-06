@@ -16,9 +16,11 @@ import * as JSS from 'Foundation/ReactJss/client';
 
 import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/client/Integration/api';
 import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
+import { ProductColors } from 'Foundation/Commerce/client';
 
-export interface CartSummaryOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {
+export interface CartSummaryOwnProps {
   cartLines: ShoppingCart.ShoppingCartLine[];
+  productColors: ProductColors;
 }
 export interface CartSummaryStateProps {
   isLoading: boolean;

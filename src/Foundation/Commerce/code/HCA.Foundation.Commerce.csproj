@@ -672,6 +672,7 @@
     <Compile Include="Models\Account\ValidateAccountResultModel.cs" />
     <Compile Include="Models\Account\CreateAccountModel.cs" />
     <Compile Include="Models\Account\CreateAccountResultModel.cs" />
+    <Compile Include="Models\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />

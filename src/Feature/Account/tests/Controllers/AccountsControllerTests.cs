@@ -23,6 +23,7 @@ namespace HCA.Feature.Account.Tests.Controllers
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
+    using Foundation.Commerce.Models.Account;
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
@@ -31,11 +32,15 @@ namespace HCA.Feature.Account.Tests.Controllers
 
     using NSubstitute;
 
+    using Ploeh.AutoFixture;
+
     using Xunit;
 
     public class AccountsControllerTests
     {
         private readonly AccountsController controller;
+
+        private readonly Fixture fixture;
 
         public AccountsControllerTests()
         {
@@ -49,6 +54,8 @@ namespace HCA.Feature.Account.Tests.Controllers
                 mapper,
                 visitorContext,
                 trackingService);
+
+            this.fixture = new Fixture();
         }
 
         [Fact]
@@ -95,7 +102,7 @@ namespace HCA.Feature.Account.Tests.Controllers
         public void RemoveAddress_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.RemoveAddress(new AddressRequest());
+            this.controller.RemoveAddress(this.fixture.Create<string>());
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<IEnumerable<Address>>>>());
@@ -128,7 +135,7 @@ namespace HCA.Feature.Account.Tests.Controllers
             this.controller.ValidateEmail(new ValidateEmailRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<ValidateEmailResult>>>());
         }
     }
 }

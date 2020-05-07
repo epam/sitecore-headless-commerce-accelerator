@@ -1,132 +1,128 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import * as Commerce from 'Foundation/Commerce/client';
 import { Result } from 'Foundation/Integration/client';
 
 import {
-  AccountValidationResponse,
   AddressResponse,
   ChangePasswordResponse,
   CreateAccountResponse,
+  EmailValidationResponse,
   UpdateAccountResponse,
 } from './models';
 
-const routeBase = '/apix/client/commerce/account';
+const routeBase = '/apix/client/commerce/accounts';
 
 export const createAccount = async (
-  createAccountModel: Commerce.CreateAccountModel
-): Promise<Result<Commerce.CreateAccountResultModel>> => {
-  try {
-    const response = await axios.post<CreateAccountResponse>(`${routeBase}/create`, createAccountModel);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+  createAccountRequest: Commerce.CreateAccountRequest,
+): Promise<Result<Commerce.User>> => {
+  return axios
+    .post<CreateAccountResponse>(`${routeBase}/account`, createAccountRequest)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
-export const accountValidation = async (
-  validateAccountModel: Commerce.ValidateAccountModel
-): Promise<Result<Commerce.ValidateAccountResultModel>> => {
-  try {
-    const response = await axios.post<AccountValidationResponse>(`${routeBase}/validate`, validateAccountModel);
+export const emailValidation = async (
+  validateEmailRequest: Commerce.ValidateEmailRequest,
+): Promise<Result<Commerce.ValidateEmail>> => {
+  return axios
+    .post<EmailValidationResponse>(`${routeBase}/validate`, validateEmailRequest)
+    .then((response) => {
+      return { data: { invalid: false, inUse: response.data.data.inUse } };
+    })
+    .catch((error: AxiosError) => {
+      if (error.response.status === 400) {
+        return { data: { invalid: true, inUse: false } };
+      }
 
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+      return { error };
+    });
 };
 
 export const changePassword = async (
-  changePasswordModel: Commerce.ChangePasswordModel
-): Promise<Result<Commerce.ChangePasswordResultModel>> => {
-  try {
-    const response = await axios.post<ChangePasswordResponse>(`${routeBase}/change-password`, changePasswordModel);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+  changePasswordRequest: Commerce.ChangePasswordRequest,
+): Promise<Result<boolean>> => {
+  return axios
+    .put<ChangePasswordResponse>(`${routeBase}/password`, changePasswordRequest)
+    .then((response) => {
+      return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
-export const addAddress = async (addressModel: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
-  try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address-add`, addressModel);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+export const addAddress = async (addressRequest: Commerce.AddressRequest): Promise<Result<Commerce.Address[]>> => {
+  return axios
+    .post<AddressResponse>(`${routeBase}/address`, addressRequest)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
-export const getAddressList = async (): Promise<Result<Commerce.AddressModel[]>> => {
-  try {
-    const response = await axios.get<AddressResponse>(`${routeBase}/address-list`);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+export const getAddressList = async (): Promise<Result<Commerce.Address[]>> => {
+  return axios
+    .get<AddressResponse>(`${routeBase}/address`)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
-export const updateAddress = async (address: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
-  try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address-update`, address);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+export const updateAddress = async (addressRequest: Commerce.AddressRequest): Promise<Result<Commerce.Address[]>> => {
+  return axios
+    .put<AddressResponse>(`${routeBase}/address`, addressRequest)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
-export const removeAddress = async (address: Commerce.AddressModel): Promise<Result<Commerce.AddressModel[]>> => {
-  try {
-    const response = await axios.post<AddressResponse>(`${routeBase}/address-remove`, address);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+export const removeAddress = async (externalId: string): Promise<Result<Commerce.Address[]>> => {
+  return axios
+    .delete(`${routeBase}/address?externalid=${externalId}`)
+    .then((response: AxiosResponse<AddressResponse>) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };
 
 export const updateAccountInfo = async (
-  commerceUser: Commerce.CommerceUserModel
-): Promise<Result<Commerce.CommerceUserModel>> => {
-  try {
-    const response = await axios.post<UpdateAccountResponse>(`${routeBase}/update`, commerceUser);
-
-    const { data: responseData } = response;
-
-    return { data: responseData.data };
-  } catch (e) {
-    return { error: e };
-  }
+  updateAccountRequest: Commerce.UpdateAccountRequest,
+): Promise<Result<boolean>> => {
+  return axios
+    .put<UpdateAccountResponse>(`${routeBase}/account`, updateAccountRequest)
+    .then((response) => {
+      return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
 };

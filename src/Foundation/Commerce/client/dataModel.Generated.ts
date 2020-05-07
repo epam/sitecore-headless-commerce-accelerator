@@ -321,6 +321,14 @@ export interface UserLoginModel {
     email: string;
     password: string;
 }
+export interface User {
+    contactId: string;
+    customerId: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    userName: string;
+}
 export interface Order extends Cart {
     isOfflineOrder: boolean;
     orderDate: Date;
@@ -360,6 +368,44 @@ export interface ValidateAccountResultModel {
     email: string;
     inUse: boolean;
     invalid: boolean;
+}
+export interface AddressRequest {
+    name: string;
+    firstName: string;
+    lastName: string;
+    address1: string;
+    address2: string;
+    country: string;
+    countryCode: string;
+    city: string;
+    state: string;
+    zipPostalCode: string;
+    externalId: string;
+    partyId: string;
+    isPrimary: boolean;
+    email: string;
+}
+export interface ChangePasswordRequest {
+    email: string;
+    newPassword: string;
+    oldPassword: string;
+}
+export interface CreateAccountRequest {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+}
+export interface UpdateAccountRequest {
+    contactId: string;
+    firstName: string;
+    lastName: string;
+}
+export interface ValidateEmailRequest {
+    email: string;
+}
+export interface ValidateEmailResult {
+    inUse: boolean;
 }
 export const enum SortDirection {
     Asc = 0,

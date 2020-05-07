@@ -107,12 +107,10 @@ namespace HCA.Feature.Account.Controllers
         [HttpDelete]
         [Authorize]
         [ActionName("address")]
-        public ActionResult RemoveAddress(AddressRequest request)
+        public ActionResult RemoveAddress(string externalId)
         {
             return this.Execute(
-                () => this.accountService.RemoveAddress(
-                    this.visitorContext.ContactId,
-                    this.mapper.Map<AddressRequest, Address>(request)));
+                () => this.accountService.RemoveAddress(this.visitorContext.ContactId, externalId));
         }
 
         [HttpPut]

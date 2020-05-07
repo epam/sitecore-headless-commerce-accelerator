@@ -24,15 +24,15 @@ export interface AddressDataSource extends Jss.BaseDataSourceItem {
 export interface AddressManagerOwnProps extends Jss.Rendering<AddressDataSource> {}
 
 export interface AddressManagerStateProps {
-  savedAddressList: Commerce.AddressModel[];
+  savedAddressList: Commerce.Address[];
   savedAddressListStatus: LoadingStatus;
 }
 
 export interface AddressManagerDispatchProps {
   GetAddressList: () => void;
-  UpdateAddress: (address: Commerce.AddressModel) => void;
-  AddAddress: (address: Commerce.AddressModel) => void;
-  RemoveAddress: (address: Commerce.AddressModel) => void;
+  UpdateAddress: (address: Commerce.Address) => void;
+  AddAddress: (address: Commerce.Address) => void;
+  RemoveAddress: (externalId: string) => void;
 }
 
 export interface AddressManagerProps

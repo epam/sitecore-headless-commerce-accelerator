@@ -28,6 +28,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
     using Mappers.Account;
 
+    using Models.Account;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
@@ -190,10 +191,10 @@ namespace HCA.Foundation.Commerce.Services.Account
                 });
         }
 
-        public Result<IEnumerable<Address>> RemoveAddress(string userName, Address address)
+        public Result<IEnumerable<Address>> RemoveAddress(string userName, string externalId)
         {
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
-            Assert.ArgumentNotNull(address, nameof(address));
+            Assert.ArgumentNotNullOrEmpty(externalId, nameof(externalId));
 
             return this.ExecuteWithParties<IEnumerable<Address>>(
                 userName,
@@ -203,7 +204,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                         commerceCustomer,
                         new List<Party>
                         {
-                            parties.FirstOrDefault(party => party.ExternalId == address.ExternalId)
+                            parties.FirstOrDefault(party => party.ExternalId == externalId)
                         });
 
                     if (removePartyResult.Success)
@@ -289,11 +290,11 @@ namespace HCA.Foundation.Commerce.Services.Account
                 });
         }
 
-        public Result<VoidResult> ValidateEmail(string email)
+        public Result<ValidateEmailResult> ValidateEmail(string email)
         {
             Assert.ArgumentNotNullOrEmpty(email, nameof(email));
 
-            var result = new Result<VoidResult>();
+            var result = new Result<ValidateEmailResult>(new ValidateEmailResult());
 
             var getUserResult = this.accountManager.GetUsers(
                 new UserSearchCriteria
@@ -303,9 +304,9 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             if (getUserResult.CommerceUsers.FirstOrDefault() != null)
             {
-                result.Success = false;
+                result.Data.InUse = true;
             }
-
+            
             return result;
         }
 
@@ -347,16 +348,11 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             if (userResult.Success)
             {
-                var customerResult = this.accountManager.GetCustomer(userResult.CommerceUser.ExternalId);
-
-                if (customerResult.Success)
-                {
-                    result.SetResult(customerResult.CommerceCustomer);
-                }
-                else
-                {
-                    result.SetErrors(customerResult.SystemMessages.Select(sm => sm.Message).ToList());
-                }
+                result.SetResult(
+                    new CommerceCustomer
+                    {
+                        ExternalId = userResult.CommerceUser.ExternalId
+                    });
             }
             else
             {

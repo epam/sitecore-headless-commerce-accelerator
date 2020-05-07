@@ -137,3 +137,8 @@ Code Generation Templates/*.tt
 #Idea
 /.idea
 
+#Yeoman
+/generators/dist
+/generators/generators/templates
+/generators/.npmrc
+/generators/secret.json

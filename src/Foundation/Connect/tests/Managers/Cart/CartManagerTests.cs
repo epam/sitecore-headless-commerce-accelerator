@@ -43,15 +43,15 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
 
     using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
-    public class CartManagerV2Tests
+    public class CartManagerTests
     {
-        private readonly CartManagerV2 cartManager;
+        private readonly CartManager cartManager;
 
         private readonly CommerceCartServiceProvider cartServiceProvider;
 
         private readonly IFixture fixture;
 
-        public CartManagerV2Tests()
+        public CartManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
@@ -62,7 +62,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
             connectServiceProvider.GetCommerceCartServiceProvider().Returns(this.cartServiceProvider);
             this.fixture = this.CreateOmitOnRecursionFixture();
 
-            this.cartManager = Substitute.For<CartManagerV2>(logService, connectServiceProvider, cartMapper);
+            this.cartManager = Substitute.For<CartManager>(logService, connectServiceProvider, cartMapper);
         }
 
         public static IEnumerable<object[]> CartLinesParameters =>

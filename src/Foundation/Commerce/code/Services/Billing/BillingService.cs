@@ -45,7 +45,7 @@ namespace HCA.Foundation.Commerce.Services.Billing
     [Service(typeof(IBillingService), Lifetime = Lifetime.Singleton)]
     public class BillingService : IBillingService
     {
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly IPaymentManager paymentManager;
 
@@ -56,7 +56,7 @@ namespace HCA.Foundation.Commerce.Services.Billing
         private readonly IVisitorContext visitorContext;
 
         public BillingService(
-            ICartManagerV2 cartManager,
+            ICartManager cartManager,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext,
             IPaymentMapper paymentMapper,

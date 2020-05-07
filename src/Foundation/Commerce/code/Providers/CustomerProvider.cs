@@ -18,6 +18,7 @@ namespace HCA.Foundation.Commerce.Providers
     using System.Web.Security;
 
     using Connect.Managers;
+    using Connect.Managers.Account;
 
     using DependencyInjection;
 
@@ -84,9 +85,9 @@ namespace HCA.Foundation.Commerce.Providers
         {
             Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
 
-            var commerceUser = this.accountManager.GetUser(contactIdOrName);
+            var getUserResult = this.accountManager.GetUser(contactIdOrName);
 
-            return this.MapToUser(commerceUser.Result, contactIdOrName);
+            return this.MapToUser(getUserResult.CommerceUser, contactIdOrName);
         }
 
         private User MapToUser(CommerceUser commerceUser, string contactIdOrEmail)

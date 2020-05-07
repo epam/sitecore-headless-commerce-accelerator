@@ -26,7 +26,7 @@ namespace HCA.Foundation.Connect.Managers.Cart
     /// <summary>
     /// Executes CommerceCartServiceProvider methods
     /// </summary>
-    public interface ICartManagerV2
+    public interface ICartManager
     {
         /// <summary>
         /// Adds cart line

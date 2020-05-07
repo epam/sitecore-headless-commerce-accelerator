@@ -35,15 +35,15 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
 
     using Xunit;
 
-    public class AccountManagerV2Tests
+    public class AccountManagerTests
     {
-        private readonly AccountManagerV2 accountManager;
+        private readonly AccountManager accountManager;
 
         private readonly CustomerServiceProvider customerServiceProvider;
 
         private readonly IFixture fixture;
 
-        public AccountManagerV2Tests()
+        public AccountManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
             var logService = Substitute.For<ILogService<CommonLog>>();
@@ -51,7 +51,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Account
             this.customerServiceProvider = Substitute.For<CustomerServiceProvider>();
             connectServiceProvider.GetCustomerServiceProvider().Returns(this.customerServiceProvider);
 
-            this.accountManager = Substitute.For<AccountManagerV2>(connectServiceProvider, logService);
+            this.accountManager = Substitute.For<AccountManager>(connectServiceProvider, logService);
 
             this.fixture = new Fixture();
         }

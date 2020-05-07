@@ -43,7 +43,7 @@ namespace HCA.Foundation.Commerce.Services.Order
     {
         private readonly IOrderBuilder builder;
 
-        private readonly ICartManagerV2 cartManager;
+        private readonly ICartManager cartManager;
 
         private readonly ILogService<CommonLog> logService;
 
@@ -57,7 +57,7 @@ namespace HCA.Foundation.Commerce.Services.Order
             IOrderBuilder orderBuilder,
             ILogService<CommonLog> logService,
             IOrderManager orderManager,
-            ICartManagerV2 cartManager,
+            ICartManager cartManager,
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
         {

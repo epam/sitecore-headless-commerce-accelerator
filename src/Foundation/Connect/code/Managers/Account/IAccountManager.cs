@@ -23,7 +23,7 @@ namespace HCA.Foundation.Connect.Managers.Account
     /// <summary>
     /// Executes CustomerServiceProvider methods
     /// </summary>
-    public interface IAccountManagerV2
+    public interface IAccountManager
     {
         /// <summary>
         /// Adds parties to customer

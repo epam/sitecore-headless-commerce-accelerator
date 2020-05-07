@@ -1,0 +1,21 @@
+﻿---
+ID: "bfed443f-3ac3-460d-be12-5759b8294233"
+Parent: "118980ec-6e7a-488f-a848-d6a7e77bc150"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout/Layout/Third Column Class
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T164722Z

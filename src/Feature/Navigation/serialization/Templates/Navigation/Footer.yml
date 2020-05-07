@@ -1,0 +1,18 @@
+﻿---
+ID: "6d6ea840-990a-4e30-9774-0ddb6a69a3d4"
+Parent: "04f900a7-cea1-43a5-94f8-99ccce443364"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/HCA/Feature/Navigation/Footer
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/document_footer.png
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T183050Z

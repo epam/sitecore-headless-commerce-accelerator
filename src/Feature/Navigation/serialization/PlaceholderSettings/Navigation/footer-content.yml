@@ -1,23 +1,21 @@
 ﻿---
-ID: "b0f5ceb1-4b21-47ed-91e5-0d8d30c779d6"
-Parent: "d63642ef-60e2-4dbe-8865-569082903413"
+ID: "eb709251-b6f9-4a2c-ae88-ac6c951c0a45"
+Parent: "b51609de-1f0f-4f60-bf6a-f4b22295ec01"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
-Path: "/sitecore/layout/Placeholder Settings/HCA/Project/HCA/wooli-content"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Navigation/footer-content"
 DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
-  Value: "wooli-content"
+  Value: "footer-content"
 - ID: "e391b526-d0c5-439d-803e-17512eae6222"
   Hint: Allowed Controls
   Type: TreelistEx
   Value: |
-    {8923317E-48A7-4A3C-80EB-AF11D35F3D9E}
-    {7ED67F91-04A8-4312-9184-AAA36D717BB7}
-    {D3BE8962-02F6-4CD8-8088-59589B7ECC8A}
     {A8ADE3C6-7AD9-4507-BA0D-BD4EC8C1B38E}
-    {B2EDE051-9A8B-4502-9D6B-39759BCFF123}
     {129348AA-2485-482F-A0F6-B53F6C585712}
+    {0D3A817B-862A-42E8-A71E-55A3C7A53CAF}
+    {F6DB8B49-C6A1-4BE9-9EE7-BD7AA0FB6E50}
 Languages:
 - Language: en
   Versions:
@@ -25,4 +23,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20180418T154620Z
+      Value: 20200428T200629Z

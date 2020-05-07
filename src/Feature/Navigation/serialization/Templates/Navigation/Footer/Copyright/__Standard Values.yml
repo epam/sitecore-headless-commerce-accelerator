@@ -1,0 +1,21 @@
+﻿---
+ID: "1a21ad41-4347-4126-9d37-55c77a8f77d9"
+Parent: "c3707371-14df-43cb-a033-9999c2a8f47e"
+Template: "c3707371-14df-43cb-a033-9999c2a8f47e"
+Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Copyright/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1d56e378-a717-4111-94a1-9d75ca730089"
+      Hint: Text
+      Value: &copy; 2020 Headless Commerce Accelerator
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T184332Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

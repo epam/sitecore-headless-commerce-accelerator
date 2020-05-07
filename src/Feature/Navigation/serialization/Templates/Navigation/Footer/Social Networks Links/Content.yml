@@ -1,0 +1,14 @@
+﻿---
+ID: "b5868a9d-5954-48ab-ba7a-fda28db25659"
+Parent: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T183852Z

@@ -14,10 +14,15 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
+          uid="{FF7BD727-B8B3-4C51-A02C-C6C310206CA1}"
+          p:before="*"
+          s:id="{9C0C3096-1E35-44BA-9B5C-BA70C6EA846F}"
+          s:ph="/main-content/w-col-wide-{598D49BC-E336-48C8-9035-C7ADF02D7114}-0" />
+        <r
           uid="{598D49BC-E336-48C8-9035-C7ADF02D7114}"
           p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
-          s:ph="/wooli-content" />
+          s:ph="/main-content" />
         <r
           uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
           p:after="*[1=2]" />
@@ -28,21 +33,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
-      Hint: __Final Renderings
-      Type: Layout
-      Value: |
-        <r xmlns:p="p" xmlns:s="s"
-          p:p="1">
-          <d
-            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-            <r
-              uid="{FF7BD727-B8B3-4C51-A02C-C6C310206CA1}"
-              p:before="*"
-              s:id="{9C0C3096-1E35-44BA-9B5C-BA70C6EA846F}"
-              s:ph="/wooli-content/w-col-wide-{598D49BC-E336-48C8-9035-C7ADF02D7114}-0" />
-          </d>
-        </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180607T103434Z

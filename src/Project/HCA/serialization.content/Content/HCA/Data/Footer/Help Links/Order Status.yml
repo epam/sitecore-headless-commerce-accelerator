@@ -1,0 +1,18 @@
+﻿---
+ID: "a6c4c85f-feb1-4d71-ad5a-d67d1aa4cc7b"
+Parent: "d2abf6d8-c766-4bc0-8886-f47ba96d6e7d"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/Help Links/Order Status
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190639Z
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link text="Order Status" linktype="external" url="" anchor="" target="" />

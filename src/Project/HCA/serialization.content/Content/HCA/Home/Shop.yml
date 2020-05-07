@@ -8,27 +8,6 @@ SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: Office/32x32/shopping_bag_full.png
-- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
-  Hint: __Renderings
-  Type: layout
-  Value: |
-    <r xmlns:p="p" xmlns:s="s"
-      p:p="1">
-      <d
-        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-        <r
-          uid="{EEE36796-277B-4CAD-B3D5-F36571861114}">
-          <p:d />
-        </r>
-        <r
-          uid="{0A0B7557-B097-4492-8D22-2CEC159B8D2D}"
-          p:before="*"
-          s:ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
-          s:id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
-          s:par=""
-          s:ph="/wooli-content" />
-      </d>
-    </r>
 Languages:
 - Language: en
   Versions:

@@ -17,17 +17,14 @@ SharedFields:
           uid="{5789B4D0-3292-471C-BD2E-853B0EDEB64D}"
           p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
-          s:ph="/wooli-content" />
-        <r
-          uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
-          p:after="r[@uid='{5789B4D0-3292-471C-BD2E-853B0EDEB64D}']" />
+          s:ph="/main-content" />
         <r
           uid="{8B6F9B41-8708-4E97-936A-F44F5E079902}"
-          p:after="*[1=2]"
+          p:after="r[@uid='{5789B4D0-3292-471C-BD2E-853B0EDEB64D}']"
           s:ds=""
           s:id="{142B6246-F56B-443F-9472-39791A8F396A}"
           s:par=""
-          s:ph="/wooli-content/w-col-wide-{5789B4D0-3292-471C-BD2E-853B0EDEB64D}-0" />
+          s:ph="/main-content/w-col-wide-{5789B4D0-3292-471C-BD2E-853B0EDEB64D}-0" />
       </d>
     </r>
 Languages:

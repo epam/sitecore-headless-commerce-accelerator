@@ -138,7 +138,13 @@ Task("Default") // LocalDev
     ;
 
 Task("Build-and-Publish") // LocalDev
-    .IsDependentOn("006-Sync-Content")
+    .IsDependentOn("002-Build")
+    .IsDependentOn("005-Publish")
+    ;
+
+Task("Client-Build-and-Publish") // LocalDev
+    .IsDependentOn(Sitecore.Tasks.BuildClientCodeTaskName)
+    .IsDependentOn(Sitecore.Tasks.PublishProjectTaskName)
     ;
 
 

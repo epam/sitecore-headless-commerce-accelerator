@@ -1,0 +1,21 @@
+﻿---
+ID: "ba74a1db-b688-4b49-ad46-c3ef6897ab97"
+Parent: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
+Template: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
+Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200430T180636Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "ef68acf6-1155-4c4c-9e38-fe1dcccb7d1f"
+      Hint: Section Title
+      Value: $name

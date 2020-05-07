@@ -16,6 +16,11 @@ export interface GridLayoutDataSource extends ReactJssModule.BaseDataSourceItem 
     /// Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d
     secondColumnClass: ReactJssModule.TextField;
 
+    /// The Third Column Class field.
+    /// Field Type: Single-Line Text
+    /// Field ID: bfed443f-3ac3-460d-be12-5759b8294233
+    thirdColumnClass: ReactJssModule.TextField;
+
     /// The Wrapper Class field.
     /// Field Type: Single-Line Text
     /// Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52
@@ -36,6 +41,11 @@ export interface GridLayoutRenderingParams extends ReactJssModule.BaseRenderingP
     /// Field Type: Single-Line Text
     /// Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d
     secondColumnClass: string;
+
+    /// The Third Column Class field.
+    /// Field Type: Single-Line Text
+    /// Field ID: bfed443f-3ac3-460d-be12-5759b8294233
+    thirdColumnClass: string;
 
     /// The Wrapper Class field.
     /// Field Type: Single-Line Text
@@ -60,6 +70,12 @@ export const GridLayoutTemplate = {
     /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
     secondColumnClassFieldId: '525bb442-fc9e-49dd-b557-52b833f0855d',
     secondColumnClassFieldName: 'Second Column Class',
+
+    /// The Third Column Class field.
+    /// <para>Field Type: Single-Line Text</para>
+    /// <para>Field ID: bfed443f-3ac3-460d-be12-5759b8294233</para>
+    thirdColumnClassFieldId: 'bfed443f-3ac3-460d-be12-5759b8294233',
+    thirdColumnClassFieldName: 'Third Column Class',
 
     /// The Wrapper Class field.
     /// <para>Field Type: Single-Line Text</para>

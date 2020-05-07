@@ -1,0 +1,42 @@
+{
+  "name": "generator-hca",
+  "version": "0.1.1",
+  "description": "EPAM Headless Commerce Accelerator for Sitecore Experience Commerce",
+  "repository": "https://github.com/epam/sitecore-headless-commerce-accelerator",
+  "files": [
+    "generators"
+  ],
+  "main": "check\\check.js",
+  "keywords": [
+    "sitecore",
+    "sitecore-commerce",
+    "e-commerce",
+    "jss",
+    "headless",
+    "yeoman-generator"
+  ],
+  "author": "EPAM Systems, Inc",
+  "contributors": [
+    {
+      "name": "Daria Larionova"
+    },
+    {
+      "name": "Dmitry Barel"
+    }
+  ],
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yeoman-generator": "^3.2.0",
+    "yosay": "^2.0.2",
+    "fs-extra": "^9.0.0"
+  },
+  "devDependencies": {
+    "yeoman-environment": "2.10.0",
+    "gulp-rename": "1.2.2",
+    "gulp-replace": "^1.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp": "^4.0.2",
+    "yargs": "^15.3.1"
+  },
+  "license": "MIT"
+}

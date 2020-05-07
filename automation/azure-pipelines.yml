@@ -69,9 +69,8 @@ steps:
       (Get-Content $(commerce_engine_config)) -replace '<commerceOpsServiceUrl>.*</commerceOpsServiceUrl>', '<commerceOpsServiceUrl>https://$(ops_host_name)/commerceops/</commerceOpsServiceUrl>' | Set-Content $(commerce_engine_config)
       (Get-Content $(commerce_engine_config)) -replace '<commerceMinionsServiceUrl>.*</commerceMinionsServiceUrl>', '<commerceMinionsServiceUrl>https://$(minions_host_name)/commerceops/</commerceMinionsServiceUrl>' | Set-Content $(commerce_engine_config)
       (Get-Content $(commerce_engine_config)) -replace '<sitecoreIdentityServerUrl>.*</sitecoreIdentityServerUrl>', '<sitecoreIdentityServerUrl>https://$(identity_host_name)</sitecoreIdentityServerUrl>' | Set-Content $(commerce_engine_config)
-      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
-	  (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
-	  (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)	  (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
   displayName: Change default addresses for $(project_name)
 
 - task: PowerShell@2

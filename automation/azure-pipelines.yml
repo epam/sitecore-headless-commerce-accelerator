@@ -9,7 +9,9 @@ pool:
 variables:
   build_cake: './src/build.cake'
   quotes_regexp: '"([^"]+)"'
-  sitecore_webroot: 'C:\inetpub\wwwroot\sc9.local'
+  site_root_dir: 'sc9.local'
+  sitecore_webroot: 'C:\inetpub\wwwroot\$(site_root_dir)'
+  maintenance_webroot: 'C:\inetpub\wwwroot\maintenance'
   shops_String: 'shopsServiceUrl'
   ops_String: 'commerceOpsServiceUrl'
   minions_String: 'commerceMinionsServiceUrl'
@@ -48,6 +50,15 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      Import-Module WebAdministration
+      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(maintenance_webroot)"
+  displayName: Set maintenance page
+
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
       cmdkey /add:$(HOST_NETWORK_ADDRESS) /user:$(user_name) /pass:$(user_password)
   displayName: Add windows credentials to agent
 
@@ -63,15 +74,24 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      (Get-Content $(project_site_config)) -replace 'hostName: $(quotes_regexp)', 'hostName="$(host_name)"' | Set-Content $(project_site_config)
+      (Get-Content $(project_site_config)) -replace 'hostName=$(quotes_regexp)', 'hostName="$(host_name)"' | Set-Content $(project_site_config)
       (Get-Content $(auth_server_config)) -replace 'sc.variable name="identityServerAuthority" value=$(quotes_regexp)', 'sc.variable name="identityServerAuthority" value="https://$(identity_host_name)"' | Set-Content $(auth_server_config)
       (Get-Content $(commerce_engine_config)) -replace '<shopsServiceUrl>.*</shopsServiceUrl>', '<shopsServiceUrl>https://$(authoring_host_name)/api/</shopsServiceUrl>' | Set-Content $(commerce_engine_config)
       (Get-Content $(commerce_engine_config)) -replace '<commerceOpsServiceUrl>.*</commerceOpsServiceUrl>', '<commerceOpsServiceUrl>https://$(ops_host_name)/commerceops/</commerceOpsServiceUrl>' | Set-Content $(commerce_engine_config)
       (Get-Content $(commerce_engine_config)) -replace '<commerceMinionsServiceUrl>.*</commerceMinionsServiceUrl>', '<commerceMinionsServiceUrl>https://$(minions_host_name)/commerceops/</commerceMinionsServiceUrl>' | Set-Content $(commerce_engine_config)
       (Get-Content $(commerce_engine_config)) -replace '<sitecoreIdentityServerUrl>.*</sitecoreIdentityServerUrl>', '<sitecoreIdentityServerUrl>https://$(identity_host_name)</sitecoreIdentityServerUrl>' | Set-Content $(commerce_engine_config)
-      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)	  (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
       (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
   displayName: Change default addresses for $(project_name)
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Import-Module WebAdministration
+      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(sitecore_webroot)"
+  displayName: Remove maintenance page
 
 - task: PowerShell@2
   inputs:

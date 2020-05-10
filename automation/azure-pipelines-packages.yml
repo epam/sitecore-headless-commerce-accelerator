@@ -1,0 +1,49 @@
+# Build using Visual Studio 2017 on Windows Server 2016.
+# Variables with password stored in Azure secrets
+
+trigger: none
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  build_cake: './src/build.cake'
+
+steps:
+
+- task: UseNode@1
+  inputs:
+    script: '"C:\Program Files\nodejs\npm.cmd" --version'
+  displayName: Installing Node 10
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
+  displayName: Config preparation
+
+- task: PowerShell@2
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 001-Restore'
+    workingDirectory: './src/'
+  displayName: Restore
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/src/tools'
+    artifact: 'tools'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/src/packages'
+    artifact: 'packages'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
+    artifact: 'node_modules'
+    publishLocation: 'pipeline'

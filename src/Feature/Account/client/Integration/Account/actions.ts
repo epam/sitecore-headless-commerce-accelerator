@@ -18,14 +18,12 @@ import { LoadingStatus } from 'Foundation/Integration/client';
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 
-export const CreateAccount: actionCreators.CreateAccount = (createAccountModel: Commerce.CreateAccountModel) => ({
-  payload: {
-    ...createAccountModel,
-  },
+export const CreateAccount: actionCreators.CreateAccount = (createAccountRequest: Commerce.CreateAccountRequest) => ({
+  payload: createAccountRequest,
   type: sagaActionTypes.CREATE,
 });
 
-export const AccountValidation: actionCreators.AccountValidation = (email: string) => ({
+export const AccountValidation: actionCreators.EmailValidation = (email: string) => ({
   payload: {
     email,
   },
@@ -44,24 +42,18 @@ export const GetAddressList: actionCreators.GetAddressList = () => ({
   type: sagaActionTypes.ADDRESS_GET_LIST,
 });
 
-export const UpdateAddress: actionCreators.UpdateAddress = (address: Commerce.AddressModel) => ({
-  payload: {
-    ...address,
-  },
+export const UpdateAddress: actionCreators.UpdateAddress = (address: Commerce.Address) => ({
+  payload: address,
   type: sagaActionTypes.ADDRESS_UPDATE,
 });
 
-export const AddAddress: actionCreators.AddAddress = (address: Commerce.AddressModel) => ({
-  payload: {
-    ...address,
-  },
+export const AddAddress: actionCreators.AddAddress = (address: Commerce.Address) => ({
+  payload: address,
   type: sagaActionTypes.ADDRESS_ADD,
 });
 
-export const RemoveAddress: actionCreators.RemoveAddress = (address: Commerce.AddressModel) => ({
-  payload: {
-    ...address,
-  },
+export const RemoveAddress: actionCreators.RemoveAddress = (externalId: string) => ({
+  payload: externalId,
   type: sagaActionTypes.ADDRESS_REMOVE,
 });
 
@@ -93,15 +85,15 @@ export const CreateAccountFailure: actionCreators.CreateAccountFailure = (error:
   type: reducerActionTypes.CREATE_FAILURE,
 });
 
-export const CreateAccountSuccess: actionCreators.CreateAccountSuccess = (accountInfo: Commerce.CommerceUserModel) => ({
+export const CreateAccountSuccess: actionCreators.CreateAccountSuccess = (user: Commerce.User) => ({
   payload: {
-    accountInfo,
     status: LoadingStatus.Loaded,
+    user,
   },
   type: reducerActionTypes.CREATE_SUCCESS,
 });
 
-export const AccountValidationRequest: actionCreators.AccountValidationRequest = (email: string) => ({
+export const AccountValidationRequest: actionCreators.EmailValidationRequest = (email: string) => ({
   payload: {
     email,
     status: LoadingStatus.Loading,
@@ -109,7 +101,7 @@ export const AccountValidationRequest: actionCreators.AccountValidationRequest =
   type: reducerActionTypes.ACCOUNT_VALIDATION_REQUEST,
 });
 
-export const AccountValidationFailure: actionCreators.AccountValidationFailure = (error: string, stack?: string) => ({
+export const AccountValidationFailure: actionCreators.EmailValidationFailure = (error: string, stack?: string) => ({
   payload: {
     error,
     stack,
@@ -118,7 +110,7 @@ export const AccountValidationFailure: actionCreators.AccountValidationFailure =
   type: reducerActionTypes.ACCOUNT_VALIDATION_FAILURE,
 });
 
-export const AccountValidationSuccess: actionCreators.AccountValidationSuccess = (invalid: boolean, inUse: boolean) => ({
+export const AccountValidationSuccess: actionCreators.EmailValidationSuccess = (invalid: boolean, inUse: boolean) => ({
   payload: {
     inUse,
     invalid,
@@ -166,7 +158,7 @@ export const GetAddressListFailure: actionCreators.GetAddressListFailure = (erro
   type: reducerActionTypes.ADDRESS_GET_LIST_FAILURE,
 });
 
-export const GetAddressListSuccess: actionCreators.GetAddressListSuccess = (addressList: Commerce.AddressModel[]) => ({
+export const GetAddressListSuccess: actionCreators.GetAddressListSuccess = (addressList: Commerce.Address[]) => ({
   payload: {
     items: addressList.reduce((acc, currentItem) => {
       acc[currentItem.externalId] = currentItem;

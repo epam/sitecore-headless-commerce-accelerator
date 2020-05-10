@@ -37,14 +37,14 @@ namespace HCA.Foundation.Connect.Managers.Cart
 
     using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
 
-    [Service(typeof(ICartManagerV2), Lifetime = Lifetime.Singleton)]
-    public class CartManagerV2 : BaseManager, ICartManagerV2
+    [Service(typeof(ICartManager), Lifetime = Lifetime.Singleton)]
+    public class CartManager : BaseManager, ICartManager
     {
         private readonly CommerceCartServiceProvider cartServiceProvider;
 
         private readonly ICartMapper cartMapper;
 
-        public CartManagerV2(
+        public CartManager(
             ILogService<CommonLog> logService,
             IConnectServiceProvider connectServiceProvider,
             ICartMapper cartMapper)

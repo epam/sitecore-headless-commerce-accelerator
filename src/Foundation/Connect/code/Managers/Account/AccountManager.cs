@@ -29,12 +29,12 @@ namespace HCA.Foundation.Connect.Managers.Account
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IAccountManagerV2), Lifetime = Lifetime.Singleton)]
-    public class AccountManagerV2 : BaseManager, IAccountManagerV2
+    [Service(typeof(IAccountManager), Lifetime = Lifetime.Singleton)]
+    public class AccountManager : BaseManager, IAccountManager
     {
         private readonly CustomerServiceProvider customerServiceProvider;
 
-        public AccountManagerV2(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
+        public AccountManager(IConnectServiceProvider connectServiceProvider, ILogService<CommonLog> logService)
             : base(logService)
         {
             Assert.ArgumentNotNull(connectServiceProvider, nameof(connectServiceProvider));

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -83,43 +83,46 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
             ToggleForm={() => this.toggleForm(true)}
           />
         ) : (
-            <>
-              {savedAddressList && savedAddressList.length > 0 ? (
-                <>
-                  <div className="address-manager__select">
-                    <Jss.Text tag="label" field={{ value: 'Addresses', editable: 'Addresses' }} />
-                    <select onChange={(e) => this.onSavedAddressChange(e)} value={selectedAddress ? selectedAddress.externalId : savedAddressList[0].externalId}>
-                      {savedAddressList.map((savedAddress, index) => (
-                        <option value={savedAddress.externalId} key={index}>{`${savedAddress.firstName} ${
-                          savedAddress.lastName
-                          }, ${savedAddress.address1}`}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="address-manager__card">
-                    <Jss.Text className="card-name" tag="span" field={{ value: 'Address', editable: 'Address' }} />
-                    <span>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</span>
-                    <span className="address-manager__card-address">{selectedAddress.address1}</span>
-                    <span className="address-manager__card-address">
-                      {selectedAddress.city}, {selectedAddress.state}, {selectedAddress.country}
-                    </span>
-                    <span className="address-manager__card-address">{selectedAddress.zipPostalCode}</span>
-                    {!formVisible && (
-                      <div className="address-manager__card-actions">
-                        <a className="edit-link" onClick={(e) => this.toggleFormByAnchorClick(true, e)}>
-                          Edit
-                    </a>
-                        <a className="delete-link" onClick={(e) => this.onDeleteButtonClick(e)}>
-                          Delete
-                    </a>
-                      </div>
-                    )}
-                  </div>
-                </>
-              ) : (
-                  <Jss.Text tag="h4" field={{ value: 'List is empty', editable: 'List is empty' }} />
-                )}
-            </>
+          <>
+            {savedAddressList && savedAddressList.length > 0 ? (
+              <>
+                <div className="address-manager__select">
+                  <Jss.Text tag="label" field={{ value: 'Addresses', editable: 'Addresses' }} />
+                  <select
+                    onChange={(e) => this.onSavedAddressChange(e)}
+                    value={selectedAddress ? selectedAddress.externalId : savedAddressList[0].externalId}
+                  >
+                    {savedAddressList.map((savedAddress, index) => (
+                      <option value={savedAddress.externalId} key={index}>
+                        {`${savedAddress.firstName} ${savedAddress.lastName}, ${savedAddress.address1}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="address-manager__card">
+                  <Jss.Text className="card-name" tag="span" field={{ value: 'Address', editable: 'Address' }} />
+                  <span>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</span>
+                  <span className="address-manager__card-address">{selectedAddress.address1}</span>
+                  <span className="address-manager__card-address">
+                    {selectedAddress.city}, {selectedAddress.state}, {selectedAddress.country}
+                  </span>
+                  <span className="address-manager__card-address">{selectedAddress.zipPostalCode}</span>
+                  {!formVisible && (
+                    <div className="address-manager__card-actions">
+                      <a className="edit-link" onClick={(e) => this.toggleFormByAnchorClick(true, e)}>
+                        Edit
+                      </a>
+                      <a className="delete-link" onClick={(e) => this.onDeleteButtonClick(e)}>
+                        Delete
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <Jss.Text tag="h4" field={{ value: 'List is empty', editable: 'List is empty' }} />
+            )}
+          </>
         )}
       </div>
     );
@@ -153,24 +156,16 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
       return;
     }
 
-    const { savedAddressList, RemoveAddress } = this.props;
-    const { selectedAddressId } = this.state;
-
-    const selectedAddress = savedAddressList.find((a) => a.externalId === selectedAddressId) || savedAddressList[0];
-    if (!selectedAddress) {
-      return;
-    }
-
-    RemoveAddress(selectedAddress);
+    this.props.RemoveAddress(this.state.selectedAddressId);
   }
 
   private onUpdateAdress(address: Commerce.AddressModel) {
     this.props.UpdateAddress(address);
-    this.setState({formVisible: false});
+    this.setState({ formVisible: false });
   }
 
   private onAddAdress(address: Commerce.AddressModel) {
     this.props.AddAddress(address);
-    this.setState({formVisible: false});
+    this.setState({ formVisible: false });
   }
 }

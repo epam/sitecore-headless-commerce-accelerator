@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,28 +27,28 @@ import {
   ChangePasswordPayload,
   CreateAccountPayload,
   UpdateAccountPayload,
-  ValidateAccountPayload,
+  ValidateEmailPayload,
 } from './models';
 import * as selectors from './selectors';
 import { signIn } from './utils';
 
 export function* create(action: Action<CreateAccountPayload>) {
-  const { payload } = action;
+  const payload: Commerce.CreateAccountRequest = action.payload;
   yield put(actions.CreateAccountRequest());
 
-  const { data, error }: Result<Commerce.CreateAccountResultModel> = yield call(Api.createAccount, payload);
+  const { data, error }: Result<Commerce.User> = yield call(Api.createAccount, payload);
 
   if (error) {
     return yield put(actions.CreateAccountFailure(error.message, error.stack));
   }
 
-  yield put(actions.CreateAccountSuccess(data.accountInfo));
+  yield put(actions.CreateAccountSuccess(data));
 
   signIn(payload.email, payload.password);
 }
 
-export function* validation(action: Action<ValidateAccountPayload>) {
-  const { payload } = action;
+export function* validation(action: Action<ValidateEmailPayload>) {
+  const payload: Commerce.ValidateEmailRequest = action.payload;
 
   const accountValidationState: AccountValidationState = yield select(selectors.accountValidation);
 
@@ -63,8 +63,9 @@ export function* validation(action: Action<ValidateAccountPayload>) {
   }
 
   yield put(actions.AccountValidationRequest(email));
+  const { data, error }: Result<Commerce.ValidateEmail> = yield call(Api.emailValidation, payload);
 
-  const { data, error }: Result<Commerce.ValidateAccountResultModel> = yield call(Api.accountValidation, { email });
+  console.log(error);
 
   if (error) {
     return yield put(actions.AccountValidationFailure(error.message, error.stack));
@@ -79,26 +80,19 @@ export function* changePassword(action: Action<ChangePasswordPayload>) {
     return;
   }
 
-  const { payload } = action;
-  const { oldPassword, newPassword } = payload;
-
-  const changePasswordPayload = {
+  const payload: Commerce.ChangePasswordRequest = {
+    ...action.payload,
     email: commerceUser.email,
-    newPassword,
-    oldPassword,
   };
 
   yield put(actions.ChangePasswordRequest());
-  const { data, error }: Result<Commerce.ChangePasswordResultModel> = yield call(
-    Api.changePassword,
-    changePasswordPayload
-  );
+  const { data, error }: Result<boolean> = yield call(Api.changePassword, payload);
 
   if (error) {
     return yield put(actions.ChangePasswordFailure(error.message, error.stack));
   }
 
-  if (!data.passwordChanged) {
+  if (!data) {
     return yield put(actions.ChangePasswordFailure('can not change password'));
   }
 
@@ -120,7 +114,7 @@ export function* verifyCommerceUser() {
 export function* getAddressList() {
   yield put(actions.GetAddressListRequest());
 
-  const { data, error }: Result<Commerce.AddressModel[]> = yield call(Api.getAddressList);
+  const { data, error }: Result<Commerce.Address[]> = yield call(Api.getAddressList);
 
   if (error || !data) {
     return yield put(actions.GetAddressListFailure(error.message, error.stack));
@@ -129,12 +123,12 @@ export function* getAddressList() {
   yield put(actions.GetAddressListSuccess(data));
 }
 
-export function* updateAddress(action: Action<Commerce.AddressModel>) {
-  const { payload } = action;
+export function* updateAddress(action: Action<Commerce.Address>) {
+  const payload: Commerce.AddressRequest = action.payload;
 
   yield put(actions.UpdateAddressRequest());
 
-  const { data, error }: Result<Commerce.AddressModel[]> = yield call(Api.updateAddress, payload);
+  const { data, error }: Result<Commerce.Address[]> = yield call(Api.updateAddress, payload);
 
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
@@ -143,12 +137,12 @@ export function* updateAddress(action: Action<Commerce.AddressModel>) {
   yield put(actions.UpdateAddressSuccess(data));
 }
 
-export function* addAddress(action: Action<Commerce.AddressModel>) {
-  const { payload } = action;
+export function* addAddress(action: Action<Commerce.Address>) {
+  const payload: Commerce.AddressRequest = action.payload;
 
   yield put(actions.UpdateAddressRequest());
 
-  const { data, error }: Result<Commerce.AddressModel[]> = yield call(Api.addAddress, payload);
+  const { data, error }: Result<Commerce.Address[]> = yield call(Api.addAddress, payload);
 
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
@@ -157,12 +151,14 @@ export function* addAddress(action: Action<Commerce.AddressModel>) {
   yield put(actions.UpdateAddressSuccess(data));
 }
 
-export function* removeAddress(action: Action<Commerce.AddressModel>) {
+export function* removeAddress(action: Action<string>) {
   const { payload } = action;
+
+  console.log(payload);
 
   yield put(actions.UpdateAddressRequest());
 
-  const { data, error }: Result<Commerce.AddressModel[]> = yield call(Api.removeAddress, payload);
+  const { data, error }: Result<Commerce.Address[]> = yield call(Api.removeAddress, payload);
 
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
@@ -172,18 +168,21 @@ export function* removeAddress(action: Action<Commerce.AddressModel>) {
 }
 
 export function* updateAccount(action: Action<UpdateAccountPayload>) {
-  const { payload } = action;
-
   const commerceUser: Commerce.CommerceUserModel = yield select(selectors.commerceUser);
+  if (!commerceUser) {
+    return;
+  }
 
-  commerceUser.firstName = payload.firstName;
-  commerceUser.lastName = payload.lastName;
+  const payload: Commerce.UpdateAccountRequest = {
+    ...action.payload,
+    contactId: commerceUser.contactId,
+  };
 
   yield put(actions.UpdateAccountRequest());
 
-  const { data, error }: Result<Commerce.CommerceUserModel> = yield call(Api.updateAccountInfo, commerceUser);
+  const { data, error }: Result<boolean> = yield call(Api.updateAccountInfo, payload);
 
-  if (error || !data) {
+  if (!data && !error) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
 

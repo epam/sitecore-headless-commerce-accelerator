@@ -10,7 +10,8 @@ SharedFields:
   Value: "fa fa-instagram"
 - ID: "c99f9ed0-3626-48ef-96ab-f837ce37e6a1"
   Hint: Uri
-  Value: 
+  Value: |
+    <link linktype="external" class="fa fa-instagram" url="http://www.instagram.com" anchor="" target="" />
 Languages:
 - Language: en
   Versions:

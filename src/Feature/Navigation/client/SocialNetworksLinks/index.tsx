@@ -12,36 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
-import * as React from 'react';
+import * as Jss from 'Foundation/ReactJss/client';
+import { connect } from 'react-redux';
 
-import { Link, Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { SocialLinksProps, SocialLinksState } from './models';
-import './styles.scss';
+import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 
-class SocialNetworksLinks extends JSS.SafePureComponent<SocialLinksProps, SocialLinksState> {
-  protected safeRender() {
-    const { fields } = this.props;
-    const { datasource } = fields.data;
+import { AppState, SocialLinksProps, SocialLinksStateProps } from './models';
 
-    return (
-      <div>
-        <Text tag="h2" field={datasource.sectionTitle.jss} className="social-title" />
-        <ul className="social-list">
-          {datasource.links && datasource.links.items && datasource.links.items.map((link, index) => {
-              const { uri, cssClass } = link;
+import SocialNetworksLinks from './Component';
 
-              return (
-                <li key={index} className="social-item">
-                  <Link field={uri.jss} title=" " target="_blank" className="social-link">
-                    <i className={cssClass.jss.value}/>
-                  </Link>
-                </li>
-              );
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
-export default withExperienceEditorChromes(SocialNetworksLinks);
+const mapStateToProps = (state: AppState, ownProps: SocialLinksProps) => {
+  return {
+    isPageEditingMode: Jss.sitecoreContext(state).pageEditing
+  };
+};
+
+const connectedToStore = connect<SocialLinksStateProps, SocialLinksProps>(
+  mapStateToProps
+)(SocialNetworksLinks);
+
+export default withExperienceEditorChromes(connectedToStore);

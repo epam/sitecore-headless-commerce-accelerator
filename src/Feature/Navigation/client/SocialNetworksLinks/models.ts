@@ -15,9 +15,7 @@
 import * as Jss from 'Foundation/ReactJss/client';
 
 export interface SocialNetworkLinkDataSource extends Jss.BaseDataSourceItem {
-    title: Jss.GraphQLField<Jss.TextField>;
     uri: Jss.GraphQLField<Jss.LinkField>;
-    cssClass: Jss.GraphQLField<Jss.TextField>;
 }
 
 export interface SocialNetworksLinksDataSource extends Jss.BaseDataSourceItem {
@@ -25,6 +23,16 @@ export interface SocialNetworksLinksDataSource extends Jss.BaseDataSourceItem {
     links: Jss.GraphQLListField<SocialNetworkLinkDataSource>;
 }
 
-export interface SocialLinksProps extends Jss.GraphQLRendering<SocialNetworksLinksDataSource> {}
+export interface SocialLinksStateProps {
+    isPageEditingMode: boolean;
+}
+
+export interface SocialLinksOwnProps extends Jss.GraphQLRendering<SocialNetworksLinksDataSource> {}
+
+export interface SocialLinksProps extends SocialLinksOwnProps, SocialLinksStateProps {}
 
 export interface SocialLinksState extends Jss.SafePureComponentState {}
+
+export interface AppState extends Jss.SitecoreState<{
+    pageEditing: boolean
+}> {}

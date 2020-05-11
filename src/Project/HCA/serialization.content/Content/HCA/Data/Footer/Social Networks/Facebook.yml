@@ -11,7 +11,7 @@ SharedFields:
 - ID: "c99f9ed0-3626-48ef-96ab-f837ce37e6a1"
   Hint: Uri
   Value: |
-    <link linktype="external" url="" anchor="" target="" />
+    <link linktype="external" class="fa fa-facebook" url="http://facebook.com" anchor="" target="" />
 Languages:
 - Language: en
   Versions:

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ComponentRendering } from '@sitecore-jss/sitecore-jss-react';
+import { ComponentRendering, LayoutServiceContextData } from '@sitecore-jss/sitecore-jss-react';
 import * as Router from 'connected-react-router';
 
 import { Status } from 'Foundation/Integration/client';
@@ -49,7 +49,8 @@ export interface DictionaryItem {
   dictionary: { [key: string]: string };
 }
 
-export interface Rendering<TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem> extends Item<TDataSourceItem> {
+export interface Rendering<TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem>
+  extends Item<TDataSourceItem> {
   rendering: ComponentRendering;
 }
 
@@ -72,7 +73,7 @@ export interface RenderingWithContext<
   TCustomData = {},
   TRouteFields extends BaseDataSourceItem = BaseDataSourceItem
 > extends Rendering<TDataSourceItem> {
-  sitecoreContext: RouteFields<TRouteFields> & TCustomData;
+  sitecoreContext: LayoutServiceContextData['context'] & RouteFields<TRouteFields> & TCustomData;
 }
 
 export interface Field<TFieldValue> {

@@ -18,7 +18,7 @@ import * as Jss from 'Foundation/ReactJss/client';
 
 import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 
-export interface PaymentOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
+export interface PaymentOwnProps extends Jss.RenderingWithContext<Jss.BaseDataSourceItem> {}
 export interface PaymentStateProps {
   isSubmitting: boolean;
 }

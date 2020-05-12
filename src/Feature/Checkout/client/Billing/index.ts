@@ -12,16 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
+
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 
-import Component from './Component';
-import * as Models from './models';
+import BillingComponent from './Component';
+import { AppState, BillingDispatchProps, BillingOwnProps, BillingStateProps } from './models';
 
-const mapStateToProps = (state: Models.AppState): Models.BillingStateProps => {
+const mapStateToProps = (state: AppState): BillingStateProps => {
   const stepValues = Checkout.stepValues(state);
   const useForBillingAddress = stepValues.shipping && stepValues.shipping.options && stepValues.shipping.options.useForBillingAddress;
   return {
@@ -38,9 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-const connectedComponent = connect<Models.BillingStateProps, Models.BillingDispatchProps, Models.BillingOwnProps>(
+const connectedToStore = connect<BillingStateProps, BillingDispatchProps, BillingOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+);
 
-export const Billing = withExperienceEditorChromes(connectedComponent);
+export const Billing = compose(connectedToStore, renderingWithContext)(BillingComponent);

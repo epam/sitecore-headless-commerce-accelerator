@@ -142,6 +142,14 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             var result = new Result<User>();
 
+            var validateEmailResult = this.ValidateEmail(email);
+
+            if (validateEmailResult.Success && validateEmailResult.Data.InUse)
+            {
+                result.Success = false;
+                return result;
+            }
+
             var createUserResult = this.accountManager.CreateUser(
                 $"{firstName}{lastName}{Guid.NewGuid():N}",
                 email,

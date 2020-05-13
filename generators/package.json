@@ -6,7 +6,6 @@
   "files": [
     "generators"
   ],
-  "main": "check\\check.js",
   "keywords": [
     "sitecore",
     "sitecore-commerce",

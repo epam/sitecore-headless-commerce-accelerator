@@ -1,4 +1,4 @@
-var yeoman = require('yeoman-environment');
+const yeoman = require('yeoman-environment');
 const gulp = require('gulp');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');

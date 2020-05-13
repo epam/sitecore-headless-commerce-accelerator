@@ -318,6 +318,10 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
                 .EnableUser(commerceUser)
                 .Returns(enableUserResult);
 
+            this.accountManager
+                .GetUsers(Arg.Any<UserSearchCriteria>())
+                .Returns(this.fixture.Create<GetUsersResult>());
+
             return this.InitUpdateUser(commerceUser, updateResultSuccess);
         }
 

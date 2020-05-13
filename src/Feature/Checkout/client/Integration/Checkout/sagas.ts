@@ -37,6 +37,8 @@ import {
 } from './models';
 import * as selectors from './selectors';
 
+import { loadCart } from '../ShoppingCart/sagas';
+
 export function* handleDeliveryInfoResult(deliveryInfoResponse: Result<Commerce.DeliveryInfo>) {
   const { data, error } = deliveryInfoResponse;
   if (error) {
@@ -91,7 +93,7 @@ export function* getCheckoutData() {
     resultIndex.billingInfoIndex = apiCalls.push(call(Checkout.getBillingInfo)) - 1;
   }
   const resultList: Array<Result<Commerce.DeliveryInfo | Commerce.ShippingInfo | Commerce.BillingInfo>> = yield all(
-    apiCalls
+    apiCalls,
   );
 
   const { billingInfoIndex, deliveryInfoIndex, shippingInfoIndex } = resultIndex;
@@ -180,7 +182,7 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
           ...fulfillment,
           address,
         },
-      })
+      }),
     );
 
     yield fork(nextStep, CheckoutStepType.Fulfillment);
@@ -273,7 +275,8 @@ export function* submitStep(action: Action<StepValues>) {
     switch (currentStepState.type) {
       case CheckoutStepType.Fulfillment:
         {
-          yield fork(submitFulfillmentStep, payload.shipping);
+          yield call(submitFulfillmentStep, payload.shipping);
+          yield fork(loadCart);
         }
         break;
       case CheckoutStepType.Billing:

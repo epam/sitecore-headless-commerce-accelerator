@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -96,10 +96,14 @@ export default class Payment extends Jss.SafePureComponent<PaymentProps, Payment
                 </div>
                 <span className="slashy">/</span>
                 <div className="select cc-year">
-                  <Select name={FIELDS.EXPIRES_YEAR} required={true} defaultValue={new Date().getFullYear().toString()}>
-                    {new Array(10)
+                  <Select
+                    name={FIELDS.EXPIRES_YEAR}
+                    required={true}
+                    defaultValue={(new Date().getFullYear() + 1).toString()}
+                  >
+                    {new Array<number>(10)
                       .fill(new Date().getFullYear())
-                      .map((date, index) => +date + index + '')
+                      .map((date, index) => `${date + index}`)
                       .map((year) => (
                         <option value={year} key={year}>
                           {year}

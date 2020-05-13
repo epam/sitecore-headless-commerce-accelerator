@@ -24,6 +24,7 @@ import { Checkout } from 'Feature/Checkout/client/Integration/api';
 
 import { CheckoutStepType, StepValuesPayload } from '..';
 import { CreditCard } from '../../api/Checkout';
+import { loadCart } from '../../ShoppingCart/sagas';
 import * as actions from '../actions';
 import * as sagas from '../sagas';
 import * as selectors from '../selectors';
@@ -158,10 +159,19 @@ describe('submitStep', () => {
     expect(actual.value).toEqual(expected);
   });
 
-  test('should fork submitFulfillmentStep, when current step is Fulfillment', () => {
-    const expected = fork(sagas.submitFulfillmentStep, payload.shipping);
-    const actual = gen.clone().next({ type: CheckoutStepType.Fulfillment });
-    expect(actual.value).toEqual(expected);
+  test('should call submitFulfillmentStep, when current step is Fulfillment', () => {
+    const generator = gen.clone();
+
+    const callEffect = call(sagas.submitFulfillmentStep, payload.shipping);
+    let actual = generator.next({ type: CheckoutStepType.Fulfillment });
+    expect(actual.value).toEqual(callEffect);
+
+    const forkEffect = fork(loadCart);
+    actual = generator.next();
+    expect(actual.value).toEqual(forkEffect);
+
+    actual = generator.next();
+    expect(actual.done).toEqual(true);
   });
 
   test('should fork submitBillingStep, when current step is Billing', () => {

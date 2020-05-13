@@ -39,7 +39,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   public componentDidMount() {
-    this.props.InitStep(CheckoutStepType.Fulfillment);
+    if (!this.props.sitecoreContext.pageEditing) {
+      this.props.InitStep(CheckoutStepType.Fulfillment);
+    }
   }
 
   protected safeRender() {

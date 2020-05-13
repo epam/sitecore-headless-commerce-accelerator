@@ -12,11 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import { LoadingStatus } from 'Foundation/Integration/client';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 
@@ -51,6 +52,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<ShippingStateProps, ShippingDispatchProps, ShippingOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(ShippingComponent);
+);
 
-export const Shipping = withExperienceEditorChromes(connectedToStore);
+export const Shipping = compose(connectedToStore, renderingWithContext)(ShippingComponent);

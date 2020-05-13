@@ -26,7 +26,7 @@ import { PaymentProps, PaymentState } from './models';
 
 import './styles.scss';
 
-export default class Payment extends Jss.SafePureComponent<PaymentProps, PaymentState> {
+export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps, PaymentState> {
   public constructor(props: PaymentProps) {
     super(props);
 
@@ -36,7 +36,9 @@ export default class Payment extends Jss.SafePureComponent<PaymentProps, Payment
   }
 
   public componentWillMount() {
-    this.props.InitStep(CheckoutStepType.Payment);
+    if (!this.props.sitecoreContext.pageEditing) {
+      this.props.InitStep(CheckoutStepType.Payment);
+    }
   }
 
   public safeRender() {

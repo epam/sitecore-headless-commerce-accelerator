@@ -12,14 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 import { LoadingStatus } from 'Foundation/Integration/client';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
-import Component from './Component';
+import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
+
+import PaymentComponent from './Component';
 import * as Models from './models';
 
 const mapStateToProps = (state: Models.AppState) => {
@@ -37,9 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-const connectedComponent = connect<Models.PaymentStateProps, Models.PaymentDispatchProps, Models.PaymentOwnProps>(
+const connectedToStore = connect<Models.PaymentStateProps, Models.PaymentDispatchProps, Models.PaymentOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+);
 
-export const Payment = withExperienceEditorChromes(connectedComponent);
+export const Payment = compose(connectedToStore, renderingWithContext)(PaymentComponent);

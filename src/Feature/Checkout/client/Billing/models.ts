@@ -20,7 +20,7 @@ import * as Checkout from 'Feature/Checkout/client/Integration/Checkout';
 export interface BillingDataSource extends Jss.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];
 }
-export interface BillingOwnProps extends Jss.Rendering<BillingDataSource> {}
+export interface BillingOwnProps extends Jss.RenderingWithContext<BillingDataSource> {}
 export interface BillingStateProps {
   useForBillingAddress: boolean;
 }

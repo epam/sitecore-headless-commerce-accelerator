@@ -25,7 +25,7 @@ import { BillingProps, BillingState } from './models';
 
 import './styles.scss';
 
-export default class Billing extends Jss.SafePureComponent<BillingProps, BillingState> {
+export default class BillingComponent extends Jss.SafePureComponent<BillingProps, BillingState> {
   public constructor(props: BillingProps) {
     super(props);
     const selectedAddressOption = this.props.useForBillingAddress
@@ -36,7 +36,9 @@ export default class Billing extends Jss.SafePureComponent<BillingProps, Billing
     };
   }
   public componentWillMount() {
-    this.props.InitStep(CheckoutStepType.Billing);
+    if (!this.props.sitecoreContext.pageEditing) {
+      this.props.InitStep(CheckoutStepType.Billing);
+    }
   }
   public safeRender() {
     const { fields } = this.props;

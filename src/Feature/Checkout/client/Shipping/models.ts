@@ -21,7 +21,7 @@ export interface ShippingDataSource extends Jss.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];
 }
 
-export interface ShippingOwnProps extends Jss.Rendering<ShippingDataSource> {}
+export interface ShippingOwnProps extends Jss.RenderingWithContext<ShippingDataSource> {}
 export interface ShippingStateProps {
   deliveryInfo: Checkout.Data<Commerce.DeliveryInfo>;
   shippingInfo: Checkout.Data<Commerce.ShippingInfo>;

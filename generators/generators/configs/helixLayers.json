@@ -1,0 +1,17 @@
+[
+  {
+    "key": "a",
+    "name": "Foundation & Feature & Project",
+    "value": ["Foundation", "Feature", "Project"]
+  },
+  {
+    "key": "b",
+    "name": "Foundation & Feature",
+    "value": ["Foundation", "Feature"]
+  },
+  {
+    "key": "c",
+    "name": "Foundation",
+    "value": ["Foundation"]
+  }
+]

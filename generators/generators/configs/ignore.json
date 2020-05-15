@@ -1,0 +1,8 @@
+[
+    "!src/node_modules*", 
+    "!src/node_modules/**/*",
+    "!src/tools",
+    "!src/tools/**/*",
+    "!src/packages",
+    "!src/packages/**/*"
+]

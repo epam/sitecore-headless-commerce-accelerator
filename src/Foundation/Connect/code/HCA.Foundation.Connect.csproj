@@ -598,7 +598,6 @@
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Resolvers\MultilistFieldResolver.cs" />
     <Compile Include="Models\Catalog\StockStatus.cs" />
-    <Compile Include="Models\CatalogSettings\CommerceCatalogFolderModel.cs" />
     <Compile Include="Models\Payment\PaymentClientTokenResult.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionConfigurationModel.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionModel.cs" />

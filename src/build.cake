@@ -4,6 +4,7 @@
 #tool nuget:?package=Cake.Sitecore&prerelease
 #load nuget:?package=Cake.Sitecore&prerelease
 #load "./scripts/generateTypescript.cake"
+#load ./scripts/cake/coverage.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -104,6 +105,7 @@ Task("003-Tests")
     .IsDependentOn(Sitecore.Tasks.RunServerUnitTestsTaskName)
     .IsDependentOn(Sitecore.Tasks.RunClientUnitTestsTaskName)
     .IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
+    .IsDependentOn(Coverage.OutputCoverage)
     ;
 
 Task("004-Packages")

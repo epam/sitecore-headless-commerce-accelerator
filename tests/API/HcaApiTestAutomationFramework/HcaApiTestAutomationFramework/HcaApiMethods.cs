@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestSharp;
 
 namespace HcaApiTestAutomationFramework
 {
@@ -52,14 +53,13 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
-		public SearchProductResponseDTO SearhProductsfromShop(dynamic requestBody, string referpoint, string endpoint = "search/products")
+		public CheckoutDeliveryInfoResponseDTO GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")
 		{
-			var cart = new ApiHelper<SearchProductResponseDTO>();
+			var cart = new ApiHelper<CheckoutDeliveryInfoResponseDTO>();
 			var url = cart.SetUrl(endpoint);
-			var jsonRequest = cart.Serialize(requestBody);
-			var request = cart.CreatePostRequest(jsonRequest, referpoint);
+			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			SearchProductResponseDTO content = cart.GetContent<SearchProductResponseDTO>(response);
+			CheckoutDeliveryInfoResponseDTO content = cart.GetContent<CheckoutDeliveryInfoResponseDTO>(response);
 			return content;
 		}
 
@@ -83,15 +83,51 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
-		public CheckoutDeliveryInfoResponseDTO GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")
+
+
+		public CheckoutShippingInfoResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
 		{
-			var cart = new ApiHelper<CheckoutDeliveryInfoResponseDTO>();
+			var cart = new ApiHelper<CheckoutShippingInfoResponseDTO>();
 			var url = cart.SetUrl(endpoint);
-			var request = cart.CreateGetRequest();
+			var jsonRequest = cart.Serialize(requestBody);
+			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CheckoutDeliveryInfoResponseDTO content = cart.GetContent<CheckoutDeliveryInfoResponseDTO>(response);
+			CheckoutShippingInfoResponseDTO content = cart.GetContent<CheckoutShippingInfoResponseDTO>(response);
 			return content;
 		}
 
+
+		public CheckoutPaymentInfoResponseDTO SetPaymentInfo(dynamic requestBody, string endpoint = "checkout/paymentInfo")
+		{
+			var cart = new ApiHelper<CheckoutPaymentInfoResponseDTO>();
+			var url = cart.SetUrl(endpoint);
+			var jsonRequest = cart.Serialize(requestBody);
+			var request = cart.CreatePostRequest(jsonRequest);
+			var response = cart.GetResponse(url, request);
+			CheckoutPaymentInfoResponseDTO content = cart.GetContent<CheckoutPaymentInfoResponseDTO>(response);
+			return content;
+		}
+
+		public CheckoutSubmitOrderResponseDTO SubmitOrder(string endpoint = "checkout/orders")
+		{
+			var cart = new ApiHelper<CheckoutSubmitOrderResponseDTO>();
+			var url = cart.SetUrl(endpoint);
+			var request = cart.CreatePostRequest();
+			var response = cart.GetResponse(url, request);
+			CheckoutSubmitOrderResponseDTO content = cart.GetContent<CheckoutSubmitOrderResponseDTO>(response);
+			return content;
+		}
+
+		public GraphlResponseDTO GetToken(dynamic requestBody)
+		{
+			var cart = new ApiHelper<GraphlResponseDTO>();
+			var url = new RestClient("https://payments.sandbox.braintree-api.com/graphql");
+			var jsonRequest = cart.Serialize(requestBody);
+			var request = cart.CreatePostRequest(jsonRequest);
+			var response = cart.GetResponse(url, request);
+			GraphlResponseDTO content = cart.GetContent<GraphlResponseDTO>(response);
+			return content;
+
+		}
 	}
 }

@@ -8,16 +8,16 @@ namespace HcaApiTestAutomationFramework.HcaDTO
 {
 	public class CheckoutDeliveryInfoResponseDTO
 	{
-		public Data3 data { get; set; }
+		public Data data { get; set; }
 		public string status { get; set; }
 		public object tempData { get; set; }
-	}
 
-	public class Data3
-	{
-		public string newPartyId { get; set; }
-		public Shippingoption[] shippingOptions { get; set; }
-		public Useraddress[] userAddresses { get; set; }
+		public class Data
+		{
+			public string newPartyId { get; set; }
+			public Shippingoption[] shippingOptions { get; set; }
+			public Useraddress[] userAddresses { get; set; }
+		}
 	}
 
 	public class Shippingoption

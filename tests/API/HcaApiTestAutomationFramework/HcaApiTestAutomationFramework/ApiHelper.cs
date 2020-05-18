@@ -18,6 +18,14 @@ namespace HcaApiTestAutomationFramework
 			return restClient;
 		}
 
+		public RestRequest CreatePostRequest()
+		{
+			restRequest = new RestRequest(Method.POST);
+			AddRequestCookies(restRequest);
+			AddRequestHeaders(restRequest);
+			return restRequest;
+		}
+
 		public RestRequest CreatePostRequest(string requestBody)
 		{
 			restRequest = new RestRequest(Method.POST);

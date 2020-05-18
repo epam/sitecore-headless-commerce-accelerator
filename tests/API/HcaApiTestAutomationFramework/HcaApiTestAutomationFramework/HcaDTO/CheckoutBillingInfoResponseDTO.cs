@@ -8,16 +8,16 @@ namespace HcaApiTestAutomationFramework.HcaDTO
 {
 	public class CheckoutBillingInfoResponseDTO
 	{
-		public Data2 data { get; set; }
+		public Data data { get; set; }
 		public string status { get; set; }
 		public object tempData { get; set; }
-	}
 
-	public class Data2
-	{
-		public string paymentClientToken { get; set; }
-		public object[] paymentMethods { get; set; }
-		public Paymentoption[] paymentOptions { get; set; }
+		public class Data
+		{
+			public string paymentClientToken { get; set; }
+			public object[] paymentMethods { get; set; }
+			public Paymentoption[] paymentOptions { get; set; }
+		}
 	}
 
 	public class Paymentoption

@@ -92,9 +92,14 @@
     <Compile Include="HcaDTO\CartResponseDTO.cs" />
     <Compile Include="HcaDTO\CheckoutBillingInfoResponseDTO.cs" />
     <Compile Include="HcaDTO\CheckoutDeliveryInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutPaymentInfoResponseDTO.cs" />
     <Compile Include="HcaDTO\CheckoutSetPaymentInfoRequestDTO.cs" />
     <Compile Include="HcaDTO\CheckoutSetShippingOptionRequestDTO.cs" />
     <Compile Include="HcaDTO\CheckoutShippingInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutSubmitOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\GraphlResponseDTO.cs" />
+    <Compile Include="HcaDTO\GraphqlRequestDTO.cs" />
     <Compile Include="HcaDTO\SearchProductResponseDTO.cs" />
     <Compile Include="HcaDTO\OrdersResponseDTO.cs" />
     <Compile Include="HcaDTO\Price.cs" />

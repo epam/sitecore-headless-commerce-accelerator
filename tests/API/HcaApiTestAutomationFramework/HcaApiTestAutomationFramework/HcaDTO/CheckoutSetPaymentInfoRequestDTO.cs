@@ -8,8 +8,8 @@ namespace HcaApiTestAutomationFramework.HcaDTO
 {
 	public class CheckoutSetPaymentInfoRequestDTO
 	{
-		public Billingaddress billingAddress { get; set; }
-		public Federatedpayment federatedPayment { get; set; }
+		public Billingaddress[] billingAddress { get; set; }
+		public Federatedpayment[] federatedPayment { get; set; }
 	}
 
 	public class Billingaddress

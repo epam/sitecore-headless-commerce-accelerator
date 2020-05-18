@@ -14,8 +14,11 @@
 
 namespace HCA.Foundation.Connect.Models.Payment
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Sitecore.Commerce.Services.Payments;
 
+    [ExcludeFromCodeCoverage]
     public class PaymentClientTokenResult : PaymentResult
     {
         public string ClientToken { get; set; }

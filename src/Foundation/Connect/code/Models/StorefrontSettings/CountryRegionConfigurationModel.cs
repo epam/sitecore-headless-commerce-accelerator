@@ -17,9 +17,11 @@
 namespace HCA.Foundation.Connect.Models
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using Glass.Mapper.Sc.Configuration.Attributes;
 
+    [ExcludeFromCodeCoverage]
     public partial class CountryRegionConfigurationModel
     {
         [SitecoreField(CountriesRegionsFieldName)]

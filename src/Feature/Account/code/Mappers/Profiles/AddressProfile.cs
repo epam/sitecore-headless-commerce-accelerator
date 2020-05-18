@@ -14,12 +14,15 @@
 
 namespace HCA.Feature.Account.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Foundation.Commerce.Models.Entities.Addresses;
 
     using Models.Requests;
 
+    [ExcludeFromCodeCoverage]
     public class AddressProfile : Profile
     {
         public AddressProfile()

@@ -85,14 +85,14 @@ namespace HcaApiTestAutomationFramework
 
 
 
-		public CheckoutShippingInfoResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
+		public CheckoutShippingOptionsResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
 		{
-			var cart = new ApiHelper<CheckoutShippingInfoResponseDTO>();
+			var cart = new ApiHelper<CheckoutShippingOptionsResponseDTO>();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CheckoutShippingInfoResponseDTO content = cart.GetContent<CheckoutShippingInfoResponseDTO>(response);
+			CheckoutShippingOptionsResponseDTO content = cart.GetContent<CheckoutShippingOptionsResponseDTO>(response);
 			return content;
 		}
 

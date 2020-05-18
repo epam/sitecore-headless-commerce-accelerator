@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System.IO;
+using System.Configuration;
 
 namespace HcaApiTestAutomationFramework
 {
@@ -8,8 +9,8 @@ namespace HcaApiTestAutomationFramework
 	{
 		public RestClient restClient;
 		public RestRequest restRequest;
-		public string Host = "int-cd.hca.azure.epmc-stc.projects.epam.com";
-		public string baseUrl = "https://int-cd.hca.azure.epmc-stc.projects.epam.com/apix/client/commerce";
+		public string Host = ConfigurationManager.AppSettings["Host"];
+		public string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
 
 		public RestClient SetUrl(string endpoint)
 		{
@@ -95,8 +96,8 @@ namespace HcaApiTestAutomationFramework
 
 		private void AddRequestCookies(RestRequest request)
 		{
-			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", "b916df89e9444a968dc1b74f53813e1e|True");
-			//request.AddCookie("ASP.NET_SessionId", "bujesllwqopyytzw2pgppzb4");
+			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", ConfigurationManager.AppSettings["SC_ANALYTICS_GLOBAL_COOKIE"]);
+			//request.AddCookie("ASP.NET_SessionId", ConfigurationManager.AppSettings["ASP.NET_SessionId"]);
 		}
 
 		private void AddRequestHeaders(RestRequest request)

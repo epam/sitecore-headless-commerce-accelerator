@@ -85,7 +85,7 @@ namespace HcaApiTests
 
 				}},
 			};
-			var shippingOptions = new HcaApiMethods<CheckoutShippingInfoResponseDTO>();
+			var shippingOptions = new HcaApiMethods<CheckoutShippingOptionsResponseDTO>();
 			var shippingOptionsReq = shippingOptions.SetShippingOptions(shippingData);
 			Assert.True("ok".Equals(shippingOptionsReq.status.ToLower()), "The Shipping Options request is not passed");
 

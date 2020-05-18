@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,10 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Connect.Models
+namespace HCA.Foundation.Commerce.Models.Entities.Account
 {
-    public class FederatedPaymentArgs
+    using TypeLite;
+
+    [TsClass]
+    public class ValidateEmailResult
     {
-        public string CardToken { get; set; }
+        public bool InUse { get; set; }
     }
 }

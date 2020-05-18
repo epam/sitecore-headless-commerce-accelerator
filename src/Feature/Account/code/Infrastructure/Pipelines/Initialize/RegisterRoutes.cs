@@ -24,6 +24,8 @@ namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
 
+    using Constants = Foundation.Commerce.Constants;
+
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)
@@ -39,7 +41,7 @@ namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(AccountsController),
-                Constants.CommerceRoutePrefix + $"/{AccountsControllerName.ToLowerInvariant()}" + "/{action}",
+                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{AccountsControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(AccountsController).Namespace },
                 defaults: new
                 {

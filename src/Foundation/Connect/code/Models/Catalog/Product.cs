@@ -27,12 +27,6 @@ namespace HCA.Foundation.Connect.Models.Catalog
         {
         }
 
-        [Obsolete("Use parameter-less constructor instead.")]
-        public Product(Item item)
-            : base(item)
-        {
-        }
-
         public List<Variant> Variants { get; set; }
     }
 }

@@ -622,7 +622,6 @@
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
-    <Compile Include="Extensions\ResultExtension.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
@@ -657,22 +656,10 @@
     <Compile Include="Mappers\Profiles\ShippingProfile.cs" />
     <Compile Include="Mappers\Shipping\IShippingMapper.cs" />
     <Compile Include="Mappers\Shipping\ShippingMapper.cs" />
-    <Compile Include="Builders\Order\OrderModelBuilder.cs" />
-    <Compile Include="Builders\Order\IOrderModelBuilder.cs" />
-    <Compile Include="Builders\Cart\ICartModelBuilder.cs" />
-    <Compile Include="Builders\Cart\CartModelBuilder.cs" />
-    <Compile Include="Mappers\IEntityMapper.cs" />
-    <Compile Include="Mappers\EntityMapper.cs" />
     <Compile Include="Mappers\Users\IUserMapper.cs" />
     <Compile Include="Mappers\Users\UserMapper.cs" />
     <Compile Include="Models.Generated.cs" />
-    <Compile Include="Models\Account\ChangePasswordModel.cs" />
-    <Compile Include="Models\Account\ChangePasswordResultModel.cs" />
-    <Compile Include="Models\Account\ValidateAccountModel.cs" />
-    <Compile Include="Models\Account\ValidateAccountResultModel.cs" />
-    <Compile Include="Models\Account\CreateAccountModel.cs" />
-    <Compile Include="Models\Account\CreateAccountResultModel.cs" />
-    <Compile Include="Models\Account\ValidateEmailResult.cs" />
+    <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
@@ -681,16 +668,6 @@
     <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchOptions.cs" />
-    <Compile Include="Models\Checkout\AddressModel.cs" />
-    <Compile Include="Models\Checkout\BaseCheckoutModel.cs" />
-    <Compile Include="Models\Checkout\CartLineModel.cs" />
-    <Compile Include="Models\Checkout\OrderHistoryResultModel.cs" />
-    <Compile Include="Models\Checkout\OrderModel.cs" />
-    <Compile Include="Models\Checkout\CartModel.cs" />
-    <Compile Include="Models\Checkout\CartPriceModel.cs" />
-    <Compile Include="Models\Checkout\FederatedPaymentModel.cs" />
-    <Compile Include="Models\Checkout\ShippingMethodModel.cs" />
-    <Compile Include="Models\Checkout\ShippingOptionModel.cs" />
     <Compile Include="Models\Entities\Addresses\Address.cs" />
     <Compile Include="Models\Entities\Checkout\BaseCheckoutInfo.cs" />
     <Compile Include="Models\Entities\Catalog\BaseProduct.cs" />
@@ -708,7 +685,6 @@
     <Compile Include="Models\Entities\Catalog\Variant.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingInfo.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingOption.cs" />
-    <Compile Include="Models\Entities\Search\SortOption.cs" />
     <Compile Include="Models\Entities\Cart\TotalPrice.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
     <Compile Include="Mappers\Profiles\UserProfile.cs" />
@@ -746,7 +722,6 @@
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
-    <Compile Include="Utils\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA\Foundation.Commerce.config">
@@ -756,10 +731,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\unicorn\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>

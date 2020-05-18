@@ -607,16 +607,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\unicorn\" />
-    <Folder Include="Services\" />
-    <Folder Include="Views\Catalog\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Web.config" />
     <Content Include="App_Config\Include\Feature\HCA\Feature.Catalog.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>

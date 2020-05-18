@@ -24,6 +24,8 @@ namespace HCA.Foundation.Commerce.Providers
 
     using Utils;
 
+    using Constants = Commerce.Constants;
+
     [Service(typeof(IPageTypeProvider))]
     public class PageTypeProvider : IPageTypeProvider
     {

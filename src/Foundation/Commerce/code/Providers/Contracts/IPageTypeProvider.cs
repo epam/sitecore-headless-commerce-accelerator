@@ -19,6 +19,8 @@ namespace HCA.Foundation.Commerce.Providers
 
     using Utils;
 
+    using Constants = Commerce.Constants;
+
     public interface IPageTypeProvider
     {
         Constants.ItemType ResolveByItem(Item item);

@@ -24,6 +24,8 @@ namespace HCA.Feature.Catalog.Pipelines.Initialize
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
 
+    using Constants = Foundation.Commerce.Constants;
+
     public class RegisterRoutes
     {
         public void Process(PipelineArgs args)

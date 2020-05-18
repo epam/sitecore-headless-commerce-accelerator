@@ -18,7 +18,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
     using Base.Models.Result;
 
-    using Models.Account;
+    using Models.Entities.Account;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 

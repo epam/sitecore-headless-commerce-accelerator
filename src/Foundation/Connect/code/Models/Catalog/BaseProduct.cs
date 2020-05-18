@@ -23,27 +23,12 @@ namespace HCA.Foundation.Connect.Models.Catalog
     [ExcludeFromCodeCoverage]
     public class BaseProduct
     {
-        public BaseProduct()
-        {
-        }
-
-        [Obsolete("Use parameter-less constructor instead.")]
-        public BaseProduct(Item item)
-        {
-            this.Item = item;
-            this.Id = item.Name;
-        }
-
         public string Id { get; set; }
 
         //TODO: move to variants
         public string ProductId { get; set; }
 
         public string SitecoreId { get; set; }
-
-        //TODO: Remove all references to Item
-        [Obsolete("Use simple type properties of current class instead.")]
-        public Item Item { get; set; }
 
         public string DisplayName { get; set; }
 

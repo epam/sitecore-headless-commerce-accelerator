@@ -50,7 +50,7 @@ namespace HCA.Foundation.Connect.Mappers.Profiles
 
             this.CreateMap<Sitecore.ContentSearch.Linq.FacetValue, FacetValue>();
 
-            this.CreateMap<SearchResponse, SearchResultsV2<Product>>()
+            this.CreateMap<SearchResponse, SearchResults<Product>>()
                 .ForMember(dest => dest.Results, opt => opt.Ignore());
         }
     }

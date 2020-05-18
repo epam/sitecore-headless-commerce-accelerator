@@ -69,7 +69,7 @@ steps:
     workingDirectory: './src/'
 
 - task: PowerShell@2
-  displayName: Run tests
+  displayName: Run Unit tests
   inputs:
     filePath: './src/build.ps1'
     arguments: '-Target 003-Tests'

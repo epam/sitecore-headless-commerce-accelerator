@@ -12,9 +12,9 @@ variables:
 steps:
 
 - task: UseNode@1
+  displayName: Install Node 10
   inputs:
     script: 'npm --version'
-  displayName: Installing Node 10
 
 
 - task: DownloadSecureFile@1
@@ -22,8 +22,6 @@ steps:
   name: license_file
   inputs:
     secureFile: 'license.xml'
-
-
 
 - task: DownloadPipelineArtifact@2
   displayName: Download node modules
@@ -36,7 +34,7 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
 
 - task: DownloadPipelineArtifact@2
-  displayName: Download packages
+  displayName: Download NuGet packages
   inputs:
     buildType: 'specific'
     project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
@@ -64,15 +62,21 @@ steps:
       move $(license_file.secureFilePath) ./src/ -Force
 
 - task: PowerShell@2
+  displayName: Build code
   inputs:
     filePath: './src/build.ps1'
     arguments: '-Target 002-Build'
     workingDirectory: './src/'
-  displayName: Build
 
 - task: PowerShell@2
+  displayName: Run Unit tests
   inputs:
     filePath: './src/build.ps1'
     arguments: '-Target 003-Tests'
     workingDirectory: './src/'
-  displayName: Test
+
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'

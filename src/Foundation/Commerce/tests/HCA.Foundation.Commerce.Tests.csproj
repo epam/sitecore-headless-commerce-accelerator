@@ -575,7 +575,6 @@
     <Compile Include="Mappers\Profiles\RegionProfileTests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Mappers\Profiles\ShippingProfileTests.cs" />
-    <Compile Include="ModelMappers\CartRepositoryTests.cs" />
     <Compile Include="Mappers\Profiles\UserProfileTests.cs" />
     <Compile Include="Mappers\Profiles\OrderProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

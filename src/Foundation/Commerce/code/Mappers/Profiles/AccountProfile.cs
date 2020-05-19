@@ -24,6 +24,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
     using Utils;
 
+    using Constants = Commerce.Constants;
+
     public class AccountProfile : Profile
     {
         public AccountProfile()

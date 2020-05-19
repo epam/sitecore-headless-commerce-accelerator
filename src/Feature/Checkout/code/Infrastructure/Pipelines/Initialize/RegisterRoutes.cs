@@ -25,6 +25,8 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
 
+    using Constants = Foundation.Commerce.Constants;
+
     [ExcludeFromCodeCoverage]
     public class RegisterRoutes
     {
@@ -41,7 +43,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(CheckoutController),
-                Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
+                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CheckoutController).Namespace },
                 defaults: new
                 {
@@ -52,7 +54,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(CartsController),
-                Constants.CommerceRoutePrefix + $"/{CartsControllerName.ToLowerInvariant()}" + "/{action}",
+                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{CartsControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CartsController).Namespace },
                 defaults: new
                 {
@@ -63,7 +65,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(OrdersController),
-                Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}",
+                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}",
                 namespaces: new[] { typeof(OrdersController).Namespace },
                 defaults: new
                 {

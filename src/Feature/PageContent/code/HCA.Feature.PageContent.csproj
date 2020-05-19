@@ -486,17 +486,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\unicorn\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\PageContent\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Web.config" />
     <Content Include="App_Config\Include\Feature\HCA\Feature.PageContent.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>

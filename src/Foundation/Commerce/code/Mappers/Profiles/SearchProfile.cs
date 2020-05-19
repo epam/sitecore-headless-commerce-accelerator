@@ -38,7 +38,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
             this.CreateMap<FacetValue, Foundation.Connect.Models.Search.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            this.CreateMap<SearchResultsV2<Product>, ProductSearchResults>()
+            this.CreateMap<SearchResults<Product>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
         }
     }

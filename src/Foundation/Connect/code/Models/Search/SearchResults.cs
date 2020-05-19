@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,62 +15,14 @@
 namespace HCA.Foundation.Connect.Models.Search
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Sitecore.Commerce.Engine.Connect.Search.Models;
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
-
-    public class SearchResults
+    [ExcludeFromCodeCoverage]
+    public class SearchResults<TEntity> where TEntity : class
     {
-        private IEnumerable<CommerceQueryFacet> facets;
+        public IList<TEntity> Results { get; set; }
 
-        private IList<Item> searchResultItems;
-
-        public SearchResults()
-            : this(null, 0, 0, 0, null)
-        {
-        }
-
-        public SearchResults(
-            List<Item> searchResultItems,
-            int totalItemCount,
-            int totalPageCount,
-            int currentPageNumber,
-            IEnumerable<CommerceQueryFacet> facets)
-        {
-            this.SearchResultItems = searchResultItems ?? new List<Item>();
-            this.TotalPageCount = totalPageCount;
-            this.TotalItemCount = totalItemCount;
-            this.Facets = facets ?? Enumerable.Empty<CommerceQueryFacet>();
-            this.CurrentPageNumber = currentPageNumber;
-        }
-
-        public int CurrentPageNumber { get; set; }
-
-        public string DisplayName { get; set; }
-
-        public IEnumerable<CommerceQueryFacet> Facets
-        {
-            get => this.facets;
-            set
-            {
-                Assert.ArgumentNotNull(value, nameof(value));
-                this.facets = value;
-            }
-        }
-
-        public Item NamedSearchItem { get; set; }
-
-        public IList<Item> SearchResultItems
-        {
-            get => this.searchResultItems;
-            set
-            {
-                Assert.ArgumentNotNull(value, nameof(value));
-                this.searchResultItems = value;
-            }
-        }
+        public IEnumerable<Facet> Facets { get; set; }
 
         public int TotalItemCount { get; set; }
 

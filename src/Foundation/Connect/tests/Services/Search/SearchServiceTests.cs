@@ -194,9 +194,9 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
                     {
                         StartPageIndex = searchOptions.StartPageIndex
                     });
-            this.searchMapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse)
+            this.searchMapper.Map<SearchResponse, Models.Search.SearchResults<Product>>(searchResponse)
                 .Returns(
-                    new SearchResultsV2<Product>
+                    new Models.Search.SearchResults<Product>
                     {
                         TotalItemCount = searchResponse.TotalItemCount
                     });
@@ -204,7 +204,7 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
             this.searchResponseProvider
                 .CreateFromSearchResultsItems(
                     Arg.Any<CommerceSearchOptions>(),
-                    Arg.Any<SearchResults<CommerceSellableItemSearchResultItem>>())
+                    Arg.Any<Sitecore.ContentSearch.Linq.SearchResults<CommerceSellableItemSearchResultItem>>())
                 .Returns(searchResponse);
 
             //act
@@ -213,7 +213,7 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
             //assert
             Assert.Equal(searchResponse.TotalItemCount, results.TotalItemCount);
 
-            this.searchMapper.Received(1).Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
+            this.searchMapper.Received(1).Map<SearchResponse, Models.Search.SearchResults<Product>>(searchResponse);
         }
     }
 }

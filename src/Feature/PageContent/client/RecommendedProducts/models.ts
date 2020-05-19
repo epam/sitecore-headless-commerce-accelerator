@@ -13,7 +13,8 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss/client';
+import { RecommendedProductsDataSource } from '../Models.Generated';
 
-export interface HomeProps extends JSS.Rendering {}
+export interface RecommendedProductsProps extends JSS.RenderingWithContext<RecommendedProductsDataSource> {}
 
-export interface HomeState extends JSS.SafePureComponentState {}
+export interface RecommendedProductsState extends JSS.SafePureComponentState {}

@@ -12,8 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
+import { RenderingWithContext } from '../models';
 
-export interface HomeProps extends JSS.Rendering {}
-
-export interface HomeState extends JSS.SafePureComponentState {}
+export interface RenderingWithContextProps extends RenderingWithContext {}

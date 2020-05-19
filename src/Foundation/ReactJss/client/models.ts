@@ -69,7 +69,7 @@ export interface RouteFields<TRouteFields extends BaseDataSourceItem = BaseDataS
 }
 
 export interface RenderingWithContext<
-  TDataSourceItem extends BaseDataSourceItem,
+  TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem,
   TCustomData = {},
   TRouteFields extends BaseDataSourceItem = BaseDataSourceItem
 > extends Rendering<TDataSourceItem> {

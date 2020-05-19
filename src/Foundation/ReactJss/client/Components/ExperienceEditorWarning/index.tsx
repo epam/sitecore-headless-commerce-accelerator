@@ -12,8 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
+import * as React from 'react';
 
-export interface HomeProps extends JSS.Rendering {}
+import './styles.scss';
 
-export interface HomeState extends JSS.SafePureComponentState {}
+export const ExperienceEditorWarningControl = (message: string) => (
+  () => {
+    return (
+      <div className="experience-editor-warning">
+        <h5>
+          {message}
+        </h5>
+      </div>
+    );
+  }
+);
+
+export const DatasourceRequiredControl = ExperienceEditorWarningControl('Rendering datasource is not configured');

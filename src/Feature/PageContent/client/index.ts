@@ -17,3 +17,5 @@ export * from './Scaffolding/components/TwoColumn';
 export * from './Scaffolding/components/TwoColumnRow';
 export * from './Scaffolding/components/ThreeColumnRow';
 export * from './Home';
+export * from './RecommendedProducts';
+export * from './BannerGrid';

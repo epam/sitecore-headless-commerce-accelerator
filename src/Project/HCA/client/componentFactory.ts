@@ -36,8 +36,12 @@ components.set('Two Column Row', PageContent.TwoColumnRow);
 components.set('Three Column Row', PageContent.ThreeColumnRow);
 
 // Page Content
-components.set('Home', PageContent.Home);
 components.set('Header', GlobalHeader);
+
+// Home renderings
+components.set('Home', PageContent.Home);
+components.set('Recommended Products', PageContent.RecommendedProducts);
+components.set('Banner Grid', PageContent.BannerGrid);
 
 // Footer renderings
 components.set('Footer', GlobalFooter);

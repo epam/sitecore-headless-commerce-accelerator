@@ -111,15 +111,14 @@ class SolutionExplorer {
     getProjects(helixLayerNames) {
         this.solution = vsParser.parseSolutionSync(this.content);
 
-        console.log(helixLayerNames);
         return helixLayerNames
-        .map(helixLayerName => {
-            console.log(helixLayerName);
-            var projects = this.solution.projects.map(project => this.addParent(project));
-            projects = projects.filter(project => project.name.includes('.' + helixLayerName + '.'));
-            return projects.concat([...new Set(projects.map(project => project.parent))]);
-        })
-        .reduce((a, b) => a.concat(b));
+                .map(helixLayerName => {
+                    console.log(helixLayerName);
+                    var projects = this.solution.projects.map(project => this.addParent(project));
+                    projects = projects.filter(project => project.name.includes('.' + helixLayerName + '.'));
+                    return projects.concat([...new Set(projects.map(project => project.parent))]);
+                })
+                .reduce((a, b) => a.concat(b));
     }
 
     addLayers(projects, settings) {

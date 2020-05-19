@@ -16,12 +16,12 @@ const secretFilePath = './secret.json';
 const defaultSolutionName = 'HCA';
 
 gulp.task('clean:templates', () => {
-    return gulp.src(`./${templatesFolderPath}/src`, { allowEmpty: true, read: false }).pipe(clean());
+    return gulp.src(`./${templatesFolderPath}`, { allowEmpty: true, read: false }).pipe(clean());
 });
 
 gulp.task('copy:src', () => {
     return gulp
-        .src(['src/**'], { cwd: '../'})
+        .src('../src/**')
         .pipe(replace(/HCA/g, '<%= solutionName %>'))
         .pipe(rename((path) => {
             path.basename = path.basename.replace(/HCA/g, 'SolutionName');
@@ -29,10 +29,6 @@ gulp.task('copy:src', () => {
         }))
         .pipe(gulp.dest(`${templatesFolderPath}/${sourceFolderPath}`));
 });
-
-function excludeModulesFromTemplates(modules)  {
-    return modules.map(module => '!src/' + module + '/**/*')
-}
 
 gulp.task('copy:root', () => {
     return gulp.src(['../readme.md', '../LICENSE'])
@@ -67,6 +63,5 @@ gulp.task('publish', () => {
     return exec('npm publish');
 })
 
-//gulp.task('default', gulp.series('clean:templates', gulp.parallel('copy:root', 'copy:src')));
-gulp.task('default', gulp.series('clean:templates', 'copy:src'));
+gulp.task('default', gulp.series('clean:templates', gulp.parallel('copy:root', 'copy:src')));
 gulp.task('default:generator', gulp.series('clean:dist', 'run:yo'))

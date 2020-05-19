@@ -5,7 +5,7 @@ const rename = require("gulp-rename");
 const chalk = require('chalk');
 const yosay = require('yosay');
 var path = require('path');
-const settings = require('../configs/projectSettings.json');
+const settings = require('../configs/settings.json');
 
 const msg = require('../configs/messages.json');
 const helixLayers = require('../configs/helixLayers.json');

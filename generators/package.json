@@ -29,14 +29,12 @@
     "fs-extra": "^9.0.0",
     "tabdown-kfatehi": "^0.2.0",
     "traverse": "^0.6.6",
-    "vs-parse": "^3.0.0",
     "yeoman-generator": "^3.2.0",
     "yosay": "^2.0.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
-    "gulp-exclude-gitignore": "^1.2.0",
     "gulp-rename": "1.2.2",
     "gulp-replace": "^1.0.0",
     "yargs": "^15.3.1",

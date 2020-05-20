@@ -54,6 +54,7 @@
     <Compile Include="HcaDTO\AccountAddressRequestDTO.cs" />
     <Compile Include="HcaDTO\AccountChangePasswordRequestDTO.cs" />
     <Compile Include="HcaDTO\AccountCreateAccountRequestDTO.cs" />
+    <Compile Include="HcaDTO\AccountCreateAccountResponseDTO.cs" />
     <Compile Include="HcaDTO\AccountUpdateAccountRequestDTO.cs" />
     <Compile Include="HcaDTO\AccountValidateEmailRequestDTO.cs" />
     <Compile Include="HcaDTO\AuthenticationLoginRequestDTO.cs" />

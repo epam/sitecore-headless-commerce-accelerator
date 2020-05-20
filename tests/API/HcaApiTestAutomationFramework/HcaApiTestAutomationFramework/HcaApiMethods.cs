@@ -10,6 +10,18 @@ namespace HcaApiTestAutomationFramework
 {
 	public class HcaApiMethods<T>
 	{
+
+		public AccountCreateAccountResponseDTO CreateAccount(dynamic requestBody, string endpoint = "accounts/account")
+		{
+			var cart = new ApiHelper<AccountCreateAccountResponseDTO>();
+			var url = cart.SetUrl(endpoint);
+			var jsonRequest = cart.Serialize(requestBody);
+			var request = cart.CreatePostRequest(jsonRequest);
+			var response = cart.GetResponse(url, request);
+			AccountCreateAccountResponseDTO content = cart.GetContent<AccountCreateAccountResponseDTO>(response);
+			return content;
+		}
+
 		public CartResponseDTO GetCart(string endpoint = "carts/cart")
 		{
 			var cart = new ApiHelper<CartResponseDTO>();

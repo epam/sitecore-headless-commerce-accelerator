@@ -2,7 +2,8 @@ const yeoman = require('yeoman-environment');
 const gulp = require('gulp');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
-const clean = require('gulp-clean');
+const del = require('del');
+const ignore = require('./generators/configs/ignore.json');
 
 const fs = require('fs');
 const argv = require('yargs').argv;
@@ -16,12 +17,12 @@ const secretFilePath = './secret.json';
 const defaultSolutionName = 'HCA';
 
 gulp.task('clean:templates', () => {
-    return gulp.src(`./${templatesFolderPath}`, { allowEmpty: true, read: false }).pipe(clean());
+    return del([`${templatesFolderPath}/**/*`]);
 });
 
 gulp.task('copy:src', () => {
     return gulp
-        .src('../src/**')
+        .src(['src/**'].concat(ignore), { cwd: '../'})
         .pipe(replace(/HCA/g, '<%= solutionName %>'))
         .pipe(rename((path) => {
             path.basename = path.basename.replace(/HCA/g, 'SolutionName');
@@ -31,7 +32,8 @@ gulp.task('copy:src', () => {
 });
 
 gulp.task('copy:root', () => {
-    return gulp.src(['../readme.md', '../LICENSE'])
+    return gulp
+        .src(['../readme.md', '../LICENSE'])
         .pipe(gulp.dest(`${templatesFolderPath}`));
 });
 
@@ -52,7 +54,7 @@ gulp.task('run:yo', () => {
 });
 
 gulp.task('clean:dist', () => {
-    return gulp.src(`./${distFolderPath}`, { allowEmpty: true, read: false }).pipe(clean());
+    return del([`${distFolderPath}`]);
 });
 
 gulp.task('publish', () => {

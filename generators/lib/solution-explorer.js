@@ -1,24 +1,21 @@
 var traverse = require('traverse');
-var fs = require('fs');
-
-//Parses solution file to tree structure
 const tabdownParser = require('tabdown-kfatehi');
-
-//Parses solution file to projects object models
 const vsParser = require('./vs-parse/index');
 
 class SolutionExplorer {
     constructor(content) {
         this.content = content || {};
+        this.solution = {};
     }
 
     toString() {
-        var result = traverse(this.solution).reduce(function(acc, x) {
-            var hasValue = x && x.value;
-            var indent = (this.level - 2) / 2;
-            return (hasValue && acc.push({ indent, value: x.value.trim() }), acc)
-        }, []);
-        return result.map((value) => `${'\t'.repeat(value.indent)}${value.value}`).join('\r\n');
+        return traverse(this.solution)
+                .reduce(function(acc, x) {
+                    var hasValue = x && x.value;
+                    var indent = (this.level - 2) / 2;
+                    return (hasValue && acc.push({ indent, value: x.value.trim() }), acc)
+                }, [])
+                .map((value) => `${'\t'.repeat(value.indent)}${value.value}`).join('\r\n');
     }
     
     findNode(source, keyword) {
@@ -62,12 +59,15 @@ class SolutionExplorer {
     } 
     
     addNestedProject(project) {
-        const nestedProjectsLine = `{${project.id.toUpperCase()}} = {${project.parent.id.toUpperCase()}}`;
-        const node = this.findNode(this.solution.children, 'GlobalSection(NestedProjects)');
-        node.children = node.children || [];
+        const { parent, id } = project;
 
-        node.children.push({value: nestedProjectsLine});
-    
+        const nestedProjectsLine = `{${id.toUpperCase()}} = {${parent.id.toUpperCase()}}`;
+        const node = this.findNode(this.solution.children, 'GlobalSection(NestedProjects)');
+        if(node) {
+            node.children = node.children || [];
+            node.children.push({value: nestedProjectsLine});
+        }
+
         return this.solution;
     }
     
@@ -85,10 +85,12 @@ class SolutionExplorer {
         const build0ConfigLine = `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}`;
     
         const node = this.findNode(this.solution.children, 'GlobalSection(ProjectConfigurationPlatforms)');
-        node.children = node.children || [];
+        if(node) {
+            node.children = node.children || [];
 
-        node.children.push({value: activeConfigLine});
-        node.children.push({value: build0ConfigLine});
+            node.children.push({value: activeConfigLine});
+            node.children.push({value: build0ConfigLine});
+        }
     
         return this.solution;
     }
@@ -113,12 +115,12 @@ class SolutionExplorer {
 
         return helixLayerNames
                 .map(helixLayerName => {
-                    console.log(helixLayerName);
                     var projects = this.solution.projects.map(project => this.addParent(project));
                     projects = projects.filter(project => project.name.includes('.' + helixLayerName + '.'));
                     return projects.concat([...new Set(projects.map(project => project.parent))]);
                 })
                 .reduce((a, b) => a.concat(b));
+
     }
 
     addLayers(projects, settings) {

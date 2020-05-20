@@ -31,7 +31,7 @@ module.exports = class SolutionGenerator extends Generator {
     });
 
     this.rootTemplatePath = () => path.join(this.templatePath('../../'), 'templates');
-    this.solutionTemplatePath = () => path.join(this.templatePath('../../../'), 'SolutionTemplate.sln');
+    this.solutionTemplatePath = () => path.join(this.templatePath('../'), 'templates/SolutionTemplate.sln');
     this.solutionPath = () => path.join(this.rootTemplatePath(), 'src/SolutionName.sln');
   }
 
@@ -78,11 +78,19 @@ module.exports = class SolutionGenerator extends Generator {
     this.fs.copyTpl(
       this.rootTemplatePath(),
       this.destinationPath(),
-      { solutionName: this.options.solutionName }
+      { solutionName: this.options.solutionName },  
+      {},
+      { globOptions: 
+        { 
+          ignore: ['Foundation', 'Feature', 'Project']
+          .filter(layer => !this.options.helixLayers.includes(layer))
+          .map(layer => '**/src/'+ layer +'/**/*') 
+        } 
+      }
     );
   }
 
-  _updateSolutionFile(){
+  async _updateSolutionFile(){
 
     const sourceSolution = new SolutionExplorer(fs.readFileSync(this.solutionPath(), 'utf8'));
     const projects = sourceSolution.getProjects(this.options.helixLayers);

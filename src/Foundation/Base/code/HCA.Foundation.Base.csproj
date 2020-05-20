@@ -515,9 +515,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\DependencyInjection\code\HCA.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>

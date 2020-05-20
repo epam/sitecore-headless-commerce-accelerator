@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Connect.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Models.Catalog;
@@ -22,6 +24,7 @@ namespace HCA.Foundation.Connect.Mappers.Profiles
 
     using StockStatus = Sitecore.Commerce.Entities.Inventory.StockStatus;
 
+    [ExcludeFromCodeCoverage]
     public class CatalogProfile : Profile
     {
         public CatalogProfile()

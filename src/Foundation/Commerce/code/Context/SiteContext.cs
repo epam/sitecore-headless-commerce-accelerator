@@ -25,8 +25,6 @@ namespace HCA.Foundation.Commerce.Context
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Constants = Utils.Constants;
-
     [Service(typeof(ISiteContext))]
     public class SiteContext : ISiteContext
     {
@@ -65,8 +63,8 @@ namespace HCA.Foundation.Commerce.Context
                 if (value != null)
                 {
                     var itemType = this.ItemTypeProvider.ResolveByItem(value);
-                    this.Items[IsCategoryKey] = itemType == Constants.ItemType.Category;
-                    this.Items[IsProductKey] = itemType == Constants.ItemType.Product;
+                    this.Items[IsCategoryKey] = itemType == Commerce.Constants.ItemType.Category;
+                    this.Items[IsProductKey] = itemType == Commerce.Constants.ItemType.Product;
                 }
                 else
                 {

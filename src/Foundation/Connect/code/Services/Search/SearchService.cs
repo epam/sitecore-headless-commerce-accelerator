@@ -67,7 +67,7 @@ namespace HCA.Foundation.Connect.Services.Search
             this.queryBuilder = queryBuilder;
         }
 
-        public SearchResultsV2<Product> GetProducts(SearchOptions searchOptions)
+        public SearchResults<Product> GetProducts(SearchOptions searchOptions)
         {
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
 
@@ -83,7 +83,7 @@ namespace HCA.Foundation.Connect.Services.Search
 
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
-            var searchResults = this.searchMapper.Map<SearchResponse, SearchResultsV2<Product>>(searchResponse);
+            var searchResults = this.searchMapper.Map<SearchResponse, SearchResults<Product>>(searchResponse);
             searchResults.Results = this.productBuilder.BuildWithoutVariants(searchResponse.ResponseItems).ToList();
 
             return searchResults;

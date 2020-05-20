@@ -3,7 +3,10 @@
 // //////////////////////////////////////////////////
 #tool nuget:?package=Cake.Sitecore&prerelease
 #load nuget:?package=Cake.Sitecore&prerelease
-#load "./scripts/generateTypescript.cake"
+
+#load ./scripts/cake/xunit.cake
+#load ./scripts/cake/coverage.cake
+#load ./scripts/generateTypescript.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -21,7 +24,10 @@ Sitecore.Parameters.InitParams(
     solutionName: "HCA",
     scSiteUrl: "https://sc9.local", // default URL exposed from the box
     unicornSerializationRoot: "unicorn-wooli",
-    publishingTargetDir: "\\\\192.168.50.4\\c$\\inetpub\\wwwroot\\sc9.local"
+    publishingTargetDir: "\\\\192.168.50.4\\c$\\inetpub\\wwwroot\\sc9.local",
+    xUnitTestsCoverageRegister: "Path64",
+    xUnitTestsCoverageExcludeAttributeFilters: "*ExcludeFromCodeCoverage*",
+    xUnitTestsCoverageExcludeFileFilters: "*.Generated.cs;*\\App_Start\\*"
 );
 
 // //////////////////////////////////////////////////
@@ -101,9 +107,10 @@ Task("002-Build")
     ;
 
 Task("003-Tests")
-    .IsDependentOn(Sitecore.Tasks.RunServerUnitTestsTaskName)
+    .IsDependentOn(XUnitRunner.RunTests)
     .IsDependentOn(Sitecore.Tasks.RunClientUnitTestsTaskName)
     .IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
+    .IsDependentOn(Coverage.OutputCoverage)
     ;
 
 Task("004-Packages")

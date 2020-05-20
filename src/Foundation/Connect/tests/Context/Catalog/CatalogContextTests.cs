@@ -27,6 +27,9 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
 
     using Ploeh.AutoFixture;
 
+    using Sitecore.Collections;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
     using Sitecore.FakeDb.AutoFixture;
 
     using Xunit;
@@ -35,9 +38,9 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
     {
         private readonly CatalogContext catalogContext;
 
-        private readonly ISitecoreService sitecoreService;
-
         private readonly IFixture fixture;
+
+        private readonly ISitecoreService sitecoreService;
 
         public CatalogContextTests()
         {
@@ -49,17 +52,19 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
         }
 
         [Fact]
-        public void CatalogName_ShouldReturnFirstSelectedCatalogName()
+        public void CatalogItem_IfNoSelectedCatalogs_ShouldReturnNull()
         {
             // arrange
-            var catalogFolder = this.fixture.Create<CommerceCatalogFolderModel>();
+            var catalogFolder = this.fixture.Build<CommerceCatalogFolderModel>()
+                .With(f => f.SelectedCatalogs, new List<string>())
+                .Create();
             this.sitecoreService.GetItem<CommerceCatalogFolderModel>(Arg.Any<string>()).Returns(catalogFolder);
 
             // act
-            var catalogName = this.catalogContext.CatalogName;
+            var catalogItem = this.catalogContext.CatalogItem;
 
             // assert
-            Assert.Equal(catalogFolder.SelectedCatalogs.First(), catalogName);
+            Assert.Null(catalogItem);
         }
 
         [Fact]
@@ -67,18 +72,33 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
         {
             // arrange
             var selectedCatalogs = new List<string>();
+
+            var database = Substitute.For<Database>();
+
+            var item = this.CreateItem(database);
+            var child = this.CreateItem(database);
+            item.Children.Returns(
+                new ChildList(
+                    item,
+                    new List<Item>
+                    {
+                        child
+                    }));
+
             var catalogFolder = this.fixture.Build<CommerceCatalogFolderModel>()
                 .With(f => f.SelectedCatalogs, selectedCatalogs)
+                .With(f => f.Item, item)
                 .Create();
-            var selectedCatalogItem = catalogFolder.Catalogs.First();
-            selectedCatalogs.Add(selectedCatalogItem.Name);
+
+            selectedCatalogs.Add(child.Name);
+
             this.sitecoreService.GetItem<CommerceCatalogFolderModel>(Arg.Any<string>()).Returns(catalogFolder);
 
             // act
             var catalogItem = this.catalogContext.CatalogItem;
 
             // assert
-            Assert.Equal(selectedCatalogItem, catalogItem);
+            Assert.Equal(child, catalogItem);
         }
 
         [Fact]
@@ -98,19 +118,29 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
         }
 
         [Fact]
-        public void CatalogItem_IfNoSelectedCatalogs_ShouldReturnNull()
+        public void CatalogName_ShouldReturnFirstSelectedCatalogName()
         {
             // arrange
-            var catalogFolder = this.fixture.Build<CommerceCatalogFolderModel>()
-                .With(f => f.SelectedCatalogs, new List<string>())
-                .Create();
+            var catalogFolder = this.fixture.Create<CommerceCatalogFolderModel>();
             this.sitecoreService.GetItem<CommerceCatalogFolderModel>(Arg.Any<string>()).Returns(catalogFolder);
 
             // act
-            var catalogItem = this.catalogContext.CatalogItem;
+            var catalogName = this.catalogContext.CatalogName;
 
             // assert
-            Assert.Null(catalogItem);
+            Assert.Equal(catalogFolder.SelectedCatalogs.First(), catalogName);
+        }
+
+        private Item CreateItem(Database database)
+        {
+            var item = Substitute.For<Item>(
+                this.fixture.Create<ID>(),
+                this.fixture.Create<ItemData>(),
+                database);
+
+            item.Name = this.fixture.Create<string>();
+
+            return item;
         }
     }
 }

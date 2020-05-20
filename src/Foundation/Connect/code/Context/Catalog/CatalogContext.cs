@@ -51,7 +51,7 @@ namespace HCA.Foundation.Connect.Context.Catalog
                 var catalogName = catalogFolder?.SelectedCatalogs.FirstOrDefault();
 
                 return !string.IsNullOrEmpty(catalogName)
-                    ? catalogFolder.Catalogs.FirstOrDefault(catalog => catalog.Name == catalogName)
+                    ? catalogFolder.Item.Children.FirstOrDefault(child => child.Name == catalogName)
                     : null;
             }
         }

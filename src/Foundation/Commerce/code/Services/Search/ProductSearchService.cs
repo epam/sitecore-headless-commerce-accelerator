@@ -69,7 +69,7 @@ namespace HCA.Foundation.Commerce.Services.Search
             var searchResults = this.searchService.GetProducts(searchOptions);
 
             return new Result<ProductSearchResults>(
-                this.searchMapper.Map<Connect.SearchResultsV2<Product>, ProductSearchResults>(searchResults));
+                this.searchMapper.Map<Connect.SearchResults<Product>, ProductSearchResults>(searchResults));
         }
     }
 }

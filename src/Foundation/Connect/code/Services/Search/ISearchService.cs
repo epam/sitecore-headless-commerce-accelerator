@@ -43,6 +43,6 @@ namespace HCA.Foundation.Connect.Services.Search
         /// </summary>
         /// <param name="searchOptions">GetProducts options: sorting, keyword, facets, etc.</param>
         /// <returns>GetProducts results</returns>
-        SearchResultsV2<Product> GetProducts(SearchOptions searchOptions);
+        SearchResults<Product> GetProducts(SearchOptions searchOptions);
     }
 }

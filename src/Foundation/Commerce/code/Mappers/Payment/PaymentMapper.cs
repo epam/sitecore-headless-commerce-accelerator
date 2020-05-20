@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Payment
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using DependencyInjection;
@@ -26,6 +28,7 @@ namespace HCA.Foundation.Commerce.Mappers.Payment
 
     using Mapper = Base.Mappers.Mapper;
 
+    [ExcludeFromCodeCoverage]
     [Service(typeof(IPaymentMapper), Lifetime = Lifetime.Singleton)]
     public class PaymentMapper : Mapper, IPaymentMapper
     {

@@ -14,8 +14,11 @@
 
 namespace HCA.Foundation.Commerce.Models.Entities.Users
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using TypeLite;
 
+    [ExcludeFromCodeCoverage]
     [TsClass]
     public class User
     {

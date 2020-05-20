@@ -74,6 +74,10 @@ export function* validation(action: Action<ValidateEmailPayload>) {
   yield put(actions.AccountValidationSuccess(data.invalid, data.inUse));
 }
 
+export function* resetValidation() {
+  yield put(actions.ResetEmailValidation());
+}
+
 export function* changePassword(action: Action<ChangePasswordPayload>) {
   const commerceUser: Commerce.CommerceUserModel = yield select(selectors.commerceUser);
   if (!commerceUser) {
@@ -194,6 +198,7 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
 
 function* watch() {
   yield takeEvery(sagaActionTypes.ACCOUNT_VALIDATION, validation);
+  yield takeEvery(sagaActionTypes.RESET_VALIDATION, resetValidation);
   yield takeEvery(sagaActionTypes.ADDRESS_GET_LIST, getAddressList);
   yield takeEvery(sagaActionTypes.ADDRESS_UPDATE, updateAddress);
   yield takeEvery(sagaActionTypes.ADDRESS_ADD, addAddress);

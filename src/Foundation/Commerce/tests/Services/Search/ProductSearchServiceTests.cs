@@ -107,7 +107,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Search
 
             // assert
             this.searchMapper.Received(1)
-                .Map<SearchResultsV2<Product>, ProductSearchResults>(Arg.Any<SearchResultsV2<Product>>());
+                .Map<SearchResults<Product>, ProductSearchResults>(Arg.Any<SearchResults<Product>>());
         }
 
         [Fact]

@@ -28,7 +28,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
     using Mappers.Account;
 
-    using Models.Account;
+    using Models.Entities.Account;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 

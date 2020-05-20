@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,6 +21,7 @@ export const sagaActionTypes = keyMirrorSaga(
     ACCOUNT_VALIDATION: null,
     CHANGE_PASSWORD: null,
     CREATE: null,
+    RESET_VALIDATION: null,
     UPDATE: null,
 
     VERIFY_COMMERCE_USER: null,
@@ -30,7 +31,7 @@ export const sagaActionTypes = keyMirrorSaga(
     ADDRESS_REMOVE: null,
     ADDRESS_UPDATE: null,
   },
-  ACCOUNT_NAMESPACE
+  ACCOUNT_NAMESPACE,
 );
 
 export const reducerActionTypes = keyMirrorReducer(
@@ -38,6 +39,7 @@ export const reducerActionTypes = keyMirrorReducer(
     ACCOUNT_VALIDATION_FAILURE: null,
     ACCOUNT_VALIDATION_REQUEST: null,
     ACCOUNT_VALIDATION_SUCCESS: null,
+    RESET_EMAIL_VALIDATION: null,
 
     CHANGE_PASSWORD_FAILURE: null,
     CHANGE_PASSWORD_REQUEST: null,
@@ -64,5 +66,5 @@ export const reducerActionTypes = keyMirrorReducer(
     ADDRESS_UPDATE_REQUEST: null,
     ADDRESS_UPDATE_SUCCESS: null,
   },
-  ACCOUNT_NAMESPACE
+  ACCOUNT_NAMESPACE,
 );

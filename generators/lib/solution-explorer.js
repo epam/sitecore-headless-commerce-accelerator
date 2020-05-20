@@ -1,6 +1,6 @@
-var traverse = require("traverse");
-const tabdownParser = require("tabdown-kfatehi");
-const vsParser = require("./vs-parse/index");
+var traverse = require('traverse');
+const tabdownParser = require('tabdown-kfatehi');
+const vsParser = require('./vs-parse/index');
 
 class SolutionExplorer {
   constructor(content) {
@@ -15,8 +15,8 @@ class SolutionExplorer {
         var indent = (this.level - 2) / 2;
         return hasValue && acc.push({ indent, value: x.value.trim() }), acc;
       }, [])
-      .map((value) => `${"\t".repeat(value.indent)}${value.value}`)
-      .join("\r\n");
+      .map((value) => `${'\t'.repeat(value.indent)}${value.value}`)
+      .join('\r\n');
   }
 
   findNode(source, keyword) {
@@ -47,10 +47,7 @@ class SolutionExplorer {
     const projectBeginBlock = `Project("{${projectTypeId.toUpperCase()}}") = "${name}", "${relativePath}", "{${id.toUpperCase()}}"`;
     const projectEndBlock = `EndProject`;
 
-    const node = this.findNode(
-      this.solution.children,
-      "MinimumVisualStudioVersion"
-    );
+    const node = this.findNode(this.solution.children, 'MinimumVisualStudioVersion');
     return this.insert(node, projectBeginBlock, projectEndBlock);
   }
 
@@ -65,10 +62,7 @@ class SolutionExplorer {
     const { parent, id } = project;
 
     const nestedProjectsLine = `{${id.toUpperCase()}} = {${parent.id.toUpperCase()}}`;
-    const node = this.findNode(
-      this.solution.children,
-      "GlobalSection(NestedProjects)"
-    );
+    const node = this.findNode(this.solution.children, 'GlobalSection(NestedProjects)');
     if (node) {
       node.children = node.children || [];
       node.children.push({ value: nestedProjectsLine });
@@ -90,10 +84,7 @@ class SolutionExplorer {
     const activeConfigLine = `{${project.id.toUpperCase()}}.${configuration}.ActiveCfg = ${configuration}`;
     const build0ConfigLine = `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}`;
 
-    const node = this.findNode(
-      this.solution.children,
-      "GlobalSection(ProjectConfigurationPlatforms)"
-    );
+    const node = this.findNode(this.solution.children, 'GlobalSection(ProjectConfigurationPlatforms)');
     if (node) {
       node.children = node.children || [];
 
@@ -107,24 +98,16 @@ class SolutionExplorer {
   addProjectsConfigurationPlatforms(projects, settings) {
     projects.forEach((project) =>
       settings.buildConfiguration.forEach(
-        (configuration) =>
-          (this.solution = this.addProjectConfigurationPlatform(
-            project,
-            configuration
-          ))
-      )
+        (configuration) => (this.solution = this.addProjectConfigurationPlatform(project, configuration)),
+      ),
     );
     return this.solution;
   }
 
   addParent(project) {
-    var nestedProject = this.solution.nestedProjects.find(
-      (_) => _.projectId == project.id
-    );
+    var nestedProject = this.solution.nestedProjects.find((_) => _.projectId == project.id);
     if (nestedProject) {
-      project.parent = this.solution.projects.find(
-        (project) => project.id === nestedProject.parentProjectId
-      );
+      project.parent = this.solution.projects.find((project) => project.id === nestedProject.parentProjectId);
     }
     return project;
   }
@@ -134,15 +117,9 @@ class SolutionExplorer {
 
     return helixLayerNames
       .map((helixLayerName) => {
-        var projects = this.solution.projects.map((project) =>
-          this.addParent(project)
-        );
-        projects = projects.filter((project) =>
-          project.name.includes("." + helixLayerName + ".")
-        );
-        return projects.concat([
-          ...new Set(projects.map((project) => project.parent)),
-        ]);
+        var projects = this.solution.projects.map((project) => this.addParent(project));
+        projects = projects.filter((project) => project.name.includes('.' + helixLayerName + '.'));
+        return projects.concat([...new Set(projects.map((project) => project.parent))]);
       })
       .reduce((a, b) => a.concat(b));
   }
@@ -150,16 +127,14 @@ class SolutionExplorer {
   addLayers(projects, settings) {
     this.solution = tabdownParser.parse(this.content, {
       linebreaks: true,
-      indent: "\t",
+      indent: '\t',
     });
 
     this.solution = this.addProjects(projects);
     this.solution = this.addNestedProjects(projects);
     this.solution = this.addProjectsConfigurationPlatforms(
-      projects.filter(
-        (project) => project.projectTypeId == settings.codeProject
-      ),
-      settings
+      projects.filter((project) => project.projectTypeId == settings.codeProject),
+      settings,
     );
 
     return this.solution;

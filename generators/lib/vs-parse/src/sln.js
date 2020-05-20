@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const path = require("path");
-const csproj = require("./csproj");
-const helpers = require("./internal");
+const path = require('path');
+const csproj = require('./csproj');
+const helpers = require('./internal');
 
 const parseMinimumVisualStudioVersion = (lineOfText) => {
   const regex = /^MinimumVisualStudioVersion = (\d+(\.\d+){3})/;
@@ -64,9 +64,7 @@ const parseSolution = (filePath, options) => {
           const projectLocation = path.join(slnDir, project.relativePath);
 
           return helpers.fileExists(projectLocation).then((exists) => {
-            return exists
-              ? csproj.parseProject(projectLocation, providedOptions)
-              : null;
+            return exists ? csproj.parseProject(projectLocation, providedOptions) : null;
           });
         } else {
           return null;
@@ -77,11 +75,7 @@ const parseSolution = (filePath, options) => {
         for (let i = 0; i < returnValue.projects.length; i++) {
           const projectData = fullProjects[i];
           if (projectData) {
-            returnValue.projects[i] = Object.assign(
-              {},
-              returnValue.projects[i],
-              projectData
-            );
+            returnValue.projects[i] = Object.assign({}, returnValue.projects[i], projectData);
           }
         }
 
@@ -108,10 +102,7 @@ const parseSolutionSync = (filePath, options) => {
         const projectLocation = path.join(slnDir, project.relativePath);
 
         if (helpers.fileExistsSync(projectLocation)) {
-          const projectData = csproj.parseProjectSync(
-            projectLocation,
-            providedOptions
-          );
+          const projectData = csproj.parseProjectSync(projectLocation, providedOptions);
 
           if (projectData) {
             returnValue.projects[i] = Object.assign({}, project, projectData);
@@ -125,7 +116,7 @@ const parseSolutionSync = (filePath, options) => {
 };
 
 const parseSolutionInternal = (contents) => {
-  const lines = contents.replace(/(\r\n|\r)/g, "\n").split("\n");
+  const lines = contents.replace(/(\r\n|\r)/g, '\n').split('\n');
 
   const returnValue = {
     fileFormatVersion: null,
@@ -156,9 +147,7 @@ const parseSolutionInternal = (contents) => {
       returnValue.visualStudioVersion = visualStudioVersion;
     }
 
-    const minimumVisualStudioVersion = parseMinimumVisualStudioVersion(
-      lines[i]
-    );
+    const minimumVisualStudioVersion = parseMinimumVisualStudioVersion(lines[i]);
     if (minimumVisualStudioVersion) {
       returnValue.minimumVisualStudioVersion = minimumVisualStudioVersion;
     }

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const semverUtils = require("semver-utils");
+const semverUtils = require('semver-utils');
 
 const nthIndexOfChar = (haystack, needle, n) => {
   let count = 0;
@@ -23,9 +23,8 @@ const parseSemverSync = (versionString) => {
     return null;
   }
 
-  const i = nthIndexOfChar(versionString, ".", 3);
-  const myVersionString =
-    i === -1 ? versionString : versionString.substring(0, i);
+  const i = nthIndexOfChar(versionString, '.', 3);
+  const myVersionString = i === -1 ? versionString : versionString.substring(0, i);
   const parsed = semverUtils.parse(myVersionString);
 
   return parsed

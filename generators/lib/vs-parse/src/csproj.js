@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const parseXml = require("xml-parser");
-const path = require("path");
-const helpers = require("./internal");
+const parseXml = require('xml-parser');
+const path = require('path');
+const helpers = require('./internal');
 
 const parseCodeFile = (node) => {
   const fileName = node.attributes.Include;
@@ -29,23 +29,19 @@ const parseAssemblyReference = (node) => {
     const asmPartKeyValue = parts[i].split(/=/g);
 
     if (asmPartKeyValue.length === 2) {
-      if (asmPartKeyValue[0] === "Version") {
+      if (asmPartKeyValue[0] === 'Version') {
         result.version = asmPartKeyValue[1];
-      } else if (asmPartKeyValue[0] === "Culture") {
+      } else if (asmPartKeyValue[0] === 'Culture') {
         result.culture = asmPartKeyValue[1];
-      } else if (asmPartKeyValue[0] === "processorArchitecture") {
+      } else if (asmPartKeyValue[0] === 'processorArchitecture') {
         result.processorArchitecture = asmPartKeyValue[1];
-      } else if (asmPartKeyValue[0] === "PublicKeyToken") {
+      } else if (asmPartKeyValue[0] === 'PublicKeyToken') {
         result.publicKeyToken = asmPartKeyValue[1];
       }
     }
   }
 
-  if (
-    hintPathNode &&
-    hintPathNode.name === "HintPath" &&
-    hintPathNode.content
-  ) {
+  if (hintPathNode && hintPathNode.name === 'HintPath' && hintPathNode.content) {
     result.hintPath = helpers.normalizePath(hintPathNode.content);
   }
 
@@ -65,7 +61,7 @@ const parsePackagesInternal = (contents) => {
   const xml = parseXml(contents);
 
   return xml.root.children.reduce((data, packageNode) => {
-    if (packageNode.name === "package") {
+    if (packageNode.name === 'package') {
       const parsedPackage = {
         name: packageNode.attributes.id,
         version: packageNode.attributes.version,
@@ -88,7 +84,7 @@ const parseProject = (filePath, options) => {
       return result;
     } else {
       const projDir = helpers.getFileDirectory(filePath, options);
-      const packagesLocation = path.join(projDir, "packages.config");
+      const packagesLocation = path.join(projDir, 'packages.config');
 
       return helpers.fileExists(packagesLocation).then((exists) => {
         if (!exists) {
@@ -111,11 +107,9 @@ const parseProjectSync = (filePath, options) => {
 
   if (providedOptions.deepParse) {
     const projDir = helpers.getFileDirectory(filePath, options);
-    const packagesLocation = path.join(projDir, "packages.config");
+    const packagesLocation = path.join(projDir, 'packages.config');
 
-    const packages =
-      helpers.fileExistsSync(packagesLocation) &&
-      parsePackagesSync(packagesLocation);
+    const packages = helpers.fileExistsSync(packagesLocation) && parsePackagesSync(packagesLocation);
     result.packages = packages || [];
   }
 
@@ -126,20 +120,20 @@ const parseProjectInternal = (contents) => {
   const xml = parseXml(contents);
 
   if (!xml || !xml.root) {
-    throw new Error("No root element in project file");
+    throw new Error('No root element in project file');
   }
 
   return xml.root.children.reduce(
     (projectData, directChild) => {
-      if (directChild.name === "ItemGroup") {
+      if (directChild.name === 'ItemGroup') {
         const children = directChild.children;
 
         // TODO: Sequential dynamic mapping instead of assuming all children are same
         if (children && children.length) {
-          if (children[0].name === "Reference") {
+          if (children[0].name === 'Reference') {
             const refs = children.map(parseAssemblyReference);
             projectData.references = projectData.references.concat(refs);
-          } else if (children[0].name === "Compile") {
+          } else if (children[0].name === 'Compile') {
             const refs = children.map(parseCodeFile);
             projectData.codeFiles = projectData.codeFiles.concat(refs);
           }
@@ -152,7 +146,7 @@ const parseProjectInternal = (contents) => {
       references: [],
       codeFiles: [],
       packages: [],
-    }
+    },
   );
 };
 

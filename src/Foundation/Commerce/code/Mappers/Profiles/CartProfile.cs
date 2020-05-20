@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using AutoMapper;
@@ -28,6 +29,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
     using Connect = Sitecore.Commerce.Entities.Carts;
 
+    [ExcludeFromCodeCoverage]
     public class CartProfile : Profile
     {
         public CartProfile(ICurrencyProvider currencyProvider)

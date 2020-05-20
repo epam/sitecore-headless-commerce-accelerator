@@ -16,7 +16,9 @@ namespace HCA.Foundation.Connect.Models.Search
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class SearchOptions
     {
         public string SearchKeyword { get; set; }

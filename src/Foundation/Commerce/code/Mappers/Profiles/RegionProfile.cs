@@ -14,12 +14,15 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Connect.Models;
 
     using Models.Entities.Region;
 
+    [ExcludeFromCodeCoverage]
     public class RegionProfile : Profile
     {
         public RegionProfile()

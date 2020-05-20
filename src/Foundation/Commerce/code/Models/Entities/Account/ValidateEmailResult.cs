@@ -14,8 +14,11 @@
 
 namespace HCA.Foundation.Commerce.Models.Entities.Account
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using TypeLite;
 
+    [ExcludeFromCodeCoverage]
     [TsClass]
     public class ValidateEmailResult
     {

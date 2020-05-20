@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Shipping
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using DependencyInjection;
@@ -22,6 +24,7 @@ namespace HCA.Foundation.Commerce.Mappers.Shipping
 
     using Mapper = Base.Mappers.Mapper;
 
+    [ExcludeFromCodeCoverage]
     [Service(typeof(IShippingMapper), Lifetime = Lifetime.Singleton)]
     public class ShippingMapper : Mapper, IShippingMapper
     {

@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     using AutoMapper;
@@ -22,10 +23,9 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
     using Sitecore.Commerce.Entities.Customers;
 
-    using Utils;
-
     using Constants = Commerce.Constants;
 
+    [ExcludeFromCodeCoverage]
     public class AccountProfile : Profile
     {
         public AccountProfile()

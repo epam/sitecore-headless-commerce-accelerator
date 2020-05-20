@@ -14,6 +14,9 @@
 
 namespace HCA.Feature.Account
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public static class Constants
     {
         public static class Redirects

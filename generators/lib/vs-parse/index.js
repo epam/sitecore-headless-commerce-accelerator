@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const lib = require('./src/lib.js');
-const project = require('./src/csproj.js');
-const sln = require('./src/sln.js');
+const lib = require("./src/lib.js");
+const project = require("./src/csproj.js");
+const sln = require("./src/sln.js");
 
 module.exports = {
   parseSemverSync: lib.parseSemverSync,

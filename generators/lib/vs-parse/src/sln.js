@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const csproj = require('./csproj');
-const helpers = require('./internal');
+const path = require("path");
+const csproj = require("./csproj");
+const helpers = require("./internal");
 
 const parseMinimumVisualStudioVersion = (lineOfText) => {
   const regex = /^MinimumVisualStudioVersion = (\d+(\.\d+){3})/;
@@ -33,7 +33,7 @@ const parseNestedProject = (lineOfText) => {
     return {
       projectId: result[1],
       parentProjectId: result[2],
-    }
+    };
   }
 };
 
@@ -47,46 +47,50 @@ const parseSolutionProject = (lineOfText) => {
       name: result[2],
       relativePath: helpers.normalizePath(result[3]),
       projectTypeId: result[1],
-    }
+    };
   }
 };
 
 const parseSolution = (filePath, options) => {
   const providedOptions = options || {};
-  return helpers.getFileContentsOrFail(filePath)
-    .then(contents => {
-      const returnValue = parseSolutionInternal(contents);
+  return helpers.getFileContentsOrFail(filePath).then((contents) => {
+    const returnValue = parseSolutionInternal(contents);
 
-      if(providedOptions.deepParse) {
-        const slnDir = helpers.getFileDirectory(filePath, options);
+    if (providedOptions.deepParse) {
+      const slnDir = helpers.getFileDirectory(filePath, options);
 
-        const projectPromises = returnValue.projects.map(project => {
-          if(project && project.relativePath) {
-            const projectLocation = path.join(slnDir, project.relativePath);
+      const projectPromises = returnValue.projects.map((project) => {
+        if (project && project.relativePath) {
+          const projectLocation = path.join(slnDir, project.relativePath);
 
-            return helpers.fileExists(projectLocation)
-              .then(exists => {
-                return exists ? csproj.parseProject(projectLocation, providedOptions) : null;
-              });
-          } else {
-            return null;
+          return helpers.fileExists(projectLocation).then((exists) => {
+            return exists
+              ? csproj.parseProject(projectLocation, providedOptions)
+              : null;
+          });
+        } else {
+          return null;
+        }
+      });
+
+      return Promise.all(projectPromises).then((fullProjects) => {
+        for (let i = 0; i < returnValue.projects.length; i++) {
+          const projectData = fullProjects[i];
+          if (projectData) {
+            returnValue.projects[i] = Object.assign(
+              {},
+              returnValue.projects[i],
+              projectData
+            );
           }
-        });
+        }
 
-        return Promise.all(projectPromises).then(fullProjects => {
-          for(let i = 0; i < returnValue.projects.length; i++) {
-            const projectData = fullProjects[i];
-            if (projectData) {
-              returnValue.projects[i] = Object.assign({}, returnValue.projects[i], projectData);
-            }
-          }
+        return returnValue;
+      });
+    }
 
-          return returnValue;
-        });
-      }
-
-      return returnValue;
-    });
+    return returnValue;
+  });
 };
 
 const parseSolutionSync = (filePath, options) => {
@@ -94,19 +98,22 @@ const parseSolutionSync = (filePath, options) => {
   const contents = helpers.getFileContentsOrFailSync(filePath);
   const returnValue = parseSolutionInternal(contents);
 
-  if(providedOptions.deepParse) {
+  if (providedOptions.deepParse) {
     const slnDir = helpers.getFileDirectory(filePath, options);
 
-    for(let i = 0; i < returnValue.projects.length; i++) {
+    for (let i = 0; i < returnValue.projects.length; i++) {
       const project = returnValue.projects[i];
 
-      if(project && project.relativePath) {
+      if (project && project.relativePath) {
         const projectLocation = path.join(slnDir, project.relativePath);
 
-        if(helpers.fileExistsSync(projectLocation)) {
-          const projectData = csproj.parseProjectSync(projectLocation, providedOptions);
+        if (helpers.fileExistsSync(projectLocation)) {
+          const projectData = csproj.parseProjectSync(
+            projectLocation,
+            providedOptions
+          );
 
-          if(projectData) {
+          if (projectData) {
             returnValue.projects[i] = Object.assign({}, project, projectData);
           }
         }
@@ -118,47 +125,49 @@ const parseSolutionSync = (filePath, options) => {
 };
 
 const parseSolutionInternal = (contents) => {
-  const lines = contents.replace(/(\r\n|\r)/g, '\n').split('\n');
+  const lines = contents.replace(/(\r\n|\r)/g, "\n").split("\n");
 
   const returnValue = {
     fileFormatVersion: null,
     visualStudioVersion: null,
     minimumVisualStudioVersion: null,
     projects: [],
-    nestedProjects: []
+    nestedProjects: [],
   };
 
-  for(let i = 0; i < lines.length; i++) {
+  for (let i = 0; i < lines.length; i++) {
     const solutionProject = parseSolutionProject(lines[i]);
-    if(solutionProject) {
+    if (solutionProject) {
       returnValue.projects.push(solutionProject);
     }
 
     const nestedProject = parseNestedProject(lines[i]);
-    if(nestedProject) {
+    if (nestedProject) {
       returnValue.nestedProjects.push(nestedProject);
     }
 
     const fileFormatVersion = parseFileFormatVersion(lines[i]);
-    if(fileFormatVersion) {
+    if (fileFormatVersion) {
       returnValue.fileFormatVersion = fileFormatVersion;
     }
 
     const visualStudioVersion = parseVisualStudioVersion(lines[i]);
-    if(visualStudioVersion) {
+    if (visualStudioVersion) {
       returnValue.visualStudioVersion = visualStudioVersion;
     }
 
-    const minimumVisualStudioVersion = parseMinimumVisualStudioVersion(lines[i]);
-    if(minimumVisualStudioVersion) {
+    const minimumVisualStudioVersion = parseMinimumVisualStudioVersion(
+      lines[i]
+    );
+    if (minimumVisualStudioVersion) {
       returnValue.minimumVisualStudioVersion = minimumVisualStudioVersion;
     }
   }
 
   return returnValue;
-}
+};
 
 module.exports = {
   parseSolutionSync,
-  parseSolution
+  parseSolution,
 };

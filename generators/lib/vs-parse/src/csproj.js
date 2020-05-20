@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const parseXml = require('xml-parser');
-const path = require('path');
-const helpers = require('./internal');
+const parseXml = require("xml-parser");
+const path = require("path");
+const helpers = require("./internal");
 
 const parseCodeFile = (node) => {
   const fileName = node.attributes.Include;
 
   return {
-    fileName: helpers.normalizePath(fileName)
+    fileName: helpers.normalizePath(fileName),
   };
 };
 
@@ -25,23 +25,27 @@ const parseAssemblyReference = (node) => {
     hintPath: null,
   };
 
-  for(let i = 1; i < parts.length; i++) {
+  for (let i = 1; i < parts.length; i++) {
     const asmPartKeyValue = parts[i].split(/=/g);
 
-    if(asmPartKeyValue.length === 2) {
-      if(asmPartKeyValue[0] === 'Version') {
+    if (asmPartKeyValue.length === 2) {
+      if (asmPartKeyValue[0] === "Version") {
         result.version = asmPartKeyValue[1];
-      } else if(asmPartKeyValue[0] === 'Culture') {
+      } else if (asmPartKeyValue[0] === "Culture") {
         result.culture = asmPartKeyValue[1];
-      } else if(asmPartKeyValue[0] === 'processorArchitecture') {
+      } else if (asmPartKeyValue[0] === "processorArchitecture") {
         result.processorArchitecture = asmPartKeyValue[1];
-      } else if(asmPartKeyValue[0] === 'PublicKeyToken') {
+      } else if (asmPartKeyValue[0] === "PublicKeyToken") {
         result.publicKeyToken = asmPartKeyValue[1];
       }
     }
   }
 
-  if(hintPathNode && hintPathNode.name === 'HintPath' && hintPathNode.content) {
+  if (
+    hintPathNode &&
+    hintPathNode.name === "HintPath" &&
+    hintPathNode.content
+  ) {
     result.hintPath = helpers.normalizePath(hintPathNode.content);
   }
 
@@ -49,8 +53,7 @@ const parseAssemblyReference = (node) => {
 };
 
 const parsePackages = (filePath) => {
-  return helpers.getFileContentsOrFail(filePath)
-    .then(parsePackagesInternal);
+  return helpers.getFileContentsOrFail(filePath).then(parsePackagesInternal);
 };
 
 const parsePackagesSync = (filePath) => {
@@ -62,7 +65,7 @@ const parsePackagesInternal = (contents) => {
   const xml = parseXml(contents);
 
   return xml.root.children.reduce((data, packageNode) => {
-    if (packageNode.name === 'package') {
+    if (packageNode.name === "package") {
       const parsedPackage = {
         name: packageNode.attributes.id,
         version: packageNode.attributes.version,
@@ -78,30 +81,27 @@ const parsePackagesInternal = (contents) => {
 
 const parseProject = (filePath, options) => {
   const providedOptions = options || {};
-  return helpers.getFileContentsOrFail(filePath)
-    .then(contents => {
-      const result = parseProjectInternal(contents);
+  return helpers.getFileContentsOrFail(filePath).then((contents) => {
+    const result = parseProjectInternal(contents);
 
-      if(!providedOptions.deepParse) {
-        return result;
-      } else {
-        const projDir = helpers.getFileDirectory(filePath, options);
-        const packagesLocation = path.join(projDir, 'packages.config');
+    if (!providedOptions.deepParse) {
+      return result;
+    } else {
+      const projDir = helpers.getFileDirectory(filePath, options);
+      const packagesLocation = path.join(projDir, "packages.config");
 
-        return helpers.fileExists(packagesLocation)
-          .then(exists => {
-            if (!exists) {
-              return result;
-            } else {
-              return parsePackages(packagesLocation)
-                .then(packages => {
-                  result.packages = packages || [];
-                  return result;
-                });
-            }
+      return helpers.fileExists(packagesLocation).then((exists) => {
+        if (!exists) {
+          return result;
+        } else {
+          return parsePackages(packagesLocation).then((packages) => {
+            result.packages = packages || [];
+            return result;
           });
-      }
-    });
+        }
+      });
+    }
+  });
 };
 
 const parseProjectSync = (filePath, options) => {
@@ -109,11 +109,13 @@ const parseProjectSync = (filePath, options) => {
   const contents = helpers.getFileContentsOrFailSync(filePath);
   const result = parseProjectInternal(contents);
 
-  if(providedOptions.deepParse) {
+  if (providedOptions.deepParse) {
     const projDir = helpers.getFileDirectory(filePath, options);
-    const packagesLocation = path.join(projDir, 'packages.config');
+    const packagesLocation = path.join(projDir, "packages.config");
 
-    const packages = helpers.fileExistsSync(packagesLocation) && parsePackagesSync(packagesLocation);
+    const packages =
+      helpers.fileExistsSync(packagesLocation) &&
+      parsePackagesSync(packagesLocation);
     result.packages = packages || [];
   }
 
@@ -124,36 +126,39 @@ const parseProjectInternal = (contents) => {
   const xml = parseXml(contents);
 
   if (!xml || !xml.root) {
-    throw new Error('No root element in project file');
+    throw new Error("No root element in project file");
   }
 
-  return xml.root.children.reduce((projectData, directChild) => {
-    if (directChild.name === 'ItemGroup') {
-      const children = directChild.children;
+  return xml.root.children.reduce(
+    (projectData, directChild) => {
+      if (directChild.name === "ItemGroup") {
+        const children = directChild.children;
 
-      // TODO: Sequential dynamic mapping instead of assuming all children are same
-      if (children && children.length) {
-        if (children[0].name === 'Reference') {
-          const refs = children.map(parseAssemblyReference);
-          projectData.references = projectData.references.concat(refs);
-        } else if (children[0].name === 'Compile') {
-          const refs = children.map(parseCodeFile);
-          projectData.codeFiles = projectData.codeFiles.concat(refs);
+        // TODO: Sequential dynamic mapping instead of assuming all children are same
+        if (children && children.length) {
+          if (children[0].name === "Reference") {
+            const refs = children.map(parseAssemblyReference);
+            projectData.references = projectData.references.concat(refs);
+          } else if (children[0].name === "Compile") {
+            const refs = children.map(parseCodeFile);
+            projectData.codeFiles = projectData.codeFiles.concat(refs);
+          }
         }
       }
-    }
 
-    return projectData;
-  }, {
-    references: [],
-    codeFiles: [],
-    packages: [],
-  });
-}
+      return projectData;
+    },
+    {
+      references: [],
+      codeFiles: [],
+      packages: [],
+    }
+  );
+};
 
 module.exports = {
   parseProjectSync,
   parseProject,
   parsePackagesSync,
-  parsePackages
+  parsePackages,
 };

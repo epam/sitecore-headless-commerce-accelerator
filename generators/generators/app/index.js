@@ -99,6 +99,7 @@ module.exports = class SolutionGenerator extends Generator {
           ignore: this._getExcludedLayers().map(
             (layer) => "**/src/" + layer + "/**/*"
           ),
+          dot: true,
         },
       }
     );

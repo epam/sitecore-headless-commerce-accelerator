@@ -35,7 +35,7 @@ gulp.task("copy:src", () => {
 
 gulp.task("copy:root", () => {
   return gulp
-    .src(["../readme.md", "../LICENSE"])
+    .src(["../readme.md", "../LICENSE", "../.gitattributes", "../.gitignore"])
     .pipe(gulp.dest(`${templatesFolderPath}`));
 });
 

@@ -147,6 +147,7 @@ namespace HCA.Foundation.Commerce.Services.Account
             if (validateEmailResult.Success && validateEmailResult.Data.InUse)
             {
                 result.Success = false;
+                result.SetError("Email is in use.");
                 return result;
             }
 

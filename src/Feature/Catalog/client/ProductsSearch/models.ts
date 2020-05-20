@@ -35,6 +35,7 @@ ProductsSearchStateProps,
 ProductsSearchDispatchProps {}
 
 export interface ProductsSearchOwnState extends Jss.SafePureComponentState {
+  initialKeyword: string;
   keyword: string;
   submitted: boolean;
 }

@@ -82,15 +82,18 @@ module.exports = class SolutionGenerator extends Generator {
       {},
       { globOptions: 
         { 
-          ignore: ['Foundation', 'Feature', 'Project']
-          .filter(layer => !this.options.helixLayers.includes(layer))
-          .map(layer => '**/src/'+ layer +'/**/*') 
+          ignore: this._getExcludedLayers().map(layer => '**/src/'+ layer +'/**/*') 
         } 
       }
     );
   }
 
-  async _updateSolutionFile(){
+  _getExcludedLayers() {
+    return ['Foundation', 'Feature', 'Project']
+    .filter(layer => !this.options.helixLayers.includes(layer))
+  }
+
+  _updateSolutionFile() {
 
     const sourceSolution = new SolutionExplorer(fs.readFileSync(this.solutionPath(), 'utf8'));
     const projects = sourceSolution.getProjects(this.options.helixLayers);

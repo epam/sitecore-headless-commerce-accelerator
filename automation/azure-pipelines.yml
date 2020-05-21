@@ -47,14 +47,6 @@ steps:
       move $(license_file.secureFilePath) ./src/ -Force
 
 - task: PowerShell@2
-  displayName: Set maintenance page
-  inputs:
-    targetType: 'inline'
-    script: |
-      Import-Module WebAdministration
-      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(maintenance_webroot)"
-
-- task: PowerShell@2
   displayName: Add windows credentials to agent
   inputs:
     targetType: 'inline'
@@ -82,6 +74,14 @@ steps:
     filePath: './src/build.ps1'
     arguments: '-Target 003-Tests'
     workingDirectory: './src/'
+
+- task: PowerShell@2
+  displayName: Set maintenance page
+  inputs:
+    targetType: 'inline'
+    script: |
+      Import-Module WebAdministration
+      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(maintenance_webroot)"
 
 - task: PowerShell@2
   displayName: Prepare packages and web config
@@ -114,6 +114,14 @@ steps:
       (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
 
 - task: PowerShell@2
+  displayName: Remove maintenance page
+  inputs:
+    targetType: 'inline'
+    script: |
+      Import-Module WebAdministration
+      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(sitecore_webroot)"
+
+- task: PowerShell@2
   displayName: Sync Unicorn
   inputs:
     filePath: './src/build.ps1'
@@ -121,14 +129,6 @@ steps:
     errorActionPreference: 'continue'
     workingDirectory: './src/'
   continueOnError: true
-
-- task: PowerShell@2
-  displayName: Remove maintenance page
-  inputs:
-    targetType: 'inline'
-    script: |
-      Import-Module WebAdministration
-      Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(sitecore_webroot)"
 
 - task: PowerShell@2
   displayName: Remove windows credentials from agent

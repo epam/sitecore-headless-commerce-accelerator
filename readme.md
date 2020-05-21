@@ -1,4 +1,4 @@
-![Headless Commerce Accelerator Homepage](./Homepage.png)
+![Headless Commerce Accelerator Homepage](https://user-images.githubusercontent.com/23119997/82557766-070d1c00-9b75-11ea-9403-36ffc06a6228.png)
 
 ## Headless Commerce Accelerator for Sitecore Experience Commerce
 

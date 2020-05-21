@@ -25,17 +25,18 @@ variables:
 steps:
 
 - task: UseNode@1
+  displayName: Installing Node 10
   inputs:
     script: '"C:\Program Files\nodejs\npm.cmd" --version'
-  displayName: Installing Node 10
 
 - task: DownloadSecureFile@1
+  displayName: Download license file
   name: license_file
   inputs:
     secureFile: 'license.xml'
-  displayName: Download license
 
 - task: PowerShell@2
+  displayName: Config preparation
   inputs:
     targetType: 'inline'
     script: |
@@ -44,33 +45,61 @@ steps:
       (Get-Content $(build_cake)) -replace 'scSiteUrl: $(quotes_regexp)', 'scSiteUrl: "https://$(scSiteUrl)"' | Set-Content $(build_cake)
       (Get-Content $(project_manifest)) -replace '"url": $(quotes_regexp)', '"url": "https://$(host_name)"' | Set-Content $(project_manifest)
       move $(license_file.secureFilePath) ./src/ -Force
-  displayName: Config preparation
 
 - task: PowerShell@2
+  displayName: Add windows credentials to agent
+  inputs:
+    targetType: 'inline'
+    script: |
+      cmdkey /add:$(HOST_NETWORK_ADDRESS) /user:$(user_name) /pass:$(user_password)
+
+- task: PowerShell@2
+  displayName: Restore packages
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 001-Restore'
+    workingDirectory: './src/'
+
+- task: PowerShell@2
+  displayName: Build code
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 002-Build'
+    workingDirectory: './src/'
+
+
+- task: PowerShell@2
+  displayName: Run Unit tests
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 003-Tests'
+    workingDirectory: './src/'
+
+- task: PowerShell@2
+  displayName: Set maintenance page
   inputs:
     targetType: 'inline'
     script: |
       Import-Module WebAdministration
       Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(maintenance_webroot)"
-  displayName: Set maintenance page
-
 
 - task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      cmdkey /add:$(HOST_NETWORK_ADDRESS) /user:$(user_name) /pass:$(user_password)
-  displayName: Add windows credentials to agent
-
-- task: PowerShell@2
+  displayName: Prepare packages and web config
   inputs:
     filePath: './src/build.ps1'
-    errorActionPreference: 'continue'
+    arguments: '-Target 004-Packages'
     workingDirectory: './src/'
-  displayName: Build
-  continueOnError: true
+
 
 - task: PowerShell@2
+  displayName: Publish binaries
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 005-Publish'
+    workingDirectory: './src/'
+
+- task: PowerShell@2
+  displayName: Change default addresses for $(project_name)
   inputs:
     targetType: 'inline'
     script: |
@@ -83,19 +112,27 @@ steps:
       (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
       (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
       (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
-  displayName: Change default addresses for $(project_name)
 
 - task: PowerShell@2
+  displayName: Remove maintenance page
   inputs:
     targetType: 'inline'
     script: |
       Import-Module WebAdministration
       Set-ItemProperty IIS:\Sites\$(site_root_dir) -name physicalPath -value "$(sitecore_webroot)"
-  displayName: Remove maintenance page
 
 - task: PowerShell@2
+  displayName: Sync Unicorn
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 006-Sync-Content'
+    errorActionPreference: 'continue'
+    workingDirectory: './src/'
+  continueOnError: true
+
+- task: PowerShell@2
+  displayName: Remove windows credentials from agent
   inputs:
     targetType: 'inline'
     script: 'cmdkey /delete:$env:HOST_NETWORK_ADDRESS'
-  displayName: Remove windows credentials from agent
   condition: always()

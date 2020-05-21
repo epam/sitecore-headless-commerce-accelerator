@@ -8,15 +8,29 @@ SharedFields:
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 50
-- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
-  Hint: __Renderings
-  Type: layout
-  Value: 
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{6AFBD2FB-718B-44BF-BFFC-8B5B962FABA7}"
+              s:ds="{441ADFF5-81A5-4784-98CD-FA7FB60E2E7E}"
+              s:par="" />
+            <r
+              uid="{E6E53882-B1C6-4A2D-A0E1-B58D550088C4}"
+              s:ds="{02844948-98A9-4BCE-90D4-93BE67B7B396}"
+              s:par="" />
+          </d>
+        </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180418T153723Z

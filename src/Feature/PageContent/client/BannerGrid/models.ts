@@ -14,6 +14,8 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface HomeProps extends JSS.Rendering {}
+import { BannerGridDataSource } from '../Models.Generated';
 
-export interface HomeState extends JSS.SafePureComponentState {}
+export interface BannerGridProps extends JSS.RenderingWithContext<BannerGridDataSource> {}
+
+export interface BannerGridState extends JSS.SafePureComponentState {}

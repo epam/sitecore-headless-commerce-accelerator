@@ -1,0 +1,26 @@
+﻿---
+ID: "65be5577-9e50-427d-9bd4-019e41c3217d"
+Parent: "d70cf691-5230-4873-939a-18836183313d"
+Template: "aca0aaff-3317-4535-8bc5-504256e08255"
+Path: /sitecore/content/HCA/Data/Banners/Promo C
+DB: master
+SharedFields:
+- ID: "ed641b03-6844-4ad0-ae83-ba9d351a2660"
+  Hint: Link
+  Value: |
+    <link text="Promo C" linktype="anchor" url="promo-c" anchor="promo-c" title="" class="" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T081007Z
+    - ID: "42ec7cba-9200-49fe-b5f1-03824e1dc337"
+      Hint: Button Text
+      Value: The Fitbit Craze
+    - ID: "cfb54c8b-6f8e-4bdb-9a07-7df0871196c7"
+      Hint: Image
+      Value: |
+        <image mediaid="{C6663A57-2075-4B6A-BF1E-5836E54AC10A}" ></image>

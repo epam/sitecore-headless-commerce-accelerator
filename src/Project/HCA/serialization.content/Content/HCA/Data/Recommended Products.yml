@@ -1,0 +1,14 @@
+﻿---
+ID: "ef07e2d7-1772-4514-894e-48d51e5fbad8"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731"
+Path: /sitecore/content/HCA/Data/Recommended Products
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200522T092441Z

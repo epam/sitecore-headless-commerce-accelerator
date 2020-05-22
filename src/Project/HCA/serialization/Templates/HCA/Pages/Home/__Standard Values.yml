@@ -28,19 +28,13 @@ SharedFields:
           ph="main-content"
           uid="{5E2C6EE3-013B-4E68-9398-CD468315465C}" />
         <r
-          ds=""
-          id="{CA206F0B-DB50-4D56-B7D6-30AABC01C5E6}"
-          par=""
-          ph="/main-content/w-col-wide-{5E2C6EE3-013B-4E68-9398-CD468315465C}-0"
-          uid="{E76D09DF-7F7E-420D-8439-0687A46D27C5}" />
-        <r
           id="{79DFCC9D-753D-42F8-A0CA-DD2899F7DA85}"
-          ph="/main-content/w-col-wide-{5E2C6EE3-013B-4E68-9398-CD468315465C}-0/home-content-{E76D09DF-7F7E-420D-8439-0687A46D27C5}-0"
-          uid="{6AFBD2FB-718B-44BF-BFFC-8B5B962FABA7}" />
+          ph="/main-content/w-col-wide-{5E2C6EE3-013B-4E68-9398-CD468315465C}-0"
+          uid="{47B203AC-99CB-40FB-9E8C-D8BBAD2D2083}" />
         <r
           id="{FBFA150D-9149-41A7-B725-78B52BBE3238}"
-          ph="/main-content/w-col-wide-{5E2C6EE3-013B-4E68-9398-CD468315465C}-0/home-content-{E76D09DF-7F7E-420D-8439-0687A46D27C5}-0"
-          uid="{E6E53882-B1C6-4A2D-A0E1-B58D550088C4}" />
+          ph="/main-content/w-col-wide-{5E2C6EE3-013B-4E68-9398-CD468315465C}-0"
+          uid="{0F2AEAD0-C5FD-488F-BD12-E317D3F1C0BB}" />
         <r
           id="{9ABF5775-C231-4918-9F03-C8193D7D2C0C}"
           ph="/main-content"

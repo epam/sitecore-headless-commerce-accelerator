@@ -124,12 +124,17 @@ namespace HCA.Foundation.Commerce.Services.Account
                 if (sitecoreUser != null)
                 {
                     sitecoreUser.ChangePassword(sitecoreUser.ResetPassword(), newPassword);
-
-                    return result;
+                }
+                else
+                {
+                    result.SetError("User not find.");
                 }
             }
+            else
+            {
+                result.SetError("Incorrect old password.");
+            }
 
-            result.Success = false;
             return result;
         }
 

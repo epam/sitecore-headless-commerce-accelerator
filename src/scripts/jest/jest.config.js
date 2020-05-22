@@ -18,6 +18,7 @@ module.exports = {
     'Foundation/(.*)': '<rootDir>/Foundation/$1',
     'Project/(.*)': '<rootDir>/Project/$1',
     'Feature/(.*)': '<rootDir>/Feature/$1',
+    '((.(css|scss)$)|(/styles$))': '<rootDir>/scripts/jest/__mocks__/styleMock.js',
   },
   collectCoverageFrom: [
     '**/client/**/*.{ts,tsx}',

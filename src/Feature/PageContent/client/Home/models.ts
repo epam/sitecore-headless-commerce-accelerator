@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss/client';
-import * as Models from '../Models.Generated';
 
-export interface HomeControlProps extends JSS.Rendering<Models.HomeDataSource> {}
+export interface HomeProps extends JSS.Rendering {}
 
-export interface HomeControlState extends JSS.SafePureComponentState {}
+export interface HomeState extends JSS.SafePureComponentState {}

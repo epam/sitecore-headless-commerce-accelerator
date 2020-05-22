@@ -631,12 +631,17 @@
     <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SetAnonymousInfoProcessor.cs" />
+    <Compile Include="Managers\Contact\ContactManager.cs" />
+    <Compile Include="Managers\Contact\IContactManager.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Account\AccountMapper.cs" />
     <Compile Include="Mappers\Account\IAccountMapper.cs" />
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
+    <Compile Include="Mappers\Contact\ContactMapper.cs" />
+    <Compile Include="Mappers\Contact\IContactMapper.cs" />
     <Compile Include="Mappers\Order\IOrderMapper.cs" />
     <Compile Include="Mappers\Order\OrderMapper.cs" />
     <Compile Include="Mappers\Profiles\CartProfile.cs" />
@@ -644,6 +649,7 @@
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
     <Compile Include="Mappers\Payment\PaymentMapper.cs" />
+    <Compile Include="Mappers\Profiles\ContactProfile.cs" />
     <Compile Include="Mappers\Profiles\OrderProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Profiles\RegionProfile.cs" />
@@ -661,6 +667,7 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
+    <Compile Include="Models\Entities\Contact\PersonalInfo.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />

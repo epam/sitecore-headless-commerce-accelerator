@@ -23,32 +23,38 @@ import { ProductsSearchOwnState, ProductsSearchProps } from './models';
 import './styles.scss';
 
 export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearchProps, ProductsSearchOwnState> {
+  public static getDerivedStateFromProps(props: ProductsSearchProps, state: ProductsSearchOwnState): ProductsSearchOwnState {
+    const q = props.productSearchParams.q || '';
+    if (state.initialKeyword !== q) {
+      return {
+        initialKeyword: q,
+        keyword: q,
+        submitted: true,
+      };
+    }
+
+    return state;
+  }
+
   constructor(props: ProductsSearchProps) {
     super(props);
 
     this.state = {
-      keyword: '',
+      initialKeyword: props.productSearchParams.q,
+      keyword: this.getKeywordFromSearch(),
       submitted: false,
     };
   }
 
-  public componentWillMount() {
-    this.setState({
-      keyword: this.getKeywordFromSearch(),
-    });
-  }
-
   protected safeRender() {
-    const { isLoading } = this.props;
     const { keyword } = this.state;
-    const q = this.props.productSearchParams.q;
+    const { isLoading } = this.props;
+
     return (
       <section className="products-search">
         <div className="search-wrap">
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            {isLoading
-              ? (<input type="search" value={q !== this.state.keyword ? q : keyword} />)
-              : (<input onChange={(e) => this.handleKeywordChange(e)} type="search" defaultValue={q} />)}
+            <input onChange={(e) => this.handleKeywordChange(e)} type="search" value={keyword} disabled={isLoading} />
             <button type="button" onClick={(e) => this.handleFormClear(e)}>
               <i className="fa fa-times" />
             </button>
@@ -57,6 +63,7 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
       </section>
     );
   }
+
   private getKeywordFromSearch() {
     const search = this.props.history.location.search;
     const parsedSearch = tryParseUrlSearch(search);
@@ -67,13 +74,19 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
   private handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       keyword: e.target.value,
+      submitted: false,
     });
   }
 
   private handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const { keyword } = this.state;
+    const { keyword, submitted } = this.state;
+
+    if (submitted) {
+      return;
+    }
+
     this.startSearch(keyword);
   }
 

@@ -17,7 +17,7 @@ SharedFields:
           uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
           p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
-          s:ph="wooli-content" />
+          s:ph="main-content" />
         <r
           uid="{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}"
           p:after="r[@uid='{57257C7A-D47B-4800-9E33-F5C2D599683C}']"

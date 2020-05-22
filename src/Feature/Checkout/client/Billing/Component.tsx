@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,11 +28,9 @@ import './styles.scss';
 export default class BillingComponent extends Jss.SafePureComponent<BillingProps, BillingState> {
   public constructor(props: BillingProps) {
     super(props);
-    const selectedAddressOption = this.props.useForBillingAddress
-      ? ADDRESS_TYPE.SAME_AS_SHIPPING
-      : ADDRESS_TYPE.NEW;
+    const selectedAddressOption = this.props.useForBillingAddress ? ADDRESS_TYPE.SAME_AS_SHIPPING : ADDRESS_TYPE.NEW;
     this.state = {
-      selectedAddressOption
+      selectedAddressOption,
     };
   }
   public componentWillMount() {
@@ -41,7 +39,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     }
   }
   public safeRender() {
-    const { fields } = this.props;
+    const { fields, commerceUser } = this.props;
     return (
       <Form className="teal-thick-theme">
         <section className="billing">
@@ -139,7 +137,18 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
                 <div className="col-ms-6">
                   <div className="sub-text">
                     <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
-                    <Input name={FIELDS.EMAIL} type="text" required={true} maxLength={100} />
+                    {commerceUser && commerceUser.customerId ? (
+                      <Input
+                        name={FIELDS.EMAIL}
+                        type="email"
+                        disabled={true}
+                        value={commerceUser.email}
+                        required={true}
+                        maxLength={100}
+                      />
+                    ) : (
+                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                    )}
                     <Text field={{ value: 'For order status and updates' }} tag="sub" />
                   </div>
                 </div>
@@ -170,7 +179,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
   }
 
   private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({selectedAddressOption: e.currentTarget.value});
+    this.setState({ selectedAddressOption: e.currentTarget.value });
   }
 
   private handleSaveAndContinueClick(formValues: FormValues) {

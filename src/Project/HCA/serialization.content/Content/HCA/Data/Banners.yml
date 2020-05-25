@@ -1,0 +1,14 @@
+﻿---
+ID: "d70cf691-5230-4873-939a-18836183313d"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "60d1329d-bfbf-4c2a-a6be-426f1c700ba9"
+Path: /sitecore/content/HCA/Data/Banners
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T080710Z

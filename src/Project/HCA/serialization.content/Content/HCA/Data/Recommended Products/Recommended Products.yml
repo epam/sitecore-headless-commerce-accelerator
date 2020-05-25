@@ -1,0 +1,17 @@
+﻿---
+ID: "02844948-98a9-4bce-90d4-93be67b7b396"
+Parent: "ef07e2d7-1772-4514-894e-48d51e5fbad8"
+Template: "02303189-7dc9-41c9-914a-4784878a6a7d"
+Path: /sitecore/content/HCA/Data/Recommended Products/Recommended Products
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200519T085004Z
+    - ID: "ba9cd774-93ea-490e-b978-38efe2c648ed"
+      Hint: Header
+      Value: Recommended Products

@@ -1,0 +1,21 @@
+﻿---
+ID: "fced3d98-3168-469f-b981-f15f27b41dc3"
+Parent: "60d1329d-bfbf-4c2a-a6be-426f1c700ba9"
+Template: "60d1329d-bfbf-4c2a-a6be-426f1c700ba9"
+Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {ACA0AAFF-3317-4535-8BC5-504256E08255}
+    {60D1329D-BFBF-4C2A-A6BE-426F1C700BA9}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T074917Z

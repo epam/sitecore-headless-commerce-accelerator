@@ -1,0 +1,14 @@
+﻿---
+ID: "7cf1f94c-981d-494f-9135-6f8db57806b1"
+Parent: "5c07e9e8-6ca9-43ad-9cec-2988a77f6d70"
+Template: "5c07e9e8-6ca9-43ad-9cec-2988a77f6d70"
+Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200522T085837Z

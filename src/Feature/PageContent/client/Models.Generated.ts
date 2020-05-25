@@ -2,166 +2,89 @@
 
 import * as ReactJssModule from 'Foundation/ReactJss/client';
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Banner Grid
-// ID: fa4c43ac-9366-44b9-a15c-5ab43c727973
-export interface BannerGridDataSource extends ReactJssModule.BaseDataSourceItem {
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
+// ID: aca0aaff-3317-4535-8bc5-504256e08255
+export interface BannerDataSource extends ReactJssModule.BaseDataSourceItem {
 
-    /// The Main Promo Image field.
-    /// Field Type: Image
-    /// Field ID: 8e40a2b7-e0dc-43d0-8fcb-91acce9f4480
-    mainPromoImage: ReactJssModule.ImageField;
-
-    /// The Main Promo Text field.
+    /// The Button Text field.
     /// Field Type: Single-Line Text
-    /// Field ID: 9e6aa440-a193-4476-b24e-c7e04ac72551
-    mainPromoText: ReactJssModule.TextField;
+    /// Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337
+    buttonText: ReactJssModule.TextField;
 
-    /// The Promo A Image field.
+    /// The Image field.
     /// Field Type: Image
-    /// Field ID: 91630bb0-eb42-4703-ac9f-0588353f7d73
-    promoAImage: ReactJssModule.ImageField;
+    /// Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7
+    image: ReactJssModule.ImageField;
 
-    /// The Promo A Text field.
-    /// Field Type: Single-Line Text
-    /// Field ID: b432118b-c112-4214-a2ab-64a4776492e0
-    promoAText: ReactJssModule.TextField;
-
-    /// The Promo B Image field.
-    /// Field Type: Image
-    /// Field ID: 8280255d-307c-4ae8-8c73-4288a82690a0
-    promoBImage: ReactJssModule.ImageField;
-
-    /// The Promo C Image field.
-    /// Field Type: Image
-    /// Field ID: 5b3cc60e-589b-40b7-a54a-4d86bb9853a3
-    promoCImage: ReactJssModule.ImageField;
-
-    /// The Promo D Image field.
-    /// Field Type: Image
-    /// Field ID: 56487bee-2b3b-4922-9236-bf351c75ee78
-    promoDImage: ReactJssModule.ImageField;
-
-    /// The Wide Promo Image field.
-    /// Field Type: Image
-    /// Field ID: 5e1e9b26-d89e-44e5-a985-168d1c9bda9c
-    widePromoImage: ReactJssModule.ImageField;
-
-    /// The Wide Promo Text field.
-    /// Field Type: Single-Line Text
-    /// Field ID: 4e4e2d3c-032d-47bd-a262-d1262eb71be1
-    widePromoText: ReactJssModule.TextField;
+    /// The Link field.
+    /// Field Type: General Link
+    /// Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660
+    link: ReactJssModule.LinkField;
 
 }
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Banner Grid
-// ID: fa4c43ac-9366-44b9-a15c-5ab43c727973
-export interface BannerGridRenderingParams extends ReactJssModule.BaseRenderingParam {
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
+// ID: aca0aaff-3317-4535-8bc5-504256e08255
+export interface BannerRenderingParams extends ReactJssModule.BaseRenderingParam {
 
-    /// The Main Promo Image field.
-    /// Field Type: Image
-    /// Field ID: 8e40a2b7-e0dc-43d0-8fcb-91acce9f4480
-    mainPromoImage: string;
-
-    /// The Main Promo Text field.
+    /// The Button Text field.
     /// Field Type: Single-Line Text
-    /// Field ID: 9e6aa440-a193-4476-b24e-c7e04ac72551
-    mainPromoText: string;
+    /// Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337
+    buttonText: string;
 
-    /// The Promo A Image field.
+    /// The Image field.
     /// Field Type: Image
-    /// Field ID: 91630bb0-eb42-4703-ac9f-0588353f7d73
-    promoAImage: string;
+    /// Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7
+    image: string;
 
-    /// The Promo A Text field.
-    /// Field Type: Single-Line Text
-    /// Field ID: b432118b-c112-4214-a2ab-64a4776492e0
-    promoAText: string;
-
-    /// The Promo B Image field.
-    /// Field Type: Image
-    /// Field ID: 8280255d-307c-4ae8-8c73-4288a82690a0
-    promoBImage: string;
-
-    /// The Promo C Image field.
-    /// Field Type: Image
-    /// Field ID: 5b3cc60e-589b-40b7-a54a-4d86bb9853a3
-    promoCImage: string;
-
-    /// The Promo D Image field.
-    /// Field Type: Image
-    /// Field ID: 56487bee-2b3b-4922-9236-bf351c75ee78
-    promoDImage: string;
-
-    /// The Wide Promo Image field.
-    /// Field Type: Image
-    /// Field ID: 5e1e9b26-d89e-44e5-a985-168d1c9bda9c
-    widePromoImage: string;
-
-    /// The Wide Promo Text field.
-    /// Field Type: Single-Line Text
-    /// Field ID: 4e4e2d3c-032d-47bd-a262-d1262eb71be1
-    widePromoText: string;
+    /// The Link field.
+    /// Field Type: General Link
+    /// Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660
+    link: string;
 
 }
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Banner Grid
-// ID: fa4c43ac-9366-44b9-a15c-5ab43c727973
-export const BannerGridTemplate = {
-    templateId: 'fa4c43ac-9366-44b9-a15c-5ab43c727973',
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
+// ID: aca0aaff-3317-4535-8bc5-504256e08255
+export const BannerTemplate = {
+    templateId: 'aca0aaff-3317-4535-8bc5-504256e08255',
 
-    /// The Main Promo Image field.
-    /// <para>Field Type: Image</para>
-    /// <para>Field ID: 8e40a2b7-e0dc-43d0-8fcb-91acce9f4480</para>
-    mainPromoImageFieldId: '8e40a2b7-e0dc-43d0-8fcb-91acce9f4480',
-    mainPromoImageFieldName: 'Main Promo Image',
-
-    /// The Main Promo Text field.
+    /// The Button Text field.
     /// <para>Field Type: Single-Line Text</para>
-    /// <para>Field ID: 9e6aa440-a193-4476-b24e-c7e04ac72551</para>
-    mainPromoTextFieldId: '9e6aa440-a193-4476-b24e-c7e04ac72551',
-    mainPromoTextFieldName: 'Main Promo Text',
+    /// <para>Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337</para>
+    buttonTextFieldId: '42ec7cba-9200-49fe-b5f1-03824e1dc337',
+    buttonTextFieldName: 'Button Text',
 
-    /// The Promo A Image field.
+    /// The Image field.
     /// <para>Field Type: Image</para>
-    /// <para>Field ID: 91630bb0-eb42-4703-ac9f-0588353f7d73</para>
-    promoAImageFieldId: '91630bb0-eb42-4703-ac9f-0588353f7d73',
-    promoAImageFieldName: 'Promo A Image',
+    /// <para>Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7</para>
+    imageFieldId: 'cfb54c8b-6f8e-4bdb-9a07-7df0871196c7',
+    imageFieldName: 'Image',
 
-    /// The Promo A Text field.
-    /// <para>Field Type: Single-Line Text</para>
-    /// <para>Field ID: b432118b-c112-4214-a2ab-64a4776492e0</para>
-    promoATextFieldId: 'b432118b-c112-4214-a2ab-64a4776492e0',
-    promoATextFieldName: 'Promo A Text',
+    /// The Link field.
+    /// <para>Field Type: General Link</para>
+    /// <para>Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660</para>
+    linkFieldId: 'ed641b03-6844-4ad0-ae83-ba9d351a2660',
+    linkFieldName: 'Link',
 
-    /// The Promo B Image field.
-    /// <para>Field Type: Image</para>
-    /// <para>Field ID: 8280255d-307c-4ae8-8c73-4288a82690a0</para>
-    promoBImageFieldId: '8280255d-307c-4ae8-8c73-4288a82690a0',
-    promoBImageFieldName: 'Promo B Image',
+};
 
-    /// The Promo C Image field.
-    /// <para>Field Type: Image</para>
-    /// <para>Field ID: 5b3cc60e-589b-40b7-a54a-4d86bb9853a3</para>
-    promoCImageFieldId: '5b3cc60e-589b-40b7-a54a-4d86bb9853a3',
-    promoCImageFieldName: 'Promo C Image',
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
+// ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
+export interface BannerFolderDataSource extends ReactJssModule.BaseDataSourceItem {
 
-    /// The Promo D Image field.
-    /// <para>Field Type: Image</para>
-    /// <para>Field ID: 56487bee-2b3b-4922-9236-bf351c75ee78</para>
-    promoDImageFieldId: '56487bee-2b3b-4922-9236-bf351c75ee78',
-    promoDImageFieldName: 'Promo D Image',
+}
 
-    /// The Wide Promo Image field.
-    /// <para>Field Type: Image</para>
-    /// <para>Field ID: 5e1e9b26-d89e-44e5-a985-168d1c9bda9c</para>
-    widePromoImageFieldId: '5e1e9b26-d89e-44e5-a985-168d1c9bda9c',
-    widePromoImageFieldName: 'Wide Promo Image',
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
+// ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
+export interface BannerFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
 
-    /// The Wide Promo Text field.
-    /// <para>Field Type: Single-Line Text</para>
-    /// <para>Field ID: 4e4e2d3c-032d-47bd-a262-d1262eb71be1</para>
-    widePromoTextFieldId: '4e4e2d3c-032d-47bd-a262-d1262eb71be1',
-    widePromoTextFieldName: 'Wide Promo Text',
+}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
+// ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
+export const BannerFolderTemplate = {
+    templateId: '60d1329d-bfbf-4c2a-a6be-426f1c700ba9',
 
 };
 
@@ -248,26 +171,7 @@ export const GridLayoutTemplate = {
 
 };
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Home Folder
-// ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
-export interface HomeFolderDataSource extends ReactJssModule.BaseDataSourceItem {
-
-}
-
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Home Folder
-// ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
-export interface HomeFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
-
-}
-
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Home Folder
-// ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2
-export const HomeFolderTemplate = {
-    templateId: '3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2',
-
-};
-
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Recommended Products
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
 // ID: 02303189-7dc9-41c9-914a-4784878a6a7d
 export interface RecommendedProductsDataSource extends ReactJssModule.BaseDataSourceItem {
 
@@ -278,7 +182,7 @@ export interface RecommendedProductsDataSource extends ReactJssModule.BaseDataSo
 
 }
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Recommended Products
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
 // ID: 02303189-7dc9-41c9-914a-4784878a6a7d
 export interface RecommendedProductsRenderingParams extends ReactJssModule.BaseRenderingParam {
 
@@ -289,7 +193,7 @@ export interface RecommendedProductsRenderingParams extends ReactJssModule.BaseR
 
 }
 
-// Path: /sitecore/templates/HCA/Feature/PageContent/Home/Recommended Products
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
 // ID: 02303189-7dc9-41c9-914a-4784878a6a7d
 export const RecommendedProductsTemplate = {
     templateId: '02303189-7dc9-41c9-914a-4784878a6a7d',
@@ -299,5 +203,24 @@ export const RecommendedProductsTemplate = {
     /// <para>Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed</para>
     headerFieldId: 'ba9cd774-93ea-490e-b978-38efe2c648ed',
     headerFieldName: 'Header',
+
+};
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
+// ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
+export interface RecommendedProductsFolderDataSource extends ReactJssModule.BaseDataSourceItem {
+
+}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
+// ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
+export interface RecommendedProductsFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
+
+}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
+// ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
+export const RecommendedProductsFolderTemplate = {
+    templateId: '2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731',
 
 };

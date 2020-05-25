@@ -127,7 +127,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 }
                 else
                 {
-                    result.SetError("User not find.");
+                    result.SetError("User was not found.");
                 }
             }
             else
@@ -297,7 +297,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                     }
                     else
                     {
-                        result.Success = false;
+                        result.SetError("Did was not found address with current external id.");
                     }
 
                     return result;

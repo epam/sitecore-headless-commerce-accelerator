@@ -222,7 +222,7 @@ export const AddAddressFailure: actionCreators.AddAddressFailure = (error: strin
   type: reducerActionTypes.ADDRESS_ADD_FAILURE,
 });
 
-export const AddAddressSuccess: actionCreators.RemoveAddressSuccess = (addressList: Commerce.AddressModel[]) => ({
+export const AddAddressSuccess: actionCreators.AddAddressSuccess = (addressList: Commerce.AddressModel[]) => ({
   payload: {
     items: addressList.reduce((acc, currentItem) => {
       acc[currentItem.externalId] = currentItem;

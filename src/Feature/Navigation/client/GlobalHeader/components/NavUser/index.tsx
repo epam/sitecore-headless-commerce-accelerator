@@ -145,7 +145,7 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
         <button className="btn btn-outline-white" onClick={(e) => this.handleSignInButtonClick(e)} disabled={isLoading}>
           {isLoading && <i className="fa fa-spinner fa-spin" />} Sign in
         </button>
-        <NavigationLink to="/account/sign-up" className="forgot-password">
+        <NavigationLink to="/account/sign-up" className="sign-up">
           <Jss.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
         </NavigationLink>
       </form>

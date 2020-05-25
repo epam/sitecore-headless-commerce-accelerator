@@ -124,12 +124,17 @@ namespace HCA.Foundation.Commerce.Services.Account
                 if (sitecoreUser != null)
                 {
                     sitecoreUser.ChangePassword(sitecoreUser.ResetPassword(), newPassword);
-
-                    return result;
+                }
+                else
+                {
+                    result.SetError("User was not found.");
                 }
             }
+            else
+            {
+                result.SetError("Incorrect old password.");
+            }
 
-            result.Success = false;
             return result;
         }
 
@@ -292,7 +297,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                     }
                     else
                     {
-                        result.Success = false;
+                        result.SetError("Did was not found address with current external id.");
                     }
 
                     return result;

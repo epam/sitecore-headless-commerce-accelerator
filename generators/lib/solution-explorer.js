@@ -1,8 +1,9 @@
 var traverse = require('traverse');
+var jsonpath = require('jsonpath');
 const tabdownParser = require('tabdown-kfatehi');
 const vsParser = require('./vs-parse/index');
 
-class SolutionExplorer {
+class SolutionFileExplorer {
   constructor(content) {
     this.content = content || {};
     this.solution = {};
@@ -19,126 +20,96 @@ class SolutionExplorer {
       .join('\r\n');
   }
 
-  findNode(source, keyword) {
-    for (var i = 0; i < source.length; i++) {
-      if (source[i].value === keyword || source[i].value.includes(keyword)) {
-        return source[i];
-      } else if (source[i].children) {
-        var result = this.findNode(source[i].children, keyword);
-        if (result) return result;
-      }
+  findNode(keyword) { 
+    const result = jsonpath.query(this.solution, `$..children[?(@.value == "${keyword}" || @.value.match(/^.*${keyword}/g))]`);
+    if(result && result.length) {
+      return result[0];
     }
-    return null;
   }
 
   insert(node, ...values) {
     if (node) {
       const index = this.solution.children.indexOf(node);
-      values.forEach((value, i) => {
-        this.solution.children.splice(index + i + 1, 0, { value: value });
-      });
+      this.solution.children.splice(index + 1, 0, ...values);
     }
-    return this.solution;
   }
 
-  addProject(project) {
-    const { projectTypeId, name, relativePath, id } = project;
-
-    const projectBeginBlock = `Project("{${projectTypeId.toUpperCase()}}") = "${name}", "${relativePath}", "{${id.toUpperCase()}}"`;
-    const projectEndBlock = `EndProject`;
-
-    const node = this.findNode(this.solution.children, 'MinimumVisualStudioVersion');
-    return this.insert(node, projectBeginBlock, projectEndBlock);
+  getProjectNodes(projects) {
+    return projects
+    .map(project => [
+      ({ value: `Project("{${project.projectTypeId.toUpperCase()}}") = "${project.name}", "${project.relativePath}", "{${project.id.toUpperCase()}}"`}), 
+      ({ value: `EndProject`})
+    ])
+    .reduce((a, b) => a.concat(b));
   }
 
-  addProjects(projects) {
-    projects.forEach((project) => {
-      this.solution = this.addProject(project);
-    });
-    return this.solution;
-  }
+  addNestedProject(node, project) {
+    node.children = node.children || [];
+    const { children, id } = project;
 
-  addNestedProject(project) {
-    const { parent, id } = project;
-
-    const nestedProjectsLine = `{${id.toUpperCase()}} = {${parent.id.toUpperCase()}}`;
-    const node = this.findNode(this.solution.children, 'GlobalSection(NestedProjects)');
-    if (node) {
-      node.children = node.children || [];
-      node.children.push({ value: nestedProjectsLine });
-    }
-
-    return this.solution;
-  }
-
-  addNestedProjects(projects) {
-    projects.forEach((project) => {
-      if (project.parent) {
-        this.solution = this.addNestedProject(project);
+    const nestedProjectsLines = children.map(child => {
+      if (child.children && child.children.length) {
+        this.addNestedProject(node, child);
       }
+      return ({ value: `{${child.id.toUpperCase()}} = {${id.toUpperCase()}}` });
     });
-    return this.solution;
+
+    node.children.push(...nestedProjectsLines);
   }
 
-  addProjectConfigurationPlatform(project, configuration) {
-    const activeConfigLine = `{${project.id.toUpperCase()}}.${configuration}.ActiveCfg = ${configuration}`;
-    const build0ConfigLine = `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}`;
-
-    const node = this.findNode(this.solution.children, 'GlobalSection(ProjectConfigurationPlatforms)');
+  addProjectConfigurationPlatform(node, projects, configurations) {
     if (node) {
       node.children = node.children || [];
 
-      node.children.push({ value: activeConfigLine });
-      node.children.push({ value: build0ConfigLine });
+      projects.forEach(project => 
+        configurations.forEach(configuration => 
+            node.children.push(
+              ({ value: `{${project.id.toUpperCase()}}.${configuration}.ActiveCfg = ${configuration}` }), 
+              ({ value: `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}` }))
+      ));
     }
-
-    return this.solution;
   }
 
-  addProjectsConfigurationPlatforms(projects, settings) {
-    projects.forEach((project) =>
-      settings.buildConfiguration.forEach(
-        (configuration) => (this.solution = this.addProjectConfigurationPlatform(project, configuration)),
-      ),
-    );
-    return this.solution;
-  }
+  addChildren(project) {
+    var children = jsonpath.query(this.solution, `$..nestedProjects[?(@.parentProjectId == "${project.id}")]`)
+    project.children = project.children || [];
 
-  addParent(project) {
-    var nestedProject = this.solution.nestedProjects.find((_) => _.projectId == project.id);
-    if (nestedProject) {
-      project.parent = this.solution.projects.find((project) => project.id === nestedProject.parentProjectId);
-    }
+    children.forEach(child => {
+      var a = jsonpath.query(this.solution, `$..projects[?(@.id == "${child.projectId}")]`)[0];
+      project.children.push(a);
+    });
     return project;
   }
 
-  getProjects(helixLayerNames) {
+  getProjects(projectNames) {
     this.solution = vsParser.parseSolutionSync(this.content);
+    this.solution.projects.forEach((project) => {
+        this.addChildren(project)
+      }
+    );
 
-    return helixLayerNames
-      .map((helixLayerName) => {
-        var projects = this.solution.projects.map((project) => this.addParent(project));
-        projects = projects.filter((project) => project.name.includes('.' + helixLayerName + '.'));
-        return projects.concat([...new Set(projects.map((project) => project.parent))]);
-      })
-      .reduce((a, b) => a.concat(b));
+    return projectNames.map(name => jsonpath.query(this.solution, `$..projects[?(@.name == "${name}")]`)[0]);
   }
 
-  addLayers(projects, settings) {
+  addProjects(projects, settings) {
     this.solution = tabdownParser.parse(this.content, {
       linebreaks: true,
       indent: '\t',
     });
 
-    this.solution = this.addProjects(projects);
-    this.solution = this.addNestedProjects(projects);
-    this.solution = this.addProjectsConfigurationPlatforms(
-      projects.filter((project) => project.projectTypeId == settings.codeProject),
-      settings,
-    );
+    projects.forEach((project) => {
+      const children = jsonpath.query(project, `$..children`).reduce((a, b) => a.concat(b));
+      const projectNodes = this.getProjectNodes(children);
+      this.insert(this.findNode('MinimumVisualStudioVersion'), ...projectNodes);
+
+      this.addNestedProject(this.findNode('NestedProjects'), project);
+
+      const codeProjects = jsonpath.query(project, `$..children[?(@.projectTypeId == "${settings.codeProject}")]`)
+      this.addProjectConfigurationPlatform(this.findNode('ProjectConfigurationPlatforms'), codeProjects, settings.buildConfiguration);
+    });
 
     return this.solution;
   }
 }
 
-module.exports = SolutionExplorer;
+module.exports = SolutionFileExplorer;

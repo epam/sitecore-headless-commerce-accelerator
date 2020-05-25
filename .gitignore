@@ -32,8 +32,6 @@ obj/
 Ankh.NoLoad
 .vs/
 
-#Visual Studio Code files
-.vscode/
 #Phpstorm Code files
 .idea/
 #MonoDevelop

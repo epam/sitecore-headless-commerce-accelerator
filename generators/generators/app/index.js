@@ -9,7 +9,7 @@ const settings = require('../configs/settings.json');
 
 const msg = require('../configs/messages.json');
 const helixLayers = require('../configs/helixLayers.json');
-const SolutionExplorer = require('../../lib/solution-explorer');
+const SolutionFileExplorer = require('../../lib/solution-explorer');
 
 module.exports = class SolutionGenerator extends Generator {
   constructor(args, opts) {
@@ -93,11 +93,11 @@ module.exports = class SolutionGenerator extends Generator {
   }
 
   _updateSolutionFile() {
-    const sourceSolution = new SolutionExplorer(fs.readFileSync(this.solutionPath(), 'utf8'));
+    const sourceSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionPath(), 'utf8'));
     const projects = sourceSolution.getProjects(this.options.helixLayers);
 
-    const templateSolution = new SolutionExplorer(fs.readFileSync(this.solutionTemplatePath(), 'utf8'));
-    templateSolution.addLayers(projects, settings);
+    const templateSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionTemplatePath(), 'utf8'));
+    templateSolution.addProjects(projects, settings);
 
     fs.writeFileSync(this.solutionPath(), templateSolution.toString(), {
       encoding: 'utf8',

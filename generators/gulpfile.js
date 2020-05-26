@@ -3,11 +3,11 @@ const gulp = require('gulp');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const del = require('del');
-const ignore = require('./generators/configs/ignore.json');
-
 const fs = require('fs');
 const argv = require('yargs').argv;
 const { exec } = require('child_process');
+
+const ignore = require('./generators/configs/ignore.json');
 
 const templatesFolderPath = 'generators/templates';
 const distFolderPath = 'dist';

@@ -4,11 +4,11 @@ const fs = require('fs');
 const rename = require('gulp-rename');
 const chalk = require('chalk');
 const yosay = require('yosay');
-var path = require('path');
-const settings = require('../configs/settings.json');
+const path = require('path');
 
+const settings = require('../configs/settings.json');
 const msg = require('../configs/messages.json');
-const helixLayers = require('../configs/helixLayers.json');
+const helixLayers = require('../configs/helix-layers.json');
 const SolutionFileExplorer = require('../../lib/solution-explorer');
 
 module.exports = class SolutionGenerator extends Generator {
@@ -30,8 +30,8 @@ module.exports = class SolutionGenerator extends Generator {
     });
 
     this.rootTemplatePath = () => path.join(this.templatePath('../../'), 'templates');
-    this.solutionTemplatePath = () => path.join(this.templatePath('../'), 'templates/SolutionTemplate.sln');
-    this.solutionPath = () => path.join(this.rootTemplatePath(), 'src/SolutionName.sln');
+    this.solutionFileTemplatePath = () => path.join(this.templatePath('../'), 'templates/SolutionTemplate.sln');
+    this.solutionFilePath = () => path.join(this.rootTemplatePath(), 'src/SolutionName.sln');
   }
 
   // yeoman events
@@ -93,13 +93,13 @@ module.exports = class SolutionGenerator extends Generator {
   }
 
   _updateSolutionFile() {
-    const sourceSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionPath(), 'utf8'));
+    const sourceSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionFilePath(), 'utf8'));
     const projects = sourceSolution.getProjects(this.options.helixLayers);
 
-    const templateSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionTemplatePath(), 'utf8'));
+    const templateSolution = new SolutionFileExplorer(fs.readFileSync(this.solutionFileTemplatePath(), 'utf8'));
     templateSolution.addProjects(projects, settings);
 
-    fs.writeFileSync(this.solutionPath(), templateSolution.toString(), {
+    fs.writeFileSync(this.solutionFilePath(), templateSolution.toString(), {
       encoding: 'utf8',
     });
   }

@@ -1,12 +1,66 @@
-var traverse = require('traverse');
-var jsonpath = require('jsonpath');
+const traverse = require('traverse');
+const jsonpath = require('jsonpath');
 const tabdownParser = require('tabdown-kfatehi');
-const vsParser = require('./vs-parse/index');
 
 class SolutionFileExplorer {
   constructor(content) {
     this.content = content || {};
     this.solution = {};
+  }
+
+  parseNestedProject(lineOfText) {
+    const regex = /\{([A-Z0-9]{8}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{12})\} = \{([A-Z0-9]{8}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{12})\}/;
+    const result = regex.exec(lineOfText);
+
+    if (result) {
+      return {
+        projectId: result[1],
+        parentProjectId: result[2],
+      };
+    }
+
+    return null;
+  }
+
+  parseSolutionProject(lineOfText) {
+    const regex = /^Project\("\{([A-Z0-9]{8}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{12})\}"\) = "([^"]+)", "([^"]+)", "\{([A-Z0-9]{8}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{4}\-[A-Z0-9]{12})\}"/;
+    const result = regex.exec(lineOfText);
+
+    if (result) {
+      return {
+        id: result[4],
+        name: result[2],
+        relativePath: result[3],
+        projectTypeId: result[1],
+      };
+    }
+
+    return null;
+  }
+
+  parse(content, options) {
+    this.solution = tabdownParser.parse(content, options);
+
+    this.solution.projects = [];
+    this.solution.nestedProjects = [];
+
+    const projects = this.solution.children.reduce((acc, child) => {
+      const project = this.parseSolutionProject(child.value);
+      return project ? [...acc, project] : acc;
+    }, []);
+
+    this.solution.projects.push(...projects);
+
+    const nestedProjectsNode = this.findNode('NestedProjects');
+    if(nestedProjectsNode && nestedProjectsNode.children) {
+      const nestedProjects = nestedProjectsNode.children.reduce((acc, child) => {
+        const nestedProject = this.parseNestedProject(child.value);
+        return nestedProject ? [...acc, nestedProject] : acc;
+      }, []);
+      this.solution.nestedProjects.push(...nestedProjects);
+    }
+    
+    return this.solution;
   }
 
   toString() {
@@ -20,11 +74,17 @@ class SolutionFileExplorer {
       .join('\r\n');
   }
 
-  findNode(keyword) { 
-    const result = jsonpath.query(this.solution, `$..children[?(@.value == "${keyword}" || @.value.match(/^.*${keyword}/g))]`);
-    if(result && result.length) {
+  findNode(keyword) {
+    const result = jsonpath.query(
+      this.solution,
+      `$..children[?(@.value == "${keyword}" || @.value.match(/^.*${keyword}/g))]`,
+    );
+
+    if (result && result.length) {
       return result[0];
     }
+
+    return null;
   }
 
   insert(node, ...values) {
@@ -35,64 +95,83 @@ class SolutionFileExplorer {
   }
 
   getProjectNodes(projects) {
-    return projects
-    .map(project => [
-      ({ value: `Project("{${project.projectTypeId.toUpperCase()}}") = "${project.name}", "${project.relativePath}", "{${project.id.toUpperCase()}}"`}), 
-      ({ value: `EndProject`})
-    ])
-    .reduce((a, b) => a.concat(b));
+    return projects.reduce(
+      (acc, project) => [
+        ...acc,
+        {
+          value: `Project("{${project.projectTypeId.toUpperCase()}}") = "${project.name}", "${
+            project.relativePath
+          }", "{${project.id.toUpperCase()}}"`,
+        },
+        { value: `EndProject` },
+      ],
+      [],
+    );
   }
 
-  addNestedProject(node, project) {
-    node.children = node.children || [];
-    const { children, id } = project;
+  addNestedProjects(node, project) {
+    if (node) {
+      node.children = node.children || [];
 
-    const nestedProjectsLines = children.map(child => {
-      if (child.children && child.children.length) {
-        this.addNestedProject(node, child);
-      }
-      return ({ value: `{${child.id.toUpperCase()}} = {${id.toUpperCase()}}` });
-    });
+      const nestedProjects = project.children.reduce((acc, child) => {
+        if (child.children && child.children.length) {
+          this.addNestedProjects(node, child);
+        }
+        return [...acc, { value: `{${child.id.toUpperCase()}} = {${project.id.toUpperCase()}}` }];
+      }, 
+      []);
 
-    node.children.push(...nestedProjectsLines);
+      node.children.push(...nestedProjects);
+    }
   }
 
   addProjectConfigurationPlatform(node, projects, configurations) {
     if (node) {
       node.children = node.children || [];
 
-      projects.forEach(project => 
-        configurations.forEach(configuration => 
-            node.children.push(
-              ({ value: `{${project.id.toUpperCase()}}.${configuration}.ActiveCfg = ${configuration}` }), 
-              ({ value: `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}` }))
-      ));
+      var results = projects.reduce(
+        (acc, project) => [
+          ...acc,
+          ...configurations.map(
+            (configuration) => [
+              ({ value: `{${project.id.toUpperCase()}}.${configuration}.ActiveCfg = ${configuration}` }),
+              ({ value: `{${project.id.toUpperCase()}}.${configuration}.Build.0 = ${configuration}` })
+            ]
+          )
+          .reduce((a, b) => a.concat(b)),
+        ],
+        [],
+      );
+
+      node.children.push(...results);
     }
   }
 
   addChildren(project) {
-    var children = jsonpath.query(this.solution, `$..nestedProjects[?(@.parentProjectId == "${project.id}")]`)
+    var children = jsonpath.query(this.solution, `$..nestedProjects[?(@.parentProjectId == "${project.id}")]`);
     project.children = project.children || [];
 
-    children.forEach(child => {
-      var a = jsonpath.query(this.solution, `$..projects[?(@.id == "${child.projectId}")]`)[0];
-      project.children.push(a);
-    });
+    const results = children.reduce((acc, child) => {
+      return [...acc, jsonpath.query(this.solution, `$..projects[?(@.id == "${child.projectId}")]`)[0]];
+    }, []);
+
+    project.children.push(...results);
+    
     return project;
   }
 
   getProjects(projectNames) {
-    this.solution = vsParser.parseSolutionSync(this.content);
-    this.solution.projects.forEach((project) => {
-        this.addChildren(project)
-      }
-    );
+    this.parse(this.content, {
+      linebreaks: true,
+      indent: '\t',
+    });
+    this.solution.projects.reduce((acc, project) => [...acc, this.addChildren(project)], []);
 
-    return projectNames.map(name => jsonpath.query(this.solution, `$..projects[?(@.name == "${name}")]`)[0]);
+    return projectNames.map((name) => jsonpath.query(this.solution, `$..projects[?(@.name == "${name}")]`)[0]);
   }
 
   addProjects(projects, settings) {
-    this.solution = tabdownParser.parse(this.content, {
+    this.parse(this.content, {
       linebreaks: true,
       indent: '\t',
     });
@@ -102,10 +181,14 @@ class SolutionFileExplorer {
       const projectNodes = this.getProjectNodes(children);
       this.insert(this.findNode('MinimumVisualStudioVersion'), ...projectNodes);
 
-      this.addNestedProject(this.findNode('NestedProjects'), project);
+      this.addNestedProjects(this.findNode('NestedProjects'), project);
 
-      const codeProjects = jsonpath.query(project, `$..children[?(@.projectTypeId == "${settings.codeProject}")]`)
-      this.addProjectConfigurationPlatform(this.findNode('ProjectConfigurationPlatforms'), codeProjects, settings.buildConfiguration);
+      const codeProjects = jsonpath.query(project, `$..children[?(@.projectTypeId == "${settings.codeProject}")]`);
+      this.addProjectConfigurationPlatform(
+        this.findNode('ProjectConfigurationPlatforms'),
+        codeProjects,
+        settings.buildConfiguration,
+      );
     });
 
     return this.solution;

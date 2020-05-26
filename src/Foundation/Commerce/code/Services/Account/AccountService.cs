@@ -297,7 +297,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                     }
                     else
                     {
-                        result.SetError("Did was not found address with current external id.");
+                        result.SetError("The address with the current external Id was not found.");
                     }
 
                     return result;

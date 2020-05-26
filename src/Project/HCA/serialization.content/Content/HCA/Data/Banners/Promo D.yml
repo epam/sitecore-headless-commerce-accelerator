@@ -1,0 +1,26 @@
+﻿---
+ID: "2b39b30c-31bb-4e3f-a219-a3aaae8bf016"
+Parent: "d70cf691-5230-4873-939a-18836183313d"
+Template: "aca0aaff-3317-4535-8bc5-504256e08255"
+Path: /sitecore/content/HCA/Data/Banners/Promo D
+DB: master
+SharedFields:
+- ID: "ed641b03-6844-4ad0-ae83-ba9d351a2660"
+  Hint: Link
+  Value: |
+    <link text="Promo D" linktype="anchor" url="promo-d" anchor="promo-d" title="" class="" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T081115Z
+    - ID: "42ec7cba-9200-49fe-b5f1-03824e1dc337"
+      Hint: Button Text
+      Value: Get Fitted
+    - ID: "cfb54c8b-6f8e-4bdb-9a07-7df0871196c7"
+      Hint: Image
+      Value: |
+        <image mediaid="{B6FE933F-C344-408F-BC18-2B14D6D10193}" ></image>

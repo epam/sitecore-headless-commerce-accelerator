@@ -1,0 +1,23 @@
+﻿---
+ID: "9cdadb7b-70d2-4f47-861e-ae2f93714197"
+Parent: "d70cf691-5230-4873-939a-18836183313d"
+Template: "aca0aaff-3317-4535-8bc5-504256e08255"
+Path: /sitecore/content/HCA/Data/Banners/Promo B
+DB: master
+SharedFields:
+- ID: "ed641b03-6844-4ad0-ae83-ba9d351a2660"
+  Hint: Link
+  Value: |
+    <link text="Promo B" linktype="anchor" url="promo-b" anchor="promo-b" title="" class="" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T080925Z
+    - ID: "cfb54c8b-6f8e-4bdb-9a07-7df0871196c7"
+      Hint: Image
+      Value: |
+        <image mediaid="{7FC37B2C-D069-4165-880D-104B77874322}" ></image>

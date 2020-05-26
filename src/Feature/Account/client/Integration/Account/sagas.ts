@@ -144,21 +144,19 @@ export function* updateAddress(action: Action<Commerce.Address>) {
 export function* addAddress(action: Action<Commerce.Address>) {
   const payload: Commerce.AddressRequest = action.payload;
 
-  yield put(actions.UpdateAddressRequest());
+  yield put(actions.AddAddressRequest());
 
   const { data, error }: Result<Commerce.Address[]> = yield call(Api.addAddress, payload);
 
   if (error || !data) {
-    return yield put(actions.UpdateAddressFailure(error.message, error.stack));
+    return yield put(actions.AddAddressFailure(error.message, error.stack));
   }
 
-  yield put(actions.UpdateAddressSuccess(data));
+  yield put(actions.AddAddressSuccess(data));
 }
 
 export function* removeAddress(action: Action<string>) {
   const { payload } = action;
-
-  console.log(payload);
 
   yield put(actions.UpdateAddressRequest());
 

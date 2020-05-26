@@ -17,7 +17,14 @@ import { combineReducers } from 'redux';
 import { Action, LoadingStatus } from 'Foundation/Integration/client';
 
 import { reducerActionTypes } from './constants';
-import { AccountState, ChangePasswordState, SavedAddressListState, SignUpState, UpdateAccountState } from './models';
+import {
+  AccountState,
+  AddressPayload,
+  ChangePasswordState,
+  SavedAddressListState,
+  SignUpState,
+  UpdateAccountState,
+} from './models';
 
 export const initialSignUpState: SignUpState = {
   accountValidation: {
@@ -100,7 +107,6 @@ export const saveAddressListReducer = (state: SavedAddressListState = { ...addre
   switch (action.type) {
     case reducerActionTypes.ADDRESS_ADD_FAILURE:
     case reducerActionTypes.ADDRESS_ADD_REQUEST:
-    case reducerActionTypes.ADDRESS_ADD_SUCCESS:
     case reducerActionTypes.ADDRESS_GET_LIST_FAILURE:
     case reducerActionTypes.ADDRESS_GET_LIST_REQUEST:
     case reducerActionTypes.ADDRESS_GET_LIST_SUCCESS:
@@ -113,6 +119,17 @@ export const saveAddressListReducer = (state: SavedAddressListState = { ...addre
       return {
         ...state,
         ...action.payload,
+      };
+    }
+    case reducerActionTypes.ADDRESS_ADD_SUCCESS: {
+      const payload = action.payload as AddressPayload;
+
+      return {
+        items: {
+          ...state.items,
+          ...payload.items,
+        },
+        status: payload.status,
       };
     }
     default: {

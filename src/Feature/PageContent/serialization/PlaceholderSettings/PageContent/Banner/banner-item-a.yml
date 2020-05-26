@@ -1,0 +1,26 @@
+﻿---
+ID: "d669fb75-440d-4efa-80f1-44a0518e3feb"
+Parent: "2dc812b6-439c-4df2-8825-86d437fe2769"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/PageContent/Banner/banner-item-a"
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "banner-item-a"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Type: TreelistEx
+  Value: |
+    {BB7B407D-A4DC-44EA-9E54-4C7107634A46}
+    {D1DFEE25-D36D-45EE-9CF2-9E2C7C723CAD}
+    {ABE06936-3D7A-4E68-AC2F-3D5B8FBC2EA7}
+    {5FF40D5B-5FBC-44FF-9174-845D0126F73F}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T082618Z

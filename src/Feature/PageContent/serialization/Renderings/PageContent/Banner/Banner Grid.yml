@@ -1,0 +1,34 @@
+﻿---
+ID: "79dfcc9d-753d-42f8-a0ca-dd2899f7da85"
+Parent: "b028e755-1449-43f6-8edb-c9818b1d0dd0"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/Banner/Banner Grid
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Banner Grid
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: |
+    {37013A4C-0C71-4093-B652-734F667EE867}
+    {D669FB75-440D-4EFA-80F1-44A0518E3FEB}
+    {34577B16-99AE-408D-98BA-477BF0F365D6}
+    {E653CD85-BA3C-49CE-BF8D-67816F9083D5}
+    {1C86BC2B-FAD8-4C57-BFF8-340B04F1406C}
+    {E5CDB5CB-1A94-4DA3-A6F6-D960123B36E9}
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: 
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: 
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200519T114311Z

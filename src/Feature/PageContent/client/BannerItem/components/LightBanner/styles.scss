@@ -1,0 +1,79 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import '~Foundation/UI/client/common/scss/variables';
+
+// Styles for Light Banner Image
+.light-banner {
+  display: block;
+  width: auto; 
+  height: auto;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  position: relative;
+  overflow: hidden;     
+}
+
+.light-banner img {
+  display: block;
+  transition: transform 1.5s;      
+}
+
+.light-banner:hover img {
+  transform: scale(1.1);
+  transition: transform 1.5s;
+}
+
+.light-banner figcaption {
+  color: #ffffff; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  transition: background-color 0.3s ease;
+ }
+
+.light-banner figcaption:hover {
+  background-color: rgba(255, 255, 255, 0.20);
+  width: auto;
+  height: auto;
+  z-index: 999;
+  display: block;
+}
+
+.light-banner figcaption .btn-light-banner {
+  background: none;
+  border: none;    
+  font-family: $sans-serif;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 80% auto 0 auto;
+  display: block;
+  letter-spacing: 2px;
+  outline: none;
+
+  @media (min-width: $screen-xs-min) { /*480+*/
+    font-size: 12px;
+  }
+  
+}
+
+.light-banner figcaption:hover .btn-light-banner {
+  color: #BBBBBB;
+}

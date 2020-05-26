@@ -1,0 +1,19 @@
+﻿---
+ID: "3c23451c-c2db-41fd-ae8b-16799620bee8"
+Parent: "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731"
+Template: "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731"
+Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{02303189-7DC9-41C9-914A-4784878A6A7D}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200522T092331Z

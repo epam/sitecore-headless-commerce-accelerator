@@ -32,8 +32,6 @@ obj/
 Ankh.NoLoad
 .vs/
 
-#Visual Studio Code files
-.vscode/
 #Phpstorm Code files
 .idea/
 #MonoDevelop
@@ -142,3 +140,4 @@ Code Generation Templates/*.tt
 /generators/generators/templates
 /generators/.npmrc
 /generators/secret.json
+/generators/.yo-rc.json 

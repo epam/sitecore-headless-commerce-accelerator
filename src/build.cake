@@ -81,8 +81,8 @@ Task("000-Clean")
     .IsDependentOn(Sitecore.Tasks.CleanWildcardFoldersTaskName)
     .Does(() => {
         DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Unicorn\*");    
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");        
-        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");        
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Foundation\HCA\*");        
+        DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Feature\HCA\*");        
         DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\App_Config\Include\Project\HCA\*");      
         DeleteFiles(Sitecore.Parameters.PublishingTargetDir + @"\bin\HCA.*");
         

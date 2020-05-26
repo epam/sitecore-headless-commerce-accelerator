@@ -6,7 +6,6 @@
   "files": [
     "generators"
   ],
-  "main": "generators\\app\\index.js",
   "keywords": [
     "sitecore",
     "sitecore-commerce",
@@ -32,7 +31,6 @@
     "tabdown-kfatehi": "^0.2.0",
     "traverse": "^0.6.6",
     "xml-parser": "^1.2.1",
-    "yeoman-generator": "^3.2.0",
     "yosay": "^2.0.2"
   },
   "devDependencies": {
@@ -41,7 +39,8 @@
     "gulp-rename": "1.2.2",
     "gulp-replace": "^1.0.0",
     "yargs": "^15.3.1",
-    "yeoman-environment": "2.10.0"
+    "yeoman-environment": "2.10.0",
+    "yeoman-generator": "^3.2.0"
   },
   "license": "MIT"
 }

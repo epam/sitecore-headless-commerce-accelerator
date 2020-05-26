@@ -53,8 +53,7 @@ module.exports = class SolutionGenerator extends Generator {
         name: 'helixLayers',
         message: msg.helixLayers.prompt,
         choices: helixLayers,
-        store: true,
-        store: !this.options.helixLayers,
+        store: true
       },
     ]);
 
@@ -62,10 +61,10 @@ module.exports = class SolutionGenerator extends Generator {
   }
 
   writing() {
-    console.log('Starting: Update solution.');
+    this.log('Starting: Update solution.');
     this._updateSolutionFile();
 
-    console.log('Starting: Rename paths.');
+    this.log('Starting: Rename paths.');
     this.registerTransformStream(
       rename((path) => {
         path.basename = path.basename.replace(/SolutionName/g, this.options.solutionName);
@@ -73,7 +72,7 @@ module.exports = class SolutionGenerator extends Generator {
       }),
     );
 
-    console.log('Starting: Copy templates.');
+    this.log('Starting: Copy templates.');
     this.fs.copyTpl(
       this.rootTemplatePath(),
       this.destinationPath(),
@@ -105,6 +104,6 @@ module.exports = class SolutionGenerator extends Generator {
   }
 
   async end() {
-    console.log('Solution "' + chalk.green.bold(this.options.solutionName) + '" has been created.');
+    this.log('Solution "' + chalk.green.bold(this.options.solutionName) + '" has been created.');
   }
 };

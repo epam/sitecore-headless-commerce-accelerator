@@ -17,9 +17,8 @@
 
 @import '~Foundation/UI/client/common/scss/variables';
 
-$teal: #066666;
-.teal-thick-theme .select:after {
-  background-color: $teal;
+.thick-theme .select:after {
+  background-color: $main-color;
   color: #fff;
 }
 
@@ -362,7 +361,7 @@ section.listing-wishlist-grid {
       // @extend .btn[disabled];
     }
     &.added .btn-move {
-      background: $teal;
+      background: $main-color;
       color: #fff;
     }
   }

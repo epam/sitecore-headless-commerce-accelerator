@@ -46,7 +46,7 @@
     .sort-visible &-sort,
     &:hover {
       color: #fff;
-      background: $teal;
+      background: $main-color;
     }
   }
 }
@@ -100,23 +100,7 @@
 }
 
 .reviews {
-  color: $teal;
-
-  .fitness-theme & {
-    color: $green;
-  }
-  .outdoor-theme & {
-    color: $orange;
-  }
-  .travel-theme & {
-    color: $blue;
-  }
-  .sport-theme & {
-    color: $purple;
-  }
-  .home-theme & {
-    color: $red;
-  }
+  color: $main-color;
 }
 
 .view-all {
@@ -138,23 +122,7 @@
     content: '\f0d8';
   }
   &:hover, &:active {
-    color: $teal;
-
-    .fitness-theme & {
-      color: $green;
-    }
-    .outdoor-theme & {
-      color: $orange;
-    }
-    .travel-theme & {
-      color: $blue;
-    }
-    .sport-theme & {
-      color: $purple;
-    }
-    .home-theme & {
-      color: $red;
-    }
+    color: $main-color;
   }
 
   .productGridFilter-mobile & {
@@ -191,7 +159,7 @@
       line-height: 50px;
       text-transform: uppercase;
       &:hover {
-        color: $teal;
+        color: $main-color;
       }
     }
   }
@@ -336,7 +304,7 @@
       margin: 0;
       padding: 10px 15px;
       &:hover {
-        color: $teal;
+        color: $main-color;
       }
 
       // styles for plus icon and it's animation
@@ -359,7 +327,7 @@
     /* Styles for .filter_toggle in mobile side-panel if filter is in open state */
     .is-open & {
       @media (max-width: $screen-sm-max) {
-        color: $teal;
+        color: $main-color;
       }
     }
     .is-open &:after {
@@ -389,15 +357,15 @@
       line-height: 25px;
     }
 
-    /* teal color on hover and open states */
+    /* main color on hover and open states */
     .filter_toggle:hover & {
       @media (max-width: $screen-sm-max) {
-        color: $teal;
+        color: $main-color;
       }
     }
     .is-open & {
       @media (max-width: $screen-sm-max) {
-        color: $teal;
+        color: $main-color;
       }
     }
   }
@@ -465,7 +433,7 @@
   }
 
   .stars {
-    color: $teal;
+    color: $main-color;
 
     .fa-star {
       margin-right: 3px;

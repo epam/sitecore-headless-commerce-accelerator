@@ -240,7 +240,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-sm-12">
                 <Submit
                   disabled={isSubmitting}
-                  className="btn animated btn-animated-teal"
+                  className="btn animated btn-animated-main"
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}
                 >
                   <Text field={{ value: 'Save & Continue' }} tag="span" />

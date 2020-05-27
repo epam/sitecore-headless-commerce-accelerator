@@ -21,7 +21,7 @@
   background-color: #040404;
   z-index: 99999;
   &--loading {
-    background-color: $teal;
+    background-color: $main-color;
     animation: progress-line 3s infinite;
     @keyframes progress-line {
       0% {

@@ -36,7 +36,7 @@ nav#utility {
       display: block;
       width: 1px;
       height: 10px;
-      background: #999;
+      background: $nav-font-second-color;
       position: absolute;
       right: 0;
       top: 50%;
@@ -52,6 +52,7 @@ nav#utility {
       display: block;
       padding: 0 25px;
       line-height: 40px;
+      color: $nav-font-second-color;
     }
   }
 }

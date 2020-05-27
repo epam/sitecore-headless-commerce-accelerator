@@ -14,6 +14,7 @@
 
 @import '~Foundation/UI/client/common/scss/mixins';
 @import '~Foundation/UI/client/common/scss/variables';
+
 .address-manager {
   margin: 20px 0;
   position: relative;
@@ -35,12 +36,12 @@
       padding-top: 4px;
       font-size: 14px;
       font-weight: 900;
-      color: $teal;
+      color: $main-color;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $teal-hover);
+      @include underline($bg: $main-color-dark);
       &:hover {
-        color: $teal-hover;
+        color: $main-color-dark;
         transition: color .2s;
       }
     }
@@ -80,24 +81,24 @@
     .edit-link {
       font-size: 14px;
       font-weight: 900;
-      color: $teal;
+      color: $main-color;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $teal-hover);
+      @include underline($bg: $main-color-dark);
       &:hover {
-        color: $teal-hover;
+        color: $main-color-dark;
         transition: color .2s;
       }
     }
     .delete-link {
       font-size: 14px;
       font-weight: 900;
-      color: $red;
+      color: $focus-color;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $red-hover);
+      @include underline($bg: $focus-color-dark);
       &:hover {
-        color: $red-hover;
+        color: $focus-color-dark;
         transition: color .2s;
       }
     }

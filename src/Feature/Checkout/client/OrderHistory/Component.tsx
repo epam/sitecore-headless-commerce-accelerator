@@ -57,7 +57,7 @@ export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps
         )}
         {!isLastPage && !isLoading &&  (
           <div className="order-history-loadMore">
-            <a className="btn btn-outline-teal btn-block btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
+            <a className="btn btn-outline-main btn-block btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
               Load more
           </a>
           </div>

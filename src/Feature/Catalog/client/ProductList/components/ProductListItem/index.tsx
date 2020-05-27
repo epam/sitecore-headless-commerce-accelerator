@@ -30,10 +30,10 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
             src={!!this.props.imageUrls[0] ? this.props.imageUrls[0] : 'http://via.placeholder.com/350x150'}
             alt="product image"
           />
-          <NavigationLink className="btn btn-teal btn-quickView" to={`/product/${this.props.productId}`}>
+          <NavigationLink className="btn btn-main btn-quickView" to={`/product/${this.props.productId}`}>
             Quick View
           </NavigationLink>
-          <NavigationLink className="btn btn-teal btn-viewProduct" to={`/product/${this.props.productId}`}>
+          <NavigationLink className="btn btn-main btn-viewProduct" to={`/product/${this.props.productId}`}>
             View Product
           </NavigationLink>
         </div>

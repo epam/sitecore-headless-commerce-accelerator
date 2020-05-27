@@ -12,9 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
+
+import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 
 import * as Account from 'Feature/Account/client/Integration/Account';
 
@@ -42,6 +45,6 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 const connectedToStore = connect<ChangePasswordStateProps, ChangePasswordDispatchProps, ChangePasswordOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+);
 
-export const ChangePassword = withExperienceEditorChromes(connectedToStore);
+export const ChangePassword = compose(withExperienceEditorChromes, connectedToStore, renderingWithContext)(Component) ;

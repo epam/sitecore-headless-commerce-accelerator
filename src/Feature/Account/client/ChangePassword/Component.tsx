@@ -29,7 +29,9 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
   ChangePasswordOwnState
 > {
   public componentDidMount() {
-    this.props.VerifyCommerceUser();
+    if (!this.props.sitecoreContext.pageEditing) {
+      this.props.VerifyCommerceUser();
+    }
   }
 
   protected safeRender() {

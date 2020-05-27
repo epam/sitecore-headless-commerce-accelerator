@@ -16,7 +16,7 @@ import * as Jss from 'Foundation/ReactJss/client';
 
 import * as Account from 'Feature/Account/client/Integration/Account';
 
-export interface ChangePasswordOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
+export interface ChangePasswordOwnProps extends Jss.RenderingWithContext<Jss.BaseDataSourceItem> {}
 
 export interface ChangePasswordStateProps {
   changePasswordState: Account.ChangePasswordState;

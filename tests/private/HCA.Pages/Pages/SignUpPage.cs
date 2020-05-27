@@ -6,7 +6,7 @@ using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
-    public class SignUpPage : FieldsContainer, IPage
+    public class SignUpPage : CommonPage
     {
         private static SignUpPage _productPage;
 
@@ -19,24 +19,9 @@ namespace HCA.Pages.Pages
         public static SignUpPage Instance =>
             _productPage ?? (_productPage = new SignUpPage());
 
-        public void VerifyOpened()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Uri GetUrl()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetPath()
+        public override string GetPath()
         {
             return "/account/sign-up";
-        }
-
-        public void WaitForOpened()
-        {
-            Browser.WaitForUrlContains(GetPath());
         }
 
         public bool SignUpIsClickable()

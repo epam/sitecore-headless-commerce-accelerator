@@ -5,7 +5,7 @@ using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
-    public class ProductPage : IPage
+    public class ProductPage : CommonPage
     {
         private static ProductPage _productPage;
 
@@ -15,21 +15,15 @@ namespace HCA.Pages.Pages
         public static ProductPage Instance =>
             _productPage ?? (_productPage = new ProductPage());
 
-        public void VerifyOpened()
-        {
-            Browser.WaitForUrlContains("product/");
-        }
-
-        public Uri GetUrl()
+        public override string GetPath()
         {
             throw new NotImplementedException();
         }
 
-        public string GetPath()
+        public override void WaitForOpened()
         {
-            throw new NotImplementedException();
+           Browser.WaitForUrlContains("product/");
         }
-
 
         public void AddToCartButtonClick()
         {

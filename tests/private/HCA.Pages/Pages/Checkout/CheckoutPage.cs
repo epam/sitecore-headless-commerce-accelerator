@@ -6,7 +6,7 @@ using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages.Checkout
 {
-    public abstract class CheckoutPage : FieldsContainer, IPage
+    public abstract class CheckoutPage : CommonPage
     {
         private readonly WebElement _navigationPanel =
             new WebElement("Navigation Panel", ByCustom.XPath("//nav[@class = 'nav-checkout']"));
@@ -16,18 +16,6 @@ namespace HCA.Pages.Pages.Checkout
 
         private readonly WebSelect _shippingMethodSelect = new WebSelect("Shipping method",
             ByCustom.XPath("//select[contains(@name, 'SHIPPING_METHOD')]"));
-
-        public void VerifyOpened()
-        {
-            _navigationPanel.WaitForPresent();
-        }
-
-        public Uri GetUrl()
-        {
-            throw new NotImplementedException();
-        }
-
-        public abstract string GetPath();
 
         private WebTextField FindFieldByName(string nameField)
         {

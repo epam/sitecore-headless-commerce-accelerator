@@ -5,7 +5,7 @@ using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
-    public class CartPage : IPage
+    public class CartPage : CommonPage
     {
         private static CartPage _cartPage;
 
@@ -32,14 +32,9 @@ namespace HCA.Pages.Pages
             _title.WaitForText("Shopping Cart");
         }
 
-        public Uri GetUrl()
+        public override string GetPath()
         {
-            throw new NotImplementedException();
-        }
-
-        public string GetPath()
-        {
-            throw new NotImplementedException();
+            return "/cart";
         }
 
         private WebElement FindProductByName(string productName)

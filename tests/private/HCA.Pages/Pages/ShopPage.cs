@@ -5,22 +5,15 @@ using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
-    public abstract class ShopPage : IPage
+    public abstract class ShopPage : CommonPage
     {
         private readonly WebElement _productGrid =
             new WebElement("product grid", ByCustom.ClassName("listing-product-grid"));
 
-        public void VerifyOpened()
+        public override void WaitForOpened()
         {
-            _productGrid.WaitForPresent();
+           _productGrid.WaitForPresent();
         }
-
-        public Uri GetUrl()
-        {
-            throw new NotImplementedException();
-        }
-
-        public abstract string GetPath();
 
         private WebElement FindProductByName(string productName)
         {

@@ -16,9 +16,9 @@ namespace HCA.Tests
             var hcaWebSite = HCAWebSite.Instance;
             hcaWebSite.NavigateToMain();
             hcaWebSite.MainMenuControl.ChooseSubMenuItem("Phones", "Phones");
-            hcaWebSite.PhonePage.VerifyOpened();
+            hcaWebSite.PhonePage.WaitForOpened();
             hcaWebSite.PhonePage.ChooseProduct("Habitat Athletica Sports Armband Case");
-            hcaWebSite.ProductPage.VerifyOpened();
+            hcaWebSite.ProductPage.WaitForOpened();
             hcaWebSite.ProductPage.AddToCartButtonClick();
             hcaWebSite.HeaderControl.CartButtonClick();
             hcaWebSite.CartPage.VerifyOpened();
@@ -26,7 +26,7 @@ namespace HCA.Tests
             hcaWebSite.CartPage.FillDiscountField("HABRTRNC15P");
             hcaWebSite.CartPage.ClickApplyButton();
             hcaWebSite.CartPage.ClickChekoutButton();
-            hcaWebSite.CheckoutShippingPage.VerifyOpened();
+            hcaWebSite.CheckoutShippingPage.WaitForOpened();
             hcaWebSite.CheckoutShippingPage.SelectOptionByName("A New Address");
             hcaWebSite.CheckoutShippingPage.FillFieldByName("First Name", "John");
             hcaWebSite.CheckoutShippingPage.FillFieldByName("Last Name", "Smith");
@@ -39,13 +39,13 @@ namespace HCA.Tests
             hcaWebSite.CheckoutShippingPage.SelectOptionByName("Also use for billing address");
             hcaWebSite.CheckoutShippingPage.SelectShippingMethod("Standard");
             hcaWebSite.CheckoutShippingPage.ClickSubmit();
-            hcaWebSite.CheckoutBillingPage.VerifyOpened();
+            hcaWebSite.CheckoutBillingPage.WaitForOpened();
             hcaWebSite.CheckoutBillingPage.ClickSubmit();
-            hcaWebSite.CheckoutPaymentPage.VerifyOpened();
+            hcaWebSite.CheckoutPaymentPage.WaitForOpened();
             hcaWebSite.CheckoutPaymentPage.FillCardNumber("4111111111111111");
             hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", "123");
             hcaWebSite.CheckoutPaymentPage.ClickSubmit();
-            hcaWebSite.CheckoutConfirmationPage.VerifyOpened();
+            hcaWebSite.CheckoutConfirmationPage.WaitForOpened();
         }
     }
 }

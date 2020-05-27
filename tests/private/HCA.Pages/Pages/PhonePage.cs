@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HCA.Pages.Pages
+﻿namespace HCA.Pages.Pages
 {
     public class PhonePage : ShopPage
     {
@@ -10,6 +6,7 @@ namespace HCA.Pages.Pages
 
         public static PhonePage Instance =>
             _phonePage ?? (_phonePage = new PhonePage());
+
         public override string GetPath()
         {
             return "/shop/Phones";

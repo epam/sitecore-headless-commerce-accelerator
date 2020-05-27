@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UIAutomationFramework.Controls;
+﻿using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.CommonElements
@@ -10,32 +7,34 @@ namespace HCA.Pages.CommonElements
     {
         private static MainMenuControl _mainMenuControl;
 
+        private readonly WebElement menuConainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
+
         public static MainMenuControl Instance =>
             _mainMenuControl ?? (_mainMenuControl = new MainMenuControl());
 
-        private readonly WebElement menuConainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
-
-        private WebElement FindMenuItemByName(String itemName)
+        private WebElement FindMenuItemByName(string itemName)
         {
-            return new WebElement($"Menu item {itemName}", ByCustom.XPath($"//li[@class ='menu-item']/a[text()='{itemName}']/parent::*"));
+            return new WebElement($"Menu item {itemName}",
+                ByCustom.XPath($"//li[@class ='menu-item']/a[text()='{itemName}']/parent::*"));
         }
 
 
-        public void MoveMouseTiMenuItem(String itemName)
+        public void MoveMouseTiMenuItem(string itemName)
         {
             FindMenuItemByName(itemName).MouseOver();
         }
 
-        private WebElement FindSubMenuItemByName(String subMenuName, WebElement menuItem)
+        private WebElement FindSubMenuItemByName(string subMenuName, WebElement menuItem)
         {
-           return new WebElement($"Submenu item {subMenuName}", ByCustom.XPath($".//li/a[contains(@href, '{subMenuName}')]"), menuItem);
+            return new WebElement($"Submenu item {subMenuName}",
+                ByCustom.XPath($".//li/a[contains(@href, '{subMenuName}')]"), menuItem);
         }
 
-        public void ChooseSubMenuItem(String subMenuName, String itemName)
+        public void ChooseSubMenuItem(string subMenuName, string itemName)
         {
-            WebElement elementMenuItem = FindMenuItemByName(itemName);
+            var elementMenuItem = FindMenuItemByName(itemName);
             elementMenuItem.MouseOver();
-            WebElement subMenuItem = FindSubMenuItemByName(subMenuName, elementMenuItem);
+            var subMenuItem = FindSubMenuItemByName(subMenuName, elementMenuItem);
             subMenuItem.WaitForPresent();
             subMenuItem.Click();
         }

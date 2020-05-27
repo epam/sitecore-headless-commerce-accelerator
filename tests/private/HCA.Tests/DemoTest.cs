@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HCA.Pages;
 using NUnit.Framework;
-using HCA.Pages;
 
 namespace HCA.Tests
 {
@@ -10,12 +7,13 @@ namespace HCA.Tests
     internal class DemoTest : HCAWebTest
     {
         public DemoTest(BrowserType browserType) : base(browserType)
-        { }
+        {
+        }
 
         [Test]
         public void Test1()
         {
-            HCAWebSite hcaWebSite = HCAWebSite.Instance;
+            var hcaWebSite = HCAWebSite.Instance;
             hcaWebSite.NavigateToMain();
             hcaWebSite.MainMenuControl.ChooseSubMenuItem("Phones", "Phones");
             hcaWebSite.PhonePage.VerifyOpened();
@@ -24,7 +22,7 @@ namespace HCA.Tests
             hcaWebSite.ProductPage.AddToCartButtonClick();
             hcaWebSite.HeaderControl.CartButtonClick();
             hcaWebSite.CartPage.VerifyOpened();
-            hcaWebSite.CartPage.SetQtyForProduct("Habitat Athletica Sports Armband Case",4);
+            hcaWebSite.CartPage.SetQtyForProduct("Habitat Athletica Sports Armband Case", 4);
             hcaWebSite.CartPage.FillDiscountField("HABRTRNC15P");
             hcaWebSite.CartPage.ClickApplyButton();
             hcaWebSite.CartPage.ClickChekoutButton();
@@ -48,7 +46,6 @@ namespace HCA.Tests
             hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", "123");
             hcaWebSite.CheckoutPaymentPage.ClickSubmit();
             hcaWebSite.CheckoutConfirmationPage.VerifyOpened();
-
         }
     }
 }

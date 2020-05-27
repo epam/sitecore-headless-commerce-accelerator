@@ -1,41 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
-    abstract public class ShopPage : IPage
+    public abstract class ShopPage : IPage
     {
-        private readonly WebElement _productGrid = new WebElement("product grid", ByCustom.ClassName("listing-product-grid"));
-
-        private WebElement FindProductByName(String productName)
-        {
-           return new WebElement($"Product {productName}", ByCustom.XPath($".//li//h2[contains(text(), '{productName}')]"), _productGrid).GetParent(3);
-        }
-
-        private WebElement FindProductByIndex(Int32 index)
-        {
-            return new WebElement($"Product by index {index}", ByCustom.XPath($".//li[{index}]"), _productGrid);
-
-        }
-
-        private WebElement FindViewProductButton(WebElement productElement, String productName)
-        {
-            return new WebElement($"View product button for {productName}", ByCustom.XPath(".//a[text() = 'View Product']"), productElement);
-        }
-
-        public void ChooseProduct(String productName)
-        {
-            WebElement productElement = FindProductByName(productName);
-            productElement.MouseOver();
-            WebElement buttonViewProduct = FindViewProductButton(productElement, productName);
-            //buttonViewProduct.WaitForPresent();
-            buttonViewProduct.Click();
-
-        }
+        private readonly WebElement _productGrid =
+            new WebElement("product grid", ByCustom.ClassName("listing-product-grid"));
 
         public void VerifyOpened()
         {
@@ -47,6 +20,32 @@ namespace HCA.Pages.Pages
             throw new NotImplementedException();
         }
 
-        abstract public string GetPath();
+        public abstract string GetPath();
+
+        private WebElement FindProductByName(string productName)
+        {
+            return new WebElement($"Product {productName}",
+                ByCustom.XPath($".//li//h2[contains(text(), '{productName}')]"), _productGrid).GetParent(3);
+        }
+
+        private WebElement FindProductByIndex(int index)
+        {
+            return new WebElement($"Product by index {index}", ByCustom.XPath($".//li[{index}]"), _productGrid);
+        }
+
+        private WebElement FindViewProductButton(WebElement productElement, string productName)
+        {
+            return new WebElement($"View product button for {productName}",
+                ByCustom.XPath(".//a[text() = 'View Product']"), productElement);
+        }
+
+        public void ChooseProduct(string productName)
+        {
+            var productElement = FindProductByName(productName);
+            productElement.MouseOver();
+            var buttonViewProduct = FindViewProductButton(productElement, productName);
+            //buttonViewProduct.WaitForPresent();
+            buttonViewProduct.Click();
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HCA.Pages.Pages.Checkout
+﻿namespace HCA.Pages.Pages.Checkout
 {
     public class CheckoutShippingPage : CheckoutPage
     {
@@ -10,6 +6,7 @@ namespace HCA.Pages.Pages.Checkout
 
         public static CheckoutShippingPage Instance =>
             _checkoutShippingPage ?? (_checkoutShippingPage = new CheckoutShippingPage());
+
         public override string GetPath()
         {
             return "Checkout/Shipping";

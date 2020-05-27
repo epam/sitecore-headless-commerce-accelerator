@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Automation.Selenium.Library.Entities.WebSiteEntities;
-using UIAutomationFramework;
+﻿using Automation.Selenium.Library.Entities.WebSiteEntities;
 using HCA.Pages.CommonElements;
 using HCA.Pages.Pages;
 using HCA.Pages.Pages.Checkout;
+using UIAutomationFramework;
 
 namespace HCA.Pages
 {

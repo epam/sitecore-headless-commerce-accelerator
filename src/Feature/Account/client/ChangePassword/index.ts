@@ -17,8 +17,6 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-
 import * as Account from 'Feature/Account/client/Integration/Account';
 
 import Component from './Component';
@@ -47,4 +45,4 @@ const connectedToStore = connect<ChangePasswordStateProps, ChangePasswordDispatc
   mapDispatchToProps
 );
 
-export const ChangePassword = compose(withExperienceEditorChromes, connectedToStore, renderingWithContext)(Component) ;
+export const ChangePassword = compose(connectedToStore, renderingWithContext)(Component) ;

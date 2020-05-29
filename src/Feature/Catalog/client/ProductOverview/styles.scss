@@ -86,7 +86,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: $teal;
+            background: $main-color;
             transform: scale3d(0, 1, 1);
             transition: transform .3s;
         }
@@ -118,7 +118,7 @@
         margin-right: 13px;
         text-align: left;
         & .star {
-            color: $teal;
+            color: $main-color;
         }
     }
     .review-read {
@@ -279,7 +279,7 @@
                 font-size: 20px;
                 line-height: 25px;
                 padding: 0 7px;
-                background: $green;
+                background: $main-color;
                 color: $font-color;
                 border: 1px solid #ccc;
 
@@ -371,16 +371,16 @@
             letter-spacing: 0.04em;
         }
         &.in-stock h4{
-            color: $teal;
+            color: $main-color;
         }
         &.out-of-stock h4{
-            color: $red;
+            color: $focus-color;
         }
         &.pre-orderable h4{
-            color: $red
+            color: $focus-color;
         }
         &.back-orderable h4{
-            color: $red
+            color: $focus-color;
         }
     }
     // #Header end
@@ -390,7 +390,7 @@
     display: block;
     font-size: 52px;
     font-family: $phosphate;
-    color: $teal;
+    color: $main-color;
     text-transform: uppercase;
     @media (min-width: $screen-md-min) {
         display: none;

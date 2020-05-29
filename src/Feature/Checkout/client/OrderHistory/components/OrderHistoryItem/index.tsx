@@ -51,7 +51,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                   </span>
                   <div className="img-wrap">
                     <img src={!!cartLine.variant.imageUrls[0] ? cartLine.variant.imageUrls[0] : 'http://via.placeholder.com/350x150'} alt="product image" />
-                    <NavigationLink className="btn btn-teal btn-viewProduct" to={`/product/${cartLine.product.productId}`}>View Product</NavigationLink>
+                    <NavigationLink className="btn btn-main btn-viewProduct" to={`/product/${cartLine.product.productId}`}>View Product</NavigationLink>
                   </div>
                   <figcaption>
                     <div className="price">

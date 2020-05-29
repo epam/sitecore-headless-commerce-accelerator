@@ -30,7 +30,7 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
     const isDisabled = isLoading || !productVariant || productVariant.stockStatusName !== Common.StockStatus.InStock;
     return (
       <>
-        <button disabled={isDisabled} title="Add to Cart" onClick={(e) => this.addToCart(e)} className="btn btn-teal btn-add">
+        <button disabled={isDisabled} title="Add to Cart" onClick={(e) => this.addToCart(e)} className="btn btn-main btn-add">
             {isLoading && <i className="fa fa-spinner fa-spin" />}
             &nbsp;Add to Cart <span>+</span>
         </button>

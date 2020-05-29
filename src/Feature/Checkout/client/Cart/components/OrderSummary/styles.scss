@@ -61,12 +61,12 @@
       margin: 0;
     }
     .details {
-      color: $teal;
+      color: $main-color;
       transition: color .2s;
 
-      @include underline($bg: $teal-hover);
+      @include underline($bg: $main-color-dark);
       &:hover {
-        color: $teal-hover;
+        color: $main-color-dark;
         transition: color .2s;
       }
     }
@@ -133,13 +133,13 @@
   &-checkout {
     .btn {
       width: 100%;
-      background: $teal;
       color: #fff;
+      background: $main-color;
       transition: color .2s, background .2s;
 
       &:hover {
         background: #fff;
-        color: $teal;
+        color: $main-color;
         transition: color .2s, background .2s;
       }
     }
@@ -165,12 +165,12 @@
       margin-right: 10px;
     }
     .paypal-details {
-      color: $blue;
+      color: $main-color;
       transition: color .2s;
 
-      @include underline($bg: $blue-hover);
+      @include underline($bg: $main-color-dark);
       &:hover {
-        color: $blue-hover;
+        color: $main-color-dark;
         transition: color .2s;
       }
     }

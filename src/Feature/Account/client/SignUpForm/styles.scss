@@ -13,16 +13,18 @@
 //    limitations under the License.
 
 @import '~Foundation/UI/client/common/scss/variables';
+
 $sign-up-form-indention: 15px;
+
 .sign-up-form {
   margin: 20px 0;
   padding: 20px;
   &-header {
-    border: 1px solid #D2D2D2;
+    border: 1px solid $border-color;
     background-color: #FAFAFA;
     font-size: 30px;
     font-weight: 500;
-    color: #666666;
+    color: $font-color-light;
     padding: $sign-up-form-indention;
     h1 {
       margin: 0;
@@ -48,7 +50,7 @@ $sign-up-form-indention: 15px;
         padding: 5px;
       }
       .form-field-error-message {
-        color: $red;
+        color: $focus-color;
       }
     }
   }

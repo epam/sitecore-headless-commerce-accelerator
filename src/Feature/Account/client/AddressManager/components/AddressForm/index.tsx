@@ -112,10 +112,10 @@ export default class AddressForm extends React.Component<AddressFromProps> {
             />
           </div>
         </div>
-        <Submit className="btn btn-outline-teal" onSubmitHandler={(formValues) => this.submitAddressForm(formValues)}>
+        <Submit className="btn btn-outline-main" onSubmitHandler={(formValues) => this.submitAddressForm(formValues)}>
           Submit
         </Submit>
-        <button className="btn btn-outline-red" onClick={() => this.props.ToggleForm()}>
+        <button className="btn btn-outline-focus" onClick={() => this.props.ToggleForm()}>
           Cancel
         </button>
       </Form>

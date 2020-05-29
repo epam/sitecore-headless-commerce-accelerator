@@ -192,10 +192,10 @@
           }
 
           &-addToWishlist {
-            color: $teal;
+            color: $main-color;
 
             > span {
-              @include underline($bg: $teal);
+              @include underline($bg: $main-color);
             }
           }
 

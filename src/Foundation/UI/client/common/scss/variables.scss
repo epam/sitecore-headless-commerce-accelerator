@@ -90,36 +90,26 @@ $container-lg:                 $container-large-desktop;
 
 //== HCA brand colors
 //
-$dark-grey: #444444;
-$grey: #5e5e5e;
-$light-grey: #999999;
+// Site colors
 
-//-Fitness
-$green: #99cc00;
-$green-light: #cfec79;
-$green-hover: #698c00;
-//-Outdoor
-$orange: #eda61d;
-$orange-light: #fecb6c;
-$orange-hover: #c0871a;
-//-Travel
-$blue: #3399ff;
-$blue-light: #66ccff;
-$blue-hover: #286caf;
-//-Sport
-$purple: #61279e;
-$purple-light: #9b5fdb;
-$purple-hover: #3d1a61;
-//-Home
-$red: #db1628;
-$red-light: #ed6382;
-$red-hover: #aa052b;
-//-Use teal as your general active color if not within a specific category (ie payment process, wish list, search results, breadcrumbs, reviews/ratings etc)
-$teal: #066666;
-$teal-light: #043838;
-$teal-hover: #043838;
+//- Main color
+$main-color: #066666;
+$main-color-light: #043838;
+$main-color-dark: #043838;
 
-// Font colors for products
+//- Second color
+$second-color: #5e5e5e;
+$second-color-light: #999999;
+$second-color-dark: #191919;
+
+//- Focus color
+$focus-color: #db1628;
+$focus-color-dark: #ed6382;
+$focus-color-light: #aa052b;
+
+$section-header-color: #ebeeef;
+
+// Font colors
 $brand-font-color: #666;
 $title-font-color: #5e5e5e;
 $font-color: #5e5e5e;
@@ -128,6 +118,61 @@ $border-color: #d2d2d2;
 
 // Account page font color
 $account-font-color: #323e48;
+
+// Navigation font color
+$nav-font-color: #fff;
+$nav-font-second-color: #999;
+
+// Header section font color
+$header-section-font-color: #fff;
+$header-section-font-second-color: #fff;
+
+// Sign in font color
+$sign-in-font-color: #999;
+
+/*
+// -- Alternate colors --
+
+//- Main color
+$main-color: #76cdd8;
+$main-color-light: #b2e3e9;
+$main-color-dark: #28828d;
+
+//- Second color
+$second-color: #3e5c86;
+$second-color-light: #5d81b4;
+$second-color-dark: #263852;
+
+//- Focus color
+$focus-color: #db1628;
+$focus-color-dark: #ed6382;
+$focus-color-light: #aa052b;
+
+$section-header-color: #ebeeef;
+
+// Font colors
+$brand-font-color: #666;
+$title-font-color: #5e5e5e;
+$font-color: #5e5e5e;
+$font-color-light: #999;
+$border-color: #d2d2d2;
+
+// Account page font color
+$account-font-color: #323e48;
+
+// Navigation font color
+$nav-font-color: #fff;
+$nav-font-second-color: #CCCCCC;
+
+// Header section font color
+$header-section-font-color: #fff;
+$header-section-font-second-color: #fff;
+
+// Sign in font color
+$sign-in-font-color: #CCCCCC;
+
+// -- Alternate colors end --
+*/
 
 // Mid-Small breakpoint
 $screen-ms: 480px;

@@ -16,51 +16,10 @@
 
 @import '~Foundation/UI/client/common/scss/variables';
 
-.footer-main {
-  @include container-fixed;
-  
-  @media (min-width: $screen-sm-min) {
-    width: $container-sm;
-  }
-  @media (min-width: $screen-md-min) {
-    width: $container-md;
-  }
-  @media (min-width: $screen-lg-min) {
-    width: $container-lg;
-  }
-  padding-top: 34px;
-  padding-bottom: 50px;
-  background: #191919;
-}
-.footer-wrap {
-  max-width: 804px;
-  margin: auto;
-  padding-top: 35px;
-}
-
-// Footer grid for columns
-.footer-columns {
-  margin-bottom: 30px;
-}
-
-.footer-links-row {
-  @media (max-width: 479px) {
-    margin: 0 -5px;
-  }
-}
-.footer-links-col {
-  @media (max-width: 479px) {
-    // small paddings on phones
-    padding: 0 5px;
-  }
-}
-// Footer grid for columns end
-
 .social {
-
   &-title {
     margin: 30px 0 10px;
-    color: #fff;
+    color: $nav-font-color;
     font-family: $sans-serif;
     font-size: 12px;
     font-weight: 900;
@@ -91,7 +50,7 @@
     line-height: 24px;
     border-radius: 50%;
     color: #000;
-    background: #444;
+    background: $second-color;
 
     &:hover {
       color: #000;

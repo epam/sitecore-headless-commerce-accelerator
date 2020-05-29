@@ -156,61 +156,23 @@ input[type="radio"] {
     }
   }
   & + label:hover:before {
-    background-color: $teal-light;
+    background-color: $main-color-light;
   }
   &:checked + label:before {
-    background-color: $teal;
+    background-color: $main-color;
   }
 }
-.fitness-theme input[type="radio"] {
-  & + label:hover:before {
-    background-color: $green-light;
-  }
-  &:checked + label:before {
-    background-color: $green;
-  }
-}
-.outdoor-theme input[type="radio"] {
-  & + label:hover:before {
-    background-color: $orange-light;
-  }
-  &:checked + label:before {
-    background-color: $orange;
-  }
-}
-.travel-theme input[type="radio"] {
-  & + label:hover:before {
-    background-color: $blue-light;
-  }
-  &:checked + label:before {
-    background-color: $blue;
-  }
-}
-.sport-theme input[type="radio"] {
-  & + label:hover:before {
-    background-color: $purple-light;
-  }
-  &:checked + label:before {
-    background-color: $purple;
-  }
-}
-.home-theme input[type="radio"] {
-  & + label:hover:before {
-    background-color: $red-light;
-  }
-  &:checked + label:before {
-    background-color: $red;
-  }
-}
-.teal-thick-theme input[type="radio"] {
+
+.thick-theme input[type="radio"] {
   & + label:before {
     //haven't seen a non-thick border design for radio buttons, but since checkboxes have one,
     //might as well create the version as well as category themes.
     width: 8px;
     height: 8px;
-    border: 4px solid $teal;
+    border: 4px solid $main-color;
   }
 }
+
 input[type="checkbox"] {
   margin: 0;
   padding: 0;
@@ -232,56 +194,16 @@ input[type="checkbox"] {
     }
   }
   & + label:hover:before {
-    background-color: $teal-light;
+    background-color: $main-color-light;
   }
   &:checked + label:before {
-    background-color: $teal;
+    background-color: $main-color;
   }
 }
 
-.fitness-theme input[type="checkbox"] {
-  & + label:hover:before {
-    background-color: $green-light;
-  }
-  &:checked + label:before {
-    background-color: $green;
-  }
-}
-.outdoor-theme input[type="checkbox"] {
-  & + label:hover:before {
-    background-color: $orange-light;
-  }
-  &:checked + label:before {
-    background-color: $orange;
-  }
-}
-.travel-theme input[type="checkbox"] {
-  & + label:hover:before {
-    background-color: $blue-light;
-  }
-  &:checked + label:before {
-    background-color: $blue;
-  }
-}
-.sport-theme input[type="checkbox"] {
-  & + label:hover:before {
-    background-color: $purple-light;
-  }
-  &:checked + label:before {
-    background-color: $purple;
-  }
-}
-.home-theme input[type="checkbox"] {
-  & + label:hover:before {
-    background-color: $red-light;
-  }
-  &:checked + label:before {
-    background-color: $red;
-  }
-}
-.teal-thick-theme input[type="checkbox"] {
+.thick-theme input[type="checkbox"] {
   & + label:before {
-    border: 3px solid $teal; //same pages show thick bordered teal checkboxes, most don't
+    border: 3px solid $main-color; //same pages show thick bordered checkboxes, most don't
     width: 12px;
     height: 12px;
   }
@@ -330,29 +252,8 @@ input[type="checkbox"]:focus {
       color:#666;
       background-color:#fff;
   }
-  &.fitness-theme:after {
-    background-color:$green;
-    color:#fff;
-  }
-  &.outdoor-theme:after {
-    background-color:$orange;
-    color:#fff;
-  }
-  &.travel-theme:after {
-    background-color:$blue;
-    color:#fff;
-  }
-  &.sport-theme:after {
-    background-color:$purple;
-    color:#fff;
-  }
-  &.home-theme:after {
-    background-color:$red;
-    color:#fff;
-  }
-  &.teal-thick-theme:after {
-
-    background-color:$teal;
+  &.thick-theme:after {
+    background-color:$main-color;
     color:#fff;
   }
   select {

@@ -55,7 +55,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
               defaultValue={commerceUser.lastName}
             />
             <Submit
-              className="btn btn-outline-teal"
+              className="btn btn-outline-main"
               disabled={isLoading}
               onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
             >

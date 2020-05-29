@@ -91,14 +91,14 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
   private renderUserInfoForm() {
     return (
       <form method="POST" action="/apix/client/commerce/auth/logout" className="sign-out-form">
-        <NavigationLink to="/account" className="btn btn-teal">
+        <NavigationLink to="/account" className="btn btn-main">
           <Jss.Text tag="span" field={{ value: 'My Account', editable: 'My Account' }} />
         </NavigationLink>
-        <NavigationLink to="/account/order-history" className="btn btn-teal no-margin-bottom">
+        <NavigationLink to="/account/order-history" className="btn btn-main no-margin-bottom">
           <Jss.Text tag="span" field={{ value: 'Order History', editable: 'Order History' }} />
         </NavigationLink>
         <hr />
-        <button type="submit" className="btn btn-red">
+        <button type="submit" className="btn btn-focus">
           Sign Out
         </button>
       </form>

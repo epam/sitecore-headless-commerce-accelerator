@@ -41,14 +41,14 @@ form.wrap-main-search {
     border: none;
     box-shadow: none;
     font: 500 15px/30px $sans-serif;
-    color:#ffffff;
+    color: $nav-font-color;
     -webkit-appearance: none;
     /* Placeholder text: Separate rule for Firefox. Cannot stack with WebKit's. */
-    &::-webkit-input-placeholder {color: #fff;}
-    &::-moz-placeholder {color: #fff; opacity:1;}
-    &:-ms-input-placeholder {color:#fff;}  //IE10+
-    &::-ms-input-placeholder {color:#fff;} //Edge
-    &:placeholder-shown {color:#fff;}
+    &::-webkit-input-placeholder {color: $nav-font-color;}
+    &::-moz-placeholder {color: $nav-font-color; opacity:1;}
+    &:-ms-input-placeholder {color:$nav-font-color;}  //IE10+
+    &::-ms-input-placeholder {color:$nav-font-color;} //Edge
+    &:placeholder-shown {color:$nav-font-color;}
   }
 
   input[type=search]::-webkit-search-cancel-button {
@@ -62,5 +62,6 @@ form.wrap-main-search {
     font-size:20px;
     width:40px;
     text-align: center;
+    color: $nav-font-second-color;
   }
 }

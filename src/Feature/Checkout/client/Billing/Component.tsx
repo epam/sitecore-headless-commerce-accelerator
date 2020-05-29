@@ -41,7 +41,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
   public safeRender() {
     const { fields, commerceUser } = this.props;
     return (
-      <Form className="teal-thick-theme">
+      <Form className="thick-theme">
         <section className="billing">
           <Text field={{ value: 'Billing' }} tag="h1" />
           <fieldset>

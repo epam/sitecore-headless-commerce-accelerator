@@ -27,7 +27,7 @@ nav.breadcrumbs {
     }
     li {
       display: inline-block;
-      color: $green;
+      color: $main-color;
     }
     li + li:before {
       padding: 0 5px;
@@ -37,8 +37,8 @@ nav.breadcrumbs {
     a {
       color: #3d3e40;
       &:hover {
-        color: $green-hover;
+        color: $main-color-dark;
       }
-      @include underline($bg: $green-hover);
+      @include underline($bg: $main-color-dark);
     }
   }

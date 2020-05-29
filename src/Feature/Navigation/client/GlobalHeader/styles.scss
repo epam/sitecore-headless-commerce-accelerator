@@ -17,7 +17,7 @@
 
 header#header-main{
   padding-top: 40px;
-  background: #040404;
+  background: $second-color-dark;
   @media (max-width: $screen-sm-max){
     padding-top: 0;
   }
@@ -42,7 +42,7 @@ header#header-main{
   }
   .nav-wrap{
     height: 41px;
-    background: #444;
+    background: $second-color;
     border-top:1px solid #fff;
     box-shadow: inset 0 1px 0 rgba(0,0,0,.25);
     @media (max-width: $screen-sm-max){
@@ -83,7 +83,7 @@ header#header-main{
 
 header#header-mobile{
   display: none;
-  background: #666;
+  background: $second-color;
   height: 50px;
   position: fixed;
   top: 0;
@@ -103,7 +103,7 @@ header#header-mobile{
     left: 0;
     top: 0;
     text-align: center;
-    color:#999;
+    color:$second-color-light;
     transition: color .2s;
     &:hover{
       color:#fff;

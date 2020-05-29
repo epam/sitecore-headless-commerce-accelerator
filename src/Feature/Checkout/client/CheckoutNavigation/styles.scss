@@ -55,7 +55,7 @@ nav.nav-checkout {
           display: none;
         }
         &.active {
-          background-color: $teal;
+          background-color: $main-color;
           & a {
             color: #fff;
             font-weight: 900;
@@ -86,7 +86,7 @@ nav.nav-checkout {
         z-index: -1;
         @media (max-width: $screen-md-min) {
           top: 0px;
-          background-color: $teal;
+          background-color: $main-color;
         }
       }
     }

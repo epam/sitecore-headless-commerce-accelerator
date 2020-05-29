@@ -40,7 +40,7 @@ export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps,
                 </div>
                 <div className="col-md-3">
                   <div className="thank-you-col2">
-                    <a className="btn order-print">
+                    <a className="btn btn-main btn-order-print">
                       <i className="fa fa-print" /> <span>Print Receipt</span>
                     </a>
                   </div>

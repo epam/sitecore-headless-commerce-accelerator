@@ -46,7 +46,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
     const { formIsValid } = this.state;
 
     return (
-      <Form className="teal-thick-theme">
+      <Form className="thick-theme">
         {isSubmitting && (
           <div className="billing-shipping-info-loading-overlay">
             <div className="loading" />

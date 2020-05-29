@@ -135,7 +135,7 @@ ol.inline > li {
 
   &:after {
     content: '';
-    background: $teal;
+    background: $main-color;
     display: block;
     height: 1px;
     width: 100%;
@@ -181,7 +181,7 @@ ol.inline > li {
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
     margin-right: 3px;
-    color: $teal;
+    color: $main-color;
     cursor: pointer;
 
     &:last-child {
@@ -199,11 +199,8 @@ ol.inline > li {
   }
 }
 
-.green{color:$green;}
-.orange{color:$orange;}
-.blue{color:$blue;}
-.purple{color:$purple;}
-.red{color:$red;}
+.main{color:$main-color;}
+.focus{color:$focus-color;}
 .no-mobile{
   @media(max-width: $screen-sm){
     display: none;

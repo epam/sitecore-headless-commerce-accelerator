@@ -506,6 +506,7 @@
     <Content Include="App_Config\Include\Project\HCA\Project.HCA.Site.config" />
     <Content Include="App_Config\Include\Project\HCA\Project.HCA.Content.Serialization.config" />
     <Content Include="App_Config\Include\Project\HCA\Project.HCA.Search.config" />
+    <Content Include="App_Config\Include\Project\HCA\Project.HCA.Variables.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

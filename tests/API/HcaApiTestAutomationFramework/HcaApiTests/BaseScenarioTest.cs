@@ -1,8 +1,9 @@
-﻿using HcaApiTestAutomationFramework;
+﻿using System.Collections.Generic;
+using HcaApiTestAutomationFramework;
 using HcaApiTestAutomationFramework.HcaDTO;
 using NUnit.Framework;
 using System.Linq;
-using System.Security.Principal;
+using HcaApiTestAutomationFramework.GraphQlDTO;
 
 namespace HcaApiTests
 {
@@ -10,126 +11,196 @@ namespace HcaApiTests
 	[TestFixture, Description("Base Demo scenario")]
 	public class BaseScenarioTest
 	{
-		[Test, Description("add Product to cart and check on existence")]
-		public void VerifyProductAddingOToCartTest()
-		{
-			//Checking initial state of Cart
-			var cart = new HcaApiMethods<CartResponseDTO>();
-			var cartReq = cart.GetCart();
-			Assert.True("ok".Equals(cartReq.status.ToLower()), "The Get Cart request is not passed");
-			var initialQuantity = cartReq.data.cartLines.Aggregate(0, (current, prod) => current + (int) prod.quantity);
+		/* Base Demo scenario:
+		 1. find any product (POST products)
+		 2. add found product to cart (POST cartLines/)
+		 3. check that product exists in the cart (GET cat)
+		 4 check deleveryInfo, shippingInfo, billibgInfo (GET)
+		 5. add shipping info (POST shippingInfo)
+		 6. add graphql ClientConfiguration (POST)
+		 7. add graphql TokenizeCreditCard (POST)
+		 8. add paymentInfo (POST)
+		 9. order to pay (POST)
+		 10. check order request (GET)
+		 11. Check that cart is empty (GET cart)
+		 */
 
+		private string _categoryId = "8e456d84-4251-dba1-4b86-ce103dedcd02";
+		private string _productId = "";
+		private string _variantId = "";
+		private string _guestUserID = "TEMP_NAME";
+		private string _guestNewPartyId = "";
+		private string _shippingMethodName = "Standard";
+		private string _shippingMethodId = "";
+		private string _token = "";
+		private string _confirmationId = "";
+
+		[Test, Order(1), Description("find any product")]
+		public void T01FindProductTest()
+		{
+			var searchProduct = new SearchProductRequestDTO
+			{
+				categoryId = _categoryId,
+				pageNumber = 0,
+				pageSize = 12,
+				searchKeyword = "",
+				sortDirection = 0,
+			};
+
+			var products = new HcaApiMethods<SearchProductResponseDTO>();
+			var productsReq = products.SearchProducts(searchProduct);
+			Assert.True("ok".Equals(productsReq.status.ToLower()), "The GetProducts POST request is not passed");
+			_productId = productsReq.data.products[0].productId;
+		}
+
+		[Test, Order(2), Description("add Product to cart and check on existence")]
+		public void T02VerifyProductAddingOToCartTest()
+		{
+			_variantId = "5" + _productId;
 			//Test Data for Adding Product to the Cart Request
 			var cartLine = new CartLineRequestDTO
 			{
-				productId = "6042238",
+				productId = _productId,
 				quantity = 1,
-				variantId = "56042238"
+				variantId = _variantId,
 			};
 
 			//Adding Product to the Cart Request
-			cart = new HcaApiMethods<CartResponseDTO>();
-			cartReq = cart.AddCartLine(cartLine);
+			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cartReq = cart.AddCartLine(cartLine);
 			Assert.True("ok".Equals(cartReq.status.ToLower()), "The Get Cart request is not passed");
-			var newQuantity = cartReq.data.cartLines.Aggregate(0, (current, prod) => current + (int)prod.quantity);
-			Assert.True(initialQuantity<newQuantity, "The new product was not added, or other product was deleted during the adding one.");
-			Assert.True("6042238".Equals(cartReq.data.cartLines[0].product.productId.ToString()));
-
+			var test1 = "";
+			foreach (var cartline in cartReq.data.cartLines)
+			{
+				if (_productId.Equals(cartline.product.productId))
+				{
+					test1 = cartline.product.productId;
+					break;
+				}
+			}
+			Assert.True(_productId.Equals(test1), "ProductId is not found");
 		}
 
-		[Test, Description("Checkouts Product from cart")]
-		public void VerifyCheckoutTest()
+		[Test, Order(3), Description("check on product existence in the cart")]
+		public void T03VerifyGetCartTest()
+		{
+			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cartReq = cart.GetCart();
+			var test1 = "";
+			foreach (var cartline in cartReq.data.cartLines)
+			{
+				if (_productId.Equals(cartline.product.productId))
+				{
+					test1 = cartline.product.productId;
+					break;
+				}
+			}
+			Assert.True(_productId.Equals(test1), "ProductId is not found");
+			Assert.True("ok".Equals(cartReq.status.ToLower()), "The getCart GET request is not passed.");
+			
+		}
+
+		[Test, Order(4), Description("Checkouts Product from cart")]
+		public void T04VerifyCheckoutTest()
 		{
 			//Checking initial state of Cart Info
 			var deliveryInfo = new HcaApiMethods<CheckoutDeliveryInfoResponseDTO>();
 			var deliveryInfoReq = deliveryInfo.GetDeliveryInfo();
 			Assert.True("ok".Equals(deliveryInfoReq.status.ToLower()), "The delivery info request is not passed");
-			
+			_guestNewPartyId = deliveryInfoReq.data.newPartyId;
+
 			var shippingInfo = new HcaApiMethods<CheckoutShippingInfoResponseDTO>();
 			var shippingInfoReq = shippingInfo.GetShippingInfo();
 			Assert.True("ok".Equals(shippingInfoReq.status.ToLower()), "The Shipping info request is not passed");
-
+			foreach (var shippingmethod in shippingInfoReq.data.shippingMethods)
+			{
+				if (shippingmethod.description.ToLower().Equals(_shippingMethodName.ToLower()))
+				{
+					_shippingMethodId = shippingmethod.externalId;
+					break;
+				}
+			}
 			var billingInfo = new HcaApiMethods<CheckoutBillingInfoResponseDTO>();
 			var billingInfoReq = billingInfo.GetBillingInfo();
 			Assert.True("ok".Equals(billingInfoReq.status.ToLower()), "The Billing info request is not passed");
+		}
+
+		[Test, Order(5), Description("Populate Address data on Shipping tab")]
+		public void T05VerifyAddingShippingOptionsTest()
+		{
 
 			//add Shipping Options
 			var shippingData = new CheckoutSetShippingOptionRequestDTO
 			{
-				
-				orderShippingPreferenceType = "1",
-				shippingAddresses = new[] {new Shippingaddress
-				{
-					name = "dd1c0c6dcb3844db9bccd1d862bb4cbb",
-					firstName = "firstName",
-					lastName = "lastName",
-					address1 = "address 1",
-					address2 = "",
-					city = "TestC",
-					country = "United States",
-					state = "Al",
-					zipPostalCode = "35004",
-					externalId = "5eb7abba8825410d88e4fc781039c40f",
-					partyId = "5eb7abba8825410d88e4fc781039c40f",
-					isPrimary = false,
-					email = "test@email.com"
-				}},
-				shippingMethods = new[] {new Shippingmethod
-				{
-					description = "Standard",
-					externalId = "cf0af82a-e1b8-45c2-91db-7b9847af287c",
-					name = "Standard",
-					lineIds = null,
-					partyId = "5eb7abba8825410d88e4fc781039c40f",
-					shippingPreferenceType = "1",
 
-				}},
+				orderShippingPreferenceType = "1",
+				shippingAddresses = new[]
+				{
+					new Shippingaddress
+					{
+						address1 = "testAddress",
+						address2 = "",
+						city = "testCity",
+						country = "Canada",
+						countryCode = "CA",
+						email = "test@email.com",
+						externalId = _guestNewPartyId,
+						firstName = "testFirstName",
+						isPrimary = false,
+						lastName = "testLastName",
+						name = _guestUserID,
+						partyId = _guestNewPartyId,
+						state = "AB",
+						zipPostalCode = "123",
+					}
+				},
+				shippingMethods = new[]
+				{
+					new Shippingmethod
+					{
+						description = _shippingMethodName,
+						externalId = _shippingMethodId,
+						lineIds = null,
+						name = _shippingMethodName,
+						partyId = _guestNewPartyId,
+						shippingPreferenceType = "1",
+
+					}
+				},
 			};
 			var shippingOptions = new HcaApiMethods<CheckoutShippingOptionsResponseDTO>();
 			var shippingOptionsReq = shippingOptions.SetShippingOptions(shippingData);
 			Assert.True("ok".Equals(shippingOptionsReq.status.ToLower()), "The Shipping Options request is not passed");
+		}
 
+		[Test, Order(6), Description("Add credit card data via graphQL")]
+		public void T06VerifyAddingPaymentCreditCardDataTest()
+		{
+			var graphqlCall = new GraphQLApiCalls();
+			var responseClientConfiguration = graphqlCall.ClientConfiguration();
+			//TODO check assest on error exits in ClientConfiguration
 
-			var graphqlData = new GraphqlRequestDTO()
+			var creditCard = new Input.Creditcard
 			{
-				clientSdkMetadata = new Clientsdkmetadata
-				{
-					source = "client",
-					integration = "custom",
-					sessionId = "02a61903-b8cf-4b4e-b913-bafba3bd9c1c"
-				},
-				operationName = "TokenizeCreditCard",
-				query = "mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }",
-				variables = new Variables
-				{
-					input = new Input
-					{
-						creditCard = new Creditcard
-						{
-							number = "4111111111111111",
-							expirationMonth = "1",
-							expirationYear = "2021",
-							cvv = "123"
-						},
-						options = new Options
-						{
-							validate = "true"
-						}
-					}
-				}
+				cvv = "123",
+				expirationMonth = "1",
+				expirationYear = "2021",
+				number = "4111111111111111",
 			};
+			var responseTokenizeCreditCard = graphqlCall.TokenizeCreditCard(creditCard);
+			_token = responseTokenizeCreditCard.data.tokenizeCreditCard.token;
 
-			var graphqlInfo = new HcaApiMethods<GraphlResponseDTO>();
-			var graphqlInfoReq = graphqlInfo.GetToken(graphqlData);
+		}
 
-			var token = graphqlInfoReq.data.tokenizeCreditCard.token;
-
+		[Test, Order(7), Description("Add Payment Info card data")]
+		public void T07VerifyAddingPaymentInfoTest()
+		{
 			var paymentData = new CheckoutSetPaymentInfoRequestDTO
 			{
 
 				billingAddress = new[] {new Billingaddress
 				{
-					name = "dd1c0c6dcb3844db9bccd1d862bb4cbb",
+					name = "",
 					firstName = "firstName",
 					lastName = "lastName",
 					address1 = "address 1",
@@ -139,14 +210,14 @@ namespace HcaApiTests
 					city = "TestC",
 					state = "AL",
 					zipPostalCode = "35004",
-					externalId = "5eb7abba8825410d88e4fc781039c40f",
-					partyId = "5eb7abba8825410d88e4fc781039c40f",
+					externalId = "",
+					partyId = "",
 					isPrimary = false,
 					email = "test@email.com"
 				}},
 				federatedPayment = new[] {new Federatedpayment
 				{
-					cardToken = token,//"tokencc_bh_y9sbdx_8z3n8w_gqsx49_jtg2ct_w53",
+					cardToken = _token,
 					partyId = null,
 					paymentMethodId = ""
 
@@ -159,6 +230,7 @@ namespace HcaApiTests
 
 			var order = new HcaApiMethods<CheckoutSubmitOrderResponseDTO>();
 			var orderReq = order.SubmitOrder();
+			_confirmationId = orderReq.data.confirmationId;
 			Assert.True("ok".Equals(orderReq.status.ToLower()), "The order request is not passed");
 		}
 	}

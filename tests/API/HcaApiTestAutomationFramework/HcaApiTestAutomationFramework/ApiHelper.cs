@@ -37,18 +37,6 @@ namespace HcaApiTestAutomationFramework
 			return restRequest;
 		}
 
-		public RestRequest CreatePostRequest(string requestBody, string refererPoint)
-		{
-			var refererUrl = "https://" + Host + refererPoint;
-			restRequest = new RestRequest(Method.POST);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			restRequest.AddHeader("Content-Type", "application/json");
-			restRequest.AddHeader("Referer", refererUrl);
-			restRequest.AddParameter("application/json", requestBody, ParameterType.RequestBody);
-			return restRequest;
-		}
-
 		public RestRequest CreatePutRequest(string requestBody)
 		{
 			restRequest = new RestRequest(Method.PUT);

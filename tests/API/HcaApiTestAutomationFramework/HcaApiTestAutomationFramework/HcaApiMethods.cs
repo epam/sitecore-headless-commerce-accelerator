@@ -32,6 +32,17 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
+		public SearchProductResponseDTO SearchProducts(dynamic requestBody, string endpoint = "search/products")
+		{
+			var cart = new ApiHelper<SearchProductResponseDTO>();
+			var url = cart.SetUrl(endpoint);
+			var jsonRequest = cart.Serialize(requestBody);
+			var request = cart.CreatePostRequest(jsonRequest);
+			var response = cart.GetResponse(url, request);
+			SearchProductResponseDTO content = cart.GetContent<SearchProductResponseDTO>(response);
+			return content;
+		}
+
 		public CartResponseDTO AddCartLine(dynamic requestBody, string endpoint = "carts/cartLines")
 		{
 			var cart = new ApiHelper<CartResponseDTO>();
@@ -95,8 +106,6 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
-
-
 		public CheckoutShippingOptionsResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
 		{
 			var cart = new ApiHelper<CheckoutShippingOptionsResponseDTO>();
@@ -107,7 +116,6 @@ namespace HcaApiTestAutomationFramework
 			CheckoutShippingOptionsResponseDTO content = cart.GetContent<CheckoutShippingOptionsResponseDTO>(response);
 			return content;
 		}
-
 
 		public CheckoutPaymentInfoResponseDTO SetPaymentInfo(dynamic requestBody, string endpoint = "checkout/paymentInfo")
 		{
@@ -130,16 +138,5 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
-		public GraphlResponseDTO GetToken(dynamic requestBody)
-		{
-			var cart = new ApiHelper<GraphlResponseDTO>();
-			var url = new RestClient("https://payments.sandbox.braintree-api.com/graphql");
-			var jsonRequest = cart.Serialize(requestBody);
-			var request = cart.CreatePostRequest(jsonRequest);
-			var response = cart.GetResponse(url, request);
-			GraphlResponseDTO content = cart.GetContent<GraphlResponseDTO>(response);
-			return content;
-
-		}
 	}
 }

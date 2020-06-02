@@ -24,6 +24,4 @@ namespace HcaApiTestAutomationFramework.HcaDTO
 			public object[] payment { get; set; }
 		}
 	}
-
-	
 }

@@ -69,6 +69,7 @@
     <Compile Include="HcaDTO\AccountCreateAccountResponseDTO.cs" />
     <Compile Include="HcaDTO\AccountUpdateAccountRequestDTO.cs" />
     <Compile Include="HcaDTO\AccountValidateEmailRequestDTO.cs" />
+    <Compile Include="HcaDTO\Address.cs" />
     <Compile Include="HcaDTO\AuthenticationLoginRequestDTO.cs" />
     <Compile Include="HcaDTO\AuthenticationResponceDTO.cs" />
     <Compile Include="HcaDTO\Cartline.cs" />
@@ -84,12 +85,15 @@
     <Compile Include="HcaDTO\CheckoutShippingInfoResponseDTO.cs" />
     <Compile Include="HcaDTO\CheckoutShippingOptionsResponseDTO.cs" />
     <Compile Include="HcaDTO\CheckoutSubmitOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\OrdersOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\Payment.cs" />
     <Compile Include="HcaDTO\SearchProductResponseDTO.cs" />
     <Compile Include="HcaDTO\OrdersResponseDTO.cs" />
     <Compile Include="HcaDTO\Price.cs" />
     <Compile Include="HcaDTO\Product.cs" />
     <Compile Include="HcaDTO\Properties.cs" />
     <Compile Include="HcaDTO\SearchProductRequestDTO.cs" />
+    <Compile Include="HcaDTO\Shipping.cs" />
     <Compile Include="HcaDTO\Variant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

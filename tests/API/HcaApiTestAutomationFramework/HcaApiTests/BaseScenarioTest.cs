@@ -7,7 +7,7 @@ using HcaApiTestAutomationFramework.GraphQlDTO;
 
 namespace HcaApiTests
 {
-	
+
 	[TestFixture, Description("Base Demo scenario")]
 	public class BaseScenarioTest
 	{
@@ -15,14 +15,13 @@ namespace HcaApiTests
 		 1. find any product (POST products)
 		 2. add found product to cart (POST cartLines/)
 		 3. check that product exists in the cart (GET cat)
-		 4 check deleveryInfo, shippingInfo, billibgInfo (GET)
+		 4. check deleveryInfo, shippingInfo, billibgInfo (GET)
 		 5. add shipping info (POST shippingInfo)
-		 6. add graphql ClientConfiguration (POST)
-		 7. add graphql TokenizeCreditCard (POST)
-		 8. add paymentInfo (POST)
-		 9. order to pay (POST)
-		 10. check order request (GET)
-		 11. Check that cart is empty (GET cart)
+		 6. add graphql ClientConfiguration (POST query), add graphql TokenizeCreditCard (POST mutation)
+		 7. add paymentInfo (POST)
+		 8. order to pay (POST)
+		 9. check order request by confirmationID (GET)
+		 10. Check that cart is empty (GET cart)
 		 */
 
 		private string _categoryId = "8e456d84-4251-dba1-4b86-ce103dedcd02";
@@ -78,6 +77,7 @@ namespace HcaApiTests
 					break;
 				}
 			}
+
 			Assert.True(_productId.Equals(test1), "ProductId is not found");
 		}
 
@@ -95,9 +95,10 @@ namespace HcaApiTests
 					break;
 				}
 			}
+
 			Assert.True(_productId.Equals(test1), "ProductId is not found");
 			Assert.True("ok".Equals(cartReq.status.ToLower()), "The getCart GET request is not passed.");
-			
+
 		}
 
 		[Test, Order(4), Description("Checkouts Product from cart")]
@@ -120,6 +121,7 @@ namespace HcaApiTests
 					break;
 				}
 			}
+
 			var billingInfo = new HcaApiMethods<CheckoutBillingInfoResponseDTO>();
 			var billingInfoReq = billingInfo.GetBillingInfo();
 			Assert.True("ok".Equals(billingInfoReq.status.ToLower()), "The Billing info request is not passed");
@@ -178,7 +180,7 @@ namespace HcaApiTests
 		{
 			var graphqlCall = new GraphQLApiCalls();
 			var responseClientConfiguration = graphqlCall.ClientConfiguration();
-			//TODO check assest on error exits in ClientConfiguration
+			Assert.IsNotEmpty(responseClientConfiguration, "ClientConfiguration response is not empty");
 
 			var creditCard = new Input.Creditcard
 			{
@@ -188,8 +190,10 @@ namespace HcaApiTests
 				number = "4111111111111111",
 			};
 			var responseTokenizeCreditCard = graphqlCall.TokenizeCreditCard(creditCard);
+			Assert.IsNotEmpty(responseTokenizeCreditCard, "TokenizeCreditCard response is not empty");
 			_token = responseTokenizeCreditCard.data.tokenizeCreditCard.token;
-
+			Assert.True((_token.Length>5), "The token was not received");
+			
 		}
 
 		[Test, Order(7), Description("Add Payment Info card data")]
@@ -198,40 +202,61 @@ namespace HcaApiTests
 			var paymentData = new CheckoutSetPaymentInfoRequestDTO
 			{
 
-				billingAddress = new[] {new Billingaddress
+				billingAddress = new Billingaddress
 				{
 					name = "",
 					firstName = "firstName",
 					lastName = "lastName",
-					address1 = "address 1",
+					address1 = "testAddress",
 					address2 = "",
-					country = "United States",
-					countryCode = "US",
-					city = "TestC",
-					state = "AL",
-					zipPostalCode = "35004",
+					country = "Canada",
+					countryCode = "CA",
+					city = "testCity",
+					state = "AB",
+					zipPostalCode = "123",
 					externalId = "",
 					partyId = "",
 					isPrimary = false,
 					email = "test@email.com"
-				}},
-				federatedPayment = new[] {new Federatedpayment
+				},
+				federatedPayment = new Federatedpayment
 				{
 					cardToken = _token,
 					partyId = null,
 					paymentMethodId = ""
-
-				}},
+				},
 			};
 
 			var paymentInfo = new HcaApiMethods<CheckoutPaymentInfoResponseDTO>();
 			var paymentInfoReq = paymentInfo.SetPaymentInfo(paymentData);
 			Assert.True("ok".Equals(paymentInfoReq.status.ToLower()), "The paymentInfo request is not passed");
+		}
 
+		[Test, Order(8), Description("order to pay")]
+		public void T08VerifyOrderToPayTest()
+		{
 			var order = new HcaApiMethods<CheckoutSubmitOrderResponseDTO>();
 			var orderReq = order.SubmitOrder();
 			_confirmationId = orderReq.data.confirmationId;
 			Assert.True("ok".Equals(orderReq.status.ToLower()), "The order request is not passed");
+		}
+
+		[Test, Order(9), Description("Verify Order By ConfirmationId")]
+		public void T09VerifyOrderByConfirmationIdTest()
+		{
+			var order = new HcaApiMethods<OrdersOrderResponseDTO>();
+			var orderReq = order.GetOrder(_confirmationId);
+			Assert.True("ok".Equals(orderReq.status.ToLower()), "The order request is not passed");
+		}
+
+
+		[Test, Order(10), Description("Verify Cart Is Empty")]
+		public void T10VerifyCartIsEmptyTest()
+		{
+			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cartReq = cart.GetCart();
+			Assert.True("ok".Equals(cartReq.status.ToLower()), "The getCart GET request is not passed.");
+			Assert.True(cartReq.data.cartLines.Length.ToString().Equals("0"), "Cart is not empty");
 		}
 	}
 }

@@ -32,6 +32,17 @@ namespace HcaApiTestAutomationFramework
 			return content;
 		}
 
+		public OrdersOrderResponseDTO GetOrder(string confirmationId)
+		{
+			var cart = new ApiHelper<OrdersOrderResponseDTO>();
+			var endpoint = "orders/" + confirmationId;
+			var url = cart.SetUrl(endpoint);
+			var request = cart.CreateGetRequest();
+			var response = cart.GetResponse(url, request);
+			OrdersOrderResponseDTO content = cart.GetContent<OrdersOrderResponseDTO>(response);
+			return content;
+		}
+
 		public SearchProductResponseDTO SearchProducts(dynamic requestBody, string endpoint = "search/products")
 		{
 			var cart = new ApiHelper<SearchProductResponseDTO>();

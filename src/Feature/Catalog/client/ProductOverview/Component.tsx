@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   }
   // tslint:disable-next-line:no-big-function
   protected safeRender() {
-    const { product } = this.props.sitecoreContext;
+    const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
 
@@ -65,14 +65,20 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
           </header>
           <div className="row">
             <div className="col-md-6">
-              <ProductGallery images={selectedCatalogItem.imageUrls} />
+              {!!selectedCatalogItem.imageUrls && selectedCatalogItem.imageUrls.length > 0 ? (
+                <ProductGallery images={selectedCatalogItem.imageUrls} />
+              ) : (
+                <img src={fallbackImageUrl} alt="No image" className="fallback-image" />
+              )}
             </div>
             <div className="col-md-6">
               <div className="product-info">
                 <ProductRating rating={selectedCatalogItem.customerAverageRating} />
                 <p className="product-price">
                   <span className="price-label">Sale</span>
-                  <span className="price-value">{selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}</span>
+                  <span className="price-value">
+                    {selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}
+                  </span>
                 </p>
                 <div className="product-params">
                   <Placeholder name="product-properties" rendering={this.props.rendering} />
@@ -156,11 +162,16 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   }
   private getStockStatusLabel(stockStatus: string) {
     switch (stockStatus) {
-      case Common.StockStatus.BackOrderable: return 'Back Orderable';
-      case Common.StockStatus.InStock: return 'In Stock';
-      case Common.StockStatus.OutOfStock: return 'Out Of Stock';
-      case Common.StockStatus.PreOrderable: return 'Pre Orderable';
-      default: return '';
+      case Common.StockStatus.BackOrderable:
+        return 'Back Orderable';
+      case Common.StockStatus.InStock:
+        return 'In Stock';
+      case Common.StockStatus.OutOfStock:
+        return 'Out Of Stock';
+      case Common.StockStatus.PreOrderable:
+        return 'Pre Orderable';
+      default:
+        return '';
     }
   }
 }

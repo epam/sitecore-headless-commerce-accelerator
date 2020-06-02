@@ -14,12 +14,13 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
+import { ProductContext } from 'Foundation/Commerce/client';
 import { ProductVariantModel } from 'Foundation/Commerce/client/dataModel.Generated';
 
 import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
-import { ProductContext } from 'Foundation/Commerce/client';
 
-export interface ProductOverviewOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
+export interface ProductOverviewOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductOwerviewContext> {}
+
 export interface ProductOverviewStateProps {
   selectedVariant: ProductVariantModel;
 }
@@ -32,3 +33,5 @@ export interface ProductOverviewProps
 export interface ProductOverviewState extends JSS.SafePureComponentState {}
 
 export interface AppState extends ProductVariant.ProductVariantGlobalState {}
+
+export interface ProductOwerviewContext extends ProductContext, JSS.ImageFallbackContext {}

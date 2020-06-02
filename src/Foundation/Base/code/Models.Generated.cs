@@ -41,4 +41,32 @@ namespace HCA.Foundation.Base.Models
     using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
 
+
+    /// <summary>
+    /// ISiteSettings Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Base/_SiteSettings</para>
+    /// <para>ID: 7724bf37-c8c6-4189-b7c9-7ed566ac76d8</para>
+    /// </summary>
+    [SitecoreType(TemplateId="7724bf37-c8c6-4189-b7c9-7ed566ac76d8")]
+    public partial interface ISiteSettings: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// SiteSettings Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Base/_SiteSettings</para>
+    /// <para>ID: 7724bf37-c8c6-4189-b7c9-7ed566ac76d8</para>
+    /// </summary>
+    [SitecoreType(TemplateId="7724bf37-c8c6-4189-b7c9-7ed566ac76d8")]
+    public partial class SiteSettings: GlassBase, ISiteSettings
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Base/_SiteSettings
+        /// </summary>
+        public const string TemplateId = "7724bf37-c8c6-4189-b7c9-7ed566ac76d8";
+
+    }
+
 }

@@ -23,7 +23,7 @@ import { renderingWithContext } from 'Foundation/ReactJss/client';
 import { currentOrder } from 'Feature/Checkout/client/Integration/Order';
 import * as OrderActions from 'Feature/Checkout/client/Integration/Order/actions';
 
-import { OrderConfirmationControl } from './Component';
+import { OrderConfirmationComponent } from './Component';
 import { AppState, OrderConfirmationDispatchProps, OrderConfirmationOwnProps, OrderConfirmationStateProps } from './models';
 
 const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
@@ -51,4 +51,4 @@ const connectedToStore = connect<OrderConfirmationStateProps, OrderConfirmationD
   mapDispatchToProps
 );
 
-export const OrderConfirmation = compose(connectedToStore, renderingWithContext)(OrderConfirmationControl);
+export const OrderConfirmation = compose(connectedToStore, renderingWithContext)(OrderConfirmationComponent);

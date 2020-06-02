@@ -18,13 +18,20 @@ import { ProductColorsContext } from 'Foundation/Commerce/client';
 
 import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
 
-export interface CartOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductColorsContext> {}
+export interface CartOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, CartContext> {}
+
 export interface CartStateProps {
   shoppingCartData: ShoppingCart.ShoppingCartData;
 }
+
 export interface CartDispatchProps {
   LoadCart: () => void;
 }
+
 export interface CartProps extends CartStateProps, CartDispatchProps, CartOwnProps {}
+
 export interface CartState extends JSS.SafePureComponentState {}
+
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}
+
+export interface CartContext extends ProductColorsContext, JSS.ImageFallbackContext {}

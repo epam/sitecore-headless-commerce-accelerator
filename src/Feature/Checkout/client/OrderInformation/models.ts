@@ -14,19 +14,20 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
 import * as Commerce from 'Foundation/Commerce/client';
 
-export interface OrderInfoControlOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
 
-export interface OrderInfoControlState extends JSS.SafePureComponentState {
+export interface OrderInformationOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
+
+export interface OrderInformationState extends JSS.SafePureComponentState {
   shoppingCartData: Commerce.CartModel;
 }
 
-export interface OrderInfoControlDispatchProps {
+export interface OrderInformationDispatchProps {
   LoadCart: () => void;
 }
 
-export interface OrderInfoProps extends OrderInfoControlOwnProps, OrderInfoControlState, OrderInfoControlDispatchProps {}
-export interface OrderInfoState extends JSS.SafePureComponentState {}
+export interface OrderInformationProps extends OrderInformationOwnProps, OrderInformationState, OrderInformationDispatchProps {}
+
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}

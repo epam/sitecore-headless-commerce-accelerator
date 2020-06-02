@@ -257,6 +257,16 @@ jobs:
 
     steps:
 
+    - task: DownloadPipelineArtifact@2
+      displayName: Download node modules
+      inputs:
+        buildType: 'specific'
+        project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+        definition: '10'
+        buildVersionToDownload: 'latest'
+        artifactName: 'node_modules'
+        targetPath: '$(Pipeline.Workspace)/s/generators/node_modules'
+
     - task: gulp@1
       displayName: Collect necessary files to templates
       inputs:

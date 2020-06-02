@@ -14,15 +14,14 @@
 
 import * as React from 'react';
 
-import { OrderConfirmationProps, OrderConfirmationState } from './models';
-
-import * as Jss from 'Foundation/ReactJss/client';
+import * as JSS from 'Foundation/ReactJss/client';
 
 import { Confirmation, Summary, ThankYouMessage  } from './components';
+import { OrderConfirmationProps, OrderConfirmationState } from './models';
 
 import './styles.scss';
 
-export class OrderConfirmationComponent extends Jss.SafePureComponent<OrderConfirmationProps, OrderConfirmationState> {
+export class OrderConfirmationComponent extends JSS.SafePureComponent<OrderConfirmationProps, OrderConfirmationState> {
   constructor(props: OrderConfirmationProps) {
     super(props);
   }

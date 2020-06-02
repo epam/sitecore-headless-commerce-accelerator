@@ -14,14 +14,13 @@
 
 import * as React from 'react';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { VideoControlProps, VideoControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { VideoProps, VideoState } from './models';
 
 import './styles.scss';
 
-class VideoControl extends Jss.SafePureComponent<VideoControlProps, VideoControlState> {
+export class Video extends JSS.SafePureComponent<VideoProps, VideoState> {
   public safeRender() {
     return (
         <figure className="promo-video-full">
@@ -41,5 +40,3 @@ class VideoControl extends Jss.SafePureComponent<VideoControlProps, VideoControl
     );
   }
 }
-
-export const Video = withExperienceEditorChromes(VideoControl);

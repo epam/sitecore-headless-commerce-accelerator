@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface WishListControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface WishListProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 
-export interface WishListControlState extends JSS.SafePureComponentState {}
+export interface WishListState extends JSS.SafePureComponentState {}

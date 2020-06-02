@@ -12,9 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
+
+import { rendering } from 'Foundation/ReactJss/client';
 
 import * as Account from 'Feature/Account/client/Integration/Account';
 
@@ -46,6 +48,6 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 const connectedToStore = connect<AddressManagerStateProps, AddressManagerDispatchProps, AddressManagerOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+);
 
-export const AddressManager = withExperienceEditorChromes(connectedToStore);
+export const AddressManager = compose(connectedToStore, rendering)(Component);

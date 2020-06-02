@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { PromoProductFullBControlProps, PromoProductFullBControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { PromoProductFullBProps, PromoProductFullBState } from './models';
 
 import './styles.scss';
 
-class PromoProductFullBControl extends Jss.SafePureComponent<PromoProductFullBControlProps, PromoProductFullBControlState> {
+export class PromoProductFullB extends JSS.SafePureComponent<PromoProductFullBProps, PromoProductFullBState> {
   public safeRender() {
     return (
         <figure className="product-promo-full-b">
@@ -53,5 +53,3 @@ class PromoProductFullBControl extends Jss.SafePureComponent<PromoProductFullBCo
     );
   }
 }
-
-export const PromoProductFullB = withExperienceEditorChromes(PromoProductFullBControl);

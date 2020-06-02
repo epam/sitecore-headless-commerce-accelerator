@@ -15,14 +15,14 @@
 import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import * as JSS from 'Foundation/ReactJss/client';
 
 import { OrderHistoryItem } from './components';
 import { OrderHistoryProps, OrderHistoryState } from './models';
 
 import './styles.scss';
 
-export class OrderHistoryComponent extends Jss.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
+export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
   constructor(props: OrderHistoryProps) {
     super(props);
   }

@@ -13,15 +13,16 @@
 //    limitations under the License.
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import * as Jss from 'Foundation/ReactJss/client';
 import * as React from 'react';
 
+import * as JSS from 'Foundation/ReactJss/client';
 import { NavigationLink } from 'Foundation/UI/client';
 
-import { NavigationControlProps, NavigationControlState } from './models';
+import { NavigationProps, NavigationState } from './models';
+
 import './styles.scss';
 
-class NavigationControl extends Jss.SafePureComponent<NavigationControlProps, NavigationControlState> {
+class NavigationComponent extends JSS.SafePureComponent<NavigationProps, NavigationState> {
   public safeRender() {
     const { checkoutSteps, backToLink, infoLink } = this.props.fields;
     return (
@@ -51,4 +52,4 @@ class NavigationControl extends Jss.SafePureComponent<NavigationControlProps, Na
   }
 }
 
-export const CheckoutNavigation = Jss.renderingWithContext(NavigationControl);
+export const CheckoutNavigation = JSS.renderingWithContext(NavigationComponent);

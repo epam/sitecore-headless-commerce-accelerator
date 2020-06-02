@@ -14,14 +14,13 @@
 
 import * as React from 'react';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { HeroPanelControlProps, HeroPanelControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { HeroPanelProps, HeroPanelState } from './models';
 
 import './styles.scss';
 
-class HeroPanelControl extends Jss.SafePureComponent<HeroPanelControlProps, HeroPanelControlState> {
+export class HeroPanel extends JSS.SafePureComponent<HeroPanelProps, HeroPanelState> {
   public safeRender() {
     return (
         <figure className="category-promo-hero">
@@ -37,5 +36,3 @@ class HeroPanelControl extends Jss.SafePureComponent<HeroPanelControlProps, Hero
     );
   }
 }
-
-export const HeroPanel = withExperienceEditorChromes(HeroPanelControl);

@@ -16,12 +16,11 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import { renderingWithContext } from 'Foundation/ReactJss/client/Enhancers/rendering';
+import { ProductInformationProps, ProductInformationState } from './models';
 
-import { ProductInformationControlProps, ProductInformationControlState } from './models';
 import './styles.scss';
 
-class ProductInformationControl extends JSS.SafePureComponent<ProductInformationControlProps, ProductInformationControlState> {
+class ProductInformationComponent extends JSS.SafePureComponent<ProductInformationProps, ProductInformationState> {
   protected safeRender() {
     const { product } = this.props.sitecoreContext;
     return (
@@ -101,4 +100,4 @@ class ProductInformationControl extends JSS.SafePureComponent<ProductInformation
   }
 }
 
-export const ProductInformation = renderingWithContext(ProductInformationControl);
+export const ProductInformation = JSS.renderingWithContext(ProductInformationComponent);

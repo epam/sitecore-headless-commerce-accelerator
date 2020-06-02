@@ -17,7 +17,7 @@ import * as React from 'react';
 import { withExperienceEditorChromes, withSitecoreContext } from '@sitecore-jss/sitecore-jss-react';
 import { branch, compose, renderComponent, renderNothing } from 'recompose';
 
-import { DatasourceRequiredControl } from '../Components/ExperienceEditorWarning';
+import { DatasourceRequiredComponent } from '../Components/ExperienceEditorWarning';
 
 import { RenderingWithContextProps } from './models';
 
@@ -31,7 +31,7 @@ export const renderingWithContext = <P extends { sitecoreContext: any }, S = {}>
 
 const withDatasourceMissingErrorInExperienceMode = branch<RenderingWithContextProps>(
   (props) => props && props.sitecoreContext && props.sitecoreContext.pageEditing && !props.rendering.dataSource,
-  renderComponent(DatasourceRequiredControl),
+  renderComponent(DatasourceRequiredComponent),
 );
 
 const withRenderedComponentInNormalMode = (renderInNormalModeWithoutDatasource: boolean) =>

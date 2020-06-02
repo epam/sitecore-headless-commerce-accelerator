@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { NavBreadcrumbsControlProps, NavBreadcrumbsControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { BreadcrumbProps, BreadcrumbState } from './models';
 
 import './styles.scss';
 
-class NavBreadcrumbsControl extends Jss.SafePureComponent<NavBreadcrumbsControlProps, NavBreadcrumbsControlState> {
+export class Breadcrumb extends JSS.SafePureComponent<BreadcrumbProps, BreadcrumbState> {
   public safeRender() {
     return (
       <>
@@ -45,5 +45,3 @@ class NavBreadcrumbsControl extends Jss.SafePureComponent<NavBreadcrumbsControlP
     );
   }
 }
-
-export const NavBreadcrumbs = withExperienceEditorChromes(NavBreadcrumbsControl);

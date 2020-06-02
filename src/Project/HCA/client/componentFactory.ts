@@ -15,14 +15,8 @@
 import * as Account from 'Feature/Account/client';
 import * as Catalog from 'Feature/Catalog/client';
 import * as Checkout from 'Feature/Checkout/client';
+import * as Navigation from 'Feature/Navigation/client';
 import * as PageContent from 'Feature/PageContent/client';
-
-import Copyright from 'Feature/Navigation/client/Copyright';
-import GlobalFooter from 'Feature/Navigation/client/GlobalFooter';
-import * as Header from 'Feature/Navigation/client/Header';
-
-import FooterLinks from 'Feature/Navigation/client/FooterLinks';
-import SocialNetworksLinks from 'Feature/Navigation/client/SocialNetworksLinks';
 
 const components = new Map<string, any>();
 
@@ -44,19 +38,19 @@ components.set('Light Banner', PageContent.LightBanner);
 components.set('Modern Banner', PageContent.ModernBanner);
 
 // Header renderings
-components.set('Header', Header.Header);
-components.set('Header Content', Header.HeaderContent);
-components.set('Logo', Header.Logo);
-components.set('Navigation Menu', Header.NavigationMenu);
-components.set('Search Box', Header.NavigationSearch);
-components.set('Quick Navigation', Header.QuickNavigation);
-components.set('User Navigation', Header.UserNavigation);
+components.set('Header', Navigation.Header);
+components.set('Header Content', Navigation.HeaderContent);
+components.set('Logo', Navigation.Logo);
+components.set('Navigation Menu', Navigation.NavigationMenu);
+components.set('Search Box', Navigation.NavigationSearch);
+components.set('Quick Navigation', Navigation.QuickNavigation);
+components.set('User Navigation', Navigation.UserNavigation);
 
 // Footer renderings
-components.set('Footer', GlobalFooter);
-components.set('Copyright', Copyright);
-components.set('Footer Links', FooterLinks);
-components.set('Social Networks Links', SocialNetworksLinks);
+components.set('Footer', Navigation.GlobalFooter);
+components.set('Copyright', Navigation.Copyright);
+components.set('Footer Links', Navigation.FooterLinks);
+components.set('Social Networks Links', Navigation.SocialNetworksLinks);
 
 // Catalog renderings
 components.set('Find In Store', Catalog.FindInStore);

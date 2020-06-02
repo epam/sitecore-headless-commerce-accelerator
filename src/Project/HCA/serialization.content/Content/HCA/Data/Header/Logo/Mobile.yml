@@ -1,0 +1,19 @@
+﻿---
+ID: "fa351dc2-26ef-4196-9dfa-11dd5be79de9"
+Parent: "6c8d751f-d56e-4551-a5d5-312d105195c8"
+Template: "095aae19-603c-4caa-9848-a47fcfe18308"
+Path: /sitecore/content/HCA/Data/Header/Logo/Mobile
+DB: master
+Languages:
+- Language: en
+  Fields:
+  - ID: "b33b2551-09c4-454e-b2d5-6f41d878cc63"
+    Hint: Image
+    Value: |
+      <image mediaid="{3BD521F9-EDDE-49D6-A995-9C5B85EB5AAE}" ></image>
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200528T131833Z

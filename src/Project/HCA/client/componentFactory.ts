@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,7 @@ import * as PageContent from 'Feature/PageContent/client';
 
 import Copyright from 'Feature/Navigation/client/Copyright';
 import GlobalFooter from 'Feature/Navigation/client/GlobalFooter';
-import GlobalHeader from 'Feature/Navigation/client/GlobalHeader';
+import * as Header from 'Feature/Navigation/client/Header';
 
 import FooterLinks from 'Feature/Navigation/client/FooterLinks';
 import SocialNetworksLinks from 'Feature/Navigation/client/SocialNetworksLinks';
@@ -35,9 +35,6 @@ components.set('Two Column', PageContent.TwoColumn);
 components.set('Two Column Row', PageContent.TwoColumnRow);
 components.set('Three Column Row', PageContent.ThreeColumnRow);
 
-// Page Content
-components.set('Header', GlobalHeader);
-
 // Home renderings
 components.set('Recommended Products', PageContent.RecommendedProducts);
 components.set('Banner Grid', PageContent.BannerGrid);
@@ -45,6 +42,15 @@ components.set('Banner', PageContent.Banner);
 components.set('Clear Banner', PageContent.ClearBanner);
 components.set('Light Banner', PageContent.LightBanner);
 components.set('Modern Banner', PageContent.ModernBanner);
+
+// Header renderings
+components.set('Header', Header.Header);
+components.set('Header Content', Header.HeaderContent);
+components.set('Logo', Header.Logo);
+components.set('Navigation Menu', Header.NavigationMenu);
+components.set('Search Box', Header.NavigationSearch);
+components.set('Quick Navigation', Header.QuickNavigation);
+components.set('User Navigation', Header.UserNavigation);
 
 // Footer renderings
 components.set('Footer', GlobalFooter);

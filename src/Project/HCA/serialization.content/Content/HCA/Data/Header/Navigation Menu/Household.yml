@@ -1,0 +1,33 @@
+﻿---
+ID: "ae15b145-7122-4f6b-be0d-1d1029a4477f"
+Parent: "260ba6fc-fa2b-457e-8a23-6260fcd4415e"
+Template: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
+Path: /sitecore/content/HCA/Data/Header/Navigation Menu/Household
+DB: master
+SharedFields:
+- ID: "9054b50f-0991-47de-ab5f-f114a47b0abe"
+  Hint: Commerce Categories
+  Type: Treelist
+  Value: |
+    {C4623F4F-3167-0EF3-0B8D-D1884233FF53}
+    {0BDE885C-C3AA-7BF3-9CAB-D93A2AF168AC}
+    {57585CF7-7AF6-F5E3-EB7E-A57736343091}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200521T134313Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "5ded8fb9-7d05-400d-971c-affa49b5443b"
+      Hint: Title
+      Value: Household
+    - ID: "e64c33b3-d65e-4319-93a2-2c754a8cac6d"
+      Hint: Image
+      Value: |
+        <image mediaid="{0F07A628-C6C1-4A93-B9B3-CC7045011E39}" ></image>

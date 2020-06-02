@@ -1,0 +1,18 @@
+﻿---
+ID: "b7aa5501-b17f-4896-a70f-aa8866909e99"
+Parent: "7ca13274-c949-49bf-836d-e32d49bc6782"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/Navigation/Quick Navigation
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Quick Navigation
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200519T111212Z

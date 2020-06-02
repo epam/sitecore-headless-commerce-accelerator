@@ -1,5 +1,5 @@
 ﻿---
-ID: "9c124c67-5a07-4dbc-a734-6ee1f6c0b5df"
+ID: "7f6cab22-d5ef-4924-afbe-6024f6b2a758"
 Parent: "7ca13274-c949-49bf-836d-e32d49bc6782"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Feature/Navigation/Header
@@ -8,51 +8,12 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Header
-- ID: "17bb046a-a32a-41b3-8315-81217947611b"
-  Hint: ComponentQuery
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
   Value: |
-    query GlobalNavigation($datasource: String!) {
-      datasource(value: $datasource) {
-        ... on GlobalHeader {
-          id
-          logo {
-            jss
-          }
-          mobileLogo {
-            jss
-          }
-          menuItems {
-            items: targetItems {
-              ... on MenuItem {
-                id
-                title {
-                  jss
-                }
-                image {
-                  jss
-                }
-                commerceCategories {
-                  items:  targetItems {
-                    ... on CommerceCategory {
-                      id
-                     name: displayName
-                    }
-                  
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    
-- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
-  Hint: Datasource Template
-  Value: /sitecore/templates/HCA/Feature/Navigation/Global Header
-- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
-  Hint: Datasource Location
-  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']/*[@@templatename='Global Header']"
+    {169BC134-8637-41E3-81A6-775B10B374D8}
+    {CE081C90-3501-4F74-A21D-2EAC39B3CF41}
 Languages:
 - Language: en
   Versions:
@@ -60,4 +21,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20180428T094728Z
+      Value: 20200518T143614Z

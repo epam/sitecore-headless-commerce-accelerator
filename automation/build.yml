@@ -252,9 +252,7 @@ jobs:
     dependsOn: Build_and_test
 
     variables:
-      npm_package_config_folder: './generators/generators/templates/src'
-      npm_package_config: '$(npm_package_config_folder)/package.json'
-      npm_package_readme: '$(npm_package_config_folder)/readme.md'
+      npm_package_config: './generators/package.json'
 
     steps:
 
@@ -277,9 +275,7 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          (Get-Content $(npm_package_config)) -replace '"name": $(quotes_regexp)', '"name": "$(package_name)"' | Set-Content $(npm_package_config)
           (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"' | Set-Content $(npm_package_config)
-          Copy-Item $(npm_package_config) ./generators -Force
 
     - task: PowerShell@2
       displayName: Create package

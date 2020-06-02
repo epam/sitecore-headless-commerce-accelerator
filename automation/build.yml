@@ -258,9 +258,10 @@ jobs:
     steps:
 
     - task: PowerShell@2
+      displayName: Download node modules
       inputs:
         targetType: 'inline'
-        script: 'npm install --global gulp-cli'
+        script: 'npm install gulp-cli'
         workingDirectory: './generators'
 
     - task: gulp@1
@@ -275,15 +276,15 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          (Get-Content $(npm_package_config)) -replace '"name": $(quotes_regexp)', '"name": "$(project_name)"'  Set-Content $(npm_package_config)
-          (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"'  Set-Content $(npm_package_config)
-          
+          (Get-Content $(npm_package_config)) -replace '"name": $(quotes_regexp)', '"name": "$(package_name)"' | Set-Content $(npm_package_config)
+          (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"' | Set-Content $(npm_package_config)
+
     - task: PowerShell@2
       displayName: Create package
       inputs:
         targetType: 'inline'
-        script: |
-          npm pack $(npm_package_config_folder)
+        script: 'npm pack'
+        workingDirectory: '$(npm_package_config_folder)'
 
     - task: PowerShell@2
       displayName: Publish package
@@ -294,3 +295,4 @@ jobs:
         script: |
           "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
           npm publish --loglevel=error
+        workingDirectory: '$(npm_package_config_folder)'

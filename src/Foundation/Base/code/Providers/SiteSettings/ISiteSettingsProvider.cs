@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,19 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Base
+namespace HCA.Foundation.Base.Providers.SiteSettings
 {
-    using System.Diagnostics.CodeAnalysis;
+    using Sitecore.Data;
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
-
-    [ExcludeFromCodeCoverage]
-    public static class Constants
+    /// <summary>
+    /// Provides site settings
+    /// </summary>
+    public interface ISiteSettingsProvider
     {
-        public static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver()
-        };
+        /// <summary>
+        /// Gets site settings derived from given template
+        /// </summary>
+        /// <typeparam name="T">Settings type</typeparam>
+        /// <param name="settingTemplateId">Settings template id</param>
+        /// <returns>Settings object</returns>
+        T GetSetting<T>(ID settingTemplateId) where T : class;
     }
 }

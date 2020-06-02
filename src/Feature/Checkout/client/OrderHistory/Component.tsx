@@ -12,18 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
-
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { OrderHistoryProps, OrderHistoryState } from './models';
+import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss/client';
 
+import { OrderHistoryItem } from './components';
+import { OrderHistoryProps, OrderHistoryState } from './models';
+
 import './styles.scss';
 
-import { OrderHistoryItem } from './components';
-
-export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
+export class OrderHistoryComponent extends Jss.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
   constructor(props: OrderHistoryProps) {
     super(props);
   }
@@ -33,7 +32,7 @@ export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps
   }
 
   public safeRender() {
-    const { orders, isLastPage, isLoading } = this.props;
+    const { orders, isLastPage, isLoading, sitecoreContext } = this.props;
     return (
       <div className="order-history">
         <div className="color-title">
@@ -44,7 +43,7 @@ export class OrderHistoryControl extends Jss.SafePureComponent<OrderHistoryProps
           {orders &&
             orders.map((order, index) => (
               <div className="row order-list-item" key={index}>
-                <OrderHistoryItem {...order} />
+                <OrderHistoryItem order={order} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />
               </div>
             ))}
         </div>

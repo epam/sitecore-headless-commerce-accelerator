@@ -14,11 +14,13 @@
 
 import { RouterProps } from 'react-router';
 
-import * as ProductsSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
+import * as JSS from 'Foundation/ReactJss/client';
 
 import * as commonModels from 'Feature/Catalog/client/Integration/common/models';
+import * as ProductsSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
 
-export interface ProductListOwnProps extends RouterProps {}
+export interface ProductListOwnProps extends RouterProps, JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
+
 export interface ProductListStateProps {
   categoryId: string;
   currentPageNumber: number;

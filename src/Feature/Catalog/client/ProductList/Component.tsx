@@ -31,7 +31,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
   }
 
   public safeRender() {
-    const { currentPageNumber, totalPageCount, totalItemCount, search, items, isLoading, DiscardFacet } = this.props;
+    const { currentPageNumber, totalPageCount, totalItemCount, search, items, isLoading, DiscardFacet, sitecoreContext } = this.props;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
       <section className="listing-product-grid">
@@ -39,7 +39,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
         <ul>
           {items.map((product, index) => (
             <li key={index}>
-              <ProductListItem {...product} />
+              <ProductListItem product={product} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />
               <span className="triangle" />
             </li>
           ))}

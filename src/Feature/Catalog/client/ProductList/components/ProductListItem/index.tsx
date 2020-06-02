@@ -23,33 +23,34 @@ import './styles.scss';
 
 export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps, Jss.SafePureComponentState> {
   public safeRender() {
+    const { product, fallbackImageUrl } = this.props;
     return (
       <figure className="listing-grid-item">
         <div className="img-wrap">
           <img
-            src={!!this.props.imageUrls[0] ? this.props.imageUrls[0] : 'http://via.placeholder.com/350x150'}
+            src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl}
             alt="product image"
           />
-          <NavigationLink className="btn btn-main btn-quickView" to={`/product/${this.props.productId}`}>
+          <NavigationLink className="btn btn-main btn-quickView" to={`/product/${product.productId}`}>
             Quick View
           </NavigationLink>
-          <NavigationLink className="btn btn-main btn-viewProduct" to={`/product/${this.props.productId}`}>
+          <NavigationLink className="btn btn-main btn-viewProduct" to={`/product/${product.productId}`}>
             View Product
           </NavigationLink>
         </div>
         <figcaption>
           <div className="price price--adjusted">
             <div className="price__full">
-              <span className="price__currency">{this.props.currencySymbol}</span>
-              <span className="price__amount">{this.props.listPrice.toFixed(2)}</span>
+              <span className="price__currency">{product.currencySymbol}</span>
+              <span className="price__amount">{product.listPrice.toFixed(2)}</span>
             </div>
             <div className="price__current">
-              <span className="price__currency">{this.props.currencySymbol}</span>
-              <span className="price__amount">{this.props.adjustedPrice.toFixed(2)}</span>
+              <span className="price__currency">{product.currencySymbol}</span>
+              <span className="price__amount">{product.adjustedPrice.toFixed(2)}</span>
             </div>
           </div>
-          <div className="brand">{this.props.brand}</div>
-          <h2>{this.props.displayName}</h2>
+          <div className="brand">{product.brand}</div>
+          <h2>{product.displayName}</h2>
           <input type="checkbox" />
           <label className="compare">Compare</label>
         </figcaption>

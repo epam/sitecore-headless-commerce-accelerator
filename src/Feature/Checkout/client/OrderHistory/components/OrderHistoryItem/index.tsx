@@ -23,7 +23,7 @@ import { OrderHistoryItemProps } from './models';
 
 export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProps, Jss.SafePureComponentState> {
   public safeRender() {
-    const order = this.props;
+    const { order, fallbackImageUrl} = this.props;
     return (
       <div className="order-list-item-header col-md-12">
         <div className="order-list-item-header__title">
@@ -50,7 +50,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                     {cartLine.quantity}
                   </span>
                   <div className="img-wrap">
-                    <img src={!!cartLine.variant.imageUrls[0] ? cartLine.variant.imageUrls[0] : 'http://via.placeholder.com/350x150'} alt="product image" />
+                    <img src={!!cartLine.variant.imageUrls[0] ? cartLine.variant.imageUrls[0] : fallbackImageUrl} alt="product image" />
                     <NavigationLink className="btn btn-main btn-viewProduct" to={`/product/${cartLine.product.productId}`}>View Product</NavigationLink>
                   </div>
                   <figcaption>

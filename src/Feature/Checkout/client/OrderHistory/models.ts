@@ -17,7 +17,7 @@ import * as JSS from 'Foundation/ReactJss/client';
 import * as OrderHistory from 'Feature/Checkout/client/Integration/OrderHistory';
 import * as Models from 'Foundation/Commerce/client';
 
-export interface OrderHistoryOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface OrderHistoryOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
 
 export interface OrderHistoryStateProps {
   orders: Models.Order[];

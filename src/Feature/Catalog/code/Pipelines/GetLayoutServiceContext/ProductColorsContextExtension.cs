@@ -40,6 +40,7 @@ namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
+            // TODO: Refactor. Use SiteSettingsProvider
             var productColorMappingQuery =
                 $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
             var productColorMapping =

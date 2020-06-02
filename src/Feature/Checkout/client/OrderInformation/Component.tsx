@@ -12,23 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
+import * as JSS from 'Foundation/ReactJss/client';
+
 import { OrderSummaryPriceLines } from 'Feature/Checkout/client/common/OrderSummaryPriceLines';
-import * as Jss from 'Foundation/ReactJss/client';
 
 import { CartLinesSummary } from './components';
-import { OrderInfoControlState, OrderInfoProps } from './models';
+import { OrderInformationProps, OrderInformationState } from './models';
 
 import './styles.scss';
 
-export class OrderInfoControl extends Jss.SafePureComponent<OrderInfoProps, OrderInfoControlState> {
+export class OrderInformationComponent extends JSS.SafePureComponent<OrderInformationProps, OrderInformationState> {
   public componentDidMount() {
     this.props.LoadCart();
   }
   public safeRender() {
-    const { shoppingCartData } = this.props;
+    const { shoppingCartData, sitecoreContext } = this.props;
 
     const price = shoppingCartData ? shoppingCartData.price : null;
     const cartLines = shoppingCartData ? shoppingCartData.cartLines : [];
@@ -40,11 +41,9 @@ export class OrderInfoControl extends Jss.SafePureComponent<OrderInfoProps, Orde
         </section>
         <section className="toggle open">
           <Text field={{ value: 'In Your Cart' }} tag="h1" />
-          <CartLinesSummary cartLines={cartLines} />
+          <CartLinesSummary cartLines={cartLines} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />
         </section>
       </>
     );
   }
 }
-
-export const OrderInformation = withExperienceEditorChromes(OrderInfoControl);

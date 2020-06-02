@@ -266,9 +266,8 @@ jobs:
     - task: gulp@1
       displayName: Collect necessary files to templates
       inputs:
-        gulpFile: './gulpfile.js'
+        gulpFile: './generators/gulpfile.js'
         targets: 
-        workingDirectory: './generators'
         enableCodeCoverage: false
 
     - task: PowerShell@2

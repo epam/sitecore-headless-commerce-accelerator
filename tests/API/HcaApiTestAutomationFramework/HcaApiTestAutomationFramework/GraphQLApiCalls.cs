@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
+﻿using System.Configuration;
 using HcaApiTestAutomationFramework.GraphQlDTO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace HcaApiTestAutomationFramework
 {

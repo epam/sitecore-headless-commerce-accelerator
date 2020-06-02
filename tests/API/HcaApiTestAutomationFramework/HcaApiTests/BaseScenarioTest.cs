@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using HcaApiTestAutomationFramework;
+﻿using HcaApiTestAutomationFramework;
 using HcaApiTestAutomationFramework.HcaDTO;
 using NUnit.Framework;
-using System.Linq;
 using HcaApiTestAutomationFramework.GraphQlDTO;
 
 namespace HcaApiTests

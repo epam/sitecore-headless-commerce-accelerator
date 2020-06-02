@@ -37,10 +37,6 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     const { images } = this.props;
     const { activeImageIndex } = this.state;
 
-    if (!images || images.length <= 0) {
-      return null;
-    }
-
     return (
       <div className="product-gallery">
         <div className="product-gallery-header">

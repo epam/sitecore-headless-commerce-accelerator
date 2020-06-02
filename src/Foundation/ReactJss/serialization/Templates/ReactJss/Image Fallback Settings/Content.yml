@@ -1,0 +1,14 @@
+﻿---
+ID: "e2787df8-9c1a-4164-a18a-da02d72f0280"
+Parent: "275950d5-b3a6-476a-8258-bb93a3a96f3c"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200528T100427Z

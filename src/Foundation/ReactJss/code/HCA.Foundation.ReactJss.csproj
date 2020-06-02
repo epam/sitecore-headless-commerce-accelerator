@@ -557,8 +557,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Infrastructure\BaseSafeJssGetLayoutServiceContextProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\ImageFallbackContextProcessor.cs" />
     <Compile Include="ItemSerializerConfigurator.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -584,6 +586,10 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Base\code\HCA.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>HCA.Foundation.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GlassMapper\code\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044b0ca-abe2-4365-b1b2-1e347993b4aa}</Project>
       <Name>HCA.Foundation.GlassMapper</Name>

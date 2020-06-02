@@ -12,11 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
+
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as commonSelectors from 'Feature/Catalog/client/Integration/common/selectors';
 import * as ProductSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
@@ -64,4 +65,4 @@ const connectedToStore = connect<ProductListStateProps, ProductListDispatchProps
   mapDispatchToProps
 );
 
-export const ProductList = compose(withRouter, withExperienceEditorChromes, connectedToStore)(ProductListComponent);
+export const ProductList = compose(withRouter, renderingWithContext, connectedToStore)(ProductListComponent);

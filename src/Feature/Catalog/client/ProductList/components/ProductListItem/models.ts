@@ -13,4 +13,8 @@
 //    limitations under the License.
 
 import * as ProductSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
-export interface ProductListItemProps extends ProductSearch.Product {}
+
+export interface ProductListItemProps {
+    fallbackImageUrl: string;
+    product: ProductSearch.Product;
+}

@@ -1,5 +1,9 @@
 {
     "solutionName": {
-        "prompt": "Provide a name for a Solution:"
+        "prompt": "Provide a name for a solution:"
+    },
+
+    "helixLayers": {
+        "prompt": "Choose layers for the solution:"
     }
 }

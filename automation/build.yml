@@ -1,0 +1,174 @@
+# Build using Visual Studio 2017 on Windows Server 2016.
+
+trigger: none
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  build_cake: './src/build.cake'
+  artifacts_location: '$(Pipeline.Workspace)/s/output'
+
+steps:
+
+- task: UseNode@1
+  displayName: Installing Node 10
+  inputs:
+    script: 'npm --version'
+
+- task: DownloadSecureFile@1
+  displayName: Download license
+  name: license_file
+  inputs:
+    secureFile: 'license.xml'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download node modules
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'node_modules'
+    targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download packages
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'packages'
+    targetPath: '$(Pipeline.Workspace)/s/src/packages'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download tools
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'tools'
+    targetPath: '$(Pipeline.Workspace)/s/src/tools'
+
+- task: PowerShell@2
+  displayName: Config preparation
+  inputs:
+    targetType: 'inline'
+    script: |
+      Move-Item $(license_file.secureFilePath) ./src/ -Force
+- task: gulp@1
+  displayName: Gulp code generation
+  inputs:
+    gulpFile: './src/scripts/code-generation/codeGen.js'
+    targets: 
+    enableCodeCoverage: false
+
+- task: PowerShell@2
+  displayName: Webpack build
+  inputs:
+    targetType: 'inline'
+    script: |
+      $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
+      $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
+      copyfiles -f  ./Project/HCA/client/public/**/* ./Project/HCA/client/build/
+      cross-env NODE_ENV=production webpack
+      nuget.exe restore ./HCA.sln
+    workingDirectory: './src/'
+
+- task: MSBuild@1
+  displayName: MSBuild
+  inputs:
+    solution: './src/HCA.sln'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Rebuild'
+
+- task: PowerShell@2
+  displayName: Run Unit tests
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 003-Tests'
+    workingDirectory: './src/'
+
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'
+
+
+- task: MSBuild@1
+  displayName: MSBuild for publish
+  inputs:
+    solution: './src/**/*.csproj'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+- task: PowerShell@2
+  displayName: Collect files for artifacts
+  env:
+    Workspace: $(Pipeline.Workspace)
+  inputs:
+    targetType: 'inline'
+    script: |
+      robocopy $(Pipeline.Workspace)/s/src/configs/Sitecore/ $(Pipeline.Workspace)/s/output/ web.config
+      robocopy $(Pipeline.Workspace)/s/src/tools/cake.sitecore/Cake.Sitecore/tools/unicorn $(Pipeline.Workspace)/s/output/unicorn-sync /s
+      ./automation/Get-Artifacts.ps1 Feature
+      ./automation/Get-Artifacts.ps1 Foundation
+      ./automation/Get-Artifacts.ps1 Project
+    errorActionPreference: 'continue'
+    ignoreLASTEXITCODE: true
+
+- task: PowerShell@2
+  displayName: Change default parameters for $(project_name)
+  inputs:
+    targetType: 'inline'
+    script: |
+      (Get-Content $(project_site_config)) -replace 'hostName=$(quotes_regexp)', 'hostName="$(sitecore_hostname)"' | Set-Content $(project_site_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
+      (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
+- task: PublishPipelineArtifact@1
+  displayName: Publish web config
+  inputs:
+    targetPath: '$(artifacts_location)/web.config'
+    artifact: 'web_config'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish unicorn
+  inputs:
+    targetPath: '$(artifacts_location)/unicorn'
+    artifact: 'unicorn'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish Feature 
+  inputs:
+    targetPath: '$(artifacts_location)/Feature'
+    artifact: 'Feature'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish Foundation 
+  inputs:
+    targetPath: '$(artifacts_location)/Foundation'
+    artifact: 'Foundation'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish Project 
+  inputs:
+    targetPath: '$(artifacts_location)/Project'
+    artifact: 'Project'
+    publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish unicorn sync tool 
+  inputs:
+    targetPath: '$(artifacts_location)/unicorn-sync'
+    artifact: 'unicorn-sync'
+    publishLocation: 'pipeline'

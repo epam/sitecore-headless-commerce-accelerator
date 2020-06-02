@@ -29,7 +29,9 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
   ChangePasswordOwnState
 > {
   public componentDidMount() {
-    this.props.VerifyCommerceUser();
+    if (!this.props.sitecoreContext.pageEditing) {
+      this.props.VerifyCommerceUser();
+    }
   }
 
   protected safeRender() {
@@ -83,7 +85,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
           <Submit
             disabled={isLoading}
             type="button"
-            className="btn btn-outline-teal"
+            className="btn btn-outline-main"
             onSubmitHandler={(formValues) => this.handleChangePasswordSubmit(formValues)}
           >
             {isLoading && <i className="fa fa-spinner fa-spin" />}

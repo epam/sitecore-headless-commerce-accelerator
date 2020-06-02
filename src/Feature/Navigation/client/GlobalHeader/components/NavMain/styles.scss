@@ -21,7 +21,7 @@ nav#nav-main > ul {
   @media (max-width: $screen-sm-max){
     display: block;
   }
-  i{
+  i {
     position: absolute;
     top: 0;
     right: 0;
@@ -29,7 +29,7 @@ nav#nav-main > ul {
     width: 40px;
     text-align: center;
     line-height: 40px;
-    border-left: 1px solid rgba(255,255,255,.2);
+    border-left: 1px solid $second-color-dark;
     display: none;
     cursor: pointer;
     background: rgba(255,255,255,0);
@@ -62,11 +62,17 @@ nav#nav-main > ul {
           }
         }
       }
+      i {
+        color: $nav-font-color;
+      }
+      &:hover i {
+        color: $header-section-font-color;
+      }
     }
     > a {
       display: block;
       padding: 10px 25px;
-      color: #fff;
+      color: $nav-font-color;
       text-align: center;
       @media (max-width: $screen-sm-max){
         text-align: left;
@@ -98,9 +104,12 @@ nav#nav-main > ul {
           float: none;
         }
         a {
-          color: #fff;
+          color: $header-section-font-second-color;
           padding: 5px 25px;
           display:block;
+          &:hover {
+            color: $header-section-font-color;
+          }
         }
         span.title{
           cursor: default;
@@ -111,7 +120,7 @@ nav#nav-main > ul {
           text-transform: uppercase;
           display: block;
           border-style: solid;
-          color:rgb(255, 255, 255);
+          color: $header-section-font-color;
           &:after {
             content: '';
             margin-bottom: 5px;
@@ -121,7 +130,7 @@ nav#nav-main > ul {
             left: 0;
             right: 0;
             height: 1px;
-            background: rgba(255, 255, 255, .5);
+            background: $header-section-font-color;
           }
         }
       }
@@ -145,8 +154,13 @@ nav#nav-main > ul {
     .dropdown.drop-open{
       max-height:100vh;
     }
-    &:hover .dropdown {
-      left:0px;
+    &:hover { 
+      .dropdown {
+        left:0px;
+      }
+      > a {
+          color: $header-section-font-color;
+      }
     }
     //no room to the right
     &.menu-item {
@@ -157,10 +171,10 @@ nav#nav-main > ul {
         }
       }
       &:hover {
-        background-color: $grey;
+        background-color: $main-color;
       }
       .dropdown {
-        background-color: $grey;
+        background-color: $main-color;
         @media (max-width: $screen-sm-max){
           background: #fff;
           nav{
@@ -168,7 +182,7 @@ nav#nav-main > ul {
             border-bottom-width: 10px;
           }
           span.title{
-            color: $dark-grey;
+            color: $second-color-dark;
             border-top-width: 1px;
             margin-top: 5px;
           }
@@ -191,28 +205,13 @@ nav#nav-main > ul {
           left: 0;
           right: 0;
           height: 1px;
-          background: #999;
+          background: $second-color-dark;
         }
         .dropdown{
           span.title:after {
             display: none;
           }
         }
-      }
-    }
-    &.fitness {
-      background-color: $green;
-      .dropdown {
-        background-color: $green;
-      }
-      nav{
-        border-bottom-color: $green;
-      }
-      span.title{
-        border-color: $green;
-      }
-      a:hover {
-        color: $green-light;
       }
     }
   }

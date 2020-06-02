@@ -52,7 +52,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           </div>
           <div className="lazyLoad_loadMore">
             <a
-              className="btn btn-outline-teal btn-block btn-load-more"
+              className="btn btn-outline-main btn-block btn-load-more"
               href="#"
               onClick={(e) => this.loadMoreHandler(e)}
             >

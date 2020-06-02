@@ -24,6 +24,8 @@ namespace HCA.Foundation.Commerce.Providers
 
     using Utils;
 
+    using Constants = Commerce.Constants;
+
     [Service(typeof(IItemTypeProvider))]
     public class ItemTypeProvider : IItemTypeProvider
     {

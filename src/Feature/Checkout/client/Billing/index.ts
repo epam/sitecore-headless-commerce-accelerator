@@ -26,7 +26,10 @@ import { AppState, BillingDispatchProps, BillingOwnProps, BillingStateProps } fr
 const mapStateToProps = (state: AppState): BillingStateProps => {
   const stepValues = Checkout.stepValues(state);
   const useForBillingAddress = stepValues.shipping && stepValues.shipping.options && stepValues.shipping.options.useForBillingAddress;
+  const commerceUser = Checkout.commerceUser(state);
+
   return {
+    commerceUser,
     useForBillingAddress
   };
 };

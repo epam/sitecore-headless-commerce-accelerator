@@ -31,8 +31,6 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 
-    using Constants = Utils.Constants;
-
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
     {
@@ -99,7 +97,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
         private void ProcessItem(Item item, string urlSegment)
         {
             var contextItemType = this.pageTypeProvider.ResolveByItem(item);
-            if (contextItemType == Constants.ItemType.Unknown)
+            if (contextItemType == Commerce.Constants.ItemType.Unknown)
             {
                 return;
             }
@@ -113,11 +111,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
             Item currentItem;
             switch (contextItemType)
             {
-                case Constants.ItemType.Category:
+                case Commerce.Constants.ItemType.Category:
                     currentItem = this.searchService.GetCategoryItem(itemName);
                     this.siteContext.CurrentCategoryItem = currentItem;
                     break;
-                case Constants.ItemType.Product:
+                case Commerce.Constants.ItemType.Product:
                     currentItem = this.searchService.GetProductItem(itemName);
                     this.siteContext.CurrentProductItem = currentItem;
                     break;

@@ -21,7 +21,7 @@
   text-transform: uppercase;
   border: 1px solid $border-color;
   &:hover, &:focus {
-    border-color: $teal;
+    border-color: $main-color;
   }
   .img-wrap {
     position: relative;
@@ -89,14 +89,14 @@
       .price__full {
         font-size: 60%;
         text-decoration: line-through;
-        color: $light-grey;
+        color: $font-color-light;
 
         .price__currency {
           top: -1px;
         }
       }
       .price__current {
-        color: $grey;
+        color: $font-color;
       }
     }
 
@@ -137,8 +137,8 @@
       transition: color .2s, background .2s;
     }
     &:hover:after {
-      background: $teal;
       color: #fff;
+      background: $main-color;
       transition: color .2s, background .2s;
     }
   }
@@ -147,7 +147,7 @@
       font-size: 14px;
       line-height: 26px;
       color: #fff;
-      background: $teal;
+      background: $main-color;
       content: '\f00c';
     }
   }

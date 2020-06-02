@@ -28,7 +28,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
     using Mappers.Account;
 
-    using Models.Account;
+    using Models.Entities.Account;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
@@ -124,12 +124,17 @@ namespace HCA.Foundation.Commerce.Services.Account
                 if (sitecoreUser != null)
                 {
                     sitecoreUser.ChangePassword(sitecoreUser.ResetPassword(), newPassword);
-
-                    return result;
+                }
+                else
+                {
+                    result.SetError("User was not found.");
                 }
             }
+            else
+            {
+                result.SetError("Incorrect old password.");
+            }
 
-            result.Success = false;
             return result;
         }
 
@@ -147,6 +152,7 @@ namespace HCA.Foundation.Commerce.Services.Account
             if (validateEmailResult.Success && validateEmailResult.Data.InUse)
             {
                 result.Success = false;
+                result.SetError("Email is in use.");
                 return result;
             }
 
@@ -291,7 +297,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                     }
                     else
                     {
-                        result.Success = false;
+                        result.SetError("The address with the current external Id was not found.");
                     }
 
                     return result;

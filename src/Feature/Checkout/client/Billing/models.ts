@@ -23,6 +23,7 @@ export interface BillingDataSource extends Jss.BaseDataSourceItem {
 export interface BillingOwnProps extends Jss.RenderingWithContext<BillingDataSource> {}
 export interface BillingStateProps {
   useForBillingAddress: boolean;
+  commerceUser: Commerce.CommerceUserModel;
 }
 export interface BillingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;
@@ -34,4 +35,4 @@ export interface BillingState extends Jss.SafePureComponentState {
   selectedAddressOption: string;
 }
 
-export interface AppState extends Checkout.GlobalCheckoutState {}
+export interface AppState extends Checkout.GlobalCheckoutState, Checkout.AppState {}

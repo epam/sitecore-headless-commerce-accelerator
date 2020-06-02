@@ -43,6 +43,116 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
+    /// IBanner Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner</para>
+    /// <para>ID: aca0aaff-3317-4535-8bc5-504256e08255</para>
+    /// </summary>
+    [SitecoreType(TemplateId="aca0aaff-3317-4535-8bc5-504256e08255")]
+    public partial interface IBanner: IGlassBase
+    {
+
+        /// <summary>
+        /// The Button Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337</para>
+        /// </summary>
+        [SitecoreField("Button Text")]
+        string ButtonText {get; set;}
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        Link Link {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Banner Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner</para>
+    /// <para>ID: aca0aaff-3317-4535-8bc5-504256e08255</para>
+    /// </summary>
+    [SitecoreType(TemplateId="aca0aaff-3317-4535-8bc5-504256e08255")]
+    public partial class Banner: GlassBase, IBanner
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
+        /// </summary>
+        public const string TemplateId = "aca0aaff-3317-4535-8bc5-504256e08255";
+
+        /// <summary>
+        /// The Button Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337</para>
+        /// </summary>
+        [SitecoreField("Button Text")]
+        public virtual string ButtonText {get; set;}
+        public const string ButtonTextFieldId = "42ec7cba-9200-49fe-b5f1-03824e1dc337";
+        public const string ButtonTextFieldName = "Button Text";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "cfb54c8b-6f8e-4bdb-9a07-7df0871196c7";
+        public const string ImageFieldName = "Image";
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        public virtual Link Link {get; set;}
+        public const string LinkFieldId = "ed641b03-6844-4ad0-ae83-ba9d351a2660";
+        public const string LinkFieldName = "Link";
+
+    }
+
+
+    /// <summary>
+    /// IBannerFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder</para>
+    /// <para>ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9</para>
+    /// </summary>
+    [SitecoreType(TemplateId="60d1329d-bfbf-4c2a-a6be-426f1c700ba9")]
+    public partial interface IBannerFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// BannerFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder</para>
+    /// <para>ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9</para>
+    /// </summary>
+    [SitecoreType(TemplateId="60d1329d-bfbf-4c2a-a6be-426f1c700ba9")]
+    public partial class BannerFolder: GlassBase, IBannerFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
+        /// </summary>
+        public const string TemplateId = "60d1329d-bfbf-4c2a-a6be-426f1c700ba9";
+
+    }
+
+
+    /// <summary>
     /// IGridLayout Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout</para>
     /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
@@ -143,237 +253,75 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
-    /// IHome Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home</para>
-    /// <para>ID: 309e5f2f-cb6f-4e51-9a39-185be515f278</para>
+    /// IRecommendedProducts Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products</para>
+    /// <para>ID: 02303189-7dc9-41c9-914a-4784878a6a7d</para>
     /// </summary>
-    [SitecoreType(TemplateId="309e5f2f-cb6f-4e51-9a39-185be515f278")]
-    public partial interface IHome: IGlassBase
+    [SitecoreType(TemplateId="02303189-7dc9-41c9-914a-4784878a6a7d")]
+    public partial interface IRecommendedProducts: IGlassBase
     {
 
         /// <summary>
-        /// The Main Promo Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: e61322f9-d70b-4a4b-ba2c-9359584e3362</para>
-        /// </summary>
-        [SitecoreField("Main Promo Image")]
-        Image MainPromoImage {get; set;}
-
-        /// <summary>
-        /// The Main Promo Text field.
+        /// The Header field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 010272e8-caad-4046-9410-7d4c67e95bfb</para>
+        /// <para>Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed</para>
         /// </summary>
-        [SitecoreField("Main Promo Text")]
-        string MainPromoText {get; set;}
-
-        /// <summary>
-        /// The Promo A Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 0af1cec2-d257-44f8-a034-0c6624da9560</para>
-        /// </summary>
-        [SitecoreField("Promo A Image")]
-        Image PromoAImage {get; set;}
-
-        /// <summary>
-        /// The Promo A Text field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0612860c-f8be-428b-a432-e2aed3cb5776</para>
-        /// </summary>
-        [SitecoreField("Promo A Text")]
-        string PromoAText {get; set;}
-
-        /// <summary>
-        /// The Promo B Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: d743c370-80dc-41d3-9c39-58b67dc9176c</para>
-        /// </summary>
-        [SitecoreField("Promo B Image")]
-        Image PromoBImage {get; set;}
-
-        /// <summary>
-        /// The Promo C Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 4eeb0814-a262-45f1-beea-7956ed5e15a6</para>
-        /// </summary>
-        [SitecoreField("Promo C Image")]
-        Image PromoCImage {get; set;}
-
-        /// <summary>
-        /// The Promo D Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 2c20de23-de06-4b1d-95f2-c39d911c1518</para>
-        /// </summary>
-        [SitecoreField("Promo D Image")]
-        Image PromoDImage {get; set;}
-
-        /// <summary>
-        /// The Slider Header field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6a98f330-5d79-480b-a700-ce29bd09570f</para>
-        /// </summary>
-        [SitecoreField("Slider Header")]
-        string SliderHeader {get; set;}
-
-        /// <summary>
-        /// The Wide Promo Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 5567973b-f2f0-445c-b9b8-76d1d41c23ae</para>
-        /// </summary>
-        [SitecoreField("Wide Promo Image")]
-        Image WidePromoImage {get; set;}
-
-        /// <summary>
-        /// The Wide Promo Text field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32</para>
-        /// </summary>
-        [SitecoreField("Wide Promo Text")]
-        string WidePromoText {get; set;}
+        [SitecoreField("Header")]
+        string Header {get; set;}
 
     }
 
 
     /// <summary>
-    /// Home Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home</para>
-    /// <para>ID: 309e5f2f-cb6f-4e51-9a39-185be515f278</para>
+    /// RecommendedProducts Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products</para>
+    /// <para>ID: 02303189-7dc9-41c9-914a-4784878a6a7d</para>
     /// </summary>
-    [SitecoreType(TemplateId="309e5f2f-cb6f-4e51-9a39-185be515f278")]
-    public partial class Home: GlassBase, IHome
+    [SitecoreType(TemplateId="02303189-7dc9-41c9-914a-4784878a6a7d")]
+    public partial class RecommendedProducts: GlassBase, IRecommendedProducts
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Home
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
         /// </summary>
-        public const string TemplateId = "309e5f2f-cb6f-4e51-9a39-185be515f278";
+        public const string TemplateId = "02303189-7dc9-41c9-914a-4784878a6a7d";
 
         /// <summary>
-        /// The Main Promo Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: e61322f9-d70b-4a4b-ba2c-9359584e3362</para>
-        /// </summary>
-        [SitecoreField("Main Promo Image")]
-        public virtual Image MainPromoImage {get; set;}
-        public const string MainPromoImageFieldId = "e61322f9-d70b-4a4b-ba2c-9359584e3362";
-        public const string MainPromoImageFieldName = "Main Promo Image";
-
-        /// <summary>
-        /// The Main Promo Text field.
+        /// The Header field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 010272e8-caad-4046-9410-7d4c67e95bfb</para>
+        /// <para>Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed</para>
         /// </summary>
-        [SitecoreField("Main Promo Text")]
-        public virtual string MainPromoText {get; set;}
-        public const string MainPromoTextFieldId = "010272e8-caad-4046-9410-7d4c67e95bfb";
-        public const string MainPromoTextFieldName = "Main Promo Text";
-
-        /// <summary>
-        /// The Promo A Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 0af1cec2-d257-44f8-a034-0c6624da9560</para>
-        /// </summary>
-        [SitecoreField("Promo A Image")]
-        public virtual Image PromoAImage {get; set;}
-        public const string PromoAImageFieldId = "0af1cec2-d257-44f8-a034-0c6624da9560";
-        public const string PromoAImageFieldName = "Promo A Image";
-
-        /// <summary>
-        /// The Promo A Text field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 0612860c-f8be-428b-a432-e2aed3cb5776</para>
-        /// </summary>
-        [SitecoreField("Promo A Text")]
-        public virtual string PromoAText {get; set;}
-        public const string PromoATextFieldId = "0612860c-f8be-428b-a432-e2aed3cb5776";
-        public const string PromoATextFieldName = "Promo A Text";
-
-        /// <summary>
-        /// The Promo B Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: d743c370-80dc-41d3-9c39-58b67dc9176c</para>
-        /// </summary>
-        [SitecoreField("Promo B Image")]
-        public virtual Image PromoBImage {get; set;}
-        public const string PromoBImageFieldId = "d743c370-80dc-41d3-9c39-58b67dc9176c";
-        public const string PromoBImageFieldName = "Promo B Image";
-
-        /// <summary>
-        /// The Promo C Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 4eeb0814-a262-45f1-beea-7956ed5e15a6</para>
-        /// </summary>
-        [SitecoreField("Promo C Image")]
-        public virtual Image PromoCImage {get; set;}
-        public const string PromoCImageFieldId = "4eeb0814-a262-45f1-beea-7956ed5e15a6";
-        public const string PromoCImageFieldName = "Promo C Image";
-
-        /// <summary>
-        /// The Promo D Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 2c20de23-de06-4b1d-95f2-c39d911c1518</para>
-        /// </summary>
-        [SitecoreField("Promo D Image")]
-        public virtual Image PromoDImage {get; set;}
-        public const string PromoDImageFieldId = "2c20de23-de06-4b1d-95f2-c39d911c1518";
-        public const string PromoDImageFieldName = "Promo D Image";
-
-        /// <summary>
-        /// The Slider Header field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 6a98f330-5d79-480b-a700-ce29bd09570f</para>
-        /// </summary>
-        [SitecoreField("Slider Header")]
-        public virtual string SliderHeader {get; set;}
-        public const string SliderHeaderFieldId = "6a98f330-5d79-480b-a700-ce29bd09570f";
-        public const string SliderHeaderFieldName = "Slider Header";
-
-        /// <summary>
-        /// The Wide Promo Image field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 5567973b-f2f0-445c-b9b8-76d1d41c23ae</para>
-        /// </summary>
-        [SitecoreField("Wide Promo Image")]
-        public virtual Image WidePromoImage {get; set;}
-        public const string WidePromoImageFieldId = "5567973b-f2f0-445c-b9b8-76d1d41c23ae";
-        public const string WidePromoImageFieldName = "Wide Promo Image";
-
-        /// <summary>
-        /// The Wide Promo Text field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32</para>
-        /// </summary>
-        [SitecoreField("Wide Promo Text")]
-        public virtual string WidePromoText {get; set;}
-        public const string WidePromoTextFieldId = "bbca79c1-1f9e-43b3-a5d4-882f1a6b1a32";
-        public const string WidePromoTextFieldName = "Wide Promo Text";
+        [SitecoreField("Header")]
+        public virtual string Header {get; set;}
+        public const string HeaderFieldId = "ba9cd774-93ea-490e-b978-38efe2c648ed";
+        public const string HeaderFieldName = "Header";
 
     }
 
 
     /// <summary>
-    /// IHomeFolder Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder</para>
-    /// <para>ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2</para>
+    /// IRecommendedProductsFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder</para>
+    /// <para>ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731</para>
     /// </summary>
-    [SitecoreType(TemplateId="3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2")]
-    public partial interface IHomeFolder: IGlassBase
+    [SitecoreType(TemplateId="2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731")]
+    public partial interface IRecommendedProductsFolder: IGlassBase
     {
 
     }
 
 
     /// <summary>
-    /// HomeFolder Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Home Folder</para>
-    /// <para>ID: 3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2</para>
+    /// RecommendedProductsFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder</para>
+    /// <para>ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731</para>
     /// </summary>
-    [SitecoreType(TemplateId="3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2")]
-    public partial class HomeFolder: GlassBase, IHomeFolder
+    [SitecoreType(TemplateId="2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731")]
+    public partial class RecommendedProductsFolder: GlassBase, IRecommendedProductsFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Home Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
         /// </summary>
-        public const string TemplateId = "3c486a78-0beb-48d9-8eb3-9a8f87b5e7e2";
+        public const string TemplateId = "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731";
 
     }
 

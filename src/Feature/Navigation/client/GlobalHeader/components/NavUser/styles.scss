@@ -21,7 +21,7 @@ nav#nav-user {
   z-index: 100;
   @media (max-width: $screen-sm-max) {
     position: static;
-    background: #191919;
+    background: $second-color-dark;
     height: auto;
   }
   li {
@@ -37,7 +37,7 @@ nav#nav-user {
         left: 20px;
         right: 20px;
         height: 1px;
-        background: #999;
+        background: $second-color;
       }
       &:last-child {
         &:after {
@@ -63,6 +63,7 @@ nav#nav-user {
       }
       span {
         display: inline;
+        color: $nav-font-second-color;
       }
     }
   }
@@ -77,12 +78,12 @@ nav#nav-user {
     font-family: $sans-serif;
     line-height: 18px;
     text-align: center;
-    color: $title-font-color;
+    color: $font-color;
     background: #fff;
     border-radius: 50%;
   }
   .form-member-sign-in {
-    background-color: #444;
+    background-color: $second-color-dark;
     padding: 20px 30px;
     position: absolute;
     right: 0;
@@ -91,13 +92,13 @@ nav#nav-user {
       min-height: 0;
     }
     h2 {
-      color: $light-grey;
+      color: $sign-in-font-color;
       margin: 0 0 5px;
     }
     &.invalid-form {
       input {
         &:invalid {
-          border-color: $red;
+          border-color: $focus-color;
         }
       }
     }
@@ -108,9 +109,9 @@ nav#nav-user {
       margin: 0;
     }
     h5 {
-      color: $red
+      color: $focus-color
     }
-    .forgot-password {
+    .sign-up {
       position: absolute;
       right: 15px;
       bottom: 30px;
@@ -126,7 +127,7 @@ nav#nav-user {
     }
   }
   .sign-out-form {
-    background-color: #444;
+    background-color: $second-color-dark;
     padding: 20px 30px;
     position: absolute;
     right: 0;
@@ -153,11 +154,7 @@ nav#nav-user {
       margin-left: 0;
     }
   }
-}
-
-.forgot-password {
-  color: $blue;
-  &:hover {
-    color: $red;
+  i {
+    color: $nav-font-second-color;
   }
 }

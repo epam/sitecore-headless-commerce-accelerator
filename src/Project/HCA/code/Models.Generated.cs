@@ -155,6 +155,34 @@ namespace HCA.Project.HCA.Models
 
 
     /// <summary>
+    /// IDataFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder</para>
+    /// <para>ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70</para>
+    /// </summary>
+    [SitecoreType(TemplateId="5c07e9e8-6ca9-43ad-9cec-2988a77f6d70")]
+    public partial interface IDataFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// DataFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder</para>
+    /// <para>ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70</para>
+    /// </summary>
+    [SitecoreType(TemplateId="5c07e9e8-6ca9-43ad-9cec-2988a77f6d70")]
+    public partial class DataFolder: GlassBase, IDataFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Folders/Data Folder
+        /// </summary>
+        public const string TemplateId = "5c07e9e8-6ca9-43ad-9cec-2988a77f6d70";
+
+    }
+
+
+    /// <summary>
     /// IHome Interface
     /// <para>Path: /sitecore/templates/HCA/Project/HCA/Pages/Home</para>
     /// <para>ID: 83883836-8f50-4bb8-bf62-369b7661e815</para>
@@ -234,6 +262,34 @@ namespace HCA.Project.HCA.Models
         /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Pages/Product
         /// </summary>
         public const string TemplateId = "1daeff25-b075-4c13-b41a-72b553b22542";
+
+    }
+
+
+    /// <summary>
+    /// ISettingsFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder</para>
+    /// <para>ID: ff3f660a-3d15-4efc-9873-113aaf71b44e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ff3f660a-3d15-4efc-9873-113aaf71b44e")]
+    public partial interface ISettingsFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// SettingsFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder</para>
+    /// <para>ID: ff3f660a-3d15-4efc-9873-113aaf71b44e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ff3f660a-3d15-4efc-9873-113aaf71b44e")]
+    public partial class SettingsFolder: GlassBase, ISettingsFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder
+        /// </summary>
+        public const string TemplateId = "ff3f660a-3d15-4efc-9873-113aaf71b44e";
 
     }
 

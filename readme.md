@@ -1,3 +1,5 @@
+![Headless Commerce Accelerator Homepage](https://user-images.githubusercontent.com/23119997/82557766-070d1c00-9b75-11ea-9403-36ffc06a6228.png)
+
 ## Headless Commerce Accelerator for Sitecore Experience Commerce
 
 * Enables a JSS-based eCommerce site that is headless, meaning it is decoupled from Sitecore servers
@@ -16,6 +18,7 @@
 * `Node 10.15.3 x64`
 * `Java jre-8u191 x64`
 * `Postman 6.6.1`
+* `Redis 3.0.504`
 * Machine should have at least 8, and 12-16 RAM for comfort work.
 
 ### Packages
@@ -67,30 +70,9 @@ Acquire a Sitecore license that authorizes the use of JSS (open it in Notepad an
 > CommerceMinionsServicesPort
 
 ### Advanced configuration of the installation process:
-* The **Sitecore Experience Accelerator (SXA)** was not working with Headless Commerce Accelerator at the time of writing, so it’s recommended that it be removed from installation. To do it, edit the following file: **.\Configuration\Commerce\Master_SingleServer.json** by removing these sections:
-* Parameters:   
-
-> SXAModuleFullPath     
-> SXACommerceModuleFullPath                             
-> SXAStorefrontModuleFullPath       
-> SXAStorefrontThemeModuleFullPath
-> SXAStorefrontCatalogModuleFullPath  
-
-* Variables:    
-
-> SXAMergeInputFile 
-
-* Tasks:    
-
-> InstallSXAFrameworkModule     
-> InstallSXAStorefrontModule    
-
-** Also remove these parameters from the script:    
-> SXAModuleFullPath     
-> SXACommerceModuleFullPath                             
-> SXAStorefrontModuleFullPath       
-> SXAStorefrontThemeModuleFullPath                
-> SXAStorefrontCatalogModuleFullPath
+* The **Sitecore Experience Accelerator (SXA)** was not working with Headless Commerce Accelerator at the time of writing, so it’s recommended that it be removed from installation. To do it, set the
+value of the parameter **$skipInstallDefaultStorefront** to **true** and **$skipDeployStorefrontPackages** to **true**.
+The script predefines the list of tasks to skip.
 
 ** Important to say the **Sitecore Experience Accelerator** module is not needed so it should not be downloaded either.
 

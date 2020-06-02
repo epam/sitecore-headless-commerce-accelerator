@@ -30,11 +30,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   public constructor(props: ShippingProps) {
     super(props);
     const { commerceUser } = this.props;
-    const selectedAddressOption = commerceUser && commerceUser.customerId
-      ? ADDRESS_TYPE.SAVED
-      : ADDRESS_TYPE.NEW;
+    const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
     this.state = {
-      selectedAddressOption
+      selectedAddressOption,
     };
   }
 
@@ -44,8 +42,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     }
   }
 
+  // tslint:disable-next-line: no-big-function
   protected safeRender() {
-    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo } = this.props;
+    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser } = this.props;
 
     return (
       <Form>
@@ -147,7 +146,18 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-ms-6">
                 <div className="sub-text">
                   <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
-                  <Input name={FIELDS.EMAIL} type="text" required={true} maxLength={100} />
+                  {commerceUser && commerceUser.customerId ? (
+                    <Input
+                      name={FIELDS.EMAIL}
+                      type="email"
+                      disabled={true}
+                      value={commerceUser.email}
+                      required={true}
+                      maxLength={100}
+                    />
+                  ) : (
+                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
@@ -155,7 +165,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
           </FieldSet>
           <FieldSet
             customVisibility={(formValues) => {
-                 return this.state.selectedAddressOption === ADDRESS_TYPE.SAVED;
+              return this.state.selectedAddressOption === ADDRESS_TYPE.SAVED;
             }}
           >
             <div className="row">
@@ -170,9 +180,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     deliveryInfo.data.userAddresses &&
                     deliveryInfo.data.userAddresses.map((address, index) => (
                       <option key={index} value={address.partyId}>
-                        {`${address.firstName} ${address.lastName}, ${address.address1}, ${address.state}, ${
-                          address.country
-                        }`}
+                        {`${address.firstName} ${address.lastName}, ${address.address1}, ${address.state}, ${address.country}`}
                       </option>
                     ))}
                 </Select>
@@ -193,17 +201,22 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   </li>
                 </ul>
               </div>
-               { this.state.selectedAddressOption === ADDRESS_TYPE.NEW &&
-                (<div className="col-sm-6">
+              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && (
+                <div className="col-sm-6">
                   <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
                   <label htmlFor="save-to-account">
                     <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
                     <Text field={{ value: 'My Account.' }} tag="strong" />
                   </label>
                   <br />
-                  <Text field={{ value: 'Create Account' }} className="right-car create" href="/account/sign-up" tag="a" />
-                </div>)
-              }
+                  <Text
+                    field={{ value: 'Create Account' }}
+                    className="right-car create"
+                    href="/account/sign-up"
+                    tag="a"
+                  />
+                </div>
+              )}
             </div>
           </FieldSet>
           <FieldSet>
@@ -227,7 +240,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-sm-12">
                 <Submit
                   disabled={isSubmitting}
-                  className="btn animated btn-animated-teal"
+                  className="btn animated btn-animated-main"
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}
                 >
                   <Text field={{ value: 'Save & Continue' }} tag="span" />
@@ -247,7 +260,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({selectedAddressOption: e.currentTarget.value});
+    this.setState({ selectedAddressOption: e.currentTarget.value });
   }
 
   // tslint:disable-next-line:cognitive-complexity

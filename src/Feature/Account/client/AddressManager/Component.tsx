@@ -112,7 +112,10 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                       <a className="edit-link" onClick={(e) => this.toggleFormByAnchorClick(true, e)}>
                         Edit
                       </a>
-                      <a className="delete-link" onClick={(e) => this.onDeleteButtonClick(e)}>
+                      <a
+                        className="delete-link"
+                        onClick={(e) => this.onDeleteButtonClick(e, selectedAddress.externalId)}
+                      >
                         Delete
                       </a>
                     </div>
@@ -149,14 +152,14 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
     });
   }
 
-  private onDeleteButtonClick(e: React.MouseEvent<HTMLAnchorElement>) {
+  private onDeleteButtonClick(e: React.MouseEvent<HTMLAnchorElement>, externalId: string) {
     e.preventDefault();
 
     if (!confirm('Are you sure you want to delete item?')) {
       return;
     }
 
-    this.props.RemoveAddress(this.state.selectedAddressId);
+    this.props.RemoveAddress(externalId);
   }
 
   private onUpdateAdress(address: Commerce.AddressModel) {

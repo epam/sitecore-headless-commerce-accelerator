@@ -16,8 +16,11 @@
 
 namespace HCA.Foundation.Connect.Models
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using Glass.Mapper.Sc.Configuration.Attributes;
 
+    [ExcludeFromCodeCoverage]
     public partial class StorefrontModel
     {
         private const string CountryRegionConfigurationQuery =

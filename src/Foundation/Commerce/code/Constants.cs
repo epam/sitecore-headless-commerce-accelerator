@@ -16,6 +16,21 @@ namespace HCA.Foundation.Commerce
 {
     public static class Constants
     {
+        public enum ItemType
+        {
+            Unknown,
+
+            Category,
+
+            Product,
+
+            Variant
+        }
+
+        public const string CommerceRoutePrefix = "apix/client/commerce";
+
+        public const string CommerceCustomerIdPrefix = "Entity-Customer-";
+
         public static class Login
         {
             public const string CommerceUserSource = "CommerceUser";

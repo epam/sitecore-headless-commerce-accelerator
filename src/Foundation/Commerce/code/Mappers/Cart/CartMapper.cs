@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Cart
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using DependencyInjection;
@@ -27,6 +29,7 @@ namespace HCA.Foundation.Commerce.Mappers.Cart
 
     using Mapper = Base.Mappers.Mapper;
 
+    [ExcludeFromCodeCoverage]
     [Service(typeof(ICartMapper), Lifetime = Lifetime.Singleton)]
     public class CartMapper : Mapper, ICartMapper
     {

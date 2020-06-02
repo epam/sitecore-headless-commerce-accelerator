@@ -35,12 +35,12 @@
       padding-top: 4px;
       font-size: 14px;
       font-weight: 900;
-      color: $blue;
+      color: $main-color;
       text-transform: uppercase;
       transition: color .2s;
-      @include underline($bg: $blue-hover);
+      @include underline($bg: $main-color-dark);
       &:hover {
-        color: $blue-hover;
+        color: $main-color-dark;
         transition: color .2s;
       }
     }
@@ -53,10 +53,10 @@
       max-width: 350px;
     }
     .error-message {
-      color: $red
+      color: $focus-color
     }
     .success-message {
-      color: $green;
+      color: $main-color;
     }
   }
 }

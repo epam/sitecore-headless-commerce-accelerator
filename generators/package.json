@@ -25,17 +25,22 @@
   ],
   "dependencies": {
     "chalk": "^2.4.1",
-    "yeoman-generator": "^3.2.0",
-    "yosay": "^2.0.2",
-    "fs-extra": "^9.0.0"
+    "fs-extra": "^9.0.0",
+    "jsonpath": "^1.0.2",
+    "semver-utils": "^1.1.4",
+    "tabdown-kfatehi": "^0.2.0",
+    "traverse": "^0.6.6",
+    "xml-parser": "^1.2.1",
+    "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "yeoman-environment": "2.10.0",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
     "gulp-rename": "1.2.2",
     "gulp-replace": "^1.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp": "^4.0.2",
-    "yargs": "^15.3.1"
+    "yargs": "^15.3.1",
+    "yeoman-environment": "2.10.0",
+    "yeoman-generator": "^3.2.0"
   },
   "license": "MIT"
 }

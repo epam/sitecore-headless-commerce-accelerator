@@ -25,7 +25,7 @@ class ListingControl extends Jss.SafePureComponent<ListingControlProps, ListingC
   public safeRender() {
     return (
       <section className="listing-wishlist-grid">
-        <header className="teal-thick-theme">
+        <header className="thick-theme">
             <div className="color-title">
                 <Text field={{ value: 'Wishlist' }} tag="h1" className="title wishlist-title"/>
                 <div className="color-bar" />

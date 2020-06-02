@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,6 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
     this.state = {
       email: '',
       formValid: true,
-      password: '',
       userFormVisible: false,
     };
 
@@ -92,14 +91,14 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
   private renderUserInfoForm() {
     return (
       <form method="POST" action="/apix/client/commerce/auth/logout" className="sign-out-form">
-        <NavigationLink to="/account" className="btn btn-teal">
-        <Jss.Text tag="span" field={{ value: 'My Account', editable: 'My Account' }} />
+        <NavigationLink to="/account" className="btn btn-main">
+          <Jss.Text tag="span" field={{ value: 'My Account', editable: 'My Account' }} />
         </NavigationLink>
-        <NavigationLink to="/account/order-history" className="btn btn-teal no-margin-bottom">
+        <NavigationLink to="/account/order-history" className="btn btn-main no-margin-bottom">
           <Jss.Text tag="span" field={{ value: 'Order History', editable: 'Order History' }} />
         </NavigationLink>
         <hr />
-        <button type="submit" className="btn btn-red">
+        <button type="submit" className="btn btn-focus">
           Sign Out
         </button>
       </form>
@@ -108,7 +107,7 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
 
   private renderSignInFrom() {
     const { authProcess, returnUrl } = this.props;
-    const { email, password, formValid } = this.state;
+    const { email, formValid } = this.state;
 
     const isLoading = authProcess.status === LoadingStatus.Loading;
     const isError = authProcess.status === LoadingStatus.Failure;
@@ -136,16 +135,14 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
           name="password"
           placeholder="Password"
           required={true}
-          onChange={(e) => this.setState({ password: e.target.value })}
           disabled={isLoading}
-          value={password}
         />
         {isError && <h5>The email or password you entered is incorrect</h5>}
         {!formValid && <h5>Please fill the form</h5>}
         <button className="btn btn-outline-white" onClick={(e) => this.handleSignInButtonClick(e)} disabled={isLoading}>
           {isLoading && <i className="fa fa-spinner fa-spin" />} Sign in
         </button>
-        <NavigationLink to="/account/sign-up" className="forgot-password">
+        <NavigationLink to="/account/sign-up" className="sign-up">
           <Jss.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
         </NavigationLink>
       </form>
@@ -161,15 +158,15 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
   }
 
   private togglePopup(e: React.MouseEvent<HTMLElement>) {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (!this.state.userFormVisible) {
-        document.addEventListener('click', this.handleOutsidePopupClick, false);
-      } else {
-        document.removeEventListener('click', this.handleOutsidePopupClick, false);
-      }
+    if (!this.state.userFormVisible) {
+      document.addEventListener('click', this.handleOutsidePopupClick, false);
+    } else {
+      document.removeEventListener('click', this.handleOutsidePopupClick, false);
+    }
 
-      this.setState({ userFormVisible: !this.state.userFormVisible });
+    this.setState({ userFormVisible: !this.state.userFormVisible });
   }
 
   private handleSignInButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
@@ -189,8 +186,9 @@ export default class NavUser extends Jss.SafePureComponent<NavUserProps, NavUser
         formValid: true,
       });
     }
-    const { email, password } = this.state;
 
-    StartAuth(email, password);
+    const { email } = this.state;
+
+    StartAuth(email, this.passwordRef.current.value);
   }
 }

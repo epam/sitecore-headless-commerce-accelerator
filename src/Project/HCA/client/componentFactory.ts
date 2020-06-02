@@ -36,8 +36,15 @@ components.set('Two Column Row', PageContent.TwoColumnRow);
 components.set('Three Column Row', PageContent.ThreeColumnRow);
 
 // Page Content
-components.set('Home', PageContent.Home);
 components.set('Header', GlobalHeader);
+
+// Home renderings
+components.set('Recommended Products', PageContent.RecommendedProducts);
+components.set('Banner Grid', PageContent.BannerGrid);
+components.set('Banner', PageContent.Banner);
+components.set('Clear Banner', PageContent.ClearBanner);
+components.set('Light Banner', PageContent.LightBanner);
+components.set('Modern Banner', PageContent.ModernBanner);
 
 // Footer renderings
 components.set('Footer', GlobalFooter);

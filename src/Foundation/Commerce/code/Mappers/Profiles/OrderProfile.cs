@@ -14,11 +14,14 @@
 
 namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using AutoMapper;
 
     using Models.Entities.Cart;
     using Models.Entities.Order;
 
+    [ExcludeFromCodeCoverage]
     public class OrderProfile : Profile
     {
         public OrderProfile()

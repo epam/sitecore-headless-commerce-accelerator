@@ -25,6 +25,10 @@ import { SignUpOwnState, SignUpProps } from './models';
 import './styles.scss';
 
 export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpProps, SignUpOwnState> {
+  public componentWillUnmount() {
+    this.props.ResetValidation();
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
     const { loading, accountValidation, AccountValidation, commerceUser } = this.props;
@@ -43,7 +47,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
                 <h2>Congratulations!</h2>
                 <h2>Your Account was successfully created!</h2>
                 <h4>Email: {commerceUser.email}</h4>
-                <NavigationLink className="btn btn-outline-teal" to="/account">
+                <NavigationLink className="btn btn-outline-main" to="/account">
                   Go to Account Settings
                 </NavigationLink>
               </div>
@@ -105,7 +109,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
                 </div>
                 <Submit
                   disabled={submitButtonDisabled}
-                  className="btn btn-outline-teal"
+                  className="btn btn-outline-main"
                   onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
                 >
                   {loading && <i className="fa fa-spinner fa-spin" />} Sign up!

@@ -13,4 +13,7 @@
 //    limitations under the License.
 
 import * as Models from 'Foundation/Commerce/client';
-export interface OrderHistoryItemProps extends Models.Order {}
+export interface OrderHistoryItemProps {
+  fallbackImageUrl: string;
+  order: Models.Order;
+}

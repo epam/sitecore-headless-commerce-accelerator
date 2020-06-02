@@ -23,6 +23,7 @@ export * from './controls/Text';
 
 // base models
 export * from './models';
+export * from './dataModels';
 
 // base models
 export * from './controls/Dictionary/models';

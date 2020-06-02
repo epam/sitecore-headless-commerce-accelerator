@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce/client';
-import * as JSS from 'Foundation/ReactJss/client';
-
-export interface SummaryProps {
-    order: Commerce.Cart;
-    productColors: Commerce.ProductColors;
-    fallbackImageUrl: string;
+namespace HCA.Foundation.ReactJss
+{
+    public class Constants
+    {
+        public static class Context
+        {
+            public const string FallbackImageUrlPropertyName = "fallbackImageUrl";
+        }
+    }
 }
-
-export interface SummaryState extends JSS.SafePureComponentState {}

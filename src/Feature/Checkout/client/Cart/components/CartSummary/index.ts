@@ -41,6 +41,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<CartSummaryStateProps, CartSummaryDispatchProps, CartSummaryOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(CartSummaryComponent);
+);
 
-export const CartSummary = connectedToStore;
+export const CartSummary = connectedToStore(CartSummaryComponent);

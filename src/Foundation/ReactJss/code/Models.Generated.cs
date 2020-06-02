@@ -41,4 +41,50 @@ namespace HCA.Foundation.ReactJss.Models
     using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
 
+
+    /// <summary>
+    /// IImageFallbackSettings Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings</para>
+    /// <para>ID: 275950d5-b3a6-476a-8258-bb93a3a96f3c</para>
+    /// </summary>
+    [SitecoreType(TemplateId="275950d5-b3a6-476a-8258-bb93a3a96f3c")]
+    public partial interface IImageFallbackSettings: IGlassBase
+    {
+
+        /// <summary>
+        /// The Fallback Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: de9c3007-14f7-45bc-b73f-3363f9b4decf</para>
+        /// </summary>
+        [SitecoreField("Fallback Image")]
+        Image FallbackImage {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// ImageFallbackSettings Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings</para>
+    /// <para>ID: 275950d5-b3a6-476a-8258-bb93a3a96f3c</para>
+    /// </summary>
+    [SitecoreType(TemplateId="275950d5-b3a6-476a-8258-bb93a3a96f3c")]
+    public partial class ImageFallbackSettings: GlassBase, IImageFallbackSettings
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings
+        /// </summary>
+        public const string TemplateId = "275950d5-b3a6-476a-8258-bb93a3a96f3c";
+
+        /// <summary>
+        /// The Fallback Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: de9c3007-14f7-45bc-b73f-3363f9b4decf</para>
+        /// </summary>
+        [SitecoreField("Fallback Image")]
+        public virtual Image FallbackImage {get; set;}
+        public const string FallbackImageFieldId = "de9c3007-14f7-45bc-b73f-3363f9b4decf";
+        public const string FallbackImageFieldName = "Fallback Image";
+
+    }
+
 }

@@ -12,15 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import { LoadingStatus } from 'Foundation/Integration/client';
+import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as OrderHistoryModule from 'Feature/Checkout/client/Integration/OrderHistory';
 
-import { OrderHistoryControl } from './Component';
+import { OrderHistoryComponent } from './Component';
 import { AppState, OrderHistoryDispatchProps, OrderHistoryOwnProps, OrderHistoryStateProps } from './models';
 
 const mapStateToProps = (state: AppState): OrderHistoryStateProps => {
@@ -48,6 +49,6 @@ const mapDispatchToProps = (dispatch: any) => {
 const connectedToStore = connect<OrderHistoryStateProps, OrderHistoryDispatchProps, OrderHistoryOwnProps>(
   mapStateToProps,
   mapDispatchToProps
-)(OrderHistoryControl);
+);
 
-export const OrderHistory = withExperienceEditorChromes(connectedToStore);
+export const OrderHistory = compose(connectedToStore, renderingWithContext)(OrderHistoryComponent);

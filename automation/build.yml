@@ -5,170 +5,292 @@ trigger: none
 pool:
   vmImage: 'vs2017-win2016'
 
-variables:
-  build_cake: './src/build.cake'
-  artifacts_location: '$(Pipeline.Workspace)/s/output'
+jobs:
+  - job: Get_build_version
 
-steps:
+    steps:
+    - task: PowerShell@2
+      displayName: 'Get version variable'
+      env:
+        PAT: $(PAT)
+      inputs:
+        targetType: 'inline'
+        script: |
+          $Token = $env:PAT
+          $Base64Token = [System.Convert]::ToBase64String([char[]]$Token)
 
-- task: UseNode@1
-  displayName: Installing Node 10
-  inputs:
-    script: 'npm --version'
+          $Headers = @{
+              Authorization = 'Basic {0}' -f $Base64Token;
+              }
 
-- task: DownloadSecureFile@1
-  displayName: Download license
-  name: license_file
-  inputs:
-    secureFile: 'license.xml'
+          $ReleaseList = (Invoke-RestMethod -Headers $Headers -Uri https://api.github.com/repos/epam/sitecore-headless-commerce-accelerator/branches -Method Get).name | Where-Object { $_.Contains("release")}
+          $LastReleaseNumber = $ReleaseList[-1].Split("/")[1]
+          $MajorVersionNumber = $LastReleaseNumber.Split(".")[0]
+          $MinorVersionNumber = $LastReleaseNumber.Split(".")[1]/1 + 1
+          $PatchVersionNumber = $LastReleaseNumber.Split(".")[2]
+          $VersionNumber = $MajorVersionNumber + "." + $MinorVersionNumber + "." + $PatchVersionNumber
+          $LastVersion = "$(HCA_Version)".Split("-")[1]
+          if ($VersionNumber -ne $LastVersion) {
+            $BranchVersion = $VersionNumber + "-$(branch_revision)"
+          }
+          else {
+            $BranchVersion = "$(HCA_Version)"
+          }
+          Write-Host "##vso[task.setvariable variable=BranchVersion]$BranchVersion"
 
-- task: DownloadPipelineArtifact@2
-  displayName: Download node modules
-  inputs:
-    buildType: 'specific'
-    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
-    definition: '10'
-    buildVersionToDownload: 'latest'
-    artifactName: 'node_modules'
-    targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
+    - task: Bash@3
+      displayName: 'Set version variable'
+      inputs:
+        targetType: 'inline'
+        script: |
+          curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
+            -d '{
+              "id": "$(HCA_Version_Variable_Group_ID)",
+              "type": "Vsts",
+              "name": "HCA_Version",
+              "variables": {
+                "HCA_Version_Variable_Group_ID": {
+                "isSecret": false,
+                "value": "$(HCA_Version_Variable_Group_ID)"
+                },
+              "HCA_Version": {
+                "isSecret": false,
+                "value": "$(BranchVersion)"
+                }
+              }
+            }' \
+            $(System.TeamFoundationCollectionUri)/$(TeamProject)/_apis/distributedtask/variablegroups/$(HCA_Version_Variable_Group_ID)?api-version=5.0-preview.1
 
-- task: DownloadPipelineArtifact@2
-  displayName: Download packages
-  inputs:
-    buildType: 'specific'
-    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
-    definition: '10'
-    buildVersionToDownload: 'latest'
-    artifactName: 'packages'
-    targetPath: '$(Pipeline.Workspace)/s/src/packages'
+  - job: Set_build_version
+    dependsOn: Get_build_version
 
-- task: DownloadPipelineArtifact@2
-  displayName: Download tools
-  inputs:
-    buildType: 'specific'
-    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
-    definition: '10'
-    buildVersionToDownload: 'latest'
-    artifactName: 'tools'
-    targetPath: '$(Pipeline.Workspace)/s/src/tools'
-
-- task: PowerShell@2
-  displayName: Config preparation
-  inputs:
-    targetType: 'inline'
-    script: |
-      Move-Item $(license_file.secureFilePath) ./src/ -Force
-- task: gulp@1
-  displayName: Gulp code generation
-  inputs:
-    gulpFile: './src/scripts/code-generation/codeGen.js'
-    targets: 
-    enableCodeCoverage: false
-
-- task: PowerShell@2
-  displayName: Webpack build
-  inputs:
-    targetType: 'inline'
-    script: |
-      $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
-      $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
-      copyfiles -f  ./Project/HCA/client/public/**/* ./Project/HCA/client/build/
-      cross-env NODE_ENV=production webpack
-      nuget.exe restore ./HCA.sln
-    workingDirectory: './src/'
-
-- task: MSBuild@1
-  displayName: MSBuild
-  inputs:
-    solution: './src/HCA.sln'
-    msbuildVersion: '15.0'
-    configuration: 'Debug'
-    msbuildArguments: '/t:Rebuild'
-
-- task: PowerShell@2
-  displayName: Run Unit tests
-  inputs:
-    filePath: './src/build.ps1'
-    arguments: '-Target 003-Tests'
-    workingDirectory: './src/'
-
-- task: PublishCodeCoverageResults@1
-  displayName: Publish code coverage
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'
+    variables:
+      ReleaseVersionNumber: $[counter(variables['HCA_Version'], 1)]
+    
+    steps:
+    - task: PowerShell@2
+      displayName: 'Set build version'
+      inputs:
+        targetType: 'inline'
+        script: |
+          Write-Host "##vso[build.updatebuildnumber]$(HCA_Version).$(ReleaseVersionNumber)"
 
 
-- task: MSBuild@1
-  displayName: MSBuild for publish
-  inputs:
-    solution: './src/**/*.csproj'
-    msbuildVersion: '15.0'
-    configuration: 'Debug'
-    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+  - job: Build_and_test
+    dependsOn: Set_build_version
 
-- task: PowerShell@2
-  displayName: Collect files for artifacts
-  env:
-    Workspace: $(Pipeline.Workspace)
-  inputs:
-    targetType: 'inline'
-    script: |
-      robocopy $(Pipeline.Workspace)/s/src/configs/Sitecore/ $(Pipeline.Workspace)/s/output/ web.config
-      robocopy $(Pipeline.Workspace)/s/src/tools/cake.sitecore/Cake.Sitecore/tools/unicorn $(Pipeline.Workspace)/s/output/unicorn-sync /s
-      ./automation/Get-Artifacts.ps1 Feature
-      ./automation/Get-Artifacts.ps1 Foundation
-      ./automation/Get-Artifacts.ps1 Project
-    errorActionPreference: 'continue'
-    ignoreLASTEXITCODE: true
+    variables:
+      build_cake: './src/build.cake'
+      artifacts_location: '$(Pipeline.Workspace)/s/output'
 
-- task: PowerShell@2
-  displayName: Change default parameters for $(project_name)
-  inputs:
-    targetType: 'inline'
-    script: |
-      (Get-Content $(project_site_config)) -replace 'hostName=$(quotes_regexp)', 'hostName="$(sitecore_hostname)"' | Set-Content $(project_site_config)
-      (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
-      (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
-      (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
-- task: PublishPipelineArtifact@1
-  displayName: Publish web config
-  inputs:
-    targetPath: '$(artifacts_location)/web.config'
-    artifact: 'web_config'
-    publishLocation: 'pipeline'
+    steps:
 
-- task: PublishPipelineArtifact@1
-  displayName: Publish unicorn
-  inputs:
-    targetPath: '$(artifacts_location)/unicorn'
-    artifact: 'unicorn'
-    publishLocation: 'pipeline'
+    - task: UseNode@1
+      displayName: Installing Node 10
+      inputs:
+        script: 'npm --version'
 
-- task: PublishPipelineArtifact@1
-  displayName: Publish Feature 
-  inputs:
-    targetPath: '$(artifacts_location)/Feature'
-    artifact: 'Feature'
-    publishLocation: 'pipeline'
+    - task: DownloadSecureFile@1
+      displayName: Download license
+      name: license_file
+      inputs:
+        secureFile: 'license.xml'
 
-- task: PublishPipelineArtifact@1
-  displayName: Publish Foundation 
-  inputs:
-    targetPath: '$(artifacts_location)/Foundation'
-    artifact: 'Foundation'
-    publishLocation: 'pipeline'
+    - task: DownloadPipelineArtifact@2
+      displayName: Download node modules
+      inputs:
+        buildType: 'specific'
+        project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+        definition: '10'
+        buildVersionToDownload: 'latest'
+        artifactName: 'node_modules'
+        targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
 
-- task: PublishPipelineArtifact@1
-  displayName: Publish Project 
-  inputs:
-    targetPath: '$(artifacts_location)/Project'
-    artifact: 'Project'
-    publishLocation: 'pipeline'
+    - task: DownloadPipelineArtifact@2
+      displayName: Download packages
+      inputs:
+        buildType: 'specific'
+        project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+        definition: '10'
+        buildVersionToDownload: 'latest'
+        artifactName: 'packages'
+        targetPath: '$(Pipeline.Workspace)/s/src/packages'
 
-- task: PublishPipelineArtifact@1
-  displayName: Publish unicorn sync tool 
-  inputs:
-    targetPath: '$(artifacts_location)/unicorn-sync'
-    artifact: 'unicorn-sync'
-    publishLocation: 'pipeline'
+    - task: DownloadPipelineArtifact@2
+      displayName: Download tools
+      inputs:
+        buildType: 'specific'
+        project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+        definition: '10'
+        buildVersionToDownload: 'latest'
+        artifactName: 'tools'
+        targetPath: '$(Pipeline.Workspace)/s/src/tools'
+
+    - task: PowerShell@2
+      displayName: Config preparation
+      inputs:
+        targetType: 'inline'
+        script: |
+          Move-Item $(license_file.secureFilePath) ./src/ -Force
+    - task: gulp@1
+      displayName: Gulp code generation
+      inputs:
+        gulpFile: './src/scripts/code-generation/codeGen.js'
+        targets: 
+        enableCodeCoverage: false
+
+    - task: PowerShell@2
+      displayName: Webpack build
+      inputs:
+        targetType: 'inline'
+        script: |
+          $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
+          $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
+          copyfiles -f  ./Project/HCA/client/public/**/* ./Project/HCA/client/build/
+          cross-env NODE_ENV=production webpack
+          nuget.exe restore ./HCA.sln
+        workingDirectory: './src/'
+
+    - task: MSBuild@1
+      displayName: MSBuild
+      inputs:
+        solution: './src/HCA.sln'
+        msbuildVersion: '15.0'
+        configuration: 'Debug'
+        msbuildArguments: '/t:Rebuild'
+
+    - task: PowerShell@2
+      displayName: Run Unit tests
+      inputs:
+        filePath: './src/build.ps1'
+        arguments: '-Target 003-Tests'
+        workingDirectory: './src/'
+
+    - task: PublishCodeCoverageResults@1
+      displayName: Publish code coverage
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'
+
+
+    - task: MSBuild@1
+      displayName: MSBuild for publish
+      inputs:
+        solution: './src/**/*.csproj'
+        msbuildVersion: '15.0'
+        configuration: 'Debug'
+        msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+    - task: PowerShell@2
+      displayName: Collect files for artifacts
+      env:
+        Workspace: $(Pipeline.Workspace)
+      inputs:
+        targetType: 'inline'
+        script: |
+          robocopy $(Pipeline.Workspace)/s/src/configs/Sitecore/ $(Pipeline.Workspace)/s/output/ web.config
+          robocopy $(Pipeline.Workspace)/s/src/tools/cake.sitecore/Cake.Sitecore/tools/unicorn $(Pipeline.Workspace)/s/output/unicorn-sync /s
+          ./automation/Get-Artifacts.ps1 Feature
+          ./automation/Get-Artifacts.ps1 Foundation
+          ./automation/Get-Artifacts.ps1 Project
+        errorActionPreference: 'continue'
+        ignoreLASTEXITCODE: true
+
+    - task: PowerShell@2
+      displayName: Change default parameters for $(project_name)
+      inputs:
+        targetType: 'inline'
+        script: |
+          (Get-Content $(project_site_config)) -replace 'hostName=$(quotes_regexp)', 'hostName="$(sitecore_hostname)"' | Set-Content $(project_site_config)
+          (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
+          (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
+          (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish web config
+      inputs:
+        targetPath: '$(artifacts_location)/web.config'
+        artifact: 'web_config'
+        publishLocation: 'pipeline'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish unicorn
+      inputs:
+        targetPath: '$(artifacts_location)/unicorn'
+        artifact: 'unicorn'
+        publishLocation: 'pipeline'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Feature 
+      inputs:
+        targetPath: '$(artifacts_location)/Feature'
+        artifact: 'Feature'
+        publishLocation: 'pipeline'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Foundation 
+      inputs:
+        targetPath: '$(artifacts_location)/Foundation'
+        artifact: 'Foundation'
+        publishLocation: 'pipeline'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Project 
+      inputs:
+        targetPath: '$(artifacts_location)/Project'
+        artifact: 'Project'
+        publishLocation: 'pipeline'
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish unicorn sync tool 
+      inputs:
+        targetPath: '$(artifacts_location)/unicorn-sync'
+        artifact: 'unicorn-sync'
+        publishLocation: 'pipeline'
+
+  - job: Publish_repository
+    dependsOn: Build_and_test
+
+    variables:
+      npm_package_config: './generators/package.json'
+
+    steps:
+
+    - task: PowerShell@2
+      displayName: Download node modules
+      inputs:
+        targetType: 'inline'
+        script: 'npm install gulp-cli'
+        workingDirectory: './generators'
+
+    - task: gulp@1
+      displayName: Collect necessary files to templates
+      inputs:
+        gulpFile: './generators/gulpfile.js'
+        targets: 
+        enableCodeCoverage: false
+
+    - task: PowerShell@2
+      displayName: Update package.json
+      inputs:
+        targetType: 'inline'
+        script: |
+          (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"' | Set-Content $(npm_package_config)
+
+    - task: PowerShell@2
+      displayName: Create package
+      inputs:
+        targetType: 'inline'
+        script: 'npm pack'
+        workingDirectory: './generators'
+
+    - task: PowerShell@2
+      displayName: Publish package ot npmjs.com
+      env:
+        npm_auth_token: $(npm_auth_token)
+      inputs:
+        targetType: 'inline'
+        script: |
+          "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
+          npm publish --loglevel=error
+        workingDirectory: './generators'

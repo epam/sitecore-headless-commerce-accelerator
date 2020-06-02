@@ -254,6 +254,7 @@ jobs:
     variables:
       npm_package_config_folder: './generators/generators/templates/src'
       npm_package_config: '$(npm_package_config_folder)/package.json'
+      npm_package_readme: '$(npm_package_config_folder)/readme.md'
 
     steps:
 
@@ -278,16 +279,17 @@ jobs:
         script: |
           (Get-Content $(npm_package_config)) -replace '"name": $(quotes_regexp)', '"name": "$(package_name)"' | Set-Content $(npm_package_config)
           (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"' | Set-Content $(npm_package_config)
+          Copy-Item $(npm_package_config) ./generators -Force
 
     - task: PowerShell@2
       displayName: Create package
       inputs:
         targetType: 'inline'
         script: 'npm pack'
-        workingDirectory: '$(npm_package_config_folder)'
+        workingDirectory: './generators'
 
     - task: PowerShell@2
-      displayName: Publish package
+      displayName: Publish package ot npmjs.com
       env:
         npm_auth_token: $(npm_auth_token)
       inputs:
@@ -295,4 +297,4 @@ jobs:
         script: |
           "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
           npm publish --loglevel=error
-        workingDirectory: '$(npm_package_config_folder)'
+        workingDirectory: './generators'

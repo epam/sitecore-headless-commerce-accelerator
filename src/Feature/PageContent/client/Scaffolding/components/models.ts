@@ -15,7 +15,6 @@
 import * as JSS from 'Foundation/ReactJss/client';
 import * as Models from '../../Models.Generated';
 
-export interface GridControlProps
-  extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, Models.GridLayoutRenderingParams> {}
+export interface GridProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, Models.GridLayoutRenderingParams> {}
 
-export interface GridControlState extends JSS.SafePureComponentState {}
+export interface GridState extends JSS.SafePureComponentState {}

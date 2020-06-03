@@ -16,7 +16,7 @@ import * as React from 'react';
 
 import './styles.scss';
 
-export const ExperienceEditorWarningControl = (message: string) => (
+export const ExperienceEditorWarningComponent = (message: string) => (
   () => {
     return (
       <div className="experience-editor-warning">
@@ -28,4 +28,4 @@ export const ExperienceEditorWarningControl = (message: string) => (
   }
 );
 
-export const DatasourceRequiredControl = ExperienceEditorWarningControl('Rendering datasource is not configured');
+export const DatasourceRequiredComponent = ExperienceEditorWarningComponent('Rendering datasource is not configured');

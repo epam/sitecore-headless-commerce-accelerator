@@ -14,21 +14,19 @@
 
 import * as React from 'react';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { WishListControlProps, WishListControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { Breadcrumb, Listing } from './components';
+import { WishListProps, WishListState } from './models';
 
-import { Listing, NavBreadcrumbs } from './components';
-
-class WishListControl extends Jss.SafePureComponent<WishListControlProps, WishListControlState> {
+class WishListComponent extends JSS.SafePureComponent<WishListProps, WishListState> {
   public safeRender() {
     return (
       <>
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
-              <NavBreadcrumbs/>
+              <Breadcrumb/>
             </div>
           </div>
           <div className="row">
@@ -42,4 +40,4 @@ class WishListControl extends Jss.SafePureComponent<WishListControlProps, WishLi
   }
 }
 
-export const WishList = withExperienceEditorChromes(WishListControl);
+export const WishList = JSS.rendering(WishListComponent);

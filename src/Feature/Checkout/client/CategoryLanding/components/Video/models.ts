@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface VideoControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface VideoProps {}
 
-export interface VideoControlState extends JSS.SafePureComponentState {}
+export interface VideoState extends JSS.SafePureComponentState {}

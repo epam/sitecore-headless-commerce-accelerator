@@ -17,11 +17,11 @@ import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import { LoadingStatus } from 'Foundation/Integration/client';
 import { renderingWithContext } from 'Foundation/ReactJss/client';
 
 import * as commonSelectors from 'Feature/Catalog/client/Integration/common/selectors';
 import * as ProductSearch from 'Feature/Catalog/client/Integration/ProductsSearch';
-import { LoadingStatus } from 'Foundation/Integration/client';
 
 import ProductListComponent from './Component';
 import { AppState, ProductListDispatchProps, ProductListOwnProps, ProductListStateProps } from './models';

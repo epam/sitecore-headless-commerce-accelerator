@@ -12,14 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Placeholder, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
+
 import { GlobalFooterProps, GlobalFooterState } from './models';
+
 import './styles.scss';
 
-class GlobalFooter extends JSS.SafePureComponent<
+class GlobalFooterComponent extends JSS.SafePureComponent<
     GlobalFooterProps,
     GlobalFooterState
     > {
@@ -34,4 +36,4 @@ class GlobalFooter extends JSS.SafePureComponent<
     }
 }
 
-export default withExperienceEditorChromes(GlobalFooter);
+export const GlobalFooter = JSS.rendering(GlobalFooterComponent);

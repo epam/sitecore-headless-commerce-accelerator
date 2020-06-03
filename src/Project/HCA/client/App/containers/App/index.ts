@@ -14,18 +14,20 @@
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { InitAuthentication } from 'Feature/Account/client/Integration/Authentication';
 import { LoadingStatus } from 'Foundation/Integration/client';
-import * as Jss from 'Foundation/ReactJss/client';
+import * as JSS from 'Foundation/ReactJss/client';
+
+import { InitAuthentication } from 'Feature/Account/client/Integration/Authentication';
 
 import { AppDispatchProps, AppState, AppStateProps } from './../../../models';
 
-import App from './Component';
+import AppComponent from './Component';
 
 const mapStateToProps = (state: AppState): AppStateProps => {
-  const sitecore = Jss.sitecore(state);
+  const sitecore = JSS.sitecore(state);
   const viewBag = state.viewBag;
 
   return {
@@ -46,7 +48,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch
   );
 
-export default withRouter(connect<AppStateProps, AppDispatchProps>(
+const connectedToStore = connect<AppStateProps, AppDispatchProps>(
   mapStateToProps,
   mapDispatchToProps
-)(App) as any);
+);
+
+export const App = compose(withRouter, connectedToStore, JSS.rendering)(AppComponent);

@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface NavBreadcrumbsControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface BreadcrumbProps {}
 
-export interface NavBreadcrumbsControlState extends JSS.SafePureComponentState {}
+export interface BreadcrumbState extends JSS.SafePureComponentState {}

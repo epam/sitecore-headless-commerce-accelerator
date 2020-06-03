@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface ListingControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface ListingProps {}
 
-export interface ListingControlState extends JSS.SafePureComponentState {}
+export interface ListingState extends JSS.SafePureComponentState {}

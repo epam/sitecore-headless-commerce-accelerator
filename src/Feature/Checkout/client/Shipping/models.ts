@@ -32,6 +32,7 @@ export interface ShippingStateProps {
 export interface ShippingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;
   SubmitStep: (stepValues: Checkout.StepValues) => void;
+  AddAddressToAccount: (address: Commerce.Address) => void;
 }
 
 export interface ShippingProps extends ShippingOwnProps, ShippingStateProps, ShippingDispatchProps {}

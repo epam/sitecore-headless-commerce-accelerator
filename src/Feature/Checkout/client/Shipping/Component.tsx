@@ -265,7 +265,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   // tslint:disable-next-line:cognitive-complexity
   private handleSaveAndContinueClick(formValues: FormValues) {
-    const { SubmitStep, shippingInfo } = this.props;
+    const { SubmitStep, shippingInfo, AddAddressToAccount } = this.props;
 
     const selectedShippingMethodId = formValues[FIELDS.SELECTED_SHIPPING_METHOD];
     const shippingMethod = shippingInfo.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
@@ -278,6 +278,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       useForBillingAddress,
     };
     const address = this.getShippingAddress(formValues);
+
+    if (saveToMyAccount) {
+      AddAddressToAccount(address);
+    }
 
     if (address && shippingMethod) {
       SubmitStep({

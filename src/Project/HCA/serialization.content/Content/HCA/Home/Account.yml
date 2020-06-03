@@ -15,7 +15,7 @@ SharedFields:
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
           uid="{881A9677-2B9A-47EC-9689-4BDE26819D5C}"
-          p:after="r[@uid='{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}']"
+          p:after="r[@uid='{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}']"
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
           s:ph="/main-content" />
         <r

@@ -14,44 +14,22 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
-          uid="{F2AD7F82-ED0C-4DA5-A62A-2A1A19A977CA}">
-          <p:d />
-        </r>
-        <r
-          uid="{E05CDE83-B20F-456E-87B5-CE5DFD032BB3}">
-          <p:d />
-        </r>
-        <r
-          uid="{C2DC10FC-C2AA-4A77-BEFF-091D8A54F162}">
-          <p:d />
-        </r>
-        <r
-          uid="{323130A1-2A03-4054-AF17-B624D3CEC67A}"
+          uid="{DDED6619-13E5-4084-B06D-FF2C78BE1D24}"
           p:before="*"
-          s:ds="{72ADD214-9EFB-4656-8CE4-FB25B669E01D}"
-          s:id="{9C124C67-5A07-4DBC-A734-6EE1F6C0B5DF}"
-          s:par=""
-          s:ph="/main-content" />
+          s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
+          s:ph="/main-content/w-col-2-{F06A453F-1A7A-45D5-A02E-1453E802125D}-0" />
         <r
-          uid="{9EC8F48F-AB64-4CDB-A00F-135FB7B40DB7}"
-          p:after="r[@uid='{323130A1-2A03-4054-AF17-B624D3CEC67A}']"
+          uid="{535C78AF-7AB4-4E4B-827C-8774D3D3AA6A}"
+          p:after="r[@uid='{DDED6619-13E5-4084-B06D-FF2C78BE1D24}']"
+          s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
+          s:ph="/main-content/w-col-1-{F06A453F-1A7A-45D5-A02E-1453E802125D}-0" />
+        <r
+          uid="{F06A453F-1A7A-45D5-A02E-1453E802125D}"
+          p:after="r[@uid='{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}']"
           s:ds=""
           s:id="{B2EDE051-9A8B-4502-9D6B-39759BCFF123}"
           s:par="Wrapper Class=hca&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10&amp;Third Column Class"
-          s:ph="/main-content" />
-        <r
-          uid="{C8D81053-40AC-41A4-8224-8154E6C569DF}"
-          p:after="r[@uid='{9EC8F48F-AB64-4CDB-A00F-135FB7B40DB7}']"
-          s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
-          s:ph="/main-content/w-col-1-{9EC8F48F-AB64-4CDB-A00F-135FB7B40DB7}-0" />
-        <r
-          uid="{CF3D13FF-CEA1-4279-B619-A70667E0CD2C}"
-          p:after="r[@uid='{C8D81053-40AC-41A4-8224-8154E6C569DF}']"
-          s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
-          s:ph="/main-content/w-col-2-{9EC8F48F-AB64-4CDB-A00F-135FB7B40DB7}-0" />
-        <r
-          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
-          s:par="Wrapper Class=footer-columns&amp;First Column Class&amp;Second Column Class&amp;Third Column Class" />
+          s:ph="main-content" />
       </d>
     </r>
 Languages:

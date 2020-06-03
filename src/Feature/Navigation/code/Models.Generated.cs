@@ -227,100 +227,120 @@ namespace HCA.Feature.Navigation.Models
 
 
     /// <summary>
-    /// IGlobalHeader Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Global Header</para>
-    /// <para>ID: 77eee1b3-ede2-41fc-b2fe-1f77832e09e5</para>
+    /// IHeaderFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Header Folder</para>
+    /// <para>ID: 5f257a2a-dfed-4617-a24a-3e85ba695305</para>
     /// </summary>
-    [SitecoreType(TemplateId="77eee1b3-ede2-41fc-b2fe-1f77832e09e5")]
-    public partial interface IGlobalHeader: IGlassBase
+    [SitecoreType(TemplateId="5f257a2a-dfed-4617-a24a-3e85ba695305")]
+    public partial interface IHeaderFolder: IGlassBase
     {
-
-        /// <summary>
-        /// The Logo field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: e3d69d99-45fc-4349-8114-6bd764a1db5e</para>
-        /// </summary>
-        [SitecoreField("Logo")]
-        Image Logo {get; set;}
-
-        /// <summary>
-        /// The Menu Items field.
-        /// <para>Field Type: Multilist</para>
-        /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
-        /// </summary>
-        [SitecoreField("Menu Items")]
-        IEnumerable<Guid> MenuItems {get; set;}
-
-        /// <summary>
-        /// The Mobile Logo field.
-        /// <para>Field Type: Image</para>
-        /// <para>Field ID: 767046a1-f0a7-4942-bfd8-3ac44b70f29f</para>
-        /// </summary>
-        [SitecoreField("Mobile Logo")]
-        Image MobileLogo {get; set;}
 
     }
 
 
     /// <summary>
-    /// GlobalHeader Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Global Header</para>
-    /// <para>ID: 77eee1b3-ede2-41fc-b2fe-1f77832e09e5</para>
+    /// HeaderFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Header Folder</para>
+    /// <para>ID: 5f257a2a-dfed-4617-a24a-3e85ba695305</para>
     /// </summary>
-    [SitecoreType(TemplateId="77eee1b3-ede2-41fc-b2fe-1f77832e09e5")]
-    public partial class GlobalHeader: GlassBase, IGlobalHeader
+    [SitecoreType(TemplateId="5f257a2a-dfed-4617-a24a-3e85ba695305")]
+    public partial class HeaderFolder: GlassBase, IHeaderFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Global Header
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Header Folder
         /// </summary>
-        public const string TemplateId = "77eee1b3-ede2-41fc-b2fe-1f77832e09e5";
+        public const string TemplateId = "5f257a2a-dfed-4617-a24a-3e85ba695305";
+
+    }
+
+
+    /// <summary>
+    /// ILogo Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo</para>
+    /// <para>ID: 095aae19-603c-4caa-9848-a47fcfe18308</para>
+    /// </summary>
+    [SitecoreType(TemplateId="095aae19-603c-4caa-9848-a47fcfe18308")]
+    public partial interface ILogo: IGlassBase
+    {
 
         /// <summary>
-        /// The Logo field.
+        /// The Image field.
         /// <para>Field Type: Image</para>
-        /// <para>Field ID: e3d69d99-45fc-4349-8114-6bd764a1db5e</para>
+        /// <para>Field ID: b33b2551-09c4-454e-b2d5-6f41d878cc63</para>
         /// </summary>
-        [SitecoreField("Logo")]
-        public virtual Image Logo {get; set;}
-        public const string LogoFieldId = "e3d69d99-45fc-4349-8114-6bd764a1db5e";
-        public const string LogoFieldName = "Logo";
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Logo Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo</para>
+    /// <para>ID: 095aae19-603c-4caa-9848-a47fcfe18308</para>
+    /// </summary>
+    [SitecoreType(TemplateId="095aae19-603c-4caa-9848-a47fcfe18308")]
+    public partial class Logo: GlassBase, ILogo
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Logo
+        /// </summary>
+        public const string TemplateId = "095aae19-603c-4caa-9848-a47fcfe18308";
 
         /// <summary>
-        /// The Menu Items field.
-        /// <para>Field Type: Multilist</para>
-        /// <para>Field ID: 35033e47-38f6-4912-b14d-e23b5c7390d7</para>
-        /// </summary>
-        [SitecoreField("Menu Items")]
-        public virtual IEnumerable<Guid> MenuItems {get; set;}
-        public const string MenuItemsFieldId = "35033e47-38f6-4912-b14d-e23b5c7390d7";
-        public const string MenuItemsFieldName = "Menu Items";
-
-        /// <summary>
-        /// The Mobile Logo field.
+        /// The Image field.
         /// <para>Field Type: Image</para>
-        /// <para>Field ID: 767046a1-f0a7-4942-bfd8-3ac44b70f29f</para>
+        /// <para>Field ID: b33b2551-09c4-454e-b2d5-6f41d878cc63</para>
         /// </summary>
-        [SitecoreField("Mobile Logo")]
-        public virtual Image MobileLogo {get; set;}
-        public const string MobileLogoFieldId = "767046a1-f0a7-4942-bfd8-3ac44b70f29f";
-        public const string MobileLogoFieldName = "Mobile Logo";
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "b33b2551-09c4-454e-b2d5-6f41d878cc63";
+        public const string ImageFieldName = "Image";
+
+    }
+
+
+    /// <summary>
+    /// ILogoFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo Folder</para>
+    /// <para>ID: 4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44")]
+    public partial interface ILogoFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// LogoFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo Folder</para>
+    /// <para>ID: 4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44")]
+    public partial class LogoFolder: GlassBase, ILogoFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Logo Folder
+        /// </summary>
+        public const string TemplateId = "4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44";
 
     }
 
 
     /// <summary>
     /// IMenuItem Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item</para>
-    /// <para>ID: 5dccb05c-59f3-4579-aea3-6e5dc934c7b0</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item</para>
+    /// <para>ID: 001f1d60-f8a4-4b1d-9506-41aeedb1ab03</para>
     /// </summary>
-    [SitecoreType(TemplateId="5dccb05c-59f3-4579-aea3-6e5dc934c7b0")]
+    [SitecoreType(TemplateId="001f1d60-f8a4-4b1d-9506-41aeedb1ab03")]
     public partial interface IMenuItem: IGlassBase
     {
 
         /// <summary>
         /// The Commerce Categories field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 1059d1e9-7ee8-4021-9a18-b7876ff11e28</para>
+        /// <para>Field ID: 9054b50f-0991-47de-ab5f-f114a47b0abe</para>
         /// </summary>
         [SitecoreField("Commerce Categories")]
         IEnumerable<Guid> CommerceCategories {get; set;}
@@ -328,7 +348,7 @@ namespace HCA.Feature.Navigation.Models
         /// <summary>
         /// The Image field.
         /// <para>Field Type: Image</para>
-        /// <para>Field ID: 8d6d3e24-814b-4c4a-b0d8-c2f9d607b923</para>
+        /// <para>Field ID: e64c33b3-d65e-4319-93a2-2c754a8cac6d</para>
         /// </summary>
         [SitecoreField("Image")]
         Image Image {get; set;}
@@ -336,7 +356,7 @@ namespace HCA.Feature.Navigation.Models
         /// <summary>
         /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 2f131184-e443-4376-94b3-2283d246d205</para>
+        /// <para>Field ID: 5ded8fb9-7d05-400d-971c-affa49b5443b</para>
         /// </summary>
         [SitecoreField("Title")]
         string Title {get; set;}
@@ -346,74 +366,92 @@ namespace HCA.Feature.Navigation.Models
 
     /// <summary>
     /// MenuItem Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item</para>
-    /// <para>ID: 5dccb05c-59f3-4579-aea3-6e5dc934c7b0</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item</para>
+    /// <para>ID: 001f1d60-f8a4-4b1d-9506-41aeedb1ab03</para>
     /// </summary>
-    [SitecoreType(TemplateId="5dccb05c-59f3-4579-aea3-6e5dc934c7b0")]
+    [SitecoreType(TemplateId="001f1d60-f8a4-4b1d-9506-41aeedb1ab03")]
     public partial class MenuItem: GlassBase, IMenuItem
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Menu Item
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item
         /// </summary>
-        public const string TemplateId = "5dccb05c-59f3-4579-aea3-6e5dc934c7b0";
+        public const string TemplateId = "001f1d60-f8a4-4b1d-9506-41aeedb1ab03";
 
         /// <summary>
         /// The Commerce Categories field.
         /// <para>Field Type: Treelist</para>
-        /// <para>Field ID: 1059d1e9-7ee8-4021-9a18-b7876ff11e28</para>
+        /// <para>Field ID: 9054b50f-0991-47de-ab5f-f114a47b0abe</para>
         /// </summary>
         [SitecoreField("Commerce Categories")]
         public virtual IEnumerable<Guid> CommerceCategories {get; set;}
-        public const string CommerceCategoriesFieldId = "1059d1e9-7ee8-4021-9a18-b7876ff11e28";
+        public const string CommerceCategoriesFieldId = "9054b50f-0991-47de-ab5f-f114a47b0abe";
         public const string CommerceCategoriesFieldName = "Commerce Categories";
 
         /// <summary>
         /// The Image field.
         /// <para>Field Type: Image</para>
-        /// <para>Field ID: 8d6d3e24-814b-4c4a-b0d8-c2f9d607b923</para>
+        /// <para>Field ID: e64c33b3-d65e-4319-93a2-2c754a8cac6d</para>
         /// </summary>
         [SitecoreField("Image")]
         public virtual Image Image {get; set;}
-        public const string ImageFieldId = "8d6d3e24-814b-4c4a-b0d8-c2f9d607b923";
+        public const string ImageFieldId = "e64c33b3-d65e-4319-93a2-2c754a8cac6d";
         public const string ImageFieldName = "Image";
 
         /// <summary>
         /// The Title field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 2f131184-e443-4376-94b3-2283d246d205</para>
+        /// <para>Field ID: 5ded8fb9-7d05-400d-971c-affa49b5443b</para>
         /// </summary>
         [SitecoreField("Title")]
         public virtual string Title {get; set;}
-        public const string TitleFieldId = "2f131184-e443-4376-94b3-2283d246d205";
+        public const string TitleFieldId = "5ded8fb9-7d05-400d-971c-affa49b5443b";
         public const string TitleFieldName = "Title";
 
     }
 
 
     /// <summary>
-    /// IMenuItemFolder Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder</para>
-    /// <para>ID: b1142e79-d313-41b1-b3c2-268ebb80c489</para>
+    /// INavigationMenu Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Navigation Menu</para>
+    /// <para>ID: c2518164-6043-4d73-b26c-08d13ab49118</para>
     /// </summary>
-    [SitecoreType(TemplateId="b1142e79-d313-41b1-b3c2-268ebb80c489")]
-    public partial interface IMenuItemFolder: IGlassBase
+    [SitecoreType(TemplateId="c2518164-6043-4d73-b26c-08d13ab49118")]
+    public partial interface INavigationMenu: IGlassBase
     {
+
+        /// <summary>
+        /// The Menu Items field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 9f4a6483-00e9-47b6-abdb-6dc148d2c890</para>
+        /// </summary>
+        [SitecoreField("Menu Items")]
+        IEnumerable<Guid> MenuItems {get; set;}
 
     }
 
 
     /// <summary>
-    /// MenuItemFolder Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder</para>
-    /// <para>ID: b1142e79-d313-41b1-b3c2-268ebb80c489</para>
+    /// NavigationMenu Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Navigation Menu</para>
+    /// <para>ID: c2518164-6043-4d73-b26c-08d13ab49118</para>
     /// </summary>
-    [SitecoreType(TemplateId="b1142e79-d313-41b1-b3c2-268ebb80c489")]
-    public partial class MenuItemFolder: GlassBase, IMenuItemFolder
+    [SitecoreType(TemplateId="c2518164-6043-4d73-b26c-08d13ab49118")]
+    public partial class NavigationMenu: GlassBase, INavigationMenu
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Menu Item Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Navigation Menu
         /// </summary>
-        public const string TemplateId = "b1142e79-d313-41b1-b3c2-268ebb80c489";
+        public const string TemplateId = "c2518164-6043-4d73-b26c-08d13ab49118";
+
+        /// <summary>
+        /// The Menu Items field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 9f4a6483-00e9-47b6-abdb-6dc148d2c890</para>
+        /// </summary>
+        [SitecoreField("Menu Items")]
+        public virtual IEnumerable<Guid> MenuItems {get; set;}
+        public const string MenuItemsFieldId = "9f4a6483-00e9-47b6-abdb-6dc148d2c890";
+        public const string MenuItemsFieldName = "Menu Items";
 
     }
 

@@ -1,0 +1,212 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import '~Foundation/UI/client/common/scss/variables';
+@import '~Foundation/UI/client/common/scss/mixins';
+
+.navigation-menu {
+  display: inline;
+  >ul {
+    display: inline;
+    @media (max-width: $screen-sm-max){
+      display: block;
+    }
+    i{
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-left: 1px solid $header-section-font-color;
+      display: none;
+      cursor: pointer;
+      transform: rotate(0deg);
+      transition: background .2s, rotate .2s;
+      &:hover{
+        background: rgba(255, 255, 255, 0.15);
+      }
+      &.i-open{
+        transform: rotate(180deg);
+      }
+      @media (max-width: $screen-sm-max){
+        display: block;
+      }
+    }
+    >li {
+      position: relative;
+      display: inline-block;
+      line-height: 40px;
+      text-transform: uppercase;
+
+      @media (min-width: $screen-md-min) {
+        width: 115px;
+      }
+      @media (min-width: $screen-lg-min) {
+        width: 130px;
+      }
+
+      @media (max-width: $screen-sm-max){
+        display: block;
+        &.is-open{
+          i{
+            transform: rotate(180deg);
+          }
+          @media (max-width: $screen-sm-max){
+            .dropdown{
+              max-height: 1500px;
+            }
+          }
+        }
+      }
+      > a {
+        display: block;
+        color: $nav-font-color;
+        text-align: center;
+        @media (max-width: $screen-sm-max){
+          text-align: left;
+          margin-right: 40px; //space for icon
+        }
+      }
+      .dropdown {
+        @include clearfix;
+        position: absolute;
+        left: -999em;
+        z-index: 101;
+        width: 590px;
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        @media (max-width: $screen-sm-max){
+          position: static;
+          width: auto;
+          padding-right: 0;
+          max-height: 0px;
+          transition: max-height .2s;
+        }
+        nav {
+          width: 300px;
+          float:left;
+          padding: 10px 0;
+          @media (max-width: $screen-sm-max){
+            width: auto;
+            float: none;
+          }
+          a {
+            color: $header-section-font-second-color;
+            padding: 5px 25px;
+            display:block;
+          }
+          span.title{
+            cursor: default;
+            padding: 10px 0 5px;
+            position: relative;
+            margin-left: 25px;
+            margin-right: 25px;
+            text-transform: uppercase;
+            display: block;
+            border-style: solid;
+            color: $header-section-font-color;
+            &:after {
+              content: '';
+              margin-bottom: 5px;
+              margin-top: 5px;
+              display: block;
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: 1px;
+              background: $header-section-font-color;
+            }
+          }
+        }
+        aside {
+          float: left;
+          width: 290px;
+          padding: 10px 0;
+          margin: 0;
+          @media (max-width: $screen-sm-max){
+            display: none;
+          }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            display: block;
+            height: auto;
+          }
+        }
+      }
+      .dropdown.drop-open{
+        max-height:100vh;
+      }
+      &:hover .dropdown {
+        left:0px;
+      }
+      //no room to the right
+      &.menu-item {
+        &.right-item:hover {
+          .dropdown{
+            left: auto;
+            right: 0;
+          }
+        }
+        &:hover {
+          background-color: $main-color;
+        }
+        .dropdown {
+          background-color: $main-color;
+          @media (max-width: $screen-sm-max){
+            background: $header-section-font-color;
+            nav{
+              border-style: solid;
+              border-bottom-width: 10px;
+            }
+            span.title{
+              color: $second-color-dark;
+              border-top-width: 1px;
+              margin-top: 5px;
+            }
+            li{
+              text-transform: none;
+            }
+            a{
+              color:#898b8e;
+            }
+            a:hover {
+              color: #111;
+            }
+          }
+        }
+        @media (max-width: $screen-sm-max) {
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: $nav-font-second-color;
+          }
+          .dropdown{
+            span.title:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

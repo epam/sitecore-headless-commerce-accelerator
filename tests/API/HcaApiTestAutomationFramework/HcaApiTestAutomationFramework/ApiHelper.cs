@@ -84,7 +84,7 @@ namespace HcaApiTestAutomationFramework
 
 		private void AddRequestCookies(RestRequest request)
 		{
-			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", ConfigurationManager.AppSettings["SC_ANALYTICS_GLOBAL_COOKIE"]);
+			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", ConfigurationManager.AppSettings["ScAnalyticsGlobalCookie"]);
 		}
 
 		private void AddRequestHeaders(RestRequest request)

@@ -5,10 +5,10 @@ namespace HcaApiTestAutomationFramework
 {
 	public class GraphQLApiCalls
 	{
-		public string GraphQLSendboxUrl = ConfigurationManager.AppSettings["GraphQLSendboxUrl"];
+		public string GraphQLSandboxUrl = ConfigurationManager.AppSettings["GraphQLSandboxUrl"];
 		public dynamic ClientConfiguration()
 		{
-			var client = new GraphQlClient(GraphQLSendboxUrl);
+			var client = new GraphQlClient(GraphQLSandboxUrl);
 			var operationName = "ClientConfiguration";
 			object clientSdkMetadata = new
 			{
@@ -24,7 +24,7 @@ namespace HcaApiTestAutomationFramework
 
 		public dynamic TokenizeCreditCard(Input.Creditcard creditcard)
 		{
-			var client = new GraphQlClient(GraphQLSendboxUrl);
+			var client = new GraphQlClient(GraphQLSandboxUrl);
 			var operationName = "TokenizeCreditCard";
 			object clientSdkMetadata = new
 			{

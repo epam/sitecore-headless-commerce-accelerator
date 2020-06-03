@@ -1,0 +1,41 @@
+﻿---
+ID: "260ba6fc-fa2b-457e-8a23-6260fcd4415e"
+Parent: "39d2c64d-7ea8-438c-82b0-300e97de236a"
+Template: "c2518164-6043-4d73-b26c-08d13ab49118"
+Path: /sitecore/content/HCA/Data/Header/Navigation Menu
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{001F1D60-F8A4-4B1D-9506-41AEEDB1AB03}"
+- ID: "9f4a6483-00e9-47b6-abdb-6dc148d2c890"
+  Hint: Menu Items
+  Type: Multilist
+  Value: |
+    {8F978785-3A41-41A8-82AA-86A2BCD0DA65}
+    {F02CF2EA-DA31-44F5-9713-98C49C97B6EB}
+    {822A8C9B-C5D5-44CE-BE88-E3EB956E22C1}
+    {4906ACC6-8852-4D26-B7E4-938CF14079D0}
+    {AE15B145-7122-4F6B-BE0D-1D1029A4477F}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200521T134215Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "9f4a6483-00e9-47b6-abdb-6dc148d2c890"
+      Hint: Menu Items
+      Type: Multilist
+      Value: |
+        {822A8C9B-C5D5-44CE-BE88-E3EB956E22C1}
+        {F02CF2EA-DA31-44F5-9713-98C49C97B6EB}
+        {AE15B145-7122-4F6B-BE0D-1D1029A4477F}
+        {4906ACC6-8852-4D26-B7E4-938CF14079D0}
+        {8F978785-3A41-41A8-82AA-86A2BCD0DA65}

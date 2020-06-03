@@ -1,0 +1,33 @@
+﻿---
+ID: "8f978785-3a41-41a8-82aa-86a2bcd0da65"
+Parent: "260ba6fc-fa2b-457e-8a23-6260fcd4415e"
+Template: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
+Path: /sitecore/content/HCA/Data/Header/Navigation Menu/Phones
+DB: master
+SharedFields:
+- ID: "9054b50f-0991-47de-ab5f-f114a47b0abe"
+  Hint: Commerce Categories
+  Type: Treelist
+  Value: |
+    {8E456D84-4251-DBA1-4B86-CE103DEDCD02}
+    {A0860C27-2A32-841F-7014-75B163B9471E}
+    {3198FFE4-83D3-A856-6964-62A6A2E9B488}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200521T134327Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "5ded8fb9-7d05-400d-971c-affa49b5443b"
+      Hint: Title
+      Value: Phones
+    - ID: "e64c33b3-d65e-4319-93a2-2c754a8cac6d"
+      Hint: Image
+      Value: |
+        <image mediaid="{E56038B9-1E9C-4ABD-A6D1-102385800106}" ></image>

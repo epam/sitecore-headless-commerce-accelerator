@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
+    <Compile Include="AppSettingsExpander.cs" />
     <Compile Include="GraphQLApiCalls.cs" />
     <Compile Include="GraphQlClient.cs" />
     <Compile Include="GraphQlDTO\ClientConfigurationRequestDTO.cs" />

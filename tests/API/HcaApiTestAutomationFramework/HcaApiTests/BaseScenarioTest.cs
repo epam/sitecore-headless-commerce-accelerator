@@ -23,6 +23,7 @@ namespace HcaApiTests
 		 */
 
 		private string _categoryId = "8e456d84-4251-dba1-4b86-ce103dedcd02";
+		private string _searchKeyword = "desktop";
 		private string _productId = "";
 		private string _variantId = "";
 		private string _guestUserID = "TEMP_NAME";

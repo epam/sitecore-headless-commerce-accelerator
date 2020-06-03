@@ -10,7 +10,7 @@ namespace HcaApiTestAutomationFramework
 		public RestClient restClient;
 		public RestRequest restRequest;
 		public string Host = ConfigurationManager.AppSettings["Host"];
-		public string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
+		public string baseUrl = AppSettingsExpander.Expand("BaseUrl");
 
 		public RestClient SetUrl(string endpoint)
 		{
@@ -85,12 +85,10 @@ namespace HcaApiTestAutomationFramework
 		private void AddRequestCookies(RestRequest request)
 		{
 			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", ConfigurationManager.AppSettings["SC_ANALYTICS_GLOBAL_COOKIE"]);
-			//request.AddCookie("ASP.NET_SessionId", ConfigurationManager.AppSettings["ASP.NET_SessionId"]);
 		}
 
 		private void AddRequestHeaders(RestRequest request)
 		{
-			//request.AddHeader("HOST", "int-cd.hca.azure.epmc-stc.projects.epam.com");
 			request.AddHeader("Accept", "*/*");
 			request.AddHeader("Accept-Enclding", "gzip,deflat,sdch");
 			request.AddHeader("Cache-Control", "no-cache");

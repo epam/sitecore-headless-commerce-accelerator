@@ -83,7 +83,6 @@ namespace HcaApiTestAutomationFramework
 
 		private void AddRequestHeaders(RestRequest request)
 		{
-			//request.AddHeader("HOST", "int-cd.hca.azure.epmc-stc.projects.epam.com");
 			request.AddHeader("braintree-version", ConfigurationManager.AppSettings["braintree-version"]);
 			request.AddHeader("Accept-Enclding", "gzip,deflat,sdch");
 			request.AddHeader("Cache-Control", "no-cache");

@@ -12,10 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
+
+import * as JSS from 'Foundation/ReactJss/client';
 
 import * as Authentication from 'Feature/Account/client/Integration/Authentication';
 import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
@@ -46,7 +47,9 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
+const connectedToStore = connect(mapStateToProps, mapDispatchToProps);
+
 export const UserNavigation = compose(
   JSS.rendering,
-  connect(mapStateToProps, mapDispatchToProps),
+  connectedToStore
 )(UserNavigationComponent);

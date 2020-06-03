@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
 import { Carousel } from 'Foundation/UI/client';
-import { SliderControlProps, SliderControlState } from './models';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { SliderProps, SliderState } from './models';
 
 import './styles.scss';
 
-class SliderControl extends Jss.SafePureComponent<SliderControlProps, SliderControlState> {
+export class Slider extends JSS.SafePureComponent<SliderProps, SliderState> {
   public safeRender() {
     const images: string[] = new Array(10)
       .fill(undefined)
@@ -84,5 +84,3 @@ class SliderControl extends Jss.SafePureComponent<SliderControlProps, SliderCont
     );
   }
 }
-
-export const Slider = withExperienceEditorChromes(SliderControl);

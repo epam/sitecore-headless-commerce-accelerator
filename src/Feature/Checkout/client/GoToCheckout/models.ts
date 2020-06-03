@@ -13,12 +13,13 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss/client';
+
 import * as Models from '../Models.Generated';
 
 export interface CheckoutNavigationDatasource extends Models.CheckoutNavigationDataSource {
     checkoutSteps: JSS.ItemList<Models.CheckoutStepDataSource>;
   url: string;
 }
-export interface GoToCheckoutControlProps extends JSS.Rendering<CheckoutNavigationDatasource> {}
+export interface GoToCheckoutProps extends JSS.Rendering<CheckoutNavigationDatasource> {}
 
-export interface GoToCheckoutControlState extends JSS.SafePureComponentState {}
+export interface GoToCheckoutState extends JSS.SafePureComponentState {}

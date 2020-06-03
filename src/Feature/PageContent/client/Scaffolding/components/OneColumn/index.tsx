@@ -12,16 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Placeholder, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
-
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import { GridControlProps, GridControlState } from '../models';
+import { GridProps, GridState } from '../models';
 
-class OneColumnComponent extends JSS.SafePureComponent<GridControlProps, GridControlState> {
+class OneColumnComponent extends JSS.SafePureComponent<GridProps, GridState> {
   public safeRender() {
     return (
       <main>
@@ -39,4 +38,4 @@ class OneColumnComponent extends JSS.SafePureComponent<GridControlProps, GridCon
   }
 }
 
-export const OneColumn = withExperienceEditorChromes(OneColumnComponent);
+export const OneColumn = JSS.rendering(OneColumnComponent);

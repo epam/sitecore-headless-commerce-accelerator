@@ -14,6 +14,6 @@
 
 import { hot } from 'react-hot-loader';
 
-import App from './containers/App';
+import { App } from './containers/App';
 
 export default (process.env.NODE_ENV === 'development' ? hot(module)(App) : App);

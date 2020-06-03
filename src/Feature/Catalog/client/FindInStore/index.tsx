@@ -12,12 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-class FindInStoreControl extends JSS.SafePureComponent<any, any> {
+class FindInStoreComponent extends JSS.SafePureComponent<any, any> {
   protected safeRender() {
     return (
       <a href="#" className="btn animated">
@@ -27,4 +26,4 @@ class FindInStoreControl extends JSS.SafePureComponent<any, any> {
   }
 }
 
-export const FindInStore =  withExperienceEditorChromes(FindInStoreControl);
+export const FindInStore =  JSS.rendering(FindInStoreComponent);

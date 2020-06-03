@@ -12,23 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Jss from 'Foundation/ReactJss/client';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
 
+import SocialNetworksLinksComponent from './Component';
 import { AppState, SocialLinksProps, SocialLinksStateProps } from './models';
-
-import SocialNetworksLinks from './Component';
 
 const mapStateToProps = (state: AppState, ownProps: SocialLinksProps) => {
   return {
-    isPageEditingMode: Jss.sitecoreContext(state).pageEditing
+    isPageEditingMode: JSS.sitecoreContext(state).pageEditing
   };
 };
 
 const connectedToStore = connect<SocialLinksStateProps, SocialLinksProps>(
   mapStateToProps
-)(SocialNetworksLinks);
+);
 
-export default withExperienceEditorChromes(connectedToStore);
+export const SocialNetworksLinks = compose(connectedToStore, JSS.rendering)(SocialNetworksLinksComponent);

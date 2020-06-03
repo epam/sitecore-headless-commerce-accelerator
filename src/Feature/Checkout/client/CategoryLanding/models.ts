@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface CategoryLandingControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface CategoryLandingProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 
-export interface CategoryLandingControlState extends JSS.SafePureComponentState {}
+export interface CategoryLandingState extends JSS.SafePureComponentState {}

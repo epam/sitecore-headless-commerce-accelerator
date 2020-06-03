@@ -8,26 +8,27 @@ namespace HCA.Pages.CommonElements
     {
         private static HeaderControl _headerControl;
 
-        private readonly WebButton cartButton = new WebButton("Cart button", By.XPath("//a[@href = '/cart']"));
+        private readonly WebButton _cartButton = new WebButton("Cart button", By.XPath("//a[@href = '/cart']"));
 
-        private readonly WebElement headerElement = new WebElement("Header", ByCustom.Id("header-main"));
+        private readonly WebElement _headerElement = new WebElement("Header", ByCustom.Id("header-main"));
 
-        private readonly WebElement navigationUserPanel =
+        private readonly WebElement _navigationUserPanel =
             new WebElement("Navigation User panel", ByCustom.Id("nav-user"));
 
-        private readonly WebButton userButton = new WebButton("User button", By.XPath("//i[@class = 'fa fa-user']"));
+        private readonly WebButton _userButton = new WebButton("User button", By.XPath("//i[@class = 'fa fa-user']"));
 
         public static HeaderControl Instance =>
             _headerControl ?? (_headerControl = new HeaderControl());
 
         public void CartButtonClick()
         {
-            cartButton.Click();
+            _cartButton.Click();
         }
 
         public void UserButtonClick()
         {
-            userButton.Click();
+            _userButton.WaitForClickable();
+            _userButton.Click();
         }
     }
 }

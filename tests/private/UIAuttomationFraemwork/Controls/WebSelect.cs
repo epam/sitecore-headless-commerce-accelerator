@@ -38,19 +38,13 @@ namespace UIAutomationFramework.Controls
         public void Select(string text)
         {
             Log(LogLevel.Debug, $"Selecting '{text}' in {ElementName}");
-            if (text != null)
-            {
-                Select().SelectByText(text);
-            }
+            if (text != null) Select().SelectByText(text);
         }
 
         public void SelectByContains(string text)
         {
             Log(LogLevel.Debug, $"Selecting {text} in {ElementName}");
-            if (text != null)
-            {
-                Select().SelectByText(Select().Options.First(x => x.Text.Contains(text)).Text);
-            }
+            if (text != null) Select().SelectByText(Select().Options.First(x => x.Text.Contains(text)).Text);
         }
 
         public void SelectByIndex(int index)
@@ -69,10 +63,7 @@ namespace UIAutomationFramework.Controls
         {
             Log(LogLevel.Debug, $"Selecting by value: {value} in {ElementName}");
 
-            if (value != null)
-            {
-                Select().SelectByValue(value);
-            }
+            if (value != null) Select().SelectByValue(value);
         }
 
         public new void VerifyText(string text, string message = "The value in drop-down is not correct")
@@ -113,13 +104,9 @@ namespace UIAutomationFramework.Controls
             var isOptionsExist = false;
             var retry = true;
             for (var i = 0; i < optionsCount; i++)
-            {
                 try
                 {
-                    if (Select().Options[i].Text.Equals(option))
-                    {
-                        isOptionsExist = true;
-                    }
+                    if (Select().Options[i].Text.Equals(option)) isOptionsExist = true;
                 }
                 catch (Exception) when (retry)
                 {
@@ -128,7 +115,6 @@ namespace UIAutomationFramework.Controls
                     isOptionsExist = false;
                     retry = false;
                 }
-            }
 
             Assert.False(isOptionsExist);
         }
@@ -138,13 +124,12 @@ namespace UIAutomationFramework.Controls
             Log(LogLevel.Debug, $"Verifying {list.Count} options of {ElementName}");
             var optionsOptions = Select().Options;
             if (hasEmptyValue)
-            {
                 //TODO possible StaleElementReference because optionsOptions is ListOf IWebElements
                 optionsOptions = optionsOptions.Where(x => !string.IsNullOrEmpty(x.Text)).ToList();
-            }
 
             var actualList = optionsOptions.Select(x => x.Text);
-            Assert.IsTrue(actualList.SequenceEqual(list), $"Expected: {string.Join("\n", list)}.\n Actual: {string.Join("\n", actualList)}");
+            Assert.IsTrue(actualList.SequenceEqual(list),
+                $"Expected: {string.Join("\n", list)}.\n Actual: {string.Join("\n", actualList)}");
         }
 
         public void VerifyNoneSelected()

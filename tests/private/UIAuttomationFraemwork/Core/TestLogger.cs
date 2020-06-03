@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
-using UIAutomationFramework;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NUnit.Framework;
+using UIAutomationFramework.Driver;
 
 namespace UIAutomationFramework.Core
 {

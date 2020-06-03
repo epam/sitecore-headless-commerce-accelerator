@@ -3,7 +3,7 @@ using UIAutomationFramework.Core;
 using UIAutomationFramework.Interfaces;
 using UIAutomationFramework.Utils;
 
-namespace Automation.Selenium.Library.Entities.WebSiteEntities
+namespace UIAutomationFramework.Entities.WebSiteEntities
 {
     public abstract class WebSiteEntity
     {
@@ -33,6 +33,5 @@ namespace Automation.Selenium.Library.Entities.WebSiteEntities
         {
             Navigate(UriManager.AddPostfix(Uri, page.GetPath()));
         }
-
     }
 }

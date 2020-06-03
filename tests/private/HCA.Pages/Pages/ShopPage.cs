@@ -1,7 +1,5 @@
-﻿using System;
-using UIAutomationFramework.Controls;
+﻿using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
-using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
@@ -12,7 +10,7 @@ namespace HCA.Pages.Pages
 
         public override void WaitForOpened()
         {
-           _productGrid.WaitForPresent();
+            _productGrid.WaitForPresent();
         }
 
         private WebElement FindProductByName(string productName)

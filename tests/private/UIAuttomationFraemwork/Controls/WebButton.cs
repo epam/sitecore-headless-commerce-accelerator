@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using UIAutomationFramework.Driver;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
 
@@ -29,6 +31,21 @@ namespace UIAutomationFramework.Controls
         {
             Log(LogLevel.Debug, "Verifying label");
             Assert.AreEqual(label, GetButtonName(), $"{ElementName}: {message}");
+        }
+
+        public void WaitForClickable(double timeout = -1, bool throwIfNotFound = true)
+        {
+            Log(LogLevel.Debug, $"Waiting for present of {ElementName}");
+            if (timeout == -1) timeout = Configuration.DefaultTimeout;
+
+            try
+            {
+                DriverManager.GetWaiter(timeout).Until(d => IsClickable());
+            }
+            catch (Exception exception)
+            {
+                if (throwIfNotFound) throw new NoSuchElementException(ElementName + ": Timed out", exception);
+            }
         }
 
         private string GetButtonName()

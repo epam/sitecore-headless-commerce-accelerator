@@ -20,11 +20,8 @@ namespace UIAutomationFramework.Controls
 
         internal By GetLocator()
         {
-            if (_locatorBy != null)
-            {
-                return _locatorBy;
-            }
-            By localLocator = Environment;
+            if (_locatorBy != null) return _locatorBy;
+            var localLocator = Environment;
             //By localLocator = null;
             //TODO реализовать фреймворк для нескольких энвайрнтментов
             //var environment = SeleniumTestContext.GetEnvironment();
@@ -42,10 +39,7 @@ namespace UIAutomationFramework.Controls
             //        break;
             //}
 
-            if (localLocator == null)
-            {
-                throw new LocatorNotFoundException($"Cannot find locator for environment ");
-            }
+            if (localLocator == null) throw new LocatorNotFoundException("Cannot find locator for environment ");
 
             return localLocator;
         }

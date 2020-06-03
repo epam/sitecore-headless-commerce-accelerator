@@ -1,7 +1,7 @@
 ﻿using System;
-using UIAutomationFramework.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using UIAutomationFramework.Core;
 using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Utils.Extensions

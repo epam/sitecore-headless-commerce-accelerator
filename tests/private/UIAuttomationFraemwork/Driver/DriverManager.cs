@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using UIAutomationFramework.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
+using UIAutomationFramework.Core;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
 

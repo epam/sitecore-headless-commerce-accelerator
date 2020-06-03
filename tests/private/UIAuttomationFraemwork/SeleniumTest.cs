@@ -6,12 +6,12 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
-using UIAutomationFramework.Core;
-using UIAutomationFramework.Driver;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
+using UIAutomationFramework.Core;
+using UIAutomationFramework.Driver;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
 
@@ -21,8 +21,6 @@ namespace UIAutomationFramework
     [Order(1)]
     public class SeleniumTest
     {
-        private string EnvironmentName { get; }
-
         [SetUp]
         public void Setup()
         {
@@ -39,18 +37,11 @@ namespace UIAutomationFramework
                 TestContext.Out.WriteLine("[TestReRunKey]");
             }
 
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
-            {
-                TearDownIfFailed();
-            }
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed) TearDownIfFailed();
 
-            if (DriverManager.GetDriver() != null && Alert.IsPresent())
-            {
-                Alert.Cancel();
-            }
+            if (DriverManager.GetDriver() != null && Alert.IsPresent()) Alert.Cancel();
 
             DriverManager.StopDriverProcesses();
-
 
 
             SeleniumTestContext.ResetEnvironment();
@@ -58,6 +49,8 @@ namespace UIAutomationFramework
             Log(LogLevel.Debug, "SeleniumTest TearDown() completed");
             Dispose();
         }
+
+        private string EnvironmentName { get; }
 
         private const string ScreenshotExt = ".png";
 
@@ -70,9 +63,7 @@ namespace UIAutomationFramework
 
             var screenshotFilePath = DoScreenshot(GetScriptId());
             if (!string.IsNullOrEmpty(screenshotFilePath))
-            {
                 TestContext.AddTestAttachment(screenshotFilePath, "Screenshot");
-            }
 
 
             Log(LogLevel.Info, "***[FAILED]: " + TestContext.CurrentContext.Result.Message);
@@ -124,10 +115,7 @@ namespace UIAutomationFramework
             Log(LogLevel.Info, $"Test '{name}' SetUp() is started");
             DriverManager.InitDriver(browser, _driverOptions);
             SeleniumTestContext.SetFirstBrowserType(browser);
-            if (browser != BrowserType.ChromeMobile && browser != BrowserType.Chrome)
-            {
-                Browser.Maximize();
-            }
+            if (browser != BrowserType.ChromeMobile && browser != BrowserType.Chrome) Browser.Maximize();
 
             Log(LogLevel.Info, $"{name} SetUp() completed");
         }
@@ -202,7 +190,8 @@ namespace UIAutomationFramework
             var scriptName = TestContext.CurrentContext.Test.MethodName;
             var dateTime = DateTime.Now.ToString("yyyyMMddTHHmmssZ");
 
-            return $"{Configuration.ReportFolderPath}{dateTime}{scriptName}_{testId}_{browserName}{Thread.CurrentThread.GetHashCode()}";
+            return
+                $"{Configuration.ReportFolderPath}{dateTime}{scriptName}_{testId}_{browserName}{Thread.CurrentThread.GetHashCode()}";
         }
 
         private static string DoScreenshot(string testId)
@@ -226,7 +215,6 @@ namespace UIAutomationFramework
 
 
                 bufferedBitmap = GetScrolledImageScreenshot();
-
             }
             catch (Exception ex)
             {
@@ -235,7 +223,6 @@ namespace UIAutomationFramework
             }
 
             if (bufferedBitmap != null)
-            {
                 try
                 {
                     var filename = path + format + ScreenshotExt;
@@ -247,7 +234,6 @@ namespace UIAutomationFramework
                     Log(LogLevel.Debug, "Saving of image is failed", e);
                     Log(LogLevel.Error, "Saving of image is failed", e);
                 }
-            }
 
             Log(LogLevel.Debug, "Path to screenshot: " + finalPath);
             return finalPath;

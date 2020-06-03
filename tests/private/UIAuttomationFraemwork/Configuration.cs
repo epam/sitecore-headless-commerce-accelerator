@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using Microsoft.Extensions.Configuration;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Utils;
@@ -31,9 +30,8 @@ namespace UIAutomationFramework
 
         public static IConfiguration InitConfiguration()
         {
-           
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json",false, true)
+                .AddJsonFile("appsettings.json", false, true)
                 .Build();
             return config;
         }

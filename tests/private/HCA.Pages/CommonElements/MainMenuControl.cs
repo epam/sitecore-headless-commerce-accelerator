@@ -7,7 +7,7 @@ namespace HCA.Pages.CommonElements
     {
         private static MainMenuControl _mainMenuControl;
 
-        private readonly WebElement menuConainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
+        private readonly WebElement _menuConainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
 
         public static MainMenuControl Instance =>
             _mainMenuControl ?? (_mainMenuControl = new MainMenuControl());

@@ -1,10 +1,11 @@
 ﻿using HCA.Pages;
 using NUnit.Framework;
+using UIAutomationFramework.Driver;
 
 namespace HCA.Tests
 {
     [TestFixture(BrowserType.Chrome)]
-    internal class DemoTest : HCAWebTest
+    internal class DemoTest : HcaWebTest
     {
         public DemoTest(BrowserType browserType) : base(browserType)
         {
@@ -13,7 +14,7 @@ namespace HCA.Tests
         [Test]
         public void Test1()
         {
-            var hcaWebSite = HCAWebSite.Instance;
+            var hcaWebSite = HcaWebSite.Instance;
             hcaWebSite.NavigateToMain();
             hcaWebSite.MainMenuControl.ChooseSubMenuItem("Phones", "Phones");
             hcaWebSite.PhonePage.WaitForOpened();

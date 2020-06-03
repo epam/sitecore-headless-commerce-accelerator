@@ -1,7 +1,6 @@
 ﻿using System;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
-using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
@@ -22,7 +21,7 @@ namespace HCA.Pages.Pages
 
         public override void WaitForOpened()
         {
-           Browser.WaitForUrlContains("product/");
+            Browser.WaitForUrlContains("product/");
         }
 
         public void AddToCartButtonClick()

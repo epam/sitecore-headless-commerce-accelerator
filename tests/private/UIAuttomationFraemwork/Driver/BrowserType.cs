@@ -1,11 +1,14 @@
-﻿public enum BrowserType
+﻿namespace UIAutomationFramework.Driver
 {
-    Chrome,
-    ChromeMobile,
-    ChromeMobileEmulator,
-    Firefox,
-    Edge,
-    InternetExplorer,
-    None,
-    Opera
+    public enum BrowserType
+    {
+        Chrome,
+        ChromeMobile,
+        ChromeMobileEmulator,
+        Firefox,
+        Edge,
+        InternetExplorer,
+        None,
+        Opera
+    }
 }

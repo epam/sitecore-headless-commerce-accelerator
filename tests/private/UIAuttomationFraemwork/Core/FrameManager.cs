@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using UIAutomationFramework.Controls;
-using UIAutomationFramework.Driver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using UIAutomationFramework.Controls;
+using UIAutomationFramework.Driver;
 using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Core

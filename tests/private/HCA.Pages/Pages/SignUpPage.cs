@@ -1,8 +1,5 @@
-﻿using System;
-using HCA.Pages.CommonElements;
-using UIAutomationFramework.Controls;
+﻿using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
-using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
@@ -11,7 +8,7 @@ namespace HCA.Pages.Pages
         private static SignUpPage _productPage;
 
         private readonly WebButton _signUpButton =
-            new WebButton("Sign Up Button", ByCustom.XPath("//button[@text=' Sign up!']"));
+            new WebButton("Sign Up Button", ByCustom.XPath("//button[text()=' Sign up!']"));
 
         private readonly WebLabel _signUpSuccessMessage = new WebLabel("Success  message",
             ByCustom.XPath("//div[@class = 'account-created-message']"));
@@ -21,7 +18,7 @@ namespace HCA.Pages.Pages
 
         public override string GetPath()
         {
-            return "/account/sign-up";
+            return "account/sign-up";
         }
 
         public bool SignUpIsClickable()

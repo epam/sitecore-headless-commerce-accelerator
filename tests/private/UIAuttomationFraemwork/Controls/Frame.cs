@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 
 namespace UIAutomationFramework.Controls
 {
     public class Frame : BaseWebControl
     {
-        private string Name;
+        private string _name;
 
         public Frame(string elementName, params By[] locators)
         {
-            Name = elementName;
+            _name = elementName;
             FrameLocators = locators.ToList();
         }
 

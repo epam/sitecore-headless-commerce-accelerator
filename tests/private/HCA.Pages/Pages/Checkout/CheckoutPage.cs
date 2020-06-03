@@ -1,8 +1,5 @@
-﻿using System;
-using HCA.Pages.CommonElements;
-using UIAutomationFramework.Controls;
+﻿using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
-using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages.Checkout
 {
@@ -16,12 +13,6 @@ namespace HCA.Pages.Pages.Checkout
 
         private readonly WebSelect _shippingMethodSelect = new WebSelect("Shipping method",
             ByCustom.XPath("//select[contains(@name, 'SHIPPING_METHOD')]"));
-
-        private WebTextField FindFieldByName(string nameField)
-        {
-            return new WebTextField($"Text field {nameField}",
-                ByCustom.XPath($"//div/label[contains(text(), '{nameField}')]/following-sibling::*"));
-        }
 
         public void ClickSubmit()
         {

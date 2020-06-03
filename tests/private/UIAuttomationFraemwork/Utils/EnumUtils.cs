@@ -11,7 +11,7 @@ namespace UIAutomationFramework.Utils
             var type = value.GetType();
             var name = Enum.GetName(type, value);
             return type.GetField(name)
-                .GetCustomAttributes(false)
+                ?.GetCustomAttributes(false)
                 .OfType<TAttribute>()
                 .SingleOrDefault();
         }

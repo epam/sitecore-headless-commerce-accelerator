@@ -14,10 +14,11 @@ namespace UIAutomationFramework.Core
             return CssSelector($"[id$='{id}']");
         }
 
-        public static By ClassEndsWith(string _class)
+        public static By ClassEndsWith(string @class)
         {
-            return CssSelector($"[_class$='{_class}']");
+            return CssSelector($"[_class$='{@class}']");
         }
+
         public static By IdContains(string id, string type)
         {
             return XPath($"//{type}[contains(@id, '{id}')]");

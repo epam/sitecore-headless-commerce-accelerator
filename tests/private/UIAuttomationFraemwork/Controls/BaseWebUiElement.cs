@@ -21,7 +21,7 @@ namespace UIAutomationFramework.Controls
             if (container != null)
             {
                 var locatorString = locator.ToString();
-                if (locatorString.StartsWith("By.XPath: ") && !locatorString.StartsWith("By.XPath: ./"))
+                if (locatorString != null && (locatorString.StartsWith("By.XPath: ") && !locatorString.StartsWith("By.XPath: ./")))
                     throw new Exception("Relative element must start from .");
             }
 
@@ -215,12 +215,12 @@ namespace UIAutomationFramework.Controls
         public void VerifyLinkTextBold(string message = "Link text is not BOLD")
         {
             Log(LogLevel.Debug, "Verifying label");
-            var font = GetCSSValue("font-weight");
+            var font = GetCssValue("font-weight");
             var isBold = font == "bold" || font == "bolder" || short.Parse(font) >= 600;
             Assert.True(isBold, $"{ElementName}: {message}. font-weight is: {font}");
         }
 
-        public string GetCSSValue(string propertyType)
+        public string GetCssValue(string propertyType)
         {
             return Execute(() => Get().GetCssValue(propertyType));
         }

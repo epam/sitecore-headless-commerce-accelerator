@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using UIAutomationFramework.Driver;
-using UIAutomationFramework.Utils.Extensions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
+using UIAutomationFramework.Driver;
+using UIAutomationFramework.Utils.Extensions;
 using static UIAutomationFramework.Core.TestLogger;
-using LogLevel = NLog.LogLevel;
 using Keys = OpenQA.Selenium.Keys;
+using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Controls
 {
@@ -31,10 +31,7 @@ namespace UIAutomationFramework.Controls
         public void Type(string keys)
         {
             Log(LogLevel.Debug, $"Filling {ElementName} with {keys}");
-            if (keys is null)
-            {
-                return;
-            }
+            if (keys is null) return;
 
             DriverManager.GetWaiter().Until(
                 x =>
@@ -67,7 +64,8 @@ namespace UIAutomationFramework.Controls
             {
                 Log(LogLevel.Debug, "Clearing " + ElementName);
                 WaitForPresent();
-                DriverManager.GetWaiter().Until(ExpectedConditions.ElementToBeClickable(Get()), $"Timeout. Element {ElementName} is not clickable");
+                DriverManager.GetWaiter().Until(ExpectedConditions.ElementToBeClickable(Get()),
+                    $"Timeout. Element {ElementName} is not clickable");
                 Get().Clear();
                 Thread.Sleep(90);
                 return null;
@@ -112,13 +110,9 @@ namespace UIAutomationFramework.Controls
             });
 
             if (clipboardText != "")
-            {
                 SetClipboard(clipboardText);
-            }
             else
-            {
                 ClearClipboard();
-            }
         }
 
         private static void SetClipboard(string text)

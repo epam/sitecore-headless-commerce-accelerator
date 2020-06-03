@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using OpenQA.Selenium;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Interfaces;
-using OpenQA.Selenium;
-using LogLevel = NLog.LogLevel;
 using static UIAutomationFramework.Core.TestLogger;
+using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Controls
 {
@@ -15,29 +15,18 @@ namespace UIAutomationFramework.Controls
             bool firstRowIsHeader = true, By footerElementLocator = null) : base(elementName,
             new Locator(locator), container)
         {
-            if (firstRowIsHeader)
-            {
-                _rowsStart = 1;
-            }
+            if (firstRowIsHeader) _rowsStart = 1;
 
-            if (footerElementLocator != null)
-            {
-                FooterElement = new WebElement("Footer", footerElementLocator, this);
-            }
+            if (footerElementLocator != null) FooterElement = new WebElement("Footer", footerElementLocator, this);
         }
 
-        public WebTable(string elementName, Locator locator, Frame frame, bool firstRowIsHeader = true, By footerElementLocator = null) : base(
+        public WebTable(string elementName, Locator locator, Frame frame, bool firstRowIsHeader = true,
+            By footerElementLocator = null) : base(
             elementName, locator, frame)
         {
-            if (firstRowIsHeader)
-            {
-                _rowsStart = 1;
-            }
+            if (firstRowIsHeader) _rowsStart = 1;
 
-            if (footerElementLocator != null)
-            {
-                FooterElement = new WebElement("Footer", footerElementLocator, frame);
-            }
+            if (footerElementLocator != null) FooterElement = new WebElement("Footer", footerElementLocator, frame);
         }
 
         internal WebElement FooterElement { get; }
@@ -111,5 +100,4 @@ namespace UIAutomationFramework.Controls
             return cellElement.GetTrimmedText();
         }
     }
-
 }

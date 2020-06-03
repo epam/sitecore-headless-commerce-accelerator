@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using NLog;
-using System.Threading.Tasks;
+using UIAutomationFramework.Driver;
 
 namespace UIAutomationFramework.Core
 {
     public static class SeleniumTestContext
     {
-
         private static readonly ThreadLocal<BrowserType> CurrentBrowserType = new ThreadLocal<BrowserType>();
         private static readonly ThreadLocal<BrowserType> FirstBrowserType = new ThreadLocal<BrowserType>();
         private static readonly ThreadLocal<BrowserType> SecondBrowserType = new ThreadLocal<BrowserType>();
@@ -39,7 +35,6 @@ namespace UIAutomationFramework.Core
         {
             return ThreadExtendedWaiting.Value;
         }
-
 
 
         public static BrowserType GetFirstBrowserType()
@@ -97,5 +92,4 @@ namespace UIAutomationFramework.Core
             CurrentBrowserType.Value = type;
         }
     }
-
 }

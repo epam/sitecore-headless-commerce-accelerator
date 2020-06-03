@@ -1,7 +1,5 @@
-﻿using System;
-using UIAutomationFramework.Controls;
+﻿using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
-using UIAutomationFramework.Interfaces;
 
 namespace HCA.Pages.Pages
 {
@@ -26,7 +24,7 @@ namespace HCA.Pages.Pages
         public static CartPage Instance =>
             _cartPage ?? (_cartPage = new CartPage());
 
-        public void VerifyOpened()
+        public new void VerifyOpened()
         {
             _title.WaitForPresent();
             _title.WaitForText("Shopping Cart");

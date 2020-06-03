@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
@@ -58,16 +57,12 @@ namespace UIAutomationFramework.Controls
             Assert.False(IsChecked(), "{0}: {1}", ElementName, message);
         }
 
-        public void Verify(Boolean expectedResult)
+        public void Verify(bool expectedResult)
         {
             if (expectedResult)
-            {
                 VerifyChecked();
-            }
             else
-            {
                 VerifyUnchecked();
-            }
         }
     }
 }

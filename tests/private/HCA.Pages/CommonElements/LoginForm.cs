@@ -47,6 +47,11 @@ namespace HCA.Pages.CommonElements
             LoginFormElement.WaitForNotPresent();
         }
 
+        public bool IsFormPresent()
+        {
+            return LoginFormElement.IsPresent();
+        }
+
         public void FillUserNameField(string value)
         {
             _userNameField.Type(value);
@@ -84,12 +89,24 @@ namespace HCA.Pages.CommonElements
 
         public void VerifyLoggedUser()
         {
-            _myAccountButton.IsPresent();
+            _myAccountButton.WaitForPresent();
+        }
+
+        public bool IsUserLogged()
+        {
+            return _myAccountButton.IsPresent();
         }
 
         public void VerifyValidationMessage(string text)
         {
             _validationLabel.VerifyText(text);
+        }
+
+        public void LogonToHca(string login, string password)
+        {
+            FillUserNameField(login);
+            FillPasswordField(password);
+            SignInButtonClick();
         }
     }
 }

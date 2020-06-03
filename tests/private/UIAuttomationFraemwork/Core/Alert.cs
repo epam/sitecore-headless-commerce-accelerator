@@ -1,9 +1,8 @@
-﻿
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils.Extensions;
-using SeleniumExtras.WaitHelpers;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Core

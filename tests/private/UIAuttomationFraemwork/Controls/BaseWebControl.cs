@@ -168,7 +168,7 @@ namespace UIAutomationFramework.Controls
             {
                 if (Frame != null || Container?.Frame != null)
                     if (DriverManager.JsExecutor.ExecuteScript("return document.activeElement.tagName;").ToString()
-                        .ToLower() != "body")
+                        ?.ToLower() != "body")
                     {
                         DriverManager.GetDriver().SwitchTo().ActiveElement().SendKeys(Keys.Tab);
                         DriverManager.GetDriver().SwitchTo().ActiveElement().SendKeys(Keys.PageDown);
@@ -264,6 +264,15 @@ namespace UIAutomationFramework.Controls
 
             DriverManager.GetWaiter(timeout)
                 .Until(d => !IsVisible(), $"Timeout. Element {ElementName} is still on the page");
+        }
+
+        public void WaitForNotEnabled(int timeout = -1)
+        {
+            Log(LogLevel.Debug, $"Waiting for not present of {ElementName}");
+            if (timeout == -1) timeout = Configuration.DefaultTimeout;
+
+            DriverManager.GetWaiter(timeout)
+                .Until(d => !IsEnabled(), $"Timeout. Element {ElementName} is still on the page");
         }
 
         public void VerifyNotPresent(string message = "The element is on the page")

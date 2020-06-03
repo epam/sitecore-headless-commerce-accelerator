@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Interfaces;
 using UIAutomationFramework.Utils;
 using UIAutomationFramework.Utils.Extensions;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using Cookie = OpenQA.Selenium.Cookie;
 using LogLevel = NLog.LogLevel;
 

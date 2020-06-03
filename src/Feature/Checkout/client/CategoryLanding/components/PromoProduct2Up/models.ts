@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface PromoProduct2UpControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface PromoProduct2UpProps {}
 
-export interface PromoProduct2UpControlState extends JSS.SafePureComponentState {}
+export interface PromoProduct2UpState extends JSS.SafePureComponentState {}

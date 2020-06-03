@@ -12,13 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import React from 'react';
+
 import * as JSS from 'Foundation/ReactJss/client';
 import { NavigationLink } from 'Foundation/UI/client';
-import React from 'react';
-import { GoToCheckoutControlProps, GoToCheckoutControlState } from './models';
 
-class GoToCheckoutControl extends JSS.SafePureComponent<GoToCheckoutControlProps, GoToCheckoutControlState> {
+import { GoToCheckoutProps, GoToCheckoutState } from './models';
+
+class GoToCheckoutComponent extends JSS.SafePureComponent<GoToCheckoutProps, GoToCheckoutState> {
   public safeRender() {
     const checkoutText = 'Checkout';
     const { checkoutSteps } = this.props.fields;
@@ -33,4 +34,4 @@ class GoToCheckoutControl extends JSS.SafePureComponent<GoToCheckoutControlProps
     );
   }
 }
-export const GoToCheckout = withExperienceEditorChromes(GoToCheckoutControl);
+export const GoToCheckout = JSS.rendering(GoToCheckoutComponent);

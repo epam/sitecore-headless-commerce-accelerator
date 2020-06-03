@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { NavCategoryControlProps, NavCategoryControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { NavigationCategoryProps, NavigationCategoryState } from './models';
 
 import './styles.scss';
 
-class NavCategoryControl extends Jss.SafePureComponent<NavCategoryControlProps, NavCategoryControlState> {
+export class NavigationCategory extends JSS.SafePureComponent<NavigationCategoryProps, NavigationCategoryState> {
   public safeRender() {
     return (
         <nav className="nav-category">
@@ -111,5 +111,3 @@ class NavCategoryControl extends Jss.SafePureComponent<NavCategoryControlProps, 
     );
   }
 }
-
-export const NavCategory = withExperienceEditorChromes(NavCategoryControl);

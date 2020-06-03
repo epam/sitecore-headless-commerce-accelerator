@@ -12,9 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
+
+import { rendering } from 'Foundation/ReactJss/client';
 
 import * as Account from 'Feature/Account/client/Integration/Account';
 
@@ -50,6 +52,6 @@ const connectedToStore = connect<
 >(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+);
 
-export const ChangeUserInformationForm = withExperienceEditorChromes(connectedToStore);
+export const ChangeUserInformationForm = compose(connectedToStore, rendering)(Component);

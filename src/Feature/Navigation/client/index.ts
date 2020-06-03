@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
-
-export interface PromoProductFullBProps {}
-
-export interface PromoProductFullBState extends JSS.SafePureComponentState {}
+export * from './Copyright';
+export * from './FooterLinks';
+export * from './GlobalFooter';
+export * from './Header';
+export * from './SocialNetworksLinks';

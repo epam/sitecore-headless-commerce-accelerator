@@ -16,6 +16,6 @@ import * as JSS from 'Foundation/ReactJss/client';
 
 import { ProductContext } from 'Foundation/Commerce/client';
 
-export interface ProductInformationControlProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
+export interface ProductInformationProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
 
-export interface ProductInformationControlState extends JSS.SafePureComponentState {}
+export interface ProductInformationState extends JSS.SafePureComponentState {}

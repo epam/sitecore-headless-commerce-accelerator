@@ -12,21 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { registerCommerceInterceptor } from 'Foundation/Commerce/client';
-import * as Jss from 'Foundation/ReactJss/client';
+import * as JSS from 'Foundation/ReactJss/client';
 import { SITECORE_ROUTES } from 'Foundation/ReactJss/client/SitecoreContext';
 import SitecoreContextFactory from 'Foundation/ReactJss/client/SitecoreContextFactory';
 
 import { AppProps } from './../../../models';
 import { Layout, LoadingBar, NotFound, ServerError } from './../../components';
 
-const { SitecoreContext } = Jss;
+const { SitecoreContext } = JSS;
 
-class App extends Jss.SafePureComponent<AppProps, {}> {
+export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
   public componentDidMount() {
     const { sitecoreContext, InitAuthentication } = this.props;
 
@@ -58,5 +57,3 @@ class App extends Jss.SafePureComponent<AppProps, {}> {
     );
   }
 }
-
-export default withExperienceEditorChromes(App);

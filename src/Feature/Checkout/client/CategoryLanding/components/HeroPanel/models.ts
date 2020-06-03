@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface HeroPanelControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface HeroPanelProps {}
 
-export interface HeroPanelControlState extends JSS.SafePureComponentState {}
+export interface HeroPanelState extends JSS.SafePureComponentState {}

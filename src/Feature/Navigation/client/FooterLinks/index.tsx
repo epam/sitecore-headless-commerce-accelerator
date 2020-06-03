@@ -12,15 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Link } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import { Link, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
 import { FooterLinksProps, FooterLinksState } from './models';
+
 import './styles.scss';
 
-class FooterLinks extends JSS.SafePureComponent<FooterLinksProps, FooterLinksState> {
+class FooterLinksComponent extends JSS.SafePureComponent<FooterLinksProps, FooterLinksState> {
   protected safeRender() {
     const { fields } = this.props;
     const { datasource } = fields.data;
@@ -40,4 +41,4 @@ class FooterLinks extends JSS.SafePureComponent<FooterLinksProps, FooterLinksSta
   }
 }
 
-export default withExperienceEditorChromes(FooterLinks);
+export const FooterLinks = JSS.rendering(FooterLinksComponent);

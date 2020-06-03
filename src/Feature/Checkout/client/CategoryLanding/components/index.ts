@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 export * from './HeroPanel';
-export * from './NavCategory';
+export * from './NavigationCategory';
 export * from './Slider';
 export * from './PromoProduct2Up';
 export * from './PromoProductFullA';

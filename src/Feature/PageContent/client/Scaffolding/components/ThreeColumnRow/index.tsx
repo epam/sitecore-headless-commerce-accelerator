@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Placeholder, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-import { GridControlProps, GridControlState } from '../models';
+import { GridProps, GridState } from '../models';
 
-class ThreeColumnRowComponent extends JSS.SafePureComponent<GridControlProps, GridControlState> {
+class ThreeColumnRowComponent extends JSS.SafePureComponent<GridProps, GridState> {
   public safeRender() {
     return (
       <div className={classnames('row', { [this.props.params.wrapperClass]: !!this.props.params.wrapperClass })}>
@@ -38,4 +38,4 @@ class ThreeColumnRowComponent extends JSS.SafePureComponent<GridControlProps, Gr
   }
 }
 
-export const ThreeColumnRow = withExperienceEditorChromes(ThreeColumnRowComponent);
+export const ThreeColumnRow = JSS.rendering(ThreeColumnRowComponent);

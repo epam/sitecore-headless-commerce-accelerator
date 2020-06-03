@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface NavCategoryControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface NavigationCategoryProps {}
 
-export interface NavCategoryControlState extends JSS.SafePureComponentState {}
+export interface NavigationCategoryState extends JSS.SafePureComponentState {}

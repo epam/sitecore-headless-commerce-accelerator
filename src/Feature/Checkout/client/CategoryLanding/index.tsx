@@ -14,27 +14,26 @@
 
 import * as React from 'react';
 
-import { withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
+
 import {
     HeroPanel,
-    NavCategory,
+    NavigationCategory,
     PromoProduct2Up,
     PromoProductFullA,
     PromoProductFullB,
     Slider,
     Video,
 } from './components';
-import { CategoryLandingControlProps, CategoryLandingControlState } from './models';
-
-import * as Jss from 'Foundation/ReactJss/client';
+import { CategoryLandingProps, CategoryLandingState } from './models';
 
 import './styles.scss';
 
-class CategoryLandingControl extends Jss.SafePureComponent<CategoryLandingControlProps, CategoryLandingControlState> {
+class CategoryLandingComponent extends JSS.SafePureComponent<CategoryLandingProps, CategoryLandingState> {
   public safeRender() {
     return (
         <div className="container relative">
-            <NavCategory/>
+            <NavigationCategory/>
             <div className="row">
                 <div className="col-xs-12 no-padding">
                     <HeroPanel/>
@@ -70,4 +69,4 @@ class CategoryLandingControl extends Jss.SafePureComponent<CategoryLandingContro
   }
 }
 
-export const CategoryLanding = withExperienceEditorChromes(CategoryLandingControl);
+export const CategoryLanding = JSS.rendering(CategoryLandingComponent);

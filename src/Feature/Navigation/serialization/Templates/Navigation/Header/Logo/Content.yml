@@ -1,0 +1,14 @@
+﻿---
+ID: "78f85633-5c2b-417d-96ef-287d4e2bb8e9"
+Parent: "095aae19-603c-4caa-9848-a47fcfe18308"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200528T131419Z

@@ -1,0 +1,22 @@
+﻿---
+ID: "c1675a79-85cd-41c1-a587-9fcacd115e83"
+Parent: "095aae19-603c-4caa-9848-a47fcfe18308"
+Template: "095aae19-603c-4caa-9848-a47fcfe18308"
+Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo/__Standard Values
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/photo_landscape.png
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200528T131544Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

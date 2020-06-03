@@ -17,9 +17,9 @@ namespace HcaApiTestAutomationFramework
 			BraintreeGateway gateway = new BraintreeGateway
 			{
 				Environment = Braintree.Environment.SANDBOX,
-				MerchantId = "r7vzc3fhvkx5zkvb",
-				PublicKey = "zmncp624j8wghkft",
-				PrivateKey = "c5ea09089b15cef4346ca042053f81f5",
+				MerchantId = ConfigurationManager.AppSettings["BraintreeMerchantId"],
+				PublicKey = ConfigurationManager.AppSettings["BraintreePublicKey"],
+				PrivateKey = ConfigurationManager.AppSettings["BraintreePrivateKey"],
 			};
 			gateway.Configuration.Timeout = 10000;
 			var clientToken = gateway.ClientToken.Generate();

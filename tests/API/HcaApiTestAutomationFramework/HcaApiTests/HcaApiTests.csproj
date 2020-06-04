@@ -51,8 +51,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountScenarioTests.cs" />
-    <Compile Include="SimpleScenarioTests.cs" />
     <Compile Include="BaseScenarioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

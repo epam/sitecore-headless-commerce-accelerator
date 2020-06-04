@@ -638,10 +638,10 @@
     <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Connect.Commerce.Serialization.config">
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Commerce.Serialization.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Connect.Fixes.config">
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Fixes.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config">
@@ -653,7 +653,7 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Connect.Serialization.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

@@ -103,8 +103,8 @@
     <Content Include="App_Config\Include\Unicorn\Unicorn.Remote.config.disabled" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.UI.config" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.zSharedSecret.config.example" />
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Serialization.config" />
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Serialization.Settings.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Serialization.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Serialization.Settings.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

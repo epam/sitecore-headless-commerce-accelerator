@@ -458,8 +458,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Base.config" />
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Base.Serialization.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Base.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Base.Serialization.config" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>

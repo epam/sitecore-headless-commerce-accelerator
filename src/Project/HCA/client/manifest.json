@@ -7,7 +7,7 @@
   "env": [
     {
       "name": "local",
-      "url": "https://wooli.local",
+      "url": "https://hca.local",
       "apiKey": "{9DFF2B2D-206B-436E-B758-B716728B0F0D}"
     }
   ]

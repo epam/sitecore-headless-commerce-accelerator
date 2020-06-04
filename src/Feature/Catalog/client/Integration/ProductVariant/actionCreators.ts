@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ProductVariantModel } from 'Foundation/Commerce/client';
+import { Variant } from 'Foundation/Commerce/client';
 import { Action } from 'Foundation/Integration/client';
 import { SelectedProductVariantPayload } from './models';
 
 export type SelectColorVariant = (
   productId: string,
-  colorVariant: ProductVariantModel
+  colorVariant: Variant
 ) => Action<SelectedProductVariantPayload>;

@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ProductVariantModel } from 'Foundation/Commerce/client';
+import { Variant } from 'Foundation/Commerce/client';
 
 import { AppState as SitecoreState } from './../common/models';
 
 export interface SelectedProductVariant {
-  [productId: string]: ProductVariantModel;
+  [productId: string]: Variant;
 }
 
 export interface SelectedProductVariantPayload extends SelectedProductVariant {}

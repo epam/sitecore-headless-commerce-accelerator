@@ -26,8 +26,8 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
   }
 
   protected safeRender() {
-    const { isLoading, productVariant } = this.props;
-    const isDisabled = isLoading || !productVariant || productVariant.stockStatusName !== Common.StockStatus.InStock;
+    const { isLoading, variant } = this.props;
+    const isDisabled = isLoading || !variant || variant.stockStatusName !== Common.StockStatus.InStock;
     return (
       <>
         <button disabled={isDisabled} title="Add to Cart" onClick={(e) => this.addToCart(e)} className="btn btn-main btn-add">
@@ -39,13 +39,13 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
   }
 
   private addToCart(e: React.MouseEvent<HTMLButtonElement>) {
-    const { productId, productVariant } = this.props;
+    const { productId, variant } = this.props;
     // TODO: allow user to select variant
     const quantity = 1;
     const addToCartModel: ShoppingCart.CartItemDto = {
       productId,
       quantity,
-      variantId: productVariant.variantId,
+      variantId: variant.variantId,
     };
 
     this.props.AddToCart(addToCartModel);

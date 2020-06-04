@@ -24,7 +24,9 @@ import * as selectors from '../selectors';
 
 describe('ProductsSearch sagas', () => {
   describe('fetchProductsSearch', () => {
-    const fakeParams = {};
+    const fakeParams = {
+      pg: 0,
+    };
 
     const gen = sagas.fetchProductsSearch(fakeParams);
 
@@ -44,9 +46,8 @@ describe('ProductsSearch sagas', () => {
       const expected = select(selectors.productSearchItems);
       const actual = gen.next({
         data: {
-          childProducts: [],
-          currentPageNumber: 0,
           facets: [],
+          products: [],
           totalItemCount: 0,
           totalPageCount: 0,
         },
@@ -56,7 +57,7 @@ describe('ProductsSearch sagas', () => {
     });
 
     test('should put productsSearchSuccess', () => {
-      const expected = put(actions.ProductsSearchSuccess([], [], 0, 0, 0));
+      const expected = put(actions.ProductsSearchSuccess([], [], fakeParams.pg, 0, 0));
 
       const actual = gen.next([]);
 

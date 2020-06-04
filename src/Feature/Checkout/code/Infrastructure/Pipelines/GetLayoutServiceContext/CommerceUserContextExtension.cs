@@ -36,7 +36,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContext
         {
             var model = this.visitorContext.CurrentUser;
 
-            args.ContextData.Add("commerceUser", model);
+            args.ContextData.Add(Constants.Context.CommerceUserPropertyName, model);
         }
     }
 }

@@ -17,6 +17,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import * as Commerce from 'Foundation/Commerce/client';
 import { Result } from 'Foundation/Integration/client';
 
+import * as DataModel from 'Feature/Account/client/dataModel.Generated';
 import {
   AddressResponse,
   ChangePasswordResponse,
@@ -28,7 +29,7 @@ import {
 const routeBase = '/apix/client/commerce/accounts';
 
 export const createAccount = async (
-  createAccountRequest: Commerce.CreateAccountRequest,
+  createAccountRequest: DataModel.CreateAccountRequest,
 ): Promise<Result<Commerce.User>> => {
   return axios
     .post<CreateAccountResponse>(`${routeBase}/account`, createAccountRequest)
@@ -41,7 +42,7 @@ export const createAccount = async (
 };
 
 export const emailValidation = async (
-  validateEmailRequest: Commerce.ValidateEmailRequest,
+  validateEmailRequest: DataModel.ValidateEmailRequest,
 ): Promise<Result<Commerce.ValidateEmail>> => {
   return axios
     .post<EmailValidationResponse>(`${routeBase}/validate`, validateEmailRequest)
@@ -58,7 +59,7 @@ export const emailValidation = async (
 };
 
 export const changePassword = async (
-  changePasswordRequest: Commerce.ChangePasswordRequest,
+  changePasswordRequest: DataModel.ChangePasswordRequest,
 ): Promise<Result<boolean>> => {
   return axios
     .put<ChangePasswordResponse>(`${routeBase}/password`, changePasswordRequest)
@@ -70,7 +71,7 @@ export const changePassword = async (
     });
 };
 
-export const addAddress = async (addressRequest: Commerce.AddressRequest): Promise<Result<Commerce.Address[]>> => {
+export const addAddress = async (addressRequest: DataModel.AddressRequest): Promise<Result<Commerce.Address[]>> => {
   return axios
     .post<AddressResponse>(`${routeBase}/address`, addressRequest)
     .then((response) => {
@@ -92,7 +93,7 @@ export const getAddressList = async (): Promise<Result<Commerce.Address[]>> => {
     });
 };
 
-export const updateAddress = async (addressRequest: Commerce.AddressRequest): Promise<Result<Commerce.Address[]>> => {
+export const updateAddress = async (addressRequest: DataModel.AddressRequest): Promise<Result<Commerce.Address[]>> => {
   return axios
     .put<AddressResponse>(`${routeBase}/address`, addressRequest)
     .then((response) => {
@@ -115,7 +116,7 @@ export const removeAddress = async (externalId: string): Promise<Result<Commerce
 };
 
 export const updateAccountInfo = async (
-  updateAccountRequest: Commerce.UpdateAccountRequest,
+  updateAccountRequest: DataModel.UpdateAccountRequest,
 ): Promise<Result<boolean>> => {
   return axios
     .put<UpdateAccountResponse>(`${routeBase}/account`, updateAccountRequest)

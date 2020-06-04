@@ -16,19 +16,20 @@ import * as Commerce from 'Foundation/Commerce/client';
 import * as Jss from 'Foundation/ReactJss/client';
 
 import * as Account from 'Feature/Account/client/Integration/Account';
+import { CreateAccountRequest } from '../dataModel.Generated';
 
 export interface SignUpOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
 
 export interface SignUpStateProps {
   accountValidation: Account.AccountValidationState;
   createAccount: Account.CreateState;
-  commerceUser: Commerce.CommerceUserModel;
+  commerceUser: Commerce.User;
   loading: boolean;
 }
 
 export interface SignUpDispatchProps {
   AccountValidation: (email: string) => void;
-  CreateAccount: (createAccountDto: Commerce.CreateAccountModel) => void;
+  CreateAccount: (createAccountDto: CreateAccountRequest) => void;
   ResetValidation: () => void;
 }
 

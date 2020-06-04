@@ -15,6 +15,7 @@
 import axios from 'axios';
 import Braintree from 'braintree-web';
 
+import * as Base from 'Foundation/Base/client';
 import * as Commerce from 'Foundation/Commerce/client';
 import { Result } from 'Foundation/Integration/client';
 
@@ -52,7 +53,7 @@ export const getShippingInfo = async (): Promise<Result<Commerce.ShippingInfo>> 
   }
 };
 
-export const setShippingOptions = async (requestPayload: SetShippingOptionsRequest): Promise<Result<Commerce.VoidResult>> => {
+export const setShippingOptions = async (requestPayload: SetShippingOptionsRequest): Promise<Result<Base.VoidResult>> => {
   try {
     const response = await axios.post<SetShippingOptionsResponse>(`${routeBase}/shippingOptions`, requestPayload);
     const { data } = response;
@@ -101,7 +102,7 @@ export const submitCreditCard = async (creditCard: CreditCard): Promise<Result<s
     });
 };
 
-export const setPaymentInfo = async (requestPayload: SetPaymentInfoRequest): Promise<Result<Commerce.VoidResult>> => {
+export const setPaymentInfo = async (requestPayload: SetPaymentInfoRequest): Promise<Result<Base.VoidResult>> => {
   try {
     const response = await axios.post<SetPaymentInfoResponse>(`${routeBase}/paymentInfo`, requestPayload);
     const { data } = response;

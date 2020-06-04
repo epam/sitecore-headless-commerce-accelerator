@@ -15,6 +15,8 @@
 import * as Commerce from 'Foundation/Commerce/client';
 import { Action, FailureType, StatusType } from 'Foundation/Integration/client';
 
+import * as DataModel from '../../dataModel.Generated';
+
 import {
   AddressPayload,
   ChangePasswordPayload,
@@ -24,7 +26,7 @@ import {
   ValidateEmailPayload,
 } from './models';
 
-export type CreateAccount = (createAccountRequest: Commerce.CreateAccountRequest) => Action<CreateAccountPayload>;
+export type CreateAccount = (createAccountRequest: DataModel.CreateAccountRequest) => Action<CreateAccountPayload>;
 export type UpdateAccount = (firstName: string, lastName: string) => Action<UpdateAccountPayload>;
 export type EmailValidation = (email: string) => Action<ValidateEmailPayload>;
 export type ResetValidation = () => Action;

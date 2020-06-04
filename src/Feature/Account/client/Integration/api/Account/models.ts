@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Extensions from 'Foundation/Base/client';
+import * as Base from 'Foundation/Base/client';
 import * as Commerce from 'Foundation/Commerce/client';
 
-export interface CreateAccountResponse extends Extensions.OkJsonResultModel<Commerce.User> {}
+export interface CreateAccountResponse extends Base.OkJsonResultModel<Commerce.User> {}
 
-export interface EmailValidationResponse extends Extensions.OkJsonResultModel<Commerce.ValidateEmail> {}
+export interface EmailValidationResponse extends Base.OkJsonResultModel<Commerce.ValidateEmail> {}
 
-export interface ChangePasswordResponse extends Extensions.OkJsonResultModel<Commerce.VoidResult> {}
+export interface ChangePasswordResponse extends Base.OkJsonResultModel<Base.VoidResult> {}
 
-export interface UpdateAccountResponse extends Extensions.OkJsonResultModel<Commerce.VoidResult> {}
+export interface UpdateAccountResponse extends Base.OkJsonResultModel<Base.VoidResult> {}
 
-export interface AddressResponse extends Extensions.OkJsonResultModel<Commerce.Address[]> {}
+export interface AddressResponse extends Base.OkJsonResultModel<Commerce.Address[]> {}

@@ -14,7 +14,7 @@
 
 import * as Jss from 'Foundation/ReactJss/client';
 
-import { ProductVariantModel } from 'Foundation/Commerce/client';
+import { Variant } from 'Foundation/Commerce/client';
 
 import { ProductVariantGlobalState } from 'Feature/Catalog/client/Integration/ProductVariant';
 import { ShoppingCart } from 'Feature/Checkout/client/Integration/api';
@@ -24,7 +24,7 @@ export interface AddToCartOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem>
 export interface AddToCartStateProps {
   isLoading: boolean;
   productId: string;
-  productVariant: ProductVariantModel;
+  variant: Variant;
 }
 export interface AddToCartDispatchProps {
   AddToCart: (model: ShoppingCart.CartItemDto) => void;

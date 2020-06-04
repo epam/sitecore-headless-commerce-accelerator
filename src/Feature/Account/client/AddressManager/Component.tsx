@@ -162,12 +162,12 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
     this.props.RemoveAddress(externalId);
   }
 
-  private onUpdateAdress(address: Commerce.AddressModel) {
+  private onUpdateAdress(address: Commerce.Address) {
     this.props.UpdateAddress(address);
     this.setState({ formVisible: false });
   }
 
-  private onAddAdress(address: Commerce.AddressModel) {
+  private onAddAdress(address: Commerce.Address) {
     this.props.AddAddress(address);
     this.setState({ formVisible: false });
   }

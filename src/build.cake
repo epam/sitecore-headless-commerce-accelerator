@@ -6,7 +6,7 @@
 
 #load ./scripts/cake/xunit.cake
 #load ./scripts/cake/coverage.cake
-#load ./scripts/generateTypescript.cake
+#load ./scripts/code-generation/generateTypescript.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -54,7 +54,7 @@ Task("Generate-Client-Models")
             var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
             var dllFile = GetFiles($"./../src/{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
 
-            generateTypeScript(dllFile, tsFile);
+            generateTypeScript(dllFile, tsFile, templateFile);
         }
     });
 

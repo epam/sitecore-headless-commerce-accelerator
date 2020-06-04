@@ -16,7 +16,7 @@ import * as Commerce from 'Foundation/Commerce/client';
 
 import { Response } from '../models';
 
-export interface GetCartResponse extends Response<Commerce.CartModel> {}
+export interface GetCartResponse extends Response<Commerce.Cart> {}
 
 export interface CartItemDto {
   productId: string;

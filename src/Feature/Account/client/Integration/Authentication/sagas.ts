@@ -14,7 +14,7 @@
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { CommerceUserModel, ValidateCredentialsResultModel } from 'Foundation/Commerce/client';
+import { User, ValidateCredentialsResultModel } from 'Foundation/Commerce/client';
 import { Action, Result } from 'Foundation/Integration/client';
 
 import * as AuthenticationApi from '../api/Authentication';
@@ -25,7 +25,7 @@ import { StartAuthenticationPayload } from './models';
 import * as selectors from './selectors';
 
 export function* initAuthentication() {
-  const commerceUser: CommerceUserModel = yield select(selectors.commerceUser);
+  const commerceUser: User = yield select(selectors.commerceUser);
 
   yield put(actions.SetAuthenticated(!!commerceUser && !!commerceUser.contactId));
 }

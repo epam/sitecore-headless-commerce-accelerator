@@ -15,7 +15,7 @@
 import { cloneableGenerator, SagaIteratorClone } from '@redux-saga/testing-utils';
 import { all, call, fork, put, select } from 'redux-saga/effects';
 
-import { AddressModel } from 'Foundation/Commerce/client';
+import { Address } from 'Foundation/Commerce/client';
 import { LoadingStatus } from 'Foundation/Integration/client';
 import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
 
@@ -333,7 +333,7 @@ describe('submitPaymentStep', () => {
     },
     shipping: {
       // tslint:disable-next-line: no-object-literal-type-assertion
-      address: {} as AddressModel,
+      address: {} as Address,
     },
   };
   const gen = cloneableGenerator(sagas.submitPaymentStep)(payload.payment);

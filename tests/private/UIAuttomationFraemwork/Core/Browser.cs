@@ -1,9 +1,9 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
-using NUnit.Framework;
-using OpenQA.Selenium;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Interfaces;
 using UIAutomationFramework.Utils;
@@ -123,7 +123,7 @@ namespace UIAutomationFramework.Core
         {
             TestLogger.Log(LogLevel.Debug, "Waiting for page loading...");
             DriverManager.GetWaiter().Until(driver =>
-                    ((IJavaScriptExecutor) driver).ExecuteScript("return document.readyState;").Equals("complete"),
+                    ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState;").Equals("complete"),
                 "Timeout. Page is not loaded completely");
         }
 
@@ -223,7 +223,7 @@ namespace UIAutomationFramework.Core
 
         internal static void NavigateToPath(IPage page, string postfix = "")
         {
-            var uri = new UriBuilder(GetCurrentUrl()) {Path = page.GetPath()}.Uri;
+            var uri = new UriBuilder(GetCurrentUrl()) { Path = page.GetPath() }.Uri;
             Navigate(UriManager.AddPostfix(uri, postfix));
         }
 
@@ -314,11 +314,11 @@ namespace UIAutomationFramework.Core
 
         public static void VerifyNoErrors()
         {
-            var webRequest = (HttpWebRequest) WebRequest
+            var webRequest = (HttpWebRequest)WebRequest
                 .Create(GetCurrentUrl());
             webRequest.AllowAutoRedirect = true;
-            var response = (HttpWebResponse) webRequest.GetResponse();
-            Assert.AreEqual(400, (int) response.StatusCode);
+            var response = (HttpWebResponse)webRequest.GetResponse();
+            Assert.AreEqual(400, (int)response.StatusCode);
         }
 
         public static void DeleteCookie(string cookie)

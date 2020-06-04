@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
 

@@ -32,10 +32,10 @@ namespace HCA.Pages.CommonElements
             ByCustom.XPath(".//input[@name = 'email']"), LoginFormElement);
 
         private readonly WebLabel _validationLabel =
-            new WebLabel("Valitation message", ByCustom.XPath(".//h5"), LoginFormElement);
+            new WebLabel("Validation message", ByCustom.XPath(".//h5"), LoginFormElement);
 
         public static LoginForm Instance =>
-            _loginForm ?? (_loginForm = new LoginForm());
+            _loginForm ??= new LoginForm();
 
         public void WaitForPresentForm()
         {

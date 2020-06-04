@@ -1,6 +1,6 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using UIAutomationFramework.Driver;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.Extensions;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.Extensions;
-using OpenQA.Selenium.Support.UI;
 using UIAutomationFramework.Core;
 using static UIAutomationFramework.Core.TestLogger;
 using LogLevel = NLog.LogLevel;
@@ -20,7 +20,7 @@ namespace UIAutomationFramework.Driver
 
         private static readonly ThreadLocal<IWebDriver> Driver = new ThreadLocal<IWebDriver>();
         private static readonly ThreadLocal<WebDriverWait> Waiter = new ThreadLocal<WebDriverWait>();
-        public static IJavaScriptExecutor JsExecutor => (IJavaScriptExecutor) GetDriver();
+        public static IJavaScriptExecutor JsExecutor => (IJavaScriptExecutor)GetDriver();
 
         public static void InitDriver(BrowserType type, DriverOptions driverOptions = null)
         {

@@ -7,10 +7,9 @@ namespace HCA.Pages.CommonElements
     {
         private static MainMenuControl _mainMenuControl;
 
-        private readonly WebElement _menuConainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
+        private readonly WebElement _menuContainer = new WebElement("Menu Container", ByCustom.Id("nav-main"));
 
-        public static MainMenuControl Instance =>
-            _mainMenuControl ?? (_mainMenuControl = new MainMenuControl());
+        public static MainMenuControl Instance => _mainMenuControl ??= new MainMenuControl();
 
         private WebElement FindMenuItemByName(string itemName)
         {
@@ -19,10 +18,8 @@ namespace HCA.Pages.CommonElements
         }
 
 
-        public void MoveMouseTiMenuItem(string itemName)
-        {
+        public void MoveMouseTiMenuItem(string itemName) => 
             FindMenuItemByName(itemName).MouseOver();
-        }
 
         private WebElement FindSubMenuItemByName(string subMenuName, WebElement menuItem)
         {

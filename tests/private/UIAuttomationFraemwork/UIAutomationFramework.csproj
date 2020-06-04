@@ -8,9 +8,7 @@
     <Folder Include="Controls\" />
     <Folder Include="Core\" />
     <Folder Include="Driver\" />
-    <Folder Include="Entities\WebSiteEntities\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
@@ -31,7 +29,7 @@
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll</HintPath>
+      <HintPath>..\Assemblies\System.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
 

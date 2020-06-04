@@ -1,4 +1,4 @@
-﻿using System;
+﻿using HCA.Pages.HCAElements;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
@@ -11,13 +11,10 @@ namespace HCA.Pages.Pages
         private readonly WebButton _addToCartButton =
             new WebButton("Add to cart", ByCustom.XPath("//button[@title = 'Add to Cart']"));
 
-        public static ProductPage Instance =>
-            _productPage ?? (_productPage = new ProductPage());
+        public static ProductPage Instance => _productPage ??= new ProductPage();
 
-        public override string GetPath()
-        {
-            throw new NotImplementedException();
-        }
+        public override string GetPath() =>
+            PagePrefix.Product.GetPrefix();
 
         public override void WaitForOpened()
         {

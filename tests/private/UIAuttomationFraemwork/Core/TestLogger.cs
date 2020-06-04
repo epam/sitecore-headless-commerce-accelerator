@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading;
-using NLog;
+﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
 using NUnit.Framework;
+using System;
+using System.Threading;
 using UIAutomationFramework.Driver;
 
 namespace UIAutomationFramework.Core

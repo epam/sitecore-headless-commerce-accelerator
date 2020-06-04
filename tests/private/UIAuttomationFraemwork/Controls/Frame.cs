@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using OpenQA.Selenium;
+using System.Collections.Generic;
 using System.Linq;
-using OpenQA.Selenium;
 
 namespace UIAutomationFramework.Controls
 {

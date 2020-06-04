@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using UIAutomationFramework.Core;
+using UIAutomationFramework.Entities.WebSiteEntities;
 using UIAutomationFramework.Utils;
 
 namespace UIAutomationFramework
@@ -53,5 +54,9 @@ namespace UIAutomationFramework
         {
             return GetAppSetting("FeatureName");
         }
+
+        public static UserLoginEntity GetDefaultUserLogin() => 
+            new UserLoginEntity(GetAppSetting("DefaultUser:Email"), 
+                GetAppSetting("DefaultUser:Password"));
     }
 }

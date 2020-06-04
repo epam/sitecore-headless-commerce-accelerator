@@ -26,6 +26,11 @@ namespace HCA.Pages
 
         public abstract string GetPath();
 
+        public WebElement GetTittle()
+        {
+            return new WebElement( "Title", ByCustom.XPath("/title"));
+        }
+
         public virtual void WaitForOpened()
         {
             Browser.WaitForUrlContains(GetPath());

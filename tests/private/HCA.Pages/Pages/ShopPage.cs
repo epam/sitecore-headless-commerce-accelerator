@@ -1,12 +1,15 @@
-﻿using UIAutomationFramework.Controls;
+﻿using HCA.Pages.HCAElements;
+using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.Pages
 {
     public abstract class ShopPage : CommonPage
     {
-        private readonly WebElement _productGrid =
-            new WebElement("product grid", ByCustom.ClassName("listing-product-grid"));
+        private readonly WebElement _productGrid = new WebElement("product grid", ByCustom.ClassName("listing-product-grid"));
+
+        public override string GetPath() =>
+            PagePrefix.Shop.GetPrefix();
 
         public override void WaitForOpened()
         {

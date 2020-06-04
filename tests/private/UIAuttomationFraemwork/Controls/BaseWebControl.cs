@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.WaitHelpers;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Exceptions;

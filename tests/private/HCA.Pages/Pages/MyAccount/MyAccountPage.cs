@@ -26,7 +26,7 @@ namespace HCA.Pages.Pages.MyAccount
             new WebLabel("Error message", ByCustom.XPath("//p[@class ='error-message']"));
 
         public static MyAccountPage Instance =>
-            _myAccountPage ?? (_myAccountPage = new MyAccountPage());
+            _myAccountPage ??= new MyAccountPage();
 
         public override string GetPath()
         {
@@ -44,7 +44,7 @@ namespace HCA.Pages.Pages.MyAccount
             _buttonSaveChanges.Click();
         }
 
-        public bool SaveChangesClickable()
+        public bool SaveChangesIsClickable()
         {
             return _buttonSaveChanges.IsClickable();
         }

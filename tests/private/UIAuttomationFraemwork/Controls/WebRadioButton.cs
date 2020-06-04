@@ -4,7 +4,7 @@ using LogLevel = NLog.LogLevel;
 
 namespace UIAutomationFramework.Controls
 {
-    internal class WebRadioButton : BaseWebUiElement
+    public class WebRadioButton : BaseWebUiElement
     {
         public WebRadioButton(string elementName, By locator, BaseWebControl container = null) : base(elementName,
             new Locator(locator), container)

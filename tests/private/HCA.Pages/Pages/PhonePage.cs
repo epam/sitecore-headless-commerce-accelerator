@@ -1,15 +1,14 @@
-﻿namespace HCA.Pages.Pages
+﻿using HCA.Pages.HCAElements;
+
+namespace HCA.Pages.Pages
 {
     public class PhonePage : ShopPage
     {
         private static PhonePage _phonePage;
 
-        public static PhonePage Instance =>
-            _phonePage ?? (_phonePage = new PhonePage());
+        public static PhonePage Instance => _phonePage ??= new PhonePage();
 
-        public override string GetPath()
-        {
-            return "/shop/Phones";
-        }
+        public override string GetPath() =>
+            PagePrefix.PhoneShop.GetPrefix();
     }
 }

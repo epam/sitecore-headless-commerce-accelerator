@@ -1,10 +1,10 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils.Extensions;
 using static UIAutomationFramework.Core.TestLogger;

@@ -1,4 +1,5 @@
-﻿using UIAutomationFramework.Controls;
+﻿using HCA.Pages.HCAElements;
+using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.Pages.Checkout
@@ -10,17 +11,20 @@ namespace HCA.Pages.Pages.Checkout
         private readonly WebTextField _cardNumberField =
             new WebTextField("Card Number Field", ByCustom.XPath("//input[@class = 'card-number']"));
 
-        public static CheckoutPaymentPage Instance =>
-            _checkoutPaymentPage ?? (_checkoutPaymentPage = new CheckoutPaymentPage());
+        public static CheckoutPaymentPage Instance => _checkoutPaymentPage ??= new CheckoutPaymentPage();
 
         public void FillCardNumber(string value)
         {
             _cardNumberField.Type(value);
         }
 
-        public override string GetPath()
+        public override string GetPath() =>
+            PagePrefix.CheckoutPayment.GetPrefix();
+
+        protected override void FillFieldsByDefault()
         {
-            return "Checkout/Payment";
+            FillCardNumber("4111111111111111");
+            FillFieldByName("Security Code", "123");
         }
     }
 }

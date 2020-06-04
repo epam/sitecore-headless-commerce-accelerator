@@ -1,4 +1,6 @@
-﻿using UIAutomationFramework.Controls;
+﻿using HCA.Pages.HCAElements;
+using OpenQA.Selenium;
+using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.Pages
@@ -11,7 +13,7 @@ namespace HCA.Pages.Pages
             new WebElement("Cart product list", ByCustom.XPath("//ul[@class= 'cartList']"));
 
         private readonly WebButton _checkoutButton =
-            new WebButton("Chekout button", ByCustom.XPath("//a[text() = 'Checkout']"));
+            new WebButton("Checkout button", ByCustom.XPath("//a[text() = 'Checkout']"));
 
         private readonly WebButton _discountApplyButton =
             new WebButton("Discount apply button", ByCustom.XPath("//button[text() = 'Apply']"));
@@ -21,19 +23,20 @@ namespace HCA.Pages.Pages
 
         private readonly WebLabel _title = new WebLabel("Title", ByCustom.XPath("//h1[@class = 'title']"));
 
-        public static CartPage Instance =>
-            _cartPage ?? (_cartPage = new CartPage());
+        public static CartPage Instance => _cartPage ??= new CartPage();
 
-        public new void VerifyOpened()
+        public void VerifyOpened()
         {
             _title.WaitForPresent();
             _title.WaitForText("Shopping Cart");
         }
 
-        public override string GetPath()
+        public void WaitForProductsLoaded()
         {
-            return "/cart";
+            _cartProductList.WaitForChildElements(By.XPath("//li[@class='cartList-product']"));
         }
+
+        public override string GetPath() => PagePrefix.Cart.GetPrefix();
 
         private WebElement FindProductByName(string productName)
         {

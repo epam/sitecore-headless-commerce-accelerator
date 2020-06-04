@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NLog;
+using System.Collections.Generic;
 using System.Threading;
-using NLog;
 using UIAutomationFramework.Driver;
 
 namespace UIAutomationFramework.Core

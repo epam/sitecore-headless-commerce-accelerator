@@ -1,15 +1,17 @@
-﻿namespace HCA.Pages.Pages.Checkout
+﻿using HCA.Pages.HCAElements;
+
+namespace HCA.Pages.Pages.Checkout
 {
     public class CheckoutBillingPage : CheckoutPage
     {
         private static CheckoutBillingPage _checkoutBillingPage;
 
-        public static CheckoutBillingPage Instance =>
-            _checkoutBillingPage ?? (_checkoutBillingPage = new CheckoutBillingPage());
+        public static CheckoutBillingPage Instance => _checkoutBillingPage ??= new CheckoutBillingPage();
 
-        public override string GetPath()
-        {
-            return "Checkout/Billing";
-        }
+        public override string GetPath() => 
+            PagePrefix.CheckoutBilling.GetPrefix();
+
+        protected override void FillFieldsByDefault() => 
+            SelectOptionByName("Same As Shipping Address");
     }
 }

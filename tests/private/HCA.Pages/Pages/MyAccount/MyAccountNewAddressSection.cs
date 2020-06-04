@@ -17,7 +17,7 @@ namespace HCA.Pages.Pages.MyAccount
             ByCustom.XPath("//button[text()='Submit']"), NewAddressForm);
 
         public new static MyAccountNewAddressSection Instance =>
-            _myAccountNewAddressSection ?? (_myAccountNewAddressSection = new MyAccountNewAddressSection());
+            _myAccountNewAddressSection ??= new MyAccountNewAddressSection();
 
         protected override WebElement FieldsContainer =>
             new WebElement("New Address Section", ByCustom.XPath("//form[@class = 'address-form']"));

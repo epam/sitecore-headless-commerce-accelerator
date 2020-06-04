@@ -1,9 +1,9 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Driver;
 using LogLevel = NLog.LogLevel;

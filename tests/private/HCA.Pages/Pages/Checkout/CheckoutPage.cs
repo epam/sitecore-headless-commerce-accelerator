@@ -14,6 +14,14 @@ namespace HCA.Pages.Pages.Checkout
         private readonly WebSelect _shippingMethodSelect = new WebSelect("Shipping method",
             ByCustom.XPath("//select[contains(@name, 'SHIPPING_METHOD')]"));
 
+        protected virtual void FillFieldsByDefault() { }
+
+        private WebTextField FindFieldByName(string nameField)
+        {
+            return new WebTextField($"Text field {nameField}",
+                ByCustom.XPath($"//div/label[contains(text(), '{nameField}')]/following-sibling::*"));
+        }
+
         public void ClickSubmit()
         {
             _saveAndContinueButton.Click();
@@ -21,8 +29,15 @@ namespace HCA.Pages.Pages.Checkout
 
         public void SelectShippingMethod(string shippingMethod)
         {
-            new WebElement($"Shiiping method {shippingMethod}",
+            new WebElement($"Shipping method {shippingMethod}",
                 ByCustom.XPath($"./option[text()='{shippingMethod}']"), _shippingMethodSelect).Click();
+        }
+
+        public void GoToTheNextPage()
+        {
+            WaitForOpened();
+            FillFieldsByDefault();
+            ClickSubmit();
         }
     }
 }

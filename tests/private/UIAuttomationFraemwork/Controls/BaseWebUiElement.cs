@@ -1,10 +1,10 @@
-﻿using System;
-using System.Drawing;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.Extensions;
+using System;
+using System.Drawing;
+using System.Threading;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils.Extensions;
@@ -202,7 +202,7 @@ namespace UIAutomationFramework.Controls
             var duration = double.Parse(Get().GetCssValue("transition-duration").Replace("s", ""));
             var delay = double.Parse(Get().GetCssValue("transition-delay").Replace("s", ""));
 
-            Thread.Sleep((int) ((duration + delay) * 1000) + 1000);
+            Thread.Sleep((int)((duration + delay) * 1000) + 1000);
         }
 
         public void WaitForAttribute(string attribute, string expectedAttribute)

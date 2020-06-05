@@ -29,7 +29,7 @@ export interface UserNavigationOwnProps extends RouterProps {}
 export interface UserNavigationStateProps {
   authProcess: AuthProcessState;
   cartQuantity: number;
-  commerceUser: Commerce.CommerceUserModel;
+  commerceUser: Commerce.User;
   returnUrl: string;
 }
 
@@ -49,4 +49,4 @@ export interface AppState
   extends GlobalAuthenticationState,
     JSS.RoutingState,
     GlobalShoppingCartState,
-    JSS.SitecoreState<Commerce.CommerceUserContext> {}
+    JSS.SitecoreState<Commerce.UserContext> {}

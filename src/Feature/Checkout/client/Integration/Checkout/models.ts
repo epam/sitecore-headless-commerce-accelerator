@@ -81,7 +81,7 @@ export interface CheckoutState {
   currentStep: CurrentStep;
 }
 
-export interface AppState extends SitecoreState<Commerce.CommerceUserContext> {}
+export interface AppState extends SitecoreState<Commerce.UserContext> {}
 
 export interface GlobalCheckoutState {
   checkout: CheckoutState;

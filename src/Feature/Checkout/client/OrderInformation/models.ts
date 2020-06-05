@@ -21,7 +21,7 @@ import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart'
 export interface OrderInformationOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
 
 export interface OrderInformationState extends JSS.SafePureComponentState {
-  shoppingCartData: Commerce.CartModel;
+  shoppingCartData: Commerce.Cart;
 }
 
 export interface OrderInformationDispatchProps {

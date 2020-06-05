@@ -15,6 +15,7 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
+import * as Base from 'Foundation/Base/client';
 import * as Commerce from 'Foundation/Commerce/client';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration/client';
 import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
@@ -169,7 +170,7 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
   };
 
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Commerce.VoidResult> = yield call(Checkout.setShippingOptions, setShippingOptionsRequest);
+  const { error }: Result<Base.VoidResult> = yield call(Checkout.setShippingOptions, setShippingOptionsRequest);
 
   if (error) {
     yield put(actions.SubmitStepFailure(error.message, error.stack));
@@ -237,7 +238,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
     },
   };
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Commerce.VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
+  const { error }: Result<Base.VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
     yield put(actions.SubmitStepFailure(error.message || 'can not update shipping details'));
   } else {

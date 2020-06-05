@@ -15,14 +15,14 @@
 import * as JSS from 'Foundation/ReactJss/client';
 
 import { ProductContext } from 'Foundation/Commerce/client';
-import { ProductVariantModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Variant } from 'Foundation/Commerce/client/dataModel.Generated';
 
 import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
 
 export interface ProductOverviewOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductOwerviewContext> {}
 
 export interface ProductOverviewStateProps {
-  selectedVariant: ProductVariantModel;
+  selectedVariant: Variant;
 }
 export interface ProductOverviewDispatchProps {}
 

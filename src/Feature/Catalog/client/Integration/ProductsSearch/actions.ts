@@ -18,7 +18,7 @@ import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 import { Params } from './models';
 
-import { FacetResultModel, ProductModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Facet, Product } from 'Foundation/Commerce/client/dataModel.Generated';
 
 export const InitialSearch: actionCreators.InitialSearch = (payload) => ({
   payload: {
@@ -78,8 +78,8 @@ export const ProductsSearchFailure: FailureType = (error: string) => ({
 });
 
 export const ProductsSearchSuccess: actionCreators.ProductSearchSuccess = (
-  facets: FacetResultModel[],
-  items: ProductModel[],
+  facets: Facet[],
+  items: Product[],
   currentPageNumber: number,
   totalPageCount: number,
   totalItemCount: number

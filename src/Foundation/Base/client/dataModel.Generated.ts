@@ -12,29 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Category, Product, User } from './dataModel.Generated';
+// tslint:disable:indent array-type
+// tslint:disable: no-use-before-declare
 
-export interface ProductContext {
-  product: Product;
-}
-
-export interface CategoryContext {
-  category: Category;
-}
-
-export interface UserContext {
-  commerceUser: User;
-}
-
-export interface ProductColorsContext {
-  productColors: ProductColors;
-}
-
-export interface ProductColors {
-  [key: string]: string;
-}
-
-export interface ValidateEmail {
-  inUse: boolean;
-  invalid: boolean;
-}
+  export interface VoidResult {
+  }

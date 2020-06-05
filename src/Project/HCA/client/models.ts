@@ -30,7 +30,7 @@ import ApolloClient from 'apollo-client';
 export interface SitecoreContext
   extends Commerce.ProductContext,
     Commerce.CategoryContext,
-    Commerce.CommerceUserContext,
+    Commerce.UserContext,
     Commerce.ProductColorsContext {
   site: {
     name: string;

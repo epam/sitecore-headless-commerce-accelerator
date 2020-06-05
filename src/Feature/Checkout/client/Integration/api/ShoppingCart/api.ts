@@ -23,7 +23,7 @@ import * as DataModels from 'Feature/Checkout/client/dataModel.Generated';
 
 const routeBase = '/apix/client/commerce/carts';
 
-export const getShoppingCart = async (): Promise<Result<Commerce.CartModel>> => {
+export const getShoppingCart = async (): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.get<GetCartResponse>(`${routeBase}/cart`, null);
 
@@ -37,7 +37,7 @@ export const getShoppingCart = async (): Promise<Result<Commerce.CartModel>> => 
   }
 };
 
-export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineRequest): Promise<Result<Commerce.CartModel>> => {
+export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineRequest): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.post<GetCartResponse>(`${routeBase}/cartLines/`, requestPayload);
 
@@ -51,7 +51,7 @@ export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineReq
   }
 };
 
-export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartLineRequest): Promise<Result<Commerce.CartModel>> => {
+export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartLineRequest): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.put<GetCartResponse>(`${routeBase}/cartLines/`, requestPayload);
 
@@ -74,7 +74,7 @@ export const removeCartItem = async (requestPayload: DataModels.RemoveCartLineRe
   }
 };
 
-export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest): Promise<Result<Commerce.CartModel>> => {
+export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.post<GetCartResponse>(`${routeBase}/promoCodes/`, requestPayload);
     const { data } = response;

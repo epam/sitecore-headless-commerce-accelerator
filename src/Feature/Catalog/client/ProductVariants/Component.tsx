@@ -17,7 +17,7 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss/client';
 
 import { resolveColor } from 'Foundation/Commerce/client';
-import { ProductVariantModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Variant } from 'Foundation/Commerce/client/dataModel.Generated';
 import { ProductVariantsProps, ProductVariantsState } from './models';
 
 export default class ProductVariantsComponent extends JSS.SafePureComponent<
@@ -66,7 +66,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
     );
   }
 
-  private variantSelected(e: React.MouseEvent<HTMLSpanElement>, variant: ProductVariantModel) {
+  private variantSelected(e: React.MouseEvent<HTMLSpanElement>, variant: Variant) {
     const { productId } = this.props;
     this.props.SelectColorVariant(productId, variant);
   }

@@ -12,17 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Commerce from 'Foundation/Commerce/client/dataModel.Generated';
 import { LoadingStatus } from 'Foundation/Integration/client';
 
 import { ProductSearch } from 'Feature/Catalog/client/Integration/api';
-import { FacetResultModel, ProductModel } from 'Foundation/Commerce/client/dataModel.Generated';
 
 export interface Status {
   status: LoadingStatus;
 }
 
-export interface Facets extends FacetResultModel {}
-export interface Product extends ProductModel {}
+export interface Facets extends Commerce.Facet {}
+export interface Product extends Commerce.Product {}
 export interface Params extends ProductSearch.SearchProductsParams {}
 export interface ProductSearchState extends Status {
   facets: Facets[];

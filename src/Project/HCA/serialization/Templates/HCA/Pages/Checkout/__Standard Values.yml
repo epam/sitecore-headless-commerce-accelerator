@@ -4,6 +4,13 @@ Parent: "d5440345-d25e-4a9b-b8e4-5c2aef3c9178"
 Template: "d5440345-d25e-4a9b-b8e4-5c2aef3c9178"
 Path: /sitecore/templates/HCA/Project/HCA/Pages/Checkout/__Standard Values
 DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
+    {D5440345-D25E-4A9B-B8E4-5C2AEF3C9178}
 Languages:
 - Language: en
   Versions:

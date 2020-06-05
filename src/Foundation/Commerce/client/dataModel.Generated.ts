@@ -13,8 +13,50 @@
 //    limitations under the License.
 
 // tslint:disable:indent array-type
+// tslint:disable: no-use-before-declare
 
-export interface AddressModel {
+  export interface ValidateCredentialsResultModel {
+    hasValidCredentials: boolean;
+  }
+  export interface ShippingInfo {
+    shippingMethods: ShippingMethod[];
+  }
+  export interface ShippingMethod {
+    description: string;
+    externalId: string;
+    lineIds: string[];
+    name: string;
+    partyId: string;
+    shippingPreferenceType: string;
+  }
+  export interface ShippingOption {
+    description: string;
+    name: string;
+    shippingOptionType: number;
+    shopName: string;
+  }
+  export interface FederatedPaymentInfo {
+    cardToken: string;
+    partyId: string;
+    paymentMethodId: string;
+  }
+  export interface PaymentMethod {
+    description: string;
+    externalId: string;
+  }
+  export interface PaymentOption {
+    description: string;
+    name: string;
+    paymentOptionTypeName: string;
+  }
+  export interface DeliveryInfo extends BaseCheckoutInfo {
+    newPartyId: string;
+    shippingOptions: ShippingOption[];
+  }
+  export interface BaseCheckoutInfo {
+    userAddresses: Address[];
+  }
+  export interface Address {
     address1: string;
     address2: string;
     city: string;
@@ -29,45 +71,25 @@ export interface AddressModel {
     partyId: string;
     state: string;
     zipPostalCode: string;
-}
-export interface BaseCheckoutModel {
-    userAddresses: AddressModel[];
-}
-export interface CartLineModel {
-    id: string;
-    price: CartPriceModel;
-    product: ProductModel;
-    quantity: number;
-    variant: ProductVariantModel;
-}
-export interface Cart {
+  }
+  export interface Cart {
     addresses: Address[];
     adjustments: string[];
+    cartLines: CartLine[];
     email: string;
     id: string;
     payment: FederatedPaymentInfo[];
     price: TotalPrice;
-    cartLines: CartLine[];
     shipping: ShippingMethod[];
-}
-export interface CartLine {
+  }
+  export interface CartLine {
     id: string;
-    product: Product;
-    variant: Variant;
-    quantity: number;
     price: TotalPrice;
-}
-export interface CartModel {
-    addresses: AddressModel[];
-    adjustments: string[];
-    cartLines: CartLineModel[];
-    email: string;
-    id: string;
-    payments: FederatedPaymentModel[];
-    price: CartPriceModel;
-    shippings: ShippingMethodModel[];
-}
-export interface CartPriceModel {
+    product: Product;
+    quantity: number;
+    variant: Variant;
+  }
+  export interface TotalPrice {
     currencyCode: string;
     currencySymbol: string;
     handlingTotal: number;
@@ -76,338 +98,88 @@ export interface CartPriceModel {
     taxTotal: number;
     total: number;
     totalSavings: number;
-}
-export interface CategoryModel {
+  }
+  export interface BaseProduct {
+    adjustedPrice: number;
+    brand: string;
+    currencySymbol: string;
+    customerAverageRating: number;
+    description: string;
+    displayName: string;
+    imageUrls: string[];
+    listPrice: number;
+    productId: string;
+    stockStatusName: string;
+    tags: string[];
+  }
+  export interface Category {
     childrenCategoryList: string[];
     description: string;
     displayName: string;
     name: string;
     parentCatalogList: string[];
     sitecoreId: string;
-}
-export interface CategorySearchInformation {
-    itemsPerPage: number;
-    requiredFacets: CommerceQueryFacet[];
-    sortFields: CommerceQuerySort[];
-}
-export interface CommerceUserModel {
-    contactId: string;
-    customerId: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
-export interface CountryRegion {
-    countryCode: string;
-    name: string;
-    subdivisions: Subdivision[];
-}
-export interface FacetResultModel {
-    displayName: string;
-    foundValues: FacetValueResultModel[];
-    name: string;
-    values: any[];
-}
-export interface FacetValueResultModel {
-    aggregateCount: number;
-    name: string;
-}
-export interface FederatedPaymentModel {
-    cardToken: string;
-    partyID: string;
-    paymentMethodId: string;
-}
-export interface OrderModel extends CartModel {
-    status: string;
-    trackingNumber: string;
-}
-export interface ShippingMethodModel {
-    description: string;
-    electronicDeliveryEmail: string;
-    electronicDeliveryEmailContent: string;
-    externalId: string;
-    lineIds: string[];
-    name: string;
-    partyId: string;
-    shippingOptionId: string;
-    shippingPreferenceType: string;
-    shopName: string;
-}
-export interface ShippingOptionModel {
-    description: string;
-    name: string;
-    shippingOptionType: number;
-    shopName: string;
-}
-export interface ProductListResultModel {
-    childProducts: Product[];
-    currentCatalogItemId: string;
-    currentPageNumber: number;
-    facets: Facet[];
-    searchKeyword: string;
-    sortOptions: number;
-    totalItemCount: number;
-    totalPageCount: number;
-}
-export interface BaseProduct {
-    adjustedPrice: number;
-    brand: string;
-    currencySymbol: string;
-    customerAverageRating: number;
-    description: string;
-    displayName: string;
-    imageUrls: string[];
-    listPrice: number;
-    productId: string;
-    stockStatusName: string;
-    tags: string[];
-}
-export interface Variant extends BaseProduct {
-    properties: { [key: string]: string };
-    variantId: string;
-}
-export interface Product extends BaseProduct {
+  }
+  export interface Product extends BaseProduct {
     sitecoreId: string;
     variants: Variant[];
-}
-export interface FacetValue {
-    aggregateCount: number;
-    name: string;
-}
-export interface Facet {
+  }
+  export interface Variant extends BaseProduct {
+    properties: { [key: string]: string };
+    variantId: string;
+  }
+  export interface KeyValuePair<TKey, TValue> {
+    key: TKey;
+    value: TValue;
+  }
+  export interface BillingInfo {
+    paymentClientToken: string;
+    paymentMethods: PaymentMethod[];
+    paymentOptions: PaymentOption[];
+  }
+  export interface Facet {
     displayName: string;
     foundValues: FacetValue[];
     name: string;
     values: any[];
-}
-export interface ProductSearchResults {
+  }
+  export interface FacetValue {
+    aggregateCount: number;
+    name: string;
+  }
+  export interface ProductSearchResults {
     facets: Facet[];
     products: Product[];
     totalItemCount: number;
     totalPageCount: number;
-}
-export interface ProductModel {
-    adjustedPrice: number;
-    brand: string;
-    currencySymbol: string;
-    customerAverageRating: number;
-    description: string;
-    displayName: string;
-    imageUrls: string[];
-    listPrice: number;
-    productId: string;
-    stockStatusName: string;
-    tags: string[];
-    variants: ProductVariantModel[];
-}
-export interface ProductVariantModel {
-    adjustedPrice: number;
-    brand: string;
-    currencySymbol: string;
-    customerAverageRating: number;
-    description: string;
-    displayName: string;
-    imageUrls: string[];
-    listPrice: number;
-    productId: string;
-    variantId: string;
-    stockStatusName: string;
-    tags: string[];
-    properties: { [key: string]: string };
-}
-export interface ShippingInfo {
-    shippingMethods: ShippingMethod[];
-}
-export interface ShippingMethod {
-    description: string;
-    externalId: string;
-    lineIds: string[];
-    name: string;
-    partyId: string;
-    shippingPreferenceType: string;
-}
-export interface ShippingOption {
-    description: string;
-    name: string;
-    shippingOptionType: number;
-    shopName: string;
-}
-export interface SortOptionModel {
-    displayName: string;
-    isSelected: boolean;
-}
-export interface TotalPrice {
-    currencyCode: string;
-    currencySymbol: string;
-    total?: number;
-    subtotal?: number;
-    handlingTotal?: number;
-    shippingTotal?: number;
-    taxTotal: number;
-    totalSavings?: number;
-}
-export interface FederatedPaymentInfo {
-    cardToken: string;
-    partyId: string;
-    paymentMethodId: string;
-}
-export interface PaymentMethod {
-    description: string;
-    externalId: string;
-}
-export interface PaymentOption {
-    description: string;
-    name: string;
-    paymentOptionTypeName: string;
-}
-// tslint:disable-next-line: no-use-before-declare
-export interface DeliveryInfo extends BaseCheckoutInfo {
-    newPartyId: string;
-    shippingOptions: ShippingOption[];
-}
-export interface Subdivision {
-    code: string;
-    name: string;
-}
-export interface BaseCheckoutInfo {
-    userAddresses: Address[];
-}
-export interface Address {
-    address1: string;
-    address2: string;
-    city: string;
-    country: string;
-    countryCode: string;
-    email: string;
-    externalId: string;
-    firstName: string;
-    isPrimary: boolean;
-    lastName: string;
-    name: string;
-    partyId: string;
-    state: string;
-    zipPostalCode: string;
-}
-export interface BillingInfo {
-    paymentClientToken: string;
-    paymentMethods: PaymentMethod[];
-    paymentOptions: PaymentOption[];
-}
-export interface VoidResult {
-}
-export interface CommerceQueryFacet {
-    displayName: string;
-    foundValues: FacetValue[];
-    name: string;
-    values: any[];
-}
-export interface CommerceQuerySort {
-    displayName: string;
-    name: string;
-}
-export interface FacetValue {
-    aggregateCount: number;
-    name: string;
-}
-export interface KeyValuePair<TKey, TValue> {
-    key: TKey;
-    value: TValue;
-}
-export interface OrderHistoryResultModel {
-    currentPageNumber: number;
-    orders: CartModel[];
-}
-export interface UserLoginModel {
-    email: string;
-    password: string;
-}
-export interface User {
+  }
+  export interface User {
     contactId: string;
     customerId: string;
     email: string;
     firstName: string;
     lastName: string;
     userName: string;
-}
-export interface Order extends Cart {
+  }
+  export interface CountryRegion {
+    countryCode: string;
+    name: string;
+    subdivisions: Subdivision[];
+  }
+  export interface Subdivision {
+    code: string;
+    name: string;
+  }
+  export interface Order extends Cart {
     isOfflineOrder: boolean;
     orderDate: Date;
     orderID: string;
     status: string;
     trackingNumber: string;
-}
-export interface OrderConfirmation {
+  }
+  export interface OrderConfirmation {
     confirmationId: string;
-}
-export interface ValidateCredentialsResultModel {
-    hasValidCredentials: boolean;
-}
-export interface ChangePasswordModel {
-    email: string;
-    newPassword: string;
-    oldPassword: string;
-}
-export interface ChangePasswordResultModel {
-    passwordChanged: boolean;
-}
-export interface CreateAccountModel {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-}
-export interface CreateAccountResultModel {
-    accountInfo: CommerceUserModel;
-    created: boolean;
-    message: string;
-}
-export interface ValidateAccountModel {
-    email: string;
-}
-export interface ValidateAccountResultModel {
-    email: string;
+  }
+  export interface ValidateEmailResult {
     inUse: boolean;
-    invalid: boolean;
-}
-export interface AddressRequest {
-    name: string;
-    firstName: string;
-    lastName: string;
-    address1: string;
-    address2: string;
-    country: string;
-    countryCode: string;
-    city: string;
-    state: string;
-    zipPostalCode: string;
-    externalId: string;
-    partyId: string;
-    isPrimary: boolean;
-    email: string;
-}
-export interface ChangePasswordRequest {
-    email: string;
-    newPassword: string;
-    oldPassword: string;
-}
-export interface CreateAccountRequest {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-}
-export interface UpdateAccountRequest {
-    contactId: string;
-    firstName: string;
-    lastName: string;
-}
-export interface ValidateEmailRequest {
-    email: string;
-}
-export interface ValidateEmailResult {
-    inUse: boolean;
-}
-export const enum SortDirection {
-    Asc = 0,
-    Desc = 1
-}
+  }

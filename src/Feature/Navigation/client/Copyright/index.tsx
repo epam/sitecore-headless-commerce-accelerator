@@ -12,15 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss/client';
+import { RichText } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { RichText, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
+
 import { CopyrightProps, CopyrightState } from './models';
 
 import './styles.scss';
 
-class Copyright extends JSS.SafePureComponent<CopyrightProps, CopyrightState> {
+class CopyrightComponent extends JSS.SafePureComponent<CopyrightProps, CopyrightState> {
   protected safeRender() {
     const { fields } = this.props;
     const { datasource } = fields.data;
@@ -35,4 +36,4 @@ class Copyright extends JSS.SafePureComponent<CopyrightProps, CopyrightState> {
   }
 }
 
-export default withExperienceEditorChromes(Copyright);
+export const Copyright = JSS.rendering(CopyrightComponent);

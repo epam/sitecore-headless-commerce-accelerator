@@ -20,6 +20,8 @@ import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
 
 import * as Api from './../api/Account';
 
+import * as DataModel from '../../dataModel.Generated';
+
 import * as actions from './actions';
 import { sagaActionTypes } from './constants';
 import {
@@ -33,7 +35,7 @@ import * as selectors from './selectors';
 import { signIn } from './utils';
 
 export function* create(action: Action<CreateAccountPayload>) {
-  const payload: Commerce.CreateAccountRequest = action.payload;
+  const payload: DataModel.CreateAccountRequest = action.payload;
   yield put(actions.CreateAccountRequest());
 
   const { data, error }: Result<Commerce.User> = yield call(Api.createAccount, payload);
@@ -48,7 +50,7 @@ export function* create(action: Action<CreateAccountPayload>) {
 }
 
 export function* validation(action: Action<ValidateEmailPayload>) {
-  const payload: Commerce.ValidateEmailRequest = action.payload;
+  const payload: DataModel.ValidateEmailRequest = action.payload;
 
   const accountValidationState: AccountValidationState = yield select(selectors.accountValidation);
 
@@ -79,12 +81,12 @@ export function* resetValidation() {
 }
 
 export function* changePassword(action: Action<ChangePasswordPayload>) {
-  const commerceUser: Commerce.CommerceUserModel = yield select(selectors.commerceUser);
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
   if (!commerceUser) {
     return;
   }
 
-  const payload: Commerce.ChangePasswordRequest = {
+  const payload: DataModel.ChangePasswordRequest = {
     ...action.payload,
     email: commerceUser.email,
   };
@@ -104,7 +106,7 @@ export function* changePassword(action: Action<ChangePasswordPayload>) {
 }
 
 export function* verifyCommerceUser() {
-  const commerceUser: Commerce.CommerceUserModel = yield select(selectors.commerceUser);
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
 
   if (!commerceUser) {
     yield put(ChangeRoute('/'));
@@ -128,7 +130,7 @@ export function* getAddressList() {
 }
 
 export function* updateAddress(action: Action<Commerce.Address>) {
-  const payload: Commerce.AddressRequest = action.payload;
+  const payload: DataModel.AddressRequest = action.payload;
 
   yield put(actions.UpdateAddressRequest());
 
@@ -142,7 +144,7 @@ export function* updateAddress(action: Action<Commerce.Address>) {
 }
 
 export function* addAddress(action: Action<Commerce.Address>) {
-  const payload: Commerce.AddressRequest = action.payload;
+  const payload: DataModel.AddressRequest = action.payload;
 
   yield put(actions.AddAddressRequest());
 
@@ -170,12 +172,12 @@ export function* removeAddress(action: Action<string>) {
 }
 
 export function* updateAccount(action: Action<UpdateAccountPayload>) {
-  const commerceUser: Commerce.CommerceUserModel = yield select(selectors.commerceUser);
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
   if (!commerceUser) {
     return;
   }
 
-  const payload: Commerce.UpdateAccountRequest = {
+  const payload: DataModel.UpdateAccountRequest = {
     ...action.payload,
     contactId: commerceUser.contactId,
   };

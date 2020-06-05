@@ -25,9 +25,9 @@ describe('ShoppingCart actions', () => {
     cartLines: [],
     email: null,
     id: 'id',
-    payments: [],
+    payment: [],
     price: null,
-    shippings: []
+    shipping: []
   };
 
   test('should return action for LOAD_CART', () => {

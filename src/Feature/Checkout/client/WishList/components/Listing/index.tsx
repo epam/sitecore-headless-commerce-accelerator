@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Text, withExperienceEditorChromes } from '@sitecore-jss/sitecore-jss-react';
-import { ListingControlProps, ListingControlState } from './models';
+import * as JSS from 'Foundation/ReactJss/client';
 
-import * as Jss from 'Foundation/ReactJss/client';
+import { ListingProps, ListingState } from './models';
 
 import './styles.scss';
 
-class ListingControl extends Jss.SafePureComponent<ListingControlProps, ListingControlState> {
+export class Listing extends JSS.SafePureComponent<ListingProps, ListingState> {
   public safeRender() {
     return (
       <section className="listing-wishlist-grid">
@@ -124,5 +124,3 @@ class ListingControl extends Jss.SafePureComponent<ListingControlProps, ListingC
     );
   }
 }
-
-export const Listing = withExperienceEditorChromes(ListingControl);

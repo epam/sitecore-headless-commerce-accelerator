@@ -16,6 +16,8 @@ import * as Commerce from 'Foundation/Commerce/client';
 import { Status } from 'Foundation/Integration/client';
 import { SitecoreState } from 'Foundation/ReactJss/client';
 
+import * as DataModel from '../../dataModel.Generated';
+
 export interface AccountValidationState extends Status {
   email: string;
   invalid: boolean;
@@ -23,7 +25,7 @@ export interface AccountValidationState extends Status {
 }
 
 export interface CreateState extends Status {
-  accountInfo?: Commerce.CommerceUserModel;
+  accountInfo?: Commerce.User;
 }
 
 export interface ChangePasswordState extends Status {}
@@ -35,7 +37,7 @@ export interface SignUpState {
 
 export interface SavedAddressListState extends Status {
   items: {
-    [key: string]: Commerce.AddressModel;
+    [key: string]: Commerce.Address;
   };
 }
 
@@ -52,11 +54,11 @@ export interface GlobalAccountState {
   account: AccountState;
 }
 
-export interface AppState extends SitecoreState<Commerce.CommerceUserContext> {}
+export interface AppState extends SitecoreState<Commerce.UserContext> {}
 
-export interface CreateAccountPayload extends Commerce.CreateAccountRequest {}
-export interface ValidateEmailPayload extends Commerce.ValidateEmailRequest {}
-export interface ValidateAccountResultPayload extends Status, Partial<Commerce.ValidateEmailRequest> {}
+export interface CreateAccountPayload extends DataModel.CreateAccountRequest {}
+export interface ValidateEmailPayload extends DataModel.ValidateEmailRequest {}
+export interface ValidateAccountResultPayload extends Status, Partial<DataModel.ValidateEmailRequest> {}
 export interface ChangePasswordPayload {
   oldPassword: string;
   newPassword: string;

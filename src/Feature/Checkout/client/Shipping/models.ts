@@ -27,7 +27,7 @@ export interface ShippingStateProps {
   shippingInfo: Checkout.Data<Commerce.ShippingInfo>;
   isSubmitting: boolean;
   isLoading: boolean;
-  commerceUser: Commerce.CommerceUserModel;
+  commerceUser: Commerce.User;
 }
 export interface ShippingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;

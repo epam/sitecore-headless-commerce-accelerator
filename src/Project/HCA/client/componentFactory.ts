@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,14 +15,8 @@
 import * as Account from 'Feature/Account/client';
 import * as Catalog from 'Feature/Catalog/client';
 import * as Checkout from 'Feature/Checkout/client';
+import * as Navigation from 'Feature/Navigation/client';
 import * as PageContent from 'Feature/PageContent/client';
-
-import Copyright from 'Feature/Navigation/client/Copyright';
-import GlobalFooter from 'Feature/Navigation/client/GlobalFooter';
-import GlobalHeader from 'Feature/Navigation/client/GlobalHeader';
-
-import FooterLinks from 'Feature/Navigation/client/FooterLinks';
-import SocialNetworksLinks from 'Feature/Navigation/client/SocialNetworksLinks';
 
 const components = new Map<string, any>();
 
@@ -35,9 +29,6 @@ components.set('Two Column', PageContent.TwoColumn);
 components.set('Two Column Row', PageContent.TwoColumnRow);
 components.set('Three Column Row', PageContent.ThreeColumnRow);
 
-// Page Content
-components.set('Header', GlobalHeader);
-
 // Home renderings
 components.set('Recommended Products', PageContent.RecommendedProducts);
 components.set('Banner Grid', PageContent.BannerGrid);
@@ -46,11 +37,20 @@ components.set('Clear Banner', PageContent.ClearBanner);
 components.set('Light Banner', PageContent.LightBanner);
 components.set('Modern Banner', PageContent.ModernBanner);
 
+// Header renderings
+components.set('Header', Navigation.Header);
+components.set('Header Content', Navigation.HeaderContent);
+components.set('Logo', Navigation.Logo);
+components.set('Navigation Menu', Navigation.NavigationMenu);
+components.set('Search Box', Navigation.NavigationSearch);
+components.set('Quick Navigation', Navigation.QuickNavigation);
+components.set('User Navigation', Navigation.UserNavigation);
+
 // Footer renderings
-components.set('Footer', GlobalFooter);
-components.set('Copyright', Copyright);
-components.set('Footer Links', FooterLinks);
-components.set('Social Networks Links', SocialNetworksLinks);
+components.set('Footer', Navigation.GlobalFooter);
+components.set('Copyright', Navigation.Copyright);
+components.set('Footer Links', Navigation.FooterLinks);
+components.set('Social Networks Links', Navigation.SocialNetworksLinks);
 
 // Catalog renderings
 components.set('Find In Store', Catalog.FindInStore);

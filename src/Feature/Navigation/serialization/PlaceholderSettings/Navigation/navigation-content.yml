@@ -1,0 +1,27 @@
+﻿---
+ID: "ce081c90-3501-4f74-a21d-2eac39b3cf41"
+Parent: "b51609de-1f0f-4f60-bf6a-f4b22295ec01"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Navigation/navigation-content"
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "navigation-content"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Type: TreelistEx
+  Value: |
+    {123FE93B-8360-44DB-B660-C9D472024809}
+    {520A7D2B-E6CA-4049-AB88-735D626B78CE}
+    {4A976F66-B69F-4AF3-9E43-86FBD6E0041B}
+    {B7AA5501-B17F-4896-A70F-AA8866909E99}
+    {7BD6038E-AFA9-4A5D-B0B4-DAF4F013B39D}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200526T185026Z

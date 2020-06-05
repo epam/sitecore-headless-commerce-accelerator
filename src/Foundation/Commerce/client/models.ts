@@ -12,18 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { CategoryModel, CommerceUserModel, ProductModel } from './dataModel.Generated';
+import { Category, Product, User } from './dataModel.Generated';
 
 export interface ProductContext {
-  product: ProductModel;
+  product: Product;
 }
 
 export interface CategoryContext {
-  category: CategoryModel;
+  category: Category;
 }
 
-export interface CommerceUserContext {
-  commerceUser: CommerceUserModel;
+export interface UserContext {
+  commerceUser: User;
 }
 
 export interface ProductColorsContext {

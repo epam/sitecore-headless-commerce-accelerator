@@ -4,6 +4,13 @@ Parent: "d0466420-eeca-46a4-93b6-b17cc198e87b"
 Template: "d0466420-eeca-46a4-93b6-b17cc198e87b"
 Path: /sitecore/templates/HCA/Project/HCA/Pages/Cart/__Standard Values
 DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
+    {D0466420-EECA-46A4-93B6-B17CC198E87B}
 Languages:
 - Language: en
   Versions:

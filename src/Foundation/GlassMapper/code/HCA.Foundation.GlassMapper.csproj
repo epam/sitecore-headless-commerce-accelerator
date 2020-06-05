@@ -271,7 +271,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.GlassMapper.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.GlassMapper.config" />
     <Content Include="App_Config\Include\Glass.Mapper.Sc.config" />
     <Content Include="App_Config\Include\z.Glass.Mapper.Sc.ViewRender.config.exclude" />
     <Content Include="App_Config\Include\Glass.Mapper.Sc.Start.config" />

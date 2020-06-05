@@ -15,10 +15,12 @@
 import * as Commerce from 'Foundation/Commerce/client';
 import { LoadingStatus } from 'Foundation/Integration/client';
 
+import * as DataModel from '../../dataModel.Generated';
+
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 
-export const CreateAccount: actionCreators.CreateAccount = (createAccountRequest: Commerce.CreateAccountRequest) => ({
+export const CreateAccount: actionCreators.CreateAccount = (createAccountRequest: DataModel.CreateAccountRequest) => ({
   payload: createAccountRequest,
   type: sagaActionTypes.CREATE,
 });
@@ -194,7 +196,7 @@ export const UpdateAddressFailure: actionCreators.UpdateAddressFailure = (error:
   type: reducerActionTypes.ADDRESS_UPDATE_FAILURE,
 });
 
-export const UpdateAddressSuccess: actionCreators.UpdateAddressSuccess = (addressList: Commerce.AddressModel[]) => ({
+export const UpdateAddressSuccess: actionCreators.UpdateAddressSuccess = (addressList: Commerce.Address[]) => ({
   payload: {
     items: addressList.reduce((acc, currentItem) => {
       acc[currentItem.externalId] = currentItem;
@@ -222,7 +224,7 @@ export const AddAddressFailure: actionCreators.AddAddressFailure = (error: strin
   type: reducerActionTypes.ADDRESS_ADD_FAILURE,
 });
 
-export const AddAddressSuccess: actionCreators.AddAddressSuccess = (addressList: Commerce.AddressModel[]) => ({
+export const AddAddressSuccess: actionCreators.AddAddressSuccess = (addressList: Commerce.Address[]) => ({
   payload: {
     items: addressList.reduce((acc, currentItem) => {
       acc[currentItem.externalId] = currentItem;
@@ -250,7 +252,7 @@ export const RemoveAddressFailure: actionCreators.RemoveAddressFailure = (error:
   type: reducerActionTypes.ADDRESS_ADD_FAILURE,
 });
 
-export const RemoveAddressSuccess: actionCreators.RemoveAddressSuccess = (addressList: Commerce.AddressModel[]) => ({
+export const RemoveAddressSuccess: actionCreators.RemoveAddressSuccess = (addressList: Commerce.Address[]) => ({
   payload: {
     items: addressList.reduce((acc, currentItem) => {
       acc[currentItem.externalId] = currentItem;

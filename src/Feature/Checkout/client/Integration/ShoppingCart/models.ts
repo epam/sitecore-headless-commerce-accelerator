@@ -16,9 +16,11 @@ import { Status } from 'Foundation/Integration/client';
 
 import * as Commerce from 'Foundation/Commerce/client';
 
-export interface ShoppingCartLine extends Commerce.CartLineModel {}
-export interface ShoppingCartPrice extends Commerce.CartPriceModel {}
-export interface ShoppingCartData extends Commerce.CartModel {
+export interface ShoppingCartLine extends Commerce.CartLine {}
+
+export interface ShoppingCartPrice extends Commerce.TotalPrice {}
+
+export interface ShoppingCartData extends Commerce.Cart {
   cartLines: ShoppingCartLine[];
   price: ShoppingCartPrice;
 }

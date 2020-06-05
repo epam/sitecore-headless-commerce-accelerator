@@ -731,7 +731,7 @@
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Commerce.config">
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config">
@@ -743,7 +743,7 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.Commerce.Serialization.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

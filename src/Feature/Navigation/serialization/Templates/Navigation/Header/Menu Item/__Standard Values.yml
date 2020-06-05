@@ -1,0 +1,21 @@
+﻿---
+ID: "e212a8fe-c662-4042-907a-67a82dbfa436"
+Parent: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
+Template: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
+Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180428T091426Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "5ded8fb9-7d05-400d-971c-affa49b5443b"
+      Hint: Title
+      Value: $name

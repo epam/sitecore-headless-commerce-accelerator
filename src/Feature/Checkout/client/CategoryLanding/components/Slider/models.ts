@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss/client';
 
-export interface SliderControlProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+export interface SliderProps {}
 
-export interface SliderControlState extends JSS.SafePureComponentState {}
+export interface SliderState extends JSS.SafePureComponentState {}

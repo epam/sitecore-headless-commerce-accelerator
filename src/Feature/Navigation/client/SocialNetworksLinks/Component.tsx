@@ -1,12 +1,13 @@
-import * as Jss from 'Foundation/ReactJss/client';
+import { Link, Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { Link, Text } from '@sitecore-jss/sitecore-jss-react';
+import * as JSS from 'Foundation/ReactJss/client';
 
 import { SocialLinksProps, SocialLinksState } from './models';
+
 import './styles.scss';
 
-export default class SocialNetworksLinks extends Jss.SafePureComponent<SocialLinksProps, SocialLinksState> {
+export default class SocialNetworksLinksComponent extends JSS.SafePureComponent<SocialLinksProps, SocialLinksState> {
     protected safeRender() {
       const { datasource } = this.props.fields.data;
 

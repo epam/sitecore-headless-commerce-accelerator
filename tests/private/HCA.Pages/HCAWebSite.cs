@@ -178,10 +178,10 @@ namespace HCA.Pages
                 case PagePrefix.AccountOrderHistory:
                     var user = Configuration.GetDefaultUserLogin();
                     _hcaWebSite.OpenHcaAndLogin(user.Email,user.Password);
-                    _hcaWebSite.NavigateToPage(pagePrefix.GetEnumMemberValue());
+                    _hcaWebSite.NavigateToPage(pagePrefix.GetPrefix());
                     break;
                 default:
-                    _hcaWebSite.NavigateToPage(pagePrefix.GetEnumMemberValue());
+                    _hcaWebSite.NavigateToPage(pagePrefix.GetPrefix());
                     break;
             }
         }

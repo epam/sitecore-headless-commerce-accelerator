@@ -258,7 +258,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA\Foundation.DependencyInjection.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.DependencyInjection.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

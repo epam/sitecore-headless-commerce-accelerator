@@ -1,11 +1,11 @@
 <Project ToolsVersion="4.0" 
   xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <publishUrl>http://wooli.local/</publishUrl>
+    <publishUrl>http://hca.local/</publishUrl>
     <WebPublishMethod>MSDeploy</WebPublishMethod>
     <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
-    <SiteUrlToLaunchAfterPublish>http://wooli.local</SiteUrlToLaunchAfterPublish>
+    <SiteUrlToLaunchAfterPublish />
     <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
     <ExcludeApp_Data>False</ExcludeApp_Data>
     <MSDeployServiceURL>192.168.50.4</MSDeployServiceURL>

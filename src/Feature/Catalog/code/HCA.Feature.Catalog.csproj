@@ -600,7 +600,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Feature\HCA\Feature.Catalog.config">
+    <Content Include="App_Config\Include\Feature\HCA.Feature.Catalog.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config">
@@ -612,7 +612,7 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Feature\HCA\Feature.Catalog.Serialization.config" />
+    <Content Include="App_Config\Include\Feature\HCA.Feature.Catalog.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

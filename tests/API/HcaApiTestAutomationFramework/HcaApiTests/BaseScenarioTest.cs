@@ -186,13 +186,12 @@ namespace HcaApiTests
 				cvv = "123",
 				expirationMonth = "1",
 				expirationYear = "2021",
-				number = "4111111111111111",
+				number = "4005519200000004",
 			};
 			var responseTokenizeCreditCard = graphqlCall.TokenizeCreditCard(creditCard);
 			Assert.IsNotEmpty(responseTokenizeCreditCard, "TokenizeCreditCard response is not empty");
 			_token = responseTokenizeCreditCard.data.tokenizeCreditCard.token;
 			Assert.True((_token.Length>5), "The token was not received");
-			
 		}
 
 		[Test, Order(7), Description("Add Payment Info card data")]

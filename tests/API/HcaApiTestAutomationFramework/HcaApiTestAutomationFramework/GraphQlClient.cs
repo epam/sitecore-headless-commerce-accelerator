@@ -82,10 +82,11 @@ namespace HcaApiTestAutomationFramework
 
 		private void AddRequestHeaders(RestRequest request)
 		{
+			request.AddHeader("accept", "*/*");
 			request.AddHeader("braintree-version", ConfigurationManager.AppSettings["braintree-version"]);
-			request.AddHeader("Accept-Enclding", "gzip,deflat,sdch");
+			request.AddHeader("accept-encoding", "gzip, deflate, br");
 			request.AddHeader("Cache-Control", "no-cache");
-			request.AddHeader("content-type", ConfigurationManager.AppSettings["content-type"]);
+			request.AddHeader("Content-Type", ConfigurationManager.AppSettings["content-type"]);
 			request.AddHeader("authorization", GetAuthorization());
 		}
 	}

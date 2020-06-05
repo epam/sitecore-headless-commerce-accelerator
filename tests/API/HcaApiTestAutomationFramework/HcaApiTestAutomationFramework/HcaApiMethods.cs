@@ -29,7 +29,7 @@ namespace HcaApiTestAutomationFramework
 		public OrdersOrderResponseDTO GetOrder(string confirmationId)
 		{
 			var cart = new ApiHelper<OrdersOrderResponseDTO>();
-			var endpoint = "orders/" + confirmationId;
+			var endpoint = $"orders/{confirmationId}";
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);

@@ -68,19 +68,11 @@ namespace HcaApiTestAutomationFramework
 			return restClient.Execute(restRequest);
 		}
 
-		public DTO GetContent<DTO>(IRestResponse response)
-		{
-			var content = response.Content;
-			DTO dtoObject = JsonConvert.DeserializeObject<DTO>(content);
-			return dtoObject;
-		}
+		public DTO GetContent<DTO>(IRestResponse response) =>
+			JsonConvert.DeserializeObject<DTO>(response.Content);
 
-		public string Serialize(dynamic content)
-		{
-			string serializeObject = JsonConvert.SerializeObject(content, Formatting.Indented);
-			return serializeObject;
-		}
-
+		public string Serialize(dynamic content) =>
+			JsonConvert.SerializeObject(content, Formatting.Indented);
 
 		private void AddRequestCookies(RestRequest request)
 		{
@@ -89,8 +81,8 @@ namespace HcaApiTestAutomationFramework
 
 		private void AddRequestHeaders(RestRequest request)
 		{
-			request.AddHeader("Accept", "*/*");
-			request.AddHeader("Accept-Enclding", "gzip,deflat,sdch");
+			request.AddHeader("accept", "*/*");
+			request.AddHeader("accept-encoding", "gzip, deflate, br");
 			request.AddHeader("Cache-Control", "no-cache");
 			request.AddHeader("Connection", "keep-alive");
 		}

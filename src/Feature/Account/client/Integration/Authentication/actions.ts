@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,16 +16,25 @@ import { LoadingStatus } from 'Foundation/Integration/client';
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 
-export const StartAuthentication: actionCreators.StartAuthentication = (email: string, password: string) => ({
+export const StartAuthentication: actionCreators.StartAuthentication = (
+  email: string,
+  password: string,
+  returnUrl?: string,
+) => ({
   payload: {
     email,
     password,
+    returnUrl,
   },
   type: sagaActionTypes.START_AUTHENTICATION,
 });
 
 export const InitAuthentication: actionCreators.InitAuthentication = () => ({
   type: sagaActionTypes.INIT_AUTHENTICATION,
+});
+
+export const ResetAuthProcessState: actionCreators.ResetAuthProcessState = () => ({
+  type: reducerActionTypes.RESET_AUTH_PROCESS_STATE,
 });
 
 export const SetAuthenticated: actionCreators.SetAuthenticated = (authenticated) => ({

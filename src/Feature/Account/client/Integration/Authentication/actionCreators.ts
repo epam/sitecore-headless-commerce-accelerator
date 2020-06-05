@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,8 +16,13 @@ import { Action, StatusType } from 'Foundation/Integration/client';
 import { AuthProcessSuccessPayload, SetAuthenticatedPayload, StartAuthenticationPayload } from './models';
 
 export type InitAuthentication = () => Action;
-export type StartAuthentication = (email: string, passwords: string) => Action<StartAuthenticationPayload>;
+export type StartAuthentication = (
+  email: string,
+  passwords: string,
+  returnUrl?: string,
+) => Action<StartAuthenticationPayload>;
 
+export type ResetAuthProcessState = () => Action;
 export type SetAuthenticated = (authenticated: boolean) => Action<SetAuthenticatedPayload>;
 export type StartAuthenticationRequest = StatusType;
 export type StartAuthenticationFailure = StatusType;

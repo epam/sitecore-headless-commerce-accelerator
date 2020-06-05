@@ -41,8 +41,6 @@ export interface UserNavigationProps
 
 export interface UserNavigationState extends JSS.SafePureComponentState {
   userFormVisible: boolean;
-  email: string;
-  formValid: boolean;
 }
 
 export interface AppState

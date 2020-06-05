@@ -14,7 +14,7 @@
 
 import { Action } from 'Foundation/Integration/client';
 
-import { FacetResultModel, ProductModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Facet, Product } from 'Foundation/Commerce/client/dataModel.Generated';
 import * as Models from './models';
 
 export type InitialSearch = (payload: Models.InitSearchPayload) => Action<Models.InitSearchPayload>;
@@ -30,8 +30,8 @@ export type ResetState = () => Action;
 export type ProductSearchRequest = (params: Models.Params) => Action<Models.ProductsSearchRequestPayload>;
 
 export type ProductSearchSuccess = (
-  facets: FacetResultModel[],
-  items: ProductModel[],
+  facets: Facet[],
+  items: Product[],
   currentPageNumber: number,
   totalPageCount: number,
   totalItemCount: number

@@ -29,13 +29,13 @@ import { AddToCartDispatchProps, AddToCartOwnProps, AddToCartStateProps, AppStat
 const mapStateToProps = (state: AppState): AddToCartStateProps => {
   const shoppingCartState = shoppingCart(state);
   const productId = ProductVariant.productId(state);
-  const productVariant = ProductVariant.selectedProductVariant(state, productId);
+  const variant = ProductVariant.selectedProductVariant(state, productId);
   const isLoading = shoppingCartState.status === LoadingStatus.Loading &&
     shoppingCartState.actionType === actionTypes.ADD_TO_CART_REQUEST;
   return {
     isLoading,
     productId,
-    productVariant,
+    variant,
   };
 };
 

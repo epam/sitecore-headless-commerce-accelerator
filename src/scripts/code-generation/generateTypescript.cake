@@ -43,7 +43,7 @@ Func<TsGenerator> getGenerator = () => {
     return generator;
 };
 
-Action<FilePath, FilePath> generateTypeScript = (assemblyName, targetFile) =>
+Action<FilePath, FilePath, FilePath> generateTypeScript = (assemblyName, targetFile, templateFile) =>
 {
     try
     {
@@ -52,15 +52,15 @@ Action<FilePath, FilePath> generateTypeScript = (assemblyName, targetFile) =>
         var ts = TypeScript.Definitions(getGenerator())
             .For(assembly)
             .WithMemberFormatter(x => new CamelCasePropertyNamesContractResolver().GetResolvedPropertyName(x.Name))
-            .WithIndentation(new string(' ', 4))
+            .WithIndentation(new string(' ', 2))
             .WithModuleNameFormatter(module => string.Empty)
             .WithVisibility((tsClass, typeName) => true);
 
         string typeScriptCode = ts.Generate();
 
-        string result = $"// tslint:disable:indent array-type\n" + typeScriptCode;
+        CopyFile(templateFile, targetFile);
 
-        FileWriteText(targetFile.FullPath, result);
+        FileAppendText(targetFile, typeScriptCode);
     }
     catch(ReflectionTypeLoadException loadException)
     {

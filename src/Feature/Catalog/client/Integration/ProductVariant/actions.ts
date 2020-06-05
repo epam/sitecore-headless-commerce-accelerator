@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ProductVariantModel } from 'Foundation/Commerce/client';
+import { Variant } from 'Foundation/Commerce/client';
 
 import * as actionCreators from './actionCreators';
 import { actionTypes } from './constants';
 
 export const SelectColorVariant: actionCreators.SelectColorVariant = (
   productId: string,
-  variant: ProductVariantModel
+  variant: Variant
 ) => ({
   payload: {
     [productId]: variant,

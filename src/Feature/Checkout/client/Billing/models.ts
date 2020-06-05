@@ -23,7 +23,7 @@ export interface BillingDataSource extends Jss.BaseDataSourceItem {
 export interface BillingOwnProps extends Jss.RenderingWithContext<BillingDataSource> {}
 export interface BillingStateProps {
   useForBillingAddress: boolean;
-  commerceUser: Commerce.CommerceUserModel;
+  commerceUser: Commerce.User;
 }
 export interface BillingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;

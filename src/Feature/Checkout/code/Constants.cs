@@ -20,5 +20,10 @@ namespace HCA.Feature.Checkout
         {
             public const string OrderTrackingNumberToken = "$orderTrackingNumber$";
         }
+
+        public static class Context
+        {
+            public const string CommerceUserPropertyName = "commerceUser";
+        }
     }
 }

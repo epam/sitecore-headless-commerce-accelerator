@@ -21,7 +21,7 @@ import * as Account from 'Feature/Account/client/Integration/Account';
 export interface ChangeUserInformationFormOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
 
 export interface ChangeUserInformationFormStateProps {
-  commerceUser: Commerce.CommerceUserModel;
+  commerceUser: Commerce.User;
   updateStatus: LoadingStatus;
 }
 

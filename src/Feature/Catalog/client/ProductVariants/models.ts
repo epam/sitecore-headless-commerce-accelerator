@@ -15,17 +15,17 @@
 import * as JSS from 'Foundation/ReactJss/client';
 
 import { ProductColorsContext } from 'Foundation/Commerce/client';
-import { ProductVariantModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Variant } from 'Foundation/Commerce/client/dataModel.Generated';
 
 import * as ProductVariant from 'Feature/Catalog/client/Integration/ProductVariant';
 
 export interface ProductVariantsOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductColorsContext> {}
 export interface ProductVariantsStateProps {
-  variants: ProductVariantModel[];
+  variants: Variant[];
   productId: string;
 }
 export interface ProductVariantsDispatchProps {
-  SelectColorVariant: (productId: string, variant: ProductVariantModel) => void;
+  SelectColorVariant: (productId: string, variant: Variant) => void;
 }
 
 export interface ProductVariantsProps

@@ -14,9 +14,9 @@
 
 import axios from 'axios';
 
-import { CommerceUserContext } from './models';
+import { UserContext } from './models';
 
-export const registerCommerceInterceptor = (context: CommerceUserContext) => {
+export const registerCommerceInterceptor = (context: UserContext) => {
     axios.interceptors.request.use(
       (config) => {
         if (!config.url.startsWith('/apix/client/commerce')) {

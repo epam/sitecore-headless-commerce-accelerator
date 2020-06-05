@@ -16,7 +16,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { tryParseUrlSearch } from 'Foundation/Base/client';
-import { ProductListResultModel, ProductModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Product, ProductSearchResults } from 'Foundation/Commerce/client/dataModel.Generated';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration/client';
 import { ChangeRoute } from 'Foundation/ReactJss/client/SitecoreContext';
 
@@ -38,17 +38,17 @@ export function* fetchProductsSearch(params: Params) {
   try {
     yield put(actions.ProductsSearchRequest(params));
 
-    const { data, error }: Result<ProductListResultModel> = yield call(ProductSearch.searchProducts, params);
+    const { data, error }: Result<ProductSearchResults> = yield call(ProductSearch.searchProducts, params);
 
     if (error) {
       return yield put(actions.ProductsSearchFailure(error.message));
     }
 
-    const { facets, childProducts, currentPageNumber, totalPageCount, totalItemCount } = data;
-    const items: ProductModel[] = yield select(selectors.productSearchItems);
-    const newItems = [...items, ...childProducts];
+    const { facets, products, totalPageCount, totalItemCount } = data;
+    const items: Product[] = yield select(selectors.productSearchItems);
+    const newItems = [...items, ...products];
 
-    yield put(actions.ProductsSearchSuccess(facets, newItems, currentPageNumber, totalPageCount, totalItemCount));
+    yield put(actions.ProductsSearchSuccess(facets, newItems, params.pg, totalPageCount, totalItemCount));
   } catch (e) {
     yield put(actions.ProductsSearchFailure(e.message || 'Products search failure'));
   }

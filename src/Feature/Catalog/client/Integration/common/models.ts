@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ProductModel } from 'Foundation/Commerce/client';
+import { Product } from 'Foundation/Commerce/client';
 import * as Jss from 'Foundation/ReactJss/client';
 
 export enum StockStatus {
@@ -36,7 +36,7 @@ export interface CategoryContext {
 }
 
 export interface ProductContext {
-  product: ProductModel;
+  product: Product;
 }
 
 export interface SitecoreContext extends CategoryContext, ProductContext {}

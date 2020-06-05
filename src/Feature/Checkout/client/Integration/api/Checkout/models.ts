@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Base from 'Foundation/Base/client';
 import * as Commerce from 'Foundation/Commerce/client';
 
 import { Response } from '../models';
@@ -20,11 +21,11 @@ export interface DeliveryInfoResponse extends Response<Commerce.DeliveryInfo> {}
 
 export interface ShippingInfoResponse extends Response<Commerce.ShippingInfo> {}
 
-export interface SetShippingOptionsResponse extends Response<Commerce.VoidResult> {}
+export interface SetShippingOptionsResponse extends Response<Base.VoidResult> {}
 
 export interface BillingInfoResponse extends Response<Commerce.BillingInfo> {}
 
-export interface SetPaymentInfoResponse extends Response<Commerce.VoidResult> {}
+export interface SetPaymentInfoResponse extends Response<Base.VoidResult> {}
 
 export interface SubmitOrderResponse extends Response<Commerce.OrderConfirmation> {}
 

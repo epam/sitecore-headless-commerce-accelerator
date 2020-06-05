@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ProductListResultModel } from 'Foundation/Commerce/client/dataModel.Generated';
+import { ProductSearchResults } from 'Foundation/Commerce/client/dataModel.Generated';
 
 export interface SearchProductsParams {
   /**
@@ -50,6 +50,6 @@ export interface SearchProductsParams {
 }
 
 export interface SearchProductsResponse {
-  data: ProductListResultModel;
+  data: ProductSearchResults;
   status: string;
 }

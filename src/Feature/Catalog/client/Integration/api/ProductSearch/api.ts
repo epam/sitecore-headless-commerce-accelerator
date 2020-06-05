@@ -15,7 +15,7 @@
 import axios from 'axios';
 
 import { ProductsSearchRequest, SortDirection } from 'Feature/Catalog/client/dataModel.Generated';
-import { Facet, ProductListResultModel, ProductSearchResults } from 'Foundation/Commerce/client/dataModel.Generated';
+import { Facet, ProductSearchResults } from 'Foundation/Commerce/client/dataModel.Generated';
 import { Result } from 'Foundation/Integration/client';
 import { SearchProductsParams } from './models';
 
@@ -47,7 +47,7 @@ const mapToProductSearchRequest = (params: SearchProductsParams): ProductsSearch
   };
 };
 
-export const searchProducts = async (params: SearchProductsParams): Promise<Result<ProductListResultModel>> => {
+export const searchProducts = async (params: SearchProductsParams): Promise<Result<ProductSearchResults>> => {
   try {
     params.pg = params.pg || 0;
 
@@ -59,12 +59,8 @@ export const searchProducts = async (params: SearchProductsParams): Promise<Resu
       return { error: new Error(data.error.message) };
     }
     return { data: {
-      childProducts: data.data.products,
-      currentCatalogItemId: request.categoryId,
-      currentPageNumber: request.pageNumber,
       facets: data.data.facets,
-      searchKeyword: request.searchKeyword,
-      sortOptions: 0,
+      products: data.data.products,
       totalItemCount: data.data.totalItemCount,
       totalPageCount: data.data.totalPageCount
     } };

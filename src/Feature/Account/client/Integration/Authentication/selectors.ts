@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { CommerceUserContext } from 'Foundation/Commerce/client';
+import { UserContext } from 'Foundation/Commerce/client';
 import { SitecoreState } from 'Foundation/ReactJss/client';
 
 import { GlobalAuthenticationState } from './models';
 
-export const commerceUser = (state: SitecoreState<CommerceUserContext>) => state.sitecore.context.commerceUser;
+export const commerceUser = (state: SitecoreState<UserContext>) => state.sitecore.context.commerceUser;
 
 export const authentication = (state: GlobalAuthenticationState) => state.authentication;
 export const authenticationProcess = (state: GlobalAuthenticationState) => authentication(state).authProcess;

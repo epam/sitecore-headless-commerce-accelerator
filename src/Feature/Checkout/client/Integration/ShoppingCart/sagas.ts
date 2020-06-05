@@ -31,7 +31,7 @@ export function* loadCart() {
   try {
     yield put(actions.GetCartRequest());
 
-    const { data, error }: Result<Commerce.CartModel> = yield call(ShoppingCart.getShoppingCart);
+    const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.getShoppingCart);
 
     if (error) {
       return yield put(actions.GetCartFailure(error.message || 'Error Occured'));
@@ -47,7 +47,7 @@ export function* addToCart(requestData: Action<DataModels.AddCartLineRequest>): 
   const addToCartModel = requestData.payload;
   yield put(actions.AddToCartRequest());
 
-  const { data, error }: Result<Commerce.CartModel> = yield call(ShoppingCart.addCartItemAsync, addToCartModel);
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.addCartItemAsync, addToCartModel);
 
   if (error) {
     yield put(actions.AddToCartFailure(error.message || 'can not add to cart'));
@@ -60,7 +60,7 @@ export function* updateCartLine(requestData: Action<DataModels.UpdateCartLineReq
   const updateCartLineModel = requestData.payload;
   yield put(actions.UpdateCartLineRequest());
 
-  const { data, error }: Result<Commerce.CartModel> = yield call(ShoppingCart.updateCartItemAsync, updateCartLineModel);
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.updateCartItemAsync, updateCartLineModel);
 
   if (error) {
     yield put(actions.UpdateCartLineFailure(error.message || 'can not update cart line'));
@@ -72,7 +72,7 @@ export function* updateCartLine(requestData: Action<DataModels.UpdateCartLineReq
 export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
   const addPromoCodeModel = requestData.payload;
   yield put(actions.AddPromoCodeRequest());
-  const { data, error }: Result<Commerce.CartModel> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);
 
   if  (error) {
     yield put(actions.AddPromoCodeFailure(error.message || 'can not add promo code'));

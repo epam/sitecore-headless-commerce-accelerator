@@ -16,35 +16,35 @@ namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
     using System.Collections.Generic;
 
+    using Foundation.Base.Providers.SiteSettings;
     using Foundation.ReactJss.Infrastructure;
-
-    using Glass.Mapper.Sc;
 
     using Models;
 
     using Sitecore.Data;
+    using Sitecore.Diagnostics;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class ProductColorsContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ISitecoreService sitecoreService;
+        private readonly ISiteSettingsProvider siteSettingsProvider;
 
         public ProductColorsContextExtension(
-            ISitecoreService sitecoreService,
-            IConfigurationResolver configurationResolver)
+            IConfigurationResolver configurationResolver,
+            ISiteSettingsProvider siteSettingsProvider)
             : base(configurationResolver)
         {
-            this.sitecoreService = sitecoreService;
+            Assert.ArgumentNotNull(siteSettingsProvider, nameof(siteSettingsProvider));
+
+            this.siteSettingsProvider = siteSettingsProvider;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            // TODO: Refactor. Use SiteSettingsProvider
-            var productColorMappingQuery =
-                $"{application.SitecorePath.TrimEnd('/')}/Settings/*[@@templateid='{ID.Parse(ProductColorMappingFolder.TemplateId)}']";
             var productColorMapping =
-                this.sitecoreService.GetItem<IProductColorMappingFolder>(new Query(productColorMappingQuery));
+                this.siteSettingsProvider.GetSetting<IProductColorMappingFolder>(
+                    new ID(ProductColorMappingFolder.TemplateId));
 
             var dictionary = new Dictionary<string, string>();
             if (productColorMapping?.Mappings != null)

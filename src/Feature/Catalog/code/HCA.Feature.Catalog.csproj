@@ -589,6 +589,7 @@
     <Compile Include="Mappers\ISearchMapper.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
     <Compile Include="Models.Generated.cs" />
+    <Compile Include="Models\ProductColorMappingFolder.cs" />
     <Compile Include="Models\Requests\Search\DTO\FacetDto.cs" />
     <Compile Include="Models\Requests\Search\ProductsSearchRequest.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CatalogItemResolverProcessor.cs" />
@@ -596,7 +597,6 @@
     <Compile Include="Pipelines\GetLayoutServiceContext\ProductContextExtension.cs" />
     <Compile Include="Pipelines\GetLayoutServiceContext\CategoryContextExtension.cs" />
     <Compile Include="Pipelines\Initialize\RegisterRoutes.cs" />
-    <Compile Include="Models.Extended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,11 +10,11 @@ namespace HcaApiTestAutomationFramework
 		public RestClient RestClient;
 		public RestRequest RestRequest;
 		public string Host = ConfigurationManager.AppSettings["Host"];
-		public string baseUrl = AppSettingsExpander.Expand("BaseUrl");
+		public string BaseUrl = AppSettingsExpander.Expand("BaseUrl");
 
 		public RestClient SetUrl(string endpoint)
 		{
-			var url = Path.Combine(baseUrl, endpoint);
+			var url = Path.Combine(BaseUrl, endpoint);
 			var restClient = new RestClient(url);
 			return restClient;
 		}

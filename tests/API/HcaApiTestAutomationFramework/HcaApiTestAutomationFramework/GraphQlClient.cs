@@ -12,9 +12,9 @@ namespace HcaApiTestAutomationFramework
 	{
 		private RestClient _client;
 
-		public string getClientToken()
+		public string GetClientToken()
 		{
-			BraintreeGateway gateway = new BraintreeGateway
+			var gateway = new BraintreeGateway
 			{
 				Environment = Braintree.Environment.SANDBOX,
 				MerchantId = ConfigurationManager.AppSettings["BraintreeMerchantId"],
@@ -28,25 +28,24 @@ namespace HcaApiTestAutomationFramework
 
 		public string Base64Decoder(string stringText)
 		{
-			string base64Encoded = stringText;
-			string base64Decoded;
-			byte[] data = System.Convert.FromBase64String(base64Encoded);
-			base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
+			var base64Encoded = stringText;
+			var data = System.Convert.FromBase64String(base64Encoded);
+			var base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
 			return base64Decoded;
 		}
 
-		public string GetAutorizationFingerprint()
+		public string GetAuthorizationFingerprint()
 		{
-			var clientToken = getClientToken();
-			string jsonValue = Base64Decoder(clientToken);
+			var clientToken = GetClientToken();
+			var jsonValue = Base64Decoder(clientToken);
 			var data = (JObject) JsonConvert.DeserializeObject(jsonValue);
-			string autorizationFingerprint = data["authorizationFingerprint"].Value<string>();
-			return autorizationFingerprint;
+			var authorizationFingerprint = data["authorizationFingerprint"].Value<string>();
+			return authorizationFingerprint;
 		}
 
-		public string getAuthorization()
+		public string GetAuthorization()
 		{
-			return "Bearer " + GetAutorizationFingerprint();
+			return "Bearer " + GetAuthorizationFingerprint();
 		}
 
 		public GraphQlClient(string GraphQLApiUrl)
@@ -87,7 +86,7 @@ namespace HcaApiTestAutomationFramework
 			request.AddHeader("Accept-Enclding", "gzip,deflat,sdch");
 			request.AddHeader("Cache-Control", "no-cache");
 			request.AddHeader("content-type", ConfigurationManager.AppSettings["content-type"]);
-			request.AddHeader("authorization", getAuthorization());
+			request.AddHeader("authorization", GetAuthorization());
 		}
 	}
 }

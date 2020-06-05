@@ -7,8 +7,8 @@ namespace HcaApiTestAutomationFramework
 {
 	public class ApiHelper<T>
 	{
-		public RestClient restClient;
-		public RestRequest restRequest;
+		public RestClient RestClient;
+		public RestRequest RestRequest;
 		public string Host = ConfigurationManager.AppSettings["Host"];
 		public string baseUrl = AppSettingsExpander.Expand("BaseUrl");
 
@@ -21,46 +21,46 @@ namespace HcaApiTestAutomationFramework
 
 		public RestRequest CreatePostRequest()
 		{
-			restRequest = new RestRequest(Method.POST);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			return restRequest;
+			RestRequest = new RestRequest(Method.POST);
+			AddRequestCookies(RestRequest);
+			AddRequestHeaders(RestRequest);
+			return RestRequest;
 		}
 
 		public RestRequest CreatePostRequest(string requestBody)
 		{
-			restRequest = new RestRequest(Method.POST);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			restRequest.AddHeader("Content-Type", "application/json");
-			restRequest.AddParameter("application/json", requestBody, ParameterType.RequestBody);
-			return restRequest;
+			RestRequest = new RestRequest(Method.POST);
+			AddRequestCookies(RestRequest);
+			AddRequestHeaders(RestRequest);
+			RestRequest.AddHeader("Content-Type", "application/json");
+			RestRequest.AddParameter("application/json", requestBody, ParameterType.RequestBody);
+			return RestRequest;
 		}
 
 		public RestRequest CreatePutRequest(string requestBody)
 		{
-			restRequest = new RestRequest(Method.PUT);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			restRequest.AddHeader("Content-Type", "application/json");
-			restRequest.AddParameter("application/json", requestBody, ParameterType.RequestBody);
-			return restRequest;
+			RestRequest = new RestRequest(Method.PUT);
+			AddRequestCookies(RestRequest);
+			AddRequestHeaders(RestRequest);
+			RestRequest.AddHeader("Content-Type", "application/json");
+			RestRequest.AddParameter("application/json", requestBody, ParameterType.RequestBody);
+			return RestRequest;
 		}
 
 		public RestRequest CreateGetRequest()
 		{
-			restRequest = new RestRequest(Method.GET);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			return restRequest;
+			RestRequest = new RestRequest(Method.GET);
+			AddRequestCookies(RestRequest);
+			AddRequestHeaders(RestRequest);
+			return RestRequest;
 		}
 
 		public RestRequest CreateDeleteRequest()
 		{
-			restRequest = new RestRequest(Method.DELETE);
-			AddRequestCookies(restRequest);
-			AddRequestHeaders(restRequest);
-			return restRequest;
+			RestRequest = new RestRequest(Method.DELETE);
+			AddRequestCookies(RestRequest);
+			AddRequestHeaders(RestRequest);
+			return RestRequest;
 		}
 
 		public IRestResponse GetResponse(RestClient restClient, RestRequest restRequest)

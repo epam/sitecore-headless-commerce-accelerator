@@ -15,8 +15,7 @@ namespace HcaApiTestAutomationFramework
 		public RestClient SetUrl(string endpoint)
 		{
 			var url = Path.Combine(BaseUrl, endpoint);
-			var restClient = new RestClient(url);
-			return restClient;
+			return new RestClient(url);
 		}
 
 		public RestRequest CreatePostRequest()
@@ -70,15 +69,12 @@ namespace HcaApiTestAutomationFramework
 
 		public DTO GetContent<DTO>(IRestResponse response)
 		{
-			var content = response.Content;
-			DTO dtoObject = JsonConvert.DeserializeObject<DTO>(content);
-			return dtoObject;
+			return JsonConvert.DeserializeObject<DTO>(response.Content);
 		}
 
 		public string Serialize(dynamic content)
 		{
-			string serializeObject = JsonConvert.SerializeObject(content, Formatting.Indented);
-			return serializeObject;
+			return JsonConvert.SerializeObject(content, Formatting.Indented);
 		}
 
 

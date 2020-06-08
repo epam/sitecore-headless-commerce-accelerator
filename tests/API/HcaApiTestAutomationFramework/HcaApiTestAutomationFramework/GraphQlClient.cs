@@ -27,12 +27,11 @@ namespace HcaApiTestAutomationFramework
 			return clientToken;
 		}
 
-		public string Base64Decoder(string stringText)
+		public string Base64Decoder(string base64Encoded)
 		{
-			var base64Encoded = stringText;
 			var data = System.Convert.FromBase64String(base64Encoded);
-			var base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
-			return base64Decoded;
+			return System.Text.ASCIIEncoding.ASCII.GetString(data);
+
 		}
 
 		public string GetAuthorizationFingerprint()
@@ -40,14 +39,12 @@ namespace HcaApiTestAutomationFramework
 			var clientToken = GetClientToken();
 			var jsonValue = Base64Decoder(clientToken);
 			var data = (JObject) JsonConvert.DeserializeObject(jsonValue);
-			var authorizationFingerprint = data["authorizationFingerprint"].Value<string>();
-			return authorizationFingerprint;
+			return data["authorizationFingerprint"].Value<string>();
 		}
 
 		public string GetAuthorization()
 		{
-			var authorization = $"Bearer {GetAuthorizationFingerprint()}";
-			return authorization;
+			return $"Bearer {GetAuthorizationFingerprint()}";
 		}
 
 		public GraphQlClient(string GraphQLApiUrl)

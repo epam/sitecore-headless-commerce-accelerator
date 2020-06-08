@@ -18,8 +18,7 @@ namespace HcaApiTestAutomationFramework
 			};
 			var query =
 				"query ClientConfiguration {   clientConfiguration {     analyticsUrl     environment     merchantId     assetsUrl     clientApiUrl     creditCard {       supportedCardBrands       challenges       threeDSecureEnabled     }     applePayWeb {       countryCode       currencyCode       merchantIdentifier       supportedCardBrands     }     googlePay {       displayName       supportedCardBrands       environment       googleAuthorization     }     ideal {       routeId       assetsUrl     }     kount {       merchantId     }     masterpass {       merchantCheckoutId       supportedCardBrands     }     paypal {       displayName       clientId       privacyUrl       userAgreementUrl       assetsUrl       environment       environmentNoNetwork       unvettedMerchant       braintreeClientId       billingAgreementsEnabled       merchantAccountId       currencyCode       payeeEmail     }     unionPay {       merchantAccountId     }     usBankAccount {       routeId       plaidPublicKey     }     venmo {       merchantId       accessToken       environment     }     visaCheckout {       apiKey       externalClientId       supportedCardBrands     }     braintreeApi {       accessToken       url     }     supportedFeatures   } }";
-			var result = client.Execute(clientSdkMetadata, operationName, query);
-			return result;
+			return client.Execute(clientSdkMetadata, operationName, query);
 		}
 
 		public dynamic TokenizeCreditCard(Input.Creditcard creditcard)
@@ -45,8 +44,7 @@ namespace HcaApiTestAutomationFramework
 			};
 			var mutation =
 				"mutation TokenizeCreditCard($input: TokenizeCreditCardInput!) {   tokenizeCreditCard(input: $input) {     token     creditCard {       bin       brandCode       last4       binData {         prepaid         healthcare         debit         durbinRegulated         commercial         payroll         issuingBank         countryOfIssuance         productId       }     }   } }";
-			var result = client.Execute(clientSdkMetadata, operationName, mutation, variableRequest);
-			return result;
+			return client.Execute(clientSdkMetadata, operationName, mutation, variableRequest);
 		}
 	}
 }

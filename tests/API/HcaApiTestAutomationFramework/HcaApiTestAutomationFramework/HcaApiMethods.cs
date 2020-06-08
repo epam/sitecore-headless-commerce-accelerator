@@ -12,8 +12,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			AccountCreateAccountResponseDTO content = cart.GetContent<AccountCreateAccountResponseDTO>(response);
-			return content;
+			return cart.GetContent<AccountCreateAccountResponseDTO>(response);
 		}
 
 		public CartResponseDTO GetCart(string endpoint = "carts/cart")
@@ -22,8 +21,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			CartResponseDTO content = cart.GetContent<CartResponseDTO>(response);
-			return content;
+			return cart.GetContent<CartResponseDTO>(response);
 		}
 
 		public OrdersOrderResponseDTO GetOrder(string confirmationId)
@@ -33,8 +31,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			OrdersOrderResponseDTO content = cart.GetContent<OrdersOrderResponseDTO>(response);
-			return content;
+			return cart.GetContent<OrdersOrderResponseDTO>(response);
 		}
 
 		public SearchProductResponseDTO SearchProducts(dynamic requestBody, string endpoint = "search/products")
@@ -44,8 +41,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			SearchProductResponseDTO content = cart.GetContent<SearchProductResponseDTO>(response);
-			return content;
+			return cart.GetContent<SearchProductResponseDTO>(response);
 		}
 
 		public CartResponseDTO AddCartLine(dynamic requestBody, string endpoint = "carts/cartLines")
@@ -55,8 +51,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CartResponseDTO content = cart.GetContent<CartResponseDTO>(response);
-			return content;
+			return cart.GetContent<CartResponseDTO>(response);
 		}
 
 		public CartResponseDTO UpdateCartLine(dynamic requestBody, string endpoint = "carts/cartLines")
@@ -66,8 +61,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePutRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CartResponseDTO content = cart.GetContent<CartResponseDTO>(response);
-			return content;
+			return cart.GetContent<CartResponseDTO>(response);
 		}
 
 		public CartResponseDTO AddPromoCode(dynamic requestBody, string endpoint = "carts/promoCodes")
@@ -77,8 +71,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CartResponseDTO content = cart.GetContent<CartResponseDTO>(response);
-			return content;
+			return cart.GetContent<CartResponseDTO>(response);
 		}
 
 		public CheckoutDeliveryInfoResponseDTO GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")
@@ -87,8 +80,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			CheckoutDeliveryInfoResponseDTO content = cart.GetContent<CheckoutDeliveryInfoResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutDeliveryInfoResponseDTO>(response);
 		}
 
 		public CheckoutShippingInfoResponseDTO GetShippingInfo(string endpoint = "checkout/shippingInfo")
@@ -97,8 +89,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			CheckoutShippingInfoResponseDTO content = cart.GetContent<CheckoutShippingInfoResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutShippingInfoResponseDTO>(response);
 		}
 
 		public CheckoutBillingInfoResponseDTO GetBillingInfo(string endpoint = "checkout/billingInfo")
@@ -107,8 +98,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
-			CheckoutBillingInfoResponseDTO content = cart.GetContent<CheckoutBillingInfoResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutBillingInfoResponseDTO>(response);
 		}
 
 		public CheckoutShippingOptionsResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
@@ -118,8 +108,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CheckoutShippingOptionsResponseDTO content = cart.GetContent<CheckoutShippingOptionsResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutShippingOptionsResponseDTO>(response);
 		}
 
 		public CheckoutPaymentInfoResponseDTO SetPaymentInfo(dynamic requestBody, string endpoint = "checkout/paymentInfo")
@@ -129,8 +118,7 @@ namespace HcaApiTestAutomationFramework
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
 			var response = cart.GetResponse(url, request);
-			CheckoutPaymentInfoResponseDTO content = cart.GetContent<CheckoutPaymentInfoResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutPaymentInfoResponseDTO>(response);
 		}
 
 		public CheckoutSubmitOrderResponseDTO SubmitOrder(string endpoint = "checkout/orders")
@@ -139,8 +127,7 @@ namespace HcaApiTestAutomationFramework
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreatePostRequest();
 			var response = cart.GetResponse(url, request);
-			CheckoutSubmitOrderResponseDTO content = cart.GetContent<CheckoutSubmitOrderResponseDTO>(response);
-			return content;
+			return cart.GetContent<CheckoutSubmitOrderResponseDTO>(response);
 		}
 
 	}

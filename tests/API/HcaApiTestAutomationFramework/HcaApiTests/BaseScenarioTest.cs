@@ -1,7 +1,9 @@
-﻿using HcaApiTestAutomationFramework;
+﻿using System.Linq;
+using HcaApiTestAutomationFramework;
 using HcaApiTestAutomationFramework.HcaDTO;
 using NUnit.Framework;
 using HcaApiTestAutomationFramework.GraphQlDTO;
+using Newtonsoft.Json.Linq;
 
 namespace HcaApiTests
 {

@@ -1,4 +1,6 @@
-﻿using HCA.Pages.HCAElements.Footer;
+﻿using System.Linq;
+using HCA.Pages.HCAElements.Footer;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
@@ -9,21 +11,20 @@ namespace HCA.Pages.CommonElements
     {
         private static FooterControl _footerControl;
 
-        public static FooterControl Instance =>
-            _footerControl ??= new FooterControl();
+        public static FooterControl Instance => _footerControl ??= new FooterControl();
 
         private static readonly WebElement _footerElement = new WebElement("Footer", ByCustom.Id("footer-main"));
 
-        private static readonly WebElement _footerLinksListElement = 
+        private static readonly WebElement _footerLinksListElement =
             new WebElement("Footer Links List", By.XPath("//ul[@class ='footer-links-list']"));
 
         private static readonly WebLabel _socialNetworksTitle =
             new WebLabel("Footer Social Title", By.XPath("//h2[@class = 'social-title']"));
 
-        private static readonly WebElement _socialListElement =
+        private static readonly WebElement _footerSocialListElement =
             new WebElement("Footer Social Networks List", By.XPath("//ul[@class ='social-list']"));
 
-        private static readonly WebElement _copyright = new WebElement("Footer Copyright", 
+        private static readonly WebElement _copyright = new WebElement("Footer Copyright",
             ByCustom.XPath("//div[@class='footer-copyright']"));
 
         public bool FooterElementIsPresent() =>
@@ -51,8 +52,8 @@ namespace HCA.Pages.CommonElements
         {
             get
             {
-                _socialListElement.IsPresent();
-                return _socialListElement.GetChildElementsCount(By.XPath("//li[@class = 'social-item']"));
+                _footerSocialListElement.IsPresent();
+                return _footerSocialListElement.GetChildElementsCount(By.XPath("//li[@class = 'social-item']"));
             }
         }
 
@@ -63,6 +64,26 @@ namespace HCA.Pages.CommonElements
                 _copyright.IsPresent();
                 return _copyright.GetText();
             }
+        }
+
+        public void VerifyForExtraFooters() =>
+            Assert.AreEqual(1, new WebElement("App", By.Id("app")).GetChildElements(_footerElement).Count(),
+                "There should be one footer on the page");
+
+        public void VerifyContainersWidthOfSiteLinksAndNetworksLinks(string siteLinksContainerWidth, string networksContainerWidth)
+        {
+            var columns = new WebElement("Footer links columns", ByCustom.ClassName("footer-columns"))
+                    .GetChildElements(ByCustom.ClassStartsWith("col-md-")).ToArray();
+
+            if (columns.Length==0)
+            {
+                Assert.Fail("Site Links and Social Network Links containers not found or displayed incorrectly");
+                return;
+            }
+
+            Assert.AreEqual(2, columns.Count(), "Footer links should contains site links container and social links container");
+            Assert.AreEqual(siteLinksContainerWidth, columns[0].GetCssValue("width"));
+            Assert.AreEqual(networksContainerWidth, columns[1].GetCssValue("width"));
         }
 
         public void VerifySiteLink(FooterSiteLink siteLink) =>
@@ -90,6 +111,6 @@ namespace HCA.Pages.CommonElements
         private WebLink FindSocialNetworkLinkByName(string name) =>
             new WebLink($"Footer social link {name}",
                 ByCustom.XPath($".//a[@class = 'social-link']/i[@class = 'fa fa-{name}']/parent::*"),
-                _socialListElement);
+                _footerSocialListElement);
     }
 }

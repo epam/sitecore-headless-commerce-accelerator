@@ -296,6 +296,12 @@ namespace UIAutomationFramework.Controls
             return Get().FindElements(locator);
         }
 
+        public IEnumerable<IWebElement> GetChildElements(WebElement webElement)
+        {
+            Log(LogLevel.Debug, $"Getting child elements of {ElementName}");
+            return Get().FindElements(webElement.Locator.GetLocator());
+        }
+
         private static bool Status(Func<bool> status)
         {
             try

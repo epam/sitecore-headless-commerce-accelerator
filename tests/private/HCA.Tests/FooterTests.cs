@@ -24,6 +24,8 @@ namespace HCA.Tests
             footerControl.FooterElementIsPresent();
             Assert.Multiple(() =>
             {
+                footerControl.VerifyForExtraFooters();
+                footerControl.VerifyContainersWidthOfSiteLinksAndNetworksLinks("556px", "277.984px");
                 footerControl.VerifySiteLink(FooterSiteLink.GiftCards);
                 footerControl.VerifySiteLink(FooterSiteLink.FindAStore);
                 footerControl.VerifySiteLink(FooterSiteLink.SignUpForEmail);

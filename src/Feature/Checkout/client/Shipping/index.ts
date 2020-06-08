@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Account from 'Feature/Account/client/Integration/Account';
+
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -42,8 +44,9 @@ const mapStateToProps = (state: AppState): ShippingStateProps => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
+      AddAddressToAccount: Account.AddAddress,
       InitStep: Checkout.InitStep,
-      SubmitStep: Checkout.SubmitStep,
+      SubmitStep: Checkout.SubmitStep
     },
     dispatch
   );

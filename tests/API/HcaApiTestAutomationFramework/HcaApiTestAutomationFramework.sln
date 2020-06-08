@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HcaApiTestAutomationFramework", "HcaApiTestAutomationFramework\HcaApiTestAutomationFramework.csproj", "{00AC4AD6-E39E-4859-BE5D-36C0B0258328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HcaApiTests", "HcaApiTests\HcaApiTests.csproj", "{FF4DA5E9-C1CF-48F2-8645-2509C501CC79}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00AC4AD6-E39E-4859-BE5D-36C0B0258328} = {00AC4AD6-E39E-4859-BE5D-36C0B0258328}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00AC4AD6-E39E-4859-BE5D-36C0B0258328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AC4AD6-E39E-4859-BE5D-36C0B0258328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AC4AD6-E39E-4859-BE5D-36C0B0258328}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AC4AD6-E39E-4859-BE5D-36C0B0258328}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{FF4DA5E9-C1CF-48F2-8645-2509C501CC79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4DA5E9-C1CF-48F2-8645-2509C501CC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4DA5E9-C1CF-48F2-8645-2509C501CC79}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4DA5E9-C1CF-48F2-8645-2509C501CC79}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92581659-7DA3-4C04-A801-C5ABE9B29383}
+	EndGlobalSection
+EndGlobal

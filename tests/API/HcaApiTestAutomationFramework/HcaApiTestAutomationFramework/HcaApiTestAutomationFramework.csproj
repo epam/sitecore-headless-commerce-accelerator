@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00AC4AD6-E39E-4859-BE5D-36C0B0258328}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HcaApiTestAutomationFramework</RootNamespace>
+    <AssemblyName>HcaApiTestAutomationFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Braintree, Version=4.17.0.0, Culture=neutral, PublicKeyToken=31b586f34d3e96c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Braintree.4.17.0\lib\net452\Braintree.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiHelper.cs" />
+    <Compile Include="AppSettingsExpander.cs" />
+    <Compile Include="GraphQLApiCalls.cs" />
+    <Compile Include="GraphQlClient.cs" />
+    <Compile Include="GraphQlDTO\ClientConfigurationRequestDTO.cs" />
+    <Compile Include="GraphQlDTO\ClientConfigurationResponseDTO.cs" />
+    <Compile Include="GraphQlDTO\Clientsdkmetadata.cs" />
+    <Compile Include="GraphQlDTO\Extensions.cs" />
+    <Compile Include="GraphQlDTO\TokenizeCreditCardRequestDTO.cs" />
+    <Compile Include="GraphQlDTO\TokenizeCreditCardResponseDTO.cs" />
+    <Compile Include="HcaApiMethods.cs" />
+    <Compile Include="HcaDTO\AccountAddressRequestDTO.cs" />
+    <Compile Include="HcaDTO\AccountChangePasswordRequestDTO.cs" />
+    <Compile Include="HcaDTO\AccountCreateAccountRequestDTO.cs" />
+    <Compile Include="HcaDTO\AccountCreateAccountResponseDTO.cs" />
+    <Compile Include="HcaDTO\AccountUpdateAccountRequestDTO.cs" />
+    <Compile Include="HcaDTO\AccountValidateEmailRequestDTO.cs" />
+    <Compile Include="HcaDTO\Address.cs" />
+    <Compile Include="HcaDTO\AuthenticationLoginRequestDTO.cs" />
+    <Compile Include="HcaDTO\AuthenticationResponceDTO.cs" />
+    <Compile Include="HcaDTO\Cartline.cs" />
+    <Compile Include="HcaDTO\CartLineRequestDTO.cs" />
+    <Compile Include="HcaDTO\CartPromoCodeRequestDTO.cs" />
+    <Compile Include="HcaDTO\CartResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutBillingInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutDeliveryInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutPaymentInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutSetPaymentInfoRequestDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutSetShippingOptionRequestDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutShippingInfoResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutShippingOptionsResponseDTO.cs" />
+    <Compile Include="HcaDTO\CheckoutSubmitOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\OrdersOrderResponseDTO.cs" />
+    <Compile Include="HcaDTO\Payment.cs" />
+    <Compile Include="HcaDTO\SearchProductResponseDTO.cs" />
+    <Compile Include="HcaDTO\OrdersResponseDTO.cs" />
+    <Compile Include="HcaDTO\Price.cs" />
+    <Compile Include="HcaDTO\Product.cs" />
+    <Compile Include="HcaDTO\Properties.cs" />
+    <Compile Include="HcaDTO\SearchProductRequestDTO.cs" />
+    <Compile Include="HcaDTO\Shipping.cs" />
+    <Compile Include="HcaDTO\Variant.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

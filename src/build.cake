@@ -27,7 +27,8 @@ Sitecore.Parameters.InitParams(
     publishingTargetDir: "\\\\192.168.50.4\\c$\\inetpub\\wwwroot\\sc9.local",
     xUnitTestsCoverageRegister: "Path64",
     xUnitTestsCoverageExcludeAttributeFilters: "*ExcludeFromCodeCoverage*",
-    xUnitTestsCoverageExcludeFileFilters: "*.Generated.cs;*\\App_Start\\*"
+    xUnitTestsCoverageExcludeFileFilters: "*.Generated.cs;*\\App_Start\\*",
+    supportHelix20: "true"
 );
 
 // //////////////////////////////////////////////////
@@ -52,7 +53,7 @@ Task("Generate-Client-Models")
             var project = match.Groups["projectName"];
 
             var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
-            var dllFile = GetFiles($"./../src/{layer}/{project}/code/**/*.{layer}.{project}.dll").FirstOrDefault();
+            var dllFile = GetFiles($"./../src/{layer}/{project}/website/**/*.{layer}.{project}.dll").FirstOrDefault();
 
             generateTypeScript(dllFile, tsFile, templateFile);
         }

@@ -531,15 +531,15 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Foundation\Base\code\HCA.Foundation.Base.csproj">
+    <ProjectReference Include="..\..\..\Foundation\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\Commerce\code\HCA.Foundation.Commerce.csproj">
+    <ProjectReference Include="..\..\..\Foundation\Commerce\website\HCA.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>HCA.Foundation.Commerce</Name>
     </ProjectReference>
-    <ProjectReference Include="..\code\HCA.Feature.Catalog.csproj">
+    <ProjectReference Include="..\website\HCA.Feature.Catalog.csproj">
       <Project>{61042c03-f29b-4215-8a26-09395550b64f}</Project>
       <Name>HCA.Feature.Catalog</Name>
     </ProjectReference>

@@ -596,15 +596,15 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Base\code\HCA.Foundation.Base.csproj">
+    <ProjectReference Include="..\..\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GlassMapper\code\HCA.Foundation.GlassMapper.csproj">
+    <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>HCA.Foundation.GlassMapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\code\HCA.Foundation.Connect.csproj">
+    <ProjectReference Include="..\website\HCA.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
       <Name>HCA.Foundation.Connect</Name>
     </ProjectReference>

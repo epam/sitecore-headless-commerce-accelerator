@@ -31,7 +31,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     super(props);
     const { commerceUser } = this.props;
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
+    const disableSaveToMyAccount = !(commerceUser && commerceUser.customerId);
     this.state = {
+      disableSaveToMyAccount,
       selectedAddressOption,
     };
   }
@@ -203,7 +205,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               </div>
               {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && (
                 <div className="col-sm-6">
-                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
+                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account"  disabled={this.state.disableSaveToMyAccount} />
                   <label htmlFor="save-to-account">
                     <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
                     <Text field={{ value: 'My Account.' }} tag="strong" />
@@ -265,7 +267,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   // tslint:disable-next-line:cognitive-complexity
   private handleSaveAndContinueClick(formValues: FormValues) {
-    const { SubmitStep, shippingInfo } = this.props;
+    const { SubmitStep, shippingInfo, AddAddressToAccount } = this.props;
 
     const selectedShippingMethodId = formValues[FIELDS.SELECTED_SHIPPING_METHOD];
     const shippingMethod = shippingInfo.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
@@ -278,6 +280,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       useForBillingAddress,
     };
     const address = this.getShippingAddress(formValues);
+
+    if (saveToMyAccount) {
+      AddAddressToAccount(address);
+    }
 
     if (address && shippingMethod) {
       SubmitStep({

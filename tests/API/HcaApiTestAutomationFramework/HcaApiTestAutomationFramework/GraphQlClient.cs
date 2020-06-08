@@ -5,7 +5,6 @@ using Braintree;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using Configuration = System.Configuration.Configuration;
 
 namespace HcaApiTestAutomationFramework
 {
@@ -23,15 +22,13 @@ namespace HcaApiTestAutomationFramework
 				PrivateKey = ConfigurationManager.AppSettings["BraintreePrivateKey"],
 				Configuration = {Timeout = 10000},
 			};
-			var clientToken = gateway.ClientToken.Generate();
-			return clientToken;
+			return gateway.ClientToken.Generate();
 		}
 
 		public string Base64Decoder(string base64Encoded)
 		{
 			var data = System.Convert.FromBase64String(base64Encoded);
 			return System.Text.ASCIIEncoding.ASCII.GetString(data);
-
 		}
 
 		public string GetAuthorizationFingerprint()

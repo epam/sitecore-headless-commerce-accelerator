@@ -132,6 +132,33 @@ jobs:
         targetType: 'inline'
         script: |
           Move-Item $(license_file.secureFilePath) ./src/ -Force
+
+    - task: FileTransform@2
+      displayName: Transform web.comfig
+      inputs:
+        folderPath: '$(System.DefaultWorkingDirectory)/src/configs/Sitecore/'
+        xmlTransformationRules: '-transform **\*.$(environment_type).config -xml **\*.config'
+
+    - task: PowerShell@2
+      displayName: Add appSettigns section for transform
+      inputs:
+        targetType: 'inline'
+        script: |
+          (Get-Content $(transform_variables_file)) -replace "<configuration>", "<configuration>`n<appSettings>" -replace '</configuration>', "</appSettings>`n</configuration>" | Set-Content $(transform_variables_file)
+
+    - task: FileTransform@2
+      displayName: Fill config with variables via transform
+      inputs:
+        folderPath: '$(project_config_folder)'
+        xmlTargetFiles: '$(transform_variables_file)'
+
+    - task: PowerShell@2
+      displayName: Remove appSettigns section after transform
+      inputs:
+        targetType: 'inline'
+        script: |
+          (Get-Content $(transform_variables_file)) -replace "<appSettings>", "" -replace "</appSettings>", "" | Set-Content $(transform_variables_file)
+
     - task: gulp@1
       displayName: Gulp code generation
       inputs:
@@ -172,7 +199,6 @@ jobs:
         codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'
 
-
     - task: MSBuild@1
       displayName: MSBuild for publish
       inputs:
@@ -202,9 +228,7 @@ jobs:
         targetType: 'inline'
         script: |
           (Get-Content $(project_site_config)) -replace 'hostName=$(quotes_regexp)', 'hostName="$(sitecore_hostname)"' | Set-Content $(project_site_config)
-          (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' | Set-Content $(foundation_commerce_config)
-          (Get-Content $(foundation_commerce_config)) -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' | Set-Content $(foundation_commerce_config)
-          (Get-Content $(foundation_commerce_config)) -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
+          (Get-Content $(foundation_commerce_config)) -replace '<server>.*</server>', '<server>$(smtp_server)</server>' -replace '<userName>.*</userName>', '<userName>$(smtp_username)</userName>' -replace '<password>.*</password>', '<password>$(smtp_password)</password>' | Set-Content $(foundation_commerce_config)
 
     - task: PublishPipelineArtifact@1
       displayName: Publish web config

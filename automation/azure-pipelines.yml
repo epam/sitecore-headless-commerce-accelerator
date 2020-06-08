@@ -17,10 +17,10 @@ variables:
   minions_String: 'commerceMinionsServiceUrl'
   identity_String: 'sitecoreIdentityServerUrl'
   project_manifest: './src/Project/$(project_name)/client/manifest.json'
-  project_site_config: '$(sitecore_webroot)\App_Config\Include\Project\$(project_name)\Project.$(project_name).Site.config'
+  project_site_config: '$(sitecore_webroot)\App_Config\Include\Project\$(project_name).Project.$(project_name).Site.config'
   commerce_engine_config: '$(sitecore_webroot)\App_Config\Include\Y.Commerce.Engine\Sitecore.Commerce.Engine.Connect.config'
   auth_server_config: '$(sitecore_webroot)\App_Config\Sitecore\Owin.Authentication.IdentityServer\Sitecore.Owin.Authentication.IdentityServer.config'
-  foundation_commerce_config: '$(sitecore_webroot)\App_Config\Include\Foundation\$(project_name)\Foundation.Commerce.config'
+  foundation_commerce_config: '$(sitecore_webroot)\App_Config\Include\Foundation\$(project_name).Foundation.Commerce.config'
 
 steps:
 

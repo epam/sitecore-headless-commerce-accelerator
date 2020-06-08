@@ -2,12 +2,12 @@
 
 namespace HcaApiTestAutomationFramework
 {
-	public class HcaApiMethods<T>
+	public class HcaApiMethods
 	{
 
 		public AccountCreateAccountResponseDTO CreateAccount(dynamic requestBody, string endpoint = "accounts/account")
 		{
-			var cart = new ApiHelper<AccountCreateAccountResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -17,7 +17,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CartResponseDTO GetCart(string endpoint = "carts/cart")
 		{
-			var cart = new ApiHelper<CartResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
@@ -26,7 +26,7 @@ namespace HcaApiTestAutomationFramework
 
 		public OrdersOrderResponseDTO GetOrder(string confirmationId)
 		{
-			var cart = new ApiHelper<OrdersOrderResponseDTO>();
+			var cart = new ApiHelper();
 			var endpoint = $"orders/{confirmationId}";
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
@@ -36,7 +36,7 @@ namespace HcaApiTestAutomationFramework
 
 		public SearchProductResponseDTO SearchProducts(dynamic requestBody, string endpoint = "search/products")
 		{
-			var cart = new ApiHelper<SearchProductResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -46,7 +46,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CartResponseDTO AddCartLine(dynamic requestBody, string endpoint = "carts/cartLines")
 		{
-			var cart = new ApiHelper<CartResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -56,7 +56,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CartResponseDTO UpdateCartLine(dynamic requestBody, string endpoint = "carts/cartLines")
 		{
-			var cart = new ApiHelper<CartResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePutRequest(jsonRequest);
@@ -66,7 +66,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CartResponseDTO AddPromoCode(dynamic requestBody, string endpoint = "carts/promoCodes")
 		{
-			var cart = new ApiHelper<CartResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -76,7 +76,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutDeliveryInfoResponseDTO GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")
 		{
-			var cart = new ApiHelper<CheckoutDeliveryInfoResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
@@ -85,7 +85,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutShippingInfoResponseDTO GetShippingInfo(string endpoint = "checkout/shippingInfo")
 		{
-			var cart = new ApiHelper<CheckoutShippingInfoResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
@@ -94,7 +94,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutBillingInfoResponseDTO GetBillingInfo(string endpoint = "checkout/billingInfo")
 		{
-			var cart = new ApiHelper<CheckoutBillingInfoResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreateGetRequest();
 			var response = cart.GetResponse(url, request);
@@ -103,7 +103,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutShippingOptionsResponseDTO SetShippingOptions(dynamic requestBody, string endpoint = "checkout/shippingOptions")
 		{
-			var cart = new ApiHelper<CheckoutShippingOptionsResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -113,7 +113,7 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutPaymentInfoResponseDTO SetPaymentInfo(dynamic requestBody, string endpoint = "checkout/paymentInfo")
 		{
-			var cart = new ApiHelper<CheckoutPaymentInfoResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var jsonRequest = cart.Serialize(requestBody);
 			var request = cart.CreatePostRequest(jsonRequest);
@@ -123,12 +123,11 @@ namespace HcaApiTestAutomationFramework
 
 		public CheckoutSubmitOrderResponseDTO SubmitOrder(string endpoint = "checkout/orders")
 		{
-			var cart = new ApiHelper<CheckoutSubmitOrderResponseDTO>();
+			var cart = new ApiHelper();
 			var url = cart.SetUrl(endpoint);
 			var request = cart.CreatePostRequest();
 			var response = cart.GetResponse(url, request);
 			return cart.GetContent<CheckoutSubmitOrderResponseDTO>(response);
 		}
-
 	}
 }

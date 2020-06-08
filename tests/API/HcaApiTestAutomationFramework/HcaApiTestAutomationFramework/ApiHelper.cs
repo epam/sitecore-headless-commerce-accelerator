@@ -5,11 +5,9 @@ using System.Configuration;
 
 namespace HcaApiTestAutomationFramework
 {
-	public class ApiHelper<T>
+	public class ApiHelper
 	{
-		public RestClient RestClient;
-		public RestRequest RestRequest;
-		public string Host = AppSettingsExpander.Expand("Host");
+		public IRestRequest RestRequest;
 		public string BaseUrl = AppSettingsExpander.Expand("BaseUrl");
 
 		public RestClient SetUrl(string endpoint)
@@ -18,7 +16,7 @@ namespace HcaApiTestAutomationFramework
 			return new RestClient(url);
 		}
 
-		public RestRequest CreatePostRequest()
+		public IRestRequest CreatePostRequest()
 		{
 			RestRequest = new RestRequest(Method.POST);
 			AddRequestCookies(RestRequest);
@@ -26,7 +24,7 @@ namespace HcaApiTestAutomationFramework
 			return RestRequest;
 		}
 
-		public RestRequest CreatePostRequest(string requestBody)
+		public IRestRequest CreatePostRequest(string requestBody)
 		{
 			RestRequest = new RestRequest(Method.POST);
 			AddRequestCookies(RestRequest);
@@ -36,7 +34,7 @@ namespace HcaApiTestAutomationFramework
 			return RestRequest;
 		}
 
-		public RestRequest CreatePutRequest(string requestBody)
+		public IRestRequest CreatePutRequest(string requestBody)
 		{
 			RestRequest = new RestRequest(Method.PUT);
 			AddRequestCookies(RestRequest);
@@ -46,7 +44,7 @@ namespace HcaApiTestAutomationFramework
 			return RestRequest;
 		}
 
-		public RestRequest CreateGetRequest()
+		public IRestRequest CreateGetRequest()
 		{
 			RestRequest = new RestRequest(Method.GET);
 			AddRequestCookies(RestRequest);
@@ -54,7 +52,7 @@ namespace HcaApiTestAutomationFramework
 			return RestRequest;
 		}
 
-		public RestRequest CreateDeleteRequest()
+		public IRestRequest CreateDeleteRequest()
 		{
 			RestRequest = new RestRequest(Method.DELETE);
 			AddRequestCookies(RestRequest);
@@ -62,7 +60,7 @@ namespace HcaApiTestAutomationFramework
 			return RestRequest;
 		}
 
-		public IRestResponse GetResponse(RestClient restClient, RestRequest restRequest)
+		public IRestResponse GetResponse(IRestClient restClient, IRestRequest restRequest)
 		{
 			return restClient.Execute(restRequest);
 		}
@@ -78,12 +76,12 @@ namespace HcaApiTestAutomationFramework
 		}
 
 
-		private void AddRequestCookies(RestRequest request)
+		private void AddRequestCookies(IRestRequest request)
 		{
 			request.AddCookie("SC_ANALYTICS_GLOBAL_COOKIE", ConfigurationManager.AppSettings["ScAnalyticsGlobalCookie"]);
 		}
 
-		private void AddRequestHeaders(RestRequest request)
+		private void AddRequestHeaders(IRestRequest request)
 		{
 			request.AddHeader("Accept", "*/*");
 			request.AddHeader("accept-encoding", "gzip,deflat,sdch");

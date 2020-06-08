@@ -44,7 +44,7 @@ namespace HcaApiTests
 				sortDirection = 0,
 			};
 
-			var products = new HcaApiMethods<SearchProductResponseDTO>();
+			var products = new HcaApiMethods();
 			var productsReq = products.SearchProducts(searchProduct);
 			Assert.True("ok".Equals(productsReq.status.ToLower()), "The GetProducts POST request is not passed");
 			_productId = productsReq.data.products[0].productId;
@@ -63,7 +63,7 @@ namespace HcaApiTests
 			};
 
 			//Adding Product to the Cart Request
-			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cart = new HcaApiMethods();
 			var cartReq = cart.AddCartLine(cartLine);
 			Assert.True("ok".Equals(cartReq.status.ToLower()), "The Get Cart request is not passed");
 			var test1 = "";
@@ -82,7 +82,7 @@ namespace HcaApiTests
 		[Test, Order(3), Description("check on product existence in the cart")]
 		public void T03VerifyGetCartTest()
 		{
-			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cart = new HcaApiMethods();
 			var cartReq = cart.GetCart();
 			var test1 = "";
 			foreach (var cartline in cartReq.data.cartLines)
@@ -103,12 +103,12 @@ namespace HcaApiTests
 		public void T04VerifyCheckoutTest()
 		{
 			//Checking initial state of Cart Info
-			var deliveryInfo = new HcaApiMethods<CheckoutDeliveryInfoResponseDTO>();
+			var deliveryInfo = new HcaApiMethods();
 			var deliveryInfoReq = deliveryInfo.GetDeliveryInfo();
 			Assert.True("ok".Equals(deliveryInfoReq.status.ToLower()), "The delivery info request is not passed");
 			_guestNewPartyId = deliveryInfoReq.data.newPartyId;
 
-			var shippingInfo = new HcaApiMethods<CheckoutShippingInfoResponseDTO>();
+			var shippingInfo = new HcaApiMethods();
 			var shippingInfoReq = shippingInfo.GetShippingInfo();
 			Assert.True("ok".Equals(shippingInfoReq.status.ToLower()), "The Shipping info request is not passed");
 			foreach (var shippingmethod in shippingInfoReq.data.shippingMethods)
@@ -120,7 +120,7 @@ namespace HcaApiTests
 				}
 			}
 
-			var billingInfo = new HcaApiMethods<CheckoutBillingInfoResponseDTO>();
+			var billingInfo = new HcaApiMethods();
 			var billingInfoReq = billingInfo.GetBillingInfo();
 			Assert.True("ok".Equals(billingInfoReq.status.ToLower()), "The Billing info request is not passed");
 		}
@@ -168,7 +168,7 @@ namespace HcaApiTests
 					}
 				},
 			};
-			var shippingOptions = new HcaApiMethods<CheckoutShippingOptionsResponseDTO>();
+			var shippingOptions = new HcaApiMethods();
 			var shippingOptionsReq = shippingOptions.SetShippingOptions(shippingData);
 			Assert.True("ok".Equals(shippingOptionsReq.status.ToLower()), "The Shipping Options request is not passed");
 		}
@@ -225,7 +225,7 @@ namespace HcaApiTests
 				},
 			};
 
-			var paymentInfo = new HcaApiMethods<CheckoutPaymentInfoResponseDTO>();
+			var paymentInfo = new HcaApiMethods();
 			var paymentInfoReq = paymentInfo.SetPaymentInfo(paymentData);
 			Assert.True("ok".Equals(paymentInfoReq.status.ToLower()), "The paymentInfo request is not passed");
 		}
@@ -233,7 +233,7 @@ namespace HcaApiTests
 		[Test, Order(8), Description("order to pay")]
 		public void T08VerifyOrderToPayTest()
 		{
-			var order = new HcaApiMethods<CheckoutSubmitOrderResponseDTO>();
+			var order = new HcaApiMethods();
 			var orderReq = order.SubmitOrder();
 			_confirmationId = orderReq.data.confirmationId;
 			Assert.True("ok".Equals(orderReq.status.ToLower()), "The order request is not passed");
@@ -242,7 +242,7 @@ namespace HcaApiTests
 		[Test, Order(9), Description("Verify Order By ConfirmationId")]
 		public void T09VerifyOrderByConfirmationIdTest()
 		{
-			var order = new HcaApiMethods<OrdersOrderResponseDTO>();
+			var order = new HcaApiMethods();
 			var orderReq = order.GetOrder(_confirmationId);
 			Assert.True("ok".Equals(orderReq.status.ToLower()), "The order request is not passed");
 		}
@@ -251,7 +251,7 @@ namespace HcaApiTests
 		[Test, Order(10), Description("Verify Cart Is Empty")]
 		public void T10VerifyCartIsEmptyTest()
 		{
-			var cart = new HcaApiMethods<CartResponseDTO>();
+			var cart = new HcaApiMethods();
 			var cartReq = cart.GetCart();
 			Assert.True("ok".Equals(cartReq.status.ToLower()), "The getCart GET request is not passed.");
 			Assert.True(cartReq.data.cartLines.Length.ToString().Equals("0"), "Cart is not empty");

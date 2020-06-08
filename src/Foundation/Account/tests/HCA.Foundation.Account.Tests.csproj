@@ -225,11 +225,11 @@
     <Compile Include="Services\Authentication\AuthenticationServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Base\code\HCA.Foundation.Base.csproj">
+    <ProjectReference Include="..\..\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\code\HCA.Foundation.Account.csproj">
+    <ProjectReference Include="..\website\HCA.Foundation.Account.csproj">
       <Project>{74c245aa-2561-4a2a-adbd-e7d4045f6227}</Project>
       <Name>HCA.Foundation.Account</Name>
     </ProjectReference>

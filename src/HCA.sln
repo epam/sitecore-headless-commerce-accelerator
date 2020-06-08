@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HCA", "HCA", "{177D69BE-C6B7-4D1C-B489-C31F5441469D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Project.HCA", "Project\HCA\code\HCA.Project.HCA.csproj", "{205DDE5D-D805-4CEF-8557-EE47994715E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Project.HCA", "Project\HCA\website\HCA.Project.HCA.csproj", "{205DDE5D-D805-4CEF-8557-EE47994715E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Project.HCA.Tests", "Project\HCA\tests\HCA.Project.HCA.Tests.csproj", "{18FDEB2F-FAD3-4DD8-8DA8-B159ACA7E601}"
 EndProject
@@ -18,23 +18,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PageContent", "PageContent"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{E884A655-AB70-4C73-8038-C873D33A134E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Catalog", "Feature\Catalog\code\HCA.Feature.Catalog.csproj", "{61042C03-F29B-4215-8A26-09395550B64F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Catalog", "Feature\Catalog\website\HCA.Feature.Catalog.csproj", "{61042C03-F29B-4215-8A26-09395550B64F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Catalog.Tests", "Feature\Catalog\tests\HCA.Feature.Catalog.Tests.csproj", "{35FBFAA6-1F69-4A76-8822-62C9A5F8B26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Navigation", "Feature\Navigation\code\HCA.Feature.Navigation.csproj", "{A35E6B68-E557-4F13-8DCA-294ECC4BE538}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Navigation", "Feature\Navigation\website\HCA.Feature.Navigation.csproj", "{A35E6B68-E557-4F13-8DCA-294ECC4BE538}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Navigation.Tests", "Feature\Navigation\tests\HCA.Feature.Navigation.Tests.csproj", "{28788C31-2063-4659-8DC5-1A4F7F8A22FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Checkout", "Feature\Checkout\code\HCA.Feature.Checkout.csproj", "{EC1DB1BE-B3A9-4AC2-8700-34186E20444A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Checkout", "Feature\Checkout\website\HCA.Feature.Checkout.csproj", "{EC1DB1BE-B3A9-4AC2-8700-34186E20444A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Checkout.Tests", "Feature\Checkout\tests\HCA.Feature.Checkout.Tests.csproj", "{D35A48D3-EF46-4FEE-889D-904215328733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.PageContent", "Feature\PageContent\code\HCA.Feature.PageContent.csproj", "{7965514A-09D8-4E76-81A5-173FE3FD0F6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.PageContent", "Feature\PageContent\website\HCA.Feature.PageContent.csproj", "{7965514A-09D8-4E76-81A5-173FE3FD0F6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.PageContent.Tests", "Feature\PageContent\tests\HCA.Feature.PageContent.Tests.csproj", "{4935AB77-560F-4D05-8ACB-1AE1A8621EEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Account", "Feature\Account\code\HCA.Feature.Account.csproj", "{F113FC93-32D0-417A-8093-D2C6CFDAEEA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Account", "Feature\Account\website\HCA.Feature.Account.csproj", "{F113FC93-32D0-417A-8093-D2C6CFDAEEA9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.Account.Tests", "Feature\Account\tests\HCA.Feature.Account.Tests.csproj", "{7650C763-7504-4B6C-8037-92237487741D}"
 EndProject
@@ -56,29 +56,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connect", "Connect", "{5AC8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Account.Tests", "Foundation\Account\tests\HCA.Foundation.Account.Tests.csproj", "{E2A02D35-08C9-4256-AD41-9C12B3BD6073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Account", "Foundation\Account\code\HCA.Foundation.Account.csproj", "{74C245AA-2561-4A2A-ADBD-E7D4045F6227}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Account", "Foundation\Account\website\HCA.Foundation.Account.csproj", "{74C245AA-2561-4A2A-ADBD-E7D4045F6227}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Base.Tests", "Foundation\Base\tests\HCA.Foundation.Base.Tests.csproj", "{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Base", "Foundation\Base\code\HCA.Foundation.Base.csproj", "{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Base", "Foundation\Base\website\HCA.Foundation.Base.csproj", "{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.GlassMapper", "Foundation\GlassMapper\code\HCA.Foundation.GlassMapper.csproj", "{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.GlassMapper", "Foundation\GlassMapper\website\HCA.Foundation.GlassMapper.csproj", "{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Serialization", "Foundation\Serialization\code\HCA.Foundation.Serialization.csproj", "{BA492296-6396-413B-900B-AA9904768EF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Serialization", "Foundation\Serialization\website\HCA.Foundation.Serialization.csproj", "{BA492296-6396-413B-900B-AA9904768EF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.DependencyInjection", "Foundation\DependencyInjection\code\HCA.Foundation.DependencyInjection.csproj", "{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.DependencyInjection", "Foundation\DependencyInjection\website\HCA.Foundation.DependencyInjection.csproj", "{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.DependencyInjection.Tests", "Foundation\DependencyInjection\tests\HCA.Foundation.DependencyInjection.Tests.csproj", "{DA098052-8409-40B0-8B31-640B2400AAB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.ReactJss", "Foundation\ReactJss\code\HCA.Foundation.ReactJss.csproj", "{9F27A62C-2A80-42F8-8BF0-3877B65C0427}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.ReactJss", "Foundation\ReactJss\website\HCA.Foundation.ReactJss.csproj", "{9F27A62C-2A80-42F8-8BF0-3877B65C0427}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.ReactJss.Tests", "Foundation\ReactJss\tests\HCA.Foundation.ReactJss.Tests.csproj", "{F05238CC-F50C-437B-8AFE-41784E864139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Commerce", "Foundation\Commerce\code\HCA.Foundation.Commerce.csproj", "{4CD01A37-76D8-4A6A-8822-014369C4243D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Commerce", "Foundation\Commerce\website\HCA.Foundation.Commerce.csproj", "{4CD01A37-76D8-4A6A-8822-014369C4243D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Commerce.Tests", "Foundation\Commerce\tests\HCA.Foundation.Commerce.Tests.csproj", "{CE6673B9-1F7B-466E-8E79-03E5E5A0A1D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Connect", "Foundation\Connect\code\HCA.Foundation.Connect.csproj", "{60CD1765-857B-4BC8-831E-7526264F1EC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Connect", "Foundation\Connect\website\HCA.Foundation.Connect.csproj", "{60CD1765-857B-4BC8-831E-7526264F1EC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Connect.Tests", "Foundation\Connect\tests\HCA.Foundation.Connect.Tests.csproj", "{221EEF08-DE62-4336-87D0-1AB2A0BDBFA8}"
 EndProject

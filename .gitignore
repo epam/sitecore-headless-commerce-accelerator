@@ -119,7 +119,7 @@ Code Generation Templates/*.tt
 
 # Front-end artifacts
 /src/Project/HCA/client/build
-/src/Project/HCA/code/dist/
+/src/Project/HCA/website/dist/
 
 # Development environment
 /src/scripts/webpack/environments/development/sitecore-context.json

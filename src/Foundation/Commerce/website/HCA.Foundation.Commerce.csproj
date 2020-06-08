@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props" Condition="Exists('..\..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" />
-  <Import Project="..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.props" Condition="Exists('..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.props')" />
-  <Import Project="..\..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\..\..\packages\xunit.core.2.3.1\build\xunit.core.props" Condition="Exists('..\..\..\packages\xunit.core.2.3.1\build\xunit.core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,11 +7,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectTypeGuids>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HCA.Feature.Account.Tests</RootNamespace>
-    <AssemblyName>HCA.Feature.Account.Tests</AssemblyName>
+    <RootNamespace>HCA.Foundation.Commerce</RootNamespace>
+    <AssemblyName>HCA.Foundation.Commerce</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -26,7 +22,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <ProjectGuid>{7650C763-7504-4B6C-8037-92237487741D}</ProjectGuid>
+    <MvcBuildViews>true</MvcBuildViews>
+    <ProjectGuid>{4CD01A37-76D8-4A6A-8822-014369C4243D}</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +51,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SitecoreWebUrl>http://CustomerX.local</SitecoreWebUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,17 +68,14 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="FiftyOne.Foundation, Version=3.2.17.2, Culture=neutral, PublicKeyToken=e0b3a8da0bbce49c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\51Degrees.mobi-core.3.2.17.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.dll</HintPath>
@@ -96,6 +91,12 @@
     </Reference>
     <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroCHAP, Version=1.2.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MicroCHAP.1.2.2.2\lib\net45\MicroCHAP.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.OData, Version=7.0.0.20629, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.OData.7.0.0\lib\net45\Microsoft.AspNet.OData.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Configuration.ConfigurationBuilders.Base.1.0.2\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
@@ -167,6 +168,21 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Logging.5.2.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Tokens.5.2.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Client, Version=7.5.0.20627, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.OData.Client.7.5.0\lib\net45\Microsoft.OData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Core, Version=7.5.0.20627, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.OData.Core.7.5.0\lib\portable-net45+win8+wpa81\Microsoft.OData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm, Version=7.5.0.20627, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.OData.Edm.7.5.0\lib\portable-net45+win8+wpa81\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -188,6 +204,9 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Spatial, Version=7.5.0.20627, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Spatial.7.5.0\lib\portable-net45+win8+wpa81\Microsoft.Spatial.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Delegation, Version=7.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Deployment.3.5.0\lib\Net40\Microsoft.Web.Delegation.dll</HintPath>
     </Reference>
@@ -200,8 +219,17 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
+    <Reference Include="MongoDB.Bson, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MongoDB.Bson.2.6.1\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MongoDB.Driver.2.6.1\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MongoDB.Driver.Core.2.6.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\mongocsharpdriver.2.6.1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="Mvp.Xml, Version=2.3.0.0, Culture=neutral, PublicKeyToken=6ead800d778c9b9f, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Mvp.Xml.2.3.0\lib\net20\Mvp.Xml.dll</HintPath>
@@ -209,26 +237,17 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute, Version=1.10.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
-    </Reference>
     <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture, Version=3.51.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoFixture.3.51.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    <Reference Include="Rainbow, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rainbow.Core.2.1.1\lib\net452\Rainbow.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture.AutoMoq, Version=3.51.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoFixture.AutoMoq.3.51.0\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
-    </Reference>
-    <Reference Include="Ploeh.AutoFixture.AutoNSubstitute, Version=3.51.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoFixture.AutoNSubstitute.3.51.0\lib\net40\Ploeh.AutoFixture.AutoNSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="Ploeh.AutoFixture.Xunit2, Version=3.51.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoFixture.Xunit2.3.51.0\lib\net45\Ploeh.AutoFixture.Xunit2.dll</HintPath>
+    <Reference Include="Rainbow.Storage.Yaml, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rainbow.Storage.Yaml.2.1.1\lib\net452\Rainbow.Storage.Yaml.dll</HintPath>
     </Reference>
     <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RazorGenerator.Mvc.2.4.9\lib\net40\RazorGenerator.Mvc.dll</HintPath>
@@ -239,8 +258,32 @@
     <Reference Include="Sitecore.Abstractions, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Abstractions.9.2.0\lib\net471\Sitecore.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Analytics, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.9.3.0\lib\net471\Sitecore.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Aggregation, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.Aggregation.9.3.0\lib\net471\Sitecore.Analytics.Aggregation.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.Core.9.3.0\lib\net471\Sitecore.Analytics.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.DataAccess, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.DataAccess.9.3.0\lib\net471\Sitecore.Analytics.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Model, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.Model.9.3.0\lib\net471\Sitecore.Analytics.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Processing, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.Processing.9.3.0\lib\net471\Sitecore.Analytics.Processing.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.XConnect, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Analytics.XConnect.9.3.0\lib\net471\Sitecore.Analytics.XConnect.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Annotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Annotations.9.3.0\lib\net471\Sitecore.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Buckets, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Buckets.9.3.0\lib\net471\Sitecore.Buckets.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.CES, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.CES.9.3.0\lib\net471\Sitecore.CES.dll</HintPath>
@@ -257,8 +300,20 @@
     <Reference Include="Sitecore.Cloud.Nexus, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Cloud.Nexus.9.3.0\lib\net471\Sitecore.Cloud.Nexus.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.Connect.Collection.Model, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Collection.Model.14.0.27\lib\net471\Sitecore.Commerce.Connect.Collection.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Commerce.Connect.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Client, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.ContentSearch.Client.9.3.0\lib\net471\Sitecore.ContentSearch.Client.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.ContentExtraction, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.ContentExtraction.9.3.0\lib\net471\Sitecore.ContentSearch.ContentExtraction.dll</HintPath>
@@ -271,12 +326,6 @@
     </Reference>
     <Reference Include="Sitecore.ExperienceEditor, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ExperienceEditor.9.3.0\lib\net471\Sitecore.ExperienceEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.FakeDb, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.FakeDb.3.0.0-alpha1\lib\net471\Sitecore.FakeDb.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.FakeDb.AutoFixture, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.FakeDb.AutoFixture.1.7.0\lib\net45\Sitecore.FakeDb.AutoFixture.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Framework.Conditions, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Framework.Conditions.4.0.0\lib\netstandard2.0\Sitecore.Framework.Conditions.dll</HintPath>
@@ -299,8 +348,26 @@
     <Reference Include="Sitecore.Framework.Data.Blobs.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Framework.Data.Blobs.Abstractions.1.0.0\lib\netstandard2.0\Sitecore.Framework.Data.Blobs.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.JavaScriptServices.Configuration, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.JavaScriptServices.Configuration.14.0.0\lib\net471\Sitecore.JavaScriptServices.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.JavaScriptServices.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.JavaScriptServices.Core.14.0.0\lib\net471\Sitecore.JavaScriptServices.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.JavaScriptServices.Globalization, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.JavaScriptServices.Globalization.14.0.0\lib\net471\Sitecore.JavaScriptServices.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.JavaScriptServices.ViewEngine, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.JavaScriptServices.ViewEngine.14.0.0\lib\net471\Sitecore.JavaScriptServices.ViewEngine.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Kernel.9.3.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.LayoutService, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.LayoutService.9.3.0\lib\net471\Sitecore.LayoutService.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.LayoutService.Mvc, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.LayoutService.Mvc.9.3.0\lib\net471\Sitecore.LayoutService.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Logging.9.3.0\lib\net471\Sitecore.Logging.dll</HintPath>
@@ -347,6 +414,18 @@
     <Reference Include="Sitecore.Publishing.WebDeploy, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Publishing.WebDeploy.9.2.0\lib\net471\Sitecore.Publishing.WebDeploy.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Services.Core, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Services.Core.9.3.0\lib\net471\Sitecore.Services.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Services.Infrastructure.9.3.0\lib\net471\Sitecore.Services.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure.Sitecore, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Services.Infrastructure.Sitecore.9.3.0\lib\net471\Sitecore.Services.Infrastructure.Sitecore.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Update, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Update.9.3.0\lib\net471\Sitecore.Update.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Web, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Web.9.3.0\lib\net471\Sitecore.Web.dll</HintPath>
     </Reference>
@@ -371,6 +450,18 @@
     <Reference Include="Sitecore.XConnect.Search, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.XConnect.Search.9.3.0\lib\netstandard2.0\Sitecore.XConnect.Search.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.XConnect.Segmentation.Predicates.Model, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.XConnect.Segmentation.Predicates.Model.9.3.0\lib\net471\Sitecore.XConnect.Segmentation.Predicates.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XConnect.Service, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.XConnect.Service.9.3.0\lib\netstandard2.0\Sitecore.XConnect.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XConnect.Service.Plugins, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.XConnect.Service.Plugins.9.3.0\lib\netstandard2.0\Sitecore.XConnect.Service.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Xdb.Collection, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Xdb.Collection.9.3.0\lib\netstandard2.0\Sitecore.Xdb.Collection.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Xdb.Common.Web, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Xdb.Common.Web.9.3.0\lib\netstandard2.0\Sitecore.Xdb.Common.Web.dll</HintPath>
     </Reference>
@@ -393,12 +484,18 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Globalization" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.IdentityModel.Tokens.Jwt.5.2.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Interactive.Async, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Interactive.Async.3.1.1\lib\net46\System.Interactive.Async.dll</HintPath>
     </Reference>
@@ -418,6 +515,7 @@
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -454,13 +552,15 @@
     <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Threading.Thread" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Cors.5.2.6\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
@@ -470,6 +570,9 @@
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.6\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -490,86 +593,235 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="RainbowCodeGeneration">
+      <HintPath>..\..\..\packages\RainbowCodeGeneration.0.3.0\lib\net452\RainbowCodeGeneration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="TypeLite, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.dll</HintPath>
+    </Reference>
+    <Reference Include="TypeLite.Net4, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.extensibility.core.2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.extensibility.execution.2.3.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountsControllerTests.cs" />
-    <Compile Include="Controllers\AuthenticationControllerTests.cs" />
-    <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
+    <Compile Include="Builders\Cart\CartBuilder.cs" />
+    <Compile Include="Builders\Cart\ICartBuilder.cs" />
+    <Compile Include="Builders\Order\OrderBuilder.cs" />
+    <Compile Include="Builders\Order\IOrderBuilder.cs" />
+    <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Context\Contracts\ISiteContext.cs" />
+    <Compile Include="Context\SiteContext.cs" />
+    <Compile Include="Context\VisitorContext.cs" />
+    <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
+    <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
+    <Compile Include="Infrastructure\ContentsResolvers\StorefrontCountriesResolver.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\GetCommerceUserProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\IdentifyCommerceUserProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\MergeCartsProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SetAnonymousInfoProcessor.cs" />
+    <Compile Include="Managers\Contact\ContactManager.cs" />
+    <Compile Include="Managers\Contact\IContactManager.cs" />
+    <Compile Include="Mappers\Cart\CartMapper.cs" />
+    <Compile Include="Mappers\Cart\ICartMapper.cs" />
+    <Compile Include="Mappers\Account\AccountMapper.cs" />
+    <Compile Include="Mappers\Account\IAccountMapper.cs" />
+    <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
+    <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
+    <Compile Include="Mappers\Contact\ContactMapper.cs" />
+    <Compile Include="Mappers\Contact\IContactMapper.cs" />
+    <Compile Include="Mappers\Order\IOrderMapper.cs" />
+    <Compile Include="Mappers\Order\OrderMapper.cs" />
+    <Compile Include="Mappers\Profiles\CartProfile.cs" />
+    <Compile Include="Mappers\Profiles\AccountProfile.cs" />
+    <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
+    <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
+    <Compile Include="Mappers\Payment\PaymentMapper.cs" />
+    <Compile Include="Mappers\Profiles\ContactProfile.cs" />
+    <Compile Include="Mappers\Profiles\OrderProfile.cs" />
+    <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
+    <Compile Include="Mappers\Profiles\RegionProfile.cs" />
+    <Compile Include="Mappers\Region\IRegionMapper.cs" />
+    <Compile Include="Mappers\Region\RegionMapper.cs" />
+    <Compile Include="Mappers\Search\ISearchMapper.cs" />
+    <Compile Include="Mappers\Search\SearchMapper.cs" />
+    <Compile Include="Mappers\Profiles\SearchProfile.cs" />
+    <Compile Include="Mappers\Profiles\AddressProfile.cs" />
+    <Compile Include="Mappers\Profiles\ShippingProfile.cs" />
+    <Compile Include="Mappers\Shipping\IShippingMapper.cs" />
+    <Compile Include="Mappers\Shipping\ShippingMapper.cs" />
+    <Compile Include="Mappers\Users\IUserMapper.cs" />
+    <Compile Include="Mappers\Users\UserMapper.cs" />
+    <Compile Include="Models.Generated.cs" />
+    <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
+    <Compile Include="Models\Authentication\ValidateCredentialsResultModel.cs" />
+    <Compile Include="Models\Entities\Contact\PersonalInfo.cs" />
+    <Compile Include="Models\Entities\Order\Order.cs" />
+    <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
+    <Compile Include="Models\Entities\Region\CountryRegion.cs" />
+    <Compile Include="Models\Entities\Region\Subdivision.cs" />
+    <Compile Include="Models\Entities\Users\User.cs" />
+    <Compile Include="Models\Entities\Catalog\Category.cs" />
+    <Compile Include="Models\Entities\Search\ProductSearchOptions.cs" />
+    <Compile Include="Models\Entities\Addresses\Address.cs" />
+    <Compile Include="Models\Entities\Checkout\BaseCheckoutInfo.cs" />
+    <Compile Include="Models\Entities\Catalog\BaseProduct.cs" />
+    <Compile Include="Models\Entities\Billing\BillingInfo.cs" />
+    <Compile Include="Models\Entities\Cart\Cart.cs" />
+    <Compile Include="Models\Entities\Cart\CartLine.cs" />
+    <Compile Include="Models\Entities\Delivery\DeliveryInfo.cs" />
+    <Compile Include="Models\Entities\Search\Facet.cs" />
+    <Compile Include="Models\Entities\Search\FacetValue.cs" />
+    <Compile Include="Models\Entities\Payment\FederatedPaymentInfo.cs" />
+    <Compile Include="Models\Entities\Payment\PaymentMethod.cs" />
+    <Compile Include="Models\Entities\Payment\PaymentOption.cs" />
+    <Compile Include="Models\Entities\Catalog\Product.cs" />
+    <Compile Include="Models\Entities\Search\ProductSearchResults.cs" />
+    <Compile Include="Models\Entities\Catalog\Variant.cs" />
+    <Compile Include="Models\Entities\Shipping\ShippingInfo.cs" />
+    <Compile Include="Models\Entities\Shipping\ShippingOption.cs" />
+    <Compile Include="Models\Entities\Cart\TotalPrice.cs" />
+    <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
+    <Compile Include="Mappers\Profiles\UserProfile.cs" />
+    <Compile Include="Models\Entities\Search\SortDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Contracts\ICurrencyProvider.cs" />
+    <Compile Include="Providers\CurrencyProvider.cs" />
+    <Compile Include="Providers\CustomerProvider.cs" />
+    <Compile Include="Providers\Contracts\ICustomerProvider.cs" />
+    <Compile Include="Providers\PageTypeProvider.cs" />
+    <Compile Include="Providers\Contracts\IPageTypeProvider.cs" />
+    <Compile Include="Providers\Contracts\IItemTypeProvider.cs" />
+    <Compile Include="Providers\ItemTypeProvider.cs" />
+    <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
+    <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
+    <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
+    <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
+    <Compile Include="Services\Account\AccountService.cs" />
+    <Compile Include="Services\Account\IAccountService.cs" />
+    <Compile Include="Services\Analytics\AnalyticsService.cs" />
+    <Compile Include="Services\Analytics\IAnalyticsService.cs" />
+    <Compile Include="Context\Contracts\IVisitorContext.cs" />
+    <Compile Include="Services\Cart\CartService.cs" />
+    <Compile Include="Services\Cart\ICartService.cs" />
+    <Compile Include="Services\Billing\BillingService.cs" />
+    <Compile Include="Services\Order\OrderService.cs" />
+    <Compile Include="Services\Delivery\DeliveryService.cs" />
+    <Compile Include="Services\Billing\IBillingService.cs" />
+    <Compile Include="Services\Order\IOrderService.cs" />
+    <Compile Include="Services\Delivery\IDeliveryService.cs" />
+    <Compile Include="Services\Catalog\CatalogService.cs" />
+    <Compile Include="Services\Catalog\ICatalogService.cs" />
+    <Compile Include="Services\Search\IProductSearchService.cs" />
+    <Compile Include="Services\Search\ProductSearchService.cs" />
+    <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
+    <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
+    <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\license.xml">
-      <Link>license.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config">
+      <SubType>Designer</SubType>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.Serialization.config" />
+    <None Include="Properties\PublishProfiles\LocalDev.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Foundation\Account\website\HCA.Foundation.Account.csproj">
+    <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
+      <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
+      <Name>HCA.Foundation.GlassMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Account\website\HCA.Foundation.Account.csproj">
       <Project>{74c245aa-2561-4a2a-adbd-e7d4045f6227}</Project>
       <Name>HCA.Foundation.Account</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\Base\website\HCA.Foundation.Base.csproj">
+    <ProjectReference Include="..\..\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Foundation\Commerce\website\HCA.Foundation.Commerce.csproj">
-      <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
-      <Name>HCA.Foundation.Commerce</Name>
+    <ProjectReference Include="..\..\Connect\website\HCA.Foundation.Connect.csproj">
+      <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
+      <Name>HCA.Foundation.Connect</Name>
     </ProjectReference>
-    <ProjectReference Include="..\website\HCA.Feature.Account.csproj">
-      <Project>{f113fc93-32d0-417a-8093-d2c6cfdaeea9}</Project>
-      <Name>HCA.Feature.Account</Name>
+    <ProjectReference Include="..\..\DependencyInjection\website\HCA.Foundation.DependencyInjection.csproj">
+      <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
+      <Name>HCA.Foundation.DependencyInjection</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <ProjectExtensions />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+      CollectGulpOutput;
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      $(CopyAllFilesToSingleFolderForMsdeployDependsOn);
+      CollectGulpOutput;
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
+  <Target Name="CollectGulpOutput">
+    <ItemGroup>
+      <_CustomFiles Include="_res\**\*" />
+      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
+        <DestinationRelativePath>_res\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+    <Message Text="CollectGulpOutput list: %(_CustomFiles.Identity)" />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\xunit.core.2.3.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.core.2.3.1\build\xunit.core.props'))" />
-    <Error Condition="!Exists('..\..\..\packages\xunit.core.2.3.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.core.2.3.1\build\xunit.core.targets'))" />
-    <Error Condition="!Exists('..\..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
-    <Error Condition="!Exists('..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.props'))" />
-    <Error Condition="!Exists('..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets'))" />
-    <Error Condition="!Exists('..\..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\OctoPack.3.6.2\build\OctoPack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\OctoPack.3.6.2\build\OctoPack.targets'))" />
   </Target>
-  <Import Project="..\..\..\packages\xunit.core.2.3.1\build\xunit.core.targets" Condition="Exists('..\..\..\packages\xunit.core.2.3.1\build\xunit.core.targets')" />
-  <Import Project="..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets" Condition="Exists('..\..\..\packages\xunit.runner.msbuild.2.3.1\build\net452\xunit.runner.msbuild.targets')" />
+  <Import Project="..\..\..\packages\OctoPack.3.6.2\build\OctoPack.targets" Condition="Exists('..\..\..\packages\OctoPack.3.6.2\build\OctoPack.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

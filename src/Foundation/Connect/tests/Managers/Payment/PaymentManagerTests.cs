@@ -15,10 +15,10 @@
 namespace HCA.Foundation.Connect.Tests.Managers.Payment
 {
     using System;
-    using System.Linq;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
+    using Base.Tests.Customization;
 
     using Connect.Managers.Payment;
     using Connect.Mappers.Payment;
@@ -58,7 +58,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
             this.paymentServiceProvider = Substitute.For<PaymentServiceProvider>();
 
             connectServiceProvider.GetPaymentServiceProvider().Returns(this.paymentServiceProvider);
-            this.fixture = this.CreateOmitOnRecursionFixture();
+            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
 
             this.paymentManager = Substitute.For<PaymentManager>(connectServiceProvider, paymentMapper, logService);
         }
@@ -126,23 +126,6 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
             // assert
             this.paymentManager.Received(1)
                 .Execute(Arg.Any<GetPaymentOptionsRequest>(), this.paymentServiceProvider.GetPaymentOptions);
-        }
-
-        //TODO: Refactor duplication of CreateOmitOnRecursionFixture
-        /// <summary>
-        /// Creates OmitOnRecursionBehavior as opposite to ThrowingRecursionBehavior with default recursion depth of 1.
-        /// </summary>
-        /// <returns></returns>
-        private IFixture CreateOmitOnRecursionFixture()
-        {
-            var result = new Fixture();
-
-            result.Behaviors.OfType<ThrowingRecursionBehavior>()
-                .ToList()
-                .ForEach(b => result.Behaviors.Remove(b));
-            result.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            return result;
         }
     }
 }

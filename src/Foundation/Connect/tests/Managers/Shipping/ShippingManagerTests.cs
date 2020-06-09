@@ -15,10 +15,10 @@
 namespace HCA.Foundation.Connect.Tests.Managers.Shipping
 {
     using System;
-    using System.Linq;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
+    using Base.Tests.Customization;
 
     using Connect.Managers.Shipping;
 
@@ -53,7 +53,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
             this.shippingServiceProvider = Substitute.For<ShippingServiceProvider>();
 
             connectServiceProvider.GetShippingServiceProvider().Returns(this.shippingServiceProvider);
-            this.fixture = this.CreateOmitOnRecursionFixture();
+            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
 
             this.shippingManager = Substitute.For<ShippingManager>(connectServiceProvider, logService);
         }
@@ -97,23 +97,6 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
             // assert
             this.shippingManager.Received(1)
                 .Execute(Arg.Any<GetShippingOptionsRequest>(), this.shippingServiceProvider.GetShippingOptions);
-        }
-
-        //TODO: Refactor duplication of CreateOmitOnRecursionFixture
-        /// <summary>
-        /// Creates OmitOnRecursionBehavior as opposite to ThrowingRecursionBehavior with default recursion depth of 1.
-        /// </summary>
-        /// <returns></returns>
-        private IFixture CreateOmitOnRecursionFixture()
-        {
-            var result = new Fixture();
-
-            result.Behaviors.OfType<ThrowingRecursionBehavior>()
-                .ToList()
-                .ForEach(b => result.Behaviors.Remove(b));
-            result.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            return result;
         }
     }
 }

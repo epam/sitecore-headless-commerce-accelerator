@@ -14,7 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Tests.Builders.Order
 {
-    using System.Linq;
+    using Base.Tests.Customization;
 
     using Commerce.Builders.Cart;
     using Commerce.Builders.Order;
@@ -41,7 +41,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Order
 
         public OrderBuilderTests()
         {
-            this.fixture = this.CreateOmitOnRecursionFixture();
+            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
 
             this.cartBuilder = Substitute.For<ICartBuilder<Cart>>();
             this.orderMapper = Substitute.For<IOrderMapper>();
@@ -73,23 +73,6 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Order
             this.cartBuilder.Received(1).Build(source);
             this.orderMapper.Received(1).Map(Arg.Any<Models.Entities.Cart.Cart>());
             this.orderMapper.Received(1).Map(Arg.Any<Order>(), Arg.Any<Models.Entities.Order.Order>());
-        }
-
-        //TODO: Refactor duplication of CreateOmitOnRecursionFixture
-        /// <summary>
-        /// Creates OmitOnRecursionBehavior as opposite to ThrowingRecursionBehavior with default recursion depth of 1.
-        /// </summary>
-        /// <returns></returns>
-        private IFixture CreateOmitOnRecursionFixture()
-        {
-            var result = new Fixture();
-
-            result.Behaviors.OfType<ThrowingRecursionBehavior>()
-                .ToList()
-                .ForEach(b => result.Behaviors.Remove(b));
-            result.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            return result;
         }
 
         private void InitBuild(Order source)

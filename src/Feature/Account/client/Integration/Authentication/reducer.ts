@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,30 +15,37 @@
 import { Action, LoadingStatus } from 'Foundation/Integration/client';
 
 import { reducerActionTypes } from './constants';
-import { AuthenticationState, AuthProcessState, SetAuthenticatedPayload } from './models';
+import { AuthenticationProcessState, AuthenticationState, SetAuthenticatedPayload } from './models';
 
-export const initialAuthProcessState: AuthProcessState = {
+export const initialAuthenticationProcessState: AuthenticationProcessState = {
   hasValidCredentials: false,
   status: LoadingStatus.NotLoaded,
 };
 
 export const initialState: AuthenticationState = {
-  authProcess: initialAuthProcessState,
   authenticated: false,
+  authenticationProcess: initialAuthenticationProcessState,
 };
 
 export default (state: AuthenticationState = { ...initialState }, action: Action) => {
   switch (action.type) {
-    case reducerActionTypes.START_AUTHENTICATION_FAILURE:
-    case reducerActionTypes.START_AUTHENTICATION_REQUEST:
-    case reducerActionTypes.START_AUTHENTICATION_SUCCESS: {
-      const { authProcess } = state;
+    case reducerActionTypes.AUTHENTICATION_FAILURE:
+    case reducerActionTypes.AUTHENTICATION_REQUEST:
+    case reducerActionTypes.AUTHENTICATION_SUCCESS: {
+      const { authenticationProcess } = state;
       return {
         ...state,
-        authProcess: {
-          ...authProcess,
+        authenticationProcess: {
+          ...authenticationProcess,
           ...action.payload,
         },
+      };
+    }
+
+    case reducerActionTypes.RESET_AUTHENTICATION_PROCESS_STATE: {
+      return {
+        ...state,
+        authProcess: initialAuthenticationProcessState,
       };
     }
 
@@ -49,6 +56,7 @@ export default (state: AuthenticationState = { ...initialState }, action: Action
         authenticated,
       };
     }
+
     default: {
       return state;
     }

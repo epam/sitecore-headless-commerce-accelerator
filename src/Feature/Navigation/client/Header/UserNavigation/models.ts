@@ -16,33 +16,21 @@ import * as JSS from 'Foundation/ReactJss/client';
 
 import { RouterProps } from 'react-router';
 
-import { AuthProcessState, GlobalAuthenticationState } from 'Feature/Account/client/Integration/Authentication';
+import { GlobalAuthenticationState } from 'Feature/Account/client/Integration/Authentication';
 import { GlobalShoppingCartState } from 'Feature/Checkout/client/Integration/ShoppingCart';
 import * as Commerce from 'Foundation/Commerce/client';
-
-export interface UserNavigationDispatchProps {
-  StartAuth: (email: string, password: string) => void;
-}
 
 export interface UserNavigationOwnProps extends RouterProps {}
 
 export interface UserNavigationStateProps {
-  authProcess: AuthProcessState;
   cartQuantity: number;
   commerceUser: Commerce.User;
-  returnUrl: string;
 }
 
-export interface UserNavigationProps
-  extends JSS.Rendering,
-    UserNavigationOwnProps,
-    UserNavigationStateProps,
-    UserNavigationDispatchProps {}
+export interface UserNavigationProps extends JSS.Rendering, UserNavigationOwnProps, UserNavigationStateProps {}
 
 export interface UserNavigationState extends JSS.SafePureComponentState {
   userFormVisible: boolean;
-  email: string;
-  formValid: boolean;
 }
 
 export interface AppState

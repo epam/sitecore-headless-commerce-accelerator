@@ -50,6 +50,7 @@ namespace HCA.Feature.Account.Controllers
                 {
                     if (result.Success)
                     {
+                        //TODO: Redirect can be removed
                         return this.RedirectOnAuthentication(returnUrl);
                     }
 

@@ -70,20 +70,13 @@ namespace HCA.Pages.CommonElements
             Assert.AreEqual(1, new WebElement("App", By.Id("app")).GetChildElements(_footerElement).Count(),
                 "There should be one footer on the page");
 
-        public void VerifyContainersWidthOfSiteLinksAndNetworksLinks(string siteLinksContainerWidth, string networksContainerWidth)
+        public void VerifySiteLinksAndNetworksLinksContainers()
         {
             var columns = new WebElement("Footer links columns", ByCustom.ClassName("footer-columns"))
                     .GetChildElements(ByCustom.ClassStartsWith("col-md-")).ToArray();
 
-            if (columns.Length==0)
-            {
-                Assert.Fail("Site Links and Social Network Links containers not found or displayed incorrectly");
-                return;
-            }
-
-            Assert.AreEqual(2, columns.Count(), "Footer links should contains site links container and social links container");
-            Assert.AreEqual(siteLinksContainerWidth, columns[0].GetCssValue("width"));
-            Assert.AreEqual(networksContainerWidth, columns[1].GetCssValue("width"));
+            Assert.AreEqual(2, columns.Length, 
+                "Site Links and Social Network Links containers not found or displayed incorrectly");
         }
 
         public void VerifySiteLink(FooterSiteLink siteLink) =>

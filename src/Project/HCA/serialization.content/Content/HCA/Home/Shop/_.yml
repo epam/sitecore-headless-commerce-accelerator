@@ -8,30 +8,7 @@ SharedFields:
 - ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
   Hint: __Renderings
   Type: layout
-  Value: |
-    <r xmlns:p="p" xmlns:s="s"
-      p:p="1">
-      <d
-        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-        <r
-          uid="{DDED6619-13E5-4084-B06D-FF2C78BE1D24}"
-          p:before="*"
-          s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
-          s:ph="/main-content/w-col-2-{F06A453F-1A7A-45D5-A02E-1453E802125D}-0" />
-        <r
-          uid="{535C78AF-7AB4-4E4B-827C-8774D3D3AA6A}"
-          p:after="r[@uid='{DDED6619-13E5-4084-B06D-FF2C78BE1D24}']"
-          s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
-          s:ph="/main-content/w-col-1-{F06A453F-1A7A-45D5-A02E-1453E802125D}-0" />
-        <r
-          uid="{F06A453F-1A7A-45D5-A02E-1453E802125D}"
-          p:after="r[@uid='{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}']"
-          s:ds=""
-          s:id="{B2EDE051-9A8B-4502-9D6B-39759BCFF123}"
-          s:par="Wrapper Class=hca&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10&amp;Third Column Class"
-          s:ph="main-content" />
-      </d>
-    </r>
+  Value: 
 Languages:
 - Language: en
   Versions:

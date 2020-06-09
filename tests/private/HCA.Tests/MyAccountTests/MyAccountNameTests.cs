@@ -21,7 +21,7 @@ namespace HCA.Tests.MyAccountTests
         {
         }
 
-        private HcaWebSite _hcaWebSite = HcaWebSite.Instance;
+        private HcaWebSite _hcaWebSite;
         private readonly string _userName = "testuser@test.com";
         private readonly string _password = "testuser";
 

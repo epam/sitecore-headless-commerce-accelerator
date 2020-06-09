@@ -20,7 +20,7 @@ namespace HCA.Tests
         {
         }
 
-        private HcaWebSite _hcaWebSite = HcaWebSite.Instance;
+        private HcaWebSite _hcaWebSite;
         private readonly string _userName = "";
         private readonly string _password = "";
         private readonly string _incorrectPassword = "";

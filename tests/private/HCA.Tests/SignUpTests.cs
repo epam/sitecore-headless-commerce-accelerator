@@ -23,7 +23,7 @@ namespace HCA.Tests
         {
         }
 
-        private HcaWebSite _hcaWebSite = HcaWebSite.Instance;
+        private HcaWebSite _hcaWebSite;
 
         private readonly string _existsUser = "";
 

@@ -14,7 +14,7 @@ namespace HCA.Pages.CommonElements
         private WebElement FindMenuItemByName(string itemName)
         {
             return new WebElement($"Menu item {itemName}",
-                ByCustom.XPath($"//li[@class ='menu-item']/a[text()='{itemName}']/parent::*"));
+                ByCustom.XPath($"//li[contains(@class,'menu-item')]/a[text()='{itemName}']/parent::*"));
         }
 
 

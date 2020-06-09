@@ -12,27 +12,32 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
-
 import * as JSS from 'Foundation/ReactJss/client';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
-import * as ShoppingCart from 'Feature/Checkout/client/Integration/ShoppingCart';
+import * as Authentication from 'Feature/Account/client/Integration/Authentication';
 
-import { UserNavigationComponent } from './Component';
+import { SingInComponent } from './Component';
 import { AppState } from './models';
 
 const mapStateToProps = (state: AppState) => {
-  const cartData = ShoppingCart.shoppingCartData(state);
-  const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
-  const commerceUser = JSS.sitecoreContext(state).commerceUser;
+  const authenticationProcess = Authentication.authenticationProcess(state);
+  const returnUrl = JSS.routingLocationPathname(state);
 
   return {
-    cartQuantity,
-    commerceUser,
+    authenticationProcess,
+    returnUrl,
   };
 };
 
-const connectedToStore = connect(mapStateToProps);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      Authentication: Authentication.Authentication,
+      ResetState: Authentication.ResetAuthenticationProcessState,
+    },
+    dispatch,
+  );
 
-export const UserNavigation = compose(JSS.rendering, connectedToStore)(UserNavigationComponent);
+export const SingIn = connect(mapStateToProps, mapDispatchToProps)(SingInComponent);

@@ -607,6 +607,10 @@
       <Project>{74c245aa-2561-4a2a-adbd-e7d4045f6227}</Project>
       <Name>HCA.Foundation.Account</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Base\tests\HCA.Foundation.Base.Tests.csproj">
+      <Project>{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}</Project>
+      <Name>HCA.Foundation.Base.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>

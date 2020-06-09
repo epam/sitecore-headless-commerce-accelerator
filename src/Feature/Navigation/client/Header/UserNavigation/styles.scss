@@ -15,6 +15,8 @@
 @import 'Foundation/UI/client/common/scss/variables';
 
 nav.user-navigation {
+  position: relative;
+
   @media (max-width: $screen-sm-max) {
     position: static;
     background: $second-color-dark;
@@ -41,25 +43,26 @@ nav.user-navigation {
         }
       }
     }
-  }
-  a {
-    line-height: 40px;
-    padding: 0 20px;
-    span {
-      display: none;
-    }
-    i {
-      position: relative;
-    }
-    @media (max-width: $screen-sm-max) {
-      display: block;
-      padding: 0 25px;
-      i {
-        margin-right: 10px;
+
+    >a {
+      line-height: 40px;
+      padding: 0 20px;
+      >i {
+        position: relative;
       }
-      span {
-        display: inline;
-        color: $nav-font-second-color;
+      >span {
+        display: none;
+      }
+      @media (max-width: $screen-sm-max) {
+        display: block;
+        padding: 0 25px;
+        >i {
+          margin-right: 10px;
+        }
+        >span {
+          display: inline;
+          color: $nav-font-second-color;
+        }
       }
     }
   }
@@ -157,6 +160,10 @@ nav.user-navigation {
 }
 
 .login-form {
-  position: relative;
+  position: absolute;
+  width: 350px;
+  padding: 10px 30px;
+  right: 0;
   z-index: 1;
+  background-color: $second-color-dark;
 }

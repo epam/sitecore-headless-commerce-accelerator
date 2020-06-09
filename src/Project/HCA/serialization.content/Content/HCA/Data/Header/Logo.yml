@@ -11,15 +11,6 @@ SharedFields:
   Value: "{095AAE19-603C-4CAA-9848-A47FCFE18308}"
 Languages:
 - Language: en
-  Fields:
-  - ID: "6ee7d871-4933-4a85-a401-66dc03e23ec0"
-    Hint: Main Logo
-    Value: |
-      <image mediaid="{DFB1D217-25B4-4F12-BE23-BA39451BF247}" ></image>
-  - ID: "edfe4100-ef0c-4063-b418-5cf30e2a90fb"
-    Hint: Mobile Logo
-    Value: |
-      <image mediaid="{3BD521F9-EDDE-49D6-A995-9C5B85EB5AAE}" />
   Versions:
   - Version: 1
     Fields:

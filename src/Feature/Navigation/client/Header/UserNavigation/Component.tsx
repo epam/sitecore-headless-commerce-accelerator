@@ -15,42 +15,25 @@
 import * as JSS from 'Foundation/ReactJss/client';
 import * as React from 'react';
 
-import classnames from 'classnames';
-
-import { LoadingStatus } from 'Foundation/Integration/client';
 import { NavigationLink } from 'Foundation/UI/client';
 
 import { UserNavigationProps, UserNavigationState } from './models';
+import { SingIn } from './SingIn';
 import './styles.scss';
 
 export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps, UserNavigationState> {
-  private signInformRef: React.RefObject<HTMLFormElement>;
-  private emailRef: React.RefObject<HTMLInputElement>;
-  private passwordRef: React.RefObject<HTMLInputElement>;
   private popupWrapperRef: React.RefObject<HTMLLIElement>;
 
   constructor(props: UserNavigationProps) {
     super(props);
 
     this.state = {
-      email: '',
-      formValid: true,
       userFormVisible: false,
     };
 
-    this.signInformRef = React.createRef<HTMLFormElement>();
-    this.emailRef = React.createRef<HTMLInputElement>();
-    this.passwordRef = React.createRef<HTMLInputElement>();
     this.popupWrapperRef = React.createRef<HTMLLIElement>();
     this.togglePopup = this.togglePopup.bind(this);
     this.handleOutsidePopupClick = this.handleOutsidePopupClick.bind(this);
-  }
-
-  public componentDidUpdate() {
-    const { authProcess } = this.props;
-    if (authProcess.status === LoadingStatus.Loaded && authProcess.hasValidCredentials) {
-      this.signInformRef.current.submit();
-    }
   }
 
   protected safeRender() {
@@ -80,7 +63,7 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
             </a>
             {userFormVisible && (
               <div className="login-form">
-                {!!commerceUser && commerceUser.customerId ? this.renderUserInfoForm() : this.renderSignInFrom()}
+                {!!commerceUser && commerceUser.customerId ? this.renderUserInfoForm() : <SingIn />}
               </div>
             )}
           </li>
@@ -106,50 +89,6 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
     );
   }
 
-  private renderSignInFrom() {
-    const { authProcess, returnUrl } = this.props;
-    const { email, formValid } = this.state;
-
-    const isLoading = authProcess.status === LoadingStatus.Loading;
-    const isError = authProcess.status === LoadingStatus.Failure;
-    return (
-      <form
-        ref={this.signInformRef}
-        className={classnames('form-member-sign-in', { 'invalid-form': !formValid })}
-        method="POST"
-        action={`/apix/client/commerce/auth/login?returnUrl=${returnUrl}`}
-      >
-        <JSS.Text tag="h2" field={{ value: 'Welcome to HCA', editable: 'Welcome to HCA' }} />
-        <input
-          ref={this.emailRef}
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          required={true}
-          onChange={(e) => this.setState({ email: e.target.value })}
-          disabled={isLoading}
-          value={email}
-        />
-        <input
-          ref={this.passwordRef}
-          type="password"
-          name="password"
-          placeholder="Password"
-          required={true}
-          disabled={isLoading}
-        />
-        {isError && <h5>The email or password you entered is incorrect</h5>}
-        {!formValid && <h5>Please fill the form</h5>}
-        <button className="btn btn-outline-white" onClick={(e) => this.handleSignInButtonClick(e)} disabled={isLoading}>
-          {isLoading && <i className="fa fa-spinner fa-spin" />} Sign in
-        </button>
-        <NavigationLink to="/account/sign-up" className="sign-up">
-          <JSS.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
-        </NavigationLink>
-      </form>
-    );
-  }
-
   private handleOutsidePopupClick(e: any) {
     if (!this.popupWrapperRef.current || this.popupWrapperRef.current.contains(e.target)) {
       return;
@@ -168,28 +107,5 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
     }
 
     this.setState({ userFormVisible: !this.state.userFormVisible });
-  }
-
-  private handleSignInButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-
-    const { StartAuth } = this.props;
-
-    if (!this.emailRef.current.validity.valid || !this.passwordRef.current.validity.valid) {
-      this.setState({
-        formValid: false,
-      });
-      return;
-    }
-
-    if (!this.state.formValid) {
-      this.setState({
-        formValid: true,
-      });
-    }
-
-    const { email } = this.state;
-
-    StartAuth(email, this.passwordRef.current.value);
   }
 }

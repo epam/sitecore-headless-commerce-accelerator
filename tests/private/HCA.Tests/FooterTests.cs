@@ -7,6 +7,7 @@ using UIAutomationFramework.Driver;
 namespace HCA.Tests
 {
     [TestFixture(BrowserType.Chrome)]
+    [UiTest]
     public class FooterTests : HcaWebTest
     {
         public FooterTests(BrowserType browserType) : base(browserType)

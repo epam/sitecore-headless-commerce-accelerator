@@ -5,6 +5,7 @@ using UIAutomationFramework.Driver;
 namespace HCA.Tests
 {
     [TestFixture(BrowserType.Chrome)]
+    [UiTest]
     internal class DemoTest : HcaWebTest
     {
         [SetUp]

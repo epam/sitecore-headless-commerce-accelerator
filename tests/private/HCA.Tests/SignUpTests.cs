@@ -6,6 +6,7 @@ using UIAutomationFramework.Utils;
 namespace HCA.Tests
 {
     [TestFixture(BrowserType.Chrome)]
+    [UiTest]
     internal class SignUpTests : HcaWebTest
     {
         [SetUp]

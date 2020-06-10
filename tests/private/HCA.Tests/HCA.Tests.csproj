@@ -24,4 +24,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="APITests\" />
+  </ItemGroup>
+
 </Project>

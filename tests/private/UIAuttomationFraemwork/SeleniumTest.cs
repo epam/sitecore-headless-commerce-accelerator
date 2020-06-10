@@ -252,7 +252,7 @@ namespace UIAutomationFramework
             {
                 method = Assembly.Load(Configuration.TestProjectAssembly)
                     .GetType(TestContext.CurrentContext.Test.ClassName)
-                    .GetMethod(TestContext.CurrentContext.Test.MethodName);
+                    ?.GetMethod(TestContext.CurrentContext.Test.MethodName);
             }
             catch (Exception e)
             {

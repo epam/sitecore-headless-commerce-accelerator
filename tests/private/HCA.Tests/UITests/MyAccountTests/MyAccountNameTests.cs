@@ -3,7 +3,7 @@ using NUnit.Framework;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Tests.MyAccountTests
+namespace HCA.Tests.UITests.MyAccountTests
 {
     [TestFixture(BrowserType.Chrome)]
     [UiTest]

@@ -9,6 +9,7 @@ jobs:
   - job: Get_build_version
 
     steps:
+
     - task: PowerShell@2
       displayName: 'Get version variable'
       env:
@@ -35,6 +36,8 @@ jobs:
             $BranchVersion = "$(HCA_Version)"
           }
           Write-Host "##vso[task.setvariable variable=BranchVersion]$BranchVersion"
+
+
     - task: Bash@3
       displayName: 'Set version variable'
       inputs:
@@ -50,13 +53,15 @@ jobs:
                 "isSecret": false,
                 "value": "$(HCA_Version_Variable_Group_ID)"
                 },
-              "HCA_Version": {
+                "HCA_Version": {
                 "isSecret": false,
                 "value": "$(BranchVersion)"
                 }
               }
             }' \
             $(System.TeamFoundationCollectionUri)/$(TeamProject)/_apis/distributedtask/variablegroups/$(HCA_Version_Variable_Group_ID)?api-version=5.0-preview.1
+
+
   - job: Set_build_version
     dependsOn: Get_build_version
 
@@ -70,6 +75,35 @@ jobs:
         targetType: 'inline'
         script: |
           Write-Host "##vso[build.updatebuildnumber]$(HCA_Version).$(ReleaseVersionNumber)"
+          Write-Host "##vso[task.setvariable variable=NpmjsVersion]$(HCA_Version).$(ReleaseVersionNumber)"
+
+    - task: Bash@3
+      displayName: 'Set build version variable'
+      inputs:
+        targetType: 'inline'
+        script: |
+          curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
+            -d '{
+              "id": "$(HCA_Version_Variable_Group_ID)",
+              "type": "Vsts",
+              "name": "HCA_Version",
+              "variables": {
+                "HCA_Version_Variable_Group_ID": {
+                "isSecret": false,
+                "value": "$(HCA_Version_Variable_Group_ID)"
+                },
+                "HCA_Version": {
+                "isSecret": false,
+                "value": "$(HCA_Version)"
+                },
+                "HCA_Deploy_Version": {
+                "isSecret": false,
+                "value": "$(NpmjsVersion)"
+                }
+              }
+            }' \
+            $(System.TeamFoundationCollectionUri)/$(TeamProject)/_apis/distributedtask/variablegroups/$(HCA_Version_Variable_Group_ID)?api-version=5.0-preview.1
+
   - job: Build_and_test
     dependsOn: Set_build_version
 
@@ -262,49 +296,3 @@ jobs:
         targetPath: '$(artifacts_location)/unicorn-sync'
         artifact: 'unicorn-sync'
         publishLocation: 'pipeline'
-
-  - job: Publish_repository
-    dependsOn: Build_and_test
-
-    variables:
-      npm_package_config: './generators/package.json'
-
-    steps:
-
-    - task: PowerShell@2
-      displayName: Download node modules
-      inputs:
-        targetType: 'inline'
-        script: 'npm install gulp-cli'
-        workingDirectory: './generators'
-
-    - task: gulp@1
-      displayName: Collect necessary files to templates
-      inputs:
-        gulpFile: './generators/gulpfile.js'
-        targets: 
-        enableCodeCoverage: false
-
-    - task: PowerShell@2
-      displayName: Update package.json
-      inputs:
-        targetType: 'inline'
-        script: |
-          (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(Build.BuildNumber)"' | Set-Content $(npm_package_config)
-    - task: PowerShell@2
-      displayName: Create package
-      inputs:
-        targetType: 'inline'
-        script: 'npm pack'
-        workingDirectory: './generators'
-
-    - task: PowerShell@2
-      displayName: Publish package ot npmjs.com
-      env:
-        npm_auth_token: $(npm_auth_token)
-      inputs:
-        targetType: 'inline'
-        script: |
-          "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
-          npm publish --loglevel=error
-        workingDirectory: './generators'

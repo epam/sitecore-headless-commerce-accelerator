@@ -1,0 +1,49 @@
+# Build using Visual Studio 2017 on Windows Server 2016.
+
+trigger: none
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  npm_package_config: './generators/package.json'
+
+steps:
+
+- task: PowerShell@2
+  displayName: Download node modules
+  inputs:
+    targetType: 'inline'
+    script: 'npm install gulp-cli'
+    workingDirectory: './generators'
+
+- task: gulp@1
+  displayName: Collect necessary files to templates
+  inputs:
+    gulpFile: './generators/gulpfile.js'
+    targets: 
+    enableCodeCoverage: false
+
+- task: PowerShell@2
+  displayName: Update package.json
+  inputs:
+    targetType: 'inline'
+    script: |
+      (Get-Content $(npm_package_config)) -replace '"version": $(quotes_regexp)', '"version": "$(HCA_Deploy_Version)"' | Set-Content $(npm_package_config)
+- task: PowerShell@2
+  displayName: Create package
+  inputs:
+    targetType: 'inline'
+    script: 'npm pack'
+    workingDirectory: './generators'
+
+- task: PowerShell@2
+  displayName: Publish package ot npmjs.com
+  env:
+    npm_auth_token: $(npm_auth_token)
+  inputs:
+    targetType: 'inline'
+    script: |
+      "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
+      npm publish --loglevel=error
+    workingDirectory: './generators'

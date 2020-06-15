@@ -2,16 +2,16 @@
   {
     "key": "a",
     "name": "Foundation & Feature & Project",
-    "value": ["Foundation", "Feature", "Project"]
+    "value": ["Foundation", "Feature", "Project", "Configuration"]
   },
   {
     "key": "b",
     "name": "Foundation & Feature",
-    "value": ["Foundation", "Feature"]
+    "value": ["Foundation", "Feature", "Configuration"]
   },
   {
     "key": "c",
     "name": "Foundation",
-    "value": ["Foundation"]
+    "value": ["Foundation", "Configuration"]
   }
 ]

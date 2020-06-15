@@ -118,12 +118,10 @@ Code Generation Templates/*.tt
 /license.xml
 
 # Front-end artifacts
-/src/Project/HCA/client/build
-/src/Project/HCA/website/dist/
+/src/client/src/Project/HCA/build
 
 # Development environment
-/src/scripts/webpack/environments/development/sitecore-context.json
-
+/src/client/scripts/webpack/environments/development/JssDataApi/sitecore-context.json
 
 # Cake artifacts
 /src/tools/

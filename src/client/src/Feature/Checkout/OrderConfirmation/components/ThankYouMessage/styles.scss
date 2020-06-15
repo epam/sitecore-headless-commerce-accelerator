@@ -1,0 +1,88 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/variables';
+
+.thank-you-bg-wrapper {
+    background-color: #fff;
+    border-bottom: 1px solid $border-color;
+    width: 100%;   
+}
+  
+  /* if necessary: class to remove the right and left padding 15px from bootstrap grid */
+  .nopadding {
+     padding: 0 !important;
+     margin: 0 !important;
+  }
+  
+  .thank-you-content {
+    width: 100%; 
+    padding: 50px 0 30px 0;
+    font-family: $sans-serif;
+    float: left;  
+  
+    @media (min-width: $screen-xs-min) { //480+
+    padding: 50px 0 50px 0; 
+    }
+  
+    @media (min-width: $screen-sm-min) { //768+
+      padding: 50px 0 80px 0; 
+    }
+  
+    .thank-you-col1 {
+      width: 100%; 
+    }
+
+    .thank-you-col2 {
+      width: 100%; 
+    }
+
+    .thank-you-text1 {
+      color: $title-font-color;
+      font-size: 38px;
+      display: block;
+      margin: 0 0 35px 0;
+      text-transform: uppercase;
+    }
+
+    .thank-you-text2 {
+      color: $font-color;
+      font-size: 22px;
+      display: block; 
+      margin: 0 0 10px 0;    
+    }
+  }
+
+  .btn-order-print {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 15px 0 15px;
+    display: none;
+  
+    @media (min-width: $screen-md-min) { //1024+
+      display: inline-block;
+    }
+  
+    i {
+      font-size: 25px;
+    padding: 8px 15px 0 0;
+    display: block;
+    float: left;
+    }
+
+    &:hover {
+      background-color: #fff;
+      color: $main-color;
+    }
+  }

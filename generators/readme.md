@@ -1,6 +1,6 @@
 # Headless Commerce Accelerator Scaffold
 
-[![npm version](https://badge.fury.io/js/hca.svg)](https://badge.fury.io/js/hca)
+[![npm version](https://badge.fury.io/js/generator-hca.svg)](https://badge.fury.io/js/generator-hca)
 
 ## OVERVIEW
 The Headless Commerce Accelerator scaffold is a generator based on [Yeoman](http://yeoman.io/). 
@@ -19,16 +19,16 @@ See readme of [Headless Commerce Accelerator](https://github.com/epam/sitecore-h
 
 #### Initial generation
 1. There are two possible ways to get generator:
-    1. [npmjs.org] `npm i hca`
+    1. [npmjs.org] `npm i generator-hca`
     2. [Manual]
         * Clone repository or update to current version, if you have it already.
-        * In repository `%ROOT%\generators` run Powershell (as Administrator) command `npm link`
+        * In repository `%ROOT%\generators` run Powershell (as Administrator) command `npm link` and `gulp default`
 3. Navigate to a location where you usually store your projects. Create a directory with a customer name (by default folder name would be used as a solution name. Do not include spaces or any special characters in it)
 4. Inside the folder run following PS command (again as Administrator) and follow instructions of the generator.
 
 ``` powershell
 npm i yo -g
-npm i hca -g
+npm i generator-hca -g
 yo hca
 ```
 5. Follow the generator instructions.

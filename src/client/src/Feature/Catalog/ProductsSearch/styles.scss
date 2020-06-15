@@ -1,0 +1,73 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/variables';
+
+.products-search {
+  position: relative;
+  padding: 40px 0 20px;
+  text-transform: uppercase;
+  margin: 0;
+  @media (max-width: $screen-sm-max) {
+    text-transform: none;
+    padding: 20px 0 0;
+  }
+  .search-wrap {
+    position: relative;
+    color: #666;
+    &:before {
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: 20px;
+      width: 20px;
+      text-align: center;
+      line-height: 1;
+      content: "\f002";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      margin-top: -10px;
+    }
+  }
+  form {
+    display: flex;
+    margin-bottom: 0;
+  }
+  input[type=search] {
+    height: 40px;
+    font-size: 18px;
+    padding-left: 36px;
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+  input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  button {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+  }
+
+  .resultLabels {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: $screen-sm-min) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
+  

@@ -6,7 +6,7 @@
 
 #load ./scripts/cake/xunit.cake
 #load ./scripts/cake/coverage.cake
-#load ./scripts/code-generation/generateTypescript.cake
+#load ./scripts/cake/client.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -31,35 +31,17 @@ Sitecore.Parameters.InitParams(
     supportHelix20: "true"
 );
 
+Client.InitParams(
+    context: Context,
+    clientBuildScript: $"build:{Sitecore.Parameters.BuildConfiguration}"
+);
+
 // //////////////////////////////////////////////////
 // Extensions
 // //////////////////////////////////////////////////
 
-Task("Generate-Client-Models")
-    .Does(() =>
-    {
-        var regex = @"^.+[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\](client|code)[/\\].+$";
-
-        var templateFiles = GetFiles($"./../src/*/*/client/**/*.tt");
-        Information($"Found files: {templateFiles.Count}");
-
-        foreach (var templateFile in templateFiles)
-        {
-            Information($"Running client generation in {templateFile}.");
-
-            Regex fileRegex = new Regex(regex);
-            System.Text.RegularExpressions.Match match = fileRegex.Match(templateFile.FullPath);
-            var layer = match.Groups["layerName"];
-            var project = match.Groups["projectName"];
-
-            var tsFile = templateFile.GetDirectory().CombineWithFilePath(new FilePath(templateFile.GetFilenameWithoutExtension() + ".ts"));
-            var dllFile = GetFiles($"./../src/{layer}/{project}/website/**/*.{layer}.{project}.dll").FirstOrDefault();
-
-            generateTypeScript(dllFile, tsFile, templateFile);
-        }
-    });
-
 Task("Generate-Commerce-Code")
+    .IsDependentOn(Client.GenerateCommerceCode)
     .Does(() =>
     {
         Sitecore.Utils.AssertIfNullOrEmpty(Sitecore.Parameters.SrcDir, "SrcDir", "SRC_DIR");
@@ -91,17 +73,19 @@ Task("000-Clean")
 Task("001-Restore")
     .IsDependentOn(Sitecore.Tasks.RestoreNuGetPackagesTask)
     .IsDependentOn(Sitecore.Tasks.RestoreNpmPackagesTaskName)
+    .IsDependentOn(Client.RestoreNpmPackages)
     ;
 
 Task("002-Build")
     .IsDependentOn(Sitecore.Tasks.GenerateCodeTaskName)
-    .IsDependentOn(Sitecore.Tasks.BuildClientCodeTaskName)
+    .IsDependentOn(Client.GenerateCode)
+    .IsDependentOn(Client.BuildCode)
     .IsDependentOn(Sitecore.Tasks.BuildServerCodeTaskName)
     ;
 
 Task("003-Tests")
     .IsDependentOn(XUnitRunner.RunTests)
-    .IsDependentOn(Sitecore.Tasks.RunClientUnitTestsTaskName)
+    .IsDependentOn(Client.RunTests)
     .IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
     .IsDependentOn(Coverage.OutputCoverage)
     ;
@@ -117,6 +101,7 @@ Task("005-Publish")
     .IsDependentOn(Sitecore.Tasks.PublishFoundationTaskName)
     .IsDependentOn(Sitecore.Tasks.PublishFeatureTaskName)
     .IsDependentOn(Sitecore.Tasks.PublishProjectTaskName)
+    .IsDependentOn(Client.Publish)
     ;
 
 Task("006-Sync-Content")
@@ -147,7 +132,9 @@ Task("Client-Build-and-Publish") // LocalDev
     .IsDependentOn(Sitecore.Tasks.PublishProjectTaskName)
     ;
 
-
+Task("Generate-Client-Models")
+    .IsDependentOn(Client.GenerateModels)
+    ;
 
 // //////////////////////////////////////////////////
 // Execution

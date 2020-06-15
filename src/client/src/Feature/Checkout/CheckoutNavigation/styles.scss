@@ -1,0 +1,147 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/variables';
+
+nav.nav-checkout {
+    position: relative;
+    padding-top: 48px;
+    margin-bottom: 20px;
+    @media (max-width: $screen-md-min) {
+      position: top;
+      padding-top: 0px;
+      width: 100%;
+      top: 30px;
+      left: 0;
+      margin-bottom: 68px;
+    }
+    ul {
+      display: table;
+      width: 100%;
+      li {
+        display: table-cell;
+        position: relative;
+        width: 25%;
+        background-color: #d8d8d8;
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-right: 1px solid #c5c5c5;
+        a {
+          display: block;
+          line-height: 32px;
+          color: #5e5e5e;
+          font-weight: 400;
+        }
+        span {
+          display: block;
+          line-height: 32px;
+          color: #5e5e5e;
+          font-weight: 400;
+        }
+        @media (max-width: $screen-md-min) {
+          display: none;
+        }
+        &.active {
+          background-color: $main-color;
+          & a {
+            color: #fff;
+            font-weight: 900;
+          }
+          & span {
+            color: #fff;
+            font-weight: 900;
+          }
+          @media (max-width: $screen-md-min) {
+            display: block;
+            width: 100%;
+            border-right: none;
+          }
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
+      &:after { //background that stretches outside the screen
+        content: "";
+        display: none;
+        background-color: #d8d8d8;
+        height: 32px;
+        position: absolute;
+        top: 48px;
+        width: 1000em;
+        left: -500em;
+        z-index: -1;
+        @media (max-width: $screen-md-min) {
+          top: 0px;
+          background-color: $main-color;
+        }
+      }
+    }
+    span.back-to {
+      position: absolute;
+      top: 16px;
+      left: 0;
+      color: #666666;
+      font-size: 15px;
+      padding: 0 15px;
+      &:before {
+        content: "\f0d9";
+        font-family:"FontAwesome";
+        padding-right: 5px;
+      }
+      @media (max-width: $screen-md-min) {
+        top: -25px;
+      }
+    }
+    span.privacy {
+      position: absolute;
+      right: 0;
+      top: 18px;
+      color: #999999;
+      font-size: 12px;
+      font-weight: 400;
+      text-decoration: underline;
+      text-transform: uppercase;
+      @media (max-width: $screen-md-min) {
+        display: none;
+      }
+    }
+    a.previous-section { //mobile-only link back
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 14px;
+      background-color: #d8d8d8;
+      line-height: 32px;
+      color: #5e5e5e;
+      font-weight: 400;
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0 15px;
+      &:before {
+        content: "\f137";
+        font-family:"FontAwesome";
+        padding-right: 5px;
+      }
+      @media (max-width: $screen-md-min) {
+        display: block;
+  
+      }
+    }
+  }

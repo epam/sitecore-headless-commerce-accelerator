@@ -1,0 +1,61 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import 'Foundation/UI/common/scss/variables';
+
+.social {
+  &-title {
+    margin: 30px 0 10px;
+    color: $nav-font-color;
+    font-family: $sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 20px;  //same height with li items in first column
+    text-transform: uppercase;
+    @media (min-width: $screen-md-min) {
+      margin-top: 0;
+    }
+  }
+  &-list {
+    @include clearfix;
+    margin-top: 3px;
+    margin-right: -7px;
+    margin-left: -7px;
+  }
+  &-item {
+    display: block;
+    //width: 24px;
+    padding: 0 7px;
+    margin-bottom: 8px;
+    float: left;
+  }
+  &-link {
+    display: block;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    color: #000;
+    background: $second-color;
+
+    &:hover {
+      color: #000;
+      background: #fff;
+    }
+  }
+}
+

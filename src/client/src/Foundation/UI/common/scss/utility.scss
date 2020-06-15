@@ -1,0 +1,219 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/mixins';
+// utility classes;
+// hide anything;
+.hide {
+  display: none !important;
+}
+// hidden, but also needs to have it's height/width calculated (so display: none would result in 0);
+.offscreen {
+  top: -9999em;
+  left: -9999em;
+}
+
+.left {float: left !important; }
+.right {float: right !important; }
+.text-left {text-align: left !important; }
+.text-right {text-align: right !important; }
+.text-center {text-align: center !important; }
+.text-justify {text-align: justify !important; }
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+ul.inline,
+ol.inline {
+  margin-left: 0;
+  list-style: none;
+}
+ul.inline > li,
+ol.inline > li {
+  display: inline-block;
+  padding-right: 10px;
+}
+.block{
+  display: block;
+}
+.pad {
+  padding:20px; //-20px is arbitrary. Just wanted a class to give space around containers. Adjust later if needed
+}
+// Windows 8 snap fix;
+// To get IE10 in snap mode does not respect the values set in the META tags;
+@-ms-viewport {
+  width: device-width;
+}
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+@-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+@-moz-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in .5s;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in .5s;
+  animation:fadeIn ease-in .5s;
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+.fade-out {
+  opacity:0;
+  -webkit-animation:fadeOut ease-in .15s;
+  -moz-animation:fadeOut ease-in .15s;
+  animation:fadeOut ease-in .15s;
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+}
+// no transitions in old IE
+.lt-ie10{
+  .fade-in{
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  to {transform: rotate(360deg);}
+}
+ 
+@-webkit-keyframes loading {
+  to {-webkit-transform: rotate(360deg);}
+}
+
+//css spinner 
+.loading {
+  position: relative;
+  //override at the component if need be
+  min-height: 450px; 
+}
+ 
+.loading:before {
+  content: 'Loading…';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  z-index: 10000;
+}
+ 
+.loading:not(:required):before {
+  content: '';
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #000;
+  border-bottom-color: #000;
+  animation: loading .8s ease infinite;
+  -webkit-animation: loading .8s ease infinite;
+  z-index: 10000;
+}
+
+.color-bar {
+  display: block;
+  position: relative; // position: absolute; inside
+
+  &:after {
+    content: '';
+    background: $main-color;
+    display: block;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+}
+
+// .color-title should be used as a wrapper to .color-bar
+.color-title {
+  @include  clearfix;
+  position: relative;
+  font-size: 26px;
+  margin: 16px 0;
+
+  .title {
+    float: left;
+    margin: 0;
+    padding-right: 17px;
+    font-size: inherit;  //should be inherited from .color-title, so .color-bar could be positioned properly
+    line-height: 1em;
+  }
+  .color-bar {
+    overflow: hidden; // cause of ov:h, .color-title uses all free space after floated title
+    font-size: inherit;
+    height: 1em;
+    &:after {
+      top: auto;
+      bottom: .16em; // depend's on header's font-size
+    }
+  }
+}
+
+.star-rating {
+  text-align: center;
+
+  & .star {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    margin-right: 3px;
+    color: $main-color;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:before {
+      content: "\f006";
+    }
+    &.filled {
+      &:before {
+        content: "\f005";
+      }
+    }
+  }
+}
+
+.main{color:$main-color;}
+.focus{color:$focus-color;}
+.no-mobile{
+  @media(max-width: $screen-sm){
+    display: none;
+  }
+}
+.no-margin {
+  margin-right: 0;
+  margin-left: 0;
+}
+.no-padding {
+  padding-right: 0;
+  padding-left: 0;
+}
+.relative {
+  position: relative;
+}

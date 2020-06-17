@@ -47,3 +47,9 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
     artifact: 'node_modules'
     publishLocation: 'pipeline'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/src/client/node_modules'
+    artifact: 'client_node_modules'
+    publishLocation: 'pipeline'

@@ -135,6 +135,16 @@ jobs:
         targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
 
     - task: DownloadPipelineArtifact@2
+      displayName: Download client node modules
+      inputs:
+        buildType: 'specific'
+        project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+        definition: '10'
+        buildVersionToDownload: 'latest'
+        artifactName: 'client_node_modules'
+        targetPath: '$(Pipeline.Workspace)/s/src/client/node_modules'
+
+    - task: DownloadPipelineArtifact@2
       displayName: Download packages
       inputs:
         buildType: 'specific'
@@ -184,11 +194,21 @@ jobs:
         targetType: 'inline'
         script: |
           (Get-Content $(transform_variables_file)) -replace "<appSettings>", "" -replace "</appSettings>", "" | Set-Content $(transform_variables_file)
+
     - task: gulp@1
-      displayName: Gulp code generation
+      displayName: Gulp cs code generation
       inputs:
         gulpFile: './src/scripts/code-generation/codeGen.js'
         targets: 
+        arguments: 'generate-cs'
+        enableCodeCoverage: false
+
+    - task: gulp@1
+      displayName: Gulp ts code generation
+      inputs:
+        gulpFile: './src/client/scripts/code-generation/codeGen.js'
+        targets: 
+        arguments: 'generate-ts'
         enableCodeCoverage: false
 
     - task: PowerShell@2
@@ -197,11 +217,12 @@ jobs:
         targetType: 'inline'
         script: |
           $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
+          $env:path="$env:path;$(Pipeline.Workspace)/s/src/client/node_modules/.bin"
           $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
-          copyfiles -f  ./Project/HCA/client/public/**/* ./Project/HCA/client/build/
+          copyfiles -f  ./src/Project/HCA/client/public/**/* ./src/Project/HCA/build/
           cross-env NODE_ENV=production webpack
-          nuget.exe restore ./HCA.sln
-        workingDirectory: './src/'
+          nuget.exe restore ../HCA.sln
+        workingDirectory: './src/client'
 
     - task: MSBuild@1
       displayName: MSBuild
@@ -244,7 +265,7 @@ jobs:
           ./automation/Get-Artifacts.ps1 Feature
           ./automation/Get-Artifacts.ps1 Foundation
           ./automation/Get-Artifacts.ps1 Project
-          robocopy $(Pipeline.Workspace)/s/src/Project/$(project_name)/client/build $(Pipeline.Workspace)/s/output/Project/dist/$(project_name)/Project/$(project_name) /s
+          robocopy $(Pipeline.Workspace)/s/src/client/src/Project/$(project_name)/build $(Pipeline.Workspace)/s/output/Project/dist/$(project_name)/Project/$(project_name) /s
         errorActionPreference: 'continue'
         ignoreLASTEXITCODE: true
 

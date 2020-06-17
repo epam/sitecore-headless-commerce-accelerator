@@ -583,6 +583,7 @@
     <Compile Include="Services\Account\AccountServiceTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
+    <Compile Include="Services\Delivery\DeliveryServiceTests.cs" />
     <Compile Include="Services\Order\OrderServiceTests.cs" />
     <Compile Include="Services\Search\ProductSearchServiceTests.cs" />
   </ItemGroup>

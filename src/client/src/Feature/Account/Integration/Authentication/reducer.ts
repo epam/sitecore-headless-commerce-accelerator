@@ -15,16 +15,21 @@
 import { Action, LoadingStatus } from 'Foundation/Integration';
 
 import { reducerActionTypes } from './constants';
-import { AuthenticationProcessState, AuthenticationState, SetAuthenticatedPayload } from './models';
+import { AuthenticationProcessState, AuthenticationState, LogoutProcessState, SetAuthenticatedPayload } from './models';
 
 export const initialAuthenticationProcessState: AuthenticationProcessState = {
   hasValidCredentials: false,
   status: LoadingStatus.NotLoaded,
 };
 
+export const initialLogoutProcessState: LogoutProcessState = {
+  status: LoadingStatus.NotLoaded,
+};
+
 export const initialState: AuthenticationState = {
   authenticated: false,
   authenticationProcess: initialAuthenticationProcessState,
+  logoutProcess: initialLogoutProcessState,
 };
 
 export default (state: AuthenticationState = { ...initialState }, action: Action) => {
@@ -42,10 +47,23 @@ export default (state: AuthenticationState = { ...initialState }, action: Action
       };
     }
 
+    case reducerActionTypes.LOGOUT_FAILURE:
+    case reducerActionTypes.LOGOUT_REQUEST:
+    case reducerActionTypes.LOGOUT_SUCCESS: {
+      const { logoutProcess } = state;
+      return {
+        ...state,
+        authenticationProcess: {
+          ...logoutProcess,
+          ...action.payload,
+        },
+      };
+    }
+
     case reducerActionTypes.RESET_AUTHENTICATION_PROCESS_STATE: {
       return {
         ...state,
-        authProcess: initialAuthenticationProcessState,
+        authenticationProcess: initialAuthenticationProcessState,
       };
     }
 

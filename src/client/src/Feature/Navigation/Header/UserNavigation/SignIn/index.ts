@@ -18,7 +18,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import * as Authentication from 'Feature/Account/Integration/Authentication';
 
-import { SingInComponent } from './Component';
+import { SignInComponent } from './Component';
 import { AppState } from './models';
 
 const mapStateToProps = (state: AppState) => {
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const SingIn = connect(mapStateToProps, mapDispatchToProps)(SingInComponent);
+export const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInComponent);

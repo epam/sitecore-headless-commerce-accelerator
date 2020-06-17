@@ -15,9 +15,6 @@
 // tslint:disable:indent array-type
 // tslint:disable: no-use-before-declare
 
-  export interface ValidateCredentialsResultModel {
-    hasValidCredentials: boolean;
-  }
   export interface ShippingInfo {
     shippingMethods: ShippingMethod[];
   }

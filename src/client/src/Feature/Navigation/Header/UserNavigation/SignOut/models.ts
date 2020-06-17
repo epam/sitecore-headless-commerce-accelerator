@@ -12,4 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './api';
+import * as JSS from 'Foundation/ReactJss';
+
+import { GlobalAuthenticationState, LogoutProcessState } from 'Feature/Account/Integration/Authentication';
+
+export interface SignOutDispatchProps {
+  Logout: (returnUrl: string) => void;
+  onLoaded?: () => void;
+}
+
+export interface SignOutStateProps {
+  logoutProcess: LogoutProcessState;
+  returnUrl: string;
+}
+
+export interface SignOutProps extends SignOutDispatchProps, SignOutStateProps {}
+
+export interface AppState extends GlobalAuthenticationState, JSS.RoutingState {}

@@ -126,34 +126,6 @@ nav.user-navigation {
       }
     }
   }
-  .sign-out-form {
-    background-color: $second-color-dark;
-    padding: 20px 30px;
-    position: absolute;
-    right: 0;
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    a {
-      padding: 0;
-      span {
-        display: inline-block;
-      }
-      &.no-margin-bottom {
-        margin-bottom: 0;
-      }
-    }
-    hr {
-      background-color: #fff;
-      height: 3px;
-    }
-    button {
-      margin-bottom: 0px;
-    }
-    .btn+.btn {
-      margin-left: 0;
-    }
-  }
   i {
     color: $nav-font-second-color;
   }

@@ -18,7 +18,8 @@ import * as React from 'react';
 import { NavigationLink } from 'Foundation/UI';
 
 import { UserNavigationProps, UserNavigationState } from './models';
-import { SingIn } from './SingIn';
+import { SignIn } from './SignIn';
+import { SignOut } from './SignOut';
 import './styles.scss';
 
 export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps, UserNavigationState> {
@@ -32,13 +33,13 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
     };
 
     this.popupWrapperRef = React.createRef<HTMLLIElement>();
-    this.togglePopup = this.togglePopup.bind(this);
-    this.handleOutsidePopupClick = this.handleOutsidePopupClick.bind(this);
+    document.addEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
 
   protected safeRender() {
     const { cartQuantity, commerceUser } = this.props;
     const { userFormVisible } = this.state;
+
     return (
       <nav className="user-navigation">
         <ul>
@@ -63,7 +64,11 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
             </a>
             {userFormVisible && (
               <div className="login-form">
-                {!!commerceUser && commerceUser.customerId ? this.renderUserInfoForm() : <SingIn />}
+                {!!commerceUser && commerceUser.customerId ? (
+                  <SignOut onLoaded={this.togglePopup} />
+                ) : (
+                  <SignIn onLoaded={this.togglePopup} />
+                )}
               </div>
             )}
           </li>
@@ -72,40 +77,15 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
     );
   }
 
-  private renderUserInfoForm() {
-    return (
-      <form method="POST" action="/apix/client/commerce/auth/logout" className="sign-out-form">
-        <NavigationLink to="/account" className="btn btn-main">
-          <JSS.Text tag="span" field={{ value: 'My Account', editable: 'My Account' }} />
-        </NavigationLink>
-        <NavigationLink to="/account/order-history" className="btn btn-main no-margin-bottom">
-          <JSS.Text tag="span" field={{ value: 'Order History', editable: 'Order History' }} />
-        </NavigationLink>
-        <hr />
-        <button type="submit" className="btn btn-focus">
-          Sign Out
-        </button>
-      </form>
-    );
-  }
-
-  private handleOutsidePopupClick(e: any) {
-    if (!this.popupWrapperRef.current || this.popupWrapperRef.current.contains(e.target)) {
-      return;
+  private handleOutsidePopupClick(e: MouseEvent) {
+    if (
+      this.popupWrapperRef.current &&
+      !this.popupWrapperRef.current.contains(e.target as Node) &&
+      this.state.userFormVisible
+    ) {
+      this.togglePopup();
     }
-
-    this.togglePopup(e);
   }
 
-  private togglePopup(e: React.MouseEvent<HTMLElement>) {
-    e.preventDefault();
-
-    if (!this.state.userFormVisible) {
-      document.addEventListener('click', this.handleOutsidePopupClick, false);
-    } else {
-      document.removeEventListener('click', this.handleOutsidePopupClick, false);
-    }
-
-    this.setState({ userFormVisible: !this.state.userFormVisible });
-  }
+  private togglePopup = () => this.setState({ userFormVisible: !this.state.userFormVisible });
 }

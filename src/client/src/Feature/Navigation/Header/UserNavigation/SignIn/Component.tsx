@@ -20,19 +20,24 @@ import { NavigationLink } from 'Foundation/UI';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { SingInProps, SingInValues } from './models';
+import { SignInProps, SignInValues } from './models';
 import './styles.scss';
 
-export class SingInComponent extends JSS.SafePureComponent<SingInProps, {}> {
+export class SignInComponent extends JSS.SafePureComponent<SignInProps, {}> {
   public componentWillUnmount() {
     this.props.ResetState();
   }
 
   protected safeRender() {
-    const { authenticationProcess: authProcess, returnUrl } = this.props;
+    const { Authentication, authenticationProcess, returnUrl, onLoaded } = this.props;
 
-    const isLoading = authProcess.status === LoadingStatus.Loading;
-    const isError = authProcess.status === LoadingStatus.Failure;
+    const isLoading = authenticationProcess.status === LoadingStatus.Loading;
+    const isError = authenticationProcess.status === LoadingStatus.Failure;
+
+    if (authenticationProcess.status === LoadingStatus.Loaded && onLoaded) {
+      onLoaded();
+    }
+
     return (
       <Form className="form-sign-in">
         <JSS.Text tag="h2" field={{ value: 'Welcome to HCA', editable: 'Welcome to HCA' }} />
@@ -41,7 +46,7 @@ export class SingInComponent extends JSS.SafePureComponent<SingInProps, {}> {
         {isError && <h5>The email or password you entered is incorrect</h5>}
         <Submit
           className="btn btn-outline-white"
-          onSubmitHandler={(form: SingInValues) => this.props.Authentication(form.email, form.password, returnUrl)}
+          onSubmitHandler={(form: SignInValues) => Authentication(form.email, form.password, returnUrl)}
           disabled={isLoading}
         >
           {isLoading && <i className="fa fa-spinner fa-spin" />}

@@ -20,14 +20,23 @@ export interface AuthenticationPayload {
   returnUrl?: string;
 }
 
+export interface LogoutPayload {
+  returnUrl?: string;
+}
+
 export interface AuthenticationProcessState {
   hasValidCredentials: boolean;
+  status: LoadingStatus;
+}
+
+export interface LogoutProcessState {
   status: LoadingStatus;
 }
 
 export interface AuthenticationState {
   authenticated: boolean;
   authenticationProcess: AuthenticationProcessState;
+  logoutProcess: LogoutProcessState;
 }
 
 export interface GlobalAuthenticationState {

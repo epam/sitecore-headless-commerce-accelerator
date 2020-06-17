@@ -13,13 +13,22 @@
 //    limitations under the License.
 
 import { Action, StatusType } from 'Foundation/Integration';
-import { AuthenticationPayload, AuthenticationProcessSuccessPayload, SetAuthenticatedPayload } from './models';
+import {
+  AuthenticationPayload,
+  AuthenticationProcessSuccessPayload,
+  LogoutPayload,
+  SetAuthenticatedPayload,
+} from './models';
 
-export type InitAuthentication = () => Action;
 export type Authentication = (email: string, passwords: string, returnUrl?: string) => Action<AuthenticationPayload>;
+export type InitAuthentication = () => Action;
+export type Logout = (returnUrl?: string) => Action<LogoutPayload>;
 
 export type AuthenticationRequest = StatusType;
 export type AuthenticationFailure = StatusType;
 export type AuthenticationSuccess = () => Action<AuthenticationProcessSuccessPayload>;
+export type LogoutRequest = StatusType;
+export type LogoutFailure = StatusType;
+export type LogoutSuccess = StatusType;
 export type ResetAuthenticationProcessState = () => Action;
 export type SetAuthenticated = (authenticated: boolean) => Action<SetAuthenticatedPayload>;

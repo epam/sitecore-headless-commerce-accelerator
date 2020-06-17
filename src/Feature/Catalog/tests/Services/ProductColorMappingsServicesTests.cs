@@ -19,22 +19,24 @@ namespace HCA.Feature.Catalog.Tests.Services
     using Catalog.Services;
 
     using Foundation.Base.Providers.SiteSettings;
-    using HCA.Foundation.Base.Tests.Customization;
+
     using Models;
 
     using NSubstitute;
+
     using Ploeh.AutoFixture;
+
     using Sitecore.Data;
 
     using Xunit;
 
     public class ProductColorMappingsServicesTests
     {
+        private readonly IFixture fixture;
+
         private readonly IProductColorMappingsServices service;
 
         private readonly ISiteSettingsProvider siteSettingsProvider;
-
-        private readonly IFixture fixture;
 
         public ProductColorMappingsServicesTests()
         {
@@ -74,7 +76,7 @@ namespace HCA.Feature.Catalog.Tests.Services
                     ColorHEX = hex
                 }
             };
-            
+
             var mappingFolder = Substitute.For<IProductColorMappingFolder>();
             mappingFolder.Mappings.Returns(mappings);
 

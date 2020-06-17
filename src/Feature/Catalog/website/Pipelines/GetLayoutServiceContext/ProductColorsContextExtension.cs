@@ -14,48 +14,31 @@
 
 namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
-    using System.Collections.Generic;
-
-    using Foundation.Base.Providers.SiteSettings;
     using Foundation.ReactJss.Infrastructure;
 
-    using Models;
+    using Services;
 
-    using Sitecore.Data;
     using Sitecore.Diagnostics;
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
     public class ProductColorsContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
-        private readonly ISiteSettingsProvider siteSettingsProvider;
+        private readonly IProductColorMappingsServices productColorMappingsServices;
 
         public ProductColorsContextExtension(
             IConfigurationResolver configurationResolver,
-            ISiteSettingsProvider siteSettingsProvider)
+            IProductColorMappingsServices productColorMappingsServices)
             : base(configurationResolver)
         {
-            Assert.ArgumentNotNull(siteSettingsProvider, nameof(siteSettingsProvider));
+            Assert.ArgumentNotNull(productColorMappingsServices, nameof(productColorMappingsServices));
 
-            this.siteSettingsProvider = siteSettingsProvider;
+            this.productColorMappingsServices = productColorMappingsServices;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            var productColorMapping =
-                this.siteSettingsProvider.GetSetting<IProductColorMappingFolder>(
-                    new ID(ProductColorMappingFolder.TemplateId));
-
-            var dictionary = new Dictionary<string, string>();
-            if (productColorMapping?.Mappings != null)
-            {
-                foreach (var colorMapping in productColorMapping.Mappings)
-                {
-                    dictionary.Add(colorMapping.ColorName, colorMapping.ColorHEX);
-                }
-            }
-
-            args.ContextData.Add("productColors", dictionary);
+            args.ContextData.Add("productColors", this.productColorMappingsServices.GetProductColorMappings());
         }
     }
 }

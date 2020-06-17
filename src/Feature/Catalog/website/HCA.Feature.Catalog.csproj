@@ -598,6 +598,8 @@
     <Compile Include="Pipelines\GetLayoutServiceContext\CategoryContextExtension.cs" />
     <Compile Include="Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IProductColorMappingsServices.cs" />
+    <Compile Include="Services\ProductColorMappingsServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\HCA.Feature.Catalog.config">

@@ -244,6 +244,7 @@
     <Compile Include="Customization\OmitOnRecursionCustomization.cs" />
     <Compile Include="Infrastructure\Pipelines\SafePipelineProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\SiteSettings\SiteSettingsProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -253,6 +254,10 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Connect\website\HCA.Foundation.Connect.csproj">
+      <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
+      <Name>HCA.Foundation.Connect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
@@ -264,6 +269,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -513,6 +513,7 @@
     <Compile Include="Controllers\SearchControllerTests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductColorMappingsServicesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\license.xml">
@@ -538,6 +539,10 @@
     <ProjectReference Include="..\..\..\Foundation\Commerce\website\HCA.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>
       <Name>HCA.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
+      <Project>{0044b0ca-abe2-4365-b1b2-1e347993b4aa}</Project>
+      <Name>HCA.Foundation.GlassMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\website\HCA.Feature.Catalog.csproj">
       <Project>{61042c03-f29b-4215-8a26-09395550b64f}</Project>

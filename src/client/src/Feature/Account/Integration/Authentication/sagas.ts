@@ -23,18 +23,8 @@ import * as AuthenticationApi from '../api/Authentication';
 
 import * as actions from './actions';
 import { sagaActionTypes } from './constants';
-import { AuthenticationPayload } from './models';
+import { AuthenticationPayload, LogoutPayload } from './models';
 import * as selectors from './selectors';
-
-export function* initAuthentication() {
-  const commerceUser: User = yield select(selectors.commerceUser);
-
-  yield put(actions.SetAuthenticated(!!commerceUser && !!commerceUser.contactId));
-}
-
-export function* resetState() {
-  yield put(actions.ResetAuthenticationProcessState());
-}
 
 export function* authentication(action: Action<AuthenticationPayload>) {
   const { payload } = action;
@@ -55,9 +45,35 @@ export function* authentication(action: Action<AuthenticationPayload>) {
   yield put(ChangeRoute(returnUrl || '/'));
 }
 
+export function* initAuthentication() {
+  const commerceUser: User = yield select(selectors.commerceUser);
+
+  yield put(actions.SetAuthenticated(!!commerceUser && !!commerceUser.contactId));
+}
+
+export function* logout(action: Action<LogoutPayload>) {
+  const { returnUrl } = action.payload;
+
+  yield put(actions.LogoutRequest());
+
+  const { error }: Result<VoidResult> = yield call(AuthenticationApi.logout);
+
+  if (error) {
+    return yield put(actions.LogoutFailure());
+  }
+
+  yield put(actions.LogoutSuccess());
+  yield put(ChangeRoute(returnUrl || '/'));
+}
+
+export function* resetState() {
+  yield put(actions.ResetAuthenticationProcessState());
+}
+
 function* watch() {
   yield takeEvery(sagaActionTypes.AUTHENTICATION, authentication);
   yield takeLatest(sagaActionTypes.INIT_AUTHENTICATION, initAuthentication);
+  yield takeEvery(sagaActionTypes.LOGOUT, logout);
   yield takeEvery(sagaActionTypes.RESET_STATE, resetState);
 }
 

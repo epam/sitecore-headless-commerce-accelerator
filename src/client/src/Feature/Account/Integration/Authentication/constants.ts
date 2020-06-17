@@ -22,6 +22,10 @@ export const reducerActionTypes = keyMirrorReducer(
     AUTHENTICATION_REQUEST: null,
     AUTHENTICATION_SUCCESS: null,
 
+    LOGOUT_FAILURE: null,
+    LOGOUT_REQUEST: null,
+    LOGOUT_SUCCESS: null,
+
     RESET_AUTHENTICATION_PROCESS_STATE: null,
 
     SET_AUTHENTICATED: null,
@@ -33,6 +37,7 @@ export const sagaActionTypes = keyMirrorSaga(
   {
     AUTHENTICATION: null,
     INIT_AUTHENTICATION: null,
+    LOGOUT: null,
     RESET_STATE: null,
   },
   AUTHENTICATION_NAMESPACE,

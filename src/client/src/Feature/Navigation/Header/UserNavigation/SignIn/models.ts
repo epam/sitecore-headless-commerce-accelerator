@@ -14,25 +14,23 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import {
-  AuthenticationProcessState,
-  GlobalAuthenticationState,
-} from 'Feature/Account/Integration/Authentication';
+import { AuthenticationProcessState, GlobalAuthenticationState } from 'Feature/Account/Integration/Authentication';
 import { FormValues } from 'Foundation/ReactJss/Form';
 
-export interface SingInDispatchProps {
+export interface SignInDispatchProps {
   Authentication: (email: string, password: string, returnUrl: string) => void;
   ResetState: () => void;
+  onLoaded?: () => void;
 }
 
-export interface SingInStateProps {
+export interface SignInStateProps {
   authenticationProcess: AuthenticationProcessState;
   returnUrl: string;
 }
 
-export interface SingInProps extends SingInDispatchProps, SingInStateProps {}
+export interface SignInProps extends SignInDispatchProps, SignInStateProps {}
 
-export interface SingInValues extends FormValues {
+export interface SignInValues extends FormValues {
   email: string;
   password: string;
 }

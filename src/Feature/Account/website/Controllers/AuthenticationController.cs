@@ -14,7 +14,6 @@
 
 namespace HCA.Feature.Account.Controllers
 {
-    using System;
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
@@ -22,7 +21,7 @@ namespace HCA.Feature.Account.Controllers
     using Foundation.Account.Services.Authentication;
     using Foundation.Base.Controllers;
     using Foundation.Base.Extensions;
-    using Foundation.Commerce.Models.Authentication;
+    using Foundation.Base.Models.Result;
 
     using Models.Requests;
 
@@ -39,58 +38,24 @@ namespace HCA.Feature.Account.Controllers
             this.authenticationService = authenticationService;
         }
 
-        // TODO: Add error transfer to FE
         [HttpPost]
         [ActionName("login")]
-        public ActionResult Login(LoginRequest request, string returnUrl)
+        public ActionResult Login(LoginRequest request)
         {
             return this.Execute(
                 () => this.authenticationService.Login(request.Email, request.Password),
-                result =>
-                {
-                    if (result.Success)
-                    {
-                        //TODO: Redirect can be removed
-                        return this.RedirectOnAuthentication(returnUrl);
-                    }
-
-                    return result.Data != null && result.Data.IsInvalidCredentials
-                        ? this.JsonError(result.Errors?.ToArray(), HttpStatusCode.Forbidden)
-                        : this.Redirect(Constants.Redirects.Login);
-                });
+                result => result.Success
+                    ? this.JsonOk<VoidResult>()
+                    : result.Data != null && result.Data.IsInvalidCredentials
+                        ? this.JsonError(result.Errors?.ToArray(), HttpStatusCode.BadRequest)
+                        : this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError));
         }
 
         [HttpPost]
         [ActionName("logout")]
         public ActionResult Logout()
         {
-            return this.Execute(
-                () => this.authenticationService.Logout(),
-                result => this.RedirectOnAuthentication(null));
-        }
-
-        // TODO: Delete ValidateCredentials
-        [Obsolete("Will be removed")]
-        [HttpPost]
-        [ActionName("start")]
-        public ActionResult ValidateCredentials(LoginRequest request)
-        {
-            var validateCredentialsResultDto = new ValidateCredentialsResultModel
-            {
-                HasValidCredentials = this.authenticationService.ValidateUser(request.Email, request.Password)
-            };
-
-            return this.JsonOk(validateCredentialsResultDto);
-        }
-
-        private ActionResult RedirectOnAuthentication(string returnUrl)
-        {
-            if (string.IsNullOrEmpty(returnUrl))
-            {
-                return this.Redirect(Constants.Redirects.CurrentPage);
-            }
-
-            return this.Redirect(returnUrl);
+            return this.Execute(() => this.authenticationService.Logout());
         }
     }
 }

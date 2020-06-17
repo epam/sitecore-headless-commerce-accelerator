@@ -62,7 +62,6 @@ namespace HCA.Feature.Account.Tests.Controllers
             this.controllerSubstitute = Substitute.For<AuthenticationController>(this.authenticationService);
 
             this.loginRequest = this.fixture.Create<LoginRequest>();
-            this.returnUrl = this.fixture.Create<string>();
         }
 
         [Fact]
@@ -80,7 +79,7 @@ namespace HCA.Feature.Account.Tests.Controllers
                 .Returns(failResult);
 
             // act
-            var jsonResult = this.controller.Login(this.loginRequest, this.returnUrl) as CamelCasePropertyJsonResult;
+            var jsonResult = this.controller.Login(this.loginRequest) as CamelCasePropertyJsonResult;
             var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert
@@ -100,7 +99,7 @@ namespace HCA.Feature.Account.Tests.Controllers
                 .Returns(successResult);
 
             // act
-            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
+            var actionResult = this.controller.Login(this.loginRequest) as RedirectResult;
 
             // assert
             Assert.NotNull(actionResult);
@@ -119,7 +118,7 @@ namespace HCA.Feature.Account.Tests.Controllers
                 .Returns(failResult);
 
             // act
-            var actionResult = this.controller.Login(this.loginRequest, this.returnUrl) as RedirectResult;
+            var actionResult = this.controller.Login(this.loginRequest) as RedirectResult;
 
             // assert
             Assert.NotNull(actionResult);
@@ -130,7 +129,7 @@ namespace HCA.Feature.Account.Tests.Controllers
         public void Login_ShouldCallAuthenticationServiceLogin()
         {
             // act
-            this.controller.Login(this.loginRequest, this.returnUrl);
+            this.controller.Login(this.loginRequest);
 
             // assert
             this.authenticationService.Received(1).Login(this.loginRequest.Email, this.loginRequest.Password);
@@ -140,7 +139,7 @@ namespace HCA.Feature.Account.Tests.Controllers
         public void Login_ShouldCallExecuteMethod()
         {
             // act
-            this.controllerSubstitute.Login(this.loginRequest, this.returnUrl);
+            this.controllerSubstitute.Login(this.loginRequest);
 
             // assert
             this.controllerSubstitute.Received(1)

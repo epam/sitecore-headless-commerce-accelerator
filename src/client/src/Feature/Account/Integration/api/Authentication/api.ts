@@ -28,3 +28,9 @@ export const authentication = async (
     .then((response) => ({ data: response.data }))
     .catch((error) => ({ error }));
 };
+
+export const logout = async (): Promise<Result<VoidResult>> =>
+  axios
+    .post<VoidResult>('/apix/client/commerce/auth/logout')
+    .then((response) => ({ data: response.data }))
+    .catch((error) => ({ error }));

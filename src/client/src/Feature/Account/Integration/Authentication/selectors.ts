@@ -21,3 +21,4 @@ export const commerceUser = (state: SitecoreState<UserContext>) => state.sitecor
 
 export const authentication = (state: GlobalAuthenticationState) => state.authentication;
 export const authenticationProcess = (state: GlobalAuthenticationState) => authentication(state).authenticationProcess;
+export const logoutProcess = (state: GlobalAuthenticationState) => authentication(state).logoutProcess;

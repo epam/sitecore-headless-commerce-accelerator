@@ -25,6 +25,17 @@ export const Authentication: actionCreators.Authentication = (email: string, pas
   type: sagaActionTypes.AUTHENTICATION,
 });
 
+export const InitAuthentication: actionCreators.InitAuthentication = () => ({
+  type: sagaActionTypes.INIT_AUTHENTICATION,
+});
+
+export const Logout: actionCreators.Logout = (returnUrl?: string) => ({
+  payload: {
+    returnUrl,
+  },
+  type: sagaActionTypes.LOGOUT,
+});
+
 export const AuthenticationRequest: actionCreators.AuthenticationRequest = () => ({
   payload: {
     status: LoadingStatus.Loading,
@@ -47,8 +58,25 @@ export const AuthenticationSuccess: actionCreators.AuthenticationSuccess = () =>
   type: reducerActionTypes.AUTHENTICATION_SUCCESS,
 });
 
-export const InitAuthentication: actionCreators.InitAuthentication = () => ({
-  type: sagaActionTypes.INIT_AUTHENTICATION,
+export const LogoutRequest: actionCreators.LogoutRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.LOGOUT_REQUEST,
+});
+
+export const LogoutFailure: actionCreators.LogoutFailure = () => ({
+  payload: {
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.LOGOUT_FAILURE,
+});
+
+export const LogoutSuccess: actionCreators.LogoutSuccess = () => ({
+  payload: {
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.LOGOUT_SUCCESS,
 });
 
 export const ResetAuthenticationProcessState: actionCreators.ResetAuthenticationProcessState = () => ({

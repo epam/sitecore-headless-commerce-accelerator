@@ -1,11 +1,11 @@
 ﻿//    Copyright 2020 EPAM Systems, Inc.
-//
+// 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-//
+// 
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,8 +46,6 @@ namespace HCA.Feature.Account.Tests.Controllers
 
         private readonly LoginRequest loginRequest;
 
-        private readonly string returnUrl;
-
         public AuthenticationControllerTests()
         {
             this.authenticationService = Substitute.For<IAuthenticationService>();
@@ -65,17 +63,19 @@ namespace HCA.Feature.Account.Tests.Controllers
         }
 
         [Fact]
-        public void Login_IfAuthenticationServiceLoginIsNotSuccessAndCredentialsAreNotValid_ShouldReturnErrorResponse()
+        public void Login_IfAuthenticationServiceLoginIsNotSuccessAndCredentialsAreNotValid_ShouldReturnBadRequest()
         {
             // arrange
             var loginResult = this.fixture.Build<LoginResult>()
-                .With(result => result.IsInvalidCredentials, true)
+                .With(res => res.IsInvalidCredentials, true)
                 .Create();
+
             var failResult = new Result<LoginResult>(loginResult)
             {
                 Success = false
             };
-            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
+            this.authenticationService
+                .Login(this.loginRequest.Email, this.loginRequest.Password)
                 .Returns(failResult);
 
             // act
@@ -84,54 +84,47 @@ namespace HCA.Feature.Account.Tests.Controllers
 
             // assert
             Assert.NotNull(errorResult);
-            Assert.Equal(HttpStatusCode.Forbidden, jsonResult?.StatusCode);
+            Assert.Equal(HttpStatusCode.BadRequest, jsonResult?.StatusCode);
         }
 
         [Fact]
-        public void Login_IfAuthenticationServiceLoginIsSuccessAndCredentialsAreValid_ShouldRedirectToReturnUrl()
+        public void
+            Login_IfAuthenticationServiceLoginIsNotSuccessAndCredentialsAreValid_ShouldReturnInternalServerError()
         {
             // arrange
             var loginResult = this.fixture.Build<LoginResult>()
-                .With(result => result.IsInvalidCredentials, false)
+                .With(res => res.IsInvalidCredentials, false)
                 .Create();
-            var successResult = new Result<LoginResult>(loginResult);
-            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
-                .Returns(successResult);
 
-            // act
-            var actionResult = this.controller.Login(this.loginRequest) as RedirectResult;
-
-            // assert
-            Assert.NotNull(actionResult);
-            Assert.Equal(this.returnUrl, actionResult?.Url);
-        }
-
-        [Fact]
-        public void Login_IfLoginIsNotSuccess_ShouldRedirectToLoginPage()
-        {
-            // arrange
-            var failResult = new Result<LoginResult>
+            var result = new Result<LoginResult>(loginResult)
             {
                 Success = false
             };
-            this.authenticationService.Login(this.loginRequest.Email, this.loginRequest.Password)
-                .Returns(failResult);
+            this.authenticationService
+                .Login(this.loginRequest.Email, this.loginRequest.Password)
+                .Returns(result);
 
             // act
-            var actionResult = this.controller.Login(this.loginRequest) as RedirectResult;
+            var jsonResult = this.controller.Login(this.loginRequest) as CamelCasePropertyJsonResult;
+            var errorResult = jsonResult?.Data as ErrorJsonResultModel;
 
             // assert
-            Assert.NotNull(actionResult);
-            Assert.Equal(Constants.Redirects.Login, actionResult?.Url);
+            Assert.NotNull(errorResult);
+            Assert.Equal(HttpStatusCode.InternalServerError, jsonResult?.StatusCode);
         }
 
         [Fact]
-        public void Login_ShouldCallAuthenticationServiceLogin()
+        public void Login_IfAuthenticationServiceLoginIsSuccess_ShouldReturnOK()
         {
+            this.authenticationService
+                .Login(this.loginRequest.Email, this.loginRequest.Password)
+                .Returns(new Result<LoginResult>(this.fixture.Create<LoginResult>()));
+
             // act
-            this.controller.Login(this.loginRequest);
+            var jsonResult = this.controller.Login(this.loginRequest) as CamelCasePropertyJsonResult;
 
             // assert
+            Assert.Equal(HttpStatusCode.OK, jsonResult?.StatusCode);
             this.authenticationService.Received(1).Login(this.loginRequest.Email, this.loginRequest.Password);
         }
 
@@ -155,21 +148,7 @@ namespace HCA.Feature.Account.Tests.Controllers
             this.controllerSubstitute.Logout();
 
             // assert
-            this.controllerSubstitute.Received(1)
-                .Execute(
-                    Arg.Any<Func<Result<VoidResult>>>(),
-                    Arg.Any<Func<Result<VoidResult>, ActionResult>>());
-        }
-
-        [Fact]
-        public void Logout_ShouldRedirectToCurrentPage()
-        {
-            // act
-            var result = this.controller.Logout() as RedirectResult;
-
-            // assert
-            Assert.NotNull(result);
-            Assert.Equal(Constants.Redirects.CurrentPage, result?.Url);
+            this.controllerSubstitute.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
         }
     }
 }

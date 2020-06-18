@@ -34,6 +34,16 @@ steps:
     targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
 
 - task: DownloadPipelineArtifact@2
+  displayName: Download client node modules
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'client_node_modules'
+    targetPath: '$(Pipeline.Workspace)/s/src/client/node_modules'
+
+- task: DownloadPipelineArtifact@2
   displayName: Download NuGet packages
   inputs:
     buildType: 'specific'
@@ -74,6 +84,14 @@ steps:
     filePath: './src/build.ps1'
     arguments: '-Target 003-Tests'
     workingDirectory: './src/'
+
+- task: MSBuild@1
+  displayName: MSBuild all solutions
+  inputs:
+    solution: './src/**/*.csproj'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
 
 - task: PublishCodeCoverageResults@1
   displayName: Publish code coverage

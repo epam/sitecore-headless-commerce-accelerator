@@ -13,26 +13,18 @@
 //    limitations under the License.
 
 import { connect } from 'react-redux';
-import { compose } from 'recompose';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
-
-import { UserNavigationComponent } from './Component';
+import { UserButtonComponent } from './Component';
 import { AppState } from './models';
 
 const mapStateToProps = (state: AppState) => {
-  const cartData = ShoppingCart.shoppingCartData(state);
-  const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
   const commerceUser = JSS.sitecoreContext(state).commerceUser;
 
   return {
-    cartQuantity,
     commerceUser,
   };
 };
 
-const connectedToStore = connect(mapStateToProps);
-
-export const UserNavigation = compose(JSS.rendering, connectedToStore)(UserNavigationComponent);
+export const UserButton = connect(mapStateToProps)(UserButtonComponent);

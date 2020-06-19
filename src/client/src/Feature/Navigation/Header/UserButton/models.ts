@@ -14,6 +14,14 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-export interface UserNavigationProps {}
+import * as Commerce from 'Foundation/Commerce';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+export interface UserButtonProps {
+  commerceUser: Commerce.User;
+}
+
+export interface UserButtonState extends JSS.SafePureComponentState {
+  userFormVisible: boolean;
+}
+
+export interface AppState extends JSS.SitecoreState<Commerce.UserContext> {}

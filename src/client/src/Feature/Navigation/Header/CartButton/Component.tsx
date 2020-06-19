@@ -13,7 +13,22 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
 
-export interface UserNavigationProps {}
+import { NavigationLink } from 'Foundation/UI';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+import { CartButtonProps, CartButtonState } from './models';
+import './styles.scss';
+
+export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, CartButtonState> {
+  protected safeRender() {
+    const { cartQuantity } = this.props;
+
+    return (
+      <NavigationLink className="cart-button user-navigation-btn" to="/cart">
+        <i className="fa fa-shopping-cart">{cartQuantity > 0 && <span className="quantity">{cartQuantity}</span>}</i>
+        <span>Shopping Cart</span>
+      </NavigationLink>
+    );
+  }
+}

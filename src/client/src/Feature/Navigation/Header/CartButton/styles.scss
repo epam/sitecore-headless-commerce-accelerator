@@ -12,8 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+@import 'Foundation/UI/common/scss/variables';
 
-export interface UserNavigationProps {}
+.cart-button {
+  >i {
+    position: relative;
+  }
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+  .quantity {
+    position: absolute;
+    top: -9px;
+    right: -14px;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    font-size: 12px;
+    font-family: $sans-serif;
+    line-height: 18px;
+    text-align: center;
+    color: $font-color;
+    background: #fff;
+    border-radius: 50%;
+  }
+}

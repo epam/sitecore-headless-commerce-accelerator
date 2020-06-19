@@ -15,127 +15,31 @@
 @import 'Foundation/UI/common/scss/variables';
 
 nav.user-navigation {
-  position: relative;
+  display: flex;
+  flex-flow: row;
 
   @media (max-width: $screen-sm-max) {
-    position: static;
-    background: $second-color-dark;
-    height: auto;
-  }
-  li {
-    float: left;
-    @media (max-width: $screen-sm-max) {
-      position: relative;
-      float: none;
-      margin: 5px 0;
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        height: 1px;
-        background: $second-color;
-      }
-      &:last-child {
-        &:after {
-          display: none;
-        }
-      }
-    }
-
-    >a {
-      line-height: 40px;
-      padding: 0 20px;
-      >i {
-        position: relative;
-      }
-      >span {
-        display: none;
-      }
-      @media (max-width: $screen-sm-max) {
-        display: block;
-        padding: 0 25px;
-        >i {
-          margin-right: 10px;
-        }
-        >span {
-          display: inline;
-          color: $nav-font-second-color;
-        }
-      }
-    }
-  }
-  .quantity {
-    position: absolute;
-    top: -9px;
-    right: -14px;
-    display: inline-block;
-    height: 18px;
-    width: 18px;
-    font-size: 12px;
-    font-family: $sans-serif;
-    line-height: 18px;
-    text-align: center;
-    color: $font-color;
-    background: #fff;
-    border-radius: 50%;
-  }
-  .form-member-sign-in {
-    background-color: $second-color-dark;
-    padding: 20px 30px;
-    position: absolute;
-    margin: 0;
-    right: 0;
-    width: 350px;
-    @media (max-width: $screen-sm-max) {
-      min-height: 0;
-    }
-    h2 {
-      color: $sign-in-font-color;
-      margin: 0 0 5px;
-    }
-    &.invalid-form {
-      input {
-        &:invalid {
-          border-color: $focus-color;
-        }
-      }
-    }
-    input[type="password"] {
-      margin-bottom: 10px;
-    }
-    button {
-      margin: 0;
-    }
-    h5 {
-      color: $focus-color
-    }
-    .sign-up {
-      position: absolute;
-      right: 15px;
-      bottom: 30px;
-      color: #fff;
-      span {
-        display: inline-block;
-      }
-      @media (max-width: $screen-sm-max) {
-        position: static;
-        display: block;
-        margin: 20px 0 0;
-      }
-    }
-  }
-  i {
-    color: $nav-font-second-color;
+    flex-flow: column;
   }
 }
 
-.login-form {
-  position: absolute;
-  width: 350px;
-  padding: 10px 30px;
-  right: 0;
-  z-index: 1;
-  background-color: $second-color-dark;
+.user-navigation-btn {
+  line-height: 40px;
+  margin: 0 20px;
+
+  >span {
+    display: none;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    display: block;
+
+    >i {
+      margin-right: 20px;
+    }
+    >span {
+      display: inline;
+      color: $nav-font-second-color;
+    }
+  }
 }

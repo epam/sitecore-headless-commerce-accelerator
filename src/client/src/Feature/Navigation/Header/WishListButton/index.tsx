@@ -13,7 +13,21 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
 
-export interface UserNavigationProps {}
+import { NavigationLink } from 'Foundation/UI';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+import { WishListButtonProps, WishListButtonState } from './models';
+
+export class WishListButtonComponent extends JSS.SafePureComponent<WishListButtonProps, WishListButtonState> {
+  protected safeRender() {
+    return (
+      <NavigationLink className="user-navigation-btn" to="/wishlist">
+        <i className="fa fa-heart" />
+        <span>Wishlist</span>
+      </NavigationLink>
+    );
+  }
+}
+
+export const WishListButton = WishListButtonComponent;

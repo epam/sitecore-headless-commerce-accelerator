@@ -13,7 +13,25 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
 
-export interface UserNavigationProps {}
+import { CartButton } from '../CartButton';
+import { UserButton } from '../UserButton';
+import { WishListButton } from '../WishListButton';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+import { UserNavigationProps, UserNavigationState } from './models';
+import './styles.scss';
+
+export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps, UserNavigationState> {
+  protected safeRender() {
+    return (
+      <nav className="user-navigation">
+        <WishListButton />
+        <CartButton />
+        <UserButton />
+      </nav>
+    );
+  }
+}
+
+export const UserNavigation = JSS.rendering(UserNavigationComponent);

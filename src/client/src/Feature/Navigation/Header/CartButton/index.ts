@@ -12,8 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { connect } from 'react-redux';
 
-export interface UserNavigationProps {}
+import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+import { CartButtonComponent } from './Component';
+import { AppState } from './models';
+
+const mapStateToProps = (state: AppState) => {
+  const cartData = ShoppingCart.shoppingCartData(state);
+  const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
+
+  return {
+    cartQuantity,
+  };
+};
+
+export const CartButton = connect(mapStateToProps)(CartButtonComponent);

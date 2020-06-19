@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-export interface UserNavigationProps {}
+export interface WishListButtonProps {}
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+export interface WishListButtonState extends JSS.SafePureComponentState {}

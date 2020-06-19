@@ -14,6 +14,12 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-export interface UserNavigationProps {}
+import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+export interface CartButtonProps {
+  cartQuantity: number;
+}
+
+export interface CartButtonState extends JSS.SafePureComponentState {}
+
+export interface AppState extends GlobalShoppingCartState {}

@@ -12,8 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+@import 'Foundation/UI/common/scss/variables';
 
-export interface UserNavigationProps {}
+.user-button {
+  position: relative;
+}
 
-export interface UserNavigationState extends JSS.SafePureComponentState {}
+.login-form {
+  position: absolute;
+  width: 350px;
+  padding: 10px 30px;
+  right: 0;
+  z-index: 1;
+  background-color: $second-color-dark;
+}

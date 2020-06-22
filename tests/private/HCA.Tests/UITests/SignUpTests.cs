@@ -14,7 +14,7 @@ namespace HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.HeaderControl.UserButtonClick();
+            _hcaWebSite.HeaderControl.ClickUserButton();
             _hcaWebSite.LoginForm.WaitForPresentForm();
             _hcaWebSite.LoginForm.SignUpClick();
             _hcaWebSite.SignUpPage.WaitForOpened();

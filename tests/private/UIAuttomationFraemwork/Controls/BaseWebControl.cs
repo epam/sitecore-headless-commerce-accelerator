@@ -290,6 +290,12 @@ namespace UIAutomationFramework.Controls
             return Get().FindElements(locator);
         }
 
+        public IWebElement GetChildElement(By locator)
+        {
+            Log(LogLevel.Debug, $"Getting child element of {ElementName}");
+            return Get().FindElement(locator);
+        }
+
         public IEnumerable<IWebElement> GetChildElements(By locator)
         {
             Log(LogLevel.Debug, $"Getting child elements of {ElementName}");

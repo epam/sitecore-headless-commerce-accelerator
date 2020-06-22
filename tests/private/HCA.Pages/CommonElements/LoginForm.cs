@@ -1,4 +1,5 @@
-﻿using UIAutomationFramework.Controls;
+﻿using System;
+using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.CommonElements
@@ -34,8 +35,9 @@ namespace HCA.Pages.CommonElements
         private readonly WebLabel _validationLabel =
             new WebLabel("Validation message", ByCustom.XPath(".//h5"), LoginFormElement);
 
-        public static LoginForm Instance =>
-            _loginForm ??= new LoginForm();
+        public static LoginForm Instance => _loginForm ??= new LoginForm();
+
+        public void VerifyFormNotPresent() => LoginFormElement.VerifyNotPresent();
 
         public void WaitForPresentForm()
         {

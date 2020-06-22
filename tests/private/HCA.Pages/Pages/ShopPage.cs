@@ -1,4 +1,4 @@
-﻿using HCA.Pages.HCAElements;
+﻿using HCA.Pages.ConsantsAndEnums;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 

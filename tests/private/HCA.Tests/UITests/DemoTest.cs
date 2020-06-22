@@ -1,4 +1,6 @@
 ﻿using HCA.Pages;
+using HCA.Pages.ConsantsAndEnums.Header.MainMenu;
+using HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems;
 using NUnit.Framework;
 using UIAutomationFramework.Driver;
 
@@ -26,12 +28,12 @@ namespace HCA.Tests.UITests
         public void CheckoutForAnonymousTest()
         {
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.MainMenuControl.ChooseSubMenuItem("Phones", "Phones");
+            _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
             _hcaWebSite.PhonePage.ChooseProduct("Habitat Athletica Sports Armband Case");
             _hcaWebSite.ProductPage.WaitForOpened();
             _hcaWebSite.ProductPage.AddToCartButtonClick();
-            _hcaWebSite.HeaderControl.CartButtonClick();
+            _hcaWebSite.HeaderControl.ClickCartButton();
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.SetQtyForProduct("Habitat Athletica Sports Armband Case", 4);
             _hcaWebSite.CartPage.FillDiscountField("HABRTRNC15P");
@@ -63,12 +65,12 @@ namespace HCA.Tests.UITests
         public void CheckoutForRegisteredTest()
         {
             _hcaWebSite.OpenHcaAndLogin(_userName, _password);
-            _hcaWebSite.MainMenuControl.ChooseSubMenuItem("Phones", "Phones");
+            _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
             _hcaWebSite.PhonePage.ChooseProduct("Habitat Athletica Sports Armband Case");
             _hcaWebSite.ProductPage.WaitForOpened();
             _hcaWebSite.ProductPage.AddToCartButtonClick();
-            _hcaWebSite.HeaderControl.CartButtonClick();
+            _hcaWebSite.HeaderControl.ClickCartButton();
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.SetQtyForProduct("Habitat Athletica Sports Armband Case", 2);
             _hcaWebSite.CartPage.FillDiscountField("HABRTRNC15P");

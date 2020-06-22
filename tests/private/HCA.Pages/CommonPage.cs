@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Interfaces;
@@ -26,10 +27,9 @@ namespace HCA.Pages
 
         public abstract string GetPath();
 
-        public WebElement GetTittle()
-        {
-            return new WebElement( "Title", ByCustom.XPath("/title"));
-        }
+        public string GetTitleText() =>
+            // TODO:  create overloaded method
+            new WebElement("Page Title", ByCustom.XPath("//title")).GetAttribute("innerHTML");
 
         public virtual void WaitForOpened()
         {

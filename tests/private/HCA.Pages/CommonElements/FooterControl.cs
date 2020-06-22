@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using HCA.Pages.HCAElements.Footer;
+using HCA.Pages.ConsantsAndEnums.Footer;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using UIAutomationFramework.Controls;

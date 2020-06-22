@@ -13,7 +13,7 @@ namespace HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.HeaderControl.UserButtonClick();
+            _hcaWebSite.HeaderControl.ClickUserButton();
             _hcaWebSite.LoginForm.WaitForPresentForm();
         }
 
@@ -78,7 +78,7 @@ namespace HCA.Tests.UITests
             _hcaWebSite.LoginForm.FillPasswordField(_password);
             _hcaWebSite.LoginForm.SignInButtonClick();
             _hcaWebSite.LoginForm.WaitForPresentForm();
-            _hcaWebSite.HeaderControl.UserButtonClick();
+            _hcaWebSite.HeaderControl.ClickUserButton();
             _hcaWebSite.LoginForm.VerifyLoggedUser();
         }
     }

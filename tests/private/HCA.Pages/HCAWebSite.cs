@@ -1,5 +1,5 @@
 ﻿using HCA.Pages.CommonElements;
-using HCA.Pages.HCAElements;
+using HCA.Pages.ConsantsAndEnums;
 using HCA.Pages.Pages;
 using HCA.Pages.Pages.Checkout;
 using HCA.Pages.Pages.MyAccount;
@@ -48,13 +48,13 @@ namespace HCA.Pages
         public void OpenHcaAndLogin(string userName, string password)
         {
             NavigateToMain();
-            HeaderControl.UserButtonClick();
+            HeaderControl.ClickUserButton();
             LoginForm.WaitForPresentForm();
             LoginForm.LogonToHca(userName, password);
             LoginForm.WaitForNotPresentForm();
-            HeaderControl.UserButtonClick();
+            HeaderControl.ClickUserButton();
             LoginForm.VerifyLoggedUser();
-            HeaderControl.UserButtonClick();
+            HeaderControl.ClickUserButton();
             LoginForm.WaitForNotPresentForm();
         }
 
@@ -106,7 +106,7 @@ namespace HCA.Pages
         {
             if (!LoginForm.IsFormPresent())
             {
-                HeaderControl.UserButtonClick();
+                HeaderControl.ClickUserButton();
                 LoginForm.WaitForPresentForm();
             }
 
@@ -118,7 +118,7 @@ namespace HCA.Pages
         {
             if (!LoginForm.IsFormPresent())
             {
-                HeaderControl.UserButtonClick();
+                HeaderControl.ClickUserButton();
                 LoginForm.WaitForPresentForm();
             }
         }
@@ -136,7 +136,7 @@ namespace HCA.Pages
         public void AddProductAndGoToCheckoutShippingPage(int productId)
         {
             AddProductToCart(productId);
-            HeaderControl.CartButtonClick();
+            HeaderControl.ClickCartButton();
             CartPage.VerifyOpened();
             CartPage.WaitForProductsLoaded();
             CartPage.ClickChekoutButton();

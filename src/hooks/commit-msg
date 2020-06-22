@@ -1,0 +1,8 @@
+#!/bin/sh
+INPUT_FILE="..\/$HUSKY_GIT_PARAMS"
+START_LINE=`head -n1 $INPUT_FILE`
+PATTERN="^(US|BUG)[[:digit:]]+ "
+if ! [[ "$START_LINE" =~ $PATTERN ]]; then
+  echo "Bad commit message, the proper format is \"US<Number> | BUG<Number> <Title> <Description>\""
+  exit 1
+fi

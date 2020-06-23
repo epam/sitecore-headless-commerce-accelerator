@@ -32,7 +32,8 @@ import {
   ValidateEmailPayload,
 } from './models';
 import * as selectors from './selectors';
-import { signIn } from './utils';
+
+import { Authentication } from '../Authentication';
 
 export function* create(action: Action<CreateAccountPayload>) {
   const payload: DataModel.CreateAccountRequest = action.payload;
@@ -46,7 +47,7 @@ export function* create(action: Action<CreateAccountPayload>) {
 
   yield put(actions.CreateAccountSuccess(data));
 
-  signIn(payload.email, payload.password);
+  yield put(Authentication(payload.email, payload.password, '/'));
 }
 
 export function* validation(action: Action<ValidateEmailPayload>) {

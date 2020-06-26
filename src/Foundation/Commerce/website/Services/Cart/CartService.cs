@@ -122,13 +122,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
                     productId,
                     variantId)
                 .ToList();
-
-            // TODO: this condition used because for any REMOVE action on FE used UPDATE controller method with 0 quantity. It should be refactored.
-            // If remove this line now, results in analytics table will look like "Items removed: 0"
-            if (quantity != 0)
-            {
-                cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
-            }
+            cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
 
             var response = cartLines.Any()
                 ? quantity == 0

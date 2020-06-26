@@ -90,7 +90,7 @@ namespace HCA.Feature.Checkout.Tests.Controllers
         public void RemoveCartLine_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.RemoveCartLine(this.fixture.Create<RemoveCartLineRequest>());
+            this.controller.RemoveCartLine(this.fixture.Create<string>(), this.fixture.Create<string>());
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());

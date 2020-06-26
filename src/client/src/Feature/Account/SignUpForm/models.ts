@@ -13,28 +13,29 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce';
-import * as Jss from 'Foundation/ReactJss';
+import * as JSS from 'Foundation/ReactJss';
 
 import * as Account from 'Feature/Account/Integration/Account';
 import { CreateAccountRequest } from '../dataModel.Generated';
 
-export interface SignUpOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
+export interface SignUpOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 
 export interface SignUpStateProps {
   accountValidation: Account.AccountValidationState;
   createAccount: Account.CreateState;
   commerceUser: Commerce.User;
   loading: boolean;
+  returnUrl: string;
 }
 
 export interface SignUpDispatchProps {
   AccountValidation: (email: string) => void;
-  CreateAccount: (createAccountDto: CreateAccountRequest) => void;
+  CreateAccount: (createAccountDto: CreateAccountRequest, returnUrl?: string) => void;
   ResetValidation: () => void;
 }
 
 export interface SignUpProps extends SignUpOwnProps, SignUpDispatchProps, SignUpStateProps {}
 
-export interface SignUpOwnState extends Jss.SafePureComponentState {}
+export interface SignUpOwnState extends JSS.SafePureComponentState {}
 
-export interface AppState extends Account.GlobalAccountState, Account.AppState {}
+export interface AppState extends Account.GlobalAccountState, Account.AppState, JSS.RoutingState {}

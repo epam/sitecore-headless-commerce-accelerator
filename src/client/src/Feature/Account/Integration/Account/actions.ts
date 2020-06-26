@@ -20,8 +20,14 @@ import * as DataModel from '../../dataModel.Generated';
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 
-export const CreateAccount: actionCreators.CreateAccount = (createAccountRequest: DataModel.CreateAccountRequest) => ({
-  payload: createAccountRequest,
+export const CreateAccount: actionCreators.CreateAccount = (
+  createAccountRequest: DataModel.CreateAccountRequest,
+  returnUrl?: string,
+) => ({
+  payload: {
+    request: createAccountRequest,
+    returnUrl,
+  },
   type: sagaActionTypes.CREATE,
 });
 

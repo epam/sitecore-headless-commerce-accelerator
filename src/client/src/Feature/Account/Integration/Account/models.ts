@@ -56,7 +56,11 @@ export interface GlobalAccountState {
 
 export interface AppState extends SitecoreState<Commerce.UserContext> {}
 
-export interface CreateAccountPayload extends DataModel.CreateAccountRequest {}
+export interface CreateAccountPayload {
+  returnUrl?: string;
+  request: DataModel.CreateAccountRequest;
+}
+
 export interface ValidateEmailPayload extends DataModel.ValidateEmailRequest {}
 export interface ValidateAccountResultPayload extends Status, Partial<DataModel.ValidateEmailRequest> {}
 export interface ChangePasswordPayload {

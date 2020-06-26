@@ -12,31 +12,34 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as JSS from 'Foundation/ReactJss';
+
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
 import { LoadingStatus } from 'Foundation/Integration';
-import { rendering } from 'Foundation/ReactJss';
 
 import * as Account from 'Feature/Account/Integration/Account';
 
 import Component from './Component';
-import { AppState, SignUpDispatchProps, SignUpOwnProps, SignUpStateProps } from './models';
+import { AppState, SignUpDispatchProps, SignUpStateProps } from './models';
 
-const mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: AppState): SignUpStateProps => {
   const commerceUser = Account.commerceUser(state);
   const signUpState = Account.signUp(state);
+  const returnUrl = JSS.routingLocationPathname(state);
 
   return {
     accountValidation: signUpState.accountValidation,
     commerceUser,
     createAccount: signUpState.create,
     loading: signUpState.create.status === LoadingStatus.Loading,
+    returnUrl,
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
+const mapDispatchToProps = (dispatch: Dispatch): SignUpDispatchProps =>
   bindActionCreators(
     {
       AccountValidation: Account.AccountValidation,
@@ -46,9 +49,4 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-const connectedToStore = connect<SignUpStateProps, SignUpDispatchProps, SignUpOwnProps>(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export const SignUpForm = compose(connectedToStore, rendering)(Component);
+export const SignUpForm = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(Component);

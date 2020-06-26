@@ -26,7 +26,10 @@ import {
   ValidateEmailPayload,
 } from './models';
 
-export type CreateAccount = (createAccountRequest: DataModel.CreateAccountRequest) => Action<CreateAccountPayload>;
+export type CreateAccount = (
+  createAccountRequest: DataModel.CreateAccountRequest,
+  returnUrl?: string,
+) => Action<CreateAccountPayload>;
 export type UpdateAccount = (firstName: string, lastName: string) => Action<UpdateAccountPayload>;
 export type EmailValidation = (email: string) => Action<ValidateEmailPayload>;
 export type ResetValidation = () => Action;

@@ -36,10 +36,10 @@ import * as selectors from './selectors';
 import { Authentication } from '../Authentication';
 
 export function* create(action: Action<CreateAccountPayload>) {
-  const payload: DataModel.CreateAccountRequest = action.payload;
+  const { returnUrl, request } = action.payload;
   yield put(actions.CreateAccountRequest());
 
-  const { data, error }: Result<Commerce.User> = yield call(Api.createAccount, payload);
+  const { data, error }: Result<Commerce.User> = yield call(Api.createAccount, request);
 
   if (error) {
     return yield put(actions.CreateAccountFailure(error.message, error.stack));
@@ -47,7 +47,7 @@ export function* create(action: Action<CreateAccountPayload>) {
 
   yield put(actions.CreateAccountSuccess(data));
 
-  yield put(Authentication(payload.email, payload.password, '/'));
+  yield put(Authentication(request.email, request.password, returnUrl || '/'));
 }
 
 export function* validation(action: Action<ValidateEmailPayload>) {

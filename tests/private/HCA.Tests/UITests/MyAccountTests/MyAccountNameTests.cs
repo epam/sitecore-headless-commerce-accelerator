@@ -1,4 +1,5 @@
 ﻿using HCA.Pages;
+using HCA.Pages.ConsantsAndEnums;
 using NUnit.Framework;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils;
@@ -13,8 +14,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
-            _hcaWebSite.OpenHcaAndLogin(_userName, _password);
-            _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();
         }
 
@@ -23,8 +23,6 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         private HcaWebSite _hcaWebSite;
-        private readonly string _userName = "testuser@test.com";
-        private readonly string _password = "testuser";
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
@@ -39,6 +37,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedName = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("First Name", newGeneratedName);
             _hcaWebSite.MyAccountAccountDetailsSection.SaveChangesClick();
+            _hcaWebSite.NavigateToMain();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountAccountDetailsSection.VerifyFieldValue("First Name", newGeneratedName);
@@ -51,6 +50,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedLastName = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("Last Name", newGeneratedLastName);
             _hcaWebSite.MyAccountAccountDetailsSection.SaveChangesClick();
+            _hcaWebSite.NavigateToMain();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountAccountDetailsSection.VerifyFieldValue("Last Name", newGeneratedLastName);
@@ -65,6 +65,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedLastName = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("First Name", newGeneratedName);
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("Last Name", newGeneratedLastName);
+            _hcaWebSite.NavigateToMain();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountAccountDetailsSection.VerifyFieldValue("First Name", oldName);
@@ -77,6 +78,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             var oldName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("First Name", "");
             _hcaWebSite.MyAccountAccountDetailsSection.SaveChangesClick();
+            _hcaWebSite.NavigateToMain();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountPage.VerifyFieldValue("First Name", oldName);
@@ -88,6 +90,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             var oldLastName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("Last Name", "");
             _hcaWebSite.MyAccountAccountDetailsSection.SaveChangesClick();
+            _hcaWebSite.NavigateToMain();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountPage.VerifyFieldValue("Last Name", oldLastName);

@@ -1,4 +1,5 @@
 ﻿using HCA.Pages;
+using HCA.Pages.ConsantsAndEnums;
 using NUnit.Framework;
 using UIAutomationFramework.Core;
 using UIAutomationFramework.Driver;
@@ -14,8 +15,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
-            _hcaWebSite.OpenHcaAndLogin(_userName, _password);
-            _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();
         }
 
@@ -24,8 +24,6 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         private HcaWebSite _hcaWebSite;
-        private readonly string _userName = "testuser@test.com";
-        private readonly string _password = "testuser";
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
@@ -40,7 +38,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountPage.AddAddressClick();
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
             var newName = _hcaWebSite.MyAccountAddressSection.GetFieldValue("First Name");
-            Assert.True(newName == string.Empty);
+            Assert.IsEmpty(newName);
         }
 
         [Test]
@@ -50,7 +48,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountPage.EditAddressClick();
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
             var newName = _hcaWebSite.MyAccountAddressSection.GetFieldValue("First Name");
-            Assert.True(newName != string.Empty);
+            Assert.IsNotEmpty(newName);
         }
 
         //[Test]
@@ -65,7 +63,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountNewAddressSection.AddAddressClick();
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
             var newName = _hcaWebSite.MyAccountAddressSection.GetFieldValue("First Name");
-            Assert.True(newName == string.Empty);
+            Assert.IsEmpty(newName);
             var firstName = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountNewAddressSection.FillFieldByName("First Name", firstName);
             var lastName = StringUtils.RandomString(10);
@@ -148,7 +146,7 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountAddressSection.AddAddressClick();
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
             var newName = _hcaWebSite.MyAccountAddressSection.GetFieldValue("First Name");
-            Assert.True(newName == string.Empty);
+            Assert.IsEmpty(newName);
             var firstName = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountNewAddressSection.FillFieldByName("First Name", firstName);
             var lastName = StringUtils.RandomString(10);
@@ -172,12 +170,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountAddressSection.AddAddressClick();
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
-            Assert.False(_hcaWebSite.MyAccountNewAddressSection.SaveAddressIsClickable());
+            Assert.False(_hcaWebSite.MyAccountNewAddressSection.SaveAddressIsClickable(), "SaveAddressIsClickable");
             _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
         }
-
-        //[Test]
-        //public void _11_TryToSaveOneBlankFieldTest()
-        //{ }
     }
 }

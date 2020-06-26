@@ -5,6 +5,7 @@ using HCA.Pages.Pages.Checkout;
 using HCA.Pages.Pages.MyAccount;
 using NUnit.Framework;
 using UIAutomationFramework;
+using UIAutomationFramework.Core;
 using UIAutomationFramework.Entities.WebSiteEntities;
 using UIAutomationFramework.Utils;
 
@@ -87,8 +88,8 @@ namespace HCA.Pages
         //TODO create userClass for response
         public string CreateNewUser()
         {
+            Browser.DeleteAllCookies();
             NavigateToMain();
-            LogOut();
             NavigateToPage(SignUpPage);
             var firstName = StringUtils.RandomString(10);
             SignUpPage.FillFieldByName("First Name", firstName);
@@ -98,6 +99,7 @@ namespace HCA.Pages
             SignUpPage.FillFieldByName("Password", "password");
             SignUpPage.FillFieldByName("Confirm Password", "password");
             SignUpPage.ClickSignUp();
+            NavigateToPage(SignUpPage);
             SignUpPage.WaitAccountSignUpSuccessMessage();
             return firstName;
         }

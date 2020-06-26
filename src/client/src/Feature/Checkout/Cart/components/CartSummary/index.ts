@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,8 @@ import { AppState, CartSummaryDispatchProps, CartSummaryOwnProps, CartSummarySta
 
 const mapStateToProps = (state: AppState): CartSummaryStateProps => {
   const shoppingCartState = shoppingCart(state);
-  const isLoading = shoppingCartState.status === LoadingStatus.Loading &&
+  const isLoading =
+    shoppingCartState.status === LoadingStatus.Loading &&
     shoppingCartState.actionType === actionTypes.UPDATE_CART_LINE_REQUEST;
   return { isLoading };
 };
@@ -32,15 +33,16 @@ const mapStateToProps = (state: AppState): CartSummaryStateProps => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
-      UpdateCartLine: actions.UpdateCartLine
+      RemoveCartLine: actions.RemoveCartLine,
+      UpdateCartLine: actions.UpdateCartLine,
     },
-    dispatch
+    dispatch,
   );
 };
 
 const connectedToStore = connect<CartSummaryStateProps, CartSummaryDispatchProps, CartSummaryOwnProps>(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 );
 
 export const CartSummary = connectedToStore(CartSummaryComponent);

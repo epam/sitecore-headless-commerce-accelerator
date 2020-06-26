@@ -16,8 +16,6 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 import { resolveColor } from 'Foundation/Commerce';
 import toggleBar from 'Foundation/UI/common/utility';
 
@@ -31,18 +29,8 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
     super(props);
   }
 
-  public removeCartLine(cartLine: ShoppingCart.ShoppingCartLine, e: any) {
-    console.log(e);
-    const updateCartLineModel: ShoppingCartApi.CartItemDto = {
-      productId: cartLine.product.productId,
-      quantity: 0,
-      variantId: cartLine.variant.variantId,
-    };
-    this.props.UpdateCartLine(updateCartLineModel);
-  }
-
   public safeRender() {
-    const { cartLines, isLoading, productColors, fallbackImageUrl } = this.props;
+    const { cartLines, isLoading, productColors, fallbackImageUrl, UpdateCartLine, RemoveCartLine } = this.props;
 
     return (
       <>
@@ -107,7 +95,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                           <div className="col-sm-6 col-lg-8">
                             <div className="row">
                               <div className="col-lg-5">
-                                <Quantity cartLine={cartLine} UpdateCartLine={this.props.UpdateCartLine} />
+                                <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} />
                               </div>
                               <div className="col-lg-7">
                                 <div className="product-price">
@@ -125,7 +113,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                                   </span>
                                 </div>
                                 <div className="product-actions">
-                                  <a className="action action-remove" onClick={(e) => this.removeCartLine(cartLine, e)}>
+                                  <a className="action action-remove" onClick={(e) => RemoveCartLine(cartLine)}>
                                     <span>Remove Item</span>
                                   </a>
                                   <a className="action action-addToWishlist">

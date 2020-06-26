@@ -1,18 +1,18 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import * as Commerce from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
@@ -37,7 +37,9 @@ export const getShoppingCart = async (): Promise<Result<Commerce.Cart>> => {
   }
 };
 
-export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineRequest): Promise<Result<Commerce.Cart>> => {
+export const addCartItemAsync = async (
+  requestPayload: DataModels.AddCartLineRequest,
+): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.post<GetCartResponse>(`${routeBase}/cartLines/`, requestPayload);
 
@@ -51,7 +53,9 @@ export const addCartItemAsync = async (requestPayload: DataModels.AddCartLineReq
   }
 };
 
-export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartLineRequest): Promise<Result<Commerce.Cart>> => {
+export const updateCartItemAsync = async (
+  requestPayload: DataModels.UpdateCartLineRequest,
+): Promise<Result<Commerce.Cart>> => {
   try {
     const response = await axios.put<GetCartResponse>(`${routeBase}/cartLines/`, requestPayload);
 
@@ -65,14 +69,11 @@ export const updateCartItemAsync = async (requestPayload: DataModels.UpdateCartL
   }
 };
 
-export const removeCartItem = async (requestPayload: DataModels.RemoveCartLineRequest): Promise<Result<string>> => {
-  try {
-    const response = await axios.delete(`${routeBase}/cartLines/`);
-    return { data: response.data };
-  } catch (e) {
-    return { error: e };
-  }
-};
+export const removeCartItem = async (productId: string, variantId: string): Promise<Result<Commerce.Cart>> =>
+  axios
+    .delete(`${routeBase}/cartLines?productId=${productId}&variantId=${variantId}`)
+    .then((response: AxiosResponse<Commerce.Cart>) => ({ data: response.data }))
+    .catch((error) => ({ error }));
 
 export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest): Promise<Result<Commerce.Cart>> => {
   try {

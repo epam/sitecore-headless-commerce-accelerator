@@ -57,9 +57,9 @@ namespace HCA.Feature.Checkout.Controllers
 
         [HttpDelete]
         [ActionName("cartLines")]
-        public ActionResult RemoveCartLine(RemoveCartLineRequest request)
+        public ActionResult RemoveCartLine(string productId, string variantId)
         {
-            return this.Execute(() => this.cartService.RemoveCartLine(request.ProductId, request.VariantId));
+            return this.Execute(() => this.cartService.RemoveCartLine(productId, variantId));
         }
 
         [HttpDelete]

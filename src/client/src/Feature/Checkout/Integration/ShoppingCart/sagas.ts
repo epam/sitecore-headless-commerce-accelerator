@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,6 +24,7 @@ import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
+import { RemoveCartLinePayload } from './models';
 
 import * as Order from '../Order/actionTypes';
 
@@ -69,12 +70,25 @@ export function* updateCartLine(requestData: Action<DataModels.UpdateCartLineReq
   }
 }
 
+export function* removeCartLine(action: Action<RemoveCartLinePayload>) {
+  const { productId, variantId } = action.payload;
+  yield put(actions.RemoveCartLineRequest());
+
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removeCartItem, productId, variantId);
+
+  if (error) {
+    yield put(actions.RemoveCartLineFailure(error.message || 'can not remove cart line'));
+  } else {
+    yield put(actions.RemoveCartLineSuccess(data));
+  }
+}
+
 export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
   const addPromoCodeModel = requestData.payload;
   yield put(actions.AddPromoCodeRequest());
   const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);
 
-  if  (error) {
+  if (error) {
     yield put(actions.AddPromoCodeFailure(error.message || 'can not add promo code'));
   } else {
     yield put(actions.AddPromoCodeSuccess(data));
@@ -86,6 +100,7 @@ function* watch(): SagaIterator {
   yield takeLatest(Order.actionTypes.GET_ORDER_SUCCESS, loadCart);
   yield takeEvery(actionTypes.ADD_TO_CART, addToCart);
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
+  yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
   yield takeEvery(actionTypes.ADD_PROMO_CODE, addPromoCode);
 }
 

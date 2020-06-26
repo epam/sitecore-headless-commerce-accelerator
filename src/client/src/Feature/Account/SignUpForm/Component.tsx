@@ -141,7 +141,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
   }
 
   private handleFormSubmit(formValues: FormValues) {
-    const { CreateAccount } = this.props;
+    const { CreateAccount, returnUrl } = this.props;
 
     const createAccountDto = {
       email: formValues[FORM_FIELDS.EMAIL] as string,
@@ -150,7 +150,7 @@ export default class SignUpFormComponent extends Jss.SafePureComponent<SignUpPro
       password: formValues[FORM_FIELDS.PASSWORD] as string,
     };
 
-    CreateAccount(createAccountDto);
+    CreateAccount(createAccountDto, returnUrl);
   }
 
   private passwordCustomValidator(formValues: FormValues) {

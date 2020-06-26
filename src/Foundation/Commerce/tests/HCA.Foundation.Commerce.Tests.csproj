@@ -582,6 +582,7 @@
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProviderTests.cs" />
     <Compile Include="Services\Account\AccountServiceTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
+    <Compile Include="Services\Billing\BillingServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
     <Compile Include="Services\Delivery\DeliveryServiceTests.cs" />
     <Compile Include="Services\Order\OrderServiceTests.cs" />

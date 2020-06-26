@@ -51,7 +51,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
                 )}
               </div>
               <div className="col-md-4">
-                {shoppingCartData.price && (
+                {shoppingCartData.price && shoppingCartData.cartLines.length !== 0 && (
                   <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
                 )}
               </div>

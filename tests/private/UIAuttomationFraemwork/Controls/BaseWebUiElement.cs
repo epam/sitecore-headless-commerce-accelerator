@@ -103,6 +103,12 @@ namespace UIAutomationFramework.Controls
             return Get(false) != null && IsVisible();
         }
 
+        public bool IsNotPresent()
+        {
+            Log(LogLevel.Debug, $"Getting IsPresent condition from {ElementName}");
+            return Get(false) != null && !IsVisible();
+        }
+
         public void UnFocus()
         {
             Log(LogLevel.Debug, $"Unfocusing {ElementName}");

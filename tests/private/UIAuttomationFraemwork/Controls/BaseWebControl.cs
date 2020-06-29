@@ -37,6 +37,9 @@ namespace UIAutomationFramework.Controls
             }
         }
 
+        public int GetChildElementsCount(WebElement element) => 
+            GetChildElementsCount(element.Locator.GetLocator());
+
         public int GetChildElementsCount(By locator)
         {
             Log(LogLevel.Debug, $"Getting child count of {ElementName} by locator {locator}");

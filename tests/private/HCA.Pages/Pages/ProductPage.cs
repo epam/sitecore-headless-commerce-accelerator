@@ -8,7 +8,7 @@ namespace HCA.Pages.Pages
     {
         private static ProductPage _productPage;
 
-        private readonly WebButton _addToCartButton =
+        private readonly WebButton _addToCartButton = 
             new WebButton("Add to cart", ByCustom.XPath("//button[@title = 'Add to Cart']"));
 
         public static ProductPage Instance => _productPage ??= new ProductPage();
@@ -25,5 +25,7 @@ namespace HCA.Pages.Pages
         {
             _addToCartButton.Click();
         }
+
+        public string GetProductTitle() => new WebElement("Product Title", ByCustom.ClassName("product-title")).GetText();
     }
 }

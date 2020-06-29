@@ -33,5 +33,10 @@ namespace UIAutomationFramework.Entities.WebSiteEntities
         {
             Navigate(UriManager.AddPostfix(Uri, page.GetPath()));
         }
+
+        public void NavigateToPage(IPage page, string parameter)
+        {
+            Navigate(UriManager.AddPostfix(Uri, page.GetPath()+"/"+parameter));
+        }
     }
 }

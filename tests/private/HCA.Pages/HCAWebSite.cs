@@ -37,14 +37,15 @@ namespace HCA.Pages
         public CheckoutPaymentPage CheckoutPaymentPage => CheckoutPaymentPage.Instance;
         public CheckoutConfirmationPage CheckoutConfirmationPage => CheckoutConfirmationPage.Instance;
         public MyAccountPage MyAccountPage => MyAccountPage.Instance;
+        public ShopPage ShopPage => ShopPage.Instance;
 
-        public MyAccountAccountDetailsSection MyAccountAccountDetailsSection =>
-            MyAccountAccountDetailsSection.Instance;
-
+        public MyAccountAccountDetailsSection MyAccountAccountDetailsSection => MyAccountAccountDetailsSection.Instance;
         public MyAccountNewAddressSection MyAccountNewAddressSection => MyAccountNewAddressSection.Instance;
-
         public MyAccountAddressSection MyAccountAddressSection => MyAccountAddressSection.Instance;
         public MyAccountChangePasswordSection MyAccountChangePasswordSection => MyAccountChangePasswordSection.Instance;
+        public ProductsFilterSection ProductsFilterSection => ProductsFilterSection.Instance;
+        public ProductGridSection ProductGridSection => ProductGridSection.Instance;
+
 
         public void OpenHcaAndLogin(string userName, string password)
         {
@@ -179,7 +180,7 @@ namespace HCA.Pages
                 case PagePrefix.Account:
                 case PagePrefix.AccountOrderHistory:
                     var user = Configuration.GetDefaultUserLogin();
-                    _hcaWebSite.OpenHcaAndLogin(user.Email,user.Password);
+                    _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);
                     _hcaWebSite.NavigateToPage(pagePrefix.GetPrefix());
                     break;
                 default:

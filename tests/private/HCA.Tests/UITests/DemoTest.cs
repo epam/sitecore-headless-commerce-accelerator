@@ -30,7 +30,7 @@ namespace HCA.Tests.UITests
             _hcaWebSite.NavigateToMain();
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
-            _hcaWebSite.PhonePage.ChooseProduct("Habitat Athletica Sports Armband Case");
+            _hcaWebSite.ProductGridSection.ChooseProduct("Habitat Athletica Sports Armband Case");
             _hcaWebSite.ProductPage.WaitForOpened();
             _hcaWebSite.ProductPage.AddToCartButtonClick();
             _hcaWebSite.HeaderControl.ClickCartButton();
@@ -67,7 +67,7 @@ namespace HCA.Tests.UITests
             _hcaWebSite.OpenHcaAndLogin(_userName, _password);
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
-            _hcaWebSite.PhonePage.ChooseProduct("Habitat Athletica Sports Armband Case");
+            _hcaWebSite.ProductGridSection.ChooseProduct("Habitat Athletica Sports Armband Case");
             _hcaWebSite.ProductPage.WaitForOpened();
             _hcaWebSite.ProductPage.AddToCartButtonClick();
             _hcaWebSite.HeaderControl.ClickCartButton();

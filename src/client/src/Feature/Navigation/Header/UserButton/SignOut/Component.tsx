@@ -39,7 +39,7 @@ export class SignOutComponent extends JSS.SafePureComponent<SignOutProps, {}> {
           <JSS.Text tag="span" field={{ value: 'Order History', editable: 'Order History' }} />
         </NavigationLink>
         <hr />
-        <Button className="btn btn-focus" onClick={() => Logout(returnUrl)} buttonText="Sugn out" />
+        <Button className="btn btn-focus" onClick={() => Logout(returnUrl)} buttonText="Sign out" />
       </div>
     );
   }

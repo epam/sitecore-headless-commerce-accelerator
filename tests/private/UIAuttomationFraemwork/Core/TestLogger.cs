@@ -176,7 +176,7 @@ namespace UIAutomationFramework.Core
 
             if (logLevel.Equals(LogLevel.Debug))
             {
-                Console.WriteLine(message);
+                //Console.WriteLine(message);
                 GetThreadLogger().GetLogger("Debug").Debug(e, message);
             }
             else if (logLevel.Equals(LogLevel.Info))

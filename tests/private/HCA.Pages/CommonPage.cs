@@ -86,8 +86,8 @@ namespace HCA.Pages
         public void VerifyFieldError(string nameField, string text)
         {
             var fieldContainer = FindFieldContainer(nameField);
-            var errorMessage = new WebTextField($"Error message {nameField}",
-                ByCustom.XPath("./span"), fieldContainer);
+            var errorMessage = new WebLabel($"Error message {nameField}",
+                ByCustom.XPath("./span[@class = 'form-field-error-message']"), fieldContainer);
             errorMessage.IsPresent();
             errorMessage.VerifyText(text);
         }

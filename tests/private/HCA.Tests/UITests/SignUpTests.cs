@@ -1,10 +1,13 @@
 ﻿using HCA.Pages;
+using HCA.Pages.ConsantsAndEnums;
 using NUnit.Framework;
+using UIAutomationFramework;
 using UIAutomationFramework.Driver;
 using UIAutomationFramework.Utils;
 
 namespace HCA.Tests.UITests
 {
+    [Parallelizable(ParallelScope.All)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class SignUpTests : HcaWebTest
@@ -14,10 +17,7 @@ namespace HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.HeaderControl.ClickUserButton();
-            _hcaWebSite.LoginForm.WaitForPresentForm();
-            _hcaWebSite.LoginForm.SignUpClick();
-            _hcaWebSite.SignUpPage.WaitForOpened();
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp);
         }
 
         public SignUpTests(BrowserType browserType) : base(browserType)
@@ -25,8 +25,6 @@ namespace HCA.Tests.UITests
         }
 
         private HcaWebSite _hcaWebSite;
-
-        private readonly string _existsUser = "";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -41,13 +39,13 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void BlankFormTest()
+        public void _01_BlankFormTest()
         {
             Assert.False(_hcaWebSite.SignUpPage.SignUpIsClickable());
         }
 
         [Test]
-        public void ConfirmPasswordDoesNotMatchTest()
+        public void _02_ConfirmPasswordDoesNotMatchTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -59,20 +57,19 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void ExistsUserTest()
+        public void _03_AddExistsUserTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
-            //TODO: create generation email function
-            _hcaWebSite.SignUpPage.FillFieldByName("Email", _existsUser);
+            var user = Configuration.GetDefaultUserLogin();
+            _hcaWebSite.SignUpPage.FillFieldByName("Email", user.Email);
             _hcaWebSite.SignUpPage.FillFieldByName("Password", "password");
             _hcaWebSite.SignUpPage.FillFieldByName("Confirm Password", "password");
             _hcaWebSite.SignUpPage.VerifyFieldError("Email", "Email is already in use!");
-            Assert.False(_hcaWebSite.SignUpPage.SignUpIsClickable());
         }
 
         [Test]
-        public void InvalidEmalTest()
+        public void _04_InvalidEmalTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -85,13 +82,12 @@ namespace HCA.Tests.UITests
 
 
         [Test]
-        public void SuccessTest()
+        public void _05_SuccessTest()
         {
             var firstName = StringUtils.RandomString(10);
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", firstName);
             var lastName = StringUtils.RandomString(10);
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", lastName);
-            //TODO: create generation email function
             _hcaWebSite.SignUpPage.FillFieldByName("Email", $"{firstName}@mail.com");
             _hcaWebSite.SignUpPage.FillFieldByName("Password", "password");
             _hcaWebSite.SignUpPage.FillFieldByName("Confirm Password", "password");

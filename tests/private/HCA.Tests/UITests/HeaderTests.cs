@@ -1,4 +1,5 @@
-﻿using HCA.Pages;
+﻿using System.Threading;
+using HCA.Pages;
 using HCA.Pages.CommonElements;
 using HCA.Pages.ConsantsAndEnums;
 using HCA.Pages.ConsantsAndEnums.Header;
@@ -9,7 +10,9 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
-    [UiTest, TestFixture(BrowserType.Chrome)]
+    [Parallelizable(ParallelScope.All)]
+    [TestFixture(BrowserType.Chrome)]
+    [HeaderTest]
     public class HeaderTests : HcaWebTest
     {
         private HcaWebSite _hcaWebSite;
@@ -19,8 +22,8 @@ namespace HCA.Tests.UITests
 
         public HeaderTests(BrowserType browserType) : base(browserType) { }
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
+        [SetUp]
+        public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
             _mainMenuControl = _hcaWebSite.MainMenuControl;

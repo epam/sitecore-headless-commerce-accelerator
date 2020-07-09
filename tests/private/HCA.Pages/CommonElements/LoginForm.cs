@@ -69,6 +69,12 @@ namespace HCA.Pages.CommonElements
             _signInButton.Click();
         }
 
+        public void VerifySignInButtonNotClickable()
+        {
+            _signInButton.VerifyNotClickable();
+
+        }
+
         public void SignUpClick()
         {
             _signUpLink.Click();

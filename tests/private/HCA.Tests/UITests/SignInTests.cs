@@ -1,9 +1,11 @@
 ﻿using HCA.Pages;
 using NUnit.Framework;
+using UIAutomationFramework;
 using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
+    [Parallelizable(ParallelScope.All)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class SignInTests : HcaWebTest
@@ -13,8 +15,7 @@ namespace HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.HeaderControl.ClickUserButton();
-            _hcaWebSite.LoginForm.WaitForPresentForm();
+            _hcaWebSite.OpenUserMenu();
         }
 
         public SignInTests(BrowserType browserType) : base(browserType)
@@ -22,9 +23,6 @@ namespace HCA.Tests.UITests
         }
 
         private HcaWebSite _hcaWebSite;
-        private readonly string _userName = "";
-        private readonly string _password = "";
-        private readonly string _incorrectPassword = "";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -33,49 +31,50 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void BlankFormTest()
+        public void _01_BlankFormTest()
         {
-            _hcaWebSite.LoginForm.SignInButtonClick();
-            _hcaWebSite.LoginForm.VerifyValidationMessage("Please fill the form");
+            _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void BlankPasswordTest()
+        public void _02_BlankPasswordTest()
         {
-            _hcaWebSite.LoginForm.FillUserNameField(_userName);
-            _hcaWebSite.LoginForm.SignInButtonClick();
-            _hcaWebSite.LoginForm.VerifyValidationMessage("Please fill the form");
+            var user = Configuration.GetDefaultUserLogin();
+            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
+            _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void BlankUserNameTest()
+        public void _03_BlankUserNameTest()
         {
-            _hcaWebSite.LoginForm.FillPasswordField(_password);
-            _hcaWebSite.LoginForm.SignInButtonClick();
-            _hcaWebSite.LoginForm.VerifyValidationMessage("Please fill the form");
+            var user = Configuration.GetDefaultUserLogin();
+            _hcaWebSite.LoginForm.FillPasswordField(user.Password);
+            _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void ClickCreateAccountTest()
+        public void _04_ClickCreateAccountTest()
         {
             _hcaWebSite.LoginForm.SignUpClick();
             _hcaWebSite.SignUpPage.WaitForOpened();
         }
 
         [Test]
-        public void IncorrectPasswordTest()
+        public void _05_IncorrectPasswordTest()
         {
-            _hcaWebSite.LoginForm.FillUserNameField(_userName);
-            _hcaWebSite.LoginForm.FillPasswordField(_incorrectPassword);
+            var user = Configuration.GetDefaultUserLogin();
+            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
+            _hcaWebSite.LoginForm.FillPasswordField(user.Password + "_1");
             _hcaWebSite.LoginForm.SignInButtonClick();
             _hcaWebSite.LoginForm.VerifyValidationMessage("The email or password you entered is incorrect");
         }
 
         [Test]
-        public void SuccessTest()
+        public void _06_SuccessSignInTest()
         {
-            _hcaWebSite.LoginForm.FillUserNameField(_userName);
-            _hcaWebSite.LoginForm.FillPasswordField(_password);
+            var user = Configuration.GetDefaultUserLogin();
+            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
+            _hcaWebSite.LoginForm.FillPasswordField(user.Password);
             _hcaWebSite.LoginForm.SignInButtonClick();
             _hcaWebSite.LoginForm.WaitForPresentForm();
             _hcaWebSite.HeaderControl.ClickUserButton();

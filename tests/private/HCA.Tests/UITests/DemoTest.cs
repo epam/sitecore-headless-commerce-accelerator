@@ -6,6 +6,7 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
+    [Parallelizable(ParallelScope.All)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class DemoTest : HcaWebTest

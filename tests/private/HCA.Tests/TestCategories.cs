@@ -18,4 +18,11 @@ namespace HCA.Tests
         {
         }
     }
+
+    public class HeaderTestAttribute : CategoryAttribute
+    {
+        public HeaderTestAttribute() : base("HeaderTest")
+        {
+        }
+    }
 }

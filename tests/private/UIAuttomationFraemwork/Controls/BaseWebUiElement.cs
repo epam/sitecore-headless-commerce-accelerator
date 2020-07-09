@@ -139,6 +139,11 @@ namespace UIAutomationFramework.Controls
             Assert.IsTrue(IsClickable(), message);
         }
 
+        public void VerifyNotClickable(string message = "The element is click able")
+        {
+            Log(LogLevel.Debug, $"Verifying not clickable, {ElementName}");
+            Assert.IsTrue(!IsClickable(), message);
+        }
         public void VerifyTextIgnoreCase(string text, string message = "The text of element is not as expected")
         {
             Log(LogLevel.Debug, $"Verifying text ignoring case, {ElementName}");

@@ -6,7 +6,9 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
-    [UiTest, TestFixture(BrowserType.Chrome)]
+    [UiTest]
+    [Parallelizable(ParallelScope.All)]
+    [TestFixture(BrowserType.Chrome)]
     public class ShopPageTests : HcaWebTest
     {
         private readonly HcaWebSite _hcaWebSite;

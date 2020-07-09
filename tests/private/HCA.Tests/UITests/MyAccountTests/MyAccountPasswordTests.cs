@@ -7,6 +7,7 @@ using UIAutomationFramework.Utils;
 
 namespace HCA.Tests.UITests.MyAccountTests
 {
+    [Parallelizable(ParallelScope.All)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class MyAccountPasswordTests : HcaWebTest

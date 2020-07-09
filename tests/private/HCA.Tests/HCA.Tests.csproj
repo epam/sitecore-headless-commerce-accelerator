@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HCA.Api.Core\HCA.Api.Core.csproj" />
     <ProjectReference Include="..\HCA.Pages\HCA.Pages.csproj" />
   </ItemGroup>
 

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCA.Pages", "HCA.Pages\HCA.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCA.Tests", "HCA.Tests\HCA.Tests.csproj", "{EE570FA6-AC10-4269-BBD5-735BC82C3BB6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HCA.Api.Core", "HCA.Api.Core\HCA.Api.Core.csproj", "{3919F4C9-F4D2-49AC-BD06-0383AB32F869}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EE570FA6-AC10-4269-BBD5-735BC82C3BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE570FA6-AC10-4269-BBD5-735BC82C3BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE570FA6-AC10-4269-BBD5-735BC82C3BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3919F4C9-F4D2-49AC-BD06-0383AB32F869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3919F4C9-F4D2-49AC-BD06-0383AB32F869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3919F4C9-F4D2-49AC-BD06-0383AB32F869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3919F4C9-F4D2-49AC-BD06-0383AB32F869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

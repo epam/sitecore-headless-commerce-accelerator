@@ -39,6 +39,5 @@ export interface ShippingProps extends ShippingOwnProps, ShippingStateProps, Shi
 
 export interface ShippingState extends Jss.SafePureComponentState {
   selectedAddressOption: string;
-  disableSaveToMyAccount: boolean;
 }
 export interface AppState extends Checkout.GlobalCheckoutState, Checkout.AppState {}

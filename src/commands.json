@@ -14,11 +14,6 @@
       "fileName": "powershell.exe",
       "workingDirectory": ".",
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \".\\build.ps1 -Target=Generate-Client-Models\""
-    },
-    "Client-Build-and-Publish": {
-      "fileName": "powershell.exe",
-      "workingDirectory": ".",
-      "arguments": "-ExecutionPolicy Bypass -NonInteractive -Command \".\\build.ps1 -Target=Client-Build-and-Publish\""
     }
   }
 }

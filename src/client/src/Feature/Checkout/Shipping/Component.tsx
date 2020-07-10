@@ -31,9 +31,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     super(props);
     const { commerceUser } = this.props;
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
-    const disableSaveToMyAccount = !(commerceUser && commerceUser.customerId);
     this.state = {
-      disableSaveToMyAccount,
       selectedAddressOption,
     };
   }
@@ -47,6 +45,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   // tslint:disable-next-line: no-big-function
   protected safeRender() {
     const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser } = this.props;
+    const isLoggedIn = commerceUser && commerceUser.customerId;
 
     return (
       <Form>
@@ -203,9 +202,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   </li>
                 </ul>
               </div>
-              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && (
+              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && isLoggedIn && (
                 <div className="col-sm-6">
-                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account"  disabled={this.state.disableSaveToMyAccount} />
+                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
                   <label htmlFor="save-to-account">
                     <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
                     <Text field={{ value: 'My Account.' }} tag="strong" />

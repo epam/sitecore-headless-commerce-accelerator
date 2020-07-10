@@ -127,11 +127,6 @@ Task("Build-and-Publish") // LocalDev
     .IsDependentOn("005-Publish")
     ;
 
-Task("Client-Build-and-Publish") // LocalDev
-    .IsDependentOn(Sitecore.Tasks.BuildClientCodeTaskName)
-    .IsDependentOn(Sitecore.Tasks.PublishProjectTaskName)
-    ;
-
 Task("Generate-Client-Models")
     .IsDependentOn(Client.GenerateModels)
     ;

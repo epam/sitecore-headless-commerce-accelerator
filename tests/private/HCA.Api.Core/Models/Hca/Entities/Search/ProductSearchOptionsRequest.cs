@@ -15,7 +15,7 @@ namespace HCA.Api.Core.Models.Hca.Entities.Search
 
         public SortDirection SortDirection { get; set; }
 
-        public int PageNumber { get; set; }
+        public int? PageNumber { get; set; }
 
         public int PageSize { get; set; }
     }

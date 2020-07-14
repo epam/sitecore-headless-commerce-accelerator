@@ -9,7 +9,7 @@ namespace HCA.Api.Core.Models.Hca.Entities.Cart
     {
         public string Id { get; set; }
 
-        public string Email { get; internal set; }
+        public string Email { get; set; }
 
         public TotalPrice Price { get; set; }
 

@@ -6,6 +6,6 @@
 
         public int Quantity { get; set; }
 
-        public string VariantId => 5 + ProductId;
+        public string VariantId { get; set; }
     }
 }

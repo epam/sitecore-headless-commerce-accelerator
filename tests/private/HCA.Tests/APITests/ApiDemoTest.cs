@@ -36,7 +36,7 @@ namespace HCA.Tests.APITests
         public ApiDemoTest(UserState state) => _isNeedToSignIn = Convert.ToBoolean(state);
 
         [SetUp]
-        public void SetUp() => 
+        public void SetUp() =>
             Assume.That(_stopTests, Is.False);
 
         [TearDown]
@@ -78,7 +78,8 @@ namespace HCA.Tests.APITests
             var productForCard = new AddCartLinesRequest()
             {
                 Quantity = 1,
-                ProductId = _productId
+                ProductId = _productId,
+                VariantId = 5 + _productId
             };
 
             var cart = _hcaService.AddCartLines(productForCard);
@@ -159,7 +160,7 @@ namespace HCA.Tests.APITests
             };
 
             var paymentTokenResult = _braintreeApiService.GetPaymentToken(creditCard);
-            
+
             Assert.True(paymentTokenResult.IsSuccessful, "TokenizeCreditCard response is not passed");
             Assert.IsNotEmpty(_token, "The token is Empty");
 

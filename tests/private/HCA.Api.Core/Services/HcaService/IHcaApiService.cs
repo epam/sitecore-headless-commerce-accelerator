@@ -41,6 +41,6 @@ namespace HCA.Api.Core.Services.HcaService
 
         HcaResponse<OrderConfirmationResult> SubmitOrder(string endpoint = "checkout/orders");
 
-        HcaResponse<OrderResult> GetOrder(string confirmationId, string endpoint = "orders");
+        HcaResponse<OrderResult> GetOrder(string trackingNumber, string endpoint = "orders");
     }
 }

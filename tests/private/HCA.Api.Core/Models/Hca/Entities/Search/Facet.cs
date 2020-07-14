@@ -8,7 +8,7 @@ namespace HCA.Api.Core.Models.Hca.Entities.Search
 
         public IList<FacetValue> FoundValues { get; set; }
 
-        public IList<object> Values { get; set; }
+        public IList<string> Values { get; set; }
 
         public string Name { get; set; }
     }

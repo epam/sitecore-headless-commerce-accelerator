@@ -4,10 +4,10 @@
         where TData : class
         where TErrors : class
     {
-        public bool IsSuccessful { get; set; }
+        bool IsSuccessful { get; set; }
 
-        public TData OkResponseData { get; set; }
+        TData OkResponseData { get; set; }
 
-        public TErrors Errors { get; set; }
+        TErrors Errors { get; set; }
     }
 }

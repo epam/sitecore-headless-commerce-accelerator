@@ -37,7 +37,7 @@ namespace HCA.Api.Core.Services.HcaService
             ExecuteJsonRequest<LoginResult>(endpoint, Method.POST, loginData);
 
         public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account") =>
-            ExecuteJsonRequest<UserResult>(endpoint, Method.POST, GetAbsoluteUri(endpoint));
+            ExecuteJsonRequest<UserResult>(endpoint, Method.POST, newUser);
 
         public HcaResponse<IEnumerable<Address>> AddAddress(Address newAddress, string endpoint = "accounts/address") =>
             ExecuteJsonRequest<IEnumerable<Address>>(endpoint, Method.POST, newAddress);

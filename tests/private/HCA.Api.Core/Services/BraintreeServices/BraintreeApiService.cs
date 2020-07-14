@@ -5,7 +5,6 @@ using HCA.Api.Core.Services.RestService;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using UIAutomationFramework;
 
 namespace HCA.Api.Core.Services.BraintreeServices

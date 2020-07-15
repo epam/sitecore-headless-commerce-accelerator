@@ -17,11 +17,15 @@ import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
+import * as StoreLocator from 'Feature/StoreLocator';
 
 const components = new Map<string, any>();
 
 // add components to the map
 // components.set('Component', <Component />);
+
+// Store Locator
+components.set('Store Locator', StoreLocator.StoreLocator);
 
 // Page Scaffolding
 components.set('One Column', PageContent.OneColumn);

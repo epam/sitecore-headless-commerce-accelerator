@@ -1,0 +1,23 @@
+﻿---
+ID: "06ebaafb-469c-40fe-b962-a852dbfa8196"
+Parent: "dc35377d-4d05-416a-9785-e8e380c75baf"
+Template: "dc35377d-4d05-416a-9785-e8e380c75baf"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{7360D0B3-5400-4DCC-913D-80A4F0D7539E}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200710T113611Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

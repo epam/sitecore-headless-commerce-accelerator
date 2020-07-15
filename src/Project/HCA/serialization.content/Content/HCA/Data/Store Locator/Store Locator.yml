@@ -1,0 +1,24 @@
+﻿---
+ID: "90c2e676-24f5-4d21-bc24-86ca695129f2"
+Parent: "efda4fa8-50a0-400c-9cd1-b3bf3c9c709c"
+Template: "dc35377d-4d05-416a-9785-e8e380c75baf"
+Path: /sitecore/content/HCA/Data/Store Locator/Store Locator
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "0f5d3b8e-badd-4617-9a6d-9102cea617e4"
+      Hint: Title
+      Value: Store Locator
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200710T113534Z
+    - ID: "50365886-475f-4656-a7d9-bac8bea0c413"
+      Hint: Description
+      Value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut maximus turpis, vel condimentum lectus. Duis egestas, nisi et volutpat maximus, orci dui vestibulum eros, id dignissim justo ipsum ac ipsum.
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

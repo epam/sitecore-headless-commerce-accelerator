@@ -1,0 +1,14 @@
+﻿---
+ID: "e45997cf-6afc-48be-8990-7349eb43de1a"
+Parent: "dc35377d-4d05-416a-9785-e8e380c75baf"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200710T112357Z

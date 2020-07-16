@@ -72,17 +72,19 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     />
                     <Text field={{ value: 'A New Address' }} tag="label" htmlFor="r1" />
                   </li>
-                  <li>
-                    <Input
-                      type="radio"
-                      id="r2"
-                      name={FIELDS.ADDRESS_TYPE}
-                      defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.SAVED}
-                      defaultValue={ADDRESS_TYPE.SAVED}
-                      onChange={(e) => this.handleAddressOptionChange(e)}
-                    />
-                    <Text field={{ value: 'A Saved Address' }} tag="label" htmlFor="r2" />
-                  </li>
+                  {isLoggedIn && (
+                    <li>
+                      <Input
+                        type="radio"
+                        id="r2"
+                        name={FIELDS.ADDRESS_TYPE}
+                        defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.SAVED}
+                        defaultValue={ADDRESS_TYPE.SAVED}
+                        onChange={(e) => this.handleAddressOptionChange(e)}
+                      />
+                      <Text field={{ value: 'A Saved Address' }} tag="label" htmlFor="r2" />
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

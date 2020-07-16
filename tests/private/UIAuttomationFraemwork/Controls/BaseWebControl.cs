@@ -260,13 +260,20 @@ namespace UIAutomationFramework.Controls
             }
         }
 
-        public void WaitForNotPresent(int timeout = -1)
+        public void WaitForNotPresent(double timeout = -1, bool throwIfNotFound = true)
         {
             Log(LogLevel.Debug, $"Waiting for not present of {ElementName}");
             if (timeout == -1) timeout = Configuration.DefaultTimeout;
 
-            DriverManager.GetWaiter(timeout)
-                .Until(d => !IsVisible(), $"Timeout. Element {ElementName} is still on the page");
+            try
+            {
+                DriverManager.GetWaiter(timeout)
+                    .Until(d => !IsVisible(), $"Timeout. Element {ElementName} is still on the page");
+            }
+            catch (Exception exception)
+            {
+                if(throwIfNotFound) throw new InvalidElementStateException(ElementName + ": Timed out", exception);
+            }
         }
 
         public void WaitForNotEnabled(int timeout = -1)

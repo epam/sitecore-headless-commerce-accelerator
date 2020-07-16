@@ -1,4 +1,5 @@
-﻿using UIAutomationFramework.Controls;
+﻿using HCA.Pages.ConsantsAndEnums;
+using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
 
 namespace HCA.Pages.Pages.MyAccount
@@ -30,7 +31,7 @@ namespace HCA.Pages.Pages.MyAccount
 
         public override string GetPath()
         {
-            return "/account";
+            return PagePrefix.Account.GetPrefix();
         }
 
         protected override WebTextField GetInputField(string nameField)

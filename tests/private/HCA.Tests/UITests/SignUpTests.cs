@@ -7,7 +7,7 @@ using UIAutomationFramework.Utils;
 
 namespace HCA.Tests.UITests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class SignUpTests : HcaWebTest
@@ -39,13 +39,13 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _01_BlankFormTest()
+        public void SignUpTests_01_BlankFormTest()
         {
             Assert.False(_hcaWebSite.SignUpPage.SignUpIsClickable());
         }
 
         [Test]
-        public void _02_ConfirmPasswordDoesNotMatchTest()
+        public void SignUpTests_02_ConfirmPasswordDoesNotMatchTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -57,7 +57,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _03_AddExistsUserTest()
+        public void SignUpTests_03_AddExistsUserTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -69,7 +69,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _04_InvalidEmalTest()
+        public void SignUpTests_04_InvalidEmalTest()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -82,7 +82,7 @@ namespace HCA.Tests.UITests
 
 
         [Test]
-        public void _05_SuccessTest()
+        public void SignUpTests_05_SuccessTest()
         {
             var firstName = StringUtils.RandomString(10);
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", firstName);

@@ -7,7 +7,7 @@ using UIAutomationFramework.Utils;
 
 namespace HCA.Tests.UITests.MyAccountTests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class MyAccountAddressTests : HcaWebTest
@@ -33,7 +33,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _01_AddAddressClickTest()
+        public void MyAccountAddressTests_01_AddAddressClickTest()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountPage.AddAddressClick();
@@ -43,7 +43,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _02_EditAddressClickTest()
+        public void MyAccountAddressTests_02_EditAddressClickTest()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountPage.EditAddressClick();
@@ -58,7 +58,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         //}
 
         [Test]
-        public void _04_AddressAddTest()
+        public void MyAccountAddressTests_04_AddressAddTest()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountNewAddressSection.AddAddressClick();
@@ -84,7 +84,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _05_DeleteAddressClickWithConfirmTest()
+        public void MyAccountAddressTests_05_DeleteAddressClickWithConfirmTest()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -95,7 +95,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _06_DeleteAddressClickWithoutConfirmTest()
+        public void MyAccountAddressTests_06_DeleteAddressClickWithoutConfirmTest()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -107,7 +107,7 @@ namespace HCA.Tests.UITests.MyAccountTests
 
 
         [Test]
-        public void _07_EditAddress()
+        public void MyAccountAddressTests_07_EditAddress()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -124,7 +124,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _08_CancelEditAddressTest()
+        public void MyAccountAddressTests_08_CancelEditAddressTest()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -141,7 +141,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _09_CancelAddNewAddressTest()
+        public void MyAccountAddressTests_09_CancelAddNewAddressTest()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountAddressSection.AddAddressClick();
@@ -166,7 +166,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _10_TryToSaveBlankFieldsTest()
+        public void MyAccountAddressTests_10_TryToSaveBlankFieldsTest()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountAddressSection.AddAddressClick();

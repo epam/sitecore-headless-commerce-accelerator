@@ -39,14 +39,16 @@ namespace HCA.Pages.CommonElements
 
         public void VerifyFormNotPresent() => LoginFormElement.VerifyNotPresent();
 
-        public void WaitForPresentForm()
+        public void VerifyFormPresent() => LoginFormElement.VerifyPresent();
+
+        public void WaitForPresentForm(double timeout =-1, bool throwIfNotFound = true)
         {
-            LoginFormElement.WaitForPresent();
+            LoginFormElement.WaitForPresent(timeout, throwIfNotFound);
         }
 
-        public void WaitForNotPresentForm()
+        public void WaitForNotPresentForm(double timeout = -1, bool throwIfNotFound = true)
         {
-            LoginFormElement.WaitForNotPresent();
+            LoginFormElement.WaitForNotPresent(timeout, throwIfNotFound);
         }
 
         public bool IsFormPresent()

@@ -10,7 +10,7 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [HeaderTest]
     public class HeaderTests : HcaWebTest
@@ -49,12 +49,8 @@ namespace HCA.Tests.UITests
                 headerControl.VerifyUserNavigationLink(UserNavigationLink.WishList);
                 headerControl.VerifyUserNavigationLink(UserNavigationLink.ShoppingCart);
                 headerControl.VerifyUserNavigationLink(UserNavigationLink.MyAccount);
-                headerControl.ClickUserButton();
-                _hcaWebSite.LoginForm.WaitForPresentForm();
-                _hcaWebSite.LoginForm.IsFormPresent();
-                headerControl.ClickUserButton();
-                _hcaWebSite.LoginForm.WaitForNotPresentForm();
-                _hcaWebSite.LoginForm.VerifyFormNotPresent();
+                _hcaWebSite.OpenUserMenu();
+                _hcaWebSite.HideUserMenu();
 
                 _mainMenuControl.MenuContainerIsPresent();
                 Assert.AreEqual(expMenuItemCounts, _mainMenuControl.MenuItemsCount,

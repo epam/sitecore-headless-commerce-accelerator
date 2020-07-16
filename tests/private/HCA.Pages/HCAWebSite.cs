@@ -1,4 +1,5 @@
-﻿using HCA.Pages.CommonElements;
+﻿using System;
+using HCA.Pages.CommonElements;
 using HCA.Pages.ConsantsAndEnums;
 using HCA.Pages.Pages;
 using HCA.Pages.Pages.Checkout;
@@ -50,14 +51,12 @@ namespace HCA.Pages
         public void OpenHcaAndLogin(string userName, string password)
         {
             NavigateToMain();
-            HeaderControl.ClickUserButton();
-            LoginForm.WaitForPresentForm();
+            OpenUserMenu();
             LoginForm.LogonToHca(userName, password);
-            LoginForm.WaitForNotPresentForm();
-            HeaderControl.ClickUserButton();
+            HideUserMenu();
+            OpenUserMenu();
             LoginForm.VerifyLoggedUser();
-            HeaderControl.ClickUserButton();
-            LoginForm.WaitForNotPresentForm();
+            HideUserMenu();
         }
 
         //ToDo create address structure
@@ -107,23 +106,34 @@ namespace HCA.Pages
 
         public void LogOut()
         {
-            if (!LoginForm.IsFormPresent())
-            {
-                HeaderControl.ClickUserButton();
-                LoginForm.WaitForPresentForm();
-            }
+            OpenUserMenu();
 
             if (LoginForm.IsUserLogged())
                 LoginForm.SignOutClick();
         }
 
-        public void OpenUserMenu()
+        public void HideUserMenu()
         {
-            if (!LoginForm.IsFormPresent())
+            int tryCount = 0;
+            while (LoginForm.IsFormPresent() || tryCount == 2)
             {
                 HeaderControl.ClickUserButton();
-                LoginForm.WaitForPresentForm();
+                LoginForm.WaitForNotPresentForm(10, false);
+                tryCount++;
             }
+            LoginForm.VerifyFormNotPresent();
+        }
+        public void OpenUserMenu()
+        {
+            int tryCount = 0;
+            while (!LoginForm.IsFormPresent() || tryCount==2)
+            {
+                HeaderControl.ClickUserButton();
+                LoginForm.WaitForPresentForm(10, false);
+                tryCount++;
+            }
+
+            LoginForm.VerifyFormPresent();
         }
 
         public void AddProductToCart(int id)

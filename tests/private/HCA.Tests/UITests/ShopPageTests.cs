@@ -7,7 +7,7 @@ using UIAutomationFramework.Driver;
 namespace HCA.Tests.UITests
 {
     [UiTest]
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     public class ShopPageTests : HcaWebTest
     {
@@ -35,7 +35,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _01_SelectFilterOptionsTest()
+        public void ShopPageTests_01_SelectFilterOptionsTest()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -48,7 +48,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _02_DeselectFilterOptionsTest()
+        public void ShopPageTests_02_DeselectFilterOptionsTest()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -64,7 +64,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _03_FilterDisableButtonTest()
+        public void ShopPageTests_03_FilterDisableButtonTest()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -78,7 +78,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _04_FilterHideAllButtonTest()
+        public void ShopPageTests_04_FilterHideAllButtonTest()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -91,7 +91,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _05_ProductHeaderTest()
+        public void ShopPageTests_05_ProductHeaderTest()
         {
             var totalProducts = _productGrid.TotalProducts;
 
@@ -109,7 +109,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _06_LoadProductsTest()
+        public void ShopPageTests_06_LoadProductsTest()
         {
             var totalProducts = _productGrid.TotalProducts;
             var actualProductCount = _productGrid.GetDisplayedProductsCount();
@@ -131,7 +131,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _07_ViewProductTest()
+        public void ShopPageTests_07_ViewProductTest()
         {
             Assert.Multiple(() =>
             {

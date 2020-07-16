@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -21,9 +22,12 @@ namespace UIAutomationFramework
     [Order(1)]
     public class SeleniumTest
     {
+        private Stopwatch testTime = new Stopwatch();
         [SetUp]
         public void Setup()
         {
+            testTime.Reset();
+            testTime.Start();
             CustomOneTimeSetUp(BrowserType, TestContext.CurrentContext.Test.MethodName);
         }
 
@@ -48,6 +52,8 @@ namespace UIAutomationFramework
 
             Log(LogLevel.Debug, "SeleniumTest TearDown() completed");
             Dispose();
+            testTime.Stop();
+            Console.WriteLine($"testTime {testTime.Elapsed}");
         }
 
         private string EnvironmentName { get; }
@@ -261,7 +267,7 @@ namespace UIAutomationFramework
 
             return method == null
                 ? ""
-                : method.GetCustomAttribute<TestIdAttribute>().TestIdValue;
+                : method.Name; //method.GetCustomAttribute<TestIdAttribute>().TestIdValue;
         }
 
         protected readonly BrowserType BrowserType;

@@ -7,7 +7,7 @@ using UIAutomationFramework.Utils;
 
 namespace HCA.Tests.UITests.MyAccountTests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class MyAccountPasswordTests : HcaWebTest
@@ -40,7 +40,7 @@ namespace HCA.Tests.UITests.MyAccountTests
 
 
         [Test]
-        public void _01_ChangePasswordTest()
+        public void MyAccountPasswordTests_01_ChangePasswordTest()
         {
             var name = _hcaWebSite.CreateNewUser();
             Browser.DeleteAllCookies();
@@ -56,7 +56,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _02_ChangePasswordWithoutOldPasswordTest()
+        public void MyAccountPasswordTests_02_ChangePasswordWithoutOldPasswordTest()
         {
             _hcaWebSite.OpenHcaAndLogin(_userName, _password);
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
@@ -68,7 +68,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _03_ChangePasswordWithoutNewPasswordTest()
+        public void MyAccountPasswordTests_03_ChangePasswordWithoutNewPasswordTest()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();
@@ -79,7 +79,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _04_ChangePasswordWithoutConfirmPasswordTest()
+        public void MyAccountPasswordTests_04_ChangePasswordWithoutConfirmPasswordTest()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();
@@ -90,7 +90,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _05_ChangePasswordConfirmDoesNotMatchTest()
+        public void MyAccountPasswordTests_05_ChangePasswordConfirmDoesNotMatchTest()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();
@@ -103,7 +103,7 @@ namespace HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void _06_OldPasswordIncorrectTest()
+        public void MyAccountPasswordTests_06_OldPasswordIncorrectTest()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account);
             _hcaWebSite.MyAccountPage.WaitForOpened();

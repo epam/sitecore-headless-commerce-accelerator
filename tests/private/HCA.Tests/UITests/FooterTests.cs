@@ -6,7 +6,7 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     public class FooterTests : HcaWebTest

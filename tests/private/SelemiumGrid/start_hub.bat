@@ -1,1 +1,1 @@
-java -Dwebdriver.server.session.timeout=60 -jar selenium-server-standalone-3.141.59.jar -role hub -hubConfig hub.json -port 4444 -timeout 300
+java -Dwebdriver.server.session.timeout=60 -jar selenium-server-standalone-3.13.0.jar -role hub -hubConfig hub.json -port 4444 -timeout 300

@@ -5,7 +5,7 @@ using UIAutomationFramework.Driver;
 
 namespace HCA.Tests.UITests
 {
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
     internal class SignInTests : HcaWebTest
@@ -31,13 +31,13 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _01_BlankFormTest()
+        public void SignInTests_01_BlankFormTest()
         {
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void _02_BlankPasswordTest()
+        public void SignInTests_02_BlankPasswordTest()
         {
             var user = Configuration.GetDefaultUserLogin();
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
@@ -45,7 +45,7 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _03_BlankUserNameTest()
+        public void SignInTests_03_BlankUserNameTest()
         {
             var user = Configuration.GetDefaultUserLogin();
             _hcaWebSite.LoginForm.FillPasswordField(user.Password);
@@ -53,14 +53,14 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _04_ClickCreateAccountTest()
+        public void SignInTests_04_ClickCreateAccountTest()
         {
             _hcaWebSite.LoginForm.SignUpClick();
             _hcaWebSite.SignUpPage.WaitForOpened();
         }
 
         [Test]
-        public void _05_IncorrectPasswordTest()
+        public void SignInTests_05_IncorrectPasswordTest()
         {
             var user = Configuration.GetDefaultUserLogin();
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
@@ -70,14 +70,14 @@ namespace HCA.Tests.UITests
         }
 
         [Test]
-        public void _06_SuccessSignInTest()
+        public void SignInTests_06_SuccessSignInTest()
         {
             var user = Configuration.GetDefaultUserLogin();
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
             _hcaWebSite.LoginForm.FillPasswordField(user.Password);
             _hcaWebSite.LoginForm.SignInButtonClick();
-            _hcaWebSite.LoginForm.WaitForPresentForm();
-            _hcaWebSite.HeaderControl.ClickUserButton();
+            _hcaWebSite.HideUserMenu();
+            _hcaWebSite.OpenUserMenu();
             _hcaWebSite.LoginForm.VerifyLoggedUser();
         }
     }

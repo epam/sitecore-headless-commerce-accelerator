@@ -27,4 +27,268 @@ namespace HCA.Feature.StoreLocator.Models
     using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
 
+
+    /// <summary>
+    /// IStore Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store</para>
+    /// <para>ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="7360d0b3-5400-4dcc-913d-80a4f0d7539e")]
+    public partial interface IStore: IGlassBase
+    {
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe</para>
+        /// </summary>
+        [SitecoreField("Latitude")]
+        float Latitude {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960</para>
+        /// </summary>
+        [SitecoreField("Longitude")]
+        float Longitude {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Store Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store</para>
+    /// <para>ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="7360d0b3-5400-4dcc-913d-80a4f0d7539e")]
+    public partial class Store: GlassBase, IStore
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Store
+        /// </summary>
+        public const string TemplateId = "7360d0b3-5400-4dcc-913d-80a4f0d7539e";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public string Description {get; set;}
+        public const string DescriptionFieldId = "7b75c619-ead2-46fe-b684-8f9dec31a791";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The Latitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe</para>
+        /// </summary>
+        [SitecoreField("Latitude")]
+        public float Latitude {get; set;}
+        public const string LatitudeFieldId = "2eb66e67-f3f2-44ac-9654-7f26a5fd52fe";
+        public const string LatitudeFieldName = "Latitude";
+
+        /// <summary>
+        /// The Longitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960</para>
+        /// </summary>
+        [SitecoreField("Longitude")]
+        public float Longitude {get; set;}
+        public const string LongitudeFieldId = "5e72c2b0-9340-4dde-b8a0-d51b6b1a9960";
+        public const string LongitudeFieldName = "Longitude";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public string Title {get; set;}
+        public const string TitleFieldId = "35a0e97b-3284-44d6-9578-49b14e66f4ec";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// IStoreLocator Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator</para>
+    /// <para>ID: dc35377d-4d05-416a-9785-e8e380c75baf</para>
+    /// </summary>
+    [SitecoreType(TemplateId="dc35377d-4d05-416a-9785-e8e380c75baf")]
+    public partial interface IStoreLocator: IGlassBase
+    {
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e</para>
+        /// </summary>
+        [SitecoreField("Default Latitude")]
+        float DefaultLatitude {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c68f0d1-5e42-4e71-a220-2ce4b0cf651c</para>
+        /// </summary>
+        [SitecoreField("Default Longitude")]
+        float DefaultLongitude {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 50365886-475f-4656-a7d9-bac8bea0c413</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: f0d8d855-8257-4096-907f-752b50a62744</para>
+        /// </summary>
+        [SitecoreField("Radius")]
+        IEnumerable<Guid> Radius {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 43aa9312-0033-41de-b127-59379956428f</para>
+        /// </summary>
+        [SitecoreField("Stores")]
+        IEnumerable<Guid> Stores {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0f5d3b8e-badd-4617-9a6d-9102cea617e4</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// StoreLocator Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator</para>
+    /// <para>ID: dc35377d-4d05-416a-9785-e8e380c75baf</para>
+    /// </summary>
+    [SitecoreType(TemplateId="dc35377d-4d05-416a-9785-e8e380c75baf")]
+    public partial class StoreLocator: GlassBase, IStoreLocator
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
+        /// </summary>
+        public const string TemplateId = "dc35377d-4d05-416a-9785-e8e380c75baf";
+
+        /// <summary>
+        /// The Default Latitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e</para>
+        /// </summary>
+        [SitecoreField("Default Latitude")]
+        public float DefaultLatitude {get; set;}
+        public const string DefaultLatitudeFieldId = "42265054-df48-49c4-be6d-4eb68f4f632e";
+        public const string DefaultLatitudeFieldName = "Default Latitude";
+
+        /// <summary>
+        /// The Default Longitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 8c68f0d1-5e42-4e71-a220-2ce4b0cf651c</para>
+        /// </summary>
+        [SitecoreField("Default Longitude")]
+        public float DefaultLongitude {get; set;}
+        public const string DefaultLongitudeFieldId = "8c68f0d1-5e42-4e71-a220-2ce4b0cf651c";
+        public const string DefaultLongitudeFieldName = "Default Longitude";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 50365886-475f-4656-a7d9-bac8bea0c413</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public string Description {get; set;}
+        public const string DescriptionFieldId = "50365886-475f-4656-a7d9-bac8bea0c413";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The Radius field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: f0d8d855-8257-4096-907f-752b50a62744</para>
+        /// </summary>
+        [SitecoreField("Radius")]
+        public IEnumerable<Guid> Radius {get; set;}
+        public const string RadiusFieldId = "f0d8d855-8257-4096-907f-752b50a62744";
+        public const string RadiusFieldName = "Radius";
+
+        /// <summary>
+        /// The Stores field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 43aa9312-0033-41de-b127-59379956428f</para>
+        /// </summary>
+        [SitecoreField("Stores")]
+        public IEnumerable<Guid> Stores {get; set;}
+        public const string StoresFieldId = "43aa9312-0033-41de-b127-59379956428f";
+        public const string StoresFieldName = "Stores";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0f5d3b8e-badd-4617-9a6d-9102cea617e4</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public string Title {get; set;}
+        public const string TitleFieldId = "0f5d3b8e-badd-4617-9a6d-9102cea617e4";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// IStoreLocatorFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder</para>
+    /// <para>ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb</para>
+    /// </summary>
+    [SitecoreType(TemplateId="fe957ab9-71b5-4c9f-a34c-1e640acb0abb")]
+    public partial interface IStoreLocatorFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// StoreLocatorFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder</para>
+    /// <para>ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb</para>
+    /// </summary>
+    [SitecoreType(TemplateId="fe957ab9-71b5-4c9f-a34c-1e640acb0abb")]
+    public partial class StoreLocatorFolder: GlassBase, IStoreLocatorFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+        /// </summary>
+        public const string TemplateId = "fe957ab9-71b5-4c9f-a34c-1e640acb0abb";
+
+    }
+
 }

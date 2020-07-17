@@ -20,6 +20,31 @@ SharedFields:
           description {
             jss
           }
+          stores {
+            items: targetItems {
+              ... on Store {
+                id
+                title {
+                  jss
+                }
+                description {
+                  jss
+                }
+                latitude {
+                  jss
+                }
+                longitude {
+                  jss
+                }
+              }
+            }
+          }
+          defaultLatitude {
+            jss
+          }
+          defaultLongitude {
+            jss
+          }
         }
       }
     }

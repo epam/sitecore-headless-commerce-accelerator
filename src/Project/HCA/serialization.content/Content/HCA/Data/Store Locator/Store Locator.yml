@@ -4,6 +4,19 @@ Parent: "efda4fa8-50a0-400c-9cd1-b3bf3c9c709c"
 Template: "dc35377d-4d05-416a-9785-e8e380c75baf"
 Path: /sitecore/content/HCA/Data/Store Locator/Store Locator
 DB: master
+SharedFields:
+- ID: "42265054-df48-49c4-be6d-4eb68f4f632e"
+  Hint: Default Latitude
+  Value: "-34.397"
+- ID: "43aa9312-0033-41de-b127-59379956428f"
+  Hint: Stores
+  Type: Multilist
+  Value: |
+    {04F4EE1B-96FA-465C-BB4A-D3F7B1678F16}
+    {12E5EF19-6663-49C8-9818-4C6C44FA646D}
+- ID: "8c68f0d1-5e42-4e71-a220-2ce4b0cf651c"
+  Hint: Default Longitude
+  Value: 150.644
 Languages:
 - Language: en
   Versions:

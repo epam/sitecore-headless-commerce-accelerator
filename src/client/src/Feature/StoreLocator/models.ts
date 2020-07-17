@@ -14,9 +14,23 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+export interface Store {
+  title: Jss.GraphQLField<Jss.TextField>;
+  description: Jss.GraphQLField<Jss.TextField>;
+  latitude: Jss.GraphQLField<Jss.TextField>;
+  longitude: Jss.GraphQLField<Jss.TextField>;
+}
+
 export interface StoreLocatorDataSource extends Jss.BaseDataSourceItem {
   title: Jss.GraphQLField<Jss.TextField>;
   description: Jss.GraphQLField<Jss.TextField>;
+  defaultLatitude: Jss.GraphQLField<Jss.TextField>;
+  defaultLongitude: Jss.GraphQLField<Jss.TextField>;
+  stores: Jss.GraphQLListField<Store>;
 }
 
 export interface StoreLocatorProps extends Jss.GraphQLRendering<StoreLocatorDataSource> {}

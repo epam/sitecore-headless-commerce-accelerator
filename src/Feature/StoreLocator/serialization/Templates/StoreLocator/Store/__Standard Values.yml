@@ -1,0 +1,18 @@
+﻿---
+ID: "d9d96323-1a37-483f-8b57-db38e6807fcf"
+Parent: "7360d0b3-5400-4dcc-913d-80a4f0d7539e"
+Template: "7360d0b3-5400-4dcc-913d-80a4f0d7539e"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Store/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200715T160439Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -1,0 +1,31 @@
+﻿---
+ID: "04f4ee1b-96fa-465c-bb4a-d3f7b1678f16"
+Parent: "90c2e676-24f5-4d21-bc24-86ca695129f2"
+Template: "7360d0b3-5400-4dcc-913d-80a4f0d7539e"
+Path: /sitecore/content/HCA/Data/Store Locator/Store Locator/Store 1
+DB: master
+SharedFields:
+- ID: "2eb66e67-f3f2-44ac-9654-7f26a5fd52fe"
+  Hint: Latitude
+  Value: "-25.397"
+- ID: "5e72c2b0-9340-4dde-b8a0-d51b6b1a9960"
+  Hint: Longitude
+  Value: 140.644
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200715T124145Z
+    - ID: "35a0e97b-3284-44d6-9578-49b14e66f4ec"
+      Hint: Title
+      Value: Store 1
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "7b75c619-ead2-46fe-b684-8f9dec31a791"
+      Hint: Description
+      Value: "Shopping hours: Monday - Saturday 9 - 10 a.m. to 8 - 10 p.m. (9:00 - 10:00 to 20:00 - 22:00)"

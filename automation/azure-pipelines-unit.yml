@@ -71,12 +71,42 @@ steps:
       (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
       move $(license_file.secureFilePath) ./src/ -Force
 
-- task: PowerShell@2
-  displayName: Build code
+- task: gulp@1
+  displayName: Gulp cs code generation
   inputs:
-    filePath: './src/build.ps1'
-    arguments: '-Target 002-Build'
-    workingDirectory: './src/'
+    gulpFile: './src/scripts/code-generation/codeGen.js'
+    targets: 
+    arguments: 'generate-cs'
+    enableCodeCoverage: false
+
+- task: gulp@1
+  displayName: Gulp ts code generation
+  inputs:
+    gulpFile: './src/client/scripts/code-generation/codeGen.js'
+    targets: 
+    arguments: 'generate-ts'
+    enableCodeCoverage: false
+
+- task: PowerShell@2
+  displayName: Webpack build
+  inputs:
+    targetType: 'inline'
+    script: |
+      $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
+      $env:path="$env:path;$(Pipeline.Workspace)/s/src/client/node_modules/.bin"
+      $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
+      copyfiles -f  ./src/Project/HCA/client/public/**/* ./src/Project/HCA/build/
+      cross-env NODE_ENV=production webpack
+      nuget.exe restore ../HCA.sln
+    workingDirectory: './src/client'
+
+- task: MSBuild@1
+  displayName: MSBuild
+  inputs:
+    solution: './src/HCA.sln'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Rebuild'
 
 - task: PowerShell@2
   displayName: Run Unit tests

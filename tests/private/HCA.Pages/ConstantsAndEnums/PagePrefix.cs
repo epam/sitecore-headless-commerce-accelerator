@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums
+namespace HCA.Pages.ConstantsAndEnums
 {
     public enum PagePrefix
     {

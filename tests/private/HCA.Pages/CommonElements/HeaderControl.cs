@@ -1,4 +1,5 @@
-﻿using HCA.Pages.ConsantsAndEnums.Header;
+﻿using HCA.Pages.ConstantsAndEnums.Header;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
@@ -24,9 +25,9 @@ namespace HCA.Pages.CommonElements
             new WebElement("Quantity Products in Cart", By.ClassName("quantity"),
                 FindUserNavigationLinkByName(UserNavigationLink.ShoppingCart.GetLinkName()));
 
-        private static readonly WebTextField _searchField = new WebTextField("SearchTextField", 
+        private static readonly WebTextField _searchField = new WebTextField("SearchTextField",
             By.XPath("//form[@class= 'navigation-search']/input[@type='search']"));
-        
+
         public static HeaderControl Instance => _headerControl ??= new HeaderControl();
 
         public string SearchFieldPlaceholderText => _searchField.GetAttribute("placeholder");
@@ -53,7 +54,20 @@ namespace HCA.Pages.CommonElements
         public void WaitForPresentProductsQuantity() =>
             _productsQuantity.WaitForPresent();
 
-        public void VerifyLogoNavigationLink(string href) => 
+        public int ProductsQuantityInCart
+        {
+            get
+            {
+                var text = _productsQuantity.GetText();
+                if (int.TryParse(text, out var quantity))
+                    return quantity;
+
+                Assert.Fail($"Failed to get the number of products in the basket. Actual result: '{text}'");
+                return -1;
+            }
+        }
+
+        public void VerifyLogoNavigationLink(string href) =>
             VerifyLinkWithoutText(_logoLink, href);
 
         public void VerifyUserNavigationLink(UserNavigationLink userNavigationLink) =>

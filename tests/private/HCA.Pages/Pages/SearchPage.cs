@@ -1,4 +1,4 @@
-﻿using HCA.Pages.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums;
 using NUnit.Framework;
 
 namespace HCA.Pages.Pages
@@ -9,7 +9,8 @@ namespace HCA.Pages.Pages
 
         public static SearchPage Instance => _searchPage ??= new SearchPage();
 
-        public override string GetPath() => PagePrefix.Search.GetPrefix();
+        public override string GetPath() => 
+            PagePrefix.Search.GetPrefix();
 
         public new void VerifyOpened() => 
             Assert.AreEqual("Search | HCA ", GetTitleText());

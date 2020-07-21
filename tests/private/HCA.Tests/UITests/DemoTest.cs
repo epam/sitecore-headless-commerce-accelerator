@@ -1,6 +1,5 @@
 ﻿using HCA.Pages;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems;
+using HCA.Pages.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
 using UIAutomationFramework.Driver;
 

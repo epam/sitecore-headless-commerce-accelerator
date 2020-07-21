@@ -1,7 +1,7 @@
-﻿using HCA.Pages.ConsantsAndEnums.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums.Common;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums.Header
+namespace HCA.Pages.ConstantsAndEnums.Header
 {
     public enum QuickNavigationLink
     {
@@ -15,10 +15,10 @@ namespace HCA.Pages.ConsantsAndEnums.Header
         LanguageAndCurrency
     }
 
-    public static class HeaderUtilityLinkExtensions
+    public static class HeaderQuickNavigationExtensions
     {
         public static string GetLinkName(this QuickNavigationLink ul) =>
-            ul.GetAttribute<LinkAttribute>().LinkName;
+            ul.GetAttribute<LinkAttribute>().Name;
 
         public static string GetLinkText(this QuickNavigationLink ul) =>
             ul.GetAttribute<LinkAttribute>().LinkText;

@@ -1,4 +1,4 @@
-﻿using HCA.Pages.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums;
 
 namespace HCA.Pages.Pages.Checkout
 {

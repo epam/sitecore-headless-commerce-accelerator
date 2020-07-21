@@ -1,5 +1,5 @@
 ﻿using HCA.Pages;
-using HCA.Pages.ConsantsAndEnums;
+using HCA.Pages.ConstantsAndEnums;
 using NUnit.Framework;
 using UIAutomationFramework;
 using UIAutomationFramework.Driver;

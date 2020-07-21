@@ -1,6 +1,6 @@
 ﻿using System;
 using HCA.Pages.CommonElements;
-using HCA.Pages.ConsantsAndEnums;
+using HCA.Pages.ConstantsAndEnums;
 using HCA.Pages.Pages;
 using HCA.Pages.Pages.Checkout;
 using HCA.Pages.Pages.MyAccount;

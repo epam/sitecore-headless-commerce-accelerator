@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems;
+﻿using System.Linq;
+using HCA.Pages.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;

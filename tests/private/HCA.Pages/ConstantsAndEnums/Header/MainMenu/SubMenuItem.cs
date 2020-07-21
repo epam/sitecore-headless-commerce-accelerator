@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using HCA.Pages.ConsantsAndEnums.ConsantsAndEnums;
+using HCA.Pages.ConstantsAndEnums.Common;
 using UIAutomationFramework;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems
+namespace HCA.Pages.ConstantsAndEnums.Header.MainMenu
 {
     public enum SubMenuItem
     {
@@ -71,7 +71,7 @@ namespace HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems
     public static class SubMenuItemExtensions
     {
         public static string GetLinkName(this SubMenuItem item) =>
-            item.GetAttribute<LinkAttribute>().LinkName;
+            item.GetAttribute<LinkAttribute>().Name;
 
         public static string GetLinkText(this SubMenuItem item) =>
             item.GetAttribute<LinkAttribute>().LinkText;

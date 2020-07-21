@@ -1,7 +1,7 @@
-﻿using HCA.Pages.ConsantsAndEnums.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums.Common;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums.Header
+namespace HCA.Pages.ConstantsAndEnums.Header
 {
     public enum UserNavigationLink
     {
@@ -18,7 +18,7 @@ namespace HCA.Pages.ConsantsAndEnums.Header
     public static class UserNavigationLinkExtensions
     {
         public static string GetLinkName(this UserNavigationLink sl) =>
-            sl.GetAttribute<LinkAttribute>().LinkName;
+            sl.GetAttribute<LinkAttribute>().Name;
 
         public static string GetHref(this UserNavigationLink sl) =>
             sl.GetAttribute<LinkAttribute>().Href;

@@ -1,7 +1,7 @@
-﻿using HCA.Pages.ConsantsAndEnums.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums.Common;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums.Footer
+namespace HCA.Pages.ConstantsAndEnums.Footer
 {
     public enum FooterSiteLink
     {
@@ -45,7 +45,7 @@ namespace HCA.Pages.ConsantsAndEnums.Footer
     public static class FooterSiteLinkExtensions
     {
         public static string GetLinkName(this FooterSiteLink sl) =>
-            sl.GetAttribute<LinkAttribute>().LinkName;
+            sl.GetAttribute<LinkAttribute>().Name;
 
         public static string GetLinkText(this FooterSiteLink sl) =>
             sl.GetAttribute<LinkAttribute>().LinkText;

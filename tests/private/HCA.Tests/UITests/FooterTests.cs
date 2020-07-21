@@ -1,6 +1,6 @@
 ﻿using HCA.Pages;
-using HCA.Pages.ConsantsAndEnums;
-using HCA.Pages.ConsantsAndEnums.Footer;
+using HCA.Pages.ConstantsAndEnums;
+using HCA.Pages.ConstantsAndEnums.Footer;
 using NUnit.Framework;
 using UIAutomationFramework.Driver;
 

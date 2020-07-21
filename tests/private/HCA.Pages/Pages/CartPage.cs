@@ -1,4 +1,4 @@
-﻿using HCA.Pages.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums;
 using OpenQA.Selenium;
 using UIAutomationFramework.Controls;
 using UIAutomationFramework.Core;
@@ -31,41 +31,40 @@ namespace HCA.Pages.Pages
             _title.WaitForText("Shopping Cart");
         }
 
-        public void WaitForProductsLoaded()
-        {
+        public void WaitForProductsLoaded() =>
             _cartProductList.WaitForChildElements(By.XPath("//li[@class='cartList-product']"));
-        }
 
         public override string GetPath() => PagePrefix.Cart.GetPrefix();
 
-        private WebElement FindProductByName(string productName)
-        {
-            return new WebElement($"Product {productName}", ByCustom.XPath(
-                $".//div[@class = 'heading-productTitle'][text() = '{productName}']")).GetParent(7);
-        }
+        public bool ProductIsPresent(string productName) =>
+            FindProductByName(productName).IsPresent();
+
+        public int GetProductQty(string productName) =>
+            int.Parse(FindProductQtyByName(productName).GetText());
 
         public void SetQtyForProduct(string productName, int qty)
         {
-            var foundProduct = FindProductByName(productName);
-            var qtyElement = new WebTextField($"Qty for {productName}",
-                ByCustom.XPath(".//div[@class = 'product-qty']/input"), foundProduct);
+            var qtyElement = FindProductQtyByName(productName);
             qtyElement.Clear();
             qtyElement.Type(qty);
         }
 
-        public void FillDiscountField(string value)
-        {
+        public void FillDiscountField(string value) =>
             _discountField.Type(value);
-        }
 
-        public void ClickApplyButton()
-        {
+        public void ClickApplyButton() =>
             _discountApplyButton.Click();
-        }
 
-        public void ClickChekoutButton()
-        {
+        public void ClickChekoutButton() =>
             _checkoutButton.Click();
-        }
+
+        private WebElement FindProductByName(string productName) =>
+            new WebElement($"Product {productName}", ByCustom.XPath($".//div[@class = 'heading-productTitle']" +
+                $"[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz') = translate('{productName}', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]"))
+                .GetParent(7);
+
+        private WebTextField FindProductQtyByName(string productName) =>
+            new WebTextField($"Qty for {productName}", ByCustom.XPath(".//div[@class = 'product-qty']/input"),
+                FindProductByName(productName));
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Threading;
 using HCA.Pages;
 using HCA.Pages.CommonElements;
-using HCA.Pages.ConsantsAndEnums;
-using HCA.Pages.ConsantsAndEnums.Header;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu;
-using HCA.Pages.ConsantsAndEnums.Header.MainMenu.SubMenuItems;
+using HCA.Pages.ConstantsAndEnums;
+using HCA.Pages.ConstantsAndEnums.Header;
+using HCA.Pages.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
 using UIAutomationFramework.Driver;
 

@@ -137,7 +137,7 @@ namespace HCA.Tests.UITests
             {
                 _productGrid.ChooseProduct(DEF_PRODUCT_NAME);
                 _hcaWebSite.ProductPage.WaitForOpened();
-                Assert.AreEqual(DEF_PRODUCT_NAME.ToUpper(),_hcaWebSite.ProductPage.GetProductTitle());
+                Assert.AreEqual(DEF_PRODUCT_NAME.ToUpper(),_hcaWebSite.ProductPage.TitleText);
             });
         }
     }

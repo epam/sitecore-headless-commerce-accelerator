@@ -1,7 +1,7 @@
-﻿using HCA.Pages.ConsantsAndEnums.ConsantsAndEnums;
+﻿using HCA.Pages.ConstantsAndEnums.Common;
 using UIAutomationFramework.Utils;
 
-namespace HCA.Pages.ConsantsAndEnums.Header.MainMenu
+namespace HCA.Pages.ConstantsAndEnums.Header.MainMenu
 {
     public enum MenuItem
     {
@@ -24,7 +24,7 @@ namespace HCA.Pages.ConsantsAndEnums.Header.MainMenu
     public static class MenuItemLinkExtensions
     {
         public static string GetLinkName(this MenuItem item) =>
-            item.GetAttribute<LinkAttribute>().LinkName;
+            item.GetAttribute<LinkAttribute>().Name;
 
         public static string GetLinkText(this MenuItem item) =>
             item.GetAttribute<LinkAttribute>().LinkText;

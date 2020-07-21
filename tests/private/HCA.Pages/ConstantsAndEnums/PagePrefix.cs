@@ -43,6 +43,9 @@ namespace HCA.Pages.ConstantsAndEnums
 
         [EnumMember(Value = "Account/Order-history")]
         AccountOrderHistory,
+
+        [EnumMember(Value = "Store%20Locator")]
+        StoreLocator,
     }
 
     public static class PagePrefixExtensions

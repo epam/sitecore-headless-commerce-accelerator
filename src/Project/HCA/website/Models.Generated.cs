@@ -127,34 +127,6 @@ namespace HCA.Project.HCA.Models
 
 
     /// <summary>
-    /// ICheckoutFolder Interface
-    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Checkout Folder</para>
-    /// <para>ID: 938f39ab-1217-4a06-9c0f-f53494433851</para>
-    /// </summary>
-    [SitecoreType(TemplateId="938f39ab-1217-4a06-9c0f-f53494433851")]
-    public partial interface ICheckoutFolder: IGlassBase
-    {
-
-    }
-
-
-    /// <summary>
-    /// CheckoutFolder Class
-    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Checkout Folder</para>
-    /// <para>ID: 938f39ab-1217-4a06-9c0f-f53494433851</para>
-    /// </summary>
-    [SitecoreType(TemplateId="938f39ab-1217-4a06-9c0f-f53494433851")]
-    public partial class CheckoutFolder: GlassBase, ICheckoutFolder
-    {
-        /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Folders/Checkout Folder
-        /// </summary>
-        public const string TemplateId = "938f39ab-1217-4a06-9c0f-f53494433851";
-
-    }
-
-
-    /// <summary>
     /// IDataFolder Interface
     /// <para>Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder</para>
     /// <para>ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70</para>

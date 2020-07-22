@@ -1,0 +1,18 @@
+﻿---
+ID: "6c871244-64d8-4175-a8f3-ff7eec595cf4"
+Parent: "dd4f63be-c4df-4e0b-9b39-13e59a6cb1d2"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180428T105408Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin

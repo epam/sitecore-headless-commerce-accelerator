@@ -1,0 +1,21 @@
+﻿---
+ID: "3b512d13-9aba-4727-8fff-a0c1393139dc"
+Parent: "61ed6a03-bbdb-4937-87fa-db5c53fc870c"
+Template: "61ed6a03-bbdb-4937-87fa-db5c53fc870c"
+Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout/__Standard Values
+DB: master
+SharedFields:
+- ID: "3094d236-5985-4c4f-ae6a-e30740885532"
+  Hint: Caching
+  Value: 0|0|0|0|0|0|0|0
+- ID: "b4386ac8-1f1b-49f3-adcb-264f5f595e52"
+  Hint: Wrapper Class
+  Value: hca
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180428T105653Z

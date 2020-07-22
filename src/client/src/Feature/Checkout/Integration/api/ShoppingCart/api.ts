@@ -72,7 +72,7 @@ export const updateCartItemAsync = async (
 export const removeCartItem = async (productId: string, variantId: string): Promise<Result<Commerce.Cart>> =>
   axios
     .delete(`${routeBase}/cartLines?productId=${productId}&variantId=${variantId}`)
-    .then((response: AxiosResponse<Commerce.Cart>) => ({ data: response.data }))
+    .then((response: AxiosResponse<GetCartResponse>) => ({ data: response.data.data }))
     .catch((error) => ({ error }));
 
 export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest): Promise<Result<Commerce.Cart>> => {

@@ -17,6 +17,7 @@ import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
+import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
 
 const components = new Map<string, any>();
 
@@ -24,10 +25,10 @@ const components = new Map<string, any>();
 // components.set('Component', <Component />);
 
 // Page Scaffolding
-components.set('One Column', PageContent.OneColumn);
-components.set('Two Column', PageContent.TwoColumn);
-components.set('Two Column Row', PageContent.TwoColumnRow);
-components.set('Three Column Row', PageContent.ThreeColumnRow);
+components.set('One Column', Scaffolding.OneColumn);
+components.set('Two Column', Scaffolding.TwoColumn);
+components.set('Two Column Row', Scaffolding.TwoColumnRow);
+components.set('Three Column Row', Scaffolding.ThreeColumnRow);
 
 // Home renderings
 components.set('Recommended Products', PageContent.RecommendedProducts);

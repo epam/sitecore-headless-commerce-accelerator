@@ -1,0 +1,21 @@
+﻿---
+ID: "a8ade3c6-7ad9-4507-ba0d-bd4ec8c1b38e"
+Parent: "e582bf7d-57b3-42d6-ad27-e87aa7ab4710"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Scaffolding/One Column Row
+DB: master
+SharedFields:
+  - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+    Hint: componentName
+    Value: One Column Row
+  - ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+    Hint: Parameters Template
+    Value: "{61ED6A03-BBDB-4937-87FA-DB5C53FC870C}"
+Languages:
+  - Language: en
+    Versions:
+      - Version: 1
+        Fields:
+          - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+            Hint: __Created
+            Value: 20180428T100827Z

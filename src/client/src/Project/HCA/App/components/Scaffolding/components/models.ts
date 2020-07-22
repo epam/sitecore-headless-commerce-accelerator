@@ -12,9 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './BannerGrid';
-export * from './BannerItem/components/Banner';
-export * from './BannerItem/components/ClearBanner';
-export * from './BannerItem/components/LightBanner';
-export * from './BannerItem/components/ModernBanner';
+import * as JSS from 'Foundation/ReactJss';
+import { GridLayoutRenderingParams } from 'Project/HCA/Models.Generated';
+
+export interface GridProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, GridLayoutRenderingParams> {}
+
+export interface GridState extends JSS.SafePureComponentState {}

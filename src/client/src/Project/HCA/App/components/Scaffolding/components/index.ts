@@ -12,9 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './BannerGrid';
-export * from './BannerItem/components/Banner';
-export * from './BannerItem/components/ClearBanner';
-export * from './BannerItem/components/LightBanner';
-export * from './BannerItem/components/ModernBanner';
+export * from './OneColumn';
+export * from './TwoColumn';
+export * from './TwoColumnRow';
+export * from './ThreeColumnRow';

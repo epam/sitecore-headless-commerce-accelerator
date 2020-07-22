@@ -43,52 +43,6 @@ namespace HCA.Foundation.Commerce.Models
 
 
     /// <summary>
-    /// IHomePageConfiguration Interface
-    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration</para>
-    /// <para>ID: c188ca00-aaa5-4385-bb4e-60d7e0244e4c</para>
-    /// </summary>
-    [SitecoreType(TemplateId="c188ca00-aaa5-4385-bb4e-60d7e0244e4c")]
-    public partial interface IHomePageConfiguration: IGlassBase
-    {
-
-        /// <summary>
-        /// The Control Panel Configuration field.
-        /// <para>Field Type: Droptree</para>
-        /// <para>Field ID: cf39528f-dcd5-489c-8188-6d8980d903e3</para>
-        /// </summary>
-        [SitecoreField("Control Panel Configuration")]
-        Guid ControlPanelConfiguration {get; set;}
-
-    }
-
-
-    /// <summary>
-    /// HomePageConfiguration Class
-    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration</para>
-    /// <para>ID: c188ca00-aaa5-4385-bb4e-60d7e0244e4c</para>
-    /// </summary>
-    [SitecoreType(TemplateId="c188ca00-aaa5-4385-bb4e-60d7e0244e4c")]
-    public partial class HomePageConfiguration: GlassBase, IHomePageConfiguration
-    {
-        /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Configuration/Home Page Configuration
-        /// </summary>
-        public const string TemplateId = "c188ca00-aaa5-4385-bb4e-60d7e0244e4c";
-
-        /// <summary>
-        /// The Control Panel Configuration field.
-        /// <para>Field Type: Droptree</para>
-        /// <para>Field ID: cf39528f-dcd5-489c-8188-6d8980d903e3</para>
-        /// </summary>
-        [SitecoreField("Control Panel Configuration")]
-        public virtual Guid ControlPanelConfiguration {get; set;}
-        public const string ControlPanelConfigurationFieldId = "cf39528f-dcd5-489c-8188-6d8980d903e3";
-        public const string ControlPanelConfigurationFieldName = "Control Panel Configuration";
-
-    }
-
-
-    /// <summary>
     /// ILogin Interface
     /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login</para>
     /// <para>ID: 3fbc5bfa-6e94-493a-9128-f6356f5f3d16</para>
@@ -98,11 +52,11 @@ namespace HCA.Foundation.Commerce.Models
     {
 
         /// <summary>
-        /// The DefaultUser field.
+        /// The Default User field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b99ca0c7-ee56-466b-99e5-d30dfddb75ae</para>
         /// </summary>
-        [SitecoreField("DefaultUser")]
+        [SitecoreField("Default User")]
         string DefaultUser {get; set;}
 
     }
@@ -122,14 +76,14 @@ namespace HCA.Foundation.Commerce.Models
         public const string TemplateId = "3fbc5bfa-6e94-493a-9128-f6356f5f3d16";
 
         /// <summary>
-        /// The DefaultUser field.
+        /// The Default User field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: b99ca0c7-ee56-466b-99e5-d30dfddb75ae</para>
         /// </summary>
-        [SitecoreField("DefaultUser")]
+        [SitecoreField("Default User")]
         public virtual string DefaultUser {get; set;}
         public const string DefaultUserFieldId = "b99ca0c7-ee56-466b-99e5-d30dfddb75ae";
-        public const string DefaultUserFieldName = "DefaultUser";
+        public const string DefaultUserFieldName = "Default User";
 
     }
 

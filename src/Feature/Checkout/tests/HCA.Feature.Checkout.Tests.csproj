@@ -510,6 +510,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PromotionsControllerTests.cs" />
     <Compile Include="Controllers\CartsControllerTests.cs" />
     <Compile Include="Controllers\CheckoutControllerTests.cs" />
     <Compile Include="Controllers\ExmOrdersRenderingsControllerTests.cs" />

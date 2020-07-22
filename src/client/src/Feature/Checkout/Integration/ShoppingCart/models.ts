@@ -49,3 +49,7 @@ export interface RemoveCartLinePayload {
   productId: string;
   variantId: string;
 }
+
+export interface GerPromotionPayload {
+  callback: (value: Commerce.FreeShippingResult) => void;
+}

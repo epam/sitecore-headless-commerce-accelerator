@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +17,7 @@ import * as JSS from 'Foundation/ReactJss';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
 import * as DataModels from 'Feature/Checkout/dataModel.Generated';
+import { FreeShippingResult } from 'Foundation/Commerce';
 
 export interface OrderSummaryOwnProps {
   price: ShoppingCart.ShoppingCartPrice;
@@ -29,10 +30,13 @@ export interface OrderSummaryStateProps {
 }
 export interface OrderSummaryDispatchProps {
   AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
+  GetFreeShippingSubtotal: (callback: (value: FreeShippingResult) => void) => void;
 }
 
 export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}
 
-export interface OrderSummaryState extends JSS.SafePureComponentState {}
+export interface OrderSummaryState extends JSS.SafePureComponentState {
+  freeShipping: FreeShippingResult;
+}
 
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}

@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Checkout from './Checkout';
-import * as Order from './Order';
-import * as Promotions from './Promotions';
-import * as ShoppingCart from './ShoppingCart';
+import * as Commerce from 'Foundation/Commerce';
 
-export { Checkout, Order, ShoppingCart, Promotions };
+import { Response } from '../models';
+
+export interface FreeShippingResponse extends Response<Commerce.FreeShippingResult> {}

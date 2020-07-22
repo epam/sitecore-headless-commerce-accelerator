@@ -576,6 +576,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Context\ExmContext.cs" />
     <Compile Include="Context\IExmContext.cs" />
+    <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ExmOrdersRenderingsController.cs" />

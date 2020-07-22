@@ -1,20 +1,33 @@
-//    Copyright 2020 EPAM Systems, Inc.
-//
+﻿//    Copyright 2020 EPAM Systems, Inc.
+// 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-//
+// 
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Checkout from './Checkout';
-import * as Order from './Order';
-import * as Promotions from './Promotions';
-import * as ShoppingCart from './ShoppingCart';
+namespace HCA.Foundation.Commerce.Models.Entities.Promotion
+{
+    using System.Diagnostics.CodeAnalysis;
 
-export { Checkout, Order, ShoppingCart, Promotions };
+    using TypeLite;
+
+    [ExcludeFromCodeCoverage]
+    [TsClass]
+    public class Qualification
+    {
+        public string ConditionOperator { get; set; }
+
+        public string Condition { get; set; }
+
+        public string Operator { get; set; }
+
+        public string Subtotal { get; set; }
+    }
+}

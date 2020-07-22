@@ -18,6 +18,8 @@ import * as ShoppingCart from 'Feature/Checkout/Integration/api/ShoppingCart';
 
 import * as DataModels from 'Feature/Checkout/dataModel.Generated';
 
+import { FreeShippingResult } from 'Foundation/Commerce';
+
 import {
   CartLineSuccessPayload,
   CartSuccessPayload,
@@ -45,3 +47,5 @@ export type RemoveCartLineSuccess = (model: ShoppingCartData) => Action<CartSucc
 export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
 
 export type AddPromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
+
+export type GetFreeShippingSubtotal = (callback: (value: FreeShippingResult) => void) => Action;

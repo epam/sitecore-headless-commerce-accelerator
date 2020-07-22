@@ -12,9 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Checkout from './Checkout';
-import * as Order from './Order';
-import * as Promotions from './Promotions';
-import * as ShoppingCart from './ShoppingCart';
+import axios, { AxiosResponse } from 'axios';
 
-export { Checkout, Order, ShoppingCart, Promotions };
+import * as Commerce from 'Foundation/Commerce';
+import { Result } from 'Foundation/Integration';
+
+import { FreeShippingResponse } from './models';
+
+const routeBase = '/apix/client/commerce/promotions';
+
+export const getFreeShippingSubtotal = async (): Promise<Result<Commerce.FreeShippingResult>> =>
+  axios
+    .get(`${routeBase}/freeShippingSubtotal`)
+    .then((response: AxiosResponse<FreeShippingResponse>) => ({ data: response.data.data }))
+    .catch((error) => ({ error }));

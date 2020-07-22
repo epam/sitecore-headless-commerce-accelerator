@@ -40,5 +40,10 @@ namespace HCA.Foundation.Commerce
         {
             public const string FederatedPaymentOptionTitle = "Federated";
         }
+
+        public static class Promotion
+        {
+            public const string FreeShippingPromotion = "FreeShippingPromotion";
+        }
     }
 }

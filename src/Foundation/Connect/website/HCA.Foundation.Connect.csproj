@@ -300,6 +300,9 @@
     <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.ServiceProxy, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.ServiceProxy.5.0.76\lib\net471\Sitecore.Commerce.ServiceProxy.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -587,6 +590,8 @@
     <Compile Include="Managers\Order\OrderManager.cs" />
     <Compile Include="Managers\Payment\IPaymentManager.cs" />
     <Compile Include="Managers\Payment\PaymentManager.cs" />
+    <Compile Include="Managers\Promotion\IPromotionManager.cs" />
+    <Compile Include="Managers\Promotion\PromotionManager.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />

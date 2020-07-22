@@ -28,6 +28,18 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
 
   constructor(props: OrderSummaryProps) {
     super(props);
+
+    this.state = {
+      freeShipping: null,
+    };
+  }
+
+  public componentDidMount() {
+    this.props.GetFreeShippingSubtotal((freeShipping) =>
+      this.setState({
+        freeShipping,
+      }),
+    );
   }
 
   public addPromoCode() {
@@ -37,18 +49,25 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
 
   public safeRender() {
     const { isLoading, isFailure, price, adjustments } = this.props;
+    const { freeShipping } = this.state;
     return (
       <section className="orderSummary">
         <h2>Order Summary</h2>
         <OrderSummaryPriceLines price={price} className="orderSummary-list" />
-        <div className="orderSummary-freeShipping">
-          <p>
-            You're only <b>${(25).toFixed(2)}</b> away from free shipping!
-          </p>
-          <a href="" title="Details" className="details">
-            Details
-          </a>
-        </div>
+        {freeShipping && (
+          <div className="orderSummary-freeShipping">
+            {freeShipping.subtotal >= price.subtotal ? (
+              <p>
+                You're only <b>${(freeShipping.subtotal - price.subtotal).toFixed(2)}</b> away from free shipping!
+              </p>
+            ) : (
+              <p>Free shipping is available!</p>
+            )}
+            <a href="" title="Details" className="details">
+              Details
+            </a>
+          </div>
+        )}
         <div className="orderSummary-promoCode is-open">
           <h3 onClick={(e) => toggleBar(e)}>Promotional code?</h3>
           <div className="field">

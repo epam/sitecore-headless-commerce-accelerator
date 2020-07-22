@@ -174,3 +174,10 @@ export const AddPromoCodeSuccess: actionCreators.AddPromoCodeSuccess = (data: Sh
   },
   type: actionTypes.ADD_PROMO_CODE_SUCCESS,
 });
+
+export const GetFreeShippingSubtotal: actionCreators.GetFreeShippingSubtotal = (callback) => ({
+  payload: {
+    callback,
+  },
+  type: actionTypes.GET_FREE_SHIPPING_SUBTOTAL,
+});

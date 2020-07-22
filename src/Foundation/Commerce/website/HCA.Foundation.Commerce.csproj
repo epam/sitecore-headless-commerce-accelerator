@@ -309,6 +309,9 @@
     <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.ServiceProxy, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.Commerce.ServiceProxy.5.0.76\lib\net471\Sitecore.Commerce.ServiceProxy.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -616,6 +619,8 @@
     <Compile Include="Builders\Cart\ICartBuilder.cs" />
     <Compile Include="Builders\Order\OrderBuilder.cs" />
     <Compile Include="Builders\Order\IOrderBuilder.cs" />
+    <Compile Include="Builders\Promotion\IPromotionBuilder.cs" />
+    <Compile Include="Builders\Promotion\PromotionBuilder.cs" />
     <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
     <Compile Include="Constants.cs" />
@@ -669,6 +674,10 @@
     <Compile Include="Models\Entities\Contact\PersonalInfo.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
+    <Compile Include="Models\Entities\Promotion\Benefit.cs" />
+    <Compile Include="Models\Entities\Promotion\FreeShippingResult.cs" />
+    <Compile Include="Models\Entities\Promotion\Promotion.cs" />
+    <Compile Include="Models\Entities\Promotion\Qualification.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />
     <Compile Include="Models\Entities\Region\Subdivision.cs" />
     <Compile Include="Models\Entities\Users\User.cs" />
@@ -723,6 +732,8 @@
     <Compile Include="Services\Delivery\IDeliveryService.cs" />
     <Compile Include="Services\Catalog\CatalogService.cs" />
     <Compile Include="Services\Catalog\ICatalogService.cs" />
+    <Compile Include="Services\Promotion\IPromotionService.cs" />
+    <Compile Include="Services\Promotion\PromotionService.cs" />
     <Compile Include="Services\Search\IProductSearchService.cs" />
     <Compile Include="Services\Search\ProductSearchService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />

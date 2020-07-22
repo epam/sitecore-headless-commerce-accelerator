@@ -20,12 +20,10 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
     using Controllers;
 
-    using Foundation.Commerce.Utils;
+    using Foundation.Commerce;
 
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
-
-    using Constants = Foundation.Commerce.Constants;
 
     [ExcludeFromCodeCoverage]
     public class RegisterRoutes
@@ -43,7 +41,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(CheckoutController),
-                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
+                Constants.CommerceRoutePrefix + $"/{CheckoutControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CheckoutController).Namespace },
                 defaults: new
                 {
@@ -54,7 +52,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(CartsController),
-                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{CartsControllerName.ToLowerInvariant()}" + "/{action}",
+                Constants.CommerceRoutePrefix + $"/{CartsControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(CartsController).Namespace },
                 defaults: new
                 {
@@ -65,7 +63,7 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
 
             routeCollection.MapRoute(
                 nameof(OrdersController),
-                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}",
+                Constants.CommerceRoutePrefix + $"/{OrdersControllerName.ToLowerInvariant()}",
                 namespaces: new[] { typeof(OrdersController).Namespace },
                 defaults: new
                 {
@@ -81,6 +79,17 @@ namespace HCA.Feature.Checkout.Infrastructure.Pipelines.Initialize
                 {
                     controller = OrdersControllerName,
                     action = "order"
+                });
+
+            const string PromotionsControllerName = "Promotions";
+
+            routeCollection.MapRoute(
+                nameof(PromotionsController),
+                Constants.CommerceRoutePrefix + $"/{PromotionsControllerName.ToLowerInvariant()}" + "/{action}",
+                namespaces: new[] { typeof(PromotionsController).Namespace },
+                defaults: new
+                {
+                    controller = PromotionsControllerName
                 });
         }
     }

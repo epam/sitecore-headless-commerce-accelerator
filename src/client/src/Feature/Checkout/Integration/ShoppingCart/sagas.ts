@@ -20,11 +20,11 @@ import * as Commerce from 'Foundation/Commerce';
 import * as DataModels from 'Feature/Checkout/dataModel.Generated';
 import { Action, Result } from 'Foundation/Integration';
 
-import { ShoppingCart } from 'Feature/Checkout/Integration/api';
+import { Promotions, ShoppingCart } from 'Feature/Checkout/Integration/api';
 
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
-import { RemoveCartLinePayload } from './models';
+import { GerPromotionPayload, RemoveCartLinePayload } from './models';
 
 import * as Order from '../Order/actionTypes';
 
@@ -95,6 +95,15 @@ export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>):
   }
 }
 
+export function* getFreeShippingSubtotal(requestData: Action<GerPromotionPayload>): SagaIterator {
+  const { callback } = requestData.payload;
+  const { data, error }: Result<Commerce.FreeShippingResult> = yield call(Promotions.getFreeShippingSubtotal);
+
+  if (!error) {
+    callback(data);
+  }
+}
+
 function* watch(): SagaIterator {
   yield takeLatest(actionTypes.LOAD_CART, loadCart);
   yield takeLatest(Order.actionTypes.GET_ORDER_SUCCESS, loadCart);
@@ -102,6 +111,7 @@ function* watch(): SagaIterator {
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
   yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
   yield takeEvery(actionTypes.ADD_PROMO_CODE, addPromoCode);
+  yield takeEvery(actionTypes.GET_FREE_SHIPPING_SUBTOTAL, getFreeShippingSubtotal);
 }
 
 export default [watch()];

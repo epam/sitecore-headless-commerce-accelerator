@@ -47,6 +47,7 @@ const mapDispatchToProps = (dispatch: any) => {
     {
       AddPromoCode: actions.AddPromoCode,
       GetFreeShippingSubtotal: actions.GetFreeShippingSubtotal,
+      RemovePromoCode: actions.RemovePromoCode,
     },
     dispatch,
   );

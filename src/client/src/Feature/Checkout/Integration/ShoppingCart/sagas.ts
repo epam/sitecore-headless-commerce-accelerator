@@ -95,6 +95,19 @@ export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>):
   }
 }
 
+export function* removePromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
+  const { payload } = requestData;
+
+  yield put(actions.RemovePromoCodeRequest());
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removePromoCode, payload);
+
+  if (error) {
+    yield put(actions.RemovePromoCodeFailure(error.message || 'can not remove promo code'));
+  } else {
+    yield put(actions.RemovePromoCodeSuccess(data));
+  }
+}
+
 export function* getFreeShippingSubtotal(requestData: Action<GerPromotionPayload>): SagaIterator {
   const { callback } = requestData.payload;
   const { data, error }: Result<Commerce.FreeShippingResult> = yield call(Promotions.getFreeShippingSubtotal);
@@ -111,6 +124,7 @@ function* watch(): SagaIterator {
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
   yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
   yield takeEvery(actionTypes.ADD_PROMO_CODE, addPromoCode);
+  yield takeEvery(actionTypes.REMOVE_PROMO_CODE, removePromoCode);
   yield takeEvery(actionTypes.GET_FREE_SHIPPING_SUBTOTAL, getFreeShippingSubtotal);
 }
 

@@ -181,3 +181,35 @@ export const GetFreeShippingSubtotal: actionCreators.GetFreeShippingSubtotal = (
   },
   type: actionTypes.GET_FREE_SHIPPING_SUBTOTAL,
 });
+
+export const RemovePromoCode: actionCreators.RemovePromoCode = (model: DataModels.PromoCodeRequest) => ({
+  payload: {
+    ...model,
+  },
+  type: actionTypes.REMOVE_PROMO_CODE,
+});
+
+export const RemovePromoCodeRequest: StatusType = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: actionTypes.REMOVE_PROMO_CODE_REQUEST,
+});
+
+export const RemovePromoCodeFailure: FailureType = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: actionTypes.REMOVE_PROMO_CODE_FAILURE,
+});
+
+export const RemovePromoCodeSuccess: actionCreators.RemovePromoCodeSuccess = (data: ShoppingCartData) => ({
+  payload: {
+    cartUpdated: true,
+    data,
+    status: LoadingStatus.Loaded,
+  },
+  type: actionTypes.REMOVE_PROMO_CODE_SUCCESS,
+});

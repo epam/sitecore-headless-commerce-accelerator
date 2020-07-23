@@ -15,6 +15,8 @@
 namespace HCA.Foundation.Commerce.Tests.Services.Promotion
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Base.Tests.Customization;
@@ -30,7 +32,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Promotion
 
     using Ploeh.AutoFixture;
 
+    using Sitecore.Commerce.Core;
     using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+    using Sitecore.Commerce.EntityViews;
     using Sitecore.Commerce.Services;
 
     using Xunit;
@@ -159,6 +163,126 @@ namespace HCA.Foundation.Commerce.Tests.Services.Promotion
             Assert.True(result.Success);
             Assert.Empty(result.Errors);
             this.builder.Received(1).BuildPromotion(getPromotionResult.EntityView);
+        }
+
+        [Fact]
+        public void GetPromotionByDisplayName_IfArgumentNull_ShouldThrowArgumentException()
+        {
+            // act & assert
+            Assert.Throws<ArgumentNullException>(() => this.service.GetPromotionByDisplayName(null));
+        }
+
+        [Fact]
+        public void GetPromotionByDisplayName_IfGetPromotionResultNotSuccess_ShouldReturnNotSuccessResult()
+        {
+            // arrange
+            var displayName = this.fixture.Create<string>();
+            var name = this.fixture.Create<string>();
+
+            var getPromotionsResult = this.fixture
+                .Build<GetEntityViewResult>()
+                .With(ev => ev.Success, true)
+                .Create();
+            getPromotionsResult.EntityView = this.CreateEntityView(displayName, name);
+            this.promotionManager.GetPromotions().Returns(getPromotionsResult);
+
+            var getPromotionResult = this.fixture
+                .Build<GetEntityViewResult>()
+                .With(ev => ev.Success, false)
+                .Create();
+            getPromotionResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
+            this.promotionManager.GetPromotion(name).Returns(getPromotionResult);
+
+            // act 
+            var result = this.service.GetPromotionByDisplayName(displayName);
+
+            // assert
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Errors);
+            this.builder.Received(0).BuildPromotion(getPromotionsResult.EntityView);
+        }
+
+        [Fact]
+        public void GetPromotionByDisplayName_IfGetPromotionResultSuccess_ShouldReturnSuccessResult()
+        {
+            // arrange
+            var displayName = this.fixture.Create<string>();
+            var name = this.fixture.Create<string>();
+
+            var getPromotionsResult = this.fixture
+                .Build<GetEntityViewResult>()
+                .With(ev => ev.Success, true)
+                .Create();
+            getPromotionsResult.EntityView = this.CreateEntityView(displayName, name);
+            this.promotionManager.GetPromotions().Returns(getPromotionsResult);
+
+            var getPromotionResult = this.fixture
+                .Build<GetEntityViewResult>()
+                .With(ev => ev.Success, true)
+                .Create();
+            this.promotionManager.GetPromotion(name).Returns(getPromotionResult);
+
+            // act 
+            var result = this.service.GetPromotionByDisplayName(displayName);
+
+            // assert
+            Assert.True(result.Success);
+            Assert.Empty(result.Errors);
+            this.builder.Received(1).BuildPromotion(getPromotionResult.EntityView);
+        }
+
+        [Fact]
+        public void GetPromotionByDisplayName_IfGetPromotionsResultNotSuccess_ShouldReturnNotSuccessResult()
+        {
+            // arrange
+            var displayName = this.fixture.Create<string>();
+            var getPromotionsResult = this.fixture
+                .Build<GetEntityViewResult>()
+                .With(ev => ev.Success, false)
+                .Create();
+            getPromotionsResult.SystemMessages.Add(this.fixture.Create<SystemMessage>());
+            this.promotionManager.GetPromotions().Returns(getPromotionsResult);
+
+            // act 
+            var result = this.service.GetPromotionByDisplayName(displayName);
+
+            // assert
+            Assert.False(result.Success);
+            Assert.NotEmpty(result.Errors);
+        }
+
+        private EntityView CreateEntityView(string displayName, string name)
+        {
+            return this.fixture
+                .Build<EntityView>()
+                .With(prop => prop.Name, "Master")
+                .With(
+                    s => s.ChildViews,
+                    new ObservableCollection<Model>(
+                        new List<EntityView>
+                        {
+                            this.fixture
+                                .Build<EntityView>()
+                                .With(prop => prop.Name, "Details")
+                                .With(
+                                    s => s.Properties,
+                                    new ObservableCollection<ViewProperty>(
+                                        new List<ViewProperty>
+                                        {
+                                            this.fixture
+                                                .Build<ViewProperty>()
+                                                .With(prop => prop.Name, "DisplayName")
+                                                .With(prop => prop.Value, displayName)
+                                                .Create(),
+                                            this.fixture
+                                                .Build<ViewProperty>()
+                                                .With(prop => prop.Name, "Name")
+                                                .With(prop => prop.Value, name)
+                                                .Create()
+                                        }))
+                                .Create()
+                        }))
+                .Create();
         }
     }
 }

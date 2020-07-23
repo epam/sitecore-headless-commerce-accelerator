@@ -31,6 +31,7 @@ export interface OrderSummaryStateProps {
 export interface OrderSummaryDispatchProps {
   AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
   GetFreeShippingSubtotal: (callback: (value: FreeShippingResult) => void) => void;
+  RemovePromoCode: (model: DataModels.PromoCodeRequest) => void;
 }
 
 export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}

@@ -87,3 +87,9 @@ export const addPromoCode = async (requestPayload: DataModels.PromoCodeRequest):
     return { error: e };
   }
 };
+
+export const removePromoCode = async (request: DataModels.PromoCodeRequest): Promise<Result<Commerce.Cart>> =>
+  axios
+    .delete(`${routeBase}/promoCodes?promoCode=${request.promoCode}`)
+    .then((response: AxiosResponse<GetCartResponse>) => ({ data: response.data.data }))
+    .catch((error) => ({ error }));

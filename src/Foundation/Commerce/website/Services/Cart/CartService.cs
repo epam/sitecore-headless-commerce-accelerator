@@ -1,11 +1,11 @@
 ﻿//    Copyright 2020 EPAM Systems, Inc.
-//
+// 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-//
+// 
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,6 +31,8 @@ namespace HCA.Foundation.Commerce.Services.Cart
 
     using Models.Entities.Cart;
 
+    using Promotion;
+
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
@@ -40,34 +42,39 @@ namespace HCA.Foundation.Commerce.Services.Cart
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
     public class CartService : ICartService
     {
+        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+
         private readonly ICartManager cartManager;
 
         private readonly ICatalogContext catalogContext;
+
+        private readonly IPromotionService promotionService;
 
         private readonly IStorefrontContext storefrontContext;
 
         private readonly IVisitorContext visitorContext;
 
-        private readonly ICartBuilder<Connect.Cart> cartBuilder;
-
         public CartService(
+            ICartBuilder<Connect.Cart> cartBuilder,
             ICartManager cartManager,
-            IStorefrontContext storefrontContext,
             ICatalogContext catalogContext,
-            IVisitorContext visitorContext,
-            ICartBuilder<Connect.Cart> cartBuilder)
+            IPromotionService promotionService,
+            IStorefrontContext storefrontContext,
+            IVisitorContext visitorContext)
         {
-            Assert.ArgumentNotNull(cartManager, nameof(cartManager));
-            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
-            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
-            Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
             Assert.ArgumentNotNull(cartBuilder, nameof(cartBuilder));
+            Assert.ArgumentNotNull(cartManager, nameof(cartManager));
+            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
+            Assert.ArgumentNotNull(promotionService, nameof(promotionService));
+            Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
-            this.cartManager = cartManager;
-            this.storefrontContext = storefrontContext;
-            this.catalogContext = catalogContext;
-            this.visitorContext = visitorContext;
             this.cartBuilder = cartBuilder;
+            this.cartManager = cartManager;
+            this.catalogContext = catalogContext;
+            this.promotionService = promotionService;
+            this.storefrontContext = storefrontContext;
+            this.visitorContext = visitorContext;
         }
 
         public Result<Cart> GetCart()
@@ -160,16 +167,22 @@ namespace HCA.Foundation.Commerce.Services.Cart
             return this.BuildResult(response);
         }
 
-        public Result<Cart> RemovePromoCode(string promoCode)
+        public Result<Cart> RemovePromoCode(string displayName)
         {
-            Assert.ArgumentNotNull(promoCode, nameof(promoCode));
+            Assert.ArgumentNotNull(displayName, nameof(displayName));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.RemovePromoCode(
-                cartResult?.Cart as CommerceConnect.CommerceCart,
-                promoCode);
+            var getPromotionResult = this.promotionService.GetPromotionByDisplayName(displayName);
+
+            var response = this.cartManager.RemovePromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, getPromotionResult.Data.PublicCoupon);
 
             return this.BuildResult(response);
+        }
+
+        private Result<Cart> BuildResult(CartResult cartResult)
+        {
+            var cart = this.cartBuilder.Build(cartResult?.Cart);
+            return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
         }
 
         private IEnumerable<CommerceConnect.CommerceCartLine> GetCartLinesByProduct(
@@ -184,12 +197,6 @@ namespace HCA.Foundation.Commerce.Services.Cart
                         var product = cartLine.Product as CommerceConnect.CommerceCartProduct;
                         return product?.ProductId == productId && product?.ProductVariantId == variantId;
                     });
-        }
-
-        private Result<Cart> BuildResult(CartResult cartResult)
-        {
-            var cart = this.cartBuilder.Build(cartResult?.Cart);
-            return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
         }
     }
 }

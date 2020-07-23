@@ -37,7 +37,10 @@ export default (state: ShoppingCartState = initialState, action: Action) => {
     case actionTypes.REMOVE_CART_LINE_FAILURE:
     case actionTypes.ADD_PROMO_CODE_REQUEST:
     case actionTypes.ADD_PROMO_CODE_SUCCESS:
-    case actionTypes.ADD_PROMO_CODE_FAILURE: {
+    case actionTypes.ADD_PROMO_CODE_FAILURE:
+    case actionTypes.REMOVE_PROMO_CODE_REQUEST:
+    case actionTypes.REMOVE_PROMO_CODE_SUCCESS:
+    case actionTypes.REMOVE_PROMO_CODE_FAILURE: {
       return {
         ...state,
         ...action.payload,

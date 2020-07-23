@@ -113,11 +113,21 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Promotion
             var @operator = this.fixture.Create<string>();
             var subtotal = this.fixture.Create<int>().ToString();
 
+            var code = this.fixture.Create<string>();
+
             var details = this.CreateDetailsEntity(description);
             var qualification = this.CreateQualificationEntity(conditionOperator, condition, @operator, subtotal);
             var benefit = this.CreateBenefitEntity(action, amountOff);
+            var publicCoupon = this.CreatePublicCouponEntity(code);
 
-            var source = this.CreatePromotionEntity(id, name, displayName, details, qualification, benefit);
+            var source = this.CreatePromotionEntity(
+                id,
+                name,
+                displayName,
+                details,
+                qualification,
+                benefit,
+                publicCoupon);
 
             // act
             var result = this.builder.BuildPromotion(source);
@@ -133,10 +143,12 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Promotion
             Assert.Equal(condition, actualQualification.Condition);
             Assert.Equal(@operator, actualQualification.Operator);
             Assert.Equal(subtotal, actualQualification.Subtotal);
-            
+
             var actualBenefit = result.Benefits.First();
             Assert.Equal(action, actualBenefit.Action);
             Assert.Equal(amountOff, actualBenefit.AmountOff);
+            
+            Assert.Equal(code, result.PublicCoupon);
         }
 
         [Fact]
@@ -235,7 +247,8 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Promotion
             string displayName,
             EntityView details,
             EntityView qualification,
-            EntityView benefit)
+            EntityView benefit,
+            EntityView publicCoupon)
         {
             return this.fixture
                 .Build<EntityView>()
@@ -247,7 +260,8 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Promotion
                         {
                             details,
                             qualification,
-                            benefit
+                            benefit,
+                            publicCoupon
                         }))
                 .With(
                     s => s.Properties,
@@ -270,6 +284,32 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Promotion
                                 .With(prop => prop.Value, displayName)
                                 .Create()
                         }))
+                .Create();
+        }
+
+        private EntityView CreatePublicCouponEntity(string code)
+        {
+            return this.fixture
+                .Build<EntityView>()
+                .With(prop => prop.Name, "PublicCoupons")
+                .With(
+                    s => s.ChildViews,
+                    new ObservableCollection<Model>(
+                        this.fixture
+                            .Build<EntityView>()
+                            .With(s => s.Name, "PublicCouponsDetails")
+                            .With(
+                                s => s.Properties,
+                                new ObservableCollection<ViewProperty>(
+                                    new List<ViewProperty>
+                                    {
+                                        this.fixture
+                                            .Build<ViewProperty>()
+                                            .With(prop => prop.Name, "Code")
+                                            .With(prop => prop.Value, code)
+                                            .Create()
+                                    }))
+                            .CreateMany(1)))
                 .Create();
         }
 

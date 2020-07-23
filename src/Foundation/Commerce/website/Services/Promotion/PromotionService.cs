@@ -15,6 +15,7 @@
 namespace HCA.Foundation.Commerce.Services.Promotion
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Base.Models.Result;
@@ -27,15 +28,16 @@ namespace HCA.Foundation.Commerce.Services.Promotion
 
     using Models.Entities.Promotion;
 
+    using Sitecore.Commerce.EntityViews;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IPromotionService), Lifetime = Lifetime.Singleton)]
     public class PromotionService : IPromotionService
     {
         private readonly IPromotionBuilder builder;
-
+        
         private readonly IPromotionManager promotionManager;
-
+        
         public PromotionService(IPromotionManager promotionManager, IPromotionBuilder promotionBuilder)
         {
             Assert.ArgumentNotNull(promotionManager, nameof(promotionManager));
@@ -73,17 +75,53 @@ namespace HCA.Foundation.Commerce.Services.Promotion
 
             if (getPromotionsResult.Success)
             {
-                var subtotal = getPromotionsResult.Data.Qualifications.First(q => q.Subtotal != string.Empty).Subtotal;
+                var promotion = getPromotionsResult.Data;
+                var subtotal = promotion.Qualifications.First(q => q.Subtotal != string.Empty).Subtotal;
 
                 result.SetResult(
                     new FreeShippingResult
                     {
+                        DisplayName = promotion.DisplayName,
                         Subtotal = int.Parse(subtotal)
                     });
             }
             else
             {
                 result.SetErrors(getPromotionsResult.Errors);
+            }
+
+            return result;
+        }
+
+        public Result<Promotion> GetPromotionByDisplayName(string displayName)
+        {
+            Assert.ArgumentNotNullOrEmpty(displayName, nameof(displayName));
+
+            var result = new Result<Promotion>();
+
+            var getEntityViewResult = this.promotionManager.GetPromotions();
+
+            if (getEntityViewResult.Success)
+            {
+                var promotion = getEntityViewResult.EntityView.ChildViews
+                    .Cast<EntityView>()
+                    .First(child => child.Properties.First(prop => prop.Name == "DisplayName").Value == displayName);
+
+                var getPromotionResult =
+                    this.promotionManager.GetPromotion(promotion.Properties.First(prop => prop.Name == "Name").Value);
+
+                if (getPromotionResult.Success)
+                {
+                    result.SetResult(this.builder.BuildPromotion(getPromotionResult.EntityView));
+                }
+                else
+                {
+                    result.SetErrors(getPromotionResult.SystemMessages.Select(sm => sm.Message).ToList());
+                }
+            }
+            else
+            {
+                result.SetErrors(getEntityViewResult.SystemMessages.Select(sm => sm.Message).ToList());
             }
 
             return result;

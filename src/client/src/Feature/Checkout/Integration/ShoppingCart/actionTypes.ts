@@ -41,5 +41,10 @@ export const actionTypes = keyMirror({
   ADD_PROMO_CODE_REQUEST: null,
   ADD_PROMO_CODE_SUCCESS: null,
 
+  REMOVE_PROMO_CODE: null,
+  REMOVE_PROMO_CODE_FAILURE: null,
+  REMOVE_PROMO_CODE_REQUEST: null,
+  REMOVE_PROMO_CODE_SUCCESS: null,
+
   GET_FREE_SHIPPING_SUBTOTAL: null,
 });

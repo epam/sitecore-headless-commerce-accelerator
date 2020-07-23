@@ -83,6 +83,7 @@ namespace HCA.Foundation.Commerce.Builders.Promotion
             var details = children.First(cv => cv.Name == "Details");
             var qualifications = children.First(cv => cv.Name == "Qualifications");
             var benefits = children.First(cv => cv.Name == "Benefits");
+            var publicCoupon = children.First(cv => cv.Name == "PublicCoupons").ChildViews.Cast<EntityView>().FirstOrDefault();
 
             return new Promotion
             {
@@ -91,13 +92,14 @@ namespace HCA.Foundation.Commerce.Builders.Promotion
                 DisplayName = this.GetProperty(source, "DisplayName"),
                 Description = this.GetProperty(details, "Description"),
                 Qualifications = this.BuildQualifications(qualifications),
-                Benefits = this.BuildBenefits(benefits)
+                Benefits = this.BuildBenefits(benefits),
+                PublicCoupon = this.GetProperty(publicCoupon, "Code")
             };
         }
 
         private string GetProperty(EntityView entity, string name)
         {
-            var property = entity.Properties.FirstOrDefault(prop => prop.Name == name);
+            var property = entity?.Properties.FirstOrDefault(prop => prop.Name == name);
             return property != null ? property.Value : string.Empty;
         }
     }

@@ -115,6 +115,20 @@
       border: 1px solid $border-color;
       border-top: none;
 
+      .adjustment-list>.adjustment-item {
+        display: flex;
+        height: 30px;
+
+        .btn {
+          width: 22px;
+        }
+
+        .btn, span {
+          margin: 4px;
+          padding: 0;
+        }
+      }
+
       label{
         margin: 5px 0;
       }

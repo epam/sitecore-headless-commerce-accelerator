@@ -181,5 +181,6 @@ export interface ValidateEmailResult {
   inUse: boolean;
 }
 export interface FreeShippingResult {
+  displayName: string;
   subtotal: number;
 }

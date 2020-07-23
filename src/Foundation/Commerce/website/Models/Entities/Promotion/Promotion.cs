@@ -34,5 +34,7 @@ namespace HCA.Foundation.Commerce.Models.Entities.Promotion
         public IEnumerable<Qualification> Qualifications { get; set; }
 
         public IEnumerable<Benefit> Benefits { get; set; }
+
+        public string PublicCoupon { get; set; }
     }
 }

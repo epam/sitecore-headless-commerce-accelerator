@@ -49,3 +49,7 @@ export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
 export type AddPromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
 
 export type GetFreeShippingSubtotal = (callback: (value: FreeShippingResult) => void) => Action;
+
+export type RemovePromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
+
+export type RemovePromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;

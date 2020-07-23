@@ -16,6 +16,8 @@ namespace HCA.Foundation.Commerce.Models.Entities.Promotion
 {
     public class FreeShippingResult
     {
+        public string DisplayName { get; set; }
+
         public int Subtotal { get; set; }
     }
 }

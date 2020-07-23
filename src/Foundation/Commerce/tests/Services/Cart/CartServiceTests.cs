@@ -17,16 +17,20 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using System;
     using System.Collections.Generic;
 
+    using Base.Models.Result;
     using Base.Tests.Customization;
 
     using Commerce.Builders.Cart;
     using Commerce.Services.Cart;
+    using Commerce.Services.Promotion;
 
     using Connect.Context.Catalog;
     using Connect.Context.Storefront;
     using Connect.Managers.Cart;
 
     using Context;
+
+    using Models.Entities.Promotion;
 
     using NSubstitute;
 
@@ -41,6 +45,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
     public class CartServiceTests
     {
+        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+
         private readonly ICartManager cartManager;
 
         private readonly CartResult cartResult;
@@ -49,27 +55,30 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
         private readonly CommerceCart commerceCart;
 
-        private readonly ICartBuilder<Connect.Cart> cartBuilder;
-
         private readonly IFixture fixture;
+
+        private readonly IPromotionService promotionService;
 
         private readonly IVisitorContext visitorContext;
 
         public CartServiceTests()
         {
-            var storefrontContext = Substitute.For<IStorefrontContext>();
-            var catalogContext = Substitute.For<ICatalogContext>();
-
-            this.cartManager = Substitute.For<ICartManager>();
             this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
-            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
+            this.cartManager = Substitute.For<ICartManager>();
+            var catalogContext = Substitute.For<ICatalogContext>();
+            var storefrontContext = Substitute.For<IStorefrontContext>();
+            this.promotionService = Substitute.For<IPromotionService>();
             this.visitorContext = Substitute.For<IVisitorContext>();
+
             this.cartService = new CartService(
+                this.cartBuilder,
                 this.cartManager,
-                storefrontContext,
                 catalogContext,
-                this.visitorContext,
-                this.cartBuilder);
+                this.promotionService,
+                storefrontContext,
+                this.visitorContext);
+
+            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
 
             this.cartResult = this.fixture.Create<CartResult>();
             this.commerceCart = this.fixture.Create<CommerceCart>();
@@ -223,11 +232,16 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
         [Fact]
         public void RemovePromoCode_IfValidPromoCodeWasPassed_ShouldCallRemovePromoCodeMethod()
         {
+            // arrange
+            var result = this.fixture.Create<Result<Promotion>>();
+            result.SetResult(this.fixture.Create<Promotion>());
+            this.promotionService.GetPromotionByDisplayName(Arg.Any<string>()).Returns(result);
+
             // act
             this.cartService.RemovePromoCode(this.fixture.Create<string>());
 
             // assert
-            this.cartManager.Received(1).RemovePromoCode(this.commerceCart, Arg.Any<string>());
+            this.cartManager.Received(1).RemovePromoCode(this.commerceCart, result.Data.PublicCoupon);
         }
 
         [Fact]

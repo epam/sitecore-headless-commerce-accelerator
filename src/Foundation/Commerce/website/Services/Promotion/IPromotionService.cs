@@ -14,8 +14,6 @@
 
 namespace HCA.Foundation.Commerce.Services.Promotion
 {
-    using System.Collections.Generic;
-
     using Base.Models.Result;
 
     using Models.Entities.Promotion;
@@ -28,5 +26,7 @@ namespace HCA.Foundation.Commerce.Services.Promotion
         Result<FreeShippingResult> GetFreeShippingSubtotal();
 
         Result<Promotion> GetPromotion(string name);
+
+        Result<Promotion> GetPromotionByDisplayName(string displayName);
     }
 }

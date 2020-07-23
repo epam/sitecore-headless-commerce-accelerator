@@ -17,6 +17,7 @@ import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
+import * as StoreLocator from 'Feature/StoreLocator';
 import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
 
 const components = new Map<string, any>();

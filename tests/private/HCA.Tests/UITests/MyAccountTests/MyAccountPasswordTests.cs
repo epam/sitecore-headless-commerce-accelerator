@@ -1,9 +1,9 @@
-﻿using HCA.Pages;
-using HCA.Pages.ConstantsAndEnums;
-using NUnit.Framework;
-using UIAutomationFramework.Core;
-using UIAutomationFramework.Driver;
-using UIAutomationFramework.Utils;
+﻿using NUnit.Framework;
+using Ui.AutomationFramework.Core;
+using Ui.AutomationFramework.Driver;
+using Ui.AutomationFramework.Utils;
+using Ui.HCA.Pages;
+using Ui.HCA.Pages.ConstantsAndEnums;
 
 namespace HCA.Tests.UITests.MyAccountTests
 {
@@ -64,7 +64,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedPassword = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("New Password", newGeneratedPassword);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Confirm New Password", newGeneratedPassword);
-            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(), "SavePasswordIsClickable");
+            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(),
+                "SavePasswordIsClickable");
         }
 
         [Test]
@@ -75,7 +76,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedPassword = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", newGeneratedPassword);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Confirm New Password", newGeneratedPassword);
-            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(), "SavePasswordIsClickable");
+            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(),
+                "SavePasswordIsClickable");
         }
 
         [Test]
@@ -86,7 +88,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             var newGeneratedPassword = StringUtils.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", _password);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("New Password", newGeneratedPassword);
-            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(), "SavePasswordIsClickable");
+            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(),
+                "SavePasswordIsClickable");
         }
 
         [Test]
@@ -99,7 +102,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("New Password", newGeneratedPassword);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Confirm New Password",
                 newGeneratedPassword + "123");
-            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(), "SavePasswordIsClickable");
+            Assert.False(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(),
+                "SavePasswordIsClickable");
         }
 
         [Test]
@@ -111,7 +115,8 @@ namespace HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", "123");
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("New Password", newGeneratedPassword);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Confirm New Password", newGeneratedPassword);
-            Assert.True(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(), "SavePasswordIsClickable");
+            Assert.True(_hcaWebSite.MyAccountChangePasswordSection.SavePasswordIsClickable(),
+                "SavePasswordIsClickable");
             _hcaWebSite.MyAccountChangePasswordSection.SavePasswordClick();
             _hcaWebSite.MyAccountPage.WaitForOpened();
             _hcaWebSite.MyAccountChangePasswordSection.VerifyErrorLabel("Change password failed");

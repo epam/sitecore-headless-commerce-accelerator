@@ -1,8 +1,8 @@
-﻿using HCA.Pages;
-using HCA.Pages.CommonElements;
-using HCA.Pages.Pages;
-using NUnit.Framework;
-using UIAutomationFramework.Driver;
+﻿using NUnit.Framework;
+using Ui.AutomationFramework.Driver;
+using Ui.HCA.Pages;
+using Ui.HCA.Pages.CommonElements;
+using Ui.HCA.Pages.Pages;
 
 namespace HCA.Tests.UITests
 {
@@ -137,7 +137,7 @@ namespace HCA.Tests.UITests
             {
                 _productGrid.ChooseProduct(DEF_PRODUCT_NAME);
                 _hcaWebSite.ProductPage.WaitForOpened();
-                Assert.AreEqual(DEF_PRODUCT_NAME.ToUpper(),_hcaWebSite.ProductPage.TitleText);
+                Assert.AreEqual(DEF_PRODUCT_NAME.ToUpper(), _hcaWebSite.ProductPage.TitleText);
             });
         }
     }

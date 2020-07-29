@@ -1,9 +1,9 @@
-﻿using HCA.Pages;
-using HCA.Pages.ConstantsAndEnums;
-using NUnit.Framework;
-using UIAutomationFramework;
-using UIAutomationFramework.Driver;
-using UIAutomationFramework.Utils;
+﻿using NUnit.Framework;
+using Ui.AutomationFramework;
+using Ui.AutomationFramework.Driver;
+using Ui.AutomationFramework.Utils;
+using Ui.HCA.Pages;
+using Ui.HCA.Pages.ConstantsAndEnums;
 
 namespace HCA.Tests.UITests
 {

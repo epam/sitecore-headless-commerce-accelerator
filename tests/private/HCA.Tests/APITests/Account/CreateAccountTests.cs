@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCA.Api.Core.Models.Hca;
-using HCA.Api.Core.Models.Hca.Entities.Account;
-using HCA.Api.Core.Services.HcaService;
+﻿using System.Linq;
+using Api.HCA.Core;
+using Api.HCA.Core.Models.Hca;
+using Api.HCA.Core.Models.Hca.Entities.Account;
+using Api.HCA.Core.Services.HcaService;
 using NUnit.Framework;
 
 namespace HCA.Tests.APITests.Account
@@ -12,9 +10,9 @@ namespace HCA.Tests.APITests.Account
     [Parallelizable(ParallelScope.All)]
     [TestFixture, Description("Cart Tests")]
     [ApiTest]
-    public class CreateAccountTests
+    public class CreateAccountTests : HcaApiTest
     {
-        private readonly IHcaApiService _hcaService = new HcaApiService();
+        private readonly IHcaApiService _hcaService = CreateHcaApiClient();
 
         public const string EMAIL = "postman@gmail.com";
         public const string FIRST_NAME = "FName";
@@ -29,7 +27,8 @@ namespace HCA.Tests.APITests.Account
         [TestCase(EMAIL, null, LAST_NAME, PASSWORD, "The FirstName field is required.")]
         [TestCase(EMAIL, FIRST_NAME, null, PASSWORD, "The LastName field is required.")]
         [TestCase(EMAIL, FIRST_NAME, LAST_NAME, null, "The Password field is required.")]
-        public void _01_CreateAccountWithInvalidParamsTest(string email, string firstName, string lastName, string password,
+        public void _01_CreateAccountWithInvalidParamsTest(string email, string firstName, string lastName,
+            string password,
             params string[] expMessages)
         {
             // Arrange
@@ -50,9 +49,11 @@ namespace HCA.Tests.APITests.Account
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expMessages.First(), dataResult.Error, $"Expected {nameof(dataResult.Error)} text: {expMessages}. Actual:{dataResult.Error}");
+                Assert.AreEqual(expMessages.First(), dataResult.Error,
+                    $"Expected {nameof(dataResult.Error)} text: {expMessages}. Actual:{dataResult.Error}");
                 if (expMessages.Length > 1)
-                    Assert.That(!expMessages.Except(dataResult.Errors).Any(), "The error list does not contain all validation errors");
+                    Assert.That(!expMessages.Except(dataResult.Errors).Any(),
+                        "The error list does not contain all validation errors");
             });
         }
     }

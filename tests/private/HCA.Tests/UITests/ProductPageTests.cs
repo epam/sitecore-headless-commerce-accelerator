@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using HCA.Pages;
-using HCA.Pages.CommonElements;
-using HCA.Pages.ConstantsAndEnums.Product;
-using HCA.Pages.Pages;
 using NUnit.Framework;
-using UIAutomationFramework.Driver;
+using Ui.AutomationFramework.Driver;
+using Ui.HCA.Pages;
+using Ui.HCA.Pages.CommonElements;
+using Ui.HCA.Pages.ConstantsAndEnums.Product;
+using Ui.HCA.Pages.Pages;
 
 namespace HCA.Tests.UITests
 {
@@ -14,6 +14,15 @@ namespace HCA.Tests.UITests
     [UiTest]
     public class ProductPageTests : HcaWebTest
     {
+        [SetUp]
+        public void SetUp()
+        {
+            _hcaWebSite = HcaWebSite.Instance;
+            _productPage = _hcaWebSite.ProductPage;
+            _headerControl = _hcaWebSite.HeaderControl;
+            _cartPage = _hcaWebSite.CartPage;
+        }
+
         private HcaWebSite _hcaWebSite;
         private ProductPage _productPage;
         private HeaderControl _headerControl;
@@ -23,15 +32,8 @@ namespace HCA.Tests.UITests
         public const string COLOR_PRODUCT_ID = "6042957";
         public const string OUT_OF_STOCK_PRODUCT_ID = "6042175";
 
-        public ProductPageTests(BrowserType browserType) : base(browserType) { }
-
-        [SetUp]
-        public void SetUp()
+        public ProductPageTests(BrowserType browserType) : base(browserType)
         {
-            _hcaWebSite = HcaWebSite.Instance;
-            _productPage = _hcaWebSite.ProductPage;
-            _headerControl = _hcaWebSite.HeaderControl;
-            _cartPage = _hcaWebSite.CartPage;
         }
 
         [TestCase(PRODUCT_ID, true, false)]
@@ -50,12 +52,14 @@ namespace HCA.Tests.UITests
                 if (inStock)
                 {
                     Assert.AreEqual(ProductStatus.InStock, _productPage.Status);
-                    Assert.IsFalse(_productPage.AddToCartButtonIsDisabled, "If there is a product in stock, the button for adding an item to the cart must be enabled");
+                    Assert.IsFalse(_productPage.AddToCartButtonIsDisabled,
+                        "If there is a product in stock, the button for adding an item to the cart must be enabled");
                 }
                 else
                 {
                     Assert.AreEqual(ProductStatus.OutOfStock, _productPage.Status);
-                    Assert.IsTrue(_productPage.AddToCartButtonIsDisabled, "If there is no product in stock, the button for adding an item to the cart must be disabled");
+                    Assert.IsTrue(_productPage.AddToCartButtonIsDisabled,
+                        "If there is no product in stock, the button for adding an item to the cart must be disabled");
                 }
 
                 if (isColored) Assert.IsTrue(_productPage.AreColorsPresented, "Product color not shown");
@@ -67,7 +71,6 @@ namespace HCA.Tests.UITests
                 _productPage.VerifyDescriptionRatingSection();
                 _productPage.VerifyDescriptionFeaturesSection();
             });
-
         }
 
         [TestCase(COLOR_PRODUCT_ID)]
@@ -95,13 +98,16 @@ namespace HCA.Tests.UITests
                 _headerControl.WaitForPresentProductsQuantity();
             }
 
-            Assert.AreEqual(expQuantityInHeader, _headerControl.ProductsQuantityInCart, "Invalid products quantity in the cart.");
+            Assert.AreEqual(expQuantityInHeader, _headerControl.ProductsQuantityInCart,
+                "Invalid products quantity in the cart.");
 
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _cartPage.WaitForProductsLoaded();
 
-            Assert.IsTrue(_cartPage.ProductIsPresent(productName), $"Product {productName} not found in shopping cart.");
-            Assert.AreEqual(quantity, _cartPage.GetProductQty(productName), $"Invalid quantity of '{productName}' in the cart.");
+            Assert.IsTrue(_cartPage.ProductIsPresent(productName),
+                $"Product {productName} not found in shopping cart.");
+            Assert.AreEqual(quantity, _cartPage.GetProductQty(productName),
+                $"Invalid quantity of '{productName}' in the cart.");
         }
 
         [TestCase(COLOR_PRODUCT_ID, 4)]
@@ -122,8 +128,9 @@ namespace HCA.Tests.UITests
 
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _cartPage.WaitForProductsLoaded();
-            Assert.That(() => expProductsNamesInCart.All(x => _cartPage.ProductIsPresent(x) && _cartPage.GetProductQty(x) == 1),
-                $"Product not found in shopping cart.");
+            Assert.That(
+                () => expProductsNamesInCart.All(x => _cartPage.ProductIsPresent(x) && _cartPage.GetProductQty(x) == 1),
+                "Product not found in shopping cart.");
         }
     }
 }

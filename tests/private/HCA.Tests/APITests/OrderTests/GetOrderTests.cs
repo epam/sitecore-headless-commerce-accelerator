@@ -1,20 +1,22 @@
-﻿using System.Linq;
-using HCA.Api.Core.Models.Hca;
-using HCA.Api.Core.Services.HcaService;
+﻿using Api.HCA.Core;
+using Api.HCA.Core.Models.Hca;
+using Api.HCA.Core.Services.HcaService;
 using NUnit.Framework;
 
 namespace HCA.Tests.APITests.OrderTests
 {
     [Parallelizable(ParallelScope.All)]
-    [TestFixture, Description("Cart Tests")]
+    [TestFixture]
+    [Description("Cart Tests")]
     [ApiTest]
-    public class GetOrderTests : BaseApiTest
+    public class GetOrderTests : HcaApiTest
     {
-        private readonly IHcaApiService _hcaService = new HcaApiService();
+        private readonly IHcaApiService _hcaService = CreateHcaApiClient();
 
         public const string ORDER_ID = "1H1SZ767SABD59OSJAOW7KMXA";
 
-        [Test, Description("Check that the basket is empty")]
+        [Test]
+        [Description("Check that the basket is empty")]
         public void _01_GetOrderTest()
         {
             // Arrange, Act
@@ -32,7 +34,8 @@ namespace HCA.Tests.APITests.OrderTests
                 Assert.NotNull(data.Data.OrderId, $"Invalid {nameof(data.Data.OrderId)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.OrderDate, $"Invalid {nameof(data.Data.OrderDate)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.Status, $"Invalid {nameof(data.Data.Status)}. Expected: NotNull.");
-                Assert.NotNull(data.Data.TrackingNumber, $"Invalid {nameof(data.Data.TrackingNumber)}. Expected: NotNull.");
+                Assert.NotNull(data.Data.TrackingNumber,
+                    $"Invalid {nameof(data.Data.TrackingNumber)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.Email, $"Invalid {nameof(data.Data.Email)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.Price, $"Invalid {nameof(data.Data.Price)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.CartLines, $"Invalid {nameof(data.Data.CartLines)}. Expected: NotNull.");

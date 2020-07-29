@@ -1,11 +1,10 @@
-﻿using System.Threading;
-using HCA.Pages;
-using HCA.Pages.CommonElements;
-using HCA.Pages.ConstantsAndEnums;
-using HCA.Pages.ConstantsAndEnums.Header;
-using HCA.Pages.ConstantsAndEnums.Header.MainMenu;
-using NUnit.Framework;
-using UIAutomationFramework.Driver;
+﻿using NUnit.Framework;
+using Ui.AutomationFramework.Driver;
+using Ui.HCA.Pages;
+using Ui.HCA.Pages.CommonElements;
+using Ui.HCA.Pages.ConstantsAndEnums;
+using Ui.HCA.Pages.ConstantsAndEnums.Header;
+using Ui.HCA.Pages.ConstantsAndEnums.Header.MainMenu;
 
 namespace HCA.Tests.UITests
 {

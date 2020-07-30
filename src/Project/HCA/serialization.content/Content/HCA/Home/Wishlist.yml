@@ -1,0 +1,27 @@
+﻿---
+ID: "c317d562-8aba-4571-bd01-9031e2ed4414"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "e5e2329c-b05a-4e98-9430-018503c2699a"
+Path: /sitecore/content/HCA/Home/Wishlist
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: 
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: 
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200722T140321Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

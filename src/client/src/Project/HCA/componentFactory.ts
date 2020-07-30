@@ -83,5 +83,6 @@ components.set('Sign-up Form', Account.SignUpForm);
 components.set('Change Password Form', Account.ChangePassword);
 components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
+components.set('Wishlist', Account.Wishlist);
 
 export default (componentName: string) => components.get(componentName);

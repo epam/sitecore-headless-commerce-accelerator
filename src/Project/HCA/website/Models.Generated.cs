@@ -265,4 +265,32 @@ namespace HCA.Project.HCA.Models
 
     }
 
+
+    /// <summary>
+    /// IWishlist Interface
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist</para>
+    /// <para>ID: e5e2329c-b05a-4e98-9430-018503c2699a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e5e2329c-b05a-4e98-9430-018503c2699a")]
+    public partial interface IWishlist: IPage, IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// Wishlist Class
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist</para>
+    /// <para>ID: e5e2329c-b05a-4e98-9430-018503c2699a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e5e2329c-b05a-4e98-9430-018503c2699a")]
+    public partial class Wishlist: GlassBase, IWishlist
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Pages/Wishlist
+        /// </summary>
+        public const string TemplateId = "e5e2329c-b05a-4e98-9430-018503c2699a";
+
+    }
+
 }

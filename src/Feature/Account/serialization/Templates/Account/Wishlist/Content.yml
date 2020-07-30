@@ -1,0 +1,14 @@
+﻿---
+ID: "b63ad98d-77f6-458f-8219-22b220cb01a0"
+Parent: "689cf1d8-d3d6-4f44-90a6-1525f05d374a"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Account/Wishlist/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200724T085059Z

@@ -17,7 +17,7 @@ import * as React from 'react';
 
 import { CartButton } from '../CartButton';
 import { UserButton } from '../UserButton';
-import { WishListButton } from '../WishListButton';
+import { WishlistButton } from '../WishlistButton';
 
 import { UserNavigationProps, UserNavigationState } from './models';
 import './styles.scss';
@@ -26,7 +26,7 @@ export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigatio
   protected safeRender() {
     return (
       <nav className="user-navigation">
-        <WishListButton />
+        <WishlistButton />
         <CartButton />
         <UserButton />
       </nav>

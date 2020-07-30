@@ -1,0 +1,21 @@
+﻿---
+ID: "4df10d0e-d807-40fb-9625-d0033425d06e"
+Parent: "e80f893c-3785-4aab-bbe0-4b8947805364"
+Template: "689cf1d8-d3d6-4f44-90a6-1525f05d374a"
+Path: /sitecore/content/HCA/Data/Wishlist Folder/Wishlist
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200724T090148Z
+    - ID: "299aefbb-adfb-425c-9c81-841cc7f7e30f"
+      Hint: Title
+      Value: Your Wishlist
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

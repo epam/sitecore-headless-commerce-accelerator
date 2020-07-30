@@ -15,19 +15,27 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
-import { NavigationLink } from 'Foundation/UI';
+import { WishListItemProps } from './models';
 
-import { WishlistButtonProps, WishlistButtonState } from './models';
+import './styles.scss';
 
-export class WishlistButtonComponent extends JSS.SafePureComponent<WishlistButtonProps, WishlistButtonState> {
+class WishlistItemComponent extends JSS.SafePureComponent<WishListItemProps, {}> {
   protected safeRender() {
+    const { item } = this.props;
     return (
-      <NavigationLink className="user-navigation-btn" to="/wishlist">
-        <i className="fa fa-heart" />
-        <span>Wishlist</span>
-      </NavigationLink>
+      <div className="wishlist__item">
+        <img src={item.img} alt="" />
+        <div className="wishlist__item-brand">{item.brand}</div>
+        <a href="#" className="wishlist__item-name">
+          {item.itemName}
+        </a>
+        <div className="wishlist__item-price">
+          {item.price.currency} {item.price.priceCurrent}
+        </div>
+        <button className="wishlist__add-btn">Add to cart</button>
+        <button className="wishlist__remove-btn">Remove</button>
+      </div>
     );
   }
 }
-
-export const WishlistButton = WishlistButtonComponent;
+export const WishlistItem = JSS.rendering(WishlistItemComponent);

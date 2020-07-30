@@ -14,6 +14,6 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-export interface WishListButtonProps {}
+export interface WishlistButtonProps {}
 
-export interface WishListButtonState extends JSS.SafePureComponentState {}
+export interface WishlistButtonState extends JSS.SafePureComponentState {}

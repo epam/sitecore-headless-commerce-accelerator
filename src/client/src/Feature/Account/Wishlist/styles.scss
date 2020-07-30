@@ -12,8 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+@import 'Foundation/UI/common/scss/variables';
 
-export interface BreadcrumbProps {}
+// Disabling a couple of global button styles
+.wishlist{
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 
-export interface BreadcrumbState extends JSS.SafePureComponentState {}
+  &-container{
+    padding: 20px 0;
+  }
+
+  &-title{
+    border-bottom: 1px solid $border-color;
+    color: $title-font-color;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+
+  &__item-col{
+    margin-bottom: 15px;
+  }
+}

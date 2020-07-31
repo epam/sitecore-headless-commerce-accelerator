@@ -12,9 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './AddToWishlist';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './Wishlist';
+import { connect } from 'react-redux';
+
+import { selector } from 'Feature/Account/Integration/Wishlist';
+
+import { WishlistButtonComponent } from './Component';
+import { AppState, WishlistButtonProps } from './models';
+
+const mapStateToProps = (state: AppState): WishlistButtonProps => {
+  const wishlist = selector.wishlist(state);
+  return {
+    wishlistQuantity: wishlist.length,
+  };
+};
+
+export const WishlistButton = connect(mapStateToProps)(WishlistButtonComponent);

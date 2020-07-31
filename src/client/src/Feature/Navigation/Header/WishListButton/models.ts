@@ -14,6 +14,12 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-export interface WishlistButtonProps {}
+import { GlobalWishlistState } from 'Feature/Account/Integration/Wishlist';
+
+export interface WishlistButtonProps {
+  wishlistQuantity: number;
+}
 
 export interface WishlistButtonState extends JSS.SafePureComponentState {}
+
+export interface AppState extends GlobalWishlistState {}

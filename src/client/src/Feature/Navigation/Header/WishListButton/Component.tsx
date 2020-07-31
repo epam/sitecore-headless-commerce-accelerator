@@ -13,26 +13,21 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-import { GlobalWishlistState } from '../Integration/Wishlist';
+import * as React from 'react';
 
-import { Variant } from 'Foundation/Commerce';
+import { NavigationLink } from 'Foundation/UI';
 
-export interface WishlistDataSource extends JSS.BaseDataSourceItem {
-  title: JSS.GraphQLField<JSS.TextField>;
+import { WishlistButtonProps, WishlistButtonState } from './models';
+import './styles.scss';
+
+export class WishlistButtonComponent extends JSS.SafePureComponent<WishlistButtonProps, WishlistButtonState> {
+  protected safeRender() {
+    const { wishlistQuantity } = this.props;
+    return (
+      <NavigationLink className="wishlist-button user-navigation-btn" to="/wishlist">
+        <i className="fa fa-heart">{wishlistQuantity > 0 && <span className="quantity">{wishlistQuantity}</span>}</i>
+        <span>Wishlist</span>
+      </NavigationLink>
+    );
+  }
 }
-
-export interface WishlistStoreProps extends JSS.SafePureComponentState {
-  items: Variant[];
-}
-
-export interface WishlistDispatchProps {
-  GetWishlist: () => void;
-}
-
-export interface WishlistState extends JSS.SafePureComponentState {}
-export interface WishlistProps
-  extends JSS.GraphQLRendering<WishlistDataSource>,
-    WishlistDispatchProps,
-    WishlistStoreProps {}
-
-export interface AppState extends GlobalWishlistState {}

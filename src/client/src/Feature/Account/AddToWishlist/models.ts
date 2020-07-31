@@ -12,17 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import * as Jss from 'Foundation/ReactJss';
 
-import { CartItemDto } from 'Feature/Checkout/Integration/api/ShoppingCart';
+import { ProductVariantGlobalState } from 'Feature/Catalog/Integration/ProductVariant';
+import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
+
 import { Variant } from 'Foundation/Commerce';
 
-export interface WishlistItemDispatchProps {
-  AddToCart: (model: CartItemDto) => void;
-  RemoveWishlistItem: (id: string) => void;
-}
-
-export interface WishlistItemState extends JSS.SafePureComponentState {}
-export interface WishlistItemProps extends WishlistItemDispatchProps {
+export interface AddToWishlistStoreProps {
   item: Variant;
 }
+
+export interface AddToWishlistDispatchProps {
+  AddWishlistItem: (item: Variant) => void;
+}
+
+export interface AddToWishlistProps extends AddToWishlistStoreProps, AddToWishlistDispatchProps {}
+export interface AddToWishlistState extends Jss.SafePureComponentState {}
+
+export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState {}

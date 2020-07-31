@@ -12,9 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './AddToWishlist';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './Wishlist';
+@import 'Foundation/UI/common/scss/variables';
+
+.wishlist-button {
+  >i {
+    position: relative;
+  }
+
+  .quantity {
+    position: absolute;
+    top: -9px;
+    right: -14px;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    font-size: 12px;
+    font-family: $sans-serif;
+    line-height: 18px;
+    text-align: center;
+    color: $font-color;
+    background: #fff;
+    border-radius: 50%;
+  }
+}

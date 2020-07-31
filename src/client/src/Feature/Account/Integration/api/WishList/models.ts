@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './AddToWishlist';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './Wishlist';
+import * as Base from 'Foundation/Base';
+
+import { Wishlist } from '../../Wishlist/mock';
+
+export interface GetWishlistResponse extends Base.OkJsonResultModel<Wishlist> {}

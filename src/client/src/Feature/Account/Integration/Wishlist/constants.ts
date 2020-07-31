@@ -12,9 +12,28 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './AddToWishlist';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './Wishlist';
+import { keyMirrorReducer, keyMirrorSaga } from 'Foundation/ReactJss';
+
+export const WISHLIST_NAMESPACE = 'WISHLIST';
+
+export const reducerTypes = keyMirrorReducer(
+  {
+    ADD_WISHLIST_ITEM_FAILURE: null,
+    ADD_WISHLIST_ITEM_REQUEST: null,
+    GET_WISHLIST_FAILURE: null,
+    GET_WISHLIST_REQUEST: null,
+    REMOVE_WISHLIST_ITEM_FAILURE: null,
+    REMOVE_WISHLIST_ITEM_REQUEST: null,
+    WISHLIST_SUCCESS: null,
+  },
+  WISHLIST_NAMESPACE,
+);
+
+export const sagaTypes = keyMirrorSaga(
+  {
+    ADD_WISHLIST_ITEM: null,
+    GET_WISHLIST: null,
+    REMOVE_WISHLIST_ITEM: null,
+  },
+  WISHLIST_NAMESPACE,
+);

@@ -13,21 +13,26 @@
 //    limitations under the License.
 
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { AddToCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import { RemoveWishlistItem } from '../../../Integration/Wishlist';
+import * as JSS from 'Foundation/ReactJss';
 
-import { WishlistItemComponent } from './Component';
-import { WishlistItemDispatchProps } from './models';
+import { GetWishlist, selector } from '../Integration/Wishlist';
 
-const mapDispatchToProps = (dispatch: Dispatch): WishlistItemDispatchProps =>
+import { WishlistComponent } from './Component';
+import { AppState, WishlistDispatchProps, WishlistStoreProps } from './models';
+
+const mapStateToProps = (state: AppState): WishlistStoreProps => ({
+  items: selector.wishlist(state),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): WishlistDispatchProps =>
   bindActionCreators(
     {
-      AddToCart,
-      RemoveWishlistItem,
+      GetWishlist,
     },
     dispatch,
   );
 
-export const WishlistItem = connect(null, mapDispatchToProps)(WishlistItemComponent);
+export const Wishlist = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(WishlistComponent);

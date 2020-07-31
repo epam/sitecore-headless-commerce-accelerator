@@ -15,6 +15,9 @@ SharedFields:
 - ID: "826730f6-4aeb-4fa5-a55b-b02fece73c14"
   Hint: Brand Name
   Value: HCA
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
 - ID: "dec8d2d5-e3cf-48b6-a653-8e69e2716641"
   Hint: __Security
   Value: |

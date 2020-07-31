@@ -1,0 +1,42 @@
+﻿---
+ID: "837d101f-3337-4ac7-87f7-03f8f8f98c6c"
+Parent: "b04c8921-14e9-426a-a515-56349fefb207"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2/Copyright 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Copyright
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{EB709251-B6F9-4A2C-AE88-AC6C951C0A45}"
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query Copyright($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on Copyright {
+          id
+          text {
+            jss
+          }
+        }
+      }
+    }
+    
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/Navigation/Footer/Copyright
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']/*[@@name='Footer']/*[@@templateid='{C3707371-14DF-43CB-A033-9999C2A8F47E}']"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T200812Z

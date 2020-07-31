@@ -1,0 +1,18 @@
+﻿---
+ID: "b04c8921-14e9-426a-a515-56349fefb207"
+Parent: "c5287236-7711-47c1-8c69-6db337c8dc50"
+Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170511T175500Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

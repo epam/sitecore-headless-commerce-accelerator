@@ -1,0 +1,22 @@
+﻿---
+ID: "f7784b0e-67e8-48a9-85e0-72b2db1557ff"
+Parent: "b04c8921-14e9-426a-a515-56349fefb207"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2/Header Content 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Header Content
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{CE081C90-3501-4F74-A21D-2EAC39B3CF41}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200526T185053Z

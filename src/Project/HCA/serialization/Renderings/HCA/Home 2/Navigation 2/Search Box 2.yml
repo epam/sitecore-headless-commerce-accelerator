@@ -1,0 +1,18 @@
+﻿---
+ID: "6d8c1a60-5527-4462-9f7e-2376dc7ad12e"
+Parent: "b04c8921-14e9-426a-a515-56349fefb207"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2/Search Box 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Search Box
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T154246Z

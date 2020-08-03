@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
@@ -16,6 +17,8 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
     public interface IHcaApiService
     {
         HcaResponse<LoginResult> Login(LoginRequest loginData, string endpoint = "auth/login");
+
+        HcaVoidResponse Logout(string endpoint = "auth/logout");
 
         HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account");
 
@@ -44,5 +47,7 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
         HcaResponse<OrderConfirmationResult> SubmitOrder(string endpoint = "checkout/orders");
 
         HcaResponse<OrderResult> GetOrder(string trackingNumber, string endpoint = "orders");
+
+        CookieCollection GetClientCookies();
     }
 }

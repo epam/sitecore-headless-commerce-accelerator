@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Settings\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AutoTests.AutomationFramework.UI\AutoTests.AutomationFramework.UI.csproj" />
   </ItemGroup>
 

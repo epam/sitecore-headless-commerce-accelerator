@@ -9,7 +9,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
 {
     [Parallelizable(ParallelScope.All)]
     [TestFixture]
-    [Description("Cart Tests")]
+    [Description("Create Account Tests")]
     [ApiTest]
     public class CreateAccountTests : HcaApiTest
     {

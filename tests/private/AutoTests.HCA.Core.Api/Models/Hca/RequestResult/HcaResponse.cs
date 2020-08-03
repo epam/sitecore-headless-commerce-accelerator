@@ -1,4 +1,5 @@
-﻿using AutoTests.AutomationFramework.API.Models;
+﻿using System.Net;
+using AutoTests.AutomationFramework.API.Models;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.ErrorResult;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.OkResult;
 using Newtonsoft.Json;
@@ -10,6 +11,8 @@ namespace AutoTests.HCA.Core.API.Models.Hca.RequestResult
         where T : class
     {
         public bool IsSuccessful { get; set; }
+
+        public HttpStatusCode StatusCode { get; set; }
 
         public HcaOkResult<T> OkResponseData { get; set; }
 

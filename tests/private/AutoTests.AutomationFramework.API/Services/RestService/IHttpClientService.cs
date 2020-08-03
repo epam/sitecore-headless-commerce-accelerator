@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using AutoTests.AutomationFramework.API.Models;
 using RestSharp;
 
@@ -9,7 +10,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
     {
         void AddDefaultHeaders(Dictionary<string, string> headers);
 
-        void AddClientCookie(string name, string value);
+        void SetCookieIfNotSet(string name, string value);
 
         void SetHttpBasicAuthenticator(string userName, string password);
 
@@ -19,5 +20,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             where TData : class
             where TErrors : class
             where TModel : class, IResponse<TData, TErrors>, new();
+
+        CookieCollection GetCookies();
     }
 }

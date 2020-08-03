@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using AutoTests.AutomationFramework.API.Models;
 using Newtonsoft.Json;
@@ -15,7 +16,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
 
         public HttpClientService(Uri baseUri)
         {
-            _restClient = new RestClient(baseUri) {CookieContainer = new CookieContainer()};
+            _restClient = new RestClient(baseUri) { CookieContainer = new CookieContainer() };
             _restClient.UseNewtonsoftJson();
         }
 
@@ -24,9 +25,15 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             _restClient.AddDefaultHeaders(headers);
         }
 
-        public void AddClientCookie(string name, string value)
+        public CookieCollection GetCookies()
         {
-            _restClient.CookieContainer.Add(new Cookie(name, value) {Domain = _restClient.BaseUrl.Host});
+            return _restClient.CookieContainer.GetCookies(_restClient.BaseUrl);
+        }
+
+        public void SetCookieIfNotSet(string name, string value)
+        {
+            if (GetCookies().All(x => x.Name != name))
+                _restClient.CookieContainer.Add(new Cookie(name, value) { Domain = _restClient.BaseUrl.Host });
         }
 
         public void SetHttpBasicAuthenticator(string userName, string password)
@@ -44,28 +51,38 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             where TErrors : class
             where TModel : class, IResponse<TData, TErrors>, new()
         {
-            var request = GetJsonRequest(endpoint, obj);
-            var result = _restClient.Execute(request, method);
+            return DeserializeJsonResponse<TModel, TData, TErrors>(ExecuteJsonRequest(endpoint, obj, method));
+        }
 
+        private IRestResponse ExecuteJsonRequest(Uri endpoint, object obj, Method method)
+        {
+            var request = new RestRequest();
+            _restClient.BaseUrl = endpoint;
+
+            if (obj != null) request.AddJsonBody(obj);
+
+            return _restClient.Execute(request, method);
+        }
+
+        private static TModel DeserializeJsonResponse<TModel, TData, TErrors>(IRestResponse result)
+            where TData : class
+            where TErrors : class
+            where TModel : class, IResponse<TData, TErrors>, new()
+        {
             return result.IsSuccessful
                 ? new TModel
                 {
                     IsSuccessful = result.IsSuccessful,
+                    StatusCode = result.StatusCode,
                     OkResponseData = JsonConvert.DeserializeObject<TData>(result.Content)
                 }
                 : new TModel
                 {
-                    IsSuccessful = result.IsSuccessful, Errors = JsonConvert.DeserializeObject<TErrors>(result.Content)
+                    IsSuccessful = result.IsSuccessful,
+                    StatusCode = result.StatusCode,
+                    Errors = JsonConvert.DeserializeObject<TErrors>(result.Content)
                 };
-        }
 
-        private IRestRequest GetJsonRequest(Uri endpoint, object obj)
-        {
-            var request = new RestRequest();
-            _restClient.BaseUrl = endpoint;
-            if (obj != null) request.AddJsonBody(obj);
-
-            return request;
         }
     }
 }

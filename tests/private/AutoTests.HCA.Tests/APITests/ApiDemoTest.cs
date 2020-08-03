@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoTests.HCA.Core.API;
 using AutoTests.HCA.Core.API.Models.Braitree.PaymentToken.Request;
+using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Payment;
@@ -56,10 +57,9 @@ namespace AutoTests.HCA.Tests.APITests
         [OneTimeSetUp]
         public void SignIn()
         {
-            //if (!_isNeedToSignIn) return;
-            //var user = Configuration.GetDefaultUserLogin();
-            //var authReq = _hcaApiService.Login(new LoginRequest(user.Email, user.Password));
-            //Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
+            if (!_isNeedToSignIn) return;
+            var authReq = _hcaApiService.Login(new LoginRequest(TestsData.DefUserLogin.Email, TestsData.DefUserLogin.Password));
+            Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
         }
 
         [Test]

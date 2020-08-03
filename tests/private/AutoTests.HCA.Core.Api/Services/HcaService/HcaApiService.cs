@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using AutoTests.AutomationFramework.API.Services.RestService;
 using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
@@ -32,14 +33,25 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             var basicAuth = apiSettings.GlobalAuthentication.BasicAuthenticator;
 
             _httpClientService = new HttpClientService(_baseUri);
-            _httpClientService.AddClientCookie(siteCoreCookie.Name, siteCoreCookie.Value);
+            _httpClientService.SetCookieIfNotSet(siteCoreCookie.Name, siteCoreCookie.Value);
+
             if (basicAuth.IsRequired)
                 _httpClientService.SetHttpBasicAuthenticator(basicAuth.Account.UserName, basicAuth.Account.Password);
+        }
+
+        public CookieCollection GetClientCookies()
+        {
+            return _httpClientService.GetCookies();
         }
 
         public HcaResponse<LoginResult> Login(LoginRequest loginData, string endpoint = "auth/login")
         {
             return ExecuteJsonRequest<LoginResult>(endpoint, Method.POST, loginData);
+        }
+
+        public HcaVoidResponse Logout(string endpoint = "auth/logout")
+        {
+            return ExecuteJsonRequest(endpoint, Method.POST);
         }
 
         public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser,

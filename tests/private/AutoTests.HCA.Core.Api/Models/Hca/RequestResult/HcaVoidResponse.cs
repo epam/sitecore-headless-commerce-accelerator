@@ -3,6 +3,7 @@ using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.ErrorResult;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.OkResult;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using System.Net;
 
 namespace AutoTests.HCA.Core.API.Models.Hca.RequestResult
 {
@@ -13,6 +14,8 @@ namespace AutoTests.HCA.Core.API.Models.Hca.RequestResult
         public HcaOkResult<object> OkResponseData { get; set; }
 
         public HcaErrorsResult Errors { get; set; }
+
+        public HttpStatusCode StatusCode { get; set; }
 
         public void CheckError()
         {

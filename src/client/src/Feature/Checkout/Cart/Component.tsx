@@ -39,7 +39,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </div>
         </div>
         <div className="row">
-          {!!shoppingCartData && (
+          {!!shoppingCartData && shoppingCartData.price && shoppingCartData.cartLines.length !== 0 && (
             <>
               <div className="col-md-8">
                 {shoppingCartData.cartLines && (
@@ -51,9 +51,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
                 )}
               </div>
               <div className="col-md-4">
-                {shoppingCartData.price && shoppingCartData.cartLines.length !== 0 && (
-                  <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
-                )}
+                <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
               </div>
             </>
           )}

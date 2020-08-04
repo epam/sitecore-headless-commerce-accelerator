@@ -74,9 +74,20 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             {adjustments && adjustments.length !== 0 && (
               <div>
                 <label htmlFor="promo-code">Adjustments:</label>
-                <ul>
+                <ul className="adjustment-list">
                   {adjustments.map((item: string, index: number) => (
-                    <li key={index}>{item}</li>
+                    <div key={index} className="adjustment-item">
+                      {freeShipping && (
+                        <button
+                          className="btn small"
+                          disabled={freeShipping.displayName === item}
+                          onClick={(e) => this.props.RemovePromoCode({ promoCode: item })}
+                        >
+                          <i className="fa fa-times" />
+                        </button>
+                      )}
+                      <li>{item}</li>
+                    </div>
                   ))}
                 </ul>
               </div>

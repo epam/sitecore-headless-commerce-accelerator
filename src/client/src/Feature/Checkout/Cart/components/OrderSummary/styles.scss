@@ -117,16 +117,15 @@
 
       .adjustment-list>.adjustment-item {
         display: flex;
-        height: 30px;
+        height: 20px;
+        margin: 4px 0;
 
         .btn {
-          width: 22px;
+          width: 20px;
+          padding: 0;
+          margin: 0 4px;
         }
 
-        .btn, span {
-          margin: 4px;
-          padding: 0;
-        }
       }
 
       label{

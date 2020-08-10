@@ -44,8 +44,7 @@ namespace AutoTests.HCA.Tests.UITests
         {
             const int expMenuItemCounts = 5;
 
-            _hcaWebSite.GoToPageWithDefaultParams(pagePrefix,
-                new DefaultHcaData(TestsData.ProductId, TestsData.DefUserLogin));
+            _hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.HcaTestsData);
 
             var headerControl = _hcaWebSite.HeaderControl;
             headerControl.HeaderIsPresent();

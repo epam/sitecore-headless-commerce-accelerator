@@ -13,9 +13,10 @@ namespace AutoTests.AutomationFramework.UI
 
         static UiConfiguration()
         {
-            var configuration = new ConfigurationManager("appsettings.ui.json");
-            TestsSettings = configuration.Get<TestsExecutionSettings>("UiTestsInfo");
-            Environments = configuration.Get<IEnumerable<EnvironmentSetting>>("Environments");
+            var configuration = new ConfigurationManager("appsettings.json");
+            var uiConfiguration = configuration.Get<UiSettings>();
+            TestsSettings = uiConfiguration.UiTestsInfo;
+            Environments = uiConfiguration.Environments;
         }
 
         public static Uri GetEnvironmentUri(string name)

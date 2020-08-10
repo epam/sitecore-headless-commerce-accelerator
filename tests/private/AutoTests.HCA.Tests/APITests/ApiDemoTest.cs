@@ -58,7 +58,8 @@ namespace AutoTests.HCA.Tests.APITests
         public void SignIn()
         {
             if (!_isNeedToSignIn) return;
-            var authReq = _hcaApiService.Login(new LoginRequest(TestsData.DefUserLogin.Email, TestsData.DefUserLogin.Password));
+            var authReq = _hcaApiService.Login(new LoginRequest(TestsData.UserLogin.Email, 
+                TestsData.UserLogin.Password));
             Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
         }
 

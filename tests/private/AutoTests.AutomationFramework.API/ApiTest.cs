@@ -17,6 +17,6 @@ namespace AutoTests.AutomationFramework.API
         {
         }
 
-        protected static readonly ConfigurationManager Configuration = new ConfigurationManager("appsettings.api.json");
+        protected static readonly ConfigurationManager Configuration = new ConfigurationManager("appsettings.json");
     }
 }

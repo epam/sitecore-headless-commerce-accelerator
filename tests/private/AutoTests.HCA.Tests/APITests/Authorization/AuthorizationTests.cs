@@ -17,7 +17,7 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
     public class AuthorizationTests : HcaApiTest
     {
         protected const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
-        protected static readonly UserLogin DefUser = TestsData.DefUserLogin;
+        protected static readonly UserLogin DefUser = TestsData.UserLogin;
 
         [Test]
         [Order(1)]
@@ -82,7 +82,7 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
             Assert.NotNull(result.Errors);
             Assert.Multiple(() =>
             {
-                Assert.True(result.Errors.Errors.All(x => x == expErrorMsg));
+                Assert.True(result.Errors.Errors?.All(x => x == expErrorMsg));
                 Assert.AreEqual(expErrorMsg, result.Errors.Error);
                 var cookies = hcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");

@@ -1,5 +1,5 @@
-﻿using AutoTests.AutomationFramework.API.Models;
-using System.Net;
+﻿using System.Net;
+using AutoTests.AutomationFramework.API.Models;
 
 namespace AutoTests.HCA.Core.API.Models.Braitree.RequestResult
 {
@@ -8,10 +8,11 @@ namespace AutoTests.HCA.Core.API.Models.Braitree.RequestResult
     {
         public bool IsSuccessful { get; set; }
 
+        public HttpStatusCode StatusCode { get; set; }
+
         //TODO: Error Model
         public object Errors { get; set; }
 
         public TData OkResponseData { get; set; }
-        public HttpStatusCode StatusCode { get; set; }
     }
 }

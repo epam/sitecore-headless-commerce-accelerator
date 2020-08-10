@@ -62,7 +62,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void CheckoutForRegisteredTest()
         {
-            _hcaWebSite.OpenHcaAndLogin(TestsData.DefUserLogin.Email, TestsData.DefUserLogin.Password);
+            _hcaWebSite.OpenHcaAndLogin(TestsData.UserLogin.Email, TestsData.UserLogin.Password);
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
             _hcaWebSite.ProductGridSection.ChooseProduct("Habitat Athletica Sports Armband Case");

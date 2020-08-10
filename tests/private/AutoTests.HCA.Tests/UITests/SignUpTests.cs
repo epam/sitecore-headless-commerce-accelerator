@@ -16,8 +16,7 @@ namespace AutoTests.HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp,
-                new DefaultHcaData(TestsData.ProductId, TestsData.DefUserLogin));
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp, TestsData.HcaTestsData);
         }
 
         public SignUpTests(BrowserType browserType) : base(browserType)
@@ -61,7 +60,7 @@ namespace AutoTests.HCA.Tests.UITests
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
-            var user = TestsData.DefUserLogin;
+            var user = TestsData.UserLogin;
             _hcaWebSite.SignUpPage.FillFieldByName("Email", user.Email);
             _hcaWebSite.SignUpPage.FillFieldByName("Password", "password");
             _hcaWebSite.SignUpPage.FillFieldByName("Confirm Password", "password");

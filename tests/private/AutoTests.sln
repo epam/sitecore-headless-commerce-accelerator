@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.AutomationFramewo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutomationFramework", "AutomationFramework", "{6C21A5FD-1C2A-4573-906A-6C759D4E4D6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTests.HCA.Common", "AutoTests.HCA.Shared\AutoTests.HCA.Common.csproj", "{6AB06CCB-0D41-4D26-9397-63DAF973A64F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{D5A6A38F-AB56-424B-B0B2-57C56E896C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5A6A38F-AB56-424B-B0B2-57C56E896C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5A6A38F-AB56-424B-B0B2-57C56E896C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

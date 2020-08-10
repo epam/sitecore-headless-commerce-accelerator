@@ -1,7 +1,20 @@
 {
-  "User": {
-    "Email": "firsname1_lastname1@gmail.com",
-    "Password": "123456qq"
-  },
-  "ProductId": "6042347"
+  "HcaTestsData": {
+    "UserLogin": {
+      "Email": "HcaAutotests@mail.com",
+      "Password": "123456"
+    },
+    "Products": [
+      {
+        "ProductId": "6042347",
+        "ProductName": "HABITAT ATHLETICA SPORTS ARMBAND CASE",
+        "ProductBrand": "ATHLETICA SMARTPHONE CASE",
+        "ProductCategoryId": "8e456d84-4251-dba1-4b86-ce103dedcd02"
+      }
+    ],
+    "Pagination": {
+      "PageSize": "5",
+      "PageNumber": "1"
+    }
+  }
 }

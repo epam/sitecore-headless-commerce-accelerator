@@ -16,8 +16,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account,
-                new DefaultHcaData(TestsData.ProductId, TestsData.DefUserLogin));
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.HcaTestsData);
             _hcaWebSite.MyAccountPage.WaitForOpened();
         }
 

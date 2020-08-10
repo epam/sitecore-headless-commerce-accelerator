@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoTests.AutomationFramework.UI\AutoTests.AutomationFramework.UI.csproj" />
+    <ProjectReference Include="..\AutoTests.HCA.Shared\AutoTests.HCA.Common.csproj" />
   </ItemGroup>
 
 </Project>

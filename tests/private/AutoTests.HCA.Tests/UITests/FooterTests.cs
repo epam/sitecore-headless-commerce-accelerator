@@ -22,8 +22,7 @@ namespace AutoTests.HCA.Tests.UITests
             const int expectedSocialNetworksCount = 4;
             var hcaWebSite = HcaWebSite.Instance;
 
-            hcaWebSite.GoToPageWithDefaultParams(pagePrefix,
-                new DefaultHcaData(TestsData.ProductId, TestsData.DefUserLogin));
+            hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.HcaTestsData);
             var footerControl = hcaWebSite.FooterControl;
             footerControl.FooterElementIsPresent();
             Assert.Multiple(() =>

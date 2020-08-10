@@ -1,7 +1,9 @@
-﻿using AutoTests.AutomationFramework.Shared.Helpers;
+﻿using System.Linq;
+using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Entities;
+using AutoTests.HCA.Common.Settings;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using AutoTests.HCA.Core.UI.Pages;
@@ -174,22 +176,23 @@ namespace AutoTests.HCA.Core.UI
             CheckoutPaymentPage.GoToTheNextPage();
         }
 
-        public void GoToPageWithDefaultParams(PagePrefix pagePrefix, DefaultHcaData defParams)
+        public void GoToPageWithDefaultParams(PagePrefix pagePrefix, HcaTestsDataSettings testsData)
         {
+            var product = testsData.Products.First();
             switch (pagePrefix)
             {
                 case PagePrefix.CheckoutBilling:
-                    _hcaWebSite.AddProductAndGoToCheckoutBillingPage(defParams.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutBillingPage(product.ProductId);
                     break;
                 case PagePrefix.CheckoutPayment:
-                    _hcaWebSite.AddProductAndGoToCheckoutPaymentPage(defParams.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutPaymentPage(product.ProductId);
                     break;
                 case PagePrefix.CheckoutConfirmation:
-                    _hcaWebSite.AddProductAndGoToCheckoutConfirmationPage(defParams.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutConfirmationPage(product.ProductId);
                     break;
                 case PagePrefix.Account:
                 case PagePrefix.AccountOrderHistory:
-                    var user = defParams.UserLogin;
+                    var user = testsData.UserLogin;
                     _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);
                     _hcaWebSite.NavigateToPage(pagePrefix.GetPrefix());
                     break;

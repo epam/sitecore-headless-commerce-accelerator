@@ -38,7 +38,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_02_BlankPasswordTest()
         {
-            var user = TestsData.DefUserLogin;
+            var user = TestsData.UserLogin;
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
@@ -46,7 +46,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_03_BlankUserNameTest()
         {
-            var user = TestsData.DefUserLogin;
+            var user = TestsData.UserLogin;
             _hcaWebSite.LoginForm.FillPasswordField(user.Password);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
@@ -61,7 +61,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_05_IncorrectPasswordTest()
         {
-            var user = TestsData.DefUserLogin;
+            var user = TestsData.UserLogin;
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
             _hcaWebSite.LoginForm.FillPasswordField(user.Password + "_1");
             _hcaWebSite.LoginForm.SignInButtonClick();
@@ -71,7 +71,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_06_SuccessSignInTest()
         {
-            var user = TestsData.DefUserLogin;
+            var user = TestsData.UserLogin;
             _hcaWebSite.LoginForm.FillUserNameField(user.Email);
             _hcaWebSite.LoginForm.FillPasswordField(user.Password);
             _hcaWebSite.LoginForm.SignInButtonClick();

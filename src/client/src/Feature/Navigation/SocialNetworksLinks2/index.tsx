@@ -12,12 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Copyright';
-export * from './FooterLinks';
-export * from './GlobalFooter';
-export * from './Header';
-export * from './SocialNetworksLinks';
-export * from './FooterLinks2';
-export * from './GlobalFooter2';
-export * from './Copyright2';
-export * from './SocialNetworksLinks2';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+
+import * as JSS from 'Foundation/ReactJss';
+
+import SocialNetworksLinksComponent from './Component';
+import { AppState, SocialLinksProps, SocialLinksStateProps } from './models';
+
+const mapStateToProps = (state: AppState, ownProps: SocialLinksProps) => {
+  return {
+    isPageEditingMode: JSS.sitecoreContext(state).pageEditing
+  };
+};
+
+const connectedToStore = connect<SocialLinksStateProps, SocialLinksProps>(
+  mapStateToProps
+);
+
+export const SocialNetworksLinks2 = compose(connectedToStore, JSS.rendering)(SocialNetworksLinksComponent);

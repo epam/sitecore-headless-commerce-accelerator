@@ -12,10 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './BannerGrid';
-export * from './BannerItem/components/Banner';
-export * from './BannerItem/components/ClearBanner';
-export * from './BannerItem/components/LightBanner';
-export * from './BannerItem/components/ModernBanner';
-export * from './RecommendedProducts2';
+@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss/mixins";
+.footer-copyright-container {
+  .footer-copyright {
+    font-family: $poppins;
+    margin: 0;
+    padding-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    max-width: 188px;
+    color: $footer-title-color;
+    letter-spacing: 0.9px;
+    line-height: 2.2;
+  }
+}
+
+@media #{$footer-switch-mode} {
+  .footer-copyright-container {
+    .footer-copyright {
+      max-width: unset;
+    }
+  }
+}

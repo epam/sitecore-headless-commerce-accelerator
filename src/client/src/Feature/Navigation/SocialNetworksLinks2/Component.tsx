@@ -26,7 +26,7 @@ export default class SocialNetworksLinksComponent extends JSS.SafePureComponent<
       const { datasource } = this.props.fields.data;
 
       return (
-        <div>
+        <div className="social-network-container">
           <Text tag="h2" field={datasource.sectionTitle.jss} className="social-title" />
           <ul className="social-list">
             {datasource.links && datasource.links.items && datasource.links.items.map((link, index) => {

@@ -122,7 +122,7 @@ $account-font-color: #323e48;
 // Navigation font color
 $nav-font-color: #fff;
 $nav-font-second-color: #999;
-
+$footer-title-color: #313131;
 // Header section font color
 $header-section-font-color: #fff;
 $header-section-font-second-color: #fff;
@@ -189,3 +189,51 @@ $btn-font-weight: normal !default;
 // Typography
 $sans-serif: 'Avenir', sans-serif;
 $phosphate: 'Phosphate', sans-serif;
+
+
+// Font Family
+$poppins: "Poppins", sans-serif;
+$abrilfatface: "Abril Fatface", cursive;
+$cormorantgaramond: "Cormorant Garamond";
+$greatvibes: "Great Vibes", cursive;
+$lobster: "Lobster", cursive;
+$josefin: "Josefin Sans", sans-serif;
+
+// text Colors ---------------
+
+$white: #ffffff;
+$black: #000000;
+$grey: #f6f7f8;
+$red: #f6f7f8;
+$green: #f6f7f8;
+
+// bg Colors ---------------
+
+$bg-white: #ffffff;
+$bg-black: #000000;
+$bg-grey: #f6f6f8;
+$bg-purple: #f0e0ff;
+
+// Heading Color
+$heading-color: #000000;
+
+// Theme Color
+$theme-color: #a749ff;
+
+// Responsive Variables
+$xl-layout: "only screen and (min-width: 1200px) and (max-width: 1365px)";
+$xs-layout: "only screen and (max-width: 767px)";
+$footer-switch-mode: "only screen and (max-width: 1024px)";
+/*--
+    - Background Color
+------------------------------------------*/
+
+  .bg-gray {
+    background-color: #f6f6f8;
+  }
+  .bg-white {
+    background-color: #fff;
+  }
+  .yellow{
+    color: #ffa900;
+  }

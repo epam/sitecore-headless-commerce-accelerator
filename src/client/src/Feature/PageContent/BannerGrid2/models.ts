@@ -12,15 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './BannerGrid';
-export * from './BannerItem/components/Banner';
-export * from './BannerItem/components/ClearBanner';
-export * from './BannerItem/components/LightBanner';
-export * from './BannerItem/components/ModernBanner';
-export * from './RecommendedProducts2';
-export * from './BannerGrid2';
-export * from './BannerItem/components/Banner2';
-export * from './BannerItem/components/ClearBanner2';
-export * from './BannerItem/components/LightBanner2';
-export * from './BannerItem/components/ModernBanner2';
+import * as JSS from 'Foundation/ReactJss';
+
+export interface BannerGridProps extends JSS.Rendering {}
+
+export interface BannerGridState extends JSS.SafePureComponentState {}

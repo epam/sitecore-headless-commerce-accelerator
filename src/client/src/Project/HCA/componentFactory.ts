@@ -36,6 +36,7 @@ components.set('Three Column Row', Scaffolding.ThreeColumnRow);
 
 // Home renderings
 components.set('Recommended Products', PageContent.RecommendedProducts);
+components.set('Recommended Products 2', PageContent.RecommendedProducts2);
 components.set('Banner Grid', PageContent.BannerGrid);
 components.set('Banner', PageContent.Banner);
 components.set('Clear Banner', PageContent.ClearBanner);
@@ -56,6 +57,12 @@ components.set('Footer', Navigation.GlobalFooter);
 components.set('Copyright', Navigation.Copyright);
 components.set('Footer Links', Navigation.FooterLinks);
 components.set('Social Networks Links', Navigation.SocialNetworksLinks);
+
+// Footer2 renderings
+components.set('Footer 2', Navigation.GlobalFooter2);
+components.set('Copyright 2', Navigation.Copyright2);
+components.set('Footer Links 2', Navigation.FooterLinks2);
+components.set('Social Networks Links 2', Navigation.SocialNetworksLinks2);
 
 // Catalog renderings
 components.set('Find In Store', Catalog.FindInStore);

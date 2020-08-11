@@ -43,6 +43,12 @@ components.set('Clear Banner', PageContent.ClearBanner);
 components.set('Light Banner', PageContent.LightBanner);
 components.set('Modern Banner', PageContent.ModernBanner);
 
+components.set('Banner Grid 2', PageContent.BannerGrid2);
+components.set('Banner 2', PageContent.Banner2);
+components.set('Clear Banner 2', PageContent.ClearBanner2);
+components.set('Light Banner 2', PageContent.LightBanner2);
+components.set('Modern Banner 2', PageContent.ModernBanner2);
+
 // Header renderings
 components.set('Header', Navigation.Header);
 components.set('Header Content', Navigation.HeaderContent);

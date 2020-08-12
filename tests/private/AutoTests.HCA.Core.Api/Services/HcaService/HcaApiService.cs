@@ -81,6 +81,12 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest<CartResult>(endpoint, Method.GET);
         }
 
+        public HcaResponse<CartResult> RemoveCartLine(string productId, string endpoint = "carts/cartLines")
+        {
+            return ExecuteJsonRequest<CartResult>(endpoint+ $"?productId={productId}&variantId=5{productId}", 
+                Method.DELETE);
+        }
+
         public HcaResponse<DeliveryInfoResult> GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")
         {
             return ExecuteJsonRequest<DeliveryInfoResult>(endpoint, Method.GET);

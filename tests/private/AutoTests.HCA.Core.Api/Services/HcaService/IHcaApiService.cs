@@ -31,6 +31,8 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
 
         HcaResponse<CartResult> GetCart(string endpoint = "carts/cart");
 
+        HcaResponse<CartResult> RemoveCartLine(string productId, string endpoint = "carts/cartLines");
+
         HcaResponse<CartResult> AddPromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes");
 
         HcaResponse<DeliveryInfoResult> GetDeliveryInfo(string endpoint = "checkout/deliveryInfo");

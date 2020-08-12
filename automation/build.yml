@@ -246,9 +246,25 @@ jobs:
         summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'
 
     - task: MSBuild@1
-      displayName: MSBuild for publish
+      displayName: MSBuild Foundation
       inputs:
-        solution: './src/**/*.csproj'
+        solution: './src/Foundation/**/*.csproj'
+        msbuildVersion: '15.0'
+        configuration: 'Debug'
+        msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+    - task: MSBuild@1
+      displayName: MSBuild Feature
+      inputs:
+        solution: './src/Feature/**/*.csproj'
+        msbuildVersion: '15.0'
+        configuration: 'Debug'
+        msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+    - task: MSBuild@1
+      displayName: MSBuild Project
+      inputs:
+        solution: './src/Project/**/*.csproj'
         msbuildVersion: '15.0'
         configuration: 'Debug'
         msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'

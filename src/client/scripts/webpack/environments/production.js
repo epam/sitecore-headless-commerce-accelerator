@@ -16,6 +16,7 @@ const resolve = {
   alias: {
     'data-api-alias': path.resolve(process.cwd(), constants.jssDataApiImplementationProdPath),
     Foundation: path.resolve(process.cwd(), './src/Foundation/'),
+    Redesign: path.resolve(process.cwd(), './src/Foundation/UI/common/scss-new/'),
     Project: path.resolve(process.cwd(), './src/Project/'),
     Feature: path.resolve(process.cwd(), './src/Feature/'),
   },
@@ -38,7 +39,8 @@ const clientWebpackConfigFactory = (projectManifest) => {
     target: 'web',
     devtool: 'eval-source-map',
     entry: {
-      client: clientEntryPath,
+      common: clientEntryPath,
+      redesign: './src/Foundation/UI/common/scss-new/style.scss',
     },
     output: {
       path: path.resolve(__dirname, clientOutputPath),
@@ -49,6 +51,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
     },
     optimization: {
       minimize: true,
+      namedChunks: true,
       splitChunks: {
         chunks: 'all',
         name: true,
@@ -58,12 +61,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
             filename: '[name].bundle.js',
             test: /[\\/]node_modules[\\/]/,
           },
-          client: {
-            name: 'client',
-            filename: '[name].bundle.js',
-            test: /[\\/](Foundation|Feature|Project)[\\/]/,
-          },
-        },
+        }
       },
     },
     resolve,

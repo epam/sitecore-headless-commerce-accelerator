@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoTests.HCA.Core.API\AutoTests.HCA.Core.API.csproj" />
+    <ProjectReference Include="..\AutoTests.HCA.Core.UI\AutoTests.HCA.Core.UI.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using AutoTests.AutomationFramework.Shared.Helpers;
+﻿using AutoTests.AutomationFramework.Shared.Helpers;
+using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Entities;
@@ -145,8 +145,6 @@ namespace AutoTests.HCA.Core.UI
             ProductPage.WaitForOpened();
             ProductPage.AddToCartButtonClick();
             HeaderControl.WaitForPresentProductsQuantity();
-            //TODO investigate problem with blank after Product adding
-            ProductPage.AddToCartButtonClick();
         }
 
         public void AddProductAndGoToCheckoutShippingPage(int productId)
@@ -176,9 +174,8 @@ namespace AutoTests.HCA.Core.UI
             CheckoutPaymentPage.GoToTheNextPage();
         }
 
-        public void GoToPageWithDefaultParams(PagePrefix pagePrefix, HcaTestsDataSettings testsData)
+        public void GoToPageWithDefaultParams(PagePrefix pagePrefix, ProductTestsDataSettings product, UserLogin user)
         {
-            var product = testsData.Products.First();
             switch (pagePrefix)
             {
                 case PagePrefix.CheckoutBilling:
@@ -192,7 +189,6 @@ namespace AutoTests.HCA.Core.UI
                     break;
                 case PagePrefix.Account:
                 case PagePrefix.AccountOrderHistory:
-                    var user = testsData.UserLogin;
                     _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);
                     _hcaWebSite.NavigateToPage(pagePrefix.GetPrefix());
                     break;

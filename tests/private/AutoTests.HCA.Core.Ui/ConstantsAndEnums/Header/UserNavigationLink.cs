@@ -27,7 +27,7 @@ namespace AutoTests.HCA.Core.UI.ConstantsAndEnums.Header
             var href = sl.GetAttribute<LinkAttribute>().Href;
             return href == null
                 ? null
-                : UiConfiguration.GetEnvironmentUri("HCAEnvironment").AddPostfix(href).AbsoluteUri;
+                : UiConfiguration.GetEnvironmentUri("HcaEnvironment").AddPostfix(href).AbsoluteUri;
         }
     }
 }

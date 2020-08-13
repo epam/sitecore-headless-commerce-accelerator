@@ -1,4 +1,7 @@
-﻿using AutoTests.AutomationFramework.UI.Driver;
+﻿using AutoTests.AutomationFramework.Shared.Models;
+using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Common.Settings.Users;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using NUnit.Framework;
 
@@ -7,7 +10,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    internal class SignInTests : HcaWebTest
+    internal class SignInTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
@@ -22,6 +25,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         private HcaWebSite _hcaWebSite;
+        private readonly UserLogin _defUser = TestsData.GetUser(HcaUserType.Default).Credentials; 
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -38,16 +42,14 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_02_BlankPasswordTest()
         {
-            var user = TestsData.UserLogin;
-            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
+            _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
         public void SignInTests_03_BlankUserNameTest()
         {
-            var user = TestsData.UserLogin;
-            _hcaWebSite.LoginForm.FillPasswordField(user.Password);
+            _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
@@ -61,9 +63,8 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_05_IncorrectPasswordTest()
         {
-            var user = TestsData.UserLogin;
-            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
-            _hcaWebSite.LoginForm.FillPasswordField(user.Password + "_1");
+            _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
+            _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password + "_1");
             _hcaWebSite.LoginForm.SignInButtonClick();
             _hcaWebSite.LoginForm.VerifyValidationMessage("The email or password you entered is incorrect");
         }
@@ -71,9 +72,8 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void SignInTests_06_SuccessSignInTest()
         {
-            var user = TestsData.UserLogin;
-            _hcaWebSite.LoginForm.FillUserNameField(user.Email);
-            _hcaWebSite.LoginForm.FillPasswordField(user.Password);
+            _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
+            _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password);
             _hcaWebSite.LoginForm.SignInButtonClick();
             _hcaWebSite.HideUserMenu();
             _hcaWebSite.OpenUserMenu();

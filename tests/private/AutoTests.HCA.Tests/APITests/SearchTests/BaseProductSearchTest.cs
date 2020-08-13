@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using AutoTests.HCA.Common.Settings;
-using AutoTests.HCA.Core.API;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Catalog;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.SearchTests
@@ -11,9 +11,9 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
     [Parallelizable(ParallelScope.All)]
     [TestFixture(Description = "Base product search Test")]
     [ApiTest]
-    public class BaseProductSearchTest : HcaApiTest
+    public class BaseProductSearchTest : BaseHcaApiTest
     {
-        protected readonly IHcaApiService HcaService = CreateHcaApiClient();
+        protected readonly IHcaApiService HcaService = TestsHelper.CreateHcaApiClient();
 
         protected static readonly ProductTestsDataSettings DefProductTestsData = TestsData.Products.First();
         protected static readonly PaginationTestsDataSettings DefPagination = TestsData.Pagination;

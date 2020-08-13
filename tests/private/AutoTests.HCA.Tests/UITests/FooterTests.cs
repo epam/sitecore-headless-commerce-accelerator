@@ -1,4 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Common.Settings.Users;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Footer;
@@ -9,7 +11,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    public class FooterTests : HcaWebTest
+    public class FooterTests : BaseHcaWebTest
     {
         public FooterTests(BrowserType browserType) : base(browserType)
         {
@@ -22,7 +24,8 @@ namespace AutoTests.HCA.Tests.UITests
             const int expectedSocialNetworksCount = 4;
             var hcaWebSite = HcaWebSite.Instance;
 
-            hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.HcaTestsData);
+            hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.GetDefProduct(), 
+                TestsData.GetUser(HcaUserType.Default).Credentials);
             var footerControl = hcaWebSite.FooterControl;
             footerControl.FooterElementIsPresent();
             Assert.Multiple(() =>

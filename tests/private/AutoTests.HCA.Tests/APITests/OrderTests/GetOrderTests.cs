@@ -1,17 +1,16 @@
-﻿using AutoTests.HCA.Core.API;
-using AutoTests.HCA.Core.API.Models.Hca;
+﻿using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.OrderTests
 {
     [Parallelizable(ParallelScope.All)]
-    [TestFixture]
-    [Description("Cart Tests")]
+    [TestFixture(Description = "Cart Tests")]
     [ApiTest]
-    public class GetOrderTests : HcaApiTest
+    public class GetOrderTests : BaseHcaApiTest
     {
-        private readonly IHcaApiService _hcaService = CreateHcaApiClient();
+        private readonly IHcaApiService _hcaService = TestsHelper.CreateHcaApiClient();
 
         public const string ORDER_ID = "1H1SZ767SABD59OSJAOW7KMXA";
 

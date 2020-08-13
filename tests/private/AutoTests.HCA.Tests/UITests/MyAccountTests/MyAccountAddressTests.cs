@@ -1,6 +1,7 @@
 ﻿using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using NUnit.Framework;
@@ -10,13 +11,13 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    internal class MyAccountAddressTests : HcaWebTest
+    internal class MyAccountAddressTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.HcaTestsData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
             _hcaWebSite.MyAccountPage.WaitForOpened();
         }
 

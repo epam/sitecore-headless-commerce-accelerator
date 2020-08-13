@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.AutomationFramewo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutomationFramework", "AutomationFramework", "{6C21A5FD-1C2A-4573-906A-6C759D4E4D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTests.HCA.Common", "AutoTests.HCA.Shared\AutoTests.HCA.Common.csproj", "{6AB06CCB-0D41-4D26-9397-63DAF973A64F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.HCA.Common", "AutoTests.HCA.Shared\AutoTests.HCA.Common.csproj", "{6AB06CCB-0D41-4D26-9397-63DAF973A64F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTests.HCA.Core", "AutoTests.HCA.Core\AutoTests.HCA.Core.csproj", "{E1B923C1-783F-4468-ABBB-658F86D3393F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AB06CCB-0D41-4D26-9397-63DAF973A64F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1B923C1-783F-4468-ABBB-658F86D3393F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1B923C1-783F-4468-ABBB-658F86D3393F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1B923C1-783F-4468-ABBB-658F86D3393F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1B923C1-783F-4468-ABBB-658F86D3393F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

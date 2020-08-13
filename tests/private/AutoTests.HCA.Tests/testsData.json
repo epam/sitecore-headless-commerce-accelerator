@@ -1,9 +1,21 @@
 {
   "HcaTestsData": {
-    "UserLogin": {
-      "Email": "HcaAutotests@mail.com",
-      "Password": "123456"
-    },
+    "Users": [
+      {
+        "type": "Default",
+        "credentials": {
+          "Email": "HcaAutotests@mail.com",
+          "Password": "123456"
+        }
+      },
+      {
+        "type": "ApiAuthorizationTests",
+        "credentials": {
+          "Email": "HcaAutotests@mail.com",
+          "Password": "123456"
+        }
+      }
+    ],
     "Products": [
       {
         "ProductId": "6042347",

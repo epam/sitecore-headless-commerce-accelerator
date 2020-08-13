@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Product;
@@ -12,7 +13,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    public class ProductPageTests : HcaWebTest
+    public class ProductPageTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()

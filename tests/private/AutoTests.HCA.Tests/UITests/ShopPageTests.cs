@@ -1,4 +1,5 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.Pages;
@@ -9,7 +10,7 @@ namespace AutoTests.HCA.Tests.UITests
     [UiTest]
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
-    public class ShopPageTests : HcaWebTest
+    public class ShopPageTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()

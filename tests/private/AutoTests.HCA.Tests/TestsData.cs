@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoTests.AutomationFramework.Shared.Configuration;
-using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.HCA.Common.Settings;
+using AutoTests.HCA.Common.Settings.Users;
 
 namespace AutoTests.HCA.Tests
 {
@@ -10,15 +11,25 @@ namespace AutoTests.HCA.Tests
         private static readonly ConfigurationManager _configurationManager = new ConfigurationManager("testsdata.json");
 
         private static HcaTestsDataSettings _hcaTestsData;
-        private static UserLogin _userLogin;
+        private static IEnumerable<HcaUser> _users;
         private static IEnumerable<ProductTestsDataSettings> _productId;
         private static PaginationTestsDataSettings _pagination;
 
-        public static HcaTestsDataSettings HcaTestsData =>
+        private static HcaTestsDataSettings HcaTestsData =>
             _hcaTestsData ??= _configurationManager.Get<HcaTestsDataSettings>("HcaTestsData");
 
-        public static UserLogin UserLogin => _userLogin ??= HcaTestsData.UserLogin;
+        public static IEnumerable<HcaUser> Users => _users ??= HcaTestsData.Users;
         public static IEnumerable<ProductTestsDataSettings> Products => _productId ??= HcaTestsData.Products;
         public static PaginationTestsDataSettings Pagination => _pagination ??= HcaTestsData.Pagination;
+
+        public static HcaUser GetUser(HcaUserType? type = HcaUserType.Default, string id = null)
+        {
+                return Users.FirstOrDefault(x => x.Type == type);
+        }
+
+        public static ProductTestsDataSettings GetDefProduct()
+        {
+            return Products.FirstOrDefault();
+        }
     }
 }

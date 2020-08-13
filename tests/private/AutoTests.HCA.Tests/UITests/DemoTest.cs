@@ -1,4 +1,5 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    internal class DemoTest : HcaWebTest
+    internal class DemoTest : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
@@ -62,7 +63,8 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void CheckoutForRegisteredTest()
         {
-            _hcaWebSite.OpenHcaAndLogin(TestsData.UserLogin.Email, TestsData.UserLogin.Password);
+            var user = TestsData.GetUser().Credentials;
+            _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
             _hcaWebSite.ProductGridSection.ChooseProduct("Habitat Athletica Sports Armband Case");

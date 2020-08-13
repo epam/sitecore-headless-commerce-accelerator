@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AutoTests.AutomationFramework.Shared.Models;
+using AutoTests.HCA.Common.Settings.Users;
 
 namespace AutoTests.HCA.Common.Settings
 {
@@ -9,6 +9,6 @@ namespace AutoTests.HCA.Common.Settings
 
         public PaginationTestsDataSettings Pagination { get; set; }
 
-        public UserLogin UserLogin { get; set; }
+        public IEnumerable<HcaUser> Users { get; set; }
     }
 }

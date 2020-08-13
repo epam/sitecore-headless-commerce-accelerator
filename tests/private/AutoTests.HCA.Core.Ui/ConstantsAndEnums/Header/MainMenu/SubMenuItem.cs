@@ -79,8 +79,8 @@ namespace AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu
 
         public static string GetHref(this SubMenuItem item)
         {
-            return Path.Combine(UiConfiguration.GetEnvironmentUri("HCAEnvironment").AbsoluteUri,
-                item.GetAttribute<LinkAttribute>().Href);
+            return UiConfiguration.GetEnvironmentUri("HcaEnvironment").AddPostfix(item.GetAttribute<LinkAttribute>().Href)
+                .AbsoluteUri;
         }
     }
 }

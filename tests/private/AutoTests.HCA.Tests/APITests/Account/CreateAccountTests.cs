@@ -1,19 +1,18 @@
 ﻿using System.Linq;
-using AutoTests.HCA.Core.API;
 using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
 {
     [Parallelizable(ParallelScope.All)]
-    [TestFixture]
-    [Description("Create Account Tests")]
+    [TestFixture(Description = "Create Account Tests")]
     [ApiTest]
-    public class CreateAccountTests : HcaApiTest
+    public class CreateAccountTests : BaseHcaApiTest
     {
-        private readonly IHcaApiService _hcaService = CreateHcaApiClient();
+        private readonly IHcaApiService _hcaService = TestsHelper.CreateHcaApiClient();
 
         public const string EMAIL = "postman@gmail.com";
         public const string FIRST_NAME = "FName";

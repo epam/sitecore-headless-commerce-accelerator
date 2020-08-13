@@ -3,28 +3,28 @@ using System.Linq;
 using System.Net;
 using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.Shared.Models;
-using AutoTests.HCA.Core.API;
+using AutoTests.HCA.Common.Settings.Users;
 using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
+using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Authorization
 {
     [Parallelizable(ParallelScope.All)]
-    [TestFixture]
-    [Description("Authorization Tests")]
+    [TestFixture(Description = "Authorization Tests")]
     [ApiTest]
-    public class AuthorizationTests : HcaApiTest
+    public class AuthorizationTests : BaseHcaApiTest
     {
         protected const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
-        protected static readonly UserLogin DefUser = TestsData.UserLogin;
+        protected static readonly UserLogin DefUser = TestsData.GetUser(HcaUserType.ApiAuthorizationTests).Credentials;
 
         [Test]
         [Order(1)]
         public void LoginWithValidUserDataTest()
         {
             // Arrange
-            var hcaService = CreateHcaApiClient();
+            var hcaService = TestsHelper.CreateHcaApiClient();
             var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act
@@ -45,7 +45,7 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
         {
             // Arrange
             const string expErrorMsg = "The Email field is not a valid e-mail address.";
-            var hcaService = CreateHcaApiClient();
+            var hcaService = TestsHelper.CreateHcaApiClient();
             var user = new LoginRequest(StringHelpers.RandomString(2), DefUser.Password);
 
             // Act
@@ -70,7 +70,7 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
         {
             // Arrange
             const string expErrorMsg = "Incorrect login or password.";
-            var hcaService = CreateHcaApiClient();
+            var hcaService = TestsHelper.CreateHcaApiClient();
 
             // Act
             var result = hcaService.Login(userLoginRequest);
@@ -99,7 +99,7 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
         public void LogoutTest()
         {
             // Arrange
-            var hcaService = CreateHcaApiClient();
+            var hcaService = TestsHelper.CreateHcaApiClient();
             var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act

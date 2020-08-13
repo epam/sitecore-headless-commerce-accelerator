@@ -1,7 +1,7 @@
 ﻿using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Driver;
-using AutoTests.HCA.Common.Settings;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using NUnit.Framework;
@@ -11,7 +11,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    internal class MyAccountPasswordTests : HcaWebTest
+    internal class MyAccountPasswordTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
@@ -26,7 +26,6 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         private HcaWebSite _hcaWebSite;
         private readonly string _userName = "testuser@test.com";
         private readonly string _password = "testuser";
-        private readonly HcaTestsDataSettings _testData = TestsData.HcaTestsData;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -73,7 +72,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         [Test]
         public void MyAccountPasswordTests_03_ChangePasswordWithoutNewPasswordTest()
         {
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, _testData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             var newGeneratedPassword = StringHelpers.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", newGeneratedPassword);
@@ -85,7 +84,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         [Test]
         public void MyAccountPasswordTests_04_ChangePasswordWithoutConfirmPasswordTest()
         {
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, _testData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             var newGeneratedPassword = StringHelpers.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", _password);
@@ -97,7 +96,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         [Test]
         public void MyAccountPasswordTests_05_ChangePasswordConfirmDoesNotMatchTest()
         {
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, _testData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             var newGeneratedPassword = StringHelpers.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", _password);
@@ -111,7 +110,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         [Test]
         public void MyAccountPasswordTests_06_OldPasswordIncorrectTest()
         {
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, _testData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
             _hcaWebSite.MyAccountPage.WaitForOpened();
             var newGeneratedPassword = StringHelpers.RandomString(10);
             _hcaWebSite.MyAccountChangePasswordSection.FillFieldByName("Old Password", "123");

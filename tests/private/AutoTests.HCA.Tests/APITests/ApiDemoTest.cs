@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Core.API;
+using AutoTests.HCA.Common.Settings.Users;
 using AutoTests.HCA.Core.API.Models.Braitree.PaymentToken.Request;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
@@ -11,6 +11,7 @@ using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Shipping;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using AutoTests.HCA.Core.API.Services.BraintreeServices;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
@@ -20,7 +21,7 @@ namespace AutoTests.HCA.Tests.APITests
     [TestFixture(UserState.Signed)]
     [Description("Base Demo scenario")]
     [ApiTest]
-    public class ApiDemoTest : HcaApiTest
+    public class ApiDemoTest : BaseHcaApiTest
     {
         [SetUp]
         public void SetUp()
@@ -36,8 +37,8 @@ namespace AutoTests.HCA.Tests.APITests
         }
 
         private bool _stopTests;
-        private readonly IHcaApiService _hcaApiService = CreateHcaApiClient();
-        private readonly IBraintreeApiService _braintreeApiService = CreateBraintreeClient();
+        private readonly IHcaApiService _hcaApiService = TestsHelper.CreateHcaApiClient();
+        private readonly IBraintreeApiService _braintreeApiService = TestsHelper.CreateBraintreeClient();
 
         private readonly bool _isNeedToSignIn;
 
@@ -58,8 +59,9 @@ namespace AutoTests.HCA.Tests.APITests
         public void SignIn()
         {
             if (!_isNeedToSignIn) return;
-            var authReq = _hcaApiService.Login(new LoginRequest(TestsData.UserLogin.Email, 
-                TestsData.UserLogin.Password));
+            var user = TestsData.GetUser(HcaUserType.Default).Credentials;
+            var authReq = _hcaApiService.Login(new LoginRequest(user.Email,
+                user.Password));
             Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
         }
 

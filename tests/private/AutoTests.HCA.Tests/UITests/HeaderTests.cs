@@ -1,4 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Common.Settings.Users;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
@@ -11,7 +13,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [HeaderTest]
-    public class HeaderTests : HcaWebTest
+    public class HeaderTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
@@ -44,7 +46,8 @@ namespace AutoTests.HCA.Tests.UITests
         {
             const int expMenuItemCounts = 5;
 
-            _hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.HcaTestsData);
+            _hcaWebSite.GoToPageWithDefaultParams(pagePrefix, TestsData.GetDefProduct(), 
+                TestsData.GetUser(HcaUserType.Default).Credentials);
 
             var headerControl = _hcaWebSite.HeaderControl;
             headerControl.HeaderIsPresent();

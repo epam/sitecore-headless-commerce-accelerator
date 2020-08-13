@@ -1,5 +1,6 @@
 ﻿using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using NUnit.Framework;
@@ -9,14 +10,14 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
     [UiTest]
-    internal class SignUpTests : HcaWebTest
+    internal class SignUpTests : BaseHcaWebTest
     {
         [SetUp]
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp, TestsData.HcaTestsData);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
         }
 
         public SignUpTests(BrowserType browserType) : base(browserType)
@@ -60,7 +61,7 @@ namespace AutoTests.HCA.Tests.UITests
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
-            var user = TestsData.UserLogin;
+            var user = TestsData.GetUser().Credentials;
             _hcaWebSite.SignUpPage.FillFieldByName("Email", user.Email);
             _hcaWebSite.SignUpPage.FillFieldByName("Password", "password");
             _hcaWebSite.SignUpPage.FillFieldByName("Confirm Password", "password");

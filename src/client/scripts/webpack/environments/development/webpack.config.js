@@ -14,7 +14,8 @@ const extractSass = new MiniCssExtractPlugin({
 module.exports = (compilerOptions) => ({
   mode: 'development',
   entry: {
-    client: path.resolve(__dirname, `./../../../../src/Project/${compilerOptions.project}/${compilerOptions.entry}`),
+    common: path.resolve(__dirname, `./../../../../src/Project/${compilerOptions.project}/${compilerOptions.entry}`),
+    redesign: path.resolve(__dirname, `./../../../../src/Foundation/UI/common/scss-new/style.scss`),
   },
   output: {
     filename: '[name].bundle.js',

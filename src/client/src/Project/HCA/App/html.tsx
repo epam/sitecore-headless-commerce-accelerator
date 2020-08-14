@@ -16,12 +16,23 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
 const pagesWithNewLayout = ['home2'];
-const currentPage = document.location.pathname.slice(1).toLowerCase();
+
+const getCurrentPageName = () => {
+  const isServerEnvironment = typeof window === 'undefined';
+
+  if (isServerEnvironment) {
+    return null;
+  } else {
+    return document.location.pathname.slice(1).toLowerCase();
+  }
+};
+
+const currentPageName = getCurrentPageName();
 
 const Html = ({ component, initialState, distPath }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
 
-  const stylesheet = pagesWithNewLayout.includes(currentPage) ? (
+  const stylesheet = pagesWithNewLayout.includes(currentPageName) ? (
     <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
   ) : null;
 

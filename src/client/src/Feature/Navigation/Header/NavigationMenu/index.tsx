@@ -45,6 +45,7 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
                 <li
                   key={menuItemIndex}
                   className={classnames('menu-item', { 'right-item': menuItemIndex > menuItems.items.length / 2 })}
+                  data-autotests={'menuItem_${ title.jss.value }'}
                 >
                   <a href="">{title.jss.value}</a>
                   <i simple-drawer="simple-drawer" className="fa fa-caret-down" onClick={(e) => this.dropMenu(e)} />
@@ -60,7 +61,7 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
                             const { name } = category;
                             const link = '/shop/' + name;
                             return (
-                              <li key={categoryIndex}>
+                              <li key={categoryIndex} data-autotests={'subMenuItem_${name}'}>
                                 <NavigationLink to={link}>{name}</NavigationLink>
                               </li>
                             );
@@ -70,13 +71,13 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
                         <li>
                           <span className="title">Featured</span>
                         </li>
-                        <li>
+                        <li data-autotests="newNavigationLink">
                           <NavigationLink to="/new">New</NavigationLink>
                         </li>
-                        <li>
+                        <li data-autotests="promotionsNavigationLink">
                           <NavigationLink to="/Promitions">Promotions</NavigationLink>
                         </li>
-                        <li>
+                        <li data-autotests="blogNavigationLink">
                           <NavigationLink to="/Blog">Blog</NavigationLink>
                         </li>
                       </ul>

@@ -26,7 +26,12 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
 
   protected safeRender() {
     return (
-      <form ref={(el) => (this.form = el)} className="navigation-search" onSubmit={(e) => this.handleFormSubmit(e)}>
+      <form
+        ref={(el) => (this.form = el)}
+        className="navigation-search"
+        onSubmit={(e) => this.handleFormSubmit(e)}
+        data-autotests="navigationSearchForm"
+      >
         <span className="fa fa-search" />
         <input
           ref={(el) => (this.searchInput = el)}
@@ -34,6 +39,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
           required={true}
           name={SEARCH_INPUT_NAME}
           placeholder="I'M LOOKING FOR..."
+          data-autotests="searchField"
         />
       </form>
     );

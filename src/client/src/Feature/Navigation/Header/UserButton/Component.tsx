@@ -44,7 +44,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
     const { userFormVisible } = this.state;
     const isHome2 = window.location.pathname.includes('home2');
     return (
-      <div ref={this.wrapperRef} className="user-button">
+      <div ref={this.wrapperRef} className="user-button" data-autotests="userButton">
         <a className="user-navigation-btn" onClick={this.togglePopup}>
           <i className="fa fa-user" />
           <span>My Account</span>
@@ -53,9 +53,11 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           <div className={isHome2 ? 'login-form-2' : 'login-form'}>
             {!!commerceUser && commerceUser.customerId ? (
               <SignOut onLoaded={this.togglePopup} />
+            ) : isHome2 ? (
+              <SignIn2 onLoaded={this.togglePopup} />
             ) : (
-                isHome2 ? <SignIn2 onLoaded={this.togglePopup} /> : <SignIn onLoaded={this.togglePopup} />
-              )}
+              <SignIn onLoaded={this.togglePopup} />
+            )}
           </div>
         )}
       </div>

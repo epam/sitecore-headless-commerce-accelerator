@@ -44,8 +44,8 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
     const { userFormVisible } = this.state;
     const isHome2 = window.location.pathname.includes('home2');
     return (
-      <div ref={this.wrapperRef} className="user-button">
-        <a className="user-navigation-btn" onClick={this.togglePopup}>
+        <div ref={this.wrapperRef} className="user-button" data-autotests="userButton">
+            <a className="user-navigation-btn" onClick={this.togglePopup}>
           <i className="fa fa-user" />
           <span>My Account</span>
         </a>

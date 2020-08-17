@@ -21,7 +21,7 @@ import './styles.scss';
 class QuickNavigationComponent extends JSS.SafePureComponent<QuickNavigationProps, QuickNavigationState> {
   protected safeRender() {
     return (
-      <nav className="quick-navigation">
+        <nav className="quick-navigation" data-autotests="quickNavigationPanel">
         <ul>
           <li>
             <a href="">Store Locator</a>

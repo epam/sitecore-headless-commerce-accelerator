@@ -27,7 +27,7 @@ class GlobalFooterComponent extends JSS.SafePureComponent<
     > {
     protected safeRender() {
         return (
-            <footer id="footer-main" className="footer-main">
+            <footer id="footer-main" className="footer-main" data-autotests="footerMain">
                 <div className="footer-wrap color-bar">
                     <Placeholder name="footer-content" rendering={this.props.rendering} />
                 </div>

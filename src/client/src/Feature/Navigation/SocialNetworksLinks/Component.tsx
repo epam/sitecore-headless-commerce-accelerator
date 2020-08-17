@@ -32,7 +32,7 @@ export default class SocialNetworksLinksComponent extends JSS.SafePureComponent<
             {datasource.links && datasource.links.items && datasource.links.items.map((link, index) => {
                 const { uri } = link;
                 return (
-                  <li key={index} className="social-item">
+                    <li key={index} className="social-item" data-autotests="footerSocialLink">
                     {this.props.isPageEditingMode
                       ? <Link field={uri.jss} className="social-link"/>
                       : <Link field={uri.jss} className="social-link"><i className={uri.jss.value.class}/></Link>

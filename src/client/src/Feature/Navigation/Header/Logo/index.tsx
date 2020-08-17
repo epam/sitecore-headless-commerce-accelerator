@@ -26,7 +26,7 @@ class LogoComponent extends JSS.SafePureComponent<LogoProps, LogoState> {
     const { datasource } = this.props.fields.data;
 
     return (
-      <NavigationLink to="/" className="navigation-logo">
+        <NavigationLink to="/" className="navigation-logo" data-autotests="navigationLink">
         <Image media={datasource.image.jss} />
       </NavigationLink>
     );

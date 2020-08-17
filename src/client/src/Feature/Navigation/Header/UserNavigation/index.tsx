@@ -25,7 +25,7 @@ import './styles.scss';
 export class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps, UserNavigationState> {
   protected safeRender() {
     return (
-      <nav className="user-navigation">
+        <nav className="user-navigation" data-autotests="navigationPanel">
         <WishlistButton />
         <CartButton />
         <UserButton />

@@ -16,6 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { SignIn } from './SignIn';
+import { SignIn2 } from './SignIn2';
 import { SignOut } from './SignOut';
 
 import { UserButtonProps, UserButtonState } from './models';
@@ -41,7 +42,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
   protected safeRender() {
     const { commerceUser } = this.props;
     const { userFormVisible } = this.state;
-
+    const isHome2 = window.location.pathname.includes('home2');
     return (
       <div ref={this.wrapperRef} className="user-button">
         <a className="user-navigation-btn" onClick={this.togglePopup}>
@@ -49,12 +50,12 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           <span>My Account</span>
         </a>
         {userFormVisible && (
-          <div className="login-form">
+          <div className={isHome2 ? 'login-form-2' : 'login-form'}>
             {!!commerceUser && commerceUser.customerId ? (
               <SignOut onLoaded={this.togglePopup} />
             ) : (
-              <SignIn onLoaded={this.togglePopup} />
-            )}
+                isHome2 ? <SignIn2 onLoaded={this.togglePopup} /> : <SignIn onLoaded={this.togglePopup} />
+              )}
           </div>
         )}
       </div>

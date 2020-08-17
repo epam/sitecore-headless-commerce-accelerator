@@ -647,6 +647,8 @@
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
     <Compile Include="Mappers\Contact\ContactMapper.cs" />
     <Compile Include="Mappers\Contact\IContactMapper.cs" />
+    <Compile Include="Mappers\Geolocation\GeolocationMapper.cs" />
+    <Compile Include="Mappers\Geolocation\IGeolocationMapper.cs" />
     <Compile Include="Mappers\Order\IOrderMapper.cs" />
     <Compile Include="Mappers\Order\OrderMapper.cs" />
     <Compile Include="Mappers\Profiles\CartProfile.cs" />
@@ -655,6 +657,7 @@
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
     <Compile Include="Mappers\Payment\PaymentMapper.cs" />
     <Compile Include="Mappers\Profiles\ContactProfile.cs" />
+    <Compile Include="Mappers\Profiles\GeolocationProfile.cs" />
     <Compile Include="Mappers\Profiles\OrderProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Profiles\RegionProfile.cs" />
@@ -672,6 +675,8 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Contact\PersonalInfo.cs" />
+    <Compile Include="Models\Entities\Geolocation\GeolocationInfo.cs" />
+    <Compile Include="Models\Entities\Geolocation\SearchByGeolocationResult.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Promotion\Benefit.cs" />
@@ -704,6 +709,7 @@
     <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
     <Compile Include="Mappers\Profiles\UserProfile.cs" />
     <Compile Include="Models\Entities\Search\SortDirection.cs" />
+    <Compile Include="Models\Extensions\GeolocationSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\ICurrencyProvider.cs" />
     <Compile Include="Providers\CurrencyProvider.cs" />
@@ -717,6 +723,9 @@
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
+    <Compile Include="Repositories\Geolocation\GeolocationRepository.cs" />
+    <Compile Include="Repositories\Geolocation\IGeolocationRepository.cs" />
+    <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />
@@ -725,6 +734,8 @@
     <Compile Include="Services\Cart\CartService.cs" />
     <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Billing\BillingService.cs" />
+    <Compile Include="Services\Geolocation\IGeolocationService.cs" />
+    <Compile Include="Services\Geolocation\GeolocationService.cs" />
     <Compile Include="Services\Order\OrderService.cs" />
     <Compile Include="Services\Delivery\DeliveryService.cs" />
     <Compile Include="Services\Billing\IBillingService.cs" />
@@ -739,6 +750,7 @@
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
+    <Compile Include="Utils\GeolocationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config">

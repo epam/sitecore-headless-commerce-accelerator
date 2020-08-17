@@ -1,0 +1,14 @@
+﻿---
+ID: "46ef0a4a-d78b-4929-a35b-2260992d6646"
+Parent: "6ffc9d0d-d8b5-48c6-8764-44cefab64741"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/_Geolocation Item/Geolocation
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200731T082343Z

@@ -1,0 +1,14 @@
+﻿---
+ID: "a3fcd4da-8ab2-4d59-a9d6-63cc4747a69f"
+Parent: "b73e494c-70d4-45ab-8699-7a1c8b96a47f"
+Template: "dc1c39b1-4236-48e3-8e5f-8d7b51e2440a"
+Path: /sitecore/content/HCA/Settings/Geolocation Settings
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T210951Z

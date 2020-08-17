@@ -16,82 +16,62 @@
 
 import * as ReactJssModule from 'Foundation/ReactJss';
 
-// Path: /sitecore/templates/HCA/Feature/StoreLocator/Store
-// ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e
-export interface StoreDataSource extends ReactJssModule.BaseDataSourceItem {
-  /// The Description field.
-  /// Field Type: Single-Line Text
-  /// Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791
-  description: ReactJssModule.TextField;
-
-  /// The Latitude field.
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius
+// ID: 846425b7-2427-4ba2-ab81-38e895355621
+export interface RadiusDataSource extends ReactJssModule.BaseDataSourceItem {
+  /// The Value field.
   /// Field Type: Number
-  /// Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe
-  latitude: ReactJssModule.Field<number>;
-
-  /// The Longitude field.
-  /// Field Type: Number
-  /// Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960
-  longitude: ReactJssModule.Field<number>;
-
-  /// The Title field.
-  /// Field Type: Single-Line Text
-  /// Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec
-  title: ReactJssModule.TextField;
+  /// Field ID: 5a040c2d-afc8-41de-aeb9-63a16e889e50
+  value: ReactJssModule.Field<number>;
 }
 
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius
+// ID: 846425b7-2427-4ba2-ab81-38e895355621
+export interface RadiusRenderingParams extends ReactJssModule.BaseRenderingParam {
+  /// The Value field.
+  /// Field Type: Number
+  /// Field ID: 5a040c2d-afc8-41de-aeb9-63a16e889e50
+  value: string;
+}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius
+// ID: 846425b7-2427-4ba2-ab81-38e895355621
+export const RadiusTemplate = {
+  templateId: '846425b7-2427-4ba2-ab81-38e895355621',
+
+  /// The Value field.
+  /// <para>Field Type: Number</para>
+  /// <para>Field ID: 5a040c2d-afc8-41de-aeb9-63a16e889e50</para>
+  valueFieldId: '5a040c2d-afc8-41de-aeb9-63a16e889e50',
+  valueFieldName: 'Value',
+};
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radiuses Folder
+// ID: 7d6a3104-0c1d-42f6-951f-45aa19a8b07b
+export interface RadiusesFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radiuses Folder
+// ID: 7d6a3104-0c1d-42f6-951f-45aa19a8b07b
+export interface RadiusesFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Radiuses Folder
+// ID: 7d6a3104-0c1d-42f6-951f-45aa19a8b07b
+export const RadiusesFolderTemplate = {
+  templateId: '7d6a3104-0c1d-42f6-951f-45aa19a8b07b',
+};
+
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store
 // ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e
-export interface StoreRenderingParams extends ReactJssModule.BaseRenderingParam {
-  /// The Description field.
-  /// Field Type: Single-Line Text
-  /// Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791
-  description: string;
+export interface StoreDataSource extends ReactJssModule.BaseDataSourceItem {}
 
-  /// The Latitude field.
-  /// Field Type: Number
-  /// Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe
-  latitude: string;
-
-  /// The Longitude field.
-  /// Field Type: Number
-  /// Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960
-  longitude: string;
-
-  /// The Title field.
-  /// Field Type: Single-Line Text
-  /// Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec
-  title: string;
-}
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Store
+// ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e
+export interface StoreRenderingParams extends ReactJssModule.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store
 // ID: 7360d0b3-5400-4dcc-913d-80a4f0d7539e
 export const StoreTemplate = {
   templateId: '7360d0b3-5400-4dcc-913d-80a4f0d7539e',
-
-  /// The Description field.
-  /// <para>Field Type: Single-Line Text</para>
-  /// <para>Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791</para>
-  descriptionFieldId: '7b75c619-ead2-46fe-b684-8f9dec31a791',
-  descriptionFieldName: 'Description',
-
-  /// The Latitude field.
-  /// <para>Field Type: Number</para>
-  /// <para>Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe</para>
-  latitudeFieldId: '2eb66e67-f3f2-44ac-9654-7f26a5fd52fe',
-  latitudeFieldName: 'Latitude',
-
-  /// The Longitude field.
-  /// <para>Field Type: Number</para>
-  /// <para>Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960</para>
-  longitudeFieldId: '5e72c2b0-9340-4dde-b8a0-d51b6b1a9960',
-  longitudeFieldName: 'Longitude',
-
-  /// The Title field.
-  /// <para>Field Type: Single-Line Text</para>
-  /// <para>Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec</para>
-  titleFieldId: '35a0e97b-3284-44d6-9578-49b14e66f4ec',
-  titleFieldName: 'Title',
 };
 
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
@@ -106,6 +86,11 @@ export interface StoreLocatorDataSource extends ReactJssModule.BaseDataSourceIte
   /// Field Type: Number
   /// Field ID: 8c68f0d1-5e42-4e71-a220-2ce4b0cf651c
   defaultLongitude: ReactJssModule.Field<number>;
+
+  /// The Default Radius field.
+  /// Field Type: Droplink
+  /// Field ID: b8df8215-ceb2-4f11-b725-4f5080f4ab18
+  defaultRadius: ReactJssModule.Item<ReactJssModule.BaseDataSourceItem>;
 
   /// The Description field.
   /// Field Type: Multi-Line Text
@@ -126,6 +111,11 @@ export interface StoreLocatorDataSource extends ReactJssModule.BaseDataSourceIte
   /// Field Type: Single-Line Text
   /// Field ID: 0f5d3b8e-badd-4617-9a6d-9102cea617e4
   title: ReactJssModule.TextField;
+
+  /// The Unit Of Length field.
+  /// Field Type: Droplink
+  /// Field ID: 506a4f5b-4c6e-466b-8709-b212231977e5
+  unitOfLength: ReactJssModule.Item<ReactJssModule.BaseDataSourceItem>;
 }
 
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
@@ -140,6 +130,11 @@ export interface StoreLocatorRenderingParams extends ReactJssModule.BaseRenderin
   /// Field Type: Number
   /// Field ID: 8c68f0d1-5e42-4e71-a220-2ce4b0cf651c
   defaultLongitude: string;
+
+  /// The Default Radius field.
+  /// Field Type: Droplink
+  /// Field ID: b8df8215-ceb2-4f11-b725-4f5080f4ab18
+  defaultRadius: string;
 
   /// The Description field.
   /// Field Type: Multi-Line Text
@@ -160,6 +155,11 @@ export interface StoreLocatorRenderingParams extends ReactJssModule.BaseRenderin
   /// Field Type: Single-Line Text
   /// Field ID: 0f5d3b8e-badd-4617-9a6d-9102cea617e4
   title: string;
+
+  /// The Unit Of Length field.
+  /// Field Type: Droplink
+  /// Field ID: 506a4f5b-4c6e-466b-8709-b212231977e5
+  unitOfLength: string;
 }
 
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
@@ -178,6 +178,12 @@ export const StoreLocatorTemplate = {
   /// <para>Field ID: 8c68f0d1-5e42-4e71-a220-2ce4b0cf651c</para>
   defaultLongitudeFieldId: '8c68f0d1-5e42-4e71-a220-2ce4b0cf651c',
   defaultLongitudeFieldName: 'Default Longitude',
+
+  /// The Default Radius field.
+  /// <para>Field Type: Droplink</para>
+  /// <para>Field ID: b8df8215-ceb2-4f11-b725-4f5080f4ab18</para>
+  defaultRadiusFieldId: 'b8df8215-ceb2-4f11-b725-4f5080f4ab18',
+  defaultRadiusFieldName: 'Default Radius',
 
   /// The Description field.
   /// <para>Field Type: Multi-Line Text</para>
@@ -202,6 +208,12 @@ export const StoreLocatorTemplate = {
   /// <para>Field ID: 0f5d3b8e-badd-4617-9a6d-9102cea617e4</para>
   titleFieldId: '0f5d3b8e-badd-4617-9a6d-9102cea617e4',
   titleFieldName: 'Title',
+
+  /// The Unit Of Length field.
+  /// <para>Field Type: Droplink</para>
+  /// <para>Field ID: 506a4f5b-4c6e-466b-8709-b212231977e5</para>
+  unitOfLengthFieldId: '506a4f5b-4c6e-466b-8709-b212231977e5',
+  unitOfLengthFieldName: 'Unit Of Length',
 };
 
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder

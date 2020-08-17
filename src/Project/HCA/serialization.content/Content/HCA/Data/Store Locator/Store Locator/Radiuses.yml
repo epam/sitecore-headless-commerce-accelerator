@@ -1,0 +1,14 @@
+﻿---
+ID: "a2553a06-f882-4ddd-a2db-12453666c0c2"
+Parent: "90c2e676-24f5-4d21-bc24-86ca695129f2"
+Template: "7d6a3104-0c1d-42f6-951f-45aa19a8b07b"
+Path: /sitecore/content/HCA/Data/Store Locator/Store Locator/Radiuses
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T213222Z

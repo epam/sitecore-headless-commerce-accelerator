@@ -43,6 +43,34 @@ namespace HCA.Foundation.Commerce.Models
 
 
     /// <summary>
+    /// IGeolocationSettings Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Geolocation Settings</para>
+    /// <para>ID: dc1c39b1-4236-48e3-8e5f-8d7b51e2440a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="dc1c39b1-4236-48e3-8e5f-8d7b51e2440a")]
+    public partial interface IGeolocationSettings: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// GeolocationSettings Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Geolocation Settings</para>
+    /// <para>ID: dc1c39b1-4236-48e3-8e5f-8d7b51e2440a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="dc1c39b1-4236-48e3-8e5f-8d7b51e2440a")]
+    public partial class GeolocationSettings: GlassBase, IGeolocationSettings
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Geolocation Settings
+        /// </summary>
+        public const string TemplateId = "dc1c39b1-4236-48e3-8e5f-8d7b51e2440a";
+
+    }
+
+
+    /// <summary>
     /// ILogin Interface
     /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Configuration/Login</para>
     /// <para>ID: 3fbc5bfa-6e94-493a-9128-f6356f5f3d16</para>
@@ -89,6 +117,70 @@ namespace HCA.Foundation.Commerce.Models
 
 
     /// <summary>
+    /// IUnitOfLength Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Unit Of Length</para>
+    /// <para>ID: 16c07940-d853-40c6-8758-a3849e630b26</para>
+    /// </summary>
+    [SitecoreType(TemplateId="16c07940-d853-40c6-8758-a3849e630b26")]
+    public partial interface IUnitOfLength: IGlassBase
+    {
+
+        /// <summary>
+        /// The Kilometer To Unit Multiplier field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: d46e1f21-7b9b-4a58-b795-91f48396b60d</para>
+        /// </summary>
+        [SitecoreField("Kilometer To Unit Multiplier")]
+        float KilometerToUnitMultiplier {get; set;}
+
+        /// <summary>
+        /// The Unit Code field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35061721-e99e-4b1c-bdd3-ba87a141f82a</para>
+        /// </summary>
+        [SitecoreField("Unit Code")]
+        string UnitCode {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// UnitOfLength Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Unit Of Length</para>
+    /// <para>ID: 16c07940-d853-40c6-8758-a3849e630b26</para>
+    /// </summary>
+    [SitecoreType(TemplateId="16c07940-d853-40c6-8758-a3849e630b26")]
+    public partial class UnitOfLength: GlassBase, IUnitOfLength
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Geolocation/Unit Of Length
+        /// </summary>
+        public const string TemplateId = "16c07940-d853-40c6-8758-a3849e630b26";
+
+        /// <summary>
+        /// The Kilometer To Unit Multiplier field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: d46e1f21-7b9b-4a58-b795-91f48396b60d</para>
+        /// </summary>
+        [SitecoreField("Kilometer To Unit Multiplier")]
+        public virtual float KilometerToUnitMultiplier {get; set;}
+        public const string KilometerToUnitMultiplierFieldId = "d46e1f21-7b9b-4a58-b795-91f48396b60d";
+        public const string KilometerToUnitMultiplierFieldName = "Kilometer To Unit Multiplier";
+
+        /// <summary>
+        /// The Unit Code field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35061721-e99e-4b1c-bdd3-ba87a141f82a</para>
+        /// </summary>
+        [SitecoreField("Unit Code")]
+        public virtual string UnitCode {get; set;}
+        public const string UnitCodeFieldId = "35061721-e99e-4b1c-bdd3-ba87a141f82a";
+        public const string UnitCodeFieldName = "Unit Code";
+
+    }
+
+
+    /// <summary>
     /// ICategoryItem Interface
     /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Category Item</para>
     /// <para>ID: f5ea378c-547f-4482-9de6-14eb416a9b30</para>
@@ -112,6 +204,106 @@ namespace HCA.Foundation.Commerce.Models
         /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Context Resolving/_Category Item
         /// </summary>
         public const string TemplateId = "f5ea378c-547f-4482-9de6-14eb416a9b30";
+
+    }
+
+
+    /// <summary>
+    /// IGeolocationItem Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/_Geolocation Item</para>
+    /// <para>ID: 6ffc9d0d-d8b5-48c6-8764-44cefab64741</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6ffc9d0d-d8b5-48c6-8764-44cefab64741")]
+    public partial interface IGeolocationItem: IGlassBase
+    {
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The Latitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe</para>
+        /// </summary>
+        [SitecoreField("Latitude")]
+        float Latitude {get; set;}
+
+        /// <summary>
+        /// The Longitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960</para>
+        /// </summary>
+        [SitecoreField("Longitude")]
+        float Longitude {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// GeolocationItem Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/_Geolocation Item</para>
+    /// <para>ID: 6ffc9d0d-d8b5-48c6-8764-44cefab64741</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6ffc9d0d-d8b5-48c6-8764-44cefab64741")]
+    public partial class GeolocationItem: GlassBase, IGeolocationItem
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Commerce/Geolocation/_Geolocation Item
+        /// </summary>
+        public const string TemplateId = "6ffc9d0d-d8b5-48c6-8764-44cefab64741";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 7b75c619-ead2-46fe-b684-8f9dec31a791</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public virtual string Description {get; set;}
+        public const string DescriptionFieldId = "7b75c619-ead2-46fe-b684-8f9dec31a791";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The Latitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 2eb66e67-f3f2-44ac-9654-7f26a5fd52fe</para>
+        /// </summary>
+        [SitecoreField("Latitude")]
+        public virtual float Latitude {get; set;}
+        public const string LatitudeFieldId = "2eb66e67-f3f2-44ac-9654-7f26a5fd52fe";
+        public const string LatitudeFieldName = "Latitude";
+
+        /// <summary>
+        /// The Longitude field.
+        /// <para>Field Type: Number</para>
+        /// <para>Field ID: 5e72c2b0-9340-4dde-b8a0-d51b6b1a9960</para>
+        /// </summary>
+        [SitecoreField("Longitude")]
+        public virtual float Longitude {get; set;}
+        public const string LongitudeFieldId = "5e72c2b0-9340-4dde-b8a0-d51b6b1a9960";
+        public const string LongitudeFieldName = "Longitude";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 35a0e97b-3284-44d6-9578-49b14e66f4ec</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "35a0e97b-3284-44d6-9578-49b14e66f4ec";
+        public const string TitleFieldName = "Title";
 
     }
 

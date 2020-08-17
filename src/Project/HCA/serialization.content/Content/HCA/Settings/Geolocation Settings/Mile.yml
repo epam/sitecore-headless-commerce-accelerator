@@ -1,0 +1,24 @@
+﻿---
+ID: "274542a3-d78e-4a2c-b226-91c2f2270ad8"
+Parent: "a3fcd4da-8ab2-4d59-a9d6-63cc4747a69f"
+Template: "16c07940-d853-40c6-8758-a3849e630b26"
+Path: /sitecore/content/HCA/Settings/Geolocation Settings/Mile
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T211039Z
+    - ID: "35061721-e99e-4b1c-bdd3-ba87a141f82a"
+      Hint: Unit Code
+      Value: mi
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "d46e1f21-7b9b-4a58-b795-91f48396b60d"
+      Hint: Origin to kilometer multiplier
+      Value: 0.621371

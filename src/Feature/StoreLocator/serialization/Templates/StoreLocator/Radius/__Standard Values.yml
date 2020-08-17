@@ -1,0 +1,18 @@
+﻿---
+ID: "d925bdd7-2dbf-4fa5-8bf5-01218193c9f2"
+Parent: "846425b7-2427-4ba2-ab81-38e895355621"
+Template: "846425b7-2427-4ba2-ab81-38e895355621"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T211841Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

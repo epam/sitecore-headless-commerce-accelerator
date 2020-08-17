@@ -1,0 +1,17 @@
+﻿---
+ID: "6693a659-eb1e-4727-ab86-183f0a3322a2"
+Parent: "a2553a06-f882-4ddd-a2db-12453666c0c2"
+Template: "846425b7-2427-4ba2-ab81-38e895355621"
+Path: /sitecore/content/HCA/Data/Store Locator/Store Locator/Radiuses/Radius 1
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200806T194617Z
+    - ID: "5a040c2d-afc8-41de-aeb9-63a16e889e50"
+      Hint: Value
+      Value: 1

@@ -45,5 +45,10 @@ namespace HCA.Foundation.Commerce
         {
             public const string FreeShippingPromotion = "FreeShippingPromotion";
         }
+
+        public static class Geolocation
+        {
+            public const double EarthRadiusInKilometers = 6371.0;
+        }
     }
 }

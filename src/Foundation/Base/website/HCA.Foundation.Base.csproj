@@ -496,6 +496,8 @@
     <Compile Include="Context\SitecoreContext.cs" />
     <Compile Include="Providers\Object\IObjectProvider.cs" />
     <Compile Include="Providers\Object\ObjectProvider.cs" />
+    <Compile Include="Providers\SiteDataSources\DataSourcesProvider.cs" />
+    <Compile Include="Providers\SiteDataSources\IDataSourcesProvider.cs" />
     <Compile Include="Providers\SiteDefinitions\ISiteDefinitionsProvider.cs" />
     <Compile Include="Providers\SiteDefinitions\SiteDefinitionsProvider.cs" />
     <Compile Include="Providers\SiteSettings\ISiteSettingsProvider.cs" />

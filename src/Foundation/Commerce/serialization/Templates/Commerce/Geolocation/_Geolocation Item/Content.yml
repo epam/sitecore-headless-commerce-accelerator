@@ -1,9 +1,13 @@
 ﻿---
 ID: "021df645-65a8-4159-ab39-a85c46f415aa"
-Parent: "7360d0b3-5400-4dcc-913d-80a4f0d7539e"
+Parent: "6ffc9d0d-d8b5-48c6-8764-44cefab64741"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
-Path: /sitecore/templates/HCA/Feature/StoreLocator/Store/Content
+Path: /sitecore/templates/HCA/Foundation/Commerce/Geolocation/_Geolocation Item/Content
 DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 50
 Languages:
 - Language: en
   Versions:

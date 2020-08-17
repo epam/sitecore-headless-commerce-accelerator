@@ -1,0 +1,23 @@
+﻿---
+ID: "7e5367d6-af9f-495c-bedc-3d776f4a56e4"
+Parent: "7d6a3104-0c1d-42f6-951f-45aa19a8b07b"
+Template: "7d6a3104-0c1d-42f6-951f-45aa19a8b07b"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Radiuses Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{846425B7-2427-4BA2-AB81-38E895355621}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T212856Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

@@ -5,12 +5,15 @@ Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator/Map Settings/Radius
 DB: master
 SharedFields:
+- ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
+  Hint: Source
+  Value: "query:./*[@@templateid='{7D6A3104-0C1D-42F6-951F-45AA19A8B07B}' and @@name='Radiuses']/*[@@templateid='{846425B7-2427-4BA2-AB81-38E895355621}']"
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
   Value: Multilist
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 300
+  Value: 100
 Languages:
 - Language: en
   Versions:

@@ -1,0 +1,110 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "Foundation/UI/common/scss/variables";
+.form-sign-in-2 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background: transparent none repeat scroll 0 0;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  padding: 80px;
+  text-align: left;
+  .btn-sign-in {
+    margin-top: 12px;
+  }
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__invalid-msg {
+    color: $focus-color;
+  }
+  &__title-welcome {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 0 20px;
+    text-transform: capitalize;
+    transition: all 0.3s ease 0s;
+    font-family: $poppins;
+    color: $theme-color;
+    margin-left: 0px;
+  }
+  > input[type="email"] {
+    margin: 4px 0;
+    padding: 3px 8px;
+    width: 100%;
+    display: block;
+  }
+  > input[type="password"] {
+    margin: 4px 0;
+    padding: 3px 8px;
+    width: 100%;
+    display: block;
+  }
+  h5 {
+    margin: 4px 0;
+    padding: 0;
+    color: $focus-color;
+  }
+  button {
+    background-color: #f2f2f2;
+    border: medium none;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    height: 35px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 11px 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+    &:hover {
+      background-color: $theme-color;
+      color: #fff;
+    }
+    &[disabled]:hover {
+      background-color: #f2f2f2;
+      color: $second-color-light;
+    }
+  }
+  h5 {
+    display: inline-block;
+  }
+  .sign-up {
+    display: inline-block;
+    margin: 4px 0;
+    padding: 0;
+    > span {
+      display: block;
+      line-height: 50px;
+      color: $black;
+      font-family: $poppins;
+      &:hover {
+        color: $theme-color;
+      }
+    }
+  }
+}
+
+@media #{$header-switch-mode} {
+  .form-sign-in-2 {
+    padding: 25px;
+  }
+}

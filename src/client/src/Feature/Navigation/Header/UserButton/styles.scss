@@ -12,10 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import "Foundation/UI/common/scss/variables";
 
 .user-button {
   position: relative;
+}
+
+.login-form-2 {
+  position: absolute;
+  width: 670px;
+  height: 400px;
+  right: 0;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+@media #{$header-switch-mode} {
+  .login-form-2 {
+    width: 100%;
+    margin-right: 10px;
+  }
 }
 
 .login-form {

@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: Banner Grid
+  Value: Banner Grid 2
 - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
   Hint: Placeholders
   Type: Treelist

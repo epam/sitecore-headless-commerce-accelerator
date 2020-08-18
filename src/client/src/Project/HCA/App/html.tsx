@@ -17,24 +17,8 @@ import * as ReactDOMServer from 'react-dom/server';
 
 const pagesWithNewLayout = ['home2'];
 
-const getCurrentPageName = () => {
-  const isServerEnvironment = typeof window === 'undefined';
-
-  if (isServerEnvironment) {
-    return null;
-  } else {
-    return document.location.pathname.slice(1).toLowerCase();
-  }
-};
-
-const currentPageName = getCurrentPageName();
-
-const Html = ({ component, initialState, distPath }: any) => {
+const Html = ({ component, initialState, distPath, path }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
-
-  const stylesheet = pagesWithNewLayout.includes(currentPageName) ? (
-    <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
-  ) : null;
 
   return (
     <html>
@@ -46,7 +30,9 @@ const Html = ({ component, initialState, distPath }: any) => {
           href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
         />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
-        {stylesheet}
+        {pagesWithNewLayout.includes(path) && (
+          <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
+        )}
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

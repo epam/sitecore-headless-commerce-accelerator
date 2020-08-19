@@ -3,7 +3,7 @@ using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Entities;
-using AutoTests.HCA.Common.Settings;
+using AutoTests.HCA.Core.Common.Settings.Product;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using AutoTests.HCA.Core.UI.Pages;
@@ -139,7 +139,7 @@ namespace AutoTests.HCA.Core.UI
             LoginForm.VerifyFormPresent();
         }
 
-        public void AddProductToCart(int id)
+        public void AddProductToCart(string id)
         {
             NavigateToPage(ProductPage.GetPath() + $"/{id}");
             ProductPage.WaitForOpened();
@@ -147,7 +147,7 @@ namespace AutoTests.HCA.Core.UI
             HeaderControl.WaitForPresentProductsQuantity();
         }
 
-        public void AddProductAndGoToCheckoutShippingPage(int productId)
+        public void AddProductAndGoToCheckoutShippingPage(string productId)
         {
             AddProductToCart(productId);
             HeaderControl.ClickCartButton();
@@ -156,19 +156,19 @@ namespace AutoTests.HCA.Core.UI
             CartPage.ClickChekoutButton();
         }
 
-        public void AddProductAndGoToCheckoutBillingPage(int productId)
+        public void AddProductAndGoToCheckoutBillingPage(string productId)
         {
             AddProductAndGoToCheckoutShippingPage(productId);
             CheckoutShippingPage.GoToTheNextPage();
         }
 
-        public void AddProductAndGoToCheckoutPaymentPage(int productId)
+        public void AddProductAndGoToCheckoutPaymentPage(string productId)
         {
             AddProductAndGoToCheckoutBillingPage(productId);
             CheckoutBillingPage.GoToTheNextPage();
         }
 
-        public void AddProductAndGoToCheckoutConfirmationPage(int productId)
+        public void AddProductAndGoToCheckoutConfirmationPage(string productId)
         {
             AddProductAndGoToCheckoutPaymentPage(productId);
             CheckoutPaymentPage.GoToTheNextPage();

@@ -2,6 +2,15 @@
   "HcaTestsData": {
     "Users": [
       {
+        "role": "Guest",
+        "type": "Default",
+        "credentials": {
+          "Email": "",
+          "Password": ""
+        }
+      },
+      {
+        "role": "User",
         "type": "Default",
         "credentials": {
           "Email": "HcaAutotests@mail.com",
@@ -9,7 +18,16 @@
         }
       },
       {
+        "role": "User",
         "type": "ApiAuthorizationTests",
+        "credentials": {
+          "Email": "HcaAutotests@mail.com",
+          "Password": "123456"
+        }
+      },
+      {
+        "role": "User",
+        "type": "ApiCartTests",
         "credentials": {
           "Email": "HcaAutotests@mail.com",
           "Password": "123456"
@@ -19,9 +37,27 @@
     "Products": [
       {
         "ProductId": "6042347",
+        "VariantId": "56042347",
+        "StockStatus": "InStock",
         "ProductName": "HABITAT ATHLETICA SPORTS ARMBAND CASE",
         "ProductBrand": "ATHLETICA SMARTPHONE CASE",
         "ProductCategoryId": "8e456d84-4251-dba1-4b86-ce103dedcd02"
+      },
+      {
+        "ProductId": "6042059",
+        "VariantId": "56042059",
+        "StockStatus": "OutOfStock",
+        "ProductName": "Kickbuds Wireless Earbuds",
+        "ProductBrand": "Kickbuds",
+        "ProductCategoryId": "a0860c27-2a32-841f-7014-75b163b9471e"
+      },
+      {
+        "ProductId": "7042127",
+        "VariantId": "57042127",
+        "StockStatus": "InStock",
+        "ProductName": "OPTIX 10.MP ACTION CAMERA WATER BUNDLE",
+        "ProductBrand": "OPTIX ACTION CAMCORDERS",
+        "ProductCategoryId": "7a8bdb1c-2976-02d7-0541-bf45307ea54a"
       }
     ],
     "Pagination": {

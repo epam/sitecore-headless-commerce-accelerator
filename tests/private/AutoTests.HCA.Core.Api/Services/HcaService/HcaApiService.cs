@@ -71,9 +71,14 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest<ProductSearchResult>(endpoint, Method.POST, product);
         }
 
-        public HcaResponse<CartResult> AddCartLines(AddCartLinesRequest cartLine, string endpoint = "carts/cartLines")
+        public HcaResponse<CartResult> AddCartLines(CartLinesRequest cartLine, string endpoint = "carts/cartLines")
         {
             return ExecuteJsonRequest<CartResult>(endpoint, Method.POST, cartLine);
+        }
+
+        public HcaResponse<CartResult> UpdateCartLines(CartLinesRequest cartLine, string endpoint = "carts/cartLines")
+        {
+            return ExecuteJsonRequest<CartResult>(endpoint, Method.PUT, cartLine);
         }
 
         public HcaResponse<CartResult> GetCart(string endpoint = "carts/cart")
@@ -81,9 +86,9 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest<CartResult>(endpoint, Method.GET);
         }
 
-        public HcaResponse<CartResult> RemoveCartLine(string productId, string endpoint = "carts/cartLines")
+        public HcaResponse<CartResult> RemoveCartLine(string productId, string variantId, string endpoint = "carts/cartLines")
         {
-            return ExecuteJsonRequest<CartResult>(endpoint+ $"?productId={productId}&variantId=5{productId}", 
+            return ExecuteJsonRequest<CartResult>(endpoint + $"?productId={productId}&variantId={variantId}",
                 Method.DELETE);
         }
 

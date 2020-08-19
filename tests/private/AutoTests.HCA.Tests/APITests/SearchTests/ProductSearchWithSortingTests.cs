@@ -18,7 +18,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         };
 
         [Test(Description = "Find products and ORDER(asc/desc) by default field(BRAND).")]
-        public void _01_AcsOrDescOrderTest([Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection)
+        public void _01_AcsOrDescOrderTest([Values(SortDirection.Asc, SortDirection.Desc)]
+            SortDirection sortDirection)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -82,7 +83,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 
         [Test(Description = "Find products and ORDER result by SORT FIELD.")]
         [Pairwise]
-        public void _03_OrderBySortFieldTest([ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
+        public void _03_OrderBySortFieldTest([ValueSource(nameof(SortingFieldsTestData))]
+            (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;
@@ -146,8 +148,10 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 
         [Test(Description = "Find products and ORDER(asc/desc) result by SORT FIELD.")]
         [Pairwise]
-        public void _05_OrderAcsOrDescBySortFieldTest([Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection,
-            [ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
+        public void _05_OrderAcsOrDescBySortFieldTest([Values(SortDirection.Asc, SortDirection.Desc)]
+            SortDirection sortDirection,
+            [ValueSource(nameof(SortingFieldsTestData))]
+            (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;

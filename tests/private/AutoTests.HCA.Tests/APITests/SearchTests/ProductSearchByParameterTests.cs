@@ -79,7 +79,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         {
             // Arrange
             var invalidCategoryId = new Guid("8e456d84-4251-dba1-4b86-c2103dedcd02");
-            var expMessage = $"'Products not found.";
+            var expMessage = "'Products not found.";
             var searchOptions = new ProductSearchOptionsRequest
             {
                 CategoryId = invalidCategoryId,

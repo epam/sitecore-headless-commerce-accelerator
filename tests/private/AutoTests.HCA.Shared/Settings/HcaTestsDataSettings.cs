@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using AutoTests.HCA.Common.Settings.Users;
+using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Users;
 
-namespace AutoTests.HCA.Common.Settings
+namespace AutoTests.HCA.Core.Common.Settings
 {
     public class HcaTestsDataSettings
     {

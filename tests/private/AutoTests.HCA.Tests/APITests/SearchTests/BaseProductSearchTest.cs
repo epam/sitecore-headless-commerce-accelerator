@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
-using AutoTests.HCA.Common.Settings;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Catalog;
 using AutoTests.HCA.Core.API.Services.HcaService;
 using AutoTests.HCA.Core.BaseTests;
+using AutoTests.HCA.Core.Common.Settings;
+using AutoTests.HCA.Core.Common.Settings.Product;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.SearchTests

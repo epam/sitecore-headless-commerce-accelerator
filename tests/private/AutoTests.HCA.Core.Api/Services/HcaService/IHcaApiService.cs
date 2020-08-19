@@ -27,11 +27,13 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
         HcaResponse<ProductSearchResult> SearchProducts(ProductSearchOptionsRequest product,
             string endpoint = "search/products");
 
-        HcaResponse<CartResult> AddCartLines(AddCartLinesRequest cartLine, string endpoint = "carts/cartLines");
+        HcaResponse<CartResult> AddCartLines(CartLinesRequest cartLine, string endpoint = "carts/cartLines");
+
+        HcaResponse<CartResult> UpdateCartLines(CartLinesRequest cartLine, string endpoint = "carts/cartLines");
 
         HcaResponse<CartResult> GetCart(string endpoint = "carts/cart");
 
-        HcaResponse<CartResult> RemoveCartLine(string productId, string endpoint = "carts/cartLines");
+        HcaResponse<CartResult> RemoveCartLine(string productId, string variantId, string endpoint = "carts/cartLines");
 
         HcaResponse<CartResult> AddPromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes");
 

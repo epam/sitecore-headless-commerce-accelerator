@@ -1,8 +1,12 @@
-﻿namespace AutoTests.HCA.Common.Settings
+﻿namespace AutoTests.HCA.Core.Common.Settings.Product
 {
     public class ProductTestsDataSettings
     {
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
+
+        public string VariantId { get; set; }
+
+        public HcaProductStatus Status { get; set; }
 
         public string ProductName { get; set; }
 

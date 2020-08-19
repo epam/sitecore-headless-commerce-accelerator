@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using AutoTests.AutomationFramework.UI.Extensions;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.AutomationFramework.UI.Exceptions;
+using AutoTests.AutomationFramework.UI.Extensions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;

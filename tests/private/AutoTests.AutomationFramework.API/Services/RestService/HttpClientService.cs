@@ -16,13 +16,18 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
 
         public HttpClientService(Uri baseUri)
         {
-            _restClient = new RestClient(baseUri) { CookieContainer = new CookieContainer() };
+            _restClient = new RestClient(baseUri) {CookieContainer = new CookieContainer()};
             _restClient.UseNewtonsoftJson();
         }
 
         public void AddDefaultHeaders(Dictionary<string, string> headers)
         {
             _restClient.AddDefaultHeaders(headers);
+        }
+
+        public void DeleteAllCookies()
+        {
+            _restClient.CookieContainer = new CookieContainer();
         }
 
         public CookieCollection GetCookies()
@@ -33,7 +38,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
         public void SetCookieIfNotSet(string name, string value)
         {
             if (GetCookies().All(x => x.Name != name))
-                _restClient.CookieContainer.Add(new Cookie(name, value) { Domain = _restClient.BaseUrl.Host });
+                _restClient.CookieContainer.Add(new Cookie(name, value) {Domain = _restClient.BaseUrl.Host});
         }
 
         public void SetHttpBasicAuthenticator(string userName, string password)
@@ -82,7 +87,6 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
                     StatusCode = result.StatusCode,
                     Errors = JsonConvert.DeserializeObject<TErrors>(result.Content)
                 };
-
         }
     }
 }

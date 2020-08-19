@@ -1,7 +1,7 @@
-﻿using AutoTests.AutomationFramework.Shared.Models;
-using AutoTests.HCA.Core.API.Helpers;
+﻿using AutoTests.HCA.Core.API.Helpers;
 using AutoTests.HCA.Core.API.Services.BraintreeServices;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Core.BaseTests
 {
@@ -9,7 +9,7 @@ namespace AutoTests.HCA.Core.BaseTests
     {
         HcaApiService CreateHcaApiClient();
 
-        UserManagerHelper CreateUserManagerHelper(UserLogin user, IHcaApiService hcaApiService = null);
+        UserManagerHelper CreateUserManagerHelper(HcaUser user, IHcaApiService hcaApiService = null);
 
         BraintreeApiService CreateBraintreeClient();
     }

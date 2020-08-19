@@ -1,7 +1,7 @@
 ﻿using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI.Driver;
-using AutoTests.HCA.Common.Settings.Users;
 using AutoTests.HCA.Core.BaseTests;
+using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI;
 using NUnit.Framework;
 
@@ -25,7 +25,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         private HcaWebSite _hcaWebSite;
-        private readonly UserLogin _defUser = TestsData.GetUser(HcaUserType.Default).Credentials; 
+        private readonly UserLogin _defUser = TestsData.GetUser().Credentials;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

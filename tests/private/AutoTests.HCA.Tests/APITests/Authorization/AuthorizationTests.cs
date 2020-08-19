@@ -3,10 +3,10 @@ using System.Linq;
 using System.Net;
 using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.Shared.Models;
-using AutoTests.HCA.Common.Settings.Users;
 using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.BaseTests;
+using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Authorization
@@ -17,27 +17,36 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
     public class AuthorizationTests : BaseHcaApiTest
     {
         protected const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
-        protected static readonly UserLogin DefUser = TestsData.GetUser(HcaUserType.ApiAuthorizationTests).Credentials;
+        protected static readonly UserLogin DefUser = TestsData.GetUser(type: HcaUserType.ApiAuthorizationTests).Credentials;
 
-        [Test]
-        [Order(1)]
-        public void LoginWithValidUserDataTest()
+        public static IEnumerable<LoginRequest> GetInvalidLoginRequest()
+        {
+            yield return new LoginRequest(DefUser.Email, StringHelpers.RandomString(2));
+            yield return new LoginRequest(StringHelpers.RandomString(2) + DefUser.Email, DefUser.Password);
+        }
+
+        [TestCaseSource(nameof(GetInvalidLoginRequest))]
+        public void LoginWithInvalidUserTest(LoginRequest userLoginRequest)
         {
             // Arrange
+            const string expErrorMsg = "Incorrect login or password.";
             var hcaService = TestsHelper.CreateHcaApiClient();
-            var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act
-            var result = hcaService.Login(user);
+            var result = hcaService.Login(userLoginRequest);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The Login POST request is passed.");
-            Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
-            Assert.NotNull(result.OkResponseData);
-            Assert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status);
-            var cookies = hcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
-            Assert.NotNull(cookies, "The response of '/login' doesn't contain authorization cookies.");
-            Assert.False(string.IsNullOrWhiteSpace(cookies.Value), "Returned cookies contain empty value.");
+            Assert.False(result.IsSuccessful, "The Login POST request isn't passed.");
+            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.AreEqual(HcaStatus.Error, result.Errors.Status);
+            Assert.NotNull(result.Errors);
+            Assert.Multiple(() =>
+            {
+                Assert.True(result.Errors.Errors?.All(x => x == expErrorMsg));
+                Assert.AreEqual(expErrorMsg, result.Errors.Error);
+                var cookies = hcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
+            });
         }
 
         [Test]
@@ -65,34 +74,25 @@ namespace AutoTests.HCA.Tests.APITests.Authorization
             });
         }
 
-        [TestCaseSource(nameof(GetInvalidLoginRequest))]
-        public void LoginWithInvalidUserTest(LoginRequest userLoginRequest)
+        [Test]
+        [Order(1)]
+        public void LoginWithValidUserDataTest()
         {
             // Arrange
-            const string expErrorMsg = "Incorrect login or password.";
             var hcaService = TestsHelper.CreateHcaApiClient();
+            var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act
-            var result = hcaService.Login(userLoginRequest);
+            var result = hcaService.Login(user);
 
             // Assert
-            Assert.False(result.IsSuccessful, "The Login POST request isn't passed.");
-            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
-            Assert.AreEqual(HcaStatus.Error, result.Errors.Status);
-            Assert.NotNull(result.Errors);
-            Assert.Multiple(() =>
-            {
-                Assert.True(result.Errors.Errors?.All(x => x == expErrorMsg));
-                Assert.AreEqual(expErrorMsg, result.Errors.Error);
-                var cookies = hcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
-                Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
-            });
-        }
-
-        public static IEnumerable<LoginRequest> GetInvalidLoginRequest()
-        {
-            yield return new LoginRequest(DefUser.Email, StringHelpers.RandomString(2));
-            yield return new LoginRequest(StringHelpers.RandomString(2) + DefUser.Email, DefUser.Password);
+            Assert.True(result.IsSuccessful, "The Login POST request isn't passed.");
+            Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+            Assert.NotNull(result.OkResponseData);
+            Assert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status);
+            var cookies = hcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+            Assert.NotNull(cookies, "The response of '/login' doesn't contain authorization cookies.");
+            Assert.False(string.IsNullOrWhiteSpace(cookies.Value), "Returned cookies contain empty value.");
         }
 
         [Test]

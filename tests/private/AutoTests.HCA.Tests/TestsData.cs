@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Configuration;
-using AutoTests.HCA.Common.Settings;
-using AutoTests.HCA.Common.Settings.Users;
+using AutoTests.HCA.Core.Common.Settings;
+using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Tests
 {
@@ -22,14 +24,15 @@ namespace AutoTests.HCA.Tests
         public static IEnumerable<ProductTestsDataSettings> Products => _productId ??= HcaTestsData.Products;
         public static PaginationTestsDataSettings Pagination => _pagination ??= HcaTestsData.Pagination;
 
-        public static HcaUser GetUser(HcaUserType? type = HcaUserType.Default, string id = null)
+        public static HcaUser GetUser(HcaUserRole role = HcaUserRole.User, HcaUserType type = HcaUserType.Default)
         {
-                return Users.FirstOrDefault(x => x.Type == type);
+            return Users.FirstOrDefault(x => x.Type == type && x.Role == role);
         }
 
-        public static ProductTestsDataSettings GetDefProduct()
+        public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock)
         {
-            return Products.FirstOrDefault();
+            var filteringList = Products.Where(x => x.Status == status);
+            return Products.ElementAt(new Random().Next(filteringList.Count() - 1));
         }
     }
 }

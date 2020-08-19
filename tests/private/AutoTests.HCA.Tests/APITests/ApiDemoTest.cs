@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Common.Settings.Users;
 using AutoTests.HCA.Core.API.Models.Braitree.PaymentToken.Request;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
@@ -12,13 +11,14 @@ using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using AutoTests.HCA.Core.API.Services.BraintreeServices;
 using AutoTests.HCA.Core.API.Services.HcaService;
 using AutoTests.HCA.Core.BaseTests;
+using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
 namespace AutoTests.HCA.Tests.APITests
 {
-    [TestFixture(UserState.Guest)]
-    [TestFixture(UserState.Signed)]
+    [TestFixture(HcaUserRole.Guest)]
+    [TestFixture(HcaUserRole.User)]
     [Description("Base Demo scenario")]
     [ApiTest]
     public class ApiDemoTest : BaseHcaApiTest
@@ -30,7 +30,7 @@ namespace AutoTests.HCA.Tests.APITests
         }
 
         [TearDown]
-        public void TearDown()
+        public new void TearDown()
         {
             if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Passed)
                 _stopTests = true;
@@ -40,7 +40,7 @@ namespace AutoTests.HCA.Tests.APITests
         private readonly IHcaApiService _hcaApiService = TestsHelper.CreateHcaApiClient();
         private readonly IBraintreeApiService _braintreeApiService = TestsHelper.CreateBraintreeClient();
 
-        private readonly bool _isNeedToSignIn;
+        private readonly HcaUserRole _userRole;
 
         private const string _shippingMethodName = "Standard";
         private const string _searchKeyword = "phone";
@@ -50,16 +50,16 @@ namespace AutoTests.HCA.Tests.APITests
         private static string _token;
         private static string _confirmationId;
 
-        public ApiDemoTest(UserState state)
+        public ApiDemoTest(HcaUserRole role)
         {
-            _isNeedToSignIn = Convert.ToBoolean(state);
+            _userRole = role;
         }
 
         [OneTimeSetUp]
         public void SignIn()
         {
-            if (!_isNeedToSignIn) return;
-            var user = TestsData.GetUser(HcaUserType.Default).Credentials;
+            if (_userRole != HcaUserRole.User) return;
+            var user = TestsData.GetUser(HcaUserRole.User).Credentials;
             var authReq = _hcaApiService.Login(new LoginRequest(user.Email,
                 user.Password));
             Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
@@ -89,7 +89,7 @@ namespace AutoTests.HCA.Tests.APITests
         [Description("Add Product to cart.")]
         public void _02_AddProductToCart()
         {
-            var productForCard = new AddCartLinesRequest
+            var productForCard = new CartLinesRequest
             {
                 Quantity = 1,
                 ProductId = _productId,
@@ -241,11 +241,5 @@ namespace AutoTests.HCA.Tests.APITests
             Assert.True(getOrderReq.IsSuccessful, "The order request is not passed");
             Assert.AreEqual(_confirmationId, getOrderReq.OkResponseData.Data.TrackingNumber);
         }
-    }
-
-    public enum UserState
-    {
-        Guest = 0,
-        Signed = 1
     }
 }

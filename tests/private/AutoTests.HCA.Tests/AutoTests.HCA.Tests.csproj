@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutoTests.HCA.Core\AutoTests.HCA.Core.csproj" />
-    <ProjectReference Include="..\AutoTests.HCA.Shared\AutoTests.HCA.Common.csproj" />
+    <ProjectReference Include="..\AutoTests.HCA.Shared\AutoTests.HCA.Core.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

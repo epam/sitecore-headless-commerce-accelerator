@@ -1,4 +1,4 @@
-﻿namespace AutoTests.HCA.Common.Settings
+﻿namespace AutoTests.HCA.Core.Common.Settings
 {
     public class PaginationTestsDataSettings
     {

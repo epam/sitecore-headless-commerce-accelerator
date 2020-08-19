@@ -1,6 +1,6 @@
 ﻿namespace AutoTests.HCA.Core.API.Models.Hca.Entities.Cart
 {
-    public class AddCartLinesRequest
+    public class CartLinesRequest
     {
         public string ProductId { get; set; }
 

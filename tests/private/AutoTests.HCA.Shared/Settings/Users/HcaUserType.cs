@@ -1,8 +1,9 @@
-﻿namespace AutoTests.HCA.Common.Settings.Users
+﻿namespace AutoTests.HCA.Core.Common.Settings.Users
 {
     public enum HcaUserType
     {
         Default,
-        ApiAuthorizationTests
+        ApiAuthorizationTests,
+        ApiCartTests
     }
 }

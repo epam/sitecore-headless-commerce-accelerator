@@ -17,7 +17,8 @@ namespace AutoTests.HCA.Tests.UITests
         {
             _hcaWebSite = HcaWebSite.Instance;
             _hcaWebSite.NavigateToMain();
-            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp, TestsData.GetDefProduct(), TestsData.GetUser().Credentials);
+            _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.AccountSignUp, TestsData.GetProduct(),
+                TestsData.GetUser().Credentials);
         }
 
         public SignUpTests(BrowserType browserType) : base(browserType)

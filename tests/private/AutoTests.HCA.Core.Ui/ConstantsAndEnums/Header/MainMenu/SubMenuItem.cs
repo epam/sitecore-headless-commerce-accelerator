@@ -1,5 +1,4 @@
-﻿using System.IO;
-using AutoTests.AutomationFramework.Shared.Extensions;
+﻿using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Common;
 
@@ -79,7 +78,8 @@ namespace AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu
 
         public static string GetHref(this SubMenuItem item)
         {
-            return UiConfiguration.GetEnvironmentUri("HcaEnvironment").AddPostfix(item.GetAttribute<LinkAttribute>().Href)
+            return UiConfiguration.GetEnvironmentUri("HcaEnvironment")
+                .AddPostfix(item.GetAttribute<LinkAttribute>().Href)
                 .AbsoluteUri;
         }
     }

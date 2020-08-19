@@ -14,9 +14,9 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         public static IEnumerable<TestCaseData> GetInvalidPaginationTestsData()
         {
             yield return new TestCaseData(-1, DefPagination.PageNumber,
-                new List<string> { "The field PageSize must be between 1 and 2147483647." });
+                new List<string> {"The field PageSize must be between 1 and 2147483647."});
             yield return new TestCaseData(DefPagination.PageSize, -1,
-                new List<string> { "The field PageNumber must be between 0 and 2147483647." });
+                new List<string> {"The field PageNumber must be between 0 and 2147483647."});
             yield return new TestCaseData(-1, -1,
                 new List<string>
                 {
@@ -83,9 +83,9 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
                 Assert.AreEqual(HcaStatus.Error, dataResult.Status);
                 Assert.AreEqual(expMessage.First(), dataResult.Error,
                     $"Expected {nameof(dataResult.Error)} text: {expMessage}. Actual:{dataResult.Error}.");
-                Assert.That(expMessage.All(x => dataResult.Errors.Contains(x)), "The error list does not contain all validation errors");
+                Assert.That(expMessage.All(x => dataResult.Errors.Contains(x)),
+                    "The error list does not contain all validation errors");
             });
-
         }
     }
 }

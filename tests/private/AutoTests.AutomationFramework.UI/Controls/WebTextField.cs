@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using AutoTests.AutomationFramework.UI.Extensions;
 using AutoTests.AutomationFramework.UI.Driver;
+using AutoTests.AutomationFramework.UI.Extensions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;

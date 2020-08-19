@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Core.API.Helpers
 {
@@ -10,13 +10,15 @@ namespace AutoTests.HCA.Core.API.Helpers
     {
         private readonly IHcaApiService _hcaApiService;
 
-        public UserManagerHelper(UserLogin user, IHcaApiService hcaApiService)
+        public UserManagerHelper(HcaUser user, IHcaApiService hcaApiService)
         {
             if (user == null || hcaApiService == null)
                 throw new ArgumentNullException($"{nameof(hcaApiService)} or {nameof(user)} can't be NULL.");
 
             _hcaApiService = hcaApiService;
-            _hcaApiService.Login(new LoginRequest(user.Email, user.Password));
+
+            if (user.Role == HcaUserRole.User)
+                _hcaApiService.Login(new LoginRequest(user.Credentials.Email, user.Credentials.Password));
         }
 
         public void CleanCart()
@@ -25,14 +27,10 @@ namespace AutoTests.HCA.Core.API.Helpers
 
             //TODO did the request pass
 
-            var cartIsEmpty = res?.OkResponseData?.Data?.CartLines?.Any();
-            if (cartIsEmpty.HasValue && cartIsEmpty.Value)
-            {
+            var cartIsNotEmpty = res?.OkResponseData?.Data?.CartLines?.Any();
+            if (cartIsNotEmpty.HasValue && cartIsNotEmpty.Value)
                 foreach (var cartLine in res.OkResponseData.Data.CartLines)
-                {
-                    _hcaApiService.RemoveCartLine(cartLine.Product.ProductId);
-                }
-            }
+                    _hcaApiService.RemoveCartLine(cartLine.Product.ProductId, cartLine.Variant.VariantId);
         }
     }
 }

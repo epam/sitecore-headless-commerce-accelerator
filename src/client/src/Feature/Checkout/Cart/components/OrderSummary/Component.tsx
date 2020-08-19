@@ -38,7 +38,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
   public safeRender() {
     const { isLoading, isFailure, price, adjustments } = this.props;
     return (
-      <section className="orderSummary">
+      <section className="orderSummary" data-autotests="orderSummarySection">
         <h2>Order Summary</h2>
         <OrderSummaryPriceLines price={price} className="orderSummary-list" />
         <div className="orderSummary-freeShipping">
@@ -71,7 +71,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </button>
           </div>
         </div>
-        <div className="orderSummary-checkout">
+        <div className="orderSummary-checkout" data-autotests="checkoutSubSection">
           <Placeholder name="order-actions" rendering={this.props.rendering} />
         </div>
       </section>

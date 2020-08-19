@@ -39,13 +39,13 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
             <div className="loading" />
           </div>
         )}
-        <section className="cartSummary">
+            <section className="cartSummary" data-autotests="cartSummarySection">
           <header className="cartSummary-header">
             <h2 className="header-title">
               Item<span>(s)</span>
             </h2>
           </header>
-          <ul className="cartList">
+                <ul className="cartList" data-autotests="cartList">
             {cartLines.map((cartLine) => {
               let imageUrl = fallbackImageUrl;
 
@@ -55,24 +55,24 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                 imageUrl = cartLine.product.imageUrls[0];
               }
 
-              return (
-                <li className="cartList-product" key={cartLine.id}>
+                return (
+                    <li className="cartList-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
                   <div className="product">
-                    <figure className="row product-summary">
+                     <figure className="row product-summary" data-autotests="productSummary">
                       <div className="col-xs-6 col-sm-4 col-lg-3 product-image">
                         <img src={imageUrl} />
                       </div>
                       <figcaption className="col-xs-6 col-sm-8 col-lg-9 product-caption">
                         <div className="row">
                           <div className="col-sm-6 col-lg-4">
-                            <div className="product-info">
+                             <div className="product-info" data-autotests="productInfo">
                               <div className="product-heading">
-                                <div className="heading-brand">{cartLine.variant.brand || cartLine.product.brand}</div>
-                                <div className="heading-productTitle">
+                                                  <div className="heading-brand" data-autotests="productInfoBrand">{cartLine.variant.brand || cartLine.product.brand}</div>
+                                                  <div className="heading-productTitle" data-autotests="productInfoTitle">
                                   {cartLine.variant.displayName || cartLine.product.displayName}
                                 </div>
                               </div>
-                              <div className="product-options">
+                                              <div className="product-options" data-autotests="productOptions">
                                 {cartLine.variant.properties.color && (
                                   <div className="option">
                                     Color:
@@ -95,24 +95,24 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                           <div className="col-sm-6 col-lg-8">
                             <div className="row">
                               <div className="col-lg-5">
-                                <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} />
+                                                  <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine}/>
                               </div>
                               <div className="col-lg-7">
-                                <div className="product-price">
+                                                  <div className="product-price" data-autotests="productPrice">
                                   <span className="label">Item Price:</span>
                                   <span className="amount">
                                     <span className="currency">{cartLine.variant.currencySymbol}</span>
                                     {cartLine.variant.adjustedPrice.toFixed(2)}
                                   </span>
                                 </div>
-                                <div className="product-total">
+                                                  <div className="product-total" data-autotests="productTotal">
                                   <span className="label">Total:</span>
                                   <span className="amount">
                                     <span className="currency">{cartLine.price.currencySymbol}</span>
                                     {cartLine.price.total.toFixed(2)}
                                   </span>
                                 </div>
-                                <div className="product-actions">
+                                 <div className="product-actions" data-autotests="productActions">
                                   <a className="action action-remove" onClick={(e) => RemoveCartLine(cartLine)}>
                                     <span>Remove Item</span>
                                   </a>
@@ -128,7 +128,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                     </figure>
                     <div className="row">
                       <div className="col-xs-12">
-                        <div className="product-detail">
+                         <div className="product-detail" data-autotests="productDetail">
                           <h3 onClick={(e) => toggleBar(e)} className="detail-header">
                             Additional Information
                             <i className="fa fa-caret-right" />

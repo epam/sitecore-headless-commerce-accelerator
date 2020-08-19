@@ -51,11 +51,11 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
     const { isLoading, isFailure, price, adjustments } = this.props;
     const { freeShipping } = this.state;
     return (
-      <section className="orderSummary">
+      <section className="orderSummary" data-autotests = "orderSummarySection">
         <h2>Order Summary</h2>
-        <OrderSummaryPriceLines price={price} className="orderSummary-list" />
+            <OrderSummaryPriceLines price={price} className="orderSummary-list" data-autotests="orderSummaryPriceLines" />
         {freeShipping && (
-          <div className="orderSummary-freeShipping">
+                <div className="orderSummary-freeShipping" data-autotests="freeShippingSubSection">
             {freeShipping.subtotal >= price.subtotal ? (
               <p>
                 You're only <b>${(freeShipping.subtotal - price.subtotal).toFixed(2)}</b> away from free shipping!
@@ -68,7 +68,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </a>
           </div>
         )}
-        <div className="orderSummary-promoCode is-open">
+            <div className="orderSummary-promoCode is-open" data-autotests="promoCodeSubSection">
           <h3 onClick={(e) => toggleBar(e)}>Promotional code?</h3>
           <div className="field">
             {adjustments && adjustments.length !== 0 && (
@@ -101,7 +101,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </button>
           </div>
         </div>
-        <div className="orderSummary-checkout">
+            <div className="orderSummary-checkout" data-autotests="checkoutSubSection">
           <Placeholder name="order-actions" rendering={this.props.rendering} />
         </div>
       </section>

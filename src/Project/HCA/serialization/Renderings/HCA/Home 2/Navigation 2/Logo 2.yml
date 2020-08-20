@@ -10,7 +10,7 @@ SharedFields:
   Value: /sitecore/content/HCA/Data/Header/Logo/Main
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: Logo
+  Value: Logo 2
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
   Value: |

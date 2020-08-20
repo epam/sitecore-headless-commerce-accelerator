@@ -1,13 +1,13 @@
 ﻿---
-ID: "d014bf17-de93-4c8f-b41d-ed89df30705c"
-Parent: "b04c8921-14e9-426a-a515-56349fefb207"
+ID: "e78c02ae-e21c-4fc5-940c-fceedc587c9c"
+Parent: "c6150e14-297a-40e0-9f42-16f13db533d9"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2/Quick Navigation 2
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Account 2/Login Register
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
-  Value: Quick Navigation 2
+  Value: Login Register
 Languages:
 - Language: en
   Versions:
@@ -15,4 +15,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200519T111212Z
+      Value: 20200820T131951Z

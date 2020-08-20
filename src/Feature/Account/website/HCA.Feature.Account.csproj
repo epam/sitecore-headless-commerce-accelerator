@@ -512,10 +512,14 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
     <Compile Include="Mappers\Profiles\AddressProfile.cs" />
     <Compile Include="Mappers\IAccountMapper.cs" />
+    <Compile Include="Mappers\Profiles\WishlistProfile.cs" />
+    <Compile Include="Mappers\Wishlist\IWishlistMapper.cs" />
+    <Compile Include="Mappers\Wishlist\WishlistMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Requests\AddressRequest.cs" />
     <Compile Include="Models\Requests\ChangePasswordRequest.cs" />
@@ -523,6 +527,7 @@
     <Compile Include="Models\Requests\UpdateAccountRequest.cs" />
     <Compile Include="Models\Requests\LoginRequest.cs" />
     <Compile Include="Models\Requests\ValidateEmailRequest.cs" />
+    <Compile Include="Models\Requests\VariantRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

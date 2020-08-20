@@ -623,6 +623,8 @@
     <Compile Include="Builders\Promotion\PromotionBuilder.cs" />
     <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Wishlist\IWishlistBuilder.cs" />
+    <Compile Include="Builders\Wishlist\WishlistBuilder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
@@ -637,6 +639,9 @@
     <Compile Include="Infrastructure\Pipelines\Login\SetCurrentUserProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SendEmailProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SubmitVisitorOrder\SetAnonymousInfoProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Wishlist\AddWishlistLineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Wishlist\RemoveWishlistLineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\Wishlist\GetWishlistProcessor.cs" />
     <Compile Include="Managers\Contact\ContactManager.cs" />
     <Compile Include="Managers\Contact\IContactManager.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
@@ -661,6 +666,7 @@
     <Compile Include="Mappers\Profiles\OrderProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Profiles\RegionProfile.cs" />
+    <Compile Include="Mappers\Profiles\WishlistProfile.cs" />
     <Compile Include="Mappers\Region\IRegionMapper.cs" />
     <Compile Include="Mappers\Region\RegionMapper.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
@@ -672,6 +678,8 @@
     <Compile Include="Mappers\Shipping\ShippingMapper.cs" />
     <Compile Include="Mappers\Users\IUserMapper.cs" />
     <Compile Include="Mappers\Users\UserMapper.cs" />
+    <Compile Include="Mappers\Wishlist\IWishlistMapper.cs" />
+    <Compile Include="Mappers\Wishlist\WishlistMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Contact\PersonalInfo.cs" />
@@ -709,6 +717,8 @@
     <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
     <Compile Include="Mappers\Profiles\UserProfile.cs" />
     <Compile Include="Models\Entities\Search\SortDirection.cs" />
+    <Compile Include="Models\Entities\Wishlist\Wishlist.cs" />
+    <Compile Include="Models\Entities\Wishlist\WishlistLine.cs" />
     <Compile Include="Models\Extensions\GeolocationSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Contracts\ICurrencyProvider.cs" />
@@ -726,6 +736,8 @@
     <Compile Include="Repositories\Geolocation\GeolocationRepository.cs" />
     <Compile Include="Repositories\Geolocation\IGeolocationRepository.cs" />
     <Compile Include="Repositories\IItemRepository.cs" />
+    <Compile Include="Repositories\Wishlist\IWishlistRepository.cs" />
+    <Compile Include="Repositories\Wishlist\WishlistRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />
@@ -749,6 +761,8 @@
     <Compile Include="Services\Search\ProductSearchService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
+    <Compile Include="Services\Wishlist\IWishlistService.cs" />
+    <Compile Include="Services\Wishlist\WishlistService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
     <Compile Include="Utils\GeolocationHelper.cs" />
   </ItemGroup>

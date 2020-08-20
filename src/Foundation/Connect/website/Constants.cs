@@ -19,6 +19,7 @@ namespace HCA.Foundation.Connect
         public const string CommerceUsersDomainName = "CommerceUsers";
 
         public const string DefaultCartName = "Default";
+        public const string DefaultWishlistName = "Wishlist";
 
         public static class Search
         {

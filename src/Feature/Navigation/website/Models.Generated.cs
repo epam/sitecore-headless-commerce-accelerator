@@ -601,32 +601,4 @@ namespace HCA.Feature.Navigation.Models
 
     }
 
-
-    /// <summary>
-    /// ITest Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Test</para>
-    /// <para>ID: 7d14fddf-bb83-4a5b-8367-861401b25792</para>
-    /// </summary>
-    [SitecoreType(TemplateId="7d14fddf-bb83-4a5b-8367-861401b25792")]
-    public partial interface ITest: IGlassBase
-    {
-
-    }
-
-
-    /// <summary>
-    /// Test Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Test</para>
-    /// <para>ID: 7d14fddf-bb83-4a5b-8367-861401b25792</para>
-    /// </summary>
-    [SitecoreType(TemplateId="7d14fddf-bb83-4a5b-8367-861401b25792")]
-    public partial class Test: GlassBase, ITest
-    {
-        /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Footer/Test
-        /// </summary>
-        public const string TemplateId = "7d14fddf-bb83-4a5b-8367-861401b25792";
-
-    }
-
 }

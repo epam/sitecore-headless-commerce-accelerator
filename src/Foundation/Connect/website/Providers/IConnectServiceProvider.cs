@@ -23,6 +23,7 @@ namespace HCA.Foundation.Connect.Providers
     using Sitecore.Commerce.Services.Payments;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
+    using Sitecore.Commerce.Services.WishLists;
 
     public interface IConnectServiceProvider
     {
@@ -43,5 +44,7 @@ namespace HCA.Foundation.Connect.Providers
         PricingServiceProvider GetPricingServiceProvider();
 
         ShippingServiceProvider GetShippingServiceProvider();
+
+        WishListServiceProvider GetWishListServiceProvider();
     }
 }

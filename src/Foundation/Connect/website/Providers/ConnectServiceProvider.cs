@@ -28,6 +28,7 @@ namespace HCA.Foundation.Connect.Providers
     using Sitecore.Commerce.Services.Payments;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
+    using Sitecore.Commerce.Services.WishLists;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IConnectServiceProvider), Lifetime = Lifetime.Singleton)]
@@ -85,6 +86,11 @@ namespace HCA.Foundation.Connect.Providers
         public ShippingServiceProvider GetShippingServiceProvider()
         {
             return this.GetConnectServiceProvider<ShippingServiceProvider>("shippingServiceProvider");
+        }
+
+        public WishListServiceProvider GetWishListServiceProvider()
+        {
+            return this.GetConnectServiceProvider<WishListServiceProvider>("wishListServiceProvider");
         }
 
         private TServiceProvider GetConnectServiceProvider<TServiceProvider>(string serviceProviderName)

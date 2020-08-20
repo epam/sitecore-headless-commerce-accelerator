@@ -41,4 +41,78 @@ namespace HCA.Feature.Account.Models
     using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
     
+    
+    /// <summary>
+    /// IWishlist Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Account/Wishlist</para>
+    /// <para>ID: 689cf1d8-d3d6-4f44-90a6-1525f05d374a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="689cf1d8-d3d6-4f44-90a6-1525f05d374a")]
+    public partial interface IWishlist: IGlassBase
+    {
+        
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 299aefbb-adfb-425c-9c81-841cc7f7e30f</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+        
+    }
+    
+    
+    /// <summary>
+    /// Wishlist Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Account/Wishlist</para>
+    /// <para>ID: 689cf1d8-d3d6-4f44-90a6-1525f05d374a</para>
+    /// </summary>
+    [SitecoreType(TemplateId="689cf1d8-d3d6-4f44-90a6-1525f05d374a")]
+    public partial class Wishlist: GlassBase, IWishlist
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Account/Wishlist
+        /// </summary>
+        public const string TemplateId = "689cf1d8-d3d6-4f44-90a6-1525f05d374a";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 299aefbb-adfb-425c-9c81-841cc7f7e30f</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "299aefbb-adfb-425c-9c81-841cc7f7e30f";
+        public const string TitleFieldName = "Title";
+        
+    }
+    
+    
+    /// <summary>
+    /// IWishlistFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Account/Wishlist Folder</para>
+    /// <para>ID: 560f6c2d-c8da-4bbb-877d-7fd29f3083b7</para>
+    /// </summary>
+    [SitecoreType(TemplateId="560f6c2d-c8da-4bbb-877d-7fd29f3083b7")]
+    public partial interface IWishlistFolder: IGlassBase
+    {
+        
+    }
+    
+    
+    /// <summary>
+    /// WishlistFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Account/Wishlist Folder</para>
+    /// <para>ID: 560f6c2d-c8da-4bbb-877d-7fd29f3083b7</para>
+    /// </summary>
+    [SitecoreType(TemplateId="560f6c2d-c8da-4bbb-877d-7fd29f3083b7")]
+    public partial class WishlistFolder: GlassBase, IWishlistFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Account/Wishlist Folder
+        /// </summary>
+        public const string TemplateId = "560f6c2d-c8da-4bbb-877d-7fd29f3083b7";
+
+    }
+    
 }

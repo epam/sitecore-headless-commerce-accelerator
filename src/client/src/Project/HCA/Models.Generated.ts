@@ -205,3 +205,17 @@ export interface SettingsFolderRenderingParams extends ReactJssModule.BaseRender
 export const SettingsFolderTemplate = {
   templateId: 'ff3f660a-3d15-4efc-9873-113aaf71b44e',
 };
+
+// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
+// ID: e5e2329c-b05a-4e98-9430-018503c2699a
+export interface WishlistPageDataSource extends ReactJssModule.BaseDataSourceItem {}
+
+// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
+// ID: e5e2329c-b05a-4e98-9430-018503c2699a
+export interface WishlistPageRenderingParams extends ReactJssModule.BaseRenderingParam {}
+
+// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
+// ID: e5e2329c-b05a-4e98-9430-018503c2699a
+export const WishlistPageTemplate = {
+  templateId: 'e5e2329c-b05a-4e98-9430-018503c2699a',
+};

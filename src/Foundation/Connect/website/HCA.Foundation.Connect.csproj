@@ -592,6 +592,8 @@
     <Compile Include="Managers\Payment\PaymentManager.cs" />
     <Compile Include="Managers\Promotion\IPromotionManager.cs" />
     <Compile Include="Managers\Promotion\PromotionManager.cs" />
+    <Compile Include="Managers\Wishlist\IWishlistManager.cs" />
+    <Compile Include="Managers\Wishlist\WishlistManager.cs" />
     <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />

@@ -15,6 +15,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { AddWishlistItem } from 'Feature/Account/Integration/Wishlist';
 import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
 import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { LoadingStatus } from 'Foundation/Integration';
@@ -33,6 +34,7 @@ const mapStateToProps = (state: AppState): CartSummaryStateProps => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
+      AddWishlistItem,
       RemoveCartLine: actions.RemoveCartLine,
       UpdateCartLine: actions.UpdateCartLine,
     },

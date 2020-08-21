@@ -14,7 +14,7 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { ProductColors } from 'Foundation/Commerce';
+import { ProductColors, Variant } from 'Foundation/Commerce';
 
 import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
@@ -28,6 +28,7 @@ export interface CartSummaryStateProps {
   isLoading: boolean;
 }
 export interface CartSummaryDispatchProps {
+  AddWishlistItem: (item: Variant) => void;
   UpdateCartLine: (model: ShoppingCartApi.CartItemDto) => void;
   RemoveCartLine: (model: ShoppingCart.ShoppingCartLine) => void;
 }

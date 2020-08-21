@@ -31,7 +31,8 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
   }
 
   public safeRender() {
-    const { cartLines, isLoading, productColors, fallbackImageUrl, UpdateCartLine, RemoveCartLine } = this.props;
+    const { AddWishlistItem, UpdateCartLine, RemoveCartLine } = this.props;
+    const { cartLines, isLoading, productColors, fallbackImageUrl } = this.props;
 
     return (
       <>
@@ -123,7 +124,10 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                                   <a className="action action-remove" onClick={(e) => RemoveCartLine(cartLine)}>
                                     <span>Remove Item</span>
                                   </a>
-                                  <a className="action action-addToWishlist">
+                                  <a
+                                    className="action action-addToWishlist"
+                                    onClick={(e) => AddWishlistItem(cartLine.variant)}
+                                  >
                                     <span>Add to Wishlist</span>
                                   </a>
                                 </div>

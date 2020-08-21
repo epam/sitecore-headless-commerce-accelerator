@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "003a72cd-4cd6-4392-9862-41d4159929cd"
   Hint: Data source
-  Value: /sitecore/content/HCA/Data/Wishlist Folder/Wishlist
+  Value: /sitecore/content/HCA/Data/Wishlist
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Wishlist

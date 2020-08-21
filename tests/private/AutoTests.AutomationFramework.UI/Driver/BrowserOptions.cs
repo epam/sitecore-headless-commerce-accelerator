@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Opera;
+using OpenQA.Selenium.Remote;
 
 namespace AutoTests.AutomationFramework.UI.Driver
 {
@@ -37,6 +39,7 @@ namespace AutoTests.AutomationFramework.UI.Driver
             chromeOptions.AddArguments("--no-sandbox");
             //chromeOptions.AddArguments("--lang=de");
             chromeOptions.AddArguments("--start-maximized");
+            chromeOptions.AddAdditionalCapability("enableVNC", true, true);
             return chromeOptions;
         }
 

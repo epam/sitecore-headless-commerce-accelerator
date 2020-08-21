@@ -16,6 +16,7 @@ namespace AutoTests.HCA.Tests
         private static IEnumerable<HcaUser> _users;
         private static IEnumerable<ProductTestsDataSettings> _productId;
         private static PaginationTestsDataSettings _pagination;
+        private static IEnumerable<HcaDiscount> _discounts;
 
         private static HcaTestsDataSettings HcaTestsData =>
             _hcaTestsData ??= _configurationManager.Get<HcaTestsDataSettings>("HcaTestsData");
@@ -23,6 +24,7 @@ namespace AutoTests.HCA.Tests
         public static IEnumerable<HcaUser> Users => _users ??= HcaTestsData.Users;
         public static IEnumerable<ProductTestsDataSettings> Products => _productId ??= HcaTestsData.Products;
         public static PaginationTestsDataSettings Pagination => _pagination ??= HcaTestsData.Pagination;
+        public static IEnumerable<HcaDiscount> Discounts => _discounts ??= HcaTestsData.Discounts;
 
         public static HcaUser GetUser(HcaUserRole role = HcaUserRole.User, HcaUserType type = HcaUserType.Default)
         {
@@ -33,6 +35,21 @@ namespace AutoTests.HCA.Tests
         {
             var filteringList = Products.Where(x => x.Status == status);
             return Products.ElementAt(new Random().Next(filteringList.Count() - 1));
+        }
+
+        public static ProductTestsDataSettings GetDefaultProduct()
+        {
+            return Products.First(x => x.Default == true);
+        }
+
+        public static IEnumerable<ProductTestsDataSettings> GetProducts(int qty)
+        {
+            return Products.Take(qty).Where(x=>x.Status == HcaProductStatus.InStock);
+        }
+
+        public static HcaDiscount GetDefaultDiscount()
+        {
+            return Discounts.First(x => x.Default);
         }
     }
 }

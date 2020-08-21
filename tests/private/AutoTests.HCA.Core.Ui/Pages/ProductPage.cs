@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
@@ -82,6 +83,8 @@ namespace AutoTests.HCA.Core.UI.Pages
         public void AddToCartButtonClick()
         {
             _addToCartButton.WaitForPresent();
+            _addToCartButton.MouseOver();
+            Thread.Sleep(1000);
             _addToCartButton.MouseOver();
             _addToCartButton.Click();
             _addToCartButton.WaitForClickable();

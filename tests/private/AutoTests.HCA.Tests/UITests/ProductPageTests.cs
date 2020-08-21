@@ -105,8 +105,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _cartPage.WaitForProductsLoaded();
 
-            Assert.IsTrue(_cartPage.ProductIsPresent(productName),
-                $"Product {productName} not found in shopping cart.");
+            _cartPage.VerifyProductPresent(productName);
             Assert.AreEqual(quantity, _cartPage.GetProductQty(productName),
                 $"Invalid quantity of '{productName}' in the cart.");
         }

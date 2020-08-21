@@ -1,4 +1,7 @@
-﻿using AutoTests.AutomationFramework.Shared.Helpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.AutomationFramework.UI.Core;
@@ -59,6 +62,9 @@ namespace AutoTests.HCA.Core.UI
             LoginForm.VerifyLoggedUser();
             HideUserMenu();
         }
+
+        public void OpenHcaAndLogin(UserLogin userLogin) => OpenHcaAndLogin(userLogin.Email, userLogin.Password);
+        
 
         //ToDo create address structure
         public string AddNewAddressForLoggedUser()
@@ -145,6 +151,14 @@ namespace AutoTests.HCA.Core.UI
             ProductPage.WaitForOpened();
             ProductPage.AddToCartButtonClick();
             HeaderControl.WaitForPresentProductsQuantity();
+        }
+
+        public void AddProductsToCartFromTestData(IEnumerable<ProductTestsDataSettings> products)
+        {
+            foreach (var product in products)
+            {
+                AddProductToCart(product.ProductId);
+            }
         }
 
         public void AddProductAndGoToCheckoutShippingPage(string productId)

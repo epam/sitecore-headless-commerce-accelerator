@@ -72,7 +72,8 @@ namespace AutoTests.HCA.Core.UI.CommonElements
         private WebElement FindProductByName(string productName)
         {
             return new WebElement($"Product {productName}",
-                ByCustom.XPath($".//li//h2[contains(text(), '{productName}')]"), _productGrid).GetParent(3);
+                ByCustom.XPath($".//li" +
+                               $"//h2[translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz') = translate('{productName}', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')]"), _productGrid).GetParent(3);
         }
 
         private WebElement FindProductByIndex(int index)

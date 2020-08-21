@@ -41,7 +41,40 @@
         "StockStatus": "InStock",
         "ProductName": "HABITAT ATHLETICA SPORTS ARMBAND CASE",
         "ProductBrand": "ATHLETICA SMARTPHONE CASE",
-        "ProductCategoryId": "8e456d84-4251-dba1-4b86-ce103dedcd02"
+        "ProductCategoryId": "8e456d84-4251-dba1-4b86-ce103dedcd02",
+        "Default": true 
+      },
+      {
+        "ProductId": "6042361",
+        "VariantId": "56042361",
+        "StockStatus": "InStock",
+        "ProductName": "HABITAT SHERPA KICKSTAND SMARTPHONE CASE",
+        "ProductBrand": "SHERPA SMARTPHONE CASES",
+        "ProductCategoryId": ""
+      },
+      {
+        "ProductId": "6042144",
+        "VariantId": "56042144",
+        "StockStatus": "InStock",
+        "ProductName": "BOOSTER X 100 W X 4 CHANNEL CAR AMPLIFIER",
+        "ProductBrand": "BOOSTER X AMPLIFIERS",
+        "ProductCategoryId": ""
+      },
+      {
+        "ProductId": "7042096",
+        "VariantId": "57042096",
+        "StockStatus": "InStock",
+        "ProductName": "16-50MM LENS, 55-210MM LENS, TELEPHOTO, CAMERA BAG WITH ACCESSORIES",
+        "ProductBrand": "OPTIX CAMERA LINE",
+        "ProductCategoryId": ""
+      },
+      {
+        "ProductId": "6042062",
+        "VariantId": "56042062",
+        "StockStatus": "InStock",
+        "ProductName": "ATHLETICA SPORTCLIP STANDARD EARBUDS",
+        "ProductBrand": "ATHLETICA",
+        "ProductCategoryId": ""
       },
       {
         "ProductId": "6042059",
@@ -63,6 +96,13 @@
     "Pagination": {
       "PageSize": "5",
       "PageNumber": "1"
-    }
+    },
+    "Discounts": [
+      {
+        "Default": true, 
+        "DiscountCouponName": "15% Off Cart (Coupon)",
+        "DiscountCouponCode": "HABRTRNC15P"
+      }
+    ]
   }
 }

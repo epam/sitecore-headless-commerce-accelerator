@@ -11,5 +11,7 @@ namespace AutoTests.HCA.Core.Common.Settings
         public PaginationTestsDataSettings Pagination { get; set; }
 
         public IEnumerable<HcaUser> Users { get; set; }
+
+        public IEnumerable<HcaDiscount> Discounts { get; set; }
     }
 }

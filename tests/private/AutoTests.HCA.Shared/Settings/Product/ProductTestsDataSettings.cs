@@ -13,5 +13,8 @@
         public string ProductBrand { get; set; }
 
         public string ProductCategoryId { get; set; }
+
+        public bool? Default { get; set; }
     }
+
 }

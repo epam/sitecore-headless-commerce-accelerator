@@ -1,0 +1,68 @@
+﻿---
+ID: "0226f289-80bb-4bbe-9322-0aa454f26934"
+Parent: "99030152-d265-419e-bb2a-677f179e55ad"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/StoreLocator 2/Store Locator 2
+DB: master
+SharedFields:
+- ID: "003a72cd-4cd6-4392-9862-41d4159929cd"
+  Hint: Data source
+  Value: /sitecore/content/HCA/Data/Store Locator/Store Locator
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Store Locator 2
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query StoreLocator($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on StoreLocator {
+          title {
+            jss
+          }
+          description {
+            jss
+          }
+          stores {
+            items: targetItems {
+              ... on Store {
+                id
+                title {
+                  jss
+                }
+                description {
+                  jss
+                }
+                latitude {
+                  jss
+                }
+                longitude {
+                  jss
+                }
+              }
+            }
+          }
+          defaultLatitude {
+            jss
+          }
+          defaultLongitude {
+            jss
+          }
+        }
+      }
+    }
+    
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@templatename='Data Folder']/*[@@templatename='Store Locator Folder']"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200519T081724Z

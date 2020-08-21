@@ -46,15 +46,16 @@ const mapDispatchToProps = (dispatch: any) => {
     {
       AddAddressToAccount: Account.AddAddress,
       InitStep: Checkout.InitStep,
-      SubmitStep: Checkout.SubmitStep
+      ResetDeliveryInfo: Checkout.ResetDeliveryInfo,
+      SubmitStep: Checkout.SubmitStep,
     },
-    dispatch
+    dispatch,
   );
 };
 
 const connectedToStore = connect<ShippingStateProps, ShippingDispatchProps, ShippingOwnProps>(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 );
 
 export const Shipping = compose(connectedToStore, renderingWithContext)(ShippingComponent);

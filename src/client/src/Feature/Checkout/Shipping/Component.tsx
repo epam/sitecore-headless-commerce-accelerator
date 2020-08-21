@@ -32,6 +32,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const { commerceUser } = this.props;
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
     this.state = {
+      canResetDeliveryInfo: true,
       selectedAddressOption,
     };
   }
@@ -264,6 +265,21 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
     this.setState({ selectedAddressOption: e.currentTarget.value });
+
+    if (e.currentTarget.value === ADDRESS_TYPE.SAVED) {
+      const { commerceUser } = this.props;
+      const isLoggedIn = commerceUser && commerceUser.customerId;
+
+      if (this.state.canResetDeliveryInfo && isLoggedIn) {
+        this.props.ResetDeliveryInfo();
+
+        if (!this.props.sitecoreContext.pageEditing) {
+          this.props.InitStep(CheckoutStepType.Fulfillment);
+        }
+
+        this.setState({ canResetDeliveryInfo: false });
+      }
+    }
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -292,6 +308,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
           address,
           fulfillmentType,
           options,
+          saveToMyAccount,
           shippingMethod,
         },
       });

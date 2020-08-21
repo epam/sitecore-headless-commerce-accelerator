@@ -72,10 +72,7 @@ export const GetDeliveryInfoFailure: actionCreators.GetCheckoutDataFailure = (er
   type: reducerActionTypes.GET_CHECKOUT_DATA_FAILURE,
 });
 
-export const GetShippingInfoFailure: actionCreators.GetCheckoutDataFailure = (
-  error: string,
-  stack?: string
-) => ({
+export const GetShippingInfoFailure: actionCreators.GetCheckoutDataFailure = (error: string, stack?: string) => ({
   payload: {
     shipping: {
       error,
@@ -160,4 +157,13 @@ export const SubmitStepSuccess: actionCreators.SubmitStepSuccess = () => ({
     status: LoadingStatus.Loaded,
   },
   type: reducerActionTypes.SUBMIT_STEP_SUCCESS,
+});
+
+export const ResetDeliveryInfo: actionCreators.ResetDeliveryInfo = () => ({
+  payload: {
+    delivery: {
+      status: LoadingStatus.NotLoaded,
+    },
+  },
+  type: reducerActionTypes.RESET_DELIVERY_INFO,
 });

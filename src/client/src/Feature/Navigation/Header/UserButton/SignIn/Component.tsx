@@ -39,25 +39,39 @@ export class SignInComponent extends JSS.SafePureComponent<SignInProps, {}> {
     }
 
     return (
-        <Form className="form-sign-in" data-autotests="signInForm">
+      <Form className="form-sign-in" data-autotests="signInForm">
         <JSS.Text tag="h2" field={{ value: 'Welcome to HCA', editable: 'Welcome to HCA' }} />
-            <Input name="email" type="email" placeholder="Email Address" required={true} disabled={isLoading} data-autotests="emailField" />
-            <Input name="password" type="password" placeholder="Password" required={true} disabled={isLoading} data-autotests="passwordField" />
+        <Input
+          name="email"
+          type="email"
+          placeholder="Email Address"
+          required={true}
+          disabled={isLoading}
+          data-autotests="emailField"
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Password"
+          required={true}
+          disabled={isLoading}
+          data-autotests="passwordField"
+        />
         {isError && <h5>The email or password you entered is incorrect</h5>}
         <Submit
           className="btn btn-outline-white"
           onSubmitHandler={(form: SignInValues) => Authentication(form.email, form.password, returnUrl)}
-                disabled={isLoading}
-                data-autotests="signInButton"
+          disabled={isLoading}
+          data-autotests="signInButton"
         >
           {isLoading && <i className="fa fa-spinner fa-spin" />}
           <span>Sign in</span>
-            </Submit>
-            <div data-autotests="signUpButton" >
-            <NavigationLink to="/account/sign-up" className="sign-up">
-          <JSS.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
-                </NavigationLink>
-                </div>
+        </Submit>
+        <div data-autotests="signUpButton">
+          <NavigationLink to="/account/sign-up" className="sign-up">
+            <JSS.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
+          </NavigationLink>
+        </div>
       </Form>
     );
   }

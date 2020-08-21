@@ -41,11 +41,11 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
             menuItems.items.map((menuItem, menuItemIndex) => {
               const { title, image, commerceCategories } = menuItem;
 
-                return (
-                    <li
-                        key={menuItemIndex}
-                        className={classnames('menu-item', { 'right-item': menuItemIndex > menuItems.items.length / 2 })}
-                        data-autotests={'menuItem_${ title.jss.value }'}
+              return (
+                <li
+                  key={menuItemIndex}
+                  className={classnames('menu-item', { 'right-item': menuItemIndex > menuItems.items.length / 2 })}
+                  data-autotests={`menuItem_${title.jss.value}`}
                 >
                   <a href="">{title.jss.value}</a>
                   <i simple-drawer="simple-drawer" className="fa fa-caret-down" onClick={(e) => this.dropMenu(e)} />
@@ -60,8 +60,8 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
                           commerceCategories.items.map((category, categoryIndex) => {
                             const { name } = category;
                             const link = '/shop/' + name;
-                              return (
-                                  <li key={categoryIndex} data-autotests={'subMenuItem_${name}'}>
+                            return (
+                              <li key={categoryIndex} data-autotests={`subMenuItem_${name}`}>
                                 <NavigationLink to={link}>{name}</NavigationLink>
                               </li>
                             );
@@ -71,14 +71,14 @@ export class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMen
                         <li>
                           <span className="title">Featured</span>
                         </li>
-                                  <li data-autotests="newNavigationLink">
-                                      <NavigationLink to="/new">New</NavigationLink>
+                        <li data-autotests="newNavigationLink">
+                          <NavigationLink to="/new">New</NavigationLink>
                         </li>
-                                  <li data-autotests="promotionsNavigationLink">
-                                      <NavigationLink to="/Promitions">Promotions</NavigationLink>
+                        <li data-autotests="promotionsNavigationLink">
+                          <NavigationLink to="/Promitions">Promotions</NavigationLink>
                         </li>
-                                  <li data-autotests="blogNavigationLink">
-                                      <NavigationLink to="/Blog">Blog</NavigationLink>
+                        <li data-autotests="blogNavigationLink">
+                          <NavigationLink to="/Blog">Blog</NavigationLink>
                         </li>
                       </ul>
                     </nav>

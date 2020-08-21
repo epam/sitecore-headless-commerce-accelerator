@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@ export const sagaActionTypes = keyMirrorSaga(
     INIT_STEP: null,
     SUBMIT_STEP: null,
   },
-  CHECKOUT_NAMESPACE
+  CHECKOUT_NAMESPACE,
 );
 
 export const reducerActionTypes = keyMirrorReducer(
@@ -31,6 +31,7 @@ export const reducerActionTypes = keyMirrorReducer(
     GET_CHECKOUT_DATA_REQUEST: null,
     GET_CHECKOUT_DATA_SUCCESS: null,
 
+    RESET_DELIVERY_INFO: null,
     SET_CURRENT_STEP: null,
     SUBMIT_STEP_FAILURE: null,
     SUBMIT_STEP_REQUEST: null,
@@ -38,5 +39,5 @@ export const reducerActionTypes = keyMirrorReducer(
 
     SET_STEP_VALUES: null,
   },
-  CHECKOUT_NAMESPACE
+  CHECKOUT_NAMESPACE,
 );

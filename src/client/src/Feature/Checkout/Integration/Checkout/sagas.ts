@@ -278,6 +278,9 @@ export function* submitStep(action: Action<StepValues>) {
         {
           yield call(submitFulfillmentStep, payload.shipping);
           yield fork(loadCart);
+          if (payload.shipping && payload.shipping.saveToMyAccount) {
+            yield put(actions.ResetDeliveryInfo());
+          }
         }
         break;
       case CheckoutStepType.Billing:

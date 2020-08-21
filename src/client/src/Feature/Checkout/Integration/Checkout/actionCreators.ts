@@ -20,7 +20,7 @@ import * as Models from './models';
 export type GetCheckoutDataRequest = () => Action<Models.CheckoutDataPayload>;
 export type GetCheckoutDataFailure = (error: string, stack?: string) => Action<Models.CheckoutDataPayload>;
 export type GetCheckoutDataSuccess = (
-  data: Commerce.DeliveryInfo | Commerce.ShippingInfo | Commerce.BillingInfo
+  data: Commerce.DeliveryInfo | Commerce.ShippingInfo | Commerce.BillingInfo,
 ) => Action<Models.CheckoutDataPayload>;
 
 export type SetCurrentStep = (payload: Models.CurrentStepPayload) => Action<Models.CurrentStepPayload>;
@@ -34,3 +34,5 @@ export type GetCheckoutData = () => Action;
 export type InitStep = (step: Models.CheckoutStepType) => Action<Models.CurrentStepPayload>;
 
 export type SubmitStep = (stepValues: Models.StepValuesPayload) => Action<Models.StepValuesPayload>;
+
+export type ResetDeliveryInfo = () => Action<Models.CheckoutDataPayload>;

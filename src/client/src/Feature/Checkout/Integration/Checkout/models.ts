@@ -39,6 +39,7 @@ export interface FulfillmentOptions {
 export interface ShippingStep {
   fulfillmentType: string;
   address: Commerce.Address;
+  saveToMyAccount: boolean;
   shippingMethod: Commerce.ShippingMethod;
   options: FulfillmentOptions;
 }

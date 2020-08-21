@@ -221,8 +221,12 @@ jobs:
           $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
           copyfiles -f  ./src/Project/HCA/public/**/* ./src/Project/HCA/build/
           cross-env NODE_ENV=production webpack
-          nuget.exe restore ../HCA.sln
         workingDirectory: './src/client'
+
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: '$(Pipeline.Workspace)/s/src/HCA.sln'
 
     - task: MSBuild@1
       displayName: MSBuild

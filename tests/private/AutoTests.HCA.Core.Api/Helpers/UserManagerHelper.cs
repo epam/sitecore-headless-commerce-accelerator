@@ -32,5 +32,17 @@ namespace AutoTests.HCA.Core.API.Helpers
                 foreach (var cartLine in res.OkResponseData.Data.CartLines)
                     _hcaApiService.RemoveCartLine(cartLine.Product.ProductId, cartLine.Variant.VariantId);
         }
+
+        public void CleanAddresses()
+        {
+            var res = _hcaApiService.GetAddresses();
+
+            //TODO did the request pass
+
+            var addressesListIsNotEmpty = res?.OkResponseData?.Data?.Any();
+            if (addressesListIsNotEmpty.HasValue && addressesListIsNotEmpty.Value)
+                foreach (var address in res.OkResponseData.Data)
+                    _hcaApiService.RemoveAddress(address.ExternalId);
+        }
     }
 }

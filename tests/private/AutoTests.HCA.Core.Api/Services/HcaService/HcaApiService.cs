@@ -54,10 +54,39 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest(endpoint, Method.POST);
         }
 
-        public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser,
-            string endpoint = "accounts/account")
+        public HcaVoidResponse ChangePassword(ChangePasswordRequest password, string endpoint = "accounts/password")
+        {
+            return ExecuteJsonRequest(endpoint, Method.PUT, password);
+        }
+
+        public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account")
         {
             return ExecuteJsonRequest<UserResult>(endpoint, Method.POST, newUser);
+        }
+
+        public HcaVoidResponse UpdateAccount(UpdateAccountRequest account, string endpoint = "accounts/account")
+        {
+            return ExecuteJsonRequest(endpoint, Method.PUT, account);
+        }
+
+        public HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email, string endpoint = "/accounts/validate")
+        {
+            return ExecuteJsonRequest<ValidateEmailResult>(endpoint, Method.POST, email);
+        }
+
+        public HcaResponse<IEnumerable<Address>> GetAddresses(string endpoint = "accounts/address")
+        {
+            return ExecuteJsonRequest<IEnumerable<Address>>(endpoint, Method.GET);
+        }
+
+        public HcaResponse<IEnumerable<Address>> RemoveAddress(string externalId, string endpoint = "accounts/address")
+        {
+            return ExecuteJsonRequest<IEnumerable<Address>>(endpoint + $"?externalid={externalId}", Method.DELETE);
+        }
+
+        public HcaResponse<IEnumerable<Address>> UpdateAddress(Address newAddress, string endpoint = "accounts/address")
+        {
+            return ExecuteJsonRequest<IEnumerable<Address>>(endpoint, Method.PUT, newAddress);
         }
 
         public HcaResponse<IEnumerable<Address>> AddAddress(Address newAddress, string endpoint = "accounts/address")

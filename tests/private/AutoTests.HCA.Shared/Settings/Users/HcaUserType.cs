@@ -4,6 +4,7 @@
     {
         Default,
         ApiAuthorizationTests,
-        ApiCartTests
+        ApiCartTests,
+        ApiAddressTests
     }
 }

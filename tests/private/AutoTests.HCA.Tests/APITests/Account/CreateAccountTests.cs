@@ -1,36 +1,69 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
-using AutoTests.HCA.Core.API.Services.HcaService;
-using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
 {
     [Parallelizable(ParallelScope.All)]
     [TestFixture(Description = "Create Account Tests")]
-    [ApiTest]
-    public class CreateAccountTests : BaseHcaApiTest
+    public class CreateAccountTests : BaseAccountTest
     {
-        private readonly IHcaApiService _hcaService = TestsHelper.CreateHcaApiClient();
+        public const string DEF_FIRST_NAME = "DEFFirstName";
+        public const string DEF_LAST_NAME = "DEFFirstName";
+        public const string DEF_PASSWORD = "123456";
 
-        public const string EMAIL = "postman@gmail.com";
-        public const string FIRST_NAME = "FName";
-        public const string LAST_NAME = "LName";
-        public const string PASSWORD = "Password";
+        public static readonly string Email = DefUser.Email;
 
-        [Test]
-        [Description("Create account with invalid parameters.")]
-        [TestCase(null, null, null, null, "The Email field is required.",
-            "The FirstName field is required.", "The LastName field is required.", "The Password field is required.")]
-        [TestCase(EMAIL, null, null, PASSWORD, "The FirstName field is required.", "The LastName field is required.")]
-        [TestCase(EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, "Email is in use.")]
-        [TestCase(EMAIL, null, LAST_NAME, PASSWORD, "The FirstName field is required.")]
-        [TestCase(EMAIL, FIRST_NAME, null, PASSWORD, "The LastName field is required.")]
-        [TestCase(EMAIL, FIRST_NAME, LAST_NAME, null, "The Password field is required.")]
-        public void _01_CreateAccountWithInvalidParamsTest(string email, string firstName, string lastName,
-            string password,
-            params string[] expMessages)
+        public static IEnumerable<TestCaseData> TestData_CreateAccountTests_02_InvalidUser() =>
+            new List<TestCaseData>
+            {
+                new TestCaseData(null, null, null, null, new List<string> { "The Email field is required.",
+                    "The FirstName field is required.", "The LastName field is required.", "The Password field is required."}),
+                new TestCaseData(Email, null, null, DEF_PASSWORD, new List<string> {"The FirstName field is required.", "The LastName field is required."}),
+                new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, DEF_PASSWORD, new List<string> {"Email is in use."}),
+                new TestCaseData(Email, null, DEF_LAST_NAME, DEF_PASSWORD, new List<string> {"The FirstName field is required."}),
+                new TestCaseData(Email, DEF_FIRST_NAME, null, DEF_PASSWORD, new List<string> {"The LastName field is required."}),
+                new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, null, new List<string> {"The Password field is required."})
+            };
+
+        [Test(Description = "Create account with valid user.")]
+        public void CreateAccountTests_01_ValidNewUser()
+        {
+            // Arrange
+            var email = GetRandomEmail();
+            var newUser = new CreateAccountRequest
+            {
+                Email = email,
+                FirstName = StringHelpers.RandomString(5),
+                LastName = StringHelpers.RandomString(5),
+                Password = StringHelpers.RandomString(5)
+            };
+
+            // Act
+            var response = HcaService.CreateUserAccount(newUser);
+
+            // Assert
+            Assert.True(response.IsSuccessful, "The 'Accounts/account' POST request isn't passed.");
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                Assert.AreEqual(email, response.OkResponseData.Data.Email);
+                Assert.AreEqual(newUser.FirstName, response.OkResponseData.Data.FirstName);
+                Assert.AreEqual(newUser.LastName, response.OkResponseData.Data.LastName);
+                Assert.True(HcaService.ValidateEmail(new ValidateEmailRequest { Email = email }).OkResponseData.Data.InUse,
+                    $"User {email} wasn't registered");
+            });
+        }
+
+        [Test(Description = "Create account with invalid user parameters.")]
+        [TestCaseSource(nameof(TestData_CreateAccountTests_02_InvalidUser))]
+        public void CreateAccountTests_02_InvalidUser(string email, string firstName, string lastName, string password,
+            IEnumerable<string> expMessages)
         {
             // Arrange
             var user = new CreateAccountRequest
@@ -42,19 +75,20 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var response = _hcaService.CreateUserAccount(user);
+            var response = HcaService.CreateUserAccount(user);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The GetProducts POST request is passed.");
+            Assert.False(response.IsSuccessful, "The bad 'accounts/account' POST request is passed.");
             var dataResult = response.Errors;
             Assert.Multiple(() =>
             {
+                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
                 Assert.AreEqual(HcaStatus.Error, dataResult.Status);
                 Assert.AreEqual(expMessages.First(), dataResult.Error,
                     $"Expected {nameof(dataResult.Error)} text: {expMessages}. Actual:{dataResult.Error}");
-                if (expMessages.Length > 1)
-                    Assert.That(!expMessages.Except(dataResult.Errors).Any(),
-                        "The error list does not contain all validation errors");
+                if (expMessages.Count() == 1) Assert.That(dataResult.Errors.All(x => x == expMessages.First()));
+                else Assert.That(!expMessages.Except(dataResult.Errors).Any(),
+                    "The error list does not contain all validation errors");
             });
         }
     }

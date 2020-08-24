@@ -30,5 +30,10 @@ namespace AutoTests.AutomationFramework.Shared.Extensions
         {
             Assert.That(anObject, Is.Not.Null, $"{objName} can't be null.");
         }
+
+        public static void NotNullOrWhiteSpace(string text, string objName)
+        {
+            Assert.That(!string.IsNullOrWhiteSpace(text), $"{objName} can't be null or white space.");
+        }
     }
 }

@@ -32,6 +32,14 @@
           "Email": "HcaAutotests@mail.com",
           "Password": "123456"
         }
+      },
+      {
+        "role": "User",
+        "type": "ApiAddressTests",
+        "credentials": {
+          "Email": "ApiAddressTests@autotests.com",
+          "Password": "123456"
+        }
       }
     ],
     "Products": [

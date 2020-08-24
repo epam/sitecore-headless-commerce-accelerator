@@ -20,9 +20,21 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
 
         HcaVoidResponse Logout(string endpoint = "auth/logout");
 
+        HcaVoidResponse ChangePassword(ChangePasswordRequest password, string endpoint = "accounts/password");
+
+        HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email, string endpoint = "/accounts/validate");
+
         HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account");
 
+        HcaVoidResponse UpdateAccount(UpdateAccountRequest newAddress, string endpoint = "accounts/account");
+
+        HcaResponse<IEnumerable<Address>> GetAddresses(string endpoint = "accounts/address");
+
         HcaResponse<IEnumerable<Address>> AddAddress(Address newAddress, string endpoint = "accounts/address");
+
+        HcaResponse<IEnumerable<Address>> RemoveAddress(string externalId, string endpoint = "accounts/address");
+
+        HcaResponse<IEnumerable<Address>> UpdateAddress(Address newAddress, string endpoint = "accounts/address");
 
         HcaResponse<ProductSearchResult> SearchProducts(ProductSearchOptionsRequest product,
             string endpoint = "search/products");

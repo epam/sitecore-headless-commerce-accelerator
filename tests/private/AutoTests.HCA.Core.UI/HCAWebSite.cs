@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI;
@@ -167,7 +165,7 @@ namespace AutoTests.HCA.Core.UI
             HeaderControl.ClickCartButton();
             CartPage.VerifyOpened();
             CartPage.WaitForProductsLoaded();
-            CartPage.ClickChekoutButton();
+            CartPage.ClickCheckoutButton();
         }
 
         public void AddProductAndGoToCheckoutBillingPage(string productId)

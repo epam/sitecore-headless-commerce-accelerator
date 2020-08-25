@@ -15,12 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AutoTests.HCA.Core.Common\AutoTests.HCA.Core.Common.csproj" />
     <ProjectReference Include="..\AutoTests.HCA.Core\AutoTests.HCA.Core.csproj" />
-    <ProjectReference Include="..\AutoTests.HCA.Shared\AutoTests.HCA.Core.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.local.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="testsData.json">

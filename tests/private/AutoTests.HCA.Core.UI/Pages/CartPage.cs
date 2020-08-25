@@ -25,18 +25,24 @@ namespace AutoTests.HCA.Core.UI.Pages
         private readonly WebTextField _discountField =
             new WebTextField("Discount text field", ByCustom.XPath("//input[@id = 'promo-code']"));
 
-        private readonly WebLabel _title = new WebLabel("Title", ByCustom.XPath("//h1[@class = 'title']"));
+        private readonly WebLabel _title = 
+            new WebLabel("Title", ByCustom.XPath("//h1[@class = 'title']"));
+        
+        private readonly WebElement _productList = 
+            new WebElement("Product list", ByCustom.XPath("//ul[@class='cartList']"));
 
-        private readonly WebElement _productList = new WebElement("Product list", ByCustom.XPath("//ul[@class='cartList']"));
-
-        private readonly WebLabel _invalidPromoCode = new WebLabel("Invalid promocode", ByCustom.XPath("//p[text()='Invalid promo code']"));
-
-        private static readonly WebElement OrderSummary = new WebElement("Order summary section", ByCustom.XPath("//section[@class = 'orderSummary']"));
-
-        private readonly WebElement _priceLines = new WebElement("Price lines", ByCustom.XPath("./ul[@class = 'orderSummaryPriceLines orderSummary-list']"), OrderSummary);
+        private readonly WebLabel _invalidPromoCode = 
+            new WebLabel("Invalid promocode", ByCustom.XPath("//p[text()='Invalid promo code']"));
+        
+        private static readonly WebElement OrderSummary = 
+            new WebElement("Order summary section", ByCustom.XPath("//section[@class = 'orderSummary']"));
+        
+        private readonly WebElement _priceLines = 
+            new WebElement("Price lines", ByCustom.XPath("./ul[@class = 'orderSummaryPriceLines orderSummary-list']"), OrderSummary);
+        
         public static CartPage Instance => _cartPage ??= new CartPage();
 
-        public void VerifyOpened()
+        public new void VerifyOpened()
         {
             _title.WaitForPresent();
             _title.WaitForText("Shopping Cart");
@@ -115,7 +121,7 @@ namespace AutoTests.HCA.Core.UI.Pages
             _discountApplyButton.Click();
         }
 
-        public void ClickChekoutButton()
+        public void ClickCheckoutButton()
         {
             _checkoutButton.Click();
         }
@@ -138,7 +144,6 @@ namespace AutoTests.HCA.Core.UI.Pages
             var productElement = FindProductByName(productName);
             new WebLink($"Delete {productName}", ByCustom.XPath(".//a[@class = 'action action-remove']"), productElement).Click();
         }
-
 
         public void DeleteProductsFromCart(IEnumerable<ProductTestsDataSettings> products)
         {
@@ -163,21 +168,20 @@ namespace AutoTests.HCA.Core.UI.Pages
 
         public double GetProductSum()
         {
-            double summ = 0;
-            int productCount = GetProductsCount();
+            double sum = 0;
+            var productCount = GetProductsCount();
             for (int i = 1; i <= productCount; i++)
             {
                 var product = new WebElement($"product number {i}", ByCustom.XPath($"./li[{i}]"), _productList);
                 var text = new WebLink($"Product total for {i}",
                     ByCustom.XPath(".//div[@class= 'product-total']/span[@class = 'amount']"), product).GetText().Replace("$", "");
-                summ += Convert.ToDouble(text);
+                sum += Convert.ToDouble(text);
             }
-            return Math.Round(summ, 2);
+            return Math.Round(sum, 2);
         }
 
         public double FindCartSumByText(string text)
         {
-
             return Math.Round(Convert.ToDouble(new WebLink($"Sum {text}",
                 ByCustom.XPath($".//span[text()='{text}']/following-sibling::*")).GetText().Replace("$", "")), 2);
         }
@@ -188,11 +192,9 @@ namespace AutoTests.HCA.Core.UI.Pages
             var merchandiseSubtotal = FindCartSumByText("Merchandise Subtotal:");
             var estimatedTotal = FindCartSumByText("Estimated Total:");
             var savingsDetails = 0.0;
-
             if (discount)
             {
                 savingsDetails = FindCartSumByText("Savings (Details):");
-
             }
             Assert.Multiple(() =>
             {
@@ -201,30 +203,30 @@ namespace AutoTests.HCA.Core.UI.Pages
             });
         }
 
-        private WebElement FindAjustmentByName(string name)
-        {
-            return new WebElement($"Ajustment {name}", ByCustom.XPath($"//ul[@class= 'adjustment-list']//li[text()='{name}']")).GetParent();
-        }
-
         public void DeleteAjustment(string name)
         {
-            var ajustmentElement = FindAjustmentByName(name);
-            new WebButton($"Button for delete Ajustment {name}", ByCustom.XPath("./button"), ajustmentElement).Click();
+            var adjustmentElement = FindAdjustmentByName(name);
+            new WebButton($"Button for delete Ajustment {name}", ByCustom.XPath("./button"), adjustmentElement).Click();
         }
 
-        public void WaitFoDeleteAjustment(string name)
+        public void WaitFoDeleteAdjustment(string name)
         {
-            FindAjustmentByName(name).WaitForNotPresent();
+            FindAdjustmentByName(name).WaitForNotPresent();
         }
 
-        public void WaitForPersentAjustment(string name)
+        public void WaitForPresentAdjustment(string name)
         {
-            FindAjustmentByName(name).WaitForPresent();
+            FindAdjustmentByName(name).WaitForPresent();
         }
 
-        public bool IsAjustmentPresent(string name)
+        public bool IsAdjustmentPresent(string name)
         {
-           return FindAjustmentByName(name).IsPresent();
+            return FindAdjustmentByName(name).IsPresent();
+        }
+
+        private static WebElement FindAdjustmentByName(string name)
+        {
+            return new WebElement($"Ajustment {name}", ByCustom.XPath($"//ul[@class= 'adjustment-list']//li[text()='{name}']")).GetParent();
         }
     }
 }

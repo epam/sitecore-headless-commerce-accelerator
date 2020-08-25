@@ -39,7 +39,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultDiscount().DiscountCouponCode);
             _hcaWebSite.CartPage.ClickApplyButton();
             _hcaWebSite.CartPage.VerifyCartSum(true);
-            _hcaWebSite.CartPage.ClickChekoutButton();
+            _hcaWebSite.CartPage.ClickCheckoutButton();
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName("A New Address");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("First Name", "John");
@@ -65,7 +65,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void CheckoutForRegisteredTest()
         {
-            var user = TestsData.GetUser(HcaUserRole.User).Credentials;
+            var user = TestsData.GetUser().Credentials;
             _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
             _hcaWebSite.PhonePage.WaitForOpened();
@@ -78,7 +78,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultDiscount().DiscountCouponCode);
             _hcaWebSite.CartPage.ClickApplyButton();
             _hcaWebSite.CartPage.VerifyCartSum(true);
-            _hcaWebSite.CartPage.ClickChekoutButton();
+            _hcaWebSite.CartPage.ClickCheckoutButton();
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName("A New Address");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("First Name", "John");

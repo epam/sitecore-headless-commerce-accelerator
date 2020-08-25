@@ -48,7 +48,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyProductPresent(product.ProductName);
             _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 1);
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -64,7 +64,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyProducts(products);
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -84,7 +84,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyProductPresent(product.ProductName);
             _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 2);
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -102,7 +102,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             _hcaWebSite.CartPage.VerifyProducts(products);
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -132,7 +132,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.DeleteProductFromCart(product.ProductName);
             _hcaWebSite.CartPage.WaitProductForNonPresent(product.ProductName);
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -161,7 +161,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -179,7 +179,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -198,17 +198,17 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
             }
             _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultDiscount().DiscountCouponCode);
             _hcaWebSite.CartPage.ClickApplyButton();
-            _hcaWebSite.CartPage.WaitForPersentAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
+            _hcaWebSite.CartPage.WaitForPresentAdjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
             _hcaWebSite.CartPage.VerifyCartSum(true);
             _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
-            _hcaWebSite.CartPage.WaitFoDeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
+            _hcaWebSite.CartPage.WaitFoDeleteAdjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
         }
 
         [Test]
@@ -220,7 +220,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             //TODO delete workaround
-            if (_hcaWebSite.CartPage.IsAjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
+            if (_hcaWebSite.CartPage.IsAdjustmentPresent(TestsData.GetDefaultDiscount().DiscountCouponName))
             {
                 _hcaWebSite.CartPage.DeleteAjustment(TestsData.GetDefaultDiscount().DiscountCouponName);
                 _hcaWebSite.CartPage.WaitProductForNonPresent(TestsData.GetDefaultDiscount().DiscountCouponName);
@@ -253,7 +253,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.AddProductToCart(product.ProductId);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.WaitForProductsLoaded();
-            _hcaWebSite.CartPage.ClickChekoutButton();
+            _hcaWebSite.CartPage.ClickCheckoutButton();
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
         }
     }

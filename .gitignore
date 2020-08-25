@@ -139,3 +139,4 @@ Code Generation Templates/*.tt
 /generators/.npmrc
 /generators/secret.json
 /generators/.yo-rc.json 
+/tests/private/AutoTests.HCA.Tests/appsettings.local.json

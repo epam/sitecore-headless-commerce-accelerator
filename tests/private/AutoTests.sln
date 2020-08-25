@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.AutomationFramewo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AutomationFramework", "AutomationFramework", "{6C21A5FD-1C2A-4573-906A-6C759D4E4D6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.HCA.Core.Common", "AutoTests.HCA.Shared\AutoTests.HCA.Core.Common.csproj", "{6AB06CCB-0D41-4D26-9397-63DAF973A64F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.HCA.Core.Common", "AutoTests.HCA.Core.Common\AutoTests.HCA.Core.Common.csproj", "{6AB06CCB-0D41-4D26-9397-63DAF973A64F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTests.HCA.Core", "AutoTests.HCA.Core\AutoTests.HCA.Core.csproj", "{E1B923C1-783F-4468-ABBB-658F86D3393F}"
 EndProject

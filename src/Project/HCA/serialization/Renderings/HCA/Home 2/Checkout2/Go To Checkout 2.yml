@@ -1,0 +1,25 @@
+﻿---
+ID: "faac586b-eaf5-4e7c-b16f-288eab5845d1"
+Parent: "160a3693-a9f0-4245-b80b-542d79a0c8c0"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Checkout2/Go To Checkout 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Go To Checkout 2
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{C365BD3B-0885-42C4-94E9-CA7D8DE5F28D}"
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{F703DF45-1ECD-4EDE-AE81-F55D2F994CDE}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180514T122413Z

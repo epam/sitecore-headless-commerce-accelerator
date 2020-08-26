@@ -1,0 +1,52 @@
+﻿---
+ID: "279cf2fb-46f3-4b28-94f5-04e159514cc2"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "961f810d-c202-49d9-8690-b55636253fd2"
+Path: /sitecore/content/HCA/Home/Search2
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
+          p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
+          s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
+          s:ph="main-content" />
+        <r
+          uid="{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}"
+          p:after="r[@uid='{57257C7A-D47B-4800-9E33-F5C2D599683C}']"
+          s:id="{91151076-5A13-4B76-8884-9F45EC0422E7}"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
+        <r
+          uid="{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}"
+          p:after="r[@uid='{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}']"
+          s:ds=""
+          s:id="{A6AD53FD-1F94-4A8E-88E3-24F3E1F31D64}"
+          s:par="Wrapper Class=wooli&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
+        <r
+          uid="{F4AFBAD1-F563-4B30-89F9-64800D674A73}"
+          p:after="r[@uid='{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}']"
+          s:id="{6D7C33F4-8B08-48AE-A449-E5DA082D0D4C}"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0/w-col-1-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
+        <r
+          uid="{9ADD87FA-468C-4848-A836-8DBCAA098786}"
+          p:after="r[@uid='{F4AFBAD1-F563-4B30-89F9-64800D674A73}']"
+          s:id="{77E5741E-C72B-4E34-990A-F18FB1FC2302}"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0/w-col-2-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180528T143408Z

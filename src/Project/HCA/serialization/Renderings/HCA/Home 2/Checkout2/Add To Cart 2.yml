@@ -1,0 +1,18 @@
+﻿---
+ID: "ebd46fca-9ee7-41f7-bef1-6756c4aaa08c"
+Parent: "160a3693-a9f0-4245-b80b-542d79a0c8c0"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Checkout2/Add To Cart 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Add To Cart 2
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180503T113027Z

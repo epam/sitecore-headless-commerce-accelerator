@@ -1,0 +1,21 @@
+﻿---
+ID: "6f7a6a35-9c0e-4d27-9b36-993c981569b7"
+Parent: "160a3693-a9f0-4245-b80b-542d79a0c8c0"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Checkout2/Billing 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Billing 2
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{AA4E3D69-E525-4BEA-9045-E4C1405A812C}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180504T145323Z

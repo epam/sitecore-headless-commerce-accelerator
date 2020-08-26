@@ -1,0 +1,18 @@
+﻿---
+ID: "581d066b-5fe1-4e70-8724-0a36eff71563"
+Parent: "2456db6c-18ef-4402-ab3b-68a8eb34602c"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Catalog 2/Product Images 2
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Product Images 2
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180419T085003Z

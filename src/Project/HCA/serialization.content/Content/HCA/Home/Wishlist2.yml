@@ -1,0 +1,42 @@
+﻿---
+ID: "0050e0b4-9a19-41ed-a58a-319d8faafca8"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "961f810d-c202-49d9-8690-b55636253fd2"
+Path: /sitecore/content/HCA/Home/Wishlist2
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/heart.png
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{6B6A0C16-6E6E-4895-B4E5-8001C4AD4048}"
+          p:before="*"
+          s:id="{7C2A10B8-0A89-45B8-B25C-ED7936938909}"
+          s:ph="/main-content/w-col-wide-{CDF6B573-BAB1-4432-AC46-3239962A4D41}-0" />
+        <r
+          uid="{CDF6B573-BAB1-4432-AC46-3239962A4D41}"
+          p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
+          s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
+          s:ph="main-content" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200824T172724Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

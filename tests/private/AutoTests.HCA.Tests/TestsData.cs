@@ -33,7 +33,7 @@ namespace AutoTests.HCA.Tests
 
         public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock)
         {
-            var filteringList = Products.Where(x => x.Status == status);
+            var filteringList = Products.Where(x => x.StockStatus == status);
             return Products.ElementAt(new Random().Next(filteringList.Count() - 1));
         }
 
@@ -44,7 +44,7 @@ namespace AutoTests.HCA.Tests
 
         public static IEnumerable<ProductTestsDataSettings> GetProducts(int qty)
         {
-            return Products.Take(qty).Where(x=>x.Status == HcaProductStatus.InStock);
+            return Products.Take(qty).Where(x=>x.StockStatus == HcaProductStatus.InStock);
         }
 
         public static HcaDiscount GetDefaultDiscount()

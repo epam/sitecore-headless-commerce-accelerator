@@ -8,7 +8,6 @@ using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.CartTests
 {
-    [Parallelizable(ParallelScope.None)]
     public class UpdateCartLineTests : BaseCartApiTest
     {
         protected static CartLinesRequest UpdatedProduct = new CartLinesRequest
@@ -46,7 +45,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         }
 
         [Test(Description = "The test checks if the quantity of the product in the cart has been updated after changing it.")]
-        public void T1_PUTCartLinesRequest_ValidProduct_ProductHasBeenUpdate()
+        public void T2_PUTCartLinesRequest_ValidProduct_ProductHasBeenUpdate()
         {
             // Arrange, Act
             var updateResult = HcaService.UpdateCartLines(UpdatedProduct);

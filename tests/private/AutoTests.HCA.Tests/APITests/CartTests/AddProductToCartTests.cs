@@ -9,19 +9,17 @@ using AutoTests.AutomationFramework.Shared.Extensions;
 
 namespace AutoTests.HCA.Tests.APITests.CartTests
 {
-    [Parallelizable(ParallelScope.None)]
     public class AddProductToCartTests : BaseCartApiTest
     {
         public AddProductToCartTests(HcaUserRole userRole) : base(userRole) { }
 
-        public static IEnumerable<TestCaseData> T4_TestsData() =>
-            new List<TestCaseData>
-            {
-                new TestCaseData(Product.ProductId + 1, 10, Product.VariantId, "Product Not Found."),
-                new TestCaseData(Product.ProductId, 110, Product.VariantId,
-                    "Invalid quantity. Quantity must be greater than '0' and less than '100.'"),
-                new TestCaseData(Product.ProductId, 10, Product.VariantId + 1, "VariantId Not Found.")
-            };
+        private static IEnumerable<TestCaseData> T4_POSTCartLinesRequest_InvalidParameters_TestCaseData()
+        {
+            yield return new TestCaseData(Product.ProductId + 1, 10, Product.VariantId, "Product Not Found.");
+            yield return new TestCaseData(Product.ProductId, 110, Product.VariantId,
+                "Invalid quantity. Quantity must be greater than '0' and less than '100.'");
+            yield return new TestCaseData(Product.ProductId, 10, Product.VariantId + 1, "VariantId Not Found.");
+        }
 
         [Test(Description = "A test that checks the server's response after adding the product to the shopping cart.")]
         public void T1_POSTCartLinesRequest_ValidProduct_VerifyResponse()
@@ -88,8 +86,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         }
 
         [Test(Description = "The test will check if the correct message is returned by the server with incorrect passed parameters.")]
-        [TestCaseSource(nameof(T4_TestsData))]
-        public void T3_POSTCartLinesRequest_InvalidParameters_BadRequest(string productId, int quantity, string variantId,
+        [TestCaseSource(nameof(T4_POSTCartLinesRequest_InvalidParameters_TestCaseData))]
+        public void T4_POSTCartLinesRequest_InvalidParameters_BadRequest(string productId, int quantity, string variantId,
             string expErrorMessage)
         {
             // Arrange

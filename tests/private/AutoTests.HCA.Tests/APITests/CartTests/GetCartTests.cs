@@ -6,7 +6,6 @@ using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.CartTests
 {
-    [Parallelizable(ParallelScope.None)]
     public class GetCartTests : BaseCartApiTest
     {
         public GetCartTests(HcaUserRole userRole) : base(userRole) { }

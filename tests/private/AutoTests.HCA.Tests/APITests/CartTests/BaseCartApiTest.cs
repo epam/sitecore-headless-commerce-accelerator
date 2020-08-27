@@ -14,6 +14,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
     [TestFixture(HcaUserRole.Guest, Description = "Cart Tests for Guest")]
     [TestFixture(HcaUserRole.User, Description = "Cart Tests for User")]
     [ApiTest]
+    [Parallelizable(ParallelScope.None)]
     public class BaseCartApiTest : BaseHcaApiTest
     {
         protected static readonly ProductTestsDataSettings Product = TestsData.GetProduct();
@@ -73,7 +74,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         }
 
         [TearDown]
-        public void TearDown()
+        public override void TearDown()
         {
             UserManager.CleanCart();
         }

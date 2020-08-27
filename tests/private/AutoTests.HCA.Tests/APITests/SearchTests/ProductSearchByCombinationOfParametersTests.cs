@@ -12,7 +12,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [Test(Description = "Find products by category id & by search keyword")]
         [TestCase("3198ffe4-83d3-a856-6964-62a6a2e9b488", "Smartphone Case", "Sherpa")]
         [TestCase("0bde885c-c3aa-7bf3-9cab-d93a2af168ac", "Health, Beauty and Fitness", "6042944")]
-        public void _01_SearchByCategoryIdAndSearchKeywordTest(string categoryId, string categoryName,
+        public void T1_GETProductRequest_ByCategoryIdAndSearchKeyword_CorrectList(string categoryId, string categoryName,
             string searchKeyword)
         {
             // Arrange
@@ -46,7 +46,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [Test(Description = "Find products by search keyword with brand facet")]
         [TestCase("Phone", "EXT Accessories")]
         [TestCase("habitat", "Centerpiece Microwaves")]
-        public void _02_SearchByKeywordWithFacetTest(string searchKeyword, string facet)
+        public void T1_GETProductRequest_ByKeywordWithFacet_CorrectList(string searchKeyword, string facet)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest

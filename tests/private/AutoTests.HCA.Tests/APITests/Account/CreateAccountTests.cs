@@ -18,20 +18,28 @@ namespace AutoTests.HCA.Tests.APITests.Account
 
         public static readonly string Email = DefUser.Email;
 
-        public static IEnumerable<TestCaseData> TestData_CreateAccountTests_02_InvalidUser() =>
-            new List<TestCaseData>
+        public static IEnumerable<TestCaseData> T2_POSTAccountRequest_InvalidUser_TestCaseData()
+        {
+            yield return new TestCaseData(null, null, null, null, new List<string>
             {
-                new TestCaseData(null, null, null, null, new List<string> { "The Email field is required.",
-                    "The FirstName field is required.", "The LastName field is required.", "The Password field is required."}),
-                new TestCaseData(Email, null, null, DEF_PASSWORD, new List<string> {"The FirstName field is required.", "The LastName field is required."}),
-                new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, DEF_PASSWORD, new List<string> {"Email is in use."}),
-                new TestCaseData(Email, null, DEF_LAST_NAME, DEF_PASSWORD, new List<string> {"The FirstName field is required."}),
-                new TestCaseData(Email, DEF_FIRST_NAME, null, DEF_PASSWORD, new List<string> {"The LastName field is required."}),
-                new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, null, new List<string> {"The Password field is required."})
-            };
+                "The Email field is required.",
+                "The FirstName field is required.", "The LastName field is required.",
+                "The Password field is required."
+            });
+            yield return new TestCaseData(Email, null, null, DEF_PASSWORD,
+                new List<string> {"The FirstName field is required.", "The LastName field is required."});
+            yield return new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, DEF_PASSWORD,
+                new List<string> {"Email is in use."});
+            yield return new TestCaseData(Email, null, DEF_LAST_NAME, DEF_PASSWORD,
+                new List<string> {"The FirstName field is required."});
+            yield return new TestCaseData(Email, DEF_FIRST_NAME, null, DEF_PASSWORD,
+                new List<string> {"The LastName field is required."});
+            yield return new TestCaseData(Email, DEF_FIRST_NAME, DEF_LAST_NAME, null,
+                new List<string> {"The Password field is required."});
+        }
 
         [Test(Description = "Create account with valid user.")]
-        public void CreateAccountTests_01_ValidNewUser()
+        public void T1_POSTAccountRequest_ValidNewUser_SuccessfulResult()
         {
             // Arrange
             var email = GetRandomEmail();
@@ -61,8 +69,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
         }
 
         [Test(Description = "Create account with invalid user parameters.")]
-        [TestCaseSource(nameof(TestData_CreateAccountTests_02_InvalidUser))]
-        public void CreateAccountTests_02_InvalidUser(string email, string firstName, string lastName, string password,
+        [TestCaseSource(nameof(T2_POSTAccountRequest_InvalidUser_TestCaseData))]
+        public void T2_POSTAccountRequest_InvalidUser_BadResult(string email, string firstName, string lastName, string password,
             IEnumerable<string> expMessages)
         {
             // Arrange

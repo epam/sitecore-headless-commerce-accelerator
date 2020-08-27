@@ -8,7 +8,6 @@ using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
 {
-    [Parallelizable(ParallelScope.All)]
     [TestFixture(Description = "Change Password Tests.")]
     public class ChangePasswordTests : BaseAccountTest
     {
@@ -16,18 +15,24 @@ namespace AutoTests.HCA.Tests.APITests.Account
             new CreateAccountRequest(GetRandomEmail(), "FirstName123", "LastName123",
             "123456");
 
-        public static IEnumerable<TestCaseData> TestData_ChangePasswordTest_03_InvalidPasswordModel()
+        private static IEnumerable<TestCaseData> T3_PUTPasswordTest_InvalidPasswordModel_TestCaseData()
         {
             var user = NewUser;
-            return new List<TestCaseData>
+            yield return new TestCaseData(user, null, null, null, new List<string>
             {
-                new TestCaseData(user, null, null, null,  new List<string> {"The Email field is required.",
-                    "The NewPassword field is required.","The OldPassword field is required."}),
-                new TestCaseData(user, "InvalidEmail", null, null,  new List<string> {"The Email field is not a valid e-mail address.",
-                    "The NewPassword field is required.","The OldPassword field is required."}),
-                new TestCaseData(user, user.Email, null, "123",  new List<string> {"The NewPassword field is required.",
-                    "The OldPassword field is required."})
-            };
+                "The Email field is required.",
+                "The NewPassword field is required.", "The OldPassword field is required."
+            });
+            yield return new TestCaseData(user, "InvalidEmail", null, null, new List<string>
+            {
+                "The Email field is not a valid e-mail address.",
+                "The NewPassword field is required.", "The OldPassword field is required."
+            });
+            yield return new TestCaseData(user, user.Email, null, null, new List<string>
+                {
+                    "The NewPassword field is required.",
+                    "The OldPassword field is required."
+                });
         }
 
         [Test]
@@ -84,8 +89,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             });
         }
 
-        [TestCaseSource(nameof(TestData_ChangePasswordTest_03_InvalidPasswordModel))]
-        public void T3_PUTPasswordTest_InvalidPasswordModel_BadRequest(CreateAccountRequest account, string email, 
+        [TestCaseSource(nameof(T3_PUTPasswordTest_InvalidPasswordModel_TestCaseData))]
+        public void T3_PUTPasswordTest_InvalidPasswordModel_BadRequest(CreateAccountRequest account, string email,
             string oldPassword, string newPassword, IEnumerable<string> expMessages)
         {
             // Arrange

@@ -10,7 +10,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 {
     public class ProductSearchWithSortingTests : BaseProductSearchTest
     {
-        public static readonly (string, Func<Product, object>)[] SortingFieldsTestData =
+        private static readonly (string, Func<Product, object>)[] SortingFieldsTestData =
         {
             ("DisplayName", x => x.DisplayName),
             ("Brand", x => x.Brand),
@@ -18,8 +18,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         };
 
         [Test(Description = "Find products and ORDER(asc/desc) by default field(BRAND).")]
-        public void _01_AcsOrDescOrderTest([Values(SortDirection.Asc, SortDirection.Desc)]
-            SortDirection sortDirection)
+        public void T1_GETProductRequest_SortType_CorrectList(
+            [Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -52,7 +52,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         }
 
         [Test(Description = "Find products and ORDER by INVALID sort type.")]
-        public void _02_AcsOrDescOrderTest()
+        public void T2_GETProductRequest_InvalidSortType_BadRequest()
         {
             // Arrange
             const string expMessage = "The field SortDirection is invalid.";
@@ -83,8 +83,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 
         [Test(Description = "Find products and ORDER result by SORT FIELD.")]
         [Pairwise]
-        public void _03_OrderBySortFieldTest([ValueSource(nameof(SortingFieldsTestData))]
-            (string, Func<Product, object>) sortField)
+        public void T3_GETProductRequest_SortField_CorrectList(
+            [ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;
@@ -116,7 +116,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         }
 
         [Test(Description = "Find products and order result by INVALID search field.")]
-        public void _04_OrderByInvalidSortFieldTest()
+        public void T4_GETProductRequest_InvalidSortField_CorrectList()
         {
             // Arrange
             const string expMessage = "Invalid Sort Field.";
@@ -148,10 +148,9 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 
         [Test(Description = "Find products and ORDER(asc/desc) result by SORT FIELD.")]
         [Pairwise]
-        public void _05_OrderAcsOrDescBySortFieldTest([Values(SortDirection.Asc, SortDirection.Desc)]
-            SortDirection sortDirection,
-            [ValueSource(nameof(SortingFieldsTestData))]
-            (string, Func<Product, object>) sortField)
+        public void T5_GETProductRequest_SortTypeAndSortField_CorrectList(
+            [Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection, 
+            [ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;

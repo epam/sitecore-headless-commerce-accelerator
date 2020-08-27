@@ -10,12 +10,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 {
     public class ProductSearchByParameterTests : BaseProductSearchTest
     {
-        [Test]
-        [Description("Find products by search keyword.")]
+        [Test(Description = "Find products by search keyword.")]
         [TestCase("123", Description = "Keyword's a product id.")]
         [TestCase("phone", Description = "Keyword's a product name.")]
         [TestCase("sports", Description = "Keyword's a tag.")]
-        public void _01_SearchBySearchKeywordTest(string searchKeyword)
+        public void T1_GETProductRequest_BySearchKeyword_CorrectList(string searchKeyword)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -47,7 +46,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [TestCase("3198ffe4-83d3-a856-6964-62a6a2e9b488", "Smartphone")]
         [TestCase("57585cf7-7af6-f5e3-eb7e-a57736343091", "Home theater")]
         [TestCase("dc456a04-4709-48a5-fdbb-ead9bd1e957b", "Drone")]
-        public void _02_SearchByCategoryIdTest(string categoryId, string categoryName)
+        public void T2_GETProductRequest_ByCategoryId_CorrectList(string categoryId, string categoryName)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -75,7 +74,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         }
 
         [Test(Description = "Find products by non-existent category id")]
-        public void _03_SearchByNonExistentCategoryIdTest()
+        public void T3_GETProductRequest_ByNonExistentCategoryId_BadRequest()
         {
             // Arrange
             var invalidCategoryId = new Guid("8e456d84-4251-dba1-4b86-c2103dedcd02");
@@ -109,7 +108,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [TestCase("EXT Accessories")]
         [TestCase("Shark Smartphone Cases")]
         [TestCase("GoGo Prepaid Smartphone")]
-        public void _04_ByFacetTest(string facet)
+        public void T4_GETProductRequest_ByFacetTest_CorrectList(string facet)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest

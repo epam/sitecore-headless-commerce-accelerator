@@ -6,7 +6,7 @@
 
         public string VariantId { get; set; }
 
-        public HcaProductStatus Status { get; set; }
+        public HcaProductStatus StockStatus { get; set; }
 
         public string ProductName { get; set; }
 

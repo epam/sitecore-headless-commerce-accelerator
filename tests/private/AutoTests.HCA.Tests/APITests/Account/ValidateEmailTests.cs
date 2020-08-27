@@ -12,7 +12,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
     public class ValidateEmailTests : BaseAccountTest
     {
         [Test(Description = "Validate existing email test.")]
-        public void T1_ValidateEmailTests_ExistingEmail_EmailInUse()
+        public void T1_POSTValidateRequest_ExistingEmail_EmailInUse()
         {
             // Arrange
             var email = new ValidateEmailRequest { Email = DefUser.Email };
@@ -28,7 +28,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         }
 
         [Test(Description = "Validate non-existing email test.")]
-        public void T2_ValidateEmailTests_NonExistingEmail_NotInUse()
+        public void T2_POSTValidateRequest_NonExistingEmail_NotInUse()
         {
             // Arrange
             var email = new ValidateEmailRequest { Email = GetRandomEmail() };
@@ -44,7 +44,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         }
 
         [Test(Description = "Validate invalid email test.")]
-        public void T3_ValidateEmailTests_InvalidEmail_InvalidEmailError()
+        public void T3_POSTValidateRequest_InvalidEmail_InvalidEmailError()
         {
             // Arrange
             const string expMessage = "The Email field is not a valid e-mail address.";

@@ -11,12 +11,12 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
     [Description("Product search pagination Tests")]
     public class ProductSearchPaginationTests : BaseProductSearchTest
     {
-        public static IEnumerable<TestCaseData> GetInvalidPaginationTestsData()
+        private static IEnumerable<TestCaseData> GetInvalidPaginationTestsData()
         {
             yield return new TestCaseData(-1, DefPagination.PageNumber,
-                new List<string> {"The field PageSize must be between 1 and 2147483647."});
+                new List<string> { "The field PageSize must be between 1 and 2147483647." });
             yield return new TestCaseData(DefPagination.PageSize, -1,
-                new List<string> {"The field PageNumber must be between 0 and 2147483647."});
+                new List<string> { "The field PageNumber must be between 0 and 2147483647." });
             yield return new TestCaseData(-1, -1,
                 new List<string>
                 {
@@ -28,7 +28,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [TestCase(10, null, Description = "Get the first 10 products")]
         [TestCase(200, 2, Description = "Get 200 products from 2 page")]
         [TestCase(200, 3, Description = "Get 200 products from 3 page")]
-        public void _01_PaginationWithValidParamsTest(int pageSize, int? pageNumber)
+        public void T1_GETProductRequest_ValidParams_CorrectList(int pageSize, int? pageNumber)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -47,7 +47,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
                 Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
                 Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
                 var data = response.OkResponseData.Data;
-                var expPageCount = (int) Math.Ceiling(data.TotalItemCount / (double) pageSize);
+                var expPageCount = (int)Math.Ceiling(data.TotalItemCount / (double)pageSize);
                 Assert.NotNull(data, $"Invalid {nameof(response.OkResponseData.Data)}. Expected: NotNull.");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull.");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull.");
@@ -62,7 +62,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         }
 
         [TestCaseSource(nameof(GetInvalidPaginationTestsData))]
-        public void _02_PaginationWithInvalidParamsTest(int pageSize, int pageNumber, IEnumerable<string> expMessage)
+        public void T2_GETProductRequest_InvalidParams_BadRequest(int pageSize, int pageNumber, IEnumerable<string> expMessage)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest

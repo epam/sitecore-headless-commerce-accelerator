@@ -29,30 +29,36 @@
         justify-content: center;
         margin-top: 20px;
         margin-bottom: 50px;
-        .title {
-            font-size: 30px;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-            margin: 0;
-            font-family: $poppins;
-            &:after {
-                position: absolute;
-                top: 17px;
-                right: -100px;
-                width: 80px;
-                height: 2px;
-                content: "";
-                background-color: #000;
+        &_container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            .title {
+                font-size: 30px;
+                font-weight: 600;
+                position: relative;
+                display: inline-block;
+                margin: 0 0 20px;
+                padding: 0 0 15px;
+                color: $bg-black;
+                font-family: $poppins;
+                &:before {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    width: 120px;
+                    height: 2px;
+                    margin: 0 auto;
+                    content: "";
+                    background-color: $bg-black;
+                }
             }
-            &:before {
-                position: absolute;
-                top: 17px;
-                left: -100px;
-                width: 80px;
-                height: 2px;
-                content: "";
-                background-color: #000;
+            p {
+                font-family: $poppins;
+                margin: 0;
+                color: #333;
             }
         }
     }
@@ -63,13 +69,35 @@
     background: #fff;
 
     .item {
+        &-description {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 9px;
+            &_wishlist {
+                button {
+                    border: none;
+                }
+                button:hover {
+                    color: #a749ff;
+                }
+            }
+            &_title {
+                &_price {
+                    &_pink {
+                        text-decoration: line-through;
+                        color: #fa6bff;
+                    }
+                }
+            }
+        }
         &-brand {
             margin-top: 15px;
             font-family: $poppins;
             font-size: 16px;
-            font-weight: 700;
             text-align: center;
+            color: $bg-black;
             cursor: pointer;
+            text-transform: inherit;
         }
         &-brand:hover {
             color: #a749ff;
@@ -103,6 +131,74 @@
             align-items: center;
             overflow: hidden;
             margin: 0 8px;
+            &:hover .product-action {
+                transform: scaleX(1);
+            }
+            &:hover .product-action button {
+                transform: scaleX(1);
+            }
+            .product-action {
+                display: flex;
+                position: absolute;
+                top: 35%;
+                justify-content: center;
+                width: 100%;
+                button:hover {
+                    background-color: #fa6bff;
+                    transform: scaleX(1);
+                }
+                button {
+                    font-size: 16px;
+                    line-height: 42px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 42px;
+                    height: 42px;
+                    margin: 0 3px;
+                    -webkit-transition: all 0.4s ease-in-out;
+                    transition: all 0.4s ease-in-out;
+                    -webkit-transform: scaleX(0);
+                    transform: scaleX(0);
+                    text-align: center;
+                    color: #fff;
+                    border: none;
+                    border-radius: 50px;
+                    background: none;
+                    background-color: #a749ff;
+                }
+            }
+            // .product-action:hover {
+            //     display: flex;
+            // }
+            .product-img-badges {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                span.purple {
+                    color: #a749ff;
+                }
+                span.pink {
+                    color: #fa6bff;
+                }
+                span {
+                    font-size: 13px;
+                    font-weight: 500;
+                    line-height: 1;
+                    position: static;
+                    display: block;
+                    margin-bottom: 10px;
+                    padding: 0 11px;
+                    border-radius: 3px;
+                    top: 20px;
+                    right: 30px;
+                }
+            }
         }
+    }
+    .item:hover img {
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
     }
 }

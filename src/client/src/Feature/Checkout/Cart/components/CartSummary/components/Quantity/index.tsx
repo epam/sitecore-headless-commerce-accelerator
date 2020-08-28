@@ -64,7 +64,7 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     const cartLine = this.props.cartLine;
     const quantityString = this.state.quantityString;
     return (
-        <div className="product-qty" data-autotests="productQty">
+      <div className="product-qty" data-autotests="productQty">
         <label htmlFor={'qty-' + cartLine.id}>Qty:</label>
         <input
           type="text"

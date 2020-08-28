@@ -98,5 +98,5 @@ components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Wishlist', Account.Wishlist);
 components.set('Add To Wishlist', Account.AddToWishlist);
-
+components.set('Login Register', Account.LoginRegister);
 export default (componentName: string) => components.get(componentName);

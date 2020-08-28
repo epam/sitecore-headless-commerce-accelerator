@@ -1,0 +1,80 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "Foundation/UI/common/scss/variables";
+
+$login-register-form-indention: 15px;
+
+.login-register-form {
+  &-content {
+    display: flex;
+    justify-content: center;
+    background-color: $white;
+    padding: $login-register-form-indention;
+    .account-created-message {
+      &__inform {
+        font-size: 30px;
+        font-weight: 600;
+      }
+      &__email {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      div {
+        color: $second-color;
+        margin-bottom: 25px;
+      }
+      .btn-outline-main:hover {
+        background-color: $theme-color;
+      }
+      padding: $login-register-form-indention;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-content: center;
+      align-items: center;
+      font-family: $poppins;
+    }
+  }
+  margin: 20px 0;
+  padding: 10px;
+  &-header {
+    display: flex;
+    justify-content: center;
+    background-color: $white;
+    font-size: 25px;
+    font-weight: 500;
+    color: $font-color-light;
+    padding: $login-register-form-indention;
+    .form-title {
+      color: $second-color-dark;
+      font-size: 25px;
+      font-weight: 700;
+      padding: 0 20px;
+      text-transform: capitalize;
+      transition: all 0.3s ease 0s;
+      font-family: $poppins;
+
+      margin-left: 0px;
+      cursor: pointer;
+    }
+    .form-title.active {
+      color: $theme-color;
+    }
+    div:nth-child(2) {
+      border-left: 2px solid black;
+    }
+  }
+}

@@ -12,8 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './LoginRegister';
+import * as JSS from 'Foundation/ReactJss';
+
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+
+import * as Account from 'Feature/Account/Integration/Account';
+
+import { LoginRegisterFormComponent } from './Component';
+import { AppState, LoginRegisterStateProps } from './models';
+
+const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
+  const commerceUser = Account.commerceUser(state);
+  return {
+    commerceUser,
+  };
+};
+
+export const LoginRegister = compose(JSS.rendering, connect(mapStateToProps))(LoginRegisterFormComponent);

@@ -12,8 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './LoginRegister';
+import * as Commerce from 'Foundation/Commerce';
+import * as JSS from 'Foundation/ReactJss';
+
+import * as Account from 'Feature/Account/Integration/Account';
+
+export interface LoginRegisterOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
+
+export interface LoginRegisterStateProps {
+  commerceUser: Commerce.User;
+}
+
+export interface LoginRegisterProps extends LoginRegisterOwnProps, LoginRegisterStateProps {}
+
+export interface LoginRegisterOwnState extends JSS.SafePureComponentState {
+  isSignUp: boolean;
+}
+
+export interface AppState extends Account.GlobalAccountState, Account.AppState, JSS.RoutingState {}

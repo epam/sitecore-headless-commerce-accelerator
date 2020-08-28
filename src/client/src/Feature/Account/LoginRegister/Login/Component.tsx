@@ -16,14 +16,13 @@ import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
-import { NavigationLink } from 'Foundation/UI';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { SignInProps, SignInValues } from './models';
+import { LogInProps, LogInValues } from './models';
 import './styles.scss';
 
-export class SignInComponent extends JSS.SafePureComponent<SignInProps, {}> {
+export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
   public componentWillUnmount() {
     this.props.ResetState();
   }
@@ -39,11 +38,11 @@ export class SignInComponent extends JSS.SafePureComponent<SignInProps, {}> {
     }
 
     return (
-      <Form className="form-sign-in-2">
-        <div className="form-sign-in-2__form-group">
+      <Form className="login">
+        <div className="login_form-group">
           <div className="form-field">
             <Input
-              className="form-sign-in-2__input"
+              className="login_input"
               name="email"
               type="email"
               placeholder="Email Address"
@@ -56,19 +55,16 @@ export class SignInComponent extends JSS.SafePureComponent<SignInProps, {}> {
           </div>
         </div>
 
-        {isError && <div className="form-sign-in-2__invalid-msg">The email or password you entered is incorrect</div>}
-        <div className="form-sign-in-2__buttons">
+        {isError && <div className="login_invalid-msg">The email or password you entered is incorrect</div>}
+        <div className="login_buttons">
           <Submit
-            className="btn-sign-in btn-outline-white"
-            onSubmitHandler={(form: SignInValues) => Authentication(form.email, form.password, returnUrl)}
+            className="btn-log-in btn-outline-white"
+            onSubmitHandler={(form: LogInValues) => Authentication(form.email, form.password, returnUrl)}
             disabled={isLoading}
           >
             {isLoading && <i className="fa fa-spinner fa-spin" />}
             <span>Sign in</span>
           </Submit>
-          <NavigationLink to="/account/sign-up" className="sign-up">
-            <JSS.Text tag="span" field={{ value: 'Create Account', editable: 'Create Account' }} />
-          </NavigationLink>
         </div>
       </Form>
     );

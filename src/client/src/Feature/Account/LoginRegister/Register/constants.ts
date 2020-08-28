@@ -12,8 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './LoginRegister';
+import { keyMirror } from 'Foundation/ReactJss';
+
+export const FORM_FIELDS = keyMirror(
+  {
+    CONFIRM_PASSWORD: null,
+    EMAIL: null,
+    FIRST_NAME: null,
+    LAST_NAME: null,
+    PASSWORD: null,
+  },
+  'SIGN_UP_FORM',
+);

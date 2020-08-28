@@ -12,6 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+/*-- Google Font --*/
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap");
+
 @font-face {
   font-family: 'Avenir';
   src: url('~Foundation/UI/common/media/fonts/Phosphate-Solid.eot');
@@ -38,6 +41,16 @@
   src: url('~Foundation/UI/common/media/fonts/Avenir-Roman.eot?#iefix') format('embedded-opentype'),
     url('~Foundation/UI/common/media/fonts/Avenir-Roman.woff') format('woff'),
     url('~Foundation/UI/common/media/fonts/Avenir-Roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Phosphate';
+  src: url('~Foundation/UI/common/media/fonts/Phosphate-Solid.eot');
+  src: url('~Foundation/UI/common/media/fonts/Phosphate-Solid.eot?#iefix') format('embedded-opentype'),
+    url('~Foundation/UI/common/media/fonts/Phosphate-Solid.woff') format('woff'),
+    url('~Foundation/UI/common/media/fonts/Phosphate-Solid.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }

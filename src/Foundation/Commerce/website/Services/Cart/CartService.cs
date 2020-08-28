@@ -155,7 +155,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
             var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.AddPromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, promoCode);
+            var response = this.cartManager.AddPromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, promoCode.Trim());
 
             return this.BuildResult(response);
         }

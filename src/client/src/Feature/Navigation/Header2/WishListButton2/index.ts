@@ -12,15 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import { connect } from 'react-redux';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import { selector } from 'Feature/Account/Integration/Wishlist';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+import { WishlistButtonComponent } from './Component';
+import { AppState, WishlistButtonProps } from './models';
+
+const mapStateToProps = (state: AppState): WishlistButtonProps => {
+  const wishlist = selector.wishlist(state);
+  return {
+    wishlistQuantity: wishlist.length,
+  };
+};
+
+export const WishlistButton2 = connect(mapStateToProps)(WishlistButtonComponent);

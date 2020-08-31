@@ -12,15 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
-
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+export * from './Header2';
+export * from './HeaderContent2';
+export * from './Logo2';
+export * from './QuickNavigation2';
+export * from './UserNavigation2';
+export * from './NavigationSearch2';
+export * from './NavigationMenu2';

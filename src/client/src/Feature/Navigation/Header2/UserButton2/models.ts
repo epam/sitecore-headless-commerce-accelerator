@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import * as JSS from 'Foundation/ReactJss';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import * as Commerce from 'Foundation/Commerce';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+export interface UserButtonProps {}
+
+export interface UserButtonState extends JSS.SafePureComponentState {
+  isDropdownVisible: boolean;
+}
+
+export interface AppState extends JSS.SitecoreState<Commerce.UserContext> {}

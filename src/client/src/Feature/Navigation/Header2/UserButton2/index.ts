@@ -12,15 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import { connect } from 'react-redux';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import * as JSS from 'Foundation/ReactJss';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+import { UserButtonComponent } from './Component';
+import { AppState } from './models';
+
+const mapStateToProps = (state: AppState) => {
+  const commerceUser = JSS.sitecoreContext(state).commerceUser;
+
+  return {
+    commerceUser,
+  };
+};
+
+export const UserButton2 = connect(mapStateToProps)(UserButtonComponent);

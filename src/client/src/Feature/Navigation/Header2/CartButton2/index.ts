@@ -12,15 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import { connect } from 'react-redux';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+import { CartButtonComponent } from './Component';
+import { AppState } from './models';
+
+const mapStateToProps = (state: AppState) => {
+  const cartData = ShoppingCart.shoppingCartData(state);
+  const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
+
+  return {
+    cartQuantity,
+  };
+};
+
+export const CartButton2 = connect(mapStateToProps)(CartButtonComponent);

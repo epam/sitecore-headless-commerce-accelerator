@@ -54,6 +54,15 @@ components.set('Search Box', Navigation.NavigationSearch);
 components.set('Quick Navigation', Navigation.QuickNavigation);
 components.set('User Navigation', Navigation.UserNavigation);
 
+// Header2 renderings
+components.set('Header 2', Navigation.Header2);
+components.set('Header Content 2', Navigation.HeaderContent2);
+components.set('Logo 2', Navigation.Logo2);
+components.set('Navigation Menu 2', Navigation.NavigationMenu2);
+components.set('Search Box 2', Navigation.NavigationSearch2);
+components.set('Quick Navigation 2', Navigation.QuickNavigation2);
+components.set('User Navigation 2', Navigation.UserNavigation2);
+
 // Footer renderings
 components.set('Footer', Navigation.GlobalFooter);
 components.set('Copyright', Navigation.Copyright);

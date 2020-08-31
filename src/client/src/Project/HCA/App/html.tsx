@@ -15,38 +15,19 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
-const pagesWithNewLayout = ['home2'];
-
-const getCurrentPageName = () => {
-  const isServerEnvironment = typeof window === 'undefined';
-
-  if (isServerEnvironment) {
-    return null;
-  } else {
-    return document.location.pathname.slice(1).toLowerCase();
-  }
-};
-
-const currentPageName = getCurrentPageName();
-
-const Html = ({ component, initialState, distPath }: any) => {
+const Html = ({ component, initialState, distPath, path }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
 
-  const stylesheet = pagesWithNewLayout.includes(currentPageName) ? (
-    <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
-  ) : null;
+  const arrayCurrentPathSplitted = path.split('/');
+  const categoryPageName = arrayCurrentPathSplitted ? arrayCurrentPathSplitted[1] : '';
+  const isRedesignPage = categoryPageName && categoryPageName.slice(-1) === '2';
 
   return (
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-        />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
-        {stylesheet}
+        {isRedesignPage && <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />}
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

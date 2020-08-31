@@ -12,15 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+interface NavigationLink {
+  url?: string;
+  title: string;
+}
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+export interface NavigationProps {
+  links: NavigationLink[];
+  titleClass: string;
+  className?: string;
+}

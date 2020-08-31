@@ -12,15 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+@import 'Foundation/UI/common/scss-new/_variables';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+.navigation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 16.6%;
+  max-width: 16.6%;
+}

@@ -12,15 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import * as JSS from 'Foundation/ReactJss';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { bindActionCreators, Dispatch } from 'redux';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import * as Context from 'Foundation/ReactJss/SitecoreContext';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+import { NavigationSearchComponent } from './Component';
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      ChangeRoute: Context.ChangeRoute,
+    },
+    dispatch,
+  );
+
+export const NavigationSearch2 = compose(JSS.rendering, connect(null, mapDispatchToProps))(NavigationSearchComponent);

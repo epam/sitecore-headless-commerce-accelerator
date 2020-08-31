@@ -97,6 +97,7 @@ T4RenderCache
 #SKIP package folders
 /src/*.Master/packages
 /src/*.Core/packages
+/src/.history/
 CopiedFiles_*.txt
 DeployedFiles_*.txt
 

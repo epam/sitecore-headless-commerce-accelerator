@@ -1,0 +1,86 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss-new/_variables';
+
+.header {
+  text-transform: capitalize;
+  .mobile-menu {
+    position: fixed;
+    z-index: $z-index-xl;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 100%;
+    height: 100vh;
+    padding-left: 60px;
+    transition: 0.6s;
+    transform: translateX(100%);
+
+    &_content {
+      overflow: auto;
+      height: 100vh;
+      background-color: $bg-white;
+      box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
+    }
+
+    &_close {
+      font-size: 30px;
+      line-height: 70px;
+      position: absolute;
+      z-index: $z-index-s;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 65px;
+      padding: 0;
+      text-align: center;
+      color: $white;
+      border: none;
+      background-color: $bg-grey;
+
+      &:hover,
+      &:focus {
+        color: $white;
+      }
+      i {
+        font-size: 40px;
+        line-height: 1;
+        margin-top: 12px;
+        transition: 0.3s;
+        transform: rotate(0);
+      }
+
+      &:hover {
+        i {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+
+  &--active {
+    .mobile-menu {
+      transform: translateX(0);
+    }
+  }
+
+  &--inactive {
+    .mobile-menu {
+      transform: translateX(calc(100% + 60px));
+    }
+  }
+}
+
+

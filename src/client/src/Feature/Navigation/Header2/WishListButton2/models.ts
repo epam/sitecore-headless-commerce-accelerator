@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import * as JSS from 'Foundation/ReactJss';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+import { GlobalWishlistState } from 'Feature/Account/Integration/Wishlist';
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+export interface WishlistButtonProps {
+  wishlistQuantity: number;
+}
+
+export interface WishlistButtonState extends JSS.SafePureComponentState {}
+
+export interface AppState extends GlobalWishlistState {}

@@ -15,24 +15,18 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
-const pagesWithNewLayout = ['home2'];
-
 const Html = ({ component, initialState, distPath, path }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
+
+  const REDESIGN_PAGE_MARK = '2';
+  const isRedesignPage = path.indexOf(REDESIGN_PAGE_MARK) > -1;
 
   return (
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-        />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
-        {pagesWithNewLayout.includes(path) && (
-          <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
-        )}
+        {isRedesignPage && <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />}
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

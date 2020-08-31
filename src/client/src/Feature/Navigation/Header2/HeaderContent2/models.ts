@@ -12,15 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-//
-// Load third party css:
-// --------------------------------------------------
+import * as JSS from 'Foundation/ReactJss';
 
-// https://github.com/webpack-contrib/sass-loader/issues/40
-$bootstrap-sass-asset-helper: true;
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+interface HeaderContentParams extends JSS.BaseRenderingParam {
+  isMain: string;
+}
 
-@import 'variables';
-@import 'common';
-@import 'typography';
-@import 'navigation';
+export interface HeaderContentProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderContentParams> {}
+
+export interface HeaderContentState extends JSS.SafePureComponentState {}

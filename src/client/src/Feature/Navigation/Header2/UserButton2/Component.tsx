@@ -12,13 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import classnames from 'classnames';
 import * as JSS from 'Foundation/ReactJss';
+import { NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
-
-import { SignIn } from './SignIn';
-import { SignIn2 } from './SignIn2';
-import { SignOut } from './SignOut';
-
 import { UserButtonProps, UserButtonState } from './models';
 import './styles.scss';
 
@@ -29,7 +26,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
     super(props);
 
     this.state = {
-      userFormVisible: false,
+      isDropdownVisible: false,
     };
 
     this.wrapperRef = React.createRef<HTMLDivElement>();
@@ -40,35 +37,43 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
   }
 
   protected safeRender() {
-    const { commerceUser } = this.props;
-    const { userFormVisible } = this.state;
-    const isHome2 = window.location.pathname.includes('home2');
+    const { isDropdownVisible } = this.state;
+
     return (
-      <div ref={this.wrapperRef} className="user-button" data-autotests="userButton">
-        <a className="user-navigation-btn" onClick={this.togglePopup}>
-          <i className="fa fa-user" />
-          <span>My Account</span>
+      <div ref={this.wrapperRef} className="navigation-buttons_item account">
+        <a onClick={this.toggleDropdown}>
+          <i className="pe-7s-user-female" />
         </a>
-        {userFormVisible && (
-          <div className={isHome2 ? 'login-form-2' : 'login-form'}>
-            {!!commerceUser && commerceUser.customerId ? (
-              <SignOut onLoaded={this.togglePopup} />
-            ) : isHome2 ? (
-              <SignIn2 onLoaded={this.togglePopup} />
-            ) : (
-              <SignIn onLoaded={this.togglePopup} />
-            )}
-          </div>
-        )}
+        <ul className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}>
+          <li className="account_dropdown-item">
+            <NavigationLink className="account_link" to="/account2/login-register">
+              Login
+            </NavigationLink>
+          </li>
+          <li className="account_dropdown-item">
+            <NavigationLink className="account_link" to="/account2/login-register">
+              Register
+            </NavigationLink>
+          </li>
+          <li className="account_dropdown-item">
+            <NavigationLink className="account_link" to="/my-account">
+              My account
+            </NavigationLink>
+          </li>
+        </ul>
       </div>
     );
   }
 
   private handleOutsidePopupClick(e: MouseEvent) {
-    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target as Node) && this.state.userFormVisible) {
-      this.togglePopup();
+    if (
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(e.target as Node) &&
+      this.state.isDropdownVisible
+    ) {
+      this.toggleDropdown();
     }
   }
 
-  private togglePopup = () => this.setState({ userFormVisible: !this.state.userFormVisible });
+  private toggleDropdown = () => this.setState({ isDropdownVisible: !this.state.isDropdownVisible });
 }

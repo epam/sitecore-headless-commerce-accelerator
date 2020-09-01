@@ -15,8 +15,6 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavigationLink } from 'Foundation/UI';
 import { WishlistItem } from './components/WishlistItem';
 
@@ -33,21 +31,20 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
     const { items } = this.props;
     console.log(items);
     return (
-      <div className="wishlist-container" style={{marginTop: 30}}>
+      <div className="wishlist-container" style={{ marginTop: 30 }}>
         <div className="row">
           <div className="col-xs-12">
             <div className="wishlist-title">{title.jss.value}</div>
           </div>
         </div>
-        {(items.length === 0) ?
-          <div className="wishlist_container-empty" >
-            <FontAwesomeIcon icon={faHeart} size="8x" style={{color: 'black'}} />
+        {items.length === 0 ? (
+          <div className="wishlist_container-empty">
             <label className="wishlist_label-empty">No items found in wishlist</label>
             <NavigationLink to={`/`}>
               <button className="wishlist_btn-empty">Add Items</button>
             </NavigationLink>
           </div>
-          :
+        ) : (
           <table>
             <thead className="wishlist_table_header_container">
               <tr>
@@ -64,7 +61,7 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
               ))}
             </tbody>
           </table>
-        }
+        )}
       </div>
     );
   }

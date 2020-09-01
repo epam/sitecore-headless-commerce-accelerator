@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Products;
+using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Core.Common.Settings
@@ -8,10 +9,10 @@ namespace AutoTests.HCA.Core.Common.Settings
     {
         public IEnumerable<ProductTestsDataSettings> Products { get; set; }
 
-        public PaginationTestsDataSettings Pagination { get; set; }
+        public HcaPagination Pagination { get; set; }
 
-        public IEnumerable<HcaUser> Users { get; set; }
+        public IEnumerable<HcaUserTestsDataSettings> Users { get; set; }
 
-        public IEnumerable<HcaDiscount> Discounts { get; set; }
+        public IEnumerable<HcaPromotionTestsDataSettings> Promotions { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace AutoTests.HCA.Core.Common.Settings.Product
+﻿namespace AutoTests.HCA.Core.Common.Settings.Products
 {
-    public class ProductTestsDataSettings
+    public class ProductTestsDataSettings:BaseHcaEntityTestsDataSettings
     {
         public string ProductId { get; set; }
 
@@ -13,8 +13,6 @@
         public string ProductBrand { get; set; }
 
         public string ProductCategoryId { get; set; }
-
-        public bool? Default { get; set; }
     }
 
 }

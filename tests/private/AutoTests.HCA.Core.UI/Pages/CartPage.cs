@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
-using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -203,7 +203,7 @@ namespace AutoTests.HCA.Core.UI.Pages
             });
         }
 
-        public void DeleteAjustment(string name)
+        public void DeleteAdjustment(string name)
         {
             var adjustmentElement = FindAdjustmentByName(name);
             new WebButton($"Button for delete Ajustment {name}", ByCustom.XPath("./button"), adjustmentElement).Click();

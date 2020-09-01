@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Configuration;
 using AutoTests.HCA.Core.Common.Settings;
-using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Products;
+using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Tests
@@ -13,43 +14,60 @@ namespace AutoTests.HCA.Tests
         private static readonly ConfigurationManager _configurationManager = new ConfigurationManager("testsdata.json");
 
         private static HcaTestsDataSettings _hcaTestsData;
-        private static IEnumerable<HcaUser> _users;
+        private static IEnumerable<HcaUserTestsDataSettings> _users;
         private static IEnumerable<ProductTestsDataSettings> _productId;
-        private static PaginationTestsDataSettings _pagination;
-        private static IEnumerable<HcaDiscount> _discounts;
+        private static HcaPagination _pagination;
+        private static IEnumerable<HcaPromotionTestsDataSettings> _promotions;
 
         private static HcaTestsDataSettings HcaTestsData =>
             _hcaTestsData ??= _configurationManager.Get<HcaTestsDataSettings>("HcaTestsData");
 
-        public static IEnumerable<HcaUser> Users => _users ??= HcaTestsData.Users;
+        public static IEnumerable<HcaUserTestsDataSettings> Users => _users ??= HcaTestsData.Users;
         public static IEnumerable<ProductTestsDataSettings> Products => _productId ??= HcaTestsData.Products;
-        public static PaginationTestsDataSettings Pagination => _pagination ??= HcaTestsData.Pagination;
-        public static IEnumerable<HcaDiscount> Discounts => _discounts ??= HcaTestsData.Discounts;
-
-        public static HcaUser GetUser(HcaUserRole role = HcaUserRole.User, HcaUserType type = HcaUserType.Default)
-        {
-            return Users.FirstOrDefault(x => x.Type == type && x.Role == role);
-        }
-
-        public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock)
-        {
-            var filteringList = Products.Where(x => x.StockStatus == status);
-            return Products.ElementAt(new Random().Next(filteringList.Count() - 1));
-        }
+        public static HcaPagination Pagination => _pagination ??= HcaTestsData.Pagination;
+        public static IEnumerable<HcaPromotionTestsDataSettings> Promotions => _promotions ??= HcaTestsData.Promotions;
 
         public static ProductTestsDataSettings GetDefaultProduct()
         {
-            return Products.First(x => x.Default == true);
+            return GetDefault(Products);
+        }
+
+        public static HcaUserTestsDataSettings GetDefaultUser()
+        {
+            return GetDefault(Users);
+        }
+
+        public static HcaPromotionTestsDataSettings GetDefaultPromotion()
+        {
+            return GetDefault(Promotions);
+        }
+
+        public static HcaUserTestsDataSettings GetUser(HcaUserRole role = HcaUserRole.User)
+        {
+            return Users.FirstOrDefault(x => x.Role == role);
+        }
+
+        public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock, string productId = null)
+        {
+            var filteringList = Products.Where(x =>
+                x.StockStatus == status && (productId == null || x.ProductId == productId)).ToList();
+            return filteringList.ElementAt(new Random().Next(filteringList.Count() - 1));
         }
 
         public static IEnumerable<ProductTestsDataSettings> GetProducts(int qty)
         {
-            return Products.Take(qty).Where(x=>x.StockStatus == HcaProductStatus.InStock);
+            return Products.Take(qty).Where(x => x.StockStatus == HcaProductStatus.InStock);
         }
 
-        public static HcaDiscount GetDefaultDiscount()
+        public static HcaPromotionTestsDataSettings GetPromotion(HcaPromotionName couponName)
         {
-            return Discounts.First(x => x.Default);
+            return Promotions.FirstOrDefault(x => x.Name == couponName);
+        }
+
+        private static T GetDefault<T>(IEnumerable<T> collection)
+            where T : BaseHcaEntityTestsDataSettings
+        {
+            return collection.First(x => x.Default);
         }
     }
 }

@@ -36,9 +36,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(result.IsSuccessful, "The GET Addresses request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, result.StatusCode, nameof(result.StatusCode));
-                ExtendedAssert.NotNull(result.OkResponseData, nameof(result.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status, nameof(result.OkResponseData.Status));
+                result.VerifyResponseData();
 
                 VerifyAddressResponse(AddressesWithExternalIds, result.OkResponseData.Data);
             });

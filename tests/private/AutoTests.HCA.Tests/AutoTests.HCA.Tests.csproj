@@ -5,10 +5,6 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <RunSettingsFilePath>$(MSBuildProjectDirectory)\hcanunit.runsettings</RunSettingsFilePath>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.7.4" />
     <PackageReference Include="NLog.Config" Version="4.7.4" />

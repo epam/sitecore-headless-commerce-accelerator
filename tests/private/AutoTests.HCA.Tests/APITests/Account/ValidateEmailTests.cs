@@ -22,9 +22,12 @@ namespace AutoTests.HCA.Tests.APITests.Account
 
             // Assert
             Assert.True(response.IsSuccessful, "The Validate POST request is not passed");
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
-            Assert.True(response.OkResponseData.Data.InUse);
+            Assert.Multiple(() =>
+            {
+                response.VerifyResponseData();
+
+                Assert.True(response.OkResponseData.Data.InUse);
+            });
         }
 
         [Test(Description = "Validate non-existing email test.")]
@@ -38,9 +41,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
 
             // Assert
             Assert.True(response.IsSuccessful, "The Validate POST request is not passed");
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
-            Assert.False(response.OkResponseData.Data.InUse);
+
+            Assert.Multiple(() =>
+            {
+                response.VerifyResponseData();
+
+                Assert.False(response.OkResponseData.Data.InUse);
+            });
         }
 
         [Test(Description = "Validate invalid email test.")]

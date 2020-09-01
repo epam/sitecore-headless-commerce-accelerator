@@ -1,6 +1,5 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
-using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
@@ -36,7 +35,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.HeaderControl.ClickCartButton();
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.SetQtyForProduct(TestsData.GetDefaultProduct().ProductName, 4);
-            _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultDiscount().DiscountCouponCode);
+            _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultPromotion().Code);
             _hcaWebSite.CartPage.ClickApplyButton();
             _hcaWebSite.CartPage.VerifyCartSum(true);
             _hcaWebSite.CartPage.ClickCheckoutButton();
@@ -75,7 +74,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.HeaderControl.ClickCartButton();
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.SetQtyForProduct(TestsData.GetDefaultProduct().ProductName, 2);
-            _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultDiscount().DiscountCouponCode);
+            _hcaWebSite.CartPage.FillDiscountField(TestsData.GetDefaultPromotion().Code);
             _hcaWebSite.CartPage.ClickApplyButton();
             _hcaWebSite.CartPage.VerifyCartSum(true);
             _hcaWebSite.CartPage.ClickCheckoutButton();

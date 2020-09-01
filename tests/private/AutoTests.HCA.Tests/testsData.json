@@ -3,7 +3,7 @@
     "Users": [
       {
         "role": "Guest",
-        "type": "Default",
+        "Default": true ,
         "credentials": {
           "Email": "",
           "Password": ""
@@ -11,7 +11,7 @@
       },
       {
         "role": "User",
-        "type": "Default",
+        "Default": true,
         "credentials": {
           "Email": "HcaAutotests@mail.com",
           "Password": "123456"
@@ -19,7 +19,6 @@
       },
       {
         "role": "User",
-        "type": "ApiAuthorizationTests",
         "credentials": {
           "Email": "HcaAutotests@mail.com",
           "Password": "123456"
@@ -27,7 +26,6 @@
       },
       {
         "role": "User",
-        "type": "ApiCartTests",
         "credentials": {
           "Email": "HcaAutotests@mail.com",
           "Password": "123456"
@@ -35,7 +33,6 @@
       },
       {
         "role": "User",
-        "type": "ApiAddressTests",
         "credentials": {
           "Email": "ApiAddressTests@autotests.com",
           "Password": "123456"
@@ -50,7 +47,7 @@
         "ProductName": "HABITAT ATHLETICA SPORTS ARMBAND CASE",
         "ProductBrand": "ATHLETICA SMARTPHONE CASE",
         "ProductCategoryId": "8e456d84-4251-dba1-4b86-ce103dedcd02",
-        "Default": true 
+        "Default": true
       },
       {
         "ProductId": "6042361",
@@ -105,11 +102,79 @@
       "PageSize": "5",
       "PageNumber": "1"
     },
-    "Discounts": [
+    "Promotions": [
       {
         "Default": true, 
-        "DiscountCouponName": "15% Off Cart (Coupon)",
-        "DiscountCouponCode": "HABRTRNC15P"
+        "IsIncluded": true,
+        "IsExclusive": false,
+        "Name": "Cart10OffCouponPromotion",
+        "DisplayCartText": "$10 Off Cart (Coupon)",
+        "Code": "HABRTRNC10A",
+        "Discount": {
+          "DiscountValueType": "InDollars",
+          "Discount": "10"
+        },
+        "MinimumBasketPriceForApplication": "50"
+      },
+      {
+        "IsIncluded": true,
+        "IsExclusive": false,
+        "Name": "Cart10PctOffCouponPromotion",
+        "DisplayCartText": "10% Off Cart (Coupon)",
+        "Code": "HABRTRNC10P",
+        "Discount": {
+          "DiscountValueType": "InPercents",
+          "Discount": "10"
+        },
+        "MinimumBasketPriceForApplication": "50"
+      },
+      {
+        "IsIncluded": true,
+        "IsExclusive": false,
+        "Name": "Cart15PctOffCouponPromotion",
+        "DisplayCartText": "15% Off Cart (Coupon)",
+        "Code": "HABRTRNC15P",
+        "Discount": {
+          "DiscountValueType": "InPercents",
+          "Discount": "15"
+        },
+        "MinimumBasketPriceForApplication": "50"
+      },
+      {
+        "IsIncluded": true,
+        "IsExclusive": true,
+        "Name": "Cart5OffExclusiveCouponPromotion",
+        "DisplayCartText": "$5 Off Cart (Exclusive Coupon)",
+        "Code": "HABRTRNEC5A",
+        "Discount": {
+          "DiscountValueType": "InDollars",
+          "Discount": "5"
+        },
+        "MinimumBasketPriceForApplication": "10"
+      },
+      {
+        "IsIncluded": true,
+        "IsExclusive": true,
+        "Name": "Cart5PctOffExclusiveCouponPromotion",
+        "DisplayCartText": "5% Off Cart (Exclusive Coupon)",
+        "Code": "HABRTRNEC5P",
+        "Discount": {
+          "DiscountValueType": "InPercents",
+          "Discount": "5"
+        },
+        "MinimumBasketPriceForApplication": "10"
+      },
+      {
+        "IsIncluded": true,
+        "IsExclusive": true,
+        "Name": "Line5PctOffCouponPromotion",
+        "DisplayCartText": "5% Off Item (Coupon)",
+        "Code": "HABRTRNL5P",
+        "Discount": {
+          "DiscountValueType": "InPercents",
+          "Discount": "5"
+        },
+        "MinimumBasketPriceForApplication": "10"
       }
     ]
   }

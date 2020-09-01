@@ -4,7 +4,7 @@ using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Entities;
-using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.UI.CommonElements;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 using AutoTests.HCA.Core.UI.Pages;
@@ -61,7 +61,8 @@ namespace AutoTests.HCA.Core.UI
             HideUserMenu();
         }
 
-        public void OpenHcaAndLogin(UserLogin userLogin) => OpenHcaAndLogin(userLogin.Email, userLogin.Password);
+        public void OpenHcaAndLogin(UserLogin userLogin) => 
+            OpenHcaAndLogin(userLogin.Email, userLogin.Password);
         
 
         //ToDo create address structure

@@ -2,7 +2,6 @@
 
 namespace AutoTests.AutomationFramework.API
 {
-    [TestFixture(Description = "Base Test.")]
     public class ApiTest
     {
         [SetUp]

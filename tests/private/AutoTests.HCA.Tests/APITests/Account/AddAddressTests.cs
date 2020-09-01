@@ -47,9 +47,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(response.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, response.StatusCode, nameof(response.StatusCode));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status,
-                    nameof(response.OkResponseData.Status));
+                response.VerifyResponseData();
                 VerifyAddressResponse(new List<Address> { newAddress }, response.OkResponseData.Data, true);
             });
         }
@@ -82,13 +80,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(getAddressesResponse.IsSuccessful, "The 'Accounts/address' GET request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, addAddressResponse.StatusCode, nameof(addAddressResponse.StatusCode));
-                ExtendedAssert.NotNull(addAddressResponse.OkResponseData, nameof(addAddressResponse.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, addAddressResponse.OkResponseData.Status, nameof(addAddressResponse.OkResponseData.Status));
-
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, getAddressesResponse.StatusCode, nameof(getAddressesResponse.StatusCode));
-                ExtendedAssert.NotNull(getAddressesResponse.OkResponseData, nameof(getAddressesResponse.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, getAddressesResponse.OkResponseData.Status, nameof(getAddressesResponse.OkResponseData.Status));
+                addAddressResponse.VerifyResponseData();
+                getAddressesResponse.VerifyResponseData();
 
                 VerifyAddressResponse(new List<Address> { addAddressResponse.OkResponseData.Data.First() }, getAddressesResponse.OkResponseData.Data);
             });
@@ -137,28 +130,12 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(addSecondAddressResponse.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
             Assert.True(getAddressesResponse.IsSuccessful, "The 'Accounts/address' GET request isn't passed.");
 
-            ExtendedAssert.AreEqual(HttpStatusCode.OK, addFirstAddressResponse.StatusCode,
-                nameof(addFirstAddressResponse.StatusCode));
-            ExtendedAssert.NotNull(addFirstAddressResponse.OkResponseData,
-                nameof(addFirstAddressResponse.OkResponseData));
-            ExtendedAssert.AreEqual(HcaStatus.Ok, addFirstAddressResponse.OkResponseData.Status,
-                nameof(addFirstAddressResponse.OkResponseData.Status));
-
-            ExtendedAssert.AreEqual(HttpStatusCode.OK, addSecondAddressResponse.StatusCode,
-                nameof(addSecondAddressResponse.StatusCode));
-            ExtendedAssert.NotNull(addSecondAddressResponse.OkResponseData,
-                nameof(addSecondAddressResponse.OkResponseData));
-            ExtendedAssert.AreEqual(HcaStatus.Ok, addSecondAddressResponse.OkResponseData.Status,
-                nameof(addSecondAddressResponse.OkResponseData.Status));
-
-            ExtendedAssert.AreEqual(HttpStatusCode.OK, getAddressesResponse.StatusCode,
-                nameof(getAddressesResponse.StatusCode));
-            ExtendedAssert.NotNull(getAddressesResponse.OkResponseData, nameof(getAddressesResponse.OkResponseData));
-            ExtendedAssert.AreEqual(HcaStatus.Ok, getAddressesResponse.OkResponseData.Status,
-                nameof(getAddressesResponse.OkResponseData.Status));
-
             Assert.Multiple(() =>
             {
+                addFirstAddressResponse.VerifyResponseData();
+                addFirstAddressResponse.VerifyResponseData();
+                getAddressesResponse.VerifyResponseData();
+
                 var firstAddressExternalId = addFirstAddressResponse.OkResponseData.Data.First().ExternalId;
                 var secondAddressExternalId = addSecondAddressResponse.OkResponseData.Data.First().ExternalId;
                 var addresses = getAddressesResponse.OkResponseData.Data;

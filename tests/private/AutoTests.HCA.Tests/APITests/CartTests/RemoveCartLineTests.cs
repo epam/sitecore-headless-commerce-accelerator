@@ -1,7 +1,4 @@
 ﻿using System.Linq;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 
@@ -33,9 +30,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             Assert.True(result.IsSuccessful, "The 'DELETECartLines' Request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, result.StatusCode, nameof(result.StatusCode));
-                ExtendedAssert.NotNull(result.OkResponseData, nameof(result.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status, nameof(result.OkResponseData.Status));
+                result.VerifyResponseData();
 
                 VerifyCartResponse("DELETECartLines", ProductsCollection.Where(x => 
                     x.VariantId != productToRemove.VariantId && x.ProductId != productToRemove.ProductId), 

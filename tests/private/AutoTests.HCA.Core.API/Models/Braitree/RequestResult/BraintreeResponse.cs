@@ -11,8 +11,19 @@ namespace AutoTests.HCA.Core.API.Models.Braitree.RequestResult
         public HttpStatusCode StatusCode { get; set; }
 
         //TODO: Error Model
+
         public object Errors { get; set; }
 
         public TData OkResponseData { get; set; }
+
+        public void CheckSuccessfulResponse()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void VerifyResponseData()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

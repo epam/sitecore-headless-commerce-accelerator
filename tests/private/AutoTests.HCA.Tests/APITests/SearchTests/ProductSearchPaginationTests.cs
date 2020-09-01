@@ -11,20 +11,6 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
     [Description("Product search pagination Tests")]
     public class ProductSearchPaginationTests : BaseProductSearchTest
     {
-        private static IEnumerable<TestCaseData> GetInvalidPaginationTestsData()
-        {
-            yield return new TestCaseData(-1, DefPagination.PageNumber,
-                new List<string> { "The field PageSize must be between 1 and 2147483647." });
-            yield return new TestCaseData(DefPagination.PageSize, -1,
-                new List<string> { "The field PageNumber must be between 0 and 2147483647." });
-            yield return new TestCaseData(-1, -1,
-                new List<string>
-                {
-                    "The field PageNumber must be between 0 and 2147483647.",
-                    "The field PageSize must be between 1 and 2147483647."
-                });
-        }
-
         [TestCase(10, null, Description = "Get the first 10 products")]
         [TestCase(200, 2, Description = "Get 200 products from 2 page")]
         [TestCase(200, 3, Description = "Get 200 products from 3 page")]
@@ -44,8 +30,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed.");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyResponseData();
                 var data = response.OkResponseData.Data;
                 var expPageCount = (int)Math.Ceiling(data.TotalItemCount / (double)pageSize);
                 Assert.NotNull(data, $"Invalid {nameof(response.OkResponseData.Data)}. Expected: NotNull.");
@@ -61,7 +46,10 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             });
         }
 
-        [TestCaseSource(nameof(GetInvalidPaginationTestsData))]
+        [TestCase(-1, 1, new[] { "The field PageSize must be between 1 and 2147483647." })]
+        [TestCase(1, -1, new[] { "The field PageNumber must be between 0 and 2147483647." })]
+        [TestCase(-1, -1, new[] {"The field PageNumber must be between 0 and 2147483647.",
+                "The field PageSize must be between 1 and 2147483647."}, Description = "Get 200 products from 3 page")]
         public void T2_GETProductRequest_InvalidParams_BadRequest(int pageSize, int pageNumber, IEnumerable<string> expMessage)
         {
             // Arrange

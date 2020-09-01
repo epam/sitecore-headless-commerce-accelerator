@@ -163,6 +163,11 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest<CartResult>(endpoint, Method.POST, promoCode);
         }
 
+        public HcaResponse<CartResult> RemovePromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes")
+        {
+            return ExecuteJsonRequest<CartResult>(endpoint, Method.DELETE, promoCode);
+        }
+
         private Uri GetAbsoluteUri(string urlPostfix)
         {
             return _baseUri.AddPostfix(urlPostfix);

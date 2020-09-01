@@ -5,7 +5,8 @@ using AutoTests.HCA.Core.API.Helpers;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
 using AutoTests.HCA.Core.API.Services.HcaService;
 using AutoTests.HCA.Core.BaseTests;
-using AutoTests.HCA.Core.Common.Settings.Product;
+using AutoTests.HCA.Core.Common.Settings.Products;
+using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 
@@ -29,7 +30,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 
         protected IHcaApiService HcaService;
         protected UserManagerHelper UserManager;
-        protected HcaUser User;
+        protected HcaUserTestsDataSettings User;
 
         protected readonly IEnumerable<CartLinesRequest> ProductsCollection;
 
@@ -93,8 +94,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             }
             else
             {
-                ExtendedAssert.IsEmpty(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {User.Role}.");
-                ExtendedAssert.IsEmpty(cartResult.Email, $"{nameof(cartResult.Email)} for {User.Role}.");
+                ExtendedAssert.Empty(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {User.Role}.");
+                ExtendedAssert.Empty(cartResult.Email, $"{nameof(cartResult.Email)} for {User.Role}.");
             }
 
             // Data -> CartLines
@@ -138,11 +139,61 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             }
             else
             {
-                ExtendedAssert.IsEmpty(cartLines, nameof(cartLines));
+                ExtendedAssert.Empty(cartLines, nameof(cartLines));
             }
 
             ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal), cartResult.Price.Subtotal, nameof(cartResult.Price.Subtotal));
             ExtendedAssert.AreEqual(cartResult.Price.Subtotal - cartResult.Price.TotalSavings, cartResult.Price.Total, nameof(cartResult.Price.Total));
+        }
+
+        protected void VerifyPrice(TotalPrice totalPrice, IEnumerable<HcaDiscount> discounts)
+        {
+            ExtendedAssert.NotNull(totalPrice, nameof(totalPrice));
+            ExtendedAssert.NotNull(totalPrice.CurrencyCode, nameof(totalPrice.CurrencyCode));
+            ExtendedAssert.NotNull(totalPrice.CurrencySymbol, nameof(totalPrice.CurrencySymbol));
+            ExtendedAssert.NotNull(totalPrice.HandlingTotal, nameof(totalPrice.HandlingTotal));
+            ExtendedAssert.NotNull(totalPrice.ShippingTotal, nameof(totalPrice.ShippingTotal));
+            ExtendedAssert.NotNull(totalPrice.Subtotal, nameof(totalPrice.Subtotal));
+            ExtendedAssert.NotNull(totalPrice.TaxTotal, nameof(totalPrice.TaxTotal));
+            ExtendedAssert.NotNull(totalPrice.Total, nameof(totalPrice.Total));
+            ExtendedAssert.NotNull(totalPrice.TotalSavings, nameof(totalPrice.TotalSavings));
+
+            if (discounts == null || !discounts.Any())
+            {
+                ExtendedAssert.AreEqual(0, totalPrice.TotalSavings, nameof(totalPrice.TotalSavings));
+                Assert.True(totalPrice.Subtotal == totalPrice.Total, $"{nameof(totalPrice.Subtotal)} should be equal {nameof(totalPrice.Total)}");
+            }
+            else
+            {
+                var expTotalPrice = totalPrice.Subtotal.Value;
+                foreach (var discount in discounts)
+                {
+                    if (discount.DiscountValueType == HcaDiscountValueType.InDollars)
+                        expTotalPrice -= discount.Discount;
+                    else if (discount.DiscountValueType == HcaDiscountValueType.InPercents)
+                        expTotalPrice -= expTotalPrice * (discount.Discount / 100m);
+                }
+
+                expTotalPrice = expTotalPrice.RoundUpMoney();
+
+                ExtendedAssert.AreEqual(totalPrice.Subtotal.Value - expTotalPrice, totalPrice.TotalSavings.Value,
+                    nameof(totalPrice.TotalSavings));
+                ExtendedAssert.AreEqual(expTotalPrice, totalPrice.Total.Value, nameof(totalPrice.Total));
+            }
+        }
+
+        protected void VerifyAdjustments(IEnumerable<string> adjustments, IEnumerable<HcaPromotionTestsDataSettings> promotions)
+        {
+            // Adjustments
+            ExtendedAssert.NotNullOrEmpty(adjustments, nameof(adjustments));
+            ExtendedAssert.AreEqual(promotions.Count(), adjustments.Count(), nameof(adjustments));
+
+            // Adjustments -> Adjustment
+            foreach (var adjustment in adjustments)
+            {
+                ExtendedAssert.NotNullOrWhiteSpace(adjustment, nameof(adjustment));
+                ExtendedAssert.NotNull(promotions.Any(x => x.DisplayCartText == adjustment), nameof(adjustment));
+            }
         }
     }
 }

@@ -125,7 +125,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             }
             else
             {
-                ExtendedAssert.IsEmpty(actualAddresses, nameof(actualAddresses));
+                ExtendedAssert.Empty(actualAddresses, nameof(actualAddresses));
             }
 
         }

@@ -7,5 +7,14 @@
         public int Quantity { get; set; }
 
         public string VariantId { get; set; }
+
+        public CartLinesRequest() { }
+
+        public CartLinesRequest(string productId, int quantity, string variantId)
+        {
+            ProductId = productId;
+            Quantity = quantity;
+            VariantId = variantId;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using AutoTests.AutomationFramework.API.Models;
+using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.ErrorResult;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.OkResult;
 using Newtonsoft.Json;
@@ -17,9 +18,14 @@ namespace AutoTests.HCA.Core.API.Models.Hca.RequestResult
 
         public HcaErrorsResult Errors { get; set; }
 
-        public void CheckError()
+        public void CheckSuccessfulResponse()
         {
-            Assert.True(IsSuccessful, JsonConvert.SerializeObject(Errors));
+            Assert.True(IsSuccessful, $"The Request isn't passed. Response:{JsonConvert.SerializeObject(Errors)}");
+        }
+
+        public void VerifyResponseData()
+        {
+            ExtendedAssert.AreEqual(HttpStatusCode.OK, StatusCode, nameof(StatusCode));
         }
     }
 }

@@ -13,5 +13,9 @@ namespace AutoTests.AutomationFramework.API.Models
         TData OkResponseData { get; set; }
 
         TErrors Errors { get; set; }
+
+        void CheckSuccessfulResponse();
+
+        void VerifyResponseData();
     }
 }

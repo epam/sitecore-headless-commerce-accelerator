@@ -1,4 +1,4 @@
-﻿namespace AutoTests.HCA.Core.Common.Settings.Product
+﻿namespace AutoTests.HCA.Core.Common.Settings.Products
 {
     public enum HcaProductStatus
     {

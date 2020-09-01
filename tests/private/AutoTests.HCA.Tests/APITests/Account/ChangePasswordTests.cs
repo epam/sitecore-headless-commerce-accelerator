@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
@@ -11,94 +10,41 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [TestFixture(Description = "Change Password Tests.")]
     public class ChangePasswordTests : BaseAccountTest
     {
-        public static CreateAccountRequest NewUser =>
-            new CreateAccountRequest(GetRandomEmail(), "FirstName123", "LastName123",
-            "123456");
+        public CreateAccountRequest NewUser;
 
-        private static IEnumerable<TestCaseData> T3_PUTPasswordTest_InvalidPasswordModel_TestCaseData()
+        [SetUp]
+        public new void SetUp()
         {
-            var user = NewUser;
-            yield return new TestCaseData(user, null, null, null, new List<string>
-            {
-                "The Email field is required.",
-                "The NewPassword field is required.", "The OldPassword field is required."
-            });
-            yield return new TestCaseData(user, "InvalidEmail", null, null, new List<string>
-            {
-                "The Email field is not a valid e-mail address.",
-                "The NewPassword field is required.", "The OldPassword field is required."
-            });
-            yield return new TestCaseData(user, user.Email, null, null, new List<string>
-                {
-                    "The NewPassword field is required.",
-                    "The OldPassword field is required."
-                });
+            NewUser = new CreateAccountRequest(GetRandomEmail(), "FirstName123", "LastName123", "123456");
+            HcaService.CreateUserAccount(NewUser).CheckSuccessfulResponse();
+            HcaService.Login(new LoginRequest(NewUser.Email, NewUser.Password)).CheckSuccessfulResponse();
         }
 
         [Test]
         public void T1_PUTPasswordTest_NewPassword_SuccessfulResult()
         {
             // Arrange
-            var newUser = NewUser;
             var newPasswordModel = new ChangePasswordRequest()
             {
-                Email = newUser.Email,
+                Email = NewUser.Email,
                 NewPassword = "MyNewPassword",
-                OldPassword = newUser.Password
+                OldPassword = NewUser.Password
             };
 
-            // Act
-            HcaService.CreateUserAccount(newUser);
-            HcaService.Login(new LoginRequest(newUser.Email, newUser.Password));
-            var changePasswordResponse = HcaService.ChangePassword(newPasswordModel);
-            HcaService.Logout();
-            var loginResponse = HcaService.Login(new LoginRequest(newPasswordModel.Email, newPasswordModel.NewPassword));
-
-            // Assert
-            Assert.True(changePasswordResponse.IsSuccessful, "The 'Accounts/password' POST request isn't passed.");
-            Assert.True(loginResponse.IsSuccessful, "Login error after changing password.");
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.OK, changePasswordResponse.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, changePasswordResponse.OkResponseData.Status);
-                Assert.AreEqual(HcaStatus.Ok, loginResponse.OkResponseData.Status);
-            });
+            // Act, Assert
+            HcaService.ChangePassword(newPasswordModel).CheckSuccessfulResponse();
+            HcaService.Logout().CheckSuccessfulResponse();
+            HcaService.Login(new LoginRequest(newPasswordModel.Email, newPasswordModel.NewPassword)).CheckSuccessfulResponse();
         }
 
-        [TestCase(null, "The OldPassword field is required.")]
-        [TestCase("123", "Incorrect old password.")]
-        public void T2_PUTPasswordTest_InvalidOldPassword_BadRequest(string oldPassword, string expMessage)
+        [TestCase(null, null, new[] { "The NewPassword field is required.", "The OldPassword field is required." })]
+        [TestCase("111","qaz1", new[] { "Incorrect old password." })]
+        public void T2_PUTPasswordTest_InvalidOldOrNewPassword_BadRequest(string newPassword, string oldPassword,  string[] expMessages)
         {
             // Arrange
-            var newUser = NewUser;
-            var newPasswordModel = new ChangePasswordRequest(newUser.Email, oldPassword, "MyNewPassword");
+            var newPasswordModel = new ChangePasswordRequest(NewUser.Email, oldPassword, newPassword);
 
             // Act
-            HcaService.CreateUserAccount(newUser);
-            HcaService.Login(new LoginRequest(newUser.Email, newUser.Password));
-            var response = HcaService.ChangePassword(newPasswordModel);
-
-            // Assert
-            Assert.False(response.IsSuccessful, "The bad 'Accounts/password' POST request is passed.");
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HcaStatus.Error, response.Errors.Status);
-                Assert.AreEqual(expMessage, response.Errors.Error,
-                    $"Expected {nameof(response.Errors.Error)} text: {expMessage}. Actual:{response.Errors.Error}");
-                Assert.True(response.Errors.Errors.All(x => x == expMessage));
-            });
-        }
-
-        [TestCaseSource(nameof(T3_PUTPasswordTest_InvalidPasswordModel_TestCaseData))]
-        public void T3_PUTPasswordTest_InvalidPasswordModel_BadRequest(CreateAccountRequest account, string email,
-            string oldPassword, string newPassword, IEnumerable<string> expMessages)
-        {
-            // Arrange
-            var newPasswordModel = new ChangePasswordRequest(email, oldPassword, newPassword);
-
-            // Act
-            HcaService.CreateUserAccount(account);
-            HcaService.Login(new LoginRequest(account.Email, account.Password));
             var response = HcaService.ChangePassword(newPasswordModel);
 
             // Assert
@@ -113,6 +59,27 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 if (expMessages.Count() == 1) Assert.That(dataResult.Errors.All(x => x == expMessages.First()));
                 else Assert.That(!expMessages.Except(dataResult.Errors).Any(),
                     "The error list does not contain all validation errors");
+            });
+        }
+
+        [TestCase(null,"The Email field is required.")]
+        [TestCase("InvalidEmail", "The Email field is not a valid e-mail address.")]
+        public void T3_PUTPasswordTest_InvalidEmail_BadRequest(string email, string expMessage)
+        {
+            // Arrange
+            var newPasswordModel = new ChangePasswordRequest(email, "a", "a");
+
+            // Act
+            var response = HcaService.ChangePassword(newPasswordModel);
+
+            // Assert
+            Assert.False(response.IsSuccessful, "The bad 'Accounts/password' POST request is passed.");
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(HcaStatus.Error, response.Errors.Status);
+                Assert.AreEqual(expMessage, response.Errors.Error,
+                    $"Expected {nameof(response.Errors.Error)} text: {expMessage}. Actual:{response.Errors.Error}");
+                Assert.True(response.Errors.Errors.All(x => x == expMessage));
             });
         }
     }

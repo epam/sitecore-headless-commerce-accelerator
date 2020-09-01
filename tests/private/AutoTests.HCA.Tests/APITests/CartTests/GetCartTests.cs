@@ -1,7 +1,4 @@
-﻿using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
-using AutoTests.HCA.Core.Common.Settings.Users;
+﻿using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.CartTests
@@ -29,10 +26,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             Assert.True(result.IsSuccessful, "The GET Cart request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, result.StatusCode, nameof(result.StatusCode));
-                ExtendedAssert.NotNull(result.OkResponseData, nameof(result.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status, nameof(result.OkResponseData.Status));
-
+                result.VerifyResponseData();
                 VerifyCartResponse("GET Cart", ProductsCollection, result.OkResponseData.Data);
             });
         }

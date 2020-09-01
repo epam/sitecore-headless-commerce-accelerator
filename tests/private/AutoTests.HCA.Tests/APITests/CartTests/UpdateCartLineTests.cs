@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
@@ -35,10 +32,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             Assert.True(updateResult.IsSuccessful, "The PUTCartLinesRequest request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, updateResult.StatusCode, nameof(updateResult.StatusCode));
-                ExtendedAssert.NotNull(updateResult.OkResponseData, nameof(updateResult.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, updateResult.OkResponseData.Status, nameof(updateResult.OkResponseData.Status));
-
+                updateResult.VerifyResponseData();
                 VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> { UpdatedProduct }, updateResult.OkResponseData.Data);
             });
 
@@ -57,14 +51,10 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             Assert.Multiple(() =>
             {
                 // UpdateRequestResult
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, updateResult.StatusCode, nameof(updateResult.StatusCode));
-                ExtendedAssert.NotNull(updateResult.OkResponseData, nameof(updateResult.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, updateResult.OkResponseData.Status, nameof(updateResult.OkResponseData.Status));
+                updateResult.VerifyResponseData();
 
                 // GetCartAfterUpdateResult
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, getCartAfterUpdate.StatusCode, nameof(getCartAfterUpdate.StatusCode));
-                ExtendedAssert.NotNull(getCartAfterUpdate.OkResponseData, nameof(getCartAfterUpdate.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, getCartAfterUpdate.OkResponseData.Status, nameof(getCartAfterUpdate.OkResponseData.Status));
+                getCartAfterUpdate.VerifyResponseData();
 
                 VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> { UpdatedProduct }, getCartAfterUpdate.OkResponseData.Data);
             });

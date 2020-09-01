@@ -65,9 +65,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(updateResult.IsSuccessful, "The PUTAddressRequest request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, updateResult.StatusCode, nameof(updateResult.StatusCode));
-                ExtendedAssert.NotNull(updateResult.OkResponseData, nameof(updateResult.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, updateResult.OkResponseData.Status, nameof(updateResult.OkResponseData.Status));
+                updateResult.VerifyResponseData();
 
                 VerifyAddressResponse(new List<Address> { prodForUpdate }, updateResult.OkResponseData.Data);
             });
@@ -102,14 +100,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Assert.True(getResult.IsSuccessful, "The PUTAddressRequest request isn't passed.");
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, updateResult.StatusCode, nameof(updateResult.StatusCode));
-                ExtendedAssert.NotNull(updateResult.OkResponseData, nameof(updateResult.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, updateResult.OkResponseData.Status, nameof(updateResult.OkResponseData.Status));
-
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, getResult.StatusCode, nameof(getResult.StatusCode));
-                ExtendedAssert.NotNull(getResult.OkResponseData, nameof(getResult.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, getResult.OkResponseData.Status, nameof(getResult.OkResponseData.Status));
-
+                updateResult.VerifyResponseData();
+                getResult.VerifyResponseData();
 
                 VerifyAddressResponse(new List<Address> { prodForUpdate }, getResult.OkResponseData.Data);
             });

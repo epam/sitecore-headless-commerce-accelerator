@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
@@ -11,12 +13,12 @@ namespace AutoTests.AutomationFramework.Shared.Extensions
             Assert.That(actual, Is.EqualTo(expected), $"The current {objName} does not correspond to the expected.");
         }
 
-        public static void IsEmpty(IEnumerable collection, string objName)
+        public static void Empty(IEnumerable collection, string objName)
         {
             Assert.That(collection, new EmptyCollectionConstraint(), $"{objName} must be empty.");
         }
 
-        public static void IsNotEmpty(IEnumerable collection, string objName)
+        public static void NotEmpty(IEnumerable collection, string objName)
         {
             Assert.That(collection, Is.Not.Empty, $"{objName} can't be empty.");
         }
@@ -31,9 +33,24 @@ namespace AutoTests.AutomationFramework.Shared.Extensions
             Assert.That(anObject, Is.Not.Null, $"{objName} can't be null.");
         }
 
+        public static void NotNullOrEmpty<T>(IEnumerable<T> anObjects, string objsName)
+        {
+            Assert.That(anObjects != null && anObjects.Any(), $"{objsName} can't be null or empty.");
+        }
+
+        public static void NullOrEmpty<T>(IEnumerable<T> anObjects, string objsName)
+        {
+            Assert.That(anObjects == null || !anObjects.Any(), $"{objsName} should be null or empty.");
+        }
+
         public static void NotNullOrWhiteSpace(string text, string objName)
         {
             Assert.That(!string.IsNullOrWhiteSpace(text), $"{objName} can't be null or white space.");
+        }
+
+        public static void NullOrWhiteSpace(string text, string objName)
+        {
+            Assert.That(string.IsNullOrWhiteSpace(text), $"{objName} should be null or white space.");
         }
     }
 }

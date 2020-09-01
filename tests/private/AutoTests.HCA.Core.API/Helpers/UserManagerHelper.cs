@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
+using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
 using AutoTests.HCA.Core.API.Services.HcaService;
 using AutoTests.HCA.Core.Common.Settings.Users;
 
@@ -10,7 +11,7 @@ namespace AutoTests.HCA.Core.API.Helpers
     {
         private readonly IHcaApiService _hcaApiService;
 
-        public UserManagerHelper(HcaUser user, IHcaApiService hcaApiService)
+        public UserManagerHelper(HcaUserTestsDataSettings user, IHcaApiService hcaApiService)
         {
             if (user == null || hcaApiService == null)
                 throw new ArgumentNullException($"{nameof(hcaApiService)} or {nameof(user)} can't be NULL.");
@@ -31,6 +32,22 @@ namespace AutoTests.HCA.Core.API.Helpers
             if (cartIsNotEmpty.HasValue && cartIsNotEmpty.Value)
                 foreach (var cartLine in res.OkResponseData.Data.CartLines)
                     _hcaApiService.RemoveCartLine(cartLine.Product.ProductId, cartLine.Variant.VariantId);
+        }
+
+        public void CleanPromotions()
+        {
+            var res = _hcaApiService.GetCart();
+
+            //TODO did the request pass
+
+            var adjustmentsNotNull = res?.OkResponseData?.Data?.Adjustments?.Any();
+
+            if (!adjustmentsNotNull.HasValue || !adjustmentsNotNull.Value) return;
+
+            foreach (var promotion in res.OkResponseData.Data.Adjustments)
+            {
+                _hcaApiService.RemovePromoCode(new PromoCodeRequest(promotion));
+            }
         }
 
         public void CleanAddresses()

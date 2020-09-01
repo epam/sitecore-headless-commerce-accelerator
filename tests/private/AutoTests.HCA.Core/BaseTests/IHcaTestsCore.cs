@@ -9,7 +9,7 @@ namespace AutoTests.HCA.Core.BaseTests
     {
         HcaApiService CreateHcaApiClient();
 
-        UserManagerHelper CreateUserManagerHelper(HcaUser user, IHcaApiService hcaApiService = null);
+        UserManagerHelper CreateUserManagerHelper(HcaUserTestsDataSettings user, IHcaApiService hcaApiService = null);
 
         BraintreeApiService CreateBraintreeClient();
     }

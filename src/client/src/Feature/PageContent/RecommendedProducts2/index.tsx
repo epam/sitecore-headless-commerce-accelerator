@@ -63,7 +63,7 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
           {productsMockData &&
             productsMockData.map((item, index) => (
               <figure key={index} className="swiper-slide item">
-                <div className="image-wrap-2 bg-gray">
+                <div className="image-wrap-2">
                   <div className="product-img-badges">
                     {item.isNew && <span className="purple">New</span>}
                     {item.discount && <span className="pink">{`${item.discount * 100}%`}</span>}

@@ -18,6 +18,7 @@ import * as Checkout from 'Feature/Checkout';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
 import * as StoreLocator from 'Feature/StoreLocator';
+import * as StoreLocator2 from 'Feature/StoreLocator2';
 import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
 
 const components = new Map<string, any>();
@@ -27,6 +28,7 @@ const components = new Map<string, any>();
 
 // Store Locator
 components.set('Store Locator', StoreLocator.StoreLocator);
+components.set('Store Locator 2', StoreLocator2.StoreLocator);
 
 // Page Scaffolding
 components.set('One Column', Scaffolding.OneColumn);

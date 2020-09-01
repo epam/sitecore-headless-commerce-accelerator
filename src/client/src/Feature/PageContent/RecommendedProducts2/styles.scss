@@ -131,6 +131,7 @@
             align-items: center;
             overflow: hidden;
             margin: 0 8px;
+            border: 1px solid $recommended-product-border-color;
             &:hover .product-action {
                 transform: scaleX(1);
             }
@@ -165,7 +166,7 @@
                     border: none;
                     border-radius: 50px;
                     background: none;
-                    background-color: #a749ff;
+                    background-color: $theme-color;
                 }
             }
             // .product-action:hover {

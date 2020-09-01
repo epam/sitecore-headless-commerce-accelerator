@@ -55,11 +55,9 @@
       line-height: 24px;
       border-radius: 50%;
       color: #000;
-      background: $second-color;
-  
+      background: none;
       &:hover {
-        color: #000;
-        background: #fff;
+        color: $theme-color;
       }
     }
   }

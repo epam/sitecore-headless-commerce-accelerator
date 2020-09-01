@@ -35,9 +35,6 @@ class BannerGridComponent extends JSS.SafePureComponent<BannerGridProps, BannerG
     const { rendering } = this.props;
     return (
       <section className="hero-home-wrap">
-        <div className="section-title text-center mb-55 ">
-          <h2>OUR BANNERS</h2>
-        </div>
         <div className="banners-row row">
           {bannerNames.map((item, index) => (
             <div className="col-xl-3 col-md-6 col-lg-4 col-sm-6 banner-item" key={index}>

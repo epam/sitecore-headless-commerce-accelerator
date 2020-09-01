@@ -16,6 +16,10 @@
 @import "Foundation/UI/common/scss/mixins";
 .footer-copyright-container {
   .footer-copyright {
+    &_logo {
+      margin-top: 5px;
+      margin-bottom: 12px;
+    }
     font-family: $poppins;
     margin: 0;
     padding-bottom: 30px;
@@ -25,7 +29,7 @@
     max-width: 188px;
     color: $footer-title-color;
     letter-spacing: 0.9px;
-    line-height: 2.2;
+    line-height: 24px;
   }
 }
 

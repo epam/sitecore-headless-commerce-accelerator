@@ -3,7 +3,7 @@
     "Users": [
       {
         "role": "Guest",
-        "Default": true ,
+        "Default": true,
         "credentials": {
           "Email": "",
           "Password": ""
@@ -104,7 +104,7 @@
     },
     "Promotions": [
       {
-        "Default": true, 
+        "Default": true,
         "IsIncluded": true,
         "IsExclusive": false,
         "Name": "Cart10OffCouponPromotion",

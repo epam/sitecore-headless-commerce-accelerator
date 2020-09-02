@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using NUnit.Framework;
 
@@ -27,12 +24,13 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed.");
+            response.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                response.VerifyResponseData();
+                response.VerifyOkResponseData();
+
                 var data = response.OkResponseData.Data;
-                var expPageCount = (int)Math.Ceiling(data.TotalItemCount / (double)pageSize);
+                var expPageCount = (int) Math.Ceiling(data.TotalItemCount / (double) pageSize);
                 Assert.NotNull(data, $"Invalid {nameof(response.OkResponseData.Data)}. Expected: NotNull.");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull.");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull.");
@@ -46,11 +44,15 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             });
         }
 
-        [TestCase(-1, 1, new[] { "The field PageSize must be between 1 and 2147483647." })]
-        [TestCase(1, -1, new[] { "The field PageNumber must be between 0 and 2147483647." })]
-        [TestCase(-1, -1, new[] {"The field PageNumber must be between 0 and 2147483647.",
-                "The field PageSize must be between 1 and 2147483647."}, Description = "Get 200 products from 3 page")]
-        public void T2_GETProductRequest_InvalidParams_BadRequest(int pageSize, int pageNumber, IEnumerable<string> expMessage)
+        [TestCase(-1, 1, new[] {"The field PageSize must be between 1 and 2147483647."})]
+        [TestCase(1, -1, new[] {"The field PageNumber must be between 0 and 2147483647."})]
+        [TestCase(-1, -1, new[]
+        {
+            "The field PageNumber must be between 0 and 2147483647.",
+            "The field PageSize must be between 1 and 2147483647."
+        }, Description = "Get 200 products from 3 page")]
+        public void T2_GETProductRequest_InvalidParams_BadRequest(int pageSize, int pageNumber,
+            IEnumerable<string> expMessages)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -63,17 +65,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The GetProducts POST request is passed.");
-            var dataResult = response.Errors;
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expMessage.First(), dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expMessage}. Actual:{dataResult.Error}.");
-                Assert.That(expMessage.All(x => dataResult.Errors.Contains(x)),
-                    "The error list does not contain all validation errors");
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expMessages); });
         }
     }
 }

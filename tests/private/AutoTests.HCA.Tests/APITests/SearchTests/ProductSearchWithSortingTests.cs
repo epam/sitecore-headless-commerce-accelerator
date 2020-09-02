@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Catalog;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using NUnit.Framework;
@@ -19,7 +17,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
 
         [Test(Description = "Find products and ORDER(asc/desc) by default field(BRAND).")]
         public void T1_GETProductRequest_SortType_CorrectList(
-            [Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection)
+            [Values(SortDirection.Asc, SortDirection.Desc)]
+            SortDirection sortDirection)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -32,13 +31,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
-                Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
+                response.VerifyOkResponseData();
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
                 Assert.IsNotEmpty(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotEmpty");
@@ -66,25 +63,15 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
-            var errorResponse = response.Errors;
-            Assert.False(response.IsSuccessful, "The GetProducts POST request is passed");
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-                Assert.AreEqual(expMessage, errorResponse.Error,
-                    $"Expected {nameof(errorResponse.Error)} text: {expMessage}. Actual:{errorResponse.Error}.");
-                Assert.That(errorResponse.Errors.Count == 1 && errorResponse.Errors.All(x => x == expMessage),
-                    "The error list does not contain all validation errors");
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expMessage); });
         }
 
         [Test(Description = "Find products and ORDER result by SORT FIELD.")]
         [Pairwise]
         public void T3_GETProductRequest_SortField_CorrectList(
-            [ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
+            [ValueSource(nameof(SortingFieldsTestData))]
+            (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;
@@ -98,13 +85,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
-                Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
+                response.VerifyOkResponseData();
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
                 Assert.IsNotEmpty(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotEmpty");
@@ -131,26 +116,17 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
-            var errorResponse = response.Errors;
-            Assert.False(response.IsSuccessful, "The invalid GetProducts POST request is passed");
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-                Assert.AreEqual(expMessage, errorResponse.Error,
-                    $"Expected {nameof(errorResponse.Error)} text: {expMessage}. Actual:{errorResponse.Error}.");
-                Assert.That(errorResponse.Errors.Count == 1 && errorResponse.Errors.All(x => x == expMessage),
-                    "The error list doesn't contain all validation errors");
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expMessage); });
         }
 
         [Test(Description = "Find products and ORDER(asc/desc) result by SORT FIELD.")]
         [Pairwise]
         public void T5_GETProductRequest_SortTypeAndSortField_CorrectList(
-            [Values(SortDirection.Asc, SortDirection.Desc)] SortDirection sortDirection, 
-            [ValueSource(nameof(SortingFieldsTestData))] (string, Func<Product, object>) sortField)
+            [Values(SortDirection.Asc, SortDirection.Desc)]
+            SortDirection sortDirection,
+            [ValueSource(nameof(SortingFieldsTestData))]
+            (string, Func<Product, object>) sortField)
         {
             // Arrange
             var (nameField, field) = sortField;
@@ -165,13 +141,12 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request isn't passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
-                Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
+                response.VerifyOkResponseData();
+
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
                 Assert.IsNotEmpty(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotEmpty");

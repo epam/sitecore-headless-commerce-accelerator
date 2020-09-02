@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
 using NUnit.Framework;
 
@@ -11,8 +8,6 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [TestFixture(Description = "Remove address for user api tests.")]
     public class RemoveAddressTests : BaseAccountTest
     {
-        public List<Address> AddressesWithExternalIds;
-
         [SetUp]
         public new void SetUp()
         {
@@ -23,10 +18,12 @@ namespace AutoTests.HCA.Tests.APITests.Account
             foreach (var address in AddressesCollection)
             {
                 var res = HcaService.AddAddress(address);
-                Assert.True(res.IsSuccessful, "Can't add new address.");
+                res.CheckSuccessfulResponse();
                 AddressesWithExternalIds.AddRange(res.OkResponseData.Data);
             }
         }
+
+        public List<Address> AddressesWithExternalIds;
 
         [Test(Description = "A test that checks the server's response after delete the user's address.")]
         public void T1_DELETEAddressesRequest_ExternalId_VerifyResponse()
@@ -35,13 +32,10 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The DELETE Addresses request isn't passed.");
+            result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, result.StatusCode, nameof(result.StatusCode));
-                ExtendedAssert.NotNull(result.OkResponseData, nameof(result.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status, nameof(result.OkResponseData.Status));
-
+                result.VerifyOkResponseData();
                 VerifyAddressResponse(AddressesWithExternalIds.Skip(1), result.OkResponseData.Data);
             });
         }
@@ -52,14 +46,14 @@ namespace AutoTests.HCA.Tests.APITests.Account
             // Arrange, Act
             var removeAddressResult = HcaService.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
             var getAddressesResult = HcaService.GetAddresses();
-            
+
             // Assert
-            Assert.True(removeAddressResult.IsSuccessful, "The DELETE Addresses request isn't passed.");
-            Assert.True(getAddressesResult.IsSuccessful, "The GET Addresses request isn't passed.");
+            removeAddressResult.CheckSuccessfulResponse();
+            getAddressesResult.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                removeAddressResult.VerifyResponseData();
-                getAddressesResult.VerifyResponseData();
+                removeAddressResult.VerifyOkResponseData();
+                getAddressesResult.VerifyOkResponseData();
 
                 VerifyAddressResponse(AddressesWithExternalIds.Skip(1), getAddressesResult.OkResponseData.Data);
             });

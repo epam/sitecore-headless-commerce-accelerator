@@ -1,7 +1,6 @@
 ﻿using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
-using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI;
 using NUnit.Framework;
 

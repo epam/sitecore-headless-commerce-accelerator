@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
 using NUnit.Framework;
 
@@ -55,22 +52,24 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var response = HcaService.CreateUserAccount(newUser);
 
             // Assert
-            Assert.True(response.IsSuccessful, "The 'Accounts/account' POST request isn't passed.");
+            response.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
+
                 Assert.AreEqual(email, response.OkResponseData.Data.Email);
                 Assert.AreEqual(newUser.FirstName, response.OkResponseData.Data.FirstName);
                 Assert.AreEqual(newUser.LastName, response.OkResponseData.Data.LastName);
-                Assert.True(HcaService.ValidateEmail(new ValidateEmailRequest { Email = email }).OkResponseData.Data.InUse,
+                Assert.True(
+                    HcaService.ValidateEmail(new ValidateEmailRequest {Email = email}).OkResponseData.Data.InUse,
                     $"User {email} wasn't registered");
             });
         }
 
         [Test(Description = "Create account with invalid user parameters.")]
         [TestCaseSource(nameof(T2_POSTAccountRequest_InvalidUser_TestCaseData))]
-        public void T2_POSTAccountRequest_InvalidUser_BadResult(string email, string firstName, string lastName, string password,
+        public void T2_POSTAccountRequest_InvalidUser_BadResult(string email, string firstName, string lastName,
+            string password,
             IEnumerable<string> expMessages)
         {
             // Arrange
@@ -86,18 +85,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var response = HcaService.CreateUserAccount(user);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad 'accounts/account' POST request is passed.");
-            var dataResult = response.Errors;
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expMessages.First(), dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expMessages}. Actual:{dataResult.Error}");
-                if (expMessages.Count() == 1) Assert.That(dataResult.Errors.All(x => x == expMessages.First()));
-                else Assert.That(!expMessages.Except(dataResult.Errors).Any(),
-                    "The error list does not contain all validation errors");
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expMessages); });
         }
     }
 }

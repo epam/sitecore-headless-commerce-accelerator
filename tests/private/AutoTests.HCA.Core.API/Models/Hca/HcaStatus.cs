@@ -1,8 +1,11 @@
-﻿namespace AutoTests.HCA.Core.API.Models.Hca
+﻿using System.Runtime.Serialization;
+
+namespace AutoTests.HCA.Core.API.Models.Hca
 {
-    public class HcaStatus
+    public enum HcaStatus
     {
-        public const string Ok = "ok";
-        public const string Error = "error";
+        NotSet,
+        [DataMember(Name = "ok")] Ok,
+        [DataMember(Name = "error")] Error
     }
 }

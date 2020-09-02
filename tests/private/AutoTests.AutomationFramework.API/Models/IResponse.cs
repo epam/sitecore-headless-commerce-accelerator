@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 
 namespace AutoTests.AutomationFramework.API.Models
 {
@@ -6,6 +7,8 @@ namespace AutoTests.AutomationFramework.API.Models
         where TData : class
         where TErrors : class
     {
+        RequestInfo RequestInfo { get; set; }
+
         bool IsSuccessful { get; set; }
 
         HttpStatusCode StatusCode { get; set; }
@@ -16,6 +19,12 @@ namespace AutoTests.AutomationFramework.API.Models
 
         void CheckSuccessfulResponse();
 
-        void VerifyResponseData();
+        void CheckUnSuccessfulResponse();
+
+        void VerifyOkResponseData();
+
+        void VerifyErrors(string message, HttpStatusCode code = HttpStatusCode.BadRequest);
+
+        void VerifyErrors(IEnumerable<string> messages, HttpStatusCode code = HttpStatusCode.BadRequest);
     }
 }

@@ -9,11 +9,6 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
 {
     public class RemovePromotionTests : BaseCartApiTest
     {
-        public RemovePromotionTests(HcaUserRole userRole) : base(userRole) { }
-
-        protected readonly HcaPromotionTestsDataSettings DefPromotion =
-            TestsData.GetPromotion(HcaPromotionName.Cart15PctOffCouponPromotion);
-
         [SetUp]
         public new void SetUp()
         {
@@ -22,6 +17,13 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             UserManager.CleanPromotions();
             HcaService.AddPromoCode(new PromoCodeRequest(DefPromotion.Code));
         }
+
+        public RemovePromotionTests(HcaUserRole userRole) : base(userRole)
+        {
+        }
+
+        protected readonly HcaPromotionTestsDataSettings DefPromotion =
+            TestsData.GetPromotion(HcaPromotionName.Cart15PctOffCouponPromotion);
 
         [Test(Description = "Checks if a coupon can be deleted.")]
         public void T1_DELETEPromoCodesRequest_ValidPromoCode_Successful()
@@ -37,10 +39,11 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
 
             Assert.Multiple(() =>
             {
-                response.VerifyResponseData();
+                response.VerifyOkResponseData();
 
                 // Adjustments
-                ExtendedAssert.NullOrEmpty(response.OkResponseData.Data.Adjustments, nameof(response.OkResponseData.Data.Adjustments));
+                ExtendedAssert.NullOrEmpty(response.OkResponseData.Data.Adjustments,
+                    nameof(response.OkResponseData.Data.Adjustments));
 
                 // Price
                 VerifyPrice(response.OkResponseData.Data.Price, null);
@@ -66,13 +69,14 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
 
             Assert.Multiple(() =>
             {
-                response.VerifyResponseData();
+                response.VerifyOkResponseData();
 
                 // Adjustments
-                VerifyAdjustments(response.OkResponseData.Data.Adjustments, new List<HcaPromotionTestsDataSettings> { DefPromotion });
+                VerifyAdjustments(response.OkResponseData.Data.Adjustments,
+                    new List<HcaPromotionTestsDataSettings> {DefPromotion});
 
                 // Price
-                VerifyPrice(response.OkResponseData.Data.Price, new List<HcaDiscount> { DefPromotion.Discount });
+                VerifyPrice(response.OkResponseData.Data.Price, new List<HcaDiscount> {DefPromotion.Discount});
             });
         }
     }

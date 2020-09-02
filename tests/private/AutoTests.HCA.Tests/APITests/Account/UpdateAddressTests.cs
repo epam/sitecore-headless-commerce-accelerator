@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
 using NUnit.Framework;
 
@@ -12,6 +9,17 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [TestFixture(Description = "Update address for user api tests.")]
     public class UpdateAddressTests : BaseAccountTest
     {
+        [SetUp]
+        public new void SetUp()
+        {
+            var user = TestsData.GetUser();
+            UserManager = TestsHelper.CreateUserManagerHelper(user, HcaService);
+            UserManager.CleanAddresses();
+            var res = HcaService.AddAddress(ProductForUpdate);
+            Assert.True(res.IsSuccessful, "Can't add new address.");
+            ProductForUpdate = res.OkResponseData.Data.First();
+        }
+
         protected static Address ProductForUpdate = new Address
         {
             FirstName = StringHelpers.RandomString(10),
@@ -24,18 +32,43 @@ namespace AutoTests.HCA.Tests.APITests.Account
             CountryCode = "US",
             State = "AL",
             ZipPostalCode = "2335",
-            IsPrimary = true,
+            IsPrimary = true
         };
 
-        [SetUp]
-        public new void SetUp()
+        [Test(Description = "A test that checks the server's response after updating the address.")]
+        public void T1_PUTAddressRequest_ValidProduct_ProductHasBeenUpdated()
         {
-            var user = TestsData.GetUser();
-            UserManager = TestsHelper.CreateUserManagerHelper(user, HcaService);
-            UserManager.CleanAddresses();
-            var res = HcaService.AddAddress(ProductForUpdate);
-            Assert.True(res.IsSuccessful, "Can't add new address.");
-            ProductForUpdate = res.OkResponseData.Data.First();
+            // Arrange
+            var prodForUpdate = new Address
+            {
+                ExternalId = ProductForUpdate.ExternalId,
+                Name = ProductForUpdate.Name,
+                FirstName = StringHelpers.RandomString(10),
+                LastName = StringHelpers.RandomString(10),
+                Address1 = StringHelpers.GetRandomAddressString(),
+                Address2 = StringHelpers.GetRandomAddressString(),
+                City = StringHelpers.RandomString(10),
+                Country = "United States",
+                CountryCode = "US",
+                State = "AL",
+                ZipPostalCode = "2335",
+                IsPrimary = true
+            };
+
+            // Act
+            var updateResult = HcaService.UpdateAddress(prodForUpdate);
+            var getResult = HcaService.GetAddresses();
+
+            // Assert
+            updateResult.CheckSuccessfulResponse();
+            getResult.CheckSuccessfulResponse();
+            Assert.Multiple(() =>
+            {
+                updateResult.VerifyOkResponseData();
+                getResult.VerifyOkResponseData();
+
+                VerifyAddressResponse(new List<Address> {prodForUpdate}, getResult.OkResponseData.Data);
+            });
         }
 
         [Test(Description = "A test that checks the server's response after updating the address.")]
@@ -55,55 +88,19 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 CountryCode = "US",
                 State = "AL",
                 ZipPostalCode = "2335",
-                IsPrimary = true,
+                IsPrimary = true
             };
 
             // Act
             var updateResult = HcaService.UpdateAddress(prodForUpdate);
 
             // Assert
-            Assert.True(updateResult.IsSuccessful, "The PUTAddressRequest request isn't passed.");
+            updateResult.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                updateResult.VerifyResponseData();
+                updateResult.VerifyOkResponseData();
 
-                VerifyAddressResponse(new List<Address> { prodForUpdate }, updateResult.OkResponseData.Data);
-            });
-        }
-
-        [Test(Description = "A test that checks the server's response after updating the address.")]
-        public void T1_PUTAddressRequest_ValidProduct_ProductHasBeenUpdated()
-        {
-            // Arrange
-            var prodForUpdate = new Address
-            {
-                ExternalId = ProductForUpdate.ExternalId,
-                Name = ProductForUpdate.Name,
-                FirstName = StringHelpers.RandomString(10),
-                LastName = StringHelpers.RandomString(10),
-                Address1 = StringHelpers.GetRandomAddressString(),
-                Address2 = StringHelpers.GetRandomAddressString(),
-                City = StringHelpers.RandomString(10),
-                Country = "United States",
-                CountryCode = "US",
-                State = "AL",
-                ZipPostalCode = "2335",
-                IsPrimary = true,
-            };
-
-            // Act
-            var updateResult = HcaService.UpdateAddress(prodForUpdate);
-            var getResult = HcaService.GetAddresses();
-
-            // Assert
-            Assert.True(updateResult.IsSuccessful, "The PUTAddressRequest request isn't passed.");
-            Assert.True(getResult.IsSuccessful, "The PUTAddressRequest request isn't passed.");
-            Assert.Multiple(() =>
-            {
-                updateResult.VerifyResponseData();
-                getResult.VerifyResponseData();
-
-                VerifyAddressResponse(new List<Address> { prodForUpdate }, getResult.OkResponseData.Data);
+                VerifyAddressResponse(new List<Address> {prodForUpdate}, updateResult.OkResponseData.Data);
             });
         }
     }

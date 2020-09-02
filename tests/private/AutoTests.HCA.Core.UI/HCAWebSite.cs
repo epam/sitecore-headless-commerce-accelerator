@@ -61,9 +61,11 @@ namespace AutoTests.HCA.Core.UI
             HideUserMenu();
         }
 
-        public void OpenHcaAndLogin(UserLogin userLogin) => 
+        public void OpenHcaAndLogin(UserLogin userLogin)
+        {
             OpenHcaAndLogin(userLogin.Email, userLogin.Password);
-        
+        }
+
 
         //ToDo create address structure
         public string AddNewAddressForLoggedUser()
@@ -154,10 +156,7 @@ namespace AutoTests.HCA.Core.UI
 
         public void AddProductsToCartFromTestData(IEnumerable<ProductTestsDataSettings> products)
         {
-            foreach (var product in products)
-            {
-                AddProductToCart(product.ProductId);
-            }
+            foreach (var product in products) AddProductToCart(product.ProductId);
         }
 
         public void AddProductAndGoToCheckoutShippingPage(string productId)

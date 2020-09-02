@@ -5,15 +5,14 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 {
     public class GetCartTests : BaseCartApiTest
     {
-        public GetCartTests(HcaUserRole userRole) : base(userRole) { }
-
         [SetUp]
         public new void SetUp()
         {
-            foreach (var product in ProductsCollection)
-            {
-                HcaService.AddCartLines(product);
-            }
+            foreach (var product in ProductsCollection) HcaService.AddCartLines(product);
+        }
+
+        public GetCartTests(HcaUserRole userRole) : base(userRole)
+        {
         }
 
         [Test(Description = "The test checks the state of the cart.")]
@@ -23,10 +22,10 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var result = HcaService.GetCart();
 
             // Assert
-            Assert.True(result.IsSuccessful, "The GET Cart request isn't passed.");
+            result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                result.VerifyResponseData();
+                result.VerifyOkResponseData();
                 VerifyCartResponse("GET Cart", ProductsCollection, result.OkResponseData.Data);
             });
         }

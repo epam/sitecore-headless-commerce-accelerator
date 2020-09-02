@@ -16,13 +16,12 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [ApiTest]
     public class BaseAccountTest : BaseHcaApiTest
     {
+        public const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
         protected static readonly UserLogin DefUser = TestsData.GetUser().Credentials;
+        protected readonly IEnumerable<Address> AddressesCollection;
 
         protected IHcaApiService HcaService;
         protected UserManagerHelper UserManager;
-        protected readonly IEnumerable<Address> AddressesCollection;
-
-        public const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
 
         public BaseAccountTest()
         {
@@ -40,7 +39,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                     CountryCode = "US",
                     State = "AL",
                     ZipPostalCode = "2335",
-                    IsPrimary = false,
+                    IsPrimary = false
                 },
                 new Address
                 {
@@ -54,7 +53,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                     CountryCode = "US",
                     State = "AL",
                     ZipPostalCode = "2335",
-                    IsPrimary = true,
+                    IsPrimary = true
                 }
             };
         }
@@ -70,11 +69,12 @@ namespace AutoTests.HCA.Tests.APITests.Account
             return $"{StringHelpers.RandomString(10)}@autotests.com";
         }
 
-        protected void VerifyAddressResponse(IEnumerable<Address> expectedAddresses, IEnumerable<Address> actualAddresses,
+        protected void VerifyAddressResponse(IEnumerable<Address> expectedAddresses,
+            IEnumerable<Address> actualAddresses,
             bool isNewAddress = false)
         {
             // Data
-            Assert.NotNull(actualAddresses, $"The response should contain information about user addresses.");
+            Assert.NotNull(actualAddresses, "The response should contain information about user addresses.");
 
             if (expectedAddresses.Any())
             {
@@ -93,7 +93,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
                         if (isNewAddress)
                         {
                             expAddress = expectedAddresses.FirstOrDefault(x => x.Email == address.Email) ??
-                                             throw new Exception($"the list of addresses must not contain email='{address.Email}'");
+                                         throw new Exception(
+                                             $"the list of addresses must not contain email='{address.Email}'");
                             ExtendedAssert.NotNullOrWhiteSpace(address.Email, nameof(address.Email));
                             ExtendedAssert.NotNullOrWhiteSpace(address.ExternalId, nameof(address.ExternalId));
                             ExtendedAssert.NotNullOrWhiteSpace(address.Name, nameof(address.Name));
@@ -101,8 +102,10 @@ namespace AutoTests.HCA.Tests.APITests.Account
                         else
                         {
                             expAddress = expectedAddresses.FirstOrDefault(x => x.ExternalId == address.ExternalId) ??
-                                         throw new Exception($"the list of addresses must not contain externalId='{address.ExternalId }'");
-                            ExtendedAssert.AreEqual(expAddress.ExternalId, address.ExternalId, nameof(address.ExternalId));
+                                         throw new Exception(
+                                             $"the list of addresses must not contain externalId='{address.ExternalId}'");
+                            ExtendedAssert.AreEqual(expAddress.ExternalId, address.ExternalId,
+                                nameof(address.ExternalId));
                             ExtendedAssert.AreEqual(expAddress.Name, address.Name, nameof(address.Name));
                         }
 
@@ -111,9 +114,11 @@ namespace AutoTests.HCA.Tests.APITests.Account
                         ExtendedAssert.AreEqual(expAddress.Address1, address.Address1, nameof(address.Address1));
                         ExtendedAssert.AreEqual(expAddress.Address2, address.Address2, nameof(address.Address2));
                         ExtendedAssert.AreEqual(expAddress.Country, address.Country, nameof(address.Country));
-                        ExtendedAssert.AreEqual(expAddress.CountryCode, address.CountryCode, nameof(address.CountryCode));
+                        ExtendedAssert.AreEqual(expAddress.CountryCode, address.CountryCode,
+                            nameof(address.CountryCode));
                         ExtendedAssert.AreEqual(expAddress.City, address.City, nameof(address.City));
-                        ExtendedAssert.AreEqual(expAddress.ZipPostalCode, address.ZipPostalCode, nameof(address.ZipPostalCode));
+                        ExtendedAssert.AreEqual(expAddress.ZipPostalCode, address.ZipPostalCode,
+                            nameof(address.ZipPostalCode));
                         ExtendedAssert.AreEqual(expAddress.State, address.State, nameof(address.State));
                         ExtendedAssert.AreEqual(expAddress.IsPrimary, address.IsPrimary, nameof(address.IsPrimary));
                     }
@@ -127,7 +132,6 @@ namespace AutoTests.HCA.Tests.APITests.Account
             {
                 ExtendedAssert.Empty(actualAddresses, nameof(actualAddresses));
             }
-
         }
     }
 }

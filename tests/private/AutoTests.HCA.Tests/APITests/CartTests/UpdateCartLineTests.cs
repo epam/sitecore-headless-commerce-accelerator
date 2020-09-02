@@ -7,6 +7,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 {
     public class UpdateCartLineTests : BaseCartApiTest
     {
+        [SetUp]
+        public new void SetUp()
+        {
+            HcaService.AddCartLines(AddingProduct);
+        }
+
         protected static CartLinesRequest UpdatedProduct = new CartLinesRequest
         {
             ProductId = AddingProduct.ProductId,
@@ -14,31 +20,29 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             VariantId = AddingProduct.VariantId
         };
 
-        public UpdateCartLineTests(HcaUserRole userRole) : base(userRole) { }
-
-        [SetUp]
-        public new void SetUp()
+        public UpdateCartLineTests(HcaUserRole userRole) : base(userRole)
         {
-            HcaService.AddCartLines(AddingProduct);
         }
 
-        [Test(Description = "A test that checks the server's response after updating the product to the shopping cart.")]
+        [Test(Description =
+            "A test that checks the server's response after updating the product to the shopping cart.")]
         public void T1_PUTCartLinesRequest_ValidProduct_VerifyResponse()
         {
             // Arrange, Act
             var updateResult = HcaService.UpdateCartLines(UpdatedProduct);
 
             // Assert
-            Assert.True(updateResult.IsSuccessful, "The PUTCartLinesRequest request isn't passed.");
+            updateResult.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                updateResult.VerifyResponseData();
-                VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> { UpdatedProduct }, updateResult.OkResponseData.Data);
+                updateResult.VerifyOkResponseData();
+                VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> {UpdatedProduct},
+                    updateResult.OkResponseData.Data);
             });
-
         }
 
-        [Test(Description = "The test checks if the quantity of the product in the cart has been updated after changing it.")]
+        [Test(Description =
+            "The test checks if the quantity of the product in the cart has been updated after changing it.")]
         public void T2_PUTCartLinesRequest_ValidProduct_ProductHasBeenUpdate()
         {
             // Arrange, Act
@@ -46,19 +50,19 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var getCartAfterUpdate = HcaService.GetCart();
 
             // Assert
-            Assert.True(updateResult.IsSuccessful, "The PUTCartLinesRequest request isn't passed.");
-            Assert.True(getCartAfterUpdate.IsSuccessful, "The GETCartRequest request isn't passed.");
+            updateResult.CheckSuccessfulResponse();
+            getCartAfterUpdate.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
                 // UpdateRequestResult
-                updateResult.VerifyResponseData();
+                updateResult.VerifyOkResponseData();
 
                 // GetCartAfterUpdateResult
-                getCartAfterUpdate.VerifyResponseData();
+                getCartAfterUpdate.VerifyOkResponseData();
 
-                VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> { UpdatedProduct }, getCartAfterUpdate.OkResponseData.Data);
+                VerifyCartResponse("PUTCartLinesRequest", new List<CartLinesRequest> {UpdatedProduct},
+                    getCartAfterUpdate.OkResponseData.Data);
             });
-
         }
     }
 }

@@ -6,15 +6,14 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 {
     public class RemoveCartLineTests : BaseCartApiTest
     {
-        public RemoveCartLineTests(HcaUserRole userRole) : base(userRole) { }
-
         [SetUp]
         public new void SetUp()
         {
-            foreach (var product in ProductsCollection)
-            {
-                HcaService.AddCartLines(product);
-            }
+            foreach (var product in ProductsCollection) HcaService.AddCartLines(product);
+        }
+
+        public RemoveCartLineTests(HcaUserRole userRole) : base(userRole)
+        {
         }
 
         [Test(Description = "The test verifies the correct product has been removed from the cart.")]
@@ -27,13 +26,13 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var result = HcaService.RemoveCartLine(productToRemove.ProductId, productToRemove.VariantId);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The 'DELETECartLines' Request isn't passed.");
+            result.VerifyOkResponseData();
             Assert.Multiple(() =>
             {
-                result.VerifyResponseData();
+                result.VerifyOkResponseData();
 
-                VerifyCartResponse("DELETECartLines", ProductsCollection.Where(x => 
-                    x.VariantId != productToRemove.VariantId && x.ProductId != productToRemove.ProductId), 
+                VerifyCartResponse("DELETECartLines", ProductsCollection.Where(x =>
+                        x.VariantId != productToRemove.VariantId && x.ProductId != productToRemove.ProductId),
                     result.OkResponseData.Data);
             });
         }

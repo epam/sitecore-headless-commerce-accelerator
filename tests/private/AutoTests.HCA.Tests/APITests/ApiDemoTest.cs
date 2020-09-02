@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.HCA.Core.API.Models.Braitree.PaymentToken.Request;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
@@ -59,7 +58,7 @@ namespace AutoTests.HCA.Tests.APITests
         public void SignIn()
         {
             if (_userRole != HcaUserRole.User) return;
-            var user = TestsData.GetUser(HcaUserRole.User).Credentials;
+            var user = TestsData.GetUser().Credentials;
             var authReq = _hcaApiService.Login(new LoginRequest(user.Email,
                 user.Password));
             Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");

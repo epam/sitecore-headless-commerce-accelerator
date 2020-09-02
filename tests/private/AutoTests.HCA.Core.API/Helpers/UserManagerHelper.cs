@@ -45,9 +45,7 @@ namespace AutoTests.HCA.Core.API.Helpers
             if (!adjustmentsNotNull.HasValue || !adjustmentsNotNull.Value) return;
 
             foreach (var promotion in res.OkResponseData.Data.Adjustments)
-            {
                 _hcaApiService.RemovePromoCode(new PromoCodeRequest(promotion));
-            }
         }
 
         public void CleanAddresses()

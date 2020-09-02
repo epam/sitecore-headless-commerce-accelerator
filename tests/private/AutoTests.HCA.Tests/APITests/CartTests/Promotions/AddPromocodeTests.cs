@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
@@ -11,7 +10,9 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
 {
     public class AddPromotionTests : BaseCartApiTest
     {
-        public AddPromotionTests(HcaUserRole userRole) : base(userRole) { }
+        public AddPromotionTests(HcaUserRole userRole) : base(userRole)
+        {
+        }
 
         [Test(Description = "Checks the applicability of the coupon for the entire basket.")]
         [TestCase(HcaPromotionName.Cart10OffCouponPromotion)]
@@ -36,10 +37,10 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             var result = HcaService.AddPromoCode(promoCode);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The POST PromoCodes request isn't passed.");
+            result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                result.VerifyResponseData();
+                result.VerifyOkResponseData();
 
                 // Adjustments
                 var adjustments = result.OkResponseData.Data.Adjustments;
@@ -53,7 +54,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
                 // Price
                 var price = result.OkResponseData.Data.Price;
                 ExtendedAssert.NotNull(price, nameof(result.OkResponseData.Data.Price));
-                VerifyPrice(price, new List<HcaDiscount> { expPromotion.Discount });
+                VerifyPrice(price, new List<HcaDiscount> {expPromotion.Discount});
             });
         }
 
@@ -73,15 +74,18 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             };
 
             // Act
-            HcaService.AddPromoCode(new PromoCodeRequest { PromoCode = promotions.ElementAt(0).Code }).CheckSuccessfulResponse();
-            HcaService.AddPromoCode(new PromoCodeRequest { PromoCode = promotions.ElementAt(1).Code }).CheckSuccessfulResponse();
-            var resultAfterAdding3Promo = HcaService.AddPromoCode(new PromoCodeRequest { PromoCode = promotions.ElementAt(2).Code });
+            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(0).Code})
+                .CheckSuccessfulResponse();
+            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(1).Code})
+                .CheckSuccessfulResponse();
+            var resultAfterAdding3Promo =
+                HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(2).Code});
 
             // Assert
             resultAfterAdding3Promo.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                resultAfterAdding3Promo.VerifyResponseData();
+                resultAfterAdding3Promo.VerifyOkResponseData();
 
                 // Adjustments
                 VerifyAdjustments(resultAfterAdding3Promo.OkResponseData.Data.Adjustments, promotions);
@@ -101,25 +105,27 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             // Arrange
             var nonExclusivePromotion = TestsData.GetPromotion(HcaPromotionName.Cart15PctOffCouponPromotion);
             var exclusivePromotion = TestsData.GetPromotion(HcaPromotionName.Cart5PctOffExclusiveCouponPromotion);
-            HcaService.AddPromoCode(new PromoCodeRequest { PromoCode = nonExclusivePromotion.Code }).CheckSuccessfulResponse();
+            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = nonExclusivePromotion.Code})
+                .CheckSuccessfulResponse();
 
             // Act
-            var addExclusivePromoResult = HcaService.AddPromoCode(new PromoCodeRequest { PromoCode = exclusivePromotion.Code });
+            var addExclusivePromoResult =
+                HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = exclusivePromotion.Code});
 
             // Assert
             addExclusivePromoResult.CheckSuccessfulResponse();
 
             Assert.Multiple(() =>
             {
-                addExclusivePromoResult.VerifyResponseData();
+                addExclusivePromoResult.VerifyOkResponseData();
 
                 // Adjustments
                 VerifyAdjustments(addExclusivePromoResult.OkResponseData.Data.Adjustments,
-                    new List<HcaPromotionTestsDataSettings> { exclusivePromotion });
+                    new List<HcaPromotionTestsDataSettings> {exclusivePromotion});
 
                 // Price
                 VerifyPrice(addExclusivePromoResult.OkResponseData.Data.Price,
-                    new List<HcaDiscount> { exclusivePromotion.Discount });
+                    new List<HcaDiscount> {exclusivePromotion.Discount});
             });
         }
 
@@ -140,18 +146,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             var response = HcaService.AddPromoCode(promoCode);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad POST PromoCodes Request request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = response.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expErrorMessage, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expErrorMessage}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expErrorMessage); });
         }
 
-        [Test(Description = "Checks the inadmissibility of using a coupon if the total amount of the basket is less than the min amount set for the coupon.")]
+        [Test(Description =
+            "Checks the inadmissibility of using a coupon if the total amount of the basket is less than the min amount set for the coupon.")]
         public void T5_POSTPromoCodesRequest_InsufficientBasketAmount_BadRequest()
         {
             //SetUp
@@ -160,22 +160,17 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             UserManager.CleanPromotions();
 
             // Arrange
-            var expErrorMessage = $"You can't use {HcaPromotionName.Cart10OffCouponPromotion} coupon because you have insufficient basket amount.";
-            var promoCode = new PromoCodeRequest(TestsData.GetPromotion(HcaPromotionName.Cart10OffCouponPromotion).Code);
+            var expErrorMessage =
+                $"You can't use {HcaPromotionName.Cart10OffCouponPromotion} coupon because you have insufficient basket amount.";
+            var promoCode =
+                new PromoCodeRequest(TestsData.GetPromotion(HcaPromotionName.Cart10OffCouponPromotion).Code);
 
             // Act
             var response = HcaService.AddPromoCode(promoCode);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad POST PromoCodes Request request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = response.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expErrorMessage, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expErrorMessage}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expErrorMessage); });
         }
     }
 }

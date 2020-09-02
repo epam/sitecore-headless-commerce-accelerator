@@ -25,11 +25,6 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             _restClient.AddDefaultHeaders(headers);
         }
 
-        public void DeleteAllCookies()
-        {
-            _restClient.CookieContainer = new CookieContainer();
-        }
-
         public CookieCollection GetCookies()
         {
             return _restClient.CookieContainer.GetCookies(_restClient.BaseUrl);
@@ -59,6 +54,11 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             return DeserializeJsonResponse<TModel, TData, TErrors>(ExecuteJsonRequest(endpoint, obj, method));
         }
 
+        public void DeleteAllCookies()
+        {
+            _restClient.CookieContainer = new CookieContainer();
+        }
+
         private IRestResponse ExecuteJsonRequest(Uri endpoint, object obj, Method method)
         {
             var request = new RestRequest();
@@ -69,24 +69,26 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             return _restClient.Execute(request, method);
         }
 
-        private static TModel DeserializeJsonResponse<TModel, TData, TErrors>(IRestResponse result)
+        private TModel DeserializeJsonResponse<TModel, TData, TErrors>(IRestResponse result)
             where TData : class
             where TErrors : class
             where TModel : class, IResponse<TData, TErrors>, new()
         {
-            return result.IsSuccessful
-                ? new TModel
+            var response = new TModel
+            {
+                RequestInfo = new RequestInfo
                 {
-                    IsSuccessful = result.IsSuccessful,
-                    StatusCode = result.StatusCode,
-                    OkResponseData = JsonConvert.DeserializeObject<TData>(result.Content)
-                }
-                : new TModel
-                {
-                    IsSuccessful = result.IsSuccessful,
-                    StatusCode = result.StatusCode,
-                    Errors = JsonConvert.DeserializeObject<TErrors>(result.Content)
-                };
+                    BaseUrl = _restClient.BaseUrl.AbsolutePath,
+                    Method = result.Request.Method
+                },
+                IsSuccessful = result.IsSuccessful,
+                StatusCode = result.StatusCode
+            };
+
+            if (result.IsSuccessful) response.OkResponseData = JsonConvert.DeserializeObject<TData>(result.Content);
+            else response.Errors = JsonConvert.DeserializeObject<TErrors>(result.Content);
+
+            return response;
         }
     }
 }

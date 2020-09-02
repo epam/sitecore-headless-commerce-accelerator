@@ -10,6 +10,7 @@ using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Payment;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Shipping;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Order;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
+using AutoTests.HCA.Core.API.Models.Hca.Entities.WishList;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult;
 
 namespace AutoTests.HCA.Core.API.Services.HcaService
@@ -22,7 +23,8 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
 
         HcaVoidResponse ChangePassword(ChangePasswordRequest password, string endpoint = "accounts/password");
 
-        HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email, string endpoint = "/accounts/validate");
+        HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email,
+            string endpoint = "/accounts/validate");
 
         HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account");
 
@@ -47,9 +49,15 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
 
         HcaResponse<CartResult> RemoveCartLine(string productId, string variantId, string endpoint = "carts/cartLines");
 
+        HcaResponse<WishListResult> AddWishListLine(VariantRequest variant, string endpoint = "wishlist");
+
+        HcaResponse<WishListResult> GetWishList(string endpoint = "wishlist");
+
+        HcaResponse<WishListResult> RemoveWishListLine(string variantId, string endpoint = "wishlist");
+
         HcaResponse<CartResult> AddPromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes");
 
-        HcaResponse<CartResult> RemovePromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes"); 
+        HcaResponse<CartResult> RemovePromoCode(PromoCodeRequest promoCode, string endpoint = "carts/promoCodes");
 
         HcaResponse<DeliveryInfoResult> GetDeliveryInfo(string endpoint = "checkout/deliveryInfo");
 

@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
 using NUnit.Framework;
 
@@ -10,8 +7,6 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [TestFixture(Description = "Get addresses for user api tests.")]
     public class GetAddressesTests : BaseAccountTest
     {
-        public List<Address> AddressesWithExternalIds = new List<Address>();
-
         [SetUp]
         public new void SetUp()
         {
@@ -20,11 +15,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
             UserManager.CleanAddresses();
             foreach (var address in AddressesCollection)
             {
-               var res =  HcaService.AddAddress(address);
-               Assert.True(res.IsSuccessful, "Can't add new address.");
-               AddressesWithExternalIds.AddRange(res.OkResponseData.Data);
+                var res = HcaService.AddAddress(address);
+                res.CheckSuccessfulResponse();
+                AddressesWithExternalIds.AddRange(res.OkResponseData.Data);
             }
         }
+
+        public List<Address> AddressesWithExternalIds = new List<Address>();
 
         [Test(Description = "The test checks the state of the user addresses collection.")]
         public void T1_GETAddressesRequest_VerifyResponse()
@@ -33,10 +30,10 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.GetAddresses();
 
             // Assert
-            Assert.True(result.IsSuccessful, "The GET Addresses request isn't passed.");
+            result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                result.VerifyResponseData();
+                result.VerifyOkResponseData();
 
                 VerifyAddressResponse(AddressesWithExternalIds, result.OkResponseData.Data);
             });

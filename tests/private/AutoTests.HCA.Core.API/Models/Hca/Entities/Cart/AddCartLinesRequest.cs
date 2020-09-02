@@ -2,13 +2,9 @@
 {
     public class CartLinesRequest
     {
-        public string ProductId { get; set; }
-
-        public int Quantity { get; set; }
-
-        public string VariantId { get; set; }
-
-        public CartLinesRequest() { }
+        public CartLinesRequest()
+        {
+        }
 
         public CartLinesRequest(string productId, int quantity, string variantId)
         {
@@ -16,5 +12,11 @@
             Quantity = quantity;
             VariantId = variantId;
         }
+
+        public string ProductId { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string VariantId { get; set; }
     }
 }

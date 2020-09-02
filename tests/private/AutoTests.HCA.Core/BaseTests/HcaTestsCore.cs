@@ -19,7 +19,8 @@ namespace AutoTests.HCA.Core.BaseTests
             return new HcaApiService(ApiSettings);
         }
 
-        public UserManagerHelper CreateUserManagerHelper(HcaUserTestsDataSettings user, IHcaApiService hcaApiService = null)
+        public UserManagerHelper CreateUserManagerHelper(HcaUserTestsDataSettings user,
+            IHcaApiService hcaApiService = null)
         {
             return new UserManagerHelper(user, hcaApiService ?? CreateHcaApiClient());
         }

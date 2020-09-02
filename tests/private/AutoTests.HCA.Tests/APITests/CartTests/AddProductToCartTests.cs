@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
+using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
-using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.Common.Settings.Products;
 
 namespace AutoTests.HCA.Tests.APITests.CartTests
 {
     public class AddProductToCartTests : BaseCartApiTest
     {
-        public AddProductToCartTests(HcaUserRole userRole) : base(userRole) { }
+        public AddProductToCartTests(HcaUserRole userRole) : base(userRole)
+        {
+        }
 
         [Test(Description = "A test that checks the server's response after adding the product to the shopping cart.")]
         public void T1_POSTCartLinesRequest_ValidProduct_VerifyResponse()
@@ -21,14 +19,13 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var result = HcaService.AddCartLines(AddingProduct);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The POST CartLines request isn't passed.");
+            result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, result.StatusCode, nameof(result.StatusCode));
-                ExtendedAssert.NotNull(result.OkResponseData, nameof(result.OkResponseData));
-                ExtendedAssert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status, nameof(result.OkResponseData.Status));
+                result.VerifyOkResponseData();
 
-                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> { AddingProduct }, result.OkResponseData.Data);
+                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> {AddingProduct},
+                    result.OkResponseData.Data);
             });
         }
 
@@ -40,16 +37,15 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var getProductResult = HcaService.GetCart();
 
             // Assert
-            Assert.True(addProductResult.IsSuccessful, "The POST CartLines request isn't passed.");
-            Assert.True(getProductResult.IsSuccessful, "The GET Cart request isn't passed.");
+            addProductResult.CheckSuccessfulResponse();
+            getProductResult.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, addProductResult.StatusCode, nameof(addProductResult.StatusCode));
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, getProductResult.StatusCode, nameof(getProductResult.StatusCode));
-                ExtendedAssert.NotNull(addProductResult.OkResponseData, nameof(addProductResult.OkResponseData));
-                ExtendedAssert.NotNull(getProductResult.OkResponseData, nameof(getProductResult.OkResponseData));
+                addProductResult.VerifyOkResponseData();
+                getProductResult.VerifyOkResponseData();
 
-                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> { AddingProduct }, getProductResult.OkResponseData.Data);
+                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> {AddingProduct},
+                    getProductResult.OkResponseData.Data);
             });
         }
 
@@ -64,18 +60,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var addProductResult = HcaService.AddCartLines(new CartLinesRequest(prod.ProductId, 1, prod.VariantId));
             HcaService.GetCart();
             // Assert
-            Assert.False(addProductResult.IsSuccessful, "The bad POST CartLinesRequest request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = addProductResult.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(addProductResult, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {addProductResult}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            addProductResult.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { addProductResult.VerifyErrors(expErrorMessage); });
         }
 
-        [Test(Description = "The test checks if two identical products are added to the cart if the number of products is updated.")]
+        [Test(Description =
+            "The test checks if two identical products are added to the cart if the number of products is updated.")]
         public void T4_POSTCartLinesRequest_TwoIdenticalProducts_ProductsNumberHasBeenUpdated()
         {
             // Arrange, Act
@@ -84,23 +74,22 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var getProductResult = HcaService.GetCart();
 
             // Assert
-            Assert.True(addProductResult1.IsSuccessful, "The POST CartLines request isn't passed.");
-            Assert.True(addProductResult2.IsSuccessful, "The POST CartLines request isn't passed.");
-            Assert.True(getProductResult.IsSuccessful, "The GET Cart request isn't passed.");
+            addProductResult1.CheckSuccessfulResponse();
+            addProductResult2.CheckSuccessfulResponse();
+            getProductResult.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, addProductResult1.StatusCode, nameof(addProductResult1.StatusCode));
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, addProductResult2.StatusCode, nameof(addProductResult2.StatusCode));
-                ExtendedAssert.AreEqual(HttpStatusCode.OK, getProductResult.StatusCode, nameof(getProductResult.StatusCode));
-                ExtendedAssert.NotNull(addProductResult1.OkResponseData, nameof(addProductResult1.OkResponseData));
-                ExtendedAssert.NotNull(addProductResult2.OkResponseData, nameof(addProductResult2.OkResponseData));
-                ExtendedAssert.NotNull(getProductResult.OkResponseData, nameof(getProductResult.OkResponseData));
+                addProductResult1.VerifyOkResponseData();
+                addProductResult2.VerifyOkResponseData();
+                getProductResult.VerifyOkResponseData();
 
-                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> { AddingProduct, AddingProduct }, getProductResult.OkResponseData.Data);
+                VerifyCartResponse("POST CartLines", new List<CartLinesRequest> {AddingProduct, AddingProduct},
+                    getProductResult.OkResponseData.Data);
             });
         }
 
-        [Test(Description = "The test will check if the correct message is returned by the server with invalid productId.")]
+        [Test(Description =
+            "The test will check if the correct message is returned by the server with invalid productId.")]
         public void T5_POSTCartLinesRequest_InvalidProductId_BadRequest()
         {
             // Arrange
@@ -116,18 +105,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var response = HcaService.AddCartLines(cartLines);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad POST CartLinesRequest request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = response.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expErrorMessage, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expErrorMessage}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expErrorMessage); });
         }
 
-        [Test(Description = "The test will check if the correct message is returned by the server with invalid quantity.")]
+        [Test(Description =
+            "The test will check if the correct message is returned by the server with invalid quantity.")]
         public void T6_POSTCartLinesRequest_InvalidQuantity_BadRequest()
         {
             // Arrange
@@ -143,18 +126,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var response = HcaService.AddCartLines(cartLines);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad POST CartLinesRequest request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = response.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expErrorMessage, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expErrorMessage}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expErrorMessage); });
         }
 
-        [Test(Description = "The test will check if the correct message is returned by the server with invalid variantId.")]
+        [Test(Description =
+            "The test will check if the correct message is returned by the server with invalid variantId.")]
         public void T7_POSTCartLinesRequest_InvalidVariantId_BadRequest()
         {
             // Arrange
@@ -163,22 +140,15 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             {
                 ProductId = Product.ProductId,
                 Quantity = 10,
-                VariantId = Product.VariantId+1
+                VariantId = Product.VariantId + 1
             };
 
             // Act
             var response = HcaService.AddCartLines(cartLines);
 
             // Assert
-            Assert.False(response.IsSuccessful, "The bad POST CartLinesRequest request is passed.");
-            Assert.Multiple(() =>
-            {
-                var dataResult = response.Errors;
-                Assert.AreEqual(HcaStatus.Error, dataResult.Status);
-                Assert.AreEqual(expErrorMessage, dataResult.Error,
-                    $"Expected {nameof(dataResult.Error)} text: {expErrorMessage}. Actual:{dataResult.Error}");
-                Assert.That(dataResult.Errors.All(x => x == expErrorMessage));
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expErrorMessage); });
         }
     }
 }

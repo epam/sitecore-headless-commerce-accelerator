@@ -2,7 +2,7 @@
 {
     public class HcaResult
     {
-        public string Status { get; set; }
+        public HcaStatus Status { get; set; }
 
         public object TempData { get; set; }
     }

@@ -13,6 +13,9 @@ namespace AutoTests.HCA.Core.UI.Pages
     {
         private static CartPage _cartPage;
 
+        private static readonly WebElement OrderSummary =
+            new WebElement("Order summary section", ByCustom.XPath("//section[@class = 'orderSummary']"));
+
         private readonly WebElement _cartProductList =
             new WebElement("Cart product list", ByCustom.XPath("//ul[@class= 'cartList']"));
 
@@ -25,21 +28,19 @@ namespace AutoTests.HCA.Core.UI.Pages
         private readonly WebTextField _discountField =
             new WebTextField("Discount text field", ByCustom.XPath("//input[@id = 'promo-code']"));
 
-        private readonly WebLabel _title = 
-            new WebLabel("Title", ByCustom.XPath("//h1[@class = 'title']"));
-        
-        private readonly WebElement _productList = 
+        private readonly WebLabel _invalidPromoCode =
+            new WebLabel("Invalid promocode", ByCustom.XPath("//p[text()='Invalid promo code']"));
+
+        private readonly WebElement _priceLines =
+            new WebElement("Price lines", ByCustom.XPath("./ul[@class = 'orderSummaryPriceLines orderSummary-list']"),
+                OrderSummary);
+
+        private readonly WebElement _productList =
             new WebElement("Product list", ByCustom.XPath("//ul[@class='cartList']"));
 
-        private readonly WebLabel _invalidPromoCode = 
-            new WebLabel("Invalid promocode", ByCustom.XPath("//p[text()='Invalid promo code']"));
-        
-        private static readonly WebElement OrderSummary = 
-            new WebElement("Order summary section", ByCustom.XPath("//section[@class = 'orderSummary']"));
-        
-        private readonly WebElement _priceLines = 
-            new WebElement("Price lines", ByCustom.XPath("./ul[@class = 'orderSummaryPriceLines orderSummary-list']"), OrderSummary);
-        
+        private readonly WebLabel _title =
+            new WebLabel("Title", ByCustom.XPath("//h1[@class = 'title']"));
+
         public static CartPage Instance => _cartPage ??= new CartPage();
 
         public new void VerifyOpened()
@@ -142,7 +143,8 @@ namespace AutoTests.HCA.Core.UI.Pages
         public void DeleteProductFromCart(string productName)
         {
             var productElement = FindProductByName(productName);
-            new WebLink($"Delete {productName}", ByCustom.XPath(".//a[@class = 'action action-remove']"), productElement).Click();
+            new WebLink($"Delete {productName}", ByCustom.XPath(".//a[@class = 'action action-remove']"),
+                productElement).Click();
         }
 
         public void DeleteProductsFromCart(IEnumerable<ProductTestsDataSettings> products)
@@ -170,13 +172,15 @@ namespace AutoTests.HCA.Core.UI.Pages
         {
             double sum = 0;
             var productCount = GetProductsCount();
-            for (int i = 1; i <= productCount; i++)
+            for (var i = 1; i <= productCount; i++)
             {
                 var product = new WebElement($"product number {i}", ByCustom.XPath($"./li[{i}]"), _productList);
                 var text = new WebLink($"Product total for {i}",
-                    ByCustom.XPath(".//div[@class= 'product-total']/span[@class = 'amount']"), product).GetText().Replace("$", "");
+                        ByCustom.XPath(".//div[@class= 'product-total']/span[@class = 'amount']"), product).GetText()
+                    .Replace("$", "");
                 sum += Convert.ToDouble(text);
             }
+
             return Math.Round(sum, 2);
         }
 
@@ -192,10 +196,7 @@ namespace AutoTests.HCA.Core.UI.Pages
             var merchandiseSubtotal = FindCartSumByText("Merchandise Subtotal:");
             var estimatedTotal = FindCartSumByText("Estimated Total:");
             var savingsDetails = 0.0;
-            if (discount)
-            {
-                savingsDetails = FindCartSumByText("Savings (Details):");
-            }
+            if (discount) savingsDetails = FindCartSumByText("Savings (Details):");
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(productSum, merchandiseSubtotal, "Merchandise Subtotal:");
@@ -226,7 +227,8 @@ namespace AutoTests.HCA.Core.UI.Pages
 
         private static WebElement FindAdjustmentByName(string name)
         {
-            return new WebElement($"Ajustment {name}", ByCustom.XPath($"//ul[@class= 'adjustment-list']//li[text()='{name}']")).GetParent();
+            return new WebElement($"Ajustment {name}",
+                ByCustom.XPath($"//ul[@class= 'adjustment-list']//li[text()='{name}']")).GetParent();
         }
     }
 }

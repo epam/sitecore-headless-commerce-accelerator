@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using NUnit.Framework;
 
@@ -12,7 +11,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [Test(Description = "Find products by category id & by search keyword")]
         [TestCase("3198ffe4-83d3-a856-6964-62a6a2e9b488", "Smartphone Case", "Sherpa")]
         [TestCase("0bde885c-c3aa-7bf3-9cab-d93a2af168ac", "Health, Beauty and Fitness", "6042944")]
-        public void T1_GETProductRequest_ByCategoryIdAndSearchKeyword_CorrectList(string categoryId, string categoryName,
+        public void T1_GETProductRequest_ByCategoryIdAndSearchKeyword_CorrectList(string categoryId,
+            string categoryName,
             string searchKeyword)
         {
             // Arrange
@@ -27,11 +27,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
                 Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
@@ -67,11 +67,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
                 Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");

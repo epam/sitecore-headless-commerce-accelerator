@@ -18,7 +18,23 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
     [Parallelizable(ParallelScope.None)]
     public class BaseCartApiTest : BaseHcaApiTest
     {
+        [SetUp]
+        public void SetUp()
+        {
+            User = TestsData.GetUser(_userRole);
+            HcaService = TestsHelper.CreateHcaApiClient();
+            UserManager = TestsHelper.CreateUserManagerHelper(User, HcaService);
+            UserManager.CleanCart();
+        }
+
+        [TearDown]
+        public override void TearDown()
+        {
+            UserManager.CleanCart();
+        }
+
         protected static readonly ProductTestsDataSettings Product = TestsData.GetProduct();
+
         protected static readonly CartLinesRequest AddingProduct = new CartLinesRequest
         {
             ProductId = Product.ProductId,
@@ -61,31 +77,18 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                     ProductId = prod3.ProductId,
                     Quantity = 1,
                     VariantId = prod3.VariantId
-                },
+                }
             };
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-            User = TestsData.GetUser(_userRole);
-            HcaService = TestsHelper.CreateHcaApiClient();
-            UserManager = TestsHelper.CreateUserManagerHelper(User, HcaService);
-            UserManager.CleanCart();
-        }
-
-        [TearDown]
-        public override void TearDown()
-        {
-            UserManager.CleanCart();
-        }
-
-        protected void VerifyCartResponse(string methodName, IEnumerable<CartLinesRequest> expectedCartLines, CartResult cartResult)
+        protected void VerifyCartResponse(string methodName, IEnumerable<CartLinesRequest> expectedCartLines,
+            CartResult cartResult)
         {
             var expectedCart = expectedCartLines.GroupBy(x => x.VariantId).ToList();
 
             // Data
-            Assert.NotNull(cartResult, $"The '{methodName}' response should contain information about the current state of the cart.");
+            Assert.NotNull(cartResult,
+                $"The '{methodName}' response should contain information about the current state of the cart.");
             ExtendedAssert.NotNull(cartResult.Id, nameof(cartResult.Id));
             if (User.Role == HcaUserRole.User)
             {
@@ -108,7 +111,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                 }
                 else
                 {
-                    Assert.AreEqual(expectedCart.Count, cartLines.Count, "The cart doesn't contain all expected products.");
+                    Assert.AreEqual(expectedCart.Count, cartLines.Count,
+                        "The cart doesn't contain all expected products.");
 
                     foreach (var cartItem in cartLines)
                     {
@@ -119,8 +123,10 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 
                         var expProduct = expectedCart.First(x => x.Key == cartItem.Variant.VariantId);
 
-                        ExtendedAssert.AreEqual(expProduct.First().ProductId, cartItem?.Product.ProductId, nameof(cartItem.Product.ProductId));
-                        ExtendedAssert.AreEqual(expProduct.Sum(x => x.Quantity), cartItem.Quantity, nameof(cartItem.Quantity));
+                        ExtendedAssert.AreEqual(expProduct.First().ProductId, cartItem?.Product.ProductId,
+                            nameof(cartItem.Product.ProductId));
+                        ExtendedAssert.AreEqual(expProduct.Sum(x => x.Quantity), cartItem.Quantity,
+                            nameof(cartItem.Quantity));
                         ExtendedAssert.AreEqual(expProduct.Key, cartItem.Variant.VariantId, nameof(cartItem.Variant));
 
                         // Data -> CartLines -> CartItem -> Price
@@ -133,7 +139,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                         ExtendedAssert.NotNull(cartItem.Price.TaxTotal, nameof(cartItem.Price.TaxTotal));
                         ExtendedAssert.NotNull(cartItem.Price.Total, nameof(cartItem.Price.Total));
                         ExtendedAssert.NotNull(cartItem.Price.TotalSavings, nameof(cartItem.Price.TotalSavings));
-                        ExtendedAssert.AreEqual(cartItem.Product.AdjustedPrice * cartItem.Quantity, cartItem.Price.Subtotal, nameof(cartItem.Price.Subtotal));
+                        ExtendedAssert.AreEqual(cartItem.Product.AdjustedPrice * cartItem.Quantity,
+                            cartItem.Price.Subtotal, nameof(cartItem.Price.Subtotal));
                     }
                 }
             }
@@ -142,8 +149,10 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                 ExtendedAssert.Empty(cartLines, nameof(cartLines));
             }
 
-            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal), cartResult.Price.Subtotal, nameof(cartResult.Price.Subtotal));
-            ExtendedAssert.AreEqual(cartResult.Price.Subtotal - cartResult.Price.TotalSavings, cartResult.Price.Total, nameof(cartResult.Price.Total));
+            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal), cartResult.Price.Subtotal,
+                nameof(cartResult.Price.Subtotal));
+            ExtendedAssert.AreEqual(cartResult.Price.Subtotal - cartResult.Price.TotalSavings, cartResult.Price.Total,
+                nameof(cartResult.Price.Total));
         }
 
         protected void VerifyPrice(TotalPrice totalPrice, IEnumerable<HcaDiscount> discounts)
@@ -161,18 +170,17 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             if (discounts == null || !discounts.Any())
             {
                 ExtendedAssert.AreEqual(0, totalPrice.TotalSavings, nameof(totalPrice.TotalSavings));
-                Assert.True(totalPrice.Subtotal == totalPrice.Total, $"{nameof(totalPrice.Subtotal)} should be equal {nameof(totalPrice.Total)}");
+                Assert.True(totalPrice.Subtotal == totalPrice.Total,
+                    $"{nameof(totalPrice.Subtotal)} should be equal {nameof(totalPrice.Total)}");
             }
             else
             {
                 var expTotalPrice = totalPrice.Subtotal.Value;
                 foreach (var discount in discounts)
-                {
                     if (discount.DiscountValueType == HcaDiscountValueType.InDollars)
                         expTotalPrice -= discount.Discount;
                     else if (discount.DiscountValueType == HcaDiscountValueType.InPercents)
                         expTotalPrice -= expTotalPrice * (discount.Discount / 100m);
-                }
 
                 expTotalPrice = expTotalPrice.RoundUpMoney();
 
@@ -182,7 +190,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             }
         }
 
-        protected void VerifyAdjustments(IEnumerable<string> adjustments, IEnumerable<HcaPromotionTestsDataSettings> promotions)
+        protected void VerifyAdjustments(IEnumerable<string> adjustments,
+            IEnumerable<HcaPromotionTestsDataSettings> promotions)
         {
             // Adjustments
             ExtendedAssert.NotNullOrEmpty(adjustments, nameof(adjustments));

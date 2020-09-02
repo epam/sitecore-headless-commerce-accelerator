@@ -1,6 +1,6 @@
 ﻿namespace AutoTests.HCA.Core.Common.Settings.Products
 {
-    public class ProductTestsDataSettings:BaseHcaEntityTestsDataSettings
+    public class ProductTestsDataSettings : BaseHcaEntityTestsDataSettings
     {
         public string ProductId { get; set; }
 
@@ -14,5 +14,4 @@
 
         public string ProductCategoryId { get; set; }
     }
-
 }

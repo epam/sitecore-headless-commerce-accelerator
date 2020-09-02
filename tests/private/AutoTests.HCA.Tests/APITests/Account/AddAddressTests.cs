@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
 using NUnit.Framework;
 
@@ -37,18 +34,18 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 CountryCode = "US",
                 State = "AL",
                 ZipPostalCode = "2335",
-                IsPrimary = true,
+                IsPrimary = true
             };
 
             // Act
             var response = HcaService.AddAddress(newAddress);
 
             //Assert
-            Assert.True(response.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
+            response.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                response.VerifyResponseData();
-                VerifyAddressResponse(new List<Address> { newAddress }, response.OkResponseData.Data, true);
+                response.VerifyOkResponseData();
+                VerifyAddressResponse(new List<Address> {newAddress}, response.OkResponseData.Data, true);
             });
         }
 
@@ -68,7 +65,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 CountryCode = "US",
                 State = "AL",
                 ZipPostalCode = "2335",
-                IsPrimary = true,
+                IsPrimary = true
             };
 
             // Act
@@ -76,14 +73,15 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var getAddressesResponse = HcaService.GetAddresses();
 
             //Assert
-            Assert.True(addAddressResponse.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
-            Assert.True(getAddressesResponse.IsSuccessful, "The 'Accounts/address' GET request isn't passed.");
+            addAddressResponse.CheckSuccessfulResponse();
+            getAddressesResponse.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                addAddressResponse.VerifyResponseData();
-                getAddressesResponse.VerifyResponseData();
+                addAddressResponse.VerifyOkResponseData();
+                getAddressesResponse.VerifyOkResponseData();
 
-                VerifyAddressResponse(new List<Address> { addAddressResponse.OkResponseData.Data.First() }, getAddressesResponse.OkResponseData.Data);
+                VerifyAddressResponse(new List<Address> {addAddressResponse.OkResponseData.Data.First()},
+                    getAddressesResponse.OkResponseData.Data);
             });
         }
 
@@ -103,7 +101,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 CountryCode = "US",
                 State = "AL",
                 ZipPostalCode = "2335",
-                IsPrimary = true,
+                IsPrimary = true
             };
             var secondNewAddress = new Address
             {
@@ -117,7 +115,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 CountryCode = "US",
                 State = "AL",
                 ZipPostalCode = "2335",
-                IsPrimary = true,
+                IsPrimary = true
             };
 
             // Act
@@ -126,15 +124,15 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var getAddressesResponse = HcaService.GetAddresses();
 
             //Assert
-            Assert.True(addFirstAddressResponse.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
-            Assert.True(addSecondAddressResponse.IsSuccessful, "The 'Accounts/address' POST request isn't passed.");
-            Assert.True(getAddressesResponse.IsSuccessful, "The 'Accounts/address' GET request isn't passed.");
+            addFirstAddressResponse.CheckSuccessfulResponse();
+            addSecondAddressResponse.CheckSuccessfulResponse();
+            getAddressesResponse.CheckSuccessfulResponse();
 
             Assert.Multiple(() =>
             {
-                addFirstAddressResponse.VerifyResponseData();
-                addFirstAddressResponse.VerifyResponseData();
-                getAddressesResponse.VerifyResponseData();
+                addFirstAddressResponse.VerifyOkResponseData();
+                addFirstAddressResponse.VerifyOkResponseData();
+                getAddressesResponse.VerifyOkResponseData();
 
                 var firstAddressExternalId = addFirstAddressResponse.OkResponseData.Data.First().ExternalId;
                 var secondAddressExternalId = addSecondAddressResponse.OkResponseData.Data.First().ExternalId;

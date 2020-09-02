@@ -16,7 +16,7 @@ namespace AutoTests.HCA.Tests.APITests.OrderTests
 
         [Test]
         [Description("Check that the basket is empty")]
-        public void _01_GetOrderTest()
+        public void T1_GetOrderTest()
         {
             // Arrange, Act
             var response = _hcaService.GetOrder(ORDER_ID);

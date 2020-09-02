@@ -47,7 +47,8 @@ namespace AutoTests.HCA.Tests
             return Users.FirstOrDefault(x => x.Role == role);
         }
 
-        public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock, string productId = null)
+        public static ProductTestsDataSettings GetProduct(HcaProductStatus? status = HcaProductStatus.InStock,
+            string productId = null)
         {
             var filteringList = Products.Where(x =>
                 x.StockStatus == status && (productId == null || x.ProductId == productId)).ToList();

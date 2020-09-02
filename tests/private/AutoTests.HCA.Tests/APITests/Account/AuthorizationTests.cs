@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
 using NUnit.Framework;
 
@@ -22,13 +19,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.Login(user);
 
             // Assert
-            Assert.True(result.IsSuccessful, "The Login POST request is passed.");
-            Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
-            Assert.NotNull(result.OkResponseData);
-            Assert.AreEqual(HcaStatus.Ok, result.OkResponseData.Status);
-            var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
-            Assert.NotNull(cookies, "The response of '/login' doesn't contain authorization cookies.");
-            Assert.False(string.IsNullOrWhiteSpace(cookies.Value), "Returned cookies contain empty value.");
+            result.CheckSuccessfulResponse();
+            Assert.Multiple(() =>
+            {
+                var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                Assert.NotNull(cookies, "The response of '/login' doesn't contain authorization cookies.");
+                Assert.False(string.IsNullOrWhiteSpace(cookies.Value), "Returned cookies contain empty value.");
+            });
         }
 
         [Test(Description = "Checks that the server returns an error if the email is not valid.")]
@@ -42,14 +39,11 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.Login(user);
 
             // Assert
-            Assert.False(result.IsSuccessful, "The Login POST request isn't passed.");
-            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
-            Assert.AreEqual(HcaStatus.Error, result.Errors.Status);
-            Assert.NotNull(result.Errors);
+            result.CheckUnSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                Assert.True(result.Errors.Errors.All(x => x == expErrorMsg));
-                Assert.AreEqual(expErrorMsg, result.Errors.Error);
+                result.VerifyErrors(expErrorMsg);
+
                 var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
@@ -66,14 +60,11 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.Login(userLoginRequest);
 
             // Assert
-            Assert.False(result.IsSuccessful, "The Login POST request isn't passed.");
-            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
-            Assert.AreEqual(HcaStatus.Error, result.Errors.Status);
-            Assert.NotNull(result.Errors);
+            result.CheckUnSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                Assert.True(result.Errors.Errors?.All(x => x == expErrorMsg));
-                Assert.AreEqual(expErrorMsg, result.Errors.Error);
+                result.VerifyErrors(expErrorMsg);
+
                 var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
@@ -90,14 +81,11 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var result = HcaService.Login(userLoginRequest);
 
             // Assert
-            Assert.False(result.IsSuccessful, "The Login POST request isn't passed.");
-            Assert.AreEqual(HttpStatusCode.BadRequest, result.StatusCode);
-            Assert.AreEqual(HcaStatus.Error, result.Errors.Status);
-            Assert.NotNull(result.Errors);
+            result.CheckUnSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                Assert.True(result.Errors.Errors?.All(x => x == expErrorMsg));
-                Assert.AreEqual(expErrorMsg, result.Errors.Error);
+                result.VerifyErrors(expErrorMsg);
+
                 var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
@@ -116,11 +104,14 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var logoutResult = HcaService.Logout();
 
             // Assert
-            Assert.True(logoutResult.IsSuccessful, "The Logout POST request is passed.");
-            Assert.AreEqual(HttpStatusCode.OK, logoutResult.StatusCode);
-            Assert.AreEqual(HcaStatus.Ok, logoutResult.OkResponseData.Status);
-            Assert.Null(HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
-                "The response of '/logout' contains authorization cookies.");
+            logoutResult.CheckSuccessfulResponse();
+            Assert.Multiple(() =>
+            {
+                logoutResult.VerifyOkResponseData();
+
+                Assert.Null(HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
+                    "The response of '/logout' contains authorization cookies.");
+            });
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using AutoTests.HCA.Core.API.Models.Hca;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
 using NUnit.Framework;
 
@@ -27,11 +25,12 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
+
                 Assert.NotNull(data, $"Invalid {nameof(response.OkResponseData.Data)}. Expected: NotNull");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
@@ -59,11 +58,12 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
+
                 Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.NotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");
@@ -78,7 +78,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         {
             // Arrange
             var invalidCategoryId = new Guid("8e456d84-4251-dba1-4b86-c2103dedcd02");
-            var expMessage = "'Products not found.";
+            var expMessage = "Products not found.";
             var searchOptions = new ProductSearchOptionsRequest
             {
                 CategoryId = invalidCategoryId,
@@ -89,19 +89,8 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
-            var errorResponse = response.Errors;
-            Assert.False(response.IsSuccessful, "The GetProducts POST request is passed");
-            Assert.Multiple(() =>
-            {
-                Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-
-                Assert.AreEqual(HcaStatus.Error, errorResponse.Status);
-                Assert.AreEqual(expMessage, errorResponse.Error,
-                    $"Expected {nameof(errorResponse.Error)} text: {expMessage}. Actual:{errorResponse.Error}.");
-                Assert.That(errorResponse.Errors.Count == 1 && errorResponse.Errors.All(x => x == expMessage),
-                    "The error list does not contain all validation errors");
-            });
+            response.CheckUnSuccessfulResponse();
+            Assert.Multiple(() => { response.VerifyErrors(expMessage); });
         }
 
         [Test(Description = "Find products by brand facet")]
@@ -128,11 +117,11 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             var response = HcaService.SearchProducts(searchOptions);
 
             // Assert
+            response.CheckSuccessfulResponse();
             var data = response.OkResponseData.Data;
-            Assert.True(response.IsSuccessful, "The GetProducts POST request is not passed");
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(HcaStatus.Ok, response.OkResponseData.Status);
+                response.VerifyOkResponseData();
                 Assert.NotNull(data, $"Invalid {nameof(data)}. Expected: NotNull");
                 Assert.NotNull(data.Facets, $"Invalid {nameof(data.Facets)}. Expected: NotNull");
                 Assert.IsNotNull(data.Products, $"Invalid {nameof(data.Products)}. Expected: NotNull");

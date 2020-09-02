@@ -13,6 +13,7 @@ using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Payment;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Shipping;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Order;
 using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
+using AutoTests.HCA.Core.API.Models.Hca.Entities.WishList;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.ErrorResult;
 using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results.OkResult;
@@ -59,7 +60,8 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest(endpoint, Method.PUT, password);
         }
 
-        public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser, string endpoint = "accounts/account")
+        public HcaResponse<UserResult> CreateUserAccount(CreateAccountRequest newUser,
+            string endpoint = "accounts/account")
         {
             return ExecuteJsonRequest<UserResult>(endpoint, Method.POST, newUser);
         }
@@ -69,7 +71,8 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest(endpoint, Method.PUT, account);
         }
 
-        public HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email, string endpoint = "/accounts/validate")
+        public HcaResponse<ValidateEmailResult> ValidateEmail(ValidateEmailRequest email,
+            string endpoint = "/accounts/validate")
         {
             return ExecuteJsonRequest<ValidateEmailResult>(endpoint, Method.POST, email);
         }
@@ -115,10 +118,26 @@ namespace AutoTests.HCA.Core.API.Services.HcaService
             return ExecuteJsonRequest<CartResult>(endpoint, Method.GET);
         }
 
-        public HcaResponse<CartResult> RemoveCartLine(string productId, string variantId, string endpoint = "carts/cartLines")
+        public HcaResponse<CartResult> RemoveCartLine(string productId, string variantId,
+            string endpoint = "carts/cartLines")
         {
             return ExecuteJsonRequest<CartResult>(endpoint + $"?productId={productId}&variantId={variantId}",
                 Method.DELETE);
+        }
+
+        public HcaResponse<WishListResult> AddWishListLine(VariantRequest variant, string endpoint = "wishlist")
+        {
+            return ExecuteJsonRequest<WishListResult>(endpoint, Method.POST, variant);
+        }
+
+        public HcaResponse<WishListResult> GetWishList(string endpoint = "wishlist")
+        {
+            return ExecuteJsonRequest<WishListResult>(endpoint, Method.GET);
+        }
+
+        public HcaResponse<WishListResult> RemoveWishListLine(string variantId, string endpoint = "wishlist")
+        {
+            return ExecuteJsonRequest<WishListResult>(endpoint + $"?variantId={variantId}", Method.DELETE);
         }
 
         public HcaResponse<DeliveryInfoResult> GetDeliveryInfo(string endpoint = "checkout/deliveryInfo")

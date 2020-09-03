@@ -41,7 +41,7 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
         </div>
         {items.length === 0 ? (
           <div className="wishlist_container-empty">
-            <FontAwesomeIcon icon={faHeart} size="8x" style={{color: 'black'}} />
+            <FontAwesomeIcon icon={faHeart} size="8x" style={{ color: 'black' }} />
             <label className="wishlist_label-empty">No items found in wishlist</label>
             <NavigationLink to={`/`}>
               <button className="wishlist_btn-empty">Add Items</button>

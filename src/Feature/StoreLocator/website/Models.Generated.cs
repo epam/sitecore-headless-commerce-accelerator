@@ -29,6 +29,98 @@ namespace HCA.Feature.StoreLocator.Models
 
 
     /// <summary>
+    /// ICountriesFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder</para>
+    /// <para>ID: d3c19476-fc89-461f-9997-38446a4aa64f</para>
+    /// </summary>
+    [SitecoreType(TemplateId="d3c19476-fc89-461f-9997-38446a4aa64f")]
+    public partial interface ICountriesFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// CountriesFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder</para>
+    /// <para>ID: d3c19476-fc89-461f-9997-38446a4aa64f</para>
+    /// </summary>
+    [SitecoreType(TemplateId="d3c19476-fc89-461f-9997-38446a4aa64f")]
+    public partial class CountriesFolder: GlassBase, ICountriesFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder
+        /// </summary>
+        public const string TemplateId = "d3c19476-fc89-461f-9997-38446a4aa64f";
+
+    }
+
+
+    /// <summary>
+    /// ICountry Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Country</para>
+    /// <para>ID: 4b54de2d-7fd8-40e7-b64d-b38e24e156a3</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4b54de2d-7fd8-40e7-b64d-b38e24e156a3")]
+    public partial interface ICountry: IGlassBase
+    {
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 709185a9-dfbb-40b0-985d-0f4f73eda570</para>
+        /// </summary>
+        [SitecoreField("Code")]
+        string Code {get; set;}
+
+        /// <summary>
+        /// The  field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cd8a9527-e002-46b4-8237-eca7caf7140a</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Country Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Country</para>
+    /// <para>ID: 4b54de2d-7fd8-40e7-b64d-b38e24e156a3</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4b54de2d-7fd8-40e7-b64d-b38e24e156a3")]
+    public partial class Country: GlassBase, ICountry
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Country
+        /// </summary>
+        public const string TemplateId = "4b54de2d-7fd8-40e7-b64d-b38e24e156a3";
+
+        /// <summary>
+        /// The Code field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 709185a9-dfbb-40b0-985d-0f4f73eda570</para>
+        /// </summary>
+        [SitecoreField("Code")]
+        public virtual string Code {get; set;}
+        public const string CodeFieldId = "709185a9-dfbb-40b0-985d-0f4f73eda570";
+        public const string CodeFieldName = "Code";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cd8a9527-e002-46b4-8237-eca7caf7140a</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "cd8a9527-e002-46b4-8237-eca7caf7140a";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
     /// IRadius Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius</para>
     /// <para>ID: 846425b7-2427-4ba2-ab81-38e895355621</para>
@@ -141,6 +233,14 @@ namespace HCA.Feature.StoreLocator.Models
 
         /// <summary>
         /// The  field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42</para>
+        /// </summary>
+        [SitecoreField("Countries")]
+        IEnumerable<Guid> Countries {get; set;}
+
+        /// <summary>
+        /// The  field.
         /// <para>Field Type: Number</para>
         /// <para>Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e</para>
         /// </summary>
@@ -176,8 +276,8 @@ namespace HCA.Feature.StoreLocator.Models
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: f0d8d855-8257-4096-907f-752b50a62744</para>
         /// </summary>
-        [SitecoreField("Radius")]
-        IEnumerable<Guid> Radius {get; set;}
+        [SitecoreField("Radiuses")]
+        IEnumerable<Guid> Radiuses {get; set;}
 
         /// <summary>
         /// The  field.
@@ -220,6 +320,16 @@ namespace HCA.Feature.StoreLocator.Models
         public const string TemplateId = "dc35377d-4d05-416a-9785-e8e380c75baf";
 
         /// <summary>
+        /// The Countries field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42</para>
+        /// </summary>
+        [SitecoreField("Countries")]
+        public virtual IEnumerable<Guid> Countries {get; set;}
+        public const string CountriesFieldId = "ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42";
+        public const string CountriesFieldName = "Countries";
+
+        /// <summary>
         /// The Default Latitude field.
         /// <para>Field Type: Number</para>
         /// <para>Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e</para>
@@ -260,14 +370,14 @@ namespace HCA.Feature.StoreLocator.Models
         public const string DescriptionFieldName = "Description";
 
         /// <summary>
-        /// The Radius field.
+        /// The Radiuses field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: f0d8d855-8257-4096-907f-752b50a62744</para>
         /// </summary>
-        [SitecoreField("Radius")]
-        public virtual IEnumerable<Guid> Radius {get; set;}
-        public const string RadiusFieldId = "f0d8d855-8257-4096-907f-752b50a62744";
-        public const string RadiusFieldName = "Radius";
+        [SitecoreField("Radiuses")]
+        public virtual IEnumerable<Guid> Radiuses {get; set;}
+        public const string RadiusesFieldId = "f0d8d855-8257-4096-907f-752b50a62744";
+        public const string RadiusesFieldName = "Radiuses";
 
         /// <summary>
         /// The Stores field.
@@ -303,27 +413,27 @@ namespace HCA.Feature.StoreLocator.Models
 
 
     /// <summary>
-    /// IStoreLocatorFolder Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder</para>
+    /// IStoresFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder</para>
     /// <para>ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb</para>
     /// </summary>
     [SitecoreType(TemplateId="fe957ab9-71b5-4c9f-a34c-1e640acb0abb")]
-    public partial interface IStoreLocatorFolder: IGlassBase
+    public partial interface IStoresFolder: IGlassBase
     {
 
     }
 
 
     /// <summary>
-    /// StoreLocatorFolder Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder</para>
+    /// StoresFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder</para>
     /// <para>ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb</para>
     /// </summary>
     [SitecoreType(TemplateId="fe957ab9-71b5-4c9f-a34c-1e640acb0abb")]
-    public partial class StoreLocatorFolder: GlassBase, IStoreLocatorFolder
+    public partial class StoresFolder: GlassBase, IStoresFolder
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder
         /// </summary>
         public const string TemplateId = "fe957ab9-71b5-4c9f-a34c-1e640acb0abb";
 

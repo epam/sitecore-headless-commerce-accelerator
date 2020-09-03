@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
-  Value: "query:./*[@@templateid='{7360D0B3-5400-4DCC-913D-80A4F0D7539E}']"
+  Value: "query:./*[@@templateid='{FE957AB9-71B5-4C9F-A34C-1E640ACB0ABB}' and @@name='Stores']/*[@@templateid='{7360D0B3-5400-4DCC-913D-80A4F0D7539E}']"
 - ID: "39847666-389d-409b-95bd-f2016f11eed5"
   Hint: Unversioned
   Type: Checkbox

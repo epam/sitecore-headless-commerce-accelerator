@@ -21,5 +21,8 @@
       "pre-commit": "pretty-quick --staged --pattern '**/*.*(ts|tsx)'",
       "commit-msg": "sh hooks/commit-msg"
     }
+  },
+  "dependencies": {
+    "react-geocode": "^0.2.1"
   }
 }

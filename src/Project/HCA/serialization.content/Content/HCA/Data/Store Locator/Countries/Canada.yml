@@ -1,0 +1,21 @@
+﻿---
+ID: "9bcf3c32-bc24-45b1-8f05-b3d54d946add"
+Parent: "65c0b7b7-7e24-4fc7-8051-08933b375b21"
+Template: "4b54de2d-7fd8-40e7-b64d-b38e24e156a3"
+Path: /sitecore/content/HCA/Data/Store Locator/Countries/Canada
+DB: master
+SharedFields:
+- ID: "709185a9-dfbb-40b0-985d-0f4f73eda570"
+  Hint: Code
+  Value: ca
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200827T142417Z
+    - ID: "cd8a9527-e002-46b4-8237-eca7caf7140a"
+      Hint: Title
+      Value: Canada

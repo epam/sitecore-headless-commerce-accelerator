@@ -25,6 +25,7 @@ import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as StoreLocator from 'Feature/StoreLocator/Integration/StoreLocator';
 
 export default function* rootSaga() {
   yield all([
@@ -35,6 +36,7 @@ export default function* rootSaga() {
     ...ShoppingCart.rootSaga,
     ...Checkout.rootSaga,
     ...SitecoreContext.rootSaga,
+    ...StoreLocator.rootSaga,
     ...Order.rootSaga,
     ...OrderHistory.rootSaga,
   ]);

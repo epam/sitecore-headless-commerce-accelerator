@@ -37,7 +37,6 @@ namespace HCA.Feature.StoreLocator.Tests.Providers
         private readonly IStoreLocatorProvider storeLocatorProvider;
 
         private DbItem storeLocator;
-        private DbItem storeLocatorFolder;
         private DbItem dataSourceRoot;
 
         public StoreLocatorProviderTests()
@@ -84,49 +83,6 @@ namespace HCA.Feature.StoreLocator.Tests.Providers
             }
         }
 
-        [Fact]
-        public void GetStoreLocator_ShouldCallGetFirstChildOrDefaultMethodWithRootFolderData()
-        {
-            //arrange
-            using (var db = new Db { dataSourceRoot })
-            {
-                this.PrepareTestData(db);
-
-                var rootDsFolder = db.GetItem(this.dataSourceRoot.ID);
-
-                // act
-                this.storeLocatorProvider.GetLocator();
-
-                // assert
-                this.datasourceProvider
-                    .Received(1)
-                    .GetFirstChildOrDefault(
-                        Arg.Is(rootDsFolder),
-                        Arg.Is(StoreLocatorFolder.TemplateId));
-            }
-        }
-
-        [Fact]
-        public void GetStoreLocator_ShouldCallGetFirstChildOrDefaultMethodWithStoreLocatorFolderData()
-        {
-            //arrange
-            using (var db = new Db { dataSourceRoot })
-            {
-                this.PrepareTestData(db);
-
-                var storeLocatorDsFolder = db.GetItem(this.storeLocatorFolder.ID);
-
-                // act
-                this.storeLocatorProvider.GetLocator();
-
-                // assert
-                this.datasourceProvider
-                    .Received(1)
-                    .GetFirstChildOrDefault(
-                        Arg.Is(storeLocatorDsFolder),
-                        Arg.Is(StoreLocator.TemplateId));
-            }
-        }
 
         [Fact]
         public void StoreLocatorIsNotExists_ShouldReturnNull()
@@ -192,7 +148,6 @@ namespace HCA.Feature.StoreLocator.Tests.Providers
             bool locatorExists = true)
         {
             var rootDsFolder = db.GetItem(this.dataSourceRoot.ID);
-            var storeLocatorDsFolder = db.GetItem(this.storeLocatorFolder.ID);
             var storeLocatorDs = db.GetItem(this.storeLocator.ID);
 
             this.datasourceProvider
@@ -202,7 +157,6 @@ namespace HCA.Feature.StoreLocator.Tests.Providers
             this.datasourceProvider
                 .GetFirstChildOrDefault(Arg.Any<Item>(), Arg.Any<string>())
                 .Returns(
-                    locatorFolderExists ? storeLocatorDsFolder : default(Item),
                     locatorExists ? storeLocatorDs : default(Item));
 
             this.sitecoreService
@@ -213,15 +167,10 @@ namespace HCA.Feature.StoreLocator.Tests.Providers
         private void InitFakeDbContent()
         {
             this.storeLocator = new DbItem("Store Locator");
-
-            this.storeLocatorFolder = new DbItem("Store Locator Folder")
-            {
-                this.storeLocator
-            };
-
+            
             this.dataSourceRoot = new DbItem("Data Folder")
             {
-                this.storeLocatorFolder
+                this.storeLocator
             };
         }
     }

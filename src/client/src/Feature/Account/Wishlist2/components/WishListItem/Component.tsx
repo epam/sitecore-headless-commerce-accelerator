@@ -36,7 +36,10 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
             {item.displayName}
           </NavigationLink>
         </td>
-        <td>{item.currencySymbol}{item.listPrice}</td>
+        <td>
+          {item.currencySymbol}
+          {item.listPrice}
+        </td>
         <td>
           <button
             className="wishlist_item_add-btn wishlist_item_button"
@@ -46,7 +49,10 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
           </button>
         </td>
         <td>
-          <button className="wishlist_item_remove-btn wishlist_item_button" onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}>
+          <button
+            className="wishlist_item_remove-btn wishlist_item_button"
+            onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}
+          >
             x
           </button>
         </td>

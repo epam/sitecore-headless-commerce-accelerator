@@ -46,6 +46,17 @@ namespace HCA.Foundation.Commerce.Services.Geolocation
             this.siteSettingsProvider = siteSettingsProvider;
         }
 
+        public Result<SearchByGeolocationResult> GetAll(
+            IEnumerable<Guid> selectedLocations)
+        {
+            var result = new SearchByGeolocationResult
+            {
+                Locations = this.geolocationRepository.GetItems(selectedLocations)
+            };
+
+            return new Result<SearchByGeolocationResult>(result);
+        }
+
         public Result<SearchByGeolocationResult> Find(
             double latitude,
             double longitude,

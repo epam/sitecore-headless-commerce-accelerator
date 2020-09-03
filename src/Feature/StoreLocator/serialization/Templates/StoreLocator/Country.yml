@@ -1,23 +1,20 @@
 ﻿---
-ID: "fe957ab9-71b5-4c9f-a34c-1e640acb0abb"
+ID: "4b54de2d-7fd8-40e7-b64d-b38e24e156a3"
 Parent: "6585dbff-3a9e-0ffd-1b5d-c113001c459e"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Country
 DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
-  Value: office/32x32/folder.png
+  Value: office/32x32/map_roads.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
   Type: tree list
   Value: "{1930BBEB-7805-471A-A3BE-4858AC7CF696}"
-- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
-  Hint: __Sortorder
-  Value: 100
 - ID: "f7d48a55-2158-4f02-9356-756654404f73"
   Hint: __Standard values
-  Value: "{5783FD8E-B94A-460B-A568-A0A2216C4F4B}"
+  Value: "{ECAA3E20-727E-4856-A070-95268158A733}"
 Languages:
 - Language: en
   Versions:
@@ -25,4 +22,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200710T113407Z
+      Value: 20200827T142212Z

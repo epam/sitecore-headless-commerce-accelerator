@@ -1,0 +1,21 @@
+﻿---
+ID: "0c59ec35-ab1b-4b93-b22e-e02ec88557a7"
+Parent: "65c0b7b7-7e24-4fc7-8051-08933b375b21"
+Template: "4b54de2d-7fd8-40e7-b64d-b38e24e156a3"
+Path: /sitecore/content/HCA/Data/Store Locator/Countries/United States
+DB: master
+SharedFields:
+- ID: "709185a9-dfbb-40b0-985d-0f4f73eda570"
+  Hint: Code
+  Value: us
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200827T142408Z
+    - ID: "cd8a9527-e002-46b4-8237-eca7caf7140a"
+      Hint: Title
+      Value: United States

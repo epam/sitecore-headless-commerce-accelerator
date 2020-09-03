@@ -16,8 +16,8 @@ namespace HCA.Feature.StoreLocator.Controllers
 {
     using System.Web.Mvc;
 
-    using HCA.Feature.StoreLocator.Models.Requests;
-    using HCA.Feature.StoreLocator.Services;
+    using Models.Requests;
+    using Services;
     using HCA.Foundation.Base.Controllers;
 
     public class StoreLocatorController : BaseController
@@ -31,7 +31,15 @@ namespace HCA.Feature.StoreLocator.Controllers
 
         [HttpGet]
         [ActionName("stores")]
-        public ActionResult GetLocations(StoreLocationRequest storeLocationRequest)
+        public ActionResult GetLocations()
+        {
+            return this.Execute(
+                () => this.storeLocatorService.GetStores());
+        }
+
+        [HttpGet]
+        [ActionName("search")]
+        public ActionResult SearchLocations(StoreLocationRequest storeLocationRequest)
         {
             return this.Execute(
                 () => this.storeLocatorService.FindStoresByGeolocation(

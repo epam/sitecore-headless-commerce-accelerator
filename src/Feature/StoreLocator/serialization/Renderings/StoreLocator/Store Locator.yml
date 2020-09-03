@@ -39,6 +39,29 @@ SharedFields:
               }
             }
           }
+          countries {
+            items: targetItems {
+              ... on Country {
+                id
+                title {
+                  jss
+                }
+                code {
+                  jss
+                }
+              }
+            }
+          }
+          radiuses {
+            items: targetItems {
+              ... on Radius {
+                id
+                value {
+                  jss
+                }
+              }
+            }
+          }
           defaultLatitude {
             jss
           }

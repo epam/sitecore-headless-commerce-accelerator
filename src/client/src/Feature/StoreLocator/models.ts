@@ -13,16 +13,26 @@
 //    limitations under the License.
 
 import * as Jss from 'Foundation/ReactJss';
+import { GlobalCurrentStoreLocatorState } from './Integration/StoreLocator';
 
 export interface Coordinates {
   latitude: number;
   longitude: number;
 }
 export interface Store {
+  title: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface Radius {
+  value: Jss.GraphQLField<Jss.TextField>;
+}
+
+export interface Country {
   title: Jss.GraphQLField<Jss.TextField>;
-  description: Jss.GraphQLField<Jss.TextField>;
-  latitude: Jss.GraphQLField<Jss.TextField>;
-  longitude: Jss.GraphQLField<Jss.TextField>;
+  code: Jss.GraphQLField<Jss.TextField>;
 }
 
 export interface StoreLocatorDataSource extends Jss.BaseDataSourceItem {
@@ -31,8 +41,24 @@ export interface StoreLocatorDataSource extends Jss.BaseDataSourceItem {
   defaultLatitude: Jss.GraphQLField<Jss.TextField>;
   defaultLongitude: Jss.GraphQLField<Jss.TextField>;
   stores: Jss.GraphQLListField<Store>;
+  radiuses: Jss.GraphQLListField<Radius>;
+  countries: Jss.GraphQLListField<Country>;
 }
 
-export interface StoreLocatorProps extends Jss.GraphQLRendering<StoreLocatorDataSource> {}
+export interface StoreLocatorDispatchProps {
+  GetStores: () => Store[];
+  FindStores: (zipCode: string, countryCode: string, radius: number) => Store[];
+}
 
-export interface StoreLocatorOwnState extends Jss.SafePureComponentState {}
+export interface StoreLocatorStateProps {
+  stores: Store[];
+  isLoading: boolean;
+}
+
+export interface StoreLocatorProps
+  extends Jss.GraphQLRendering<StoreLocatorDataSource>,
+    StoreLocatorStateProps,
+    StoreLocatorDispatchProps {}
+export interface StoreLocatorState extends Jss.SafePureComponentState {}
+
+export interface AppState extends GlobalCurrentStoreLocatorState, Jss.RoutingState {}

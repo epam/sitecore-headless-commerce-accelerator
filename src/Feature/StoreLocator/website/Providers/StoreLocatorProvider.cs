@@ -52,11 +52,8 @@ namespace HCA.Feature.StoreLocator.Providers
             var datasourceRootFolder = this.datasourceProvider
                 .GetDataSourcesRootFolder();
 
-            var locatorFolder = this.datasourceProvider
-                .GetFirstChildOrDefault(datasourceRootFolder, StoreLocatorFolder.TemplateId);
-
             var locatorItem = this.datasourceProvider
-                .GetFirstChildOrDefault(locatorFolder, Models.StoreLocator.TemplateId);
+                .GetFirstChildOrDefault(datasourceRootFolder, StoreLocator.TemplateId);
 
             return locatorItem;
         }

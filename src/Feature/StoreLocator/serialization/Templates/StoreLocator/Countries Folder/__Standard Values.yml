@@ -1,14 +1,14 @@
 ﻿---
-ID: "5783fd8e-b94a-460b-a568-a0a2216c4f4b"
-Parent: "fe957ab9-71b5-4c9f-a34c-1e640acb0abb"
-Template: "fe957ab9-71b5-4c9f-a34c-1e640acb0abb"
-Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder/__Standard Values
+ID: "d6c9cb86-379a-4c73-b8e2-93a9a2ede836"
+Parent: "d3c19476-fc89-461f-9997-38446a4aa64f"
+Template: "d3c19476-fc89-461f-9997-38446a4aa64f"
+Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder/__Standard Values
 DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
   Type: TreelistEx
-  Value: "{DC35377D-4D05-416A-9785-E8E380C75BAF}"
+  Value: "{4B54DE2D-7FD8-40E7-B64D-B38E24E156A3}"
 Languages:
 - Language: en
   Versions:

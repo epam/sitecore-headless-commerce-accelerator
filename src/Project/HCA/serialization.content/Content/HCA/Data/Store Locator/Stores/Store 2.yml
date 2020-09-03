@@ -1,16 +1,16 @@
 ﻿---
 ID: "12e5ef19-6663-49c8-9818-4c6c44fa646d"
-Parent: "90c2e676-24f5-4d21-bc24-86ca695129f2"
+Parent: "efda4fa8-50a0-400c-9cd1-b3bf3c9c709c"
 Template: "7360d0b3-5400-4dcc-913d-80a4f0d7539e"
-Path: /sitecore/content/HCA/Data/Store Locator/Store Locator/Store 2
+Path: /sitecore/content/HCA/Data/Store Locator/Stores/Store 2
 DB: master
 SharedFields:
 - ID: "2eb66e67-f3f2-44ac-9654-7f26a5fd52fe"
   Hint: Latitude
-  Value: "-34.397"
+  Value: 41.6
 - ID: "5e72c2b0-9340-4dde-b8a0-d51b6b1a9960"
   Hint: Longitude
-  Value: 150.644
+  Value: "-72"
 Languages:
 - Language: en
   Versions:

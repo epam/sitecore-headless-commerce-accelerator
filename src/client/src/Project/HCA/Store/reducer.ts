@@ -29,6 +29,7 @@ import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as StoreLocator from 'Feature/StoreLocator/Integration/StoreLocator';
 
 export const makeRootReducer = (history: History) =>
   combineReducers({
@@ -42,6 +43,7 @@ export const makeRootReducer = (history: History) =>
     selectedProductVariant: ProductVariant.reducer,
     shoppingCart: ShoppingCart.reducer,
     sitecore: SitecoreContext.reducer,
+    storeLocator: StoreLocator.reducer,
     viewBag: (state = {}) => state,
     wishlist: Wishlist.rootReducer,
   });

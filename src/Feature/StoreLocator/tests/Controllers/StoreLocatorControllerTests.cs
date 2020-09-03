@@ -59,7 +59,7 @@ namespace HCA.Feature.StoreLocator.Tests.Controllers
             this.controller = Substitute.For<StoreLocatorController>(this.storeLocatorService);
 
             // act
-            this.controller.GetLocations(this.requestModel);
+            this.controller.SearchLocations(this.requestModel);
 
             // assert
 
@@ -75,7 +75,7 @@ namespace HCA.Feature.StoreLocator.Tests.Controllers
             this.controller = new StoreLocatorController(this.storeLocatorService);
 
             // act
-            this.controller.GetLocations(this.requestModel);
+            this.controller.SearchLocations(this.requestModel);
 
             // assert
             this.storeLocatorService

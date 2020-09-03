@@ -1,6 +1,6 @@
 import * as Commerse from 'Foundation/Commerce';
 
-// commerse entities
+// commerce entities
 
 export interface Wishlist {
   lines: WishlistLine[];

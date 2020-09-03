@@ -56,5 +56,13 @@ namespace HCA.Feature.StoreLocator.Services
                     unitCode,
                     storeLocator.Stores);
         }
+
+        public Result<SearchByGeolocationResult> GetStores()
+        {
+            var storeLocator = this.storeLocatorProvider.GetLocator();
+            return this.geolocationService
+                .GetAll(
+                    storeLocator.Stores);
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace HCA.Foundation.Commerce.Services.Geolocation
 
     public interface IGeolocationService
     {
+        Result<SearchByGeolocationResult> GetAll(IEnumerable<Guid> selectedLocations);
+
         Result<SearchByGeolocationResult> Find(
             double latitude,
             double longitude,

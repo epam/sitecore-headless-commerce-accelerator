@@ -16,6 +16,66 @@
 
 import * as ReactJssModule from 'Foundation/ReactJss';
 
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder
+// ID: d3c19476-fc89-461f-9997-38446a4aa64f
+export interface CountriesFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder
+// ID: d3c19476-fc89-461f-9997-38446a4aa64f
+export interface CountriesFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Countries Folder
+// ID: d3c19476-fc89-461f-9997-38446a4aa64f
+export const CountriesFolderTemplate = {
+  templateId: 'd3c19476-fc89-461f-9997-38446a4aa64f',
+};
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Country
+// ID: 4b54de2d-7fd8-40e7-b64d-b38e24e156a3
+export interface CountryDataSource extends ReactJssModule.BaseDataSourceItem {
+  /// The Code field.
+  /// Field Type: Single-Line Text
+  /// Field ID: 709185a9-dfbb-40b0-985d-0f4f73eda570
+  code: ReactJssModule.TextField;
+
+  /// The Title field.
+  /// Field Type: Single-Line Text
+  /// Field ID: cd8a9527-e002-46b4-8237-eca7caf7140a
+  title: ReactJssModule.TextField;
+}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Country
+// ID: 4b54de2d-7fd8-40e7-b64d-b38e24e156a3
+export interface CountryRenderingParams extends ReactJssModule.BaseRenderingParam {
+  /// The Code field.
+  /// Field Type: Single-Line Text
+  /// Field ID: 709185a9-dfbb-40b0-985d-0f4f73eda570
+  code: string;
+
+  /// The Title field.
+  /// Field Type: Single-Line Text
+  /// Field ID: cd8a9527-e002-46b4-8237-eca7caf7140a
+  title: string;
+}
+
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Country
+// ID: 4b54de2d-7fd8-40e7-b64d-b38e24e156a3
+export const CountryTemplate = {
+  templateId: '4b54de2d-7fd8-40e7-b64d-b38e24e156a3',
+
+  /// The Code field.
+  /// <para>Field Type: Single-Line Text</para>
+  /// <para>Field ID: 709185a9-dfbb-40b0-985d-0f4f73eda570</para>
+  codeFieldId: '709185a9-dfbb-40b0-985d-0f4f73eda570',
+  codeFieldName: 'Code',
+
+  /// The Title field.
+  /// <para>Field Type: Single-Line Text</para>
+  /// <para>Field ID: cd8a9527-e002-46b4-8237-eca7caf7140a</para>
+  titleFieldId: 'cd8a9527-e002-46b4-8237-eca7caf7140a',
+  titleFieldName: 'Title',
+};
+
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Radius
 // ID: 846425b7-2427-4ba2-ab81-38e895355621
 export interface RadiusDataSource extends ReactJssModule.BaseDataSourceItem {
@@ -77,6 +137,11 @@ export const StoreTemplate = {
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
 // ID: dc35377d-4d05-416a-9785-e8e380c75baf
 export interface StoreLocatorDataSource extends ReactJssModule.BaseDataSourceItem {
+  /// The Countries field.
+  /// Field Type: Multilist
+  /// Field ID: ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42
+  countries: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+
   /// The Default Latitude field.
   /// Field Type: Number
   /// Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e
@@ -97,10 +162,10 @@ export interface StoreLocatorDataSource extends ReactJssModule.BaseDataSourceIte
   /// Field ID: 50365886-475f-4656-a7d9-bac8bea0c413
   description: ReactJssModule.TextField;
 
-  /// The Radius field.
+  /// The Radiuses field.
   /// Field Type: Multilist
   /// Field ID: f0d8d855-8257-4096-907f-752b50a62744
-  radius: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  radiuses: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
 
   /// The Stores field.
   /// Field Type: Multilist
@@ -121,6 +186,11 @@ export interface StoreLocatorDataSource extends ReactJssModule.BaseDataSourceIte
 // Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator
 // ID: dc35377d-4d05-416a-9785-e8e380c75baf
 export interface StoreLocatorRenderingParams extends ReactJssModule.BaseRenderingParam {
+  /// The Countries field.
+  /// Field Type: Multilist
+  /// Field ID: ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42
+  countries: string;
+
   /// The Default Latitude field.
   /// Field Type: Number
   /// Field ID: 42265054-df48-49c4-be6d-4eb68f4f632e
@@ -141,10 +211,10 @@ export interface StoreLocatorRenderingParams extends ReactJssModule.BaseRenderin
   /// Field ID: 50365886-475f-4656-a7d9-bac8bea0c413
   description: string;
 
-  /// The Radius field.
+  /// The Radiuses field.
   /// Field Type: Multilist
   /// Field ID: f0d8d855-8257-4096-907f-752b50a62744
-  radius: string;
+  radiuses: string;
 
   /// The Stores field.
   /// Field Type: Multilist
@@ -166,6 +236,12 @@ export interface StoreLocatorRenderingParams extends ReactJssModule.BaseRenderin
 // ID: dc35377d-4d05-416a-9785-e8e380c75baf
 export const StoreLocatorTemplate = {
   templateId: 'dc35377d-4d05-416a-9785-e8e380c75baf',
+
+  /// The Countries field.
+  /// <para>Field Type: Multilist</para>
+  /// <para>Field ID: ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42</para>
+  countriesFieldId: 'ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42',
+  countriesFieldName: 'Countries',
 
   /// The Default Latitude field.
   /// <para>Field Type: Number</para>
@@ -191,11 +267,11 @@ export const StoreLocatorTemplate = {
   descriptionFieldId: '50365886-475f-4656-a7d9-bac8bea0c413',
   descriptionFieldName: 'Description',
 
-  /// The Radius field.
+  /// The Radiuses field.
   /// <para>Field Type: Multilist</para>
   /// <para>Field ID: f0d8d855-8257-4096-907f-752b50a62744</para>
-  radiusFieldId: 'f0d8d855-8257-4096-907f-752b50a62744',
-  radiusFieldName: 'Radius',
+  radiusesFieldId: 'f0d8d855-8257-4096-907f-752b50a62744',
+  radiusesFieldName: 'Radiuses',
 
   /// The Stores field.
   /// <para>Field Type: Multilist</para>
@@ -216,16 +292,16 @@ export const StoreLocatorTemplate = {
   unitOfLengthFieldName: 'Unit Of Length',
 };
 
-// Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder
 // ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb
-export interface StoreLocatorFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface StoresFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
 
-// Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder
 // ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb
-export interface StoreLocatorFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface StoresFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
 
-// Path: /sitecore/templates/HCA/Feature/StoreLocator/Store Locator Folder
+// Path: /sitecore/templates/HCA/Feature/StoreLocator/Stores Folder
 // ID: fe957ab9-71b5-4c9f-a34c-1e640acb0abb
-export const StoreLocatorFolderTemplate = {
+export const StoresFolderTemplate = {
   templateId: 'fe957ab9-71b5-4c9f-a34c-1e640acb0abb',
 };

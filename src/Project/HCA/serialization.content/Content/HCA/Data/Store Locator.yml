@@ -1,14 +1,66 @@
 ﻿---
-ID: "efda4fa8-50a0-400c-9cd1-b3bf3c9c709c"
+ID: "90c2e676-24f5-4d21-bc24-86ca695129f2"
 Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
-Template: "fe957ab9-71b5-4c9f-a34c-1e640acb0abb"
+Template: "dc35377d-4d05-416a-9785-e8e380c75baf"
 Path: /sitecore/content/HCA/Data/Store Locator
 DB: master
+SharedFields:
+- ID: "42265054-df48-49c4-be6d-4eb68f4f632e"
+  Hint: Default Latitude
+  Value: 40.7
+- ID: "43aa9312-0033-41de-b127-59379956428f"
+  Hint: Stores
+  Type: Multilist
+  Value: |
+    {04F4EE1B-96FA-465C-BB4A-D3F7B1678F16}
+    {12E5EF19-6663-49C8-9818-4C6C44FA646D}
+    {410C01D0-24F0-4D7D-8F46-36A0CC7F227A}
+- ID: "8c68f0d1-5e42-4e71-a220-2ce4b0cf651c"
+  Hint: Default Longitude
+  Value: "-74"
+- ID: "ba1bbc85-7fbe-4beb-a8e2-e36b739e2f42"
+  Hint: Countries
+  Type: Multilist
+  Value: |
+    {9BCF3C32-BC24-45B1-8F05-B3D54D946ADD}
+    {0C59EC35-AB1B-4B93-B22E-E02EC88557A7}
+- ID: "f0d8d855-8257-4096-907f-752b50a62744"
+  Hint: Radiuses
+  Type: Multilist
+  Value: |
+    {539C3970-3469-4A81-9457-670C0FAF22C2}
+    {6693A659-EB1E-4727-AB86-183F0A3322A2}
+    {DC768423-174F-4F75-A082-83D80A69E05C}
+    {DA07DC39-AD26-4BDB-B8FF-64E2B61D0633}
 Languages:
 - Language: en
   Versions:
   - Version: 1
     Fields:
+    - ID: "0f5d3b8e-badd-4617-9a6d-9102cea617e4"
+      Hint: Title
+      Value: Store Locator
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200710T113528Z
+      Value: 20200710T113534Z
+    - ID: "50365886-475f-4656-a7d9-bac8bea0c413"
+      Hint: Description
+      Value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut maximus turpis, vel condimentum lectus. Duis egestas, nisi et volutpat maximus, orci dui vestibulum eros, id dignissim justo ipsum ac ipsum.
+    - ID: "506a4f5b-4c6e-466b-8709-b212231977e5"
+      Hint: Unit Of Length
+      Value: "{866FD0E9-C965-49DA-9A24-BDD46B1A01CC}"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "b8df8215-ceb2-4f11-b725-4f5080f4ab18"
+      Hint: Default Radius
+      Value: "{6693A659-EB1E-4727-AB86-183F0A3322A2}"
+    - ID: "f0d8d855-8257-4096-907f-752b50a62744"
+      Hint: Radius
+      Type: Multilist
+      Value: |
+        {6693A659-EB1E-4727-AB86-183F0A3322A2}
+        {539C3970-3469-4A81-9457-670C0FAF22C2}
+        {DC768423-174F-4F75-A082-83D80A69E05C}
+        {DA07DC39-AD26-4BDB-B8FF-64E2B61D0633}

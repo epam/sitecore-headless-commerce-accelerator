@@ -23,5 +23,7 @@ namespace HCA.Feature.StoreLocator.Services
             double latitude,
             double longitude,
             double radius);
+
+        Result<SearchByGeolocationResult> GetStores();
     }
 }

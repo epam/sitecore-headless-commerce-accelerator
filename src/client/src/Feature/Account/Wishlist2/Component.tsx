@@ -15,6 +15,8 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavigationLink } from 'Foundation/UI';
 import { WishlistItem } from './components/WishlistItem';
 

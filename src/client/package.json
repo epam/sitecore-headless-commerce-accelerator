@@ -18,6 +18,9 @@
     "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-regular-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@sitecore-jss/sitecore-jss-react": "^13.0.0",
     "apollo-cache-inmemory": "^1.6.0",
     "apollo-client": "^2.6.0",

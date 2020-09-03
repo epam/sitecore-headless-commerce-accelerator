@@ -29,7 +29,7 @@ class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorProps, Sto
 
     return (
       <div className="col-md-12 order-md-1 locator_content" style={{marginTop: 30, marginBottom: 20}}>
-        <h2 className="mb-3">{title.jss.value}</h2>
+        <h2 className="mb-3 locator_header">{title.jss.value}</h2>
         <p>{description.jss.value}</p>
         <form className="needs-validation">
           <div style={{display: 'flex', flexDirection: 'row', marginBottom: 30}}>

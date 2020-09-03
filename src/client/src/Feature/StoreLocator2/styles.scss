@@ -21,12 +21,12 @@
   font-family: $poppins !important;
   color: black;
 }
-h2{
-  font-family: $poppins !important;
-  font-size: 42px !important;
-  font-weight: bold !important;
-  text-transform: uppercase !important;
-  color: black !important;
+.locator_header{
+  font-family: $poppins;
+  font-size: 42px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
 }
 
 .form_item{

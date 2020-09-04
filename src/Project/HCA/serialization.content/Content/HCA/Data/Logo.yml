@@ -1,8 +1,8 @@
 ﻿---
 ID: "6c8d751f-d56e-4551-a5d5-312d105195c8"
-Parent: "39d2c64d-7ea8-438c-82b0-300e97de236a"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
 Template: "4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44"
-Path: /sitecore/content/HCA/Data/Header/Logo
+Path: /sitecore/content/HCA/Data/Logo
 DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"

@@ -298,7 +298,7 @@
       <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.54\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.55\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Commerce.ServiceProxy, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.ServiceProxy.5.0.76\lib\net471\Sitecore.Commerce.ServiceProxy.dll</HintPath>

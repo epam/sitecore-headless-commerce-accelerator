@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoTests.AutomationFramework.Shared.Configuration;
+﻿using AutoTests.AutomationFramework.Shared.Configuration;
 using AutoTests.HCA.Core.Common.Settings;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoTests.HCA.Tests
 {
@@ -57,7 +57,7 @@ namespace AutoTests.HCA.Tests
 
         public static IEnumerable<ProductTestsDataSettings> GetProducts(int qty)
         {
-            return Products.Take(qty).Where(x => x.StockStatus == HcaProductStatus.InStock);
+            return Products.Where(x => x.StockStatus == HcaProductStatus.InStock && x.DefaultVariant).Take(qty);
         }
 
         public static HcaPromotionTestsDataSettings GetPromotion(HcaPromotionName couponName)
@@ -69,6 +69,12 @@ namespace AutoTests.HCA.Tests
             where T : BaseHcaEntityTestsDataSettings
         {
             return collection.First(x => x.Default);
+        }
+
+        public static IEnumerable<ProductTestsDataSettings> GetDifferentVariantProducts()
+        {
+            var secondaryProduct = Products.First(x => !x.DefaultVariant);
+            return Products.Where(x => x.ProductId == secondaryProduct.ProductId);
         }
     }
 }

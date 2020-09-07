@@ -1,5 +1,7 @@
 ﻿using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
+using NUnit.Framework;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout
 {
@@ -13,6 +15,9 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
 
         private readonly WebSelect _shippingMethodSelect = new WebSelect("Shipping method",
             ByCustom.XPath("//select[contains(@name, 'SHIPPING_METHOD')]"));
+
+        private readonly WebSelect _shippingLocationSelect = new WebSelect("Shipping location",
+            ByCustom.XPath("//select[contains(@name, 'SELECTED_ADDRESS')]"));
 
         protected virtual void FillFieldsByDefault()
         {
@@ -29,10 +34,32 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             _saveAndContinueButton.Click();
         }
 
-        public void SelectShippingMethod(string shippingMethod)
+        public void VerifySubmitIsNotClickable()
         {
-            new WebElement($"Shipping method {shippingMethod}",
-                ByCustom.XPath($"./option[text()='{shippingMethod}']"), _shippingMethodSelect).Click();
+            _saveAndContinueButton.VerifyNotClickable();
+        }
+
+        public void SelectShippingMethod(ShippingMethod shippingMethod)
+        {
+            var shippingMethodValue = shippingMethod.GetValue();
+            new WebElement($"Shipping method {shippingMethodValue}",
+                ByCustom.XPath($"./option[text()='{shippingMethodValue}']"), _shippingMethodSelect).Click();
+        }
+
+        public void SelectShippingAddress(string shippingAddress)
+        {
+            new WebElement($"Shipping address {shippingAddress}",
+                ByCustom.XPath($"./option[text()='{shippingAddress}']"), _shippingLocationSelect).Click();
+        }
+
+        public void SelectFirstShippingAddress()
+        {
+            if (_shippingLocationSelect.GetChildElementsCount(ByCustom.XPath("./option")) < 2)
+            {
+                Assert.Fail("Shipping address has no values");
+            }
+            new WebElement($"First Shipping address",
+                ByCustom.XPath($"./option[2]"), _shippingLocationSelect).Click();
         }
 
         public void GoToTheNextPage()

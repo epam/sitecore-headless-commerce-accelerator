@@ -76,14 +76,16 @@ namespace AutoTests.HCA.Tests.APITests.Account
             // Data
             Assert.NotNull(actualAddresses, "The response should contain information about user addresses.");
 
-            if (expectedAddresses.Any())
+            var enumerable = expectedAddresses.ToList();
+            if (enumerable.Any())
             {
-                if (actualAddresses.Any())
+                var addresses = actualAddresses.ToList();
+                if (addresses.Any())
                 {
-                    Assert.AreEqual(expectedAddresses.Count(), actualAddresses.Count(),
+                    Assert.AreEqual(enumerable.Count(), addresses.Count(),
                         "The expected addresses number doesn't match the actual addresses number.");
 
-                    foreach (var address in actualAddresses)
+                    foreach (var address in addresses)
                     {
                         // Data -> Address 
                         ExtendedAssert.NotNull(address, nameof(address));
@@ -92,7 +94,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
 
                         if (isNewAddress)
                         {
-                            expAddress = expectedAddresses.FirstOrDefault(x => x.Email == address.Email) ??
+                            expAddress = enumerable.FirstOrDefault(x => x.Email == address.Email) ??
                                          throw new Exception(
                                              $"the list of addresses must not contain email='{address.Email}'");
                             ExtendedAssert.NotNullOrWhiteSpace(address.Email, nameof(address.Email));
@@ -101,7 +103,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                         }
                         else
                         {
-                            expAddress = expectedAddresses.FirstOrDefault(x => x.ExternalId == address.ExternalId) ??
+                            expAddress = enumerable.FirstOrDefault(x => x.ExternalId == address.ExternalId) ??
                                          throw new Exception(
                                              $"the list of addresses must not contain externalId='{address.ExternalId}'");
                             ExtendedAssert.AreEqual(expAddress.ExternalId, address.ExternalId,

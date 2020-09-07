@@ -146,43 +146,50 @@ namespace AutoTests.HCA.Core.UI
             LoginForm.VerifyFormPresent();
         }
 
-        public void AddProductToCart(string id)
+        public void AddProductToCart(ProductTestsDataSettings product)
         {
-            NavigateToPage(ProductPage.GetPath() + $"/{id}");
+            NavigateToPage(ProductPage.GetPath() + $"/{product.ProductId}");
             ProductPage.WaitForOpened();
+            if (!product.DefaultVariant)
+            {
+                ProductPage.ChooseColor(1);
+            }
             ProductPage.AddToCartButtonClick();
             HeaderControl.WaitForPresentProductsQuantity();
         }
 
         public void AddProductsToCartFromTestData(IEnumerable<ProductTestsDataSettings> products)
         {
-            foreach (var product in products) AddProductToCart(product.ProductId);
+            foreach (var product in products)
+            {
+                AddProductToCart(product);
+            }
         }
 
-        public void AddProductAndGoToCheckoutShippingPage(string productId)
+        public void AddProductAndGoToCheckoutShippingPage(ProductTestsDataSettings product)
         {
-            AddProductToCart(productId);
+            AddProductToCart(product);
             HeaderControl.ClickCartButton();
             CartPage.VerifyOpened();
             CartPage.WaitForProductsLoaded();
             CartPage.ClickCheckoutButton();
         }
 
-        public void AddProductAndGoToCheckoutBillingPage(string productId)
+        public void AddProductAndGoToCheckoutBillingPage(ProductTestsDataSettings product)
         {
-            AddProductAndGoToCheckoutShippingPage(productId);
+            AddProductAndGoToCheckoutShippingPage(product);
             CheckoutShippingPage.GoToTheNextPage();
         }
 
-        public void AddProductAndGoToCheckoutPaymentPage(string productId)
+        public void AddProductAndGoToCheckoutPaymentPage(ProductTestsDataSettings product)
         {
-            AddProductAndGoToCheckoutBillingPage(productId);
+            AddProductAndGoToCheckoutBillingPage(product);
             CheckoutBillingPage.GoToTheNextPage();
         }
 
-        public void AddProductAndGoToCheckoutConfirmationPage(string productId)
+        public void AddProductAndGoToCheckoutConfirmationPage(ProductTestsDataSettings product)
         {
-            AddProductAndGoToCheckoutPaymentPage(productId);
+            AddProductAndGoToCheckoutPaymentPage(product);
             CheckoutPaymentPage.GoToTheNextPage();
         }
 
@@ -191,13 +198,13 @@ namespace AutoTests.HCA.Core.UI
             switch (pagePrefix)
             {
                 case PagePrefix.CheckoutBilling:
-                    _hcaWebSite.AddProductAndGoToCheckoutBillingPage(product.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutBillingPage(product);
                     break;
                 case PagePrefix.CheckoutPayment:
-                    _hcaWebSite.AddProductAndGoToCheckoutPaymentPage(product.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutPaymentPage(product);
                     break;
                 case PagePrefix.CheckoutConfirmation:
-                    _hcaWebSite.AddProductAndGoToCheckoutConfirmationPage(product.ProductId);
+                    _hcaWebSite.AddProductAndGoToCheckoutConfirmationPage(product);
                     break;
                 case PagePrefix.Account:
                 case PagePrefix.AccountOrderHistory:

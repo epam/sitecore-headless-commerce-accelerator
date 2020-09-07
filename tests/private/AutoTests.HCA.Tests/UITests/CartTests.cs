@@ -49,7 +49,7 @@ namespace AutoTests.HCA.Tests.UITests
         public void AddProductToACartTest()
         {
             var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product.ProductId);
+            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyProductPresent(product.ProductName);
             _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 1);
@@ -59,7 +59,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void AddSecondProductToACartTest()
         {
-            var products = TestsData.GetProducts(2);
+            var products = TestsData.GetProducts(2).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyProducts(products);
@@ -70,8 +70,8 @@ namespace AutoTests.HCA.Tests.UITests
         public void AddSameProductToACartTest()
         {
             var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product.ProductId);
-            _hcaWebSite.AddProductToCart(product.ProductId);
+            _hcaWebSite.AddProductToCart(product);
+            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
@@ -83,7 +83,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void AddSomeDifferentProductsToACartTest()
         {
-            var products = TestsData.GetProducts(5);
+            var products = TestsData.GetProducts(5).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
@@ -103,7 +103,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void DeleteOneProductFromCartTest()
         {
-            var products = TestsData.GetProducts(2);
+            var products = TestsData.GetProducts(2).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
 
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
@@ -119,7 +119,7 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void DeleteAllProductFromCartTest()
         {
-            var products = TestsData.GetProducts(3);
+            var products = TestsData.GetProducts(3).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
@@ -172,8 +172,8 @@ namespace AutoTests.HCA.Tests.UITests
         [Test]
         public void ApplyPromoCodeForLowSumTest()
         {
-            var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product.ProductId);
+            var product = TestsData.GetDefaultProduct();
+            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
@@ -188,7 +188,7 @@ namespace AutoTests.HCA.Tests.UITests
         public void ChangeQtyTest()
         {
             var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product.ProductId);
+            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
@@ -202,7 +202,7 @@ namespace AutoTests.HCA.Tests.UITests
         public void CheckoutTest()
         {
             var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product.ProductId);
+            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.WaitForProductsLoaded();
             _hcaWebSite.CartPage.ClickCheckoutButton();

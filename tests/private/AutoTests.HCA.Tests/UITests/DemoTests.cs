@@ -1,5 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
@@ -40,7 +41,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyCartSum(true);
             _hcaWebSite.CartPage.ClickCheckoutButton();
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
-            _hcaWebSite.CheckoutShippingPage.SelectOptionByName("A New Address");
+            _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.NewAddress);
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("First Name", "John");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Last Name", "Smith");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Address Line 1", "5th Ave");
@@ -49,8 +50,8 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CheckoutShippingPage.SelectValueInTheField("Province", "New York");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Postal Code", "10005");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Email Address", "test@test.com");
-            _hcaWebSite.CheckoutShippingPage.SelectOptionByName("Also use for billing address");
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod("Standard");
+            _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.CheckoutBillingPage.ClickSubmit();
@@ -79,7 +80,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.VerifyCartSum(true);
             _hcaWebSite.CartPage.ClickCheckoutButton();
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
-            _hcaWebSite.CheckoutShippingPage.SelectOptionByName("A New Address");
+            _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.NewAddress);
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("First Name", "John");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Last Name", "Smith");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Address Line 1", "5th Ave");
@@ -87,8 +88,8 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CheckoutShippingPage.SelectValueInTheField("Country", "United States");
             _hcaWebSite.CheckoutShippingPage.SelectValueInTheField("Province", "New York");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Postal Code", "10005");
-            _hcaWebSite.CheckoutShippingPage.SelectOptionByName("Also use for billing address");
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod("Standard");
+            _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.CheckoutBillingPage.ClickSubmit();

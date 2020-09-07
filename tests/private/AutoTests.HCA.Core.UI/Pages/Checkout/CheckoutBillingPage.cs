@@ -1,4 +1,5 @@
-﻿using AutoTests.HCA.Core.UI.ConstantsAndEnums;
+﻿using AutoTests.HCA.Core.Common.Settings.Checkout;
+using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout
 {
@@ -15,7 +16,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
 
         protected override void FillFieldsByDefault()
         {
-            SelectOptionByName("Same As Shipping Address");
+            SelectOptionByName(AddressOption.SameAsShippingAddress);
         }
     }
 }

@@ -186,8 +186,8 @@ namespace AutoTests.HCA.Core.UI.Pages
 
         public double FindCartSumByText(string text)
         {
-            return Math.Round(Convert.ToDouble(new WebLink($"Sum {text}",
-                ByCustom.XPath($".//span[text()='{text}']/following-sibling::*")).GetText().Replace("$", "")), 2);
+            return Math.Abs(Math.Round(Convert.ToDouble(new WebLink($"Sum {text}",
+                ByCustom.XPath($".//span[text()='{text}']/following-sibling::*")).GetText().Replace("$", "")), 2));
         }
 
         public void VerifyCartSum(bool discount)
@@ -200,7 +200,7 @@ namespace AutoTests.HCA.Core.UI.Pages
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(productSum, merchandiseSubtotal, "Merchandise Subtotal:");
-                Assert.AreEqual(productSum, Math.Round(estimatedTotal - savingsDetails, 2), "Estimated Total:");
+                Assert.AreEqual(productSum, Math.Round(estimatedTotal + savingsDetails, 2), "Estimated Total:");
             });
         }
 

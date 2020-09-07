@@ -86,7 +86,8 @@ namespace AutoTests.HCA.Tests.UITests
             Assert.AreNotEqual(productName, _productPage.TitleText);
         }
 
-        [TestCase(PRODUCT_ID, 3, 1, Category = "AddProductToCartTests")]
+        [Test]
+        [TestCase(PRODUCT_ID, 3, 1)]
         public void _03_AddProductToCartTest(string productId, int quantity, int expQuantityInHeader)
         {
             _hcaWebSite.NavigateToPage(_hcaWebSite.ProductPage, productId);

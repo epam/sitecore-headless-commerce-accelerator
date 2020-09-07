@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AutoTests.AutomationFramework.UI\AutoTests.AutomationFramework.UI.csproj" />
     <ProjectReference Include="..\AutoTests.HCA.Core.Common\AutoTests.HCA.Core.Common.csproj" />
   </ItemGroup>

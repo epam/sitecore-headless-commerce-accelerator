@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AutoTests.AutomationFramework.Shared\AutoTests.AutomationFramework.Shared.csproj" />
   </ItemGroup>
 

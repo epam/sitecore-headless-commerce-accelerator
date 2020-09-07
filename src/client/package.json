@@ -15,7 +15,8 @@
     "sc:codegen:commerce": "gulp generate-ts-commerce --gulpfile ./scripts/code-generation/codeGen.js",
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",
-    "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js"
+    "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js",
+    "check-style": "stylelint \"**/*.scss\""
   },
   "dependencies": {
     "@sitecore-jss/sitecore-jss-react": "^13.0.0",
@@ -54,6 +55,9 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "serialize-javascript": "^2.1.1",
+    "stylelint": "^13.7.0",
+    "stylelint-config-sass-guidelines": "^7.1.0",
+    "stylelint-selector-bem-pattern": "^2.1.0",
     "swiper": "^4.3.3",
     "universal-cookie": "^3.1.0"
   },

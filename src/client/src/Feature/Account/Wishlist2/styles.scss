@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables.scss';
 
 .wishlist-container{
   font-family: $poppins !important;
@@ -40,24 +40,52 @@ tr{
   height: 300px !important;
   justify-content: space-around !important;
   margin-top: 40px !important;
+  
+  .heart-icon{
+    margin-bottom: 26px;
+    i{
+      font-size: 140px;
+      line-height: 1;
+      color: black;
+    }
+  }
 }
 .wishlist_label-empty{
-  color: #363F4D;
-  font-size: 22px;
+  color: black;
+  font-size: 20px;
   font-family: $poppins !important;
 }
 .wishlist_btn-empty{
-  padding: 14px 34px;
-  background-color: #404348;
+  padding: 14px 28px;
+  background-color: #363F4D;
   border: none;
   color: white;
   text-transform: none;
   font-family: $poppins !important;
   font-weight: 500 !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
 }
 .wishlist_btn-empty:hover{
   background-color: #A749FF;
+}
+
+.action_container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+
+  button{ 
+    background-color: #F2F2F2;
+    color: black;
+    border-radius: 20px;
+    padding: 12px 48px;
+    border: 0;
+    &:hover{
+      background-color: $theme-color;
+      color: white;
+    }
+  }
 }
 
 // Disabling a couple of global button styles
@@ -71,11 +99,11 @@ tr{
   }
 
   &-title{
-    border-bottom: 1px solid $border-color;
-    color: $title-font-color;
-    font-size: 22px;
-    line-height: 26px;
-    margin-bottom: 20px;
+    border-bottom: none;
+    font-size: 20px;
+    color: black;
+    font-weight: 500;
+    margin: 0 0 15px;
   }
 
   &__item-col{

@@ -24,6 +24,7 @@ import { Marker } from './Marker/models';
 import { FORM_FIELDS } from './constants';
 
 import { Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
+import './styles.scss';
 
 export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorProps, StoreLocatorState> {
   public componentDidMount() {
@@ -43,7 +44,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
 
     return (
       <div className="col-md-12 order-md-1 locator_content" style={{ marginTop: 30, marginBottom: 20 }}>
-        <h2 className="mb-3 locator_header">{title.jss.value}</h2>
+        <h1 className="mb-3 locator_header">{title.jss.value}</h1>
         <p>{description.jss.value}</p>
         <Form className="needs-validation">
           <div style={{ display: 'flex', flexDirection: 'row', marginBottom: 30 }}>

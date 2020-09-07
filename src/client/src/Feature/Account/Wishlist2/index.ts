@@ -35,4 +35,4 @@ const mapDispatchToProps = (dispatch: Dispatch): WishlistDispatchProps =>
     dispatch,
   );
 
-export const Wishlist = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(WishlistComponent);
+export const Wishlist2 = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(WishlistComponent);

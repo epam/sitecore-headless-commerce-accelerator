@@ -84,6 +84,11 @@ components.set('Product Filters', Catalog.ProductFilters);
 components.set('Product Variants', Catalog.ProductVariants);
 components.set('Products Search', Catalog.ProductsSearch);
 
+// Catalog 2 renderings
+components.set('Product Overview 2', Catalog.ProductOverview2);
+components.set('Product Information 2', Catalog.ProductInformation2);
+components.set('Product Variants 2', Catalog.ProductVariants);
+
 // Checkout renderings
 components.set('Add To Cart', Checkout.AddToCart);
 components.set('Shopping Cart', Checkout.Cart);
@@ -96,6 +101,9 @@ components.set('Payment', Checkout.Payment);
 components.set('Checkout Navigation', Checkout.CheckoutNavigation);
 components.set('Go To Checkout', Checkout.GoToCheckout);
 
+// Checkout renderings 2
+components.set('Add To Cart 2', Checkout.AddToCart);
+
 // Account renderings
 components.set('Sign-up Form', Account.SignUpForm);
 components.set('Change Password Form', Account.ChangePassword);
@@ -103,3 +111,6 @@ components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Login Register', Account.LoginRegister);
 export default (componentName: string) => components.get(componentName);
+
+// Account renderings 2
+components.set('Add To Wishlist 2', Account.AddToWishlist2);

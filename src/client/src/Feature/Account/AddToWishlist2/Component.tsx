@@ -12,9 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './LoginRegister';
-export * from './AddToWishlist2';
+import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
+
+import { AddToWishlistProps, AddToWishlistState } from './models';
+
+export class AddToWishlistComponent extends JSS.SafePureComponent<AddToWishlistProps, AddToWishlistState> {
+  protected safeRender() {
+    return (
+      <button
+        title="Add to Wishlist"
+        onClick={(e) => this.props.AddWishlistItem(this.props.item)}
+        className="btn btn-main btn-add"
+      >
+        <i className="fa fa-heart-o" />
+      </button>
+    );
+  }
+}

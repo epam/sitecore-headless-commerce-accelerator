@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables';
 .product-gallery {
   &-header {
     @include clearfix;

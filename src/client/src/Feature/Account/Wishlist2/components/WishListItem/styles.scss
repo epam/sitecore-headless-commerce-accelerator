@@ -20,7 +20,7 @@
   border: 1px solid #EBEBEB !important;
   border-top: none !important;
 }
-td{
+.wishlist_table_data{
   border: none !important;
   text-align: center !important;
   vertical-align: middle !important;
@@ -33,7 +33,7 @@ td{
   padding: 30px 0px 30px 30px;
   vertical-align: middle !important;
 }
-.wishlist__product-thumbnail img{
+.wishlist_product-thumbnail img{
   vertical-align: middle !important;
 }
 .wishlist_item_name{

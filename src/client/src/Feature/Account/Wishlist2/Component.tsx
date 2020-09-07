@@ -51,12 +51,12 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
             </div>
             <table>
               <thead className="wishlist_table_header_container">
-                <tr>
-                  <th>IMAGE</th>
-                  <th>PRODUCT NAME</th>
-                  <th>UNIT PRICE</th>
-                  <th>ADD TO CART</th>
-                  <th>ACTION</th>
+                <tr className="wishlist_table_row">
+                  <th className="wishlist_table_header">IMAGE</th>
+                  <th className="wishlist_table_header">PRODUCT NAME</th>
+                  <th className="wishlist_table_header">UNIT PRICE</th>
+                  <th className="wishlist_table_header">ADD TO CART</th>
+                  <th className="wishlist_table_header">ACTION</th>
                 </tr>
               </thead>
               <tbody>

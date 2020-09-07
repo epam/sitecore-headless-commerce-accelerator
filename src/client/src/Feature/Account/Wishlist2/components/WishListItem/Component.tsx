@@ -26,21 +26,18 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
 
     return (
       <tr className="wishlist_content_row">
-        <td className="wishlist_product-thumbnail">
+        <td className="wishlist_product-thumbnail wishlist_table_data">
           <NavigationLink to={`/product/${item.productId}`}>
             <img src={item.imageUrls[0]} alt="" />
           </NavigationLink>
         </td>
-        <td>
+        <td className="wishlist_table_data">
           <NavigationLink className="wishlist_item_name" to={`/product/${item.productId}`}>
             {item.displayName}
           </NavigationLink>
         </td>
-        <td>
-          {item.currencySymbol}
-          {item.listPrice}
-        </td>
-        <td>
+        <td className="wishlist_table_data">{item.currencySymbol}{item.listPrice}</td>
+        <td className="wishlist_table_data">
           <button
             className="wishlist_item_add-btn wishlist_item_button"
             onClick={(e) => this.props.AddToCart({ productId: item.productId, variantId: item.variantId, quantity: 1 })}
@@ -48,11 +45,8 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
             Buy Now
           </button>
         </td>
-        <td>
-          <button
-            className="wishlist_item_remove-btn wishlist_item_button"
-            onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}
-          >
+        <td className="wishlist_table_data">
+          <button className="wishlist_item_remove-btn wishlist_item_button" onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}>
             x
           </button>
         </td>

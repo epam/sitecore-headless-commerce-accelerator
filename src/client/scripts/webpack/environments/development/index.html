@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="/common.css" />
     <title>DevServer: HCA</title>
     <script>
-      const pagesWithNewLayout = ['home2'];
-      const currentPage = document.location.pathname.slice(1).toLowerCase();
-
-      if (pagesWithNewLayout.includes(currentPage)) {
+      const arrayCurrentPathSplitted = document.location.pathname.split('/');
+      const categoryPageName = arrayCurrentPathSplitted ? arrayCurrentPathSplitted[1] : '';
+      if (categoryPageName && categoryPageName.slice(-1) === '2') {
         const styleElement = document.createElement('link');
         styleElement.setAttribute('rel', 'stylesheet');
         styleElement.setAttribute('type', 'text/css');

@@ -12,12 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './AddToWishlist';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
-export * from './Wishlist';
-export * from './Wishlist2';
-export * from './LoginRegister';
-export * from './AddToWishlist2';
+import * as Jss from 'Foundation/ReactJss';
+
+export interface ProductRatingProps {
+  rating: number;
+}
+
+export interface ProductRatingState extends Jss.SafePureComponentState {}

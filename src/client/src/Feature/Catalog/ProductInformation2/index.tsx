@@ -21,18 +21,47 @@ import { ProductInformationProps, ProductInformationState } from './models';
 import './styles.scss';
 
 class ProductInformationComponent extends JSS.SafePureComponent<ProductInformationProps, ProductInformationState> {
+  public constructor(props: ProductInformationProps) {
+    super(props);
+
+    this.state = {
+      selectedTab: 'description',
+    };
+  }
+
   protected safeRender() {
     const { product } = this.props.sitecoreContext;
+    const { selectedTab } = this.state;
     return (
-      <section className="product-description">
-        <div className="row">
-          <div className="col-md-6">
+      <section className="product-description-2">
+        <div className="tab">
+          <button
+            className={'tab-links ' + (selectedTab === 'description' ? 'active' : '')}
+            onClick={() => this.setState({ selectedTab: 'description' })}
+          >
+            Product Description
+          </button>
+          <button
+            className={'tab-links ' + (selectedTab === 'features' ? 'active' : '')}
+            onClick={() => this.setState({ selectedTab: 'features' })}
+          >
+            Features
+          </button>
+          <button
+            className={'tab-links ' + (selectedTab === 'rating' ? 'active' : '')}
+            onClick={() => this.setState({ selectedTab: 'rating' })}
+          >
+            Rating
+          </button>
+        </div>
+        <div className="product-content">
+          {selectedTab === 'description' && (
             <div className="description-text">
-              <h2>Product Description</h2>
               <p>{product && product.description}</p>
             </div>
+          )}
+          {selectedTab === 'features' && (
             <div className="description-features">
-              <h2>Features</h2>
               <ul className="feature-list">
                 <li>2 GB</li>
                 <li>Model XE-C</li>
@@ -40,10 +69,9 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                 <li>Explorer Edition</li>
               </ul>
             </div>
-          </div>
-          <div className="col-md-6">
+          )}
+          {selectedTab === 'rating' && (
             <div className="description-rating">
-              <h2>Rating</h2>
               <table className="table-striped table-sm">
                 <tbody>
                   <tr>
@@ -97,11 +125,11 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                 </tbody>
               </table>
             </div>
-          </div>
+          )}
         </div>
       </section>
     );
   }
 }
 
-export const ProductInformation = JSS.renderingWithContext(ProductInformationComponent);
+export const ProductInformation2 = JSS.renderingWithContext(ProductInformationComponent);

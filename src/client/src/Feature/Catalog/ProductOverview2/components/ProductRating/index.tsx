@@ -22,13 +22,23 @@ export class ProductRating extends JSS.SafePureComponent<ProductRatingProps, Pro
   protected safeRender() {
     return (
       <div className="product-rating">
-        <ul className="star-rating">
-          <li className="star filled" />
-          <li className="star filled" />
-          <li className="star filled" />
-          <li className="star filled" />
-          <li className="star" />
-        </ul>
+        <div className="items-rating">
+          <span className="star">
+            <i className="fa fa-star-o orange" />
+          </span>
+          <span className="star">
+            <i className="fa fa-star-o orange" />
+          </span>
+          <span className="star">
+            <i className="fa fa-star-o orange" />
+          </span>
+          <span className="star">
+            <i className="fa fa-star-o orange" />
+          </span>
+          <span className="star">
+            <i className="fa fa-star-o" />
+          </span>
+        </div>
         <span className="review-read">
           <a href="" title="Read reviews" className="review-link">
             Read N reviews

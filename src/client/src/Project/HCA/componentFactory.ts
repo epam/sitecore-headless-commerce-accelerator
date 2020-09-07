@@ -80,6 +80,7 @@ components.set('Find In Store', Catalog.FindInStore);
 components.set('Product Overview', Catalog.ProductOverview);
 components.set('Product Information', Catalog.ProductInformation);
 components.set('Product List', Catalog.ProductList);
+components.set('Product List 2', Catalog.ProductList2);
 components.set('Product Filters', Catalog.ProductFilters);
 components.set('Product Variants', Catalog.ProductVariants);
 components.set('Products Search', Catalog.ProductsSearch);

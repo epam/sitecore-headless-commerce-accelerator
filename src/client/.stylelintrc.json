@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "indentation": null,
+    "plugin/selector-bem-pattern": {
+      "implicitComponents": true,
+      "componentName": "[a-z]+",
+      "componentSelectors": {
+        "initial": "^([^_]+([_]{1}[^_]+)*)+$"
+      }
+    }
+  }
+}

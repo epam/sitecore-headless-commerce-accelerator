@@ -153,6 +153,170 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
+    /// ICarouselBanner Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner</para>
+    /// <para>ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7</para>
+    /// </summary>
+    [SitecoreType(TemplateId="f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7")]
+    public partial interface ICarouselBanner: IGlassBase
+    {
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        Link Link {get; set;}
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 1751fa11-d5ca-42c7-b63a-da23a47f37db</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        string Subtitle {get; set;}
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ab878a5d-cfad-471c-949e-1f590caa233c</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        string Text {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b2b0d2d9-a822-4647-80c9-0b221b8cb569</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// CarouselBanner Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner</para>
+    /// <para>ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7</para>
+    /// </summary>
+    [SitecoreType(TemplateId="f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7")]
+    public partial class CarouselBanner: GlassBase, ICarouselBanner
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner
+        /// </summary>
+        public const string TemplateId = "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "f335bcc8-a000-4246-b7a5-ebb11e5ffc77";
+        public const string ImageFieldName = "Image";
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        public virtual Link Link {get; set;}
+        public const string LinkFieldId = "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f";
+        public const string LinkFieldName = "Link";
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 1751fa11-d5ca-42c7-b63a-da23a47f37db</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        public virtual string Subtitle {get; set;}
+        public const string SubtitleFieldId = "1751fa11-d5ca-42c7-b63a-da23a47f37db";
+        public const string SubtitleFieldName = "Subtitle";
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ab878a5d-cfad-471c-949e-1f590caa233c</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        public virtual string Text {get; set;}
+        public const string TextFieldId = "ab878a5d-cfad-471c-949e-1f590caa233c";
+        public const string TextFieldName = "Text";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b2b0d2d9-a822-4647-80c9-0b221b8cb569</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "b2b0d2d9-a822-4647-80c9-0b221b8cb569";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// ICarouselBannerFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder</para>
+    /// <para>ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="764f7c1b-1d67-43fb-9074-df87a0deb60e")]
+    public partial interface ICarouselBannerFolder: IGlassBase
+    {
+
+        /// <summary>
+        /// The Banners field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7</para>
+        /// </summary>
+        [SitecoreField("Banners")]
+        IEnumerable<Guid> Banners {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// CarouselBannerFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder</para>
+    /// <para>ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="764f7c1b-1d67-43fb-9074-df87a0deb60e")]
+    public partial class CarouselBannerFolder: GlassBase, ICarouselBannerFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder
+        /// </summary>
+        public const string TemplateId = "764f7c1b-1d67-43fb-9074-df87a0deb60e";
+
+        /// <summary>
+        /// The Banners field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7</para>
+        /// </summary>
+        [SitecoreField("Banners")]
+        public virtual IEnumerable<Guid> Banners {get; set;}
+        public const string BannersFieldId = "e7bbd25a-3f42-4199-9e19-19a87b7020e7";
+        public const string BannersFieldName = "Banners";
+
+    }
+
+
+    /// <summary>
     /// IRecommendedProducts Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products</para>
     /// <para>ID: 02303189-7dc9-41c9-914a-4784878a6a7d</para>

@@ -1,0 +1,168 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss-new/_variables';
+
+.banner_container{
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.single-slider {
+    @media #{$xl-layout} {
+      background-position: 50%;
+    }
+    @media #{$lg-layout} {
+      background-position: 42%;
+    }
+    @media #{$xs-layout} {
+      background-position: 30%;
+    }
+    @media #{$sm-layout} {
+      background-position: 22%;
+    }
+  }
+
+  .slider-height {
+    height: 800px;
+    @media #{$xl-layout} {
+      height: 570px;
+    }
+    @media #{$lg-layout} {
+      height: 500px;
+    }
+    @media #{$md-layout} {
+      height: 500px;
+    }
+    @media #{$xs-layout} {
+      height: 400px;
+    }
+    &.slider-content-center {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .slider-content {
+    h3 {
+      font-size: 24px;
+      font-weight: 500;
+
+      position: relative;
+
+      display: inline-block;
+
+      margin: 0;
+      &::before {
+        position: absolute;
+        top: 16px;
+        left: -110px;
+
+        width: 80px;
+        height: 2px;
+
+        content: "";
+
+        background-color: #000000;
+      }
+      &::after {
+        position: absolute;
+        top: 16px;
+        right: -110px;
+
+        width: 80px;
+        height: 2px;
+
+        content: "";
+
+        background-color: #000000;
+      }
+    }
+    h1 {
+      font-size: 72px;
+      line-height: 56px;
+
+      margin: 28px 0 23px;
+      @media #{$lg-layout} {
+        font-size: 52px;
+        line-height: 40px;
+      }
+      @media #{$md-layout} {
+        font-size: 52px;
+        line-height: 40px;
+      }
+      @media #{$xs-layout} {
+        font-size: 35px;
+        line-height: 30px;
+
+        margin: 18px 0 13px;
+      }
+    }
+    p {
+      font-size: 18px;
+
+      margin: 0 0 44px;
+
+      color: #010101;
+    }
+    .slider-btn {
+      a {
+        font-size: 16px;
+        line-height: 1;
+
+        display: inline-block;
+
+        padding: 19px 50px 21px;
+
+        text-transform: uppercase;
+
+        color: #010101;
+        border: 1px solid #333;
+        &:hover {
+          color: #fff;
+          border: 1px solid $theme-color;
+        }
+      }
+    }
+  }
+
+  .slider-section.active {
+    .slider-animated {
+      h3 {
+        -webkit-animation-name: fadeInUp;
+                animation-name: fadeInUp;
+        -webkit-animation-delay: 0.5s;
+                animation-delay: 0.5s;
+      }
+      h1 {
+        -webkit-animation-name: fadeInUp;
+                animation-name: fadeInUp;
+        -webkit-animation-delay: 1.0s;
+                animation-delay: 1.0s;
+      }
+      a {
+        -webkit-animation-name: fadeInUp;
+                animation-name: fadeInUp;
+        -webkit-animation-delay: 1.3s;
+                animation-delay: 1.3s;
+      }
+      & img {
+        -webkit-animation-name: fadeInUp;
+                animation-name: fadeInUp;
+        -webkit-animation-delay: 0.8s;
+                animation-delay: 0.8s;
+      }
+    }
+  }

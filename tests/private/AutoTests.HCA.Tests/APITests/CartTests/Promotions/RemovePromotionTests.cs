@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
@@ -12,10 +12,9 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         [SetUp]
         public new void SetUp()
         {
-            HcaService.AddCartLines(new CartLinesRequest(AddingProduct.ProductId, 50, AddingProduct.VariantId))
-                .CheckSuccessfulResponse();
-            UserManager.CleanPromotions();
-            HcaService.AddPromoCode(new PromoCodeRequest(DefPromotion.Code));
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, 50, AddingProduct.VariantId);
+            ApiHelper.CleanPromotions();
+            ApiHelper.AddPromotion(DefPromotion);
         }
 
         public RemovePromotionTests(HcaUserRole userRole) : base(userRole)
@@ -32,7 +31,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             var removablePromoCode = new PromoCodeRequest(DefPromotion.DisplayCartText);
 
             // Act
-            var response = HcaService.RemovePromoCode(removablePromoCode);
+            var response = ApiContext.Cart.RemovePromoCode(removablePromoCode);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -55,14 +54,13 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         {
             // SetUp
             var excPromotion = TestsData.GetPromotion(HcaPromotionName.Cart5PctOffExclusiveCouponPromotion);
-            HcaService.AddPromoCode(new PromoCodeRequest(excPromotion.Code))
-                .CheckSuccessfulResponse();
+            ApiHelper.AddPromotion(excPromotion);
 
             //Arrange
             var removablePromoCode = new PromoCodeRequest(excPromotion.DisplayCartText);
 
             // Act
-            var response = HcaService.RemovePromoCode(removablePromoCode);
+            var response = ApiContext.Cart.RemovePromoCode(removablePromoCode);
 
             // Assert
             response.CheckSuccessfulResponse();

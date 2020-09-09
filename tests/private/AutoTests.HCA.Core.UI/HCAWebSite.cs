@@ -150,20 +150,14 @@ namespace AutoTests.HCA.Core.UI
         {
             NavigateToPage(ProductPage.GetPath() + $"/{product.ProductId}");
             ProductPage.WaitForOpened();
-            if (!product.DefaultVariant)
-            {
-                ProductPage.ChooseColor(1);
-            }
+            if (!product.DefaultVariant) ProductPage.ChooseColor(1);
             ProductPage.AddToCartButtonClick();
             HeaderControl.WaitForPresentProductsQuantity();
         }
 
         public void AddProductsToCartFromTestData(IEnumerable<ProductTestsDataSettings> products)
         {
-            foreach (var product in products)
-            {
-                AddProductToCart(product);
-            }
+            foreach (var product in products) AddProductToCart(product);
         }
 
         public void AddProductAndGoToCheckoutShippingPage(ProductTestsDataSettings product)

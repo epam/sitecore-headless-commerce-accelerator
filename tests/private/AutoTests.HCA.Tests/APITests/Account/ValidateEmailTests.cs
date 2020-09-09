@@ -1,5 +1,5 @@
 ﻿using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -15,7 +15,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var email = new ValidateEmailRequest {Email = DefUser.Email};
 
             // Act
-            var response = HcaService.ValidateEmail(email);
+            var response = ApiContext.Account.ValidateEmail(email);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -34,7 +34,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var email = new ValidateEmailRequest {Email = GetRandomEmail()};
 
             // Act
-            var response = HcaService.ValidateEmail(email);
+            var response = ApiContext.Account.ValidateEmail(email);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -54,7 +54,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var email = new ValidateEmailRequest {Email = StringHelpers.RandomString(5)};
 
             // Act
-            var response = HcaService.ValidateEmail(email);
+            var response = ApiContext.Account.ValidateEmail(email);
 
             // Assert
             response.CheckUnSuccessfulResponse();

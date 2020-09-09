@@ -17,7 +17,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void FooterElementsTest([Values] PagePrefix pagePrefix)
+        public void T1_FooterComponent_VerifyElements([Values] PagePrefix pagePrefix)
         {
             const int expectedSiteLinksCount = 12;
             const int expectedSocialNetworksCount = 4;

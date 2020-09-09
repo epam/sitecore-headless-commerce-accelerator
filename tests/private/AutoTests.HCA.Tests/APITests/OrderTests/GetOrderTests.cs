@@ -1,5 +1,5 @@
-﻿using AutoTests.HCA.Core.API.Models.Hca;
-using AutoTests.HCA.Core.API.Services.HcaService;
+﻿using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult.Results;
+using AutoTests.HCA.Core.API.HcaApi.Services;
 using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace AutoTests.HCA.Tests.APITests.OrderTests
     [ApiTest]
     public class GetOrderTests : BaseHcaApiTest
     {
-        private readonly IHcaApiService _hcaService = TestsHelper.CreateHcaApiClient();
+        private readonly OrderService _orderService = TestsHelper.CreateHcaApiContext().Order;
 
         public const string ORDER_ID = "1H1SZ767SABD59OSJAOW7KMXA";
 
@@ -19,7 +19,7 @@ namespace AutoTests.HCA.Tests.APITests.OrderTests
         public void T1_GetOrderTest()
         {
             // Arrange, Act
-            var response = _hcaService.GetOrder(ORDER_ID);
+            var response = _orderService.GetOrder(ORDER_ID);
 
             // Assert
             var data = response.OkResponseData;
@@ -28,7 +28,7 @@ namespace AutoTests.HCA.Tests.APITests.OrderTests
             Assert.Multiple(() =>
             {
                 Assert.NotNull(data, $"Invalid {nameof(response.OkResponseData)}. Expected: NotNull.");
-                Assert.AreEqual(HcaStatus.Ok, data.Status);
+                Assert.AreEqual(HcaStatusCode.Ok, data.Status);
                 Assert.NotNull(data.Data, $"Invalid {nameof(response.OkResponseData.Data)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.OrderId, $"Invalid {nameof(data.Data.OrderId)}. Expected: NotNull.");
                 Assert.NotNull(data.Data.OrderDate, $"Invalid {nameof(data.Data.OrderDate)}. Expected: NotNull.");

@@ -1,6 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
-using AutoTests.HCA.Core.Common.Settings.Checkout;
+using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
@@ -25,7 +25,7 @@ namespace AutoTests.HCA.Tests.UITests
         private HcaWebSite _hcaWebSite;
 
         [Test]
-        public void CheckoutForAnonymousTest()
+        public void T1_Demo_CheckoutForAnonymous()
         {
             _hcaWebSite.NavigateToMain();
             _hcaWebSite.MainMenuControl.ChooseSubMenuItem(MenuItem.Phones, SubMenuItem.Phones);
@@ -63,7 +63,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void CheckoutForRegisteredTest()
+        public void T2_Demo_CheckoutForRegistered()
         {
             var user = TestsData.GetUser().Credentials;
             _hcaWebSite.OpenHcaAndLogin(user.Email, user.Password);

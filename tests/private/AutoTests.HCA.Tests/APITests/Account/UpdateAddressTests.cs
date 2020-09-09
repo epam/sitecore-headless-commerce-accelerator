@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Addresses;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -12,15 +12,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
         [SetUp]
         public new void SetUp()
         {
-            var user = TestsData.GetUser();
-            UserManager = TestsHelper.CreateUserManagerHelper(user, HcaService);
-            UserManager.CleanAddresses();
-            var res = HcaService.AddAddress(ProductForUpdate);
-            Assert.True(res.IsSuccessful, "Can't add new address.");
-            ProductForUpdate = res.OkResponseData.Data.First();
+            var user = TestsData.GetUser().Credentials;
+            var userHelper = TestsHelper.CreateHcaUserApiHelper(user, ApiContext);
+            userHelper.CleanAddresses();
+            AddressForUpdate = userHelper.AddAddress(AddressForUpdate).First();
         }
 
-        protected static Address ProductForUpdate = new Address
+        protected static Address AddressForUpdate = new Address
         {
             FirstName = StringHelpers.RandomString(10),
             LastName = StringHelpers.RandomString(10),
@@ -41,8 +39,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             // Arrange
             var prodForUpdate = new Address
             {
-                ExternalId = ProductForUpdate.ExternalId,
-                Name = ProductForUpdate.Name,
+                ExternalId = AddressForUpdate.ExternalId,
+                Name = AddressForUpdate.Name,
                 FirstName = StringHelpers.RandomString(10),
                 LastName = StringHelpers.RandomString(10),
                 Address1 = StringHelpers.GetRandomAddressString(),
@@ -56,8 +54,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var updateResult = HcaService.UpdateAddress(prodForUpdate);
-            var getResult = HcaService.GetAddresses();
+            var updateResult = ApiContext.Account.UpdateAddress(prodForUpdate);
+            var getResult = ApiContext.Account.GetAddresses();
 
             // Assert
             updateResult.CheckSuccessfulResponse();
@@ -72,13 +70,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
         }
 
         [Test(Description = "A test that checks the server's response after updating the address.")]
-        public void T1_PUTAddressRequest_ValidProduct_VerifyResponse()
+        public void T2_PUTAddressRequest_ValidProduct_VerifyResponse()
         {
             // Arrange
             var prodForUpdate = new Address
             {
-                ExternalId = ProductForUpdate.ExternalId,
-                Name = ProductForUpdate.Name,
+                ExternalId = AddressForUpdate.ExternalId,
+                Name = AddressForUpdate.Name,
                 FirstName = StringHelpers.RandomString(10),
                 LastName = StringHelpers.RandomString(10),
                 Address1 = StringHelpers.GetRandomAddressString(),
@@ -92,7 +90,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var updateResult = HcaService.UpdateAddress(prodForUpdate);
+            var updateResult = ApiContext.Account.UpdateAddress(prodForUpdate);
 
             // Assert
             updateResult.CheckSuccessfulResponse();

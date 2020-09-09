@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Addresses;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -10,12 +10,10 @@ namespace AutoTests.HCA.Tests.APITests.Account
     public class AddAddressTests : BaseAccountTest
     {
         [SetUp]
-        public override void SetUp()
+        public new void SetUp()
         {
-            HcaService = TestsHelper.CreateHcaApiClient();
             var user = TestsData.GetUser();
-            UserManager = TestsHelper.CreateUserManagerHelper(user, HcaService);
-            UserManager.CleanAddresses();
+            TestsHelper.CreateHcaUserApiHelper(user.Credentials, ApiContext).CleanAddresses();
         }
 
         [Test(Description = "A test that checks the server's response after adding the address to the addresses list.")]
@@ -38,7 +36,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var response = HcaService.AddAddress(newAddress);
+            var response = ApiContext.Account.AddAddress(newAddress);
 
             //Assert
             response.CheckSuccessfulResponse();
@@ -69,8 +67,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var addAddressResponse = HcaService.AddAddress(newAddress);
-            var getAddressesResponse = HcaService.GetAddresses();
+            var addAddressResponse = ApiContext.Account.AddAddress(newAddress);
+            var getAddressesResponse = ApiContext.Account.GetAddresses();
 
             //Assert
             addAddressResponse.CheckSuccessfulResponse();
@@ -119,9 +117,9 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var addFirstAddressResponse = HcaService.AddAddress(firstNewAddress);
-            var addSecondAddressResponse = HcaService.AddAddress(secondNewAddress);
-            var getAddressesResponse = HcaService.GetAddresses();
+            var addFirstAddressResponse = ApiContext.Account.AddAddress(firstNewAddress);
+            var addSecondAddressResponse = ApiContext.Account.AddAddress(secondNewAddress);
+            var getAddressesResponse = ApiContext.Account.GetAddresses();
 
             //Assert
             addFirstAddressResponse.CheckSuccessfulResponse();

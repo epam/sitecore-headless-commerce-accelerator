@@ -1,4 +1,4 @@
-﻿using AutoTests.HCA.Core.Common.Settings.Checkout;
+﻿using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout

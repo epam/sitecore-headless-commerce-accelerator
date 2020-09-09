@@ -4,9 +4,8 @@ using System.Linq;
 using AutoTests.AutomationFramework.Shared.Extensions;
 using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.Shared.Models;
-using AutoTests.HCA.Core.API.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
-using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Addresses;
 using AutoTests.HCA.Core.BaseTests;
 using NUnit.Framework;
 
@@ -20,8 +19,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         protected static readonly UserLogin DefUser = TestsData.GetUser().Credentials;
         protected readonly IEnumerable<Address> AddressesCollection;
 
-        protected IHcaApiService HcaService;
-        protected UserManagerHelper UserManager;
+        protected IHcaApiContext ApiContext;
 
         public BaseAccountTest()
         {
@@ -59,9 +57,9 @@ namespace AutoTests.HCA.Tests.APITests.Account
         }
 
         [SetUp]
-        public virtual void SetUp()
+        public void SetUp()
         {
-            HcaService = TestsHelper.CreateHcaApiClient();
+            ApiContext = TestsHelper.CreateHcaApiContext();
         }
 
         protected static string GetRandomEmail()

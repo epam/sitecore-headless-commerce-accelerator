@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Net;
 using AutoTests.AutomationFramework.API.Models;
+using AutoTests.AutomationFramework.Shared.Models;
 using RestSharp;
 
 namespace AutoTests.AutomationFramework.API.Services.RestService
 {
     public interface IHttpClientService
     {
+        Uri BaseUri { get; }
+
         void AddDefaultHeaders(Dictionary<string, string> headers);
 
-        void SetCookieIfNotSet(string name, string value);
+        void SetCookieIfNotSet(CookieData cookie);
 
         void SetHttpBasicAuthenticator(string userName, string password);
 

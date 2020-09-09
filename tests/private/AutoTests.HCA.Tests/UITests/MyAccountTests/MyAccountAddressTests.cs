@@ -35,7 +35,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_01_AddAddressClickTest()
+        public void T1_MyAccountAddress_AddAddressClick()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountPage.AddAddressClick();
@@ -45,7 +45,17 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_02_EditAddressClickTest()
+        public void T10_MyAccountAddress_TryToSaveBlankFields()
+        {
+            _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
+            _hcaWebSite.MyAccountAddressSection.AddAddressClick();
+            _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
+            Assert.False(_hcaWebSite.MyAccountNewAddressSection.SaveAddressIsClickable(), "SaveAddressIsClickable");
+            _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
+        }
+
+        [Test]
+        public void T2_MyAccountAddress_EditAddressClick()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountPage.EditAddressClick();
@@ -60,7 +70,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         //}
 
         [Test]
-        public void MyAccountAddressTests_04_AddressAddTest()
+        public void T4_MyAccountAddress_AddressAdd()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountNewAddressSection.AddAddressClick();
@@ -86,7 +96,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_05_DeleteAddressClickWithConfirmTest()
+        public void T5_MyAccountAddress_DeleteAddressClickWithConfirm()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -97,7 +107,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_06_DeleteAddressClickWithoutConfirmTest()
+        public void T6_MyAccountAddress_DeleteAddressClickWithoutConfirm()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -109,7 +119,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
 
 
         [Test]
-        public void MyAccountAddressTests_07_EditAddress()
+        public void T7_MyAccountAddress_EditAddress()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -126,7 +136,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_08_CancelEditAddressTest()
+        public void T8_MyAccountAddress_CancelEditAddress()
         {
             var newAddress = _hcaWebSite.AddNewAddressForLoggedUser();
             _hcaWebSite.MyAccountAddressSection.SelectValueInTheField("Addresses", newAddress);
@@ -143,7 +153,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountAddressTests_09_CancelAddNewAddressTest()
+        public void T9_MyAccountAddress_CancelAddNewAddress()
         {
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountAddressSection.AddAddressClick();
@@ -165,16 +175,6 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
             _hcaWebSite.MyAccountNewAddressSection.ClickCancel();
             _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
             _hcaWebSite.MyAccountAddressSection.SelectHasNoValue("Addresses", addressString);
-        }
-
-        [Test]
-        public void MyAccountAddressTests_10_TryToSaveBlankFieldsTest()
-        {
-            _hcaWebSite.MyAccountAddressSection.WaitForOpenedAdressCard();
-            _hcaWebSite.MyAccountAddressSection.AddAddressClick();
-            _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
-            Assert.False(_hcaWebSite.MyAccountNewAddressSection.SaveAddressIsClickable(), "SaveAddressIsClickable");
-            _hcaWebSite.MyAccountNewAddressSection.WaitForOpenedNewAddressForm();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         [SetUp]
         public new void SetUp()
         {
-            foreach (var product in ProductsCollection) HcaService.AddCartLines(product);
+            ApiHelper.AddProductsToCart(ProductsCollection);
         }
 
         public GetCartTests(HcaUserRole userRole) : base(userRole)
@@ -19,7 +19,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T1_GETCartRequest_VerifyResponse()
         {
             // Arrange, Act
-            var result = HcaService.GetCart();
+            var result = ApiContext.Cart.GetCart();
 
             // Assert
             result.CheckSuccessfulResponse();

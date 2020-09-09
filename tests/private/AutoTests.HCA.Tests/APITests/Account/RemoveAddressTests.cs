@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Addresses;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -12,24 +12,18 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public new void SetUp()
         {
             var user = TestsData.GetUser();
-            UserManager = TestsHelper.CreateUserManagerHelper(user, HcaService);
-            UserManager.CleanAddresses();
-            AddressesWithExternalIds = new List<Address>();
-            foreach (var address in AddressesCollection)
-            {
-                var res = HcaService.AddAddress(address);
-                res.CheckSuccessfulResponse();
-                AddressesWithExternalIds.AddRange(res.OkResponseData.Data);
-            }
+            var userHelper = TestsHelper.CreateHcaUserApiHelper(user.Credentials, ApiContext);
+            userHelper.CleanAddresses();
+            AddressesWithExternalIds = userHelper.AddAddresses(AddressesCollection).ToList();
         }
 
-        public List<Address> AddressesWithExternalIds;
+        public IEnumerable<Address> AddressesWithExternalIds;
 
         [Test(Description = "A test that checks the server's response after delete the user's address.")]
         public void T1_DELETEAddressesRequest_ExternalId_VerifyResponse()
         {
             // Arrange, Act
-            var result = HcaService.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
+            var result = ApiContext.Account.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
 
             // Assert
             result.CheckSuccessfulResponse();
@@ -44,8 +38,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public void T2_DELETEAddressesRequest_ExternalId_ProductHasBeenDeleted()
         {
             // Arrange, Act
-            var removeAddressResult = HcaService.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
-            var getAddressesResult = HcaService.GetAddresses();
+            var removeAddressResult = ApiContext.Account.RemoveAddress(AddressesWithExternalIds.First().ExternalId);
+            var getAddressesResult = ApiContext.Account.GetAddresses();
 
             // Assert
             removeAddressResult.CheckSuccessfulResponse();

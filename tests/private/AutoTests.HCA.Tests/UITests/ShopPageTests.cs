@@ -2,6 +2,7 @@
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.CommonElements;
+using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using AutoTests.HCA.Core.UI.Pages;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ namespace AutoTests.HCA.Tests.UITests
         [SetUp]
         public void SetUp()
         {
-            _hcaWebSite.NavigateToPage(_hcaWebSite.ShopPage, "Home Theater");
+            _hcaWebSite.NavigateToPage(_hcaWebSite.ShopPage, SubMenuItem.HealthAndBeautyAndFitness.GetLinkName());
             _hcaWebSite.ShopPage.WaitForOpened();
         }
 
@@ -24,8 +25,8 @@ namespace AutoTests.HCA.Tests.UITests
         private readonly ProductsFilterSection _filterSection;
         private readonly ProductGridSection _productGrid;
         public const int DEF_PRODUCTS_COUNT_ON_PAGE = 12;
-        public const string DEF_OPTION_NAME = "Aura Home Theater In a Box";
-        public const string DEF_PRODUCT_NAME = "Habitat Aura 2.1 Channel Soundbar with Wireless Subwoofer";
+        public const string DEF_OPTION_NAME = "Striva Wearables";
+        public const string DEF_PRODUCT_NAME = "HABITAT DWELL SATIN EPILATOR";
 
         public ShopPageTests(BrowserType browserType) : base(browserType)
         {
@@ -36,7 +37,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_01_SelectFilterOptionsTest()
+        public void T1_ShopPageTests_SelectFilterOptions()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -49,7 +50,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_02_DeselectFilterOptionsTest()
+        public void T2_ShopPageTests_DeselectFilterOptions()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -65,7 +66,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_03_FilterDisableButtonTest()
+        public void T3_ShopPageTests_FilterDisableButton()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -79,7 +80,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_04_FilterHideAllButtonTest()
+        public void T4_ShopPageTests_FilterHideAllButton()
         {
             _hcaWebSite.ProductsFilterSection.FilterSectionIsPresent();
             Assert.Multiple(() =>
@@ -92,7 +93,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_05_ProductHeaderTest()
+        public void T5_ShopPageTests_ProductHeader()
         {
             var totalProducts = _productGrid.TotalProducts;
 
@@ -110,7 +111,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_06_LoadProductsTest()
+        public void T6_ShopPageTests_LoadProducts()
         {
             var totalProducts = _productGrid.TotalProducts;
             var actualProductCount = _productGrid.GetDisplayedProductsCount();
@@ -133,7 +134,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ShopPageTests_07_ViewProductTest()
+        public void T7_ShopPageTests_ViewProduct()
         {
             Assert.Multiple(() =>
             {

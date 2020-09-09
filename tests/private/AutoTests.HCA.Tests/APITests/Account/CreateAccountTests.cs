@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -49,7 +49,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var response = HcaService.CreateUserAccount(newUser);
+            var response = ApiContext.Account.CreateUserAccount(newUser);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -61,7 +61,8 @@ namespace AutoTests.HCA.Tests.APITests.Account
                 Assert.AreEqual(newUser.FirstName, response.OkResponseData.Data.FirstName);
                 Assert.AreEqual(newUser.LastName, response.OkResponseData.Data.LastName);
                 Assert.True(
-                    HcaService.ValidateEmail(new ValidateEmailRequest {Email = email}).OkResponseData.Data.InUse,
+                    ApiContext.Account.ValidateEmail(new ValidateEmailRequest {Email = email}).OkResponseData.Data
+                        .InUse,
                     $"User {email} wasn't registered");
             });
         }
@@ -82,7 +83,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act
-            var response = HcaService.CreateUserAccount(user);
+            var response = ApiContext.Account.CreateUserAccount(user);
 
             // Assert
             response.CheckUnSuccessfulResponse();

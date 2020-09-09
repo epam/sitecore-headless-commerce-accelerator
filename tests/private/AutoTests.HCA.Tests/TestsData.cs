@@ -1,11 +1,11 @@
-﻿using AutoTests.AutomationFramework.Shared.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoTests.AutomationFramework.Shared.Configuration;
 using AutoTests.HCA.Core.Common.Settings;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AutoTests.HCA.Tests
 {

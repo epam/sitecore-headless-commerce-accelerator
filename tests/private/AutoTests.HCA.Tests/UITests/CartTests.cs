@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using AutoTests.AutomationFramework.UI.Driver;
-using AutoTests.HCA.Core.API.Helpers;
+using AutoTests.HCA.Core.API.HcaApi.Helpers;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
@@ -15,8 +15,6 @@ namespace AutoTests.HCA.Tests.UITests
     [UiTest]
     internal class CartTests : BaseHcaWebTest
     {
-        public UserManagerHelper UserManager;
-
         [SetUp]
         public void SetUp()
         {
@@ -27,13 +25,15 @@ namespace AutoTests.HCA.Tests.UITests
             }
             else
             {
-                var user = TestsData.GetUser();
-                UserManager = TestsHelper.CreateUserManagerHelper(user);
-                UserManager.CleanPromotions();
-                UserManager.CleanCart();
-                _hcaWebSite.OpenHcaAndLogin(user.Credentials);
+                var user = TestsData.GetUser().Credentials;
+                ApiHelper = TestsHelper.CreateHcaUserApiHelper(user);
+                ApiHelper.CleanPromotions();
+                ApiHelper.CleanCart();
+                _hcaWebSite.OpenHcaAndLogin(user);
             }
         }
+
+        public IHcaApiHelper ApiHelper;
 
         public CartTests(BrowserType browserType, HcaUserRole hcaUserRole) : base(browserType)
         {
@@ -46,7 +46,7 @@ namespace AutoTests.HCA.Tests.UITests
         private HcaWebSite _hcaWebSite;
 
         [Test]
-        public void AddProductToACartTest()
+        public void T1_Cart_AddProductToACart()
         {
             var product = TestsData.GetProduct();
             _hcaWebSite.AddProductToCart(product);
@@ -57,51 +57,31 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void AddSecondProductToACartTest()
-        {
-            var products = TestsData.GetProducts(2).ToList();
-            _hcaWebSite.AddProductsToCartFromTestData(products);
-            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
-            _hcaWebSite.CartPage.VerifyProducts(products);
-            _hcaWebSite.CartPage.VerifyCartSum(false);
-        }
-
-        [Test]
-        public void AddSameProductToACartTest()
+        public void T10_Cart_Checkout()
         {
             var product = TestsData.GetProduct();
             _hcaWebSite.AddProductToCart(product);
-            _hcaWebSite.AddProductToCart(product);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
-            _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
-            _hcaWebSite.CartPage.VerifyProductPresent(product.ProductName);
-            _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 2);
-            _hcaWebSite.CartPage.VerifyCartSum(false);
+            _hcaWebSite.CartPage.ClickCheckoutButton();
+            _hcaWebSite.CheckoutShippingPage.WaitForOpened();
         }
 
         [Test]
-        public void AddSomeDifferentProductsToACartTest()
+        public void T11_Cart_DeleteAllProductFromCart()
         {
-            var products = TestsData.GetProducts(5).ToList();
+            var products = TestsData.GetProducts(3).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
             _hcaWebSite.CartPage.WaitForProductsLoaded();
-            _hcaWebSite.CartPage.VerifyProducts(products);
-            _hcaWebSite.CartPage.VerifyCartSum(false);
-        }
 
-        [Test]
-        public void OpenBlankCartTest()
-        {
-            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
-            _hcaWebSite.CartPage.VerifyOpened();
+            _hcaWebSite.CartPage.DeleteProductsFromCart(products);
             _hcaWebSite.CartPage.VerifyBlankCart();
         }
 
         [Test]
-        public void DeleteOneProductFromCartTest()
+        public void T12_Cart_DeleteOneProductFromCart()
         {
             var products = TestsData.GetProducts(2).ToList();
             _hcaWebSite.AddProductsToCartFromTestData(products);
@@ -117,20 +97,51 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void DeleteAllProductFromCartTest()
+        public void T13_Cart_OpenBlankCart()
         {
-            var products = TestsData.GetProducts(3).ToList();
-            _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
             _hcaWebSite.CartPage.VerifyOpened();
-            _hcaWebSite.CartPage.WaitForProductsLoaded();
-
-            _hcaWebSite.CartPage.DeleteProductsFromCart(products);
             _hcaWebSite.CartPage.VerifyBlankCart();
         }
 
         [Test]
-        public void ApplyCorrectPromoCodeTest()
+        public void T2_Cart_AddSameProductToACart()
+        {
+            var product = TestsData.GetProduct();
+            _hcaWebSite.AddProductToCart(product);
+            _hcaWebSite.AddProductToCart(product);
+            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
+            _hcaWebSite.CartPage.VerifyOpened();
+            _hcaWebSite.CartPage.WaitForProductsLoaded();
+            _hcaWebSite.CartPage.VerifyProductPresent(product.ProductName);
+            _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 2);
+            _hcaWebSite.CartPage.VerifyCartSum(false);
+        }
+
+        [Test]
+        public void T3_Cart_AddSecondProductToACart()
+        {
+            var products = TestsData.GetProducts(2).ToList();
+            _hcaWebSite.AddProductsToCartFromTestData(products);
+            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
+            _hcaWebSite.CartPage.VerifyProducts(products);
+            _hcaWebSite.CartPage.VerifyCartSum(false);
+        }
+
+        [Test]
+        public void T4_Cart_AddSomeDifferentProductsToACart()
+        {
+            var products = TestsData.GetProducts(5).ToList();
+            _hcaWebSite.AddProductsToCartFromTestData(products);
+            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
+            _hcaWebSite.CartPage.VerifyOpened();
+            _hcaWebSite.CartPage.WaitForProductsLoaded();
+            _hcaWebSite.CartPage.VerifyProducts(products);
+            _hcaWebSite.CartPage.VerifyCartSum(false);
+        }
+
+        [Test]
+        public void T5_Cart_ApplyCorrectPromoCode()
         {
             _hcaWebSite.AddProductsToCartFromTestData(TestsData.GetProducts(3));
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
@@ -142,7 +153,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ApplyIncorrectPromoCodeTest()
+        public void T6_Cart_ApplyIncorrectPromoCode()
         {
             _hcaWebSite.AddProductsToCartFromTestData(TestsData.GetProducts(3));
             _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
@@ -155,22 +166,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void CancelPromoCodeTest()
-        {
-            _hcaWebSite.AddProductsToCartFromTestData(TestsData.GetProducts(3));
-            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
-            _hcaWebSite.CartPage.VerifyOpened();
-            _hcaWebSite.CartPage.WaitForProductsLoaded();
-            _hcaWebSite.CartPage.FillDiscountField(_coupon.Code);
-            _hcaWebSite.CartPage.ClickApplyButton();
-            _hcaWebSite.CartPage.WaitForPresentAdjustment(_coupon.DisplayCartText);
-            _hcaWebSite.CartPage.VerifyCartSum(true);
-            _hcaWebSite.CartPage.DeleteAdjustment(_coupon.DisplayCartText);
-            _hcaWebSite.CartPage.WaitFoDeleteAdjustment(_coupon.DisplayCartText);
-        }
-
-        [Test]
-        public void ApplyPromoCodeForLowSumTest()
+        public void T7_Cart_ApplyPromoCodeForLowSum()
         {
             var product = TestsData.GetDefaultProduct();
             _hcaWebSite.AddProductToCart(product);
@@ -185,7 +181,22 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void ChangeQtyTest()
+        public void T8_Cart_CancelPromoCode()
+        {
+            _hcaWebSite.AddProductsToCartFromTestData(TestsData.GetProducts(3));
+            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
+            _hcaWebSite.CartPage.VerifyOpened();
+            _hcaWebSite.CartPage.WaitForProductsLoaded();
+            _hcaWebSite.CartPage.FillDiscountField(_coupon.Code);
+            _hcaWebSite.CartPage.ClickApplyButton();
+            _hcaWebSite.CartPage.WaitForPresentAdjustment(_coupon.DisplayCartText);
+            _hcaWebSite.CartPage.VerifyCartSum(true);
+            _hcaWebSite.CartPage.DeleteAdjustment(_coupon.DisplayCartText);
+            _hcaWebSite.CartPage.WaitFoDeleteAdjustment(_coupon.DisplayCartText);
+        }
+
+        [Test]
+        public void T9_Cart_ChangeQty()
         {
             var product = TestsData.GetProduct();
             _hcaWebSite.AddProductToCart(product);
@@ -196,17 +207,6 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CartPage.FillDiscountField("");
             _hcaWebSite.CartPage.VerifyProductQty(product.ProductName, 51);
             _hcaWebSite.CartPage.VerifyCartSum(false);
-        }
-
-        [Test]
-        public void CheckoutTest()
-        {
-            var product = TestsData.GetProduct();
-            _hcaWebSite.AddProductToCart(product);
-            _hcaWebSite.NavigateToPage(_hcaWebSite.CartPage);
-            _hcaWebSite.CartPage.WaitForProductsLoaded();
-            _hcaWebSite.CartPage.ClickCheckoutButton();
-            _hcaWebSite.CheckoutShippingPage.WaitForOpened();
         }
     }
 }

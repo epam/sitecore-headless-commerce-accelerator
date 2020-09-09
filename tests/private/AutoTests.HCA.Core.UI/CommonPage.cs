@@ -1,8 +1,8 @@
-﻿using AutoTests.AutomationFramework.UI.Controls;
+﻿using System;
+using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.AutomationFramework.UI.Interfaces;
-using System;
-using AutoTests.HCA.Core.Common.Settings.Checkout;
+using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 
 namespace AutoTests.HCA.Core.UI
 {
@@ -45,6 +45,7 @@ namespace AutoTests.HCA.Core.UI
             return new WebCheckBox($"{nameOption} select",
                 ByCustom.XPath($"//ul[@class= 'options']//label[text() = '{nameOption}']"));
         }
+
         public void SelectOptionByName(AddressOption nameOption)
         {
             FindOptionByName(nameOption.GetValue()).Check();
@@ -53,7 +54,8 @@ namespace AutoTests.HCA.Core.UI
         public void VerifyOption(AddressOption nameOption, bool selected)
         {
             var nameOptionString = nameOption.GetValue();
-            new WebCheckBox($"Selector for {nameOptionString}", ByCustom.XPath("./preceding-sibling::*"), FindOptionByName(nameOptionString)).Verify(selected);
+            new WebCheckBox($"Selector for {nameOptionString}", ByCustom.XPath("./preceding-sibling::*"),
+                FindOptionByName(nameOptionString)).Verify(selected);
         }
 
         protected virtual WebTextField FindFieldContainer(string nameField)

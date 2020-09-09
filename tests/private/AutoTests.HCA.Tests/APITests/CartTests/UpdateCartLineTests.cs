@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         [SetUp]
         public new void SetUp()
         {
-            HcaService.AddCartLines(AddingProduct);
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, AddingProduct.Quantity, AddingProduct.VariantId);
         }
 
         protected static CartLinesRequest UpdatedProduct = new CartLinesRequest
@@ -29,7 +29,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T1_PUTCartLinesRequest_ValidProduct_VerifyResponse()
         {
             // Arrange, Act
-            var updateResult = HcaService.UpdateCartLines(UpdatedProduct);
+            var updateResult = ApiContext.Cart.UpdateCartLines(UpdatedProduct);
 
             // Assert
             updateResult.CheckSuccessfulResponse();
@@ -46,8 +46,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T2_PUTCartLinesRequest_ValidProduct_ProductHasBeenUpdate()
         {
             // Arrange, Act
-            var updateResult = HcaService.UpdateCartLines(UpdatedProduct);
-            var getCartAfterUpdate = HcaService.GetCart();
+            var updateResult = ApiContext.Cart.UpdateCartLines(UpdatedProduct);
+            var getCartAfterUpdate = ApiContext.Cart.GetCart();
 
             // Assert
             updateResult.CheckSuccessfulResponse();

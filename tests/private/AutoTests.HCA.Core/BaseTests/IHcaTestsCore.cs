@@ -1,16 +1,23 @@
-﻿using AutoTests.HCA.Core.API.Helpers;
-using AutoTests.HCA.Core.API.Services.BraintreeServices;
-using AutoTests.HCA.Core.API.Services.HcaService;
-using AutoTests.HCA.Core.Common.Settings.Users;
+﻿using AutoTests.AutomationFramework.Shared.Models;
+using AutoTests.HCA.Core.API.BraintreeApi.Services;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Helpers;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
 
 namespace AutoTests.HCA.Core.BaseTests
 {
     public interface IHcaTestsCore
     {
-        HcaApiService CreateHcaApiClient();
+        IHcaApiContext CreateHcaApiContext();
 
-        UserManagerHelper CreateUserManagerHelper(HcaUserTestsDataSettings user, IHcaApiService hcaApiService = null);
+        HcaUserApiHelper CreateHcaUserApiHelper(UserLogin user, IHcaApiContext apiContext = null);
 
-        BraintreeApiService CreateBraintreeClient();
+        HcaUserApiHelper CreateHcaUserApiHelper(CreateAccountRequest user, IHcaApiContext apiContext = null);
+
+        HcaGuestApiHelper CreateHcaGuestApiHelper(CookieData cookie);
+
+        HcaGuestApiHelper CreateHcaGuestApiHelper(IHcaApiContext apiContext = null);
+
+        IBraintreeApiService CreateBraintreeClient();
     }
 }

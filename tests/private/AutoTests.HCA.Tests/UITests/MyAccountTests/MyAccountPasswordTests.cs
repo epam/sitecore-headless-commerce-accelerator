@@ -41,7 +41,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
 
 
         [Test]
-        public void MyAccountPasswordTests_01_ChangePasswordTest()
+        public void T1_MyAccountPassword_ChangePassword()
         {
             var name = _hcaWebSite.CreateNewUser();
             Browser.DeleteAllCookies();
@@ -57,7 +57,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountPasswordTests_02_ChangePasswordWithoutOldPasswordTest()
+        public void T2_MyAccountPassword_ChangePasswordWithoutOldPassword()
         {
             _hcaWebSite.OpenHcaAndLogin(_userName, _password);
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
@@ -70,7 +70,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountPasswordTests_03_ChangePasswordWithoutNewPasswordTest()
+        public void T3_MyAccountPassword_ChangePasswordWithoutNewPassword()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetProduct(),
                 TestsData.GetUser().Credentials);
@@ -83,7 +83,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountPasswordTests_04_ChangePasswordWithoutConfirmPasswordTest()
+        public void T4_MyAccountPassword_ChangePasswordWithoutConfirmPassword()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetProduct(),
                 TestsData.GetUser().Credentials);
@@ -96,7 +96,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountPasswordTests_05_ChangePasswordConfirmDoesNotMatchTest()
+        public void T5_MyAccountPassword_ChangePasswordConfirmDoesNotMatch()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetProduct(),
                 TestsData.GetUser().Credentials);
@@ -111,7 +111,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountPasswordTests_06_OldPasswordIncorrectTest()
+        public void T6_MyAccountPassword_OldPasswordIncorrect()
         {
             _hcaWebSite.GoToPageWithDefaultParams(PagePrefix.Account, TestsData.GetProduct(),
                 TestsData.GetUser().Credentials);

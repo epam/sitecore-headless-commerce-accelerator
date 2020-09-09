@@ -1,11 +1,9 @@
 ﻿using System.Net;
 using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.WishList;
-using AutoTests.HCA.Core.API.Models.Hca.RequestResult;
-using AutoTests.HCA.Core.API.Models.Hca.RequestResult.Results;
-using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.WishList;
+using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult;
+using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult.Results;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Users;
@@ -22,9 +20,10 @@ namespace AutoTests.HCA.Tests.APITests.WishList
         [SetUp]
         public void SetUp()
         {
-            User = TestsData.GetUser(_userRole);
-            HcaService = TestsHelper.CreateHcaApiClient();
-            UserManager = TestsHelper.CreateUserManagerHelper(User, HcaService);
+            ApiContext = TestsHelper.CreateHcaApiContext();
+            if (_userRole != HcaUserRole.User) return;
+            var user = TestsData.GetUser(_userRole).Credentials;
+            TestsHelper.CreateHcaUserApiHelper(user, ApiContext);
         }
 
         public const string EXP_ERROR_MESSAGE = "The method or operation is not implemented.";
@@ -41,9 +40,7 @@ namespace AutoTests.HCA.Tests.APITests.WishList
 
         private readonly HcaUserRole _userRole;
 
-        protected IHcaApiService HcaService;
-        protected UserManagerHelper UserManager;
-        protected HcaUserTestsDataSettings User;
+        protected IHcaApiContext ApiContext;
 
         public BaseWishListTest(HcaUserRole userRole)
         {
@@ -57,7 +54,7 @@ namespace AutoTests.HCA.Tests.APITests.WishList
                 nameof(response.StatusCode));
             var hcaResult = response.Errors as HcaResult;
             ExtendedAssert.NotNull(hcaResult, "Model data");
-            ExtendedAssert.AreEqual(HcaStatus.Error, response.Errors.Status, nameof(hcaResult.Status));
+            ExtendedAssert.AreEqual(HcaStatusCode.Error, response.Errors.Status, nameof(hcaResult.Status));
             ExtendedAssert.AreEqual(EXP_ERROR_MESSAGE, response.Errors.Error, nameof(response.Errors.Error));
             ExtendedAssert.AreEqual(EXP_ERROR_MESSAGE, response.Errors.ExceptionMessage,
                 nameof(response.Errors.ExceptionMessage));

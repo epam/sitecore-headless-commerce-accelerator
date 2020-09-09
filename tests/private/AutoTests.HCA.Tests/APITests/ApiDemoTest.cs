@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Core.API.Models.Braitree.PaymentToken.Request;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Addresses;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Payment;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Checkout.Shipping;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
-using AutoTests.HCA.Core.API.Services.BraintreeServices;
-using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.API.BraintreeApi.Models.PaymentToken.Request;
+using AutoTests.HCA.Core.API.BraintreeApi.Services;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Addresses;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Checkout.Payment;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Checkout.Shipping;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Search;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
@@ -36,7 +35,7 @@ namespace AutoTests.HCA.Tests.APITests
         }
 
         private bool _stopTests;
-        private readonly IHcaApiService _hcaApiService = TestsHelper.CreateHcaApiClient();
+        private readonly IHcaApiContext _apiContext = TestsHelper.CreateHcaApiContext();
         private readonly IBraintreeApiService _braintreeApiService = TestsHelper.CreateBraintreeClient();
 
         private readonly HcaUserRole _userRole;
@@ -59,9 +58,7 @@ namespace AutoTests.HCA.Tests.APITests
         {
             if (_userRole != HcaUserRole.User) return;
             var user = TestsData.GetUser().Credentials;
-            var authReq = _hcaApiService.Login(new LoginRequest(user.Email,
-                user.Password));
-            Assert.True(authReq.IsSuccessful, "The Login POST request is not passed");
+            TestsHelper.CreateHcaUserApiHelper(user, _apiContext);
         }
 
         [Test]
@@ -77,9 +74,10 @@ namespace AutoTests.HCA.Tests.APITests
                 SearchKeyword = _searchKeyword
             };
 
-            var products = _hcaApiService.SearchProducts(searchOptions);
+            var products = _apiContext.Product.SearchProducts(searchOptions);
 
-            Assert.True(products.IsSuccessful, "The GetProducts POST request is not passed");
+            products.CheckSuccessfulResponse();
+            products.VerifyOkResponseData();
             _productId = products.OkResponseData.Data.Products.FirstOrDefault()?.ProductId;
         }
 
@@ -95,9 +93,10 @@ namespace AutoTests.HCA.Tests.APITests
                 VariantId = 5 + _productId
             };
 
-            var cart = _hcaApiService.AddCartLines(productForCard);
+            var cart = _apiContext.Cart.AddCartLines(productForCard);
 
-            Assert.True(cart.IsSuccessful, "The Get Cart request is not passed");
+            cart.CheckSuccessfulResponse();
+            cart.VerifyOkResponseData();
             Assert.True(cart.OkResponseData.Data.CartLines.Any(x => x.Product.ProductId == _productId),
                 "ProductId is not found");
         }
@@ -107,11 +106,13 @@ namespace AutoTests.HCA.Tests.APITests
         [Description("Checkouts Product from cart. DeliveryInfo and ShippingInfo.")]
         public void _03_CheckDeliveryInfoAndShippingInfo()
         {
-            var deliveryInfoReq = _hcaApiService.GetDeliveryInfo();
-            var shippingInfoReq = _hcaApiService.GetShippingInfo();
+            var deliveryInfoReq = _apiContext.Checkout.GetDeliveryInfo();
+            var shippingInfoReq = _apiContext.Checkout.GetShippingInfo();
 
-            Assert.True(deliveryInfoReq.IsSuccessful, "The delivery info request is not passed");
-            Assert.True(shippingInfoReq.IsSuccessful, "The Shipping info request is not passed");
+            deliveryInfoReq.CheckSuccessfulResponse();
+            deliveryInfoReq.VerifyOkResponseData();
+            shippingInfoReq.CheckSuccessfulResponse();
+            shippingInfoReq.VerifyOkResponseData();
 
             _guestNewPartyId = deliveryInfoReq.OkResponseData.Data.NewPartyId;
             _shippingMethodId = shippingInfoReq.OkResponseData.Data.ShippingMethods
@@ -160,9 +161,9 @@ namespace AutoTests.HCA.Tests.APITests
                 }
             };
 
-            var shippingOptionsReq = _hcaApiService.SetShippingOptions(shippingOptions);
+            var shippingOptionsReq = _apiContext.Checkout.SetShippingOptions(shippingOptions);
 
-            Assert.True(shippingOptionsReq.IsSuccessful, "The Shipping Options request is not passed");
+            shippingOptionsReq.CheckSuccessfulResponse();
         }
 
         [Test]
@@ -217,8 +218,8 @@ namespace AutoTests.HCA.Tests.APITests
                     CardToken = _token
                 }
             };
-            var paymentInfoReq = _hcaApiService.SetPaymentInfo(paymentInfo);
-            Assert.True(paymentInfoReq.IsSuccessful, "The paymentInfo request is not passed");
+            var paymentInfoReq = _apiContext.Checkout.SetPaymentInfo(paymentInfo);
+            paymentInfoReq.CheckSuccessfulResponse();
         }
 
         [Test]
@@ -226,8 +227,10 @@ namespace AutoTests.HCA.Tests.APITests
         [Description("Submit order.")]
         public void _07_SubmitOrderTests()
         {
-            var submitOrder = _hcaApiService.SubmitOrder();
-            Assert.True(submitOrder.IsSuccessful, "The order request is not passed");
+            var submitOrder = _apiContext.Checkout.SubmitOrder();
+
+            submitOrder.CheckSuccessfulResponse();
+            submitOrder.VerifyOkResponseData();
             _confirmationId = submitOrder.OkResponseData.Data.ConfirmationId;
         }
 
@@ -236,8 +239,10 @@ namespace AutoTests.HCA.Tests.APITests
         [Description("Verify Order By ConfirmationId.")]
         public void _08_OrderExistsTest()
         {
-            var getOrderReq = _hcaApiService.GetOrder(_confirmationId);
-            Assert.True(getOrderReq.IsSuccessful, "The order request is not passed");
+            var getOrderReq = _apiContext.Order.GetOrder(_confirmationId);
+
+            getOrderReq.CheckSuccessfulResponse();
+            getOrderReq.VerifyOkResponseData();
             Assert.AreEqual(_confirmationId, getOrderReq.OkResponseData.Data.TrackingNumber);
         }
     }

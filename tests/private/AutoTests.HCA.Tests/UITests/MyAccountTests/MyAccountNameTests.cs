@@ -34,7 +34,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountNameTests_01_ChangeFirstNameTest()
+        public void T1_MyAccountNameTests_ChangeFirstName()
         {
             _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             var newGeneratedName = StringHelpers.RandomString(10);
@@ -47,7 +47,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountNameTests_02_ChangeLastNameTest()
+        public void T2_MyAccountNameTests_ChangeLastName()
         {
             _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
             var newGeneratedLastName = StringHelpers.RandomString(10);
@@ -60,7 +60,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountNameTests_03_ChangeAccountDetailsWithoutSaveTest()
+        public void T3_MyAccountNameTests_ChangeAccountDetailsWithoutSave()
         {
             var oldName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             var oldLastName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
@@ -76,7 +76,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountNameTests_04_TryToSaveWithoutFirstName()
+        public void T4_MyAccountNameTests_TryToSaveWithoutFirstName()
         {
             var oldName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("First Name", "");
@@ -88,7 +88,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void MyAccountNameTests_05_TryToSaveWithoutLastName()
+        public void T5_MyAccountNameTests_TryToSaveWithoutLastName()
         {
             var oldLastName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("Last Name", "");

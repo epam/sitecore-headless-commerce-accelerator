@@ -33,34 +33,34 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void SignInTests_01_BlankFormTest()
+        public void T1_SignInTests_BlankForm()
         {
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void SignInTests_02_BlankPasswordTest()
+        public void T2_SignInTests_BlankPassword()
         {
             _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void SignInTests_03_BlankUserNameTest()
+        public void T3_SignInTests_BlankUserName()
         {
             _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password);
             _hcaWebSite.LoginForm.VerifySignInButtonNotClickable();
         }
 
         [Test]
-        public void SignInTests_04_ClickCreateAccountTest()
+        public void T4_SignInTests_ClickCreateAccount()
         {
             _hcaWebSite.LoginForm.SignUpClick();
             _hcaWebSite.SignUpPage.WaitForOpened();
         }
 
         [Test]
-        public void SignInTests_05_IncorrectPasswordTest()
+        public void T5_SignInTests_IncorrectPassword()
         {
             _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
             _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password + "_1");
@@ -69,7 +69,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void SignInTests_06_SuccessSignInTest()
+        public void T6_SignInTests_SuccessSignIn()
         {
             _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
             _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password);

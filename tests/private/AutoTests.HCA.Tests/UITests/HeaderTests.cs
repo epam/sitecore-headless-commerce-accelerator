@@ -41,7 +41,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void HeaderTest([Values] PagePrefix pagePrefix)
+        public void T1_HeaderElement_VerifyComponents([Values] PagePrefix pagePrefix)
         {
             const int expMenuItemCounts = 5;
 

@@ -1,5 +1,5 @@
-﻿using AutoTests.HCA.Core.API.Models.Hca.Entities.Account;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
+﻿using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account.Authentication;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -11,8 +11,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public new void SetUp()
         {
             NewUser = new CreateAccountRequest(GetRandomEmail(), "FirstName123", "LastName123", "123456");
-            HcaService.CreateUserAccount(NewUser).CheckSuccessfulResponse();
-            HcaService.Login(new LoginRequest(NewUser.Email, NewUser.Password)).CheckSuccessfulResponse();
+            TestsHelper.CreateHcaUserApiHelper(NewUser, ApiContext);
         }
 
         public CreateAccountRequest NewUser;
@@ -26,7 +25,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var newPasswordModel = new ChangePasswordRequest(NewUser.Email, oldPassword, newPassword);
 
             // Act
-            var response = HcaService.ChangePassword(newPasswordModel);
+            var response = ApiContext.Account.ChangePassword(newPasswordModel);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -41,7 +40,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var newPasswordModel = new ChangePasswordRequest(email, "a", "a");
 
             // Act
-            var response = HcaService.ChangePassword(newPasswordModel);
+            var response = ApiContext.Account.ChangePassword(newPasswordModel);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -60,9 +59,9 @@ namespace AutoTests.HCA.Tests.APITests.Account
             };
 
             // Act, Assert
-            HcaService.ChangePassword(newPasswordModel).CheckSuccessfulResponse();
-            HcaService.Logout().CheckSuccessfulResponse();
-            HcaService.Login(new LoginRequest(newPasswordModel.Email, newPasswordModel.NewPassword))
+            ApiContext.Account.ChangePassword(newPasswordModel).CheckSuccessfulResponse();
+            ApiContext.Auth.Logout().CheckSuccessfulResponse();
+            ApiContext.Auth.Login(new LoginRequest(newPasswordModel.Email, newPasswordModel.NewPassword))
                 .CheckSuccessfulResponse();
         }
     }

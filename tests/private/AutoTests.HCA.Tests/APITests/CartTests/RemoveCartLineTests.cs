@@ -9,7 +9,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         [SetUp]
         public new void SetUp()
         {
-            foreach (var product in ProductsCollection) HcaService.AddCartLines(product);
+            ApiHelper.AddProductsToCart(ProductsCollection);
         }
 
         public RemoveCartLineTests(HcaUserRole userRole) : base(userRole)
@@ -23,7 +23,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var productToRemove = ProductsCollection.First();
 
             // Act
-            var result = HcaService.RemoveCartLine(productToRemove.ProductId, productToRemove.VariantId);
+            var result = ApiContext.Cart.RemoveCartLine(productToRemove.ProductId, productToRemove.VariantId);
 
             // Assert
             result.VerifyOkResponseData();

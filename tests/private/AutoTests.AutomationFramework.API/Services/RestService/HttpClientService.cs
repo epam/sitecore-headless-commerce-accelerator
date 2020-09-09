@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using AutoTests.AutomationFramework.API.Models;
+using AutoTests.AutomationFramework.Shared.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -16,9 +17,12 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
 
         public HttpClientService(Uri baseUri)
         {
+            BaseUri = baseUri;
             _restClient = new RestClient(baseUri) {CookieContainer = new CookieContainer()};
             _restClient.UseNewtonsoftJson();
         }
+
+        public Uri BaseUri { get; }
 
         public void AddDefaultHeaders(Dictionary<string, string> headers)
         {
@@ -30,10 +34,13 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             return _restClient.CookieContainer.GetCookies(_restClient.BaseUrl);
         }
 
-        public void SetCookieIfNotSet(string name, string value)
+        public void SetCookieIfNotSet(CookieData cookie)
         {
-            if (GetCookies().All(x => x.Name != name))
-                _restClient.CookieContainer.Add(new Cookie(name, value) {Domain = _restClient.BaseUrl.Host});
+            if (GetCookies().All(x => x.Name != cookie.Name))
+                _restClient.CookieContainer.Add(new Cookie(cookie.Name, cookie.Value)
+                {
+                    Domain = _restClient.BaseUrl.Host
+                });
         }
 
         public void SetHttpBasicAuthenticator(string userName, string password)

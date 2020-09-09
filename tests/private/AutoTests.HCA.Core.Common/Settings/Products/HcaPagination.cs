@@ -1,4 +1,4 @@
-﻿namespace AutoTests.HCA.Core.Common.Settings
+﻿namespace AutoTests.HCA.Core.Common.Settings.Products
 {
     public class HcaPagination
     {

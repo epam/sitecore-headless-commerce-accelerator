@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T1_POSTCartLinesRequest_ValidProduct_VerifyResponse()
         {
             // Arrange, Act
-            var result = HcaService.AddCartLines(AddingProduct);
+            var result = ApiContext.Cart.AddCartLines(AddingProduct);
 
             // Assert
             result.CheckSuccessfulResponse();
@@ -33,8 +33,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T2_POSTCartLinesRequest_ValidProduct_ProductHasBeenAddedToCart()
         {
             // Arrange, Act
-            var addProductResult = HcaService.AddCartLines(AddingProduct);
-            var getProductResult = HcaService.GetCart();
+            var addProductResult = ApiContext.Cart.AddCartLines(AddingProduct);
+            var getProductResult = ApiContext.Cart.GetCart();
 
             // Assert
             addProductResult.CheckSuccessfulResponse();
@@ -57,8 +57,9 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             var prod = TestsData.GetProduct(HcaProductStatus.OutOfStock);
 
             // Act
-            var addProductResult = HcaService.AddCartLines(new CartLinesRequest(prod.ProductId, 1, prod.VariantId));
-            HcaService.GetCart();
+            var addProductResult =
+                ApiContext.Cart.AddCartLines(new CartLinesRequest(prod.ProductId, 1, prod.VariantId));
+            ApiContext.Cart.GetCart();
             // Assert
             addProductResult.CheckUnSuccessfulResponse();
             Assert.Multiple(() => { addProductResult.VerifyErrors(expErrorMessage); });
@@ -69,9 +70,9 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         public void T4_POSTCartLinesRequest_TwoIdenticalProducts_ProductsNumberHasBeenUpdated()
         {
             // Arrange, Act
-            var addProductResult1 = HcaService.AddCartLines(AddingProduct);
-            var addProductResult2 = HcaService.AddCartLines(AddingProduct);
-            var getProductResult = HcaService.GetCart();
+            var addProductResult1 = ApiContext.Cart.AddCartLines(AddingProduct);
+            var addProductResult2 = ApiContext.Cart.AddCartLines(AddingProduct);
+            var getProductResult = ApiContext.Cart.GetCart();
 
             // Assert
             addProductResult1.CheckSuccessfulResponse();
@@ -102,7 +103,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             };
 
             // Act
-            var response = HcaService.AddCartLines(cartLines);
+            var response = ApiContext.Cart.AddCartLines(cartLines);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -123,7 +124,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             };
 
             // Act
-            var response = HcaService.AddCartLines(cartLines);
+            var response = ApiContext.Cart.AddCartLines(cartLines);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -144,7 +145,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             };
 
             // Act
-            var response = HcaService.AddCartLines(cartLines);
+            var response = ApiContext.Cart.AddCartLines(cartLines);
 
             // Assert
             response.CheckUnSuccessfulResponse();

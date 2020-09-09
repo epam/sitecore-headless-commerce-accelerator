@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Catalog;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Catalog;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Search;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.SearchTests
@@ -28,7 +28,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -60,7 +60,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -82,7 +82,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -113,7 +113,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -138,7 +138,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckSuccessfulResponse();

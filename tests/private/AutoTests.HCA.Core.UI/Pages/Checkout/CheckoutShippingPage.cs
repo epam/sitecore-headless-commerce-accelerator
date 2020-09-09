@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using AutoTests.AutomationFramework.Shared.Helpers;
 using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
-using AutoTests.HCA.Core.Common.Settings.Checkout;
-using AutoTests.HCA.Core.Common.Settings.Fields;
+using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
+using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Fields;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
@@ -16,13 +16,14 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
     {
         private static CheckoutShippingPage _checkoutShippingPage;
 
+        private readonly WebCheckBox _saveAddress = new WebCheckBox("Checkbox save Address to My Account",
+            ByCustom.XPath("//label[@for='save-to-account']"));
+
         private readonly WebElement _sectionCart =
             new WebElement("Cart section", ByCustom.XPath("//section[@class='toggle open']"));
 
         private readonly WebElement _sectionPricing =
             new WebElement("Pricing section", ByCustom.XPath("//section[@class='no-border']"));
-
-        private readonly WebCheckBox _saveAddress = new WebCheckBox("Checkbox save Address to My Account", ByCustom.XPath("//label[@for='save-to-account']"));
 
         public static CheckoutShippingPage Instance => _checkoutShippingPage ??= new CheckoutShippingPage();
 
@@ -45,7 +46,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             SelectValueInTheField(AddressField.Country.GetValue(), "United States");
             SelectValueInTheField(AddressField.Province.GetValue(), "New York");
             FillFieldByName(AddressField.PostalCode.GetValue(), "10005");
-            if(role == HcaUserRole.Guest)
+            if (role == HcaUserRole.Guest)
                 FillFieldByName(AddressField.EmailAddress.GetValue(), "test@test.com");
         }
 
@@ -61,7 +62,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             SelectValueInTheField(AddressField.Country.GetValue(), "United States");
             SelectValueInTheField(AddressField.Province.GetValue(), "New York");
             FillFieldByName(AddressField.PostalCode.GetValue(), "10005");
-            if (role ==HcaUserRole.Guest)
+            if (role == HcaUserRole.Guest)
                 FillFieldByName(AddressField.EmailAddress.GetValue(), "test@test.com");
             return $"{firstName} {lastName}, {addressLine}";
         }
@@ -149,8 +150,8 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
         }
 
         private void WaitFirstProductLoad()
-        { 
-            new WebElement($"First Product", ByCustom.XPath("//li//figcaption/span[1]")).WaitForPresent();
+        {
+            new WebElement("First Product", ByCustom.XPath("//li//figcaption/span[1]")).WaitForPresent();
         }
     }
 }

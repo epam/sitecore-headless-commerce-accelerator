@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using AutoTests.AutomationFramework.Shared.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Account.Authentication;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account.Authentication;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.Account
@@ -16,13 +16,13 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act
-            var result = HcaService.Login(user);
+            var result = ApiContext.Auth.Login(user);
 
             // Assert
             result.CheckSuccessfulResponse();
             Assert.Multiple(() =>
             {
-                var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                var cookies = ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.NotNull(cookies, "The response of '/login' doesn't contain authorization cookies.");
                 Assert.False(string.IsNullOrWhiteSpace(cookies.Value), "Returned cookies contain empty value.");
             });
@@ -36,7 +36,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var user = new LoginRequest(StringHelpers.RandomString(2), DefUser.Password);
 
             // Act
-            var result = HcaService.Login(user);
+            var result = ApiContext.Auth.Login(user);
 
             // Assert
             result.CheckUnSuccessfulResponse();
@@ -44,7 +44,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             {
                 result.VerifyErrors(expErrorMsg);
 
-                var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                var cookies = ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
         }
@@ -57,7 +57,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var userLoginRequest = new LoginRequest("12@mail.com", DefUser.Password);
 
             // Act
-            var result = HcaService.Login(userLoginRequest);
+            var result = ApiContext.Auth.Login(userLoginRequest);
 
             // Assert
             result.CheckUnSuccessfulResponse();
@@ -65,7 +65,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             {
                 result.VerifyErrors(expErrorMsg);
 
-                var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                var cookies = ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
         }
@@ -78,7 +78,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var userLoginRequest = new LoginRequest(DefUser.Email, "0000");
 
             // Act
-            var result = HcaService.Login(userLoginRequest);
+            var result = ApiContext.Auth.Login(userLoginRequest);
 
             // Assert
             result.CheckUnSuccessfulResponse();
@@ -86,7 +86,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             {
                 result.VerifyErrors(expErrorMsg);
 
-                var cookies = HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
+                var cookies = ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME);
                 Assert.Null(cookies, "The filed response of '/login' contains authorization cookies.");
             });
         }
@@ -98,10 +98,10 @@ namespace AutoTests.HCA.Tests.APITests.Account
             var user = new LoginRequest(DefUser.Email, DefUser.Password);
 
             // Act
-            HcaService.Login(user);
-            Assert.NotNull(HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
+            ApiContext.Auth.Login(user);
+            Assert.NotNull(ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
                 "The response of '/logout' doesn't contain authorization cookies.");
-            var logoutResult = HcaService.Logout();
+            var logoutResult = ApiContext.Auth.Logout();
 
             // Assert
             logoutResult.CheckSuccessfulResponse();
@@ -109,7 +109,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             {
                 logoutResult.VerifyOkResponseData();
 
-                Assert.Null(HcaService.GetClientCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
+                Assert.Null(ApiContext.Client.GetCookies().FirstOrDefault(x => x.Name == AUTHORIZATION_COOKIE_NAME),
                     "The response of '/logout' contains authorization cookies.");
             });
         }

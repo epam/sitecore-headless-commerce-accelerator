@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Search;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Search;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.APITests.SearchTests
@@ -24,7 +24,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckSuccessfulResponse();
@@ -46,7 +46,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
         [Test(Description = "Find products by search keyword with brand facet")]
         [TestCase("Phone", "EXT Accessories")]
         [TestCase("habitat", "Centerpiece Microwaves")]
-        public void T1_GETProductRequest_ByKeywordWithFacet_CorrectList(string searchKeyword, string facet)
+        public void T2_GETProductRequest_ByKeywordWithFacet_CorrectList(string searchKeyword, string facet)
         {
             // Arrange
             var searchOptions = new ProductSearchOptionsRequest
@@ -64,7 +64,7 @@ namespace AutoTests.HCA.Tests.APITests.SearchTests
             };
 
             // Act
-            var response = HcaService.SearchProducts(searchOptions);
+            var response = Product.SearchProducts(searchOptions);
 
             // Assert
             response.CheckSuccessfulResponse();

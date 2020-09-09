@@ -40,13 +40,13 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void SignUpTests_01_BlankFormTest()
+        public void T1_SignUpTests_BlankForm()
         {
             Assert.False(_hcaWebSite.SignUpPage.SignUpIsClickable());
         }
 
         [Test]
-        public void SignUpTests_02_ConfirmPasswordDoesNotMatchTest()
+        public void T2_SignUpTests_ConfirmPasswordDoesNotMatch()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -58,7 +58,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void SignUpTests_03_AddExistsUserTest()
+        public void T3_SignUpTests_AddExistsUser()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -70,7 +70,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         [Test]
-        public void SignUpTests_04_InvalidEmailTest()
+        public void T4_SignUpTests_InvalidEmail()
         {
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", "FName");
             _hcaWebSite.SignUpPage.FillFieldByName("Last Name", "LName");
@@ -83,7 +83,7 @@ namespace AutoTests.HCA.Tests.UITests
 
 
         [Test]
-        public void SignUpTests_05_SuccessTest()
+        public void T5_SignUpTests_Success()
         {
             var firstName = StringHelpers.RandomString(10);
             _hcaWebSite.SignUpPage.FillFieldByName("First Name", firstName);

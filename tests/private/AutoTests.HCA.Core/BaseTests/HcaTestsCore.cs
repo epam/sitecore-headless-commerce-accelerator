@@ -1,10 +1,11 @@
 ﻿using AutoTests.AutomationFramework.Shared.Configuration;
-using AutoTests.HCA.Core.API.Helpers;
-using AutoTests.HCA.Core.API.Services.BraintreeServices;
-using AutoTests.HCA.Core.API.Services.HcaService;
-using AutoTests.HCA.Core.API.Settings.Api;
-using AutoTests.HCA.Core.API.Settings.Braintree;
-using AutoTests.HCA.Core.Common.Settings.Users;
+using AutoTests.AutomationFramework.Shared.Models;
+using AutoTests.HCA.Core.API.BraintreeApi.Services;
+using AutoTests.HCA.Core.API.BraintreeApi.Settings;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Helpers;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
+using AutoTests.HCA.Core.API.HcaApi.Settings;
 
 namespace AutoTests.HCA.Core.BaseTests
 {
@@ -14,18 +15,42 @@ namespace AutoTests.HCA.Core.BaseTests
         protected static readonly HcaApiSettings ApiSettings = Configuration.Get<HcaApiSettings>();
         protected static readonly BraintreeSettings BraintreeSettings = Configuration.Get<BraintreeSettings>();
 
-        public HcaApiService CreateHcaApiClient()
+        public IHcaApiContext CreateHcaApiContext()
         {
-            return new HcaApiService(ApiSettings);
+            return new HcaApiContext(ApiSettings);
         }
 
-        public UserManagerHelper CreateUserManagerHelper(HcaUserTestsDataSettings user,
-            IHcaApiService hcaApiService = null)
+        public HcaUserApiHelper CreateHcaUserApiHelper(UserLogin user, IHcaApiContext apiContext = null)
         {
-            return new UserManagerHelper(user, hcaApiService ?? CreateHcaApiClient());
+            return new HcaUserApiHelper(user, apiContext ?? CreateHcaApiContext());
         }
 
-        public BraintreeApiService CreateBraintreeClient()
+        public HcaUserApiHelper CreateHcaUserApiHelper(CreateAccountRequest newUser, IHcaApiContext apiContext = null)
+        {
+            return new HcaUserApiHelper(newUser, apiContext ?? CreateHcaApiContext());
+        }
+
+        public HcaGuestApiHelper CreateHcaGuestApiHelper(CookieData cookie)
+        {
+            var newSettings = new HcaApiSettings
+            {
+                GlobalAuthentication = new GlobalAuthentication
+                {
+                    BasicAuthenticator = ApiSettings.GlobalAuthentication.BasicAuthenticator,
+                    SiteCoreCookie = cookie
+                },
+                HcaApiUri = ApiSettings.HcaApiUri
+            };
+
+            return new HcaGuestApiHelper(cookie, new HcaApiContext(newSettings));
+        }
+
+        public HcaGuestApiHelper CreateHcaGuestApiHelper(IHcaApiContext apiContext)
+        {
+            return new HcaGuestApiHelper(apiContext);
+        }
+
+        public IBraintreeApiService CreateBraintreeClient()
         {
             return new BraintreeApiService(BraintreeSettings);
         }

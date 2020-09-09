@@ -13,7 +13,7 @@ namespace AutoTests.HCA.Tests.APITests.WishList
         public void T1_PUTWishListLine_ValidProduct_VerifyEndpointIsNotImplemented()
         {
             // Arrange, Act
-            var result = HcaService.AddWishListLine(AddingProduct);
+            var result = ApiContext.WishList.AddWishListLine(AddingProduct);
 
             // Assert
             result.CheckUnSuccessfulResponse();

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Helpers;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
-using AutoTests.HCA.Core.API.Services.HcaService;
+using AutoTests.HCA.Core.API.HcaApi.Context;
+using AutoTests.HCA.Core.API.HcaApi.Helpers;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
@@ -21,16 +21,19 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
         [SetUp]
         public void SetUp()
         {
-            User = TestsData.GetUser(_userRole);
-            HcaService = TestsHelper.CreateHcaApiClient();
-            UserManager = TestsHelper.CreateUserManagerHelper(User, HcaService);
-            UserManager.CleanCart();
-        }
+            ApiContext = TestsHelper.CreateHcaApiContext();
 
-        [TearDown]
-        public override void TearDown()
-        {
-            UserManager.CleanCart();
+            if (_userRole == HcaUserRole.User)
+            {
+                var user = TestsData.GetUser(_userRole).Credentials;
+                ApiHelper = TestsHelper.CreateHcaUserApiHelper(user, ApiContext);
+            }
+            else
+            {
+                ApiHelper = TestsHelper.CreateHcaGuestApiHelper(ApiContext);
+            }
+
+            ApiHelper.CleanCart();
         }
 
         protected static readonly ProductTestsDataSettings Product = TestsData.GetProduct();
@@ -44,9 +47,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
 
         private readonly HcaUserRole _userRole;
 
-        protected IHcaApiService HcaService;
-        protected UserManagerHelper UserManager;
-        protected HcaUserTestsDataSettings User;
+        protected IHcaApiContext ApiContext;
+        protected IHcaApiHelper ApiHelper;
 
         protected readonly IEnumerable<CartLinesRequest> ProductsCollection;
 
@@ -90,15 +92,15 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
             Assert.NotNull(cartResult,
                 $"The '{methodName}' response should contain information about the current state of the cart.");
             ExtendedAssert.NotNull(cartResult.Id, nameof(cartResult.Id));
-            if (User.Role == HcaUserRole.User)
+            if (_userRole == HcaUserRole.User)
             {
-                ExtendedAssert.NotNull(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {User.Role}.");
-                ExtendedAssert.NotNull(cartResult.Email, $"{nameof(cartResult.Email)} for {User.Role}.");
+                ExtendedAssert.NotNull(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {_userRole}.");
+                ExtendedAssert.NotNull(cartResult.Email, $"{nameof(cartResult.Email)} for {_userRole}.");
             }
             else
             {
-                ExtendedAssert.Empty(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {User.Role}.");
-                ExtendedAssert.Empty(cartResult.Email, $"{nameof(cartResult.Email)} for {User.Role}.");
+                ExtendedAssert.Empty(cartResult.Addresses, $"{nameof(cartResult.Addresses)} for {_userRole}.");
+                ExtendedAssert.Empty(cartResult.Email, $"{nameof(cartResult.Email)} for {_userRole}.");
             }
 
             // Data -> CartLines
@@ -149,7 +151,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                 ExtendedAssert.Empty(cartLines, nameof(cartLines));
             }
 
-            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal), cartResult.Price.Subtotal,
+            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal * x.Quantity), cartResult.Price.Subtotal,
                 nameof(cartResult.Price.Subtotal));
             ExtendedAssert.AreEqual(cartResult.Price.Subtotal - cartResult.Price.TotalSavings, cartResult.Price.Total,
                 nameof(cartResult.Price.Total));

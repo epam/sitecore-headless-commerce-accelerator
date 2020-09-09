@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
 using NUnit.Framework;

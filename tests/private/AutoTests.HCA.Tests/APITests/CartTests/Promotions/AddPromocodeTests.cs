@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoTests.AutomationFramework.Shared.Extensions;
-using AutoTests.HCA.Core.API.Models.Hca.Entities.Cart;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using NUnit.Framework;
@@ -23,8 +23,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         public void T1_POSTPromoCodesRequest_PromotionWithAllProductsScope_Successful(HcaPromotionName promotion)
         {
             //SetUp
-            HcaService.AddCartLines(new CartLinesRequest(AddingProduct.ProductId, 50, AddingProduct.VariantId));
-            UserManager.CleanPromotions();
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, 50, AddingProduct.VariantId);
+            ApiHelper.CleanPromotions();
 
             // Arrange
             var expPromotion = TestsData.GetPromotion(promotion);
@@ -34,7 +34,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             };
 
             // Act
-            var result = HcaService.AddPromoCode(promoCode);
+            var result = ApiContext.Cart.AddPromoCode(promoCode);
 
             // Assert
             result.CheckSuccessfulResponse();
@@ -62,8 +62,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         public void T2_POSTPromoCodesRequest_SeveralNotExclusivePromotions_AllDiscountsApply()
         {
             //SetUp
-            HcaService.AddCartLines(new CartLinesRequest(AddingProduct.ProductId, 50, AddingProduct.VariantId));
-            UserManager.CleanPromotions();
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, 50, AddingProduct.VariantId);
+            ApiHelper.CleanPromotions();
 
             // Arrange
             var promotions = new List<HcaPromotionTestsDataSettings>
@@ -74,12 +74,12 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             };
 
             // Act
-            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(0).Code})
+            ApiContext.Cart.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(0).Code})
                 .CheckSuccessfulResponse();
-            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(1).Code})
+            ApiContext.Cart.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(1).Code})
                 .CheckSuccessfulResponse();
             var resultAfterAdding3Promo =
-                HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(2).Code});
+                ApiContext.Cart.AddPromoCode(new PromoCodeRequest {PromoCode = promotions.ElementAt(2).Code});
 
             // Assert
             resultAfterAdding3Promo.CheckSuccessfulResponse();
@@ -99,18 +99,18 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         public void T3_POSTPromoCodesRequest_NotExclusiveAndExclusivePromotions_OnlyExclusiveDiscountsApply()
         {
             //SetUp
-            HcaService.AddCartLines(new CartLinesRequest(AddingProduct.ProductId, 50, AddingProduct.VariantId));
-            UserManager.CleanPromotions();
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, 50, AddingProduct.VariantId);
+            ApiHelper.CleanPromotions();
 
             // Arrange
             var nonExclusivePromotion = TestsData.GetPromotion(HcaPromotionName.Cart15PctOffCouponPromotion);
             var exclusivePromotion = TestsData.GetPromotion(HcaPromotionName.Cart5PctOffExclusiveCouponPromotion);
-            HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = nonExclusivePromotion.Code})
+            ApiContext.Cart.AddPromoCode(new PromoCodeRequest {PromoCode = nonExclusivePromotion.Code})
                 .CheckSuccessfulResponse();
 
             // Act
             var addExclusivePromoResult =
-                HcaService.AddPromoCode(new PromoCodeRequest {PromoCode = exclusivePromotion.Code});
+                ApiContext.Cart.AddPromoCode(new PromoCodeRequest {PromoCode = exclusivePromotion.Code});
 
             // Assert
             addExclusivePromoResult.CheckSuccessfulResponse();
@@ -133,8 +133,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         public void T4_POSTPromoCodesRequest_TheSamePromotions_BadRequest()
         {
             //SetUp
-            HcaService.AddCartLines(new CartLinesRequest(AddingProduct.ProductId, 50, AddingProduct.VariantId));
-            UserManager.CleanPromotions();
+            ApiHelper.AddProductToCart(AddingProduct.ProductId, 50, AddingProduct.VariantId);
+            ApiHelper.CleanPromotions();
 
             // Arrange
             const string expErrorMessage = "The Item you are trying to add already exists.";
@@ -142,8 +142,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
             var promoCode = new PromoCodeRequest(promotionCode);
 
             // Act
-            HcaService.AddPromoCode(promoCode);
-            var response = HcaService.AddPromoCode(promoCode);
+            ApiContext.Cart.AddPromoCode(promoCode).CheckSuccessfulResponse();
+            var response = ApiContext.Cart.AddPromoCode(promoCode);
 
             // Assert
             response.CheckUnSuccessfulResponse();
@@ -156,8 +156,8 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
         {
             //SetUp
             var product = TestsData.GetProduct(productId: "6042062");
-            HcaService.AddCartLines(new CartLinesRequest(product.ProductId, 1, product.VariantId));
-            UserManager.CleanPromotions();
+            ApiHelper.AddProductToCart(product.ProductId, 1, product.VariantId);
+            ApiHelper.CleanPromotions();
 
             // Arrange
             var expErrorMessage =
@@ -166,7 +166,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests.Promotions
                 new PromoCodeRequest(TestsData.GetPromotion(HcaPromotionName.Cart10OffCouponPromotion).Code);
 
             // Act
-            var response = HcaService.AddPromoCode(promoCode);
+            var response = ApiContext.Cart.AddPromoCode(promoCode);
 
             // Assert
             response.CheckUnSuccessfulResponse();

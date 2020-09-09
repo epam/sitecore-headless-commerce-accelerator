@@ -12,16 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './BannerGrid';
-export * from './BannerItem/components/Banner';
-export * from './BannerItem/components/ClearBanner';
-export * from './BannerItem/components/LightBanner';
-export * from './BannerItem/components/ModernBanner';
-export * from './RecommendedProducts2';
-export * from './BannerGrid2';
-export * from './BannerItem/components/Banner2';
-export * from './BannerItem/components/ClearBanner2';
-export * from './BannerItem/components/LightBanner2';
-export * from './BannerItem/components/ModernBanner2';
-export * from './CarouselBanner';
+import * as JSS from 'Foundation/ReactJss';
+
+export interface Banner extends JSS.SafePureComponentState {
+  image: JSS.GraphQLField<JSS.ImageField>;
+  link: JSS.GraphQLField<JSS.LinkField>;
+  subtitle: JSS.GraphQLField<JSS.TextField>;
+  title: JSS.GraphQLField<JSS.TextField>;
+  text: JSS.GraphQLField<JSS.TextField>;
+}
+
+interface CarouselBannerDataSource extends JSS.BaseDataSourceItem {
+  banners: JSS.GraphQLListField<Banner>;
+}
+
+export interface CarouselBannerProps extends JSS.GraphQLRendering<CarouselBannerDataSource> {}
+
+export interface CarouselBannerState extends JSS.SafePureComponentState {}

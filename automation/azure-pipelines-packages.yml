@@ -23,6 +23,9 @@ steps:
       (Get-Content $(build_cake)) -replace "MSBuildToolVersion.VS201\d{1,3}", '$(agent_buildTools)' | Set-Content $(build_cake)
   displayName: Config preparation
 
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+
 - task: PowerShell@2
   inputs:
     filePath: './src/build.ps1'

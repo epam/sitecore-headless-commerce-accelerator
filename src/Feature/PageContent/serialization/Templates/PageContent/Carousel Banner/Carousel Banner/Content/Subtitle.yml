@@ -1,0 +1,21 @@
+﻿---
+ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
+Parent: "d2108fdd-4655-4497-9407-0ff5bc1e2bbb"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner/Content/Subtitle
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200904T150622Z

@@ -153,101 +153,165 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
-    /// IGridLayout Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout</para>
-    /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
+    /// ICarouselBanner Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner</para>
+    /// <para>ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7</para>
     /// </summary>
-    [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
-    public partial interface IGridLayout: IGlassBase
+    [SitecoreType(TemplateId="f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7")]
+    public partial interface ICarouselBanner: IGlassBase
     {
 
         /// <summary>
-        /// The First Column Class field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77</para>
         /// </summary>
-        [SitecoreField("First Column Class")]
-        string FirstColumnClass {get; set;}
+        [SitecoreField("Image")]
+        Image Image {get; set;}
 
         /// <summary>
-        /// The Second Column Class field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f</para>
         /// </summary>
-        [SitecoreField("Second Column Class")]
-        string SecondColumnClass {get; set;}
+        [SitecoreField("Link")]
+        Link Link {get; set;}
 
         /// <summary>
-        /// The Third Column Class field.
+        /// The Subtitle field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: bfed443f-3ac3-460d-be12-5759b8294233</para>
+        /// <para>Field ID: 1751fa11-d5ca-42c7-b63a-da23a47f37db</para>
         /// </summary>
-        [SitecoreField("Third Column Class")]
-        string ThirdColumnClass {get; set;}
+        [SitecoreField("Subtitle")]
+        string Subtitle {get; set;}
 
         /// <summary>
-        /// The Wrapper Class field.
+        /// The Text field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
+        /// <para>Field ID: ab878a5d-cfad-471c-949e-1f590caa233c</para>
         /// </summary>
-        [SitecoreField("Wrapper Class")]
-        string WrapperClass {get; set;}
+        [SitecoreField("Text")]
+        string Text {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b2b0d2d9-a822-4647-80c9-0b221b8cb569</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
 
     }
 
 
     /// <summary>
-    /// GridLayout Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout</para>
-    /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
+    /// CarouselBanner Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner</para>
+    /// <para>ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7</para>
     /// </summary>
-    [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
-    public partial class GridLayout: GlassBase, IGridLayout
+    [SitecoreType(TemplateId="f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7")]
+    public partial class CarouselBanner: GlassBase, ICarouselBanner
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Rendering Parameters/Grid Layout
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner
         /// </summary>
-        public const string TemplateId = "61ed6a03-bbdb-4937-87fa-db5c53fc870c";
+        public const string TemplateId = "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7";
 
         /// <summary>
-        /// The First Column Class field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77</para>
         /// </summary>
-        [SitecoreField("First Column Class")]
-        public virtual string FirstColumnClass {get; set;}
-        public const string FirstColumnClassFieldId = "a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88";
-        public const string FirstColumnClassFieldName = "First Column Class";
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "f335bcc8-a000-4246-b7a5-ebb11e5ffc77";
+        public const string ImageFieldName = "Image";
 
         /// <summary>
-        /// The Second Column Class field.
-        /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f</para>
         /// </summary>
-        [SitecoreField("Second Column Class")]
-        public virtual string SecondColumnClass {get; set;}
-        public const string SecondColumnClassFieldId = "525bb442-fc9e-49dd-b557-52b833f0855d";
-        public const string SecondColumnClassFieldName = "Second Column Class";
+        [SitecoreField("Link")]
+        public virtual Link Link {get; set;}
+        public const string LinkFieldId = "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f";
+        public const string LinkFieldName = "Link";
 
         /// <summary>
-        /// The Third Column Class field.
+        /// The Subtitle field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: bfed443f-3ac3-460d-be12-5759b8294233</para>
+        /// <para>Field ID: 1751fa11-d5ca-42c7-b63a-da23a47f37db</para>
         /// </summary>
-        [SitecoreField("Third Column Class")]
-        public virtual string ThirdColumnClass {get; set;}
-        public const string ThirdColumnClassFieldId = "bfed443f-3ac3-460d-be12-5759b8294233";
-        public const string ThirdColumnClassFieldName = "Third Column Class";
+        [SitecoreField("Subtitle")]
+        public virtual string Subtitle {get; set;}
+        public const string SubtitleFieldId = "1751fa11-d5ca-42c7-b63a-da23a47f37db";
+        public const string SubtitleFieldName = "Subtitle";
 
         /// <summary>
-        /// The Wrapper Class field.
+        /// The Text field.
         /// <para>Field Type: Single-Line Text</para>
-        /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
+        /// <para>Field ID: ab878a5d-cfad-471c-949e-1f590caa233c</para>
         /// </summary>
-        [SitecoreField("Wrapper Class")]
-        public virtual string WrapperClass {get; set;}
-        public const string WrapperClassFieldId = "b4386ac8-1f1b-49f3-adcb-264f5f595e52";
-        public const string WrapperClassFieldName = "Wrapper Class";
+        [SitecoreField("Text")]
+        public virtual string Text {get; set;}
+        public const string TextFieldId = "ab878a5d-cfad-471c-949e-1f590caa233c";
+        public const string TextFieldName = "Text";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b2b0d2d9-a822-4647-80c9-0b221b8cb569</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "b2b0d2d9-a822-4647-80c9-0b221b8cb569";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// ICarouselBannerFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder</para>
+    /// <para>ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="764f7c1b-1d67-43fb-9074-df87a0deb60e")]
+    public partial interface ICarouselBannerFolder: IGlassBase
+    {
+
+        /// <summary>
+        /// The Banners field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7</para>
+        /// </summary>
+        [SitecoreField("Banners")]
+        IEnumerable<Guid> Banners {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// CarouselBannerFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder</para>
+    /// <para>ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="764f7c1b-1d67-43fb-9074-df87a0deb60e")]
+    public partial class CarouselBannerFolder: GlassBase, ICarouselBannerFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder
+        /// </summary>
+        public const string TemplateId = "764f7c1b-1d67-43fb-9074-df87a0deb60e";
+
+        /// <summary>
+        /// The Banners field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7</para>
+        /// </summary>
+        [SitecoreField("Banners")]
+        public virtual IEnumerable<Guid> Banners {get; set;}
+        public const string BannersFieldId = "e7bbd25a-3f42-4199-9e19-19a87b7020e7";
+        public const string BannersFieldName = "Banners";
 
     }
 

@@ -1,0 +1,14 @@
+﻿---
+ID: "d2108fdd-4655-4497-9407-0ff5bc1e2bbb"
+Parent: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200904T145514Z

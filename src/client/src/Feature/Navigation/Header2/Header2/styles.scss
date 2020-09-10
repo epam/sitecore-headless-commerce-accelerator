@@ -12,10 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
 .header {
   text-transform: capitalize;
+  &_breadcrumbs {
+    background-color: $breadcrumbs-bar-color;
+    padding: 35px 0;
+    display: flex;
+    justify-content: center;
+    span{
+      text-transform: uppercase;
+    }
+    span > span > a {
+      font-weight: 500;
+      color: #5b5858;
+      &:hover{
+        color: $theme-color;
+      }
+    }
+    span > span{
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 500;
+      color: $text-main-color;
+    }
+    .slash{
+      margin: 0 15px;
+    }
+  }
   .mobile-menu {
     position: fixed;
     z-index: $z-index-xl;
@@ -34,7 +59,6 @@
       background-color: $bg-white;
       box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
     }
-
     &_close {
       font-size: 30px;
       line-height: 70px;
@@ -82,5 +106,3 @@
     }
   }
 }
-
-

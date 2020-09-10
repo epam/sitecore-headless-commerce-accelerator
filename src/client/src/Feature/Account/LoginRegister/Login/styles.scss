@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss-new/_variables";
 .login {
   margin: 0;
   padding: 0;
@@ -23,7 +23,7 @@
   justify-content: space-between;
   background: transparent none repeat scroll 0 0;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  padding: 80px 80px 242px 80px;
+  padding: 80px;
   text-align: left;
   .btn-login-in {
     margin-top: 12px;

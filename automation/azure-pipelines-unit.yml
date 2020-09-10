@@ -103,6 +103,8 @@ steps:
   displayName: 'NuGet restore'
   inputs:
     restoreSolution: '$(Pipeline.Workspace)/s/src/HCA.sln'
+    feedsToUse: 'config'
+    nugetConfigPath: '$(Pipeline.Workspace)/s/src/nuget.config'
 
 - task: MSBuild@1
   displayName: MSBuild

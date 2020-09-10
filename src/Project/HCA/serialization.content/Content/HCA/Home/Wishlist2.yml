@@ -17,15 +17,15 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
-          uid="{6B6A0C16-6E6E-4895-B4E5-8001C4AD4048}"
-          p:before="*"
-          s:id="{7C2A10B8-0A89-45B8-B25C-ED7936938909}"
-          s:ph="/main-content/w-col-wide-{CDF6B573-BAB1-4432-AC46-3239962A4D41}-0" />
-        <r
           uid="{CDF6B573-BAB1-4432-AC46-3239962A4D41}"
-          p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
           s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
           s:ph="main-content" />
+        <r
+          uid="{6B6A0C16-6E6E-4895-B4E5-8001C4AD4048}"
+          p:after="r[@uid='{CDF6B573-BAB1-4432-AC46-3239962A4D41}']"
+          s:id="{7C2A10B8-0A89-45B8-B25C-ED7936938909}"
+          s:ph="/main-content/w-col-wide-{CDF6B573-BAB1-4432-AC46-3239962A4D41}-0" />
       </d>
     </r>
 Languages:

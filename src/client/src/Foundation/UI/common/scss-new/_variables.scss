@@ -149,8 +149,18 @@ $product-overview-main-color: #000000;
 $text-main-color: #000000;
 $product-rating-star: #ffa900;
 $product-price-value: #fe5252;
+$font-hover-color: #ffffff;
 
 //- Focus color
 $focus-color: #db1628;
 $focus-color-dark: #ed6382;
 $focus-color-light: #aa052b;
+
+//- OVERLAY COLORS
+$overlay-bg-color: #ffffff;
+
+//- CHECKBOX COLORS
+$checkbox-bg-color: #ffffff;
+$checkbox-selected-border-color: $theme-color;
+$checkbox-selected-bg-color: $theme-color;
+

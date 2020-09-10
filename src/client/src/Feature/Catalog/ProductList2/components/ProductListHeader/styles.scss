@@ -96,11 +96,21 @@
       text-transform: capitalize;
     
       &:hover {
-        color: #fff;
-        background: $black;
+        color: $font-hover-color;
+        background: $theme-color;
+        .filter-label_text {
+          color: $font-hover-color;
+        }
       }
     
-      &__text {
+      &_text {
+        font-family: $poppins;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+        color: #333;
+        line-height: inherit;
+        margin: 0;
         padding: 0 0 0 5px;
       }
     }

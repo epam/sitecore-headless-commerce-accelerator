@@ -15,16 +15,17 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 
-import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
-
+import { breadcrumbs } from './constant';
 import { HeaderProps, HeaderState } from './models';
+
 import './styles.scss';
 
 class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
+  public pageName = '';
   private readonly headerRef: React.RefObject<HTMLDivElement>;
-
   constructor(props: HeaderProps) {
     super(props);
 
@@ -40,6 +41,12 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     this.setState({ headerTop: this.headerRef.current.offsetTop });
   }
 
+  public componentWillMount() {
+    const pageResult = this.getPageName();
+    if (pageResult) {
+      this.pageName = pageResult.pageName;
+    }
+  }
   public componentDidMount() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
   }
@@ -60,7 +67,10 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
       header.classList.add('header--inactive');
     }
   }
-
+  public getPageName() {
+    const currentUrl = window.location.pathname;
+    return breadcrumbs.find((element) => currentUrl.includes(element.url));
+  }
   protected safeRender() {
     return (
       <header
@@ -84,6 +94,19 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
             </div>
           </div>
         </div>
+        {this.pageName && (
+          <div className="header_breadcrumbs">
+            <span>
+              <span>
+                <a aria-current="page" className="active" href="/">
+                  Home
+                </a>
+                <span className="slash">/</span>
+              </span>
+              <span>{this.pageName}</span>
+            </span>
+          </div>
+        )}
       </header>
     );
   }

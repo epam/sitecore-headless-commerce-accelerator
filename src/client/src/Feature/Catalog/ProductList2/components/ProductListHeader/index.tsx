@@ -44,7 +44,7 @@ export class ProductListHeader extends React.Component<ProductListHeaderProps> {
                 onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}
               >
                 <i className="fa fa-close" />
-                <span className="filter-label__text">{value}</span>
+                <span className="filter-label_text">{value}</span>
               </div>
             ));
           })}

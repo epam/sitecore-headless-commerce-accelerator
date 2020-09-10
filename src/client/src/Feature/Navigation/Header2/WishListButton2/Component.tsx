@@ -24,7 +24,7 @@ export class WishlistButtonComponent extends JSS.SafePureComponent<WishlistButto
     const { wishlistQuantity } = this.props;
     return (
       <div className="navigation-buttons_item header-wishlist">
-        <NavigationLink to="/wishlist">
+        <NavigationLink to="/wishlist2">
           <i className="pe-7s-like">
             <span className="quantity">{wishlistQuantity}</span>
           </i>

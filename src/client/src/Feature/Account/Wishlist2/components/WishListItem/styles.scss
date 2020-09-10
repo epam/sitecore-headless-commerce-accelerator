@@ -24,7 +24,7 @@
   border: none !important;
   text-align: center !important;
   vertical-align: middle !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
   color: black;
 }
@@ -43,14 +43,16 @@
   color: #A749FF;
 }
 .wishlist_item_button{
+  text-transform: uppercase;
   margin-bottom: 0px !important;
   border: none;
+  font-size: 13px;
 }
 .wishlist_item_add-btn{
   background-color: #A749FF;
   color: white;
   border-radius: 20px;
-  padding: 8px 45px !important;
+  padding: 1px 35px !important;
 }
 .wishlist_item_add-btn:hover{
   background-color: #333333;

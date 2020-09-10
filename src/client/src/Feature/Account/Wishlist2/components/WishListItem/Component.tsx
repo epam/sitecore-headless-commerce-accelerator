@@ -42,12 +42,12 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
             className="wishlist_item_add-btn wishlist_item_button"
             onClick={(e) => this.props.AddToCart({ productId: item.productId, variantId: item.variantId, quantity: 1 })}
           >
-            Buy Now
+            Select Option
           </button>
         </td>
         <td className="wishlist_table_data">
           <button className="wishlist_item_remove-btn wishlist_item_button" onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}>
-            x
+            <i className="fa fa-times"/>
           </button>
         </td>
       </tr>

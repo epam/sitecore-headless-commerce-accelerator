@@ -53,6 +53,7 @@
 .wishlist_label-empty{
   color: black;
   font-size: 20px;
+  font-weight: 400;
   font-family: $poppins !important;
 }
 .wishlist_btn-empty{
@@ -81,6 +82,7 @@
     border-radius: 20px;
     padding: 12px 48px;
     border: 0;
+    text-transform: uppercase !important;
     &:hover{
       background-color: $theme-color;
       color: white;

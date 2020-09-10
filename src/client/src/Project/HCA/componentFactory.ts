@@ -89,6 +89,7 @@ components.set('Product Information', Catalog.ProductInformation);
 components.set('Product List', Catalog.ProductList);
 components.set('Product List 2', Catalog.ProductList2);
 components.set('Product Filters', Catalog.ProductFilters);
+components.set('Product Filters 2', Catalog.ProductFilters2);
 components.set('Product Variants', Catalog.ProductVariants);
 components.set('Products Search', Catalog.ProductsSearch);
 

@@ -47,8 +47,17 @@ $heading-color: #000000;
 
 // Theme Color
 $theme-color: #a749ff;
+$second-color-light: #999999;
 
 // Responsive Variables
+$xl-layout: "only screen and (min-width: 1200px) and (max-width: 1365px)";
+$xs-layout: "only screen and (max-width: 767px)";
+$footer-switch-mode: "only screen and (max-width: 1024px)";
+$header-switch-mode: "only screen and (max-width: 1024px)";
+
+// Breadcrumbs color
+$breadcrumbs-bar-color: #f7f7f7;
+
 // @todo remove unnecessary breakpoints
 $xx-layout: "(max-width: 1600px)";
 $xl-layout: "(max-width: 1365px)";

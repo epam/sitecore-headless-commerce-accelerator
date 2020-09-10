@@ -17,6 +17,8 @@
 $login-register-form-indention: 15px;
 
 .login-register-form {
+  margin: 20px 0;
+  padding: 65px 10px;
   &-content {
     display: flex;
     justify-content: center;
@@ -48,8 +50,6 @@ $login-register-form-indention: 15px;
       font-family: $poppins;
     }
   }
-  margin: 20px 0;
-  padding: 10px;
   &-header {
     display: flex;
     justify-content: center;

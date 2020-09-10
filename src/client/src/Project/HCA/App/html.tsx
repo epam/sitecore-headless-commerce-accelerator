@@ -18,8 +18,9 @@ import * as ReactDOMServer from 'react-dom/server';
 const Html = ({ component, initialState, distPath, path }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
 
-  const REDESIGN_PAGE_MARK = '2';
-  const isRedesignPage = path.indexOf(REDESIGN_PAGE_MARK) > -1;
+  const arrayCurrentPathSplitted = path.split('/');
+  const categoryPageName = arrayCurrentPathSplitted ? arrayCurrentPathSplitted[1] : '';
+  const isRedesignPage = categoryPageName && categoryPageName.slice(-1) === '2';
 
   return (
     <html>

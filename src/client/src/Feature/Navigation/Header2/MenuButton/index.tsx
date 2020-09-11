@@ -35,7 +35,7 @@ export class MenuButtonComponent extends JSS.SafePureComponent<MenuButtonProps, 
       header.classList.remove('header--inactive');
     }
     header.classList.add('header--active');
-  }
+  };
 }
 
 export const MenuButton = JSS.rendering(MenuButtonComponent);

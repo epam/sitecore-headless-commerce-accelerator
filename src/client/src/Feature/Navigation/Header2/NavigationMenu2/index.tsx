@@ -16,7 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { Image } from '@sitecore-jss/sitecore-jss-react';
-
+import { NavigationLink } from 'Foundation/UI';
 import { NavigationLinks } from '../NavigationLinks';
 import { NavigationMenuProps, NavigationMenuState } from './models';
 import './styles.scss';
@@ -90,6 +90,11 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                 </li>
               );
             })}
+          <li className="navigation_item">
+            <NavigationLink className="navigation_link" to="/">
+              Contact Us
+            </NavigationLink>
+          </li>
         </ul>
       </nav>
     );

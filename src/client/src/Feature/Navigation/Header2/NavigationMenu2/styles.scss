@@ -21,7 +21,6 @@
   @media #{$md-layout} {
     display: none;
   }
-
   ul {
     display: block;
     text-align: center;
@@ -96,6 +95,7 @@
       font-size: 14px;
       font-weight: 500;
       text-transform: uppercase;
+      text-align: start;
       color: $grey-darkest;
 
       a {

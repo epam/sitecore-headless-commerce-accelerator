@@ -96,7 +96,7 @@ components.set('Products Search', Catalog.ProductsSearch);
 // Catalog 2 renderings
 components.set('Product Overview 2', Catalog.ProductOverview2);
 components.set('Product Information 2', Catalog.ProductInformation2);
-components.set('Product Variants 2', Catalog.ProductVariants);
+components.set('Product Variants 2', Catalog.ProductVariants2);
 
 // Checkout renderings
 components.set('Add To Cart', Checkout.AddToCart);

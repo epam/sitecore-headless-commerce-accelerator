@@ -55,11 +55,6 @@ SharedFields:
           s:id="{388C4053-785C-474B-8598-60B62FAF0947}"
           s:ph="main-content" />
         <r
-          uid="{5D0B693F-9658-4C99-AF6A-2FE6E8CD1499}"
-          p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
-          s:id="{388C4053-785C-474B-8598-60B62FAF0947}"
-          s:ph="main-content" />
-        <r
           uid="{5E2C6EE3-013B-4E68-9398-CD468315465C}"
           s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}" />
         <r

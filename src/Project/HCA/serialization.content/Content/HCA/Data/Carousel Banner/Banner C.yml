@@ -1,8 +1,8 @@
 ﻿---
-ID: "6041bd3c-7b48-4539-8b81-61a287fc63b5"
+ID: "b6e11c34-bc71-49ca-81c7-7ff316a92be0"
 Parent: "90dac3a3-0da1-4afd-bdc8-f0f0513c63b6"
 Template: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
-Path: /sitecore/content/HCA/Data/Carousel Banner/Promo C
+Path: /sitecore/content/HCA/Data/Carousel Banner/Banner C
 DB: master
 Languages:
 - Language: en
@@ -11,12 +11,12 @@ Languages:
     Fields:
     - ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
       Hint: Subtitle
-      Value: Best devises
+      Value: Best devices
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200907T145443Z
+      Value: 20200911T142820Z
     - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
-      Hint: URL
+      Hint: Link
       Value: |
         <link text="" anchor="" linktype="internal" class="" title="" target="|Custom" querystring="" id="{B769A803-28D3-4E48-BAD0-816C4E3B46ED}" />
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
@@ -25,11 +25,11 @@ Languages:
         sitecore\Admin
     - ID: "ab878a5d-cfad-471c-949e-1f590caa233c"
       Hint: Text
-      Value: Make your choice of best apple device
+      Value: Make your choice of best devices
     - ID: "b2b0d2d9-a822-4647-80c9-0b221b8cb569"
       Hint: Title
-      Value: Devises
+      Value: Devices
     - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
       Hint: Image
       Value: |
-        <image mediaid="{D7B331E1-C58E-4E05-BACD-45E638960CF3}" />
+        <image mediaid="{8EC60DE0-8591-44E7-9028-8EC4A3984E71}" />

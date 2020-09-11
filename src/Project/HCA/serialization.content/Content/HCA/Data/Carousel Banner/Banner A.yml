@@ -1,0 +1,35 @@
+﻿---
+ID: "cf944fdf-8a71-42ed-aaa9-6b4d27938153"
+Parent: "90dac3a3-0da1-4afd-bdc8-f0f0513c63b6"
+Template: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
+Path: /sitecore/content/HCA/Data/Carousel Banner/Banner A
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
+      Hint: Subtitle
+      Value: Awesome Drones
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200911T132913Z
+    - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
+      Hint: Link
+      Value: |
+        <link linktype="external" url="/shop2/drones" anchor="" target="" />
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "ab878a5d-cfad-471c-949e-1f590caa233c"
+      Hint: Text
+      Value: Make a perfect shot with our cool drones
+    - ID: "b2b0d2d9-a822-4647-80c9-0b221b8cb569"
+      Hint: Title
+      Value: Drones
+    - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
+      Hint: Image
+      Value: |
+        <image mediaid="{BE1F54D7-D9F1-428F-A347-82A9A3EE28CE}" />

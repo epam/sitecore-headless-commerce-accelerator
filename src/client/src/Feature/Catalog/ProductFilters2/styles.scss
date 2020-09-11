@@ -119,6 +119,7 @@
     padding-left: 10px;
     font-family: FontAwesome;
     content: '\f0da';
+    transition: all 0.3s ease 0s;
   }
   &.hide-all:after {
     content: '\f0d8';
@@ -237,7 +238,7 @@
   &_options {
     display: block;
      //max show 7 of the li's max-height: 203px;
-    margin-bottom: 5px;
+    margin-bottom: 35px;
     overflow-y: visible;
 
     &.show-all-links {
@@ -269,7 +270,7 @@
     li {
       //TODO: need to prevent long text in the label of the checkbox from overflowing.. requires changes to checbox+label css
       height: 29px;
-      margin: 5px 0 5px 0;
+      margin: 10px 0 10px 0;
     }
     .container{
       display: flex;
@@ -280,7 +281,7 @@
 
       .name {
         font-family: $poppins;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: normal;
         color: black;
         cursor: pointer;
@@ -315,10 +316,10 @@
         position: relative;
         content: '';
         display: inline-block;
-        width: 18px;
-        height: 14px;
+        width: 16px;
+        height: 15px;
         border-radius: 24%;
-        margin: 3px 8px 1px 3px;
+        margin: 3px 16px 1px 3px;
         border: 2px solid #888888;
         vertical-align: middle;
         background-color: $checkbox-bg-color;
@@ -333,8 +334,8 @@
           content: "";
           top: 1px;
           left: 3px;
-          width: 2px;
-          height: 5px;
+          width: 6px;
+          height: 10px;
           -webkit-transform: rotate(45deg) !important;
           transform: rotate(45deg) !important;
           border: solid $bg-white;
@@ -360,9 +361,9 @@
   }
 
   /* Styles for .filter_toggle */
-  &_toggle {
+  &_toggle-2 {
     position: relative;
-    margin: 0 0 7px;
+    margin: 0 0 34px;
     padding: 0;
 
     /* Styles for .filter_toggle in mobile side-panel */

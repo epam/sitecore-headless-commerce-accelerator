@@ -31,7 +31,7 @@ export class Filter extends React.Component<FilterProps, FilterState> {
     return (
       <div className={classNames({ 'filter-first': first })}>
         <div className="filter-2">
-          <div className="filter_toggle">
+          <div className="filter-2_toggle-2">
             <h3 className="filter-2_name">{facet.displayName}</h3>
           </div>
           {isValuesVisible && (

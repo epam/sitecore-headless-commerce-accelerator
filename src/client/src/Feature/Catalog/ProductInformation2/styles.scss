@@ -19,7 +19,7 @@
 
 .product-description-2 {
     padding-bottom: 40px;
-    background: #fff;
+    background: $product-detail-background;
     font-family: $poppins;
 
     // #Grid
@@ -58,6 +58,10 @@
             margin: 0 18px;
             padding: 0 0 12px;
             color: $brand-font-color;
+            @media #{$sm-layout} {
+                top: 100%;
+                font-size: 16px;
+              }
         }
     }
     // Grid end
@@ -78,7 +82,6 @@
         margin: 0 (-$grid-gutter-width/2);
         padding: 0 $grid-gutter-width/2 18px;
         border-bottom: 1px solid #ccc;
-        max-height: 62px;
         overflow: hidden;
         transition: max-height 0.2s;
 
@@ -181,6 +184,15 @@
             font-family: $poppins;
             font-weight: 400;
             margin-bottom: 0;
+        } 
+        table.table-striped.table-sm{
+            td{
+                color: $text-main-color;
+                &:last-of-type{
+                    font-weight: 700;
+                }
+            }
         }
+        
     }
 }

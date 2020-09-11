@@ -23,3 +23,4 @@ export * from './ProductFilters';
 export * from './ProductFilters2';
 export * from './ProductsSearch';
 export * from './ProductVariants';
+export * from './ProductVariants2';

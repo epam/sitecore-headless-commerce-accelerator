@@ -58,6 +58,9 @@
       height: 100vh;
       background-color: $bg-white;
       box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
+      .navigation-buttons{
+        display: none;
+      }
     }
     &_close {
       font-size: 30px;

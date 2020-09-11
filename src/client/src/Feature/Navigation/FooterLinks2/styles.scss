@@ -14,7 +14,7 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss-new/_variables";
 
 @media #{$xs-layout} {
   .footer-links-list-2 {

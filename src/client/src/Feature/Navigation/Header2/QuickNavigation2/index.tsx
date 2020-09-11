@@ -13,7 +13,6 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
 
 import { QuickNavigationProps, QuickNavigationState } from './models';
@@ -24,18 +23,32 @@ class QuickNavigationComponent extends JSS.SafePureComponent<QuickNavigationProp
     return (
       <>
         <div className="settings">
-          <div className="settings_item">
-            <span>English</span>
+          <div className="settings_item settings_item-lang">
+            <span>
+              <span className="settings_item_title">English</span>
+              <i className="fa fa-angle-down" />
+            </span>
+            <div className="settings_item_dropdown-lang">
+              <ul>
+                <li>
+                  <span>English</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="settings_item">
-            <span>USD</span>
+          <div className="settings_item settings_item-currency">
+            <span>
+              <span className="settings_item_title">USD</span>
+              <i className="fa fa-angle-down" />
+            </span>
+            <div className="settings_item_dropdown-currency">
+              <ul>
+                <li>
+                  <span>USD</span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div className="quick-navigation-2">
-          <NavigationLink to="/Store Locator">
-            <i className="pe-7s-map-marker" />
-            Store Locator
-          </NavigationLink>
         </div>
       </>
     );

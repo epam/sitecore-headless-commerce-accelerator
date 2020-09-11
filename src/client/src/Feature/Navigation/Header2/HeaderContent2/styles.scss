@@ -17,17 +17,25 @@
 .header {
   border: none;
   &_container {
-    &:first-of-type .header_content {
-      padding: 15px;
+    &:first-of-type{
       border-bottom: 1px solid $grey-light;
-
+    }
+    &:first-of-type .header_content {
+      padding: 13px 70px;
       @media #{$md-layout} {
+        display: none;
+      }
+      .navigation-buttons{
         display: none;
       }
     }
     &:last-of-type .header_content {
-      padding: 35px 15px;
-
+      padding: 30px 70px;
+      > div.navigation-buttons_item.search{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+      }
       @media #{$md-layout} {
         padding: 20px 15px;
       }
@@ -77,9 +85,3 @@
     }
   }
 }
-
-
-
-
-
-

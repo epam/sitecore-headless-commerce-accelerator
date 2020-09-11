@@ -15,12 +15,15 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { NavigationLink } from 'Foundation/UI';
+
 import { CartButton2 } from '../CartButton2';
 import { MenuButton } from '../MenuButton';
 import { UserButton2 } from '../UserButton2';
 import { WishlistButton2 } from '../WishlistButton2';
 
 import { UserNavigationProps, UserNavigationState } from './models';
+
 import './styles.scss';
 
 class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps, UserNavigationState> {
@@ -28,6 +31,11 @@ class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps,
     return (
       <nav className="navigation-buttons">
         <UserButton2 />
+        <div className="navigation-buttons_item store-locator">
+          <NavigationLink to="/storelocator2">
+            <i className="pe-7s-map-marker" />
+          </NavigationLink>
+        </div>
         <WishlistButton2 />
         <CartButton2 />
         <MenuButton />

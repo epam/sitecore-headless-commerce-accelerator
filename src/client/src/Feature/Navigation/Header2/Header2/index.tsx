@@ -24,13 +24,13 @@ import { HeaderProps, HeaderState } from './models';
 import './styles.scss';
 
 class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
-  public pageName = '';
   private readonly headerRef: React.RefObject<HTMLDivElement>;
   constructor(props: HeaderProps) {
     super(props);
 
     this.state = {
       headerTop: 0,
+      pageName: '',
       scroll: 0,
     };
 
@@ -41,18 +41,17 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     this.setState({ headerTop: this.headerRef.current.offsetTop });
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     const pageResult = this.getPageName();
     if (pageResult) {
-      this.pageName = pageResult.pageName;
+      this.setState({ pageName: pageResult.pageName });
     }
-  }
-  public componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this));
+    document.addEventListener('scroll', this.handleScroll.bind(this));
+
   }
 
   public componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this));
+    document.removeEventListener('scroll', this.handleScroll.bind(this));
   }
 
   public handleScroll() {
@@ -68,10 +67,11 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     }
   }
   public getPageName() {
-    const currentUrl = window.location.pathname;
+    const currentUrl = document.location.pathname;
     return breadcrumbs.find((element) => currentUrl.includes(element.url));
   }
   protected safeRender() {
+    const { pageName } = this.state;
     return (
       <header
         ref={this.headerRef}
@@ -94,7 +94,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
             </div>
           </div>
         </div>
-        {this.pageName && (
+        {pageName && (
           <div className="header_breadcrumbs">
             <span>
               <span>
@@ -103,7 +103,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
                 </a>
                 <span className="slash">/</span>
               </span>
-              <span>{this.pageName}</span>
+              <span>{pageName}</span>
             </span>
           </div>
         )}

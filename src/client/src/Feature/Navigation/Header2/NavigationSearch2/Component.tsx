@@ -36,7 +36,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
 
   public handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
 
   protected safeRender() {
     return (

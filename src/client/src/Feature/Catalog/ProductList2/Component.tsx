@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,11 +31,25 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
   }
 
   public safeRender() {
-    const { currentPageNumber, totalPageCount, totalItemCount, search, items, isLoading, DiscardFacet, sitecoreContext } = this.props;
+    const {
+      currentPageNumber,
+      totalPageCount,
+      totalItemCount,
+      search,
+      items,
+      isLoading,
+      DiscardFacet,
+      sitecoreContext,
+    } = this.props;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
       <section className="listing-product-grid-2">
-        <ProductListHeader search={search} isLoading={isLoading} DiscardFacet={DiscardFacet} itemsCount={totalItemCount} />
+        <ProductListHeader
+          search={search}
+          isLoading={isLoading}
+          DiscardFacet={DiscardFacet}
+          itemsCount={totalItemCount}
+        />
         <ul>
           {items.map((product, index) => (
             <li key={index}>
@@ -72,7 +86,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
   private initSearch(prevCategoryId: string = '', prevSearch: string = '') {
     const { InitSearch, categoryId, search } = this.props;
 
-    if ((categoryId && prevCategoryId !== categoryId) || (prevSearch !== search)) {
+    if ((categoryId && prevCategoryId !== categoryId) || prevSearch !== search) {
       InitSearch({ categoryId, search });
     }
   }

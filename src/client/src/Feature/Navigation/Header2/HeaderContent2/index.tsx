@@ -18,6 +18,7 @@ import * as React from 'react';
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 
 import { HeaderContentProps, HeaderContentState } from './models';
+
 import './styles.scss';
 
 class HeaderContentComponent extends JSS.SafePureComponent<HeaderContentProps, HeaderContentState> {

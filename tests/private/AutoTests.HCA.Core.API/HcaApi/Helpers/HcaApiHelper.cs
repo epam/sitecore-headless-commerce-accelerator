@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoTests.HCA.Core.API.HcaApi.Context;
 using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Cart;
+using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
 
 namespace AutoTests.HCA.Core.API.HcaApi.Helpers
@@ -29,6 +30,11 @@ namespace AutoTests.HCA.Core.API.HcaApi.Helpers
                     .CheckSuccessfulResponse();
         }
 
+        public void AddProductToCart(ProductTestsDataSettings product)
+        {
+            AddProductToCart(product.ProductId, 1, product.VariantId);
+        }
+
         public void AddProductToCart(string productId, int quantity, string variantId)
         {
             ApiContext.Cart.AddCartLines(new CartLinesRequest(productId, quantity, variantId))
@@ -38,6 +44,11 @@ namespace AutoTests.HCA.Core.API.HcaApi.Helpers
         public void AddProductsToCart(IEnumerable<CartLinesRequest> products)
         {
             foreach (var product in products) ApiContext.Cart.AddCartLines(product).CheckSuccessfulResponse();
+        }
+
+        public void AddProductsToCart(IEnumerable<ProductTestsDataSettings> products)
+        {
+            foreach (var product in products) AddProductToCart(product);
         }
 
         public void AddPromotion(HcaPromotionTestsDataSettings promotion)

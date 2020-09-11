@@ -1,4 +1,5 @@
-﻿using AutoTests.AutomationFramework.UI.Driver;
+﻿using AutoTests.AutomationFramework.UI.Core;
+using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Fields;
@@ -18,22 +19,24 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
         public void SetUp()
         {
             _hcaWebSite = HcaWebSite.Instance;
+            var user = TestsData.GetUser(_hcaUserRole).Credentials;
+            var products = TestsData.GetProducts(2);
             if (_hcaUserRole == HcaUserRole.Guest)
             {
                 _hcaWebSite.NavigateToMain();
+                var userManager = TestsHelper.CreateHcaGuestApiHelperWithBrowserCookie();
+                userManager.AddProductsToCart(products);
             }
             else
             {
-                var user = TestsData.GetUser().Credentials;
                 var userManager = TestsHelper.CreateHcaUserApiHelper(user);
                 userManager.CleanPromotions();
                 userManager.CleanCart();
+                
+                userManager.AddProductsToCart(products);
                 _hcaWebSite.OpenHcaAndLogin(user);
             }
 
-            //TODO add products to cart API
-            var products = TestsData.GetProducts(2);
-            _hcaWebSite.AddProductsToCartFromTestData(products);
             _hcaWebSite.NavigateToPage(_hcaWebSite.CheckoutShippingPage);
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.NewAddress);

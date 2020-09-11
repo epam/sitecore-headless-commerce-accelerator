@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using AutoTests.AutomationFramework.Shared.Extensions;
@@ -272,17 +273,24 @@ namespace AutoTests.AutomationFramework.UI.Core
                 $"Url '{GetCurrentUrl()}' doesn't starts with '{url}'");
         }
 
-        public static ICookieJar GetPlanetwinCookies()
+        public static ICookieJar GetCookies()
         {
-            TestLogger.Log(LogLevel.Debug, "Getting PlanetWin cookies");
+            TestLogger.Log(LogLevel.Debug, "Getting cookies");
             var cookieJar = DriverManager.GetDriver().Manage().Cookies;
             return cookieJar;
         }
 
-        public static void SetPlanetwinCookies(List<Cookie> planetwinCookies)
+        public static Cookie GetCookieByName(string name)
         {
-            TestLogger.Log(LogLevel.Debug, "Setting PlanetWin cookies");
-            foreach (var cookie in planetwinCookies) DriverManager.GetDriver().Manage().Cookies.AddCookie(cookie);
+            TestLogger.Log(LogLevel.Debug, $"Getting {name} cookie");
+            var cookies = GetCookies();
+            return cookies.AllCookies.First(x => x.Name == name);
+        }
+
+        public static void SetCookies(List<Cookie> cookies)
+        {
+            TestLogger.Log(LogLevel.Debug, "Setting cookies");
+            foreach (var cookie in cookies) DriverManager.GetDriver().Manage().Cookies.AddCookie(cookie);
         }
 
         public static void DeleteAllCookies()

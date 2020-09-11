@@ -1,11 +1,13 @@
 ﻿using AutoTests.AutomationFramework.Shared.Configuration;
 using AutoTests.AutomationFramework.Shared.Models;
+using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.HCA.Core.API.BraintreeApi.Services;
 using AutoTests.HCA.Core.API.BraintreeApi.Settings;
 using AutoTests.HCA.Core.API.HcaApi.Context;
 using AutoTests.HCA.Core.API.HcaApi.Helpers;
 using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
 using AutoTests.HCA.Core.API.HcaApi.Settings;
+using OpenQA.Selenium;
 
 namespace AutoTests.HCA.Core.BaseTests
 {
@@ -45,6 +47,12 @@ namespace AutoTests.HCA.Core.BaseTests
             return new HcaGuestApiHelper(cookie, new HcaApiContext(newSettings));
         }
 
+        public HcaGuestApiHelper CreateHcaGuestApiHelperWithBrowserCookie()
+        {
+            var cookie = Browser.GetCookieByName("SC_ANALYTICS_GLOBAL_COOKIE");
+            var cookieData = new CookieData(cookie.Name, cookie.Value.Replace("False", "True"));
+            return CreateHcaGuestApiHelper(cookieData);
+        }
         public HcaGuestApiHelper CreateHcaGuestApiHelper(IHcaApiContext apiContext)
         {
             return new HcaGuestApiHelper(apiContext);

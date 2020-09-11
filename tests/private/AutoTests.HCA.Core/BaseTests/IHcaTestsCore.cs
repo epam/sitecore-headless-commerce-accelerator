@@ -16,6 +16,8 @@ namespace AutoTests.HCA.Core.BaseTests
 
         HcaGuestApiHelper CreateHcaGuestApiHelper(CookieData cookie);
 
+        HcaGuestApiHelper CreateHcaGuestApiHelperWithBrowserCookie();
+
         HcaGuestApiHelper CreateHcaGuestApiHelper(IHcaApiContext apiContext = null);
 
         IBraintreeApiService CreateBraintreeClient();

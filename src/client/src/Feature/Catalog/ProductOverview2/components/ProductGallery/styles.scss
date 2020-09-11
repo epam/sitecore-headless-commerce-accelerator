@@ -21,7 +21,7 @@
       width: 100%;
       max-width: 570px;
       margin: auto;
-      border: 1px solid #ccc;
+      border: none !important;
       @media (min-width: 1200px) {
         height: 760px;
       }

@@ -62,7 +62,7 @@ export class CarouselBannerComponent extends JSS.SafePureComponent<CarouselBanne
                   image: banner.image.jss.value.src,
                   link: banner.link.jss.value.href,
                   subtitle: banner.subtitle.jss.value,
-                  text: banner.subtitle.jss.value,
+                  text: banner.text.jss.value,
                   title: banner.title.jss.value,
                 };
 

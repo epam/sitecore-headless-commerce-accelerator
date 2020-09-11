@@ -4,6 +4,11 @@ Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
 Template: "764f7c1b-1d67-43fb-9074-df87a0deb60e"
 Path: /sitecore/content/HCA/Data/Carousel Banner
 DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{F3E176B7-C8D9-4C1F-BBE9-E83CE643E0D7}"
 Languages:
 - Language: en
   Versions:
@@ -20,6 +25,7 @@ Languages:
       Hint: Banners
       Type: Multilist
       Value: |
-        {BD4E3905-EA43-40CD-B3DF-C63CAD36B642}
-        {3EF06AFB-7EAB-40F4-9448-1D16B4B3501B}
-        {6041BD3C-7B48-4539-8B81-61A287FC63B5}
+        {CF944FDF-8A71-42ED-AAA9-6B4D27938153}
+        {947DDA05-E5A9-4A4D-9995-CC0EB7A3BD7E}
+        {B6E11C34-BC71-49CA-81C7-7FF316A92BE0}
+        {52E38324-78C0-4C1B-8F1D-C3CE74132D49}

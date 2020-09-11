@@ -1,8 +1,8 @@
 ﻿---
-ID: "bd4e3905-ea43-40cd-b3df-c63cad36b642"
+ID: "52e38324-78c0-4c1b-8f1d-c3ce74132d49"
 Parent: "90dac3a3-0da1-4afd-bdc8-f0f0513c63b6"
 Template: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
-Path: /sitecore/content/HCA/Data/Carousel Banner/Promo A
+Path: /sitecore/content/HCA/Data/Carousel Banner/Banner D
 DB: master
 Languages:
 - Language: en
@@ -14,11 +14,11 @@ Languages:
       Value: Best office work
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200904T150704Z
+      Value: 20200911T143053Z
     - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
-      Hint: URL
+      Hint: Link
       Value: |
-        <link text="" anchor="" linktype="internal" class="" title="" target="|Custom" querystring="" id="{B769A803-28D3-4E48-BAD0-816C4E3B46ED}" />
+        <link linktype="external" url="/shop2/laptops" anchor="" target="" />
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
@@ -32,4 +32,4 @@ Languages:
     - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
       Hint: Image
       Value: |
-        <image mediaid="{8BD6A219-FBA0-4B2E-8F21-4B96A6D80DC8}" />
+        <image mediaid="{E78528A1-6DC4-4554-B654-8ADF8E743126}" />

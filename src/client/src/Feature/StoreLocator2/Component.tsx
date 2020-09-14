@@ -42,7 +42,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
     } = this.props.fields.data.datasource;
 
     return (
-      <div className="col-md-12 order-md-1 locator_content" style={{ marginTop: 30, marginBottom: 20 }}>
+      <div className="col-md-12 order-md-1 locator_content" style={{ marginTop: 30, paddingBottom: 100 }}>
         <p className="locator_content_description">{description.jss.value}</p>
         <Form className="needs-validation">
           <div className="form_group">
@@ -59,7 +59,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
             <div className="form_item">
               <JSS.Text tag="label" field={{ value: 'Radius', editable: 'Radius' }} />
               <Select className="d-block w-100 form_item_input" name={FORM_FIELDS.RADIUS} type="text" required={true}>
-                <option value="">Not Selected</option>
+                <option value="">Select a radius</option>
                 {radiuses.items.map((radius, index) => (
                   <option key={`${index}-${radius.value.jss.value}`} value={radius.value.jss.value}>
                     {radius.value.jss.value}
@@ -70,7 +70,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
             <div className="form_item">
               <JSS.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
               <Select name={FORM_FIELDS.COUNTRY} type="text" className="d-block w-100 form_item_input" required={true}>
-                <option value="">Not Selected</option>
+                <option value="">Select a country</option>
                 {countries.items.map((country, index) => (
                   <option key={`${index}-${country.code.jss.value}`} value={country.code.jss.value}>
                     {country.title.jss.value}
@@ -91,7 +91,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                 defaultCenter={{ latitude: +defaultLatitude.jss.value, longitude: +defaultLongitude.jss.value }}
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA0ZPWHT4Wg_SA3lqx-lb5CG27XG73CYA&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `400px` }} />}
+                containerElement={<div style={{ height: `560px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
               />
             </div>

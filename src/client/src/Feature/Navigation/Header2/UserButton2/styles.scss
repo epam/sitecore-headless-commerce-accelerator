@@ -36,7 +36,7 @@
       margin-top: 14px;
     }
 
-    @media #{$md-layout} {
+    @media #{$header-switch-mobile-mode} {
       top: 100%;
       margin-top: 14px;
     }

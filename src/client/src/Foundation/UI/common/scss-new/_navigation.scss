@@ -23,10 +23,7 @@
     @media #{$lg-layout} {
       padding-left: 15px;
     }
-    @media #{$md-layout} {
-      padding-left: 20px;
-    }
-    @media #{$xs-layout} {
+    @media #{$header-switch-mobile-mode} {
       padding-left: 20px;
     }
 
@@ -49,7 +46,8 @@
       }
     }
 
-    & [class*=" pe-7s-"], [class^=pe-7s-]  {
+    & [class*=" pe-7s-"],
+    [class^="pe-7s-"] {
       font-size: 24px;
       position: relative;
       padding: 0;
@@ -59,8 +57,53 @@
     }
 
     &:hover [class*=" pe-7s-"],
-    &:hover [class^=pe-7s-]  {
+    &:hover [class^="pe-7s-"] {
       color: $theme-color;
+    }
+  }
+}
+
+.navigation-buttons_item.search {
+  @media #{$header-switch-mobile-mode} {
+    a:first-child {
+      display: none;
+    }
+  }
+}
+.mobile-menu {
+  &_content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    .header_content {
+      flex-direction: column-reverse;
+      align-items: inherit;
+      .logo {
+        display: none;
+      }
+      .navigation {
+        padding-top: 100px;
+      }
+      .navigation-buttons_item.search {
+        @media #{$header-switch-mobile-mode} {
+          a:first-child {
+            display: none;
+          }
+          .search_popup {
+            visibility: visible;
+            transform: rotateX(0deg);
+            opacity: 1;
+            z-index: $z-index-xl;
+            position: absolute;
+            z-index: 9;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: #e6e6e6;
+          }
+        }
+      }
     }
   }
 }

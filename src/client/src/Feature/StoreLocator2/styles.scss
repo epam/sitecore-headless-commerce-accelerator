@@ -12,14 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
-@import 'Foundation/UI/common/scss/base';
-@import 'Foundation/UI/common/scss/forms';
+@import 'Foundation/UI/common/scss-new/_variables';
 
 .locator_content{
   font-family: $poppins !important;
   color: black;
+  &_description{
+    margin: 90px 0px 90px 0px;
+    text-align: center;
+  }
 }
 .locator_header{
   font-family: $poppins;
@@ -29,10 +30,13 @@
   color: black;
 }
 
-.form_item{
+.form_group{
   display: flex;
-  flex-direction: column;
-  margin-right: 20px;
+  flex-direction: row;
+  margin-bottom: 10px;
+  @media (max-width: $screen-sm) {
+    flex-direction: column;
+  }
 }
 .form_item:last-child {
   justify-content: flex-end;
@@ -49,20 +53,35 @@
   background-color: #404040;
 }
 
-.form_item select{
-  background: transparent;
-  box-shadow: none;
-  font-size: 14px;
-  min-width: 143px;
-  padding: 5px;
-  text-transform: none;
+.form_item {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  &:not(:last-child){
+    flex-grow: 1;
+  }
+  &:last-child{
+    margin-right: 0px;
+  }
+  & select {
+    background: transparent;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 5px;
+    text-transform: none;
+  }
 }
 
 .form_item_input{
   margin-bottom: 0px !important;
-  color: black !important;
+  color: #606060 !important;
+  border: 1px solid #e6e6e6 !important;
+  min-height: 40px !important;
+  @media (max-width: $screen-sm) {
+    margin-bottom: 8px !important;
+  }
 }
 
-.form_item input{
-  border: 1px solid black !important;
+.form_item label{
+  font-weight: 400;
 }

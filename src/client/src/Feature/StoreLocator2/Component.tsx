@@ -34,7 +34,6 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
   protected safeRender() {
     const { stores } = this.props;
     const {
-      title,
       description,
       defaultLatitude,
       defaultLongitude,
@@ -44,10 +43,9 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
 
     return (
       <div className="col-md-12 order-md-1 locator_content" style={{ marginTop: 30, marginBottom: 20 }}>
-        <h1 className="mb-3 locator_header">{title.jss.value}</h1>
-        <p>{description.jss.value}</p>
+        <p className="locator_content_description">{description.jss.value}</p>
         <Form className="needs-validation">
-          <div style={{ display: 'flex', flexDirection: 'row', marginBottom: 30 }}>
+          <div className="form_group">
             <div className="form_item">
               <JSS.Text tag="label" field={{ value: 'Zip Code', editable: 'Zip Code' }} />
               <Input

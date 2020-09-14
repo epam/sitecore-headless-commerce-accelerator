@@ -7,4 +7,8 @@ export const breadcrumbs = [
     pageName: 'SHOP PRODUCT',
     url: 'product2/',
   },
+  {
+    pageName: 'Store Locator',
+    url: '/storelocator2',
+  }
 ];

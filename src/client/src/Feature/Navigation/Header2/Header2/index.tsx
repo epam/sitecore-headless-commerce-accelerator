@@ -80,7 +80,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
         })}
         data-el="header"
       >
-        <div>
+        <div className="header-desktop">
           <Placeholder name="header-content" rendering={this.props.rendering} />
         </div>
 

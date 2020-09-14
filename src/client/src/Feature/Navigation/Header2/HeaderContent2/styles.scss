@@ -12,18 +12,41 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
 .header {
   border: none;
+  &-desktop {
+    .header_container {
+      &:first-of-type .header_content {
+        border-bottom: 1px solid $grey-light;
+      }
+    }
+  }
   &_container {
     &:first-of-type{
       border-bottom: 1px solid $grey-light;
     }
     &:first-of-type .header_content {
       padding: 13px 70px;
-      @media #{$md-layout} {
+      @media #{$header-switch-mobile-mode} {
         display: none;
+        .navigation-buttons {
+          &:first-of-type {
+            display: none;
+          }
+          &:last-of-type {
+            display: flex;
+            flex: unset;
+            max-width: unset;
+          }
+        }
+      }
+      .navigation-buttons {
+        display: none;
+        @media #{$header-switch-mobile-mode} {
+          display: block;
+        }
       }
       .navigation-buttons{
         display: none;
@@ -32,12 +55,29 @@
     &:last-of-type .header_content {
       padding: 30px 70px;
       > div.navigation-buttons_item.search{
+        max-width: 16.6%;
+        flex: 1;
         display: flex;
         width: 100%;
         justify-content: flex-end;
+        @media #{$header-switch-mobile-mode} {
+          max-width: unset;
+          width: unset;
+          margin-left: 0px;          
+        }  
       }
-      @media #{$md-layout} {
-        padding: 20px 15px;
+      @media #{$header-switch-mobile-mode} {
+        display: flex;
+        .navigation ul.navigation-content {
+          display: none;
+        }
+      }
+
+      @media #{$header-switch-padding-mobile-mode}{
+        padding: 13px 40px;
+      }
+      @media #{$xs-layout}{
+        padding: 13px 15px;
       }
     }
   }
@@ -57,14 +97,28 @@
       }
       .header_container {
         &:first-of-type {
-          order: 2;
           .header_content {
             display: block;
             border-bottom: none;
+            .navigation-buttons {
+              display: none;
+            }
           }
         }
         &:last-of-type {
-          order: 1;
+          height: 100%;
+          overflow-y: scroll;
+          .header_content {
+            > div.navigation-buttons_item.search {
+              display: block;
+            }
+            @media #{$header-switch-mobile-mode} {
+              padding: 0px;
+              .navigation ul.navigation-content {
+                display: block;
+              }
+            }
+          }
         }
       }
     }
@@ -75,13 +129,20 @@
       position: fixed;
       z-index: $z-index-l;
       top: 0;
-      left: 0;
       width: 100%;
       transition: all 0.3s ease 0s;
       animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
       border-bottom: 0 solid $blue;
       background-color: $bg-white;
       box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.06);
+      .header_content {
+        ul.navigation-content {
+          padding-right: 40px;
+        }
+        .search{
+          margin-right: 40px;
+        }
+      }
     }
   }
 }

@@ -12,77 +12,119 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
-.search {
-  &_popup {
-    position: absolute;
-    z-index: $z-index-m;
-    top: 65px;
-    right: 0;
-    visibility: hidden;
-    min-width: 300px;
-    padding: 15px;
-    transition: all 0.5s ease 0s;
-    transform: rotateX(90deg);
-    transform-origin: center top 0;
-    opacity: 0;
-    background: $bg-white none repeat scroll 0 0;
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+.header {
+  .search {
+    &_popup {
+      position: absolute;
+      z-index: $z-index-m;
+      top: 65px;
+      right: 0;
+      visibility: hidden;
+      min-width: 300px;
+      padding: 15px;
+      transition: all 0.5s ease 0s;
+      transform: rotateX(90deg);
+      transform-origin: center top 0;
+      opacity: 0;
+      background: $bg-white none repeat scroll 0 0;
+      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
 
-    &--visible {
-      visibility: visible;
-      transform: rotateX(0deg);
-      opacity: 1;
-      z-index: $z-index-xl;
+      &--visible {
+        visibility: visible;
+        transform: rotateX(0deg);
+        opacity: 1;
+        z-index: $z-index-xl;
+      }
+
+      @media #{$header-switch-mobile-mode} {
+        top: 154%;
+      }
+
+      @media #{$xs-layout} {
+        top: 154%;
+        min-width: 260px;
+      }
     }
 
-    @media #{$md-layout} {
-      top: 154%;
+    &_form {
+      position: relative;
+      margin: 0;
+    }
+    // @todo delete important after redesign
+    &_field {
+      width: 100%;
+      margin: 0;
+      height: 45px;
+      display: block;
+      padding: 5px 72px 5px 15px;
+      transition: all 0.4s ease 0s;
+      color: $black;
+      border: 1px solid $grey-lightest;
+      outline: medium none;
+      background: transparent;
+      @media #{$header-switch-mobile-mode} {
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 9px 25px;
+        color: #222;
+        border: none;
+        background: #e6e6e6;
+      }
     }
 
-    @media #{$xs-layout} {
-      top: 154%;
-      right: -105px;
-      min-width: 260px;
+    &_button {
+      font-size: 20px;
+      line-height: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      padding: 5px 20px 2px;
+      transition: all 0.4s ease 0s;
+      text-transform: uppercase;
+      color: $white;
+      border: none;
+      border-color: $orange;
+      background: $theme-color;
+      .fa-search {
+        display: none;
+      }
+      &:hover {
+        background-color: $bg-black;
+      }
     }
   }
-
-  &_form {
-    position: relative;
-    margin: 0;
-  }
-  // @todo delete important after redesign
-  &_field {
-    width: 100%;
-    margin: 0 !important;
-    height: 45px !important;
-    display: block !important;
-    padding: 5px 72px 5px 15px !important;
-    transition: all 0.4s ease 0s !important;
-    color: $black !important;
-    border: 1px solid $grey-lightest !important;
-    outline: medium none !important;
-    background: transparent !important;
-  }
-
-  &_button {
-    font-size: 20px;
-    line-height: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    padding: 5px 20px 2px;
-    transition: all 0.4s ease 0s;
-    text-transform: uppercase;
-    color: $white;
-    border: none;
-    border-color: $orange;
-    background: $theme-color;
-
-    &:hover {
-      background-color: $bg-black;
+  &_mobile {
+    .search {
+      input {
+        font-size: 14px;
+        padding: 5px 15px;
+        color: #222;
+        border: none;
+        background: #e6e6e6;
+        display: block;
+        width: 100%;
+        box-shadow: none;
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      &_button {
+        background: none;
+        color: #aaa;
+        .pe-7s-search {
+          display: none;
+        }
+        .fa-search {
+          display: block;
+        }
+        &:hover {
+          background-color: unset;
+        }
+      }
     }
   }
 }

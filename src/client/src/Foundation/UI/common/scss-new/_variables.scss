@@ -65,8 +65,6 @@ $breadcrumbs-bar-color: #f7f7f7;
 // Responsive Variables
 $xl-layout: "only screen and (min-width: 1200px) and (max-width: 1365px)";
 $xs-layout: "only screen and (max-width: 767px)";
-$footer-switch-mode: "only screen and (max-width: 1024px)";
-$header-switch-mode: "only screen and (max-width: 1024px)";
 
 // Breadcrumbs color
 $breadcrumbs-bar-color: #f7f7f7;
@@ -79,8 +77,10 @@ $md-layout: "(max-width: 991px)";
 $xs-layout: "(max-width: 767px)";
 $sm-layout: "(max-width: 767px)";
 $xxs-layout: "(max-width: 479px)";
-$footer-switch-mode: "only screen and (max-width: 1024px)";
-$header-switch-mode: "only screen and (max-width: 1024px)";
+$footer-switch-mode: "(max-width: 1024px)";
+$header-switch-mode: "(max-width: 1024px)";
+$header-switch-mobile-mode: "(max-width: 1101px)";
+$header-switch-padding-mobile-mode: "(max-width: 991px) and (min-width: 768px)";
 $recommended-product-border-color:  #ededf1;
 
 // Extra small screen / phone
@@ -163,6 +163,7 @@ $font-color-light: #999;
 $border-color: #d2d2d2;
 $product-overview-main-color: #000000;
 $text-main-color: #000000;
+$text-main-header-color: #111111;
 $product-rating-star: #ffa900;
 $product-price-value: #fe5252;
 $footer-title-color: #313131;

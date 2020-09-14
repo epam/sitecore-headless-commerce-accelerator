@@ -19,6 +19,9 @@
   max-width: 33.3%;
   margin-left: auto;
   a {
+    @media #{$header-switch-mobile-mode} {
+      display: none;
+    }
     display: block;
     margin: 0;
     letter-spacing: 0.8px;
@@ -38,7 +41,9 @@
   align-items: center;
   flex: 0 0 33.3%;
   max-width: 33.3%;
-
+  @media #{$header-switch-mobile-mode} {
+    display: none;
+  }
   &_item {
     position: relative;
     margin-right: 54px;

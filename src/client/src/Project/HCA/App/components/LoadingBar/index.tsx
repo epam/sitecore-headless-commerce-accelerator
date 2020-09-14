@@ -24,7 +24,7 @@ interface Props {
 export default ({ loading }: Props) => {
   return (
     <>
-      <div className={classnames('progress-bar', { 'progress-bar--loading': loading })} />
+      <div className={classnames('progress-bar')} />
       {loading && <div className="loading-overlay" />}
     </>
   );

@@ -21,5 +21,6 @@ export interface HeaderProps extends JSS.RenderingWithParams<JSS.BaseDataSourceI
 export interface HeaderState extends JSS.SafePureComponentState {
   headerTop: number;
   scroll: number;
-  pageName: string;
+  currentPageName: string;
+  currentUrl: string;
 }

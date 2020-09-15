@@ -29,8 +29,9 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     super(props);
 
     this.state = {
+      currentPageName: '',
+      currentUrl: '',
       headerTop: 0,
-      pageName: '',
       scroll: 0,
     };
 
@@ -38,16 +39,25 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
   }
 
   public componentDidUpdate(prevProps: Readonly<HeaderProps>, prevState: Readonly<HeaderState>, snapshot?: any) {
+    this.handleUpdateHeaderBreadcrumbs();
     this.setState({ headerTop: this.headerRef.current.offsetTop });
   }
-
   public componentDidMount() {
-    const pageResult = this.getPageName();
-    if (pageResult) {
-      this.setState({ pageName: pageResult.pageName });
-    }
+    this.handleUpdateHeaderBreadcrumbs();
     document.addEventListener('scroll', this.handleScroll.bind(this));
+  }
 
+  public handleUpdateHeaderBreadcrumbs() {
+    const { currentPageName, currentUrl } = this.state;
+    if (currentUrl !== document.location.href) {
+      const pageResult = this.getPageName();
+      if (pageResult && currentPageName !== pageResult.pageName && currentUrl !== document.location.pathname) {
+        this.setState({ currentPageName: pageResult.pageName, currentUrl: document.location.pathname });
+      }
+      if (!pageResult) {
+        this.setState({ currentPageName: '' });
+      }
+    }
   }
 
   public componentWillUnmount() {
@@ -71,7 +81,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     return breadcrumbs.find((element) => currentUrl.includes(element.url));
   }
   protected safeRender() {
-    const { pageName } = this.state;
+    const { currentPageName } = this.state;
     return (
       <header
         ref={this.headerRef}
@@ -94,7 +104,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
             </div>
           </div>
         </div>
-        {pageName && (
+        {currentPageName && (
           <div className="header_breadcrumbs">
             <span>
               <span>
@@ -103,7 +113,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
                 </a>
                 <span className="slash">/</span>
               </span>
-              <span>{pageName}</span>
+              <span>{currentPageName}</span>
             </span>
           </div>
         )}

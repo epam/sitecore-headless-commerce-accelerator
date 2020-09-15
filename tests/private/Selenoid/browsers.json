@@ -1,0 +1,12 @@
+{
+  "chrome": {
+    "default": "85",
+    "versions": {
+      "85": {
+        "image": [".\\85_chromedriver.exe", "--log-level=DEBUG"],
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  }
+}

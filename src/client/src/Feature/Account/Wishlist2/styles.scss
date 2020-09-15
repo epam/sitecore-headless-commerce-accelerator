@@ -15,31 +15,41 @@
 @import 'Foundation/UI/common/scss-new/_variables.scss';
 
 .wishlist-container{
-  font-family: $poppins !important;
+  font-family: $poppins;
+  padding: 0px;
+  margin-top: 90px;
+  margin-bottom: 100px;
+
+  & table{
+    margin-bottom: 0px;
+  }
 }
 .wishlist_table_header_container{
   background-color: #F9F9F9;
   border: 1px solid #EBEBEB;
+  font-family: $poppins;
 }
 .wishlist_table_header{
   height: 70px;
   text-align: center;
-  vertical-align: middle !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 500;
   color: black;
+  padding: 21px 45px 22px;
+  text-align: left;
 }
 .wishlist_table_row{
-  border: 1px solid #EBEBEB !important;
-  border-top: none !important;
+  border: 1px solid #EBEBEB;
+  border-top: none;
 }
 .wishlist_container-empty{
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  height: 300px !important;
-  justify-content: space-around !important;
-  margin-top: 40px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  justify-content: space-around;
+  margin-top: 40px;
   
   .heart-icon{
     margin-bottom: 26px;
@@ -54,7 +64,7 @@
   color: black;
   font-size: 20px;
   font-weight: 400;
-  font-family: $poppins !important;
+  font-family: $poppins;
 }
 .wishlist_btn-empty{
   padding: 14px 28px;
@@ -62,9 +72,9 @@
   border: none;
   color: white;
   text-transform: none;
-  font-family: $poppins !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
+  font-family: $poppins;
+  font-weight: 500;
+  font-size: 14px;
 }
 .wishlist_btn-empty:hover{
   background-color: #A749FF;
@@ -75,14 +85,18 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  padding: 30px 0px 55px;
 
-  button{ 
+  button{
+    padding: 18px 63px 17px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
     background-color: #F2F2F2;
-    color: black;
-    border-radius: 20px;
-    padding: 12px 48px;
+    color: $actions-button-color;
+    border-radius: 50px;
     border: 0;
-    text-transform: uppercase !important;
+    text-transform: uppercase;
     &:hover{
       background-color: $theme-color;
       color: white;
@@ -106,6 +120,11 @@
     color: black;
     font-weight: 500;
     margin: 0 0 15px;
+    text-transform: lowercase;
+
+    &::first-letter{ 
+      text-transform: uppercase;
+    }
   }
 
   &__item-col{

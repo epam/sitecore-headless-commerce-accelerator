@@ -17,51 +17,56 @@
 // Disabling a couple of global button styles
 .wishlist_content_row{
   height: 120px;
-  border: 1px solid #EBEBEB !important;
-  border-top: none !important;
+  border: 1px solid #EBEBEB;
+  border-top: none;
 }
 .wishlist_table_data{
-  border: none !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  border: none;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 21px 45px 22px;
   color: black;
+
+  &:last-child{
+    text-align: center;
+  }
 }
 .wishlist_product-thumbnail{
-  width: 150px !important;
+  width: 150px;
   padding: 30px 0px 30px 30px;
-  vertical-align: middle !important;
+  vertical-align: middle;
 }
 .wishlist_product-thumbnail img{
-  vertical-align: middle !important;
+  vertical-align: middle;
 }
 .wishlist_item_name{
   color: black;
 }
 .wishlist_item_name:hover{
-  color: #A749FF;
+  color: $theme-color;
 }
 .wishlist_item_button{
   text-transform: uppercase;
-  margin-bottom: 0px !important;
+  margin-bottom: 0px;
   border: none;
   font-size: 13px;
 }
 .wishlist_item_add-btn{
-  background-color: #A749FF;
+  background-color: $theme-color;
   color: white;
   border-radius: 20px;
-  padding: 1px 35px !important;
+  padding: 1px 35px;
 }
 .wishlist_item_add-btn:hover{
   background-color: #333333;
 }
 .wishlist_item_remove-btn:hover{
-  color: #A749FF;
+  color: $theme-color;
 }
 .wishlist_item_remove-btn{
-  color: #333333;
+  color: $brand-font-color;
   font-size: 15px;
   font-weight: 900;
 }

@@ -10,5 +10,9 @@ export const breadcrumbs = [
   {
     pageName: 'Store Locator',
     url: '/storelocator2',
+  },
+  {
+    pageName: 'Wishlist',
+    url: '/wishlist2',
   }
 ];

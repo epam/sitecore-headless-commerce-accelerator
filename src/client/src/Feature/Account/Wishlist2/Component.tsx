@@ -31,7 +31,7 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
     const { items } = this.props;
     console.log(items);
     return (
-      <div className="wishlist-container" style={{ marginTop: 30 }}>
+      <div className="wishlist-container" >
         {items.length === 0 ? (
           <div className="wishlist_container-empty">
             <div className="heart-icon">

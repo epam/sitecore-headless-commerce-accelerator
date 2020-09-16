@@ -10,6 +10,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [MyAccountTest]
     [UiTest]
     internal class MyAccountPasswordTests : BaseHcaWebTest
     {

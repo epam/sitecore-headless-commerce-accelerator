@@ -9,6 +9,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [MyAccountTest]
     [UiTest]
     internal class MyAccountNameTests : BaseHcaWebTest
     {
@@ -34,7 +35,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void T1_MyAccountNameTests_ChangeFirstName()
+        public void T01_MyAccountNameTests_ChangeFirstName()
         {
             _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             var newGeneratedName = StringHelpers.RandomString(10);
@@ -47,7 +48,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void T2_MyAccountNameTests_ChangeLastName()
+        public void T02_MyAccountNameTests_ChangeLastName()
         {
             _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
             var newGeneratedLastName = StringHelpers.RandomString(10);
@@ -60,7 +61,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void T3_MyAccountNameTests_ChangeAccountDetailsWithoutSave()
+        public void T03_MyAccountNameTests_ChangeAccountDetailsWithoutSave()
         {
             var oldName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             var oldLastName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
@@ -76,7 +77,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void T4_MyAccountNameTests_TryToSaveWithoutFirstName()
+        public void T04_MyAccountNameTests_TryToSaveWithoutFirstName()
         {
             var oldName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("First Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("First Name", "");
@@ -88,7 +89,7 @@ namespace AutoTests.HCA.Tests.UITests.MyAccountTests
         }
 
         [Test]
-        public void T5_MyAccountNameTests_TryToSaveWithoutLastName()
+        public void T05_MyAccountNameTests_TryToSaveWithoutLastName()
         {
             var oldLastName = _hcaWebSite.MyAccountAccountDetailsSection.GetFieldValue("Last Name");
             _hcaWebSite.MyAccountAccountDetailsSection.FillFieldByName("Last Name", "");

@@ -11,7 +11,8 @@ namespace AutoTests.HCA.Tests.UITests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
-    [HeaderTest]
+    [HeaderFooterTest]
+    [UiTest]
     public class HeaderTests : BaseHcaWebTest
     {
         [SetUp]

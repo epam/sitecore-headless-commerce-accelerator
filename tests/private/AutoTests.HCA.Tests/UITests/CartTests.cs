@@ -12,6 +12,7 @@ namespace AutoTests.HCA.Tests.UITests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome, HcaUserRole.Guest)]
     [TestFixture(BrowserType.Chrome, HcaUserRole.User)]
+    [CartTest]
     [UiTest]
     internal class CartTests : BaseHcaWebTest
     {

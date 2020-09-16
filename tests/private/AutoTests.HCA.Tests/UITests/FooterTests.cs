@@ -9,6 +9,7 @@ namespace AutoTests.HCA.Tests.UITests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [HeaderFooterTest]
     [UiTest]
     public class FooterTests : BaseHcaWebTest
     {

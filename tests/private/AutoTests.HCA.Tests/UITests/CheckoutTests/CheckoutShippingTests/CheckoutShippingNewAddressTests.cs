@@ -12,6 +12,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome, HcaUserRole.Guest)]
     [TestFixture(BrowserType.Chrome, HcaUserRole.User)]
+    [CheckoutTest]
     [UiTest]
     internal class CheckoutShippingNewAddressTests : BaseHcaWebTest
     {

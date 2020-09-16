@@ -8,9 +8,10 @@ using NUnit.Framework;
 
 namespace AutoTests.HCA.Tests.UITests
 {
-    [UiTest]
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [ProductTest]
+    [UiTest]
     public class ShopPageTests : BaseHcaWebTest
     {
         [SetUp]

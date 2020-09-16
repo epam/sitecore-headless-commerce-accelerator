@@ -9,6 +9,7 @@ namespace AutoTests.HCA.Tests.UITests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [EndToEndTest]
     [UiTest]
     internal class DemoTest : BaseHcaWebTest
     {

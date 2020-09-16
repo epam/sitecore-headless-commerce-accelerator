@@ -9,6 +9,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [CheckoutTest]
     [UiTest]
     internal class CheckoutShippingExistsAddressTests : BaseHcaWebTest
     {

@@ -8,6 +8,7 @@ namespace AutoTests.HCA.Tests.UITests
 {
     [Parallelizable(ParallelScope.None)]
     [TestFixture(BrowserType.Chrome)]
+    [SignInSignUpTest]
     [UiTest]
     internal class SignInTests : BaseHcaWebTest
     {

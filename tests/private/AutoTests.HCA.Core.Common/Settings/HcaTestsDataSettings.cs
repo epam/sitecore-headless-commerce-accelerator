@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
+using AutoTests.HCA.Core.Common.Settings.StoreLocators;
 using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Core.Common.Settings
@@ -14,5 +15,7 @@ namespace AutoTests.HCA.Core.Common.Settings
         public IEnumerable<HcaUserTestsDataSettings> Users { get; set; }
 
         public IEnumerable<HcaPromotionTestsDataSettings> Promotions { get; set; }
+
+        public IEnumerable<HcaStore> Stores { get; set; }
     }
 }

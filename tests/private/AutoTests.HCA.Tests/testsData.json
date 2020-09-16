@@ -90,21 +90,21 @@
         "ProductCategoryId": "7a8bdb1c-2976-02d7-0541-bf45307ea54a"
       },
       {
-        "ProductId": "7042121",
-        "VariantId": "57042121",
+        "ProductId": "6042944",
+        "VariantId": "6042944",
         "DefaultVariant": true,
         "StockStatus": "InStock",
-        "ProductName": "OPTIX 12.8MP 4K ULTRA HD ACTION CAMERA (WHITE)",
-        "ProductBrand": "OPTIX ACTION CAMCORDERS",
+        "ProductName": "HABITAT DWELL DIGITAL WIFI SCALE (BLACK)",
+        "ProductBrand": "DWELL SCALES",
         "ProductCategoryId": ""
       },
       {
-        "ProductId": "7042121",
-        "VariantId": "57042122",
+        "ProductId": "6042944",
+        "VariantId": "6042945",
         "DefaultVariant": false,
         "StockStatus": "InStock",
-        "ProductName": "OPTIX 12.8MP 4K ULTRA HD ACTION CAMERA (RED)",
-        "ProductBrand": "OPTIX ACTION CAMCORDERS",
+        "ProductName": "HABITAT DWELL DIGITAL WIFI SCALE (WHITE)",
+        "ProductBrand": "DWELL SCALES",
         "ProductCategoryId": ""
       }
     ],
@@ -185,6 +185,16 @@
           "Discount": "5"
         },
         "MinimumBasketPriceForApplication": "10"
+      }
+    ],
+    "Stores": [
+      {
+        "Default": true,
+        "Title": "Store 1",
+        "Coordinates": {
+          "Latitude": "40.700000762939453",
+          "Longitude": "-74.0999984741211"
+        }
       }
     ]
   }

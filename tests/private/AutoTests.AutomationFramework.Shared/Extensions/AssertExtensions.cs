@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -51,6 +52,17 @@ namespace AutoTests.AutomationFramework.Shared.Extensions
         public static void NullOrWhiteSpace(string text, string objName)
         {
             Assert.That(string.IsNullOrWhiteSpace(text), $"{objName} should be null or white space.");
+        }
+
+        public static void InRange<T>(T value, T from, T to, string objName)
+        {
+            Assert.That(value, Is.InRange(from, to), $"{objName} should be null or white space.");
+        }
+
+        public static void LessOrEqual<T>(T value1, T value2, string objName)
+        where T : IComparable
+        {
+            Assert.LessOrEqual(value1, value2, $"{objName}={value1} should be less or equal {value2}.");
         }
     }
 }

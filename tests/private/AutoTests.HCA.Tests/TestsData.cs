@@ -5,6 +5,7 @@ using AutoTests.AutomationFramework.Shared.Configuration;
 using AutoTests.HCA.Core.Common.Settings;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Promotions;
+using AutoTests.HCA.Core.Common.Settings.StoreLocators;
 using AutoTests.HCA.Core.Common.Settings.Users;
 
 namespace AutoTests.HCA.Tests
@@ -18,6 +19,7 @@ namespace AutoTests.HCA.Tests
         private static IEnumerable<ProductTestsDataSettings> _productId;
         private static HcaPagination _pagination;
         private static IEnumerable<HcaPromotionTestsDataSettings> _promotions;
+        private static IEnumerable<HcaStore> _stores;
 
         private static HcaTestsDataSettings HcaTestsData =>
             _hcaTestsData ??= _configurationManager.Get<HcaTestsDataSettings>("HcaTestsData");
@@ -26,6 +28,7 @@ namespace AutoTests.HCA.Tests
         public static IEnumerable<ProductTestsDataSettings> Products => _productId ??= HcaTestsData.Products;
         public static HcaPagination Pagination => _pagination ??= HcaTestsData.Pagination;
         public static IEnumerable<HcaPromotionTestsDataSettings> Promotions => _promotions ??= HcaTestsData.Promotions;
+        public static IEnumerable<HcaStore> Stores => _stores ??= HcaTestsData.Stores;
 
         public static ProductTestsDataSettings GetDefaultProduct()
         {
@@ -40,6 +43,11 @@ namespace AutoTests.HCA.Tests
         public static HcaPromotionTestsDataSettings GetDefaultPromotion()
         {
             return GetDefault(Promotions);
+        }
+
+        public static HcaStore GetDefaultStore()
+        {
+            return GetDefault(Stores);
         }
 
         public static HcaUserTestsDataSettings GetUser(HcaUserRole role = HcaUserRole.User)

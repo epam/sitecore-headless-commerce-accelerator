@@ -9,12 +9,13 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
     {
         private AccountService _account;
 
-        private AuthService _auth;
+        private AuthService _authService;
         private CartService _cartService;
         private CheckoutService _checkoutService;
         private OrderService _orderService;
         private ProductService _productService;
         private WishListService _wishListService;
+        private StoreLocatorService _storeLocatorService;
 
         public HcaApiContext(HcaApiSettings apiSettings)
         {
@@ -30,12 +31,13 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
 
         public IHttpClientService Client { get; }
 
-        public AuthService Auth => _auth ??= new AuthService(Client);
+        public AuthService Auth => _authService ??= new AuthService(Client);
         public AccountService Account => _account ??= new AccountService(Client);
         public CartService Cart => _cartService ??= new CartService(Client);
         public OrderService Order => _orderService ??= new OrderService(Client);
         public ProductService Product => _productService ??= new ProductService(Client);
         public WishListService WishList => _wishListService ??= new WishListService(Client);
         public CheckoutService Checkout => _checkoutService ??= new CheckoutService(Client);
+        public StoreLocatorService StoreLocator => _storeLocatorService ??= new StoreLocatorService(Client);
     }
 }

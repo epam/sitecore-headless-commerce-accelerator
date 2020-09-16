@@ -151,7 +151,7 @@ namespace AutoTests.HCA.Tests.APITests.CartTests
                 ExtendedAssert.Empty(cartLines, nameof(cartLines));
             }
 
-            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal * x.Quantity), cartResult.Price.Subtotal,
+            ExtendedAssert.AreEqual(cartLines.Sum(x => x.Price.Subtotal), cartResult.Price.Subtotal,
                 nameof(cartResult.Price.Subtotal));
             ExtendedAssert.AreEqual(cartResult.Price.Subtotal - cartResult.Price.TotalSavings, cartResult.Price.Total,
                 nameof(cartResult.Price.Total));

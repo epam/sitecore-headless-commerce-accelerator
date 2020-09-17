@@ -1,0 +1,14 @@
+﻿---
+ID: "1f4f3c94-a207-4aa9-ab6e-bdb71e6c129c"
+Parent: "c5287236-7711-47c1-8c69-6db337c8dc50"
+Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
+Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Errors
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200917T102844Z

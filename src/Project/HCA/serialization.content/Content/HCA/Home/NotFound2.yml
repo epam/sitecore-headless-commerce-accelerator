@@ -1,0 +1,39 @@
+﻿---
+ID: "c9bfe3a6-6b83-42f3-971e-c88661291024"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "961f810d-c202-49d9-8690-b55636253fd2"
+Path: /sitecore/content/HCA/Home/NotFound2
+DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{E40264A9-D32F-4014-9926-3487D9B6B956}"
+          p:before="*"
+          s:id="{EE8075E4-B911-48C4-AB7C-4FF5582116E9}"
+          s:ph="/main-content/w-col-wide-{C65D2619-1B5A-488D-AC1B-19C3C9911823}-0" />
+        <r
+          uid="{C65D2619-1B5A-488D-AC1B-19C3C9911823}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
+          s:ph="main-content" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200917T102726Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

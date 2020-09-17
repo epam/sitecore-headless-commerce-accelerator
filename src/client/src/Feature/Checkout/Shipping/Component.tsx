@@ -205,20 +205,21 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   </li>
                 </ul>
               </div>
-              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && isLoggedIn && (
+              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && (
                 <div className="col-sm-6">
-                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
-                  <label htmlFor="save-to-account">
-                    <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
-                    <Text field={{ value: 'My Account.' }} tag="strong" />
-                  </label>
-                  <br />
-                  <Text
-                    field={{ value: 'Create Account' }}
-                    className="right-car create"
-                    href="/account/sign-up"
-                    tag="a"
-                  />
+                  {isLoggedIn ? (<>
+                    <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
+                    <label htmlFor="save-to-account">
+                      <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
+                      <Text field={{ value: 'My Account.' }} tag="strong" />
+                    </label>
+                  </>)
+                  : (<Text
+                      field={{ value: 'Create Account' }}
+                      className="right-car create"
+                      href="/account/sign-up"
+                      tag="a"
+                  />)}
                 </div>
               )}
             </div>

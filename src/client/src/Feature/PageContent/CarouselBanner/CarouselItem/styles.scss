@@ -15,12 +15,21 @@
 @import 'Foundation/UI/common/scss-new/_variables';
 
 .banner_container{
-  top: 25%;
-  right: 0;
-  position: absolute;
+  width: 100%;
+  max-width: 1200px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media #{$sm-layout} {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .single-slider {
+    display: flex;
+    align-items: center;
     @media #{$xl-layout} {
       background-position: 50%;
     }
@@ -56,6 +65,15 @@
   }
 
   .slider-content {
+    &_container{
+      margin-left: auto;
+      float: none !important;
+      max-width: 66.6%;
+      @media (max-width: 767px) {
+        padding: 0;
+        margin: 0;
+      }
+    }
     h3 {
       font-size: 24px;
       font-weight: 500;
@@ -118,21 +136,44 @@
       color: #010101;
     }
     .slider-btn {
+      position: relative;
       a {
         font-size: 16px;
         line-height: 1;
-
         display: inline-block;
-
         padding: 19px 50px 21px;
-
         text-transform: uppercase;
-
         color: #010101;
         border: 1px solid #333;
+        position: relative;
         &:hover {
           color: #fff;
           border: 1px solid $theme-color;
+        }
+        
+        &:hover {
+          &:after {
+              right: auto !important;
+              left: 0px !important;
+              width: 101% !important;
+          }
+        }
+        &:after {
+            right: 0;
+            left: auto !important;
+            width: 0 !important;
+            background-color: $theme-color;
+        }
+        &:before, &:after {
+            position: absolute;
+            z-index: -1;
+            bottom: 0;
+            left: 0;
+            width: 101%;
+            height: 101%;
+            content: "";
+            -webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
       }
     }

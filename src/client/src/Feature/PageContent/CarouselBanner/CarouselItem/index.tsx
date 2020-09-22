@@ -29,14 +29,14 @@ export class CarouselItem extends JSS.SafePureComponent<CarouselItemProps, Carou
         style={{ backgroundImage: `url(${banner.image})` }}
       >
         <div className="banner_container">
-          <div className="col-xl-6 col-lg-7 col-md-8 col-12 ml-auto">
+          <div className="col-xl-6 col-lg-7 col-md-8 col-12 ml-auto slider-content_container">
             <div className="slider-content slider-animated text-center">
               <h3 className="animated">{banner.title}</h3>
               <h1 className="animated">{banner.subtitle}</h1>
               <p className="animated">{banner.text}</p>
               <div className="slider-btn btn-hover">
                 <NavigationLink className="animated" to={banner.link}>
-                  SHOP NOW
+                  <span style={{ zIndex: 5 }}>SHOP NOW</span>
                 </NavigationLink>
               </div>
             </div>

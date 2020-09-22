@@ -53,6 +53,23 @@ SharedFields:
           p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
           s:id="{D014BF17-DE93-4C8F-B41D-ED89DF30705C}" />
         <r
+          uid="{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:ds=""
+          s:id="{083457B7-8F42-4CB6-B9FC-10AD52A04797}"
+          s:par="Wrapper Class=form-billing%20billing-shipping-info%20row&amp;First Column Class=col-lg-7&amp;Second Column Class=col-lg-5&amp;Third Column Class"
+          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0" />
+        <r
+          uid="{94BE19AE-743F-4A0D-8F12-C6524D7251BB}"
+          p:after="r[@uid='{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}']"
+          s:id="{6F7A6A35-9C0E-4D27-9B36-993C981569B7}"
+          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-1-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
+        <r
+          uid="{E0E95FA5-5F76-446E-841E-FD392B7E9C93}"
+          p:after="r[@uid='{94BE19AE-743F-4A0D-8F12-C6524D7251BB}']"
+          s:id="{2062E365-6845-47DC-86EF-2A29A8706F58}"
+          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-2-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
+        <r
           uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
           s:id="{6C375BDB-2E93-42A7-BFA3-D9666695D257}" />
         <r
@@ -85,28 +102,11 @@ SharedFields:
           s:ph="/main-content" />
         <r
           uid="{46E4425C-FC5D-4D4F-8DC0-18E6A394700A}"
-          p:after="r[@uid='{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}']"
+          p:after="*[1=2]"
           s:ds="{C74BB736-5C99-475F-8FFD-B73D02ED286C}"
           s:id="{5780E279-0600-4006-82E0-8D02D0953D94}"
           s:par=""
           s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0" />
-        <r
-          uid="{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}"
-          p:after="r[@uid='{46E4425C-FC5D-4D4F-8DC0-18E6A394700A}']"
-          s:ds=""
-          s:id="{083457B7-8F42-4CB6-B9FC-10AD52A04797}"
-          s:par="Wrapper Class=form-billing%20billing-shipping-info%20row&amp;First Column Class=col-md-8&amp;Second Column Class=col-md-4"
-          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0" />
-        <r
-          uid="{94BE19AE-743F-4A0D-8F12-C6524D7251BB}"
-          p:after="r[@uid='{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}']"
-          s:id="{6F7A6A35-9C0E-4D27-9B36-993C981569B7}"
-          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-1-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
-        <r
-          uid="{E0E95FA5-5F76-446E-841E-FD392B7E9C93}"
-          p:after="*[1=2]"
-          s:id="{2062E365-6845-47DC-86EF-2A29A8706F58}"
-          s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-2-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
       </d>
     </r>
 Languages:

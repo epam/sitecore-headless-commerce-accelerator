@@ -75,7 +75,7 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.LoginForm.FillUserNameField(_defUser.Email);
             _hcaWebSite.LoginForm.FillPasswordField(_defUser.Password);
             _hcaWebSite.LoginForm.SignInButtonClick();
-            _hcaWebSite.HideUserMenu();
+            _hcaWebSite.LoginForm.WaitForNotPresentForm();
             _hcaWebSite.OpenUserMenu();
             _hcaWebSite.LoginForm.VerifyLoggedUser();
         }

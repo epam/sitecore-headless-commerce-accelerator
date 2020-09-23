@@ -110,6 +110,7 @@ namespace AutoTests.HCA.Core.UI
 
         public void SpinnerWaitForNotPresent()
         {
+            _spinner.WaitForPresent(5, false);
             _spinner.WaitForNotPresent();
         }
     }

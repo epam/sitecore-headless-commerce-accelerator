@@ -55,7 +55,6 @@ namespace AutoTests.HCA.Core.UI
             NavigateToMain();
             OpenUserMenu();
             LoginForm.LogonToHca(userName, password);
-            HideUserMenu();
             OpenUserMenu();
             LoginForm.VerifyLoggedUser();
             HideUserMenu();

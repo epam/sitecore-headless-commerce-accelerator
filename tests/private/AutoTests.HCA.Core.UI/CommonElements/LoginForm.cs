@@ -121,6 +121,7 @@ namespace AutoTests.HCA.Core.UI.CommonElements
             FillUserNameField(login);
             FillPasswordField(password);
             SignInButtonClick();
+            WaitForNotPresentForm();
         }
     }
 }

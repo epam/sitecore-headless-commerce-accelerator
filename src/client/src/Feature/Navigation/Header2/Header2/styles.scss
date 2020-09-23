@@ -16,31 +16,7 @@
 
 .header {
   text-transform: capitalize;
-  &_breadcrumbs {
-    background-color: $breadcrumbs-bar-color;
-    padding: 35px 0;
-    display: flex;
-    justify-content: center;
-    span{
-      text-transform: uppercase;
-    }
-    span > span > a {
-      font-weight: 500;
-      color: #5b5858;
-      &:hover{
-        color: $theme-color;
-      }
-    }
-    span > span{
-      display: inline-block;
-      font-size: 15px;
-      font-weight: 500;
-      color: $main-text-color;
-    }
-    .slash{
-      margin: 0 15px;
-    }
-  }
+
   .mobile-menu {
     display: none;
     @media #{$header-switch-mobile-mode} {

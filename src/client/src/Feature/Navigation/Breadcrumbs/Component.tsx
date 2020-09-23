@@ -12,13 +12,29 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as React from 'react';
+
 import * as JSS from 'Foundation/ReactJss';
 
-interface HeaderParams extends JSS.BaseRenderingParam {}
+import { BreadcrumbsProps, BreadcrumbsState } from './models';
 
-export interface HeaderProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderParams> {}
+import './styles.scss';
 
-export interface HeaderState extends JSS.SafePureComponentState {
-  headerTop: number;
-  scroll: number;
+export default class BreadcrumbsComponent extends JSS.SafePureComponent<BreadcrumbsProps, BreadcrumbsState> {
+  protected safeRender() {
+    const { currentPageName } = this.props;
+    return (
+      <div className="header_breadcrumbs">
+        <span>
+          <span>
+            <a aria-current="page" className="active" href="/">
+              Home
+            </a>
+            <span className="slash">/</span>
+          </span>
+          <span>{currentPageName}</span>
+        </span>
+      </div>
+    );
+  }
 }

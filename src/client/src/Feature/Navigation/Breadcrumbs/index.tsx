@@ -12,13 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { connect } from 'react-redux';
+
+import BreadcrumbsComponent from './Component';
+import { AppState } from './models';
+
 import * as JSS from 'Foundation/ReactJss';
 
-interface HeaderParams extends JSS.BaseRenderingParam {}
+const mapStateToProps = (state: AppState) => {
+  const sitecore = JSS.sitecore(state);
+  const { displayName, templateName } = sitecore.route as any;
+  return {
+    currentPageName: displayName !== '*' ? displayName : templateName,
+  };
+};
 
-export interface HeaderProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderParams> {}
-
-export interface HeaderState extends JSS.SafePureComponentState {
-  headerTop: number;
-  scroll: number;
-}
+export const Breadcrumbs = connect(mapStateToProps)(BreadcrumbsComponent);

@@ -18,7 +18,7 @@ import * as React from 'react';
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 
-import { breadcrumbs } from './constant';
+import { Breadcrumbs } from 'Feature/Navigation/Breadcrumbs';
 import { HeaderProps, HeaderState } from './models';
 
 import './styles.scss';
@@ -29,8 +29,6 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     super(props);
 
     this.state = {
-      currentPageName: '',
-      currentUrl: '',
       headerTop: 0,
       scroll: 0,
     };
@@ -39,25 +37,10 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
   }
 
   public componentDidUpdate(prevProps: Readonly<HeaderProps>, prevState: Readonly<HeaderState>, snapshot?: any) {
-    this.handleUpdateHeaderBreadcrumbs();
     this.setState({ headerTop: this.headerRef.current.offsetTop });
   }
   public componentDidMount() {
-    this.handleUpdateHeaderBreadcrumbs();
     document.addEventListener('scroll', this.handleScroll.bind(this));
-  }
-
-  public handleUpdateHeaderBreadcrumbs() {
-    const { currentPageName, currentUrl } = this.state;
-    if (currentUrl !== document.location.href) {
-      const pageResult = this.getPageName();
-      if (pageResult && currentPageName !== pageResult.pageName && currentUrl !== document.location.pathname) {
-        this.setState({ currentPageName: pageResult.pageName, currentUrl: document.location.pathname });
-      }
-      if (!pageResult) {
-        this.setState({ currentPageName: '' });
-      }
-    }
   }
 
   public componentWillUnmount() {
@@ -76,12 +59,8 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
       header.classList.add('header--inactive');
     }
   }
-  public getPageName() {
-    const currentUrl = document.location.pathname;
-    return breadcrumbs.find((element) => currentUrl.includes(element.url));
-  }
+
   protected safeRender() {
-    const { currentPageName } = this.state;
     return (
       <header
         ref={this.headerRef}
@@ -104,19 +83,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
             </div>
           </div>
         </div>
-        {currentPageName && (
-          <div className="header_breadcrumbs">
-            <span>
-              <span>
-                <a aria-current="page" className="active" href="/">
-                  Home
-                </a>
-                <span className="slash">/</span>
-              </span>
-              <span>{currentPageName}</span>
-            </span>
-          </div>
-        )}
+        <Breadcrumbs />
       </header>
     );
   }

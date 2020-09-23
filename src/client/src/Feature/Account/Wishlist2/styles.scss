@@ -17,11 +17,14 @@
 .wishlist-container{
   font-family: $poppins;
   padding: 0px;
-  margin-top: 90px;
+  margin-top: 14px;
   margin-bottom: 100px;
 
   & table{
     margin-bottom: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .wishlist_table_header_container{
@@ -35,9 +38,15 @@
   vertical-align: middle;
   font-size: 14px;
   font-weight: 500;
-  color: black;
+  color: $table-font-color;
   padding: 21px 45px 22px;
   text-align: left;
+  @media (max-width: $screen-sm) {
+    padding: 21px 20px 22px;
+  }
+  &:nth-child(4){
+    text-align: center;
+  }
 }
 .wishlist_table_row{
   border: 1px solid #EBEBEB;
@@ -52,7 +61,7 @@
   margin-top: 40px;
   
   .heart-icon{
-    margin-bottom: 26px;
+    margin-bottom: 1px;
     i{
       font-size: 140px;
       line-height: 1;
@@ -65,9 +74,10 @@
   font-size: 20px;
   font-weight: 400;
   font-family: $poppins;
+  margin-bottom: 1px;
 }
 .wishlist_btn-empty{
-  padding: 14px 28px;
+  padding: 10px 30px;
   background-color: #363F4D;
   border: none;
   color: white;
@@ -87,6 +97,10 @@
   justify-content: space-between;
   padding: 30px 0px 55px;
 
+  @media (max-width: $screen-sm) {
+    flex-direction: column;
+  }
+
   button{
     padding: 18px 63px 17px;
     font-size: 14px;
@@ -100,6 +114,11 @@
     &:hover{
       background-color: $theme-color;
       color: white;
+    }
+
+    @media (max-width: $screen-sm) {
+      margin-bottom: 20px;
+      padding: 18px 38px 17px;
     }
   }
 }

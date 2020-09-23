@@ -27,10 +27,11 @@
   font-size: 14px;
   font-weight: 500;
   padding: 21px 45px 22px;
-  color: black;
+  color:$table-font-color;
 
   &:last-child{
     text-align: center;
+    padding-right: 14px;
   }
 }
 .wishlist_product-thumbnail{
@@ -42,7 +43,7 @@
   vertical-align: middle;
 }
 .wishlist_item_name{
-  color: black;
+  color: $table-font-color;
 }
 .wishlist_item_name:hover{
   color: $theme-color;
@@ -56,7 +57,7 @@
 .wishlist_item_add-btn{
   background-color: $theme-color;
   color: white;
-  border-radius: 20px;
+  border-radius: 50px;
   padding: 1px 35px;
 }
 .wishlist_item_add-btn:hover{
@@ -67,6 +68,6 @@
 }
 .wishlist_item_remove-btn{
   color: $brand-font-color;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 900;
 }

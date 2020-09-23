@@ -27,6 +27,17 @@ import { Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/For
 import './styles.scss';
 
 export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorProps, StoreLocatorState> {
+
+  public constructor(props: StoreLocatorProps) {
+    super(props);
+
+    this.state = {
+      errors: {},
+    };
+
+    this.validate = this.validate.bind(this);
+  }
+
   public componentDidMount() {
     this.props.GetStores();
   }
@@ -52,13 +63,14 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                 type="text"
                 className="form_item_input"
                 name={FORM_FIELDS.ZIP_CODE}
-                required={true}
                 placeholder="Enter zip code..."
               />
+              {this.state.errors[FORM_FIELDS.ZIP_CODE] &&
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.ZIP_CODE]}</span>}
             </div>
             <div className="form_item">
               <JSS.Text tag="label" field={{ value: 'Radius', editable: 'Radius' }} />
-              <Select className="d-block w-100 form_item_input" name={FORM_FIELDS.RADIUS} type="text" required={true}>
+              <Select className="d-block w-100 form_item_input" name={FORM_FIELDS.RADIUS} type="text">
                 <option value="">Select a radius</option>
                 {radiuses.items.map((radius, index) => (
                   <option key={`${index}-${radius.value.jss.value}`} value={radius.value.jss.value}>
@@ -66,10 +78,12 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                   </option>
                 ))}
               </Select>
+              {this.state.errors[FORM_FIELDS.RADIUS] &&
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.RADIUS]}</span>}
             </div>
             <div className="form_item">
               <JSS.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
-              <Select name={FORM_FIELDS.COUNTRY} type="text" className="d-block w-100 form_item_input" required={true}>
+              <Select name={FORM_FIELDS.COUNTRY} type="text" className="d-block w-100 form_item_input">
                 <option value="">Select a country</option>
                 {countries.items.map((country, index) => (
                   <option key={`${index}-${country.code.jss.value}`} value={country.code.jss.value}>
@@ -77,6 +91,8 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                   </option>
                 ))}
               </Select>
+              {this.state.errors[FORM_FIELDS.COUNTRY] &&
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.COUNTRY]}</span>}
             </div>
             <div className="form_item">
               <Submit className="form_item_input" onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}>
@@ -88,7 +104,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
             <div className="col-md-12">
               <Map
                 markers={stores.map(this.mapStoreToMarker)}
-                defaultCenter={{ latitude: +defaultLatitude.jss.value, longitude: +defaultLongitude.jss.value }}
+                center={{ latitude: +defaultLatitude.jss.value, longitude: +defaultLongitude.jss.value }}
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA0ZPWHT4Wg_SA3lqx-lb5CG27XG73CYA&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `560px` }} />}
@@ -101,7 +117,32 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
     );
   }
 
+  private validate(formValues: FormValues) {
+    const zip = formValues[FORM_FIELDS.ZIP_CODE] as string;
+    const resultZip = (/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/gi).test(zip);
+    this.setState ((prevState) => ({
+      errors: {...prevState.errors, [FORM_FIELDS.ZIP_CODE]: (resultZip ? null : 'Please enter a valid ZIP code')}
+    }));
+
+    const resultCountry = this.checkDropdown(formValues[FORM_FIELDS.COUNTRY] as string, FORM_FIELDS.COUNTRY, 'Please select a country');
+    const resultRadius = this.checkDropdown(formValues[FORM_FIELDS.RADIUS] as string, FORM_FIELDS.RADIUS, 'Please select a radius');
+
+    return resultZip && resultCountry && resultRadius;
+  }
+
+  private checkDropdown(str: string, formField: string, errorMessage: string) {
+    const result = str && str.length !== 0;
+    this.setState ((prevState) => ({
+      errors: {...prevState.errors, [formField]: (result ? null : errorMessage)}
+    }));
+    return result;
+  }
+
   private handleFormSubmit(formValues: FormValues) {
+    if (!this.validate(formValues)) {
+      return;
+    }
+
     this.props.FindStores(
       formValues[FORM_FIELDS.ZIP_CODE] as string,
       formValues[FORM_FIELDS.COUNTRY] as string,

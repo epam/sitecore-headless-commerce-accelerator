@@ -19,7 +19,7 @@ import { Coordinates } from '../models';
 
 export interface MapProps {
   markers: Marker[];
-  defaultCenter: Coordinates;
+  center: Coordinates;
   googleMapURL: string;
   loadingElement: object;
   containerElement: object;

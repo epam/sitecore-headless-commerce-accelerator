@@ -35,12 +35,16 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  align-items: top;
   @media (max-width: $screen-sm) {
     flex-direction: column;
   }
 }
 .form_item:last-child {
-  justify-content: flex-end;
+  margin-top:25px;
+  @media (max-width: $screen-sm) {
+    margin-top: 5px;
+  }
 }
 .form_item button{
   width: 110px;
@@ -90,4 +94,9 @@
 
 .form_item label{
   font-weight: 400;
+}
+
+.form_item_warning{
+  font-size: 10px;
+  color: $focus-color;
 }

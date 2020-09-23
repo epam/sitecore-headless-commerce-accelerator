@@ -12,13 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import * as Jss from 'Foundation/ReactJss';
 
-interface HeaderParams extends JSS.BaseRenderingParam {}
-
-export interface HeaderProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderParams> {}
-
-export interface HeaderState extends JSS.SafePureComponentState {
-  headerTop: number;
-  scroll: number;
+export interface BreadcrumbsProps {
+  currentPageName?: Jss.GraphQLField<Jss.TextField>;
 }
+
+export interface BreadcrumbsState extends Jss.SafePureComponentState {}
+
+export interface AppState extends Jss.SitecoreState {}

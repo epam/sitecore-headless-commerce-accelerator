@@ -196,3 +196,145 @@
         
     }
 }
+
+.product-content{
+    .pl-50{
+        padding-left: 50px;
+        @media (max-width: $screen-sm-max) {
+            padding-left: 0px;
+            margin-top: 50px;
+        }
+    }
+    .ratting-form-wrapper{
+        & h3{
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            font-family: $poppins;
+        }
+
+        .ratting-form{
+            .star-box{
+                display: flex;
+                margin: 6px 0 20px;
+                & span{
+                    margin: 0 15px 0 0;
+                }
+                .ratting-star{
+                    font-size: 12px;
+                    color: $review-star-color;
+                }
+            }
+            .mb-10{
+                margin-bottom: 10px;
+            }
+            .rating-form-style{
+                & input{
+                    padding: 2px 10px 2px 20px; 
+                    border: 1px solid #e6e6e6;
+                    background: transparent;
+                    font-size: 14px;
+                    width: 100%;
+                    color: $review-input-border;
+                    box-shadow: none;
+                    height: 45px;
+                    margin-bottom: 0;
+                }
+            }
+            .form-submit{
+                & textarea{
+                    height: 180px;
+                    margin-bottom: 20px;
+                    padding: 20px 10px 2px 20px;
+                    color: $review-input-border;
+                    border: 1px solid #e6e6e6;
+                    background: transparent;
+                    font-size: 14px;
+                    width: 100%;
+                    resize: vertical;
+                    overflow: auto;
+                    box-shadow: none;
+                }
+                & input{
+                    font-weight: 500;
+                    width: auto;
+                    height: auto;
+                    padding: 12px 50px;
+                    text-transform: uppercase;
+                    color: $review-text-color;
+                    border: 1px solid $theme-color;
+                    background-color: $theme-color;
+                    &:hover {
+                        border: 1px solid $review-input-border;
+                        background-color: $review-input-border;
+                    }
+                }
+            }
+        }
+    }
+
+    .review-wrapper{
+        .child-review{
+            margin-bottom: 0 !important;
+            margin-left: 70px !important;
+            @media (max-width: $screen-sm-max) {
+                margin-left: 0px !important;
+            }
+        }
+        .single-review{
+            display: flex;
+            margin: 0 0 50px;
+            .review-img{
+                flex: 0 0 90px;
+                margin: 0 15px 0 0;
+            }
+            .review-content{
+                .review-top-wrap{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 0 0 10px;
+                    .review-left{
+                        display: flex;
+                        .review-name{
+                            margin-right: 25px;
+                            & h4{
+                                font-size: 16px;
+                                font-weight: 500;
+                                line-height: 1;
+                                margin: 0;
+                            }
+                        }
+                        .review-rating{
+                            line-height: 1;
+                            & i{
+                                font-size: 12px;
+                                margin-right: 1px;
+                                color: $review-star-color;
+                            }
+                        }
+                        & button{
+                            border: none;
+                            background: none;
+                            cursor: pointer;
+                            &:hover{
+                                color: $theme-color;
+                            }
+                        }
+                    }
+                }
+                .review-bottom{
+                    & p{
+                        width: 93%;
+                        margin: 0;
+                        font-family: $poppins;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+    }
+}

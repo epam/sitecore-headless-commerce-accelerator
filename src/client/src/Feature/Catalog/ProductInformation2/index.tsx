@@ -15,6 +15,8 @@
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
+import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
+import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
 
 import { ProductInformationProps, ProductInformationState } from './models';
 
@@ -71,59 +73,108 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
             </div>
           )}
           {selectedTab === 'rating' && (
-            <div className="description-rating">
-              <table className="table-striped table-sm">
-                <tbody>
-                  <tr>
-                    <td>Feature name</td>
-                    <td>Best</td>
-                  </tr>
-                  <tr>
-                    <td>Feature name</td>
-                    <td>Better</td>
-                  </tr>
-                  <tr>
-                    <td>Feature name</td>
-                    <td>Good</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table className="table-striped table-lg">
-                <thead>
-                  <tr>
-                    <td>Feature</td>
-                    <td>Good</td>
-                    <td>Better</td>
-                    <td>Best</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Feature name</td>
-                    <td />
-                    <td />
-                    <td>
-                      <i className="fa fa-check" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Feature name</td>
-                    <td />
-                    <td>
-                      <i className="fa fa-check" />
-                    </td>
-                    <td />
-                  </tr>
-                  <tr>
-                    <td>Feature name</td>
-                    <td>
-                      <i className="fa fa-check" />
-                    </td>
-                    <td />
-                    <td />
-                  </tr>
-                </tbody>
-              </table>
+            <div className="row">
+              <div className="col-lg-7">
+                <div className="review-wrapper">
+                  <div className="single-review">
+                    <div className="review-img">
+                      <img src={pictureOne} alt="" />
+                    </div>
+                    <div className="review-content">
+                      <div className="review-top-wrap">
+                        <div className="review-left">
+                          <div className="review-name">
+                            <h4>White Lewis</h4>
+                          </div>
+                          <div className="review-rating">
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                          </div>
+                        </div>
+                        <div className="review-left">
+                          <button>Reply</button>
+                        </div>
+                      </div>
+                      <div className="review-bottom">
+                        <p>
+                          Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse
+                          viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="single-review child-review">
+                    <div className="review-img">
+                      <img src={pictureTwo} alt="" />
+                    </div>
+                    <div className="review-content">
+                      <div className="review-top-wrap">
+                        <div className="review-left">
+                          <div className="review-name">
+                            <h4>White Lewis</h4>
+                          </div>
+                          <div className="review-rating">
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                            <i className="fa fa-star" />
+                          </div>
+                        </div>
+                        <div className="review-left">
+                          <button>Reply</button>
+                        </div>
+                      </div>
+                      <div className="review-bottom">
+                        <p>
+                          Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse
+                          viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-5">
+                <div className="ratting-form-wrapper pl-50">
+                  <h3>Add a Review</h3>
+                  <div className="ratting-form">
+                    <form action="#">
+                      <div className="star-box">
+                        <span>Your rating:</span>
+                        <div className="ratting-star">
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                          <i className="fa fa-star" />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="rating-form-style mb-10">
+                            <input placeholder="Name" type="text" />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="rating-form-style mb-10">
+                            <input placeholder="Email" type="email" />
+                          </div>
+                        </div>
+                        <div className="col-md-12">
+                          <div className="rating-form-style form-submit">
+                            <textarea name="Your Review" placeholder="Message" defaultValue={''} />
+                            <input type="submit" defaultValue="Submit" />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -35,10 +35,9 @@ SharedFields:
           uid="{DE519120-CAC4-47CA-B132-4C2DE8367CE2}"
           s:id="{8FA2E8E2-6998-4A1C-AC65-34FAF9CCB6B7}" />
         <r
-          uid="{06A37830-2904-4F4E-819B-26B6F631C2E8}"
-          s:ds=""
-          s:id="{6D8C1A60-5527-4462-9F7E-2376DC7AD12E}"
-          s:par="" />
+          uid="{06A37830-2904-4F4E-819B-26B6F631C2E8}">
+          <p:d />
+        </r>
         <r
           uid="{A5BED5B3-EE5E-4281-86A7-076450113EE1}"
           s:ds=""
@@ -49,6 +48,18 @@ SharedFields:
           uid="{81A550A2-9194-420B-A3CD-E37CA90006E3}"
           p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
           s:id="{D014BF17-DE93-4C8F-B41D-ED89DF30705C}" />
+        <r
+          uid="{D8830798-2CEC-4965-9841-814483AF86CC}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:ds=""
+          s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
+          s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class&amp;Third Column Class"
+          s:ph="/main-content" />
+        <r
+          uid="{413F9EAA-53B5-49D5-84C8-E9F674EF3763}"
+          p:after="r[@uid='{D8830798-2CEC-4965-9841-814483AF86CC}']"
+          s:id="{30809A8E-0137-43CD-93B1-6C2431A80E86}"
+          s:ph="/main-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
         <r
           uid="{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}"
           s:id="{6C375BDB-2E93-42A7-BFA3-D9666695D257}" />
@@ -73,18 +84,6 @@ SharedFields:
         <r
           uid="{8A675429-673A-4837-ACB9-D3E729B137DA}"
           s:id="{837D101F-3337-4AC7-87F7-03F8F8F98C6C}" />
-        <r
-          uid="{D8830798-2CEC-4965-9841-814483AF86CC}"
-          p:after="r[@uid='{8A675429-673A-4837-ACB9-D3E729B137DA}']"
-          s:ds=""
-          s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"
-          s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
-          s:ph="/main-content" />
-        <r
-          uid="{413F9EAA-53B5-49D5-84C8-E9F674EF3763}"
-          p:after="*[1=2]"
-          s:id="{30809A8E-0137-43CD-93B1-6C2431A80E86}"
-          s:ph="/main-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
       </d>
     </r>
 Languages:

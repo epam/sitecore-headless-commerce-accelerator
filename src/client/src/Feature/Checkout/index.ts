@@ -14,6 +14,7 @@
 
 export * from './AddToCart';
 export * from './Cart';
+export * from './Cart2';
 export * from './OrderConfirmation';
 export * from './Billing';
 export * from './Shipping';

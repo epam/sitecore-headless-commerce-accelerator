@@ -12,20 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import classnames from 'classnames';
-import * as React from 'react';
-
-import './styles.scss';
-
-interface Props {
-  loading: boolean;
-}
-
-export default ({ loading }: Props) => {
-  return (
-    <>
-      <div className={classnames('progress-bar')} />
-      {loading && <div className="loading-overlay" />}
-    </>
-  );
-};
+export * from './Quantity';

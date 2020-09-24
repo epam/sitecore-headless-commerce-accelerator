@@ -12,20 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import classnames from 'classnames';
-import * as React from 'react';
+import * as JSS from 'Foundation/ReactJss';
 
-import './styles.scss';
+import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
+import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
-interface Props {
-  loading: boolean;
+export interface QuantityProps {
+  cartLine: ShoppingCart.ShoppingCartLine;
+  UpdateCartLine: (model: ShoppingCartApi.CartItemDto) => void;
+  RemoveCartLine: (model: ShoppingCart.ShoppingCartLine) => void;
 }
 
-export default ({ loading }: Props) => {
-  return (
-    <>
-      <div className={classnames('progress-bar')} />
-      {loading && <div className="loading-overlay" />}
-    </>
-  );
-};
+export interface QuantityState extends JSS.SafePureComponentState {
+  quantityString: string;
+}

@@ -20,7 +20,7 @@ SharedFields:
           s:ph="main-content" />
         <r
           uid="{8B6F9B41-8708-4E97-936A-F44F5E079902}"
-          p:after="*[1=2]"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
           s:ds=""
           s:id="{5FBFBE55-26DB-4ABA-A140-1093BF843B3A}"
           s:par=""

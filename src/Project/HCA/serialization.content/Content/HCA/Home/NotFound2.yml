@@ -19,6 +19,10 @@ SharedFields:
           s:id="{EE8075E4-B911-48C4-AB7C-4FF5582116E9}"
           s:ph="/main-content/w-col-wide-{C65D2619-1B5A-488D-AC1B-19C3C9911823}-0" />
         <r
+          uid="{06A37830-2904-4F4E-819B-26B6F631C2E8}">
+          <p:d />
+        </r>
+        <r
           uid="{C65D2619-1B5A-488D-AC1B-19C3C9911823}"
           p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
           s:id="{FCCB20BD-B6E5-45ED-84AC-270ED4837355}"

@@ -1,0 +1,158 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss-new/_mixins';
+
+.orderSummary {
+  margin-top: 25px;
+
+  .column {
+    padding: 45px 30px 50px;
+    border: 1px solid $summary-table-border-color;
+    border-radius: 5px;
+    background-color: $summary-table-background;
+    margin-top: 30px;
+  }
+
+  .tax {
+    .titleWrap {
+      position: relative;
+      margin-bottom: 10px;
+      &-title {
+        font-size: 18px;
+        font-weight: 500;
+        display: inline-block;
+        margin: 0;
+        padding-right: 18px;
+        position: relative;
+        z-index: 99;
+        background-color: $summary-table-background;
+      }
+      &::before {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        content: "";
+        transition: all .4s ease 0s;
+        background-color: #e3e1e1;
+      }
+    }
+  }
+
+  .subTitleWrap {
+    margin: 10px 0;
+  }
+
+  .countrySelectWrapper {
+    margin: 0 0 26px;
+    > label {
+      font-weight: 400;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+    }
+    > select {
+      font-size: 12px;
+      width: 100%;
+      height: 40px;
+      padding: 0 50px 0 15px;
+      cursor: pointer;
+      color: $order-table-text-color;
+      border: 1px solid $summary-table-border-color;
+      box-shadow: none;
+      -webkit-appearance: none;
+      background: transparent;
+    }
+  }
+
+  .zipCodeWrapper {
+    margin: 0 0 26px;
+    > label {
+      font-weight: 400;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+    }
+    > input {
+      height: 40px;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+      font-size: 14px;
+      width: 100%;
+      color: $summary-table-text-color;
+      box-shadow: none;
+    }
+  }
+
+  .checkoutWrapper {
+    display: flex;
+    justify-content: center;
+    > button {
+      width: 100%;
+    }
+  }
+
+  .cartBtn {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 42px 12px;
+    cursor: pointer;
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    background-color: $summary-table-action-hover;
+    &:hover {
+      background-color: $order-table-text-color;
+    }
+    .checkout {
+      padding: 18px 10px 17px;
+    }
+  }
+
+  .subTotal {
+    margin: 36px 0 27px;
+    display: flex;
+    justify-content: space-between;
+    > label {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    > span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .total {
+    margin: 0 0 25px;
+    color: $summary-table-action-hover;
+    display: flex;
+    justify-content: space-between;
+    > label {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    > span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+}

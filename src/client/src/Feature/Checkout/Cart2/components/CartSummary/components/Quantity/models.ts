@@ -12,16 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddToCart';
-export * from './Cart';
-export * from './Cart2';
-export * from './OrderConfirmation';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderHistory';
-export * from './WishList';
-export * from './CategoryLanding';
-export * from './GoToCheckout';
+import * as JSS from 'Foundation/ReactJss';
+
+import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
+import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+
+export interface QuantityProps {
+  cartLine: ShoppingCart.ShoppingCartLine;
+  UpdateCartLine: (model: ShoppingCartApi.CartItemDto) => void;
+  RemoveCartLine: (model: ShoppingCart.ShoppingCartLine) => void;
+}
+
+export interface QuantityState extends JSS.SafePureComponentState {
+  quantityString: string;
+}

@@ -12,16 +12,5 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddToCart';
-export * from './Cart';
-export * from './Cart2';
-export * from './OrderConfirmation';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderHistory';
-export * from './WishList';
-export * from './CategoryLanding';
-export * from './GoToCheckout';
+export * from './CartSummary';
+export * from './OrderSummary';

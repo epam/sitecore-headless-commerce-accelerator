@@ -18,6 +18,8 @@ export interface BreadcrumbsProps {
   currentPageName?: Jss.GraphQLField<Jss.TextField>;
 }
 
-export interface BreadcrumbsState extends Jss.SafePureComponentState {}
+export interface BreadcrumbsState extends Jss.SafePureComponentState {
+  showBreadcrumbs: boolean;
+}
 
 export interface AppState extends Jss.SitecoreState {}

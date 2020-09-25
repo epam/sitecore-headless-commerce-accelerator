@@ -20,7 +20,23 @@ import { BreadcrumbsProps, BreadcrumbsState } from './models';
 
 import './styles.scss';
 
+const homeName = 'Home';
 export default class BreadcrumbsComponent extends JSS.SafePureComponent<BreadcrumbsProps, BreadcrumbsState> {
+  public constructor(props: BreadcrumbsProps) {
+    super(props);
+    this.state = {
+      showBreadcrumbs: true,
+    };
+  }
+
+  public componentDidMount() {
+    if (((this.props.currentPageName as unknown) as string) === homeName) {
+      this.setState({
+        showBreadcrumbs: false,
+      });
+    }
+  }
+
   protected safeRender() {
     const { currentPageName } = this.props;
     return (
@@ -28,7 +44,7 @@ export default class BreadcrumbsComponent extends JSS.SafePureComponent<Breadcru
         <span>
           <span>
             <a aria-current="page" className="active" href="/">
-              Home
+              {homeName}
             </a>
             <span className="slash">/</span>
           </span>

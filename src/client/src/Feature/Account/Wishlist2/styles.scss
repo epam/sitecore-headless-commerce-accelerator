@@ -16,9 +16,7 @@
 
 .wishlist-container{
   font-family: $poppins;
-  padding: 0px;
-  margin-top: 14px;
-  margin-bottom: 100px;
+  padding: 90px 0px 100px 0px;
 
   & table{
     margin-bottom: 0px;
@@ -46,6 +44,7 @@
   }
   &:nth-child(4){
     text-align: center;
+    padding-right: 47px;
   }
 }
 .wishlist_table_row{
@@ -56,12 +55,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
   justify-content: space-around;
-  margin-top: 40px;
   
   .heart-icon{
-    margin-bottom: 1px;
+    margin-bottom: 30px;
     i{
       font-size: 140px;
       line-height: 1;
@@ -85,6 +82,7 @@
   font-family: $poppins;
   font-weight: 500;
   font-size: 14px;
+  margin-top: 30px;
 }
 .wishlist_btn-empty:hover{
   background-color: #A749FF;
@@ -128,10 +126,6 @@
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-
-  &-container{
-    padding: 20px 0;
-  }
 
   &-title{
     border-bottom: none;

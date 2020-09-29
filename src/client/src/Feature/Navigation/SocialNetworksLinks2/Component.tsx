@@ -42,6 +42,6 @@ export default class SocialNetworksLinksComponent extends JSS.SafePureComponent<
             })}
           </ul>
         </div>
-      );
+    );
     }
   }

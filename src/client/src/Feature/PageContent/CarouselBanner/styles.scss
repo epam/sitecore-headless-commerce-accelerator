@@ -13,7 +13,6 @@
 //    limitations under the License.
 
 @import 'Foundation/UI/common/scss-new/_variables';
-
 .slider-area {
     &:hover .nav-style-1 .ht-swiper-button-nav {
       visibility: visible;
@@ -95,8 +94,17 @@
   }
 
   .nav-style {
+    &:hover .ht-swiper-button-nav {
+      visibility: visible;
+      opacity: 1;
+    }
     .ht-swiper-button-nav {
-      font-size: 80px;
+      i {
+        font-size: 80px;
+        @media #{$xs-layout} {
+          font-size: 50px;
+        }
+      }
 
       position: absolute;
       top: 50%;
@@ -150,6 +158,7 @@
         }
         @media #{$xs-layout} {
           right: 15px;
+          font-size: 50px;
         }
       }
     }

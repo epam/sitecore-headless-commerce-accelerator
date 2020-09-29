@@ -28,7 +28,7 @@ export class CarouselItem extends JSS.SafePureComponent<CarouselItemProps, Carou
         className={`single-slider slider-height d-flex align-items-center bg-img ${sliderClass ? sliderClass : ''}`}
         style={{ backgroundImage: `url(${banner.image})` }}
       >
-        <div className="banner_container">
+        <div className="banner-container">
           <div className="col-xl-6 col-lg-7 col-md-8 col-12 ml-auto slider-content_container">
             <div className="slider-content slider-animated text-center">
               <h3 className="animated">{banner.title}</h3>

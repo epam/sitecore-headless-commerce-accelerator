@@ -13,12 +13,29 @@
 //    limitations under the License.
 
 @import 'Foundation/UI/common/scss-new/_variables';
+/* Animation */
+@keyframes fadeInUp {
+  from {
+      transform: translate3d(0,40px,0)
+  }
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+@-webkit-keyframes fadeInUp {
+  from {
+      transform: translate3d(0,40px,0)
+  }
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
 
-.banner_container{
+.banner-container{
   width: 100%;
   max-width: 1200px;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   @media #{$sm-layout} {
@@ -30,6 +47,9 @@
 .single-slider {
     display: flex;
     align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     @media #{$xl-layout} {
       background-position: 50%;
     }
@@ -68,47 +88,47 @@
     &_container{
       margin-left: auto;
       float: none !important;
-      max-width: 66.6%;
+      flex: 0 0 50%;
+      max-width: 50%;
       @media (max-width: 767px) {
         padding: 0;
         margin: 0;
       }
     }
+    .animated { 
+      animation-duration: 1s;
+      animation-fill-mode: both;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+    }
     h3 {
+      opacity: 0;
       font-size: 24px;
       font-weight: 500;
-
       position: relative;
-
       display: inline-block;
-
       margin: 0;
       &::before {
         position: absolute;
         top: 16px;
         left: -110px;
-
         width: 80px;
         height: 2px;
-
         content: "";
-
         background-color: #000000;
       }
       &::after {
         position: absolute;
         top: 16px;
         right: -110px;
-
         width: 80px;
         height: 2px;
-
         content: "";
-
         background-color: #000000;
       }
     }
     h1 {
+      opacity: 0;
       font-size: 72px;
       line-height: 56px;
 
@@ -129,15 +149,15 @@
       }
     }
     p {
+      opacity: 0;
       font-size: 18px;
-
       margin: 0 0 44px;
-
       color: #010101;
     }
     .slider-btn {
       position: relative;
       a {
+        opacity: 0;
         font-size: 16px;
         line-height: 1;
         display: inline-block;
@@ -179,31 +199,31 @@
     }
   }
 
-  .slider-section.active {
+  .swiper-slide-active {
     .slider-animated {
       h3 {
         -webkit-animation-name: fadeInUp;
                 animation-name: fadeInUp;
-        -webkit-animation-delay: 0.5s;
-                animation-delay: 0.5s;
+        -webkit-animation-delay: 1s;
+                animation-delay: 1s;
       }
       h1 {
-        -webkit-animation-name: fadeInUp;
-                animation-name: fadeInUp;
-        -webkit-animation-delay: 1.0s;
-                animation-delay: 1.0s;
-      }
-      a {
         -webkit-animation-name: fadeInUp;
                 animation-name: fadeInUp;
         -webkit-animation-delay: 1.3s;
                 animation-delay: 1.3s;
       }
-      & img {
+      p {
         -webkit-animation-name: fadeInUp;
                 animation-name: fadeInUp;
-        -webkit-animation-delay: 0.8s;
-                animation-delay: 0.8s;
+        -webkit-animation-delay: 1.5s;
+                animation-delay: 1.5s;
+      }
+      .slider-btn a {
+        -webkit-animation-name: fadeInUp;
+                animation-name: fadeInUp;
+        -webkit-animation-delay: 1.6s;
+                animation-delay: 1.6s;
       }
     }
   }

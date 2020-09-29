@@ -33,7 +33,7 @@
   }
 }
 
-@media #{$footer-switch-mode} {
+@media #{$footer-switch-mode-min} and #{$footer-switch-mode} {
   .footer-copyright-container {
     .footer-copyright {
       max-width: unset;

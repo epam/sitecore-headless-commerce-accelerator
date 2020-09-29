@@ -33,6 +33,8 @@ export interface ProductVariantsProps
   extends ProductVariantsOwnProps,
     ProductVariantsStateProps,
     ProductVariantsDispatchProps {}
-export interface ProductVariantsState extends JSS.SafePureComponentState {}
+export interface ProductVariantsState extends JSS.SafePureComponentState {
+  firstVariantClassname: string;
+}
 
 export interface AppState extends ProductVariant.ProductVariantGlobalState {}

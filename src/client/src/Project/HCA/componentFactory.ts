@@ -105,6 +105,7 @@ components.set('Shopping Cart 2', Checkout.Cart2);
 components.set('Billing', Checkout.Billing);
 components.set('Shipping', Checkout.Shipping);
 components.set('Order Summary', Checkout.OrderInformation);
+components.set('Order Summary 2', Checkout.OrderInformation2);
 components.set('Order Confirmation', Checkout.OrderConfirmation);
 components.set('Order History', Checkout.OrderHistory);
 components.set('Payment', Checkout.Payment);
@@ -114,6 +115,11 @@ components.set('Go To Checkout 2', Checkout.GoToCheckout);
 
 // Checkout renderings 2
 components.set('Add To Cart 2', Checkout.AddToCart);
+components.set('Billing 2', Checkout.Billing2);
+components.set('Shipping 2', Checkout.Shipping2);
+components.set('Checkout Navigation 2', Checkout.CheckoutNavigation2);
+components.set('Payment 2', Checkout.Payment2);
+components.set('Order Confirmation 2', Checkout.OrderConfirmation2);
 
 // Account renderings
 components.set('Sign-up Form', Account.SignUpForm);

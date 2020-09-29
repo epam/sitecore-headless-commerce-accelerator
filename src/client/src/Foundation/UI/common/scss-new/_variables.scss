@@ -48,7 +48,8 @@ $heading-color: #000000;
 // Theme Color
 $theme-color: #a749ff;
 $second-color-light: #999999;
-
+$main-color-light: #a749ff;
+$main-color: #a749ff;
 //- Focus color
 $focus-color: #db1628;
 $focus-color-dark: #ed6382;
@@ -62,6 +63,7 @@ $second-color-dark: #191919;
 
 // Breadcrumbs color
 $breadcrumbs-bar-color: #f7f7f7;
+$checkout-area-color: #d8d8d8;
 // Responsive Variables
 $xl-layout: "only screen and (min-width: 1200px) and (max-width: 1365px)";
 $xs-layout: "only screen and (max-width: 767px)";
@@ -82,7 +84,14 @@ $header-switch-mode: "(max-width: 1024px)";
 $header-switch-mobile-mode: "(max-width: 1101px)";
 $header-switch-padding-mobile-mode: "(max-width: 991px) and (min-width: 768px)";
 $recommended-product-border-color:  #ededf1;
-
+$checkout-form-font-color: #242424;
+$checkout-back-button: #666666;
+$checkout-text-color: #212121;
+$order-form-background-color: #f9f9f9;
+$checkout-title-background-color: #f8f9f9;  
+$checkout-confirmation-title-before-color: #e3e1e1;
+$checkout-cart-list-color: #fafafa;
+$checkout-button-second-main-color: #f2f2f2;
 // Extra small screen / phone
 //** Deprecated `$screen-xs` as of v3.0.1
 $screen-xs:                  480px;
@@ -169,6 +178,7 @@ $product-price-value: #fe5252;
 $footer-title-color: #313131;
 $product-detail-background: #ffffff;
 $font-hover-color: #ffffff;
+$print-text-color: #ffffff;
 
 //- Focus color
 $focus-color: #db1628;

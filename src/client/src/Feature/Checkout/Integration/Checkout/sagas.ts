@@ -1,13 +1,13 @@
 //    Copyright 2020 EPAM Systems, Inc.
 //
-//    Licensed under the Apache License, Version 2.0 (the "License");
+//    Licensed under the Apache License, Version 2.0 (the 'License');
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
 //
 //    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
+//    distributed under the License is distributed on an 'AS IS' BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
@@ -119,15 +119,19 @@ export function* getCheckoutData() {
 
 export function* initStep(action: Action<CurrentStepPayload>) {
   const { payload } = action;
-
+  const curUrlPath = document.location.pathname.toLowerCase();
   const stepValues: StepValues = yield select(selectors.stepValues);
 
   if (payload.type === CheckoutStepType.Billing && !stepValues.shipping) {
-    return yield put(ChangeRoute('/Checkout/Shipping'));
+    return curUrlPath.includes('checkout2')
+      ? yield put(ChangeRoute('/Checkout2/Shipping2'))
+      : yield put(ChangeRoute('/Checkout/Shipping'));
   }
 
   if (payload.type === CheckoutStepType.Payment && (!stepValues.billing || !stepValues.shipping)) {
-    return yield put(ChangeRoute('/Checkout/Shipping'));
+    return curUrlPath.includes('checkout2')
+      ? yield put(ChangeRoute('/Checkout2/Shipping2'))
+      : yield put(ChangeRoute('/Checkout/Shipping'));
   }
 
   yield put(actions.SetCurrentStep(payload));
@@ -237,6 +241,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
       paymentMethodId: '',
     },
   };
+  const curUrlPath = document.location.pathname.toLowerCase();
   yield put(actions.SubmitStepRequest());
   const { error }: Result<Base.VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
@@ -247,7 +252,9 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
       yield put(actions.SetStepValues({ payment }));
       yield put(actions.SubmitStepSuccess());
       const trackingNumber = data.confirmationId;
-      yield put(ChangeRoute(`/Checkout/Confirmation?trackingNumber=${trackingNumber}`));
+      curUrlPath.includes('checkout2')
+        ? yield put(ChangeRoute(`/Checkout2/Confirmation2?trackingNumber=${trackingNumber}`))
+        : yield put(ChangeRoute(`/Checkout/Confirmation?trackingNumber=${trackingNumber}`));
     } else {
       yield put(actions.SubmitStepFailure(placeOrderError.message, placeOrderError.stack));
     }
@@ -255,16 +262,23 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
 }
 
 export function* nextStep(type: CheckoutStepType) {
+  const curUrlPath = document.location.pathname.toLowerCase();
   if (type === CheckoutStepType.Fulfillment) {
-    yield put(ChangeRoute('/Checkout/Billing'));
+    curUrlPath.includes('checkout2')
+      ? yield put(ChangeRoute('/Checkout2/Billing2'))
+      : yield put(ChangeRoute('/Checkout/Billing'));
   }
 
   if (type === CheckoutStepType.Billing) {
-    yield put(ChangeRoute('/Checkout/Payment'));
+    curUrlPath.includes('checkout2')
+      ? yield put(ChangeRoute('/Checkout2/Payment2'))
+      : yield put(ChangeRoute('/Checkout/Payment'));
   }
 
   if (type === CheckoutStepType.Payment) {
-    yield put(ChangeRoute('/Checkout/Confirmation'));
+    curUrlPath.includes('checkout2')
+      ? yield put(ChangeRoute('/Checkout2/Confirmation2'))
+      : yield put(ChangeRoute('/Checkout/Confirmation'));
   }
 }
 

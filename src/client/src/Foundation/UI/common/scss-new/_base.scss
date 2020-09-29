@@ -1,0 +1,402 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+// base.scss - Usage: global shared styles. Extend for specific components in component css
+
+//-Some blocks need a white background color, but for now for purposes of displaying the proper background on each
+//-type of form element we have, just going to add this class to the encapsulating tag. form elements will need
+//-some parent class to know whether to display a dark or light version (ex/ buttons), so will use this
+//-class for now...  forms.scss will further define the differences in color based on the presence of this class
+//note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
+@import "./variables";
+
+.billing-shipping-info {
+  .billing-shipping-2 {
+    .post-code {
+      margin-top: 20px;
+    }
+    button {
+      background-color: #f2f2f2;
+      border: medium none;
+      color: #333;
+      margin-top: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 18px 20px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      border-radius: 50px;
+      width: 100%;
+      &:hover {
+        background-color: $theme-color;
+        color: #fff;
+      }
+      &[disabled]:hover {
+        background-color: #f2f2f2;
+        color: $second-color-light;
+      }
+    }
+    input {
+      font-size: 14px;
+      padding-right: 10px;
+      padding-left: 20px;
+      color: #333;
+      border: 1px solid #e6e6e6;
+      background: transparent none repeat scroll 0 0;
+      height: 45px;
+      box-shadow: none;
+    }
+    select {
+      height: 45px;
+      width: 100%;
+      font-family: $poppins;
+    }
+    .input-title {
+      font-family: $poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: $text-main-color;
+    }
+    margin-bottom: 20px;
+    color: #5e5e5e;
+    position: relative;
+    font-family: $poppins;
+    &.no-border {
+      border: none;
+    }
+    .button-spacing-wrap {
+      padding: 20px 20px 0;
+    }
+    p {
+      font-size: 18px;
+      margin: 0;
+      padding: 20px;
+      font-family: $poppins;
+    }
+    fieldset {
+      padding: 10px 0px;
+      &:last-child,
+      &.no-border {
+        border-bottom: none;
+      }
+    }
+    h1 {
+      background-color: #fafafa;
+      border: 1px solid #cccccc;
+      font-size: 18px;
+      line-height: 36px;
+      margin: -1px;
+      padding: 0 20px;
+      letter-spacing: 1px;
+      font-family: $poppins;
+    }
+    h1 + a.edit {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      letter-spacing: 1px;
+      font-family: $poppins;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: $poppins;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: $text-main-color;
+    }
+    ul.options {
+      li {
+        font-family: $poppins;
+        margin-bottom: 10px; // for better UX on mobile
+        @media (min-width: $screen-sm-min) {
+          display: inline-block;
+          margin-bottom: 0;
+          margin-right: 20px;
+        }
+
+        .selection-container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        /* Create a custom radio button */
+        .checkbox {
+          min-height: 0;
+          padding: 0;
+          position: relative;
+          content: "";
+          display: inline-block;
+          width: 16px;
+          height: 15px;
+          border-radius: 3px;
+          margin: 3px 16px 5px 3px;
+          border: 2px solid #888888;
+          vertical-align: middle;
+          background-color: $checkbox-bg-color;
+          transition: background-color 0.2s ease-in;
+        }
+
+        &:hover .checkbox::after {
+          position: absolute;
+          display: block;
+          content: "";
+          top: 0;
+          left: 3px;
+          width: 5px;
+          height: 8px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          border: solid #fff;
+        }
+
+        .selection-container:hover {
+          .checkbox {
+            background-color: $checkbox-selected-bg-color !important;
+            border-color: $checkbox-selected-border-color !important;
+
+            &::after {
+              position: absolute;
+              display: block;
+              content: "";
+              top: 0;
+              left: 3px;
+              width: 5px;
+              height: 8px;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              border: solid #fff;
+            }
+          }
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .selection-container input:checked ~ .checkbox {
+          background-color: $checkbox-selected-bg-color !important;
+          border-color: $checkbox-selected-border-color !important;
+
+          &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 3px;
+            width: 5px;
+            height: 8px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border: solid #fff;
+          }
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkbox:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        input:checked ~ .checkbox:after {
+          display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .checkbox:after {
+          top: 9px;
+          left: 9px;
+          width: 8px;
+          height: 8px;
+          background: white;
+        }
+      }
+    }
+    .sub-text {
+      position: relative;
+      font-family: $poppins;
+      margin-bottom: 8px; //sub text will live in the padding space of the input(s)
+      @include clearfix();
+      sub {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 14px;
+        margin: 0 0 7px;
+        color: #cccccc;
+        font-family: $poppins;
+        text-transform: none;
+      }
+    }
+    label {
+      font-size: 14px;
+      font-family: $poppins;
+      color: $text-main-color;
+
+      &.required:after {
+        content: " *";
+        font-weight: 900;
+        font-size: 10px;
+        vertical-align: super;
+      }
+    }
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
+      text-transform: none;
+    }
+    input {
+      &.tel1,
+      &.tel2 {
+        float: left;
+        width: 23%;
+        margin-right: 2%;
+        font-family: $poppins;
+        @media (min-width: $screen-ms-min) {
+          width: 20%;
+          margin-right: 5%;
+        }
+      }
+      &.tel3 {
+        float: left;
+        width: 50%;
+      }
+    }
+    a {
+      &.right-car {
+        color: #5e5e5e;
+        text-decoration: underline;
+        &:after {
+          content: " \f0da";
+          font-family: "FontAwesome";
+        }
+      }
+      &.plus {
+        color: #5e5e5e;
+        text-decoration: underline;
+        &:after {
+          content: " +";
+        }
+      }
+      &.btn {
+        width: 100%;
+      }
+    }
+    ul.summary {
+      li {
+        border-bottom: 1px solid #ccc;
+        padding: 5px 10px 2px;
+        color: #999999;
+        .name {
+          width: 65%;
+          display: inline-block;
+        }
+        .val {
+          font-weight: 900;
+          width: 35%;
+          display: inline-block;
+        }
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .payment-2 {
+    fieldset {
+      padding: 10px 0px;
+      &:last-child,
+      &.no-border {
+        border-bottom: none;
+      }
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: $poppins;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: $text-main-color;
+    }
+    button {
+      background-color: #f2f2f2;
+      border: medium none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 18px 20px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      border-radius: 50px;
+      width: 100%;
+      margin-top: 4px;
+      &:hover {
+        background-color: $theme-color;
+        color: #fff;
+      }
+      &[disabled]:hover {
+        background-color: #f2f2f2;
+        color: $second-color-light;
+      }
+    }
+    input {
+      font-size: 14px;
+      padding-right: 10px;
+      padding-left: 20px;
+      color: #333;
+      border: 1px solid #e6e6e6;
+      background: transparent none repeat scroll 0 0;
+      height: 45px;
+      box-shadow: none;
+    }
+    .credit-cards-row{
+      display: flex;
+      .credit-card-col{
+        width: 50%;
+      }
+      ul{
+        display: flex;
+        margin-left: 25px;
+        li{
+          padding: 5px;
+        }
+      }
+    }
+    select {
+      height: 45px;
+      width: 100%;
+      font-family: $poppins;
+    }
+    .expires-date{
+      display: flex;
+      .cc-month, .cc-year{
+        width: 190px;
+      }
+      .slashy{
+        margin: 0 30px;
+        padding-top: 10px;
+        font-size: 25px;
+      }
+    }
+    .security-code{
+      width: 190px;
+    }
+  }
+}

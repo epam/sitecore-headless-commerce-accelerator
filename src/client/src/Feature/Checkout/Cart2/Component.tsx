@@ -29,6 +29,19 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   public safeRender() {
     const { shoppingCartData, isLoading, sitecoreContext } = this.props;
 
+    if (!isLoading && shoppingCartData.cartLines.length === 0) {
+      return (
+        <div className="empty-cart">
+          <i className="pe-7s-cart" />
+          <div className="empty-cart-not-found-text">No items found in cart</div>
+          <div className="empty-cart-button">
+            <NavigationLink to={`/`}>
+              Shop Now
+            </NavigationLink>
+          </div>
+        </div>
+      );
+    }
     return (
       <>
         <div className="row">

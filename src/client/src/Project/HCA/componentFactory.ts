@@ -15,6 +15,7 @@
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
+import { NotFound2 } from 'Feature/Errors/NotFound2';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
 import * as StoreLocator from 'Feature/StoreLocator';
@@ -134,3 +135,6 @@ export default (componentName: string) => components.get(componentName);
 
 // Account renderings 2
 components.set('Add To Wishlist 2', Account.AddToWishlist2);
+
+// Not Found
+components.set('Not Found', NotFound2);

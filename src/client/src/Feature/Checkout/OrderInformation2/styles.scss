@@ -12,22 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddToCart';
-export * from './Cart';
-export * from './Cart2';
-export * from './OrderConfirmation';
-export * from './OrderConfirmation2';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderInformation2';
-export * from './OrderHistory';
-export * from './WishList';
-export * from './CategoryLanding';
-export * from './GoToCheckout';
-export * from './CheckoutNavigation2';
-export * from './Billing2';
-export * from './Shipping2';
-export * from './Payment2';
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss-new/_mixins";
+
+h3.your-order{
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.order-information-2 {
+    padding: 38px 45px 44px;
+    background: #f6f6f6;
+    .header-information {
+        display: flex;
+        justify-content: space-between;
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+        }
+    }
+}

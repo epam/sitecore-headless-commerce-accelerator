@@ -1,0 +1,100 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "Foundation/UI/common/scss-new/_variables";
+
+.thank-you-bg-wrapper-2 {
+  background-color: #fff;
+  width: 100%;
+  .btn-order-print-2 {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 15px 0 15px;
+    display: none;
+    background-color: $theme-color;
+    @media (min-width: $screen-md-min) {
+      //1024+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-weight: 500;
+      line-height: 1;
+      z-index: 9;
+      width: 100%;
+      padding: 18px 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: $print-text-color;
+      border: none;
+      border-radius: 50px;
+      background: none;
+      background-color: $theme-color;
+    }
+  
+    i {
+      font-size: 25px;
+      color: $print-text-color;
+    }
+  
+    &:hover {
+      background-color: $text-main-color;
+      color: $print-text-color;
+    }
+    span {
+      color: $print-text-color;
+      font-weight: 500;
+      font-size: 14px;
+      font-family: $poppins;
+    }
+  }  
+}
+
+/* if necessary: class to remove the right and left padding 15px from bootstrap grid */
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.thank-you-content {
+  width: 100%;
+  padding: 90px 0 25px 0;
+  font-family: $poppins;
+  float: left;
+  .thank-you-col1 {
+    width: 100%;
+  }
+
+  .thank-you-col2 {
+    width: 100%;
+  }
+
+  .thank-you-text1 {
+    color: $text-main-color;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: $poppins;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .thank-you-text2 {
+    color: $text-main-color;
+    font-size: 18px;
+    font-family: $poppins;
+    &_bold{
+      font-weight: 600;
+    }
+  }
+}
+

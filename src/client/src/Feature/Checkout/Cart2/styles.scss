@@ -25,3 +25,36 @@
 .last-row {
   margin-bottom: 100px;
 }
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 90px 0;
+  > i {
+    font-size: 140px;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+  &-not-found-text {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  &-button {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 30px;
+    padding: 10px 30px;
+    -webkit-transition: .3s;
+    transition: .3s;
+    background-color: $button-color;
+    > a, :hover {
+      color: $button-text-color;
+    }
+    &:hover {
+      background-color: $not-found-code;
+    }
+  }
+}

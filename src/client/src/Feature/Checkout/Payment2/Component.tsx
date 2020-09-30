@@ -42,8 +42,12 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
   }
 
   public safeRender() {
-    const { isSubmitting } = this.props;
+    const { isSubmitting, paymentStatusFailed } = this.props;
     const { formIsValid } = this.state;
+
+    if (paymentStatusFailed) {
+      this.setState({ formIsValid: false });
+    }
 
     return (
       <Form className="thick-theme">

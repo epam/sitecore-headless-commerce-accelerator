@@ -23,7 +23,7 @@ import './styles.scss';
 
 export class CartLinesSummary extends Jss.SafePureComponent<CartLinesSummaryProps, CartLinesSummaryState> {
   public safeRender() {
-    const { cartLines} = this.props;
+    const { cartLines } = this.props;
 
     return (
       <ul className="cart2">

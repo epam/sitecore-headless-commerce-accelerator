@@ -160,8 +160,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                       maxLength={100}
                     />
                   ) : (
-                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                    )}
+                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>

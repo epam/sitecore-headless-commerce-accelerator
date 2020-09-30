@@ -81,9 +81,6 @@
       .logo {
         display: none;
       }
-      .navigation {
-        padding-top: 100px;
-      }
       .navigation-buttons_item.search {
         @media #{$header-switch-mobile-mode} {
           a:first-child {

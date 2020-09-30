@@ -48,7 +48,7 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
           <div className="row">
             <div className="col-md-12">
               <div className="order-summary">
-                  <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
+                <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
                 <div className="product-container-2">
                   <table>
                     <thead>
@@ -70,9 +70,7 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                         }
 
                         return (
-                          <tr
-                            key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}
-                          >
+                          <tr key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}>
                             <td className="product-image">
                               <img className="image-border" src={imageUrl} alt="Product image" />
                             </td>
@@ -89,10 +87,7 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                   <span
                                     className={classnames({ 'color-name': true, 'selected': true })}
                                     style={{
-                                      background: resolveColor(
-                                        cartLine.variant.properties.color,
-                                        productColors,
-                                      ),
+                                      background: resolveColor(cartLine.variant.properties.color, productColors),
                                     }}
                                   />
                                 </span>
@@ -129,7 +124,7 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
             </div>
           </div>
         </section>
-      </div >
+      </div>
     );
   }
 }

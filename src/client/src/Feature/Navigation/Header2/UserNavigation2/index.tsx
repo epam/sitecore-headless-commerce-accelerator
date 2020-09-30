@@ -19,6 +19,7 @@ import { NavigationLink } from 'Foundation/UI';
 
 import { CartButton2 } from '../CartButton2';
 import { MenuButton } from '../MenuButton';
+import { NavigationSearch2 } from '../NavigationSearch2';
 import { UserButton2 } from '../UserButton2';
 import { WishlistButton2 } from '../WishlistButton2';
 
@@ -30,6 +31,7 @@ class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps,
   protected safeRender() {
     return (
       <nav className="navigation-buttons">
+        <NavigationSearch2 />
         <UserButton2 />
         <div className="navigation-buttons_item store-locator">
           <NavigationLink to="/storelocator2">

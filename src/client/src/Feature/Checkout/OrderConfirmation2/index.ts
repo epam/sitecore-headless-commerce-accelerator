@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,12 @@ import { currentOrder } from 'Feature/Checkout/Integration/Order';
 import * as OrderActions from 'Feature/Checkout/Integration/Order/actions';
 
 import { OrderConfirmationComponent } from './Component';
-import { AppState, OrderConfirmationDispatchProps, OrderConfirmationOwnProps, OrderConfirmationStateProps } from './models';
+import {
+  AppState,
+  OrderConfirmationDispatchProps,
+  OrderConfirmationOwnProps,
+  OrderConfirmationStateProps,
+} from './models';
 
 const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
   const location: Location = state.router.location;
@@ -33,7 +38,7 @@ const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
   const order = currentOrder(state);
   return {
     currentOrder: order,
-    trackingNumber
+    trackingNumber,
   };
 };
 
@@ -42,13 +47,14 @@ const mapDispatchToProps = (dispatch: any) => {
     {
       GetOrder: OrderActions.GetOrder,
     },
-    dispatch
+    dispatch,
   );
 };
 
-const connectedToStore = connect<OrderConfirmationStateProps, OrderConfirmationDispatchProps, OrderConfirmationOwnProps>(
-  mapStateToProps,
-  mapDispatchToProps
-);
+const connectedToStore = connect<
+  OrderConfirmationStateProps,
+  OrderConfirmationDispatchProps,
+  OrderConfirmationOwnProps
+>(mapStateToProps, mapDispatchToProps);
 
 export const OrderConfirmation2 = compose(connectedToStore, renderingWithContext)(OrderConfirmationComponent);

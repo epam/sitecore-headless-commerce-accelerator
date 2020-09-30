@@ -106,8 +106,6 @@
           }
         }
         &:last-of-type {
-          height: 100%;
-          overflow-y: scroll;
           .header_content {
             > div.navigation-buttons_item.search {
               display: block;
@@ -116,6 +114,9 @@
               padding: 0px;
               .navigation ul.navigation-content {
                 display: block;
+                height: 100%;
+                overflow-y: scroll;
+                padding-top: 100px;
               }
             }
           }

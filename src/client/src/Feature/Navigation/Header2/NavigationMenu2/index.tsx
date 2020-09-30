@@ -150,11 +150,13 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                 </div>
               );
             })}
-          <li className="navigation_item navigation_mobile_item-contact">
-            <NavigationLink className="navigation_link" to="/home2">
-              Contact Us
-            </NavigationLink>
-          </li>
+          <div>
+            <li className="navigation_item navigation_mobile_item-contact">
+              <NavigationLink className="navigation_link" to="/home2">
+                Contact Us
+              </NavigationLink>
+            </li>
+          </div>
           <div className="dropdown-mobile dropdown-mobile-lang">
             <div className="dropdown-mobile_title">Choose Language</div>
             <select>

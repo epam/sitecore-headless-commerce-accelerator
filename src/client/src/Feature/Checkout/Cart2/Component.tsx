@@ -46,33 +46,32 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
       <>
         <div className="row">
           <div className="col-xs-12">
-            <header className="title">Your cart items</header>
+            <header className="title-cart-item">Your cart items</header>
           </div>
         </div>
         <div className="row">
-            <>
-              <div className="col-xs-12">
-                {isLoading ? (
-                  <div className="cartSummary2-loading-overlay">
-                    <div className="loading" />
-                  </div>
-                ) : (
-                  <CartSummary
-                    cartLines={shoppingCartData.cartLines}
-                    productColors={sitecoreContext.productColors}
-                    fallbackImageUrl={sitecoreContext.fallbackImageUrl}
-                  />
-                )
-              }
-              </div>
-            </>
+          <>
+            <div className="col-xs-12">
+              {isLoading ? (
+                <div className="cartSummary2-loading-overlay">
+                  <div className="loading" />
+                </div>
+              ) : (
+                <CartSummary
+                  cartLines={shoppingCartData.cartLines}
+                  productColors={sitecoreContext.productColors}
+                  fallbackImageUrl={sitecoreContext.fallbackImageUrl}
+                />
+              )}
+            </div>
+          </>
         </div>
         <div className="action_container">
           <NavigationLink to={`/`}>
             <button>Continue Shopping</button>
           </NavigationLink>
         </div>
-        <div className="row last-row">
+        <div className="row cart2-last-row">
           <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
         </div>
       </>

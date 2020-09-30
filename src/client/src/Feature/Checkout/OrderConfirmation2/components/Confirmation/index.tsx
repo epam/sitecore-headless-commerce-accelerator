@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,9 +50,13 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
                               </div>
                               <Text field={{ value: 'Address' }} tag="div" className="sub-title" />
                               <div className="sub-content">
-                                <span>{address.firstName} {address.lastName}</span>
+                                <span>
+                                  {address.firstName} {address.lastName}
+                                </span>
                                 <span>{address.address1}</span>
-                                <span>{address.city}, {address.state} {address.zipPostalCode}</span>
+                                <span>
+                                  {address.city}, {address.state} {address.zipPostalCode}
+                                </span>
                               </div>
                             </div>
                             <div className="info2">
@@ -78,9 +82,13 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
                               </div>
                               <Text field={{ value: 'Address' }} tag="div" className="sub-title" />
                               <div className="sub-content">
-                                <span>{address.firstName} {address.lastName}</span>
+                                <span>
+                                  {address.firstName} {address.lastName}
+                                </span>
                                 <span>{address.address1}</span>
-                                <span>{address.city}, {address.state} {address.zipPostalCode}</span>
+                                <span>
+                                  {address.city}, {address.state} {address.zipPostalCode}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -98,19 +106,31 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
                           <div>
                             <div className="price-item">
                               <span>Subtotal</span>
-                              <span>{price.currencySymbol}{price.subtotal.toFixed(2)}</span>
+                              <span>
+                                {price.currencySymbol}
+                                {price.subtotal.toFixed(2)}
+                              </span>
                             </div>
                             <div className="price-item">
                               <span>Shipping Fees</span>
-                              <span>{price.currencySymbol}{price.shippingTotal.toFixed(2)}</span>
+                              <span>
+                                {price.currencySymbol}
+                                {price.shippingTotal.toFixed(2)}
+                              </span>
                             </div>
                             <div className="price-item">
                               <span>Taxes</span>
-                              <span>{price.currencySymbol}{price.taxTotal.toFixed(2)}</span>
+                              <span>
+                                {price.currencySymbol}
+                                {price.taxTotal.toFixed(2)}
+                              </span>
                             </div>
                             <div className="price-item">
                               <span>Savings</span>
-                              <span>-{price.currencySymbol}{price.totalSavings.toFixed(2)}</span>
+                              <span>
+                                -{price.currencySymbol}
+                                {price.totalSavings.toFixed(2)}
+                              </span>
                             </div>
                             {/* <tr>
                                 <td className="tp-td1 tp-bottom-line">Total</td>

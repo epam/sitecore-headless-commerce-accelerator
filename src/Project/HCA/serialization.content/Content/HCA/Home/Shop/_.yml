@@ -4,11 +4,6 @@ Parent: "66fb80e3-b83a-4cec-b367-85dd3cc63ba4"
 Template: "0cbbb134-4025-4a51-9b46-1ab7021ccb0f"
 Path: /sitecore/content/HCA/Home/Shop/*
 DB: master
-SharedFields:
-- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
-  Hint: __Renderings
-  Type: layout
-  Value: 
 Languages:
 - Language: en
   Versions:

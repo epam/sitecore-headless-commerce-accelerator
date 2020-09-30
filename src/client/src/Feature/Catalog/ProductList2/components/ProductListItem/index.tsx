@@ -15,6 +15,7 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
+import { NavigationLink } from 'Foundation/UI';
 
 import { ProductListItemProps } from './models';
 
@@ -41,7 +42,9 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
         </div>
         <figcaption>
           <div className="brand">{product.brand}</div>
-          <h2>{product.displayName}</h2>
+          <NavigationLink to={`/product/${product.productId}`}>
+            <h2>{product.displayName}</h2>
+          </NavigationLink>
           <div className="price price--adjusted">
             <div className="price__current">
               <span className="price__currency">{product.currencySymbol}</span>

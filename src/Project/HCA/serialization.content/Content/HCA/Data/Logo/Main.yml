@@ -10,7 +10,7 @@ Languages:
   - ID: "b33b2551-09c4-454e-b2d5-6f41d878cc63"
     Hint: Image
     Value: |
-      <image mediaid="{DFB1D217-25B4-4F12-BE23-BA39451BF247}" ></image>
+      <image mediaid="{FD112A87-1379-4664-BE0F-014B23C6E598}" />
   Versions:
   - Version: 1
     Fields:

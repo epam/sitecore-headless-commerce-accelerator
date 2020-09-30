@@ -32,100 +32,50 @@ components.set('Two Column Row', Scaffolding.TwoColumnRow);
 components.set('Three Column Row', Scaffolding.ThreeColumnRow);
 
 // Home renderings
-components.set('Recommended Products', PageContent.RecommendedProducts);
-components.set('Recommended Products 2', PageContent.RecommendedProducts2);
-components.set('Banner Grid', PageContent.BannerGrid);
-components.set('Banner', PageContent.Banner);
-components.set('Clear Banner', PageContent.ClearBanner);
-components.set('Light Banner', PageContent.LightBanner);
-components.set('Modern Banner', PageContent.ModernBanner);
-
-components.set('Banner Grid 2', PageContent.BannerGrid2);
-components.set('Banner 2', PageContent.Banner2);
-components.set('Clear Banner 2', PageContent.ClearBanner2);
-components.set('Light Banner 2', PageContent.LightBanner2);
-components.set('Modern Banner 2', PageContent.ModernBanner2);
 components.set('Carousel Banner', PageContent.CarouselBanner);
+components.set('Recommended Products', PageContent.RecommendedProducts2);
 
 // Header renderings
-components.set('Header', Navigation.Header);
-components.set('Header Content', Navigation.HeaderContent);
-components.set('Logo', Navigation.Logo);
-components.set('Navigation Menu', Navigation.NavigationMenu);
-components.set('Search Box', Navigation.NavigationSearch);
-components.set('Quick Navigation', Navigation.QuickNavigation);
-components.set('User Navigation', Navigation.UserNavigation);
-
-// Header2 renderings
-components.set('Header 2', Navigation.Header2);
-components.set('Header Content 2', Navigation.HeaderContent2);
-components.set('Logo 2', Navigation.Logo2);
-components.set('Navigation Menu 2', Navigation.NavigationMenu2);
-components.set('Search Box 2', Navigation.NavigationSearch2);
-components.set('Quick Navigation 2', Navigation.QuickNavigation2);
-components.set('User Navigation 2', Navigation.UserNavigation2);
+components.set('Header', Navigation.Header2);
+components.set('Header Content', Navigation.HeaderContent2);
+components.set('Logo', Navigation.Logo2);
+components.set('Navigation Menu', Navigation.NavigationMenu2);
+components.set('Quick Navigation', Navigation.QuickNavigation2);
+components.set('User Navigation', Navigation.UserNavigation2);
 
 // Footer renderings
-components.set('Footer', Navigation.GlobalFooter);
-components.set('Copyright', Navigation.Copyright);
-components.set('Footer Links', Navigation.FooterLinks);
-components.set('Social Networks Links', Navigation.SocialNetworksLinks);
-
-// Footer2 renderings
-components.set('Footer 2', Navigation.GlobalFooter2);
-components.set('Copyright 2', Navigation.Copyright2);
-components.set('Footer Links 2', Navigation.FooterLinks2);
-components.set('Social Networks Links 2', Navigation.SocialNetworksLinks2);
+components.set('Footer', Navigation.GlobalFooter2);
+components.set('Copyright', Navigation.Copyright2);
+components.set('Footer Links', Navigation.FooterLinks2);
+components.set('Social Networks Links', Navigation.SocialNetworksLinks2);
 
 // Catalog renderings
-components.set('Find In Store', Catalog.FindInStore);
-components.set('Product Overview', Catalog.ProductOverview);
-components.set('Product Information', Catalog.ProductInformation);
-components.set('Product List', Catalog.ProductList);
-components.set('Product List 2', Catalog.ProductList2);
-components.set('Product Filters', Catalog.ProductFilters);
-components.set('Product Filters 2', Catalog.ProductFilters2);
-components.set('Product Variants', Catalog.ProductVariants);
+components.set('Product Overview', Catalog.ProductOverview2);
+components.set('Product Information', Catalog.ProductInformation2);
+components.set('Product List', Catalog.ProductList2);
+components.set('Product Filters', Catalog.ProductFilters2);
+components.set('Product Variants', Catalog.ProductVariants2);
 components.set('Products Search', Catalog.ProductsSearch);
-
-// Catalog 2 renderings
-components.set('Product Overview 2', Catalog.ProductOverview2);
-components.set('Product Information 2', Catalog.ProductInformation2);
-components.set('Product Variants 2', Catalog.ProductVariants2);
 
 // Checkout renderings
 components.set('Add To Cart', Checkout.AddToCart);
-components.set('Shopping Cart', Checkout.Cart);
-components.set('Shopping Cart 2', Checkout.Cart2);
-components.set('Billing', Checkout.Billing);
-components.set('Shipping', Checkout.Shipping);
-components.set('Order Summary', Checkout.OrderInformation);
-components.set('Order Summary 2', Checkout.OrderInformation2);
-components.set('Order Confirmation', Checkout.OrderConfirmation);
+components.set('Shopping Cart', Checkout.Cart2);
+components.set('Billing', Checkout.Billing2);
+components.set('Shipping', Checkout.Shipping2);
+components.set('Order Summary', Checkout.OrderInformation2);
+components.set('Order Confirmation', Checkout.OrderConfirmation2);
 components.set('Order History', Checkout.OrderHistory);
-components.set('Payment', Checkout.Payment);
-components.set('Checkout Navigation', Checkout.CheckoutNavigation);
+components.set('Payment', Checkout.Payment2);
+components.set('Checkout Navigation', Checkout.CheckoutNavigation2);
 components.set('Go To Checkout', Checkout.GoToCheckout);
-components.set('Go To Checkout 2', Checkout.GoToCheckout);
-
-// Checkout renderings 2
-components.set('Add To Cart 2', Checkout.AddToCart);
-components.set('Billing 2', Checkout.Billing2);
-components.set('Shipping 2', Checkout.Shipping2);
-components.set('Checkout Navigation 2', Checkout.CheckoutNavigation2);
-components.set('Payment 2', Checkout.Payment2);
-components.set('Order Confirmation 2', Checkout.OrderConfirmation2);
 
 // Account renderings
-components.set('Sign-up Form', Account.SignUpForm);
 components.set('Change Password Form', Account.ChangePassword);
 components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Login Register', Account.LoginRegister);
-export default (componentName: string) => components.get(componentName);
-
-// Account renderings 2
-components.set('Add To Wishlist 2', Account.AddToWishlist2);
 
 // Not Found
 components.set('Not Found', NotFound2);
+
+export default (componentName: string) => components.get(componentName);

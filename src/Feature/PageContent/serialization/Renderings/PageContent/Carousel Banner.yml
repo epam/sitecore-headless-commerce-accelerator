@@ -1,8 +1,8 @@
 ﻿---
 ID: "388c4053-785c-474b-8598-60b62faf0947"
-Parent: "d31ae838-9062-4e27-a452-fe93f255e212"
+Parent: "1ced522b-7a0a-47c4-8cc7-680e3906a1b6"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/PageContent 2/Carousel Banner
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/Carousel Banner
 DB: master
 SharedFields:
 - ID: "003a72cd-4cd6-4392-9862-41d4159929cd"

@@ -2,7 +2,7 @@
 ID: "87ddb1eb-efd3-4dfa-8388-a9fcf27a50b2"
 Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
 Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
-Path: /sitecore/content/HCA/Home/Store Locator
+Path: /sitecore/content/HCA/Home/StoreLocator
 DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"

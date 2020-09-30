@@ -34,7 +34,7 @@ class UserNavigationComponent extends JSS.SafePureComponent<UserNavigationProps,
         <NavigationSearch2 />
         <UserButton2 />
         <div className="navigation-buttons_item store-locator">
-          <NavigationLink to="/storelocator2">
+          <NavigationLink to="/storelocator">
             <i className="pe-7s-map-marker" />
           </NavigationLink>
         </div>

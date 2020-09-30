@@ -18,16 +18,12 @@ import * as ReactDOMServer from 'react-dom/server';
 const Html = ({ component, initialState, distPath, path }: any) => {
   const content = component ? ReactDOMServer.renderToString(component) : '';
 
-  const arrayCurrentPathSplitted = path.split('/');
-  const categoryPageName = arrayCurrentPathSplitted ? arrayCurrentPathSplitted[1] : '';
-  const isRedesignPage = categoryPageName && categoryPageName.slice(-1) === '2';
-
   return (
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
-        {isRedesignPage && <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />}
+        <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

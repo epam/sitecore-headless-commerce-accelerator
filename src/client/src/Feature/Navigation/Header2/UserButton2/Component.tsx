@@ -46,17 +46,17 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
         </a>
         <ul className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}>
           <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/account2/login-register">
+            <NavigationLink className="account_link" to="/account/login-register">
               Login
             </NavigationLink>
           </li>
           <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/account2/login-register">
+            <NavigationLink className="account_link" to="/account/login-register">
               Register
             </NavigationLink>
           </li>
           <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/my-account">
+            <NavigationLink className="account_link" to="/account">
               My account
             </NavigationLink>
           </li>

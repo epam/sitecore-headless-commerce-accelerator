@@ -43,94 +43,82 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
     const { order, productColors, fallbackImageUrl } = this.props;
 
     return (
-      <div className="order-summary-wrapper">
+      <div className="order-summary-wrapper-2">
         <section className="container">
           <div className="row">
-            <div className="col-md-12 nopadding">
+            <div className="col-md-12">
               <div className="order-summary">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="color-title">
-                        <Text field={{ value: 'Order Summary' }} tag="h1" className="title wishlist-title" />
-                        <div className="color-bar" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-container">
-                  {order.cartLines.map((cartLine, index) => {
-                    let imageUrl = fallbackImageUrl;
+                <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
+                <div className="product-container-2">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>IMAGE</th>
+                        <th>Product Name</th>
+                        <th>QTY</th>
+                        <th>SUBTOTAL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {order.cartLines.map((cartLine, index) => {
+                        let imageUrl = fallbackImageUrl;
 
-                    if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
-                      imageUrl = cartLine.variant.imageUrls[0];
-                    } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
-                      imageUrl = cartLine.product.imageUrls[0];
-                    }
+                        if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
+                          imageUrl = cartLine.variant.imageUrls[0];
+                        } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
+                          imageUrl = cartLine.product.imageUrls[0];
+                        }
 
-                    return (
-                      <div
-                        key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}
-                        className={classnames({
-                          'product-item-bg': index % 2 === 0,
-                          'product-item-wrapper': true,
-                        })}
-                      >
-                        <div className="col-md-3">
-                          <div className="product-image">
-                            <img className="image-border" src={imageUrl} alt="Product image" />
-                          </div>
-                        </div>
-                        <div className="col-md-3">
-                          <div className="product-name">
-                            <span className="brand">{cartLine.variant.brand}</span>
-                            <span className="full-name">{cartLine.variant.displayName}</span>
-                          </div>
-                        </div>
-                        <div className="col-md-3">
-                          <div className="product-features">
-                            {cartLine.variant.properties.color && (
-                              <span className="color">
-                                <Text field={fields.colorTitle} tag="span" className="color-title" />
-                                <span
-                                  className={classnames({ 'color-name': true, 'selected': true })}
-                                  style={{
-                                    background: resolveColor(
-                                      cartLine.variant.properties.color,
-                                      productColors,
-                                    ),
-                                  }}
-                                />
+                        return (
+                          <tr key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}>
+                            <td className="product-image">
+                              <img className="image-border" src={imageUrl} alt="Product image" />
+                            </td>
+                            <td className="product-name">
+                              <div>
+                                <div className="brand">{cartLine.variant.brand}</div>
+                                <div className="full-name">{cartLine.variant.displayName}</div>
+                              </div>
+                            </td>
+                            <td className="product-features">
+                              {cartLine.variant.properties.color && (
+                                <span className="color">
+                                  <Text field={fields.colorTitle} tag="span" className="color-title" />
+                                  <span
+                                    className={classnames({ 'color-name': true, selected: true })}
+                                    style={{
+                                      background: resolveColor(cartLine.variant.properties.color, productColors),
+                                    }}
+                                  />
+                                </span>
+                              )}
+                              {cartLine.variant.properties.size && (
+                                <span className="size">
+                                  <Text field={fields.sizeTitle} tag="strong" />{' '}
+                                  <span>{cartLine.variant.properties.size}</span>
+                                </span>
+                              )}
+                              <span className="quantity">
+                                <span>{cartLine.quantity}</span>
                               </span>
-                            )}
-                            {cartLine.variant.properties.size && (
-                              <span className="size">
-                                <Text field={fields.sizeTitle} tag="strong" />{' '}
-                                <span>{cartLine.variant.properties.size}</span>
-                              </span>
-                            )}
-                            <span className="quantity">
-                              <Text field={fields.quantityTitle} tag="strong" /> <span>{cartLine.quantity}</span>
-                            </span>
-                          </div>
-                        </div>
-                        <div className="col-md-3">
-                          <div className="product-price nopadding-bottom">
-                            <sup>{cartLine.price.currencySymbol}</sup>
-                            <span className="price-amount">{cartLine.price.total.toFixed(2)}</span>
-                            {!!cartLine.price.totalSavings && (
-                              <>
-                                <br />
-                                <Text field={fields.priceWasTitle} tag="span" />{' '}
-                                <sup className="price-was-sign">{cartLine.price.currencySymbol}</sup>
-                                <span className="price-was-amount">{cartLine.price.subtotal.toFixed(2)}</span>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                            </td>
+                            <td className="product-price nopadding-bottom">
+                              <span>{cartLine.price.currencySymbol}</span>
+                              <span className="price-amount">{cartLine.price.total.toFixed(2)}</span>
+                              {!!cartLine.price.totalSavings && (
+                                <>
+                                  <br />
+                                  <Text field={fields.priceWasTitle} tag="span" />{' '}
+                                  <span className="price-was-sign">{cartLine.price.currencySymbol}</span>
+                                  <span className="price-was-amount">{cartLine.price.subtotal.toFixed(2)}</span>
+                                </>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

@@ -42,10 +42,10 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     const { fields, commerceUser } = this.props;
     return (
       <Form className="thick-theme">
-        <section className="billing">
-          <Text field={{ value: 'Billing' }} tag="h1" />
+        <div className="billing-shipping-2">
+          <Text field={{ value: 'Billing' }} tag="h2" />
           <fieldset>
-            <Text field={{ value: 'Bill To:' }} tag="h2" />
+            <Text field={{ value: 'Bill To' }} tag="h3" />
             <div className="row">
               <div className="col-md-12">
                 <ul className="options">
@@ -82,30 +82,30 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
             }}
           >
             <fieldset>
-              <Text field={{ value: 'Billing Location:' }} tag="h2" />
+              <Text field={{ value: 'Billing Location' }} tag="h2" />
               <div className="row">
                 <div className="col-ms-6">
-                  <Text field={{ value: 'First Name:' }} tag="label" className="required" />
+                  <Text field={{ value: 'First Name' }} tag="label" className="required" />
                   <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} />
                 </div>
                 <div className="col-ms-6">
-                  <Text field={{ value: 'Last Name:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Last Name' }} tag="label" className="required" />
                   <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} />
                 </div>
               </div>
               <div className="row">
                 <div className="col-ms-6">
-                  <Text field={{ value: 'Address Line 1:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Address Line 1' }} tag="label" className="required" />
                   <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} />
                 </div>
                 <div className="col-ms-6">
-                  <Text field={{ value: 'City:' }} tag="label" className="required" />
+                  <Text field={{ value: 'City' }} tag="label" className="required" />
                   <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} />
                 </div>
               </div>
               <div className="row">
                 <div className="col-ms-6">
-                  <Text field={{ value: 'Country:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Country' }} tag="label" className="required" />
                   <Select name={FIELDS.COUNTRY} required={true}>
                     <option>Not Selected</option>
                     {fields.countries.map((country, index) => (
@@ -116,7 +116,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
                   </Select>
                 </div>
                 <div className="col-ms-6">
-                  <Text field={{ value: 'Province:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Province' }} tag="label" className="required" />
                   <DependentField>
                     {(form) => (
                       <Select name={FIELDS.PROVINCE} required={true} disabled={!form.values[FIELDS.COUNTRY]}>
@@ -129,14 +129,14 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
               </div>
               <div className="row">
                 <div className="col-ms-6">
-                  <Text field={{ value: 'Postal Code:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Postal Code' }} tag="label" className="required" />
                   <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} />
                 </div>
               </div>
               <div className="row">
                 <div className="col-ms-6">
                   <div className="sub-text">
-                    <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
+                    <Text field={{ value: 'Email Address' }} tag="label" className="required" />
                     {commerceUser && commerceUser.customerId ? (
                       <Input
                         name={FIELDS.EMAIL}
@@ -167,7 +167,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </Form>
     );
   }

@@ -12,15 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/mixins';
-
-.shipping {
+@import 'Foundation/UI/common/scss-new/_mixins';
+.checkout-container-2 {
   @include loading-overlay(99998);
 
   select {
     width: 100%;
     border: 1px solid #cccccc;
-    margin-top: 13px;
+    margin-bottom: 20px;
   }
   .btn-animated-main{
     width: 100%;

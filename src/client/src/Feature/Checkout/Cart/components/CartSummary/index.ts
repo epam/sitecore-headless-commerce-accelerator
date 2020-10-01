@@ -26,7 +26,8 @@ const mapStateToProps = (state: AppState): CartSummaryStateProps => {
   const shoppingCartState = shoppingCart(state);
   const isLoading =
     shoppingCartState.status === LoadingStatus.Loading &&
-    shoppingCartState.actionType === actionTypes.UPDATE_CART_LINE_REQUEST;
+    (shoppingCartState.actionType === actionTypes.UPDATE_CART_LINE_REQUEST ||
+      shoppingCartState.actionType === actionTypes.REMOVE_CART_LINE_REQUEST);
   return { isLoading };
 };
 

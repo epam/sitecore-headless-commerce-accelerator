@@ -23,7 +23,6 @@ export interface PaymentStateProps {
   isSubmitting: boolean;
   paymentStatusFailed: boolean;
 }
-
 export interface PaymentDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;
   SubmitStep: (stepValues: Checkout.StepValues) => void;

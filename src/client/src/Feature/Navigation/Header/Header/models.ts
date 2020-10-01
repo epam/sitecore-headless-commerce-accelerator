@@ -14,12 +14,11 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-interface HeaderParams extends JSS.BaseRenderingParam {
-  isMain: string;
-}
+interface HeaderParams extends JSS.BaseRenderingParam {}
 
 export interface HeaderProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderParams> {}
 
 export interface HeaderState extends JSS.SafePureComponentState {
-  isClosed: boolean;
+  headerTop: number;
+  scroll: number;
 }

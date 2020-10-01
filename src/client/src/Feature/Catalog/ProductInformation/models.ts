@@ -18,4 +18,6 @@ import { ProductContext } from 'Foundation/Commerce';
 
 export interface ProductInformationProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
 
-export interface ProductInformationState extends JSS.SafePureComponentState {}
+export interface ProductInformationState extends JSS.SafePureComponentState {
+  selectedTab: string;
+}

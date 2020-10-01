@@ -18,17 +18,19 @@ import * as React from 'react';
 import { NavigationLink } from 'Foundation/UI';
 
 import { CartButtonProps, CartButtonState } from './models';
-import './styles.scss';
 
 export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, CartButtonState> {
   protected safeRender() {
     const { cartQuantity } = this.props;
 
     return (
-      <NavigationLink className="cart-button user-navigation-btn" to="/cart">
-        <i className="fa fa-shopping-cart">{cartQuantity > 0 && <span className="quantity">{cartQuantity}</span>}</i>
-        <span>Shopping Cart</span>
-      </NavigationLink>
+      <div className="navigation-buttons_item cart-wrap">
+        <NavigationLink to="/cart">
+          <i className="pe-7s-shopbag">
+            <span className="quantity">{cartQuantity}</span>
+          </i>
+        </NavigationLink>
+      </div>
     );
   }
 }

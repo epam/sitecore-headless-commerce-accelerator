@@ -1,25 +1,42 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
-
-.footer-copyright {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-  color: $nav-font-second-color;
+@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss-new/_mixins";
+.footer-copyright-container {
+  .footer-copyright {
+    &_logo {
+      margin-top: 5px;
+      margin-bottom: 12px;
+    }
+    font-family: $poppins;
+    margin: 0;
+    padding-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    max-width: 188px;
+    color: $footer-title-color;
+    letter-spacing: 0.9px;
+    line-height: 24px;
+  }
 }
 
+@media #{$footer-switch-mode-min} and #{$footer-switch-mode} {
+  .footer-copyright-container {
+    .footer-copyright {
+      max-width: unset;
+    }
+  }
+}

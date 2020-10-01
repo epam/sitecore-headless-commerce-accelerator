@@ -28,7 +28,7 @@ export class OrderSummaryPriceLines extends Jss.SafePureComponent<
   public safeRender() {
     const { price, className, ...otherProps } = this.props;
     return (
-      <ul {...otherProps} className={'orderSummaryPriceLines ' + className}>
+      <ul {...otherProps} className={'orderSummaryPriceLines2 ' + className}>
         <li>
           <Text field={{ value: 'Merchandise Subtotal:' }} tag="span" className="name" />
           <span className="val">
@@ -64,8 +64,8 @@ export class OrderSummaryPriceLines extends Jss.SafePureComponent<
           </li>
         )}
         <li>
-          <Text field={{ value: 'Estimated Total:' }} tag="span" className="name" />
-          <span className="val">
+          <Text field={{ value: 'Estimated Total:' }} tag="span" className="name order-total" />
+          <span className="val total-price">
             {price.currencySymbol}
             {price.total.toFixed(2)}
           </span>

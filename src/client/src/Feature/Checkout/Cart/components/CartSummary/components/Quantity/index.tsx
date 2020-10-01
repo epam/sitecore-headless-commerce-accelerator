@@ -21,6 +21,8 @@ import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
 import { QuantityProps, QuantityState } from './models';
 
+import './styles.scss';
+
 export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState> {
   constructor(props: QuantityProps) {
     super(props);
@@ -30,17 +32,15 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     };
   }
 
-  public setQuantityString(e: React.ChangeEvent<HTMLInputElement>) {
-    const quantityStr = e.target.value;
-    const quantity = parseInt(quantityStr, 10);
-    if (!isNaN(quantity)) {
-      this.setState({
-        quantityString: quantity.toString(),
-      });
+  public setQuantityString(increase: boolean) {
+    const { quantityString } = this.state;
+    const { RemoveCartLine, cartLine } = this.props;
+    const quantity = parseInt(quantityString, 10);
+    const newQuantity = increase ? quantity + 1 : quantity - 1;
+    if (!increase && quantity === 1) {
+      RemoveCartLine(cartLine);
     } else {
-      this.setState({
-        quantityString: '',
-      });
+      this.setState({ quantityString: newQuantity.toString() }, () => this.updateCartLine(cartLine));
     }
   }
 
@@ -64,15 +64,10 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     const cartLine = this.props.cartLine;
     const quantityString = this.state.quantityString;
     return (
-      <div className="product-qty" data-autotests="productQty">
-        <label htmlFor={'qty-' + cartLine.id}>Qty:</label>
-        <input
-          type="text"
-          id={`qty-${cartLine.id}`}
-          value={quantityString}
-          onChange={(e) => this.setQuantityString(e)}
-          onBlur={(e) => this.updateCartLine(cartLine)}
-        />
+      <div className="quantity" data-autotests="productQty">
+        <input type="button" value="-" onClick={() => this.setQuantityString(false)} />
+        <input type="text" id={`qty-${cartLine.id}`} value={quantityString} disabled={true} />
+        <input type="button" value="+" onClick={() => this.setQuantityString(true)} />
       </div>
     );
   }

@@ -55,10 +55,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="loading" />
           </div>
         )}
-        <section className="shipping">
-          <Text field={{ value: 'Shipping' }} tag="h1" />
+        <div className="billing-shipping-2">
+          <Text field={{ value: 'Shipping' }} tag="h2" />
           <FieldSet>
-            <Text field={{ value: 'Ship To:' }} tag="h2" />
+            <Text field={{ value: 'Ship To' }} tag="h3" />
             <div className="row">
               <div className="col-md-12">
                 <ul className="options">
@@ -95,30 +95,30 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               return this.state.selectedAddressOption === ADDRESS_TYPE.NEW;
             }}
           >
-            <Text field={{ value: 'Shipping Location:' }} tag="h2" />
+            <Text field={{ value: 'Shipping Location' }} tag="h3" />
             <div className="row">
               <div className="col-ms-6">
-                <Text field={{ value: 'First Name:' }} tag="label" className="required" />
+                <Text field={{ value: 'First Name' }} tag="label" className="input-title required" />
                 <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} />
               </div>
               <div className="col-ms-6">
-                <Text field={{ value: 'Last Name:' }} tag="label" className="required" />
+                <Text field={{ value: 'Last Name' }} tag="label" className="input-title required" />
                 <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
-                <Text field={{ value: 'Address Line 1:' }} tag="label" className="required" />
+                <Text field={{ value: 'Address Line 1' }} tag="label" className="input-title required" />
                 <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} />
               </div>
               <div className="col-ms-6">
-                <Text field={{ value: 'City:' }} tag="label" className="required" />
+                <Text field={{ value: 'City' }} tag="label" className="input-title required" />
                 <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
-                <Text field={{ value: 'Country:' }} tag="label" className="required" />
+                <Text field={{ value: 'Country' }} tag="label" className="input-title required" />
                 <Select name={FIELDS.COUNTRY} type="text" required={true}>
                   <option value="">Not Selected</option>
                   {fields.countries.map((country, index) => (
@@ -129,7 +129,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                 </Select>
               </div>
               <div className="col-ms-6">
-                <Text field={{ value: 'Province:' }} tag="label" className="required" />
+                <Text field={{ value: 'Province' }} tag="label" className="input-title required" />
                 <DependentField>
                   {(form) => (
                     <Select name={FIELDS.PROVINCE} required={true} disabled={!form.values[FIELDS.COUNTRY]}>
@@ -142,14 +142,14 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             </div>
             <div className="row">
               <div className="col-ms-6">
-                <Text field={{ value: 'Postal Code:' }} tag="label" className="required" />
+                <Text field={{ value: 'Postal Code' }} tag="label" className="input-title required" />
                 <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <div className="sub-text">
-                  <Text field={{ value: 'Email Address:' }} tag="label" className="required" />
+                  <Text field={{ value: 'Email Address' }} tag="label" className="input-title required" />
                   {commerceUser && commerceUser.customerId ? (
                     <Input
                       name={FIELDS.EMAIL}
@@ -174,7 +174,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
           >
             <div className="row">
               <div className="col-sm-12">
-                <Text field={{ value: 'Shipping Location:' }} tag="h2" />
+                <Text field={{ value: 'Shipping Location' }} tag="3" />
                 <Select name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
                   <option disabled={true} value="">
                     Select Option
@@ -196,36 +196,41 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-sm-6">
                 <ul className="options">
                   <li>
-                    <Input type="checkbox" name={FIELDS.USE_FOR_BILLING} id="use-for-billing" />
-                    <label htmlFor="use-for-billing">Also use for billing address</label>
+                    <label htmlFor="use-for-billing" className="selection-container">
+                      <Input type="checkbox" name={FIELDS.USE_FOR_BILLING} id="use-for-billing" />
+                      <span className="checkbox" />
+                      Also use for billing address
+                    </label>
                   </li>
                   <li>
-                    <Input type="checkbox" name={FIELDS.CONTAINS_GIFT} id="contains-gift" />
-                    <label htmlFor="contains-gift">This order contains a gift</label>
+                    <label htmlFor="contains-gift" className="selection-container">
+                      <Input type="checkbox" name={FIELDS.CONTAINS_GIFT} id="contains-gift" />
+                      <span className="checkbox" />
+                      This order contains a gift
+                    </label>
                   </li>
                 </ul>
               </div>
-              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && (
+              {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && isLoggedIn && (
                 <div className="col-sm-6">
-                  {isLoggedIn ? (<>
-                    <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
-                    <label htmlFor="save-to-account">
-                      <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
-                      <Text field={{ value: 'My Account.' }} tag="strong" />
-                    </label>
-                  </>)
-                  : (<Text
-                      field={{ value: 'Create Account' }}
-                      className="right-car create"
-                      href="/account/sign-up"
-                      tag="a"
-                  />)}
+                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
+                  <label htmlFor="save-to-account">
+                    <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
+                    <Text field={{ value: 'My Account.' }} tag="strong" />
+                  </label>
+                  <br />
+                  <Text
+                    field={{ value: 'Create Account' }}
+                    className="right-car create"
+                    href="/account/sign-up"
+                    tag="a"
+                  />
                 </div>
               )}
             </div>
           </FieldSet>
           <FieldSet>
-            <Text field={{ value: 'Shipping Method:' }} tag="h2" />
+            <Text field={{ value: 'Shipping Method' }} tag="h3" />
             <div className="row">
               <div className="col-sm-12">
                 <Select name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>
@@ -245,7 +250,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-sm-12">
                 <Submit
                   disabled={isSubmitting}
-                  className="btn animated btn-animated-main"
+                  className="btn"
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}
                 >
                   <Text field={{ value: 'Save & Continue' }} tag="span" />
@@ -253,7 +258,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               </div>
             </div>
           </FieldSet>
-        </section>
+        </div>
       </Form>
     );
   }

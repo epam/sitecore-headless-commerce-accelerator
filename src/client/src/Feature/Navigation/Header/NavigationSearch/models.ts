@@ -18,4 +18,6 @@ export interface NavigationSearchProps extends JSS.Rendering {
   ChangeRoute: (newRoute: string) => void;
 }
 
-export interface NavigationSearchState extends JSS.SafePureComponentState {}
+export interface NavigationSearchState extends JSS.SafePureComponentState {
+  isOpen: boolean;
+}

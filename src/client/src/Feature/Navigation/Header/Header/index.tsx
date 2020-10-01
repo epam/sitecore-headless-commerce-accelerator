@@ -15,48 +15,77 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 
-import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
-
+import { Breadcrumbs } from 'Feature/Navigation/Breadcrumbs';
 import { HeaderProps, HeaderState } from './models';
+
 import './styles.scss';
 
 class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
+  private readonly headerRef: React.RefObject<HTMLDivElement>;
   constructor(props: HeaderProps) {
     super(props);
 
     this.state = {
-      isClosed: true,
+      headerTop: 0,
+      scroll: 0,
     };
+
+    this.headerRef = React.createRef();
+  }
+
+  public componentDidUpdate(prevProps: Readonly<HeaderProps>, prevState: Readonly<HeaderState>, snapshot?: any) {
+    this.setState({ headerTop: this.headerRef.current.offsetTop });
+  }
+  public componentDidMount() {
+    document.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  public componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  public handleScroll() {
+    this.setState({ scroll: window.scrollY });
+  }
+
+  public handleClick() {
+    const header = document.querySelector('[data-el="header"]');
+    header.classList.remove('header--active');
+
+    if (!header.classList.contains('header--inactive')) {
+      header.classList.add('header--inactive');
+    }
   }
 
   protected safeRender() {
     return (
-      <>
-        <header className={classnames('main-header', { 'toggle-closed': this.state.isClosed })}>
-          <div className="flex-container">
-            <Placeholder name="header-content" rendering={this.props.rendering} />
-          </div>
-        </header>
-        <header className="mobile-header">
-          <a panel-toggle="panel-toggle" className="toggle" onClick={(e) => this.toggleMenu()}>
-            <i className="fa fa-bars" />
-          </a>
-          <Placeholder name="navigation-content" rendering={this.props.rendering} />
-        </header>
-        <div
-          className={classnames('overlay', { 'toggle-closed': this.state.isClosed })}
-          onClick={(e) => this.toggleMenu()}
-        />
-      </>
-    );
-  }
+      <header
+        ref={this.headerRef}
+        className={classnames('header', 'header--inactive', {
+          'header--sticky': this.state.scroll > this.state.headerTop,
+        })}
+        data-el="header"
+      >
+        <div className="header-desktop">
+          <Placeholder name="header-content" rendering={this.props.rendering} />
+        </div>
 
-  protected toggleMenu() {
-    this.setState({
-      isClosed: !this.state.isClosed,
-    });
+        <div className={classnames('header_mobile mobile-menu')}>
+          <button className="mobile-menu_close" onClick={this.handleClick}>
+            <i className="pe-7s-close" />
+          </button>
+          <div className="mobile-menu_container">
+            <div className="mobile-menu_content">
+              <Placeholder name="header-content" rendering={this.props.rendering} />
+            </div>
+          </div>
+        </div>
+        <Breadcrumbs />
+      </header>
+    );
   }
 }
 

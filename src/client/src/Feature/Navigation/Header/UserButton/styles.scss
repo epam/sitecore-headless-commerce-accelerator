@@ -12,33 +12,56 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss-new/_variables';
 
-.user-button {
-  position: relative;
-}
+.account {
+  &_dropdown {
+    position: absolute;
+    z-index: $z-index-l;
+    top: 65px;
+    left: 0;
+    visibility: hidden;
+    width: 125px;
+    padding: 8px 12px 10px;
+    transition: all 0.5s ease 0s;
+    transform: rotateX(90deg);
+    transform-origin: center top 0;
+    text-align: left;
+    opacity: 0;
+    background: $bg-white none repeat scroll 0 0;
+    box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
 
-.login-form-2 {
-  position: absolute;
-  width: 670px;
-  height: 400px;
-  right: 0;
-  z-index: 1;
-  background-color: #ffffff;
-}
+    @media #{$xs-layout} {
+      top: 100%;
+      margin-top: 14px;
+    }
 
-@media #{$header-switch-mode} {
-  .login-form-2 {
-    width: 100%;
-    margin-right: 10px;
+    @media #{$header-switch-mobile-mode} {
+      top: 100%;
+      margin-top: 14px;
+    }
+
+    &--visible {
+      visibility: visible;
+      transform: rotateX(0deg);
+      opacity: 1;
+      left: 0;
+      z-index: $z-index-l;
+    }
+  }
+
+  &_link {
+    font-size: 13px;
+    line-height: 30px;
+    display: block;
+    padding: 0;
+    text-transform: capitalize;
+    color: $black;
+
+    &:hover {
+      padding-left: 5px;
+      color: $theme-color;
+    }
   }
 }
 
-.login-form {
-  position: absolute;
-  width: 350px;
-  padding: 10px 30px;
-  right: 0;
-  z-index: 1;
-  background-color: $second-color-dark;
-}

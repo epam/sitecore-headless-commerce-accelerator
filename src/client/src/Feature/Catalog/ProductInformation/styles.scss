@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,13 +14,13 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss-new/_mixins";
 
-.product-description {
-    padding-top: 40px;
+.product-description-2 {
     padding-bottom: 40px;
-    background: #fff;
+    background: $product-detail-background;
+    font-family: $poppins;
 
     // #Grid
     &-row {
@@ -29,13 +29,47 @@
     &-col {
         @include make-md-column(6);
     }
+
+    .tab {
+        border-bottom: 1px solid #d7d7d7;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+        button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button.active {
+            border-bottom: 3px solid #000;
+            background-color: transparent;
+            color: $text-main-color;
+        }
+        &-links {
+            font-family: $poppins;
+            text-transform: inherit;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0 18px;
+            padding: 0 0 12px;
+            color: $brand-font-color;
+            @media #{$sm-layout} {
+                top: 100%;
+                font-size: 16px;
+              }
+        }
+    }
     // Grid end
 
     h2 {
         font-size: 26px;
         line-height: 26px;
         margin: 0;
-        font-family: $phosphate;
         color: $title-font-color;
         text-transform: uppercase;
 
@@ -43,13 +77,13 @@
             margin-bottom: 12px;
         }
     }
-    .description-features, .description-rating {
+    .description-features,
+    .description-rating {
         margin: 0 (-$grid-gutter-width/2);
         padding: 0 $grid-gutter-width/2 18px;
         border-bottom: 1px solid #ccc;
-        max-height: 62px;
         overflow: hidden;
-        transition: max-height .2s;
+        transition: max-height 0.2s;
 
         h2 {
             padding: 18px 0;
@@ -58,14 +92,14 @@
 
             &:before {
                 content: "";
-                transition: transform .2s;
+                transition: transform 0.2s;
                 display: block;
                 height: 26px;
                 width: 4px;
                 background-color: $font-color;
                 position: absolute;
-                top: 18px;  //(62px-26px)/2, where 62px - height of the h2
-                right: 11px;  //(26px-4px)/2
+                top: 18px; //(62px-26px)/2, where 62px - height of the h2
+                right: 11px; //(26px-4px)/2
             }
             &:after {
                 content: "";
@@ -74,7 +108,7 @@
                 width: 26px;
                 background-color: $font-color;
                 position: absolute;
-                top: 29px;  //(62px-4px)/2
+                top: 29px; //(62px-4px)/2
                 right: 0;
             }
         }
@@ -91,21 +125,21 @@
                 padding: 0;
                 cursor: default;
             }
-            h2:before, h2:after {
+            h2:before,
+            h2:after {
                 content: none;
             }
         }
 
-
         &.is-open {
             max-height: 1000px;
             overflow: hidden;
-            transition: max-height .2s;
+            transition: max-height 0.2s;
 
             h2:before {
-                content: '';
+                content: "";
                 transform: rotate(90deg);
-                transition: transform .2s;
+                transition: transform 0.2s;
                 @media (min-width: $screen-md-min) {
                     content: none;
                 }
@@ -113,13 +147,12 @@
         }
     }
     .description-text {
-
         p {
-            font-size: 18px;
+            font-size: 14px;
             line-height: 28px;
-            font-family: $sans-serif;
+            font-family: $poppins;
             font-weight: 400;
-            color: $font-color;
+            color: $text-main-color;
         }
     }
     .description-features {
@@ -129,15 +162,179 @@
         }
 
         li {
-            font-size: 18px;
-            color: $font-color;
+            font-size: 14px;
+            color: $text-main-color;
+            font-family: $poppins;
+            font-weight: 500;
+            line-height: 28px;
             list-style-type: disc;
             list-style-position: inside;
         }
     }
     .description-rating {
-        table{
+        table {
+            thead {
+                font-family: $poppins;
+                font-size: 15px;
+                font-weight: 600;
+                color: $brand-font-color;
+            }
+            color: $text-main-color;
+            font-size: 14px;
+            font-family: $poppins;
+            font-weight: 400;
             margin-bottom: 0;
+        } 
+        table.table-striped.table-sm{
+            td{
+                color: $text-main-color;
+                &:last-of-type{
+                    font-weight: 700;
+                }
+            }
+        }
+        
+    }
+}
+
+.product-content{
+    .pl-50{
+        padding-left: 50px;
+        @media (max-width: $screen-sm-max) {
+            padding-left: 0px;
+            margin-top: 50px;
+        }
+    }
+    .ratting-form-wrapper{
+        & h3{
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            margin: 0;
+            font-family: $poppins;
+        }
+
+        .ratting-form{
+            .star-box{
+                display: flex;
+                margin: 6px 0 20px;
+                & span{
+                    margin: 0 15px 0 0;
+                }
+                .ratting-star{
+                    font-size: 12px;
+                    color: $review-star-color;
+                }
+            }
+            .mb-10{
+                margin-bottom: 10px;
+            }
+            .rating-form-style{
+                & input{
+                    padding: 2px 10px 2px 20px; 
+                    border: 1px solid #e6e6e6;
+                    background: transparent;
+                    font-size: 14px;
+                    width: 100%;
+                    color: $review-input-border;
+                    box-shadow: none;
+                    height: 45px;
+                    margin-bottom: 0;
+                }
+            }
+            .form-submit{
+                & textarea{
+                    height: 180px;
+                    margin-bottom: 20px;
+                    padding: 20px 10px 2px 20px;
+                    color: $review-input-border;
+                    border: 1px solid #e6e6e6;
+                    background: transparent;
+                    font-size: 14px;
+                    width: 100%;
+                    resize: vertical;
+                    overflow: auto;
+                    box-shadow: none;
+                }
+                & input{
+                    font-weight: 500;
+                    width: auto;
+                    height: auto;
+                    padding: 12px 50px;
+                    text-transform: uppercase;
+                    color: $review-text-color;
+                    border: 1px solid $theme-color;
+                    background-color: $theme-color;
+                    &:hover {
+                        border: 1px solid $review-input-border;
+                        background-color: $review-input-border;
+                    }
+                }
+            }
+        }
+    }
+
+    .review-wrapper{
+        .child-review{
+            margin-bottom: 0 !important;
+            margin-left: 70px !important;
+            @media (max-width: $screen-sm-max) {
+                margin-left: 0px !important;
+            }
+        }
+        .single-review{
+            display: flex;
+            margin: 0 0 50px;
+            .review-img{
+                flex: 0 0 90px;
+                margin: 0 15px 0 0;
+            }
+            .review-content{
+                .review-top-wrap{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 0 0 10px;
+                    .review-left{
+                        display: flex;
+                        .review-name{
+                            margin-right: 25px;
+                            & h4{
+                                font-size: 16px;
+                                font-weight: 500;
+                                line-height: 1;
+                                margin: 0;
+                            }
+                        }
+                        .review-rating{
+                            line-height: 1;
+                            & i{
+                                font-size: 12px;
+                                margin-right: 1px;
+                                color: $review-star-color;
+                            }
+                        }
+                        & button{
+                            border: none;
+                            background: none;
+                            cursor: pointer;
+                            &:hover{
+                                color: $theme-color;
+                            }
+                        }
+                    }
+                }
+                .review-bottom{
+                    & p{
+                        width: 93%;
+                        margin: 0;
+                        font-family: $poppins;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+                }
+            }
         }
     }
 }

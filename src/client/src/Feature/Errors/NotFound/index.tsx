@@ -15,18 +15,24 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
-import { AddToWishlistProps, AddToWishlistState } from './models';
+import { NavigationLink } from 'Foundation/UI';
+import { NotFoundProps, NotFoundState } from './models';
+import './styles.scss';
 
-export class AddToWishlistComponent extends JSS.SafePureComponent<AddToWishlistProps, AddToWishlistState> {
+export class NotFound extends JSS.SafePureComponent<NotFoundProps, NotFoundState> {
   protected safeRender() {
     return (
-      <button
-        title="Add to Wishlist"
-        onClick={(e) => this.props.AddWishlistItem(this.props.item)}
-        className="btn btn-main btn-add"
-      >
-        <i className="fa fa-heart-o" />
-      </button>
+      <div className="notfound">
+        <div className="notfound-404">404</div>
+        <div className="notfound-desc">Oops! Nothing was found</div>
+        <div className="notfound-subdesc">
+          The page you are looking for might have been removed had its name changed or is temporarily unavailable.
+          <NavigationLink to="/" className="notfound-subdesc-link">
+            {' '}
+            Return to homepage
+          </NavigationLink>
+        </div>
+      </div>
     );
   }
 }

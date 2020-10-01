@@ -14,31 +14,31 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables.scss';
 
-.listing-product-grid {
+.listing-product-grid-2 {
   margin-top: 20px;
   margin-bottom: 20px;
   > ul {
-    padding: 20px 0;
+    // padding: 20px 0;
     //to prevent spreading elements using max-width to items and centering them with flexbox
-    @media (max-width: $screen-ms-max) {
+    @media (max-width: 768px) {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
     }
     //switching to two column layout
-    @media (min-width: $screen-ms-min) and (max-width: 619px) {
+    @media (min-width: 480px) and (max-width: 619px) {
       justify-content: space-between;
     }
-    @media (min-width: 620px) and (max-width: $screen-ms-max) {
+    @media (min-width: 620px) and (max-width: 768px) {
       justify-content: space-around;
     }
     // switching to layout with floats (like in bootstrap for columns)
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: 768px) {
       @include clearfix;
       display: block;
-      margin: 0 (-$grid-gutter-width/2);
+      margin: 0 (-30px/2);
     }
     > li {
       &.facet {
@@ -57,18 +57,18 @@
       position: relative;
       display: block;
       width: 100%;
-      max-width: 280px;
       margin-bottom: 20px;
-      @media (min-width: $screen-ms-min) {
-        width: 48.5%;
-      }
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: 480px) {
         float: left;
-        padding: 0 ($grid-gutter-width/2);
         width: (100%/3);
       }
-      @media (min-width: $screen-lg-min) {
-        width: 25%;
+      @media (min-width: 768px) {
+        float: left;
+        width: (100%/3);
+      }
+      @media (min-width: 1310px) {
+        float: left;
+        width: (100%/3);
       }
 
       .triangle {
@@ -80,8 +80,8 @@
         width: 20px;
         height: 20px;
         background: #ebeeef;
-        border-top: 1px solid $border-color;
-        border-left: 1px solid $border-color;
+        border-top: 1px solid #d2d2d2;
+        border-left: 1px solid #d2d2d2;
         transform: rotate(45deg);
       }
       &.is-open .triangle {
@@ -89,81 +89,83 @@
       }
     }
   }
+
+  .lazyLoad {
+    position: relative;
+    height: 46px;
+    margin: 0 0 20px;
+  
+    .init-lazy-load & {
+      display: block;
+    }
+  
+    &_spinner {
+  
+      &.spinner {
+        display: none;
+        top: 0;
+        height: 15px;
+        border-radius: 0;
+        background: none;
+  
+        & .object {
+          background: #066666;
+          width: 15px;
+          height: auto;
+          margin: 0 5px;
+          border-radius: 50% 50% 50% 50%;
+  
+          &.object-one {
+            animation: object_one 1.5s infinite;
+          }
+          &.object-two {
+            animation: object_two 1.5s infinite;
+            animation-delay: 0.25s;
+          }
+          &.object-three {
+            animation: object_three 1.5s infinite;
+            animation-delay: 0.5s;
+          }
+          
+          @keyframes object_one {
+            75% {
+              transform: scale(0);
+            }
+          }
+          
+          @keyframes object_two {
+            75% {
+              transform: scale(0);
+            }
+          }
+          
+          @keyframes object_three {
+            75% {
+              transform: scale(0);
+            }
+          }
+        }
+  
+        .is-loading & {
+          display: flex;
+          align-content: space-between;
+          justify-content: center;
+        }
+      }
+    }
+    &_loadMore {
+  
+      .btn-load-more {
+        display: none;
+        margin: 0;
+  
+        .show-load-btn & {
+          display: block;
+        }
+      }
+    }
+  }
 } //section.listing-product-grid
 
 
-.lazyLoad {
-  position: relative;
-  height: 46px;
-  margin: 0 0 20px;
 
-  .init-lazy-load & {
-    display: block;
-  }
-
-  &_spinner {
-
-    &.spinner {
-      display: none;
-      top: 0;
-      height: 15px;
-      border-radius: 0;
-      background: none;
-
-      & .object {
-        background: $main-color;
-        width: 15px;
-        height: auto;
-        margin: 0 5px;
-        border-radius: 50% 50% 50% 50%;
-
-        &.object-one {
-          animation: object_one 1.5s infinite;
-        }
-        &.object-two {
-          animation: object_two 1.5s infinite;
-          animation-delay: 0.25s;
-        }
-        &.object-three {
-          animation: object_three 1.5s infinite;
-          animation-delay: 0.5s;
-        }
-        
-        @keyframes object_one {
-          75% {
-            transform: scale(0);
-          }
-        }
-        
-        @keyframes object_two {
-          75% {
-            transform: scale(0);
-          }
-        }
-        
-        @keyframes object_three {
-          75% {
-            transform: scale(0);
-          }
-        }
-      }
-
-      .is-loading & {
-        display: flex;
-        align-content: space-between;
-        justify-content: center;
-      }
-    }
-  }
-  &_loadMore {
-
-    .btn-load-more {
-      display: none;
-      margin: 0;
-
-      .show-load-btn & {
-        display: block;
-      }
-    }
-  }
-}

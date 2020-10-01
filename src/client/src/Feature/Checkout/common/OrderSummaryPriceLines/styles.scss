@@ -14,25 +14,44 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss-new/_mixins';
 
-.orderSummaryPriceLines {
+.orderSummaryPriceLines2 {
   li {
     border-bottom: 1px solid $border-color;
-    padding: 5px 10px 2px;
     color: #999999;
+    padding: 29px 0 18px 0;
+    display: flex;
+    justify-content: space-between;
     .name {
-      width: 65%;
+      max-width: 80%;
       display: inline-block;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: $poppins;
     }
     .val {
-      font-weight: 900;
-      width: 35%;
-      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .name, .val{
+      font-family: $poppins;
+      color: $checkout-text-color;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .total-price{
+      color: $theme-color;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .order-total{
+      font-size: 18px;
+      font-weight: 500;
     }
   }
   li:last-child {
-    border-bottom: none;
+    padding: 17px 0 19px 0;
   }
 }

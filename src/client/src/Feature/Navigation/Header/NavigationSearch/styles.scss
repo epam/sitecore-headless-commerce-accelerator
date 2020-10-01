@@ -12,48 +12,138 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
-form.navigation-search {
-  display: inline-flex;
-  height: 40px;
-  margin: 0px;
-  overflow: hidden;
+.header {
+  .search {
+    &_popup {
+      position: absolute;
+      z-index: $z-index-m;
+      top: 62px;
+      right: 0;
+      visibility: hidden;
+      min-width: 300px;
+      padding: 15px;
+      transition: all 0.5s ease 0s;
+      transform: rotateX(90deg);
+      transform-origin: center top 0;
+      opacity: 0;
+      background: $bg-white none repeat scroll 0 0;
+      box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+      input {
+        &::placeholder {
+          font-family: $poppins;
+        }
+        outline: medium none;
+        &:focus {
+          outline: none !important;
+          box-shadow: none!important;
+          border-color: none!important;
+        }
+        box-shadow: none;
+        border-color: none;
+      }
+      font-family: $poppins;
+      &--visible {
+        visibility: visible;
+        transform: rotateX(0deg);
+        opacity: 1;
+        z-index: $z-index-xl;
+      }
 
-  @media (min-width: $screen-md-min) {
-    width: 240px;
+      @media #{$header-switch-mobile-mode} {
+        top: 154%;
+      }
+
+      @media #{$xs-layout} {
+        top: 154%;
+        min-width: 260px;
+      }
+    }
+
+    &_form {
+      position: relative;
+      margin: 0;
+    }
+    // @todo delete important after redesign
+    &_field {
+      width: 100%;
+      margin: 0;
+      height: 45px;
+      display: block;
+      padding: 5px 72px 5px 15px;
+      transition: all 0.4s ease 0s;
+      color: $black;
+      border: 1px solid $grey-lightest;
+      outline: medium none;
+      background: transparent;
+      @media #{$header-switch-mobile-mode} {
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 9px 25px;
+        color: #222;
+        border: none;
+        background: #e6e6e6;
+      }
+    }
+
+    &_button {
+      font-size: 20px;
+      line-height: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      padding: 5px 20px 2px;
+      transition: all 0.4s ease 0s;
+      text-transform: uppercase;
+      color: $white;
+      border: none;
+      border-color: $orange;
+      background: $theme-color;
+      .fa-search {
+        display: none;
+      }
+      &:hover {
+        background-color: $bg-black;
+      }
+    }
   }
-  @media (min-width: $screen-lg-min) {
-    width: 400px;
-  }
-
-  .fa-search {
-    font-size:20px;
-    width:40px;
-    line-height: 40px;
-    text-align: center;
-  }
-
-  input[type="search"] {
-    margin:0;
-    padding: 0;
-    height:40px;
-    background: none;
-    border: none;
-    box-shadow: none;
-    font: 500 15px/30px $sans-serif;
-    color: $nav-font-color;
-
-    -webkit-appearance: none;
-    /* Placeholder text: Separate rule for Firefox. Cannot stack with WebKit's. */
-    &::-webkit-input-placeholder {color: $nav-font-color;}
-    &::-moz-placeholder {color: $nav-font-color; opacity:1;}
-    &:-ms-input-placeholder {color:$nav-font-color;}  //IE10+
-    &::-ms-input-placeholder {color:$nav-font-color;} //Edge
-    &:placeholder-shown {color:$nav-font-color;}
-
-    &:invalid {
-      box-shadow: none;
+  &_mobile {
+    .search {
+      input {
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 9px 15px 9px 20px;
+        color: #222;
+        border: none;
+        background: #e6e6e6;
+        box-shadow: none;
+        &:focus {
+          box-shadow: none;
+        }
+        &::placeholder {
+          color: $placeholder-search-input-text-color;
+          font-family: $poppins;
+        }
+      }
+      &_button {
+        background: none;
+        color: #aaa;
+        padding-right: 11px;
+        .pe-7s-search {
+          display: none;
+        }
+        .fa-search {
+          display: block;
+          font-size: 18px;
+        }
+        &:hover {
+          background-color: unset;
+        }
+      }
     }
   }
 }

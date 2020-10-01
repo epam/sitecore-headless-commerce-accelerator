@@ -12,81 +12,101 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import 'Foundation/UI/common/scss/variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
-header.main-header {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1001;
+.header {
+  text-transform: capitalize;
 
-  @media (max-width: $screen-md-min) {
-    display: block;
-    position: fixed;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: $second-color-dark;
-  }
-
-  >.flex-container {
-    display: flex;
-    flex-direction: column;
-
-    @media (max-width: $screen-md-min) {
-      flex-direction: column-reverse;
-      justify-content: flex-end;
-    }
-  }
-}
-
-header.mobile-header{
-  @media (max-width: $screen-md-min) {
-    display: flex;
-  }
-  @media (min-width: $screen-md-min) {
+  .mobile-menu {
     display: none;
-  }
+    @media #{$header-switch-mobile-mode} {
+      display: block;
+      position: fixed;
+      z-index: $z-index-xl;
+      top: 0;
+      right: 0;
+      width: 400px;
+      max-width: 100%;
+      height: 100vh;
+      padding-left: 60px;
+      transition: 0.6s;
+      transform: translateX(100%);
+      .navigation-buttons{
+        &_item{
+          display: none;
+        }
+        .navigation-buttons_item.search{
+          display: block;
+          width: 100%;
+          margin-left: 0;
+        }
 
-  height: 50px;
-  position: relative;
-  z-index: 999;
-  background: $brand-font-color;
+      }
+      &_content {
+        overflow: auto;
+        height: 100vh;
+        background-color: $bg-white;
+        box-shadow: 0 0 87px 0 rgba(0, 0, 0, 0.09);
+        .header_container {
+          .header_content {
+            .search {
+              @media #{$header-switch-mobile-mode} {
+                top: 154%;
+                visibility: visible;
+                transform: rotateX(0deg);
+                opacity: 1;
+                z-index: $z-index-xl;
+              }
+            }
+          }
+        }
+      }
 
-  >.toggle {
-    color: $font-color-light;
-    text-align: center;
+      &_close {
+        font-size: 30px;
+        line-height: 70px;
+        position: absolute;
+        z-index: $z-index-s;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 65px;
+        padding: 0;
+        text-align: center;
+        color: $white;
+        border: none;
+        background-color: $bg-grey;
 
-    &:hover {
-      color: #fff;
+        &:hover,
+        &:focus {
+          color: $white;
+        }
+        i {
+          font-size: 40px;
+          line-height: 1;
+          margin-top: 12px;
+          transition: 0.3s;
+          transform: rotate(0);
+        }
+
+        &:hover {
+          i {
+            transform: rotate(-90deg);
+          }
+        }
+      }
     }
+  }
 
-    >.fa {
-      line-height: 50px;
-      width: 50px;
-      font-size: 40px;
+  &--active {
+    .mobile-menu {
+      transform: translateX(0);
     }
   }
-}
 
-.overlay{
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  z-index: 1000;
-  background:hsla(0, 0%, 40%, 0.6);
-  @media (max-width: $screen-md-min) {
-    display: block;
-  }
-  @media (min-width: $screen-md-min) {
-    display: none;
-  }
-}
-
-.toggle-closed {
-  @media (max-width: $screen-md-min) {
-    transform: translateX(-100%);
+  &--inactive {
+    .mobile-menu {
+      transform: translateX(calc(100% + 60px));
+    }
   }
 }

@@ -12,36 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables';
 
-.navigation-logo{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
+.logo {
+  flex: 0 0 16.6%;
+  max-width: 16.6%;
+  justify-content: flex-start;
 
-.main-header{
-  .navigation-logo {
-    height: 40px;
-
-    @media (max-width: $screen-md-min) {
-      display: none;
-    }
-    @media (min-width: $screen-md-min) {
-      width: 120px;
-    }
-    @media (min-width: $screen-lg-min) {
-      width: 180px;
-    }
+  & img {
+    width: 77px;
+    height: 21px;
   }
 }
 
-
-.mobile-header>.navigation-logo {
-  height: 50px;
-  >img {
-    height: 30px;
-    width: auto;
-  }
-}

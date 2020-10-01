@@ -16,12 +16,10 @@ import * as JSS from 'Foundation/ReactJss';
 
 import * as Commerce from 'Foundation/Commerce';
 
-export interface UserButtonProps {
-  commerceUser: Commerce.User;
-}
+export interface UserButtonProps {}
 
 export interface UserButtonState extends JSS.SafePureComponentState {
-  userFormVisible: boolean;
+  isDropdownVisible: boolean;
 }
 
 export interface AppState extends JSS.SitecoreState<Commerce.UserContext> {}

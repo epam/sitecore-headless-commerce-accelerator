@@ -14,93 +14,105 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables.scss';
 
-.header {
-  display: block;
-  color: #666;
-  margin: 0;
-  border-bottom: 1px solid #D2D2D2;
-  text-transform: uppercase;
-  @include clearfix;
-
-  &_stats {
-    float: left;
-    font-size: 22px;
-    margin-bottom: 5px;
-    @media (min-width: $screen-sm-min) {
-      margin-bottom: 10px;
+.product_list_header_2{
+  .header {
+    display: block;
+    color: #666;
+    margin: 0;
+    border-bottom: 1px solid #D2D2D2;
+    text-transform: uppercase;
+    @include clearfix;
+  
+    &_stats {
+      float: left;
+      font-size: 22px;
+      margin-bottom: 5px;
+      @media (min-width: 768px) {
+        margin-bottom: 10px;
+      }
+    }
+  
+    &_sort {
+      display: none;
+      @media (min-width: 1024px) {
+        display: block;
+      }
+    }
+  
+    label {
+      color: #666666;
+      margin: 0 7px 0 0;
+    }
+  
+    .select {
+      display: inline-block;
+    }
+  
+    select {
+      text-transform: uppercase;
+      margin: 0;
+      display: inline;
+      height: 30px;
+      width: 155px;
+    }
+  
+    ul.inline > li {
+      padding-right: 0;
     }
   }
-
-  &_sort {
+  
+  .filter-labels {
+    @include clearfix;
     display: none;
-    @media (min-width: $screen-md-min) {
+    @media (min-width: 1024px) {
       display: block;
     }
-  }
-
-  label {
-    color: #666666;
-    margin: 0 7px 0 0;
-  }
-
-  .select {
-    display: inline-block;
-  }
-
-  select {
-    text-transform: uppercase;
-    margin: 0;
-    display: inline;
-    height: 30px;
-    width: 155px;
-  }
-
-  ul.inline > li {
-    padding-right: 0;
-  }
-}
-
-.filter-labels {
-  @include clearfix;
-  display: none;
-  @media (min-width: $screen-md-min) {
-    display: block;
-  }
-  width: 100%;
-  margin: 10px 0 10px 0;
-
-  &__container {
-    width: calc(100% - 150px);
-    float: left;
-  }
-  &__clear-all {
-    width: 150px;
-    float: left;
-    text-align: right;
-    .btn {
-      margin: 0;
-    }
-  }
-
-  .filter-label {
-    font-size: 14px;
-    color: #666;
-    float: left;
-    margin: 0 20px 0 0;
-    padding: 3px 6px;
-    border-radius: 3px;
-    cursor: pointer;
-    text-transform: capitalize;
+    width: 100%;
+    margin: 10px 0 10px 0;
   
-    &:hover {
-      color: #fff;
-      background: $font-color;
+    &__container {
+      width: calc(100% - 150px);
+      float: left;
+    }
+    &__clear-all {
+      width: 150px;
+      float: left;
+      text-align: right;
+      .btn {
+        margin: 0;
+      }
     }
   
-    &__text {
-      padding: 0 0 0 5px;
+    .filter-label {
+      font-size: 14px;
+      color: #666;
+      float: left;
+      margin: 0 20px 0 0;
+      padding: 3px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+      text-transform: capitalize;
+    
+      &:hover {
+        color: $font-hover-color;
+        background: $theme-color;
+        .filter-label_text {
+          color: $font-hover-color;
+        }
+      }
+    
+      &_text {
+        font-family: $poppins;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+        color: #333;
+        line-height: inherit;
+        margin: 0;
+        padding: 0 0 0 5px;
+      }
     }
-  }
+  }  
 }

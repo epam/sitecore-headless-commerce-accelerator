@@ -14,61 +14,114 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
-.cartSummary {
+@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss-new/_mixins';
+.cartSummary2 {
   @include loading-overlay(99998);
+  border: 1px solid $summary-table-border-color;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 
   &-header {
     @include clearfix;
-    padding: 0 15px;
-    margin-bottom: 10px;
-    background: #fafafa;
-    border: 1px solid $border-color;
+    padding: 0;
+    background: $summary-table-header-background;
     text-transform: uppercase;
+    border-bottom: 1px solid $summary-table-border-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   .header {
     &-title {
-      margin: 0;
-      color: $font-color;
-      font-size: 16px;
-      line-height: 36px;
-      font-family: $sans-serif;
-      font-weight: 900;
-
-      span {
-        font-weight: 400;
-      }
+      font-family: $poppins;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 22px 0px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+      text-transform: uppercase;
+      color: $summary-table-text-color;
+      border-top: none;
+      margin-bottom: 0;
     }
   }
 
-  .cartList {
+  .cartList2 {
     &-product {
-      border-bottom: 1px solid $border-color;
-      margin-bottom: 20px;
+      border-bottom: 1px solid $summary-table-border-color;
+      padding-bottom: 20px;
+      display: flex;
+      &:last-child {
+        border-bottom: 0;
+      }
     }
     .product {
       margin-bottom: 30px;
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      padding-top: 20px;
       &:first-child {
         margin-bottom: 0;
       }
 
-      &-summary {
-        padding: 0 15px;
+      .productSummary {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .amount {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-self: center;
+        font-weight: 500;
+        color: $summary-table-text-color;
+        .discount {
+          margin-right: 10px;
+          text-decoration: line-through;
+          color: $summary-table-discount-text;
+        }
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-evenly;
+        align-self: center;
+        > i {
+          color: $summary-table-action;
+          &:hover {
+            color: $summary-table-action-hover;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .quantity-group {
+        display: flex;
+        justify-content: center;
       }
 
       .product-image {
         text-align: center;
+        > img {
+          width: 150px;
+        }
         @media (max-width: 479px) {
           width: 100%;
-          padding: 0 15px;
         }
       }
       &-caption {
         @media (max-width: 479px) {
           width: 100%;
-          padding: 0 15px;
         }
+      }
+
+      .product-details {
+        align-self: center;
       }
 
       .product-heading {
@@ -76,17 +129,20 @@
 
         .heading {
           &-brand {
-            font-size: 14px;
-            font-family: $phosphate;
-            color: $brand-font-color;
+            font-family: $poppins;
             text-transform: uppercase;
+            font-size: 15px;
+            font-weight: 500;
+            color: $summary-table-text-color;
           }
           &-productTitle {
+            margin-top: 10px;
             margin: 0;
-            font-size: 20px;
-            font-family: $sans-serif;
-            color: $title-font-color;
+            font-family: $poppins;
             text-transform: uppercase;
+            font-size: 15px;
+            text-align: left;
+            color: $summary-table-text-color;
           }
           &-productTitle:hover {
             cursor: pointer;
@@ -96,163 +152,19 @@
       }
       .product-options {
         margin-bottom: 10px;
-
         .option {
           font-size: 15px;
           line-height: 20px;
-          font-weight: 900;
-          color: $font-color;
-          text-transform: uppercase;
-
-          > span {
-            margin-left: 4px;
-            font-weight: 500;
-          }
-          .color {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-          }
-        }
-      }
-      .product-qty {
-        margin-top: 15px;
-
-        label {
-          display: inline-block;
-          margin-right: 4px;
-          margin-bottom: 0;
-          font-size: 15px;
-          line-height: 30px;
-          color: $font-color;
-          text-transform: uppercase;
-        }
-        input {
-          display: inline-block;
-          margin: 0;
-          width: 46px;
-          text-align: right;
-        }
-      }
-      .product-price,
-      .product-total {
-        margin: 0;
-        @media (min-width: $screen-lg-min) {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        > span {
-          font-size: 15px;
-          line-height: 30px;
-          color: $font-color;
-          text-transform: uppercase;
-          font-weight: 900;
-
-        }
-        .label {
-          display: inline-block;
-          margin-right: 4px;
-          font-weight: 400;
-        }
-      }
-      .product-price {
-        margin-top: 15px;
-      }
-      .product-total {
-        margin-top: -10px;
-
-        > span {
-          font-size: 22px;
-        }
-        .label {
-          font-size: 15px;
-        }
-      }
-      .product-actions {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        @media (min-width: $screen-sm-min) {
-          margin-top: 15px;
-        }
-        @media (min-width: $screen-lg-min) {
-          margin-top: 30px;
-          text-align: right;
-        }
-        .action {
-          font-size: 15px;
-          font-weight: 500;
-          color: $font-color;
-
-          &:after {
-            content: '/';
-            margin: 0 4px;
-          }
-          &:last-child:after {
-            content: none;
+          color: $summary-table-text-color;
+          > label {
+            font-weight: normal;
+            margin-right: 5px;
           }
           > span {
-            @include underline($bg: $font-color);
+            font-size: 15px;
+            font-weight: normal;
+            text-transform: lowercase;
           }
-
-          &-addToWishlist {
-            color: $main-color;
-
-            > span {
-              @include underline($bg: $main-color);
-            }
-          }
-
-          @media (min-width: $screen-xs-min) and (max-width: 639px) {
-            display: block;
-            &:after {
-              content: none;
-            }
-          }
-          @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-            display: block;
-            &:after {
-              content: none;
-            }
-          }
-        }
-
-      }
-
-      .product-detail {
-        margin-bottom: 5px;
-
-        .detail-header {
-          padding: 0 15px;
-          margin: 0;
-          font-size: 16px;
-          line-height: 34px;
-          font-family: $sans-serif;
-          font-weight: 900;
-          color: $font-color;
-          background: #fafafa;
-          border: 1px solid $border-color;
-          cursor: pointer;
-
-          i {
-            float: right;
-            line-height: 34px;
-            transition: transform .2s;
-          }
-        }
-        &.is-open i { //open state for icon
-          transform: rotate(90deg);
-          transition: transform .2s;
-        }
-
-        .detail-description {
-          display: none;
-          padding: 10px 15px;
-          border: 1px solid $border-color;
-          border-top: none;
-        }
-        &.is-open .detail-description { //open state for description text
-          display: block;
         }
       }
     }

@@ -42,9 +42,8 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
-
     return (
-      <section className="product-overview">
+      <section className="product-overview-2">
         <div className="panel-overview">
           <header className="product-header">
             <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
@@ -60,7 +59,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                 'pre-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.PreOrderable,
               })}
             >
-              <h4>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</h4>
+              <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
             </div>
           </header>
           <div className="row">
@@ -73,19 +72,58 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
             </div>
             <div className="col-md-6">
               <div className="product-info">
-                <ProductRating rating={selectedCatalogItem.customerAverageRating} />
                 <p className="product-price">
                   <span className="price-label">Sale</span>
                   <span className="price-value">
                     {selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}
                   </span>
                 </p>
+                <ProductRating rating={selectedCatalogItem.customerAverageRating} />
+                <div className="product-description">{selectedCatalogItem.description};</div>
                 <div className="product-params">
                   <Placeholder name="product-properties" rendering={this.props.rendering} />
                   <div className="property-selectors" />
                   <div className="links">
                     <Placeholder name="product-actions" rendering={this.props.rendering} />
                   </div>
+                </div>
+                <div className="product-tags">
+                  <span className="product-tags_title">Tags :</span>
+                  {selectedCatalogItem.tags &&
+                    selectedCatalogItem.tags.map((tag, index) => (
+                      <span key={index} className="product-tags_item">
+                        {tag}
+                      </span>
+                    ))}
+                </div>
+                <div className="pro-details-social">
+                  <ul>
+                    <li>
+                      <a href="//facebook.com">
+                        <i className="fa fa-facebook" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="//dribbble.com">
+                        <i className="fa fa-dribbble" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="//pinterest.com">
+                        <i className="fa fa-pinterest-p" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="//twitter.com">
+                        <i className="fa fa-twitter" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="//linkedin.com">
+                        <i className="fa fa-linkedin" />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

@@ -12,34 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables';
 
-nav.user-navigation {
+.navigation-buttons {
   display: flex;
-  flex-flow: row;
-
-  @media (max-width: $screen-sm-max) {
-    flex-flow: column;
-  }
-}
-
-.user-navigation-btn {
-  line-height: 40px;
-  margin: 0 20px;
-
-  >span {
-    display: none;
-  }
-
-  @media (max-width: $screen-sm-max) {
-    display: block;
-
-    >i {
-      margin-right: 20px;
-    }
-    >span {
-      display: inline;
-      color: $nav-font-second-color;
-    }
+  justify-content: flex-end;
+  &_item{
+    margin-left: 4px;
   }
 }

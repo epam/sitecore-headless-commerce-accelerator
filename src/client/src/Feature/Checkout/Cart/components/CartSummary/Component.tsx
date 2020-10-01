@@ -16,9 +16,7 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { resolveColor } from 'Foundation/Commerce';
 import { NavigationLink } from 'Foundation/UI';
-import toggleBar from 'Foundation/UI/common/utility';
 
 import { Quantity } from './components';
 import { CartSummaryProps, CartSummaryState } from './models';
@@ -32,22 +30,25 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
 
   public safeRender() {
     const { AddWishlistItem, UpdateCartLine, RemoveCartLine } = this.props;
-    const { cartLines, isLoading, productColors, fallbackImageUrl } = this.props;
+    const { cartLines, isLoading, fallbackImageUrl } = this.props;
 
     return (
       <>
         {isLoading && (
-          <div className="cartSummary-loading-overlay">
+          <div className="cartSummary2-loading-overlay">
             <div className="loading" />
           </div>
         )}
-        <section className="cartSummary" data-autotests="cartSummarySection">
-          <header className="cartSummary-header">
-            <h2 className="header-title">
-              Item<span>(s)</span>
-            </h2>
+        <section className="cartSummary2" data-autotests="cartSummarySection">
+          <header className="cartSummary2-header">
+            <h2 className="col-xs-2 header-title">IMAGE</h2>
+            <h2 className="col-xs-2 header-title">PRODUCT NAME</h2>
+            <h2 className="col-xs-2 header-title">UNIT PRICE</h2>
+            <h2 className="col-xs-2 header-title">QTY</h2>
+            <h2 className="col-xs-2 header-title">SUBTOTAL</h2>
+            <h2 className="col-xs-2 header-title">ACTION</h2>
           </header>
-          <ul className="cartList" data-autotests="cartList">
+          <ul className="cartList2">
             {cartLines.map((cartLine) => {
               let imageUrl = fallbackImageUrl;
 
@@ -58,97 +59,58 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
               }
 
               return (
-                <li className="cartList-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
+                <li className="cartList2-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
                   <div className="product">
-                    <figure className="row product-summary" data-autotests="productSummary">
-                      <div className="col-xs-6 col-sm-4 col-lg-3 product-image">
-                        <img src={imageUrl} />
-                      </div>
-                      <figcaption className="col-xs-6 col-sm-8 col-lg-9 product-caption">
-                        <div className="row">
-                          <div className="col-sm-6 col-lg-4">
-                            <div className="product-info" data-autotests="productInfo">
-                              <div className="product-heading">
-                                <div className="heading-brand" data-autotests="productInfoBrand">
-                                  {cartLine.variant.brand || cartLine.product.brand}
-                                </div>
-                                <NavigationLink
-                                  className="heading-productTitle"
-                                  to={`/product/${cartLine.product.productId}`}
-                                  data-autotests="productInfoTitle"
-                                >
-                                  {cartLine.variant.displayName || cartLine.product.displayName}
-                                </NavigationLink>
-                              </div>
-                              <div className="product-options" data-autotests="productOptions">
-                                {cartLine.variant.properties.color && (
-                                  <div className="option">
-                                    Color:
-                                    <span
-                                      style={{
-                                        backgroundColor: resolveColor(cartLine.variant.properties.color, productColors),
-                                      }}
-                                      className="color"
-                                    />
-                                  </div>
-                                )}
-                                {cartLine.variant.properties.size && (
-                                  <div className="option">
-                                    Size:<span className="size">{cartLine.variant.properties.size}</span>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-sm-6 col-lg-8">
-                            <div className="row">
-                              <div className="col-lg-5">
-                                <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} />
-                              </div>
-                              <div className="col-lg-7">
-                                <div className="product-price" data-autotests="productPrice">
-                                  <span className="label">Item Price:</span>
-                                  <span className="amount">
-                                    <span className="currency">{cartLine.variant.currencySymbol}</span>
-                                    {cartLine.variant.adjustedPrice.toFixed(2)}
-                                  </span>
-                                </div>
-                                <div className="product-total" data-autotests="productTotal">
-                                  <span className="label">Total:</span>
-                                  <span className="amount">
-                                    <span className="currency">{cartLine.price.currencySymbol}</span>
-                                    {cartLine.price.total.toFixed(2)}
-                                  </span>
-                                </div>
-                                <div className="product-actions" data-autotests="productActions">
-                                  <a className="action action-remove" onClick={(e) => RemoveCartLine(cartLine)}>
-                                    <span>Remove Item</span>
-                                  </a>
-                                  <a
-                                    className="action action-addToWishlist"
-                                    onClick={(e) => AddWishlistItem(cartLine.variant)}
-                                  >
-                                    <span>Add to Wishlist</span>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                    <div className="col-xs-2 product-image ">
+                      <img src={imageUrl} />
+                    </div>
+                    <div className="col-xs-2 product-details">
+                      <div className="product-info">
+                        <div className="product-heading">
+                          <div className="heading-brand">{cartLine.variant.brand || cartLine.product.brand}</div>
+                          <NavigationLink
+                            className="heading-productTitle"
+                            to={`/product/${cartLine.product.productId}`}
+                            data-autotests="productInfoTitle"
+                          >
+                            {cartLine.variant.displayName || cartLine.product.displayName}
+                          </NavigationLink>
                         </div>
-                      </figcaption>
-                    </figure>
-                    <div className="row">
-                      <div className="col-xs-12">
-                        <div className="product-detail" data-autotests="productDetail">
-                          <h3 onClick={(e) => toggleBar(e)} className="detail-header">
-                            Additional Information
-                            <i className="fa fa-caret-right" />
-                          </h3>
-                          <div className="detail-description">
-                            {cartLine.variant.description || cartLine.product.description}
-                          </div>
+                        <div className="product-options" data-autotests="productOptions">
+                          {cartLine.variant.properties.color && (
+                            <div className="option">
+                              <label>Color:</label>
+                              <span>{cartLine.variant.properties.color}</span>
+                            </div>
+                          )}
+                          {cartLine.variant.properties.size && (
+                            <div className="option">
+                              Size:<span className="size">{cartLine.variant.properties.size}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
+                    </div>
+                    <div className="col-xs-2 amount">
+                      <div className="discount">
+                        <span className="currency">{cartLine.variant.currencySymbol}</span>
+                        {cartLine.variant.adjustedPrice.toFixed(2)}
+                      </div>
+                      <div>
+                        <span className="currency">{cartLine.variant.currencySymbol}</span>
+                        {cartLine.variant.adjustedPrice.toFixed(2)}
+                      </div>
+                    </div>
+                    <div className="col-xs-2 amount quantity-group">
+                      <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} RemoveCartLine={RemoveCartLine} />
+                    </div>
+                    <div className="col-xs-2 amount">
+                      <span className="currency">{cartLine.price.currencySymbol}</span>
+                      {cartLine.price.total.toFixed(2)}
+                    </div>
+                    <div className="col-xs-2 actions">
+                      <i className="fa fa-heart fa-lg" onClick={(e) => AddWishlistItem(cartLine.variant)} />
+                      <i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} />
                     </div>
                   </div>
                 </li>

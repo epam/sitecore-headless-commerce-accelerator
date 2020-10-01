@@ -27,11 +27,11 @@ class FooterLinksComponent extends JSS.SafePureComponent<FooterLinksProps, Foote
     const { datasource } = fields.data;
 
     return (
-        <ul className="footer-links-list" data-autotests="footerLinksList">
+      <ul className="footer-links-list-2">
         {datasource.links && datasource.links.items && datasource.links.items.map((link, index) => {
             const { uri, isPrimary } = link;
             return (
-                <li key={index} className="footer-list-item" data-autotests={`footerLinkItem_${isPrimary.jss.value ? 'primary' : 'secondary'}`}>
+              <li key={index} className="footer-list-item">
                 <Link field={uri.jss} className={`footer-link footer-link-${isPrimary.jss.value ? 'primary' : 'secondary'}`} />
               </li>
             );

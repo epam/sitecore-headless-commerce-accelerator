@@ -20,28 +20,51 @@ import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
 
+import classnames from 'classnames';
+
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
   private form: HTMLFormElement;
   private searchInput: HTMLInputElement | null;
 
+  constructor(props: NavigationSearchProps) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+    };
+  }
+
+  public handleClick = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   protected safeRender() {
     return (
-      <form
-        ref={(el) => (this.form = el)}
-        className="navigation-search"
-        onSubmit={(e) => this.handleFormSubmit(e)}
-        data-autotests="navigationSearchForm"
-      >
-        <span className="fa fa-search" />
-        <input
-          ref={(el) => (this.searchInput = el)}
-          type="search"
-          required={true}
-          name={SEARCH_INPUT_NAME}
-          placeholder="I'M LOOKING FOR..."
-          data-autotests="searchField"
-        />
-      </form>
+      <div className="navigation-buttons_item search">
+        <a onClick={this.handleClick}>
+          <i className="pe-7s-search" />
+        </a>
+        <div className={classnames('search_popup', { 'search_popup--visible': this.state.isOpen })}>
+          <form
+            className="search_form"
+            action="#"
+            ref={(el) => (this.form = el)}
+            onSubmit={(e) => this.handleFormSubmit(e)}
+          >
+            <input
+              className="search_field"
+              ref={(el) => (this.searchInput = el)}
+              type="search"
+              name={SEARCH_INPUT_NAME}
+              placeholder="Search ..."
+            />
+            <button className="search_button">
+              <i className="pe-7s-search" />
+              <i className="fa fa-search" />
+            </button>
+          </form>
+        </div>
+      </div>
     );
   }
 

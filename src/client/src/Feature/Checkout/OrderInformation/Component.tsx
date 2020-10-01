@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,14 +35,15 @@ export class OrderInformationComponent extends JSS.SafePureComponent<OrderInform
     const cartLines = shoppingCartData ? shoppingCartData.cartLines : [];
     return (
       <>
-        <section className="no-border">
-          <Text field={{ value: 'shipping' }} tag="h1" />
-          {price && <OrderSummaryPriceLines price={price} className="summary" />}
-        </section>
-        <section className="toggle open">
-          <Text field={{ value: 'In Your Cart' }} tag="h1" />
+        <Text field={{ value: 'Your Order' }} tag="h3" className="your-order" />
+        <div className="order-information-2 no-border">
+          <div className="header-information">
+            <div className="title">Product</div>
+            <div className="title">Total</div>
+          </div>
           <CartLinesSummary cartLines={cartLines} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />
-        </section>
+          {price && <OrderSummaryPriceLines price={price} className="summary" />}
+        </div>
       </>
     );
   }

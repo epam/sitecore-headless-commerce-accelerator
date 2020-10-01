@@ -12,59 +12,70 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss-new/_variables.scss';
 
-.listing-grid-item {
-  cursor: pointer;
-  padding: 30px 15px;
+.listing-grid-item-2 {
+  padding: 0px 15px;
   text-align: center;
   text-transform: uppercase;
-  border: 1px solid $border-color;
   &:hover, &:focus {
-    border-color: $main-color;
+    // border-color: #066666;
   }
   .img-wrap {
+    cursor: pointer;
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 20px;
     img {
       max-height: 100%;
     }
   }
-  .btn {
-    opacity: 0;
+  &:hover .product-action {
+    transform: scaleX(1);
+  }
+  &:hover .product-action button {
+      transform: scaleX(1);
+  }
+  .product-action {
+    display: flex;
     position: absolute;
-    left: 50%;
-    margin: 0;
-    margin-left: -90px;
-    width: 180px;
-  }
-  .btn-quickView {
-    top: 35px;
-    transform: translate3d(-180px, 0, 0);
-    transition: transform .5s, opacity .5s;
-  }
-  .btn-viewProduct {
-    bottom: 35px;
-    transform: translate3d(180px, 0, 0);
-    transition: transform .5s, opacity .5s;
-  }
-  &:hover .btn-quickView,
-  &:hover .btn-viewProduct,
-  &:focus .btn-quickView,
-  &:focus .btn-viewProduct {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    transition: transform .5s, opacity .5s;
-  }
+    top: 40%;
+    justify-content: center;
+    width: 100%;
+    button:hover {
+      background-color: #fa6bff;
+      transform: scaleX(1);
+    }
+    button {
+      font-size: 16px;
+      line-height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 42px;
+      height: 42px;
+      margin: 0 3px;
+      -webkit-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0);
+      text-align: center;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      background: none;
+      background-color: $theme-color;
+    }
+  } 
   .brand {
-    font: 14px/30px $phosphate;
-    height: 30px; // in case if item has no brand property, so blocks still would have one height
-    color: $brand-font-color;
+    font: 16px $poppins;
+    margin-bottom: 10px;
+    max-height: 30px; // in case if item has no brand property, so blocks still would have one height
+    color: black;
     line-height: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -72,39 +83,40 @@
   }
   h2 {
     margin-bottom: 10px;
-    font: 400 18px/1 $sans-serif;
-    height: 54px; // in case if header spreads to three lines, so blocks still would have one height
-    color: $title-font-color;
+    font: 400 14px/1 $poppins;
+    max-height: 30px; // in case if header spreads to three lines, so blocks still would have one height
+    color: black;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-transform: none;
+    &:hover{
+      cursor: pointer;
+      color: $theme-color;
+      transition: transform .5s, opacity .5s;
+    }
   }
   .price {
-    font: 700 24px/20px $sans-serif;
-    height: 40px;
+    font: 400 15px $poppins;
     color: #666;
-    margin: 8px 0;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     &--adjusted {
       .price__full {
-        font-size: 60%;
         text-decoration: line-through;
-        color: $font-color-light;
-
-        .price__currency {
-          top: -1px;
-        }
+        color: #999;
       }
       .price__current {
-        color: $font-color;
+        color: black;
+        font-weight: 500;
       }
     }
 
     &__currency {
-      vertical-align: top;
-      font-size: 70%;
       position: relative;
-      top: -2px;
     }
     &__full,
     &__current {
@@ -119,7 +131,7 @@
     display: inline-block;
     margin: 10px 0 0;
     padding: 3px 40px 3px 12px;
-    border: 1px solid $border-color;
+    border: 1px solid #d2d2d2;
 
     &:before {
       content: none;
@@ -131,14 +143,14 @@
       right: 0;
       width: 26px;
       height: 26px;
-      border-left: 1px solid $border-color;
+      border-left: 1px solid #d2d2d2;
 
       font: normal normal normal 14px/26px FontAwesome;
       transition: color .2s, background .2s;
     }
     &:hover:after {
       color: #fff;
-      background: $main-color;
+      background: #066666;
       transition: color .2s, background .2s;
     }
   }
@@ -147,7 +159,7 @@
       font-size: 14px;
       line-height: 26px;
       color: #fff;
-      background: $main-color;
+      background: #066666;
       content: '\f00c';
     }
   }

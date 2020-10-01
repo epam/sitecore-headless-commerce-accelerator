@@ -14,182 +14,145 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss-new/_mixins';
 
 .orderSummary {
-  @media (max-width: $screen-sm-max) {
-    margin-bottom: 30px;
+  margin-top: 25px;
+
+  .column {
+    padding: 45px 30px 50px;
+    border: 1px solid $summary-table-border-color;
+    border-radius: 5px;
+    background-color: $summary-table-background;
+    margin-top: 30px;
   }
 
-  h2 {
-    margin: 0;
-    padding: 0 15px;
-    font-size: 18px;
-    line-height: 1.9;
-    color: $title-font-color;
-    background: #fafafa;
-    border: 1px solid $border-color;
-  }
-
-  &-list {
-    li {
-      border-bottom: 1px solid $border-color;
-      padding: 5px 10px 2px;
-      color: #999999;
-      .name {
-        width: 65%;
-        display: inline-block;
-      }
-      .val {
-        font-weight: 900;
-        width: 35%;
-        display: inline-block;
-      }
-    }
-    li:last-child {
-      border-bottom: none;
-    }
-  }
-  &-freeShipping {
-    margin: 0;
-    padding: 15px;
-    background: #fafafa;
-    border: 1px solid $border-color;
-
-    p {
-      margin: 0;
-    }
-    .details {
-      color: $main-color;
-      transition: color .2s;
-
-      @include underline($bg: $main-color-dark);
-      &:hover {
-        color: $main-color-dark;
-        transition: color .2s;
-      }
-    }
-  }
-  &-promoCode {
-    margin-bottom: 20px;
-
-    h3 {
+  .tax {
+    .titleWrap {
       position: relative;
-      margin: 0;
-      padding: 0 15px;
-      font-size: 16px;
-      line-height: 2;
-      font-family: $sans-serif;
-      color: $font-color-light;
-      cursor: pointer;
-      background: #fafafa;
-      border: 1px solid $border-color;
-      border-top: none;
-
-      // styles for plus icon and it's animation
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        width: 10px;
-        height: 1px;
-        background: currentColor;
-      }
-      &:after {
-        transform: rotate(90deg);
-        transition: transform .2s;
-      }
-    }
-    &.is-open h3:after {
-      transform: rotate(0deg);
-      transition: transform .2s;
-    }
-
-    .field {
-      @include clearfix;
-      display: none;
-      padding: 10px 15px;
-      border: 1px solid $border-color;
-      border-top: none;
-
-      .adjustment-list>.adjustment-item {
-        display: flex;
-        height: 20px;
-        margin: 4px 0;
-
-        .btn {
-          width: 20px;
-          padding: 0;
-          margin: 0 4px;
-        }
-
-      }
-
-      label{
-        margin: 5px 0;
-      }
-
-      input, .btn {
+      margin-bottom: 10px;
+      &-title {
+        font-size: 18px;
+        font-weight: 500;
+        display: inline-block;
         margin: 0;
+        padding-right: 18px;
+        position: relative;
+        z-index: 99;
+        background-color: $summary-table-background;
       }
-      input, .btn {
-        clear: left;
+      &::before {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        content: "";
+        transition: all .4s ease 0s;
+        background-color: #e3e1e1;
       }
-      input {
-        width: 50%;
-        margin-right: 10px;
-      }
-    }
-    &.is-open .field {
-      display: block;
     }
   }
-  &-checkout {
-    .btn {
+
+  .subTitleWrap {
+    margin: 10px 0;
+  }
+
+  .countrySelectWrapper {
+    margin: 0 0 26px;
+    > label {
+      font-weight: 400;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+    }
+    > select {
+      font-size: 12px;
       width: 100%;
-      color: #fff;
-      background: $main-color;
-      transition: color .2s, background .2s;
-
-      &:hover {
-        background: #fff;
-        color: $main-color;
-        transition: color .2s, background .2s;
-      }
+      height: 40px;
+      padding: 0 50px 0 15px;
+      cursor: pointer;
+      color: $order-table-text-color;
+      border: 1px solid $summary-table-border-color;
+      box-shadow: none;
+      -webkit-appearance: none;
+      background: transparent;
     }
   }
-  &-creditCards {
-    display: flex;
 
-    li {
-      //width: 50px;
-      margin-right: 8px;
-      &:last-child {
-        margin-right: 0;
-      }
+  .zipCodeWrapper {
+    margin: 0 0 26px;
+    > label {
+      font-weight: 400;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+    }
+    > input {
+      height: 40px;
+      margin: 0 0 5px;
+      color: $order-table-text-color;
+      font-size: 14px;
+      width: 100%;
+      color: $summary-table-text-color;
+      box-shadow: none;
     }
   }
-  &-paypal {
+
+  .checkoutWrapper {
     display: flex;
-    align-items: center;
-
-    .paypal-btn {
-      display: inline-block;
-      width: 50%;
-      margin-right: 10px;
+    justify-content: center;
+    > button {
+      width: 100%;
     }
-    .paypal-details {
-      color: $main-color;
-      transition: color .2s;
+  }
 
-      @include underline($bg: $main-color-dark);
-      &:hover {
-        color: $main-color-dark;
-        transition: color .2s;
-      }
+  .cartBtn {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 42px 12px;
+    cursor: pointer;
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    background-color: $summary-table-action-hover;
+    &:hover {
+      background-color: $order-table-text-color;
+    }
+    .checkout {
+      padding: 18px 10px 17px;
+    }
+  }
+
+  .subTotal {
+    margin: 36px 0 27px;
+    display: flex;
+    justify-content: space-between;
+    > label {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    > span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .total {
+    margin: 0 0 25px;
+    color: $summary-table-action-hover;
+    display: flex;
+    justify-content: space-between;
+    > label {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    > span {
+      font-size: 20px;
+      font-weight: 500;
     }
   }
 }

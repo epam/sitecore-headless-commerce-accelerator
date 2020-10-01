@@ -15,6 +15,7 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
+import { NavigationLink } from 'Foundation/UI';
 
 import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';
@@ -26,35 +27,52 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     this.props.LoadCart();
   }
   public safeRender() {
-    const { shoppingCartData, sitecoreContext } = this.props;
+    const { shoppingCartData, isLoading, sitecoreContext } = this.props;
 
+    if (!isLoading && shoppingCartData.cartLines.length === 0) {
+      return (
+        <div className="empty-cart">
+          <i className="pe-7s-cart" />
+          <div className="empty-cart-not-found-text">No items found in cart</div>
+          <div className="empty-cart-button">
+            <NavigationLink to={`/`}>
+              Shop Now
+            </NavigationLink>
+          </div>
+        </div>
+      );
+    }
     return (
       <>
         <div className="row">
           <div className="col-xs-12">
-            <header className="color-title">
-              <h1 className="title">Shopping Cart</h1>
-              <div className="color-bar" />
-            </header>
+            <header className="title-cart-item">Your cart items</header>
           </div>
         </div>
         <div className="row">
-          {!!shoppingCartData && shoppingCartData.price && shoppingCartData.cartLines.length !== 0 && (
-            <>
-              <div className="col-md-8">
-                {shoppingCartData.cartLines && (
-                  <CartSummary
-                    cartLines={shoppingCartData.cartLines}
-                    productColors={sitecoreContext.productColors}
-                    fallbackImageUrl={sitecoreContext.fallbackImageUrl}
-                  />
-                )}
-              </div>
-              <div className="col-md-4">
-                <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
-              </div>
-            </>
-          )}
+          <>
+            <div className="col-xs-12">
+              {isLoading ? (
+                <div className="cartSummary2-loading-overlay">
+                  <div className="loading" />
+                </div>
+              ) : (
+                <CartSummary
+                  cartLines={shoppingCartData.cartLines}
+                  productColors={sitecoreContext.productColors}
+                  fallbackImageUrl={sitecoreContext.fallbackImageUrl}
+                />
+              )}
+            </div>
+          </>
+        </div>
+        <div className="action_container">
+          <NavigationLink to={`/`}>
+            <button>Continue Shopping</button>
+          </NavigationLink>
+        </div>
+        <div className="row cart2-last-row">
+          <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
         </div>
       </>
     );

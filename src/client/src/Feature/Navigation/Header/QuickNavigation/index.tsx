@@ -21,19 +21,36 @@ import './styles.scss';
 class QuickNavigationComponent extends JSS.SafePureComponent<QuickNavigationProps, QuickNavigationState> {
   protected safeRender() {
     return (
-        <nav className="quick-navigation" data-autotests="quickNavigationPanel">
-        <ul>
-          <li>
-            <a href="">Store Locator</a>
-          </li>
-          <li>
-            <a href="">Online Flyer</a>
-          </li>
-          <li>
-            <a href="">Language/Currency</a>
-          </li>
-        </ul>
-      </nav>
+      <>
+        <div className="settings">
+          <div className="settings_item settings_item-lang">
+            <span>
+              <span className="settings_item_title">English</span>
+              <i className="fa fa-angle-down" />
+            </span>
+            <div className="settings_item_dropdown-lang">
+              <ul>
+                <li>
+                  <span>English</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="settings_item settings_item-currency">
+            <span>
+              <span className="settings_item_title">USD</span>
+              <i className="fa fa-angle-down" />
+            </span>
+            <div className="settings_item_dropdown-currency">
+              <ul>
+                <li>
+                  <span>USD</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 }

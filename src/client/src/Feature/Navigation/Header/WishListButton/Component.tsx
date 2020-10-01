@@ -18,16 +18,18 @@ import * as React from 'react';
 import { NavigationLink } from 'Foundation/UI';
 
 import { WishlistButtonProps, WishlistButtonState } from './models';
-import './styles.scss';
 
 export class WishlistButtonComponent extends JSS.SafePureComponent<WishlistButtonProps, WishlistButtonState> {
   protected safeRender() {
     const { wishlistQuantity } = this.props;
     return (
-      <NavigationLink className="wishlist-button user-navigation-btn" to="/wishlist">
-        <i className="fa fa-heart">{wishlistQuantity > 0 && <span className="quantity">{wishlistQuantity}</span>}</i>
-        <span>Wishlist</span>
-      </NavigationLink>
+      <div className="navigation-buttons_item header-wishlist">
+        <NavigationLink to="/wishlist">
+          <i className="pe-7s-like">
+            <span className="quantity">{wishlistQuantity}</span>
+          </i>
+        </NavigationLink>
+      </div>
     );
   }
 }

@@ -57,13 +57,13 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
           </div>
         )}
         {!formIsValid && <div>Validation failed! Check credit card data.</div>}
-        <section>
-          <Text field={{ value: 'Payment' }} tag="h1" />
+        <div className="payment-2">
+          <Text field={{ value: 'Payment' }} tag="h2" />
           <fieldset>
             <div className="row">
               <div className="col-md-12">
-                <Text field={{ value: 'Payment Options:' }} tag="h2" />
-                <Text field={{ value: 'Card Number:' }} tag="label" className="required" />
+                <Text field={{ value: 'Payment Options' }} tag="h3" />
+                <Text field={{ value: 'Card Number' }} tag="label" className="required" />
                 <div className="credit-cards-row">
                   <div className="credit-cards-col">
                     <Input
@@ -77,47 +77,49 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
                   </div>
                   <CreditCardTypes />
                 </div>
-                <Text field={{ value: 'Expires:' }} tag="label" className="required" />
-                <div className="select cc-month">
-                  <Select name={FIELDS.EXPIRES_MONTH} required={true} defaultValue={'1'}>
-                    {[
-                      'January',
-                      'February',
-                      'March',
-                      'April',
-                      'May',
-                      'June',
-                      'July',
-                      'August',
-                      'September',
-                      'October',
-                      'November',
-                      'December',
-                    ].map((monthName, index) => (
-                      <option value={index + 1} key={monthName}>
-                        {monthName}
-                      </option>
-                    ))}
-                  </Select>
-                </div>
-                <span className="slashy">/</span>
-                <div className="select cc-year">
-                  <Select
-                    name={FIELDS.EXPIRES_YEAR}
-                    required={true}
-                    defaultValue={(new Date().getFullYear() + 1).toString()}
-                  >
-                    {new Array<number>(10)
-                      .fill(new Date().getFullYear())
-                      .map((date, index) => `${date + index}`)
-                      .map((year) => (
-                        <option value={year} key={year}>
-                          {year}
+                <Text field={{ value: 'Expires' }} tag="label" className="required" />
+                <div className="expires-date">
+                  <div className="cc-month">
+                    <Select name={FIELDS.EXPIRES_MONTH} required={true} defaultValue={'1'}>
+                      {[
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
+                      ].map((monthName, index) => (
+                        <option value={index + 1} key={monthName}>
+                          {monthName}
                         </option>
                       ))}
-                  </Select>
+                    </Select>
+                  </div>
+                  <span className="slashy">/</span>
+                  <div className="cc-year">
+                    <Select
+                      name={FIELDS.EXPIRES_YEAR}
+                      required={true}
+                      defaultValue={(new Date().getFullYear() + 1).toString()}
+                    >
+                      {new Array<number>(10)
+                        .fill(new Date().getFullYear())
+                        .map((date, index) => `${date + index}`)
+                        .map((year) => (
+                          <option value={year} key={year}>
+                            {year}
+                          </option>
+                        ))}
+                    </Select>
+                  </div>
                 </div>
-                <Text field={{ value: 'Security Code:' }} tag="label" className="required" />
+                <Text field={{ value: 'Security Code' }} tag="label" className="required" />
                 <Input type="text" className="security-code" name={FIELDS.SECURITY_CODE} required={true} />
               </div>
               <div className="col-sm-12">
@@ -131,7 +133,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
               </div>
             </div>
           </fieldset>
-        </section>
+        </div>
       </Form>
     );
   }

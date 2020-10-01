@@ -12,42 +12,117 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables';
+@import "Foundation/UI/common/scss-new/_variables";
 
-.quick-navigation {
-  li {
-    display: inline-flex;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-
-    @media (max-width: $screen-sm-max){
-      display: block;
+.quick-navigation-2 {
+  text-align: right;
+  max-width: 33.3%;
+  margin-left: auto;
+  a {
+    @media #{$header-switch-mobile-mode} {
+      display: none;
     }
+    display: block;
+    margin: 0;
+    letter-spacing: 0.8px;
+    color: $grey;
+    &:hover {
+      color: $theme-color;
+    }
+  }
+  & i {
+    vertical-align: middle;
+    padding-right: 5px;
+  }
+}
 
-    &:after{
-      content:'';
-      display: inline-block;
+.settings {
+  display: flex;
+  align-items: center;
+  flex: 0 0 33.3%;
+  max-width: 33.3%;
+  @media #{$header-switch-mobile-mode} {
+    display: none;
+  }
+  &_item {
+    position: relative;
+    margin-right: 54px;
+    @media #{$xs-layout} {
+      margin-right: 15px;
+    }
+    &_title{
+      margin-right: 5px;
+    }
+    &:before {
+      position: absolute;
+      top: 47%;
+      right: -27px;
       width: 1px;
-      height: 10px;
-      background: $nav-font-second-color;
+      height: 15px;
+      content: "";
+      transform: translateY(-50%);
+      background-color: $grey-light;
 
-      @media (max-width: $screen-sm-max){
-        display: none;
+      @media #{$xs-layout} {
+        right: -8px;
       }
     }
 
-    &:last-child:after {
+    &:last-child:before {
       display: none;
     }
 
-    a {
+    &:last-child {
+      margin-right: 0;
+    }
+
+    span {
       display: inline-block;
-      padding: 0 25px;
+      margin-top: -3px;
+      cursor: pointer;
+      letter-spacing: 0.8px;
+      color: $grey;
+    }
+    &_dropdown-currency, &_dropdown-lang {
+      position: absolute;
+      z-index: 220;
+      top: 100%;
+      left: 0;
+      visibility: hidden;
+      width: 125px;
+      padding: 8px 12px 10px;
+      -webkit-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+      -webkit-transform: rotateX(90deg);
+      transform: rotateX(90deg);
+      -webkit-transform-origin: center top 0;
+      transform-origin: center top 0;
+      text-align: left;
+      opacity: 0;
+      background: #fff none repeat scroll 0 0;
+      box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
+      margin-top: 15px;
+      li span{
+        color: $text-main-color;
+        font-size: 13px;
+        &:hover{
+          color: $theme-color;
+        }
+      }
+    }
+    &-lang{
+      &:hover .settings_item_dropdown-lang {
+        visibility: visible;
+        transform: rotateX(0deg);
+        opacity: 1;
+      }
+    }
+    &-currency{
+      &:hover .settings_item_dropdown-currency {
+        visibility: visible;
+        transform: rotateX(0deg);
+        opacity: 1;
+      }
     }
   }
 }

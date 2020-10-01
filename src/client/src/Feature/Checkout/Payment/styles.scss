@@ -14,8 +14,8 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss-new/_mixins';
 //note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
 .billing-shipping-info {
     @include loading-overlay(99998);
@@ -75,7 +75,7 @@
       }
       ul.cart {
         padding: 15px;
-        background-color: #fafafa;
+        background-color: $checkout-cart-list-color;
         margin-top: 1px;
         li {
           padding: 10px 0;

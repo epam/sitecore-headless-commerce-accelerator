@@ -25,7 +25,7 @@ export class AddToWishlistComponent extends JSS.SafePureComponent<AddToWishlistP
         onClick={(e) => this.props.AddWishlistItem(this.props.item)}
         className="btn btn-main btn-add"
       >
-        <i className="fa fa-heart" />
+        <i className="fa fa-heart-o" />
       </button>
     );
   }

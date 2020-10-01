@@ -15,7 +15,7 @@
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
-import { NotFound2 } from 'Feature/Errors/NotFound2';
+import { NotFound } from 'Feature/Errors/NotFound';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
 import * as StoreLocator2 from 'Feature/StoreLocator2';
@@ -37,40 +37,40 @@ components.set('Three Column Row', Scaffolding.ThreeColumnRow);
 
 // Home renderings
 components.set('Carousel Banner', PageContent.CarouselBanner);
-components.set('Recommended Products', PageContent.RecommendedProducts2);
+components.set('Recommended Products', PageContent.RecommendedProducts);
 
 // Header renderings
-components.set('Header', Navigation.Header2);
-components.set('Header Content', Navigation.HeaderContent2);
-components.set('Logo', Navigation.Logo2);
-components.set('Navigation Menu', Navigation.NavigationMenu2);
-components.set('Quick Navigation', Navigation.QuickNavigation2);
-components.set('User Navigation', Navigation.UserNavigation2);
+components.set('Header', Navigation.Header);
+components.set('Header Content', Navigation.HeaderContent);
+components.set('Logo', Navigation.Logo);
+components.set('Navigation Menu', Navigation.NavigationMenu);
+components.set('Quick Navigation', Navigation.QuickNavigation);
+components.set('User Navigation', Navigation.UserNavigation);
 
 // Footer renderings
-components.set('Footer', Navigation.GlobalFooter2);
-components.set('Copyright', Navigation.Copyright2);
-components.set('Footer Links', Navigation.FooterLinks2);
-components.set('Social Networks Links', Navigation.SocialNetworksLinks2);
+components.set('Footer', Navigation.GlobalFooter);
+components.set('Copyright', Navigation.Copyright);
+components.set('Footer Links', Navigation.FooterLinks);
+components.set('Social Networks Links', Navigation.SocialNetworksLinks);
 
 // Catalog renderings
-components.set('Product Overview', Catalog.ProductOverview2);
-components.set('Product Information', Catalog.ProductInformation2);
-components.set('Product List', Catalog.ProductList2);
-components.set('Product Filters', Catalog.ProductFilters2);
-components.set('Product Variants', Catalog.ProductVariants2);
+components.set('Product Overview', Catalog.ProductOverview);
+components.set('Product Information', Catalog.ProductInformation);
+components.set('Product List', Catalog.ProductList);
+components.set('Product Filters', Catalog.ProductFilters);
+components.set('Product Variants', Catalog.ProductVariants);
 components.set('Products Search', Catalog.ProductsSearch);
 
 // Checkout renderings
 components.set('Add To Cart', Checkout.AddToCart);
-components.set('Shopping Cart', Checkout.Cart2);
-components.set('Billing', Checkout.Billing2);
-components.set('Shipping', Checkout.Shipping2);
-components.set('Order Summary', Checkout.OrderInformation2);
-components.set('Order Confirmation', Checkout.OrderConfirmation2);
+components.set('Shopping Cart', Checkout.Cart);
+components.set('Billing', Checkout.Billing);
+components.set('Shipping', Checkout.Shipping);
+components.set('Order Summary', Checkout.OrderInformation);
+components.set('Order Confirmation', Checkout.OrderConfirmation);
 components.set('Order History', Checkout.OrderHistory);
-components.set('Payment', Checkout.Payment2);
-components.set('Checkout Navigation', Checkout.CheckoutNavigation2);
+components.set('Payment', Checkout.Payment);
+components.set('Checkout Navigation', Checkout.CheckoutNavigation);
 components.set('Go To Checkout', Checkout.GoToCheckout);
 
 // Account renderings
@@ -78,10 +78,10 @@ components.set('Change Password Form', Account.ChangePassword);
 components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Wishlist', Account.Wishlist2);
-components.set('Add To Wishlist', Account.AddToWishlist2);
+components.set('Add To Wishlist', Account.AddToWishlist);
 components.set('Login Register', Account.LoginRegister);
 
 // Not Found
-components.set('Not Found', NotFound2);
+components.set('Not Found', NotFound);
 
 export default (componentName: string) => components.get(componentName);

@@ -33,10 +33,12 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
               <i className="fa fa-shopping-cart" />
             </button>
             <button title="Quick View">
-              <i className="fa fa-eye" />
+              <NavigationLink to={`/product/${product.productId}`}>
+                <i className="fa fa-eye" />
+              </NavigationLink>
             </button>
             <button className="" title="Add to compare">
-              <i className="fa fa-retweet" />
+              <i className="fa fa-heart" />
             </button>
           </div>
         </div>

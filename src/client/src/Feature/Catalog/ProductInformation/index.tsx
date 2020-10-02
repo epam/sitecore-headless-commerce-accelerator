@@ -38,22 +38,22 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
       <section className="product-description-2">
         <div className="tab">
           <button
-            className={'tab-links ' + (selectedTab === 'description' ? 'active' : '')}
-            onClick={() => this.setState({ selectedTab: 'description' })}
-          >
-            Product Description
-          </button>
-          <button
-            className={'tab-links ' + (selectedTab === 'features' ? 'active' : '')}
+            className={`tab-links ${(selectedTab === 'features') ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'features' })}
           >
-            Features
+            Additional Information
           </button>
           <button
-            className={'tab-links ' + (selectedTab === 'rating' ? 'active' : '')}
+            className={`tab-links ${(selectedTab === 'description') ? 'active' : ''}`}
+            onClick={() => this.setState({ selectedTab: 'description' })}
+          >
+            Description
+          </button>
+          <button
+            className={`tab-links ${(selectedTab === 'rating') ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'rating' })}
           >
-            Rating
+            Reviews
           </button>
         </div>
         <div className="product-content">
@@ -65,10 +65,10 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
           {selectedTab === 'features' && (
             <div className="description-features">
               <ul className="feature-list">
-                <li>2 GB</li>
-                <li>Model XE-C</li>
-                <li>Charcoal</li>
-                <li>Explorer Edition</li>
+                <li><span>Data One</span> 2 GB</li>
+                <li><span>Data Two</span> Model XE-C</li>
+                <li><span>Data Three</span> Charcoal</li>
+                <li><span>Data Four</span> Explorer Edition</li>
               </ul>
             </div>
           )}
@@ -196,5 +196,4 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
     );
   }
 }
-
 export const ProductInformation = JSS.renderingWithContext(ProductInformationComponent);

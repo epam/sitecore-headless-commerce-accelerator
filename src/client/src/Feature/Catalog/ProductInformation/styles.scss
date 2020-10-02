@@ -149,7 +149,7 @@
     .description-text {
         p {
             font-size: 14px;
-            line-height: 28px;
+            line-height: 24px;
             font-family: $poppins;
             font-weight: 400;
             color: $text-main-color;
@@ -162,13 +162,20 @@
         }
 
         li {
+            margin: 0 0 13px;
+            list-style: outside none none;
             font-size: 14px;
             color: $text-main-color;
             font-family: $poppins;
-            font-weight: 500;
-            line-height: 28px;
-            list-style-type: disc;
-            list-style-position: inside;
+            font-weight: 400;
+            line-height: 24px;
+            span {
+                font-weight: 500;
+                display: inline-block;
+                min-width: 85px;
+                margin: 0 26px 0 0;
+                color: #000;
+            }
         }
     }
     .description-rating {

@@ -15,6 +15,7 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { NavigationLink } from 'Foundation/UI';
 import { WishlistItem } from './components/WishlistItem';
 
 import { WishlistProps, WishlistState } from './models';
@@ -30,19 +31,48 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
     const { items } = this.props;
     console.log(items);
     return (
-      <div className="wishlist-container">
-        <div className="row">
-          <div className="col-xs-12">
-            <div className="wishlist-title">{title.jss.value}</div>
+      <div className="wishlist-container" >
+        {items.length === 0 ? (
+          <div className="wishlist_container-empty">
+            <div className="heart-icon">
+              <i className="pe-7s-like"/>
+            </div>
+            <label className="wishlist_label-empty">No items found in wishlist</label>
+            <NavigationLink to={`/`}>
+              <button className="wishlist_btn-empty">Add Items</button>
+            </NavigationLink>
           </div>
-        </div>
-        <ul className="wishlist row">
-          {items.map((item, index) => (
-            <li className="wishlist__item-col col-sm-4 col-xs-12" key={index}>
-              <WishlistItem item={item} />
-            </li>
-          ))}
-        </ul>
+        ) : (
+          <>
+            <div className="row">
+              <div className="col-xs-12">
+                <div className="wishlist-title">{title.jss.value} Items</div>
+              </div>
+            </div>
+            <table>
+              <thead className="wishlist_table_header_container">
+                <tr className="wishlist_table_row">
+                  <th className="wishlist_table_header">IMAGE</th>
+                  <th className="wishlist_table_header">PRODUCT NAME</th>
+                  <th className="wishlist_table_header">UNIT PRICE</th>
+                  <th className="wishlist_table_header">ADD TO CART</th>
+                  <th className="wishlist_table_header">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, index) => (
+                  <WishlistItem item={item} key={index} />
+                ))}
+              </tbody>
+            </table>
+            <div className="action_container">
+              <NavigationLink to={`/`}>
+                <button>Continue Shopping</button>
+              </NavigationLink>
+              <button>Clear Wishlist</button>
+            </div>
+          </>
+        )}
       </div>
     );
   }

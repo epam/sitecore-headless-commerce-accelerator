@@ -59,6 +59,10 @@ export interface StoreLocatorProps
   extends Jss.GraphQLRendering<StoreLocatorDataSource>,
     StoreLocatorStateProps,
     StoreLocatorDispatchProps {}
-export interface StoreLocatorState extends Jss.SafePureComponentState {}
+export interface StoreLocatorState extends Jss.SafePureComponentState {
+  errors: {
+    [key: string]: string;
+  };
+}
 
 export interface AppState extends GlobalCurrentStoreLocatorState, Jss.RoutingState {}

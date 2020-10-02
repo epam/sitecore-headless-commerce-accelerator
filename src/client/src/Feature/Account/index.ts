@@ -18,6 +18,5 @@ export * from './ChangePassword';
 export * from './ChangeUserInformationForm';
 export * from './SignUpForm';
 export * from './Wishlist';
-export * from './Wishlist2';
 export * from './LoginRegister';
 export * from './AddToWishlist';

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,6 +31,8 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
     const { commerceUser, updateStatus } = this.props;
 
     const isLoading = updateStatus === LoadingStatus.Loading;
+    const userNotLoggedIn = commerceUser == null;
+
     return (
       <div className="account-details-form">
         <div className="account-details-form__header">
@@ -43,20 +45,20 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
               name={ACCOUNT_DETAILS_FORM_FIELDS.FIRST_NAME}
               type="text"
               required={true}
-              disabled={isLoading}
-              defaultValue={commerceUser.firstName}
+              disabled={userNotLoggedIn}
+              defaultValue={userNotLoggedIn ? '' : commerceUser.firstName}
             />
             <Jss.Text tag="label" field={{ value: 'Last Name', editable: 'Last Name' }} />
             <Input
               name={ACCOUNT_DETAILS_FORM_FIELDS.LAST_NAME}
               type="text"
               required={true}
-              disabled={isLoading}
-              defaultValue={commerceUser.lastName}
+              disabled={userNotLoggedIn}
+              defaultValue={userNotLoggedIn ? '' : commerceUser.lastName}
             />
             <Submit
               className="btn btn-outline-main"
-              disabled={isLoading}
+              disabled={userNotLoggedIn}
               onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
             >
               {isLoading && <i className="fa fa-spinner fa-spin" />}

@@ -1,8 +1,8 @@
-﻿using AutoTests.AutomationFramework.UI.Core;
-using AutoTests.AutomationFramework.UI.Driver;
+﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Fields;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI;
 using NUnit.Framework;
@@ -33,7 +33,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
                 var userManager = TestsHelper.CreateHcaUserApiHelper(user);
                 userManager.CleanPromotions();
                 userManager.CleanCart();
-                
+
                 userManager.AddProductsToCart(products);
                 _hcaWebSite.OpenHcaAndLogin(user);
             }
@@ -50,12 +50,13 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
 
         private HcaWebSite _hcaWebSite;
         private readonly HcaUserRole _hcaUserRole;
+        private static readonly HcaShippingMethodTDSettings _defShippingMethod = TestsData.GetDefaultShippingMethod();
 
         [Test]
         public void T1_CheckoutShippingNewAddress_VerifyBillingAddressFill([Values] bool fillBillingCheckout)
         {
             _hcaWebSite.CheckoutShippingPage.FillAddressByDefault(_hcaUserRole);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             if (fillBillingCheckout)
                 _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
@@ -67,22 +68,22 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
         public void T2_CheckoutShippingNewAddress_VerifyCorrectAddress()
         {
             _hcaWebSite.CheckoutShippingPage.FillAddressByDefault(_hcaUserRole);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
         }
 
         [Test]
-        public void T3_CheckoutShippingNewAddress_VerifyDifferentMethodShipping([Values] ShippingMethod shippingMethod)
+        public void T3_CheckoutShippingNewAddress_VerifyDifferentMethodShipping([Values] HcaShippingMethod shippingMethod)
         {
             _hcaWebSite.CheckoutShippingPage.FillAddressByDefault(_hcaUserRole);
-            if (shippingMethod == ShippingMethod.SelectOption)
+            if (shippingMethod == HcaShippingMethod.SelectOption)
             {
                 _hcaWebSite.CheckoutShippingPage.VerifySubmitIsNotClickable();
             }
             else
             {
-                _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(shippingMethod);
+                _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(TestsData.GetShippingMethod(shippingMethod));
                 _hcaWebSite.CheckoutShippingPage.ClickSubmit();
                 _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             }
@@ -93,7 +94,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
         {
             _hcaWebSite.CheckoutShippingPage.FillAddressByDefault(_hcaUserRole);
             _hcaWebSite.CheckoutShippingPage.ClearField(addressField);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             _hcaWebSite.CheckoutShippingPage.VerifySubmitIsNotClickable();
         }
     }

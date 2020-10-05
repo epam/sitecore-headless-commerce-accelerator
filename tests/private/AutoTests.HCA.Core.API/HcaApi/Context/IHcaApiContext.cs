@@ -1,4 +1,5 @@
 ﻿using AutoTests.AutomationFramework.API.Services.RestService;
+using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.HCA.Core.API.HcaApi.Services;
 
 namespace AutoTests.HCA.Core.API.HcaApi.Context
@@ -15,5 +16,9 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
         WishListService WishList { get; }
         CheckoutService Checkout { get; }
         StoreLocatorService StoreLocator { get; }
+
+        CookieData GetHcaGlobalCookie();
+
+        CookieData GetAuthorizationCookie();
     }
 }

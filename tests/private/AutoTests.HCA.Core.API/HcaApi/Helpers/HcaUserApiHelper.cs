@@ -45,7 +45,6 @@ namespace AutoTests.HCA.Core.API.HcaApi.Helpers
         public void CleanAddresses()
         {
             var res = ApiContext.Account.GetAddresses();
-
             res.CheckSuccessfulResponse();
 
             var addressesListIsNotEmpty = res?.OkResponseData?.Data?.Any();
@@ -53,6 +52,14 @@ namespace AutoTests.HCA.Core.API.HcaApi.Helpers
 
             foreach (var address in res.OkResponseData.Data)
                 ApiContext.Account.RemoveAddress(address.ExternalId).CheckSuccessfulResponse();
+        }
+
+        public IEnumerable<Address> GetAddresses()
+        {
+            var res = ApiContext.Account.GetAddresses();
+            res.CheckSuccessfulResponse();
+
+            return res.OkResponseData?.Data;
         }
     }
 }

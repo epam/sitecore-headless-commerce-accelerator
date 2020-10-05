@@ -26,7 +26,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
             Address2 = StringHelpers.GetRandomAddressString(),
             City = StringHelpers.RandomString(10),
             Country = "United States",
-            Email = GetRandomEmail(),
+            Email = StringHelpers.GetRandomEmail(),
             CountryCode = "US",
             State = "AL",
             ZipPostalCode = "2335",

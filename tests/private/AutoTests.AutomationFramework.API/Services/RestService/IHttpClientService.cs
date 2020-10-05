@@ -25,5 +25,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
             where TModel : class, IResponse<TData, TErrors>, new();
 
         CookieCollection GetCookies();
+
+        CookieData GetCookieValueByName(string name);
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
+﻿using AutoTests.AutomationFramework.Shared.Helpers;
+using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account;
 using AutoTests.HCA.Core.API.HcaApi.Models.Entities.Account.Authentication;
 using NUnit.Framework;
 
@@ -10,7 +11,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         [SetUp]
         public new void SetUp()
         {
-            NewUser = new CreateAccountRequest(GetRandomEmail(), "FirstName123", "LastName123", "123456");
+            NewUser = new CreateAccountRequest(StringHelpers.GetRandomEmail(), "FirstName123", "LastName123", "123456");
             TestsHelper.CreateHcaUserApiHelper(NewUser, ApiContext);
         }
 

@@ -15,7 +15,6 @@ namespace AutoTests.HCA.Tests.APITests.Account
     [ApiTest]
     public class BaseAccountTest : BaseHcaApiTest
     {
-        public const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
         protected static readonly UserLogin DefUser = TestsData.GetUser().Credentials;
         protected readonly IEnumerable<Address> AddressesCollection;
 
@@ -33,7 +32,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                     Address2 = StringHelpers.GetRandomAddressString(),
                     City = StringHelpers.RandomString(10),
                     Country = "United States",
-                    Email = GetRandomEmail(),
+                    Email = StringHelpers.GetRandomEmail(),
                     CountryCode = "US",
                     State = "AL",
                     ZipPostalCode = "2335",
@@ -47,7 +46,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
                     Address2 = StringHelpers.GetRandomAddressString(),
                     City = StringHelpers.RandomString(10),
                     Country = "United States",
-                    Email = GetRandomEmail(),
+                    Email = StringHelpers.GetRandomEmail(),
                     CountryCode = "US",
                     State = "AL",
                     ZipPostalCode = "2335",
@@ -60,11 +59,6 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public void SetUp()
         {
             ApiContext = TestsHelper.CreateHcaApiContext();
-        }
-
-        protected static string GetRandomEmail()
-        {
-            return $"{StringHelpers.RandomString(10)}@autotests.com";
         }
 
         protected void VerifyAddressResponse(IEnumerable<Address> expectedAddresses,

@@ -18,5 +18,10 @@ namespace AutoTests.AutomationFramework.Shared.Helpers
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public static string GetRandomEmail()
+        {
+            return $"{StringHelpers.RandomString(10)}@autotests.com";
+        }
     }
 }

@@ -5,6 +5,7 @@ using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Fields;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.Common.Settings.Products;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
@@ -77,12 +78,12 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
                 FillFieldByName(AddressField.PostalCode.GetValue(), "");
         }
 
-        protected override void FillFieldsByDefault()
+        protected override void FillFieldsByDefault(HcaShippingMethodTDSettings defShippingMethod = null)
         {
             SelectOptionByName(AddressOption.NewAddress);
             FillAddressByDefault(HcaUserRole.Guest);
             SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
-            SelectShippingMethod(ShippingMethod.Standard);
+            SelectShippingMethod(defShippingMethod);
         }
 
         public void VerifyProductCount(int expectedCount)

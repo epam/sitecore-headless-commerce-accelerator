@@ -12,14 +12,7 @@
         "role": "User",
         "Default": true,
         "credentials": {
-          "Email": "HcaAutotests@mail.com",
-          "Password": "123456"
-        }
-      },
-      {
-        "role": "User",
-        "credentials": {
-          "Email": "ApiAddressTests@autotests.com",
+          "Email": "DontDeleteAutotestUser@mail.com",
           "Password": "123456"
         }
       }
@@ -187,15 +180,49 @@
         "MinimumBasketPriceForApplication": "10"
       }
     ],
-    "Stores": [
+    "ShippingMethods": [
+      {
+        "Default": "true",
+        "Name": "Standard",
+        "Description": "Standard",
+        "ExternalId": "cf0af82a-e1b8-45c2-91db-7b9847af287c"
+      },
+      {
+        "Name": "Ground",
+        "Description": "Ground",
+        "ExternalId": "b146622d-dc86-48a3-b72a-05ee8ffd187a"
+      },
+      {
+        "Name": "NextDayAir",
+        "Description": "Next Day Air",
+        "ExternalId": "65a9ae69-77f8-4530-b5ba-bde0615cbc28"
+      },
+      {
+        "Name": "StandardOvernight",
+        "Description": "Standard Overnight",
+        "ExternalId": "d5930340-c1dd-482c-b972-50a9250bb7a6"
+      },
+      {
+        "Name": "SelectOption"
+      }
+    ],
+    "CreditCards": [
       {
         "Default": true,
-        "Title": "Store 1",
-        "Coordinates": {
-          "Latitude": "40.700000762939453",
-          "Longitude": "-74.0999984741211"
-        }
+        "Cvv": "123",
+        "ExpirationMonth": "1",
+        "ExpirationYear": "2021",
+        "Number": "4111111111111111"
       }
-    ]
-  }
-}
+    ],
+    "Stores": [
+    {
+      "Default": true,
+      "Title": "Store 1",
+      "Coordinates": {
+        "Latitude": "40.700000762939453",
+        "Longitude": "-74.0999984741211"
+      }
+    }
+  ]
+} }

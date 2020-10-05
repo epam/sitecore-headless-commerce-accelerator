@@ -1,6 +1,7 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.Common.Settings.Users;
 using AutoTests.HCA.Core.UI;
 using NUnit.Framework;
@@ -29,6 +30,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
         }
 
         private HcaWebSite _hcaWebSite;
+        private static HcaShippingMethodTDSettings _defShippingMethod = TestsData.GetDefaultShippingMethod();
 
         [Test]
         public void T1_CheckoutShippingExistsAddress_VerifyAddNewAddress()
@@ -40,7 +42,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.NewAddress);
             var addressLine = _hcaWebSite.CheckoutShippingPage.CreateNewAddress(HcaUserRole.User);
             _hcaWebSite.CheckoutShippingPage.SetSaveAddress(true);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.NavigateToPage(_hcaWebSite.MyAccountPage);
@@ -61,7 +63,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
             _hcaWebSite.CheckoutShippingPage.SelectFirstShippingAddress();
             if (fillBillingCheckout)
                 _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.CheckoutBillingPage.VerifyOption(AddressOption.SameAsShippingAddress, fillBillingCheckout);
@@ -76,7 +78,7 @@ namespace AutoTests.HCA.Tests.UITests.CheckoutTests.CheckoutShippingTests
             _hcaWebSite.CheckoutShippingPage.WaitForOpened();
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.SavedAddress);
             _hcaWebSite.CheckoutShippingPage.SelectFirstShippingAddress();
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(_defShippingMethod);
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
         }

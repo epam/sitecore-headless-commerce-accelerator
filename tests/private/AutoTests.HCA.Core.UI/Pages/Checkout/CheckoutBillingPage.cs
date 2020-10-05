@@ -1,4 +1,5 @@
 ﻿using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout
@@ -14,7 +15,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             return PagePrefix.CheckoutBilling.GetPrefix();
         }
 
-        protected override void FillFieldsByDefault()
+        protected override void FillFieldsByDefault(HcaShippingMethodTDSettings defShippingMethodTdSettings = null)
         {
             SelectOptionByName(AddressOption.SameAsShippingAddress);
         }

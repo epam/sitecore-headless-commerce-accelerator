@@ -1,6 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
-using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout
@@ -19,7 +19,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
         private readonly WebSelect _shippingMethodSelect = new WebSelect("Shipping method",
             ByCustom.XPath("//select[contains(@name, 'SHIPPING_METHOD')]"));
 
-        protected virtual void FillFieldsByDefault()
+        protected virtual void FillFieldsByDefault(HcaShippingMethodTDSettings defShippingMethod = null)
         {
         }
 
@@ -39,9 +39,9 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             _saveAndContinueButton.VerifyNotClickable();
         }
 
-        public void SelectShippingMethod(ShippingMethod shippingMethod)
+        public void SelectShippingMethod(HcaShippingMethodTDSettings shippingMethod)
         {
-            var shippingMethodValue = shippingMethod.GetValue();
+            var shippingMethodValue = shippingMethod.Description;
             new WebElement($"Shipping method {shippingMethodValue}",
                 ByCustom.XPath($"./option[text()='{shippingMethodValue}']"), _shippingMethodSelect).Click();
         }

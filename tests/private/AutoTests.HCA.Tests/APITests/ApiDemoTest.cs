@@ -171,12 +171,13 @@ namespace AutoTests.HCA.Tests.APITests
         [Description("Add credit card data via graphQL.")]
         public void _05_PaymentTest()
         {
+            var defCreditCard = TestsData.GetDefaultCreditCard();
             var creditCard = new CreditCardRequest
             {
-                Cvv = "123",
-                ExpirationMonth = "1",
-                ExpirationYear = "2021",
-                Number = "4111111111111111"
+                Cvv = defCreditCard.Cvv,
+                ExpirationMonth = defCreditCard.ExpirationMonth,
+                ExpirationYear = defCreditCard.ExpirationYear,
+                Number = defCreditCard.Number
             };
 
             var paymentTokenResult = _braintreeApiService.GetPaymentToken(creditCard);

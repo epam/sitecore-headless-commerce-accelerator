@@ -37,7 +37,6 @@ namespace AutoTests.HCA.Core.API.BraintreeApi.Services
                 {"authorization", _jwtTokenService.GetJwtToken()}
             };
             _httpClientService.AddDefaultHeaders(dictionary);
-            _httpClientService.SetTimeOut(1000);
         }
 
         private PaymentRequest ConfigurePaymentRequest(CreditCardRequest creditCard)

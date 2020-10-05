@@ -7,6 +7,7 @@ using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult.Results;
 using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult.Results.ErrorResult;
 using AutoTests.HCA.Core.API.HcaApi.Models.RequestResult.Results.OkResult;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace AutoTests.HCA.Core.API.HcaApi.Models.RequestResult
@@ -38,7 +39,8 @@ namespace AutoTests.HCA.Core.API.HcaApi.Models.RequestResult
         public void VerifyOkResponseData()
         {
             VerifyStatuses(OkResponseData, HttpStatusCode.OK, HcaStatusCode.Ok);
-            ExtendedAssert.Null(OkResponseData.Data, nameof(OkResponseData.Data));
+            var data = OkResponseData.Data as JObject;
+            Assert.True(!data?.HasValues ?? true, $"Response shouldn't contain {OkResponseData.Data}");
         }
 
         public void VerifyErrors(string message, HttpStatusCode code = HttpStatusCode.BadRequest)

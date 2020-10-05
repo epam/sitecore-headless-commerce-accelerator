@@ -18,7 +18,7 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
         public HttpClientService(Uri baseUri)
         {
             BaseUri = baseUri;
-            _restClient = new RestClient(baseUri) {CookieContainer = new CookieContainer()};
+            _restClient = new RestClient(baseUri) { CookieContainer = new CookieContainer() };
             _restClient.UseNewtonsoftJson();
         }
 
@@ -32,6 +32,12 @@ namespace AutoTests.AutomationFramework.API.Services.RestService
         public CookieCollection GetCookies()
         {
             return _restClient.CookieContainer.GetCookies(_restClient.BaseUrl);
+        }
+
+        public CookieData GetCookieValueByName(string name)
+        {
+            var cookie = _restClient.CookieContainer.GetCookies(_restClient.BaseUrl).First(x => x.Name == name);
+            return new CookieData(cookie.Name, cookie.Value);
         }
 
         public void SetCookieIfNotSet(CookieData cookie)

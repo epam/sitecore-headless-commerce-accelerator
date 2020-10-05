@@ -31,7 +31,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public void T2_POSTValidateRequest_NonExistingEmail_NotInUse()
         {
             // Arrange
-            var email = new ValidateEmailRequest {Email = GetRandomEmail()};
+            var email = new ValidateEmailRequest {Email = StringHelpers.GetRandomEmail() };
 
             // Act
             var response = ApiContext.Account.ValidateEmail(email);

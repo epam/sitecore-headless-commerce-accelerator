@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net;
 using AutoTests.AutomationFramework.API.Services.RestService;
+using AutoTests.AutomationFramework.Shared.Models;
 using AutoTests.HCA.Core.API.HcaApi.Services;
 using AutoTests.HCA.Core.API.HcaApi.Settings;
 
@@ -7,6 +9,8 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
 {
     public class HcaApiContext : IHcaApiContext
     {
+        public const string AUTHORIZATION_COOKIE_NAME = ".AspNet.Cookies";
+        private readonly HcaApiSettings _settings;
         private AccountService _account;
 
         private AuthService _authService;
@@ -19,10 +23,11 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
 
         public HcaApiContext(HcaApiSettings apiSettings)
         {
-            var siteCoreCookie = apiSettings.GlobalAuthentication.SiteCoreCookie;
-            var basicAuth = apiSettings.GlobalAuthentication.BasicAuthenticator;
+            _settings = apiSettings;
+            var siteCoreCookie = _settings.GlobalAuthentication.SiteCoreCookie;
+            var basicAuth = _settings.GlobalAuthentication.BasicAuthenticator;
 
-            Client = new HttpClientService(new Uri(apiSettings.HcaApiUri));
+            Client = new HttpClientService(new Uri(_settings.HcaApiUri));
             Client.SetCookieIfNotSet(siteCoreCookie);
 
             if (basicAuth.IsRequired)
@@ -39,5 +44,15 @@ namespace AutoTests.HCA.Core.API.HcaApi.Context
         public WishListService WishList => _wishListService ??= new WishListService(Client);
         public CheckoutService Checkout => _checkoutService ??= new CheckoutService(Client);
         public StoreLocatorService StoreLocator => _storeLocatorService ??= new StoreLocatorService(Client);
+
+        public CookieData GetHcaGlobalCookie()
+        {
+            return Client.GetCookieValueByName(_settings.GlobalAuthentication.SiteCoreCookie.Name);
+        }
+
+        public CookieData GetAuthorizationCookie()
+        {
+            return Client.GetCookieValueByName(AUTHORIZATION_COOKIE_NAME);
+        }
     }
 }

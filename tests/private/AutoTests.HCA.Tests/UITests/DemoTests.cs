@@ -1,6 +1,7 @@
 ﻿using AutoTests.AutomationFramework.UI.Driver;
 using AutoTests.HCA.Core.BaseTests;
 using AutoTests.HCA.Core.Common.Entities.ConstantsAndEnums.Checkout;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.UI;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums.Header.MainMenu;
 using NUnit.Framework;
@@ -24,6 +25,7 @@ namespace AutoTests.HCA.Tests.UITests
         }
 
         private HcaWebSite _hcaWebSite;
+        protected static readonly HcaCreditCardTDSettings CreditCardData = TestsData.GetDefaultCreditCard();
 
         [Test]
         public void T1_Demo_CheckoutForAnonymous()
@@ -52,13 +54,13 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Postal Code", "10005");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Email Address", "test@test.com");
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(TestsData.GetDefaultShippingMethod());
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.CheckoutBillingPage.ClickSubmit();
             _hcaWebSite.CheckoutPaymentPage.WaitForOpened();
-            _hcaWebSite.CheckoutPaymentPage.FillCardNumber("4111111111111111");
-            _hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", "123");
+            _hcaWebSite.CheckoutPaymentPage.FillCardNumber(CreditCardData.Number);
+            _hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", CreditCardData.Cvv);
             _hcaWebSite.CheckoutPaymentPage.ClickSubmit();
             _hcaWebSite.CheckoutConfirmationPage.WaitForOpened();
         }
@@ -90,13 +92,13 @@ namespace AutoTests.HCA.Tests.UITests
             _hcaWebSite.CheckoutShippingPage.SelectValueInTheField("Province", "New York");
             _hcaWebSite.CheckoutShippingPage.FillFieldByName("Postal Code", "10005");
             _hcaWebSite.CheckoutShippingPage.SelectOptionByName(AddressOption.AlsoUseForBillingAddress);
-            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(ShippingMethod.Standard);
+            _hcaWebSite.CheckoutShippingPage.SelectShippingMethod(TestsData.GetDefaultShippingMethod());
             _hcaWebSite.CheckoutShippingPage.ClickSubmit();
             _hcaWebSite.CheckoutBillingPage.WaitForOpened();
             _hcaWebSite.CheckoutBillingPage.ClickSubmit();
             _hcaWebSite.CheckoutPaymentPage.WaitForOpened();
-            _hcaWebSite.CheckoutPaymentPage.FillCardNumber("4111111111111111");
-            _hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", "123");
+            _hcaWebSite.CheckoutPaymentPage.FillCardNumber(CreditCardData.Number);
+            _hcaWebSite.CheckoutPaymentPage.FillFieldByName("Security Code", CreditCardData.Cvv);
             _hcaWebSite.CheckoutPaymentPage.ClickSubmit();
             _hcaWebSite.CheckoutConfirmationPage.WaitForOpened();
         }

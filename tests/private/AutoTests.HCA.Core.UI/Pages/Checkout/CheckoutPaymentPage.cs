@@ -1,5 +1,6 @@
 ﻿using AutoTests.AutomationFramework.UI.Controls;
 using AutoTests.AutomationFramework.UI.Core;
+using AutoTests.HCA.Core.Common.Settings.Checkout;
 using AutoTests.HCA.Core.UI.ConstantsAndEnums;
 
 namespace AutoTests.HCA.Core.UI.Pages.Checkout
@@ -23,7 +24,7 @@ namespace AutoTests.HCA.Core.UI.Pages.Checkout
             return PagePrefix.CheckoutPayment.GetPrefix();
         }
 
-        protected override void FillFieldsByDefault()
+        protected override void FillFieldsByDefault(HcaShippingMethodTDSettings defShippingMethod = null)
         {
             FillCardNumber("4111111111111111");
             FillFieldByName("Security Code", "123");

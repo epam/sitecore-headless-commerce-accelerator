@@ -39,7 +39,7 @@ namespace AutoTests.HCA.Tests.APITests.Account
         public void T1_POSTAccountRequest_ValidNewUser_SuccessfulResult()
         {
             // Arrange
-            var email = GetRandomEmail();
+            var email = StringHelpers.GetRandomEmail();
             var newUser = new CreateAccountRequest
             {
                 Email = email,

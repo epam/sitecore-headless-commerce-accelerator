@@ -18,17 +18,23 @@
   border: none;
   &-desktop {
     .header_container {
-      &:first-of-type .header_content {
-        border-bottom: 1px solid $grey-light;
+      .header_content {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1200px;
+      }
+      .header_content.header-full-width {
+        padding: 30px 70px;
+        max-width: none;
       }
     }
   }
   &_container {
-    &:first-of-type{
+    &:first-of-type {
       border-bottom: 1px solid $grey-light;
     }
     &:first-of-type .header_content {
-      padding: 13px 70px;
+      padding: 13px 0;
       @media #{$header-switch-mobile-mode} {
         display: none;
         .navigation-buttons {
@@ -48,13 +54,16 @@
           display: block;
         }
       }
-      .navigation-buttons{
+      .navigation-buttons {
         display: none;
       }
     }
+    &:first-of-type .header_content.header-full-width {
+      padding: 13px 70px;
+    }
     &:last-of-type .header_content {
-      padding: 30px 70px;
-      > div.navigation-buttons_item.search{
+      padding: 30px 0px;
+      > div.navigation-buttons_item.search {
         max-width: 16.6%;
         flex: 1;
         display: flex;
@@ -63,8 +72,8 @@
         @media #{$header-switch-mobile-mode} {
           max-width: unset;
           width: unset;
-          margin-left: 0px;          
-        }  
+          margin-left: 0px;
+        }
       }
       @media #{$header-switch-mobile-mode} {
         display: flex;
@@ -73,10 +82,19 @@
         }
       }
 
-      @media #{$header-switch-padding-mobile-mode}{
+      @media #{$header-switch-padding-mobile-mode} {
         padding: 13px 40px;
       }
-      @media #{$xs-layout}{
+      @media #{$xs-layout} {
+        padding: 13px 15px;
+      }
+    }
+    &:last-of-type .header_content.header-full-width {
+      padding: 30px 70px;
+      @media #{$header-switch-padding-mobile-mode} {
+        padding: 13px 40px;
+      }
+      @media #{$xs-layout} {
         padding: 13px 15px;
       }
     }
@@ -114,7 +132,7 @@
               padding: 0px;
               .navigation ul.navigation-content {
                 display: block;
-                height: 100%;
+                height: 100vh;
                 overflow-y: scroll;
                 padding-top: 100px;
               }
@@ -140,8 +158,10 @@
         ul.navigation-content {
           padding-right: 40px;
         }
-        .search{
-          margin-right: 40px;
+        @media #{$header-switch-mobile-mode} {
+          .search {
+            margin-right: 60px;
+          }
         }
       }
     }

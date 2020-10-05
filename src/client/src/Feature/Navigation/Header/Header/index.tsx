@@ -48,7 +48,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
   }
 
   public handleScroll() {
-    this.setState({ scroll: window.scrollY });
+    this.setState({ scroll: document.documentElement.scrollTop });
   }
 
   public handleClick() {

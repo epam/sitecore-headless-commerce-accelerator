@@ -17,11 +17,12 @@
 @import "Foundation/UI/common/scss-new/_variables";
 .footer-wrap-2 {
   margin: auto;
-  padding: 35px 20px 0 20px;
+  padding-top: 35px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   position: relative;
+  max-width: 1200px;
   .footer-columns {
     margin-bottom: 30px;
     width: 72%;

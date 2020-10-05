@@ -29,4 +29,6 @@ export interface Marker {
 export interface MarkerProps extends Marker {}
 export interface MarkerState extends JSS.SafePureComponentState {
   isOpen: boolean;
+  startX: number;
+  startY: number;
 }

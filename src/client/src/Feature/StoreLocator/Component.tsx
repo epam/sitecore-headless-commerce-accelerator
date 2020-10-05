@@ -33,6 +33,7 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
 
     this.state = {
       errors: {},
+      radiuses: [],
     };
 
     this.validate = this.validate.bind(this);
@@ -42,15 +43,15 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
     this.props.GetStores();
   }
 
+  public componentWillReceiveProps(nextProps: StoreLocatorProps) {
+    this.setState({
+      radiuses: this.sortRadiuses(nextProps.fields.data.datasource.radiuses.items),
+    });
+  }
+
   protected safeRender() {
     const { stores } = this.props;
-    const {
-      description,
-      defaultLatitude,
-      defaultLongitude,
-      countries,
-      radiuses,
-    } = this.props.fields.data.datasource;
+    const { description, defaultLatitude, defaultLongitude, countries } = this.props.fields.data.datasource;
 
     return (
       <div className="col-md-12 order-md-1 locator_content" style={{ marginTop: 30, paddingBottom: 100 }}>
@@ -65,22 +66,24 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                 name={FORM_FIELDS.ZIP_CODE}
                 placeholder="Enter zip code..."
               />
-              {this.state.errors[FORM_FIELDS.ZIP_CODE] &&
-                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.ZIP_CODE]}</span>}
+              {this.state.errors[FORM_FIELDS.ZIP_CODE] && (
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.ZIP_CODE]}</span>
+              )}
             </div>
             <div className="form_item">
               <JSS.Text tag="label" field={{ value: 'Radius', editable: 'Radius' }} />
               <Select className="d-block w-100 form_item_input" name={FORM_FIELDS.RADIUS} type="text">
                 <option value="">Select a radius</option>
-                {radiuses.items.map((radius, index) => (
-                  <option key={`${index}-${radius.value.jss.value}`} value={radius.value.jss.value}>
-                    {radius.value.jss.value}
+                {this.state.radiuses.map((radius, index) => (
+                  <option key={`${index}-${radius}`} value={radius}>
+                    {radius}
                   </option>
                 ))}
               </Select>
-              {this.state.errors[FORM_FIELDS.RADIUS] &&
-                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.RADIUS]}</span>}
-            </div>
+                {this.state.errors[FORM_FIELDS.RADIUS] && (
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.RADIUS]}</span>
+              )}
+              </div>
             <div className="form_item">
               <JSS.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
               <Select name={FORM_FIELDS.COUNTRY} type="text" className="d-block w-100 form_item_input">
@@ -115,6 +118,13 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
         </Form>
       </div>
     );
+  }
+
+  private sortRadiuses(radiuses: any) {
+    const radiusValues = radiuses.map((r: any) => {
+      return r.value.jss.value;
+    });
+    return radiusValues.sort((a: string, b: string) => Number(a) - Number(b));
   }
 
   private validate(formValues: FormValues) {

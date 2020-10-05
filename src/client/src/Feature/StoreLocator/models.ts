@@ -63,6 +63,7 @@ export interface StoreLocatorState extends Jss.SafePureComponentState {
   errors: {
     [key: string]: string;
   };
+  radiuses: string[];
 }
 
 export interface AppState extends GlobalCurrentStoreLocatorState, Jss.RoutingState {}

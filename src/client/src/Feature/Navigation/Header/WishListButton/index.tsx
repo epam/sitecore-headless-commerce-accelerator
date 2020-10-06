@@ -18,14 +18,23 @@ import * as React from 'react';
 import { AddToWishlistProps, AddToWishlistState } from './models';
 
 export class AddToWishlistComponent extends JSS.SafePureComponent<AddToWishlistProps, AddToWishlistState> {
+  protected handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.currentTarget.classList.contains('add-wishlist-active')
+      ? e.currentTarget.classList.remove('add-wishlist-active')
+      : e.currentTarget.classList.add('add-wishlist-active');
+  }
+
   protected safeRender() {
     return (
       <button
         title="Add to Wishlist"
-        onClick={(e) => this.props.AddWishlistItem(this.props.item)}
+        onClick={(e) => {
+          this.props.AddWishlistItem(this.props.item);
+          this.handleClick(e);
+        }}
         className="btn btn-main btn-add"
       >
-        <i className="fa fa-heart-o" />
+        <i className="pe-7s-like" />
       </button>
     );
   }

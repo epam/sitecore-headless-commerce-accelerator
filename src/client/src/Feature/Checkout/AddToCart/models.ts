@@ -31,6 +31,8 @@ export interface AddToCartDispatchProps {
 }
 
 export interface AddToCartProps extends AddToCartOwnProps, AddToCartStateProps, AddToCartDispatchProps {}
-export interface AddToCartState extends Jss.SafePureComponentState {}
+export interface AddToCartState extends Jss.SafePureComponentState {
+  quantityCount: number;
+}
 
 export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState {}

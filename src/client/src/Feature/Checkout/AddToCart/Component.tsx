@@ -24,16 +24,41 @@ import { AddToCartProps, AddToCartState } from './models';
 export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartProps, AddToCartState> {
   constructor(props: AddToCartProps) {
     super(props);
+    this.state = {
+      quantityCount: 1
+    };
   }
-
   protected safeRender() {
+    const { quantityCount } = this.state;
     const { isLoading, variant } = this.props;
     const isDisabled = isLoading || !variant || variant.stockStatusName !== Common.StockStatus.InStock;
     return (
       <>
+        <div className="cart-plus-minus">
+          <button
+            onClick={() => (quantityCount > 1) && this.setState({quantityCount: quantityCount - 1})}
+            className="dec qtybutton"
+          >
+            -
+          </button>
+          <input
+            className="cart-plus-minus-box"
+            type="text"
+            value={quantityCount}
+          />
+          <button
+            onClick={() => this.setState({quantityCount: quantityCount + 1})}
+            className="inc qtybutton"
+          >
+            +
+          </button>
+        </div>
         <button disabled={isDisabled} title="Add to Cart" onClick={(e) => this.addToCart(e)} className="btn btn-main btn-add">
             {isLoading && <i className="fa fa-spinner fa-spin" />}
-            &nbsp;Add to Cart <span>+</span>
+            &nbsp;
+            {(isDisabled)
+            ? 'Out of Stock'
+            : 'Add to Cart' }
         </button>
       </>
     );

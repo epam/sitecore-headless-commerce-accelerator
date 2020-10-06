@@ -35,7 +35,7 @@
         overflow: hidden;
         display: flex;
         justify-content: center;
-        margin-bottom: 25px;
+        margin-bottom: 33px;
         button {
             background-color: inherit;
             border: none;
@@ -247,6 +247,7 @@
                     box-shadow: none;
                     height: 45px;
                     margin-bottom: 0;
+                    font-family: $poppins;  
                 }
             }
             .form-submit{
@@ -272,6 +273,7 @@
                     color: $review-text-color;
                     border: 1px solid $theme-color;
                     background-color: $theme-color;
+                    line-height: 24px;
                     &:hover {
                         border: 1px solid $review-input-border;
                         background-color: $review-input-border;

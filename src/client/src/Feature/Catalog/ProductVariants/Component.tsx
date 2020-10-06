@@ -39,6 +39,14 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
     }
   }
 
+  protected handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    const listOfColours = document.getElementsByClassName('color-variant-button');
+    for (const variants of listOfColours as any) {
+      variants.classList.remove('color-variant-button-active');
+    }
+    e.currentTarget.classList.add('color-variant-button-active');
+  }
+
   protected safeRender() {
     const { variants, sitecoreContext } = this.props;
     const { firstVariantClassname } = this.state;
@@ -56,10 +64,13 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
                     <li key={variantIndex} className={`colors-listitem ${firstVariantClassname.includes('first-load') && 'first-load'}`}>
                       <button
                         style={{ background: colorValue }}
-                        onClick={(e) => this.variantSelected(e, variant)}
-                        className={variantIndex === 0
-                          ? firstVariantClassname
-                          : 'colors-option-2'}
+                        onClick={(e) => {this.variantSelected(e, variant);
+                                         this.handleClick(e); }}
+                        className={`color-variant-button
+                          ${variantIndex === 0
+                            ? firstVariantClassname
+                            : 'colors-option-2'}
+                        `}
                       />
                     </li>
                   );

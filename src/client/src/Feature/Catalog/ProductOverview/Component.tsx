@@ -13,12 +13,9 @@
 //    limitations under the License.
 
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
-import classNames from 'classnames';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { Common } from 'Feature/Catalog/Integration';
 
 import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
@@ -37,7 +34,6 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   public closeAddedModal(e: any) {
     console.log(e);
   }
-  // tslint:disable-next-line:no-big-function
   protected safeRender() {
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedVariant = this.props.selectedVariant;
@@ -45,23 +41,6 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     return (
       <section className="product-overview-2">
         <div className="panel-overview">
-          <header className="product-header">
-            <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
-              <i className="fa fa-print" />
-            </a>
-            <p className="product-brand">{selectedCatalogItem.brand}</p>
-            <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
-            <div
-              className={classNames('product-stock-status', {
-                'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
-                'in-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.InStock,
-                'out-of-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.OutOfStock,
-                'pre-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.PreOrderable,
-              })}
-            >
-              <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
-            </div>
-          </header>
           <div className="row">
             <div className="col-md-6">
               {!!selectedCatalogItem.imageUrls && selectedCatalogItem.imageUrls.length > 0 ? (
@@ -71,11 +50,28 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               )}
             </div>
             <div className="col-md-6">
+              <header className="product-header">
+                <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
+                  <i className="pe-7s-print" />
+                </a>
+                <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
+                {/* <div
+                className={classNames('product-stock-status', {
+                  'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
+                  'in-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.InStock,
+                  'out-of-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.OutOfStock,
+                  'pre-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.PreOrderable,
+                })}
+              >
+                <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
+              </div> */}
+              </header>
               <div className="product-info">
                 <p className="product-price">
                   <span className="price-label">Sale</span>
                   <span className="price-value">
-                    {selectedCatalogItem.currencySymbol} {selectedCatalogItem.adjustedPrice.toFixed(2)}
+                    {selectedCatalogItem.currencySymbol}
+                    {selectedCatalogItem.adjustedPrice.toFixed(2)}
                   </span>
                 </p>
                 <ProductRating rating={selectedCatalogItem.customerAverageRating} />
@@ -86,6 +82,10 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                   <div className="links">
                     <Placeholder name="product-actions" rendering={this.props.rendering} />
                   </div>
+                </div>
+                <div className="product-tags">
+                  <span className="product-tags_title">Categories :</span>
+                  {selectedCatalogItem.brand && <span className="product-tags_item">{selectedCatalogItem.brand}</span>}
                 </div>
                 <div className="product-tags">
                   <span className="product-tags_title">Tags :</span>
@@ -198,18 +198,18 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
       </section>
     );
   }
-  private getStockStatusLabel(stockStatus: string) {
-    switch (stockStatus) {
-      case Common.StockStatus.BackOrderable:
-        return 'Back Orderable';
-      case Common.StockStatus.InStock:
-        return 'In Stock';
-      case Common.StockStatus.OutOfStock:
-        return 'Out Of Stock';
-      case Common.StockStatus.PreOrderable:
-        return 'Pre Orderable';
-      default:
-        return '';
-    }
-  }
+  // private getStockStatusLabel(stockStatus: string) {
+  //   switch (stockStatus) {
+  //     case Common.StockStatus.BackOrderable:
+  //       return 'Back Orderable';
+  //     case Common.StockStatus.InStock:
+  //       return 'In Stock';
+  //     case Common.StockStatus.OutOfStock:
+  //       return 'Out Of Stock';
+  //     case Common.StockStatus.PreOrderable:
+  //       return 'Pre Orderable';
+  //     default:
+  //       return '';
+  //   }
+  // }
 }

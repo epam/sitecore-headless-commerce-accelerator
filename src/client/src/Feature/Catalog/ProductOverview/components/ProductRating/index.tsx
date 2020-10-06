@@ -39,16 +39,6 @@ export class ProductRating extends JSS.SafePureComponent<ProductRatingProps, Pro
             <i className="fa fa-star-o" />
           </span>
         </div>
-        <span className="review-read">
-          <a href="" title="Read reviews" className="review-link">
-            Read N reviews
-          </a>
-        </span>
-        <span className="review-write">
-          <a href="" title="Write a review" className="review-link">
-            Write a review
-          </a>
-        </span>
       </div>
     );
   }

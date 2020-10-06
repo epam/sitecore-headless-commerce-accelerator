@@ -68,7 +68,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
     module: {
       rules: [
         {
-          test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/],
+          test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/, /\.gif/],
           loader: require.resolve('url-loader'),
           options: {
             limit: 8192,
@@ -86,6 +86,17 @@ const clientWebpackConfigFactory = (projectManifest) => {
                 // disable type checker - we will use it in fork plugin
                 transpileOnly: true,
               },
+            },
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
             },
           ],
         },
@@ -170,7 +181,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
     module: {
       rules: [
         {
-          test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/],
+          test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/, /\.gif/],
           loader: require.resolve('url-loader'),
           options: {
             limit: 8192,
@@ -197,6 +208,17 @@ const serverWebpackConfigFactory = (projectManifest) => {
           use: { loader: 'html-loader' },
         },
         { test: /\.scss$/, loader: 'ignore-loader' },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+            },
+          ],
+        },
       ],
     },
     plugins: [

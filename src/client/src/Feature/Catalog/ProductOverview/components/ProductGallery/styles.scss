@@ -14,6 +14,8 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 @import "Foundation/UI/common/scss-new/_variables";
+@import "~lightgallery.js/dist/css/lightgallery.css";
+
 .product-overview-2 {
   .product-gallery {
     &-header {
@@ -24,6 +26,52 @@
       border: none !important;
       @media (min-width: 1200px) {
         height: 760px;
+      }
+      position: relative;
+      
+      .react_lightgallery_item{
+        position: absolute;
+        top: 0;
+        right: 0;
+        & button{
+          border: none;
+          margin: 0;
+          padding: 0;
+          &:focus #product-gallery-header-modal{
+            display: block;
+          }
+        }
+      }
+
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+        .swiper-wrapper .swiper-slide {
+          width: 100% !important;
+          text-align: center;
+        }
+      }
+
+      &-expand{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        & button{
+          border: none;
+          margin: 0;
+          padding: 0;
+          &:focus #product-gallery-header-modal{
+            display: block;
+          }
+        }
+        .swiper-container {
+          width: 100%;
+          height: 100%;
+          .swiper-wrapper .swiper-slide {
+            width: 100% !important;
+            text-align: center;
+          }
+        }
       }
     }
     &-carousel {

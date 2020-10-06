@@ -35,7 +35,7 @@ module.exports = (compilerOptions) => ({
   module: {
     rules: [
       {
-        test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/, /\.ico/],
+        test: [/\.jpe?g$/, /\.png$/, /\.svg$/, /\.ttf$/, /\.otf$/, /\.eot/, /\.woff/, /\.gif/, /\.ico/],
         loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
@@ -96,6 +96,10 @@ module.exports = (compilerOptions) => ({
             loader: require.resolve('sass-loader'),
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

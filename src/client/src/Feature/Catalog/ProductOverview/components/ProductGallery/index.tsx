@@ -16,9 +16,11 @@ import classnames from 'classnames';
 import * as React from 'react';
 
 import { Carousel } from 'Foundation/UI';
+import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import Swiper from 'react-id-swiper';
 import { ProductGalleryProps, ProductGalleryState } from './models';
 import './styles.scss';
 
@@ -40,7 +42,23 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     return (
       <div className="product-gallery">
         <div className="product-gallery-header">
-          <img src={images[activeImageIndex]} alt="1" className="gallery-image" />
+          <LightgalleryProvider>
+            <Swiper loop={true} effect="fade" spaceBetween={10} loopedSlides={4}>
+              {images &&
+                images.map((src, index) => (
+                  <div key={index}>
+                    <LightgalleryItem group="any" src={src} thumb={src}>
+                      <button>
+                        <i className="pe-7s-expand1" />
+                      </button>
+                    </LightgalleryItem>
+                    <div className="single-image">
+                      <img src={src} alt="1" className="gallery-image" />
+                    </div>
+                  </div>
+                ))}
+            </Swiper>
+          </LightgalleryProvider>
         </div>
         <Carousel
           className="product-gallery-carousel"

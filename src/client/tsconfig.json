@@ -26,11 +26,13 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "downlevelIteration": true
-  },
+  }, 
+  "files":["src/Project/HCA/modules.d.ts"],
   "include": [
     "src/Foundation/**/*",
     "src/Feature/**/*",
-    "src/Project/**/*"
+    "src/Project/**/*",
+    "src/Project/HCA/modules.d.ts"
   ],
   "exclude": [
     "src/Foundation/**/*.js",

@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss/variables";
 
-.thank-you-bg-wrapper-2 {
+.thank-you-bg-wrapper {
   background-color: #fff;
   width: 100%;
-  .btn-order-print-2 {
+  .btn-order-print {
     font-size: 15px;
     font-weight: 700;
     padding: 0 15px 0 15px;
@@ -92,6 +92,7 @@
     color: $text-main-color;
     font-size: 18px;
     font-family: $poppins;
+    margin-top: 7px;
     &_bold{
       font-weight: 600;
     }

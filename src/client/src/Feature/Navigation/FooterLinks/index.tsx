@@ -27,7 +27,7 @@ class FooterLinksComponent extends JSS.SafePureComponent<FooterLinksProps, Foote
     const { datasource } = fields.data;
 
     return (
-      <ul className="footer-links-list-2">
+      <ul className="footer-links-list">
         {datasource.links &&
           datasource.links.items &&
           datasource.links.items.map((link, index) => {

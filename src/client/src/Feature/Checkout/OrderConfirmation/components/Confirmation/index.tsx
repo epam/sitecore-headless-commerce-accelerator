@@ -25,7 +25,7 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
   public safeRender() {
     const { addresses, payment, price, shipping } = this.props.order;
     return (
-      <div className="order-confirmation-wrapper-2">
+      <div className="order-confirmation-wrapper">
         <section className="container">
           <div className="row">
             <div className="col-md-12 nopadding">

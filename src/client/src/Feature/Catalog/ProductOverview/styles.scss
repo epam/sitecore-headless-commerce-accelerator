@@ -14,10 +14,10 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss-new/_variables";
-@import "Foundation/UI/common/scss-new/_mixins";
+@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss/mixins";
 
-.product-overview-2 {
+.product-overview {
     // #Grid
     position: relative;
     padding-top: 100px;
@@ -168,7 +168,7 @@
             margin: 0;
             margin-right: 15px;
         }
-        &-option-2 {
+        &-option {
             display: block;
             width: 14px;
             height: 14px;
@@ -576,7 +576,7 @@
     }
 }
 
-.colors-option-2{
+.colors-option{
     cursor: pointer;
     position: relative;
     outline: none !important;

@@ -55,7 +55,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="loading" />
           </div>
         )}
-        <div className="billing-shipping-2">
+        <div className="billing-shipping">
           <Text field={{ value: 'Shipping' }} tag="h2" />
           <FieldSet>
             <Text field={{ value: 'Ship To' }} tag="h3" />
@@ -230,7 +230,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             </div>
           </FieldSet>
           <FieldSet>
-            <Text field={{ value: 'Shipping Method' }} tag="h3" />
+            <div className="shipping-method-title">
+              <Text field={{ value: 'Shipping Method' }} tag="h3" />
+            </div>
             <div className="row">
               <div className="col-sm-12">
                 <Select name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>

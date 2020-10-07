@@ -14,10 +14,10 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss-new/_variables";
-@import "Foundation/UI/common/scss-new/_mixins";
+@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss/mixins";
 
-.product-description-2 {
+.product-description {
     padding-bottom: 40px;
     background: $product-detail-background;
     font-family: $poppins;

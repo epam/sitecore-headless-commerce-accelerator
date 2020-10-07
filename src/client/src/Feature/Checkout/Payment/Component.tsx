@@ -57,7 +57,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
           </div>
         )}
         {!formIsValid && <div>Validation failed! Check credit card data.</div>}
-        <div className="payment-2">
+        <div className="payment">
           <Text field={{ value: 'Payment' }} tag="h2" />
           <fieldset>
             <div className="row">

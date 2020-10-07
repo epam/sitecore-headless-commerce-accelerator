@@ -18,7 +18,6 @@ import * as Router from 'connected-react-router';
 import { Status } from 'Foundation/Integration';
 
 export interface BaseDataSourceItem {
-  checkoutStepName: any;
   id: string;
 }
 

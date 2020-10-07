@@ -14,10 +14,10 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss-new/_variables";
-.footer-wrap-2 {
+@import "Foundation/UI/common/scss/variables";
+.footer-wrap {
   margin: auto;
-  padding-top: 35px;
+  padding: 35px 15px 0 15px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -37,12 +37,13 @@
 
 .footer-area {
   position: relative;
+  background-color: $background-footer-color;
   padding-bottom: 70px;
   padding-top: 100px;
   font-family: $poppins;
   @media #{$footer-switch-mode} {
-    .footer-wrap-2 {
-      max-width: 1280px;
+    .footer-wrap {
+      max-width: 1200px;
       margin: auto;
       padding-top: 35px;
       display: -ms-flexbox;

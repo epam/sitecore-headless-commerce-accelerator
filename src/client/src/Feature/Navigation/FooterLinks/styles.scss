@@ -14,15 +14,15 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss/variables";
 
 @media #{$xs-layout} {
-  .footer-links-list-2 {
+  .footer-links-list {
     margin: 15px 0;
   }  
 }
 // Footer grid for columns end
-.footer-links-list-2 {
+.footer-links-list {
   .footer-list-item {
     line-height: 1.8;
     margin-bottom: 8px;

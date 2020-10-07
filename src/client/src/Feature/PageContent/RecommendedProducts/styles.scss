@@ -14,7 +14,7 @@
 
 @import "Foundation/UI/common/scss/variables";
 
-.recommend-products-2 {
+.recommend-products {
     padding: 0;
     .carousel-button-container {
         &__button {
@@ -124,7 +124,7 @@
                 margin: 0 5px;
             }
         }
-        .image-wrap-2 {
+        .image-wrap-recommended-product {
             height: 360px;
             display: flex; //centering inner img
             justify-content: center;

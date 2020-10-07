@@ -43,7 +43,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
     } = this.props;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
-      <section className="listing-product-grid-2">
+      <section className="listing-product-grid">
         <ProductListHeader
           search={search}
           isLoading={isLoading}

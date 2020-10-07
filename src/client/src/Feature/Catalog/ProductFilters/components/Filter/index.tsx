@@ -30,12 +30,12 @@ export class Filter extends React.Component<FilterProps, FilterState> {
     const { isValuesVisible } = this.state;
     return (
       <div className={classNames({ 'filter-first': first })}>
-        <div className="filter-2">
-          <div className="filter-2_toggle-2">
-            <h3 className="filter-2_name">{facet.displayName}</h3>
+        <div className="product-filter">
+          <div className="product-filter_toggle">
+            <h3 className="product-filter_name">{facet.displayName}</h3>
           </div>
           {isValuesVisible && (
-            <ul className="filter-2_options options show-all-links">
+            <ul className="product-filter_options options show-all-links">
               {facet.foundValues &&
                 facet.foundValues
                   .filter((v) => v.aggregateCount !== 0)

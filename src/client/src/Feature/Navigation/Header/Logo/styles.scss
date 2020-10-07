@@ -12,16 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import "Foundation/UI/common/scss/variables";
 
 .logo {
   flex: 0 0 16.6%;
   max-width: 16.6%;
   justify-content: flex-start;
-
-  & img {
-    width: 95px;
-    height: 26px;
+  a {
+    display: flex;
+    & img {
+      width: 95px;
+      height: 26px;
+    }
   }
 }
-

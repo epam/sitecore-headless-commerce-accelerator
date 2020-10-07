@@ -12,15 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables.scss';
+@import 'Foundation/UI/common/scss/variables.scss';
 
-.listing-grid-item-2 {
+.listing-grid-item {
   padding: 0px 15px;
   text-align: center;
   text-transform: uppercase;
-  &:hover, &:focus {
-    // border-color: #066666;
-  }
+
   .img-wrap {
     cursor: pointer;
     position: relative;

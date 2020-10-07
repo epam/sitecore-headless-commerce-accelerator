@@ -21,19 +21,16 @@ import { GlobalFooterProps, GlobalFooterState } from './models';
 
 import './styles.scss';
 
-class GlobalFooterComponent extends JSS.SafePureComponent<
-    GlobalFooterProps,
-    GlobalFooterState
-    > {
-    protected safeRender() {
-        return (
-            <footer id="footer-main" className="footer-area bg-gray pt-100 pb-70">
-                <div className="footer-wrap-2">
-                    <Placeholder name="footer-content" rendering={this.props.rendering} />
-                </div>
-            </footer>
-        );
-    }
+class GlobalFooterComponent extends JSS.SafePureComponent<GlobalFooterProps, GlobalFooterState> {
+  protected safeRender() {
+    return (
+      <footer id="footer-main" className="footer-area bg-gray pt-100 pb-70">
+        <div className="footer-wrap">
+          <Placeholder name="footer-content" rendering={this.props.rendering} />
+        </div>
+      </footer>
+    );
+  }
 }
 
 export const GlobalFooter = JSS.rendering(GlobalFooterComponent);

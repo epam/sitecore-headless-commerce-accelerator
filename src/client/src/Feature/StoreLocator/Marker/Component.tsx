@@ -8,7 +8,6 @@ import { MarkerProps, MarkerState } from './models';
 const deltaPixels = 6;
 
 export class Marker extends JSS.SafePureComponent<MarkerProps, MarkerState> {
-
   private divRef = React.createRef<HTMLInputElement>();
 
   public constructor(props: MarkerProps) {
@@ -19,7 +18,6 @@ export class Marker extends JSS.SafePureComponent<MarkerProps, MarkerState> {
       startX: undefined,
       startY: undefined,
     };
-
   }
 
   public componentDidMount() {

@@ -27,7 +27,6 @@ import { Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/For
 import './styles.scss';
 
 export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorProps, StoreLocatorState> {
-
   public constructor(props: StoreLocatorProps) {
     super(props);
 
@@ -80,10 +79,10 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                   </option>
                 ))}
               </Select>
-                {this.state.errors[FORM_FIELDS.RADIUS] && (
+              {this.state.errors[FORM_FIELDS.RADIUS] && (
                 <span className="form_item_warning">{this.state.errors[FORM_FIELDS.RADIUS]}</span>
               )}
-              </div>
+            </div>
             <div className="form_item">
               <JSS.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
               <Select name={FORM_FIELDS.COUNTRY} type="text" className="d-block w-100 form_item_input">
@@ -94,8 +93,9 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
                   </option>
                 ))}
               </Select>
-              {this.state.errors[FORM_FIELDS.COUNTRY] &&
-                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.COUNTRY]}</span>}
+              {this.state.errors[FORM_FIELDS.COUNTRY] && (
+                <span className="form_item_warning">{this.state.errors[FORM_FIELDS.COUNTRY]}</span>
+              )}
             </div>
             <div className="form_item">
               <Submit className="form_item_input" onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}>
@@ -129,21 +129,29 @@ export class StoreLocatorComponent extends JSS.SafePureComponent<StoreLocatorPro
 
   private validate(formValues: FormValues) {
     const zip = formValues[FORM_FIELDS.ZIP_CODE] as string;
-    const resultZip = (/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/gi).test(zip);
-    this.setState ((prevState) => ({
-      errors: {...prevState.errors, [FORM_FIELDS.ZIP_CODE]: (resultZip ? null : 'Please enter a valid ZIP code')}
+    const resultZip = /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/gi.test(zip);
+    this.setState((prevState) => ({
+      errors: { ...prevState.errors, [FORM_FIELDS.ZIP_CODE]: resultZip ? null : 'Please enter a valid ZIP code' },
     }));
 
-    const resultCountry = this.checkDropdown(formValues[FORM_FIELDS.COUNTRY] as string, FORM_FIELDS.COUNTRY, 'Please select a country');
-    const resultRadius = this.checkDropdown(formValues[FORM_FIELDS.RADIUS] as string, FORM_FIELDS.RADIUS, 'Please select a radius');
+    const resultCountry = this.checkDropdown(
+      formValues[FORM_FIELDS.COUNTRY] as string,
+      FORM_FIELDS.COUNTRY,
+      'Please select a country',
+    );
+    const resultRadius = this.checkDropdown(
+      formValues[FORM_FIELDS.RADIUS] as string,
+      FORM_FIELDS.RADIUS,
+      'Please select a radius',
+    );
 
     return resultZip && resultCountry && resultRadius;
   }
 
   private checkDropdown(str: string, formField: string, errorMessage: string) {
     const result = str && str.length !== 0;
-    this.setState ((prevState) => ({
-      errors: {...prevState.errors, [formField]: (result ? null : errorMessage)}
+    this.setState((prevState) => ({
+      errors: { ...prevState.errors, [formField]: result ? null : errorMessage },
     }));
     return result;
   }

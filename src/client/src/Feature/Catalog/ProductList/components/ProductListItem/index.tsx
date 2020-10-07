@@ -25,7 +25,7 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
   public safeRender() {
     const { product, fallbackImageUrl } = this.props;
     return (
-      <figure className="listing-grid-item-2">
+      <figure className="listing-grid-item">
         <div className="img-wrap">
           <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
           <div className="product-action">

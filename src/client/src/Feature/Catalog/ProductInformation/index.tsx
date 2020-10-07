@@ -35,22 +35,22 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
     const { product } = this.props.sitecoreContext;
     const { selectedTab } = this.state;
     return (
-      <section className="product-description-2">
+      <section className="product-description">
         <div className="tab">
           <button
-            className={`tab-links ${(selectedTab === 'features') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'features' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'features' })}
           >
             Additional Information
           </button>
           <button
-            className={`tab-links ${(selectedTab === 'description') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'description' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'description' })}
           >
             Description
           </button>
           <button
-            className={`tab-links ${(selectedTab === 'rating') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'rating' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'rating' })}
           >
             Reviews
@@ -65,10 +65,18 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
           {selectedTab === 'features' && (
             <div className="description-features">
               <ul className="feature-list">
-                <li><span>Data One</span> 2 GB</li>
-                <li><span>Data Two</span> Model XE-C</li>
-                <li><span>Data Three</span> Charcoal</li>
-                <li><span>Data Four</span> Explorer Edition</li>
+                <li>
+                  <span>Data One</span> 2 GB
+                </li>
+                <li>
+                  <span>Data Two</span> Model XE-C
+                </li>
+                <li>
+                  <span>Data Three</span> Charcoal
+                </li>
+                <li>
+                  <span>Data Four</span> Explorer Edition
+                </li>
               </ul>
             </div>
           )}
@@ -78,10 +86,7 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                 <div className="review-wrapper">
                   <div className="single-review">
                     <div className="review-img">
-                      <img
-                        src={pictureOne}
-                        alt=""
-                      />
+                      <img src={pictureOne} alt="" />
                     </div>
                     <div className="review-content">
                       <div className="review-top-wrap">
@@ -103,20 +108,15 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                       </div>
                       <div className="review-bottom">
                         <p>
-                          Vestibulum ante ipsum primis aucibus orci
-                          luctustrices posuere cubilia Curae Suspendisse
-                          viverra ed viverra. Mauris ullarper euismod
-                          vehicula. Phasellus quam nisi, congue id nulla.
+                          Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse
+                          viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
                         </p>
                       </div>
                     </div>
                   </div>
                   <div className="single-review child-review">
                     <div className="review-img">
-                      <img
-                        src={pictureTwo}
-                        alt=""
-                      />
+                      <img src={pictureTwo} alt="" />
                     </div>
                     <div className="review-content">
                       <div className="review-top-wrap">
@@ -138,10 +138,8 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                       </div>
                       <div className="review-bottom">
                         <p>
-                          Vestibulum ante ipsum primis aucibus orci
-                          luctustrices posuere cubilia Curae Suspendisse
-                          viverra ed viverra. Mauris ullarper euismod
-                          vehicula. Phasellus quam nisi, congue id nulla.
+                          Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse
+                          viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
                         </p>
                       </div>
                     </div>
@@ -176,11 +174,7 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                         </div>
                         <div className="col-md-12">
                           <div className="rating-form-style form-submit">
-                            <textarea
-                              name="Your Review"
-                              placeholder="Message"
-                              defaultValue={''}
-                            />
+                            <textarea name="Your Review" placeholder="Message" defaultValue={''} />
                             <input type="submit" defaultValue="Submit" />
                           </div>
                         </div>

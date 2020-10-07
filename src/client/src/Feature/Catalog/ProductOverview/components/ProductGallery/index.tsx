@@ -43,20 +43,11 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
       <div className="product-gallery">
         <div className="product-gallery-header">
           <LightgalleryProvider>
-            <Swiper
-              loop={true}
-              effect="fade"
-              spaceBetween={10}
-              loopedSlides={4}
-            >
+            <Swiper loop={true} effect="fade" spaceBetween={10} loopedSlides={4}>
               {images &&
                 images.map((src, index) => (
                   <div key={index}>
-                    <LightgalleryItem
-                      group="any"
-                      src={src}
-                      thumb={src}
-                    >
+                    <LightgalleryItem group="any" src={src} thumb={src}>
                       <button>
                         <i className="pe-7s-expand1" />
                       </button>
@@ -65,8 +56,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
                       <img src={src} alt="1" className="gallery-image" />
                     </div>
                   </div>
-                ))
-              }
+                ))}
             </Swiper>
           </LightgalleryProvider>
         </div>

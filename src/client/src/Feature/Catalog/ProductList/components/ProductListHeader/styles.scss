@@ -14,9 +14,9 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss-new/_variables.scss';
+@import 'Foundation/UI/common/scss/variables.scss';
 
-.product_list_header_2{
+.product_list_header{
   .header {
     display: block;
     color: #666;

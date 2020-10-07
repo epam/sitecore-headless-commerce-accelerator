@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss/variables";
 
 // Listing - Order Summary
 
-.order-summary-wrapper-2 {
+.order-summary-wrapper {
   width: 100%;
   .order-summary {
     border-top: 1px solid #d2d2d2;
@@ -26,7 +26,7 @@
       font-weight: 500;
       margin: 0 0 15px;
     }
-    .product-container-2 {
+    .product-container {
       table {
         border: 1px solid #ebebeb;
         thead {

@@ -14,8 +14,8 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss-new/_variables';
-@import 'Foundation/UI/common/scss-new/_mixins';
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
 //note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
 .billing-shipping-info {
     @include loading-overlay(99998);

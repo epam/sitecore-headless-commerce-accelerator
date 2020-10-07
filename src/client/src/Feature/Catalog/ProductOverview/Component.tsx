@@ -39,7 +39,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
     return (
-      <section className="product-overview-2">
+      <section className="product-overview">
         <div className="panel-overview">
           <div className="row">
             <div className="col-md-6">
@@ -50,12 +50,12 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               )}
             </div>
             <div className="col-md-6">
-            <header className="product-header">
-              <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
-              <i className="pe-7s-print" />
-              </a>
-              <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
-              {/* <div
+              <header className="product-header">
+                <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
+                  <i className="pe-7s-print" />
+                </a>
+                <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
+                {/* <div
                 className={classNames('product-stock-status', {
                   'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
                   'in-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.InStock,
@@ -65,12 +65,13 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               >
                 <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
               </div> */}
-            </header>
+              </header>
               <div className="product-info">
                 <p className="product-price">
                   <span className="price-label">Sale</span>
                   <span className="price-value">
-                    {selectedCatalogItem.currencySymbol}{selectedCatalogItem.adjustedPrice.toFixed(2)}
+                    {selectedCatalogItem.currencySymbol}
+                    {selectedCatalogItem.adjustedPrice.toFixed(2)}
                   </span>
                 </p>
                 <ProductRating rating={selectedCatalogItem.customerAverageRating} />
@@ -84,11 +85,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                 </div>
                 <div className="product-tags">
                   <span className="product-tags_title">Categories :</span>
-                  {selectedCatalogItem.brand &&
-                      <span className="product-tags_item">
-                        {selectedCatalogItem.brand}
-                      </span>
-                  }
+                  {selectedCatalogItem.brand && <span className="product-tags_item">{selectedCatalogItem.brand}</span>}
                 </div>
                 <div className="product-tags">
                   <span className="product-tags_title">Tags :</span>
@@ -138,7 +135,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               <i className="fa fa-close" />
             </a>
             <div className="row">
-              <div className="col-sm-6 col-lg-4 col-lg-offset-2">
+              <div className="col-sm-6 col-lg-4 col-lg-offset">
                 <div className="productAdded_overview">
                   <p className="productAdded_columnTitle">Added to Cart</p>
                   <div className="product">

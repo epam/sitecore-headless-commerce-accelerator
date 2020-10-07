@@ -61,15 +61,18 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
                   const colorName = variant.properties['Color'];
                   const colorValue = resolveColor(colorName, sitecoreContext.productColors);
                   return (
-                    <li key={variantIndex} className={`colors-listitem ${firstVariantClassname.includes('first-load') && 'first-load'}`}>
+                    <li
+                      key={variantIndex}
+                      className={`colors-listitem ${firstVariantClassname.includes('first-load') && 'first-load'}`}
+                    >
                       <button
                         style={{ background: colorValue }}
-                        onClick={(e) => {this.variantSelected(e, variant);
-                                         this.handleClick(e); }}
+                        onClick={(e) => {
+                          this.variantSelected(e, variant);
+                          this.handleClick(e);
+                        }}
                         className={`color-variant-button
-                          ${variantIndex === 0
-                            ? firstVariantClassname
-                            : 'colors-option-2'}
+                          ${variantIndex === 0 ? firstVariantClassname : 'colors-option-2'}
                         `}
                       />
                     </li>

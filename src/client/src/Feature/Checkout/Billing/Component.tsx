@@ -42,7 +42,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     const { fields, commerceUser } = this.props;
     return (
       <Form className="thick-theme">
-        <div className="billing-shipping-2">
+        <div className="billing-shipping">
           <Text field={{ value: 'Billing' }} tag="h2" />
           <fieldset>
             <Text field={{ value: 'Bill To' }} tag="h3" />

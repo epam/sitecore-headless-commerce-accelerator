@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss/variables";
 
 .header {
   border: none;
@@ -34,7 +34,8 @@
       border-bottom: 1px solid $grey-light;
     }
     &:first-of-type .header_content {
-      padding: 13px 0;
+      padding-top: 13px;
+      padding-bottom: 13px;
       @media #{$header-switch-mobile-mode} {
         display: none;
         .navigation-buttons {
@@ -62,7 +63,8 @@
       padding: 13px 70px;
     }
     &:last-of-type .header_content {
-      padding: 30px 0px;
+      padding-top: 30px;
+      padding-bottom: 30px;
       > div.navigation-buttons_item.search {
         max-width: 16.6%;
         flex: 1;

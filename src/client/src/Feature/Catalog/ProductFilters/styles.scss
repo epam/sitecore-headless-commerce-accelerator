@@ -14,9 +14,9 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss/variables';
 
-.filters-2 {
+.filters {
   font-family: $poppins;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -52,7 +52,7 @@
   }
 }
 
-.productGridFilter-2 {
+.productGridFilter {
   @media (max-width: $screen-sm-max) {
     display: none; // don't display desktop filters in mobile view
   }
@@ -168,7 +168,7 @@
   }
 }
 
-.filter-2 {
+.product-filter {
   position: relative;
   padding: 20px 0;
   border-bottom: 1px solid $border-color;
@@ -361,7 +361,7 @@
   }
 
   /* Styles for .filter_toggle */
-  &_toggle-2 {
+  &_toggle {
     position: relative;
     margin: 0 0 34px;
     padding: 0;

@@ -29,7 +29,7 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
     const { fields } = this.props;
 
     return (
-      <div className="slider sub-categories recommend-products-2 top-picks">
+      <div className="slider sub-categories recommend-products top-picks">
         <div className="slider-header">
           <div className="slider-header_container">
             <Text field={fields.header} tag="h2" className="title" />
@@ -63,7 +63,7 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
           {productsMockData &&
             productsMockData.map((item, index) => (
               <figure key={index} className="swiper-slide item">
-                <div className="image-wrap-2">
+                <div className="image-wrap-recommended-product">
                   <div className="product-img-badges">
                     {item.isNew && <span className="purple">New</span>}
                     {item.discount && <span className="pink">{`${item.discount * 100}%`}</span>}

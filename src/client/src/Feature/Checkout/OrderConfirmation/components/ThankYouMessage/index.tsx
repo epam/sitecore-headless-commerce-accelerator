@@ -24,7 +24,7 @@ export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps,
   public safeRender() {
     const { order } = this.props;
     return (
-      <div className="thank-you-bg-wrapper-2">
+      <div className="thank-you-bg-wrapper">
         <section className="container">
           <div className="row">
             <div className="thank-you-content">
@@ -42,7 +42,7 @@ export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps,
               </div>
               <div className="col-md-3">
                 <div className="thank-you-col2">
-                  <a className="btn-order-print-2">
+                  <a className="btn-order-print">
                     <i className="fa fa-print" /> <span>Print Receipt</span>
                   </a>
                 </div>

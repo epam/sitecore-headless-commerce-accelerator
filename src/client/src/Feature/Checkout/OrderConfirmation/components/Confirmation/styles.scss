@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss-new/_variables";
+@import "Foundation/UI/common/scss/variables";
 
 // Block Order Confirmation
 
-.order-confirmation-wrapper-2 {
+.order-confirmation-wrapper {
   border: 0px solid red;
   width: 100%;
   margin: 0 0 50px 0;

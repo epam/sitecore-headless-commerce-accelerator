@@ -43,13 +43,13 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
     const { order, productColors, fallbackImageUrl } = this.props;
 
     return (
-      <div className="order-summary-wrapper-2">
+      <div className="order-summary-wrapper">
         <section className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="order-summary">
                 <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
-                <div className="product-container-2">
+                <div className="product-container">
                   <table>
                     <thead>
                       <tr>

@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_mixins';
-.checkout-container-2 {
+@import 'Foundation/UI/common/scss/mixins';
+.checkout-container {
   @include loading-overlay(99998);
 
   select {

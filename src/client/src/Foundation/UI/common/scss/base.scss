@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,27 +14,37 @@
 
 // base.scss - Usage: global shared styles. Extend for specific components in component css
 
+//-Some blocks need a white background color, but for now for purposes of displaying the proper background on each
+//-type of form element we have, just going to add this class to the encapsulating tag. form elements will need
+//-some parent class to know whether to display a dark or light version (ex/ buttons), so will use this
+//-class for now...  forms.scss will further define the differences in color based on the presence of this class
+//note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
+@import "./variables";
+
 body {
-  background-color: #191919;
   color: #999;
 }
 
-main{
+main {
   background: #fff;
-  &.landing{
-    background: #191919;
+  &.landing {
     & .container {
       padding: 0;
     }
   }
 }
 
-aside{
+aside {
   margin-bottom: 40px;
 }
 
 // to prevent angular html template from being displayed uncompiled
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
   display: none !important;
 }
 
@@ -43,12 +53,10 @@ aside{
 //-some parent class to know whether to display a dark or light version (ex/ buttons), so will use this
 //-class for now...  forms.scss will further define the differences in color based on the presence of this class
 .bg-white {
-  background-color:#fff;
-  color:#5e5e5e;
+  background-color: #fff;
+  color: #5e5e5e;
   @include clearfix;
 }
-
-
 
 table {
   width: 100%;
@@ -62,7 +70,8 @@ table {
       display: none;
       visibility: hidden;
     }
-    &.table-striped { // works for tables, without thead (first column is likely a thead)
+    &.table-striped {
+      // works for tables, without thead (first column is likely a thead)
       tr:nth-child(odd) {
         background: #f1f1f1;
       }
@@ -77,9 +86,9 @@ table {
         color: #999;
       }
     }
-
   }
-  &.table-lg { // styles for visibility for tables on 480px+ breakpoint
+  &.table-lg {
+    // styles for visibility for tables on 480px+ breakpoint
     display: none;
     visibility: hidden;
     @media (min-width: $screen-xs-min) {
@@ -87,7 +96,8 @@ table {
       visibility: visible;
     }
   }
-  &.table-striped { // works for tables with thead
+  &.table-striped {
+    // works for tables with thead
     thead tr {
       background: #f1f1f1;
     }
@@ -125,15 +135,65 @@ a {
   cursor: pointer;
 }
 
-//note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
 .billing-shipping-info {
-  section {
-    border: 1px solid #cccccc;
+  .billing-shipping {
+    .shipping-method-title {
+      margin-top: 20px;
+    }
+    .post-code {
+      margin-top: 20px;
+    }
+    button {
+      background-color: #f2f2f2;
+      border: medium none;
+      color: #333;
+      margin-top: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 18px 20px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      border-radius: 50px;
+      width: 100%;
+      &:hover {
+        background-color: $theme-color;
+        color: #fff;
+      }
+      &[disabled]:hover {
+        background-color: #f2f2f2;
+        color: $second-color-light;
+      }
+    }
+    input {
+      font-size: 14px;
+      padding-right: 10px;
+      padding-left: 20px;
+      color: #333;
+      border: 1px solid #e6e6e6;
+      background: transparent none repeat scroll 0 0;
+      height: 45px;
+      box-shadow: none;
+    }
+    select {
+      height: 45px;
+      width: 100%;
+      font-family: $poppins;
+    }
+    .input-title {
+      font-family: $poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      color: $text-main-color;
+    }
     margin-bottom: 20px;
     color: #5e5e5e;
     position: relative;
+    font-family: $poppins;
     &.no-border {
-      border:none;
+      border: none;
     }
     .button-spacing-wrap {
       padding: 20px 20px 0;
@@ -142,12 +202,12 @@ a {
       font-size: 18px;
       margin: 0;
       padding: 20px;
+      font-family: $poppins;
     }
     fieldset {
-      border-bottom: 1px solid #cccccc;
-      padding-left: 20px;
-      padding-right: 20px;
-      &:last-child, &.no-border {
+      padding: 10px 0px;
+      &:last-child,
+      &.no-border {
         border-bottom: none;
       }
     }
@@ -159,48 +219,151 @@ a {
       margin: -1px;
       padding: 0 20px;
       letter-spacing: 1px;
+      font-family: $poppins;
     }
     h1 + a.edit {
       position: absolute;
       top: 10px;
       right: 20px;
-      text-transform: uppercase;
       letter-spacing: 1px;
+      font-family: $poppins;
     }
     h2 {
       font-size: 20px;
-      font-weight: 900;
-      font-family: $sans-serif, sans-serif;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-family: $poppins;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: $text-main-color;
     }
     ul.options {
       li {
+        font-family: $poppins;
         margin-bottom: 10px; // for better UX on mobile
         @media (min-width: $screen-sm-min) {
           display: inline-block;
           margin-bottom: 0;
           margin-right: 20px;
         }
+
+        .selection-container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+        /* Create a custom radio button */
+        .checkbox {
+          min-height: 0;
+          padding: 0;
+          position: relative;
+          content: "";
+          display: inline-block;
+          width: 16px;
+          height: 15px;
+          border-radius: 3px;
+          margin: 3px 16px 5px 3px;
+          border: 2px solid #888888;
+          vertical-align: middle;
+          background-color: $checkbox-bg-color;
+          transition: background-color 0.2s ease-in;
+        }
+
+        &:hover .checkbox::after {
+          position: absolute;
+          display: block;
+          content: "";
+          top: 0;
+          left: 3px;
+          width: 5px;
+          height: 8px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          border: solid #fff;
+        }
+
+        .selection-container:hover {
+          .checkbox {
+            background-color: $checkbox-selected-bg-color !important;
+            border-color: $checkbox-selected-border-color !important;
+
+            &::after {
+              position: absolute;
+              display: block;
+              content: "";
+              top: 0;
+              left: 3px;
+              width: 5px;
+              height: 8px;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              border: solid #fff;
+            }
+          }
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .selection-container input:checked ~ .checkbox {
+          background-color: $checkbox-selected-bg-color !important;
+          border-color: $checkbox-selected-border-color !important;
+
+          &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 3px;
+            width: 5px;
+            height: 8px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border: solid #fff;
+          }
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkbox:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        input:checked ~ .checkbox:after {
+          display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .checkbox:after {
+          top: 9px;
+          left: 9px;
+          width: 8px;
+          height: 8px;
+          background: white;
+        }
       }
     }
     .sub-text {
       position: relative;
+      font-family: $poppins;
       margin-bottom: 8px; //sub text will live in the padding space of the input(s)
       @include clearfix();
       sub {
         position: absolute;
         bottom: 0;
         left: 0;
-        color: #cccccc;
         font-size: 14px;
-        font-weight: 500;
-        font-family: $sans-serif, sans-serif;
+        margin: 0 0 7px;
+        color: #cccccc;
+        font-family: $poppins;
         text-transform: none;
       }
     }
     label {
-      font-size: 18px;
-      text-transform: uppercase;
+      font-size: 14px;
+      font-family: $poppins;
+      color: $text-main-color;
+
       &.required:after {
         content: " *";
         font-weight: 900;
@@ -208,7 +371,8 @@ a {
         vertical-align: super;
       }
     }
-    input[type="checkbox"]+label, input[type="radio"]+label {
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
       text-transform: none;
     }
     input {
@@ -217,6 +381,7 @@ a {
         float: left;
         width: 23%;
         margin-right: 2%;
+        font-family: $poppins;
         @media (min-width: $screen-ms-min) {
           width: 20%;
           margin-right: 5%;
@@ -267,248 +432,89 @@ a {
       }
     }
   }
-}
-
-// Moved from typography
-body{
-  font: 16px/1.2 $sans-serif;
-}
-
-p {
-  margin: 0 0 20px;
-}
-article {
-  font-size: 20px;
-  line-height: 1.4;
-  p{
-    margin: 0 0 30px;
-  }
-}
-small {
-  font-size: 85%;
-}
-strong {
-  font-weight: bold;
-}
-em {
-  font-style: italic;
-}
-cite {
-  font-style: normal;
-}
-a {
-  color: #999;
-  text-decoration: none;
-}
-a:hover {
-  color: #999;
-  cursor: point;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 20px;
-  font-family: $phosphate;
-  font-weight: normal;
-  line-height: 1.2;
-  color: #666666;
-  text-rendering: optimizelegibility;
-}
-h1 small,
-h2 small,
-h3 small,
-h4 small,
-h5 small,
-h6 small {
-  font-weight: normal;
-  line-height: 1;
-}
-h1 {
-  font-size: 40px;
-  @media (max-width: $screen-xs-max){
-    font-size:25px;
-  }
-  &.sub-category-title{
-    font: 300 26px/1 $sans-serif;
-    color:#99cc00;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-}
-
-h2 {
-  font-size: 30px;
-  @media (max-width: $screen-xs-max){
-    font-size: 20px
-  }
-}
-
-h3 {
-  font-size: 24px;
-  @media (max-width: $screen-xs-max){
-    font-size: 18px;
-  }
-}
-h4 {
-  font-size: 18px;
-  @media (max-width: $screen-xs-max){
-    font-size: 16px;
-  }
-}
-h5 {
-  font-size: 14px;
-}
-h6 {
-  font-size: 11.9px;
-}
-h1 small {
-  font-size: 24.5px;
-}
-h2 small {
-  font-size: 17.5px;
-}
-h3 small {
-  font-size: 14px;
-}
-h4 small {
-  font-size: 14px;
-}
-
-aside {
-  h1{
-    font: 300 20px/1.2 $sans-serif;
-    margin: 0 0 10px;
-    text-transform: uppercase;
-  }
-}
-article {
-  h1{
-    font-size: 26px;
-    &.color-bar:after{
-      top: auto;
-      bottom: 0;
+  .payment {
+    fieldset {
+      padding: 10px 0px;
+      &:last-child,
+      &.no-border {
+        border-bottom: none;
+      }
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: $poppins;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: $text-main-color;
+    }
+    button {
+      background-color: #f2f2f2;
+      border: medium none;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 18px 20px;
+      text-transform: uppercase;
+      transition: all 0.3s ease 0s;
+      border-radius: 50px;
+      width: 100%;
+      margin-top: 4px;
+      &:hover {
+        background-color: $theme-color;
+        color: #fff;
+      }
+      &[disabled]:hover {
+        background-color: #f2f2f2;
+        color: $second-color-light;
+      }
+    }
+    input {
+      font-size: 14px;
+      padding-right: 10px;
+      padding-left: 20px;
+      color: #333;
+      border: 1px solid #e6e6e6;
+      background: transparent none repeat scroll 0 0;
+      height: 45px;
+      box-shadow: none;
+    }
+    .credit-cards-row {
+      display: flex;
+      .credit-card-col {
+        width: 50%;
+      }
+      ul {
+        display: flex;
+        margin-left: 25px;
+        li {
+          padding: 5px;
+        }
+      }
+    }
+    select {
+      height: 45px;
+      width: 100%;
+      font-family: $poppins;
+    }
+    .expires-date {
+      display: flex;
+      .cc-month,
+      .cc-year {
+        width: 190px;
+      }
+      .slashy {
+        margin: 0 30px;
+        padding-top: 10px;
+        font-size: 25px;
+      }
+    }
+    .security-code {
+      width: 190px;
     }
   }
-  h2{
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
-  h3{
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-}
-
-
-ul,
-ol {
-  padding:0;margin:0;
-  article &{
-    padding: 0;
-    margin: 0 0 10px 25px;
-  }
-  nav & {
-    list-style: none;
-  }
-}
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-  margin-bottom: 0;
-}
-li {
-  line-height: 20px;
-  list-style:none;
-}
-article{
-  ul{
-    margin: 0 0 40px 20px;
-    li{
-      list-style: disc;
-      margin-bottom: 20px;
-    }
-  }
-  ol{
-    margin: 0 0 40px 20px;
-    li{
-      list-style: decimal;
-      margin-bottom: 20px;
-    }
-  }
-}
-dl {
-  margin-bottom: 20px;
-}
-dt,
-dd {
-  line-height: 20px;
-}
-dt {
-  font-weight: bold;
-}
-dd {
-  margin-left: 10px;
-}
-hr {
-  margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #ffffff;
-}
-abbr[title],
-abbr[data-original-title] {
-  cursor: help;
-  border-bottom: 1px dotted #999999;
-}
-abbr.initialism {
-  font-size: 90%;
-  text-transform: uppercase;
-}
-blockquote {
-  padding: 0 0 0 15px;
-  margin: 0 0 20px;
-  border-left: 5px solid #eeeeee;
-}
-blockquote p {
-  margin-bottom: 0;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 25px;
-}
-blockquote small {
-  display: block;
-  line-height: 20px;
-  color: #999999;
-}
-blockquote small:before {
-  content: '\2014 \00A0';
-}
-q:before,
-q:after,
-blockquote:before,
-blockquote:after {
-  content: "";
-}
-address {
-  display: block;
-  margin-bottom: 20px;
-  font-style: normal;
-  line-height: 20px;
-}
-
-.meta-category{
-  text-transform:uppercase;
-  font-size:14px;
-  display: block;
-  font-weight: bold;
-}
-.meta{
-  font-size:12px;
-  display: block;
-  margin: 0 0 10px;
-  color: #858585;
 }

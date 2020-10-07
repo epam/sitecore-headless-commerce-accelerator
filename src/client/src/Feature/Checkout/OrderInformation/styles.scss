@@ -14,15 +14,15 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import "Foundation/UI/common/scss-new/_variables";
-@import "Foundation/UI/common/scss-new/_mixins";
+@import "Foundation/UI/common/scss/variables";
+@import "Foundation/UI/common/scss/mixins";
 
 h3.your-order{
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: 500;
 }
-.order-information-2 {
+.order-information {
     padding: 38px 45px 44px;
     background: #f6f6f6;
     .header-information {

@@ -23,7 +23,6 @@ const Html = ({ component, initialState, distPath, path }: any) => {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
-        <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/redesign.css`} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: content }} />

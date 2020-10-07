@@ -39,7 +39,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
     return (
-      <section className="product-overview-2">
+      <section className="product-overview">
         <div className="panel-overview">
           <div className="row">
             <div className="col-md-6">
@@ -135,7 +135,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               <i className="fa fa-close" />
             </a>
             <div className="row">
-              <div className="col-sm-6 col-lg-4 col-lg-offset-2">
+              <div className="col-sm-6 col-lg-4 col-lg-offset">
                 <div className="productAdded_overview">
                   <p className="productAdded_columnTitle">Added to Cart</p>
                   <div className="product">

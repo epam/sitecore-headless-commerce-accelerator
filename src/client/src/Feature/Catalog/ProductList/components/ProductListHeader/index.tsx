@@ -28,7 +28,7 @@ export class ProductListHeader extends React.Component<ProductListHeaderProps> {
     const parsedSearch = tryParseUrlSearch(search);
     const appliedFacets = facetsManager(parsedSearch[FACET_PARAMETER_NAME]).getFacets();
     return (
-      <div className="product_list_header_2">
+      <div className="product_list_header">
         <div className="header">
           <div className="header_stats">
             <span>{itemsCount} products</span>

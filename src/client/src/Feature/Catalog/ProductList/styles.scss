@@ -14,9 +14,9 @@
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
-@import 'Foundation/UI/common/scss-new/_variables.scss';
+@import 'Foundation/UI/common/scss/variables.scss';
 
-.listing-product-grid-2 {
+.listing-product-grid {
   margin-top: 20px;
   margin-bottom: 20px;
   > ul {

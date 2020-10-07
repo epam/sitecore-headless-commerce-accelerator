@@ -26,16 +26,13 @@ class NavigationComponent extends JSS.SafePureComponent<NavigationProps, Navigat
   public safeRender() {
     const { checkoutSteps, backToLink, infoLink } = this.props.fields;
     return (
-      <nav className="nav-checkout-2">
+      <nav className="nav-checkout">
         <ul>
           {checkoutSteps &&
             checkoutSteps.map((checkoutStep, checkoutStepIndex) => {
               const { checkoutStepName } = checkoutStep.fields;
               const stepClassName =
-                this.props.sitecoreContext.routeFields.checkoutStepName.value ===
-                checkoutStep.fields.checkoutStepName.value
-                  ? 'active'
-                  : '';
+                this.props.sitecoreContext.routeFields.id === checkoutStep.fields.id ? 'active' : '';
               return (
                 <li key={checkoutStepIndex} className={stepClassName}>
                   {/*<NavigationLink to={checkoutStep.url}>{checkoutStepName.value}</NavigationLink>*/}

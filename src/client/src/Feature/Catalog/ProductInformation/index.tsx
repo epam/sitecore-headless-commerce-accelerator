@@ -35,22 +35,22 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
     const { product } = this.props.sitecoreContext;
     const { selectedTab } = this.state;
     return (
-      <section className="product-description-2">
+      <section className="product-description">
         <div className="tab">
           <button
-            className={`tab-links ${(selectedTab === 'features') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'features' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'features' })}
           >
             Additional Information
           </button>
           <button
-            className={`tab-links ${(selectedTab === 'description') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'description' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'description' })}
           >
             Description
           </button>
           <button
-            className={`tab-links ${(selectedTab === 'rating') ? 'active' : ''}`}
+            className={`tab-links ${selectedTab === 'rating' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'rating' })}
           >
             Reviews
@@ -65,10 +65,18 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
           {selectedTab === 'features' && (
             <div className="description-features">
               <ul className="feature-list">
-                <li><span>Data One</span> 2 GB</li>
-                <li><span>Data Two</span> Model XE-C</li>
-                <li><span>Data Three</span> Charcoal</li>
-                <li><span>Data Four</span> Explorer Edition</li>
+                <li>
+                  <span>Data One</span> 2 GB
+                </li>
+                <li>
+                  <span>Data Two</span> Model XE-C
+                </li>
+                <li>
+                  <span>Data Three</span> Charcoal
+                </li>
+                <li>
+                  <span>Data Four</span> Explorer Edition
+                </li>
               </ul>
             </div>
           )}

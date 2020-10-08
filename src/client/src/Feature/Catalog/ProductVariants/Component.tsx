@@ -27,7 +27,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
   constructor(props: ProductVariantsProps) {
     super(props);
     this.state = {
-      firstVariantClassname: 'colors-option-2-first-load',
+      firstVariantClassname: 'colors-option-first-load',
     };
   }
 
@@ -72,7 +72,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
                           this.handleClick(e);
                         }}
                         className={`color-variant-button
-                          ${variantIndex === 0 ? firstVariantClassname : 'colors-option-2'}
+                          ${variantIndex === 0 ? firstVariantClassname : 'colors-option'}
                         `}
                       />
                     </li>
@@ -88,7 +88,7 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
   private variantSelected(e: React.MouseEvent<HTMLSpanElement>, variant: Variant) {
     const { productId } = this.props;
     this.setState({
-      firstVariantClassname: 'colors-option-2',
+      firstVariantClassname: 'colors-option',
     });
     this.props.SelectColorVariant(productId, variant);
   }

@@ -175,8 +175,7 @@
             border-radius: 50%;
             border: none;
             padding: 4px 7px;
-
-
+            margin-top: 2px;
             &.is-selected,
             &:hover {
                 outline: 1px solid #6a6a6a;
@@ -606,7 +605,7 @@
     margin-bottom: -4px!important;
 }
 
-.colors-option-2-first-load {
+.colors-option-first-load {
     cursor: pointer;
     position: relative;
     outline: none !important;

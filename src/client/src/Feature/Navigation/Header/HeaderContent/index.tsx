@@ -25,7 +25,7 @@ class HeaderContentComponent extends JSS.SafePureComponent<HeaderContentProps, H
   protected safeRender() {
     return (
       <div className="header_container">
-        <div className="header_content">
+        <div className={'header_content ' + this.props.params.firstColumnClass}>
           <Placeholder name="navigation-content" rendering={this.props.rendering} />
         </div>
       </div>

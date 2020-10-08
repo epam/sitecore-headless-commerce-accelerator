@@ -18,6 +18,7 @@ import { VoidResult } from 'Foundation/Base/dataModel.Generated';
 import { User } from 'Foundation/Commerce';
 import { Action, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
+import { createBrowserHistory } from 'history';
 
 import * as AuthenticationApi from '../api/Authentication';
 
@@ -26,9 +27,15 @@ import { sagaActionTypes } from './constants';
 import { AuthenticationPayload, LogoutPayload } from './models';
 import * as selectors from './selectors';
 
+const history = createBrowserHistory();
+const goBack = () => {
+  history.goBack();
+  return true;
+};
+
 export function* authentication(action: Action<AuthenticationPayload>) {
   const { payload } = action;
-  const { email, password, returnUrl } = payload;
+  const { email, password } = payload;
   if (!email && !password) {
     return;
   }
@@ -42,7 +49,7 @@ export function* authentication(action: Action<AuthenticationPayload>) {
   }
 
   yield put(actions.AuthenticationSuccess());
-  yield put(ChangeRoute(returnUrl || '/'));
+  yield goBack();
 }
 
 export function* initAuthentication() {

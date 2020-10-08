@@ -157,9 +157,6 @@
       background-color: $bg-white;
       box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.06);
       .header_content {
-        ul.navigation-content {
-          padding-right: 40px;
-        }
         @media #{$header-switch-mobile-mode} {
           .search {
             margin-right: 60px;

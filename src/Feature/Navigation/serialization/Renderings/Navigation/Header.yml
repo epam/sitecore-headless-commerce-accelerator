@@ -14,6 +14,9 @@ SharedFields:
   Value: |
     {169BC134-8637-41E3-81A6-775B10B374D8}
     {CE081C90-3501-4F74-A21D-2EAC39B3CF41}
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: 
 Languages:
 - Language: en
   Versions:

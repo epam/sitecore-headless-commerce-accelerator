@@ -12,6 +12,9 @@ SharedFields:
   Hint: Placeholders
   Type: Treelist
   Value: "{CE081C90-3501-4F74-A21D-2EAC39B3CF41}"
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: "{61ED6A03-BBDB-4937-87FA-DB5C53FC870C}"
 Languages:
 - Language: en
   Versions:

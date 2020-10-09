@@ -15,6 +15,7 @@
 namespace HCA.Feature.Checkout.Models.Requests
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
 
     using Foundation.Commerce.Models.Entities.Addresses;
@@ -26,10 +27,13 @@ namespace HCA.Feature.Checkout.Models.Requests
     [TsClass]
     public class SetShippingOptionsRequest
     {
+        [Required]
         public string OrderShippingPreferenceType { get; set; }
 
+        [Required]
         public List<Address> ShippingAddresses { get; set; }
 
+        [Required]
         public List<ShippingMethod> ShippingMethods { get; set; }
     }
 }

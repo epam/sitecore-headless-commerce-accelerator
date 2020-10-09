@@ -14,6 +14,7 @@
 
 namespace HCA.Feature.Checkout.Models.Requests
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
 
     using Foundation.Commerce.Models.Entities.Addresses;
@@ -21,12 +22,15 @@ namespace HCA.Feature.Checkout.Models.Requests
 
     using TypeLite;
 
+
     [ExcludeFromCodeCoverage]
     [TsClass]
     public class SetPaymentInfoRequest
     {
+        [Required]
         public Address BillingAddress { get; set; }
 
+        [Required]
         public FederatedPaymentInfo FederatedPayment { get; set; }
     }
 }

@@ -36,7 +36,7 @@ export class CarouselItem extends JSS.SafePureComponent<CarouselItemProps, Carou
               <p className="animated">{banner.text}</p>
               <div className="slider-btn btn-hover">
                 <NavigationLink className="animated" to={banner.link}>
-                  <span style={{ zIndex: 5 }}>SHOP NOW</span>
+                  <span>SHOP NOW</span>
                 </NavigationLink>
               </div>
             </div>

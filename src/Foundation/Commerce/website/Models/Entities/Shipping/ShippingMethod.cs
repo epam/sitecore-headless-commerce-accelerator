@@ -15,6 +15,7 @@
 namespace HCA.Foundation.Commerce.Models.Entities.Shipping
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
 
     using TypeLite;
@@ -25,14 +26,19 @@ namespace HCA.Foundation.Commerce.Models.Entities.Shipping
     {
         public string Description { get; set; }
 
+        [Required]
         public string ExternalId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public List<string> LineIds { get; set; }
 
+        [Required]
         public string PartyId { get; set; }
 
+        [Required]
         public string ShippingPreferenceType { get; set; }
     }
 }

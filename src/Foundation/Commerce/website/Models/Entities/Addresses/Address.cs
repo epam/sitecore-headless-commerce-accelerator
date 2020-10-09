@@ -14,8 +14,8 @@
 
 namespace HCA.Foundation.Commerce.Models.Entities.Addresses
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
-
     using TypeLite;
 
     [TsClass]
@@ -24,22 +24,30 @@ namespace HCA.Foundation.Commerce.Models.Entities.Addresses
     {
         public string Name { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]    
         public string LastName { get; set; }
 
+        [Required]
         public string Address1 { get; set; }
 
         public string Address2 { get; set; }
 
+        [Required]     
         public string Country { get; set; }
 
+        [Required]
         public string CountryCode { get; set; }
 
+        [Required]
         public string City { get; set; }
 
+        [Required]
         public string State { get; set; }
 
+        [Required]
         public string ZipPostalCode { get; set; }
 
         public string ExternalId { get; set; }
@@ -48,6 +56,8 @@ namespace HCA.Foundation.Commerce.Models.Entities.Addresses
 
         public bool IsPrimary { get; set; }
 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

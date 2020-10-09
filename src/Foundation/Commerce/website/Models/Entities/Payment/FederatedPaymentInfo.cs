@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Models.Entities.Payment
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
 
     using TypeLite;
@@ -22,10 +23,13 @@ namespace HCA.Foundation.Commerce.Models.Entities.Payment
     [TsClass]
     public class FederatedPaymentInfo
     {
+        [Required]
         public string CardToken { get; set; }
 
+        [Required]
         public string PartyId { get; set; }
 
+        [Required]
         public string PaymentMethodId { get; set; }
     }
 }

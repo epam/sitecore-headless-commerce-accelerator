@@ -15,6 +15,46 @@
 .navigation-buttons_item {
   position: relative;
 
+  & > button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 15px;
+    .quantity {
+      font-size: 12px;
+      font-family: $poppins;
+      line-height: 21px;
+      position: absolute;
+      top: -9px;
+      right: -14px;
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      text-align: center;
+      color: $white;
+      border-radius: 100%;
+      background-color: $bg-black;
+      @media #{$xl-layout} {
+        right: -5px;
+      }
+    }
+    & [class*=" pe-7s-"],
+    [class^="pe-7s-"] {
+      font-size: 24px;
+      position: relative;
+      padding: 0;
+      color: $black;
+      border: none;
+      background: transparent;
+    }
+
+    &:hover [class*=" pe-7s-"],
+    &:hover [class^="pe-7s-"] {
+      color: $theme-color;
+    }
+  }
+
   & > a {
     padding-left: 15px;
     border: none;

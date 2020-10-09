@@ -156,6 +156,8 @@
     }
     .slider-btn {
       position: relative;
+      display: flex;
+      justify-content: center;
       a {
         opacity: 0;
         font-size: 16px;
@@ -166,6 +168,10 @@
         color: #010101;
         border: 1px solid #333;
         position: relative;
+        span {
+          z-index: 5; 
+          white-space: nowrap;
+        }
         &:hover {
           color: #fff;
           border: 1px solid $theme-color;

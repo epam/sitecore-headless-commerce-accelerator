@@ -12,16 +12,5 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
-
-import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
-
-export interface CartButtonProps {
-  cartQuantity: number;
-}
-
-export interface CartButtonState extends JSS.SafePureComponentState {
-  cartVisible: boolean;
-}
-
-export interface AppState extends GlobalShoppingCartState {}
+export * from './Desktop';
+export * from './Mobile';

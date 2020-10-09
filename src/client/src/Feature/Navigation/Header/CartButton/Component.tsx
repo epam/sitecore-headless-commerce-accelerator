@@ -15,21 +15,44 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
-import { NavigationLink } from 'Foundation/UI';
-
+import { CartView } from '../../../../Feature/Checkout/CartView';
+import { Desktop, Mobile } from '../../../../Foundation/UI/common/components/Responsive';
 import { CartButtonProps, CartButtonState } from './models';
 
 export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, CartButtonState> {
+  constructor(props: CartButtonProps) {
+    super(props);
+    this.state = {
+      cartVisible: false,
+    };
+  }
   protected safeRender() {
     const { cartQuantity } = this.props;
+    const { cartVisible } = this.state;
+
+    const handleClick = () => {
+      this.setState({ cartVisible: !this.state.cartVisible });
+    };
 
     return (
-      <div className="navigation-buttons_item cart-wrap">
-        <NavigationLink to="/cart">
-          <i className="pe-7s-shopbag">
-            <span className="quantity">{cartQuantity}</span>
-          </i>
-        </NavigationLink>
+      <div className="navigation-buttons_item cart-wrap" style={{position: 'relative'}}>
+        <Desktop>
+          <button onClick={() => handleClick()}>
+            <i className="pe-7s-shopbag">
+              <span className="quantity">{cartQuantity}</span>
+            </i>
+          </button>
+        </Desktop>
+        <Mobile>
+          <a href="/cart">
+            <i className="pe-7s-shopbag">
+              <span className="quantity">{cartQuantity}</span>
+            </i>
+          </a>
+        </Mobile>
+        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
+          <CartView />
+        </div>
       </div>
     );
   }

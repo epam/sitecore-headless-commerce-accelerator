@@ -56,9 +56,17 @@
 }
 .wishlist_item_add-btn{
   background-color: $theme-color;
+  font-family: $poppins;
   color: white;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 32px;
+  text-transform: uppercase;
+  border: none;
   border-radius: 50px;
-  padding: 1px 35px;
 }
 .wishlist_item_add-btn:hover{
   background-color: #333333;

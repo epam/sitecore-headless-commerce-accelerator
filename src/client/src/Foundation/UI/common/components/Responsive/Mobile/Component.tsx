@@ -13,15 +13,17 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
+import MediaQuery from 'react-responsive';
 
-import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
+export class MobileComponent extends JSS.SafePureComponent<{}, {}> {
+  protected safeRender() {
+    const mobileMaxScreenWidth = 1023;
 
-export interface CartButtonProps {
-  cartQuantity: number;
+    return (
+      <MediaQuery maxWidth={mobileMaxScreenWidth}>
+        {this.props.children}
+      </MediaQuery>
+    );
+  }
 }
-
-export interface CartButtonState extends JSS.SafePureComponentState {
-  cartVisible: boolean;
-}
-
-export interface AppState extends GlobalShoppingCartState {}

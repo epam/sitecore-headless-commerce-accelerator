@@ -14,18 +14,23 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Location } from 'history';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
 import * as Account from 'Feature/Account/Integration/Account';
+import * as Extensions from 'Foundation/Base';
 
 import { LoginRegisterFormComponent } from './Component';
 import { AppState, LoginRegisterStateProps } from './models';
 
 const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   const commerceUser = Account.commerceUser(state);
+  const location: Location = state.router.location;
+  const currentForm = Extensions.tryParseUrlSearch(location.search).form || '';
   return {
     commerceUser,
+    currentForm,
   };
 };
 

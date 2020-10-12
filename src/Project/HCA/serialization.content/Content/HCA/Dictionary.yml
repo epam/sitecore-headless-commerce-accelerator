@@ -1,0 +1,18 @@
+﻿---
+ID: "f0f9ec10-aee1-449f-89cd-37807173b61e"
+Parent: "bbf003f2-f4d3-415f-8136-357b71508316"
+Template: "0a2847e6-9885-450b-b61e-f9e6528480ef"
+Path: /sitecore/content/HCA/Dictionary
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: People/16x16/book_red.png
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201007T080639Z

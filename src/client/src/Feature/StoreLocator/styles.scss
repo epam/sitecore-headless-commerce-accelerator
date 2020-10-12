@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables';
+@import 'Foundation/UI/common/scss/variables';
 
 .locator_content{
   font-family: $poppins !important;
@@ -84,6 +84,7 @@
   border: 1px solid #e6e6e6 !important;
   min-height: 40px !important;
   box-shadow: none !important;
+  font-family: $poppins;
   @media (max-width: $screen-sm) {
     margin-bottom: 8px !important;
   }

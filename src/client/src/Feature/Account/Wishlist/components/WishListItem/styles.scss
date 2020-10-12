@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss-new/_variables.scss';
+@import 'Foundation/UI/common/scss/variables.scss';
 
 // Disabling a couple of global button styles
 .wishlist_content_row{
@@ -24,7 +24,7 @@
   border: none;
   text-align: left;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   padding: 21px 45px 22px;
   color:$table-font-color;
@@ -53,6 +53,8 @@
   margin-bottom: 0px;
   border: none;
   font-size: 13px;
+  font-weight: 500;
+  font-family: $poppins;
 }
 .wishlist_item_add-btn{
   background-color: $theme-color;
@@ -67,9 +69,12 @@
   text-transform: uppercase;
   border: none;
   border-radius: 50px;
+  padding: 10px 35px;
+  white-space: nowrap;
 }
 .wishlist_item_add-btn:hover{
   background-color: #333333;
+  white-space: nowrap;
 }
 .wishlist_item_remove-btn:hover{
   color: $theme-color;

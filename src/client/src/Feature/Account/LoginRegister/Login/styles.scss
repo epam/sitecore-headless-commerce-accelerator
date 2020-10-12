@@ -32,6 +32,24 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    button{
+      background-color: $login-button-default-color;
+      border: none;
+      color: $login-default-font-color;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 11px 30px;
+      text-transform: uppercase;
+      -webkit-transition: all .3s ease 0s;
+      transition: all .3s ease 0s;
+      font-family: $poppins;
+      &:hover{
+        background-color: $theme-color;
+        color: $login-hover-font-color;
+      }
+    }
   }
   &_invalid-msg {
     color: $focus-color;
@@ -56,11 +74,13 @@
         display: block;
         background-color: transparent;
         border: 1px solid #ebebeb;
-        color: #333;
+        color: $login-default-font-color;
         font-size: 14px;
         height: 45px;
         padding: 0 15px;
         box-shadow: none;
+        font-family: $poppins;
+        margin-bottom: 30px;
       }
     }
   }
@@ -71,9 +91,9 @@
     color: $focus-color;
   }
   button {
-    background-color: #f2f2f2;
+    background-color: $login-button-default-color;
     border: medium none;
-    color: #333;
+    color: $login-default-font-color;
     cursor: pointer;
     font-size: 14px;
     height: 35px;
@@ -84,10 +104,10 @@
     transition: all 0.3s ease 0s;
     &:hover {
       background-color: $theme-color;
-      color: #fff;
+      color: $login-hover-font-color;
     }
     &[disabled]:hover {
-      background-color: #f2f2f2;
+      background-color: $login-button-default-color;
       color: $second-color-light;
     }
   }

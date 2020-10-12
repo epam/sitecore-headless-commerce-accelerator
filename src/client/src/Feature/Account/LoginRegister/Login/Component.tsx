@@ -58,12 +58,12 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
         {isError && <div className="login_invalid-msg">The email or password you entered is incorrect</div>}
         <div className="login_buttons">
           <Submit
-            className="btn-log-in btn-outline-white"
+            className="btn-log-in"
             onSubmitHandler={(form: LogInValues) => Authentication(form.email, form.password, returnUrl)}
             disabled={isLoading}
           >
             {isLoading && <i className="fa fa-spinner fa-spin" />}
-            <span>Sign in</span>
+            <span>Login</span>
           </Submit>
         </div>
       </Form>

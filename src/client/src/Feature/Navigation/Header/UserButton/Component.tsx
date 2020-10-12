@@ -38,6 +38,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
 
   protected safeRender() {
     const { isDropdownVisible } = this.state;
+    const { commerceUser, returnUrl, Logout } = this.props;
 
     return (
       <div ref={this.wrapperRef} className="navigation-buttons_item account">
@@ -45,21 +46,38 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           <i className="pe-7s-user-female" />
         </a>
         <ul className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}>
-          <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/account/login-register">
-              Login
-            </NavigationLink>
-          </li>
-          <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/account/login-register">
-              Register
-            </NavigationLink>
-          </li>
-          <li className="account_dropdown-item">
-            <NavigationLink className="account_link" to="/account">
-              My account
-            </NavigationLink>
-          </li>
+          {(commerceUser && commerceUser.customerId) ? (
+            <>
+              <li className="account_dropdown-item">
+                <NavigationLink className="account_link" to="/account">
+                  My account
+                </NavigationLink>
+              </li>
+              <li className="account_dropdown-item">
+                <NavigationLink className="account_link" to="/account/order-history">
+                  Order History
+                </NavigationLink>
+              </li>
+              <li className="account_dropdown-item">
+                  <a href="#" className="account_link" onClick={() => Logout(returnUrl)}>
+                    Sign Out
+                  </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="account_dropdown-item">
+                <NavigationLink className="account_link" to="/account/login-register">
+                  Login
+                </NavigationLink>
+              </li>
+              <li className="account_dropdown-item">
+                <NavigationLink className="account_link" to="/account/login-register?form=register">
+                  Register
+                </NavigationLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     );

@@ -24,6 +24,9 @@ $login-register-form-indention: 15px;
     justify-content: center;
     background-color: $white;
     padding: $login-register-form-indention;
+    .field_wrapper{
+      padding: 0px 48px;
+    }
     .account-created-message {
       &__inform {
         font-size: 30px;
@@ -58,6 +61,7 @@ $login-register-form-indention: 15px;
     font-weight: 500;
     color: $font-color-light;
     padding: $login-register-form-indention;
+    padding-bottom: 25px;
     .form-title {
       color: $second-color-dark;
       font-size: 25px;
@@ -74,7 +78,7 @@ $login-register-form-indention: 15px;
       color: $theme-color;
     }
     div:nth-child(2) {
-      border-left: 2px solid black;
+      border-left: 1px solid #000;
     }
   }
 }

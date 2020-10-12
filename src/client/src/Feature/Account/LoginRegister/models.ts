@@ -21,6 +21,7 @@ export interface LoginRegisterOwnProps extends JSS.Rendering<JSS.BaseDataSourceI
 
 export interface LoginRegisterStateProps {
   commerceUser: Commerce.User;
+  currentForm: string;
 }
 
 export interface LoginRegisterProps extends LoginRegisterOwnProps, LoginRegisterStateProps {}

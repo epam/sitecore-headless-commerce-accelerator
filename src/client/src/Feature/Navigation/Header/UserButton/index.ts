@@ -13,6 +13,9 @@
 //    limitations under the License.
 
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+
+import * as Authentication from 'Feature/Account/Integration/Authentication';
 
 import * as JSS from 'Foundation/ReactJss';
 
@@ -21,10 +24,20 @@ import { AppState } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const commerceUser = JSS.sitecoreContext(state).commerceUser;
+  const returnUrl = JSS.routingLocationPathname(state);
 
   return {
     commerceUser,
+    returnUrl,
   };
 };
 
-export const UserButton = connect(mapStateToProps)(UserButtonComponent);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      Logout: Authentication.Logout,
+    },
+    dispatch,
+  );
+
+export const UserButton = connect(mapStateToProps, mapDispatchToProps)(UserButtonComponent);

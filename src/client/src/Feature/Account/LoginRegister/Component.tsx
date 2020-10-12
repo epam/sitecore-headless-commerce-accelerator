@@ -32,6 +32,13 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
     };
   }
 
+  public componentDidMount() {
+    const { currentForm } = this.props;
+    (currentForm)
+      ? this.setState({ isSignUp: true })
+      : this.setState({ isSignUp: false });
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
     const { commerceUser } = this.props;
@@ -58,11 +65,11 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
                 <Jss.Text tag="span" field={{ value: 'Login', editable: 'Login' }} />
               </div>
               <div className={`form-title ${isSignUp && 'active'}`} onClick={() => this.setState({ isSignUp: true })}>
-                <Jss.Text tag="span" field={{ value: 'Sign up', editable: 'Sign up' }} />
+                <Jss.Text tag="span" field={{ value: 'Register', editable: 'Register' }} />
               </div>
             </div>
             <div className="row login-register-form-content">
-              <div className="col-lg-7 col-md-12 ml-auto mr-auto">{isSignUp ? <Register /> : <Login />}</div>
+              <div className="col-lg-8 col-md-12 ml-auto mr-auto field_wrapper">{isSignUp ? <Register /> : <Login />}</div>
             </div>
           </div>
         )}

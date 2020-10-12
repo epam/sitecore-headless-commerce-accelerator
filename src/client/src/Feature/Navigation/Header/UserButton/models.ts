@@ -14,12 +14,17 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { GlobalAuthenticationState } from 'Feature/Account/Integration/Authentication';
 import * as Commerce from 'Foundation/Commerce';
 
-export interface UserButtonProps {}
+export interface UserButtonProps {
+  commerceUser: Commerce.User;
+  returnUrl: string;
+  Logout: (returnUrl: string) => void;
+}
 
 export interface UserButtonState extends JSS.SafePureComponentState {
   isDropdownVisible: boolean;
 }
 
-export interface AppState extends JSS.SitecoreState<Commerce.UserContext> {}
+export interface AppState extends GlobalAuthenticationState, JSS.RoutingState, JSS.SitecoreState<Commerce.UserContext> {}

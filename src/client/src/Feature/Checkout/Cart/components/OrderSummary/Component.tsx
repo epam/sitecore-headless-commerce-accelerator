@@ -28,25 +28,24 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
     super(props);
 
     this.state = {
-      freeShipping: null,
+      promoCodeIsEmpty: false,
     };
-  }
-
-  public componentDidMount() {
-    this.props.GetFreeShippingSubtotal((freeShipping) =>
-      this.setState({
-        freeShipping,
-      }),
-    );
   }
 
   public addPromoCode() {
     const promoCode = this.promoCodeInput.value;
-    this.props.AddPromoCode({ promoCode });
+    if (promoCode) {
+      this.props.AddPromoCode({ promoCode });
+    } else {
+      this.setState({
+        promoCodeIsEmpty: true,
+      });
+    }
   }
 
   public safeRender() {
-    const { isLoading, price } = this.props;
+    const { isLoading, price, isFailure } = this.props;
+    const { promoCodeIsEmpty } = this.state;
     return (
       <section className="orderSummary">
         <div className="col-lg-4 col-md-6">
@@ -56,13 +55,6 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </div>
             <div className="subTitleWrap">
               <p>Enter your destination to get a shipping estimate.</p>
-            </div>
-            <div className="countrySelectWrapper">
-              <label>* Country</label>
-              <select className="">
-                <option>Canada</option>
-                <option>United States</option>
-              </select>
             </div>
             <div className="countrySelectWrapper">
               <label>* Region / State</label>
@@ -86,8 +78,10 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="subTitleWrap">
               <p>Enter your promotional code if you have one.</p>
             </div>
+            {isFailure && <p>Invalid promo code</p>}
+            {promoCodeIsEmpty && <p>Promo code can not be empty</p>}
             <div className="zipCodeWrapper">
-              <input type="text" disabled={isLoading} />
+              <input type="text" disabled={isLoading} ref={(el) => (this.promoCodeInput = el)} required={true} />
             </div>
             <button className="cartBtn" disabled={isLoading} onClick={(e) => this.addPromoCode()}>
               Apply Promotional

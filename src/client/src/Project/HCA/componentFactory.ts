@@ -18,16 +18,12 @@ import * as Checkout from 'Feature/Checkout';
 import { NotFound } from 'Feature/Errors/NotFound';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
-import * as StoreLocator2 from 'Feature/StoreLocator2';
 import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
 
 const components = new Map<string, any>();
 
 // add components to the map
 // components.set('Component', <Component />);
-
-// Store Locator
-components.set('Store Locator', StoreLocator2.StoreLocator);
 
 // Page Scaffolding
 components.set('One Column', Scaffolding.OneColumn);
@@ -77,8 +73,6 @@ components.set('Go To Checkout', Checkout.GoToCheckout);
 components.set('Change Password Form', Account.ChangePassword);
 components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
-components.set('Wishlist', Account.Wishlist2);
-components.set('Add To Wishlist', Account.AddToWishlist);
 components.set('Login Register', Account.LoginRegister);
 
 // Not Found

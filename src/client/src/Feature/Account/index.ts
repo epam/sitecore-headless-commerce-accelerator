@@ -17,4 +17,3 @@ export * from './ChangePassword';
 export * from './ChangeUserInformationForm';
 export * from './SignUpForm';
 export * from './LoginRegister';
-export * from './AddToWishlist';

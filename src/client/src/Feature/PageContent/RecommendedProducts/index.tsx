@@ -91,11 +91,6 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
                       }`}</span>
                     </div>
                   </div>
-                  <div className="item-description_wishlist">
-                    <button className="active" title="Added to wishlist">
-                      <i className="fa fa-heart-o" />
-                    </button>
-                  </div>
                 </div>
               </figure>
             ))}

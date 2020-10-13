@@ -21,6 +21,5 @@ export * from './Payment';
 export * from './CheckoutNavigation';
 export * from './OrderInformation';
 export * from './OrderHistory';
-export * from './WishList';
 export * from './CategoryLanding';
 export * from './GoToCheckout';

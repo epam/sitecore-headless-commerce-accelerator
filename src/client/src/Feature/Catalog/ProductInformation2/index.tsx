@@ -18,9 +18,9 @@ import * as JSS from 'Foundation/ReactJss';
 import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
 import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
 
-import { ProductInformationProps, ProductInformationState } from './models';
-
 import './styles.scss';
+
+import { ProductInformationProps, ProductInformationState } from '../ProductInformation/models';
 
 class ProductInformationComponent extends JSS.SafePureComponent<ProductInformationProps, ProductInformationState> {
   public constructor(props: ProductInformationProps) {

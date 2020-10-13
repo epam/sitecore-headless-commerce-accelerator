@@ -160,8 +160,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                       maxLength={100}
                     />
                   ) : (
-                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                    )}
+                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
           >
             <div className="row">
               <div className="col-sm-12">
-                <Text field={{ value: 'Shipping Location' }} tag="3" />
+                <Text field={{ value: 'Shipping Location' }} tag="h3" />
                 <Select name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
                   <option disabled={true} value="">
                     Select Option
@@ -230,7 +230,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             </div>
           </FieldSet>
           <FieldSet>
-            <div className="shipping-method-title"><Text field={{ value: 'Shipping Method' }} tag="h3" /></div>
+            <div className="shipping-method-title">
+              <Text field={{ value: 'Shipping Method' }} tag="h3" />
+            </div>
             <div className="row">
               <div className="col-sm-12">
                 <Select name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>

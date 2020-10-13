@@ -49,9 +49,9 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
           <div className="row login-register-form-content">
             <div className="col-md-12">
               <div className="account-created-message">
-                <div className="account-created-message__inform">Congratulations!</div>
-                <div className="account-created-message__inform">Your Account was successfully created!</div>
-                <div className="account-created-message__email">Email: {commerceUser.email}</div>
+                <div className="account-created-message_inform">Congratulations!</div>
+                <div className="account-created-message_inform">Your Account was successfully created!</div>
+                <div className="account-created-message_email">Email: {commerceUser.email}</div>
                 <NavigationLink className="btn btn-new-design-active" to="/account">
                   Go to Account Settings
                 </NavigationLink>

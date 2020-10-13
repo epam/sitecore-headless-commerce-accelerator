@@ -93,7 +93,7 @@ SharedFields:
         <r
           ds=""
           id="{129348AA-2485-482F-A0F6-B53F6C585712}"
-          par="Wrapper Class=footer-columns&amp;First Column Class&amp;Second Column Class&amp;Third Column Class"
+          par="Wrapper Class=footer-columns&amp;First Column Class=col-md-9&amp;Second Column Class=col-md-3&amp;Third Column Class"
           ph="/main-content/footer-content-{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}-0"
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}" />
         <r

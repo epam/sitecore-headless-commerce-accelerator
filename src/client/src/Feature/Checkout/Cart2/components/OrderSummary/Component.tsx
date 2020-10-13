@@ -17,27 +17,15 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 
-import { OrderSummaryProps, OrderSummaryState } from './models';
-
 import './styles.scss';
+
+import { OrderSummaryProps, OrderSummaryState } from 'Feature/Checkout/Cart/components/OrderSummary/models';
 
 export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryProps, OrderSummaryState> {
   private promoCodeInput: HTMLInputElement | null;
 
   constructor(props: OrderSummaryProps) {
     super(props);
-
-    this.state = {
-      freeShipping: null,
-    };
-  }
-
-  public componentDidMount() {
-    this.props.GetFreeShippingSubtotal((freeShipping) =>
-      this.setState({
-        freeShipping,
-      }),
-    );
   }
 
   public addPromoCode() {

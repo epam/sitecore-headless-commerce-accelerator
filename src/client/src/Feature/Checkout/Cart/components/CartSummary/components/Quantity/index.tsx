@@ -65,9 +65,9 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     const quantityString = this.state.quantityString;
     return (
       <div className="quantity" data-autotests="productQty">
-        <input type="button" value="-" onClick={() => this.setQuantityString(false)} />
+        <input type="button" value="-" className="qty-button" onClick={() => this.setQuantityString(false)} />
         <input type="text" id={`qty-${cartLine.id}`} value={quantityString} disabled={true} />
-        <input type="button" value="+" onClick={() => this.setQuantityString(true)} />
+        <input type="button" value="+" className="qty-button" onClick={() => this.setQuantityString(true)} />
       </div>
     );
   }

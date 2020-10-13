@@ -99,10 +99,11 @@
     flex-direction: column;
   }
 
-  button{
+  .link-button-style{
     padding: 18px 63px 17px;
     font-size: 14px;
     font-weight: 500;
+    font-family: $poppins;
     line-height: 1;
     background-color: #F2F2F2;
     color: $actions-button-color;

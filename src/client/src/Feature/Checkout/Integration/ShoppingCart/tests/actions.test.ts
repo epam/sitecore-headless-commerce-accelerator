@@ -138,9 +138,6 @@ describe('ShoppingCart actions', () => {
   test('should return action for UPDATE_CART_LINE_REQUEST', () => {
     const actual = actions.UpdateCartLineRequest();
     expect(actual).toEqual({
-      payload: {
-        status: LoadingStatus.Loading,
-      },
       type: actionTypes.UPDATE_CART_LINE_REQUEST,
     });
   });

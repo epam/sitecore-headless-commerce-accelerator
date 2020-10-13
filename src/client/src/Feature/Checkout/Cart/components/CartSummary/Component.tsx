@@ -41,14 +41,14 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
         )}
         <section className="cartSummary2" data-autotests="cartSummarySection">
           <header className="cartSummary2-header">
-            <h2 className="col-xs-2 header-title">IMAGE</h2>
-            <h2 className="col-xs-2 header-title">PRODUCT NAME</h2>
-            <h2 className="col-xs-2 header-title">UNIT PRICE</h2>
-            <h2 className="col-xs-2 header-title">QTY</h2>
-            <h2 className="col-xs-2 header-title">SUBTOTAL</h2>
-            <h2 className="col-xs-2 header-title">ACTION</h2>
+            <h2 className="col-xs-2 header-title product-image">IMAGE</h2>
+            <h2 className="col-xs-2 header-title product-details">PRODUCT NAME</h2>
+            <h2 className="col-xs-2 header-title product-price">UNIT PRICE</h2>
+            <h2 className="col-xs-2 header-title product-quantity">QTY</h2>
+            <h2 className="col-xs-2 header-title product-subtotal">SUBTOTAL</h2>
+            <h2 className="col-xs-2 header-title product-actions">ACTION</h2>
           </header>
-          <ul className="cartList2">
+          <ul className="cartList">
             {cartLines.map((cartLine) => {
               let imageUrl = fallbackImageUrl;
 
@@ -59,7 +59,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
               }
 
               return (
-                <li className="cartList2-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
+                <li className="cartList-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
                   <div className="product">
                     <div className="col-xs-2 product-image ">
                       <img src={imageUrl} />
@@ -67,7 +67,6 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                     <div className="col-xs-2 product-details">
                       <div className="product-info">
                         <div className="product-heading">
-                          <div className="heading-brand">{cartLine.variant.brand || cartLine.product.brand}</div>
                           <NavigationLink
                             className="heading-productTitle"
                             to={`/product/${cartLine.product.productId}`}
@@ -91,7 +90,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         </div>
                       </div>
                     </div>
-                    <div className="col-xs-2 amount">
+                    <div className="col-xs-2 amount product-price">
                       <div className="discount">
                         <span className="currency">{cartLine.variant.currencySymbol}</span>
                         {cartLine.variant.adjustedPrice.toFixed(2)}
@@ -101,16 +100,16 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         {cartLine.variant.adjustedPrice.toFixed(2)}
                       </div>
                     </div>
-                    <div className="col-xs-2 amount quantity-group">
+                    <div className="col-xs-2 amount quantity-group product-quantity">
                       <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} RemoveCartLine={RemoveCartLine} />
                     </div>
-                    <div className="col-xs-2 amount">
+                    <div className="col-xs-2 amount product-subtotal">
                       <span className="currency">{cartLine.price.currencySymbol}</span>
                       {cartLine.price.total.toFixed(2)}
                     </div>
-                    <div className="col-xs-2 actions">
-                      <i className="fa fa-heart fa-lg" onClick={(e) => AddWishlistItem(cartLine.variant)} />
-                      <i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} />
+                    <div className="col-xs-2 actions product-actions">
+                      <button><i className="fa fa-heart fa-lg" onClick={(e) => AddWishlistItem(cartLine.variant)} /></button>
+                      <button><i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} /></button>
                     </div>
                   </div>
                 </li>

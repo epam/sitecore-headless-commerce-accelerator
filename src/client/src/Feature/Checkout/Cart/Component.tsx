@@ -68,7 +68,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
         <div className="action_container">
           <NavigationLink to={`/`}>
-            <button>Continue Shopping</button>
+            <div className="link-button-style">Continue Shopping</div>
           </NavigationLink>
         </div>
         <div className="row cart2-last-row">

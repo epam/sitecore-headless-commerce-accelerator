@@ -18,7 +18,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern '**/*.*(ts|tsx)'",
       "commit-msg": "sh hooks/commit-msg"
     }
   }

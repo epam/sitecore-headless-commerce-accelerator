@@ -40,5 +40,10 @@ namespace HCA.Foundation.Commerce
         {
             public const string FederatedPaymentOptionTitle = "Federated";
         }
+		
+        public static class ErrorMessages
+        {
+            public const string EmailInUse = "Email is in use.";
+        }
     }
 }

@@ -85,7 +85,7 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                                 <span className="color">
                                   <Text field={fields.colorTitle} tag="span" className="color-title" />
                                   <span
-                                    className={classnames({ 'color-name': true, selected: true })}
+                                    className={classnames({ 'color-name': true, 'selected': true })}
                                     style={{
                                       background: resolveColor(cartLine.variant.properties.color, productColors),
                                     }}

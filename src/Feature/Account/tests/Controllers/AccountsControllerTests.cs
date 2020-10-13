@@ -16,7 +16,7 @@ namespace HCA.Feature.Account.Tests.Controllers
 {
     using System;
     using System.Collections.Generic;
-
+    using System.Web.Mvc;
     using Account.Controllers;
     using Account.Mappers;
 
@@ -85,7 +85,7 @@ namespace HCA.Feature.Account.Tests.Controllers
             this.controller.CreateAccount(new CreateAccountRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>(), Arg.Any<Func<Result<User>, ActionResult>>());
         }
 
         [Fact]

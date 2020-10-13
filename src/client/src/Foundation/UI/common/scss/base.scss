@@ -21,10 +21,6 @@
 //note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
 @import "./variables";
 
-body {
-  color: #999;
-}
-
 main {
   background: #fff;
   &.landing {

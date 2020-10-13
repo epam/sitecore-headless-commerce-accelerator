@@ -28,72 +28,116 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
   ChangePasswordProps,
   ChangePasswordOwnState
 > {
+  public constructor(props: ChangePasswordProps) {
+    super(props);
+  }
   public componentDidMount() {
-    {
-      /* verify the commerce user only in normal mode..  */
-    }
-    if (this.props.sitecoreContext.pageState === 'normal') {
+    if (!this.props.sitecoreContext.pageEditing) {
       this.props.VerifyCommerceUser();
     }
   }
 
+  protected toggleAccordion() {
+    const lstNodeToogle = document.querySelectorAll('.account-details-form_main');
+    lstNodeToogle.forEach((item) => {
+      if (item.classList.contains('active') && !item.classList.contains('change-password-body')) {
+        item.classList.remove('active');
+      } else if (item.classList.contains('active') && item.classList.contains('change-password-body')) {
+        item.classList.remove('active');
+      } else if (!item.classList.contains('active') && item.classList.contains('change-password-body')) {
+        item.classList.add('active');
+      }
+    });
+  }
+
   protected safeRender() {
     const { changePasswordState } = this.props;
+
     const isLoading = changePasswordState.status === LoadingStatus.Loading;
     const isChanged = changePasswordState.status === LoadingStatus.Loaded;
     const isError = changePasswordState.status === LoadingStatus.Failure;
 
     return (
-      <div className="change-password-form">
-        <div className="change-password-form__header">
-          <Jss.Text tag="h2" field={{ value: 'Change Password', editable: 'Change Password' }} />
+      <div className="account-details-container">
+        <div className="account-details-form">
+          <div className="account-details-form_header header-accordion" onClick={() => this.toggleAccordion()}>
+            <h3 className="header-title">
+              <span className="header-title_number">3. </span>
+              <span>CHANGE YOUR PASSWORD</span>
+              <i className="fa fa-angle-down" aria-hidden="true" />
+            </h3>
+          </div>
+          <div className="account-details-form_main change-password-body">
+            <div className="account-details-form_main_container">
+              <div className="form-title">
+                <h4>CHANGE PASSWORD</h4>
+                <h5>Your Password</h5>
+              </div>
+              <Form>
+                <div className="row">
+                  <div className="col-lg-12 col-md-12">
+                    <Jss.Text tag="label" field={{ value: 'Old Password', editable: 'Old Password' }} />
+                    <Input
+                      type="password"
+                      name={CHANGE_PASSWORD_FORM_FIELDS.OLD_PASSWORD}
+                      required={true}
+                      customValidator={(formValues) => this.passwordCustomValidator(formValues)}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <Jss.Text tag="label" field={{ value: 'Password', editable: 'Password' }} />
+                    <Input
+                      type="password"
+                      name={CHANGE_PASSWORD_FORM_FIELDS.NEW_PASSWORD}
+                      required={true}
+                      customValidator={(formValues) => this.passwordCustomValidator(formValues)}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <Jss.Text tag="label" field={{ value: 'Confirm New Password', editable: 'Confirm New Password' }} />
+                    <Input
+                      type="password"
+                      name={CHANGE_PASSWORD_FORM_FIELDS.NEW_PASSWORD_CONFIRM}
+                      required={true}
+                      customValidator={(formValues) => this.passwordCustomValidator(formValues)}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  {isError && (
+                    <Jss.Text
+                      tag="p"
+                      className="error-message"
+                      field={{ value: 'Change password failed', editable: 'Change password failed' }}
+                    />
+                  )}
+                  {isChanged && (
+                    <Jss.Text
+                      tag="p"
+                      className="success-message"
+                      field={{
+                        editable: 'Password was successfully changed',
+                        value: 'Password was successfully changed',
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="submit-container">
+                  <Submit
+                    disabled={isLoading}
+                    type="button"
+                    className="btn btn-outline-main"
+                    onSubmitHandler={(formValues) => this.handleChangePasswordSubmit(formValues)}
+                  >
+                    {isLoading && <i className="fa fa-spinner fa-spin" />}
+                    Change Password
+                  </Submit>
+                </div>
+              </Form>
+            </div>
+          </div>
         </div>
-        <Form className="change-password-form__main">
-          <Jss.Text tag="label" field={{ value: 'Old Password', editable: 'Old Password' }} />
-          <Input type="password" name={CHANGE_PASSWORD_FORM_FIELDS.OLD_PASSWORD} required={true} disabled={isLoading} />
-          <Jss.Text tag="label" field={{ value: 'New Password', editable: 'New Password' }} />
-          <Input
-            type="password"
-            name={CHANGE_PASSWORD_FORM_FIELDS.NEW_PASSWORD}
-            required={true}
-            customValidator={(formValues) => this.passwordCustomValidator(formValues)}
-            disabled={isLoading}
-          />
-          <Jss.Text tag="label" field={{ value: 'Confirm New Password', editable: 'Confirm New Password' }} />
-          <Input
-            type="password"
-            name={CHANGE_PASSWORD_FORM_FIELDS.NEW_PASSWORD_CONFIRM}
-            required={true}
-            customValidator={(formValues) => this.passwordCustomValidator(formValues)}
-            disabled={isLoading}
-          />
-          {isError && (
-            <Jss.Text
-              tag="p"
-              className="error-message"
-              field={{ value: 'Change password failed', editable: 'Change password failed' }}
-            />
-          )}
-          {isChanged && (
-            <Jss.Text
-              tag="p"
-              className="success-message"
-              field={{
-                editable: 'Password was successfully changed',
-                value: 'Password was successfully changed',
-              }}
-            />
-          )}
-          <Submit
-            disabled={isLoading}
-            type="button"
-            className="btn btn-outline-main"
-            onSubmitHandler={(formValues) => this.handleChangePasswordSubmit(formValues)}
-          >
-            {isLoading && <i className="fa fa-spinner fa-spin" />}
-            Change Password
-          </Submit>
-        </Form>
       </div>
     );
   }

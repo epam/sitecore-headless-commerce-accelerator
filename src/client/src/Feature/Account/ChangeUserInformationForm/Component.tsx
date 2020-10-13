@@ -27,44 +27,76 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
   ChangeUserInformationFormProps,
   ChangeUserInformationFormOwnState
 > {
+  public constructor(props: ChangeUserInformationFormProps) {
+    super(props);
+  }
+  protected toggleAccordion() {
+    const lstNodeToogle = document.querySelectorAll('.account-details-form_main');
+    lstNodeToogle.forEach((item) => {
+      if (item.classList.contains('active') && !item.classList.contains('user-information-body')) {
+        item.classList.remove('active');
+      } else if (item.classList.contains('active') && item.classList.contains('user-information-body')) {
+        item.classList.remove('active');
+      } else if (!item.classList.contains('active') && item.classList.contains('user-information-body')) {
+        item.classList.add('active');
+      }
+    });
+  }
   protected safeRender() {
     const { commerceUser, updateStatus } = this.props;
-
     const isLoading = updateStatus === LoadingStatus.Loading;
-    const userNotLoggedIn = commerceUser == null;
-
     return (
-      <div className="account-details-form">
-        <div className="account-details-form__header">
-          <h2>Account Details</h2>
-        </div>
-        <div className="account-details-form__main">
-          <Form>
-            <Jss.Text tag="label" field={{ value: 'First Name', editable: 'First Name' }} />
-            <Input
-              name={ACCOUNT_DETAILS_FORM_FIELDS.FIRST_NAME}
-              type="text"
-              required={true}
-              disabled={userNotLoggedIn}
-              defaultValue={userNotLoggedIn ? '' : commerceUser.firstName}
-            />
-            <Jss.Text tag="label" field={{ value: 'Last Name', editable: 'Last Name' }} />
-            <Input
-              name={ACCOUNT_DETAILS_FORM_FIELDS.LAST_NAME}
-              type="text"
-              required={true}
-              disabled={userNotLoggedIn}
-              defaultValue={userNotLoggedIn ? '' : commerceUser.lastName}
-            />
-            <Submit
-              className="btn btn-outline-main"
-              disabled={userNotLoggedIn}
-              onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
-            >
-              {isLoading && <i className="fa fa-spinner fa-spin" />}
-              Save Changes
-            </Submit>
-          </Form>
+      <div className="account-details-container">
+        <div className="account-details-form">
+          <div className="account-details-form_header header-accordion" onClick={() => this.toggleAccordion()}>
+            <h3 className="header-title">
+              <span className="header-title_number">1. </span>
+              <span>EDIT YOUR ACCOUNT INFORMATION</span>
+              <i className="fa fa-angle-down" aria-hidden="true" />
+            </h3>
+          </div>
+          <div className="account-details-form_main user-information-body">
+            <div className="account-details-form_main_container">
+              <div className="form-title">
+                <h4>MY ACCOUNT INFORMATION</h4>
+                <h5>Your Personal Details</h5>
+              </div>
+              <Form>
+                <div className="row">
+                  <div className="col-lg-6 col-md-6">
+                    <Jss.Text tag="label" field={{ value: 'First Name', editable: 'First Name' }} />
+                    <Input
+                      name={ACCOUNT_DETAILS_FORM_FIELDS.FIRST_NAME}
+                      type="text"
+                      required={true}
+                      disabled={isLoading}
+                      defaultValue={commerceUser.firstName}
+                    />
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <Jss.Text tag="label" field={{ value: 'Last Name', editable: 'Last Name' }} />
+                    <Input
+                      name={ACCOUNT_DETAILS_FORM_FIELDS.LAST_NAME}
+                      type="text"
+                      required={true}
+                      disabled={isLoading}
+                      defaultValue={commerceUser.lastName}
+                    />
+                  </div>
+                </div>
+                <div className="submit-container">
+                  <Submit
+                    className="btn btn-outline-main"
+                    disabled={isLoading}
+                    onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
+                  >
+                    {isLoading && <i className="fa fa-spinner fa-spin" />}
+                    Save Changes
+                  </Submit>
+                </div>
+              </Form>
+            </div>
+          </div>
         </div>
       </div>
     );

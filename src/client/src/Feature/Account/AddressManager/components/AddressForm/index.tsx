@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,92 +33,111 @@ export default class AddressForm extends React.Component<AddressFromProps> {
     const zipPostalCode = defaultValues ? defaultValues.zipPostalCode : '';
 
     return (
-      <Form className="address-form">
-        <div className="row">
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'First Name:', editable: 'First Name' }} tag="label" className="required" />
-            <Input
-              name={ADDRESS_MANAGER_FIELDS.FIRST_NAME}
-              type="text"
-              required={true}
-              maxLength={100}
-              defaultValue={firstName}
-            />
+      <div className="account-details-form_main active">
+        <div className="account-details-form_main_container">
+          <div className="form-title">
+            <h4>ADD NEW ADDRESS</h4>
+            <h5>Your Address</h5>
           </div>
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'Last Name:', editable: 'Last Name' }} tag="label" className="required" />
-            <Input
-              name={ADDRESS_MANAGER_FIELDS.LAST_NAME}
-              type="text"
-              required={true}
-              maxLength={100}
-              defaultValue={lastName}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'Address Line:', editable: 'Address Line:' }} tag="label" className="required" />
-            <Input
-              name={ADDRESS_MANAGER_FIELDS.ADDRESS_LINE}
-              type="text"
-              required={true}
-              maxLength={100}
-              defaultValue={address1}
-            />
-          </div>
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'City:', editable: 'City:' }} tag="label" className="required" />
-            <Input name={ADDRESS_MANAGER_FIELDS.CITY} type="text" required={true} maxLength={100} defaultValue={city} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
-            <Select name={ADDRESS_MANAGER_FIELDS.COUNTRY} required={true} defaultValue={defaultValues.countryCode}>
-              <option value="">Not Selected</option>
-              {countries.map((c, index) => (
-                <option key={index} value={c.countryCode}>
-                  {c.name}
-                </option>
-              ))}
-            </Select>
-          </div>
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'State:', editable: 'State' }} tag="label" className="required" />
-            <DependentField>
-              {(form) => form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] ? (
-                <Select name={ADDRESS_MANAGER_FIELDS.PROVINCE} required={true} defaultValue={defaultValues.state}>
+          <Form>
+            <div className="row">
+              <div className="col-lg-12 col-md-12">
+                <Jss.Text field={{ value: 'First Name:', editable: 'First Name' }} tag="label" className="required" />
+                <Input
+                  name={ADDRESS_MANAGER_FIELDS.FIRST_NAME}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={firstName}
+                />
+              </div>
+              <div className="col-lg-12 col-md-12">
+                <Jss.Text field={{ value: 'Last Name:', editable: 'Last Name' }} tag="label" className="required" />
+                <Input
+                  name={ADDRESS_MANAGER_FIELDS.LAST_NAME}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={lastName}
+                />
+              </div>
+              <div className="col-lg-12 col-md-12">
+                <Jss.Text
+                  field={{ value: 'Address Line:', editable: 'Address Line:' }}
+                  tag="label"
+                  className="required"
+                />
+                <Input
+                  name={ADDRESS_MANAGER_FIELDS.ADDRESS_LINE}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={address1}
+                />
+              </div>
+              <div className="col-lg-12 col-md-12">
+                <Jss.Text field={{ value: 'City:', editable: 'City:' }} tag="label" className="required" />
+                <Input
+                  name={ADDRESS_MANAGER_FIELDS.CITY}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={city}
+                />
+              </div>
+              <div className="col-lg-6 col-md-6 select-country-state">
+                <Jss.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
+                <Select name={ADDRESS_MANAGER_FIELDS.COUNTRY} required={true} defaultValue={defaultValues.countryCode}>
                   <option value="">Not Selected</option>
-                  {this.renderSubdivisions(form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] as string)}
+                  {countries.map((c, index) => (
+                    <option key={index} value={c.countryCode}>
+                      {c.name}
+                    </option>
+                  ))}
                 </Select>
-              ) : (
-                <select disabled={true}>
-                  <option>Not Selected</option>
-                </select>
-              )}
-            </DependentField>
-          </div>
+              </div>
+              <div className="col-lg-6 col-md-6 select-country-state">
+                <Jss.Text field={{ value: 'State:', editable: 'State' }} tag="label" className="required" />
+                <DependentField>
+                  {(form) =>
+                    form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] ? (
+                      <Select name={ADDRESS_MANAGER_FIELDS.PROVINCE} required={true} defaultValue={defaultValues.state}>
+                        <option value="">Not Selected</option>
+                        {this.renderSubdivisions(form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] as string)}
+                      </Select>
+                    ) : (
+                      <select disabled={true}>
+                        <option>Not Selected</option>
+                      </select>
+                    )
+                  }
+                </DependentField>
+              </div>
+              <div className="col-ms-12">
+                <Jss.Text field={{ value: 'Postal Code:', editable: 'Postal Code' }} tag="label" className="required" />
+                <Input
+                  name={ADDRESS_MANAGER_FIELDS.POSTAL_CODE}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={zipPostalCode}
+                />
+              </div>
+            </div>
+            <div className="submit-container">
+              <Submit
+                className="btn btn-outline-main"
+                onSubmitHandler={(formValues) => this.submitAddressForm(formValues)}
+              >
+                Submit
+              </Submit>
+              <button className="btn btn-outline-focus" onClick={() => this.props.ToggleForm()}>
+                Cancel
+              </button>
+            </div>
+          </Form>
         </div>
-        <div className="row">
-          <div className="col-ms-6">
-            <Jss.Text field={{ value: 'Postal Code:', editable: 'Postal Code' }} tag="label" className="required" />
-            <Input
-              name={ADDRESS_MANAGER_FIELDS.POSTAL_CODE}
-              type="text"
-              required={true}
-              maxLength={100}
-              defaultValue={zipPostalCode}
-            />
-          </div>
-        </div>
-        <Submit className="btn btn-outline-main" onSubmitHandler={(formValues) => this.submitAddressForm(formValues)}>
-          Submit
-        </Submit>
-        <button className="btn btn-outline-focus" onClick={() => this.props.ToggleForm()}>
-          Cancel
-        </button>
-      </Form>
+      </div>
     );
   }
 

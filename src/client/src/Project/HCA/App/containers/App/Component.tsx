@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,9 @@ import { SITECORE_ROUTES } from 'Foundation/ReactJss/SitecoreContext';
 import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
 
 import { AppProps } from './../../../models';
-import { Layout, LoadingBar, NotFound, ServerError } from './../../components';
+import { Layout, LoadingBar, ServerError } from './../../components';
+
+import { NotFound } from 'Feature/Errors/NotFound';
 
 const { SitecoreContext } = JSS;
 
@@ -37,7 +39,7 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
   public safeRender() {
     const sitecoreContext = {
       ...this.props.sitecoreContext,
-      routeFields: this.props.routeFields
+      routeFields: this.props.routeFields,
     };
 
     SitecoreContextFactory.setSitecoreContext(sitecoreContext);

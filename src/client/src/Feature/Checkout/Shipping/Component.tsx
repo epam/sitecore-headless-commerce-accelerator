@@ -174,7 +174,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
           >
             <div className="row">
               <div className="col-sm-12">
-                <Text field={{ value: 'Shipping Location' }} tag="3" />
+                <Text field={{ value: 'Shipping Location' }} tag="h3" />
                 <Select name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
                   <option disabled={true} value="">
                     Select Option

@@ -36,6 +36,6 @@ export const reducerActionTypes = keyMirrorReducer(
 );
 
 export const DEFAULT_LANGUAGE = 'en';
-export const NOT_FOUND_ROUTE = '/client-notfound';
+export const NOT_FOUND_ROUTE = '/notfound';
 export const SERVER_ERROR_ROUTE = '/error';
 export const SITECORE_ROUTES = ['/:sitecoreRoute*'];

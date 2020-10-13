@@ -1,43 +1,161 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/mixins';
-@import 'Foundation/UI/common/scss/variables';
-.account-details-form {
-  margin: 20px 0;
-  position: relative;
-  @include loading-overlay(99998);
-  &__header {
-    @include clearfix;
-    background: #ebeeef;
-    padding: 8px 15px;
-    margin-bottom: 18px;
-    h2 {
-      float: left;
+@import "Foundation/UI/common/scss/mixins";
+@import "Foundation/UI/common/scss/variables";
+.account-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .account-details-form {
+    width: 870px;
+    margin: 20px 0;
+    position: relative;
+    border: 1px solid #ebebeb;
+    @include loading-overlay(99998);
+    .header-accordion {
+      transition: 0.4s;
+    }
+
+    .header-accordion.active:after {
+      content: "\2212";
+    }
+    &_header {
+      @include clearfix;
+      font-family: $poppins;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #ebebeb;
+      font-size: 15px;
+      font-weight: 500;
       margin: 0;
-      font-size: 18px;
-      line-height: 21px;
-      color: $title-font-color;
-    }
-  }
-  &__main {
-    padding: 0 15px;
-    input {
-      max-width: 350px;
-    }
-    button {
+      text-transform: uppercase;
+      color: #242424;
       display: block;
+      padding: 16px 15px;
+      position: relative;
+      cursor: pointer;
+      h2 {
+        font-family: $poppins;
+        float: left;
+        margin: 0;
+        font-size: 18px;
+        line-height: 21px;
+        color: $title-font-color;
+      }
+      .header-title {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        background-color: #f9f9f9;
+        font-size: 15px;
+        font-weight: 500;
+        margin: 0;
+        text-transform: uppercase;
+        color: #242424;
+        position: relative;
+        .fa-angle-down {
+          display: inline-block;
+          font-size: 16px;
+          right: 0;
+          position: absolute;
+        }
+        &_number {
+          margin-right: 25px;
+        }
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+    &_main {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      &_container {
+        padding: 50px 40px;
+      }
+      .form-title {
+        border-bottom: 1px solid #eaeaea;
+        margin-bottom: 28px;
+        padding-bottom: 30px;
+      }
+      .input-group {
+        display: flex;
+      }
+      input {
+        background: transparent none repeat scroll 0 0;
+        border: 1px solid #ebebeb;
+        color: #000;
+        height: 40px;
+        padding: 0 15px;
+        box-shadow: none;
+        &:focus {
+          outline: none;
+        }
+      }
+      label {
+        color: #000;
+        font-size: 14px;
+        text-transform: capitalize;
+        font-family: $poppins;
+        font-weight: 400;
+        margin-bottom: 8px;
+      }
+      h4 {
+        font-family: $poppins;
+        font-weight: 400;
+        font-size: 15px;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      h5 {
+        font-family: $poppins;
+        font-weight: 400;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        margin-top: 7px;
+      }
+      .submit-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 26px;
+        button {
+          display: block;
+          background-color: #f2f2f2;
+          border: none;
+          border-radius: 0px;
+          color: #000;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1;
+          padding: 16px 35px 17px;
+          text-transform: uppercase;
+          cursor: pointer;
+          -webkit-transition: all 0.3s ease 0s;
+          transition: all 0.3s ease 0s;
+          &:hover {
+            background: #a749ff;
+            color: #fff;
+          }
+        }
+      }
+    }
+    .account-details-form_main.active {
+      max-height: 100vh;
+      overflow: auto;
+      transition: max-height 0.2s ease-out;
     }
   }
 }

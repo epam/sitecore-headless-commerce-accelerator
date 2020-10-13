@@ -30,7 +30,7 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
 
     this.state = {
       editForm: false,
-      formVisible: false,
+      isListFormVisible: true,
       selectedAddressId: '',
     };
 
@@ -40,135 +40,146 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
 
   public componentDidMount() {
     const { GetAddressList } = this.props;
-
     GetAddressList();
   }
 
   protected safeRender() {
-    const { savedAddressListStatus } = this.props;
-    const { formVisible } = this.state;
-    return (
-      <section className="address-manager">
-        {savedAddressListStatus === LoadingStatus.Loading && (
-          <div className="address-manager-loading-overlay">
-            <div className="loading" />
-          </div>
-        )}
-        <div className="address-manager__header">
-          <h2>Saved Addresses</h2>
-          {!formVisible && (
-            <a className="add-link" onClick={(e) => this.toggleFormByAnchorClick(false, e)}>
-              Add
-            </a>
-          )}
-        </div>
-        {this.renderMain()}
-      </section>
-    );
-  }
-
-  private renderMain() {
-    const { savedAddressList } = this.props;
-    const { selectedAddressId, formVisible, editForm } = this.state;
+    const { savedAddressList, savedAddressListStatus } = this.props;
+    const { selectedAddressId, editForm, isListFormVisible } = this.state;
 
     const selectedAddress = savedAddressList.find((a) => a.externalId === selectedAddressId) || savedAddressList[0];
 
     return (
-      <div className="address-manager__main">
-        {formVisible ? (
-          <AddressForm
-            countries={this.props.fields.countries}
-            defaultValues={editForm && selectedAddress}
-            SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
-            ToggleForm={() => this.toggleForm(true)}
-          />
-        ) : (
-          <>
-            {savedAddressList && savedAddressList.length > 0 ? (
-              <>
-                <div className="address-manager__select">
-                  <Jss.Text tag="label" field={{ value: 'Addresses', editable: 'Addresses' }} />
-                  <select
-                    onChange={(e) => this.onSavedAddressChange(e)}
-                    value={selectedAddress ? selectedAddress.externalId : savedAddressList[0].externalId}
-                  >
-                    {savedAddressList.map((savedAddress, index) => (
-                      <option value={savedAddress.externalId} key={index}>
-                        {`${savedAddress.firstName} ${savedAddress.lastName}, ${savedAddress.address1}`}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="address-manager__card">
-                  <Jss.Text className="card-name" tag="span" field={{ value: 'Address', editable: 'Address' }} />
-                  <span>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</span>
-                  <span className="address-manager__card-address">{selectedAddress.address1}</span>
-                  <span className="address-manager__card-address">
-                    {selectedAddress.city}, {selectedAddress.state}, {selectedAddress.country}
-                  </span>
-                  <span className="address-manager__card-address">{selectedAddress.zipPostalCode}</span>
-                  {!formVisible && (
-                    <div className="address-manager__card-actions">
-                      <a className="edit-link" onClick={(e) => this.toggleFormByAnchorClick(true, e)}>
-                        Edit
-                      </a>
-                      <a
-                        className="delete-link"
-                        onClick={(e) => this.onDeleteButtonClick(e, selectedAddress.externalId)}
-                      >
-                        Delete
-                      </a>
+      <div className="account-details-container">
+        <div className="account-details-form">
+          {savedAddressListStatus === LoadingStatus.Loading && (
+            <div className="address-manager-loading-overlay">
+              <div className="loading" />
+            </div>
+          )}
+          <a className="account-details-form_header header-accordion" onClick={(e) => this.toggleFormByAnchorClick(e)}>
+            <h3 className="header-title">
+              <span className="header-title_number">2. </span>
+              <span>SAVED ADDRESSES</span>
+              <i className="fa fa-angle-down" aria-hidden="true" />
+            </h3>
+          </a>
+          <div className="account-details-form_main address-management-body">
+            {isListFormVisible ? (
+              <div className="address_body">
+                <div className="myaccount-info-wrapper">
+                  <div className="account-info-wrapper">
+                    <h4>Address Book Entries</h4>
+                  </div>
+                  <div className="entries-wrapper">
+                    {savedAddressList && savedAddressList.length > 0 ? (
+                      savedAddressList.map((address, index) => {
+                        return (
+                          <div className="row entries_row_wrapper" key={index}>
+                            <div className="col-lg-6 col-md-6 entries_col_wrapper">
+                              <div className="entries-info text-center">
+                                <p>
+                                  {address.firstName} {address.lastName}
+                                </p>
+                                <p>{address.address1}</p>
+                                <p>{address.address2}</p>
+                                <p>
+                                  {address.city}, {address.state}
+                                </p>
+                                <p>
+                                  {address.country}, {address.countryCode}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="col-lg-6 col-md-6 entries_col_wrapper">
+                              <div className="entries-edit-delete text-center">
+                                <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
+                                  Edit
+                                </button>
+                                <button onClick={(e) => this.onDeleteButtonClick(e, selectedAddress.externalId)}>
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                  <div className="billing-back-btn">
+                    <div className="billing-btn">
+                      <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
+                        Add
+                      </button>
                     </div>
-                  )}
+                    <div className="billing-btn">
+                      <button type="submit">Continue</button>
+                    </div>
+                  </div>
                 </div>
-              </>
+              </div>
             ) : (
-              <Jss.Text tag="h4" field={{ value: 'List is empty', editable: 'List is empty' }} />
+              <AddressForm
+                countries={this.props.fields.countries}
+                defaultValues={editForm && selectedAddress}
+                SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
+                ToggleForm={() => this.editAddress(false)}
+              />
             )}
-          </>
-        )}
+          </div>
+        </div>
       </div>
     );
   }
 
-  private onSavedAddressChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = e.target;
+  // private onSavedAddressChange(e: React.ChangeEvent<HTMLSelectElement>) {
+  //   const { value } = e.target;
+  //   this.setState({
+  //     selectedAddressId: value,
+  //   });
+  // }
 
-    this.setState({
-      selectedAddressId: value,
-    });
-  }
-
-  private toggleFormByAnchorClick(editForm: boolean, e: React.MouseEvent<HTMLAnchorElement>) {
+  private editAddressByButtonClick(editForm: boolean, e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-
-    this.toggleForm(editForm);
+    this.editAddress(editForm);
   }
-
-  private toggleForm(editForm: boolean) {
+  private editAddress(editForm: boolean) {
     this.setState({
       editForm,
-      formVisible: !this.state.formVisible,
+      isListFormVisible: !this.state.isListFormVisible,
+    });
+  }
+  private toggleFormByAnchorClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    const lstNodeToogle = document.querySelectorAll('.account-details-form_main');
+    lstNodeToogle.forEach((item) => {
+      if (item.classList.contains('active') && !item.classList.contains('address-management-body')) {
+        item.classList.remove('active');
+      } else if (item.classList.contains('active') && item.classList.contains('address-management-body')) {
+        item.classList.remove('active');
+      } else if (!item.classList.contains('active') && item.classList.contains('address-management-body')) {
+        item.classList.add('active');
+      }
     });
   }
 
-  private onDeleteButtonClick(e: React.MouseEvent<HTMLAnchorElement>, externalId: string) {
+  private onDeleteButtonClick(e: React.MouseEvent<HTMLButtonElement>, externalId: string) {
     e.preventDefault();
-
     if (!confirm('Are you sure you want to delete item?')) {
       return;
     }
-
     this.props.RemoveAddress(externalId);
   }
 
   private onUpdateAdress(address: Commerce.Address) {
     this.props.UpdateAddress(address);
-    this.setState({ formVisible: false });
+    this.setState({ isListFormVisible: true, editForm: false });
   }
 
   private onAddAdress(address: Commerce.Address) {
     this.props.AddAddress(address);
-    this.setState({ formVisible: false });
+    this.setState({ isListFormVisible: true, editForm: false });
   }
 }

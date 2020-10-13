@@ -14,6 +14,8 @@
 
 namespace HCA.Feature.Account.Controllers
 {
+    using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
 
     using Foundation.Base.Controllers;
@@ -21,7 +23,7 @@ namespace HCA.Feature.Account.Controllers
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Services.Account;
-
+    using HCA.Foundation.Base.Extensions;
     using Mappers;
 
     using Models.Requests;
@@ -93,6 +95,16 @@ namespace HCA.Feature.Account.Controllers
                         requests.FirstName,
                         requests.LastName,
                         requests.Password);
+                },
+                result =>
+                {
+                    if (result.Success)
+                        return this.JsonOk(result.Data);
+
+                    if (result.Errors.Contains(Foundation.Commerce.Constants.ErrorMessages.EmailInUse))
+                        return this.JsonError(Foundation.Commerce.Constants.ErrorMessages.EmailInUse, HttpStatusCode.BadRequest);
+
+                    return this.JsonError(result.Errors?.FirstOrDefault(), HttpStatusCode.InternalServerError);
                 });
         }
 

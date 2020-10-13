@@ -50,5 +50,10 @@ namespace HCA.Foundation.Commerce
         {
             public const double EarthRadiusInKilometers = 6371.0;
         }
+
+        public static class ErrorMessages
+        {
+            public const string EmailInUse = "Email is in use.";
+        }
     }
 }

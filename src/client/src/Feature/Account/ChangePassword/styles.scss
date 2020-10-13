@@ -18,7 +18,7 @@
   margin: 20px 0;
   position: relative;
   @include loading-overlay(99998);
-  &__header {
+  &_header {
     @include clearfix;
     background: #ebeeef;
     padding: 8px 15px;
@@ -45,7 +45,7 @@
       }
     }
   }
-  &__main {
+  &_main {
     padding: 0 15px;
     input {
       // important is here in order to override some base stuff

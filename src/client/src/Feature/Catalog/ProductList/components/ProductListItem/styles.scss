@@ -106,21 +106,21 @@
     justify-content: center;
 
     &--adjusted {
-      .price__full {
+      .price_full {
         text-decoration: line-through;
         color: #999;
       }
-      .price__current {
+      .price_current {
         color: black;
         font-weight: 500;
       }
     }
 
-    &__currency {
+    &_currency {
       position: relative;
     }
-    &__full,
-    &__current {
+    &_full,
+    &_current {
       height: 20px;
     }
   }

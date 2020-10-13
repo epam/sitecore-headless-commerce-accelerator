@@ -72,11 +72,11 @@
     width: 100%;
     margin: 10px 0 10px 0;
   
-    &__container {
+    &_container {
       width: calc(100% - 150px);
       float: left;
     }
-    &__clear-all {
+    &_clear-all {
       width: 150px;
       float: left;
       text-align: right;

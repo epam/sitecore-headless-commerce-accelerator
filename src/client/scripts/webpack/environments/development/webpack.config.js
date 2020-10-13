@@ -5,6 +5,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const extractSass = new MiniCssExtractPlugin({
   filename: '[name].css',
@@ -118,5 +119,6 @@ module.exports = (compilerOptions) => ({
     extractSass,
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new StylelintPlugin(),
   ],
 });

@@ -26,11 +26,11 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
     const { order, fallbackImageUrl} = this.props;
     return (
       <div className="order-list-item-header col-md-12">
-        <div className="order-list-item-header__title">
+        <div className="order-list-item-header_title">
           <NavigationLink to={`/Checkout/Confirmation?trackingNumber=${order.trackingNumber}`}>{order.trackingNumber}</NavigationLink>
         </div>
-        <div className="order-list-item-header__content">
-          <div className="order-list-item-header__content-line">
+        <div className="order-list-item-header_content">
+          <div className="order-list-item-header_content-line">
             <span className="status">{order.status}</span>
             <span className="price">
               {order.price.currencySymbol} {order.price.total}
@@ -55,9 +55,9 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                   </div>
                   <figcaption>
                     <div className="price">
-                      <div className="price__full">
-                        <span className="price__currency">{cartLine.price.currencySymbol}</span>
-                        <span className="price__amount">{cartLine.price.total}</span>
+                      <div className="price_full">
+                        <span className="price_currency">{cartLine.price.currencySymbol}</span>
+                        <span className="price_amount">{cartLine.price.total}</span>
                       </div>
                     </div>
                     <div className="brand">{cartLine.variant.brand}</div>

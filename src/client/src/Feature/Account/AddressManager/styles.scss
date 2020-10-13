@@ -19,7 +19,7 @@
   margin: 20px 0;
   position: relative;
   @include loading-overlay(99998);
-  &__header {
+  &_header {
     @include clearfix;
     background: #ebeeef;
     padding: 8px 15px;
@@ -46,10 +46,10 @@
       }
     }
   }
-  &__main {
+  &_main {
     padding: 0 15px;
   }
-  &__select {
+  &_select {
     label {
       font-size: 16px;
       line-height: 20px;
@@ -61,7 +61,7 @@
       width: 100%;
     }
   }
-  &__card {
+  &_card {
     font-size: 16px;
     line-height: 20px;
     font-weight: 900;

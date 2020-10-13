@@ -6,6 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const constants = require('./constants');
 // Preparation
@@ -152,6 +153,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
         'process.env.API_KEY': JSON.stringify(apiKey),
       }),
       extractSass,
+      new StylelintPlugin(),
     ],
   };
 };
@@ -226,6 +228,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
       }),
+      new StylelintPlugin(),
     ],
   };
 };

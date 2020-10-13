@@ -37,7 +37,8 @@
     // switching to layout with floats (like in bootstrap for columns)
     @media (min-width: 768px) {
       @include clearfix;
-      display: block;
+      display: flex;
+      flex-flow: row wrap;
       margin: 0 (-30px/2);
     }
     > li {

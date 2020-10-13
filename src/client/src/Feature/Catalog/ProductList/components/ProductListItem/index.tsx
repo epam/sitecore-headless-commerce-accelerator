@@ -48,13 +48,13 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
             <h2>{product.displayName}</h2>
           </NavigationLink>
           <div className="price price--adjusted">
-            <div className="price__current">
-              <span className="price__currency">{product.currencySymbol}</span>
-              <span className="price__amount">{product.adjustedPrice.toFixed(2)}&nbsp;-&nbsp;</span>
+            <div className="price_current">
+              <span className="price_currency">{product.currencySymbol}</span>
+              <span className="price_amount">{product.adjustedPrice.toFixed(2)}&nbsp;-&nbsp;</span>
             </div>
-            <div className="price__full">
-              <span className="price__currency">{product.currencySymbol}</span>
-              <span className="price__amount">{product.listPrice.toFixed(2)}</span>
+            <div className="price_full">
+              <span className="price_currency">{product.currencySymbol}</span>
+              <span className="price_amount">{product.listPrice.toFixed(2)}</span>
             </div>
           </div>
           {/* Compare feature commented out

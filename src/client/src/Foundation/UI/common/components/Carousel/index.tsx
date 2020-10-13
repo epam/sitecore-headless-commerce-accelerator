@@ -214,7 +214,7 @@ export class Carousel<TProps extends CarouselProps, TState extends CarouselState
             <div className="carousel-button-container">
               <button
                 disabled={prevButtonDisabled}
-                className="carousel-button-container__button"
+                className="carousel-button-container_button"
                 onClick={(e) => this.slidePrev()}
               >
                 {buttonPreviousText}
@@ -234,7 +234,7 @@ export class Carousel<TProps extends CarouselProps, TState extends CarouselState
             <div className="carousel-button-container">
               <button
                 disabled={nextButtonDisabled}
-                className="carousel-button-container__button"
+                className="carousel-button-container_button"
                 onClick={(e) => this.slideNext()}
               >
                 {buttonNextText}

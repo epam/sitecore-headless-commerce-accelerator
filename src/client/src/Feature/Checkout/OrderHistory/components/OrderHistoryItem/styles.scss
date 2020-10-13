@@ -25,7 +25,7 @@
     }
     &-header {
       margin-bottom: 20px;
-      &__title {
+      &_title {
         border: 1px solid #D2D2D2;
         background-color: #FAFAFA;
         font-size: 30px;
@@ -33,7 +33,7 @@
         color: #666666;
         padding: 15px;
       }
-      &__content {
+      &_content {
         background-color: #FFFFFF;
         &-line {
           display: flex;
@@ -151,14 +151,14 @@
       height: 40px;
       color: #666;
       margin: 8px 0;
-      &__currency {
+      &_currency {
         vertical-align: top;
         font-size: 70%;
         position: relative;
         top: -2px;
       }
-      &__full,
-      &__current {
+      &_full,
+      &_current {
         height: 20px;
       }
     }

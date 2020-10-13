@@ -41,7 +41,7 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
     const submitButtonDisabled =
       loading || accountValidation.invalid || accountValidation.status === LoadingStatus.Loading;
     return (
-      <div className="register__form">
+      <div className="register_form">
         <Form>
           <div className="form-field">
             <Input type="text" name={FORM_FIELDS.FIRST_NAME} required={true} placeholder="First Name" />

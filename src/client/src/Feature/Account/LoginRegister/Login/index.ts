@@ -12,7 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
@@ -23,11 +22,9 @@ import { AppState } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const authenticationProcess = Authentication.authenticationProcess(state);
-  const returnUrl = JSS.routingLocationPathname(state);
 
   return {
     authenticationProcess,
-    returnUrl,
   };
 };
 

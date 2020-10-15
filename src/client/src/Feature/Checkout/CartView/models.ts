@@ -27,6 +27,7 @@ export interface CartStateProps {
 
 export interface CartDispatchProps {
   LoadCart: () => void;
+  RemoveCartLine: (model: ShoppingCart.ShoppingCartLine) => void;
 }
 
 export interface CartProps extends CartStateProps, CartDispatchProps, CartOwnProps {}

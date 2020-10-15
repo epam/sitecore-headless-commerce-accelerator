@@ -28,7 +28,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
   }
 
   protected safeRender() {
-    const { Authentication, authenticationProcess, returnUrl, onLoaded } = this.props;
+    const { Authentication, authenticationProcess, onLoaded } = this.props;
 
     const isLoading = authenticationProcess.status === LoadingStatus.Loading;
     const isError = authenticationProcess.status === LoadingStatus.Failure;
@@ -59,7 +59,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
         <div className="login_buttons">
           <Submit
             className="btn-log-in"
-            onSubmitHandler={(form: LogInValues) => Authentication(form.email, form.password, returnUrl)}
+            onSubmitHandler={(form: LogInValues) => Authentication(form.email, form.password, '/')}
             disabled={isLoading}
           >
             {isLoading && <i className="fa fa-spinner fa-spin" />}

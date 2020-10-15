@@ -25,7 +25,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     this.props.LoadCart();
   }
   public safeRender() {
-    const { shoppingCartData } = this.props;
+    const { shoppingCartData, RemoveCartLine } = this.props;
     let cartTotalPrice = 0;
     return (
       shoppingCartData && shoppingCartData.cartLines.length > 0
@@ -71,7 +71,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
                       )}
                     </div>
                     <div className="shopping-cart-view-populated-single-item-delete">
-                      <button>
+                      <button onClick={(e) => RemoveCartLine(single)}>
                         <i className="fa fa-times-circle" />
                       </button>
                     </div>

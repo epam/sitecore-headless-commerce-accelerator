@@ -25,7 +25,6 @@ export interface LogInDispatchProps {
 
 export interface LogInStateProps {
   authenticationProcess: AuthenticationProcessState;
-  returnUrl: string;
 }
 
 export interface LogInProps extends LogInDispatchProps, LogInStateProps {}

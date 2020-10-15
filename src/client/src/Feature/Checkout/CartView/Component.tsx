@@ -48,7 +48,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
                     <div className="shopping-cart-view-populated-single-item-title">
                       <h4>
                         <NavigationLink
-                          to={'/product2/' + single.variant.productId}
+                          to={'/product/' + single.variant.productId}
                         >
                           {' '}{single.variant.displayName}{' '}
                         </NavigationLink>

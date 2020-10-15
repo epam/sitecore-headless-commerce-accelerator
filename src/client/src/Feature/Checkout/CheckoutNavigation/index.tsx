@@ -24,7 +24,7 @@ import './styles.scss';
 
 class NavigationComponent extends JSS.SafePureComponent<NavigationProps, NavigationState> {
   public safeRender() {
-    const { checkoutSteps, backToLink, infoLink } = this.props.fields;
+    const { checkoutSteps, backToLink } = this.props.fields;
     return (
       <nav className="nav-checkout">
         <ul>
@@ -43,9 +43,6 @@ class NavigationComponent extends JSS.SafePureComponent<NavigationProps, Navigat
         </ul>
         <span className="back-to">
           <NavigationLink to={backToLink.value.href}>{backToLink.value.text}</NavigationLink>
-        </span>
-        <span className="privacy">
-          <NavigationLink to={infoLink.value.href}>{infoLink.value.text}</NavigationLink>
         </span>
         <Text field={{ value: 'Back' }} tag="a" className="previous-section" />
       </nav>

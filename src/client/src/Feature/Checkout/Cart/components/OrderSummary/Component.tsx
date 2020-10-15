@@ -78,7 +78,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="subTitleWrap">
               <p>Enter your promotional code if you have one.</p>
             </div>
-            {isFailure && <p>Invalid promo code</p>}
+            {isFailure && <p className="invalid-promo-code-msg">Invalid promo code</p>}
             {promoCodeIsEmpty && <p>Promo code can not be empty</p>}
             <div className="zipCodeWrapper">
               <input type="text" disabled={isLoading} ref={(el) => (this.promoCodeInput = el)} required={true} />

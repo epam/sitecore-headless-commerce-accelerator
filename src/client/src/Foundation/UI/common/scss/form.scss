@@ -145,10 +145,10 @@ form {
       &:before {
         content: '';
         display: inline-block;
-        width: 8px;
-        height: 8px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        margin: 3px 8px 7px 3px;
+        margin: 3px 8px 3px 3px;
         border: 1px solid #ccc;
         vertical-align: bottom;
         background-color: #fff;
@@ -174,33 +174,7 @@ form {
     }
   }
   
-  input[type="checkbox"] {
-    margin: 0;
-    padding: 0;
-    display: none;
-    & + label {
-      display: inline-block;
-      cursor: pointer;
-  
-      &:before {
-        content: '';
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        margin: 3px 8px 7px 3px;
-        border: 1px solid #ccc;
-        vertical-align: bottom;
-        background-color: #fff;
-        transition: background-color .2s ease-in;
-      }
-    }
-    & + label:hover:before {
-      background-color: $main-color-light;
-    }
-    &:checked + label:before {
-      background-color: $main-color;
-    }
-  }
+
   
   .thick-theme input[type="checkbox"] {
     & + label:before {

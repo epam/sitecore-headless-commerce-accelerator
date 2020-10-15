@@ -32,11 +32,11 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
     };
   }
 
-  public componentDidMount() {
+  public componentDidUpdate() {
     const { currentForm } = this.props;
-    (currentForm)
-      ? this.setState({ isSignUp: true })
-      : this.setState({ isSignUp: false });
+    (currentForm === 'login')
+      ? this.setState({ isSignUp: false })
+      : this.setState({ isSignUp: true });
   }
 
   // tslint:disable-next-line:cognitive-complexity
@@ -61,10 +61,10 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
         ) : (
           <div>
             <div className="login-register-form-header">
-              <div className={`form-title ${!isSignUp && 'active'}`} onClick={() => this.setState({ isSignUp: false })}>
+              <div className={`form-title ${!isSignUp && 'active'}`} onClick={(e) => this.handleFormChange(e, 'login')}>
                 <Jss.Text tag="span" field={{ value: 'Login', editable: 'Login' }} />
               </div>
-              <div className={`form-title ${isSignUp && 'active'}`} onClick={() => this.setState({ isSignUp: true })}>
+              <div className={`form-title ${isSignUp && 'active'}`} onClick={(e) => this.handleFormChange(e, 'register')}>
                 <Jss.Text tag="span" field={{ value: 'Register', editable: 'Register' }} />
               </div>
             </div>
@@ -75,5 +75,10 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
         )}
       </section>
     );
+  }
+
+  private handleFormChange(e: React.MouseEvent<HTMLDivElement>, queryParam: string) {
+    const { pathname, ChangeRoute } = this.props;
+    ChangeRoute(`${pathname}?form=${queryParam}`);
   }
 }

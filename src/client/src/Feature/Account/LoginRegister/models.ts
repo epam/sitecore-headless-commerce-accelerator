@@ -22,9 +22,13 @@ export interface LoginRegisterOwnProps extends JSS.Rendering<JSS.BaseDataSourceI
 export interface LoginRegisterStateProps {
   commerceUser: Commerce.User;
   currentForm: string;
+  pathname: string;
 }
 
-export interface LoginRegisterProps extends LoginRegisterOwnProps, LoginRegisterStateProps {}
+export interface LoginRegisterDispatchProps {
+  ChangeRoute: (newRoute: string) => void;
+}
+export interface LoginRegisterProps extends LoginRegisterOwnProps, LoginRegisterStateProps, LoginRegisterDispatchProps {}
 
 export interface LoginRegisterOwnState extends JSS.SafePureComponentState {
   isSignUp: boolean;

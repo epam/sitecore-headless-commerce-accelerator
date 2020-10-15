@@ -14,12 +14,14 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { Location } from 'history';
+import { Location, Pathname } from 'history';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import { bindActionCreators } from 'redux';
 
 import * as Account from 'Feature/Account/Integration/Account';
 import * as Extensions from 'Foundation/Base';
+import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import { LoginRegisterFormComponent } from './Component';
 import { AppState, LoginRegisterStateProps } from './models';
@@ -27,11 +29,21 @@ import { AppState, LoginRegisterStateProps } from './models';
 const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   const commerceUser = Account.commerceUser(state);
   const location: Location = state.router.location;
-  const currentForm = Extensions.tryParseUrlSearch(location.search).form || '';
+  const currentForm = Extensions.tryParseUrlSearch(location.search).form;
+  const pathname: Pathname = location.pathname;
   return {
     commerceUser,
     currentForm,
+    pathname
   };
 };
 
-export const LoginRegister = compose(JSS.rendering, connect(mapStateToProps))(LoginRegisterFormComponent);
+const mapDispatchToProps = (dispatch: any) =>
+  bindActionCreators(
+    {
+      ChangeRoute,
+    },
+    dispatch
+  );
+
+export const LoginRegister = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(LoginRegisterFormComponent);

@@ -36,7 +36,7 @@ export class OrderInformationComponent extends JSS.SafePureComponent<OrderInform
     return (
       <>
         <Text field={{ value: 'Your Order' }} tag="h3" className="your-order" />
-        <div className="order-information-2 no-border">
+        <div className="order-information no-border">
           <div className="header-information">
             <div className="title">Product</div>
             <div className="title">Total</div>

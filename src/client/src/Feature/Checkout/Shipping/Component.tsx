@@ -160,8 +160,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                       maxLength={100}
                     />
                   ) : (
-                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                  )}
+                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                    )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
@@ -213,16 +213,20 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               </div>
               {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && isLoggedIn && (
                 <div className="col-sm-6">
-                  <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
-                  <label htmlFor="save-to-account">
-                    <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
-                    <Text field={{ value: 'My Account.' }} tag="strong" />
-                  </label>
-                  <br />
+                  <ul className="options">
+                    <li>
+                      <label htmlFor="save-to-account" className="selection-container">
+                        <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
+                        <span className="checkbox" />
+                        <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
+                        <Text field={{ value: 'My Account.' }} tag="strong" />
+                      </label>
+                    </li>
+                  </ul>
                   <Text
                     field={{ value: 'Create Account' }}
                     className="right-car create"
-                    href="/account/sign-up"
+                    href="/account/login-register"
                     tag="a"
                   />
                 </div>

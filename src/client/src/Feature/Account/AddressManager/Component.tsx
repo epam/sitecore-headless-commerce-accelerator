@@ -96,7 +96,7 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                                 <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
                                   Edit
                                 </button>
-                                <button onClick={(e) => this.onDeleteButtonClick(e, selectedAddress.externalId)}>
+                                <button onClick={(e) => this.onDeleteButtonClick(e, address.partyId)}>
                                   Delete
                                 </button>
                               </div>
@@ -113,9 +113,6 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                       <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
                         Add
                       </button>
-                    </div>
-                    <div className="billing-btn">
-                      <button type="submit">Continue</button>
                     </div>
                   </div>
                 </div>

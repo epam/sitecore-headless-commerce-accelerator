@@ -313,7 +313,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     if (saveToMyAccount) {
       AddAddressToAccount(address);
     }
-
     if (address && shippingMethod) {
       SubmitStep({
         shipping: {
@@ -328,17 +327,18 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   private getShippingAddress(formValues: FormValues) {
-    const { deliveryInfo } = this.props;
+    const { deliveryInfo, commerceUser } = this.props;
 
     const addressTypeValue: string = formValues[FIELDS.ADDRESS_TYPE] as string;
 
     if (addressTypeValue === ADDRESS_TYPE.SAVED) {
       const selectedAddress = formValues[FIELDS.SELECTED_ADDRESS];
-      return (
-        deliveryInfo.data &&
-        deliveryInfo.data.userAddresses &&
-        deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress)
-      );
+      let address;
+      if (deliveryInfo.data && deliveryInfo.data.userAddresses) {
+        address =  deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress);
+      }
+      address.email = commerceUser.email;
+      return address;
     }
 
     if (addressTypeValue === ADDRESS_TYPE.NEW) {

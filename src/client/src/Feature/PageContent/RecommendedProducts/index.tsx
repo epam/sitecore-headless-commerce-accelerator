@@ -15,7 +15,7 @@
 import * as React from 'react';
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { Carousel } from 'Foundation/UI';
+import { Carousel, NavigationLink } from 'Foundation/UI';
 
 import { RecommendedProductsProps, RecommendedProductsState } from './models';
 
@@ -68,19 +68,9 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
                     {item.isNew && <span className="purple">New</span>}
                     {item.discount && <span className="pink">{`${item.discount * 100}%`}</span>}
                   </div>
-                  <div className="product-action">
-                    <button className="" title="Add to cart">
-                      <i className="fa fa-shopping-cart" />
-                    </button>
-                    <button title="Quick View">
-                      <i className="fa fa-eye" />
-                    </button>
-                    <button className="" title="Add to compare">
-                      <i className="fa fa-retweet" />
-                    </button>
-                  </div>
-                  <img src={GlassesImage} alt={index.toString()} />
-                </div>
+                  <NavigationLink to={`/product/${item.productName}`}>
+                    <img src={GlassesImage} alt={index.toString()} />
+                  </NavigationLink>                </div>
                 <div className="item-description">
                   <div className="item-description_title">
                     <div className="item-description_title_brand">{item.productName}</div>

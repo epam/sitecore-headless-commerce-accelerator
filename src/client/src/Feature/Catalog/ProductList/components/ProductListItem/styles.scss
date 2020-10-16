@@ -38,40 +38,7 @@
   &:hover .product-action button {
       transform: scaleX(1);
   }
-  .product-action {
-    display: flex;
-    position: absolute;
-    top: 40%;
-    justify-content: center;
-    width: 100%;
-    button:hover {
-      background-color: #fa6bff;
-      transform: scaleX(1);
-    }
-    button {
-      font-size: 16px;
-      line-height: 42px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 42px;
-      height: 42px;
-      margin: 0 3px;
-      -webkit-transition: all 0.4s ease-in-out;
-      transition: all 0.4s ease-in-out;
-      -webkit-transform: scaleX(0);
-      transform: scaleX(0);
-      text-align: center;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      background: none;
-      background-color: $theme-color;
-      a{
-        color: #fff;
-      }
-    }
-  } 
+   
   .brand {
     font: 16px $poppins;
     margin-bottom: 10px;

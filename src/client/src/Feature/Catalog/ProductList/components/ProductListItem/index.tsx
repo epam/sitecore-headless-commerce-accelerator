@@ -27,20 +27,9 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
     return (
       <figure className="listing-grid-item">
         <div className="img-wrap">
-          <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
-          <div className="product-action">
-            <button className="" title="Add to cart">
-              <i className="fa fa-shopping-cart" />
-            </button>
-            <button title="Quick View">
-              <NavigationLink to={`/product/${product.productId}`}>
-                <i className="fa fa-eye" />
-              </NavigationLink>
-            </button>
-            <button className="" title="Add to compare">
-              <i className="fa fa-heart" />
-            </button>
-          </div>
+        <NavigationLink to={`/product/${product.productId}`}>
+            <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
+        </NavigationLink>
         </div>
         <figcaption>
           <div className="brand">{product.brand}</div>

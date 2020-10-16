@@ -29,7 +29,6 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
   protected safeRender() {
     const { title } = this.props.fields.data.datasource;
     const { items } = this.props;
-    console.log(items);
     return (
       <div className="wishlist-container" >
         {items.length === 0 ? (

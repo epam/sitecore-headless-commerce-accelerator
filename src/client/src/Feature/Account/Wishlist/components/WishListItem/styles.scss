@@ -33,6 +33,11 @@
     text-align: center;
     padding-right: 14px;
   }
+  .discount{
+    margin-right: 10px;
+    text-decoration: line-through;
+    color: $summary-table-discount-text;
+  }
 }
 .wishlist_product-thumbnail{
   width: 150px;

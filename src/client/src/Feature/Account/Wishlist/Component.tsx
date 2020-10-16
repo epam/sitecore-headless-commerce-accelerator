@@ -30,11 +30,11 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
     const { title } = this.props.fields.data.datasource;
     const { items } = this.props;
     return (
-      <div className="wishlist-container" >
+      <div className="wishlist-container">
         {items.length === 0 ? (
           <div className="wishlist_container-empty">
             <div className="heart-icon">
-              <i className="pe-7s-like"/>
+              <i className="pe-7s-like" />
             </div>
             <label className="wishlist_label-empty">No items found in wishlist</label>
             <NavigationLink to={`/`}>
@@ -66,9 +66,9 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
             </table>
             <div className="action_container">
               <NavigationLink to={`/`}>
-                <button>Continue Shopping</button>
+                <button className="wishlist-continue-btn">Continue Shopping</button>
               </NavigationLink>
-              <button>Clear Wishlist</button>
+              <button className="clear-wishlist-btn">Clear Wishlist</button>
             </div>
           </>
         )}

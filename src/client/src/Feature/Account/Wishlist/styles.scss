@@ -23,6 +23,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .wishlist-continue-btn, .clear-wishlist-btn{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    display: inline-block;
+    padding: 18px 63px 17px;
+    text-transform: uppercase;
+    color: $actions-button-color;
+    border-radius: 50px;
+    background-color: $wishlist-second-btn-color;
+    border: none;
+    &:hover{
+      color: $font-hover-color;
+      background-color: $theme-color;
+    }
+  }
 }
 .wishlist_table_header_container{
   background-color: #F9F9F9;

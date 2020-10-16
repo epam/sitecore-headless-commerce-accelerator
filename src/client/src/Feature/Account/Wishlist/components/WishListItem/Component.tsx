@@ -23,7 +23,7 @@ import './styles.scss';
 export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemProps, WishlistItemState> {
   protected safeRender() {
     const { item } = this.props;
-
+    const isUpdatedPrice = item.listPrice !== item.adjustedPrice;
     return (
       <tr className="wishlist_content_row">
         <td className="wishlist_product-thumbnail wishlist_table_data">
@@ -36,7 +36,18 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
             {item.displayName}
           </NavigationLink>
         </td>
-        <td className="wishlist_table_data">{item.currencySymbol}{item.listPrice}</td>
+        <td className="wishlist_table_data">
+          <span className={isUpdatedPrice ? 'discount' : 'origin'}>
+            <span className="currency">{item.currencySymbol}</span>
+            {item.listPrice.toFixed(2)}
+          </span>
+          {isUpdatedPrice && (
+            <span>
+              <span className="currency">{item.currencySymbol}</span>
+              {item.adjustedPrice.toFixed(2)}
+            </span>
+          )}
+        </td>
         <td className="wishlist_table_data">
           <button
             className="wishlist_item_add-btn wishlist_item_button"
@@ -46,8 +57,11 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
           </button>
         </td>
         <td className="wishlist_table_data">
-          <button className="wishlist_item_remove-btn wishlist_item_button" onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}>
-            <i className="fa fa-times"/>
+          <button
+            className="wishlist_item_remove-btn wishlist_item_button"
+            onClick={(e) => this.props.RemoveWishlistItem(item.variantId)}
+          >
+            <i className="fa fa-times" />
           </button>
         </td>
       </tr>

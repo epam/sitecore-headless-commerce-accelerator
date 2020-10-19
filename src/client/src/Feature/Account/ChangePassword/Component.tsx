@@ -106,21 +106,25 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                     />
                   </div>
                   {isError && (
-                    <Jss.Text
-                      tag="p"
-                      className="error-message"
-                      field={{ value: 'Change password failed', editable: 'Change password failed' }}
-                    />
+                    <div className="col-lg-12 col-md-12">
+                      <Jss.Text
+                        tag="p"
+                        className="error-message"
+                        field={{ value: 'Change password failed', editable: 'Change password failed' }}
+                      />
+                    </div>
                   )}
                   {isChanged && (
-                    <Jss.Text
-                      tag="p"
-                      className="success-message"
-                      field={{
-                        editable: 'Password was successfully changed',
-                        value: 'Password was successfully changed',
-                      }}
-                    />
+                    <div className="col-lg-12 col-md-12">
+                      <Jss.Text
+                        tag="p"
+                        className="success-message"
+                        field={{
+                          editable: 'Password was successfully changed',
+                          value: 'Password was successfully changed',
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
                 <div className="submit-container">

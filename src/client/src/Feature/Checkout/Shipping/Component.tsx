@@ -160,8 +160,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                       maxLength={100}
                     />
                   ) : (
-                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                    )}
+                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
+                  )}
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
@@ -335,7 +335,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       const selectedAddress = formValues[FIELDS.SELECTED_ADDRESS];
       let address;
       if (deliveryInfo.data && deliveryInfo.data.userAddresses) {
-        address =  deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress);
+        address = deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress);
       }
       address.email = commerceUser.email;
       return address;

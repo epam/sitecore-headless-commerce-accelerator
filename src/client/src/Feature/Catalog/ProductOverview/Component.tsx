@@ -68,7 +68,6 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               </header>
               <div className="product-info">
                 <p className="product-price">
-                  <span className="price-label">Sale</span>
                   <span className="price-value">
                     {selectedCatalogItem.currencySymbol}
                     {selectedCatalogItem.adjustedPrice.toFixed(2)}

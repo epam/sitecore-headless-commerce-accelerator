@@ -71,8 +71,8 @@ export default class ProductVariantsComponent extends JSS.SafePureComponent<
                           this.variantSelected(e, variant);
                           this.handleClick(e);
                         }}
-                        className={`color-variant-button
-                          ${variantIndex === 0 ? firstVariantClassname : 'colors-option'}
+                        className={`color-variant-button colors-option
+                          ${(variantIndex === 0) ? 'color-variant-button-active' : ''}
                         `}
                       />
                     </li>

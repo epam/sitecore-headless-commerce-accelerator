@@ -37,11 +37,11 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     return (
       <div className="navigation-buttons_item cart-wrap" style={{ position: 'relative' }}>
         <Desktop>
-          <button onClick={() => handleClick()}>
+          <a onClick={() => handleClick()}>
             <i className="pe-7s-shopbag">
               <span className="quantity">{cartQuantity}</span>
             </i>
-          </button>
+          </a>
         </Desktop>
         <Mobile>
           <a href="/cart">

@@ -36,7 +36,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
       <div className="account-details-form_main active">
         <div className="account-details-form_main_container">
           <div className="form-title">
-            <h4>ADD NEW ADDRESS</h4>
+            <h4>{defaultValues ? 'EDIT' : 'ADD NEW'} ADDRESS</h4>
             <h5>Your Address</h5>
           </div>
           <Form>

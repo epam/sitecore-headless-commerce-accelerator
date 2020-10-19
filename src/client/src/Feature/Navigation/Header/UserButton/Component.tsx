@@ -46,7 +46,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           <i className="pe-7s-user-female" />
         </a>
         <ul className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}>
-          {(commerceUser && commerceUser.customerId) ? (
+          {commerceUser && commerceUser.customerId ? (
             <>
               <li className="account_dropdown-item">
                 <NavigationLink className="account_link" to="/account">
@@ -59,9 +59,9 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
                 </NavigationLink>
               </li>
               <li className="account_dropdown-item">
-                  <a href="#" className="account_link" onClick={() => Logout(returnUrl)}>
-                    Sign Out
-                  </a>
+                <a href="#" className="account_link" onClick={() => Logout(returnUrl)}>
+                  Sign Out
+                </a>
               </li>
             </>
           ) : (

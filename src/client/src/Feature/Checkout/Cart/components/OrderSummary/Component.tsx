@@ -47,14 +47,14 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
       this.props.AddPromoCode({ promoCode });
     } else {
       this.setState({
-        promoCodeIsEmpty: true
+        promoCodeIsEmpty: true,
       });
     }
   }
 
   public safeRender() {
     const { isLoading, price, isFailure } = this.props;
-    const {promoCodeIsEmpty} = this.state;
+    const { promoCodeIsEmpty } = this.state;
     return (
       <section className="orderSummary">
         <div className="col-lg-4 col-md-6">
@@ -90,9 +90,9 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             {isFailure && <p className="invalid-promo-code-msg">Invalid promo code</p>}
             {promoCodeIsEmpty && <p>Promo code can not be empty</p>}
             <div className="zipCodeWrapper">
-              <input type="text" disabled={isLoading} ref={(el) => (this.promoCodeInput = el)} required={true}/>
+              <input type="text" disabled={isLoading} ref={(el) => (this.promoCodeInput = el)} required={true} />
             </div>
-            <button className="cartBtn" disabled={isLoading}  onClick={(e) => this.addPromoCode()}>
+            <button className="cartBtn" disabled={isLoading} onClick={(e) => this.addPromoCode()}>
               Apply Promotional
               {isLoading && <i className="fa fa-spinner fa-spin" />}
             </button>
@@ -112,7 +112,9 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               <span>${price.total.toFixed(2)}</span>
             </div>
             <div className="checkoutWrapper">
-              <NavigationLink to="/Checkout/Shipping" className="cartBtn checkout">Proceed to Checkout</NavigationLink>
+              <NavigationLink to="/Checkout/Shipping" className="cartBtn checkout">
+                Proceed to Checkout
+              </NavigationLink>
             </div>
           </div>
         </div>

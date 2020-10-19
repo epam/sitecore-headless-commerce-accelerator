@@ -27,9 +27,9 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
     return (
       <figure className="listing-grid-item">
         <div className="img-wrap">
-        <NavigationLink to={`/product/${product.productId}`}>
+          <NavigationLink to={`/product/${product.productId}`}>
             <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
-        </NavigationLink>
+          </NavigationLink>
         </div>
         <figcaption>
           <div className="brand">{product.brand}</div>
@@ -39,12 +39,17 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
           <div className="price price--adjusted">
             <div className="price_current">
               <span className="price_currency">{product.currencySymbol}</span>
-              <span className="price_amount">{product.adjustedPrice.toFixed(2)}&nbsp;-&nbsp;</span>
+              <span className="price_amount">{product.adjustedPrice.toFixed(2)}</span>
             </div>
-            <div className="price_full">
-              <span className="price_currency">{product.currencySymbol}</span>
-              <span className="price_amount">{product.listPrice.toFixed(2)}</span>
-            </div>
+            {product.adjustedPrice.toFixed(2) !== product.listPrice.toFixed(2) && (
+              <div>
+                <span>&nbsp;-&nbsp; </span>
+                <span className="price_full">
+                  <span className="price_currency">{product.currencySymbol}</span>
+                  <span className="price_amount">{product.listPrice.toFixed(2)}</span>
+                </span>
+              </div>
+            )}
           </div>
           {/* Compare feature commented out
           <input type="checkbox" />

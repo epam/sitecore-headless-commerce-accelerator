@@ -28,7 +28,10 @@ export interface LoginRegisterStateProps {
 export interface LoginRegisterDispatchProps {
   ChangeRoute: (newRoute: string) => void;
 }
-export interface LoginRegisterProps extends LoginRegisterOwnProps, LoginRegisterStateProps, LoginRegisterDispatchProps {}
+export interface LoginRegisterProps
+  extends LoginRegisterOwnProps,
+    LoginRegisterStateProps,
+    LoginRegisterDispatchProps {}
 
 export interface LoginRegisterOwnState extends JSS.SafePureComponentState {
   isSignUp: boolean;

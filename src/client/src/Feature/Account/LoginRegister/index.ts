@@ -34,7 +34,7 @@ const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   return {
     commerceUser,
     currentForm,
-    pathname
+    pathname,
   };
 };
 
@@ -43,7 +43,10 @@ const mapDispatchToProps = (dispatch: any) =>
     {
       ChangeRoute,
     },
-    dispatch
+    dispatch,
   );
 
-export const LoginRegister = compose(JSS.rendering, connect(mapStateToProps, mapDispatchToProps))(LoginRegisterFormComponent);
+export const LoginRegister = compose(
+  JSS.rendering,
+  connect(mapStateToProps, mapDispatchToProps),
+)(LoginRegisterFormComponent);

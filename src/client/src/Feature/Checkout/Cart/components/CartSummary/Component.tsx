@@ -31,16 +31,15 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
   public safeRender() {
     const { AddWishlistItem, UpdateCartLine, RemoveCartLine } = this.props;
     const { cartLines, isLoading, fallbackImageUrl } = this.props;
-
     return (
       <>
         {isLoading && (
-          <div className="cartSummary2-loading-overlay">
+          <div className="cartSummary-loading-overlay">
             <div className="loading" />
           </div>
         )}
-        <section className="cartSummary2" data-autotests="cartSummarySection">
-          <header className="cartSummary2-header">
+        <section className="cartSummary" data-autotests="cartSummarySection">
+          <header className="cartSummary-header">
             <h2 className="col-xs-2 header-title product-image">IMAGE</h2>
             <h2 className="col-xs-2 header-title product-details">PRODUCT NAME</h2>
             <h2 className="col-xs-2 header-title product-price">UNIT PRICE</h2>
@@ -51,7 +50,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
           <ul className="cartList">
             {cartLines.map((cartLine) => {
               let imageUrl = fallbackImageUrl;
-
+              const isUpdatedPrice = cartLine.variant.listPrice !== cartLine.variant.adjustedPrice;
               if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
                 imageUrl = cartLine.variant.imageUrls[0];
               } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
@@ -91,14 +90,17 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                       </div>
                     </div>
                     <div className="col-xs-2 amount product-price">
-                      <div className="discount">
+
+                      <div className={isUpdatedPrice ? 'discount' : 'origin'}>
                         <span className="currency">{cartLine.variant.currencySymbol}</span>
-                        {cartLine.variant.adjustedPrice.toFixed(2)}
+                        {cartLine.variant.listPrice.toFixed(2)}
                       </div>
-                      <div>
-                        <span className="currency">{cartLine.variant.currencySymbol}</span>
-                        {cartLine.variant.adjustedPrice.toFixed(2)}
-                      </div>
+                      {isUpdatedPrice &&
+                        <div>
+                          <span className="currency">{cartLine.variant.currencySymbol}</span>
+                          {cartLine.variant.adjustedPrice.toFixed(2)}
+                        </div>
+                      }
                     </div>
                     <div className="col-xs-2 amount quantity-group product-quantity">
                       <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} RemoveCartLine={RemoveCartLine} />

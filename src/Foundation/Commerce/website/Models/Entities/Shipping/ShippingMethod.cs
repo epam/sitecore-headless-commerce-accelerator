@@ -32,13 +32,10 @@ namespace HCA.Foundation.Commerce.Models.Entities.Shipping
         [Required]
         public string Name { get; set; }
 
-        [Required]
         public List<string> LineIds { get; set; }
 
-        [Required]
         public string PartyId { get; set; }
 
-        [Required]
         public string ShippingPreferenceType { get; set; }
     }
 }

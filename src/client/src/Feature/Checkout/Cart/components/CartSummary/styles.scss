@@ -16,7 +16,7 @@
 
 @import 'Foundation/UI/common/scss/variables';
 @import 'Foundation/UI/common/scss/mixins';
-.cartSummary2 {
+.cartSummary {
   @include loading-overlay(99998);
   border: 1px solid $summary-table-border-color;
   display: flex;

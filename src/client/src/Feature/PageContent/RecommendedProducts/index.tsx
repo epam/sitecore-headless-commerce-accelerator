@@ -70,7 +70,8 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
                   </div>
                   <NavigationLink to={`/product/${item.productName}`}>
                     <img src={GlassesImage} alt={index.toString()} />
-                  </NavigationLink>                </div>
+                  </NavigationLink>{' '}
+                </div>
                 <div className="item-description">
                   <div className="item-description_title">
                     <div className="item-description_title_brand">{item.productName}</div>

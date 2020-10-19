@@ -51,7 +51,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           <>
             <div className="col-xs-12">
               {isLoading ? (
-                <div className="cartSummary2-loading-overlay">
+                <div className="cartSummary-loading-overlay">
                   <div className="loading" />
                 </div>
               ) : (

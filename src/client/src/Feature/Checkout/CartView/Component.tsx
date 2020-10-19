@@ -27,77 +27,55 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   public safeRender() {
     const { shoppingCartData, RemoveCartLine } = this.props;
     let cartTotalPrice = 0;
-    return (
-      shoppingCartData && shoppingCartData.cartLines.length > 0
-        ? (
-          <div className="shopping-cart-view-populated">
-            <ul>
-              {shoppingCartData.cartLines.map((single, key) => {
-                cartTotalPrice += single.price.total;
-                return(
-                  <li className="shopping-cart-view-populated-single-item" key={key}>
-                    <div className="shopping-cart-view-populated-single-item-img">
-                      <NavigationLink to={'/product2/' + single.variant.productId}>
-                        <img
-                          alt=""
-                          src={single.variant.imageUrls[0]}
-                          className="img-fluid"
-                        />
-                      </NavigationLink>
+    return shoppingCartData && shoppingCartData.cartLines.length > 0 ? (
+      <div className="shopping-cart-view-populated">
+        <ul>
+          {shoppingCartData.cartLines.map((single, key) => {
+            cartTotalPrice += single.price.total;
+            return (
+              <li className="shopping-cart-view-populated-single-item" key={key}>
+                <div className="shopping-cart-view-populated-single-item-img">
+                  <NavigationLink to={'/product2/' + single.variant.productId}>
+                    <img alt="" src={single.variant.imageUrls[0]} className="img-fluid" />
+                  </NavigationLink>
+                </div>
+                <div className="shopping-cart-view-populated-single-item-title">
+                  <h4>
+                    <NavigationLink to={'/product/' + single.variant.productId}>
+                      {' '}
+                      {single.variant.displayName}{' '}
+                    </NavigationLink>
+                  </h4>
+                  <h6>Qty: {single.quantity}</h6>
+                  <span>{single.variant.currencySymbol + single.variant.listPrice}</span>
+                  {(single.variant.properties.color || single.variant.properties.size) && (
+                    <div className="shopping-cart-view-populated-single-item-title-variation">
+                      <span>Color: {single.variant.properties.color ? single.variant.properties.color : 'x'}</span>
+                      <span>Size: {single.variant.properties.size ? single.variant.properties.size : 'x'}</span>
                     </div>
-                    <div className="shopping-cart-view-populated-single-item-title">
-                      <h4>
-                        <NavigationLink
-                          to={'/product/' + single.variant.productId}
-                        >
-                          {' '}{single.variant.displayName}{' '}
-                        </NavigationLink>
-                      </h4>
-                      <h6>Qty: {single.quantity}</h6>
-                      <span>
-                        {single.variant.currencySymbol + single.variant.listPrice}
-                      </span>
-                      {(single.variant.properties.color || single.variant.properties.size) && (
-                        <div className="shopping-cart-view-populated-single-item-title-variation">
-                          <span>Color: {(single.variant.properties.color)
-                                          ? single.variant.properties.color
-                                          : 'x'}
-                          </span>
-                          <span>Size: {(single.variant.properties.size)
-                                          ? single.variant.properties.size
-                                          : 'x'}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="shopping-cart-view-populated-single-item-delete">
-                      <button onClick={(e) => RemoveCartLine(single)}>
-                        <i className="fa fa-times-circle" />
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="shopping-cart-view-populated-total">
-              <h4>
-                Total :{' '}
-                <span>
-                  {'$' + cartTotalPrice.toFixed(2)}
-                </span>
-              </h4>
-            </div>
-            <div className="shopping-cart-view-populated-buttons">
-              <NavigationLink to="/cart">
-                View Cart
-              </NavigationLink>
-              <NavigationLink to="/checkout/shipping">
-                Checkout
-              </NavigationLink>
-            </div>
-          </div>
-          )
-        : <p className="shopping-cart-view-empty-text">No items added to cart</p>
+                  )}
+                </div>
+                <div className="shopping-cart-view-populated-single-item-delete">
+                  <button onClick={(e) => RemoveCartLine(single)}>
+                    <i className="fa fa-times-circle" />
+                  </button>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="shopping-cart-view-populated-total">
+          <h4>
+            Total : <span>{'$' + cartTotalPrice.toFixed(2)}</span>
+          </h4>
+        </div>
+        <div className="shopping-cart-view-populated-buttons">
+          <NavigationLink to="/cart">View Cart</NavigationLink>
+          <NavigationLink to="/checkout/shipping">Checkout</NavigationLink>
+        </div>
+      </div>
+    ) : (
+      <p className="shopping-cart-view-empty-text">No items added to cart</p>
     );
   }
 }

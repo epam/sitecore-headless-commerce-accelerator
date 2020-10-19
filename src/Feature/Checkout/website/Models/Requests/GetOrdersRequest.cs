@@ -28,9 +28,11 @@ namespace HCA.Feature.Checkout.Models.Requests
 
         public DateTime? UntilDate { get; set; }
 
+        [Required]
         [Range(0, int.MaxValue)]
         public int Page { get; set; }
 
+        [Required]
         [Range(1, int.MaxValue)]
         public int Count { get; set; }
     }

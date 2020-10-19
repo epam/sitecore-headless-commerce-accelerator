@@ -26,10 +26,8 @@ namespace HCA.Foundation.Commerce.Models.Entities.Payment
         [Required]
         public string CardToken { get; set; }
 
-        [Required]
         public string PartyId { get; set; }
 
-        [Required]
         public string PaymentMethodId { get; set; }
     }
 }

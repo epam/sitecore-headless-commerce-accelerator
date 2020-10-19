@@ -157,7 +157,6 @@ export default class AddressForm extends React.Component<AddressFromProps> {
       state: formValues[ADDRESS_MANAGER_FIELDS.PROVINCE] as string,
       zipPostalCode: formValues[ADDRESS_MANAGER_FIELDS.POSTAL_CODE] as string,
     };
-
     SubmitAction(address);
   }
 

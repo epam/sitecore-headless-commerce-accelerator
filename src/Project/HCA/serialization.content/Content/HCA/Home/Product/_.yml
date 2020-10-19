@@ -49,13 +49,6 @@ SharedFields:
           s:id="{CA40D5E8-0E95-491F-85CE-93B3D1E20ED5}"
           s:par=""
           s:ph="/main-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-actions-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
-        <r
-          uid="{064DEE1D-E253-4821-AEBD-68C8A01276C8}"
-          p:after="r[@uid='{FA56527E-FF2A-480F-8FFA-7F3322290156}']"
-          s:ds=""
-          s:id="{CA40D5E8-0E95-491F-85CE-93B3D1E20ED5}"
-          s:par=""
-          s:ph="/main-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-actions-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
       </d>
     </r>
 Languages:
@@ -63,10 +56,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
-      Hint: __Final Renderings
-      Type: Layout
-      Value: 
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180419T084606Z

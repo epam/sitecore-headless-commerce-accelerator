@@ -228,7 +228,6 @@ export function* submitPaymentStep(payment: PaymentStep): SagaIterator {
   if (submitCardError) {
     return yield put(actions.SubmitStepFailure(submitCardError.message || 'can not submit credit card'));
   }
-
   yield fork(handleCreditCard, payment, billingAddress, cardToken);
 }
 
@@ -237,7 +236,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
     billingAddress,
     federatedPayment: {
       cardToken,
-      partyId: null,
+      partyId: billingAddress.partyId,
       paymentMethodId: '',
     },
   };
@@ -305,7 +304,8 @@ export function* submitStep(action: Action<StepValues>) {
         break;
       case CheckoutStepType.Payment:
         {
-          yield fork(submitPaymentStep, payload.payment);
+          const { payment } = payload;
+          yield fork(submitPaymentStep, payment);
         }
         break;
       default: {

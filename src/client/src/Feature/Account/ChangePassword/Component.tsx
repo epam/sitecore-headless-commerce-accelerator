@@ -86,7 +86,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                     />
                   </div>
                   <div className="col-lg-12 col-md-12">
-                    <Jss.Text tag="label" field={{ value: 'Password', editable: 'Password' }} />
+                    <Jss.Text tag="label" field={{ value: 'New Password', editable: 'New Password' }} />
                     <Input
                       type="password"
                       name={CHANGE_PASSWORD_FORM_FIELDS.NEW_PASSWORD}

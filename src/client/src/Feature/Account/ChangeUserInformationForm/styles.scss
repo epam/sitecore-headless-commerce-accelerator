@@ -151,6 +151,9 @@
           }
         }
       }
+      .error-message {
+        color: $focus-color
+      }
     }
     .account-details-form_main.active {
       max-height: 100vh;

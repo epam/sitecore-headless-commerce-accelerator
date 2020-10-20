@@ -51,7 +51,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     return (
       <Form>
         {(isLoading || isSubmitting) && (
-          <div className="shipping-loading-overlay">
+          <div className="billing-shipping-info-loading-overlay">
             <div className="loading" />
           </div>
         )}

@@ -1,0 +1,576 @@
+version: "2.4"
+services:
+  traefik:
+    hostname: traefik
+    isolation: ${TRAEFIK_ISOLATION}
+    image: ${TRAEFIK_IMAGE}
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker.endpoint=npipe:////./pipe/docker_engine"
+      - "--providers.docker.exposedByDefault=false"
+      - "--providers.file.directory=C:/etc/traefik/config/dynamic"
+      - "--entryPoints.websecure.address=:443"
+    ports:
+      - "443:443"
+      - "8079:8080"
+    volumes:
+      - source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+        type: npipe
+      - ./data/traefik:C:/etc/traefik
+    depends_on:
+      id:
+        condition: service_started
+      cm:
+        condition: service_started
+      bizfx:
+        condition: service_started
+      engine-authoring:
+        condition: service_started
+      engine-shops:
+        condition: service_started
+      engine-minions:
+        condition: service_started
+      engine-ops:
+        condition: service_started
+  mssql:
+    hostname: mssql
+    isolation: ${ISOLATION}
+    image: sitecore-xc0-mssql-hca:latest
+    environment:
+      SA_PASSWORD: ${SQL_SA_PASSWORD}
+      SITECORE_ADMIN_PASSWORD: ${SITECORE_ADMIN_PASSWORD}
+      ACCEPT_EULA: "Y"
+      SQL_SERVER: mssql
+    ports:
+      - "14330:1433"
+    volumes:
+      - type: bind
+        source: ${PATH_TO_DATA_FOLDER}\mssql-data
+        target: c:\data
+  solr:
+    hostname: solr
+    isolation: ${ISOLATION}
+    ports:
+      - "8984:8983"
+    image: ${XC_NONPRODUCTION_SITECORE_DOCKER_REGISTRY}sitecore-xc0-solr:${XC_PACKAGES_TAG}
+    volumes:
+      - type: bind
+        source: ${PATH_TO_DATA_FOLDER}\solr-data
+        target: c:\data
+  redis:
+    hostname: redis
+    isolation: ${ISOLATION}
+    image: ${XP_SITECORE_DOCKER_REGISTRY}sitecore-redis:${XP_PACKAGES_TAG}
+    restart: unless-stopped
+  id:
+    hostname: id
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-id:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+    environment:
+      Sitecore_Sitecore__IdentityServer__SitecoreMemberShipOptions__ConnectionString: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_Sitecore__IdentityServer__AccountOptions__PasswordRecoveryUrl: https://${CM_HOST}/sitecore/login?rc=1
+      Sitecore_Sitecore__IdentityServer__Clients__PasswordClient__ClientSecrets__ClientSecret1: ${SITECORE_IDSECRET}
+      Sitecore_Sitecore__IdentityServer__Clients__DefaultClient__AllowedCorsOrigins__AllowedCorsOriginsGroup1: https://${CM_HOST}
+      Sitecore_Sitecore__IdentityServer__CertificateRawData: ${SITECORE_ID_CERTIFICATE}
+      Sitecore_Sitecore__IdentityServer__PublicOrigin: https://${ID_HOST}
+      Sitecore_Sitecore__IdentityServer__CertificateRawDataPassword: ${SITECORE_ID_CERTIFICATE_PASSWORD}
+      Sitecore_License: ${SITECORE_LICENSE}
+      Sitecore_Sitecore__IdentityServer__Clients__CommerceClient__AllowedCorsOrigins__AllowedCorsOriginsGroup1: https://${BIZFX_HOST}|https://${AUTHORING_HOST}
+      Sitecore_Sitecore__IdentityServer__Clients__CommerceEngineConnectClient__ClientId: ${XC_ENGINE_CONNECT_CLIENTID}
+      Sitecore_Sitecore__IdentityServer__Clients__CommerceEngineConnectClient__AllowedCorsOrigins__AllowedCorsOriginsGroup1: https://${CM_HOST}
+      Sitecore_Sitecore__IdentityServer__Clients__CommerceEngineConnectClient__ClientSecrets__ClientSecret1: ${XC_IDENTITY_COMMERCEENGINECONNECTCLIENT_CLIENTSECRET1}
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.id-secure.entrypoints=websecure"
+      - "traefik.http.routers.id-secure.rule=Host(`${ID_HOST}`)"
+      - "traefik.http.routers.id-secure.tls=true"
+  cm:
+    hostname: cm
+    isolation: ${ISOLATION}
+    image: sitecore-xc0-cm-hca:latest
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+      id:
+        condition: service_started
+      xconnect:
+        condition: service_started
+    environment:
+      Sitecore_ConnectionStrings_Core: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Security: Data Source=mssql;Initial Catalog=Sitecore.Core;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Master: Data Source=mssql;Initial Catalog=Sitecore.Master;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Web: Data Source=mssql;Initial Catalog=Sitecore.Web;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Processing.Pools: Data Source=mssql;Initial Catalog=Sitecore.Processing.pools;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Processing.Tasks: Data Source=mssql;Initial Catalog=Sitecore.Processing.tasks;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_ExperienceForms: Data Source=mssql;Initial Catalog=Sitecore.ExperienceForms;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Exm.Master: Data Source=mssql;Initial Catalog=Sitecore.Exm.master;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Sitecore.Reporting.Client: http://xconnect
+      Sitecore_ConnectionStrings_Solr.Search: http://solr:8983/solr
+      Sitecore_ConnectionStrings_SitecoreIdentity.Secret:  ${SITECORE_IDSECRET}
+      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect
+      Sitecore_ConnectionStrings_Xdb.MarketingAutomation.Operations.Client: http://xconnect
+      Sitecore_ConnectionStrings_Xdb.MarketingAutomation.Reporting.Client: http://xconnect
+      Sitecore_ConnectionStrings_Xdb.ReferenceData.Client: http://xconnect
+      Sitecore_AppSettings_Telerik.AsyncUpload.ConfigurationEncryptionKey: ${TELERIK_ENCRYPTION_KEY}
+      Sitecore_AppSettings_Telerik.Upload.ConfigurationHashKey: ${TELERIK_ENCRYPTION_KEY}
+      Sitecore_AppSettings_Telerik.Web.UI.DialogParametersEncryptionKey: ${TELERIK_ENCRYPTION_KEY}
+      Sitecore_License: ${SITECORE_LICENSE}
+      Sitecore_Identity_Server_Authority: https://${ID_HOST}
+      Sitecore_Identity_Server_InternalAuthority: http://id
+      Sitecore_Identity_Server_CallbackAuthority: https://${CM_HOST}
+      Sitecore_Identity_Server_Require_Https: "false"
+      Sitecore_xc_Shops_Url: http://engine-authoring:5000/api/
+      Sitecore_xc_Ops_Url: http://engine-ops:5000/commerceops/
+      Sitecore_xc_Minions_Url: http://engine-minions:5000/commerceops/
+      Sitecore_xc_Client_Secret_Hash: ${XC_IDENTITY_COMMERCEENGINECONNECTCLIENT_CLIENTSECRET1}
+      Sitecore_xc_ConnectionStrings_Redis: redis:6379,defaultDatabase=1,allowAdmin=true,syncTimeout=3600000
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.cm-secure.entrypoints=websecure"
+      - "traefik.http.routers.cm-secure.rule=Host(`${CM_HOST}`)"
+      - "traefik.http.routers.cm-secure.tls=true"
+      - "traefik.http.routers.cm-secure.middlewares=force-STS-Header"
+    volumes:
+      - ${PATH_TO_DATA_FOLDER}\cm\domains-shared:C:\inetpub\wwwroot\App_Config\Security-Shared:RW
+  xconnect:
+    hostname: xconnect
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc0-xconnect:${XC_PACKAGES_TAG}
+    ports:
+      - "8081:80"
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+    environment:
+      Sitecore_License: ${SITECORE_LICENSE}
+      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Processing.Engine.Storage: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Storage;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Marketingautomation: Data Source=mssql;Initial Catalog=Sitecore.Marketingautomation;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Processing.Pools: Data Source=mssql;Initial Catalog=Sitecore.Processing.pools;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Collection: Data Source=mssql;Initial Catalog=Sitecore.Xdb.Collection.ShardMapManager;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_SolrCore: http://solr:8983/solr/sitecore_xdb
+      Sitecore_Sitecore:XConnect:CollectionSearch:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'
+      Sitecore_Sitecore:XConnect:CollectionSearch:Services:XConnectSolrHealthCheckServicesConfiguration:Options:RequireHttps: 'false'
+      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'
+      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrWriterSettings:Options:RequireHttps: 'false'
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+  xdbsearchworker:
+    hostname: xdbsearchworker
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc0-xdbsearchworker:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+    restart: unless-stopped
+    environment:
+      Sitecore_ConnectionStrings_Collection: Data Source=mssql;Initial Catalog=Sitecore.Xdb.Collection.ShardMapManager;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_SolrCore: http://solr:8983/solr/sitecore_xdb
+      Sitecore_License: ${SITECORE_LICENSE}
+      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrReaderSettings:Options:RequireHttps: 'false'
+      Sitecore_Sitecore:XConnect:SearchIndexer:Services:Solr.SolrWriterSettings:Options:RequireHttps: 'false'
+      Sitecore_Sitecore:XConnect:CollectionSearch:Services:XConnectSolrHealthCheckServicesConfiguration:Options:RequireHttps: 'false'
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1 -Port 8080"]
+      timeout: 300s
+  xdbautomationworker:
+    hostname: xdbautomationworker
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc0-xdbautomationworker:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      xconnect:
+        condition: service_started
+    restart: unless-stopped
+    environment:
+      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect
+      Sitecore_ConnectionStrings_Xdb.Marketingautomation: Data Source=mssql;Initial Catalog=Sitecore.Marketingautomation;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Xdb.Referencedata: Data Source=mssql;Initial Catalog=Sitecore.Referencedata;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_License: ${SITECORE_LICENSE}
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1 -Port 8080"]
+      timeout: 300s
+  cortexprocessingworker:
+    hostname: cortexprocessingworker
+    isolation: ${ISOLATION}
+    image: ${XP_SITECORE_DOCKER_REGISTRY}sitecore-xp0-cortexprocessingworker:${XP_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      xconnect:
+        condition: service_started
+    restart: unless-stopped
+    environment:
+      Sitecore_ConnectionStrings_Processing.Engine.Storage: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Storage;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Processing.Engine.Tasks: Data Source=mssql;Initial Catalog=Sitecore.Processing.Engine.Tasks;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_XConnect.Collection: http://xconnect
+      Sitecore_ConnectionStrings_XConnect.Configuration: http://xconnect
+      Sitecore_ConnectionStrings_XConnect.Search: http://xconnect
+      Sitecore_ConnectionStrings_Messaging: Data Source=mssql;Initial Catalog=Sitecore.Messaging;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_ConnectionStrings_Reporting: Data Source=mssql;Initial Catalog=Sitecore.Reporting;User ID=sa;Password=${SQL_SA_PASSWORD}
+      Sitecore_License: ${SITECORE_LICENSE}
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1 -Port 8080"]
+      timeout: 300s
+  bizfx:
+    hostname: bizfx
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-bizfx-hca:v1
+    depends_on:
+      engine-authoring:
+        condition: service_started
+      engine-minions:
+        condition: service_started
+      id:
+        condition: service_started
+    environment:
+      sitecore_xc_bizfx_bizfx_url: https://${BIZFX_HOST}
+      sitecore_xc_bizfx_authoring_url: https://${AUTHORING_HOST}
+      sitecore_xc_bizfx_identity_server_url: https://${ID_HOST}
+      sitecore_xc_bizfx_default_language: ${XC_BIZFX_DEFAULT_LANGUAGE}
+      sitecore_xc_bizfx_default_currency: ${XC_BIZFX_DEFAULT_CURRENCY}
+      sitecore_xc_bizfx_default_shopname: ${XC_BIZFX_DEFAULT_SHOPNAME}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.bizfx-secure.entrypoints=websecure"
+      - "traefik.http.routers.bizfx-secure.rule=Host(`${BIZFX_HOST}`)"
+      - "traefik.http.routers.bizfx-secure.tls=true"
+      - "traefik.http.routers.bizfx-secure.middlewares=force-STS-Header"
+  engine-authoring:
+    hostname: engine-authoring
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-engine:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+      id:
+        condition: service_started
+      redis:
+        condition: service_started
+      cm:
+        condition: service_started
+    environment:
+      COMMERCEENGINE_AppSettings__DeploymentId: HabitatAuthoring01
+      COMMERCEENGINE_AppSettings__EnvironmentName: HabitatAuthoring
+      COMMERCEENGINE_AppSettings__SitecoreIdentityServerUrl: "https://${ID_HOST}"
+      COMMERCEENGINE_AppSettings__InternalSitecoreIdentityServerUrl: "http://id"
+      COMMERCEENGINE_AppSettings__AllowedOrigins: "https://${BIZFX_HOST}|https://{CM_HOST}"
+      COMMERCEENGINE_AppSettings__AntiForgeryEnabled: "false"
+      COMMERCEENGINE_AppSettings__UseHttpsInKestrel: "false"
+      COMMERCEENGINE_Caching__Redis__Options__Configuration: redis:6379,ssl=False,abortConnect=False
+      COMMERCEENGINE_Caching__Redis__Options__InstanceName: Redis
+      COMMERCEENGINE_CommerceConnector__ClientId: ${XC_ENGINE_CONNECT_CLIENTID}
+      COMMERCEENGINE_GlobalDatabaseName: ${XC_GLOBAL_DB}
+      COMMERCEENGINE_GlobalDatabaseServer: mssql
+      COMMERCEENGINE_GlobalDatabaseUserName: sa
+      COMMERCEENGINE_GlobalDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_GlobalTrustedConnection: "${XC_GLOBAL_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SharedDatabaseName: ${XC_SHARED_DB}
+      COMMERCEENGINE_SharedDatabaseServer: mssql
+      COMMERCEENGINE_SharedDatabaseUserName: sa
+      COMMERCEENGINE_SharedDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_SharedTrustedConnection: "${XC_SHARED_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SitecoreHost: cm
+      COMMERCEENGINE_SitecoreDatabase: master
+      COMMERCEENGINE_SitecoreUsername: admin
+      COMMERCEENGINE_SitecoreDomain: sitecore
+      COMMERCEENGINE_SitecorePassword: ${SITECORE_ADMIN_PASSWORD}
+      COMMERCEENGINE_SitecoreProtocol: http
+      COMMERCEENGINE_SitecoreAllowAnonymousUser: "true"
+      COMMERCEENGINE_SitecoreExternalProtocol: https
+      COMMERCEENGINE_SitecoreExternalHost: ${CM_HOST}
+      COMMERCEENGINE_SolrUrl: http://solr:8983/solr
+      COMMERCEENGINE_IsSolrCloud: "false"
+      COMMERCEENGINE_StorefrontIndexPrefix_web_index: sitecore_web_index
+      COMMERCEENGINE_StorefrontIndexPrefix_master_index: sitecore_master_index
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope: OrdersScope
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope-Rebuild: OrdersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope: CustomersScope
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope-Rebuild: CustomersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope: CatalogItemsScope
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope-Rebuild: CatalogItemsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope: PromotionsScope
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope-Rebuild: PromotionsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope: PriceCardsScope
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope-Rebuild: PriceCardsScope-Rebuild
+      COMMERCEENGINE_EngineAuthoringUrl: https://${AUTHORING_HOST}
+      COMMERCEENGINE_EngineShopsUrl: https://${SHOPS_HOST}
+      COMMERCEENGINE_EngineMinionsUrl: https://${MINIONS_HOST}
+      COMMERCEENGINE_BraintreeEnvironment: ${XC_ENGINE_BRAINTREEENVIRONMENT}
+      COMMERCEENGINE_BraintreeMerchantId: ${XC_ENGINE_BRAINTREEMERCHANTID}
+      COMMERCEENGINE_BraintreePublicKey: ${XC_ENGINE_BRAINTREEPUBLICKEY}
+      COMMERCEENGINE_BraintreePrivateKey: ${XC_ENGINE_BRAINTREEPRIVATEKEY}
+    volumes:
+      - ${PATH_TO_DATA_FOLDER}\engine\catalogs:C:\engine\catalogs:RO
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.authoring-secure.entrypoints=websecure"
+      - "traefik.http.routers.authoring-secure.rule=Host(`${AUTHORING_HOST}`)"
+      - "traefik.http.routers.authoring-secure.tls=true"
+      - "traefik.http.routers.authoring-secure.middlewares=force-STS-Header"
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+  engine-shops:
+    hostname: engine-shops
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-engine:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+      id:
+        condition: service_started
+      redis:
+        condition: service_started
+      cm:
+        condition: service_started
+    environment:
+      COMMERCEENGINE_AppSettings__DeploymentId: HabitatShops01
+      COMMERCEENGINE_AppSettings__EnvironmentName: HabitatShops
+      COMMERCEENGINE_AppSettings__SitecoreIdentityServerUrl: "https://${ID_HOST}"
+      COMMERCEENGINE_AppSettings__InternalSitecoreIdentityServerUrl: "http://id"
+      COMMERCEENGINE_AppSettings__AllowedOrigins: "https://${BIZFX_HOST}|https://{CM_HOST}"
+      COMMERCEENGINE_AppSettings__AntiForgeryEnabled: "false"
+      COMMERCEENGINE_AppSettings__UseHttpsInKestrel: "false"
+      COMMERCEENGINE_Caching__Redis__Options__Configuration: redis:6379,ssl=False,abortConnect=False
+      COMMERCEENGINE_Caching__Redis__Options__InstanceName: Redis
+      COMMERCEENGINE_CommerceConnector__ClientId: ${XC_ENGINE_CONNECT_CLIENTID}
+      COMMERCEENGINE_GlobalDatabaseName: ${XC_GLOBAL_DB}
+      COMMERCEENGINE_GlobalDatabaseServer: mssql
+      COMMERCEENGINE_GlobalDatabaseUserName: sa
+      COMMERCEENGINE_GlobalDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_GlobalTrustedConnection: "${XC_GLOBAL_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SharedDatabaseName: ${XC_SHARED_DB}
+      COMMERCEENGINE_SharedDatabaseServer: mssql
+      COMMERCEENGINE_SharedDatabaseUserName: sa
+      COMMERCEENGINE_SharedDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_SharedTrustedConnection: "${XC_SHARED_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SitecoreHost: cm
+      COMMERCEENGINE_SitecoreDatabase: master
+      COMMERCEENGINE_SitecoreUsername: admin
+      COMMERCEENGINE_SitecoreDomain: sitecore
+      COMMERCEENGINE_SitecorePassword: ${SITECORE_ADMIN_PASSWORD}
+      COMMERCEENGINE_SitecoreProtocol: http
+      COMMERCEENGINE_SitecoreAllowAnonymousUser: "true"
+      COMMERCEENGINE_SitecoreExternalProtocol: https
+      COMMERCEENGINE_SitecoreExternalHost: ${CM_HOST}
+      COMMERCEENGINE_SolrUrl: http://solr:8983/solr
+      COMMERCEENGINE_IsSolrCloud: "false"
+      COMMERCEENGINE_StorefrontIndexPrefix_web_index: sitecore_web_index
+      COMMERCEENGINE_StorefrontIndexPrefix_master_index: sitecore_master_index
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope: OrdersScope
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope-Rebuild: OrdersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope: CustomersScope
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope-Rebuild: CustomersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope: CatalogItemsScope
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope-Rebuild: CatalogItemsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope: PromotionsScope
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope-Rebuild: PromotionsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope: PriceCardsScope
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope-Rebuild: PriceCardsScope-Rebuild
+      COMMERCEENGINE_EngineAuthoringUrl: https://${AUTHORING_HOST}
+      COMMERCEENGINE_EngineShopsUrl: https://${SHOPS_HOST}
+      COMMERCEENGINE_EngineMinionsUrl: https://${MINIONS_HOST}
+      COMMERCEENGINE_BraintreeEnvironment: ${XC_ENGINE_BRAINTREEENVIRONMENT}
+      COMMERCEENGINE_BraintreeMerchantId: ${XC_ENGINE_BRAINTREEMERCHANTID}
+      COMMERCEENGINE_BraintreePublicKey: ${XC_ENGINE_BRAINTREEPUBLICKEY}
+      COMMERCEENGINE_BraintreePrivateKey: ${XC_ENGINE_BRAINTREEPRIVATEKEY}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.shops-secure.entrypoints=websecure"
+      - "traefik.http.routers.shops-secure.rule=Host(`${SHOPS_HOST}`)"
+      - "traefik.http.routers.shops-secure.tls=true"
+      - "traefik.http.routers.shops-secure.middlewares=force-STS-Header"
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+  engine-minions:
+    hostname: engine-ninions
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-engine:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+      id:
+        condition: service_started
+      redis:
+        condition: service_started
+      cm:
+        condition: service_started
+    environment:
+      COMMERCEENGINE_AppSettings__DeploymentId: HabitatMinions01
+      COMMERCEENGINE_AppSettings__EnvironmentName: HabitatMinions
+      COMMERCEENGINE_AppSettings__SitecoreIdentityServerUrl: "https://${ID_HOST}"
+      COMMERCEENGINE_AppSettings__InternalSitecoreIdentityServerUrl: "http://id"
+      COMMERCEENGINE_AppSettings__AllowedOrigins: "https://${BIZFX_HOST}|https://{CM_HOST}"
+      COMMERCEENGINE_AppSettings__AntiForgeryEnabled: "false"
+      COMMERCEENGINE_AppSettings__UseHttpsInKestrel: "false"
+      COMMERCEENGINE_Caching__Redis__Options__Configuration: redis:6379,ssl=False,abortConnect=False
+      COMMERCEENGINE_Caching__Redis__Options__InstanceName: Redis
+      COMMERCEENGINE_CommerceConnector__ClientId: ${XC_ENGINE_CONNECT_CLIENTID}
+      COMMERCEENGINE_GlobalDatabaseName: ${XC_GLOBAL_DB}
+      COMMERCEENGINE_GlobalDatabaseServer: mssql
+      COMMERCEENGINE_GlobalDatabaseUserName: sa
+      COMMERCEENGINE_GlobalDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_GlobalTrustedConnection: "${XC_GLOBAL_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SharedDatabaseName: ${XC_SHARED_DB}
+      COMMERCEENGINE_SharedDatabaseServer: mssql
+      COMMERCEENGINE_SharedDatabaseUserName: sa
+      COMMERCEENGINE_SharedDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_SharedTrustedConnection: "${XC_SHARED_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SitecoreHost: cm
+      COMMERCEENGINE_SitecoreDatabase: master
+      COMMERCEENGINE_SitecoreUsername: admin
+      COMMERCEENGINE_SitecoreDomain: sitecore
+      COMMERCEENGINE_SitecorePassword: ${SITECORE_ADMIN_PASSWORD}
+      COMMERCEENGINE_SitecoreProtocol: http
+      COMMERCEENGINE_SitecoreAllowAnonymousUser: "true"
+      COMMERCEENGINE_SitecoreExternalProtocol: https
+      COMMERCEENGINE_SitecoreExternalHost: ${CM_HOST}
+      COMMERCEENGINE_SolrUrl: http://solr:8983/solr
+      COMMERCEENGINE_IsSolrCloud: "false"
+      COMMERCEENGINE_StorefrontIndexPrefix_web_index: sitecore_web_index
+      COMMERCEENGINE_StorefrontIndexPrefix_master_index: sitecore_master_index
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope: OrdersScope
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope-Rebuild: OrdersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope: CustomersScope
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope-Rebuild: CustomersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope: CatalogItemsScope
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope-Rebuild: CatalogItemsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope: PromotionsScope
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope-Rebuild: PromotionsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope: PriceCardsScope
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope-Rebuild: PriceCardsScope-Rebuild
+      COMMERCEENGINE_EngineAuthoringUrl: https://${AUTHORING_HOST}
+      COMMERCEENGINE_EngineShopsUrl: https://${SHOPS_HOST}
+      COMMERCEENGINE_EngineMinionsUrl: https://${MINIONS_HOST}
+      COMMERCEENGINE_BraintreeEnvironment: ${XC_ENGINE_BRAINTREEENVIRONMENT}
+      COMMERCEENGINE_BraintreeMerchantId: ${XC_ENGINE_BRAINTREEMERCHANTID}
+      COMMERCEENGINE_BraintreePublicKey: ${XC_ENGINE_BRAINTREEPUBLICKEY}
+      COMMERCEENGINE_BraintreePrivateKey: ${XC_ENGINE_BRAINTREEPRIVATEKEY}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.minions-secure.entrypoints=websecure"
+      - "traefik.http.routers.minions-secure.rule=Host(`${MINIONS_HOST}`)"
+      - "traefik.http.routers.minions-secure.tls=true"
+      - "traefik.http.routers.minions-secure.middlewares=force-STS-Header"
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s
+  engine-ops:
+    hostname: engine-ops
+    isolation: ${ISOLATION}
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-engine:${XC_PACKAGES_TAG}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      solr:
+        condition: service_started
+      id:
+        condition: service_started
+      redis:
+        condition: service_started
+      cm:
+        condition: service_started
+    environment:
+      COMMERCEENGINE_AppSettings__DeploymentId: HabitatOps01
+      COMMERCEENGINE_AppSettings__EnvironmentName: HabitatOps
+      COMMERCEENGINE_AppSettings__SitecoreIdentityServerUrl: "https://${ID_HOST}"
+      COMMERCEENGINE_AppSettings__InternalSitecoreIdentityServerUrl: "http://id"
+      COMMERCEENGINE_AppSettings__AllowedOrigins: "https://${BIZFX_HOST}|https://{CM_HOST}"
+      COMMERCEENGINE_AppSettings__AntiForgeryEnabled: "false"
+      COMMERCEENGINE_AppSettings__UseHttpsInKestrel: "false"
+      COMMERCEENGINE_Caching__Redis__Options__Configuration: redis:6379,ssl=False,abortConnect=False
+      COMMERCEENGINE_Caching__Redis__Options__InstanceName: Redis
+      COMMERCEENGINE_CommerceConnector__ClientId: ${XC_ENGINE_CONNECT_CLIENTID}
+      COMMERCEENGINE_GlobalDatabaseName: ${XC_GLOBAL_DB}
+      COMMERCEENGINE_GlobalDatabaseServer: mssql
+      COMMERCEENGINE_GlobalDatabaseUserName: sa
+      COMMERCEENGINE_GlobalDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_GlobalTrustedConnection: "${XC_GLOBAL_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SharedDatabaseName: ${XC_SHARED_DB}
+      COMMERCEENGINE_SharedDatabaseServer: mssql
+      COMMERCEENGINE_SharedDatabaseUserName: sa
+      COMMERCEENGINE_SharedDatabasePassword: ${SQL_SA_PASSWORD}
+      COMMERCEENGINE_SharedTrustedConnection: "${XC_SHARED_DB_TRUSTED_CONNECTION}"
+      COMMERCEENGINE_SitecoreHost: cm
+      COMMERCEENGINE_SitecoreDatabase: master
+      COMMERCEENGINE_SitecoreUsername: admin
+      COMMERCEENGINE_SitecoreDomain: sitecore
+      COMMERCEENGINE_SitecorePassword: ${SITECORE_ADMIN_PASSWORD}
+      COMMERCEENGINE_SitecoreProtocol: http
+      COMMERCEENGINE_SitecoreAllowAnonymousUser: "true"
+      COMMERCEENGINE_SitecoreExternalProtocol: https
+      COMMERCEENGINE_SitecoreExternalHost: ${CM_HOST}
+      COMMERCEENGINE_SolrUrl: http://solr:8983/solr
+      COMMERCEENGINE_IsSolrCloud: "false"
+      COMMERCEENGINE_StorefrontIndexPrefix_web_index: sitecore_web_index
+      COMMERCEENGINE_StorefrontIndexPrefix_master_index: sitecore_master_index
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope: OrdersScope
+      COMMERCEENGINE_SearchIndexPrefixOrdersScope-Rebuild: OrdersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope: CustomersScope
+      COMMERCEENGINE_SearchIndexPrefixCustomersScope-Rebuild: CustomersScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope: CatalogItemsScope
+      COMMERCEENGINE_SearchIndexPrefixCatalogItemsScope-Rebuild: CatalogItemsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope: PromotionsScope
+      COMMERCEENGINE_SearchIndexPrefixPromotionsScope-Rebuild: PromotionsScope-Rebuild
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope: PriceCardsScope
+      COMMERCEENGINE_SearchIndexPrefixPriceCardsScope-Rebuild: PriceCardsScope-Rebuild
+      COMMERCEENGINE_EngineAuthoringUrl: https://${AUTHORING_HOST}
+      COMMERCEENGINE_EngineShopsUrl: https://${SHOPS_HOST}
+      COMMERCEENGINE_EngineMinionsUrl: https://${MINIONS_HOST}
+      COMMERCEENGINE_BraintreeEnvironment: ${XC_ENGINE_BRAINTREEENVIRONMENT}
+      COMMERCEENGINE_BraintreeMerchantId: ${XC_ENGINE_BRAINTREEMERCHANTID}
+      COMMERCEENGINE_BraintreePublicKey: ${XC_ENGINE_BRAINTREEPUBLICKEY}
+      COMMERCEENGINE_BraintreePrivateKey: ${XC_ENGINE_BRAINTREEPRIVATEKEY}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.force-STS-Header.headers.stsSeconds=31536000"
+      - "traefik.http.routers.ops-secure.entrypoints=websecure"
+      - "traefik.http.routers.ops-secure.rule=Host(`${OPS_HOST}`)"
+      - "traefik.http.routers.ops-secure.tls=true"
+      - "traefik.http.routers.ops-secure.middlewares=force-STS-Header"
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "C:/Healthchecks/Healthcheck.ps1"]
+      timeout: 300s

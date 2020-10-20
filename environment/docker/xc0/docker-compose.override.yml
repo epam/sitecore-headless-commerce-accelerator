@@ -1,0 +1,26 @@
+version: "2.4"
+
+services:
+  mssql:
+    image: sitecore-xc0-mssql-hca:latest
+    build:
+      context: ./build/mssql
+      args:
+        BASE_IMAGE: ${XC_NONPRODUCTION_SITECORE_DOCKER_REGISTRY}sitecore-xc0-mssql:${XC_PACKAGES_TAG}
+        SPE_IMAGE: ${SITECORE_MODULE_REGISTRY}spe-assets:${SPE_VERSION}
+        JSS_IMAGE: ${SITECORE_MODULE_REGISTRY}jss-xp1-assets:${JSS_VERSION}
+    volumes:
+      - ${PATH_TO_DATA_FOLDER}\mssql-data:c:\data
+  cm:
+    image: sitecore-xc0-cm-hca:latest
+    build:
+      context: ./build/cm
+      args:
+        BASE_IMAGE: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc0-cm:${XC_PACKAGES_TAG}
+        SPE_IMAGE: ${SITECORE_MODULE_REGISTRY}spe-assets:${SPE_VERSION}
+        JSS_IMAGE: ${SITECORE_MODULE_REGISTRY}jss-xp1-assets:${JSS_VERSION}
+        HCA_IMAGE: ${XC_SITECORE_DOCKER_REGISTRY}hca-assets:v1
+    volumes:
+      - ${PATH_TO_DEPLOY_FOLDER}\website:C:\deploy
+      - ${PATH_TO_DATA_FOLDER}\cm\logs:C:\inetpub\wwwroot\App_Data\logs
+      - ${PROJECT_SOURCE_FOLDER}:C:\inetpub\wwwroot\App_Data\unicorn-hca

@@ -15,11 +15,9 @@
 import * as Jss from 'Foundation/ReactJss';
 
 export interface BreadcrumbsProps {
-  currentPageName?: Jss.GraphQLField<Jss.TextField>;
+  currentPageName?: string;
 }
 
-export interface BreadcrumbsState extends Jss.SafePureComponentState {
-  showBreadcrumbs: boolean;
-}
+export interface BreadcrumbsState extends Jss.SafePureComponentState {}
 
 export interface AppState extends Jss.SitecoreState {}

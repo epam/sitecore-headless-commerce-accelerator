@@ -22,24 +22,12 @@ import './styles.scss';
 
 const homeName = 'Home';
 export default class BreadcrumbsComponent extends JSS.SafePureComponent<BreadcrumbsProps, BreadcrumbsState> {
-  public constructor(props: BreadcrumbsProps) {
-    super(props);
-    this.state = {
-      showBreadcrumbs: true,
-    };
-  }
-
-  public componentDidMount() {
-    if (((this.props.currentPageName as unknown) as string) === homeName) {
-      this.setState({
-        showBreadcrumbs: false,
-      });
-    }
-  }
-
   protected safeRender() {
     const { currentPageName } = this.props;
-    return (
+
+    const showBreadcrumbs = currentPageName !== 'Home';
+
+    return showBreadcrumbs ? (
       <div className="header_breadcrumbs">
         <span>
           <span>
@@ -51,6 +39,6 @@ export default class BreadcrumbsComponent extends JSS.SafePureComponent<Breadcru
           <span>{currentPageName}</span>
         </span>
       </div>
-    );
+    ) : null;
   }
 }

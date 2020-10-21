@@ -27,11 +27,11 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     };
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 
-  public componentWillUnMount() {
+  public componentDidUnMount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
@@ -44,7 +44,7 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     };
 
     return (
-      <div className="navigation-buttons_item cart-wrap" style={{position: 'relative'}}>
+      <div className="navigation-buttons_item cart-wrap" style={{ position: 'relative' }}>
         <Desktop>
           <a onClick={() => handleClick()}>
             <i className="pe-7s-shopbag">
@@ -72,9 +72,9 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
       const cartClassSelector = '.shopping-cart-view';
       if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)) {
         this.setState({
-            cartVisible: false
+          cartVisible: false,
         });
       }
     }
-  }
+  };
 }

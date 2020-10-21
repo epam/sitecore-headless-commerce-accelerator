@@ -149,7 +149,7 @@ form {
         height: 14px;
         border-radius: 50%;
         margin: 3px 8px 3px 3px;
-        border: 1px solid #ccc;
+        border: 2px solid #888888;
         vertical-align: bottom;
         background-color: #fff;
         transition: background-color .2s ease-in;
@@ -167,10 +167,10 @@ form {
     & + label:before {
       //haven't seen a non-thick border design for radio buttons, but since checkboxes have one,
       //might as well create the version as well as category themes.
-      width: 8px;
-      height: 8px;
-      border: 4px solid $main-color;
-      margin-bottom: 6px;
+      border: 1px solid #888888;
+      width: 14px;
+      height: 14px;
+      margin-bottom: 4px;
     }
   }
   
@@ -178,7 +178,7 @@ form {
   
   .thick-theme input[type="checkbox"] {
     & + label:before {
-      border: 3px solid $main-color; //same pages show thick bordered checkboxes, most don't
+      border: 2px solid #888888; //same pages show thick bordered checkboxes, most don't
       width: 12px;
       height: 12px;
     }

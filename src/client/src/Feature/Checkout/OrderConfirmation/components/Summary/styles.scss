@@ -74,12 +74,25 @@
         font-family: $poppins;
         font-size: 15px;
         font-weight: 500;
-        color: #333;
+        color: $table-font-color;
       }
       .product-features{
+        font-family: $poppins;
+        font-size: 15px;
+        font-weight: 500;
+        color: $table-font-color;
+        .color{
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          margin-left: auto;
+          margin-right: auto;
+          border: 1px solid #000000;
+        }
         .quantity{
           width: 100%;
           justify-content: center;
+          align-items: center;
         }
       }
       .product-price {

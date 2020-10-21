@@ -23,7 +23,7 @@ import './styles.scss';
 export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemProps, WishlistItemState> {
   protected safeRender() {
     const { item } = this.props;
-    const isUpdatedPrice = item.listPrice !== item.adjustedPrice;
+    const isUpdatedPrice = item.listPrice > item.adjustedPrice;
     return (
       <tr className="wishlist_content_row">
         <td className="wishlist_product-thumbnail wishlist_table_data">

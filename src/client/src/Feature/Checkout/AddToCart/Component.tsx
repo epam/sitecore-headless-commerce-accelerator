@@ -54,7 +54,7 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
         >
           {isLoading && <i className="fa fa-spinner fa-spin" />}
           &nbsp;
-          {isDisabled ? 'Out of Stock' : 'Add to Cart'}
+          {isDisabled && !isLoading ? 'Out of Stock' : 'Add to Cart'}
         </button>
       </>
     );

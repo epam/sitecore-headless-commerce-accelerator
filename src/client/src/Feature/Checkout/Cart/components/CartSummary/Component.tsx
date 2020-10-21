@@ -50,7 +50,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
           <ul className="cartList">
             {cartLines.map((cartLine) => {
               let imageUrl = fallbackImageUrl;
-              const isUpdatedPrice = cartLine.variant.listPrice !== cartLine.variant.adjustedPrice;
+              const isUpdatedPrice = cartLine.variant.listPrice > cartLine.variant.adjustedPrice;
               if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
                 imageUrl = cartLine.variant.imageUrls[0];
               } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
@@ -90,17 +90,16 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                       </div>
                     </div>
                     <div className="col-xs-2 amount product-price">
-
                       <div className={isUpdatedPrice ? 'discount' : 'origin'}>
                         <span className="currency">{cartLine.variant.currencySymbol}</span>
                         {cartLine.variant.listPrice.toFixed(2)}
                       </div>
-                      {isUpdatedPrice &&
+                      {isUpdatedPrice && (
                         <div>
                           <span className="currency">{cartLine.variant.currencySymbol}</span>
                           {cartLine.variant.adjustedPrice.toFixed(2)}
                         </div>
-                      }
+                      )}
                     </div>
                     <div className="col-xs-2 amount quantity-group product-quantity">
                       <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} RemoveCartLine={RemoveCartLine} />
@@ -110,8 +109,12 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                       {cartLine.price.total.toFixed(2)}
                     </div>
                     <div className="col-xs-2 actions product-actions">
-                      <button><i className="fa fa-heart fa-lg" onClick={(e) => AddWishlistItem(cartLine.variant)} /></button>
-                      <button><i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} /></button>
+                      <button>
+                        <i className="fa fa-heart fa-lg" onClick={(e) => AddWishlistItem(cartLine.variant)} />
+                      </button>
+                      <button>
+                        <i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} />
+                      </button>
                     </div>
                   </div>
                 </li>

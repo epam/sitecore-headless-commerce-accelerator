@@ -26,6 +26,15 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
       cartVisible: false,
     };
   }
+
+  public componentWillMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  public componentWillUnMount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   protected safeRender() {
     const { cartQuantity } = this.props;
     const { cartVisible } = this.state;
@@ -55,5 +64,17 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
         </div>
       </div>
     );
+  }
+
+  private handleClickOutside = (e: MouseEvent) => {
+    const targetElement = e.target as Element;
+    if (this.state.cartVisible) {
+      const cartClassSelector = '.shopping-cart-view';
+      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)) {
+        this.setState({
+            cartVisible: false
+        });
+      }
+    }
   }
 }

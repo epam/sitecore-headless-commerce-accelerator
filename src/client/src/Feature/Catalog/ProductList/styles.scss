@@ -13,10 +13,11 @@
 //    limitations under the License.
 
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-
 @import 'Foundation/UI/common/scss/variables.scss';
+@import 'Foundation/UI/common/scss/mixins';
 
 .listing-product-grid {
+  position: relative;
   margin-top: 20px;
   margin-bottom: 20px;
   > ul {
@@ -167,6 +168,28 @@
     }
   }
 } //section.listing-product-grid
-
-
+.loading-overlay {
+  background-color: #fff;
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 99998;
+  .loading
+  {
+    position: initial;
+    min-height: 10px;
+    &:before {
+      content: '';
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #000;
+      border-bottom-color: #000;
+      animation: loading .8s ease infinite;
+      -webkit-animation: loading .8s ease infinite;
+      z-index: 10000;
+    }
+  }
+}
 

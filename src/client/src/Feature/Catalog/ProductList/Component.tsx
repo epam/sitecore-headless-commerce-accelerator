@@ -51,6 +51,11 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           itemsCount={totalItemCount}
         />
         <ul>
+          {items.length === 0 && (
+            <div className="loading-overlay">
+              <div className="loading" />
+            </div>
+          )}
           {items.map((product, index) => (
             <li key={index}>
               <ProductListItem product={product} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />

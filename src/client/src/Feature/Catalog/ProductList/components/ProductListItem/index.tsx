@@ -41,7 +41,7 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
               <span className="price_currency">{product.currencySymbol}</span>
               <span className="price_amount">{product.adjustedPrice.toFixed(2)}</span>
             </div>
-            {product.adjustedPrice.toFixed(2) !== product.listPrice.toFixed(2) && (
+            {product.adjustedPrice < product.listPrice && (
               <div>
                 <span>&nbsp;-&nbsp; </span>
                 <span className="price_full">

@@ -31,6 +31,10 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
       <div className="shopping-cart-view-populated">
         <ul>
           {shoppingCartData.cartLines.map((single, key) => {
+            const price =
+              single.variant.listPrice > single.variant.adjustedPrice
+                ? single.variant.adjustedPrice
+                : single.variant.listPrice;
             cartTotalPrice += single.price.total;
             return (
               <li className="shopping-cart-view-populated-single-item" key={key}>
@@ -47,7 +51,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
                     </NavigationLink>
                   </h4>
                   <h6>Qty: {single.quantity}</h6>
-                  <span>{single.variant.currencySymbol + single.variant.listPrice}</span>
+                  <span>{single.variant.currencySymbol + price.toFixed(2)}</span>
                   {(single.variant.properties.color || single.variant.properties.size) && (
                     <div className="shopping-cart-view-populated-single-item-title-variation">
                       <span>Color: {single.variant.properties.color ? single.variant.properties.color : 'x'}</span>

@@ -37,7 +37,7 @@ export class WishlistComponent extends JSS.SafePureComponent<WishlistProps, Wish
               <i className="pe-7s-like" />
             </div>
             <label className="wishlist_label-empty">No items found in wishlist</label>
-            <NavigationLink to={`/`}>
+            <NavigationLink to={`/search`}>
               <button className="wishlist_btn-empty">Add Items</button>
             </NavigationLink>
           </div>

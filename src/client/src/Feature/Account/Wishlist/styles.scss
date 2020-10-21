@@ -32,6 +32,7 @@
     text-transform: uppercase;
     color: $actions-button-color;
     border-radius: 50px;
+    font-family: $poppins;
     background-color: $wishlist-second-btn-color;
     border: none;
     &:hover{
@@ -99,6 +100,7 @@
   font-weight: 500;
   font-size: 14px;
   margin-top: 30px;
+  height: 44px;
 }
 .wishlist_btn-empty:hover{
   background-color: #A749FF;

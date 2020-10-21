@@ -150,18 +150,14 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               <div className="col-ms-6">
                 <div className="sub-text">
                   <Text field={{ value: 'Email Address' }} tag="label" className="input-title required" />
-                  {commerceUser && commerceUser.customerId ? (
-                    <Input
-                      name={FIELDS.EMAIL}
-                      type="email"
-                      disabled={true}
-                      value={commerceUser.email}
-                      required={true}
-                      maxLength={100}
-                    />
-                  ) : (
-                    <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                  )}
+                  <Input
+                    name={FIELDS.EMAIL}
+                    type="email"
+                    required={true}
+                    disabled={!!commerceUser && !!commerceUser.customerId}
+                    value={(!!commerceUser && !!commerceUser.customerId) ? commerceUser.email : ''}
+                    maxLength={100}
+                  />
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
@@ -343,23 +339,45 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     }
 
     if (addressTypeValue === ADDRESS_TYPE.NEW) {
+      const isLoggedIn = commerceUser && commerceUser.customerId;
       const selectedCountry = this.getSelectedCountry(formValues[FIELDS.COUNTRY] as string);
-      return {
-        address1: formValues[FIELDS.ADDRESS_LINE] as string,
-        address2: '',
-        city: formValues[FIELDS.CITY] as string,
-        country: selectedCountry.name,
-        countryCode: selectedCountry.countryCode,
-        email: formValues[FIELDS.EMAIL] as string,
-        externalId: '',
-        firstName: formValues[FIELDS.FIRST_NAME] as string,
-        isPrimary: false,
-        lastName: formValues[FIELDS.LAST_NAME] as string,
-        name: '',
-        partyId: '',
-        state: formValues[FIELDS.PROVINCE] as string,
-        zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
-      };
+      return (
+        (isLoggedIn) ? (
+          {
+            address1: formValues[FIELDS.ADDRESS_LINE] as string,
+            address2: '',
+            city: formValues[FIELDS.CITY] as string,
+            country: selectedCountry.name,
+            countryCode: selectedCountry.countryCode,
+            email: commerceUser.email as string,
+            externalId: '',
+            firstName: formValues[FIELDS.FIRST_NAME] as string,
+            isPrimary: false,
+            lastName: formValues[FIELDS.LAST_NAME] as string,
+            name: '',
+            partyId: '',
+            state: formValues[FIELDS.PROVINCE] as string,
+            zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
+          }
+        ) : (
+          {
+            address1: formValues[FIELDS.ADDRESS_LINE] as string,
+            address2: '',
+            city: formValues[FIELDS.CITY] as string,
+            country: selectedCountry.name,
+            countryCode: selectedCountry.countryCode,
+            email: formValues[FIELDS.EMAIL] as string,
+            externalId: '',
+            firstName: formValues[FIELDS.FIRST_NAME] as string,
+            isPrimary: false,
+            lastName: formValues[FIELDS.LAST_NAME] as string,
+            name: '',
+            partyId: '',
+            state: formValues[FIELDS.PROVINCE] as string,
+            zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
+          }
+        )
+      );
     }
 
     return null;

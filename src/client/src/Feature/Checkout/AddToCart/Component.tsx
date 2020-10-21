@@ -62,11 +62,11 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
 
   private addToCart(e: React.MouseEvent<HTMLButtonElement>) {
     const { productId, variant } = this.props;
+    const { quantityCount } = this.state;
     // TODO: allow user to select variant
-    const quantity = 1;
     const addToCartModel: ShoppingCart.CartItemDto = {
       productId,
-      quantity,
+      quantity: quantityCount,
       variantId: variant.variantId,
     };
 

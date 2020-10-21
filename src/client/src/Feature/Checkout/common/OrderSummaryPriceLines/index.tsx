@@ -36,15 +36,13 @@ export class OrderSummaryPriceLines extends Jss.SafePureComponent<
             {price.subtotal.toFixed(2)}
           </span>
         </li>
-        {!!price.taxTotal && (
-          <li>
-            <Text field={{ value: 'Taxes:' }} tag="span" className="name" />
-            <span className="val">
-              {price.currencySymbol}
-              {price.taxTotal.toFixed(2)}
-            </span>
-          </li>
-        )}
+        <li>
+          <Text field={{ value: 'Taxes:' }} tag="span" className="name" />
+          <span className="val">
+            {price.currencySymbol}
+            {price.taxTotal.toFixed(2)}
+          </span>
+        </li>
         {!!price.shippingTotal && (
           <li>
             <Text field={{ value: 'Shipping:' }} tag="span" className="name" />

@@ -13,7 +13,6 @@
 //    limitations under the License.
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import classnames from 'classnames';
 import * as React from 'react';
 
 import { resolveColor } from 'Foundation/Commerce';
@@ -41,7 +40,6 @@ const fields = {
 export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
   public safeRender() {
     const { order, productColors, fallbackImageUrl } = this.props;
-
     return (
       <div className="order-summary-wrapper">
         <section className="container">
@@ -55,6 +53,8 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                       <tr>
                         <th>IMAGE</th>
                         <th>Product Name</th>
+                        <th>COLOR</th>
+                        <th>SIZE</th>
                         <th>QTY</th>
                         <th>SUBTOTAL</th>
                       </tr>
@@ -82,22 +82,22 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                             </td>
                             <td className="product-features">
                               {cartLine.variant.properties.color && (
-                                <span className="color">
-                                  <Text field={fields.colorTitle} tag="span" className="color-title" />
-                                  <span
-                                    className={classnames({ 'color-name': true, 'selected': true })}
-                                    style={{
-                                      background: resolveColor(cartLine.variant.properties.color, productColors),
-                                    }}
-                                  />
-                                </span>
+                                <div
+                                  className="color"
+                                  style={{
+                                    backgroundColor: resolveColor(cartLine.variant.properties.color, productColors),
+                                  }}
+                                />
                               )}
+                            </td>
+                            <td className="product-features">
                               {cartLine.variant.properties.size && (
                                 <span className="size">
-                                  <Text field={fields.sizeTitle} tag="strong" />{' '}
                                   <span>{cartLine.variant.properties.size}</span>
                                 </span>
                               )}
+                            </td>
+                            <td className="product-features">
                               <span className="quantity">
                                 <span>{cartLine.quantity}</span>
                               </span>

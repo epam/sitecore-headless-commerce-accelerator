@@ -56,7 +56,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
               ref={(el) => (this.searchInput = el)}
               type="search"
               name={SEARCH_INPUT_NAME}
-              placeholder="Search ..."
+              placeholder="Search"
             />
             <button className="search_button">
               <i className="pe-7s-search" />

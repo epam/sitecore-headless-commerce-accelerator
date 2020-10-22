@@ -19,7 +19,7 @@
     &_popup {
       position: absolute;
       z-index: $z-index-m;
-      top: 62px;
+      top: 200%;
       right: 0;
       visibility: hidden;
       min-width: 300px;
@@ -77,6 +77,7 @@
       border: 1px solid $grey-lightest;
       outline: medium none;
       background: transparent;
+      font-family: $poppins;
       @media #{$header-switch-mobile-mode} {
         font-size: 16px;
         display: block;

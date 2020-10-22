@@ -70,7 +70,8 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     const targetElement = e.target as Element;
     if (this.state.cartVisible) {
       const cartClassSelector = '.shopping-cart-view';
-      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)) {
+      const cartHeaderClass = '.pe-7s-shopbag';
+      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector) && !targetElement.closest(cartHeaderClass) && !targetElement.matches(cartHeaderClass)) {
         this.setState({
           cartVisible: false,
         });

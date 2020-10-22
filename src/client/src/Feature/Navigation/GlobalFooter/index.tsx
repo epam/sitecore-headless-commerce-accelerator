@@ -24,7 +24,7 @@ import './styles.scss';
 class GlobalFooterComponent extends JSS.SafePureComponent<GlobalFooterProps, GlobalFooterState> {
   protected safeRender() {
     return (
-      <footer id="footer-main" className="footer-area bg-gray pt-100 pb-70">
+      <footer id="footer-main" className="footer-area bg-gray pt-100 pb-100">
         <div className="footer-wrap">
           <Placeholder name="footer-content" rendering={this.props.rendering} />
         </div>

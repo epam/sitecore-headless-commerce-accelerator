@@ -28,14 +28,26 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
     super(props);
 
     this.state = {
+      appliedCodes: [],
+      hasBeenApplied: false,
       promoCodeIsEmpty: false,
     };
   }
 
   public addPromoCode() {
     const promoCode = this.promoCodeInput.value;
+    const { isSuccess } = this.props;
     if (promoCode) {
       this.props.AddPromoCode({ promoCode });
+      if (isSuccess) {
+        this.setState({
+          appliedCodes: [...this.state.appliedCodes, promoCode]
+        });
+      } else {
+        if (this.state.appliedCodes.some((code) => code === promoCode)) {
+          this.setState({ hasBeenApplied: true });
+        }
+      }
     } else {
       this.setState({
         promoCodeIsEmpty: true,
@@ -44,8 +56,8 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
   }
 
   public safeRender() {
-    const { isLoading, price, isFailure } = this.props;
-    const { promoCodeIsEmpty } = this.state;
+    const { isLoading, price, isFailure, isSuccess, adjustments } = this.props;
+    const { promoCodeIsEmpty, hasBeenApplied } = this.state;
     return (
       <section className="orderSummary">
         <div className="col-lg-4 col-md-6">
@@ -75,15 +87,31 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="titleWrap">
               <h4 className="titleWrap-title">Use Promotional Code</h4>
             </div>
+            {adjustments && adjustments.length !== 0 && (
+              <div className="promo-code-list">
+                <ul className="adjustment-list">
+                  {adjustments.map((item: string, index: number) => (
+                    <div key={index} className="adjustment-item">
+                      <li>{item}</li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="subTitleWrap">
               <p>Enter your promotional code if you have one.</p>
             </div>
-            {isFailure && <p className="invalid-promo-code-msg">Invalid promo code</p>}
-            {promoCodeIsEmpty && <p>Promo code can not be empty</p>}
             <div className="zipCodeWrapper">
               <input type="text" disabled={isLoading} ref={(el) => (this.promoCodeInput = el)} required={true} />
             </div>
-            <button className="cartBtn" disabled={isLoading} onClick={(e) => this.addPromoCode()}>
+            {isSuccess
+              ? <p className="valid-promo-code-msg">Promo code applied!</p>
+              : (
+                isFailure && <p className="invalid-promo-code-msg">{hasBeenApplied ? 'Promo code already applied!' : 'Invalid promo code'}</p>
+              )
+            }
+            {promoCodeIsEmpty && <p className="invalid-promo-code-msg">Promo code can not be empty</p>}
+            <button className="cartBtn" disabled={isLoading}  onClick={(e) => this.addPromoCode()}>
               Apply Promotional
               {isLoading && <i className="fa fa-spinner fa-spin" />}
             </button>

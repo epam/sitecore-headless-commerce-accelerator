@@ -34,11 +34,15 @@ const mapStateToProps = (state: AppState): OrderSummaryStateProps => {
   const isFailure =
     shoppingCartState.status === LoadingStatus.Failure &&
     shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_FAILURE;
+  const isSuccess =
+    shoppingCartState.status === LoadingStatus.Loaded &&
+    shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_SUCCESS;
 
   return {
     adjustments,
     isFailure,
     isLoading,
+    isSuccess,
   };
 };
 

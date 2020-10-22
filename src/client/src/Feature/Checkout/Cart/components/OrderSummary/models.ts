@@ -27,6 +27,7 @@ export interface OrderSummaryStateProps {
   isLoading: boolean;
   isFailure: boolean;
   adjustments: string[];
+  isSuccess: boolean;
   }
 export interface OrderSummaryDispatchProps {
   AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
@@ -37,7 +38,9 @@ export interface OrderSummaryDispatchProps {
 export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}
 
 export interface OrderSummaryState extends JSS.SafePureComponentState {
+  appliedCodes: string[];
   freeShipping: FreeShippingResult;
+  hasBeenApplied: boolean;
   promoCodeIsEmpty: boolean;
 }
 

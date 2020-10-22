@@ -28,6 +28,9 @@
     .invalid-promo-code-msg {
       color: $invalid-promo-code-msg-color;
     }
+    .valid-promo-code-msg {
+      color: $valid-promo-code-msg-color;
+    }
     .titleWrap {
       position: relative;
       margin-bottom: 10px;
@@ -51,6 +54,42 @@
         content: "";
         transition: all 0.4s ease 0s;
         background-color: #e3e1e1;
+      }
+    }
+    .promo-code-list{
+      margin: 10px 0px;
+
+      .adjustment-list>.adjustment-item {
+        display: flex;
+        height: 20px;
+        margin: 4px 0;
+  
+        .btn {
+          font-size: 14px;
+          background-color: transparent;
+          padding: 0;
+          margin: 0px 12px 0px 0px;
+          align-self: center;
+
+          color: $checkout-form-font-color;
+          &:hover{
+            color: $theme-color;
+          }
+        }
+      }
+      label{
+        margin: 5px 0;
+      }
+
+      input, .btn {
+        margin: 0;
+      }
+      input, .btn {
+        clear: left;
+      }
+      input {
+        width: 50%;
+        margin-right: 10px;
       }
     }
   }
@@ -82,13 +121,14 @@
   }
 
   .zipCodeWrapper {
-    margin: 0 0 26px;
+    margin: 0px;
     > label {
       font-weight: 400;
       margin: 0 0 5px;
       color: $order-table-text-color;
     }
     > input {
+      font-family: $poppins;
       height: 40px;
       margin: 0;
       font-size: 14px;
@@ -130,6 +170,7 @@
     border-radius: 50px;
     background-color: $summary-table-action-hover;
     font-family: $poppins;
+    margin-top: 26px;
     &:hover {
       background-color: $order-table-text-color;
     }

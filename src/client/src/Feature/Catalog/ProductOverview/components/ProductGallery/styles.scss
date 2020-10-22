@@ -28,6 +28,7 @@
         height: 760px;
       }
       position: relative;
+      margin-bottom: 15px;
       
       .react_lightgallery_item{
         position: absolute;
@@ -104,6 +105,50 @@
         &:hover img {
           transform: scale(1.1);
           transition: transform 1.5s;
+        }
+      }
+    }
+    &-carousel{
+      position: relative;
+      &-prev{
+        margin-right: auto;
+      }
+      &-next{
+        margin-left: auto; 
+      }
+      &:hover button{
+        visibility: visible;
+        opacity: 1;
+      }
+      button{
+        position: absolute;
+        left: 0; 
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border: none;
+        z-index: 1;
+        background: transparent;
+
+        visibility: hidden;
+        opacity: 0;
+        color: #333;
+        border: none;
+        background: none;
+        i{
+          font-size: 40px;
+        }
+      }
+      .swiper-container{
+        img{
+          max-height: 140px;
+        }
+        .swiper-slide-duplicate{
+          // visibility: hidden;
+          // opacity: 0;
+        }
+        .swiper-slide{
+          cursor: pointer;
         }
       }
     }

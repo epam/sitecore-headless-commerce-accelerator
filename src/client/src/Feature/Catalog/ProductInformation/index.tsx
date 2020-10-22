@@ -41,7 +41,7 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
             className={`tab-links ${selectedTab === 'features' ? 'active' : ''}`}
             onClick={() => this.setState({ selectedTab: 'features' })}
           >
-            Additional Information
+            Features
           </button>
           <button
             className={`tab-links ${selectedTab === 'description' ? 'active' : ''}`}

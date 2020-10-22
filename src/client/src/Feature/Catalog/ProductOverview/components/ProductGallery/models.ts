@@ -19,5 +19,4 @@ export interface ProductGalleryProps {
 }
 
 export interface ProductGalleryState extends Jss.SafePureComponentState {
-  activeImageIndex: number;
 }

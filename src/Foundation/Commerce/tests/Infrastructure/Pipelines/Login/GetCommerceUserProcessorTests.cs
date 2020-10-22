@@ -85,7 +85,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
         }
 
         [Fact]
-        public void Process_IfCustomerProviderReturnsUser_ShouldCallMapToLoginPipelineArgs()
+        public void Process_IfCustomerProviderReturnsValidUser_ShouldCallMapToLoginPipelineArgs()
         {
             // arrange
             var args = new LoginPipelineArgs();
@@ -96,7 +96,8 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
             this.processor.Process(args);
 
             // assert
-            this.userMapper.Received(1).MapToLoginPipelineArgs(user, args);
+            if (System.Web.Security.Membership.ValidateUser(user?.UserName, args.Password))
+                this.userMapper.Received(1).MapToLoginPipelineArgs(user, args);
         }
     }
 }

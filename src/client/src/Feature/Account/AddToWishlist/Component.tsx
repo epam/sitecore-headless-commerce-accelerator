@@ -26,16 +26,21 @@ export class AddToWishlistComponent extends JSS.SafePureComponent<AddToWishlistP
 
   protected safeRender() {
     return (
-      <button
-        title="Add to Wishlist"
-        onClick={(e) => {
-          this.props.AddWishlistItem(this.props.item);
-          this.handleClick(e);
-        }}
-        className="btn btn-main btn-add"
-      >
-        <i className="pe-7s-like" />
-      </button>
+      <>
+        <button
+          title="Add to Wishlist"
+          onClick={(e) => {
+            this.props.AddWishlistItem(this.props.item);
+            this.handleClick(e);
+          }}
+          className="btn btn-main btn-add"
+        >
+          <i className="pe-7s-like" />
+        </button>
+        <a href="javascript:if(window.print)window.print()" title="Print button" className="btn btn-main btn-add">
+          <i className="pe-7s-print" />
+        </a>
+      </>
     );
   }
 }

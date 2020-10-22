@@ -51,9 +51,6 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
             </div>
             <div className="col-md-6">
               <header className="product-header">
-                <a href="javascript:if(window.print)window.print()" title="Print button" className="product-print">
-                  <i className="pe-7s-print" />
-                </a>
                 <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
                 {/* <div
                 className={classNames('product-stock-status', {
@@ -83,7 +80,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                   </div>
                 </div>
                 <div className="product-tags">
-                  <span className="product-tags_title">Categories :</span>
+                  <span className="product-tags_title">Brand :</span>
                   {selectedCatalogItem.brand && <span className="product-tags_item">{selectedCatalogItem.brand}</span>}
                 </div>
                 <div className="product-tags">

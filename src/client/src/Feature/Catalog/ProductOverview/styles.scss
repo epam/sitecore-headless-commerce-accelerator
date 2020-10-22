@@ -398,6 +398,35 @@
             margin: 0;
             padding: 1px 6px;
             outline: none;
+            margin-right: 6px;
+            box-shadow: none;
+            &:focus{
+                outline: none;
+            }
+            i {
+                outline: none;
+                color: $product-overview-main-color;
+                font-size: 18px;
+                font-weight: 400;
+                &:hover {
+                    outline: none;
+                    color: $theme-color;
+                }
+            }
+        }
+        
+        .btn-main:nth-child(4){
+            font-size: 18px;
+            color: $product-overview-main-color;
+            border: none;
+            background: none;
+            background-color: none;
+            font-weight: 400;
+            margin: 0;
+            padding: 1px 6px;
+            outline: none;
+            align-self: center;
+            box-shadow: none;
             i {
                 color: $product-overview-main-color;
                 font-size: 18px;
@@ -506,10 +535,11 @@
             }
             .product {
                 &-params {
-                    padding-top: 26px;
+                    padding-top: 34px;
                     border-top: 1px solid #e5e5e5;
                 }
                 &-tags {
+                    font-size: 15px;
                     color: $product-overview-main-color;
                     font-family: $poppins;
                     margin-bottom: 10px;
@@ -520,6 +550,7 @@
                     &_item {
                         margin-right: 10px;
                         font-size: 15px;
+                        text-transform: lowercase;
                         cursor: pointer;
                         &:hover {
                             color: $theme-color;

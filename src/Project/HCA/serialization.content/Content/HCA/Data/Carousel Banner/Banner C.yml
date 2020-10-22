@@ -18,7 +18,7 @@ Languages:
     - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
       Hint: Link
       Value: |
-        <link text="" anchor="" linktype="internal" class="" title="" target="|Custom" querystring="" id="{A91CCFEC-F221-4BAC-AFAA-BC653B06C69E}" />
+        <link linktype="external" url="/shop/Health-Beauty-and-Fitness" anchor="" target="|Custom" />
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |

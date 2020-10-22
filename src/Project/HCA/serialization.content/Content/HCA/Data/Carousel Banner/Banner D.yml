@@ -11,7 +11,7 @@ Languages:
     Fields:
     - ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
       Hint: Subtitle
-      Value: Best office work
+      Value: "Don't miss out!"
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200911T143053Z
@@ -25,10 +25,10 @@ Languages:
         sitecore\Admin
     - ID: "ab878a5d-cfad-471c-949e-1f590caa233c"
       Hint: Text
-      Value: Powerful laptops for your needs
+      Value: Save $300 on unlocked xPhone Pro
     - ID: "b2b0d2d9-a822-4647-80c9-0b221b8cb569"
       Hint: Title
-      Value: Laptops
+      Value: "10.23 - 10.27"
     - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
       Hint: Image
       Value: |

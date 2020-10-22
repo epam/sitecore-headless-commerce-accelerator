@@ -12,38 +12,111 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import classnames from 'classnames';
 import * as React from 'react';
 
-import { Carousel } from 'Foundation/UI';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import Swiper from 'react-id-swiper';
+import Swiper, { SwiperRefNode } from 'react-id-swiper';
 import { ProductGalleryProps, ProductGalleryState } from './models';
 import './styles.scss';
 
 export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, ProductGalleryState> {
+  private readonly imageSwiperRef: React.MutableRefObject<SwiperRefNode>;
+  private readonly carouselSwiperRef: React.MutableRefObject<SwiperRefNode>;
   constructor(props: ProductGalleryProps) {
     super(props);
 
+    this.imageSwiperRef = React.createRef();
+    this.carouselSwiperRef = React.createRef();
+
     this.state = {
-      activeImageIndex: 0,
     };
 
-    this.setImage = this.setImage.bind(this);
+    this.goPrev = this.goPrev.bind(this);
+    this.goNext = this.goNext.bind(this);
+    this.changeIndex = this.changeIndex.bind(this);
+    this.getIndex = this.getIndex.bind(this);
+  }
+
+  public getIndex() {
+    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    if (thumbnailSwiper) {
+      console.log(thumbnailSwiper.activeIndex);
+    }
+  }
+
+  public goPrev() {
+    const { images } = this.props;
+    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    if (thumbnailSwiper) {
+      const currentIndex = thumbnailSwiper.activeIndex;
+      (currentIndex === 1)
+      ? thumbnailSwiper.slideTo(images.length)
+      : thumbnailSwiper.slideTo(currentIndex - 1);
+    }
+  }
+  public goNext() {
+    const { images } = this.props;
+    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    if (thumbnailSwiper) {
+      const currentIndex = thumbnailSwiper.activeIndex;
+      (currentIndex === images.length)
+      ? thumbnailSwiper.slideTo(1)
+      : thumbnailSwiper.slideTo(currentIndex + 1);
+    }
+  }
+
+  public changeIndex(e: React.MouseEvent<HTMLDivElement>) {
+    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    const index = parseInt(e.currentTarget.getAttribute('data-swiper-slide-index'), 10);
+    if (thumbnailSwiper) {
+      thumbnailSwiper.slideToLoop(index);
+    }
+  }
+
+  public componentDidUpdate() {
+    const gallerySwiper = this.imageSwiperRef.current.swiper;
+    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    if (gallerySwiper && thumbnailSwiper
+    ) {
+      gallerySwiper.controller.control = thumbnailSwiper;
+      thumbnailSwiper.controller.control = gallerySwiper;
+      thumbnailSwiper.height = 140;
+
+      const listOfSlides = thumbnailSwiper.wrapperEl.children;
+      for (const slide of listOfSlides as any) {
+        slide.addEventListener('click', this.changeIndex);
+      }
+    }
   }
 
   protected safeRender() {
     const { images } = this.props;
-    const { activeImageIndex } = this.state;
+
+    const gallerySwiperParams = {
+      freeMode: false,
+      loop: true,
+      loopedSlides: (images && (images.length % 4) === 0 ? 0 : images.length * 3),
+      slidesPerView: 1,
+      spaceBetween: 10,
+    };
+
+    const thumbnailSwiperParams = {
+      freeMode: false,
+      loop: true,
+      loopedSlides: (images && (images.length % 4) === 0 ? 0 : images.length * 3),
+      slidesPerView: (images && images.length < 4 ? images.length : 4),
+      spaceBetween: 10,
+      touchRatio: 0.2,
+    };
 
     return (
       <div className="product-gallery">
         <div className="product-gallery-header">
           <LightgalleryProvider>
-            <Swiper loop={true} effect="fade" spaceBetween={10} loopedSlides={4}>
+            <Swiper {...gallerySwiperParams} effect="fade" ref={this.imageSwiperRef}>
               {images &&
                 images.map((src, index) => (
                   <div key={index}>
@@ -60,38 +133,30 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
             </Swiper>
           </LightgalleryProvider>
         </div>
-        <Carousel
-          className="product-gallery-carousel"
-          buttonPreviousText={<i className="fa fa-angle-left" />}
-          buttonNextText={<i className="fa fa-angle-right" />}
-          options={{
-            breakpoints: {
-              1350: {
-                slidesPerView: 3,
-              },
-            },
-            slidesPerView: 4,
-            spaceBetween: 10,
-          }}
-        >
-          {images &&
-            images.map((src, index) => (
-              <div
-                key={index}
-                onClick={() => this.setImage(index)}
-                className={classnames('swiper-slide', 'item', { active: activeImageIndex === index })}
-              >
-                <img src={src} alt={index.toString()} className="thumbs-img" />
-              </div>
-            ))}
-        </Carousel>
+        <div className="product-gallery-carousel">
+          <Swiper {...thumbnailSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
+            {images &&
+              images.map((src, index) => (
+                <div key={index} onClick={(e) => this.changeIndex(e)}>
+                  <div className="single-image">
+                    <img
+                      src={src}
+                      className="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              )
+            )}
+          </Swiper>
+          <button className="product-gallery-carousel-prev" onClick={this.goPrev}>
+            <i className="pe-7s-angle-left" />
+          </button>
+          <button className="product-gallery-carousel-next" onClick={this.goNext}>
+            <i className="pe-7s-angle-right" />
+          </button>
+        </div>
       </div>
     );
-  }
-
-  private setImage(index: number) {
-    this.setState({
-      activeImageIndex: index,
-    });
   }
 }

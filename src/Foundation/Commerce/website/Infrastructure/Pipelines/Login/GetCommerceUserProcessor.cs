@@ -25,6 +25,8 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
     using Providers;
 
     using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
+    using System.Web.Security;
 
     public class GetCommerceUserProcessor : SafePipelineProcessor<LoginPipelineArgs>
     {
@@ -51,10 +53,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
 
             var user = this.customerProvider.GetUser(args.Email);
 
-            if (user == null)
+            if (user == null || !Membership.ValidateUser(user?.UserName, args.Password))
             {
                 args.IsInvalidCredentials = true;
                 args.AbortPipeline();
+                throw new System.Exception("The email or password you entered is incorrect");
             }
             else
             {

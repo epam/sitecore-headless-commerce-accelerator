@@ -135,7 +135,7 @@
           background-color: #f2f2f2;
           border: none;
           border-radius: 0px;
-          color: #000;
+          color: $text-main-color;
           display: inline-block;
           font-size: 14px;
           font-weight: 500;
@@ -146,8 +146,8 @@
           -webkit-transition: all 0.3s ease 0s;
           transition: all 0.3s ease 0s;
           &:hover {
-            background: #a749ff;
-            color: #fff;
+            background: $theme-color;
+            color: $font-hover-color;
           }
         }
       }

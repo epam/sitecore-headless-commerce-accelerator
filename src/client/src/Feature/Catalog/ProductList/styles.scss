@@ -156,10 +156,25 @@
       }
     }
     &_loadMore {
-  
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
       .btn-load-more {
-        display: none;
-        margin: 0;
+        text-transform: uppercase;
+        font-weight: 500;
+        line-height: 1;
+        display: inline-block;
+        padding-bottom: 2px;
+        text-align: center;
+        color: #555;
+        border-bottom: 1px solid #ccc;
+        font-family: $poppins;
+        font-size: 14px;
+
+        &:hover {
+          color: $theme-color;
+          border-bottom-color: $theme-color;
+        }
   
         .show-load-btn & {
           display: block;

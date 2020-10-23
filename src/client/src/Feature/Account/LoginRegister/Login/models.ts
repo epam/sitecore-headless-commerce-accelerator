@@ -27,6 +27,11 @@ export interface LogInStateProps {
   authenticationProcess: AuthenticationProcessState;
 }
 
+export interface LogInStates extends JSS.SafePureComponentState {
+  isPasswordEmpty: boolean;
+  isUsernameValid: boolean;
+}
+
 export interface LogInProps extends LogInDispatchProps, LogInStateProps {}
 
 export interface LogInValues extends FormValues {

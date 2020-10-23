@@ -28,6 +28,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    min-height: 400px;
     img {
       max-height: 100%;
     }
@@ -49,9 +50,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  h3 {
+    font: 400 16px/1 $poppins;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
+    line-height: 30px;
+    color: black;
+    &:hover{
+      cursor: pointer;
+      color: $theme-color;
+      transition: transform .5s, opacity .5s;
+    }
+  }
   h2 {
     margin-bottom: 10px;
-    font: 400 14px/1 $poppins;
+    font: 400 16px/1 $poppins;
     max-height: 30px; // in case if header spreads to three lines, so blocks still would have one height
     color: black;
     white-space: nowrap;
@@ -65,21 +81,18 @@
     }
   }
   .price {
-    font: 400 15px $poppins;
-    color: #666;
+    font: 500 15px $poppins;
+    color: black;
     margin: 0px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    line-height: 24px;
 
     &--adjusted {
       .price_full {
         text-decoration: line-through;
-        color: #999;
-      }
-      .price_current {
-        color: black;
-        font-weight: 500;
+        color: $original-price-font-color;
       }
     }
 
@@ -129,6 +142,22 @@
       color: #fff;
       background: #066666;
       content: '\f00c';
+    }
+  }
+
+  // #Star rating and review links
+  .product-rating {
+    margin: 3px 0px;
+    .items-rating {
+      .star {
+        .fa-star-o {
+          font-size: 17px;
+        }
+        padding: 0 8px 0 0;
+        .orange {
+          color: $product-rating-star;
+        }
+      }
     }
   }
 }

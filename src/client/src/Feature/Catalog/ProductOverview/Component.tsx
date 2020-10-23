@@ -69,6 +69,12 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                     {selectedCatalogItem.currencySymbol}
                     {selectedCatalogItem.adjustedPrice.toFixed(2)}
                   </span>
+                  {(selectedCatalogItem.adjustedPrice !== selectedCatalogItem.listPrice) && (
+                    <span className="price-value-adjusted">
+                      {selectedCatalogItem.currencySymbol}
+                      {selectedCatalogItem.listPrice.toFixed(2)}
+                    </span>
+                  )}
                 </p>
                 <ProductRating rating={selectedCatalogItem.customerAverageRating} />
                 <div className="product-description">{selectedCatalogItem.description};</div>

@@ -596,6 +596,13 @@
         font-family: $poppins;
         color: $product-price-value;
         margin: 15px 0 26px;
+
+        &-adjusted {
+            font-size: 18px;
+            margin-left: 20px;
+            text-decoration: line-through;
+            color: #333;
+        }
     }
 }
 

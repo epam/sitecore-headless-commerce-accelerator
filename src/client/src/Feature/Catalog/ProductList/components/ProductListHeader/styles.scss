@@ -90,10 +90,12 @@
       color: #666;
       float: left;
       margin: 0 20px 0 0;
-      padding: 3px 6px;
+      padding: 5px 15px;
       border-radius: 3px;
       cursor: pointer;
+      background: $theme-color;
       text-transform: capitalize;
+      border-radius: 50px;
     
       &:hover {
         color: $font-hover-color;
@@ -102,13 +104,16 @@
           color: $font-hover-color;
         }
       }
-    
+      .fa {
+        font-size: 13px;
+        color: #fff;
+      }
       &_text {
         font-family: $poppins;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 14px;
+        font-weight: 400;
         margin: 0;
-        color: #333;
+        color: #fff;
         line-height: inherit;
         margin: 0;
         padding: 0 0 0 5px;

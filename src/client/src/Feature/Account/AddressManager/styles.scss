@@ -1,19 +1,19 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/mixins';
-@import 'Foundation/UI/common/scss/variables';
+@import "Foundation/UI/common/scss/mixins";
+@import "Foundation/UI/common/scss/variables";
 
 .address-manager {
   margin: 20px 0;
@@ -38,11 +38,11 @@
       font-weight: 900;
       color: $main-color;
       text-transform: uppercase;
-      transition: color .2s;
+      transition: color 0.2s;
       @include underline($bg: $main-color-dark);
       &:hover {
         color: $main-color-dark;
-        transition: color .2s;
+        transition: color 0.2s;
       }
     }
   }
@@ -83,11 +83,11 @@
       font-weight: 900;
       color: $main-color;
       text-transform: uppercase;
-      transition: color .2s;
+      transition: color 0.2s;
       @include underline($bg: $main-color-dark);
       &:hover {
         color: $main-color-dark;
-        transition: color .2s;
+        transition: color 0.2s;
       }
     }
     .delete-link {
@@ -95,18 +95,17 @@
       font-weight: 900;
       color: $focus-color;
       text-transform: uppercase;
-      transition: color .2s;
+      transition: color 0.2s;
       @include underline($bg: $focus-color-dark);
       &:hover {
         color: $focus-color-dark;
-        transition: color .2s;
+        transition: color 0.2s;
       }
     }
   }
 }
 
-
-.address_body{
+.address_body {
   padding: 20px;
   .myaccount-info-wrapper {
     padding: 30px 20px;
@@ -144,28 +143,12 @@
         padding: 0 15px;
       }
     }
-    .billing-back-btn {
+    .add-address-btn-container {
       display: flex;
       justify-content: flex-end;
-      margin-top: 26px;
       align-items: center;
-      .billing-back {
-        a {
-          color: #000;
-          display: inline-block;
-          font-size: 14px;
-          font-weight: 500;
-          text-transform: uppercase;
-          &:hover {
-            color: $theme-color;
-          }
-          i {
-            font-size: 16px;
-            color: $theme-color;
-          }
-        }
-      }
-      .billing-btn {
+      margin-top: 26px;
+      .add-address-btn {
         button {
           background-color: #f2f2f2;
           border: medium none;
@@ -203,9 +186,9 @@
         top: 0;
         background-color: $address-table-border-color;
       }
-      .entries_row_wrapper{
+      .entries_row_wrapper {
         display: flex;
-        .entries_col_wrapper{
+        .entries_col_wrapper {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -248,6 +231,28 @@
           }
         }
       }
+    }
+    .address_container-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .address-icon {
+        margin-bottom: 30px;
+        i {
+          font-size: 140px;
+          line-height: 1;
+          color: black;
+        }
+      }
+    }
+    .address_label-empty {
+      color: black;
+      font-size: 20px;
+      font-weight: 400;
+      font-family: $poppins;
+      margin-bottom: 5px;
     }
   }
 }

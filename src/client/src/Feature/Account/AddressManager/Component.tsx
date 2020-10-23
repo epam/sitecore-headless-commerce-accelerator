@@ -68,63 +68,78 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
             {isListFormVisible ? (
               <div className="address_body">
                 <div className="myaccount-info-wrapper">
-                  <div className="account-info-wrapper">
-                    <h4>Address Book Entries</h4>
-                  </div>
-                  <div className="entries-wrapper">
-                    {savedAddressList && savedAddressList.length > 0 ? (
-                      savedAddressList.map((address, index) => {
-                        return (
-                          <div className="row entries_row_wrapper" key={index}>
-                            <div className="col-lg-6 col-md-6 entries_col_wrapper">
-                              <div className="entries-info text-center">
-                                <p>
-                                  {address.firstName} {address.lastName}
-                                </p>
-                                <p>{address.address1}</p>
-                                <p>{address.address2}</p>
-                                <p>
-                                  {address.city}, {address.state}
-                                </p>
-                                <p>
-                                  {address.country}, {address.countryCode}
-                                </p>
+                  {savedAddressList && savedAddressList.length > 0 ? (
+                    savedAddressList.map((address, index) => {
+                      return (
+                        <div key={index}>
+                          <div className="account-info-wrapper">
+                            <h4>Address Book Entries</h4>
+                          </div>
+                          <div className="entries-wrapper">
+                            <div className="row entries_row_wrapper">
+                              <div className="col-lg-6 col-md-6 entries_col_wrapper">
+                                <div className="entries-info text-center">
+                                  <p>
+                                    {address.firstName} {address.lastName}
+                                  </p>
+                                  <p>{address.address1}</p>
+                                  <p>{address.address2}</p>
+                                  <p>
+                                    {address.city}, {address.state}
+                                  </p>
+                                  <p>
+                                    {address.country}, {address.countryCode}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-lg-6 col-md-6 entries_col_wrapper">
-                              <div className="entries-edit-delete text-center">
-                                <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
-                                  Edit
+                              <div className="col-lg-6 col-md-6 entries_col_wrapper">
+                                <div className="entries-edit-delete text-center">
+                                  <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
+                                    Edit
                                 </button>
-                                <button onClick={(e) => this.onDeleteButtonClick(e, address.externalId)}>
-                                  Delete
+                                  <button onClick={(e) => this.onDeleteButtonClick(e, address.externalId)}>
+                                    Delete
                                 </button>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        );
-                      })
-                    ) : (
-                      <></>
+                        </div>
+                      );
+                    })
+                  ) : (
+                      <div className="address_container-empty">
+                        <div className="address-icon">
+                          <i className="pe-7s-way" />
+                        </div>
+                        <label className="address_label-empty">No saved address</label>
+                        <div className="add-address-btn-container">
+                          <div className="add-address-btn">
+                            <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     )}
-                  </div>
-                  <div className="billing-back-btn">
-                    <div className="billing-btn">
+                  {savedAddressList && savedAddressList.length > 0 && <div className="add-address-btn-container">
+                    <div className="add-address-btn">
                       <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
                         Add
                       </button>
                     </div>
                   </div>
+                  }
                 </div>
               </div>
             ) : (
-              <AddressForm
-                countries={this.props.fields.countries}
-                defaultValues={editForm && selectedAddress}
-                SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
-                ToggleForm={() => this.editAddress(false)}
-              />
-            )}
+                <AddressForm
+                  countries={this.props.fields.countries}
+                  defaultValues={editForm && selectedAddress}
+                  SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
+                  ToggleForm={() => this.editAddress(false)}
+                />
+              )}
           </div>
         </div>
       </div>

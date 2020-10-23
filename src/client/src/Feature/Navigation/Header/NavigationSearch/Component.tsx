@@ -34,6 +34,14 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
     };
   }
 
+  public componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  public componentDidUnMount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   public handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -78,4 +86,17 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
       this.props.ChangeRoute(`/search?q=${q}`);
     }
   }
+
+  private handleClickOutside = (e: MouseEvent) => {
+    const targetElement = e.target as Element;
+    if (this.state.isOpen) {
+      const searchClassSelector = '.search_popup';
+      const searchHeaderClass = '.pe-7s-search';
+      if (!targetElement.closest(searchClassSelector) && !targetElement.matches(searchClassSelector) && !targetElement.closest(searchHeaderClass) && !targetElement.matches(searchHeaderClass)) {
+        this.setState({
+          isOpen: false,
+        });
+      }
+    }
+  };
 }

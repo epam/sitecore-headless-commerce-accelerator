@@ -33,7 +33,7 @@ export class WishlistItemComponent extends JSS.SafePureComponent<WishlistItemPro
         </td>
         <td className="wishlist_table_data">
           <NavigationLink className="wishlist_item_name" to={`/product/${item.productId}`}>
-            {item.displayName}
+            <p>{item.displayName}</p>
           </NavigationLink>
         </td>
         <td className="wishlist_table_data">

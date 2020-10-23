@@ -47,12 +47,17 @@
 .wishlist_product-thumbnail img{
   vertical-align: middle;
 }
-.wishlist_item_name{
+.wishlist_item_name p{
   color: $table-font-color;
-  text-transform: capitalize;
-}
-.wishlist_item_name:hover{
-  color: $theme-color;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: lowercase;
+  &::first-letter{
+    text-transform: uppercase;
+  }
+  &:hover{
+    color: $theme-color;
+  }
 }
 .wishlist_item_button{
   text-transform: uppercase;

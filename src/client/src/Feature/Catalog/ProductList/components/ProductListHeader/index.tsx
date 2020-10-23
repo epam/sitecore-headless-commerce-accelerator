@@ -23,12 +23,12 @@ import { ProductListHeaderProps, ProductListHeaderState } from './models';
 
 import './styles.scss';
 
-export class ProductListHeader  extends Jss.SafePureComponent<ProductListHeaderProps, ProductListHeaderState>  {
+export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderProps, ProductListHeaderState> {
   constructor(props: ProductListHeaderProps) {
     super(props);
 
     this.state = {
-      numberOfDisplayedItems: 0
+      numberOfDisplayedItems: 0,
     };
   }
   public componentDidUpdate() {
@@ -38,38 +38,43 @@ export class ProductListHeader  extends Jss.SafePureComponent<ProductListHeaderP
       this.setState({ numberOfDisplayedItems: itemsCount });
     } else {
       count = (currentPageNumber + 1) * 12;
-      (count > itemsCount)
+      count > itemsCount
         ? this.setState({ numberOfDisplayedItems: itemsCount })
         : this.setState({ numberOfDisplayedItems: count });
     }
   }
 
   public safeRender() {
-    const { search, itemsCount } = this.props;
+    const { search, itemsCount, isLoading } = this.props;
     const { numberOfDisplayedItems } = this.state;
     const parsedSearch = tryParseUrlSearch(search);
     const appliedFacets = facetsManager(parsedSearch[FACET_PARAMETER_NAME]).getFacets();
     return (
       <div className="product_list_header">
         <div className="header">
-          <div className="header_stats">
-            <span>Showing {numberOfDisplayedItems} of {itemsCount} results</span>
-          </div>
+          {!isLoading && (
+            <div className="header_stats">
+              <span>
+                Showing {numberOfDisplayedItems} of {itemsCount} results
+              </span>
+            </div>
+          )}
         </div>
         <div className="filter-labels">
-          {Object.keys(appliedFacets).map((facetName) => {
-            const facet = appliedFacets[facetName];
-            return facet.map((value, valueIndex) => (
-              <div
-                className="filter-label"
-                key={valueIndex}
-                onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}
-              >
-                <i className="fa fa-close" />
-                <span className="filter-label_text">{value}</span>
-              </div>
-            ));
-          })}
+          {!isLoading &&
+            Object.keys(appliedFacets).map((facetName) => {
+              const facet = appliedFacets[facetName];
+              return facet.map((value, valueIndex) => (
+                <div
+                  className="filter-label"
+                  key={valueIndex}
+                  onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}
+                >
+                  <i className="fa fa-close" />
+                  <span className="filter-label_text">{value}</span>
+                </div>
+              ));
+            })}
         </div>
       </div>
     );

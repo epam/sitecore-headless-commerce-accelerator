@@ -93,7 +93,10 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
   private handleFormClear(e: React.MouseEvent<HTMLButtonElement>) {
     this.setState({ keyword: '', submitted: true });
     const { ChangeRoute, history } = this.props;
-    ChangeRoute(history.location.pathname);
+    const params = new URLSearchParams(history.location.search);
+    params.delete('q');
+    const newUrl = `${history.location.pathname}?${params}`;
+    ChangeRoute(newUrl);
   }
 
   private startSearch(keyword: string) {

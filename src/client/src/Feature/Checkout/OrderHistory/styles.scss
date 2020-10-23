@@ -18,8 +18,45 @@
 .order-history {
   display: block;
   width: auto;
-  margin-bottom: 40px;
-  
+  padding: 90px 0 100px 0;
+  font-family: $poppins;
+  &_container-empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+    .order-history-icon{
+      margin-bottom: 30px;
+      i{
+        font-size: 140px;
+        line-height: 1;
+        color: black;
+      }
+    }
+  }
+  &_label-empty{
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: $poppins;
+    margin-bottom: 1px;
+  }
+  &_btn-empty{
+    padding: 10px 30px;
+    background-color: $btn-shop-now;
+    border: none;
+    color: white;
+    text-transform: none;
+    font-family: $poppins;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 30px;
+    height: 44px;
+    &:hover{
+      background-color: #A749FF;
+    }
+  }
   &-loader {
     display: flex;
     align-content: space-between;

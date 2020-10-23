@@ -32,6 +32,7 @@ export interface BillingDispatchProps {
 export interface BillingProps extends BillingOwnProps, BillingDispatchProps, BillingStateProps {}
 
 export interface BillingState extends Jss.SafePureComponentState {
+  email: string;
   selectedAddressOption: string;
 }
 

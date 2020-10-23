@@ -30,8 +30,15 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     super(props);
     const selectedAddressOption = this.props.useForBillingAddress ? ADDRESS_TYPE.SAME_AS_SHIPPING : ADDRESS_TYPE.NEW;
     this.state = {
+      email: '',
       selectedAddressOption,
     };
+  }
+  public componentDidMount() {
+    const { commerceUser } = this.props;
+    if (!!commerceUser && !!commerceUser.customerId) {
+      this.setState({ email: commerceUser.email });
+    }
   }
   public componentWillMount() {
     if (!this.props.sitecoreContext.pageEditing) {
@@ -40,6 +47,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
   }
   public safeRender() {
     const { fields, commerceUser } = this.props;
+    const { email } = this.state;
     return (
       <Form className="thick-theme">
         <div className="billing-shipping">
@@ -137,18 +145,15 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
                 <div className="col-ms-6">
                   <div className="sub-text">
                     <Text field={{ value: 'Email Address' }} tag="label" className="required" />
-                    {commerceUser && commerceUser.customerId ? (
-                      <Input
-                        name={FIELDS.EMAIL}
-                        type="email"
-                        disabled={true}
-                        value={commerceUser.email}
-                        required={true}
-                        maxLength={100}
-                      />
-                    ) : (
-                      <Input name={FIELDS.EMAIL} type="email" required={true} maxLength={100} />
-                    )}
+                    <Input
+                      name={FIELDS.EMAIL}
+                      type="email"
+                      required={true}
+                      disabled={!!commerceUser && !!commerceUser.customerId}
+                      onChange={(e) => this.handleEmailInput(e)}
+                      value={email}
+                      maxLength={100}
+                    />
                     <Text field={{ value: 'For order status and updates' }} tag="sub" />
                   </div>
                 </div>
@@ -178,12 +183,17 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     return fields.countries.find((c) => c.countryCode === countryCode);
   }
 
+  private handleEmailInput(e: React.FormEvent<HTMLInputElement>) {
+    this.setState({ email: e.currentTarget.value });
+  }
+
   private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
     this.setState({ selectedAddressOption: e.currentTarget.value });
   }
 
   private handleSaveAndContinueClick(formValues: FormValues) {
     const { SubmitStep } = this.props;
+    const { email } = this.state;
 
     const useSameAsShipping = formValues[FIELDS.ADDRESS_TYPE] === ADDRESS_TYPE.SAME_AS_SHIPPING;
 
@@ -201,7 +211,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
         city: formValues[FIELDS.CITY] as string,
         country: selectedCountry.name,
         countryCode: selectedCountry.countryCode,
-        email: formValues[FIELDS.EMAIL] as string,
+        email: email as string,
         externalId: '',
         firstName: formValues[FIELDS.FIRST_NAME] as string,
         isPrimary: false,

@@ -45,6 +45,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
     return (
       <section className="listing-product-grid">
         <ProductListHeader
+          currentPageNumber={currentPageNumber}
           search={search}
           isLoading={isLoading}
           DiscardFacet={DiscardFacet}
@@ -70,13 +71,15 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
             <div className="object object-three" />
           </div>
           <div className="lazyLoad_loadMore">
-            <a
-              className="btn-load-more"
-              href="#"
-              onClick={(e) => this.loadMoreHandler(e)}
-            >
-              View More Products
-            </a>
+            {items.length !== 0 && (
+              <a
+                className="btn-load-more"
+                href="#"
+                onClick={(e) => this.loadMoreHandler(e)}
+              >
+                View More Products
+              </a>
+            )}
           </div>
         </div>
       </section>

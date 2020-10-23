@@ -14,14 +14,8 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
-export interface ProductListHeaderProps {
-  currentPageNumber: number;
-  itemsCount: number;
-  search: string;
-  isLoading: boolean;
-  DiscardFacet: (name: string, value: string, search: string) => void;
+export interface ProductRatingProps {
+  rating: number;
 }
 
-export interface ProductListHeaderState extends Jss.SafePureComponentState {
-  numberOfDisplayedItems: number;
-}
+export interface ProductRatingState extends Jss.SafePureComponentState {}

@@ -49,7 +49,7 @@
 }
 .wishlist_item_name{
   color: $table-font-color;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .wishlist_item_name:hover{
   color: $theme-color;

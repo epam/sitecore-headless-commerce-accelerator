@@ -19,16 +19,42 @@ import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { LogInProps, LogInValues } from './models';
+import { LogInProps, LogInStates, LogInValues } from './models';
 import './styles.scss';
 
-export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
+export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInStates> {
+  public constructor(props: LogInProps) {
+    super(props);
+
+    this.state = {
+      isPasswordEmpty: false,
+      isUsernameValid: true,
+    };
+  }
   public componentWillUnmount() {
     this.props.ResetState();
   }
+  public validateUser(form: LogInValues) {
+    const { Authentication } = this.props;
+    if (form.email && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email))) {
+      this.setState({ isUsernameValid: true });
+      Authentication(form.email, form.password, '/');
+    } else {
+      this.setState({ isUsernameValid: false });
+    }
+  }
+  public validateForm(form: LogInValues) {
+    if (form && form.password) {
+      this.setState({ isPasswordEmpty: false });
+      this.validateUser(form);
+    } else {
+      this.setState({ isPasswordEmpty: true });
+    }
+  }
 
   protected safeRender() {
-    const { Authentication, authenticationProcess, onLoaded } = this.props;
+    const { authenticationProcess, onLoaded } = this.props;
+    const { isUsernameValid, isPasswordEmpty } = this.state;
 
     const isLoading = authenticationProcess.status === LoadingStatus.Loading;
     const isError = authenticationProcess.status === LoadingStatus.Failure;
@@ -44,23 +70,34 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, {}> {
             <Input
               className="login_input"
               name="email"
-              type="email"
-              placeholder="Email Address"
-              required={true}
+              type="text"
+              placeholder="Username"
               disabled={isLoading}
             />
           </div>
           <div className="form-field">
-            <Input name="password" type="password" placeholder="Password" required={true} disabled={isLoading} />
+            <Input className="form-field-password" name="password" type="password" placeholder="Password" disabled={isLoading} />
           </div>
+          { (isError || !isUsernameValid || isPasswordEmpty) && (
+            <div className="login_invalid-msg">
+              {isError
+              ? 'The email or password you entered is incorrect'
+              : (!isUsernameValid && isPasswordEmpty)
+                ? 'Enter valid username and password'
+                : (!isUsernameValid)
+                  ? 'Enter valid username'
+                  : 'Enter valid password'
+              }
+            </div>
+          )}
         </div>
-
-        {isError && <div className="login_invalid-msg">The email or password you entered is incorrect</div>}
         <div className="login_buttons">
           <Submit
             className="btn-log-in"
-            onSubmitHandler={(form: LogInValues) => Authentication(form.email, form.password, '/')}
-            disabled={isLoading}
+            onSubmitHandler={(form: LogInValues) => {
+              this.validateForm(form);
+            }}
+            disabled={false}
           >
             {isLoading && <i className="fa fa-spinner fa-spin" />}
             <span>Login</span>

@@ -17,6 +17,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 
+import { ProductRating } from './components/ProductRating';
 import { ProductListItemProps } from './models';
 
 import './styles.scss';
@@ -32,10 +33,10 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
           </NavigationLink>
         </div>
         <figcaption>
-          <div className="brand">{product.brand}</div>
           <NavigationLink to={`/product/${product.productId}`}>
-            <h2>{product.displayName}</h2>
+            <h3>{product.displayName}</h3>
           </NavigationLink>
+          <ProductRating rating={product.customerAverageRating} />
           <div className="price price--adjusted">
             <div className="price_current">
               <span className="price_currency">{product.currencySymbol}</span>

@@ -12,26 +12,48 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Jss from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { tryParseUrlSearch } from 'Foundation/Base';
 
 import { FACET_PARAMETER_NAME, facetsManager } from 'Feature/Catalog/Integration/ProductsSearch';
 
-import { ProductListHeaderProps } from './models';
+import { ProductListHeaderProps, ProductListHeaderState } from './models';
 
 import './styles.scss';
 
-export class ProductListHeader extends React.Component<ProductListHeaderProps> {
-  public render() {
+export class ProductListHeader  extends Jss.SafePureComponent<ProductListHeaderProps, ProductListHeaderState>  {
+  constructor(props: ProductListHeaderProps) {
+    super(props);
+
+    this.state = {
+      numberOfDisplayedItems: 0
+    };
+  }
+  public componentDidUpdate() {
+    const { currentPageNumber, itemsCount } = this.props;
+    let count = 0;
+    if (itemsCount < 12) {
+      this.setState({ numberOfDisplayedItems: itemsCount });
+    } else {
+      count = (currentPageNumber + 1) * 12;
+      (count > itemsCount)
+        ? this.setState({ numberOfDisplayedItems: itemsCount })
+        : this.setState({ numberOfDisplayedItems: count });
+    }
+  }
+
+  public safeRender() {
     const { search, itemsCount } = this.props;
+    const { numberOfDisplayedItems } = this.state;
     const parsedSearch = tryParseUrlSearch(search);
     const appliedFacets = facetsManager(parsedSearch[FACET_PARAMETER_NAME]).getFacets();
     return (
       <div className="product_list_header">
         <div className="header">
           <div className="header_stats">
-            <span>{itemsCount} products</span>
+            <span>Showing {numberOfDisplayedItems} of {itemsCount} results</span>
           </div>
         </div>
         <div className="filter-labels">

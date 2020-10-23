@@ -33,19 +33,25 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
     this.state = {
       canResetDeliveryInfo: true,
+      email: '',
       selectedAddressOption,
     };
   }
 
   public componentDidMount() {
+    const { commerceUser } = this.props;
     if (!this.props.sitecoreContext.pageEditing) {
       this.props.InitStep(CheckoutStepType.Fulfillment);
+    }
+    if (!!commerceUser && !!commerceUser.customerId) {
+      this.setState({ email: commerceUser.email });
     }
   }
 
   // tslint:disable-next-line: no-big-function
   protected safeRender() {
     const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser } = this.props;
+    const { email } = this.state;
     const isLoggedIn = commerceUser && commerceUser.customerId;
 
     return (
@@ -155,7 +161,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     type="email"
                     required={true}
                     disabled={!!commerceUser && !!commerceUser.customerId}
-                    value={(!!commerceUser && !!commerceUser.customerId) ? commerceUser.email : ''}
+                    onChange={(e) => this.handleEmailInput(e)}
+                    value={email}
                     maxLength={100}
                   />
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
@@ -270,6 +277,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const { fields } = this.props;
 
     return fields.countries.find((c) => c.countryCode === countryCode);
+  }
+
+  private handleEmailInput(e: React.FormEvent<HTMLInputElement>) {
+    this.setState({ email: e.currentTarget.value });
   }
 
   private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {

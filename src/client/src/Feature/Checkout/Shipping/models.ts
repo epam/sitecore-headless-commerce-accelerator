@@ -39,6 +39,7 @@ export interface ShippingDispatchProps {
 export interface ShippingProps extends ShippingOwnProps, ShippingStateProps, ShippingDispatchProps {}
 
 export interface ShippingState extends Jss.SafePureComponentState {
+  email: string;
   selectedAddressOption: string;
   canResetDeliveryInfo: boolean;
 }

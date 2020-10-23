@@ -40,7 +40,6 @@ export default class ProductFiltersComponent extends Jss.SafePureComponent<
     return (
       <div className="filters">
         <section className="productGridFilter">
-          <h2 className="productGridFilter_title">Filters</h2>
           {isLoading && <div className="overlay" />}
           {facets.map((facet, index) => (
             <Filter

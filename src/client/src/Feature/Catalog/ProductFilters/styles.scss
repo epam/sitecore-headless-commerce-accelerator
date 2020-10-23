@@ -18,8 +18,7 @@
 
 .filters {
   font-family: $poppins;
-  margin-top: 95px;
-  margin-bottom: 100px;
+  margin: 20px 30px 20px 0px;
   @media (max-width: $screen-sm-max) {
     /* Disable this info according to updated design for Product Search Resulp page */
     /*background: #c2c6c9;*/
@@ -112,17 +111,11 @@
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  color: black;
+  color: $filter-toggle-font-color;
   text-transform: none;
-  &:after {
-    display: inline-block;
+
+  i {
     padding-left: 10px;
-    font-family: FontAwesome;
-    content: '\f0da';
-    transition: all 0.3s ease 0s;
-  }
-  &.hide-all:after {
-    content: '\f0d8';
   }
   &:hover, &:active {
     color: $theme-color;
@@ -171,7 +164,6 @@
 .product-filter {
   position: relative;
   padding: 20px 0;
-  border-bottom: 1px solid $border-color;
   &-first & {
     border-top: 1px solid $border-color;
   }
@@ -238,7 +230,7 @@
   &_options {
     display: block;
      //max show 7 of the li's max-height: 203px;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
     overflow-y: visible;
 
     &.show-all-links {
@@ -290,6 +282,7 @@
         color: black;
         cursor: pointer;
         margin-right: 2px;
+        padding-left: 30px;
         @media (min-width: $screen-md-min) {
           -o-text-overflow: ellipsis; /* Opera */
           text-overflow: ellipsis; /* IE, Safari (WebKit) */
@@ -317,10 +310,10 @@
       .checkbox{
         min-height: 0;
         padding: 0;
-        position: relative;
+        position: absolute;
         content: '';
         display: inline-block;
-        width: 20px;
+        width: 15px;
         height: 15px;
         border-radius: 24%;
         margin: 3px 16px 1px 3px;

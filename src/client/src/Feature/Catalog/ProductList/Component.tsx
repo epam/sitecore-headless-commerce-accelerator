@@ -52,7 +52,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           itemsCount={totalItemCount}
         />
         <ul>
-          {items.length === 0 && (
+          {isLoading && (
             <div className="loading-overlay">
               <div className="loading" />
             </div>
@@ -71,13 +71,9 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
             <div className="object object-three" />
           </div>
           <div className="lazyLoad_loadMore">
-            {items.length !== 0 && (
-              <a
-                className="btn-load-more"
-                href="#"
-                onClick={(e) => this.loadMoreHandler(e)}
-              >
-                View More Products
+            {items.length !== 0 && showLoadMore && (
+              <a className="btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
+                Load More
               </a>
             )}
           </div>

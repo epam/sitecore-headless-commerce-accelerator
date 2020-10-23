@@ -74,7 +74,19 @@ export class Filter extends React.Component<FilterProps, FilterState> {
             onClick={(e) => this.toggleFacetVisibility(e)}
             className={classNames('view-all', { 'hide-all': isValuesVisible })}
           >
-            <span>{isValuesVisible ? 'Hide all' : 'Show All'}</span>
+            <span>
+              {isValuesVisible ? (
+                <>
+                  Hide all
+                  <i className="fa fa-angle-up"/>
+                </>
+              ) : (
+                <>
+                  Show All
+                  <i className="fa fa-angle-down"/>
+                </>
+              )}
+            </span>
           </a>
         </div>
       </div>

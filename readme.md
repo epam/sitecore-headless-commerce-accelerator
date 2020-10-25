@@ -1,4 +1,14 @@
-![Headless Commerce Accelerator Homepage](https://user-images.githubusercontent.com/23119997/82557766-070d1c00-9b75-11ea-9403-36ffc06a6228.png)
+![Homepage](https://user-images.githubusercontent.com/23119997/97112726-ed10d000-16f6-11eb-9c7b-b8fdc40ec1da.png)
+
+<details>
+  <summary>Click to see other pages</summary>
+  
+![Registration](https://user-images.githubusercontent.com/23119997/97112722-ebdfa300-16f6-11eb-83ad-5cccb49e6134.png)
+![Cart](https://user-images.githubusercontent.com/23119997/97112723-ec783980-16f6-11eb-9eae-6070e43f988d.png)
+![Checkout](https://user-images.githubusercontent.com/23119997/97112725-ed10d000-16f6-11eb-8852-7450c9867e43.png)
+![PDP](https://user-images.githubusercontent.com/23119997/97112727-eda96680-16f6-11eb-833c-de01693379bc.png)
+
+</details>
 
 ## Headless Commerce Accelerator for Sitecore Experience Commerce
 

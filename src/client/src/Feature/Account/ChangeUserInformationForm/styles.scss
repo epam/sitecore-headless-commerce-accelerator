@@ -23,6 +23,9 @@
     margin: 20px 0;
     position: relative;
     border: 1px solid #ebebeb;
+    @media #{$account-switch-layout} {
+      width: 100%;
+    }
     @include loading-overlay(99998);
     .header-accordion {
       transition: 0.4s;

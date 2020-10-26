@@ -46,9 +46,8 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
   protected safeRender() {
     const { savedAddressList, savedAddressListStatus } = this.props;
     const { selectedAddressId, editForm, isListFormVisible } = this.state;
-
     const selectedAddress = savedAddressList.find((a) => a.externalId === selectedAddressId) || savedAddressList[0];
-
+    const isExistAddressItems = savedAddressList && savedAddressList.length > 0;
     return (
       <div className="account-details-container">
         <div className="account-details-form">
@@ -68,14 +67,16 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
             {isListFormVisible ? (
               <div className="address_body">
                 <div className="myaccount-info-wrapper">
-                  {savedAddressList && savedAddressList.length > 0 ? (
-                    savedAddressList.map((address, index) => {
-                      return (
-                        <div key={index}>
-                          <div className="account-info-wrapper">
-                            <h4>Address Book Entries</h4>
-                          </div>
-                          <div className="entries-wrapper">
+                  {isExistAddressItems && (
+                    <div className="account-info-wrapper">
+                      <h4>Address Book Entries</h4>
+                    </div>
+                  )}
+                  <div className="entries-wrapper-container">
+                    {isExistAddressItems ? (
+                      savedAddressList.map((address, index) => {
+                        return (
+                          <div className="entries-wrapper" key={index}>
                             <div className="row entries_row_wrapper">
                               <div className="col-lg-6 col-md-6 entries_col_wrapper">
                                 <div className="entries-info text-center">
@@ -96,18 +97,17 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                                 <div className="entries-edit-delete text-center">
                                   <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
                                     Edit
-                                </button>
+                                  </button>
                                   <button onClick={(e) => this.onDeleteButtonClick(e, address.externalId)}>
                                     Delete
-                                </button>
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })
-                  ) : (
+                        );
+                      })
+                    ) : (
                       <div className="address_container-empty">
                         <div className="address-icon">
                           <i className="pe-7s-way" />
@@ -122,24 +122,26 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                         </div>
                       </div>
                     )}
-                  {savedAddressList && savedAddressList.length > 0 && <div className="add-address-btn-container">
-                    <div className="add-address-btn">
-                      <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
-                        Add
-                      </button>
-                    </div>
                   </div>
-                  }
+                  {isExistAddressItems && (
+                    <div className="add-address-btn-container">
+                      <div className="add-address-btn">
+                        <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (
-                <AddressForm
-                  countries={this.props.fields.countries}
-                  defaultValues={editForm && selectedAddress}
-                  SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
-                  ToggleForm={() => this.editAddress(false)}
-                />
-              )}
+              <AddressForm
+                countries={this.props.fields.countries}
+                defaultValues={editForm && selectedAddress}
+                SubmitAction={editForm ? this.onUpdateAdress : this.onAddAdress}
+                ToggleForm={() => this.editAddress(false)}
+              />
+            )}
           </div>
         </div>
       </div>

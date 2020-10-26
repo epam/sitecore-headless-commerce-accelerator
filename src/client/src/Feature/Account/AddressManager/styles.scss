@@ -169,7 +169,12 @@
       }
     }
     .entries-wrapper {
-      border: 1px solid $address-table-border-color;
+      &:first-of-type{
+        border-top: 1px solid $address-table-border-color;
+      }
+      border-left: 1px solid $address-table-border-color;
+      border-right: 1px solid $address-table-border-color;
+      border-bottom: 1px solid $address-table-border-color;
       position: relative;
       @media #{$xs-layout} {
         padding: 30px 10px;
@@ -188,6 +193,9 @@
       }
       .entries_row_wrapper {
         display: flex;
+        @media #{$xs-layout} {
+          display: block;
+        }
         .entries_col_wrapper {
           display: flex;
           justify-content: center;

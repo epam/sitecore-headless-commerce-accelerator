@@ -333,12 +333,12 @@
           top: 0px;
           width: 5px;
           height: 8px;
-          border: solid white;
+          border: solid white !important;
           border-top-width: medium;
           border-right-width: medium;
           border-bottom-width: medium;
           border-left-width: medium;
-          border-width: 0 2px 2px 0;
+          border-width: 0px 2px 2px 0px !important;
           -webkit-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
           transform: rotate(45deg);

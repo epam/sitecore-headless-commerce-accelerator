@@ -17,6 +17,7 @@
 @import 'Foundation/UI/common/scss/variables.scss';
 
 .product_list_header{
+  margin-bottom: 35px;
   .header {
     display: block;
     color: #666;
@@ -27,10 +28,9 @@
     &_stats {
       font-size: 14px;
       font-weight: 400;
-      line-height: 24px;
+      line-height: 1;
 
       float: left;
-      margin-bottom: 5px;
       text-transform: none;
     }
   
@@ -65,12 +65,8 @@
   
   .filter-labels {
     @include clearfix;
-    display: none;
-    @media (min-width: 1024px) {
-      display: block;
-    }
+    display: block;
     width: 100%;
-    margin: 10px 0 10px 0;
   
     &_container {
       width: calc(100% - 150px);
@@ -89,7 +85,7 @@
       font-size: 14px;
       color: #666;
       float: left;
-      margin: 0 20px 0 0;
+      margin: 10px 20px 0 0;
       padding: 5px 15px;
       border-radius: 3px;
       cursor: pointer;

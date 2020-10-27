@@ -35,20 +35,29 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     this.props.ResetState();
   }
   public validateUser(form: LogInValues) {
-    const { Authentication } = this.props;
     if (form.email && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email))) {
       this.setState({ isUsernameValid: true });
-      Authentication(form.email, form.password, '/');
+      return true;
     } else {
       this.setState({ isUsernameValid: false });
+      return false;
+    }
+  }
+  public validatePassword(form: LogInValues) {
+    if (form && form.password) {
+      this.setState({ isPasswordEmpty: false });
+      return true;
+    } else {
+      this.setState({ isPasswordEmpty: true });
+      return false;
     }
   }
   public validateForm(form: LogInValues) {
-    if (form && form.password) {
-      this.setState({ isPasswordEmpty: false });
-      this.validateUser(form);
-    } else {
-      this.setState({ isPasswordEmpty: true });
+    const { Authentication } = this.props;
+    const passwordSuccess = this.validatePassword(form);
+    const userSuccess = this.validateUser(form);
+    if (passwordSuccess && userSuccess) {
+      Authentication(form.email, form.password, '/');
     }
   }
 
@@ -71,25 +80,26 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
               className="login_input"
               name="email"
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               disabled={isLoading}
             />
+            {!isUsernameValid && (
+              <div className="login_invalid-msg">
+                Enter valid email
+              </div>
+            )}
           </div>
           <div className="form-field">
             <Input className="form-field-password" name="password" type="password" placeholder="Password" disabled={isLoading} />
+            {(isError || isPasswordEmpty) && (
+              <div className="login_invalid-msg">
+                {isError
+                  ? 'The email or password you entered is incorrect'
+                  : (isPasswordEmpty) && 'Enter valid password'
+                }
+              </div>
+            )}
           </div>
-          { (isError || !isUsernameValid || isPasswordEmpty) && (
-            <div className="login_invalid-msg">
-              {isError
-              ? 'The email or password you entered is incorrect'
-              : (!isUsernameValid && isPasswordEmpty)
-                ? 'Enter valid username and password'
-                : (!isUsernameValid)
-                  ? 'Enter valid username'
-                  : 'Enter valid password'
-              }
-            </div>
-          )}
         </div>
         <div className="login_buttons">
           <Submit

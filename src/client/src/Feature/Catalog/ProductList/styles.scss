@@ -182,6 +182,14 @@
       }
     }
   }
+  .not-found {
+    h3{
+      margin-bottom: 25px;
+    }
+    h4 {
+      color: #a749ff;
+    }
+  }
 } //section.listing-product-grid
 .loading-overlay {
   background-color: #fff;

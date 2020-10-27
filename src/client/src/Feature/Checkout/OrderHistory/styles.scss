@@ -18,7 +18,7 @@
 .order-history {
   display: block;
   width: auto;
-  padding: 90px 0 100px 0;
+  padding: 95px 0 100px 0;
   font-family: $poppins;
   &_container-empty{
     display: flex;
@@ -91,9 +91,49 @@
     }
   }
   &-loadMore {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
     .btn-load-more {
-      display: block;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1;
+      display: inline-block;
+      padding-bottom: 2px;
+      text-align: center;
+      color: #555;
+      border-bottom: 1px solid #ccc;
+      font-family: $poppins;
+      font-size: 14px;
+
+      &:hover {
+        color: $theme-color;
+        border-bottom-color: $theme-color;
+      }
+
+      .show-load-btn & {
+        display: block;
+      }
+    }
+  }
+
+  // .color-title should be used as a wrapper to .color-bar
+  &-color-title {
+    @include  clearfix;
+    position: relative;
+    font-size: 26px;
+    margin: 16px 0;
+
+    .title {
+      float: left;
       margin: 0;
+      font-family: $poppins;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      color: #010101;
+      line-height: 36px;
     }
   }
 }

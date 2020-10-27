@@ -38,9 +38,8 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
       <div className="order-history">
         {orders && orders.length > 0 ? (
           <div>
-            <div className="color-title">
+            <div className="order-history-color-title">
               <Text tag="h1" field={{ value: 'Order History' }} className="title" />
-              <div className="color-bar" />
             </div>
             <div className="order-list">
               {orders.map((order, index) => (
@@ -51,7 +50,6 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             </div>
             {isLoading && (
               <div className="order-history-loader">
-                F
                 <div className="object object-one" />
                 <div className="object object-two" />
                 <div className="object object-three" />
@@ -60,11 +58,11 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             {!isLastPage && !isLoading && (
               <div className="order-history-loadMore">
                 <a
-                  className="btn btn-outline-main btn-block btn-load-more"
+                  className="btn-load-more"
                   href="#"
                   onClick={(e) => this.loadMoreHandler(e)}
                 >
-                  Load more
+                  View more orders
                 </a>
               </div>
             )}

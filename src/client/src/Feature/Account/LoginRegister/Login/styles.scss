@@ -52,7 +52,8 @@
     }
   }
   &_invalid-msg {
-    color: $focus-color;
+    color: $login-failure-font-color;
+    font-size: 10px;
   }
   &_title-welcome {
     font-size: 35px;
@@ -68,8 +69,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
     .form-field {
+      margin-bottom: 30px;
       input {
         box-shadow: none !important;
         outline: none;
@@ -83,10 +84,7 @@
         padding: 0 15px;
         box-shadow: none;
         font-family: $poppins;
-        margin-bottom: 30px;
-      }
-      &-password {
-        margin-bottom: 0px !important;
+        margin-bottom: 0px;
       }
     }
   }

@@ -37,16 +37,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     this.goPrev = this.goPrev.bind(this);
     this.goNext = this.goNext.bind(this);
     this.changeIndex = this.changeIndex.bind(this);
-    this.getIndex = this.getIndex.bind(this);
   }
-
-  public getIndex() {
-    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
-    if (thumbnailSwiper) {
-      console.log(thumbnailSwiper.activeIndex);
-    }
-  }
-
   public goPrev() {
     const { images } = this.props;
     const thumbnailSwiper = this.carouselSwiperRef.current.swiper;

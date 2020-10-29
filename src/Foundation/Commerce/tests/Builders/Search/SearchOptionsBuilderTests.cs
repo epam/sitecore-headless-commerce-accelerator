@@ -57,10 +57,14 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
         [Fact]
         public void Build_ShouldReturnSearchOptions()
         {
-            // act 
-            var searchOptions = this.builder.Build(
-                this.fixture.Create<Connect.SearchSettings>(),
-                this.fixture.Create<ProductSearchOptions>());
+            //arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+            
+            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
+
+            // act
+            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
 
             // assert
             Assert.NotNull(searchOptions);
@@ -70,10 +74,12 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
         public void Build_ShouldMapSearchKeyword()
         {
             //arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
 
-            // act 
-            var searchOptions = this.builder.Build(this.fixture.Create<Connect.SearchSettings>(), productSearchOptions);
+            // act
+            var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
 
             // assert
             Assert.True(searchOptions.SearchKeyword == productSearchOptions.SearchKeyword);
@@ -86,10 +92,11 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             Build_IfSearchOptionsPageSizeIsLessThanZero_ShouldSetNumberOfItemsToReturnToSearchSettingsItemsPerPage(
                 int pageSize)
         {
-            //arrange
+            // arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
             productSearchOptions.PageSize = pageSize;
 
             // act 
@@ -106,6 +113,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
             productSearchOptions.PageSize = 1;
 
             // act 
@@ -121,6 +129,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             //arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
 
             // act 
             var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
@@ -138,6 +147,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
             productSearchOptions.PageNumber = pageNumber;
 
             // act 
@@ -175,7 +185,9 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
         {
             //arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+            
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
 
             // act 
             var searchOptions = this.builder.Build(searchSettings, productSearchOptions);
@@ -191,7 +203,9 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
         {
             //arrange
             var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
             productSearchOptions.SortDirection = (SortDirection)sortDirection;
 
             // act 
@@ -215,6 +229,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             searchSettings.Facets = this.ArrangeSearchSettingsFacets(commonFacet.Name, commonFacet.DisplayName);
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+            productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
             productSearchOptions.Facets = this.ArrangeSearchOptionsFacets(commonFacet.Name, commonFacet.Values);
 
             this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(Arg.Any<IEnumerable<Facet>>())
@@ -241,6 +256,17 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
             Assert.True(searchOptions.Facets.FirstOrDefault().DisplayName == commonFacet.DisplayName);
             Assert.NotNull(searchOptions.Facets.FirstOrDefault(facet => facet.Name == commonFacet.Name).Values);
             Assert.NotEmpty(searchOptions.Facets.FirstOrDefault(facet => facet.Name == commonFacet.Name).Values);
+        }
+
+        [Fact]
+        public void Build_IfSortFieldIsNonExistent_ShouldThrowException()
+        {
+            // arrange
+            var searchSettings = this.fixture.Create<Connect.SearchSettings>();
+            var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
+
+            // act & assert
+            Assert.Throws<Exception>(() => this.builder.Build(searchSettings, productSearchOptions));
         }
 
         private IEnumerable<Connect.Facet> ArrangeSearchSettingsFacets(

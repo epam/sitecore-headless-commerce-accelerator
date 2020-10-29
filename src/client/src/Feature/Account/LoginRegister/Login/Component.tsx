@@ -35,7 +35,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     this.props.ResetState();
   }
   public validateUser(form: LogInValues) {
-    if (form.email && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email))) {
+    if (form.email && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email)) {
       this.setState({ isUsernameValid: true });
       return true;
     } else {
@@ -76,27 +76,20 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
       <Form className="login">
         <div className="login_form-group">
           <div className="form-field">
-            <Input
-              className="login_input"
-              name="email"
-              type="text"
-              placeholder="Email"
-              disabled={isLoading}
-            />
-            {!isUsernameValid && (
-              <div className="login_invalid-msg">
-                Enter valid email
-              </div>
-            )}
+            <Input className="login_input" name="email" type="text" placeholder="Email" disabled={isLoading} />
+            {!isUsernameValid && <div className="login_invalid-msg">Enter valid email</div>}
           </div>
           <div className="form-field">
-            <Input className="form-field-password" name="password" type="password" placeholder="Password" disabled={isLoading} />
+            <Input
+              className="form-field-password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              disabled={isLoading}
+            />
             {(isError || isPasswordEmpty) && (
               <div className="login_invalid-msg">
-                {isError
-                  ? 'The email or password you entered is incorrect'
-                  : (isPasswordEmpty) && 'Enter valid password'
-                }
+                {isError ? 'The email or password you entered is incorrect' : isPasswordEmpty && 'Enter valid password'}
               </div>
             )}
           </div>

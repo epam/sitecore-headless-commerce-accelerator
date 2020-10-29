@@ -57,11 +57,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             )}
             {!isLastPage && !isLoading && (
               <div className="order-history-loadMore">
-                <a
-                  className="btn-load-more"
-                  href="#"
-                  onClick={(e) => this.loadMoreHandler(e)}
-                >
+                <a className="btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
                   View more orders
                 </a>
               </div>

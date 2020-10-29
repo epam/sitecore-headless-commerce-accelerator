@@ -51,6 +51,9 @@ namespace HCA.Foundation.Connect.Providers.Search
                 ? this.catalogContext.CatalogItem
                 : Context.Database.GetItem(new ID(categoryId));
 
+            if (catalog == null)
+                throw new Exception("Category not found");
+
             var searchPageSettings = new SearchSettings
             {
                 SortFieldNames = this.commerceSearchManager.GetSortFieldsForItem(catalog)?.Select(field => field.Name),

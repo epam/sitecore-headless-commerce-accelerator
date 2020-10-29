@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Builders.Search
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -42,6 +43,10 @@ namespace HCA.Foundation.Commerce.Builders.Search
         {
             Assert.ArgumentNotNull(searchSettings, nameof(searchSettings));
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
+
+            if (!string.IsNullOrWhiteSpace(searchOptions.SortField)
+                && !searchSettings.SortFieldNames.Contains(searchOptions.SortField))
+                throw new Exception("Sort field not found");
 
             return new Connect.SearchOptions
             {

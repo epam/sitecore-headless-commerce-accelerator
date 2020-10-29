@@ -20,23 +20,25 @@ $login-register-form-indention: 15px;
   &_form {
     background: transparent none repeat scroll 0 0;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    padding: 60px 80px 10px 80px;
+    padding: 80px 50px;
     text-align: left;
     .form-field {
-      padding-bottom: 20px;
+      margin-bottom: 30px;
       label {
         margin-bottom: 5px;
       }
       input {
+        box-shadow: none !important;
         font-family: $poppins;
         background-color: transparent;
-        border: 1px solid #ebebeb;
+        border: 1px solid #ebebeb !important;
         color: $login-default-font-color;
         font-size: 14px;
         height: 45px;
         padding: 0 15px;
         box-shadow: none;
-        margin-bottom: 30px;
+        margin-bottom: 0px;
+
       }
       .form-field-async-validation {
         position: absolute;
@@ -44,7 +46,8 @@ $login-register-form-indention: 15px;
         padding: 5px;
       }
       .form-field-error-message {
-        color: $focus-color;
+        font-size: 10px;
+        color: $register-failure-font-color;
       }
     }
     button{
@@ -59,13 +62,14 @@ $login-register-form-indention: 15px;
       text-transform: uppercase;
       -webkit-transition: all .3s ease 0s;
       transition: all .3s ease 0s;
+      font-family: $poppins;
       &:hover{
         background-color: $theme-color;
         color: $login-hover-font-color;
       }
       &[disabled]:hover {
-        background-color: $login-button-default-color;
-        color: $second-color-light;
+        background-color: $theme-color;
+        color: $login-hover-font-color;
       }
     }
   }

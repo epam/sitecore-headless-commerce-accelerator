@@ -470,6 +470,7 @@
             }
         }
         &-price {
+            display: flex;
             margin: 15px 0px 26px 0px;
         }
     
@@ -595,7 +596,6 @@
         font-weight: 400;
         font-family: $poppins;
         color: $product-price-value;
-        margin: 15px 0 26px;
 
         &-adjusted {
             font-size: 18px;

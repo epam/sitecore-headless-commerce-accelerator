@@ -18,7 +18,7 @@
 
 .filters {
   font-family: $poppins;
-  margin: 20px 30px 20px 0px;
+  margin: 0 30px 20px 0px;
   @media (max-width: $screen-sm-max) {
     /* Disable this info according to updated design for Product Search Resulp page */
     /*background: #c2c6c9;*/
@@ -163,7 +163,6 @@
 
 .product-filter {
   position: relative;
-  padding: 20px 0;
   &-first & {
     border-top: 1px solid $border-color;
   }

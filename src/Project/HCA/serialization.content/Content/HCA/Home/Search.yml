@@ -21,7 +21,9 @@ SharedFields:
         <r
           uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
           p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:ds=""
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class=hca%20product-list-container&amp;First Column Class&amp;Second Column Class&amp;Third Column Class"
           s:ph="main-content" />
         <r
           uid="{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}"

@@ -71,7 +71,18 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     if (this.state.cartVisible) {
       const cartClassSelector = '.shopping-cart-view';
       const cartHeaderClass = '.pe-7s-shopbag';
-      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector) && !targetElement.closest(cartHeaderClass) && !targetElement.matches(cartHeaderClass)) {
+      const navigateButtonsViewClass = '.shopping-cart-view-populated-buttons-view';
+      const navigateButtonsCheckoutClass = '.shopping-cart-view-populated-buttons-checkout';
+      if (targetElement.closest(navigateButtonsViewClass) && targetElement.matches(navigateButtonsViewClass)
+          || targetElement.closest(navigateButtonsCheckoutClass) && targetElement.matches(navigateButtonsCheckoutClass)
+      ) {
+        this.setState({
+          cartVisible: false,
+        });
+      }
+      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)
+          && !targetElement.closest(cartHeaderClass) && !targetElement.matches(cartHeaderClass)
+      ) {
         this.setState({
           cartVisible: false,
         });

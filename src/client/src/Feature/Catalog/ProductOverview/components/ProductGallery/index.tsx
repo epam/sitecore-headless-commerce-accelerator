@@ -31,8 +31,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     this.imageSwiperRef = React.createRef();
     this.carouselSwiperRef = React.createRef();
 
-    this.state = {
-    };
+    this.state = {};
 
     this.goPrev = this.goPrev.bind(this);
     this.goNext = this.goNext.bind(this);
@@ -40,27 +39,23 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
   }
   public goPrev() {
     const { images } = this.props;
-    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
     if (thumbnailSwiper) {
       const currentIndex = thumbnailSwiper.activeIndex;
-      (currentIndex === 1)
-      ? thumbnailSwiper.slideTo(images.length)
-      : thumbnailSwiper.slideTo(currentIndex - 1);
+      currentIndex === 1 ? thumbnailSwiper.slideTo(images.length) : thumbnailSwiper.slideTo(currentIndex - 1);
     }
   }
   public goNext() {
     const { images } = this.props;
-    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
     if (thumbnailSwiper) {
       const currentIndex = thumbnailSwiper.activeIndex;
-      (currentIndex === images.length)
-      ? thumbnailSwiper.slideTo(1)
-      : thumbnailSwiper.slideTo(currentIndex + 1);
+      currentIndex === images.length ? thumbnailSwiper.slideTo(1) : thumbnailSwiper.slideTo(currentIndex + 1);
     }
   }
 
   public changeIndex(e: React.MouseEvent<HTMLDivElement>) {
-    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
+    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
     const index = parseInt(e.currentTarget.getAttribute('data-swiper-slide-index'), 10);
     if (thumbnailSwiper) {
       thumbnailSwiper.slideToLoop(index);
@@ -68,10 +63,9 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
   }
 
   public componentDidUpdate() {
-    const gallerySwiper = this.imageSwiperRef.current.swiper;
-    const thumbnailSwiper = this.carouselSwiperRef.current.swiper;
-    if (gallerySwiper && thumbnailSwiper
-    ) {
+    const gallerySwiper = this.imageSwiperRef.current && this.imageSwiperRef.current.swiper;
+    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
+    if (gallerySwiper && thumbnailSwiper) {
       gallerySwiper.controller.control = thumbnailSwiper;
       thumbnailSwiper.controller.control = gallerySwiper;
       thumbnailSwiper.height = 140;
@@ -89,7 +83,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     const gallerySwiperParams = {
       freeMode: false,
       loop: true,
-      loopedSlides: (images && (images.length % 4) === 0 ? 0 : images.length * 3),
+      loopedSlides: images && images.length % 4 === 0 ? 0 : images.length * 3,
       slidesPerView: 1,
       spaceBetween: 10,
     };
@@ -97,8 +91,8 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     const thumbnailSwiperParams = {
       freeMode: false,
       loop: true,
-      loopedSlides: (images && (images.length % 4) === 0 ? 0 : images.length * 3),
-      slidesPerView: (images && images.length < 4 ? images.length : 4),
+      loopedSlides: images && images.length % 4 === 0 ? 0 : images.length * 3,
+      slidesPerView: images && images.length < 4 ? images.length : 4,
       spaceBetween: 10,
       touchRatio: 0.2,
     };
@@ -124,29 +118,25 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
             </Swiper>
           </LightgalleryProvider>
         </div>
-        <div className="product-gallery-carousel">
-          <Swiper {...thumbnailSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
-            {images &&
-              images.map((src, index) => (
+        {images && images.length > 1 && (
+          <div className="product-gallery-carousel">
+            <Swiper {...thumbnailSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
+              {images.map((src, index) => (
                 <div key={index} onClick={(e) => this.changeIndex(e)}>
                   <div className="single-image">
-                    <img
-                      src={src}
-                      className="img-fluid"
-                      alt=""
-                    />
+                    <img src={src} className="img-fluid" alt="" />
                   </div>
                 </div>
-              )
-            )}
-          </Swiper>
-          <button className="product-gallery-carousel-prev" onClick={this.goPrev}>
-            <i className="pe-7s-angle-left" />
-          </button>
-          <button className="product-gallery-carousel-next" onClick={this.goNext}>
-            <i className="pe-7s-angle-right" />
-          </button>
-        </div>
+              ))}
+            </Swiper>
+            <button className="product-gallery-carousel-prev" onClick={this.goPrev}>
+              <i className="pe-7s-angle-left" />
+            </button>
+            <button className="product-gallery-carousel-next" onClick={this.goNext}>
+              <i className="pe-7s-angle-right" />
+            </button>
+          </div>
+        )}
       </div>
     );
   }

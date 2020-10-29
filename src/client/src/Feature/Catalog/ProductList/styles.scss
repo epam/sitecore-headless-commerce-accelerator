@@ -16,9 +16,13 @@
 @import 'Foundation/UI/common/scss/variables.scss';
 @import 'Foundation/UI/common/scss/mixins';
 
+.product-list-container {
+  padding-top: 95px;
+  padding-bottom: 100px;
+}
+
 .listing-product-grid {
   position: relative;
-  margin-top: 95px;
   margin-bottom: 100px;
   > ul {
     // padding: 20px 0;

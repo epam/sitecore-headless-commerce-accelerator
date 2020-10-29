@@ -14,21 +14,21 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
+          uid="{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}"
+          p:before="*"
+          s:id="{82234EFA-DF55-4255-AEA5-FADDD6A59B7D}"
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0/w-col-1-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
+        <r
           uid="{57257C7A-D47B-4800-9E33-F5C2D599683C}"
           p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
           s:ph="main-content" />
         <r
-          uid="{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}"
-          p:after="r[@uid='{57257C7A-D47B-4800-9E33-F5C2D599683C}']"
-          s:id="{82234EFA-DF55-4255-AEA5-FADDD6A59B7D}"
-          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
-        <r
           uid="{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}"
-          p:after="r[@uid='{E79A1B17-B7C0-4CDF-BF9C-508BC1AAEDC4}']"
+          p:after="r[@uid='{57257C7A-D47B-4800-9E33-F5C2D599683C}']"
           s:ds=""
           s:id="{B2EDE051-9A8B-4502-9D6B-39759BCFF123}"
-          s:par="Wrapper Class=wooli&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10"
+          s:par="Wrapper Class=wooli&amp;First Column Class=col-md-3&amp;Second Column Class=col-md-9&amp;Third Column Class"
           s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0" />
         <r
           uid="{F4AFBAD1-F563-4B30-89F9-64800D674A73}"

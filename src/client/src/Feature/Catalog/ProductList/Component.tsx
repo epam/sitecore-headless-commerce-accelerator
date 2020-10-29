@@ -44,14 +44,15 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
       <section className="listing-product-grid">
-      {items.length !== 0 && !isLoading && (
-        <ProductListHeader
-          currentPageNumber={currentPageNumber}
-          search={search}
-          isLoading={isLoading}
-          DiscardFacet={DiscardFacet}
-          itemsCount={totalItemCount}
-        />)}
+        {items.length !== 0 && !isLoading && (
+          <ProductListHeader
+            currentPageNumber={currentPageNumber}
+            search={search}
+            isLoading={isLoading}
+            DiscardFacet={DiscardFacet}
+            itemsCount={totalItemCount}
+          />
+        )}
         <ul>
           {isLoading && (
             <div className="loading-overlay">

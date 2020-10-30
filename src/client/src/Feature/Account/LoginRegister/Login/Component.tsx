@@ -66,7 +66,11 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     const { isUsernameValid, isPasswordEmpty } = this.state;
 
     const isLoading = authenticationProcess.status === LoadingStatus.Loading;
-    const isError = authenticationProcess.status === LoadingStatus.Failure;
+    let isError = false;
+    if (authenticationProcess.status === LoadingStatus.Failure) {
+      isError = true;
+      authenticationProcess.status = LoadingStatus.Loaded;
+    }
 
     if (authenticationProcess.status === LoadingStatus.Loaded && onLoaded) {
       onLoaded();
@@ -98,6 +102,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
           <Submit
             className="btn-log-in"
             onSubmitHandler={(form: LogInValues) => {
+              isError = false;
               this.validateForm(form);
             }}
             disabled={false}

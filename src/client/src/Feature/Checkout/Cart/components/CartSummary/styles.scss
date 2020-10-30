@@ -21,7 +21,6 @@
   border: 1px solid $summary-table-border-color;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
 
   &-header {
     display: flex;
@@ -114,20 +113,20 @@
         justify-content: center;
         align-self: center;
         button {
+          width: 30px;
           border: none;
           background: none;
+          color: $summary-table-action;
+          font-size: 17px;
+          font-weight: 900;
           i {
-            color: $summary-table-action;
             &.fa-heart {
-              font-size: 16px;
-            }
-            &.fa-times {
-              font-size: 18px;
+              font-size: 15px;
             }
           }
           &:hover {
-            i {
-              color: $summary-table-action-hover;
+            color: $summary-table-action-hover;
+            i {             
               cursor: pointer;
             }
           }
@@ -180,7 +179,7 @@
           }
           &-productTitle:hover {
             cursor: pointer;
-            text-decoration: underline;
+            text-decoration: none;
             color: $theme-color;
           }
         }

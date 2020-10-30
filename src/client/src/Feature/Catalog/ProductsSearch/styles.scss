@@ -16,7 +16,7 @@
 
 .products-search {
   position: relative;
-  padding: 40px 0 20px;
+  padding: 0 30px 50px 0;
   text-transform: uppercase;
   margin: 0;
   @media (max-width: $screen-sm-max) {
@@ -40,15 +40,19 @@
     }
   }
   form {
+    position: relative;
     display: flex;
     margin-bottom: 0;
   }
   input[type=search] {
-    height: 40px;
-    font-size: 18px;
-    padding-left: 36px;
     margin: 0;
     -webkit-appearance: none;
+    font-size: 14px;
+    height: 43px;
+    padding: 2px 55px 2px 36px;
+    color: #666;
+    border: 1px solid #e6e6e6;
+    background: transparent none repeat scroll 0 0;
   }
 
   input[type=search]::-webkit-search-cancel-button {
@@ -56,9 +60,25 @@
   }
 
   button {
+    position: absolute;
+    top: 50%;
+    right: 0;
     height: 40px;
     width: 40px;
     margin: 0;
+    padding: 0 15px;
+    cursor: pointer;
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #666;
+    border: #a1a5aa;
+    border-left: 1px solid #a1a5aa61;
+    -webkit-border-image: none;
+    border-image: none;
+    background: transparent none repeat scroll 0 0;
   }
 
   .resultLabels {

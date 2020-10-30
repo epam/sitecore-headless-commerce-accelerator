@@ -114,7 +114,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         <i className="fa fa-heart fa-lg" />
                       </button>
                       <button>
-                        <i className="fa fa-times fa-lg" onClick={(e) => RemoveCartLine(cartLine)} />
+                        <i className="fa fa-times" onClick={(e) => RemoveCartLine(cartLine)} />
                       </button>
                     </div>
                   </div>

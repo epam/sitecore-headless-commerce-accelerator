@@ -45,36 +45,34 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
     const { loading, accountValidation } = this.props;
-    const { isConfirmPasswordEmpty, isEmailValid, isFirstNameEmpty, isLastNameEmpty, isPasswordEmpty, isPasswordsValid } = this.state;
+    const {
+      isConfirmPasswordEmpty,
+      isEmailValid,
+      isFirstNameEmpty,
+      isLastNameEmpty,
+      isPasswordEmpty,
+      isPasswordsValid,
+    } = this.state;
     return (
       <div className="register_form">
         <Form>
           <div className="form-field">
             <Input type="text" name={FORM_FIELDS.FIRST_NAME} placeholder="First Name" />
-            {isFirstNameEmpty && (
-              <div className="form-field-error-message">First Name field is required!</div>
-            )}
+            {isFirstNameEmpty && <div className="form-field-error-message">First Name field is required!</div>}
           </div>
           <div className="form-field">
             <Input type="text" name={FORM_FIELDS.LAST_NAME} placeholder="Last Name" />
-            {isLastNameEmpty && (
-              <div className="form-field-error-message">Last Name field is required!</div>
-            )}
+            {isLastNameEmpty && <div className="form-field-error-message">Last Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input
-              type="email"
-              name={FORM_FIELDS.EMAIL}
-              placeholder="Email"
-            />
+            <Input type="email" name={FORM_FIELDS.EMAIL} placeholder="Email" />
             {(!isEmailValid || accountValidation.inUse || accountValidation.invalid) && (
               <div className="form-field-error-message">
                 {!isEmailValid
                   ? 'Email field is required!'
                   : accountValidation.inUse
-                    ? 'Email is already in use!'
-                    : 'Email is invalid!'
-                }
+                  ? 'Email is already in use!'
+                  : 'Email is invalid!'}
               </div>
             )}
             {/* {accountValidation.status === LoadingStatus.Loaded
@@ -90,28 +88,14 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
             ))} */}
           </div>
           <div className="form-field">
-            <Input
-              type="password"
-              name={FORM_FIELDS.PASSWORD}
-              placeholder="Password"
-            />
-            {isPasswordEmpty && (
-              <div className="form-field-error-message">Password field is required!</div>
-            )}
+            <Input type="password" name={FORM_FIELDS.PASSWORD} placeholder="Password" />
+            {isPasswordEmpty && <div className="form-field-error-message">Password field is required!</div>}
           </div>
           <div className="form-field">
-            <Input
-              type="password"
-              name={FORM_FIELDS.CONFIRM_PASSWORD}
-              placeholder="Confirm Password"
-            />
+            <Input type="password" name={FORM_FIELDS.CONFIRM_PASSWORD} placeholder="Confirm Password" />
             {(isConfirmPasswordEmpty || !isPasswordsValid) && (
               <div className="form-field-error-message">
-                {
-                  isConfirmPasswordEmpty
-                  ? 'Confirm Password field is required!'
-                  : 'Passwords do not match!'
-                }
+                {isConfirmPasswordEmpty ? 'Confirm Password field is required!' : 'Passwords do not match!'}
               </div>
             )}
           </div>
@@ -142,21 +126,22 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       isPasswordsMatch = this.passwordValidator(formValues);
     }
 
-    if (isFirstNameValid
-      && isLastNameValid
-      && isEmailValid
-      && isPasswordsMatch
-      && (accountValidation.status === LoadingStatus.Loaded
-        && accountValidation.inUse === false
-        && accountValidation.invalid === false)
-      ) {
-        const createAccountDto = {
-          email: formValues[FORM_FIELDS.EMAIL] as string,
-          firstName: formValues[FORM_FIELDS.FIRST_NAME] as string,
-          lastName: formValues[FORM_FIELDS.LAST_NAME] as string,
-          password: formValues[FORM_FIELDS.PASSWORD] as string,
-        };
-        CreateAccount(createAccountDto, returnUrl);
+    if (
+      isFirstNameValid &&
+      isLastNameValid &&
+      isEmailValid &&
+      isPasswordsMatch &&
+      accountValidation.status === LoadingStatus.Loaded &&
+      accountValidation.inUse === false &&
+      accountValidation.invalid === false
+    ) {
+      const createAccountDto = {
+        email: formValues[FORM_FIELDS.EMAIL] as string,
+        firstName: formValues[FORM_FIELDS.FIRST_NAME] as string,
+        lastName: formValues[FORM_FIELDS.LAST_NAME] as string,
+        password: formValues[FORM_FIELDS.PASSWORD] as string,
+      };
+      CreateAccount(createAccountDto, returnUrl);
     }
   }
 
@@ -195,7 +180,7 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
     const { AccountValidation } = this.props;
     const email = form[FORM_FIELDS.EMAIL] as string;
 
-    if (email && (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))) {
+    if (email && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
       AccountValidation(email);
       this.setState({ isEmailValid: true });
       return true;

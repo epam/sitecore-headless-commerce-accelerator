@@ -69,6 +69,13 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               <p>Enter your destination to get a shipping estimate.</p>
             </div>
             <div className="countrySelectWrapper">
+              <label>* Country</label>
+                <select className="">
+                  <option>Canada</option>
+                  <option>United States</option>
+                </select>
+            </div>
+            <div className="countrySelectWrapper">
               <label>* Region / State</label>
               <select className="">
                 <option>Canada</option>

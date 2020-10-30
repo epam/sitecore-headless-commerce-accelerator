@@ -19,6 +19,9 @@
 .product-list-container {
   padding-top: 95px;
   padding-bottom: 100px;
+  @media (max-width: $screen-sm-max) {
+    padding: 20px 0;
+  }
 }
 
 .listing-product-grid {

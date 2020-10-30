@@ -95,7 +95,8 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     const { ChangeRoute, history } = this.props;
     const params = new URLSearchParams(history.location.search);
     params.delete('q');
-    const newUrl = `${history.location.pathname}?${params}`;
+    const encodeParams = encodeURIComponent(params.toString());
+    const newUrl = `${history.location.pathname}?${encodeParams}`;
     ChangeRoute(newUrl);
   }
 

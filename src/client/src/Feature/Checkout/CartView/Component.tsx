@@ -74,8 +74,12 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </h4>
         </div>
         <div className="shopping-cart-view-populated-buttons">
-          <NavigationLink to="/cart" className="shopping-cart-view-populated-buttons-view">View Cart</NavigationLink>
-          <NavigationLink to="/checkout/shipping" className="shopping-cart-view-populated-buttons-checkout">Checkout</NavigationLink>
+          <NavigationLink to="/cart" className="shopping-cart-view-populated-buttons-view">
+            View Cart
+          </NavigationLink>
+          <NavigationLink to="/checkout/shipping" className="shopping-cart-view-populated-buttons-checkout">
+            Checkout
+          </NavigationLink>
         </div>
       </div>
     ) : (

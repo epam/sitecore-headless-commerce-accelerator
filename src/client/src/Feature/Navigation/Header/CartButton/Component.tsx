@@ -60,10 +60,15 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
           </a>
         </Mobile>
         <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
-          <CartView />
+          <CartView ToggleClick={this.toggleClick}/>
         </div>
       </div>
     );
+  }
+  public toggleClick = () => {
+    this.setState({
+      cartVisible: false,
+    });
   }
 
   private handleClickOutside = (e: MouseEvent) => {
@@ -71,21 +76,8 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     if (this.state.cartVisible) {
       const cartClassSelector = '.shopping-cart-view';
       const cartHeaderClass = '.pe-7s-shopbag';
-      const navigateButtonsViewClass = '.shopping-cart-view-populated-buttons-view';
-      const navigateButtonsCheckoutClass = '.shopping-cart-view-populated-buttons-checkout';
-      if (
-        (targetElement.closest(navigateButtonsViewClass) && targetElement.matches(navigateButtonsViewClass)) ||
-        (targetElement.closest(navigateButtonsCheckoutClass) && targetElement.matches(navigateButtonsCheckoutClass))
-      ) {
-        this.setState({
-          cartVisible: false,
-        });
-      }
-      if (
-        !targetElement.closest(cartClassSelector) &&
-        !targetElement.matches(cartClassSelector) &&
-        !targetElement.closest(cartHeaderClass) &&
-        !targetElement.matches(cartHeaderClass)
+      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)
+          && !targetElement.closest(cartHeaderClass) && !targetElement.matches(cartHeaderClass)
       ) {
         this.setState({
           cartVisible: false,

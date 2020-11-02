@@ -98,7 +98,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                 <div className="product-img-badges">
                   <span className="pink">
                     {cartLine.price.currencySymbol}
-                    {cartLine.price.total}
+                    {cartLine.product.listPrice}
                   </span>
                   <span className="purple">
                     <i className="fa fa-times" />
@@ -123,12 +123,12 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                     <span className="price_currency">{cartLine.price.currencySymbol}</span>
                     <span className="price_amount">{cartLine.price.total}</span>
                   </div>
-                  {cartLine.price.total < cartLine.price.subtotal && (
+                  {cartLine.product.adjustedPrice < cartLine.product.listPrice && (
                     <div>
-                      <span>&nbsp;-&nbsp; </span>
+                      <span>&nbsp;-&nbsp;</span>
                       <span className="price_original">
                         <span className="price_currency">{cartLine.price.currencySymbol}</span>
-                        <span className="price_amount">{cartLine.price.subtotal}</span>
+                        <span className="price_amount">{cartLine.product.listPrice * cartLine.quantity}</span>
                       </span>
                     </div>
                   )}

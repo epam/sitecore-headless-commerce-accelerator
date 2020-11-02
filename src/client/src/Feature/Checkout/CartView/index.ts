@@ -22,7 +22,7 @@ import { renderingWithContext } from 'Foundation/ReactJss';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
 import CartComponent from './Component';
-import { AppState, CartDispatchProps, CartOwnProps, CartStateProps } from './models';
+import { AppState, CartDispatchProps, CartFunctionProps, CartOwnProps, CartProps, CartStateProps } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const data = ShoppingCart.shoppingCartData(state);
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch: any) =>
 
 const connectedToStore = connect<CartStateProps, CartDispatchProps, CartOwnProps>(mapStateToProps, mapDispatchToProps);
 
-export const CartView = compose(connectedToStore, renderingWithContext)(CartComponent);
+export const CartView = compose<CartProps, CartFunctionProps>(connectedToStore, renderingWithContext)(CartComponent);

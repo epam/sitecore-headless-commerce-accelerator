@@ -23,6 +23,13 @@
     text-transform: none;
     padding: 20px 0 0;
   }
+  .search-heading {
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
   .search-wrap {
     position: relative;
     color: #666;
@@ -37,7 +44,7 @@
       left: 15px;
       top: 50%;
       margin-top: -10px;
-    }
+    }    
   }
   form {
     position: relative;
@@ -53,6 +60,11 @@
     color: #666;
     border: 1px solid #e6e6e6;
     background: transparent none repeat scroll 0 0;
+    box-shadow: none;
+    &:focus {
+      border: 1px solid #e6e6e6;
+      box-shadow: none;
+    }
   }
 
   input[type=search]::-webkit-search-cancel-button {

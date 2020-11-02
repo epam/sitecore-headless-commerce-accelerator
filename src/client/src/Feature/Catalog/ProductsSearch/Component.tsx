@@ -52,14 +52,15 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
 
     return (
       <section className="products-search">
-        <div className="search-wrap">
-          <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            <input onChange={(e) => this.handleKeywordChange(e)} type="search" value={keyword} disabled={isLoading} />
-            <button type="button" onClick={(e) => this.handleFormClear(e)}>
-              <i className="fa fa-times" />
-            </button>
-          </form>
-        </div>
+      <h3 className="search-heading">Search</h3>
+      <div className="search-wrap">
+        <form onSubmit={(e) => this.handleFormSubmit(e)}>
+          <input onChange={(e) => this.handleKeywordChange(e)} type="search" value={keyword} disabled={isLoading} />
+          <button type="button" onClick={(e) => this.handleFormClear(e)}>
+            <i className="fa fa-times" />
+          </button>
+        </form>
+      </div>
       </section>
     );
   }

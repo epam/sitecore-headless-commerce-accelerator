@@ -70,14 +70,14 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </div>
             <div className="countrySelectWrapper">
               <label>* Country</label>
-                <select className="">
+                <select>
                   <option>Canada</option>
                   <option>United States</option>
                 </select>
             </div>
             <div className="countrySelectWrapper">
               <label>* Region / State</label>
-              <select className="">
+              <select>
                 <option>Canada</option>
                 <option>United States</option>
               </select>

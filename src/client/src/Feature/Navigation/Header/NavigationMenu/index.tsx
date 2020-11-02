@@ -96,7 +96,7 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                   </li>
                   <li className="navigation_mobile_item">
                     <div className="navigation_link">
-                      <a className="navigation_link_first-level-title" href={`/shop2/${value}`}>
+                      <a className="navigation_link_first-level-title" href={`/shop/${value}`}>
                         {value}
                       </a>
                       <i className="fa fa-plus" onClick={(e) => this.dropMenuMobile(e, 'drop-open')} />
@@ -152,7 +152,7 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
             })}
           <div>
             <li className="navigation_item navigation_mobile_item-contact">
-              <NavigationLink className="navigation_link" to="/home2">
+              <NavigationLink className="navigation_link" to="/">
                 Contact Us
               </NavigationLink>
             </li>

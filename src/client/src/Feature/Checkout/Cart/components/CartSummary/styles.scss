@@ -93,6 +93,14 @@
         justify-content: space-between;
       }
 
+      .product-subtotal {
+        padding-right: 0;
+      }
+
+      .product-price {
+        padding-left: 0;
+      }
+
       .amount {
         display: flex;
         justify-content: center;

@@ -19,6 +19,9 @@ import { ProductColorsContext } from 'Foundation/Commerce';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
 export interface CartOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, CartContext> {}
+export interface CartFunctionProps {
+  ToggleClick: () => void;
+}
 
 export interface CartStateProps {
   isLoading: boolean;
@@ -30,10 +33,7 @@ export interface CartDispatchProps {
   RemoveCartLine: (model: ShoppingCart.ShoppingCartLine) => void;
 }
 
-export interface CartProps extends CartStateProps, CartDispatchProps, CartOwnProps {}
-
+export interface CartProps extends CartFunctionProps, CartStateProps, CartDispatchProps, CartOwnProps {}
 export interface CartState extends JSS.SafePureComponentState {}
-
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}
-
 export interface CartContext extends ProductColorsContext, JSS.ImageFallbackContext {}

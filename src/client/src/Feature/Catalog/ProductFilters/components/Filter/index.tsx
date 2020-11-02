@@ -63,7 +63,7 @@ export class Filter extends React.Component<FilterProps, FilterState> {
                           />
                           <span className="checkbox" title={foundValue.name} />
                           <label className="name" htmlFor={id} title={foundValue.name}>{`${foundValue.name}`}</label>
-                          <span className="total">{`(${foundValue.aggregateCount})`}</span>
+                          <span className="total">{foundValue.aggregateCount}</span>
                         </label>
                       </li>
                     );

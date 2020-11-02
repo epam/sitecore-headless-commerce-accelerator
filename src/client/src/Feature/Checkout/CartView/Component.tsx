@@ -25,7 +25,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     this.props.LoadCart();
   }
   public safeRender() {
-    const { shoppingCartData, RemoveCartLine } = this.props;
+    const { shoppingCartData, RemoveCartLine, ToggleClick } = this.props;
     let cartTotalPrice = 0;
     return shoppingCartData && shoppingCartData.cartLines.length > 0 ? (
       <div className="shopping-cart-view-populated">
@@ -74,12 +74,12 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </h4>
         </div>
         <div className="shopping-cart-view-populated-buttons">
-          <NavigationLink to="/cart" className="shopping-cart-view-populated-buttons-view">
+          <a className="shopping-cart-view-populated-buttons-view" href="/cart" onClick={ToggleClick}>
             View Cart
-          </NavigationLink>
-          <NavigationLink to="/checkout/shipping" className="shopping-cart-view-populated-buttons-checkout">
+          </a>
+          <a className="shopping-cart-view-populated-buttons-checkout" href="/checkout/shipping" onClick={ToggleClick}>
             Checkout
-          </NavigationLink>
+          </a>
         </div>
       </div>
     ) : (

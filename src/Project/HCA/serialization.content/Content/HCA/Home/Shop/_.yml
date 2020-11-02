@@ -4,6 +4,20 @@ Parent: "66fb80e3-b83a-4cec-b367-85dd3cc63ba4"
 Template: "0cbbb134-4025-4a51-9b46-1ab7021ccb0f"
 Path: /sitecore/content/HCA/Home/Shop/*
 DB: master
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{AFC091B2-7B99-45B6-8E30-0C96736C326C}"
+          s:par="Wrapper Class=hca%20product-list-container&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10&amp;Third Column Class" />
+      </d>
+    </r>
 Languages:
 - Language: en
   Versions:

@@ -73,10 +73,10 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
               return (
                 <div key={menuItemIndex}>
                   <li className="navigation_item">
-                    <a className="navigation_link" href={`/shop/${value}`}>
+                    <span className="navigation_link">
                       {value}
                       <i className="fa fa-angle-down" />
-                    </a>
+                    </span>
                     <ul className="navigation_submenu submenu">
                       <li className="submenu_column">
                         <NavigationLinks

@@ -39,7 +39,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
             return (
               <li className="shopping-cart-view-populated-single-item" key={key}>
                 <div className="shopping-cart-view-populated-single-item-img">
-                  <NavigationLink to={'/product2/' + single.variant.productId}>
+                  <NavigationLink to={'/product/' + single.variant.productId}>
                     <img alt="" src={single.variant.imageUrls[0]} className="img-fluid" />
                   </NavigationLink>
                 </div>

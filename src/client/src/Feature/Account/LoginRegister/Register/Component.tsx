@@ -65,7 +65,11 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
             {isLastNameEmpty && <div className="form-field-error-message">Last Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input type="email" name={FORM_FIELDS.EMAIL} placeholder="Email" />
+            <Input
+              type="email"
+              name={FORM_FIELDS.EMAIL}
+              placeholder="Email"
+            />
             {(!isEmailValid || accountValidation.inUse || accountValidation.invalid) && (
               <div className="form-field-error-message">
                 {!isEmailValid

@@ -19,6 +19,10 @@
   text-align: center;
   text-transform: uppercase;
 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
   .img-wrap {
     cursor: pointer;
     position: relative;
@@ -28,12 +32,11 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    min-height: 400px;
-    max-height: 400px;
     a { width: 100% }
     img {
       max-height: 100%;
       width: 100%;
+      vertical-align: middle;
     }
   }
   &:hover .product-action {
@@ -60,7 +63,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: none;
-    line-height: 30px;
+    line-height: 1;
     color: black;
     max-width: 200px;
     margin: auto;

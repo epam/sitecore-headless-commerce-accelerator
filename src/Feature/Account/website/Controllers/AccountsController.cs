@@ -24,6 +24,7 @@ namespace HCA.Feature.Account.Controllers
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Services.Account;
     using HCA.Foundation.Base.Extensions;
+    using HCA.Foundation.Base.Models.Result;
     using Mappers;
 
     using Models.Requests;
@@ -78,7 +79,12 @@ namespace HCA.Feature.Account.Controllers
                 {
                     this.trackingService.EnsureTracker();
                     return this.accountService.ChangePassword(request.Email, request.NewPassword, request.OldPassword);
-                });
+                },
+                result => result.Success
+                    ? this.JsonOk<VoidResult>()
+                    : result.Errors.Contains(Foundation.Commerce.Constants.ErrorMessages.IncorrectOldPassword)
+                        ? this.JsonError(result.Errors?.ToArray(), HttpStatusCode.BadRequest)
+                        : this.JsonError(result.Errors?.ToArray(), HttpStatusCode.InternalServerError));
         }
 
         [HttpPost]

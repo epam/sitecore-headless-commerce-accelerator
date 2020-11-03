@@ -70,7 +70,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                       type="text"
                       required={true}
                       disabled={isLoading}
-                      defaultValue={commerceUser.firstName}
+                      defaultValue={commerceUser && commerceUser.firstName ? commerceUser.firstName : ''}
                     />
                   </div>
                   <div className="col-lg-6 col-md-6">
@@ -80,7 +80,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                       type="text"
                       required={true}
                       disabled={isLoading}
-                      defaultValue={commerceUser.lastName}
+                      defaultValue={commerceUser && commerceUser.lastName ? commerceUser.lastName : ''}
                     />
                   </div>
                 </div>

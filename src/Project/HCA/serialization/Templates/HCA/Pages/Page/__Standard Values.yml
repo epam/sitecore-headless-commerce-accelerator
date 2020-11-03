@@ -81,7 +81,9 @@ SharedFields:
           ph="/main-content/footer-content-{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}-0/w-col-1-{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}-0/w-col-1-{70B51ADE-3E72-4024-A876-80545621B913}-0"
           uid="{53743A27-5901-41EA-91E6-D2169A193C70}" />
         <r
+          ds=""
           id="{0D3A817B-862A-42E8-A71E-55A3C7A53CAF}"
+          par="Wrapper Class=hca&amp;First Column Class=col-xs-12%20col-sm-4&amp;Second Column Class=col-xs-12%20col-sm-4&amp;Third Column Class=col-xs-12%20col-sm-4"
           ph="/main-content/footer-content-{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}-0/w-col-1-{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}-0"
           uid="{70B51ADE-3E72-4024-A876-80545621B913}" />
         <r

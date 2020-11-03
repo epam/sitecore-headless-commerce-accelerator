@@ -20,6 +20,9 @@ SharedFields:
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
           s:par="Wrapper Class=wooli&amp;First Column Class=col-md12&amp;Second Column Class"
           s:ph="/main-content" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
       </d>
     </r>
 Languages:

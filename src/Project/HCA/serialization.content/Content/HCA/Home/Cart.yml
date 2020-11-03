@@ -34,13 +34,10 @@ SharedFields:
           s:par=""
           s:ph="/main-content/w-col-wide-{5DE5AB44-1535-41DD-BC3A-DDFFDB9930E7}-0/order-actions-{F464F6A2-78EC-4C25-9811-88578EE2073D}-0" />
         <r
-          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          uid="{70B51ADE-3E72-4024-A876-80545621B913}"
           p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']" />
         <r
-          uid="{70B51ADE-3E72-4024-A876-80545621B913}"
-          p:after="r[@uid='{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}']" />
-        <r
-          uid="{8A675429-673A-4837-ACB9-D3E729B137DA}"
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
       </d>
     </r>

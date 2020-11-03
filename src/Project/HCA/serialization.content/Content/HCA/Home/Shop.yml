@@ -8,6 +8,19 @@ SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: Office/32x32/shopping_bag_full.png
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Type: layout
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
 Languages:
 - Language: en
   Versions:

@@ -12,6 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Buttons';
-export * from './Carousel';
-export * from './Loader';
+import * as React from 'react';
+
+import * as Jss from 'Foundation/ReactJss';
+
+import './styles';
+
+export class Loader extends Jss.SafePureComponent<{}, {}> {
+
+ public safeRender() {
+    return (
+        <div className="main-loader">
+            <div className="object object-one" />
+            <div className="object object-two" />
+            <div className="object object-three" />
+      </div>
+    );
+  }
+}

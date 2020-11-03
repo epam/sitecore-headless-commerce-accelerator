@@ -28,11 +28,11 @@
     margin-bottom: 25px;
     font-size: 16px;
     font-weight: 500;
-    color: #333;
+    color: $grey-dark;
   }
   .search-wrap {
     position: relative;
-    color: #666;
+    color: $brand-font-color;
     &:before {
       font: normal normal normal 14px/1 FontAwesome;
       font-size: 20px;
@@ -57,7 +57,7 @@
     font-size: 14px;
     height: 43px;
     padding: 2px 55px 2px 36px;
-    color: #666;
+    color: $brand-font-color;
     border: 1px solid #e6e6e6;
     background: transparent none repeat scroll 0 0;
     box-shadow: none;
@@ -85,12 +85,18 @@
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     font-size: 16px;
-    color: #666;
+    color: $brand-font-color;
     border: #a1a5aa;
     border-left: 1px solid #a1a5aa61;
     -webkit-border-image: none;
     border-image: none;
     background: transparent none repeat scroll 0 0;
+    .fa {
+      font-size:14px;
+      &:hover {
+        color: $main-color;
+      }
+    }
   }
 
   .resultLabels {

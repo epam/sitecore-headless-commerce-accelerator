@@ -57,39 +57,6 @@
       background-color: #A749FF;
     }
   }
-  &-loader {
-    display: flex;
-    align-content: space-between;
-    justify-content: center;
-    height: 15px;
-    border-radius: 0;
-    background: none;
-
-    & .object {
-      background: $main-color;
-      width: 15px;
-      height: auto;
-      margin: 0 5px;
-      border-radius: 50% 50% 50% 50%;
-
-      &.object-one {
-        animation: order_history_loader 1.5s infinite;
-      }
-      &.object-two {
-        animation: order_history_loader 1.5s infinite;
-        animation-delay: 0.25s;
-      }
-      &.object-three {
-        animation: order_history_loader 1.5s infinite;
-        animation-delay: 0.5s;
-      }
-      @keyframes order_history_loader {
-        75% {
-          transform: scale(0);
-        }
-      }
-    }
-  }
   &-loadMore {
     display: flex;
     justify-content: center;

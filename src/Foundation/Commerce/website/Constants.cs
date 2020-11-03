@@ -44,6 +44,8 @@ namespace HCA.Foundation.Commerce
         public static class ErrorMessages
         {
             public const string EmailInUse = "Email is in use.";
+
+            public const string IncorrectOldPassword = "Incorrect old password.";
         }
     }
 }

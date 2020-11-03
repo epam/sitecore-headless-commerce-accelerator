@@ -75,7 +75,7 @@ namespace HCA.Feature.Account.Tests.Controllers
             this.controller.ChangePassword(new ChangePasswordRequest());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>(), Arg.Any<Func<Result<VoidResult>, ActionResult>>());
         }
 
         [Fact]

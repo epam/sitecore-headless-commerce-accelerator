@@ -17,6 +17,8 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Loader } from 'Foundation/UI';
+
 import { ProductListHeader, ProductListItem } from './components';
 import { ProductListProps } from './models';
 import './styles.scss';
@@ -53,12 +55,10 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
             itemsCount={totalItemCount}
           />
         )}
-        <ul>
-          {isLoading && (
-            <div className="loading-overlay">
-              <div className="loading" />
-            </div>
+        {isLoading && (
+            <Loader/>
           )}
+        <ul>
           {items.length === 0 && !isLoading && (
             <div className="not-found">
               <h3>No results found</h3>

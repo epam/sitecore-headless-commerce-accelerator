@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { NavigationLink } from 'Foundation/UI';
+import { Loader, NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
@@ -69,11 +69,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             </div>
           )
         ) : (
-          <div className="order-history-loader">
-            <div className="object object-one" />
-            <div className="object object-two" />
-            <div className="object object-three" />
-          </div>
+          <Loader/>
         )}
       </div>
     );

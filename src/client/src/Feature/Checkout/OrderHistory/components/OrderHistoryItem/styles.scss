@@ -24,56 +24,58 @@
     &-header {
       margin-bottom: 20px;
       &_title {
-        .mr-160{
-          margin-right: 160px;
-        }
         &-wrapper{ 
           padding: 0px;
           font-family: $poppins;
-          position: relative;
-          margin-right: 75px;
-
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          margin-bottom: 60px;
-          &:before{
-            position: absolute;
-            z-index: 1;
-            top: 11px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            content: "";
-            -webkit-transition: all .4s ease 0s;
-            transition: all .4s ease 0s;
-            background-color: #d2d2d2;
+          align-items: center;
+          @media #{$xs-layout} {
+            display: block;
           }
+          margin-bottom: 60px;
           a, &-price, &-status {
             z-index: 2;
             background-color: $order-history-header-text-background;
             line-height: 1;
             margin: 0;
           }
+          &-status{
+            margin-right: 10px;
+          }
           a {
             font-size: 20px;
             font-weight: 600;
-            padding-right: 45px;
             letter-spacing: -.25px;
             color: #242424;
-            float: left;
+          }
+          &_order-item-text{
+            padding-right: 10px;
           }
           &-price, &-status {
             font-size: 14px;
             color: #242424;
             align-self: center;
-            padding-left: 45px;
+            padding-left: 42px;
+            @media #{$xs-layout} {
+              padding: 0 15px;
+            }
           }
           &-price {
-            margin-left: auto;
             color: $order-history-price;
           }
-          &-status {
+          &-space{
+            border-bottom: 1px solid #d2d2d2;
+            flex: 1;
+            margin: 0 8px;
+          }
+          &-detail{
+            display: flex;
+            @media #{$xs-layout} {
+              margin-top: 10px;
+              justify-content: space-between;
+            }
           }
         }
         
@@ -82,7 +84,7 @@
           background-color: $order-history-header-text-background;
           line-height: 1;
           margin: 0;
-          position: absolute;
+          margin-left: 5px;
           top: -5px;
           right: 0;
 
@@ -112,9 +114,6 @@
           font-size: 13px !important;
           font-family: $poppins !important;
         }
-        .r-82 {
-          right: 82px !important;
-        }
       }
       &_content {
         background-color: #FFFFFF;
@@ -136,6 +135,7 @@
             }
             &.status {
               background-color: $main-color;
+              margin-right: 3px;
             }
             padding: 10px;
             &:last-child {

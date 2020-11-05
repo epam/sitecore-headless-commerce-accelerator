@@ -48,7 +48,6 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
 
   public safeRender() {
     const { order, fallbackImageUrl } = this.props;
-    const maxDisplayableSlides = 4;
     const thumbnailSwiperParams = {
       freeMode: false,
       loop: false,
@@ -60,36 +59,36 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
     return (
       <div className="order-list-item-header col-md-12">
         <div className="order-list-item-header_title">
-          <div
-            className={`order-list-item-header_title-wrapper ${
-              order && order.cartLines.length > maxDisplayableSlides && 'mr-160'
-            }`}
-          >
-            <NavigationLink to={`/Checkout/Confirmation?trackingNumber=${order.trackingNumber}`}>
+          <div className="order-list-item-header_title-wrapper">
+            <NavigationLink
+              className="order-list-item-header_title-wrapper_order-item-text"
+              to={`/Checkout/Confirmation?trackingNumber=${order.trackingNumber}`}
+            >
               Order Item
             </NavigationLink>
-            <span className="order-list-item-header_title-wrapper-price">
-              {order.price.currencySymbol} {order.price.total}
-            </span>
-            <span className="order-list-item-header_title-wrapper-status">{order.status}</span>
+            <div className="order-list-item-header_title-wrapper-space" />
+            <div className="order-list-item-header_title-wrapper-detail">
+              <span className="order-list-item-header_title-wrapper-price">
+                {order.price.currencySymbol} {order.price.total}
+              </span>
+              <span className="order-list-item-header_title-wrapper-status">{order.status}</span>
+
+              <div className="order-list-item-header_title-wrapper-detail_control">
+                <button className="order-list-item-header_title-reorder">Reorder</button>
+
+                {order && order.cartLines.length > 4 && (
+                  <>
+                    <button className="order-list-item-header_title-carousel-prev" onClick={this.goPrev}>
+                      <i className="pe-7s-angle-left" />
+                    </button>
+                    <button className="order-list-item-header_title-carousel-next" onClick={this.goNext}>
+                      <i className="pe-7s-angle-right" />
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
-          <button
-            className={`order-list-item-header_title-reorder ${
-              order && order.cartLines.length > maxDisplayableSlides && 'r-82'
-            }`}
-          >
-            Reorder
-          </button>
-          {order && order.cartLines.length > 4 && (
-            <>
-              <button className="order-list-item-header_title-carousel-prev" onClick={this.goPrev}>
-                <i className="pe-7s-angle-left" />
-              </button>
-              <button className="order-list-item-header_title-carousel-next" onClick={this.goNext}>
-                <i className="pe-7s-angle-right" />
-              </button>
-            </>
-          )}
         </div>
         <div className="order-list-item_content">
           <Swiper {...thumbnailSwiperParams} ref={this.imageSwiperRef} activeSlideKey="0">

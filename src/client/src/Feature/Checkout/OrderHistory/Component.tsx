@@ -26,17 +26,20 @@ import './styles.scss';
 export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
   constructor(props: OrderHistoryProps) {
     super(props);
+    this.state = {
+      isFirstLoad: true,
+    };
   }
-
   public componentDidMount() {
     this.props.GetOrderHistory();
   }
 
   public safeRender() {
     const { orders, isLastPage, isLoading, sitecoreContext } = this.props;
+    const { isFirstLoad } = this.state;
     return (
       <div className="order-history">
-        {!isLoading ? (
+        {!isLoading || !isFirstLoad ? (
           orders && orders.length > 0 ? (
             <div>
               <div className="order-history-color-title">
@@ -54,6 +57,13 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
                   <a className="btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
                     View more orders
                   </a>
+                </div>
+              )}
+              {isLoading && !isFirstLoad && (
+                <div className="order-history-loader">
+                  <div className="object object-one" />
+                  <div className="object object-two" />
+                  <div className="object object-three" />
                 </div>
               )}
             </div>
@@ -77,6 +87,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
 
   private loadMoreHandler(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
+    this.setState({ isFirstLoad: false });
     this.props.LoadMore();
   }
 }

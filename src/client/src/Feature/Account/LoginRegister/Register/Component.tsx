@@ -119,7 +119,6 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
   private handleFormSubmit(formValues: FormValues) {
     const { CreateAccount, returnUrl } = this.props;
     const { accountValidation } = this.props;
-
     const isFirstNameValid = this.validateFirstName(formValues);
     const isLastNameValid = this.validateLastName(formValues);
     const isEmailValid = this.validateEmail(formValues);
@@ -136,7 +135,6 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       isEmailValid &&
       isPasswordsMatch &&
       accountValidation.status === LoadingStatus.Loaded &&
-      accountValidation.inUse === false &&
       accountValidation.invalid === false
     ) {
       const createAccountDto = {

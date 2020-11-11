@@ -59,13 +59,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
                   </a>
                 </div>
               )}
-              {isLoading && !isFirstLoad && (
-                <div className="order-history-loader">
-                  <div className="object object-one" />
-                  <div className="object object-two" />
-                  <div className="object object-three" />
-                </div>
-              )}
+              {isLoading && !isFirstLoad && <Loader />}
             </div>
           ) : (
             <div className="order-history_container-empty">
@@ -79,7 +73,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             </div>
           )
         ) : (
-          <Loader/>
+          <Loader />
         )}
       </div>
     );

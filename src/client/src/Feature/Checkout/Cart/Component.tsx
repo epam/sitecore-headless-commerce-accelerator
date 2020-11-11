@@ -15,7 +15,7 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI';
+import { Loader, NavigationLink } from 'Foundation/UI';
 
 import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';
@@ -28,7 +28,6 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   }
   public safeRender() {
     const { shoppingCartData, isLoading, sitecoreContext } = this.props;
-
     if (!isLoading && shoppingCartData.cartLines.length === 0) {
       return (
         <div className="empty-cart">
@@ -40,30 +39,29 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
       );
     }
-    return (
-      <>
-        <div className="row">
-          <div className="col-xs-12">
-            <header className="title-cart-item">Your cart items</header>
-          </div>
-        </div>
-        <div className="row">
-          <>
+    return isLoading ? (
+      <Loader />
+    ) : (
+      <div>
+        <div>
+          <div className="row">
             <div className="col-xs-12">
-              {isLoading ? (
-                <div className="cartSummary-loading-overlay">
-                  <div className="loading" />
-                </div>
-              ) : (
+              <header className="title-cart-item">Your cart items</header>
+            </div>
+          </div>
+          <div className="row">
+            <>
+              <div className="col-xs-12">
                 <CartSummary
                   cartLines={shoppingCartData.cartLines}
                   productColors={sitecoreContext.productColors}
                   fallbackImageUrl={sitecoreContext.fallbackImageUrl}
                 />
-              )}
-            </div>
-          </>
+              </div>
+            </>
+          </div>
         </div>
+
         <div className="action_container">
           <NavigationLink to={`/`}>
             <div className="link-button-style">Continue Shopping</div>
@@ -72,7 +70,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         <div className="row cart2-last-row">
           <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
         </div>
-      </>
+      </div>
     );
   }
 }

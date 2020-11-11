@@ -66,7 +66,7 @@ SharedFields:
         <r
           ds=""
           id="{B2EDE051-9A8B-4502-9D6B-39759BCFF123}"
-          par="Wrapper Class=hca&amp;First Column Class=col-md-2&amp;Second Column Class=col-md-10&amp;Third Column Class"
+          par="Wrapper Class=hca%20product-list-container&amp;First Column Class=col-md-3&amp;Second Column Class=col-md-9&amp;Third Column Class"
           ph="main-content"
           uid="{AFC091B2-7B99-45B6-8E30-0C96736C326C}" />
         <r

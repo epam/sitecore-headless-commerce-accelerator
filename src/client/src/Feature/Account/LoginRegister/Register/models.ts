@@ -41,6 +41,7 @@ export interface SignUpOwnState extends JSS.SafePureComponentState {
 
   isFirstNameEmpty: boolean;
   isLastNameEmpty: boolean;
+  isEmailEmpty: boolean;
   isEmailValid: boolean;
   isPasswordEmpty: boolean;
   isConfirmPasswordEmpty: boolean;

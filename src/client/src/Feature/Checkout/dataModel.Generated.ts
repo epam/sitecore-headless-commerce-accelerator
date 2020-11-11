@@ -39,8 +39,8 @@
   }
   export interface SetShippingOptionsRequest {
     orderShippingPreferenceType: string;
-    shippingAddresses: Address[];
-    shippingMethods: ShippingMethod[];
+    shippingAddress: Address;
+    shippingMethod: ShippingMethod;
   }
   export interface UpdateCartLineRequest extends CartLineRequest {
     quantity: number;

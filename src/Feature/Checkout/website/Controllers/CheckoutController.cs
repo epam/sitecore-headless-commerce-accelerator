@@ -14,13 +14,15 @@
 
 namespace HCA.Feature.Checkout.Controllers
 {
+    using System.Collections.Generic;
     using System.Web.Mvc;
 
     using Foundation.Base.Controllers;
     using Foundation.Commerce.Services.Billing;
     using Foundation.Commerce.Services.Delivery;
     using Foundation.Commerce.Services.Order;
-
+    using HCA.Foundation.Commerce.Models.Entities.Addresses;
+    using HCA.Foundation.Commerce.Models.Entities.Shipping;
     using Models.Requests;
 
     using Sitecore.Diagnostics;
@@ -83,8 +85,8 @@ namespace HCA.Feature.Checkout.Controllers
             return this.Execute(
                 () => this.deliveryService.SetShippingOptions(
                     request.OrderShippingPreferenceType,
-                    request.ShippingAddresses,
-                    request.ShippingMethods));
+                    new List<Address> { request.ShippingAddress },
+                    new List<ShippingMethod> { request.ShippingMethod }));
         }
 
         [HttpPost]

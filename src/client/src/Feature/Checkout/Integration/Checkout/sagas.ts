@@ -169,8 +169,8 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
 
   const setShippingOptionsRequest: SetShippingOptionsRequest = {
     orderShippingPreferenceType: '1',
-    shippingAddresses: [address],
-    shippingMethods: [shippingMethod],
+    shippingAddress: address,
+    shippingMethod
   };
 
   yield put(actions.SubmitStepRequest());

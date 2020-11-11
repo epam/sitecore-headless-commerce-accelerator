@@ -254,8 +254,8 @@ describe('submitFulfillmentStep', () => {
     test('should call setShippingOptions', () => {
       const fakeShippingArgs: SetShippingOptionsRequest = {
         orderShippingPreferenceType: '1',
-        shippingAddresses: [address],
-        shippingMethods: [shippingMethod],
+        shippingAddress: address,
+        shippingMethod,
       };
       const expected = call(Checkout.setShippingOptions, fakeShippingArgs);
       const actual = gen.next();
@@ -286,7 +286,7 @@ describe('submitFulfillmentStep', () => {
         actions.SetStepValues({
           shipping: {
             address,
-            shippingMethod,
+            shippingMethod
           } as any,
         }),
       );

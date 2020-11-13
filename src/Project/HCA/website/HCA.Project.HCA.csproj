@@ -507,6 +507,7 @@
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Content.Serialization.config" />
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Search.config" />
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Variables.config" />
+    <Content Include="App_Config\Include\Project\HCA.Project.HCA.MemoryMonitor.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

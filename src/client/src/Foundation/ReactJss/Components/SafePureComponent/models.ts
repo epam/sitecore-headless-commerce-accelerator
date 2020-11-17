@@ -14,4 +14,5 @@
 
 export interface SafePureComponentState {
   hasError?: boolean;
+  errorMessage?: string;
 }

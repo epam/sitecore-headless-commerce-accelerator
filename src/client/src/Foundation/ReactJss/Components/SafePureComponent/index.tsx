@@ -15,6 +15,7 @@
 import * as React from 'react';
 
 import * as Models from './models';
+import './styles.scss';
 
 export class SafePureComponent<P, S extends Models.SafePureComponentState> extends React.PureComponent<P, S> {
   private hasError: boolean = false;
@@ -26,6 +27,12 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
   public componentDidMount() {
     this.setState({ hasError: this.hasError });
   }
+  public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    if (error || errorInfo) {
+      this.setState({ errorMessage: error.message });
+      this.setState({ hasError: true });
+    }
+  }
 
   public render() {
     // componentDidCatch doesn't work in React 16's renderToString
@@ -34,9 +41,8 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
     try {
       // Using error boundaries for client-side rendering
       if (this.state && this.state.hasError) {
-        return this.renderErrorView();
+        return this.renderErrorView('ERROR');
       }
-
       return this.safeRender();
     } catch (error) {
       // this allows to differentiate server vs client rendering
@@ -45,8 +51,7 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
         this.hasError = true;
         console.error('Error inside', this.getComponentName(), 'is', error);
       }
-
-      return this.renderErrorView();
+      return this.renderErrorView(error);
     }
   }
 
@@ -57,13 +62,18 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
     );
   }
 
-  protected renderErrorView() {
+  protected renderErrorView(e: any) {
     return (
-      <span
-        dangerouslySetInnerHTML={{
-          __html: `<!-- Error inside ${this.getComponentName()}. For more info, please, check the console."-->`,
-        }}
-      />
+      <div className="error_message_modal">
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `Error Occured: Check Console for more information`,
+          }}
+          className="error_message_modal_header"
+        />
+        <span className="error_message_modal_text">{this.state.errorMessage || e.message}</span>
+        <a href="/">OK</a>
+      </div>
     );
   }
 

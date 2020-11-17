@@ -109,6 +109,12 @@
     }
   
     &_spinner {
+      &_display {
+        display: flex !important;
+        align-content: space-between;
+        justify-content: center;
+
+      }
   
       &.spinner {
         display: none;
@@ -118,7 +124,7 @@
         background: none;
   
         & .object {
-          background: #066666;
+          background: $theme-color;
           width: 15px;
           height: auto;
           margin: 0 5px;
@@ -166,6 +172,9 @@
       display: flex;
       justify-content: center;
       margin-top: 20px;
+      &_hidden{
+        display: none !important;
+      }
       .btn-load-more {
         text-transform: uppercase;
         font-weight: 500;

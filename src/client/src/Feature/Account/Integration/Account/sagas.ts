@@ -67,9 +67,6 @@ export function* validation(action: Action<ValidateEmailPayload>) {
 
   yield put(actions.AccountValidationRequest(email));
   const { data, error }: Result<Commerce.ValidateEmail> = yield call(Api.emailValidation, payload);
-
-  console.log(error);
-
   if (error) {
     return yield put(actions.AccountValidationFailure(error.message, error.stack));
   }

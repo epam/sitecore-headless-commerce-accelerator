@@ -42,7 +42,6 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
   public componentWillUnmount() {
     this.props.ResetValidation();
   }
-
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
     const { loading, accountValidation } = this.props;
@@ -90,14 +89,14 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               </div>
             )}
           </div>
-          <Submit
-            disabled={false}
-            className="btn-login-register"
-            onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
-          >
-            {loading && <i className="fa fa-spinner fa-spin" />}
-            <span>Register</span>
-          </Submit>
+            <Submit
+              disabled={false}
+              className="btn-login-register"
+              onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
+            >
+              {loading && <i className="fa fa-spinner fa-spin" />}
+              <span>Register</span>
+            </Submit>
         </Form>
       </div>
     );
@@ -129,7 +128,6 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
     if (isPasswordValid && isConfirmPasswordValid) {
       isPasswordsMatch = this.passwordValidator(formValues);
     }
-
     if (
       isFirstNameValid &&
       isLastNameValid &&

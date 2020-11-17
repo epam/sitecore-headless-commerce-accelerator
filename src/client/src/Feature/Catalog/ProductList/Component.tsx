@@ -77,12 +77,12 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           ))}
         </ul>
         <div className={classnames({ 'is-loading': isLoading, 'show-load-btn': !isLoading && showLoadMore })}>
-          <div className="lazyLoad_spinner spinner">
+          <div className={`lazyLoad_spinner spinner ${isLoading ? 'lazyLoad_spinner_display' : ''}`}>
             <div className="object object-one" />
             <div className="object object-two" />
             <div className="object object-three" />
           </div>
-          <div className="lazyLoad_loadMore">
+          <div className={`lazyLoad_loadMore ${isLoading ? 'lazyLoad_loadMore_hidden' : ''}`}>
             {items.length !== 0 && showLoadMore && (
               <a className="btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
                 Load More

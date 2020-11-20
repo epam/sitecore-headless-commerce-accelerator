@@ -20,9 +20,9 @@ import * as JSS from 'Foundation/ReactJss';
 import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
 
+import { ProductRating } from 'Feature/Catalog/ProductRating';
 import GlassesImg from 'Foundation/UI/common/media/images/glasses-for-slider.png';
 import { ProductGallery } from './components/ProductGallery';
-import { ProductRating } from './components/ProductRating';
 
 export default class ProductOverviewComponent extends JSS.SafePureComponent<
   ProductOverviewProps,

@@ -17,27 +17,32 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 
 import { ProductRatingProps, ProductRatingState } from './models';
+import './styles.scss';
 
 export class ProductRating extends JSS.SafePureComponent<ProductRatingProps, ProductRatingState> {
   protected safeRender() {
+    const ratings = this.props.rating || 4;
+    const ratedStars = new Array(5).fill(
+      <span className="star">
+        <i className="fa fa-star-o orange" />
+      </span>
+    );
+    ratedStars.fill(
+      (
+      <span className="star">
+        <i className="fa fa-star-o" />
+      </span>
+      ),
+      ratings
+    );
     return (
       <div className="product-rating">
         <div className="items-rating">
-          <span className="star">
-            <i className="fa fa-star-o orange" />
-          </span>
-          <span className="star">
-            <i className="fa fa-star-o orange" />
-          </span>
-          <span className="star">
-            <i className="fa fa-star-o orange" />
-          </span>
-          <span className="star">
-            <i className="fa fa-star-o orange" />
-          </span>
-          <span className="star">
-            <i className="fa fa-star-o" />
-          </span>
+          {ratedStars && ratedStars.map((value) => {
+            return (
+              value
+            );
+          })}
         </div>
       </div>
     );

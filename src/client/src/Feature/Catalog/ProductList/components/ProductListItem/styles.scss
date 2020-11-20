@@ -156,17 +156,5 @@
   // #Star rating and review links
   .product-rating {
     margin: 3px 0px;
-    .items-rating {
-      .star {
-        .fa-star-o {
-          font-size: 17px;
-        }
-        padding: 0 8px 0 0;
-        color: $product-rating-empty-star;
-        .orange {
-          color: $product-rating-star;
-        }
-      }
-    }
   }
 }

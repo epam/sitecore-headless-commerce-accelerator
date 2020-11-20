@@ -17,7 +17,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 
-import { ProductRating } from './components/ProductRating';
+import { ProductRating } from 'Feature/Catalog/ProductRating';
 import { ProductListItemProps } from './models';
 
 import './styles.scss';

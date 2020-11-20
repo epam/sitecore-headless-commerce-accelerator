@@ -16,9 +16,6 @@ import classnames from 'classnames';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { Loader } from 'Foundation/UI';
-
 import { ProductListHeader, ProductListItem } from './components';
 import { ProductListProps } from './models';
 import './styles.scss';
@@ -55,9 +52,6 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
             itemsCount={totalItemCount}
           />
         )}
-        {isLoading && (
-            <Loader/>
-          )}
         <ul>
           {items.length === 0 && !isLoading && (
             <div className="not-found">

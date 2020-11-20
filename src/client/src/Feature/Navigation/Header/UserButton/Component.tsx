@@ -36,6 +36,10 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
     document.addEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
 
+  public componentDidUnMount() {
+    document.removeEventListener('click', this.handleOutsidePopupClick.bind(this), false);
+  }
+
   protected safeRender() {
     const { isDropdownVisible } = this.state;
     const { commerceUser, returnUrl, Logout } = this.props;

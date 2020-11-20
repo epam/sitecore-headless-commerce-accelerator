@@ -19,13 +19,12 @@ import { NavigationSearchProps, NavigationSearchState } from './models';
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
+const TIME_ASYNC_FOCUS = 50;
 
 import classnames from 'classnames';
-
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
   private form: HTMLFormElement;
   private searchInput: HTMLInputElement | null;
-
   constructor(props: NavigationSearchProps) {
     super(props);
 
@@ -35,7 +34,22 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   }
 
   public componentDidMount() {
+    setTimeout(
+      () => {
+        this.searchInput.focus();
+      },
+      TIME_ASYNC_FOCUS
+    );
     document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  public componentDidUpdate() {
+    setTimeout(
+      () => {
+        this.searchInput.focus();
+      },
+      TIME_ASYNC_FOCUS
+    );
   }
 
   public componentDidUnMount() {
@@ -92,7 +106,12 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
     if (this.state.isOpen) {
       const searchClassSelector = '.search_popup';
       const searchHeaderClass = '.pe-7s-search';
-      if (!targetElement.closest(searchClassSelector) && !targetElement.matches(searchClassSelector) && !targetElement.closest(searchHeaderClass) && !targetElement.matches(searchHeaderClass)) {
+      if (
+        !targetElement.closest(searchClassSelector) &&
+        !targetElement.matches(searchClassSelector) &&
+        !targetElement.closest(searchHeaderClass) &&
+        !targetElement.matches(searchHeaderClass)
+      ) {
         this.setState({
           isOpen: false,
         });

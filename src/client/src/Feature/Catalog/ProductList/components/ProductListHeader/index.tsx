@@ -17,7 +17,7 @@ import * as React from 'react';
 
 import { tryParseUrlSearch } from 'Foundation/Base';
 
-import { FACET_PARAMETER_NAME, facetsManager } from 'Feature/Catalog/Integration/ProductsSearch';
+import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'Feature/Catalog/Integration/ProductsSearch';
 
 import { ProductListHeaderProps, ProductListHeaderState } from './models';
 
@@ -34,10 +34,10 @@ export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderPr
   public componentDidUpdate() {
     const { currentPageNumber, itemsCount } = this.props;
     let count = 0;
-    if (itemsCount < 12) {
+    if (itemsCount < PRODUCTS_PER_PAGE) {
       this.setState({ numberOfDisplayedItems: itemsCount });
     } else {
-      count = (currentPageNumber + 1) * 12;
+      count = (currentPageNumber + 1) * PRODUCTS_PER_PAGE;
       count > itemsCount
         ? this.setState({ numberOfDisplayedItems: itemsCount })
         : this.setState({ numberOfDisplayedItems: count });

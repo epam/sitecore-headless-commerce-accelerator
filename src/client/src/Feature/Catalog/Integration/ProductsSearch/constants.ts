@@ -18,6 +18,7 @@ export const KEYWORD_PARAMETER_NAME = 'q';
 export const FACET_PARAMETER_NAME = 'f';
 export const DEFAULT_START_PAGE_NUMBER = 0;
 export const DEFAULT_ITEMS_PER_PAGE = '12';
+export const PRODUCTS_PER_PAGE = 12;
 
 export const FACET_SEPARATOR = '&';
 export const FACET_NAME_VALUE_SEPARATOR = '=';

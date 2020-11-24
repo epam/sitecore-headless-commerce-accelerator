@@ -12,28 +12,29 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Managers.Contact
+namespace HCA.Foundation.Analytics.Repositories.Contact
 {
     using Models.Entities.Contact;
+    using Sitecore.XConnect;
 
     /// <summary>
     /// Performs operation with contact
     /// </summary>
-    public interface IContactManager
+    public interface IContactRepository
     {
         /// <summary>
         /// Sets email as preferred in current contact
         /// </summary>
         /// <param name="key">Email key</param>
         /// <param name="email">Email</param>
-        /// <returns>True if success, otherwise false</returns>
-        bool SetEmail(string key, string email);
+        /// <param name="IdentifiedContactReference">Contact reference</param>
+        void SetEmail(string key, string email, IdentifiedContactReference reference);
 
         /// <summary>
         /// Sets personal info in current contact
         /// </summary>
         /// <param name="info">Personal info</param>
-        /// <returns>True if success, otherwise false</returns>
-        bool SetPersonalInfo(PersonalInfo info);
+        /// <param name="IdentifiedContactReference">Contact reference</param>
+        void SetPersonalInfo(PersonalInfo info, IdentifiedContactReference reference);
     }
 }

@@ -12,27 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Mappers.Contact
+namespace HCA.Foundation.Analytics.Services.Contact
 {
-    using System.Diagnostics.CodeAnalysis;
-
-    using Base.Mappers;
-
-    using DependencyInjection;
-
     using Models.Entities.Contact;
 
-    using Profiles;
-
-    using Sitecore.XConnect.Collection.Model;
-
-    [ExcludeFromCodeCoverage]
-    [Service(typeof(IContactMapper), Lifetime = Lifetime.Singleton)]
-    public class ContactMapper : ProfileMapper<ContactProfile>, IContactMapper
+    public interface IContactService
     {
-        public PersonalInformation MapToPersonalInformation(PersonalInfo info, PersonalInformation information)
-        {
-            return this.InnerMapper.Map<PersonalInfo, PersonalInformation>(info, information);
-        }
+        /// <summary>
+        /// Sets email as preferred in current contact
+        /// </summary>
+        /// <param name="key">Email key</param>
+        /// <param name="email">Email</param>
+        /// <returns>True if success, otherwise false</returns>
+        bool SetEmail(string key, string email);
+
+        /// <summary>
+        /// Sets personal info in current contact
+        /// </summary>
+        /// <param name="info">Personal info</param>
+        /// <returns>True if success, otherwise false</returns>
+        bool SetPersonalInfo(PersonalInfo info);
     }
 }

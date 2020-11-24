@@ -12,10 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Managers.Contact
+namespace HCA.Foundation.Analytics.Repositories.Contact
 {
     using System;
-    using System.Linq;
 
     using Base.Models.Logging;
     using Base.Services.Logging;
@@ -26,23 +25,19 @@ namespace HCA.Foundation.Commerce.Managers.Contact
 
     using Models.Entities.Contact;
 
-    using Sitecore.Analytics;
     using Sitecore.Diagnostics;
     using Sitecore.XConnect;
     using Sitecore.XConnect.Client;
     using Sitecore.XConnect.Client.Configuration;
     using Sitecore.XConnect.Collection.Model;
 
-    [Service(typeof(IContactManager), Lifetime = Lifetime.Singleton)]
-    public class ContactManager : IContactManager
+    [Service(typeof(IContactRepository), Lifetime = Lifetime.Singleton)]
+    public class ContactRepository : IContactRepository
     {
-        private const string IdentificationSource = "ContactManager";
-
         private readonly ILogService<CommonLog> logService;
-
         private readonly IContactMapper contactMapper;
 
-        public ContactManager(IContactMapper contactMapper, ILogService<CommonLog> logService)
+        public ContactRepository(IContactMapper contactMapper, ILogService<CommonLog> logService)
         {
             Assert.ArgumentNotNull(contactMapper, nameof(contactMapper));
             Assert.ArgumentNotNull(logService, nameof(logService));
@@ -51,40 +46,8 @@ namespace HCA.Foundation.Commerce.Managers.Contact
             this.logService = logService;
         }
 
-        public bool SetEmail(string key, string email)
+        public void SetEmail(string key, string email, IdentifiedContactReference reference)
         {
-            Assert.ArgumentNotNull(key, nameof(key));
-            Assert.ArgumentNotNull(email, nameof(email));
-
-            return this.Execute(() => this.SetPreferredEmail(key, email));
-        }
-
-        public bool SetPersonalInfo(PersonalInfo info)
-        {
-            Assert.ArgumentNotNull(info, nameof(info));
-
-            return this.Execute(() => this.UpdatePersonalInformation(info));
-        }
-
-        private IdentifiedContactReference GetCurrentContactReference()
-        {
-            if (!Tracker.Current.Contact.Identifiers.Any())
-            {
-                var identifier = Guid.NewGuid().ToString();
-                Tracker.Current.Session.IdentifyAs(IdentificationSource, identifier);
-                return new IdentifiedContactReference(IdentificationSource, identifier);
-            }
-            else
-            {
-                var identifier = Tracker.Current.Contact.Identifiers.First();
-                return new IdentifiedContactReference(identifier.Source, identifier.Identifier);
-            }
-        }
-
-        private void SetPreferredEmail(string key, string email)
-        {
-            var reference = this.GetCurrentContactReference();
-
             using (var client = SitecoreXConnectClientConfiguration.GetClient())
             {
                 var contact = client.Get(reference, new ExpandOptions(EmailAddressList.DefaultFacetKey));
@@ -107,10 +70,8 @@ namespace HCA.Foundation.Commerce.Managers.Contact
             }
         }
 
-        private void UpdatePersonalInformation(PersonalInfo info)
+        public void SetPersonalInfo(PersonalInfo info, IdentifiedContactReference reference)
         {
-            var reference = this.GetCurrentContactReference();
-
             using (var client = SitecoreXConnectClientConfiguration.GetClient())
             {
                 var contact = client.Get(reference, new ContactExpandOptions(PersonalInformation.DefaultFacetKey));
@@ -123,20 +84,6 @@ namespace HCA.Foundation.Commerce.Managers.Contact
                 client.SetFacet(contact, PersonalInformation.DefaultFacetKey, personalInfoFacet);
 
                 client.Submit();
-            }
-        }
-
-        private bool Execute(Action action)
-        {
-            try
-            {
-                action();
-                return true;
-            }
-            catch (Exception e)
-            {
-                this.logService.Error(e.Message);
-                return false;
             }
         }
     }

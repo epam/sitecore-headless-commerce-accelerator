@@ -11,58 +11,38 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
-
 import { NavigationSearchProps, NavigationSearchState } from './models';
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
-const TIME_ASYNC_FOCUS = 50;
 
 import classnames from 'classnames';
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
   private form: HTMLFormElement;
   private searchInput: HTMLInputElement | null;
+  private wrapperRef: React.MutableRefObject<HTMLDivElement>;
+
   constructor(props: NavigationSearchProps) {
     super(props);
-
     this.state = {
       isOpen: false,
     };
+    this.wrapperRef = React.createRef<HTMLDivElement>();
   }
-
   public componentDidMount() {
-    setTimeout(
-      () => {
-        this.searchInput.focus();
-      },
-      TIME_ASYNC_FOCUS
-    );
-    document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
-
-  public componentDidUpdate() {
-    setTimeout(
-      () => {
-        this.searchInput.focus();
-      },
-      TIME_ASYNC_FOCUS
-    );
-  }
-
   public componentDidUnMount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
-
   public handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
-
   protected safeRender() {
     return (
-      <div className="navigation-buttons_item search">
+      <div className="navigation-buttons_item search" ref={this.wrapperRef}>
         <a onClick={this.handleClick}>
           <i className="pe-7s-search" />
         </a>
@@ -89,10 +69,8 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
       </div>
     );
   }
-
   private handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     const formData = new FormData(this.form);
     const q = formData.get(SEARCH_INPUT_NAME);
     if (q) {
@@ -100,22 +78,15 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
       this.props.ChangeRoute(`/search?q=${q}`);
     }
   }
-
-  private handleClickOutside = (e: MouseEvent) => {
-    const targetElement = e.target as Element;
-    if (this.state.isOpen) {
-      const searchClassSelector = '.search_popup';
-      const searchHeaderClass = '.pe-7s-search';
-      if (
-        !targetElement.closest(searchClassSelector) &&
-        !targetElement.matches(searchClassSelector) &&
-        !targetElement.closest(searchHeaderClass) &&
-        !targetElement.matches(searchHeaderClass)
-      ) {
-        this.setState({
-          isOpen: false,
-        });
-      }
+  private handleOutsidePopupClick(e: MouseEvent) {
+    if (
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(e.target as Node) &&
+      this.state.isOpen
+    ) {
+      this.setState({
+        isOpen: !this.state.isOpen,
+      });
     }
-  };
+  }
 }

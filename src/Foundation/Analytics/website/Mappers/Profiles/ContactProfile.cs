@@ -12,25 +12,28 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Mappers.Contact
+namespace HCA.Foundation.Analytics.Mappers.Profiles
 {
-    using Base.Mappers;
+    using System.Diagnostics.CodeAnalysis;
+
+    using AutoMapper;
 
     using Models.Entities.Contact;
 
+    using Sitecore.Commerce.Entities;
     using Sitecore.XConnect.Collection.Model;
 
-    /// <summary>
-    /// Performs mapping for contact information
-    /// </summary>
-    public interface IContactMapper : IMapper
+    [ExcludeFromCodeCoverage]
+    public class ContactProfile : Profile
     {
-        /// <summary>
-        /// Maps PersonalInfo to PersonalInformation
-        /// </summary>
-        /// <param name="info">Source</param>
-        /// <param name="information">Destination base object</param>
-        /// <returns>Personal information</returns>
-        PersonalInformation MapToPersonalInformation(PersonalInfo info, PersonalInformation information);
+        public ContactProfile()
+        {
+            this.CreateMap<Party, PersonalInfo>();
+
+            this.CreateMap<PersonalInfo, PersonalInformation>()
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForAllOtherMembers(opt => opt.Ignore());
+        }
     }
 }

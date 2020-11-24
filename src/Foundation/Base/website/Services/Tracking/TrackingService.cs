@@ -14,16 +14,35 @@
 
 namespace HCA.Foundation.Base.Services.Tracking
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
-
+    using System.Linq;
     using DependencyInjection;
 
     using Sitecore.Analytics;
+    using Sitecore.XConnect;
 
     [ExcludeFromCodeCoverage]
     [Service(typeof(ITrackingService), Lifetime = Lifetime.Transient)]
     public class TrackingService : ITrackingService
     {
+        private const string IdentificationSource = "ContactRepository";
+
+        public IdentifiedContactReference GetCurrentContactReference()
+        {
+            if (!Tracker.Current.Contact.Identifiers.Any())
+            {
+                var identifier = Guid.NewGuid().ToString();
+                Tracker.Current.Session.IdentifyAs(IdentificationSource, identifier);
+                return new IdentifiedContactReference(IdentificationSource, identifier);
+            }
+            else
+            {
+                var identifier = Tracker.Current.Contact.Identifiers.First();
+                return new IdentifiedContactReference(identifier.Source, identifier.Identifier);
+            }
+        }
+
         public void EnsureTracker()
         {
             if (!Tracker.IsActive)

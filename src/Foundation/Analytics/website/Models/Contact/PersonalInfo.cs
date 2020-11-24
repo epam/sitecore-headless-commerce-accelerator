@@ -12,24 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Tests.Mappers.Profiles
+namespace HCA.Foundation.Analytics.Models.Entities.Contact
 {
-    using AutoMapper;
+    using System.Diagnostics.CodeAnalysis;
 
-    using Commerce.Mappers.Profiles;
-
-    using Xunit;
-
-    public class ContactProfileTests
+    [ExcludeFromCodeCoverage]
+    public class PersonalInfo
     {
-        [Fact]
-        public void Configuration_ShouldBeValid()
-        {
-            // arrange
-            var configuration = new MapperConfiguration(cfg => { cfg.AddProfile<ContactProfile>(); });
+        public string FirstName { get; set; }
 
-            // act, assert
-            configuration.AssertConfigurationIsValid();
-        }
+        public string LastName { get; set; }
     }
 }

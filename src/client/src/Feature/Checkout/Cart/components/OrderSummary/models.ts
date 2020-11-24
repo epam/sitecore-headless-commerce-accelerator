@@ -23,11 +23,12 @@ export interface OrderSummaryOwnProps {
   rendering: any;
 }
 export interface OrderSummaryStateProps {
-  isLoading: boolean;
+  isAddPromoCodeLoading: boolean;
+  isRemovePromoCodeLoading: boolean;
   isFailure: boolean;
   adjustments: string[];
   isSuccess: boolean;
-  }
+}
 export interface OrderSummaryDispatchProps {
   AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
 }

@@ -23,12 +23,30 @@ import { CartProps, CartState } from './models';
 import './styles.scss';
 
 export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
+  public constructor(props: CartProps) {
+    super(props);
+
+    this.state = {
+      isFirstInitLoadPage: false,
+    };
+  }
   public componentDidMount() {
     this.props.LoadCart();
+    const { isLoading } = this.props;
+    this.setState({ isFirstInitLoadPage: isLoading });
+  }
+
+  public componentDidUpdate(prevProps: any) {
+    const { isLoading } = this.props;
+    const { isFirstInitLoadPage } = this.state;
+    if (prevProps.isLoading !== isLoading && isLoading === false && isFirstInitLoadPage === true) {
+      this.setState({ isFirstInitLoadPage: false });
+    }
   }
   public safeRender() {
-    const { shoppingCartData, isLoading, sitecoreContext } = this.props;
-    if (!isLoading && shoppingCartData.cartLines.length === 0) {
+    const { shoppingCartData, sitecoreContext } = this.props;
+    const { isFirstInitLoadPage } = this.state;
+    if (!isFirstInitLoadPage && shoppingCartData && shoppingCartData.cartLines.length === 0) {
       return (
         <div className="empty-cart">
           <i className="pe-7s-cart" />
@@ -39,7 +57,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
       );
     }
-    return isLoading ? (
+    return isFirstInitLoadPage ? (
       <Loader />
     ) : (
       <div>

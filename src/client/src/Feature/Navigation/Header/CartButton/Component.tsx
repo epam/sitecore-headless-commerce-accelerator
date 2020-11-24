@@ -20,19 +20,22 @@ import { Desktop, Mobile } from '../../../../Foundation/UI/common/components/Res
 import { CartButtonProps, CartButtonState } from './models';
 
 export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, CartButtonState> {
+  private wrapperRef: React.MutableRefObject<HTMLDivElement>;
+  // private readonly wrapperRef: React.RefObject<any>;
   constructor(props: CartButtonProps) {
     super(props);
     this.state = {
       cartVisible: false,
     };
+    this.wrapperRef = React.createRef<HTMLDivElement>();
   }
 
   public componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside.bind(this), false);
   }
 
   public componentDidUnMount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside.bind(this), false);
   }
 
   protected safeRender() {
@@ -44,7 +47,7 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     };
 
     return (
-      <div className="navigation-buttons_item cart-wrap" style={{ position: 'relative' }}>
+      <div className="navigation-buttons_item cart-wrap" style={{ position: 'relative' }} ref={this.wrapperRef}>
         <Desktop>
           <a onClick={() => handleClick()}>
             <i className="pe-7s-shopbag">
@@ -59,7 +62,7 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
             </i>
           </a>
         </Mobile>
-        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
+        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`} >
           <CartView ToggleClick={this.toggleClick}/>
         </div>
       </div>
@@ -71,18 +74,15 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     });
   }
 
-  private handleClickOutside = (e: MouseEvent) => {
-    const targetElement = e.target as Element;
-    if (this.state.cartVisible) {
-      const cartClassSelector = '.shopping-cart-view';
-      const cartHeaderClass = '.pe-7s-shopbag';
-      if (!targetElement.closest(cartClassSelector) && !targetElement.matches(cartClassSelector)
-          && !targetElement.closest(cartHeaderClass) && !targetElement.matches(cartHeaderClass)
-      ) {
-        this.setState({
-          cartVisible: false,
-        });
-      }
+  private handleClickOutside(e: MouseEvent) {
+    if (
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(e.target as Node) &&
+      this.state.cartVisible
+    ) {
+      this.setState({
+        cartVisible: !this.state.cartVisible,
+      });
     }
-  };
+  }
 }

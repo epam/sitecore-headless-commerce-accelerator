@@ -12,10 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using Sitecore.XConnect;
+
 namespace HCA.Foundation.Base.Services.Tracking
 {
     public interface ITrackingService
     {
+        IdentifiedContactReference GetCurrentContactReference();
         void EnsureTracker();
     }
 }

@@ -16,13 +16,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 {
     using System.Linq;
 
+    using Analytics.Mappers.Contact;
+    using Analytics.Models.Entities.Contact;
+    using Analytics.Services.Contact;
+
     using Context;
-
-    using Managers.Contact;
-
-    using Mappers.Contact;
-
-    using Models.Entities.Contact;
 
     using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities;
@@ -35,21 +33,21 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     {
         private const string EmailKey = "Confirmaion";
 
-        private readonly IContactManager contactManager;
+        private readonly IContactService contactService;
 
         private readonly IVisitorContext visitorContext;
 
         private readonly IContactMapper contactMapper;
 
-        public SetAnonymousInfoProcessor(IContactManager contactManager, IVisitorContext visitorContext, IContactMapper contactMapper)
+        public SetAnonymousInfoProcessor(IContactService contactService, IVisitorContext visitorContext, IContactMapper contactMapper)
         {
-            Assert.ArgumentNotNull(contactManager, nameof(contactManager));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
             Assert.ArgumentNotNull(contactMapper, nameof(contactMapper));
+            Assert.ArgumentNotNull(contactService, nameof(contactService));
 
-            this.contactManager = contactManager;
             this.visitorContext = visitorContext;
             this.contactMapper = contactMapper;
+            this.contactService = contactService;
         }
 
         public override void Process(ServicePipelineArgs args)
@@ -66,7 +64,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
                 return;
             }
 
-            this.contactManager.SetEmail(EmailKey, cart.Email);
+            this.contactService.SetEmail(EmailKey, cart.Email);
 
             var personalInfo = this.GetPersonalInfo(cart);
 
@@ -75,7 +73,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
                 return;
             }
 
-            this.contactManager.SetPersonalInfo(personalInfo);
+            this.contactService.SetPersonalInfo(personalInfo);
         }
 
         private Cart GetCartFromArgs(ServicePipelineArgs args)

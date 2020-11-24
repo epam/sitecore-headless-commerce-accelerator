@@ -31,7 +31,9 @@ export interface CartDispatchProps {
 
 export interface CartProps extends CartStateProps, CartDispatchProps, CartOwnProps {}
 
-export interface CartState extends JSS.SafePureComponentState {}
+export interface CartState extends JSS.SafePureComponentState {
+  isFirstInitLoadPage: boolean;
+}
 
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}
 

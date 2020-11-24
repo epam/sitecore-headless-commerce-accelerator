@@ -28,9 +28,12 @@ const mapStateToProps = (state: AppState): OrderSummaryStateProps => {
     shoppingCartState && shoppingCartState.data && shoppingCartState.data.adjustments
       ? shoppingCartState.data.adjustments
       : [];
-  const isLoading =
+  const isAddPromoCodeLoading =
     shoppingCartState.status === LoadingStatus.Loading &&
     shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_REQUEST;
+  const isRemovePromoCodeLoading =
+    shoppingCartState.status === LoadingStatus.Loading &&
+    shoppingCartState.actionType === actionTypes.REMOVE_PROMO_CODE_REQUEST;
   const isFailure =
     shoppingCartState.status === LoadingStatus.Failure &&
     shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_FAILURE;
@@ -40,8 +43,9 @@ const mapStateToProps = (state: AppState): OrderSummaryStateProps => {
 
   return {
     adjustments,
+    isAddPromoCodeLoading,
     isFailure,
-    isLoading,
+    isRemovePromoCodeLoading,
     isSuccess,
   };
 };

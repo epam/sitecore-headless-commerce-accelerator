@@ -66,15 +66,9 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
             {isLastNameEmpty && <div className="form-field-error-message">Last Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input
-              type="email"
-              name={FORM_FIELDS.EMAIL}
-              placeholder="Email"
-            />
+            <Input type="email" name={FORM_FIELDS.EMAIL} placeholder="Email" />
             {(!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) && (
-              <div className="form-field-error-message">
-                {this.checkEmailValidation()}
-              </div>
+              <div className="form-field-error-message">{this.checkEmailValidation()}</div>
             )}
           </div>
           <div className="form-field">
@@ -89,14 +83,14 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               </div>
             )}
           </div>
-            <Submit
-              disabled={false}
-              className="btn-login-register"
-              onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
-            >
-              {loading && <i className="fa fa-spinner fa-spin" />}
-              <span>Register</span>
-            </Submit>
+          <Submit
+            disabled={false}
+            className="btn-login-register"
+            onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
+          >
+            {loading && <i className="fa fa-spinner fa-spin" />}
+            <span>Register</span>
+          </Submit>
         </Form>
       </div>
     );
@@ -194,7 +188,6 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       this.setState({ isEmailEmpty: true });
       return false;
     }
-
   }
 
   private validatePassword(form: FormValues) {

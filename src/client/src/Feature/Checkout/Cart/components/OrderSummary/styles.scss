@@ -64,7 +64,9 @@
         display: flex;
         height: 20px;
         margin: 4px 0;
-  
+        .fa-spinner{
+          margin-left: 10px;        
+        }
         .btn {
           font-size: 14px;
           background-color: transparent;
@@ -178,6 +180,9 @@
     background-color: $summary-table-action-hover;
     font-family: $poppins;
     margin-top: 26px;
+    .fa-spinner{
+      margin-left: 5px;
+    }
     &:hover {
       background-color: $order-table-text-color;
     }

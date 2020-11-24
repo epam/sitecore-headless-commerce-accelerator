@@ -571,7 +571,6 @@
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CartProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
-    <Compile Include="Mappers\Profiles\ContactProfileTests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\RegionProfileTests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />

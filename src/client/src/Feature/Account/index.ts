@@ -15,5 +15,4 @@
 export * from './AddressManager';
 export * from './ChangePassword';
 export * from './ChangeUserInformationForm';
-export * from './SignUpForm';
 export * from './LoginRegister';

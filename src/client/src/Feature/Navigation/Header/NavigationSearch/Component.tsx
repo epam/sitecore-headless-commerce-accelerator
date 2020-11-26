@@ -17,13 +17,14 @@ import { NavigationSearchProps, NavigationSearchState } from './models';
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
+const TIME_ASYNC_FOCUS = 50;
 
 import classnames from 'classnames';
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
   private form: HTMLFormElement;
   private searchInput: HTMLInputElement | null;
   private wrapperRef: React.MutableRefObject<HTMLDivElement>;
-
+  private timeOutFocus: ReturnType<typeof setTimeout>;
   constructor(props: NavigationSearchProps) {
     super(props);
     this.state = {
@@ -31,10 +32,30 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
     };
     this.wrapperRef = React.createRef<HTMLDivElement>();
   }
+
+  public setTimeOutFocus() {
+    this.timeOutFocus = setTimeout(
+      () => {
+        this.searchInput.focus();
+      },
+      TIME_ASYNC_FOCUS
+    );
+  }
+
+  public clearTimeOutFocus() {
+    clearTimeout(this.timeOutFocus);
+  }
+
   public componentDidMount() {
+    this.setTimeOutFocus();
     document.addEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
+
+  public componentDidUpdate() {
+    this.setTimeOutFocus();
+  }
   public componentDidUnMount() {
+    this.clearTimeOutFocus();
     document.removeEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }
   public handleClick = () => {

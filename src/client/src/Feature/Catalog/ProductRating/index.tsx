@@ -38,9 +38,11 @@ export class ProductRating extends JSS.SafePureComponent<ProductRatingProps, Pro
     return (
       <div className="product-rating">
         <div className="items-rating">
-          {ratedStars && ratedStars.map((value) => {
+          {ratedStars && ratedStars.map((value, index) => {
             return (
-              value
+              <React.Fragment key={index}>
+                {value}
+              </React.Fragment>
             );
           })}
         </div>

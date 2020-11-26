@@ -71,7 +71,7 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
           }}
           className="error_message_modal_header"
         />
-        <span className="error_message_modal_text">{this.state.errorMessage || e.message}</span>
+        <span className="error_message_modal_text">{(this.state && this.state.errorMessage) || e.message}</span>
         <a href="/">OK</a>
       </div>
     );

@@ -17,6 +17,7 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 
 import { Common } from 'Feature/Catalog/Integration';
+import { QuantityProductCommon } from 'Feature/Checkout/common/Quantity';
 import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 
 import { AddToCartProps, AddToCartState } from './models';
@@ -28,24 +29,26 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
       quantityCount: 1,
     };
   }
+
+  public setQuantity(isIncrease: boolean) {
+    const { quantityCount } = this.state;
+    if (isIncrease === true) {
+      this.setState({ quantityCount: quantityCount + 1 });
+    }
+    if (quantityCount > 1 && isIncrease === false) {
+      this.setState({ quantityCount: quantityCount - 1 });
+    }
+  }
   protected safeRender() {
     const { quantityCount } = this.state;
     const { isLoading, variant } = this.props;
     const isDisabled = isLoading || !variant || variant.stockStatusName !== Common.StockStatus.InStock;
     return (
       <>
-        <div className="cart-plus-minus">
-          <button
-            onClick={() => quantityCount > 1 && this.setState({ quantityCount: quantityCount - 1 })}
-            className="dec qtybutton"
-          >
-            -
-          </button>
-          <input className="cart-plus-minus-box" type="text" value={quantityCount} />
-          <button onClick={() => this.setState({ quantityCount: quantityCount + 1 })} className="inc qtybutton">
-            +
-          </button>
-        </div>
+        <QuantityProductCommon
+          setQuantity={(isIncrease: boolean) => this.setQuantity(isIncrease)}
+          quantityString={quantityCount.toString()}
+        />
         <button
           disabled={isDisabled}
           title="Add to Cart"

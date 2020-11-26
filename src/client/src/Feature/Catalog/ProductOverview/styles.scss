@@ -283,7 +283,7 @@
     .links {
         margin: 40px 0 34px 0;
         display: flex;
-        .cart-plus-minus {
+        .quantity {
             position: relative;
             display: inline-block;
             overflow: hidden;
@@ -292,7 +292,7 @@
             padding: 0;
             border: 1px solid #e8e8e8;
             font-family: $poppins;
-            .qtybutton {
+            .qty-button {
                 font-size: 14px;
                 font-weight: 500;
                 line-height: 20px;
@@ -309,12 +309,12 @@
                 font-family: $poppins;
                 padding: 1px 6px;
             }
-            .dec.qtybutton {
+            .qty-minus {
                 top: 0;
                 left: 0;
                 height: 60px;
             }
-            .inc.qtybutton {
+            .qty-plus {
                 top: 0;
                 right: 0;
                 height: 60px;

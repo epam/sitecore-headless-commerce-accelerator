@@ -16,11 +16,10 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
+import { QuantityProductCommon } from 'Feature/Checkout/common/Quantity';
 import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
-
 import { QuantityProps, QuantityState } from './models';
-
 import './styles.scss';
 
 export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState> {
@@ -64,11 +63,11 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     const cartLine = this.props.cartLine;
     const quantityString = this.state.quantityString;
     return (
-      <div className="quantity" data-autotests="productQty">
-        <input type="button" value="-" className="qty-button" onClick={() => this.setQuantityString(false)} />
-        <input type="text" id={`qty-${cartLine.id}`} value={quantityString} disabled={true} />
-        <input type="button" value="+" className="qty-button" onClick={() => this.setQuantityString(true)} />
-      </div>
+      <QuantityProductCommon
+        cartLineId={cartLine.id}
+        setQuantity={(isIncrease: boolean) => this.setQuantityString(isIncrease)}
+        quantityString={quantityString}
+      />
     );
   }
 }

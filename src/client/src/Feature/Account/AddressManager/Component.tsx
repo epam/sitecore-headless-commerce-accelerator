@@ -56,13 +56,13 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
               <div className="loading" />
             </div>
           )}
-          <a className="account-details-form_header header-accordion" onClick={(e) => this.toggleFormByAnchorClick(e)}>
+          <div className="account-details-form_header header-accordion" onClick={(e) => this.toggleFormByAnchorClick()}>
             <h3 className="header-title">
               <span className="header-title_number">2. </span>
               <span>SAVED ADDRESSES</span>
               <i className="fa fa-angle-down" aria-hidden="true" />
             </h3>
-          </a>
+          </div>
           <div className="account-details-form_main address-management-body">
             {isListFormVisible ? (
               <div className="address_body">
@@ -165,8 +165,7 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
       isListFormVisible: !this.state.isListFormVisible,
     });
   }
-  private toggleFormByAnchorClick(e: React.MouseEvent<HTMLAnchorElement>) {
-    e.preventDefault();
+  private toggleFormByAnchorClick() {
     const lstNodeToogle = document.querySelectorAll('.account-details-form_main');
     lstNodeToogle.forEach((item) => {
       if (item.classList.contains('active') && !item.classList.contains('address-management-body')) {

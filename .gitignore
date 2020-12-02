@@ -140,3 +140,6 @@ Code Generation Templates/*.tt
 /generators/.npmrc
 /generators/secret.json
 /generators/.yo-rc.json 
+
+#Generated Documents
+/src/client/CodeDocs

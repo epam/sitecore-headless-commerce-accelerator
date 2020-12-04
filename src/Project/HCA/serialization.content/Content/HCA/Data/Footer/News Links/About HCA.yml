@@ -19,4 +19,4 @@ Languages:
     - ID: "59c90da9-7201-4915-b904-73405da46bb1"
       Hint: Uri
       Value: |
-        <link text="About HCA" linktype="external" url="" anchor="" target="" />
+        <link text="About HCA" anchor="" linktype="internal" class="" title="" target="|Custom" querystring="" id="{4CD65A15-36AA-4A55-9368-01A136874BF5}" />

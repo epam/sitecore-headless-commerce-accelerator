@@ -51,7 +51,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
                   <option>United States</option>
                 </select>
             </div>
-            <div className="countrySelectWrapper">
+            <div className="regionSelectWrapper">
               <label>* Region / State</label>
               <select>
                 <option>Canada</option>
@@ -74,9 +74,21 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="titleWrap">
               <h4 className="titleWrap-title">Cart Total</h4>
             </div>
-            <div className="subTotal">
+            <div className="subTotal totalDetails">
               <label>Merchandise Subtotal:</label>
               <span>${price.subtotal.toFixed(2)}</span>
+            </div>
+            <div className="savingsTotal totalDetails">
+              <label>Savings (Details) :</label>
+              <span>${price.totalSavings.toFixed(2)}</span>
+            </div>
+            <div className="taxTotal totalDetails">
+              <label>Taxes:</label>
+              <span>${price.taxTotal.toFixed(2)}</span>
+            </div>
+            <div className="shippingTotal totalDetails">
+              <label>Shipping:</label>
+              <span>${price.shippingTotal.toFixed(2)}</span>
             </div>
             <div className="total">
               <label>Estimated Total:</label>

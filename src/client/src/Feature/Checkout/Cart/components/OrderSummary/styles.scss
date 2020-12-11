@@ -101,7 +101,8 @@
     margin: 10px 0;
   }
 
-  .countrySelectWrapper {
+  .countrySelectWrapper,
+  .regionSelectWrapper {
     margin: 0 0 26px;
     > label {
       font-weight: 400;
@@ -191,8 +192,8 @@
     }
   }
 
-  .subTotal {
-    margin: 36px 0 27px;
+  .totalDetails {
+    margin: 20px 0;
     display: flex;
     justify-content: space-between;
     > label {

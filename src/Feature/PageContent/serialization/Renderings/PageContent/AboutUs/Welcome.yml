@@ -1,0 +1,18 @@
+﻿---
+ID: "08b0288e-2a20-4827-bc78-ece96722b2fd"
+Parent: "cfe5f572-3b62-428f-b4f1-7a023a8c569d"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/AboutUs/Welcome
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Welcome
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201207T103515Z

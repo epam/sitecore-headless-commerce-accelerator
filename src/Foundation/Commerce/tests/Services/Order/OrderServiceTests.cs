@@ -17,6 +17,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using System;
     using System.Collections.Generic;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -31,7 +33,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Orders;

@@ -269,6 +269,14 @@ namespace HCA.Feature.PageContent.Models
         [SitecoreField("Header")]
         string Header {get; set;}
 
+        /// <summary>
+        /// The Products field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: 4a552a9b-072c-4f2c-af8d-6f11a7daf67a</para>
+        /// </summary>
+        [SitecoreField("Products")]
+        IEnumerable<Guid> Products {get; set;}
+
     }
 
 
@@ -294,6 +302,16 @@ namespace HCA.Feature.PageContent.Models
         public virtual string Header {get; set;}
         public const string HeaderFieldId = "ba9cd774-93ea-490e-b978-38efe2c648ed";
         public const string HeaderFieldName = "Header";
+
+        /// <summary>
+        /// The Products field.
+        /// <para>Field Type: TreelistEx</para>
+        /// <para>Field ID: 4a552a9b-072c-4f2c-af8d-6f11a7daf67a</para>
+        /// </summary>
+        [SitecoreField("Products")]
+        public virtual IEnumerable<Guid> Products {get; set;}
+        public const string ProductsFieldId = "4a552a9b-072c-4f2c-af8d-6f11a7daf67a";
+        public const string ProductsFieldName = "Products";
 
     }
 

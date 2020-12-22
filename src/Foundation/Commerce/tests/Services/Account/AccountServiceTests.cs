@@ -19,6 +19,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using System.Linq;
     using System.Net.Mail;
 
+    using AutoFixture;
+
     using Commerce.Mappers.Account;
     using Commerce.Services.Account;
 
@@ -30,7 +32,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;

@@ -16,6 +16,8 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Cart
 {
     using System.Linq;
 
+    using AutoFixture;
+
     using Base.Models.Result;
 
     using Commerce.Builders.Cart;
@@ -27,7 +29,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Cart
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

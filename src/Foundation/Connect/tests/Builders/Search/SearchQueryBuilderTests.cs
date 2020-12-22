@@ -18,6 +18,8 @@ namespace HCA.Foundation.Connect.Tests.Builders.Search
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Base.Context;
 
     using Connect.Builders.Search;
@@ -26,7 +28,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Search
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;

@@ -180,6 +180,11 @@ export interface RecommendedProductsDataSource extends ReactJssModule.BaseDataSo
     /// Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed
     header: ReactJssModule.TextField;
 
+    /// The Products field.
+    /// Field Type: TreelistEx
+    /// Field ID: 4a552a9b-072c-4f2c-af8d-6f11a7daf67a
+    products: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
@@ -190,6 +195,11 @@ export interface RecommendedProductsRenderingParams extends ReactJssModule.BaseR
     /// Field Type: Single-Line Text
     /// Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed
     header: string;
+
+    /// The Products field.
+    /// Field Type: TreelistEx
+    /// Field ID: 4a552a9b-072c-4f2c-af8d-6f11a7daf67a
+    products: string;
 
 }
 
@@ -203,6 +213,12 @@ export const RecommendedProductsTemplate = {
     /// <para>Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed</para>
     headerFieldId: 'ba9cd774-93ea-490e-b978-38efe2c648ed',
     headerFieldName: 'Header',
+
+    /// The Products field.
+    /// <para>Field Type: TreelistEx</para>
+    /// <para>Field ID: 4a552a9b-072c-4f2c-af8d-6f11a7daf67a</para>
+    productsFieldId: '4a552a9b-072c-4f2c-af8d-6f11a7daf67a',
+    productsFieldName: 'Products',
 
 };
 

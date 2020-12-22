@@ -20,6 +20,8 @@ namespace HCA.Feature.Account.Tests.Controllers
     using Account.Controllers;
     using Account.Mappers;
 
+    using AutoFixture;
+
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
@@ -32,7 +34,7 @@ namespace HCA.Feature.Account.Tests.Controllers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

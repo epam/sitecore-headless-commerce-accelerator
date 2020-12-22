@@ -17,6 +17,8 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Connect.Context.Catalog;
 
     using Glass.Mapper.Sc;
@@ -25,7 +27,7 @@ namespace HCA.Foundation.Connect.Tests.Context.Catalog
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Collections;
     using Sitecore.Data;

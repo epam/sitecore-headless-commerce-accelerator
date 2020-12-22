@@ -18,6 +18,8 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     using Account.Infrastructure.Pipelines.Login;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Models.Result;
     using Base.Services.Logging;
@@ -29,7 +31,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Pipelines;
 

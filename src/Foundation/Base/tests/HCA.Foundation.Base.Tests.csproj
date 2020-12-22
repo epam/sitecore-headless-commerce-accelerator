@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HCA.Foundation.Base.Tests</RootNamespace>
     <AssemblyName>HCA.Foundation.Base.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoFixture, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\AutoFixture.4.0.0\lib\net452\AutoFixture.dll</HintPath>
+    </Reference>
     <Reference Include="Glass.Mapper, Version=5.6.160.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Glass.Mapper.Sc.93.Core.5.6.160\lib\net471\Glass.Mapper.dll</HintPath>
     </Reference>
@@ -112,9 +115,6 @@
     <Reference Include="NSubstitute, Version=1.10.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture, Version=3.51.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoFixture.3.51.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Framework.Conditions, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Framework.Conditions.4.0.0\lib\netstandard2.0\Sitecore.Framework.Conditions.dll</HintPath>
     </Reference>
@@ -125,13 +125,13 @@
       <HintPath>..\..\..\packages\Sitecore.Framework.Data.Blobs.Abstractions.1.0.0\lib\netstandard2.0\Sitecore.Framework.Data.Blobs.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Kernel.9.3.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Kernel.10.0.0\lib\net471\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Logging.9.3.0\lib\net471\Sitecore.Logging.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Logging.10.0.0\lib\net471\Sitecore.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging.Client, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Logging.Client.9.3.0\lib\net471\Sitecore.Logging.Client.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Logging.Client.10.0.0\lib\net471\Sitecore.Logging.Client.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Nexus.Consumption, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9de34fe2109de40c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Nexus.Consumption.1.1.1\lib\netstandard2.0\Sitecore.Nexus.Consumption.dll</HintPath>
@@ -140,13 +140,14 @@
       <HintPath>..\..\..\packages\Sitecore.Nexus.Licensing.2.0.6\lib\netstandard2.0\Sitecore.Nexus.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Zip, Version=12.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Zip.9.3.0\lib\net471\Sitecore.Zip.dll</HintPath>
+      <HintPath>..\..\..\packages\Sitecore.Zip.10.0.0\lib\net471\Sitecore.Zip.dll</HintPath>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />

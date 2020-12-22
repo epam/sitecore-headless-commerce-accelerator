@@ -17,6 +17,8 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
     using System;
     using System.Linq;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -24,7 +26,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers;
 

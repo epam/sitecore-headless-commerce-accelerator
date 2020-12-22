@@ -14,6 +14,8 @@
 
 namespace HCA.Feature.Checkout.Tests.Controllers
 {
+    using AutoFixture;
+
     using Checkout.Controllers;
     using Checkout.Utils;
 
@@ -23,7 +25,7 @@ namespace HCA.Feature.Checkout.Tests.Controllers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.FakeDb.AutoFixture;
 

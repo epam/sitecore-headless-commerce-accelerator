@@ -17,6 +17,8 @@ namespace HCA.Foundation.Commerce.Tests.Providers.StorefrontSettings
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Commerce.Providers.StorefrontSettings;
 
     using Connect.Context.Storefront;
@@ -24,7 +26,7 @@ namespace HCA.Foundation.Commerce.Tests.Providers.StorefrontSettings
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.FakeDb.AutoFixture;
 

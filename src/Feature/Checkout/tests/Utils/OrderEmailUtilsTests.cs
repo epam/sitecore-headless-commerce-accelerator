@@ -16,13 +16,15 @@ namespace HCA.Feature.Checkout.Tests.Utils
 {
     using System;
 
+    using AutoFixture;
+
     using Checkout.Utils;
 
     using Context;
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

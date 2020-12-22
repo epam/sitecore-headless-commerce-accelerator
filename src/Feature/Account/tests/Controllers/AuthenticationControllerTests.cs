@@ -22,6 +22,8 @@ namespace HCA.Feature.Account.Tests.Controllers
 
     using Account.Controllers;
 
+    using AutoFixture;
+
     using Foundation.Account.Models.Authentication;
     using Foundation.Account.Services.Authentication;
     using Foundation.Base.Models.Result;
@@ -30,7 +32,7 @@ namespace HCA.Feature.Account.Tests.Controllers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

@@ -16,6 +16,8 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
 {
     using System.Collections.Generic;
 
+    using AutoFixture;
+
     using Connect.Builders.Products;
     using Connect.Context.Catalog;
     using Connect.Mappers.Catalog;
@@ -24,7 +26,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;

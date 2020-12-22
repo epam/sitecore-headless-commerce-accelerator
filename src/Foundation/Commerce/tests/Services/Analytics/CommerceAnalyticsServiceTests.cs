@@ -16,6 +16,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Analytics
 {
     using System;
 
+    using AutoFixture;
+
     using Commerce.Services.Analytics;
 
     using Connect.Context.Storefront;
@@ -25,7 +27,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Analytics
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Services.Catalog;
     using Sitecore.FakeDb.AutoFixture;

@@ -19,6 +19,8 @@ namespace HCA.Foundation.Base.Tests.Controllers
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    using AutoFixture;
+
     using Base.Controllers;
 
     using Extensions;
@@ -27,7 +29,7 @@ namespace HCA.Foundation.Base.Tests.Controllers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

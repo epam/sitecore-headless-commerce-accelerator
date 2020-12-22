@@ -17,6 +17,8 @@ namespace HCA.Feature.Checkout.Tests.Controllers
     using System;
     using System.Collections.Generic;
 
+    using AutoFixture;
+
     using Checkout.Controllers;
 
     using Foundation.Base.Models.Result;
@@ -27,7 +29,7 @@ namespace HCA.Feature.Checkout.Tests.Controllers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

@@ -30,9 +30,7 @@ class ProductInformationControl extends JSS.SafePureComponent<ProductInformation
                 <div className="col-md-6">
                     <div className="description-text">
                         <h2>Product Description</h2>
-                        <p>
-                            {product && product.description}
-                        </p>
+                        <p dangerouslySetInnerHTML={{__html: product.description}} />
                     </div>
                     <div className="description-features">
                         <h2 >Features</h2>

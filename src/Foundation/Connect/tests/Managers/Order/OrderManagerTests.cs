@@ -16,6 +16,8 @@ namespace HCA.Foundation.Connect.Tests.Managers.Order
 {
     using System;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -23,7 +25,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Order
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers;
 

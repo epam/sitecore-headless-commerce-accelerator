@@ -18,6 +18,8 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -28,7 +30,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers;
 

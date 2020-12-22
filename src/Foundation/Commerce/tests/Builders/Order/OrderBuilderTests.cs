@@ -16,13 +16,15 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Order
 {
     using System.Linq;
 
+    using AutoFixture;
+
     using Commerce.Builders.Cart;
     using Commerce.Builders.Order;
     using Commerce.Mappers.Order;
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Orders;

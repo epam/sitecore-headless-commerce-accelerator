@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Connect.Tests.Context.Storefront
 {
+    using AutoFixture;
+
     using Connect.Context.Storefront;
 
     using Glass.Mapper.Sc;
@@ -22,7 +24,7 @@ namespace HCA.Foundation.Connect.Tests.Context.Storefront
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers;
 

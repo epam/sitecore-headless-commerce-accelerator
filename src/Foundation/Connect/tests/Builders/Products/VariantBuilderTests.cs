@@ -17,9 +17,11 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Connect.Builders.Products;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Data.Items;
     using Sitecore.FakeDb;

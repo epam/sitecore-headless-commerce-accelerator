@@ -14,6 +14,8 @@
 
 namespace HCA.Foundation.Connect.Tests.Managers
 {
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -21,7 +23,7 @@ namespace HCA.Foundation.Connect.Tests.Managers
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Services;
 

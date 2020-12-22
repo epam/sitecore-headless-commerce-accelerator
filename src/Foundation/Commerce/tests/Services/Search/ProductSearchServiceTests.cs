@@ -16,6 +16,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Search
 {
     using System;
 
+    using AutoFixture;
+
     using Base.Models.Result;
 
     using Commerce.Builders.Search;
@@ -31,7 +33,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Search
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

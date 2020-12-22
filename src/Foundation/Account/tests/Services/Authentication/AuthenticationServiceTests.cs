@@ -18,11 +18,13 @@ namespace HCA.Foundation.Account.Tests.Services.Authentication
     using Account.Infrastructure.Pipelines.Logout;
     using Account.Services.Authentication;
 
+    using AutoFixture;
+
     using Base.Services.Pipeline;
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

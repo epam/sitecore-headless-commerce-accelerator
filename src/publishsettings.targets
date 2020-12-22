@@ -1,15 +1,15 @@
 <Project ToolsVersion="4.0" 
   xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <publishUrl>http://wooli.local/</publishUrl>
+    <publishUrl>http://wooli10sc.dev.local/</publishUrl>
     <WebPublishMethod>MSDeploy</WebPublishMethod>
     <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
-    <SiteUrlToLaunchAfterPublish>http://wooli.local</SiteUrlToLaunchAfterPublish>
+    <SiteUrlToLaunchAfterPublish>http://wooli10sc.dev.local</SiteUrlToLaunchAfterPublish>
     <LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
     <ExcludeApp_Data>False</ExcludeApp_Data>
-    <MSDeployServiceURL>192.168.50.4</MSDeployServiceURL>
-    <DeployIisAppPath>sc9.local</DeployIisAppPath>
+    <MSDeployServiceURL>http://wooli10sc.dev.local:8172/msdeploy.axd</MSDeployServiceURL>
+    <DeployIisAppPath>wooli10sc.dev.local</DeployIisAppPath>
     <RemoteSitePhysicalPath />
     <SkipExtraFilesOnServer>True</SkipExtraFilesOnServer>
     <MSDeployPublishMethod>WMSVC</MSDeployPublishMethod>

@@ -17,6 +17,8 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
     using System;
     using System.Linq;
 
+    using AutoFixture;
+
     using Base.Models.Logging;
     using Base.Services.Logging;
 
@@ -27,7 +29,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers;
 

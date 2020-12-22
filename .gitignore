@@ -141,3 +141,8 @@ Code Generation Templates/*.tt
 /generators/.npmrc
 /generators/secret.json
 /generators/.yo-rc.json 
+/src/Project/HCA/serialization.content/Content/HCA/Data/Global Header/Menu/Bath and Body.yml
+/src/Project/HCA/serialization.content/Content/HCA/Data/Global Header/Menu/Hair Care.yml
+/src/Project/HCA/serialization.content/Content/HCA/Data/Global Header/Menu/Makeup.yml
+/src/Project/HCA/serialization.content/Content/HCA/Data/Global Header/Menu/Personal Care.yml
+/src/Project/HCA/serialization.content/Content/HCA/Data/Global Header/Menu/Skin Care.yml

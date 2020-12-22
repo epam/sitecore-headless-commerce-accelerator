@@ -18,6 +18,8 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Commerce.Builders.Search;
     using Commerce.Mappers.Search;
 
@@ -25,7 +27,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Search
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Xunit;
 

@@ -18,6 +18,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using System.Collections.Generic;
     using System.Linq;
 
+    using AutoFixture;
+
     using Commerce.Builders.Cart;
     using Commerce.Services.Cart;
 
@@ -29,7 +31,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Services.Carts;

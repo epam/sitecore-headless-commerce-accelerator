@@ -17,6 +17,8 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
     using System;
     using System.Linq;
 
+    using AutoFixture;
+
     using Connect.Builders.Products;
     using Connect.Builders.Search;
     using Connect.Mappers.Search;
@@ -27,7 +29,7 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
 
     using NSubstitute;
 
-    using Ploeh.AutoFixture;
+
 
     using Providers.Search;
 

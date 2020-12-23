@@ -19,8 +19,6 @@ import * as JSS from 'Foundation/ReactJss';
 import { Confirmation, Summary, ThankYouMessage } from './components';
 import { OrderConfirmationProps, OrderConfirmationState } from './models';
 
-import './styles.scss';
-
 export class OrderConfirmationComponent extends JSS.SafePureComponent<OrderConfirmationProps, OrderConfirmationState> {
   constructor(props: OrderConfirmationProps) {
     super(props);

@@ -86,7 +86,11 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </NavigationLink>
         </div>
         <div className="row cart2-last-row">
-          <OrderSummary price={shoppingCartData.price} rendering={this.props.rendering} />
+          <OrderSummary
+            price={shoppingCartData.price}
+            rendering={this.props.rendering}
+            countries={this.props.fields.countries}
+          />
         </div>
       </div>
     );

@@ -22,6 +22,7 @@ const Html = ({ component, initialState, distPath, path }: any) => {
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/vendors.css`} />
         <link rel="stylesheet" type="text/css" href={`${distPath}/project/hca/common.css`} />
       </head>
       <body>

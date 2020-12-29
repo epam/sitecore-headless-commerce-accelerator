@@ -15,9 +15,9 @@
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
-import { NotFound } from 'Feature/Errors/NotFound';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
+import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
 
 const components = new Map<string, any>();

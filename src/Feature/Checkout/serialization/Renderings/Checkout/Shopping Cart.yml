@@ -12,6 +12,9 @@ SharedFields:
   Hint: Placeholders
   Type: Treelist
   Value: "{C365BD3B-0885-42C4-94E9-CA7D8DE5F28D}"
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{AA4E3D69-E525-4BEA-9045-E4C1405A812C}"
 Languages:
 - Language: en
   Versions:

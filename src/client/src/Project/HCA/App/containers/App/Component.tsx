@@ -23,7 +23,8 @@ import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
 import { AppProps } from './../../../models';
 import { Layout, LoadingBar, ServerError } from './../../components';
 
-import { NotFound } from 'Feature/Errors/NotFound';
+import { GlobalError } from 'Foundation/UI/common/components/Errors/GlobalError';
+import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 
 const { SitecoreContext } = JSS;
 
@@ -47,6 +48,7 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
     return (
       <>
         <LoadingBar loading={this.props.isLoading} />
+        <GlobalError/>
         <Switch>
           <Route exact={true} path={SitecoreContext.NOT_FOUND_ROUTE} component={NotFound} />
           <Route exact={true} path={SitecoreContext.SERVER_ERROR_ROUTE} component={ServerError} />

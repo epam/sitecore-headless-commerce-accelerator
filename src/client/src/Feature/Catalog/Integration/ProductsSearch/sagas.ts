@@ -21,6 +21,7 @@ import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import { ProductSearch } from 'Feature/Catalog/Integration/api';
+import { addError } from 'Foundation/UI/common/components/Errors/Integration/actions';
 
 import * as actions from './actions';
 import {
@@ -37,11 +38,9 @@ import * as utils from './utils';
 export function* fetchProductsSearch(params: Params) {
   try {
     yield put(actions.ProductsSearchRequest(params));
-
     const { data, error }: Result<ProductSearchResults> = yield call(ProductSearch.searchProducts, params);
-
     if (error) {
-      return yield put(actions.ProductsSearchFailure(error.message));
+      return yield put(addError(error.message));
     }
 
     const { facets, products, totalPageCount, totalItemCount } = data;

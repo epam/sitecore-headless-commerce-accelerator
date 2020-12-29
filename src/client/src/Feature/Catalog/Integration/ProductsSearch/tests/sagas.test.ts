@@ -17,6 +17,7 @@ import { call, fork, put, select } from 'redux-saga/effects';
 import { LoadingStatus } from 'Foundation/Integration';
 
 import { ProductSearch } from 'Feature/Catalog/Integration/api';
+import { addError } from 'Foundation/UI/common/components/Errors/Integration';
 
 import * as actions from '../actions';
 import * as sagas from '../sagas';
@@ -63,8 +64,7 @@ describe('ProductsSearch sagas', () => {
 
       expect(actual.value).toEqual(expected);
     });
-
-    test('should put productsSearchFailure, due to error from api', () => {
+    test('should put addError to Global Error State, due to error from api', () => {
       const errorGen = sagas.fetchProductsSearch(fakeParams);
 
       errorGen.next();
@@ -72,7 +72,7 @@ describe('ProductsSearch sagas', () => {
 
       const fakeErrorMessage = 'fakeErrorMessage';
 
-      const expected = put(actions.ProductsSearchFailure(fakeErrorMessage));
+      const expected = put(addError(fakeErrorMessage));
       const actual = errorGen.next({
         error: {
           message: fakeErrorMessage,

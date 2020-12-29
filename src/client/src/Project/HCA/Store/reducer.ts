@@ -19,6 +19,8 @@ import { connectRouter } from 'connected-react-router';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
 
+import * as GlobalError from 'Foundation/UI/common/components/Errors/Integration';
+
 import * as Account from 'Feature/Account/Integration/Account';
 import * as Authentication from 'Feature/Account/Integration/Authentication';
 import * as Checkout from 'Feature/Checkout/Integration/Checkout';
@@ -35,6 +37,7 @@ export const makeRootReducer = (history: History) =>
     authentication: Authentication.rootReducer,
     checkout: Checkout.rootReducer,
     currentOrder: Order.rootReducer,
+    globalError: GlobalError.reducer,
     orderHistory: OrderHistory.rootReducer,
     productsSearch: ProductSearch.reducer,
     router: connectRouter(history),

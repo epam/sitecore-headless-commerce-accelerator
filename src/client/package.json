@@ -27,7 +27,7 @@
     "apollo-link-batch-http": "^1.2.11",
     "apollo-link-http": "^1.5.14",
     "apollo-link-persisted-queries": "^0.2.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "bootstrap-sass": "^3.3.7",
     "braintree-web": "^3.44.2",

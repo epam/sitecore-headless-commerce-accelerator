@@ -12,8 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './FullWidth';
-export * from './OneColumn';
-export * from './TwoColumn';
-export * from './TwoColumnRow';
-export * from './ThreeColumnRow';
+import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
+import { WelcomeProps, WelcomeState } from './models';
+
+import '../styles.scss';
+
+export class Welcome extends JSS.SafePureComponent<WelcomeProps, WelcomeState> {
+  protected safeRender() {
+    return (
+      <div className="welcome-area">
+        <div className="container">
+          <div className="welcome-content">
+            <h5>Who Are We</h5>
+            <h1>Welcome To Flone</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, t irure </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}

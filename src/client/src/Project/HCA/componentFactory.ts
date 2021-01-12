@@ -11,6 +11,12 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+import { AboutMission } from 'Feature/PageContent/AboutUs/AboutMission';
+import { AboutUsBanner } from 'Feature/PageContent/AboutUs/Banner';
+import { BrandLogos } from 'Feature/PageContent/AboutUs/BrandLogos';
+import { FunFacts } from 'Feature/PageContent/AboutUs/FunFacts';
+import { Team } from 'Feature/PageContent/AboutUs/Team';
+import { Welcome } from 'Feature/PageContent/AboutUs/Welcome';
 
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
@@ -30,6 +36,7 @@ components.set('One Column', Scaffolding.OneColumn);
 components.set('Two Column', Scaffolding.TwoColumn);
 components.set('Two Column Row', Scaffolding.TwoColumnRow);
 components.set('Three Column Row', Scaffolding.ThreeColumnRow);
+components.set('Full Width', Scaffolding.FullWidth);
 
 // Home renderings
 components.set('Carousel Banner', PageContent.CarouselBanner);
@@ -77,5 +84,13 @@ components.set('Login Register', Account.LoginRegister);
 
 // Not Found
 components.set('Not Found', NotFound);
+
+// About Us
+components.set('Welcome', Welcome);
+components.set('Banner', AboutUsBanner);
+components.set('About Mission', AboutMission);
+components.set('Fun Facts', FunFacts);
+components.set('Team', Team);
+components.set('Brand Logos', BrandLogos);
 
 export default (componentName: string) => components.get(componentName);

@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './FullWidth';
-export * from './OneColumn';
-export * from './TwoColumn';
-export * from './TwoColumnRow';
-export * from './ThreeColumnRow';
+import * as Jss from 'Foundation/ReactJss';
+
+export interface AboutUsBannerProps extends Jss.SafePureComponentState {}
+
+export interface AboutUsBannerState extends Jss.SafePureComponentState {}

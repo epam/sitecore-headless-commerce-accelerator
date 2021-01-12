@@ -1,0 +1,275 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "Foundation/UI/common/scss/variables";
+
+// Welcome area
+
+.welcome-area {
+    padding-bottom: 95px;
+    padding-top: 100px;
+}
+
+.welcome-content {
+    text-align: center;
+    h1 {
+        position: relative;
+        font-size: 30px;
+        font-weight: 500;
+        letter-spacing: .3px;
+        margin: 8px 0 30px;
+        color: #433f3f;
+        padding: 0 0 23px;
+        line-height: 1;
+        &:before {
+            position: absolute;
+            background-color: #070508;
+            height: 3px;
+            width: 70px;
+            content: "";
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+        }
+    }
+    h5 {
+        font-weight: 500;
+        font-size: 16px;
+        color: $brand-font-color;
+        margin: 0;
+        letter-spacing: .3px;
+    }
+    p {
+        font-size: 16px;
+        color: #4b4b4b;
+        line-height: 30px;
+        width: 66%;
+        margin: 0 auto;
+    }
+}
+
+// Our mission
+
+.about-mission-area {
+    padding-bottom: 70px;
+    .single-mission {
+        margin-bottom: 30px;
+        h3 {
+            font-size: 25px;
+            font-weight: 500;
+            margin: 0 0 20px;
+            text-transform: capitalize;
+            line-height: 22px;
+            color: $grey-dark;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}
+
+// Logo area 
+.brand-logo-area {
+    padding-bottom: 70px;
+    .swiper-container {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        .swiper-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            transition-property: transform;
+            box-sizing: content-box;
+        }
+    } 
+}
+
+// Team area
+.team-area {
+    padding-bottom: 70px;
+    padding-top: 95px;
+    .team-title {
+        margin-bottom: 60px;
+        text-align: center;
+    }
+    .team-wrapper {
+        background-color: $breadcrumbs-bar-color;
+        margin-bottom: 30px;
+        .team-img {
+            position: relative;
+            img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+            .team-action {
+                background: $white none repeat scroll 0 0;
+                left: 0;
+                opacity: 0;
+                padding: 10px;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 70%;
+                transform: translateY(-50%);
+                transition: all .6s ease 0s;
+                width: 100%;
+                z-index: 5;
+                a {
+                    border-radius: 50px;
+                    color: $white;
+                    display: inline-block;
+                    font-size: 14px;
+                    height: 30px;
+                    line-height: 28px;
+                    text-align: center;
+                    width: 30px;
+                    margin: 0 3px;
+                    &.facebook {
+                      border: 1px solid #3b5998;
+                      background-color: #3b5998;
+                      &:hover {
+                        background-color: transparent;
+                        color: #3b5998;
+                      }
+                    }
+                    &.twitter {
+                      border: 1px solid #55acee;
+                      background-color: #55acee;
+                      &:hover {
+                        background-color: transparent;
+                        color: #55acee;
+                      }
+                    }
+                    &.instagram {
+                      border: 1px solid #c32aa3;
+                      background-color: #c32aa3;
+                      &:hover {
+                        background-color: transparent;
+                        color: #c32aa3;
+                      }
+                    }
+                }
+            }
+        }
+        .team-content {
+            padding: 20px 10px 23px;
+            h4 {
+              font-size: 18px;
+              font-weight: 500;
+              margin: 0 0 3px;
+              text-transform: capitalize;
+            }
+            span {
+              font-size: 15px;
+              font-style: italic;
+            }
+        }
+        &:hover .team-action {
+            top: 50%;
+            opacity: 1;
+        }
+    }
+}
+
+// Banner area
+
+.banner-area {
+    padding-bottom: 70px;
+    .single-banner {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+        a {
+            img {
+                width: 100%;
+                transition: all .5s ease 0s;
+                transform: scale(1);
+            }
+            &:hover {
+                img{
+                    transform: scale(1.2);
+                }
+            }
+        }
+        .banner-content {
+            position: absolute;
+            top: 40px;
+            left: 36px;
+            content: "";
+            h3 {
+                font-family: $poppins;
+                font-size: 36px;
+                font-weight: 600;
+                margin: 0;
+                color: #915342;
+            }
+            h4 {
+                font-family: $poppins;
+                font-size: 18px;
+                font-weight: 600;
+                margin: 3px 0 58px;
+                color: #010101;
+            }
+            a {
+                font-size: 14px;
+                display: inline-block;
+                width: 28px;
+                height: 28px;
+                text-align: center;
+                color: #97584a;
+                border: 2px solid #97584a;
+                border-radius: 100%;
+            }
+        }
+    }
+}
+
+// Fun Facts
+.funfact-area {
+    position: relative;
+    background-color: $breadcrumbs-bar-color;
+    padding-bottom: 70px;
+    padding-top: 100px;
+    .single-count {
+        margin-bottom: 30px;
+        text-align: center;
+        h2>span {
+            color: $main-color;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 25px 0 12px;
+            display: inline-block;
+        }
+        span {
+            color: $grey-dark;
+            font-size: 20px;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+        .count-icon i {
+            font-size: 50px;
+            line-height: 1;
+            display: inline-block;
+        }
+    }
+}

@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Services.Cart
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -73,7 +74,12 @@ namespace HCA.Foundation.Commerce.Services.Cart
         public Result<Cart> GetCart()
         {
             // TODO: Cart caching
-            var response = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+
+            var response = this.cartManager.LoadCart(
+                this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
+                this.visitorContext.ContactId);
+
             return this.BuildResult(response);
         }
 
@@ -82,9 +88,12 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(anonymousContactId, nameof(anonymousContactId));
 
             var sourceCartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, anonymousContactId);
+
             var destinationCartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
                 this.visitorContext.ContactId);
+
             if (!sourceCartResult.Success || !destinationCartResult.Success)
             {
                 return this.BuildResult(sourceCartResult.Success ? destinationCartResult : sourceCartResult);
@@ -99,16 +108,21 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var cartLine = new CommerceConnect.CommerceCartLine(
-                this.catalogContext.CatalogName,
-                productId,
-                variantId == "-1" ? null : variantId,
-                quantity);
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var response = this.cartManager.AddCartLines(cart,
+                        new[] 
+                        {
+                            new CommerceConnect.CommerceCartLine(
+                            this.catalogContext.CatalogName,
+                            productId,
+                            variantId == "-1" ? null : variantId,
+                            quantity)
+                        });
 
-            var response = this.cartManager.AddCartLines(cartResult?.Cart, new[] { cartLine });
-
-            return this.BuildResult(response);
+                    return this.BuildResult(response);
+                });
         }
 
         public Result<Cart> UpdateCartLine(string productId, string variantId, decimal quantity)
@@ -116,21 +130,25 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var cartLines = this.GetCartLinesByProduct(
-                    cartResult?.Cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
-                    productId,
-                    variantId)
-                .ToList();
-            cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var cartLines = this.GetCartLinesByProduct(
+                            cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
+                            productId,
+                            variantId)
+                        .ToList();
+                    cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
 
-            var response = cartLines.Any()
-                ? quantity == 0
-                    ? this.cartManager.RemoveCartLines(cartResult?.Cart, cartLines)
-                    : this.cartManager.UpdateCartLines(cartResult?.Cart, cartLines)
-                : this.cartManager.AddCartLines(cartResult?.Cart, cartLines);
+                    var response = cartLines.Any()
+                        ? quantity == 0
+                            ? this.cartManager.RemoveCartLines(cart, cartLines)
+                            : this.cartManager.UpdateCartLines(cart, cartLines)
+                        : this.cartManager.AddCartLines(cart, cartLines);
 
-            return this.BuildResult(response);
+                    return this.BuildResult(response);
+                });
+
         }
 
         public Result<Cart> RemoveCartLine(string productId, string variantId)
@@ -138,38 +156,45 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(productId, nameof(productId));
             Assert.ArgumentNotNull(variantId, nameof(variantId));
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var cartLines = this.GetCartLinesByProduct(
-                    cartResult?.Cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
-                    productId,
-                    variantId)
-                .ToList();
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var response = this.cartManager.RemoveCartLines(cart,
+                            this.GetCartLinesByProduct(cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
+                            productId,
+                            variantId)
+                        .ToList());
 
-            var response = this.cartManager.RemoveCartLines(cartResult?.Cart, cartLines);
-
-            return this.BuildResult(response);
+                    return this.BuildResult(response);
+                });
         }
 
         public Result<Cart> AddPromoCode(string promoCode)
         {
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.AddPromoCode(cartResult?.Cart as CommerceConnect.CommerceCart, promoCode.Trim());
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var response = this.cartManager.AddPromoCode(cart as CommerceConnect.CommerceCart, promoCode.Trim());
 
-            return this.BuildResult(response);
+                    return this.BuildResult(response);
+                });
         }
 
         public Result<Cart> RemovePromoCode(string promoCode)
         {
             Assert.ArgumentNotNull(promoCode, nameof(promoCode));
+			
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var response = this.cartManager.RemovePromoCode(
+                        cart as CommerceConnect.CommerceCart,
+                        this.promotionService.GetPromotionByDisplayName(displayName).Data.PublicCoupon);
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
-            var response = this.cartManager.RemovePromoCode(
-                cartResult?.Cart as CommerceConnect.CommerceCart,
-                promoCode);
-
-            return this.BuildResult(response);
+                    return this.BuildResult(response);
+                });
         }
 
         private IEnumerable<CommerceConnect.CommerceCartLine> GetCartLinesByProduct(
@@ -190,6 +215,18 @@ namespace HCA.Foundation.Commerce.Services.Cart
         {
             var cart = this.cartBuilder.Build(cartResult?.Cart);
             return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
+		}
+		
+        private Result<Cart> ExecuteWithCart(Func<Result<Cart>, Connect.Cart, Result<Cart>> action)
+        {
+            var result = new Result<Cart>();
+
+            var loadCartResult = this.cartManager.LoadCart(
+                this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
+                this.visitorContext.ContactId);
+
+            return action(result, loadCartResult?.Cart);
         }
     }
 }

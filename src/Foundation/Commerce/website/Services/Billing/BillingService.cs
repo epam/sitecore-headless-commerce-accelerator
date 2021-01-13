@@ -83,8 +83,10 @@ namespace HCA.Foundation.Commerce.Services.Billing
             if (!Context.PageMode.IsExperienceEditor)
             {
                 result.SetResult(model);
+
                 var cartResult = this.cartManager.LoadCart(
                     this.storefrontContext.ShopName,
+                    this.visitorContext.CurrentUser?.CustomerId ??
                     this.visitorContext.ContactId);
 
                 if (!cartResult.Success)
@@ -119,8 +121,10 @@ namespace HCA.Foundation.Commerce.Services.Billing
             Assert.ArgumentNotNull(federatedPayment, nameof(federatedPayment));
 
             var result = new Result<VoidResult>(new VoidResult());
+
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
                 this.visitorContext.ContactId);
 
             if (!cartResult.Success)

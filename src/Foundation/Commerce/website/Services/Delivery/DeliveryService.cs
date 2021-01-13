@@ -39,6 +39,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
+    using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
     using ShippingInfo = Models.Entities.Shipping.ShippingInfo;
@@ -89,8 +90,10 @@ namespace HCA.Foundation.Commerce.Services.Delivery
                 NewPartyId = Guid.NewGuid().ToString("N").ToLower()
             };
             var result = new Result<DeliveryInfo>(model);
+
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
                 this.visitorContext.ContactId);
 
             if (!cartResult.Success)
@@ -119,8 +122,10 @@ namespace HCA.Foundation.Commerce.Services.Delivery
         {
             var model = new ShippingInfo();
             var result = new Result<ShippingInfo>(model);
+
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
                 this.visitorContext.ContactId);
 
             if (!cartResult.Success)
@@ -159,8 +164,10 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             Assert.ArgumentNotNull(shippingMethods, nameof(shippingMethods));
 
             var result = new Result<VoidResult>(new VoidResult());
+
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
                 this.visitorContext.ContactId);
 
             if (!cartResult.Success)

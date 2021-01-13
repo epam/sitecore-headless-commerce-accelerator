@@ -35,7 +35,7 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Models.Entities.Order;
 
     using Newtonsoft.Json;
-
+    using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
     [Service(typeof(IOrderService), Lifetime = Lifetime.Singleton)]
@@ -144,7 +144,10 @@ namespace HCA.Foundation.Commerce.Services.Order
         {
             var result = new Result<OrderConfirmation>();
 
-            var cartResult = this.cartManager.LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId);
+            var cartResult = this.cartManager.LoadCart(
+                this.storefrontContext.ShopName,
+                this.visitorContext.CurrentUser?.CustomerId ??
+                this.visitorContext.ContactId);
 
             if (cartResult.Success)
             {

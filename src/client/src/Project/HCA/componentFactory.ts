@@ -82,6 +82,9 @@ components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Login Register', Account.LoginRegister);
 
+// Navigation
+components.set('Breadcrumb', Navigation.Breadcrumb);
+
 // Not Found
 components.set('Not Found', NotFound);
 

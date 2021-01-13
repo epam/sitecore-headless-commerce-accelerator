@@ -507,7 +507,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBreadcrumbsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BreadcrumbsRepositoryTests.cs" />
+    <Compile Include="Services\BreadcrumbsServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -524,6 +527,20 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Foundation\Base\website\HCA.Foundation.Base.csproj">
+      <Project>{FF564A60-1CC7-4BAE-B859-88DE35FDA77A}</Project>
+      <Name>HCA.Foundation.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\Commerce\website\HCA.Foundation.Commerce.csproj">
+      <Project>{4CD01A37-76D8-4A6A-8822-014369C4243D}</Project>
+      <Name>HCA.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\website\HCA.Feature.Navigation.csproj">
+      <Project>{A35E6B68-E557-4F13-8DCA-294ECC4BE538}</Project>
+      <Name>HCA.Feature.Navigation</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

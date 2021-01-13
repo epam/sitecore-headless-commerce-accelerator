@@ -18,7 +18,6 @@ import * as React from 'react';
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import classnames from 'classnames';
 
-import { Breadcrumbs } from 'Feature/Navigation/Breadcrumbs';
 import { HeaderProps, HeaderState } from './models';
 
 import './styles.scss';
@@ -83,7 +82,7 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
             </div>
           </div>
         </div>
-        <Breadcrumbs />
+        <Placeholder name="breadcrumb" rendering={this.props.rendering} />
       </header>
     );
   }

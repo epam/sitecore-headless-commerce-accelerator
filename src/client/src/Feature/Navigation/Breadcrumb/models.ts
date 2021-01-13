@@ -12,9 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Copyright';
-export * from './FooterLinks';
-export * from './GlobalFooter';
-export * from './Header';
-export * from './SocialNetworksLinks';
-export * from './Breadcrumb';
+import * as Jss from 'Foundation/ReactJss';
+
+export interface PageLink {
+  title: string;
+  link: string;
+}
+
+export interface Breadcrumb {
+  pageLinks: PageLink[];
+}
+
+export interface BreadcrumbContext {
+  breadcrumb: Breadcrumb;
+}
+
+export interface BreadcrumbProps extends Jss.RenderingWithContext<Jss.BaseDataSourceItem, BreadcrumbContext> {}
+
+export interface BreadcrumbState extends Jss.SafePureComponentState {}
+
+export interface AppState extends Jss.SitecoreState {}

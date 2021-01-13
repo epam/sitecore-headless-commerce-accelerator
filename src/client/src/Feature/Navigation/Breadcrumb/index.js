@@ -12,12 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import BreadcrumbComponent from './Component';
+
 import * as Jss from 'Foundation/ReactJss';
 
-export interface BreadcrumbsProps {
-  currentPageName?: string;
-}
-
-export interface BreadcrumbsState extends Jss.SafePureComponentState {}
-
-export interface AppState extends Jss.SitecoreState {}
+export const Breadcrumb = Jss.renderingWithContext(BreadcrumbComponent);

@@ -12,33 +12,32 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
-
-import * as JSS from 'Foundation/ReactJss';
-
-import { BreadcrumbsProps, BreadcrumbsState } from './models';
-
 import './styles.scss';
 
-const homeName = 'Home';
-export default class BreadcrumbsComponent extends JSS.SafePureComponent<BreadcrumbsProps, BreadcrumbsState> {
+import * as JSS from 'Foundation/ReactJss';
+import * as React from 'react';
+
+import { BreadcrumbProps, BreadcrumbState, PageLink } from './models';
+
+export default class BreadcrumbComponent extends JSS.SafePureComponent<BreadcrumbProps, BreadcrumbState> {
   protected safeRender() {
-    const { currentPageName } = this.props;
+    const { breadcrumb } = this.props.sitecoreContext;
+    const pageLinks = breadcrumb && breadcrumb.pageLinks;
 
-    const showBreadcrumbs = currentPageName !== 'Home';
-
-    return showBreadcrumbs ? (
+    return (
       <div className="header_breadcrumbs">
         <span>
-          <span>
-            <a aria-current="page" className="active" href="/">
-              {homeName}
-            </a>
-            <span className="slash">/</span>
-          </span>
-          <span>{currentPageName}</span>
+          {pageLinks &&
+            pageLinks.map((pageLink: PageLink, index: number, array: PageLink[]) => (
+              <span key={pageLink.title}>
+                <a aria-current="page" className="active" href={pageLink.link}>
+                  {pageLink.title}
+                </a>
+                {index < array.length - 1 && <span className="slash">/</span>}
+              </span>
+            ))}
         </span>
       </div>
-    ) : null;
+    );
   }
 }

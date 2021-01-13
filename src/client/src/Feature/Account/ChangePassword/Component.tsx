@@ -71,7 +71,6 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
             <div className="account-details-form_main_container">
               <div className="form-title">
                 <h4>CHANGE PASSWORD</h4>
-                <h5>Your Password</h5>
               </div>
               <Form>
                 <div className="row">

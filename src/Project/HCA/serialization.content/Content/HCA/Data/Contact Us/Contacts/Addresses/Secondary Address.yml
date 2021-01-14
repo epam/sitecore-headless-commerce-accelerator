@@ -1,0 +1,21 @@
+﻿---
+ID: "dd773a97-88d1-4276-92f5-480771cde152"
+Parent: "68d8ac21-f90a-45dc-b720-8593e3129861"
+Template: "4336232f-c7d3-4820-9784-11323307c054"
+Path: /sitecore/content/HCA/Data/Contact Us/Contacts/Addresses/Secondary Address
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T130036Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "988886e4-c5bf-4fd0-803f-61d1cae54112"
+      Hint: Address
+      Value: street, Crossroad 123.

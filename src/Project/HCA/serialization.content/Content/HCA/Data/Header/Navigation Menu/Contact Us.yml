@@ -1,0 +1,26 @@
+﻿---
+ID: "00bc36e6-67c7-4f9a-8cd3-624d81623523"
+Parent: "260ba6fc-fa2b-457e-8a23-6260fcd4415e"
+Template: "ae3ff355-fa34-4997-a942-4afce72196aa"
+Path: /sitecore/content/HCA/Data/Header/Navigation Menu/Contact Us
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T144117Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "7082583e-b447-47c3-ab03-7ca6f619e0ce"
+      Hint: Uri
+      Value: |
+        <link text="Contact Us" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{C99FFBDC-96FD-4742-B62C-34A84BFE38C5}" />

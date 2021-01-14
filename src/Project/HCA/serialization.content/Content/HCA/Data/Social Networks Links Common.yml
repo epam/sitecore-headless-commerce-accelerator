@@ -1,0 +1,14 @@
+﻿---
+ID: "292f0174-b519-472a-8f5a-978e2d5b0b12"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "06baa321-f0c9-4e47-933e-3c0ae7ba1d61"
+Path: /sitecore/content/HCA/Data/Social Networks Links Common
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T082725Z

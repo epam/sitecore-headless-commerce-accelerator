@@ -18,14 +18,19 @@ export interface CommerceCategory extends JSS.BaseDataSourceItem {
   name: string;
 }
 
-export interface MenuItemDataSource extends JSS.BaseDataSourceItem {
+export interface MenuCommerceItemDataSource extends JSS.BaseDataSourceItem {
   title: JSS.GraphQLField<JSS.TextField>;
   image: JSS.GraphQLField<JSS.ImageField>;
   commerceCategories: JSS.GraphQLListField<CommerceCategory>;
 }
 
+export interface MenuLinkDataSource extends JSS.BaseDataSourceItem {
+  uri: JSS.GraphQLField<JSS.LinkField>;
+}
+
 export interface NavigationMenuDataSource extends JSS.BaseDataSourceItem {
-  menuItems: JSS.GraphQLListField<MenuItemDataSource>;
+  menuCommerceItems: JSS.GraphQLListField<MenuCommerceItemDataSource>;
+  menuLinks: JSS.GraphQLListField<MenuLinkDataSource>;
 }
 
 export interface NavigationMenuProps extends JSS.GraphQLRendering<NavigationMenuDataSource> {}

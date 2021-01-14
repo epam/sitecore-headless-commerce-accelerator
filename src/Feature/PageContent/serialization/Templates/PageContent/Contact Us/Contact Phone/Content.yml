@@ -1,0 +1,14 @@
+﻿---
+ID: "d859180a-59d8-46a9-8f10-5dc33be54d4b"
+Parent: "ba4cab76-aa33-465b-a385-a8b1d045b3cf"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201216T204622Z

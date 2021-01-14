@@ -30,13 +30,3 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
-    - ID: "6eb6810e-1468-42ad-a0f6-b347a88f729a"
-      Hint: Links
-      Type: Multilist
-      Value: |
-        {E8670D78-A43F-4810-B896-B13EB7B71A58}
-        {A6C4C85F-FEB1-4D71-AD5A-D67D1AA4CC7B}
-        {257ECA30-919E-4780-A343-7F17D5387E0E}
-        {60D021EA-A6BA-46DF-9EEF-46536180393D}
-        {BE1D59D3-258D-4280-9425-1680B63C5D97}
-        {3917D9A4-3B59-476B-83A0-A3A18E36705D}

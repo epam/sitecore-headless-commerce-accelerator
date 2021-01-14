@@ -1,0 +1,22 @@
+﻿---
+ID: "0621ad69-a77e-4dc5-abb9-e3bfa76faba6"
+Parent: "b51609de-1f0f-4f60-bf6a-f4b22295ec01"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Navigation/widgets-social"
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "widgets-social"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Type: TreelistEx
+  Value: "{EFAA6F19-1DEC-4AA8-A5AE-131F7D49E7E6}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210106T145908Z

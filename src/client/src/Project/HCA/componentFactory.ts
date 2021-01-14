@@ -96,4 +96,8 @@ components.set('Fun Facts', FunFacts);
 components.set('Team', Team);
 components.set('Brand Logos', BrandLogos);
 
+// Contact Us
+components.set('Contact Us', PageContent.ContactUs);
+components.set('Get In Touch Form', PageContent.GetInTouchForm);
+
 export default (componentName: string) => components.get(componentName);

@@ -1,0 +1,25 @@
+﻿---
+ID: "fe745aec-a7bd-42c1-9316-41a715302486"
+Parent: "292f0174-b519-472a-8f5a-978e2d5b0b12"
+Template: "656950e2-cdb1-4899-8106-067a6b76468b"
+Path: /sitecore/content/HCA/Data/Social Networks Links Common/Youtube
+DB: master
+SharedFields:
+- ID: "5fb8c44b-7a28-4d89-a38e-738e35911baf"
+  Hint: Css Class
+  Value: "fa fa-youtube"
+- ID: "c99f9ed0-3626-48ef-96ab-f837ce37e6a1"
+  Hint: Uri
+  Value: |
+    <link linktype="external" class="fa fa-youtube" url="http://youtube.com" anchor="" target="" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T192122Z
+    - ID: "d3fc7572-4cc4-42b9-92c1-10cf8c83ef42"
+      Hint: Title
+      Value: Youtube

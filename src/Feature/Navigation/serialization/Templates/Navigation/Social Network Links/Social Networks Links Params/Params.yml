@@ -1,0 +1,14 @@
+﻿---
+ID: "26fede9c-43f0-4246-a5ab-39c7acb45c49"
+Parent: "49f79318-adc9-492b-82f2-e29fa8f5dfb1"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Params/Params
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T075358Z

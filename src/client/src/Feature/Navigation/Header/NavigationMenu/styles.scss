@@ -389,10 +389,19 @@
         margin-bottom: 60px;
         padding: 0 30px;
         display: block;
-        i {
-          margin-right: 20px;
-          &:hover {
-            color: $theme-color;
+        li {
+          display: inline-block;
+          padding: 0;
+
+          a {
+            color: #000;
+
+            i {
+              margin-right: 20px;
+              &:hover {
+                color: $theme-color;
+              }
+            }
           }
         }
       }

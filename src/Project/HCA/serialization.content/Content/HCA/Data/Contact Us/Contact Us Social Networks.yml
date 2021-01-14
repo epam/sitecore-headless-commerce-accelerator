@@ -1,0 +1,26 @@
+﻿---
+ID: "87ca9daa-9709-4089-aa59-eeb814edf3aa"
+Parent: "77018cc5-39b8-48e4-a2b6-a5dd7847c42b"
+Template: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
+Path: /sitecore/content/HCA/Data/Contact Us/Contact Us Social Networks
+DB: master
+SharedFields:
+- ID: "69e30764-9342-4ade-9c1b-db74d087537d"
+  Hint: Links
+  Type: Treelist
+  Value: |
+    {55D79260-F5D4-45E2-B148-67598686DEB9}
+    {650C64F9-79BE-4F53-A6D2-08B8F78526C7}
+    {A2C8C164-E3B2-48E0-A5B9-14CBFAE28D26}
+    {FE745AEC-A7BD-42C1-9316-41A715302486}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T093147Z
+    - ID: "ef68acf6-1155-4c4c-9e38-fe1dcccb7d1f"
+      Hint: Section Title
+      Value: Follow Us

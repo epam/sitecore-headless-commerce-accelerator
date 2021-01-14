@@ -47,10 +47,13 @@ SharedFields:
     
 - ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
   Hint: Datasource Template
-  Value: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links
+  Value: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: "{49F79318-ADC9-492B-82F2-E29FA8F5DFB1}"
 - ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
   Hint: Datasource Location
-  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']/*[@@name='Footer']/*[@@templateid='{94FB0BB4-F041-45F7-A0CE-1E3899FC40E0}']"
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{94FB0BB4-F041-45F7-A0CE-1E3899FC40E0}']"
 Languages:
 - Language: en
   Versions:

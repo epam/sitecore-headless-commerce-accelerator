@@ -14,3 +14,5 @@
 
 export * from './RecommendedProducts';
 export * from './CarouselBanner';
+export * from './ContactUs';
+export * from './GetInTouchForm';

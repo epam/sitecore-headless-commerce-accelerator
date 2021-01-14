@@ -11,16 +11,20 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Navigation Menu
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{0621AD69-A77E-4DC5-ABB9-E3BFA76FABA6}"
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
   Value: |
     query NavigationMenu($datasource: String!) {
       datasource(value: $datasource) {
-        ... on NavigationMenu{
+        ... on NavigationMenu {
           id
-          menuItems {
+          menuCommerceItems {
             items: targetItems {
-              ... on MenuItem {
+              ... on MenuCommerceItem {
                 id
                 title {
                   jss
@@ -29,13 +33,22 @@ SharedFields:
                   jss
                 }
                 commerceCategories {
-                  items:  targetItems {
+                  items: targetItems {
                     ... on CommerceCategory {
                       id
-                     name: displayName
+                      name: displayName
                     }
-                  
                   }
+                }
+              }
+            }
+          }
+          menuLinks {
+            items: targetItems {
+              ... on MenuLink {
+                id
+                uri {
+                  jss
                 }
               }
             }

@@ -1,0 +1,36 @@
+﻿---
+ID: "5771cad5-b460-40f4-9e9f-ceb700fb214b"
+Parent: "611e79bd-6fbf-4fee-8f66-94b27238c033"
+Template: "611e79bd-6fbf-4fee-8f66-94b27238c033"
+Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1ff5310c-3ed4-4c5b-ac20-79257e8d608e"
+      Hint: Submit Button Text
+      Value: SEND
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210111T165616Z
+    - ID: "5d7813fd-a32d-47d6-a690-369da5851958"
+      Hint: Subject Placeholder
+      Value: Subject*
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "5ffe7eee-73a0-4320-be91-777b6f42457e"
+      Hint: Message Placeholder
+      Value: Your Message*
+    - ID: "61f745b2-2e40-48af-90b3-ace97cb8f17d"
+      Hint: Name Placeholder
+      Value: Name*
+    - ID: "b22d3283-8235-4521-a321-958dae1d0403"
+      Hint: Form Title
+      Value: Get In Touch
+    - ID: "cd7f5292-5278-40d1-b004-5ad19595c96e"
+      Hint: Email Placeholder
+      Value: Email*

@@ -1,0 +1,14 @@
+﻿---
+ID: "a96d9a50-5225-444e-9415-a19f076f1a3f"
+Parent: "ae3ff355-fa34-4997-a942-4afce72196aa"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Link/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T133910Z

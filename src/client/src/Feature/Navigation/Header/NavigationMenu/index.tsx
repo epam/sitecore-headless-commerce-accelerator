@@ -16,7 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
 
-import { Image } from '@sitecore-jss/sitecore-jss-react';
+import { Image, Link, Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import { NavigationLinks } from '../NavigationLinks';
 import { NavigationMenuProps, NavigationMenuState } from './models';
 import './styles.scss';
@@ -48,20 +48,21 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
     elem.classList.toggle('fa-minus');
   }
   protected safeRender() {
-    const { menuItems } = this.props.fields.data.datasource;
+    const { menuCommerceItems, menuLinks } = this.props.fields.data.datasource;
+
     return (
       <nav className="navigation">
         <ul className="navigation-content">
-          {menuItems &&
-            menuItems.items &&
-            menuItems.items.map((menuItem, menuItemIndex) => {
+          {menuCommerceItems &&
+            menuCommerceItems.items &&
+            menuCommerceItems.items.map((menuCommerceItem, menuCommerceItemIndex) => {
               const {
                 title: {
                   jss: { value },
                 },
                 image,
                 commerceCategories,
-              } = menuItem;
+              } = menuCommerceItem;
 
               const commerceNavigationLinks = commerceCategories.items.map(({ name }) => {
                 return {
@@ -71,7 +72,7 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
               });
 
               return (
-                <div key={menuItemIndex}>
+                <div key={menuCommerceItemIndex}>
                   <li className="navigation_item">
                     <span className="navigation_link">
                       {value}
@@ -115,7 +116,7 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                                 const { name } = category;
                                 const link = '/shop/' + name;
                                 return (
-                                  <li key={categoryIndex} data-autotests={`subMenuItem_${name}`}>
+                                  <li key={categoryIndex} data-autotests={`submenuCommerceItem_${name}`}>
                                     <NavigationLink to={link}>{name}</NavigationLink>
                                   </li>
                                 );
@@ -151,11 +152,13 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
               );
             })}
           <div>
-            <li className="navigation_item navigation_mobile_item-contact">
-              <NavigationLink className="navigation_link" to="/">
-                Contact Us
-              </NavigationLink>
-            </li>
+            {menuLinks &&
+              menuLinks.items &&
+              menuLinks.items.map((menuLink) => (
+                <li key={menuLink.id} className="navigation_item navigation_mobile_item-contact">
+                  <Link field={menuLink.uri.jss} className="navigation_link" />
+                </li>
+              ))}
           </div>
           <div className="dropdown-mobile dropdown-mobile-lang">
             <div className="dropdown-mobile_title">Choose Language</div>
@@ -169,20 +172,7 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
               <option value="USD">USD</option>
             </select>
           </div>
-          <div className="widgets-social">
-            <a href="//twitter.com" title="Twitter">
-              <i className="fa fa-twitter" />
-            </a>
-            <a href="//instagram.com" title="Instagram">
-              <i className="fa fa-instagram" />
-            </a>
-            <a href="//facebook.com" title="Facebook">
-              <i className="fa fa-facebook" />
-            </a>
-            <a href="//pinterest.com" title="Pinterest">
-              <i className="fa fa-pinterest" />
-            </a>
-          </div>
+          <Placeholder name="widgets-social" rendering={this.props.rendering} />
         </ul>
       </nav>
     );

@@ -15,4 +15,4 @@ Languages:
     - ID: "59c90da9-7201-4915-b904-73405da46bb1"
       Hint: Uri
       Value: |
-        <link linktype="external" text="Contact Us" url="" anchor="" target="" />
+        <link text="Contact Us" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{C99FFBDC-96FD-4742-B62C-34A84BFE38C5}" />

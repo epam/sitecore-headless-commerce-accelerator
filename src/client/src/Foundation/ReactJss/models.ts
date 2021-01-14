@@ -49,13 +49,24 @@ export interface DictionaryItem {
   dictionary: { [key: string]: string };
 }
 
-export interface Rendering<TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem>
-  extends Item<TDataSourceItem> {
+export interface BaseRendering {
   rendering: ComponentRendering;
 }
 
+export interface Rendering<TDataSourceItem extends BaseDataSourceItem = BaseDataSourceItem>
+  extends BaseRendering,
+    Item<TDataSourceItem> {}
+
+export interface GraphQLRenderingWithParams<
+  TDataSourceItem extends BaseDataSourceItem,
+  TParameters extends BaseRenderingParam
+> extends BaseRendering, Item<GraphQLDataSourceItem<TDataSourceItem>> {
+  params: TParameters;
+}
+
 export interface GraphQLRendering<TDataSourceItem extends BaseDataSourceItem>
-  extends Item<GraphQLDataSourceItem<TDataSourceItem>> {}
+  extends BaseRendering,
+    Item<GraphQLDataSourceItem<TDataSourceItem>> {}
 
 export interface RenderingWithParams<
   TDataSourceItem extends BaseDataSourceItem,

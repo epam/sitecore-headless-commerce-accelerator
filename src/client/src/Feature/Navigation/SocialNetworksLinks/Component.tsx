@@ -24,12 +24,16 @@ import './styles.scss';
 export default class SocialNetworksLinksComponent extends JSS.SafePureComponent<SocialLinksProps, SocialLinksState> {
   protected safeRender() {
     const { datasource } = this.props.fields.data;
+    const { params } = this.props;
 
     return (
-      <div className="social-network-container">
-        <Text tag="h2" field={datasource.sectionTitle.jss} className="social-title" />
+      <div className={params.containerClass}>
+        {params.showTitle && (
+          <Text tag={params.titleTag} field={datasource.sectionTitle.jss} className={params.titleClass} />
+        )}
         <ul className="social-list">
-          {datasource.links &&
+          {datasource &&
+            datasource.links &&
             datasource.links.items &&
             datasource.links.items.map((link, index) => {
               const { uri } = link;

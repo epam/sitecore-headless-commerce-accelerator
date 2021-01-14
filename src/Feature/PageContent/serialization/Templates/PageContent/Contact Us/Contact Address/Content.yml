@@ -1,0 +1,14 @@
+﻿---
+ID: "6c9d09da-ff49-48dd-8d85-48db0c2790eb"
+Parent: "4336232f-c7d3-4820-9784-11323307c054"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201216T204158Z

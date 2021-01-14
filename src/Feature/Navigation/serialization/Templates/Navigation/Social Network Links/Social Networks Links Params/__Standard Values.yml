@@ -1,0 +1,28 @@
+﻿---
+ID: "9d96caaf-c887-4d9d-bce5-e635202e2583"
+Parent: "49f79318-adc9-492b-82f2-e29fa8f5dfb1"
+Template: "49f79318-adc9-492b-82f2-e29fa8f5dfb1"
+Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Params/__Standard Values
+DB: master
+SharedFields:
+- ID: "45f1d33d-bebd-4f5f-9548-ad78cf2ada54"
+  Hint: Title Class
+  Value: "social-title"
+- ID: "489896f2-c063-433a-aef0-980605450800"
+  Hint: Container Class
+  Value: "social-network-container"
+- ID: "8ca8968a-f2ba-48d4-b589-b528fb251cc1"
+  Hint: Show Title
+  Type: Checkbox
+  Value: 1
+- ID: "cb67858c-b67c-422f-975d-aacb0e5f845d"
+  Hint: Title Tag
+  Value: h2
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T075410Z

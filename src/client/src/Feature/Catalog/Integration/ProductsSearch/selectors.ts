@@ -17,7 +17,7 @@ import { GlobalProductSearchState } from './models';
 export const productsSearch = (state: GlobalProductSearchState) => state.productsSearch;
 export const productsSearchStatus = (state: GlobalProductSearchState) => productsSearch(state).status;
 export const productSearchFacets = (state: GlobalProductSearchState) => productsSearch(state).facets;
-export const productSearchItems = (state: GlobalProductSearchState) => productsSearch(state).items;
+export const productSearchItems = (state: GlobalProductSearchState) => productsSearch(state).items || [];
 export const productSearchParams = (state: GlobalProductSearchState) => productsSearch(state).params;
 export const productSearchCurrentPageNumber = (state: GlobalProductSearchState) =>
   productsSearch(state).currentPageNumber;

@@ -23,6 +23,8 @@ export interface ProductFiltersStateProps {
   search: string;
   facets: ProductSearch.Facets[];
   isLoading: boolean;
+  items: ProductSearch.Product[];
+  totalItemCount: number;
 }
 export interface ProductFiltersDispatchProps {
   ApplyFacet: (name: string, value: string, search: string) => void;

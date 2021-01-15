@@ -28,11 +28,15 @@ import { AppState, ProductFiltersDispatchProps, ProductFiltersOwnProps, ProductF
 const mapStateToProps = (state: AppState, ownProps: ProductFiltersOwnProps) => {
   const { search } = ownProps.history.location;
   const facets = ProductSearch.productSearchFacets(state) || [];
+  const items = ProductSearch.productSearchItems(state);
   const status = ProductSearch.productsSearchStatus(state);
+  const totalItemCount = ProductSearch.productsSearch(state).totalItemCount;
   return {
     facets,
     isLoading: status === LoadingStatus.Loading,
+    items,
     search,
+    totalItemCount,
   };
 };
 

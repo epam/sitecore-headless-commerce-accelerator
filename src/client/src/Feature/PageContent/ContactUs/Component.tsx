@@ -19,15 +19,13 @@ import {
   ContactLinkDataSource,
   ContactPhoneDataSource,
   ContactUsProps,
-  ContactUsState,
-  Store,
+  ContactUsState
 } from './models';
 
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
-import { Map } from 'Feature/GoogleMap/Map/Component';
-import { Marker } from 'Feature/GoogleMap/Marker/models';
+import ContactUsImg from 'Foundation/UI/common/media/images/contact-us.jpg';
 
 export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, ContactUsState> {
   public constructor(props: ContactUsProps) {
@@ -42,20 +40,15 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
   }
 
   protected safeRender() {
-    const { stores } = this.props;
     const { datasource } = this.props.fields.data;
 
     return (
       <div className="contact-area">
-        <div className="contact-area_map">
-          <Map
-            markers={stores.map(this.mapStoreToMarker)}
-            center={{ latitude: 123, longitude: 123 }}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `560px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-          />
+        <div className="contact-area_text">
+          <p>Please email us your questions regarding our products.</p>
+        </div>
+        <div className="contact-area_image">
+          <img src={ContactUsImg} alt="contact-us"/>
         </div>
         <div className="contact-area_content_container row">
           <div className="contact-area_content col-lg-4 col-md-5">
@@ -116,18 +109,5 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
         </div>
       </div>
     );
-  }
-
-  private mapStoreToMarker(store: Store): Marker {
-    return {
-      information: {
-        description: store.description,
-        title: store.title,
-      },
-      position: {
-        latitude: +store.latitude,
-        longitude: +store.longitude,
-      },
-    };
   }
 }

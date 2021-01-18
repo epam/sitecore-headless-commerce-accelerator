@@ -15,19 +15,17 @@
 @import 'Foundation/UI/common/scss/variables';
 
 .contact-area {
-  padding: 100px 0px 100px 0px;
+  padding: 50px 0px 100px 0px;
   font-family: $poppins;
   @media (max-width: $screen-sm) {
     padding: 60px 0px 60px 0px !important;
   }
 
-  &_map {
-    margin-bottom: 10px;
-    @media (max-width: $screen-sm) {
-      height: 400px !important;
-      div {
-        height: 100% !important;
-      }
+  &_text {
+    margin-bottom: 20px;
+    text-align: center;
+    p {
+      font-size: 18px;
     }
   }
 

@@ -11,12 +11,8 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-import { AboutMission } from 'Feature/PageContent/AboutUs/AboutMission';
-import { AboutUsBanner } from 'Feature/PageContent/AboutUs/Banner';
-import { BrandLogos } from 'Feature/PageContent/AboutUs/BrandLogos';
-import { FunFacts } from 'Feature/PageContent/AboutUs/FunFacts';
-import { Team } from 'Feature/PageContent/AboutUs/Team';
-import { Welcome } from 'Feature/PageContent/AboutUs/Welcome';
+
+import * as AboutUs from 'Feature/PageContent/AboutUs';
 
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
@@ -89,12 +85,12 @@ components.set('Breadcrumb', Navigation.Breadcrumb);
 components.set('Not Found', NotFound);
 
 // About Us
-components.set('Welcome', Welcome);
-components.set('Banner', AboutUsBanner);
-components.set('About Mission', AboutMission);
-components.set('Fun Facts', FunFacts);
-components.set('Team', Team);
-components.set('Brand Logos', BrandLogos);
+components.set('Welcome', AboutUs.Welcome);
+components.set('Banner', AboutUs.AboutUsBanner);
+components.set('About Mission', AboutUs.AboutMission);
+components.set('Fun Facts', AboutUs.FunFacts);
+components.set('Team', AboutUs.Team);
+components.set('Brand Logos', AboutUs.BrandLogos);
 
 // Contact Us
 components.set('Contact Us', PageContent.ContactUs);

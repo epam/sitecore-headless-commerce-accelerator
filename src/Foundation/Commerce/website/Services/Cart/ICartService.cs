@@ -31,14 +31,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
         /// <param name="quantity">Quantity</param>
         /// <returns>Updated cart result</returns>
         Result<Cart> AddCartLine(string productId, string variantId, decimal quantity);
-
-        /// <summary>
-        /// Adds promo code to cart
-        /// </summary>
-        /// <param name="promoCode">Promo code to add</param>
-        /// <returns></returns>
-        Result<Cart> AddPromoCode(string promoCode);
-
+        
         /// <summary>
         /// Gets current cart
         /// </summary>
@@ -59,14 +52,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
         /// <param name="variantId">Variant product id</param>
         /// <returns>Updated cart result</returns>
         Result<Cart> RemoveCartLine(string productId, string variantId);
-
-        /// <summary>
-        /// Removes promo code from cart
-        /// </summary>
-        /// <param name="promoCode">Promo code to add</param>
-        /// <returns></returns>
-        Result<Cart> RemovePromoCode(string promoCode);
-
+        
         /// <summary>
         /// Updates product in cart
         /// </summary>

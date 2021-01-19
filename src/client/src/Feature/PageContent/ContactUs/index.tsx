@@ -12,32 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { FindStores, GetStores } from 'Feature/StoreLocator/Integration/StoreLocator/actions';
-
-import * as Locator from 'Feature/StoreLocator/Integration/StoreLocator';
-
 import { ContactUsComponent } from './Component';
 
 import { rendering } from 'Foundation/ReactJss/Enhancers/rendering';
 import { compose } from 'recompose';
-import { AppState, ContactUsStateProps } from './models';
 
-import { LoadingStatus } from 'Foundation/Integration';
-
-const mapStateToProps = (state: AppState): ContactUsStateProps => {
-  return { stores: Locator.stores(state) || [], isLoading: Locator.status(state) === LoadingStatus.Loading };
-};
-
-const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators(
-    {
-      FindStores,
-      GetStores,
-    },
-    dispatch,
-  );
-
-export const ContactUs = compose(rendering, connect(mapStateToProps, mapDispatchToProps))(ContactUsComponent);
+export const ContactUs = compose(rendering)(ContactUsComponent);

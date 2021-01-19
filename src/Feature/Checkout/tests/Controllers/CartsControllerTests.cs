@@ -46,16 +46,6 @@ namespace HCA.Feature.Checkout.Tests.Controllers
         }
 
         [Fact]
-        public void AddPromoCode_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controller.AddPromoCode(this.fixture.Create<PromoCodeRequest>());
-
-            // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
-        }
-
-        [Fact]
         public void GetCart_ShouldCallExecuteMethod()
         {
             // act
@@ -91,16 +81,6 @@ namespace HCA.Feature.Checkout.Tests.Controllers
         {
             // act
             this.controller.RemoveCartLine(this.fixture.Create<string>(), this.fixture.Create<string>());
-
-            // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
-        }
-
-        [Fact]
-        public void RemovePromoCode_ShouldCallExecuteMethod()
-        {
-            // act
-            this.controller.RemovePromoCode(this.fixture.Create<PromoCodeRequest>());
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());

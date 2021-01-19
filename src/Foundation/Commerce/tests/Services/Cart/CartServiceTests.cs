@@ -30,7 +30,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using Context;
     using HCA.Foundation.Commerce.Services.Catalog;
     using HCA.Foundation.Connect.Managers.Inventory;
-    using Models.Entities.Promotion;
 
     using NSubstitute;
 
@@ -122,22 +121,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartBuilder.Received(1).Build(addCartLineResult.Cart);
         }
 
-        [Fact]
-        public void AddPromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartService.AddPromoCode(null));
-        }
-
-        [Fact]
-        public void AddPromoCode_IfValidPromoCodeWasPassed_ShouldCallAddPromoCodeMethod()
-        {
-            // act
-            this.cartService.AddPromoCode(this.fixture.Create<string>());
-
-            // assert
-            this.cartManager.Received(1).AddPromoCode(this.commerceCart, Arg.Any<string>());
-        }
 
         [Fact]
         public void GetCart_ShouldCallMapWithCartManagerResult()
@@ -224,23 +207,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             // assert
             this.cartManager.Received(1)
                 .RemoveCartLines(this.cartResult.Cart, Arg.Any<IEnumerable<Connect.CartLine>>());
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfPromoCodeIsNull_ShouldThrowArgumentNullException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartService.RemovePromoCode(null));
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfValidPromoCodeWasPassed_ShouldCallRemovePromoCodeMethod()
-        {
-            // act
-            this.cartService.RemovePromoCode(this.fixture.Create<string>());
-
-            // assert
-            this.cartManager.Received(1).RemovePromoCode(this.commerceCart, Arg.Any<string>());
         }
 
         [Fact]

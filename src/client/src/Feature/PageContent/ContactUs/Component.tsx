@@ -30,13 +30,6 @@ import ContactUsImg from 'Foundation/UI/common/media/images/contact-us.jpg';
 export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, ContactUsState> {
   public constructor(props: ContactUsProps) {
     super(props);
-    this.state = {
-      errors: {},
-      radiuses: [],
-    };
-  }
-  public componentDidMount() {
-    this.props.GetStores();
   }
 
   protected safeRender() {

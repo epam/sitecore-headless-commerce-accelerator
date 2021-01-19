@@ -19,22 +19,16 @@ import { DependentField, Form, Select } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'Foundation/UI';
 
 import { FIELDS } from './constants';
-import { OrderSummaryProps, OrderSummaryState } from './models';
+import { OrderSummaryProps } from './models';
 
 import './styles.scss';
-export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryProps, OrderSummaryState> {
+export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryProps, any> {
   constructor(props: OrderSummaryProps) {
     super(props);
-
-    this.state = {
-      appliedCodes: [],
-      hasBeenApplied: false,
-      promoCodeIsEmpty: false,
-    };
   }
 
   public safeRender() {
-    const { price } = this.props;
+    const { price, countries } = this.props;
     return (
       <section className="orderSummary">
         <div className="col-lg-4 col-md-6">
@@ -83,8 +77,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
           </div>
         </div>
         <div className="col-lg-4 col-md-6">
-          <div className="column tax">
-          </div>
+          <div className="column tax" />
         </div>
         <div className="col-lg-4 col-md-12">
           <div className="column tax">

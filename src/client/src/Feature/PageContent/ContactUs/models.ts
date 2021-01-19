@@ -12,20 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { GlobalCurrentStoreLocatorState } from 'Feature/StoreLocator/Integration/StoreLocator';
 import * as JSS from 'Foundation/ReactJss';
-
-export interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
-
-export interface Store {
-  title: string;
-  description: string;
-  latitude: number;
-  longitude: number;
-}
 
 export interface ContactPhoneDataSource extends JSS.BaseDataSourceItem {
   phone: JSS.GraphQLField<JSS.TextField>;
@@ -40,7 +27,6 @@ export interface ContactAddressDataSource extends JSS.BaseDataSourceItem {
 }
 
 export interface ContactUsDataSource extends JSS.BaseDataSourceItem {
-  stores: JSS.GraphQLListField<Store>;
   phones: JSS.GraphQLListField<ContactPhoneDataSource>;
   links: JSS.GraphQLListField<ContactLinkDataSource>;
   addresses: JSS.GraphQLListField<ContactAddressDataSource>;
@@ -49,19 +35,12 @@ export interface ContactUsDataSource extends JSS.BaseDataSourceItem {
 export interface ContactUsOwnProps extends JSS.GraphQLRendering<ContactUsDataSource> {}
 
 export interface ContactUsStateProps {
-  stores: Store[];
   isLoading: boolean;
-}
-
-export interface ContactUsDispatchProps {
-  GetStores: () => Store[];
-  FindStores: (zipCode: string, countryCode: string, radius: number) => Store[];
 }
 
 export interface ContactUsProps
   extends JSS.GraphQLRendering<ContactUsDataSource>,
-    ContactUsStateProps,
-    ContactUsDispatchProps {}
+    ContactUsStateProps {}
 
 export interface ContactUsState extends JSS.SafePureComponentState {
   errors: {
@@ -70,4 +49,4 @@ export interface ContactUsState extends JSS.SafePureComponentState {
   radiuses: string[];
 }
 
-export interface AppState extends GlobalCurrentStoreLocatorState, JSS.RoutingState {}
+export interface AppState extends JSS.RoutingState {}

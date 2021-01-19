@@ -12,22 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
-import { ContactUsProps, ContactUsState } from './models';
-
-import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
-export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, ContactUsState> {
-  public constructor(props: ContactUsProps) {
-    super(props);
-    this.state = {
-      errors: {},
-      radiuses: [],
-    };
-  }
-
+export class ContactUsComponent {
   protected safeRender() {
     return (
       <div className="contact-area">
@@ -67,7 +55,6 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
                 </div>
                 <div className="contact-social text-center">
                   <h3>Follow Us</h3>
-                  <Placeholder name="contact-social_lists" rendering={this.props.rendering} />
                 </div>
               </div>
           </div>

@@ -186,35 +186,6 @@ namespace HCA.Foundation.Commerce.Services.Cart
                     return this.BuildResult(response);
                 });
         }
-
-        public Result<Cart> AddPromoCode(string promoCode)
-        {
-            Assert.ArgumentNotNull(promoCode, nameof(promoCode));
-
-            return this.ExecuteWithCart(
-                (result, cart) =>
-                {
-                    var response = this.cartManager.AddPromoCode(cart as CommerceConnect.CommerceCart, promoCode.Trim());
-
-                    return this.BuildResult(response);
-                });
-        }
-
-        public Result<Cart> RemovePromoCode(string promoCode)
-        {
-            Assert.ArgumentNotNull(promoCode, nameof(promoCode));
-			
-            return this.ExecuteWithCart(
-                (result, cart) =>
-                {
-                    var response = this.cartManager.RemovePromoCode(
-                        cart as CommerceConnect.CommerceCart,
-                        this.promotionService.GetPromotionByDisplayName(displayName).Data.PublicCoupon);
-
-                    return this.BuildResult(response);
-                });
-        }
-
         private Result<Cart> BuildResult(CartResult cartResult)
         {
             var cart = this.cartBuilder.Build(cartResult?.Cart);

@@ -40,14 +40,7 @@ namespace HCA.Feature.Checkout.Controllers
             return this.Execute(
                 () => this.cartService.AddCartLine(request.ProductId, request.VariantId, request.Quantity));
         }
-
-        [HttpPost]
-        [ActionName("promoCodes")]
-        public ActionResult AddPromoCode(PromoCodeRequest request)
-        {
-            return this.Execute(() => this.cartService.AddPromoCode(request.PromoCode));
-        }
-
+        
         [HttpGet]
         [ActionName("cart")]
         public ActionResult GetCart()
@@ -63,14 +56,7 @@ namespace HCA.Feature.Checkout.Controllers
             Assert.ArgumentNotNull(variantId, nameof(variantId));
             return this.Execute(() => this.cartService.RemoveCartLine(productId, variantId));
         }
-
-        [HttpDelete]
-        [ActionName("promoCodes")]
-        public ActionResult RemovePromoCode(PromoCodeRequest request)
-        {
-            return this.Execute(() => this.cartService.RemovePromoCode(request.PromoCode));
-        }
-
+        
         [HttpPut]
         [ActionName("cartLines")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)

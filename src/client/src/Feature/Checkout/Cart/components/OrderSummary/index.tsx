@@ -12,56 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
-import { LoadingStatus } from 'Foundation/Integration';
+import * as JSS from 'Foundation/ReactJss';
 import { OrderSummaryComponent } from './Component';
 
-import { AppState, OrderSummaryDispatchProps, OrderSummaryOwnProps, OrderSummaryStateProps } from './models';
-
-const mapStateToProps = (state: AppState): OrderSummaryStateProps => {
-  const shoppingCartState = shoppingCart(state);
-  const adjustments =
-    shoppingCartState && shoppingCartState.data && shoppingCartState.data.adjustments
-      ? shoppingCartState.data.adjustments
-      : [];
-  const isAddPromoCodeLoading =
-    shoppingCartState.status === LoadingStatus.Loading &&
-    shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_REQUEST;
-  const isRemovePromoCodeLoading =
-    shoppingCartState.status === LoadingStatus.Loading &&
-    shoppingCartState.actionType === actionTypes.REMOVE_PROMO_CODE_REQUEST;
-  const isFailure =
-    shoppingCartState.status === LoadingStatus.Failure &&
-    shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_FAILURE;
-  const isSuccess =
-    shoppingCartState.status === LoadingStatus.Loaded &&
-    shoppingCartState.actionType === actionTypes.ADD_PROMO_CODE_SUCCESS;
-
-  return {
-    adjustments,
-    isAddPromoCodeLoading,
-    isFailure,
-    isRemovePromoCodeLoading,
-    isSuccess,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(
-    {
-      AddPromoCode: actions.AddPromoCode,
-    },
-    dispatch,
-  );
-};
-
-const connectedToStore = connect<OrderSummaryStateProps, OrderSummaryDispatchProps, OrderSummaryOwnProps>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(OrderSummaryComponent);
-
-export const OrderSummary = connectedToStore;
+export const OrderSummary = JSS.rendering(OrderSummaryComponent);

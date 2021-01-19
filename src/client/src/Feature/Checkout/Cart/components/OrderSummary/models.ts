@@ -12,33 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Commerce from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
-
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
-
+export interface OrderSummaryDataSource extends JSS.BaseDataSourceItem {
+  countries: Commerce.CountryRegion[];
+}
 export interface OrderSummaryOwnProps {
   price: ShoppingCart.ShoppingCartPrice;
   rendering: any;
-}
-export interface OrderSummaryStateProps {
-  isAddPromoCodeLoading: boolean;
-  isRemovePromoCodeLoading: boolean;
-  isFailure: boolean;
-  adjustments: string[];
-  isSuccess: boolean;
-}
-export interface OrderSummaryDispatchProps {
-  AddPromoCode: (model: DataModels.PromoCodeRequest) => void;
+  countries: Commerce.CountryRegion[];
 }
 
-export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}
-
-export interface OrderSummaryState extends JSS.SafePureComponentState {
-  appliedCodes: string[];
-  hasBeenApplied: boolean;
-  promoCodeIsEmpty: boolean;
-}
+export interface OrderSummaryProps extends OrderSummaryOwnProps {}
 
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}

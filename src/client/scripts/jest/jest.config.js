@@ -29,11 +29,14 @@ module.exports = {
     '!**/dataProvider/index.ts',
   ],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+    
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   testResultsProcessor: './scripts/jest/trxProcessor',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  setupFilesAfterEnv: ['./scripts/enzyme/index.ts'],
+  snapshotSerializers: ["enzyme-to-json/serializer"],
 
   // Fixes "SecurityError: localStorage is not available for opaque origins"
   // https://stackoverflow.com/questions/51554366/npm-test-fail-with-jest/51554485

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioButton renders correctly 1`] = `
+<div
+  className="RadioButton RadioButton_size_m"
+  tabIndex={0}
+>
+  <input
+    checked={true}
+    className="RadioButton-Input"
+    id="genderMale"
+    name="genderType"
+    onChange={[Function]}
+    type="radio"
+    value="male"
+  />
+  <div
+    className="RadioButton-Circle RadioButton-Circle_checked"
+    tabIndex={-1}
+  />
+</div>
+`;

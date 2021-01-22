@@ -1,0 +1,55 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+$radio-button-size-m-width: 14px;
+$radio-button-size-m-height: 14px;
+$radio-button-checked-background-color: #a749ff;
+
+.RadioButton {
+  display: inline-block;
+  position: relative;  
+
+  &-Input {    
+    width: $radio-button-size-m-width;
+    height: $radio-button-size-m-height;
+    margin: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;  
+  }
+
+  &-Circle {
+    border: 2px solid #888;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition: background-color .2s ease-in;    
+
+    &_checked {
+      background-color: $radio-button-checked-background-color;
+    }
+  }
+
+  &_size_m {
+    .RadioButton-Circle, .RadioButton-Input {
+      width: $radio-button-size-m-width;
+      height: $radio-button-size-m-height;
+    }
+  }
+
+  &:hover {
+    .RadioButton-Circle {
+      background-color: $radio-button-checked-background-color;
+    }
+  }
+}

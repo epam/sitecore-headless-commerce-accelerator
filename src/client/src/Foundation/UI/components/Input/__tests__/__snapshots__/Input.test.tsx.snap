@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<input
+  className="Input Input_controlSize_m Input_type_text"
+  id="firstName"
+  name="firstName"
+  type="text"
+/>
+`;

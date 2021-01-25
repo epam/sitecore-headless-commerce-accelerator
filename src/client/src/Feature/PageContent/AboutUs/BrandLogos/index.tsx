@@ -12,34 +12,34 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Image } from '@sitecore-jss/sitecore-jss-react';
+
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 import Swiper from 'react-id-swiper';
-import { AboutUsBrandMockData } from '../mocks';
-import { BrandLogosProps, BrandLogosState } from './models';
 
-import BrandPlaceholder from 'Foundation/UI/common/media/images/brand-placeholder.png';
+import { BrandLogosProps, BrandLogosState } from './models';
 
 import '../styles.scss';
 
 const settings = {
   autoplay: {
     delay: 3000,
-    disableOnInteraction: false
+    disableOnInteraction: false,
   },
   breakpoints: {
     1024: {
-      slidesPerView: 5
+      slidesPerView: 5,
     },
     768: {
-      slidesPerView: 4
+      slidesPerView: 4,
     },
     640: {
-      slidesPerView: 3
+      slidesPerView: 3,
     },
     320: {
-      slidesPerView: 2
-    }
+      slidesPerView: 2,
+    },
   },
   grabCursor: true,
   loop: true,
@@ -47,19 +47,21 @@ const settings = {
 
 export class BrandLogos extends JSS.SafePureComponent<BrandLogosProps, BrandLogosState> {
   protected safeRender() {
+    const { items } = this.props.fields;
+
     return (
       <div className="brand-logo-area container">
         <Swiper {...settings}>
-            {AboutUsBrandMockData &&
-              AboutUsBrandMockData.map((data, key) => {
-                return (
-                  <div key={key} className={`single-brand-logo swiper-slide`}>
-                    <img src={data.imgSrc ? data.imgSrc : BrandPlaceholder} alt={data.brandName} />
-                  </div>
-                );
-              })}
-          </Swiper>
-    </div>
+          {items &&
+            items.map((data, key) => {
+              return (
+                <div key={key} className={`single-brand-logo swiper-slide`}>
+                  <Image media={data.fields.image} />
+                </div>
+              );
+            })}
+        </Swiper>
+      </div>
     );
   }
 }

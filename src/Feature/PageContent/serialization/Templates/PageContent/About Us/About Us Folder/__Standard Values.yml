@@ -1,0 +1,29 @@
+﻿---
+ID: "45b7f045-49b1-4983-b93b-61379de665fc"
+Parent: "82ff551a-fb69-4e09-befa-1bec040f5a62"
+Template: "82ff551a-fb69-4e09-befa-1bec040f5a62"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {BCC4E809-3687-4676-9542-061712345C7B}
+    {DB5F5088-5E5B-4480-A7AC-9560EB0F7210}
+    {829BFCFC-D56B-4025-AFFA-3967AA246356}
+    {B05AFE71-D5F0-42D7-8F4F-FF4BCF446AEE}
+    {3921F0CA-20FB-4C66-BF7B-3D936E97D936}
+    {42AC7B43-AA41-407C-BBB8-92F61642EB17}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T214726Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

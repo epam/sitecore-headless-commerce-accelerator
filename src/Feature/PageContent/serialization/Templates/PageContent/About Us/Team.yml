@@ -1,0 +1,14 @@
+﻿---
+ID: "605f7dc9-c792-4c9b-8085-20bae0a4f5b6"
+Parent: "d5f86a98-3472-4455-8fca-42ba80b8c89e"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T223753Z

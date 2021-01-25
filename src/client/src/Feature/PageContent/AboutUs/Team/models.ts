@@ -14,6 +14,24 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
-export interface TeamProps extends Jss.SafePureComponentState {}
+export interface TeamMemberSocialLinkDataSource extends Jss.BaseDataSourceItem {
+  uri: Jss.GraphQLField<Jss.TextField>;
+  iconClass: Jss.GraphQLField<Jss.TextField>;
+}
+
+export interface TeamMemberDataSource
+  extends Jss.BaseDataSourceItem,
+    Jss.GraphQLListField<TeamMemberSocialLinkDataSource> {
+  fullName: Jss.GraphQLField<Jss.TextField>;
+  position: Jss.GraphQLField<Jss.TextField>;
+  image: Jss.GraphQLField<Jss.TextField>;
+}
+
+export interface TeamDataSource extends Jss.BaseDataSourceItem, Jss.GraphQLListField<TeamMemberDataSource> {
+  title: Jss.GraphQLField<Jss.TextField>;
+  text: Jss.GraphQLField<Jss.TextField>;
+}
+
+export interface TeamProps extends Jss.GraphQLRendering<TeamDataSource> {}
 
 export interface TeamState extends Jss.SafePureComponentState {}

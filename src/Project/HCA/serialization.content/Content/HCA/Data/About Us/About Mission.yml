@@ -1,0 +1,18 @@
+﻿---
+ID: "caf07d3a-8def-43a6-baa7-13a157f27533"
+Parent: "1d7c14bc-acaf-4b27-a8e3-79f3550ac631"
+Template: "829bfcfc-d56b-4025-affa-3967aa246356"
+Path: /sitecore/content/HCA/Data/About Us/About Mission
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T220424Z

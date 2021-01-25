@@ -1,0 +1,29 @@
+﻿---
+ID: "51bd3c92-08a3-474c-b8f5-caa2afc9133b"
+Parent: "9a7f30cd-fa9e-4fc8-9393-bd62e30c93eb"
+Template: "db02cc04-e764-4ee5-b9be-62a9b7fb9ce1"
+Path: /sitecore/content/HCA/Data/About Us/Team/Team Member 1/Facebook
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T224719Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73"
+      Hint: Uri
+      Value: |
+        <link text="Facebook" linktype="external" url="http://facebook.com" anchor="" class="facebook" target="_blank" />
+    - ID: "e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc"
+      Hint: Icon Class
+      Value: "fa fa-facebook"

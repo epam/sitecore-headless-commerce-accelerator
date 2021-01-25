@@ -14,8 +14,14 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
+import { FunFactDataSource } from '../../Models.Generated';
+
 export interface FunFactsState extends Jss.SafePureComponentState {
-    countUp: boolean;
+  countUp: boolean;
 }
 
-export interface FunFactsProps extends Jss.SafePureComponentState {}
+export interface FunFactsDatasource extends Jss.BaseDataSourceItem {
+  items: Array<Jss.Item<FunFactDataSource>>;
+}
+
+export interface FunFactsProps extends Jss.RenderingWithContext<FunFactsDatasource> {}

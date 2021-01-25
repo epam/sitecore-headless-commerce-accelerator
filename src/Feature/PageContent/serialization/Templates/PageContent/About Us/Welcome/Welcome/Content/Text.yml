@@ -1,0 +1,21 @@
+﻿---
+ID: "0630149f-8a91-4715-91ee-bd2483e9e3a4"
+Parent: "7d1c122e-dcf8-4e88-a150-90a7b595de79"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome/Content/Text
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Multi-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T214651Z

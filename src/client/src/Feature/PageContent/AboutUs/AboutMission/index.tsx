@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
+
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 import { AboutMissionProps, AboutMissionState } from './models';
@@ -20,31 +22,24 @@ import '../styles.scss';
 
 export class AboutMission extends JSS.SafePureComponent<AboutMissionProps, AboutMissionState> {
   protected safeRender() {
+    const { items } = this.props.fields;
+
     return (
       <div className="about-mission-area">
-   <div className="container">
-      <div className="row">
-         <div className="col-lg-4 col-md-4">
-            <div className="single-mission">
-               <h3>Our Vision</h3>
-               <p>Enables a JSS-based eCommerce site that is headless, meaning it is decoupled from Sitecore servers</p>
-            </div>
-         </div>
-         <div className="col-lg-4 col-md-4">
-            <div className="single-mission">
-               <h3>Our Mission</h3>
-               <p>Allows front-end JavaScript developers to quickly develop and adjust eCommerce website features independently from Sitecore back-end developers</p>
-            </div>
-         </div>
-         <div className="col-lg-4 col-md-4">
-            <div className="single-mission">
-               <h3>Our Goal</h3>
-               <p>Offers a proven alternative to the Sitecore Experience Accelerator (SXA)-based storefront</p>
-            </div>
-         </div>
+        <div className="container">
+          <div className="row">
+            {items &&
+              items.map((paragraph, index) => (
+                <div className="col-lg-4 col-md-4" key={index}>
+                  <div className="single-mission">
+                    <Text tag="h3" field={paragraph.fields.title} />
+                    <Text tag="p" field={paragraph.fields.text} />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
-   </div>
-</div>
     );
   }
 }

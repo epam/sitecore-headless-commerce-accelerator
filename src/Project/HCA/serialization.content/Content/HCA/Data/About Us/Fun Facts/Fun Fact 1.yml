@@ -1,0 +1,27 @@
+﻿---
+ID: "d697bb83-c287-4fea-8e8d-de49f506cefb"
+Parent: "736bb35c-51d3-4bc9-a913-b5ab676f36f4"
+Template: "465438d2-f2d3-4034-a2f5-38fe8bd243cc"
+Path: /sitecore/content/HCA/Data/About Us/Fun Facts/Fun Fact 1
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "0c30560c-6b97-4505-818d-21f2c5316b55"
+      Hint: Title
+      Value: Project Done
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T222536Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "c6d1bff6-7e74-44f8-ab16-f494c1de52f9"
+      Hint: Icon Class
+      Value: "pe-7s-portfolio"
+    - ID: "fe79f45e-da7a-4924-ba49-9d3b73774a59"
+      Hint: Count
+      Value: 360

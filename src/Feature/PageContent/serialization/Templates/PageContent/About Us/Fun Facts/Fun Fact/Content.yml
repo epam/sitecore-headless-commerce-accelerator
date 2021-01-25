@@ -1,0 +1,14 @@
+﻿---
+ID: "af9fd56c-d214-4f82-bd23-b00818d51d49"
+Parent: "465438d2-f2d3-4034-a2f5-38fe8bd243cc"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T222347Z

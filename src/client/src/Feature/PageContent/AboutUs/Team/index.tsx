@@ -12,75 +12,55 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Image, Link, Text } from '@sitecore-jss/sitecore-jss-react';
+
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
-import { AboutUsTeamMockData } from '../mocks';
-import { TeamProps, TeamState } from './models';
 
-import TeamPlaceholder from 'Foundation/UI/common/media/images/team-placeholder.jpg';
+import { TeamProps, TeamState } from './models';
 
 import '../styles.scss';
 
 export class Team extends JSS.SafePureComponent<TeamProps, TeamState> {
   protected safeRender() {
+    const { datasource } = this.props.fields.data;
+
     return (
       <div className="team-area">
         <div className="container">
           <div className="team-title">
-            <h2>Team Members</h2>
-            <p>Lorem ipsum dolor sit amet conse ctetu.</p>
+            <Text tag="h2" field={datasource.title.jss} />
+            <Text tag="p" field={datasource.text.jss} />
           </div>
           <div className="row">
-            {
-              AboutUsTeamMockData.map((data, key) => {
+            {datasource &&
+              datasource.items &&
+              datasource.items.map((data, key) => {
                 return (
                   <div className="col-lg-3 col-md-6 col-sm-6" key={key}>
-                  <div className="team-wrapper">
-                    <div className="team-img">
-                      <img
-                        src={data.img ? data.img : TeamPlaceholder}
-                        alt=""
-                        className="img-fluid"
-                      />
-                      <div className="team-action">
-                        <a
-                          className="facebook"
-                          href={data.fbLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-facebook" />
-                        </a>
-                        <a
-                          className="twitter"
-                          href={data.twitterLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-twitter" />
-                        </a>
-                        <a
-                          className="instagram"
-                          href={data.instagramLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <i className="fa fa-instagram" />
-                        </a>
+                    <div className="team-wrapper">
+                      <div className="team-img">
+                        <Image media={data.image.jss} className="img-fluid" />
+                        <div className="team-action">
+                          {data.items &&
+                            data.items.map((link, index) => (
+                              <Link field={link.uri.jss} rel="noopener noreferrer" key={index}>
+                                <i className={link.iconClass.jss.value} />
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+                      <div className="team-content text-center">
+                        <Text tag="h4" field={data.fullName.jss} />
+                        <Text tag="span" field={data.position.jss} />
                       </div>
                     </div>
-                    <div className="team-content text-center">
-                      <h4>{data.name}</h4>
-                      <span>{data.position} </span>
-                    </div>
                   </div>
-                </div>
                 );
-              })
-            }
-            </div>
+              })}
           </div>
         </div>
+      </div>
     );
   }
 }

@@ -1,0 +1,24 @@
+﻿---
+ID: "54b601c2-b36b-41c0-98f9-c37455e4be6c"
+Parent: "1d7c14bc-acaf-4b27-a8e3-79f3550ac631"
+Template: "3921f0ca-20fb-4c66-bf7b-3d936e97d936"
+Path: /sitecore/content/HCA/Data/About Us/Team
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T224202Z
+    - ID: "28913ab4-ede0-4201-b070-b3e376729d0e"
+      Hint: Text
+      Value: Lorem ipsum dolor sit amet conse ctetu.
+    - ID: "e4c9c92f-23af-4cb0-bbcf-323fa80109ba"
+      Hint: Title
+      Value: Team Members

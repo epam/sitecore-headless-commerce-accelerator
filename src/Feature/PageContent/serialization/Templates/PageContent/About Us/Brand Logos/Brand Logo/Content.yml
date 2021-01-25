@@ -1,0 +1,14 @@
+﻿---
+ID: "2c916d3a-adc9-4545-b96a-1d20758f2068"
+Parent: "c451dcea-1dc8-4de8-9e1d-475633ba3d4d"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210125T000328Z

@@ -8,6 +8,54 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Team
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query Team($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on Team {
+          id
+          title {
+            jss
+          }
+          text {
+            jss
+          }
+          items: children {
+            id
+            ... on TeamMember {
+              fullName {
+                jss
+              }
+              position {
+                jss
+              }
+              image {
+                jss
+              }
+            }
+            items: children {
+              id
+              ... on TeamMemberSocialLink {
+                uri {
+                  jss
+                }
+                iconClass {
+                  jss
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{3921F0CA-20FB-4C66-BF7B-3D936E97D936}']"
 Languages:
 - Language: en
   Versions:

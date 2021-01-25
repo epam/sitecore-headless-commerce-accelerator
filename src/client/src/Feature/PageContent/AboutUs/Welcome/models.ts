@@ -12,8 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { WelcomeDataSource } from '../../Models.Generated';
+
 import * as Jss from 'Foundation/ReactJss';
 
-export interface WelcomeProps extends Jss.SafePureComponentState {}
+export interface WelcomeProps extends Jss.RenderingWithContext<WelcomeDataSource> {}
 
 export interface WelcomeState extends Jss.SafePureComponentState {}

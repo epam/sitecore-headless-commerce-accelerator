@@ -1,0 +1,23 @@
+﻿---
+ID: "c70ca236-3117-41df-9b84-5fb3ea053c8d"
+Parent: "42ac7b43-aa41-407c-bbb8-92f61642eb17"
+Template: "42ac7b43-aa41-407c-bbb8-92f61642eb17"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{C451DCEA-1DC8-4DE8-9E1D-475633BA3D4D}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210125T000247Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

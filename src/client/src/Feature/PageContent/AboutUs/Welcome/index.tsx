@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Text } from '@sitecore-jss/sitecore-jss-react';
+
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 import { WelcomeProps, WelcomeState } from './models';
@@ -20,13 +22,15 @@ import '../styles.scss';
 
 export class Welcome extends JSS.SafePureComponent<WelcomeProps, WelcomeState> {
   protected safeRender() {
+    const { fields } = this.props;
+
     return (
       <div className="welcome-area">
         <div className="container">
           <div className="welcome-content">
-            <h5>Who Are We</h5>
-            <h1>Welcome To Flone</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, t irure </p>
+            <Text tag="h5" field={fields.subtitle} />
+            <Text tag="h1" field={fields.title} />
+            <Text tag="p" field={fields.text} />
           </div>
         </div>
       </div>

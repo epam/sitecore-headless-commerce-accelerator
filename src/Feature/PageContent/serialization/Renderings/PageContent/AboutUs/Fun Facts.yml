@@ -8,6 +8,15 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Fun Facts
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: "{2F5C334E-5615-423C-8281-9FC180191302}"
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{B05AFE71-D5F0-42D7-8F4F-FF4BCF446AEE}']"
 Languages:
 - Language: en
   Versions:

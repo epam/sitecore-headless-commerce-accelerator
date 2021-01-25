@@ -1,0 +1,29 @@
+﻿---
+ID: "7d48df44-c69c-4cb0-b3e0-4ef3d80b1f9a"
+Parent: "6af61778-8b5b-4af3-b58b-25f1ad7aef7c"
+Template: "db02cc04-e764-4ee5-b9be-62a9b7fb9ce1"
+Path: /sitecore/content/HCA/Data/About Us/Team/Team Member 3/Instagram
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T224728Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73"
+      Hint: Uri
+      Value: |
+        <link text="Instagram" linktype="external" url="https://www.instagram.com/" anchor="" class="instagram" target="" />
+    - ID: "e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc"
+      Hint: Icon Class
+      Value: "fa fa-instagram"

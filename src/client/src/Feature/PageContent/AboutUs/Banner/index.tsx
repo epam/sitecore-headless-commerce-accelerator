@@ -12,51 +12,49 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Link, Text } from '@sitecore-jss/sitecore-jss-react';
+
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
-import { NavigationLink } from 'Foundation/UI';
-
 import { AboutUsBannerProps, AboutUsBannerState } from './models';
-
-import { AboutUsBannerMockData } from '../mocks';
-
-import BannerPlaceholder from 'Foundation/UI/common/media/images/product-placeholder.jpg';
 
 import '../styles.scss';
 
 export class AboutUsBanner extends JSS.SafePureComponent<AboutUsBannerProps, AboutUsBannerState> {
   protected safeRender() {
+    const { items } = this.props.fields;
+
     return (
       <div className="banner-area">
         <div className="container">
           <div className="row">
-            { AboutUsBannerMockData.map((data, key) => {
+            {items &&
+              items.map((data, key) => {
                 return (
-                        <div className="col-lg-4 col-md-4" key={key}>
-                          <div
-                            className="single-banner"
-                          >
-                            <NavigationLink to={data.link}>
-                              <img src={data.img ? data.img : BannerPlaceholder} alt="" />
-                            </NavigationLink>
-                            <div className="banner-content">
-                              <h3>{data.title}</h3>
-                              <h4>
-                                {data.subtitle} <span>{data.price}</span>
-                              </h4>
-                              <NavigationLink to={data.link}>
-                                <i className="fa fa-long-arrow-right" />
-                              </NavigationLink>
-                            </div>
-                          </div>
+                  <div className="col-lg-4 col-md-4" key={key}>
+                    <div className="single-banner">
+                      <Link field={data.fields.uri}>
+                        <img src={data.fields.image.value.src} />
+                      </Link>
+                      <div className="banner-content">
+                        <Text tag="h3" field={data.fields.title} />
+                        <h4>
+                          <Text field={data.fields.subtitle} />
+                          &nbsp;
+                          <Text tag="span" field={data.fields.price} />
+                        </h4>
+                        <Link field={data.fields.uri}>
+                          <i className="fa fa-long-arrow-right" />
+                        </Link>
                       </div>
-                    );
-                })
-            }
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }

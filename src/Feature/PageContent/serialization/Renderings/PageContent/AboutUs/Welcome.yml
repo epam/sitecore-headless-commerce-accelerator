@@ -8,6 +8,12 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Welcome
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{BCC4E809-3687-4676-9542-061712345C7B}']"
 Languages:
 - Language: en
   Versions:

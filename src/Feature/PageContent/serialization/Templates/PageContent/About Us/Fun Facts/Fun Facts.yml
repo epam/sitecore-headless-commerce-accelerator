@@ -1,0 +1,25 @@
+﻿---
+ID: "b05afe71-d5f0-42d7-8f4f-ff4bcf446aee"
+Parent: "e85ffecb-7587-4887-9622-453b42b90af8"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/emoticon_smile.png
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: "{1930BBEB-7805-471A-A3BE-4858AC7CF696}"
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{A5A3B5F8-6E65-4DB2-8674-FAE45369086E}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T222203Z

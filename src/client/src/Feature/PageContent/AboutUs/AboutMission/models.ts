@@ -12,8 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { AboutMissionParagraphDataSource } from '../../Models.Generated';
+
 import * as Jss from 'Foundation/ReactJss';
 
-export interface AboutMissionProps extends Jss.SafePureComponentState {}
+export interface AboutMissionProps extends Jss.RenderingWithContext<AboutMissionDataSource> {}
+
+export interface AboutMissionDataSource extends Jss.BaseDataSourceItem {
+  items: Array<Jss.Item<AboutMissionParagraphDataSource>>;
+}
 
 export interface AboutMissionState extends Jss.SafePureComponentState {}

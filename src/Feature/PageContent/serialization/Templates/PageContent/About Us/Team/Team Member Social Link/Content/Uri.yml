@@ -1,0 +1,21 @@
+﻿---
+ID: "bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73"
+Parent: "0b3a3e47-b94e-4cc7-9cf9-67c0f3b8d5b1"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link/Content/Uri
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: General Link
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T224519Z

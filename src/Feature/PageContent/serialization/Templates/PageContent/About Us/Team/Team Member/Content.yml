@@ -1,0 +1,14 @@
+﻿---
+ID: "0b15d2ee-a5b4-4d94-b4ae-a25fe215b499"
+Parent: "6103e1a3-7ac0-4985-98ab-9238a3485df9"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T223948Z

@@ -43,6 +43,272 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
+    /// IAboutMission Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission</para>
+    /// <para>ID: 829bfcfc-d56b-4025-affa-3967aa246356</para>
+    /// </summary>
+    [SitecoreType(TemplateId="829bfcfc-d56b-4025-affa-3967aa246356")]
+    public partial interface IAboutMission: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// AboutMission Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission</para>
+    /// <para>ID: 829bfcfc-d56b-4025-affa-3967aa246356</para>
+    /// </summary>
+    [SitecoreType(TemplateId="829bfcfc-d56b-4025-affa-3967aa246356")]
+    public partial class AboutMission: GlassBase, IAboutMission
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission
+        /// </summary>
+        public const string TemplateId = "829bfcfc-d56b-4025-affa-3967aa246356";
+
+    }
+
+
+    /// <summary>
+    /// IAboutMissionParagraph Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission Paragraph</para>
+    /// <para>ID: 3a856aa5-4790-4e47-b46b-babc49c34f3b</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3a856aa5-4790-4e47-b46b-babc49c34f3b")]
+    public partial interface IAboutMissionParagraph: IGlassBase
+    {
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 8e352f92-e46b-4019-98ba-de8932b91479</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        string Text {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 303f54bb-3bd0-4172-81a5-bc6bcf0a6b6b</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// AboutMissionParagraph Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission Paragraph</para>
+    /// <para>ID: 3a856aa5-4790-4e47-b46b-babc49c34f3b</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3a856aa5-4790-4e47-b46b-babc49c34f3b")]
+    public partial class AboutMissionParagraph: GlassBase, IAboutMissionParagraph
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission Paragraph
+        /// </summary>
+        public const string TemplateId = "3a856aa5-4790-4e47-b46b-babc49c34f3b";
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 8e352f92-e46b-4019-98ba-de8932b91479</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        public virtual string Text {get; set;}
+        public const string TextFieldId = "8e352f92-e46b-4019-98ba-de8932b91479";
+        public const string TextFieldName = "Text";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 303f54bb-3bd0-4172-81a5-bc6bcf0a6b6b</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "303f54bb-3bd0-4172-81a5-bc6bcf0a6b6b";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// IAboutUsBanner Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner</para>
+    /// <para>ID: db5f5088-5e5b-4480-a7ac-9560eb0f7210</para>
+    /// </summary>
+    [SitecoreType(TemplateId="db5f5088-5e5b-4480-a7ac-9560eb0f7210")]
+    public partial interface IAboutUsBanner: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// AboutUsBanner Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner</para>
+    /// <para>ID: db5f5088-5e5b-4480-a7ac-9560eb0f7210</para>
+    /// </summary>
+    [SitecoreType(TemplateId="db5f5088-5e5b-4480-a7ac-9560eb0f7210")]
+    public partial class AboutUsBanner: GlassBase, IAboutUsBanner
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner
+        /// </summary>
+        public const string TemplateId = "db5f5088-5e5b-4480-a7ac-9560eb0f7210";
+
+    }
+
+
+    /// <summary>
+    /// IAboutUsBannerItem Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner Item</para>
+    /// <para>ID: 19fac856-e53a-4b70-8283-e01b995f0921</para>
+    /// </summary>
+    [SitecoreType(TemplateId="19fac856-e53a-4b70-8283-e01b995f0921")]
+    public partial interface IAboutUsBannerItem: IGlassBase
+    {
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: aa21d98d-9b76-45ec-9526-5de099730af5</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+        /// <summary>
+        /// The Price field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 3d9b2ee7-fba8-4d5e-a511-f05465c7f5b7</para>
+        /// </summary>
+        [SitecoreField("Price")]
+        string Price {get; set;}
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: abf631e7-0fb3-4b26-8c57-399e2c57a830</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        string Subtitle {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e82aad0f-7170-4659-ac5e-418b9b95d461</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: a6dce57c-2e1d-46f0-9041-6faa6dcdd476</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        Link Uri {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// AboutUsBannerItem Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner Item</para>
+    /// <para>ID: 19fac856-e53a-4b70-8283-e01b995f0921</para>
+    /// </summary>
+    [SitecoreType(TemplateId="19fac856-e53a-4b70-8283-e01b995f0921")]
+    public partial class AboutUsBannerItem: GlassBase, IAboutUsBannerItem
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner Item
+        /// </summary>
+        public const string TemplateId = "19fac856-e53a-4b70-8283-e01b995f0921";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: aa21d98d-9b76-45ec-9526-5de099730af5</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "aa21d98d-9b76-45ec-9526-5de099730af5";
+        public const string ImageFieldName = "Image";
+
+        /// <summary>
+        /// The Price field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 3d9b2ee7-fba8-4d5e-a511-f05465c7f5b7</para>
+        /// </summary>
+        [SitecoreField("Price")]
+        public virtual string Price {get; set;}
+        public const string PriceFieldId = "3d9b2ee7-fba8-4d5e-a511-f05465c7f5b7";
+        public const string PriceFieldName = "Price";
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: abf631e7-0fb3-4b26-8c57-399e2c57a830</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        public virtual string Subtitle {get; set;}
+        public const string SubtitleFieldId = "abf631e7-0fb3-4b26-8c57-399e2c57a830";
+        public const string SubtitleFieldName = "Subtitle";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e82aad0f-7170-4659-ac5e-418b9b95d461</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "e82aad0f-7170-4659-ac5e-418b9b95d461";
+        public const string TitleFieldName = "Title";
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: a6dce57c-2e1d-46f0-9041-6faa6dcdd476</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        public virtual Link Uri {get; set;}
+        public const string UriFieldId = "a6dce57c-2e1d-46f0-9041-6faa6dcdd476";
+        public const string UriFieldName = "Uri";
+
+    }
+
+
+    /// <summary>
+    /// IAboutUsFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder</para>
+    /// <para>ID: 82ff551a-fb69-4e09-befa-1bec040f5a62</para>
+    /// </summary>
+    [SitecoreType(TemplateId="82ff551a-fb69-4e09-befa-1bec040f5a62")]
+    public partial interface IAboutUsFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// AboutUsFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder</para>
+    /// <para>ID: 82ff551a-fb69-4e09-befa-1bec040f5a62</para>
+    /// </summary>
+    [SitecoreType(TemplateId="82ff551a-fb69-4e09-befa-1bec040f5a62")]
+    public partial class AboutUsFolder: GlassBase, IAboutUsFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder
+        /// </summary>
+        public const string TemplateId = "82ff551a-fb69-4e09-befa-1bec040f5a62";
+
+    }
+
+
+    /// <summary>
     /// IBanner Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner</para>
     /// <para>ID: aca0aaff-3317-4535-8bc5-504256e08255</para>
@@ -148,6 +414,80 @@ namespace HCA.Feature.PageContent.Models
         /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
         /// </summary>
         public const string TemplateId = "60d1329d-bfbf-4c2a-a6be-426f1c700ba9";
+
+    }
+
+
+    /// <summary>
+    /// IBrandLogo Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo</para>
+    /// <para>ID: c451dcea-1dc8-4de8-9e1d-475633ba3d4d</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c451dcea-1dc8-4de8-9e1d-475633ba3d4d")]
+    public partial interface IBrandLogo: IGlassBase
+    {
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 0f9d658b-1cfa-4e70-ac2d-a541841ace2b</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// BrandLogo Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo</para>
+    /// <para>ID: c451dcea-1dc8-4de8-9e1d-475633ba3d4d</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c451dcea-1dc8-4de8-9e1d-475633ba3d4d")]
+    public partial class BrandLogo: GlassBase, IBrandLogo
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo
+        /// </summary>
+        public const string TemplateId = "c451dcea-1dc8-4de8-9e1d-475633ba3d4d";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 0f9d658b-1cfa-4e70-ac2d-a541841ace2b</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "0f9d658b-1cfa-4e70-ac2d-a541841ace2b";
+        public const string ImageFieldName = "Image";
+
+    }
+
+
+    /// <summary>
+    /// IBrandLogos Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos</para>
+    /// <para>ID: 42ac7b43-aa41-407c-bbb8-92f61642eb17</para>
+    /// </summary>
+    [SitecoreType(TemplateId="42ac7b43-aa41-407c-bbb8-92f61642eb17")]
+    public partial interface IBrandLogos: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// BrandLogos Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos</para>
+    /// <para>ID: 42ac7b43-aa41-407c-bbb8-92f61642eb17</para>
+    /// </summary>
+    [SitecoreType(TemplateId="42ac7b43-aa41-407c-bbb8-92f61642eb17")]
+    public partial class BrandLogos: GlassBase, IBrandLogos
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos
+        /// </summary>
+        public const string TemplateId = "42ac7b43-aa41-407c-bbb8-92f61642eb17";
 
     }
 
@@ -317,6 +657,584 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
+    /// IContactAddress Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address</para>
+    /// <para>ID: 4336232f-c7d3-4820-9784-11323307c054</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4336232f-c7d3-4820-9784-11323307c054")]
+    public partial interface IContactAddress: IGlassBase
+    {
+
+        /// <summary>
+        /// The Address field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 988886e4-c5bf-4fd0-803f-61d1cae54112</para>
+        /// </summary>
+        [SitecoreField("Address")]
+        string Address {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// ContactAddress Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address</para>
+    /// <para>ID: 4336232f-c7d3-4820-9784-11323307c054</para>
+    /// </summary>
+    [SitecoreType(TemplateId="4336232f-c7d3-4820-9784-11323307c054")]
+    public partial class ContactAddress: GlassBase, IContactAddress
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address
+        /// </summary>
+        public const string TemplateId = "4336232f-c7d3-4820-9784-11323307c054";
+
+        /// <summary>
+        /// The Address field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 988886e4-c5bf-4fd0-803f-61d1cae54112</para>
+        /// </summary>
+        [SitecoreField("Address")]
+        public virtual string Address {get; set;}
+        public const string AddressFieldId = "988886e4-c5bf-4fd0-803f-61d1cae54112";
+        public const string AddressFieldName = "Address";
+
+    }
+
+
+    /// <summary>
+    /// IContactAddresses Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses</para>
+    /// <para>ID: e31ddc89-fefd-47d4-8f57-240af742ec35</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e31ddc89-fefd-47d4-8f57-240af742ec35")]
+    public partial interface IContactAddresses: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// ContactAddresses Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses</para>
+    /// <para>ID: e31ddc89-fefd-47d4-8f57-240af742ec35</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e31ddc89-fefd-47d4-8f57-240af742ec35")]
+    public partial class ContactAddresses: GlassBase, IContactAddresses
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses
+        /// </summary>
+        public const string TemplateId = "e31ddc89-fefd-47d4-8f57-240af742ec35";
+
+    }
+
+
+    /// <summary>
+    /// IContactLink Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link</para>
+    /// <para>ID: c140817d-2718-4c74-8f0f-46d220b0fa91</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c140817d-2718-4c74-8f0f-46d220b0fa91")]
+    public partial interface IContactLink: IGlassBase
+    {
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: a32b6e94-4bd9-4456-a9bf-40a1fc46c242</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        Link Uri {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// ContactLink Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link</para>
+    /// <para>ID: c140817d-2718-4c74-8f0f-46d220b0fa91</para>
+    /// </summary>
+    [SitecoreType(TemplateId="c140817d-2718-4c74-8f0f-46d220b0fa91")]
+    public partial class ContactLink: GlassBase, IContactLink
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link
+        /// </summary>
+        public const string TemplateId = "c140817d-2718-4c74-8f0f-46d220b0fa91";
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: a32b6e94-4bd9-4456-a9bf-40a1fc46c242</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        public virtual Link Uri {get; set;}
+        public const string UriFieldId = "a32b6e94-4bd9-4456-a9bf-40a1fc46c242";
+        public const string UriFieldName = "Uri";
+
+    }
+
+
+    /// <summary>
+    /// IContactLinks Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links</para>
+    /// <para>ID: 1e890498-c6cc-440a-9fbc-397d0e998b59</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1e890498-c6cc-440a-9fbc-397d0e998b59")]
+    public partial interface IContactLinks: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// ContactLinks Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links</para>
+    /// <para>ID: 1e890498-c6cc-440a-9fbc-397d0e998b59</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1e890498-c6cc-440a-9fbc-397d0e998b59")]
+    public partial class ContactLinks: GlassBase, IContactLinks
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links
+        /// </summary>
+        public const string TemplateId = "1e890498-c6cc-440a-9fbc-397d0e998b59";
+
+    }
+
+
+    /// <summary>
+    /// IContactPhone Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone</para>
+    /// <para>ID: ba4cab76-aa33-465b-a385-a8b1d045b3cf</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ba4cab76-aa33-465b-a385-a8b1d045b3cf")]
+    public partial interface IContactPhone: IGlassBase
+    {
+
+        /// <summary>
+        /// The Phone field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: eb187aa2-499d-4881-8284-4d77690fac60</para>
+        /// </summary>
+        [SitecoreField("Phone")]
+        string Phone {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// ContactPhone Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone</para>
+    /// <para>ID: ba4cab76-aa33-465b-a385-a8b1d045b3cf</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ba4cab76-aa33-465b-a385-a8b1d045b3cf")]
+    public partial class ContactPhone: GlassBase, IContactPhone
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone
+        /// </summary>
+        public const string TemplateId = "ba4cab76-aa33-465b-a385-a8b1d045b3cf";
+
+        /// <summary>
+        /// The Phone field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: eb187aa2-499d-4881-8284-4d77690fac60</para>
+        /// </summary>
+        [SitecoreField("Phone")]
+        public virtual string Phone {get; set;}
+        public const string PhoneFieldId = "eb187aa2-499d-4881-8284-4d77690fac60";
+        public const string PhoneFieldName = "Phone";
+
+    }
+
+
+    /// <summary>
+    /// IContactPhones Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones</para>
+    /// <para>ID: 9300407f-67f7-459c-ae3d-ba2680058e21</para>
+    /// </summary>
+    [SitecoreType(TemplateId="9300407f-67f7-459c-ae3d-ba2680058e21")]
+    public partial interface IContactPhones: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// ContactPhones Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones</para>
+    /// <para>ID: 9300407f-67f7-459c-ae3d-ba2680058e21</para>
+    /// </summary>
+    [SitecoreType(TemplateId="9300407f-67f7-459c-ae3d-ba2680058e21")]
+    public partial class ContactPhones: GlassBase, IContactPhones
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones
+        /// </summary>
+        public const string TemplateId = "9300407f-67f7-459c-ae3d-ba2680058e21";
+
+    }
+
+
+    /// <summary>
+    /// IContactUsFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder</para>
+    /// <para>ID: 6a683694-25c8-48da-9577-f9964fd58f17</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6a683694-25c8-48da-9577-f9964fd58f17")]
+    public partial interface IContactUsFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// ContactUsFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder</para>
+    /// <para>ID: 6a683694-25c8-48da-9577-f9964fd58f17</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6a683694-25c8-48da-9577-f9964fd58f17")]
+    public partial class ContactUsFolder: GlassBase, IContactUsFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder
+        /// </summary>
+        public const string TemplateId = "6a683694-25c8-48da-9577-f9964fd58f17";
+
+    }
+
+
+    /// <summary>
+    /// IContacts Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts</para>
+    /// <para>ID: 1b87628c-ea15-4c9e-8f6f-339bbcf222ee</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1b87628c-ea15-4c9e-8f6f-339bbcf222ee")]
+    public partial interface IContacts: IGlassBase
+    {
+
+        /// <summary>
+        /// The Addresses field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 657f4729-c214-4c33-919a-936ca4012273</para>
+        /// </summary>
+        [SitecoreField("Addresses")]
+        IEnumerable<Guid> Addresses {get; set;}
+
+        /// <summary>
+        /// The Links field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 11b3488a-1d66-42fb-a92d-0e9030d3ff46</para>
+        /// </summary>
+        [SitecoreField("Links")]
+        IEnumerable<Guid> Links {get; set;}
+
+        /// <summary>
+        /// The Phones field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e27ca199-3309-4618-bc8a-fcb867ffc15c</para>
+        /// </summary>
+        [SitecoreField("Phones")]
+        IEnumerable<Guid> Phones {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Contacts Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts</para>
+    /// <para>ID: 1b87628c-ea15-4c9e-8f6f-339bbcf222ee</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1b87628c-ea15-4c9e-8f6f-339bbcf222ee")]
+    public partial class Contacts: GlassBase, IContacts
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts
+        /// </summary>
+        public const string TemplateId = "1b87628c-ea15-4c9e-8f6f-339bbcf222ee";
+
+        /// <summary>
+        /// The Addresses field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 657f4729-c214-4c33-919a-936ca4012273</para>
+        /// </summary>
+        [SitecoreField("Addresses")]
+        public virtual IEnumerable<Guid> Addresses {get; set;}
+        public const string AddressesFieldId = "657f4729-c214-4c33-919a-936ca4012273";
+        public const string AddressesFieldName = "Addresses";
+
+        /// <summary>
+        /// The Links field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 11b3488a-1d66-42fb-a92d-0e9030d3ff46</para>
+        /// </summary>
+        [SitecoreField("Links")]
+        public virtual IEnumerable<Guid> Links {get; set;}
+        public const string LinksFieldId = "11b3488a-1d66-42fb-a92d-0e9030d3ff46";
+        public const string LinksFieldName = "Links";
+
+        /// <summary>
+        /// The Phones field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: e27ca199-3309-4618-bc8a-fcb867ffc15c</para>
+        /// </summary>
+        [SitecoreField("Phones")]
+        public virtual IEnumerable<Guid> Phones {get; set;}
+        public const string PhonesFieldId = "e27ca199-3309-4618-bc8a-fcb867ffc15c";
+        public const string PhonesFieldName = "Phones";
+
+    }
+
+
+    /// <summary>
+    /// IFunFact Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact</para>
+    /// <para>ID: 465438d2-f2d3-4034-a2f5-38fe8bd243cc</para>
+    /// </summary>
+    [SitecoreType(TemplateId="465438d2-f2d3-4034-a2f5-38fe8bd243cc")]
+    public partial interface IFunFact: IGlassBase
+    {
+
+        /// <summary>
+        /// The Count field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: fe79f45e-da7a-4924-ba49-9d3b73774a59</para>
+        /// </summary>
+        [SitecoreField("Count")]
+        string Count {get; set;}
+
+        /// <summary>
+        /// The Icon Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: c6d1bff6-7e74-44f8-ab16-f494c1de52f9</para>
+        /// </summary>
+        [SitecoreField("Icon Class")]
+        string IconClass {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0c30560c-6b97-4505-818d-21f2c5316b55</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// FunFact Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact</para>
+    /// <para>ID: 465438d2-f2d3-4034-a2f5-38fe8bd243cc</para>
+    /// </summary>
+    [SitecoreType(TemplateId="465438d2-f2d3-4034-a2f5-38fe8bd243cc")]
+    public partial class FunFact: GlassBase, IFunFact
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact
+        /// </summary>
+        public const string TemplateId = "465438d2-f2d3-4034-a2f5-38fe8bd243cc";
+
+        /// <summary>
+        /// The Count field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: fe79f45e-da7a-4924-ba49-9d3b73774a59</para>
+        /// </summary>
+        [SitecoreField("Count")]
+        public virtual string Count {get; set;}
+        public const string CountFieldId = "fe79f45e-da7a-4924-ba49-9d3b73774a59";
+        public const string CountFieldName = "Count";
+
+        /// <summary>
+        /// The Icon Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: c6d1bff6-7e74-44f8-ab16-f494c1de52f9</para>
+        /// </summary>
+        [SitecoreField("Icon Class")]
+        public virtual string IconClass {get; set;}
+        public const string IconClassFieldId = "c6d1bff6-7e74-44f8-ab16-f494c1de52f9";
+        public const string IconClassFieldName = "Icon Class";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 0c30560c-6b97-4505-818d-21f2c5316b55</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "0c30560c-6b97-4505-818d-21f2c5316b55";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// IFunFacts Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts</para>
+    /// <para>ID: b05afe71-d5f0-42d7-8f4f-ff4bcf446aee</para>
+    /// </summary>
+    [SitecoreType(TemplateId="b05afe71-d5f0-42d7-8f4f-ff4bcf446aee")]
+    public partial interface IFunFacts: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// FunFacts Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts</para>
+    /// <para>ID: b05afe71-d5f0-42d7-8f4f-ff4bcf446aee</para>
+    /// </summary>
+    [SitecoreType(TemplateId="b05afe71-d5f0-42d7-8f4f-ff4bcf446aee")]
+    public partial class FunFacts: GlassBase, IFunFacts
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
+        /// </summary>
+        public const string TemplateId = "b05afe71-d5f0-42d7-8f4f-ff4bcf446aee";
+
+    }
+
+
+    /// <summary>
+    /// IGetInTouchForm Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form</para>
+    /// <para>ID: 611e79bd-6fbf-4fee-8f66-94b27238c033</para>
+    /// </summary>
+    [SitecoreType(TemplateId="611e79bd-6fbf-4fee-8f66-94b27238c033")]
+    public partial interface IGetInTouchForm: IGlassBase
+    {
+
+        /// <summary>
+        /// The Email Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cd7f5292-5278-40d1-b004-5ad19595c96e</para>
+        /// </summary>
+        [SitecoreField("Email Placeholder")]
+        string EmailPlaceholder {get; set;}
+
+        /// <summary>
+        /// The Form Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b22d3283-8235-4521-a321-958dae1d0403</para>
+        /// </summary>
+        [SitecoreField("Form Title")]
+        string FormTitle {get; set;}
+
+        /// <summary>
+        /// The Message Placeholder field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 5ffe7eee-73a0-4320-be91-777b6f42457e</para>
+        /// </summary>
+        [SitecoreField("Message Placeholder")]
+        string MessagePlaceholder {get; set;}
+
+        /// <summary>
+        /// The Name Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 61f745b2-2e40-48af-90b3-ace97cb8f17d</para>
+        /// </summary>
+        [SitecoreField("Name Placeholder")]
+        string NamePlaceholder {get; set;}
+
+        /// <summary>
+        /// The Subject Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 5d7813fd-a32d-47d6-a690-369da5851958</para>
+        /// </summary>
+        [SitecoreField("Subject Placeholder")]
+        string SubjectPlaceholder {get; set;}
+
+        /// <summary>
+        /// The Submit Button Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 1ff5310c-3ed4-4c5b-ac20-79257e8d608e</para>
+        /// </summary>
+        [SitecoreField("Submit Button Text")]
+        string SubmitButtonText {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// GetInTouchForm Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form</para>
+    /// <para>ID: 611e79bd-6fbf-4fee-8f66-94b27238c033</para>
+    /// </summary>
+    [SitecoreType(TemplateId="611e79bd-6fbf-4fee-8f66-94b27238c033")]
+    public partial class GetInTouchForm: GlassBase, IGetInTouchForm
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form
+        /// </summary>
+        public const string TemplateId = "611e79bd-6fbf-4fee-8f66-94b27238c033";
+
+        /// <summary>
+        /// The Email Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cd7f5292-5278-40d1-b004-5ad19595c96e</para>
+        /// </summary>
+        [SitecoreField("Email Placeholder")]
+        public virtual string EmailPlaceholder {get; set;}
+        public const string EmailPlaceholderFieldId = "cd7f5292-5278-40d1-b004-5ad19595c96e";
+        public const string EmailPlaceholderFieldName = "Email Placeholder";
+
+        /// <summary>
+        /// The Form Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b22d3283-8235-4521-a321-958dae1d0403</para>
+        /// </summary>
+        [SitecoreField("Form Title")]
+        public virtual string FormTitle {get; set;}
+        public const string FormTitleFieldId = "b22d3283-8235-4521-a321-958dae1d0403";
+        public const string FormTitleFieldName = "Form Title";
+
+        /// <summary>
+        /// The Message Placeholder field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 5ffe7eee-73a0-4320-be91-777b6f42457e</para>
+        /// </summary>
+        [SitecoreField("Message Placeholder")]
+        public virtual string MessagePlaceholder {get; set;}
+        public const string MessagePlaceholderFieldId = "5ffe7eee-73a0-4320-be91-777b6f42457e";
+        public const string MessagePlaceholderFieldName = "Message Placeholder";
+
+        /// <summary>
+        /// The Name Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 61f745b2-2e40-48af-90b3-ace97cb8f17d</para>
+        /// </summary>
+        [SitecoreField("Name Placeholder")]
+        public virtual string NamePlaceholder {get; set;}
+        public const string NamePlaceholderFieldId = "61f745b2-2e40-48af-90b3-ace97cb8f17d";
+        public const string NamePlaceholderFieldName = "Name Placeholder";
+
+        /// <summary>
+        /// The Subject Placeholder field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 5d7813fd-a32d-47d6-a690-369da5851958</para>
+        /// </summary>
+        [SitecoreField("Subject Placeholder")]
+        public virtual string SubjectPlaceholder {get; set;}
+        public const string SubjectPlaceholderFieldId = "5d7813fd-a32d-47d6-a690-369da5851958";
+        public const string SubjectPlaceholderFieldName = "Subject Placeholder";
+
+        /// <summary>
+        /// The Submit Button Text field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 1ff5310c-3ed4-4c5b-ac20-79257e8d608e</para>
+        /// </summary>
+        [SitecoreField("Submit Button Text")]
+        public virtual string SubmitButtonText {get; set;}
+        public const string SubmitButtonTextFieldId = "1ff5310c-3ed4-4c5b-ac20-79257e8d608e";
+        public const string SubmitButtonTextFieldName = "Submit Button Text";
+
+    }
+
+
+    /// <summary>
     /// IRecommendedProducts Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products</para>
     /// <para>ID: 02303189-7dc9-41c9-914a-4784878a6a7d</para>
@@ -386,6 +1304,298 @@ namespace HCA.Feature.PageContent.Models
         /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
         /// </summary>
         public const string TemplateId = "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731";
+
+    }
+
+
+    /// <summary>
+    /// ITeam Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team</para>
+    /// <para>ID: 3921f0ca-20fb-4c66-bf7b-3d936e97d936</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3921f0ca-20fb-4c66-bf7b-3d936e97d936")]
+    public partial interface ITeam: IGlassBase
+    {
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 28913ab4-ede0-4201-b070-b3e376729d0e</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        string Text {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e4c9c92f-23af-4cb0-bbcf-323fa80109ba</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Team Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team</para>
+    /// <para>ID: 3921f0ca-20fb-4c66-bf7b-3d936e97d936</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3921f0ca-20fb-4c66-bf7b-3d936e97d936")]
+    public partial class Team: GlassBase, ITeam
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team
+        /// </summary>
+        public const string TemplateId = "3921f0ca-20fb-4c66-bf7b-3d936e97d936";
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 28913ab4-ede0-4201-b070-b3e376729d0e</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        public virtual string Text {get; set;}
+        public const string TextFieldId = "28913ab4-ede0-4201-b070-b3e376729d0e";
+        public const string TextFieldName = "Text";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e4c9c92f-23af-4cb0-bbcf-323fa80109ba</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "e4c9c92f-23af-4cb0-bbcf-323fa80109ba";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// ITeamMember Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member</para>
+    /// <para>ID: 6103e1a3-7ac0-4985-98ab-9238a3485df9</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6103e1a3-7ac0-4985-98ab-9238a3485df9")]
+    public partial interface ITeamMember: IGlassBase
+    {
+
+        /// <summary>
+        /// The Full Name field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 715e62c9-ac4f-457c-9aac-34c7f6d91b37</para>
+        /// </summary>
+        [SitecoreField("Full Name")]
+        string FullName {get; set;}
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 29de299b-340f-4dea-adf0-ec4ded7dd047</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+        /// <summary>
+        /// The Position field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 9739e61c-f46d-4d19-a47e-86fd8aeb08fa</para>
+        /// </summary>
+        [SitecoreField("Position")]
+        string Position {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// TeamMember Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member</para>
+    /// <para>ID: 6103e1a3-7ac0-4985-98ab-9238a3485df9</para>
+    /// </summary>
+    [SitecoreType(TemplateId="6103e1a3-7ac0-4985-98ab-9238a3485df9")]
+    public partial class TeamMember: GlassBase, ITeamMember
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member
+        /// </summary>
+        public const string TemplateId = "6103e1a3-7ac0-4985-98ab-9238a3485df9";
+
+        /// <summary>
+        /// The Full Name field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 715e62c9-ac4f-457c-9aac-34c7f6d91b37</para>
+        /// </summary>
+        [SitecoreField("Full Name")]
+        public virtual string FullName {get; set;}
+        public const string FullNameFieldId = "715e62c9-ac4f-457c-9aac-34c7f6d91b37";
+        public const string FullNameFieldName = "Full Name";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 29de299b-340f-4dea-adf0-ec4ded7dd047</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "29de299b-340f-4dea-adf0-ec4ded7dd047";
+        public const string ImageFieldName = "Image";
+
+        /// <summary>
+        /// The Position field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 9739e61c-f46d-4d19-a47e-86fd8aeb08fa</para>
+        /// </summary>
+        [SitecoreField("Position")]
+        public virtual string Position {get; set;}
+        public const string PositionFieldId = "9739e61c-f46d-4d19-a47e-86fd8aeb08fa";
+        public const string PositionFieldName = "Position";
+
+    }
+
+
+    /// <summary>
+    /// ITeamMemberSocialLink Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link</para>
+    /// <para>ID: db02cc04-e764-4ee5-b9be-62a9b7fb9ce1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="db02cc04-e764-4ee5-b9be-62a9b7fb9ce1")]
+    public partial interface ITeamMemberSocialLink: IGlassBase
+    {
+
+        /// <summary>
+        /// The Icon Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc</para>
+        /// </summary>
+        [SitecoreField("Icon Class")]
+        string IconClass {get; set;}
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        Link Uri {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// TeamMemberSocialLink Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link</para>
+    /// <para>ID: db02cc04-e764-4ee5-b9be-62a9b7fb9ce1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="db02cc04-e764-4ee5-b9be-62a9b7fb9ce1")]
+    public partial class TeamMemberSocialLink: GlassBase, ITeamMemberSocialLink
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link
+        /// </summary>
+        public const string TemplateId = "db02cc04-e764-4ee5-b9be-62a9b7fb9ce1";
+
+        /// <summary>
+        /// The Icon Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc</para>
+        /// </summary>
+        [SitecoreField("Icon Class")]
+        public virtual string IconClass {get; set;}
+        public const string IconClassFieldId = "e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc";
+        public const string IconClassFieldName = "Icon Class";
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        public virtual Link Uri {get; set;}
+        public const string UriFieldId = "bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73";
+        public const string UriFieldName = "Uri";
+
+    }
+
+
+    /// <summary>
+    /// IWelcome Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome</para>
+    /// <para>ID: bcc4e809-3687-4676-9542-061712345c7b</para>
+    /// </summary>
+    [SitecoreType(TemplateId="bcc4e809-3687-4676-9542-061712345c7b")]
+    public partial interface IWelcome: IGlassBase
+    {
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 314819dc-f55d-4d42-a238-e8db57969ee5</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        string Subtitle {get; set;}
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0630149f-8a91-4715-91ee-bd2483e9e3a4</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        string Text {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 214065bc-bcd8-49fc-ab7e-58a613017935</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Welcome Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome</para>
+    /// <para>ID: bcc4e809-3687-4676-9542-061712345c7b</para>
+    /// </summary>
+    [SitecoreType(TemplateId="bcc4e809-3687-4676-9542-061712345c7b")]
+    public partial class Welcome: GlassBase, IWelcome
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome
+        /// </summary>
+        public const string TemplateId = "bcc4e809-3687-4676-9542-061712345c7b";
+
+        /// <summary>
+        /// The Subtitle field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 314819dc-f55d-4d42-a238-e8db57969ee5</para>
+        /// </summary>
+        [SitecoreField("Subtitle")]
+        public virtual string Subtitle {get; set;}
+        public const string SubtitleFieldId = "314819dc-f55d-4d42-a238-e8db57969ee5";
+        public const string SubtitleFieldName = "Subtitle";
+
+        /// <summary>
+        /// The Text field.
+        /// <para>Field Type: Multi-Line Text</para>
+        /// <para>Field ID: 0630149f-8a91-4715-91ee-bd2483e9e3a4</para>
+        /// </summary>
+        [SitecoreField("Text")]
+        public virtual string Text {get; set;}
+        public const string TextFieldId = "0630149f-8a91-4715-91ee-bd2483e9e3a4";
+        public const string TextFieldName = "Text";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 214065bc-bcd8-49fc-ab7e-58a613017935</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "214065bc-bcd8-49fc-ab7e-58a613017935";
+        public const string TitleFieldName = "Title";
 
     }
 

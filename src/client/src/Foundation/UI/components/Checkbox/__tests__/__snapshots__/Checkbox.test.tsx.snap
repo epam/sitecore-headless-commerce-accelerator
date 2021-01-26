@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders correctly 1`] = `
+<span
+  className="Checkbox Checkbox_size_m Checkbox_checked"
+>
+  <input
+    checked={true}
+    className="Checkbox-Control"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <span
+    className="Checkbox-Checkmark Checkbox-Checkmark_size_m"
+  />
+</span>
+`;

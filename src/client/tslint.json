@@ -1,7 +1,6 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-sonarts"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-sonarts", "tslint-config-prettier"],
   "rules": {
-    "align": [ true, "parameters", "arguments", "statements" ],
     "ban": false,
     "class-name": true,
     "comment-format": [ true, "check-space" ],

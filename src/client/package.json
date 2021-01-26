@@ -16,7 +16,10 @@
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",
     "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js",
-    "check-style": "stylelint \"**/*.scss\"",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "tslint --project ./tsconfig.json",
+    "lint:styles": "stylelint \"**/*.scss\"",
+    "prettify": "prettier --write './src/**/*.{ts,tsx,css}'",
     "generate-doc": "typedoc --out CodeDocs --ignoreCompilerErrors",
     "storybook": "start-storybook -c ./scripts/storybook"
   },
@@ -134,6 +137,7 @@
     "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.1.6",
     "postcss-object-fit-images": "^1.1.2",
+    "prettier": "^2.2.1",
     "rainbow-js-codegeneration": "^1.0.7",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-hot-loader": "^4.8.3",
@@ -164,6 +168,9 @@
     }
   },
   "lint-staged": {
+    "*.{ts,tsx,css}": [
+      "prettier --write"
+    ],
     "*.ts": "jest --onlyChanged --passWithNoTests"
   }
 }

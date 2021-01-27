@@ -20,6 +20,7 @@ import { DependentField, FieldSet, Form, FormValues, Input, Select, Submit } fro
 
 import { CheckoutStepType } from 'Feature/Checkout/Integration/Checkout';
 
+import { AddressOptions } from './AddressOptions';
 import { ADDRESS_TYPE, FIELDS } from './constants';
 import { BillingProps, BillingState } from './models';
 
@@ -33,6 +34,8 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
       email: '',
       selectedAddressOption,
     };
+
+    this.handleAddressOptionChange = this.handleAddressOptionChange.bind(this);
   }
   public componentDidMount() {
     const { commerceUser } = this.props;
@@ -56,38 +59,15 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
             <Text field={{ value: 'Bill To' }} tag="h3" />
             <div className="row">
               <div className="col-md-12">
-                <ul className="options">
-                  <li>
-                    <Input
-                      type="radio"
-                      id="r11"
-                      name={FIELDS.ADDRESS_TYPE}
-                      defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.NEW}
-                      defaultValue={ADDRESS_TYPE.NEW}
-                      onChange={(e) => this.handleAddressOptionChange(e)}
-                    />
-                    <Text field={{ value: 'A New Address' }} tag="label" htmlFor="r11" />
-                  </li>
-                  <li>
-                    <Input
-                      type="radio"
-                      id="r12"
-                      name={FIELDS.ADDRESS_TYPE}
-                      defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.SAME_AS_SHIPPING}
-                      defaultValue={ADDRESS_TYPE.SAME_AS_SHIPPING}
-                      onChange={(e) => this.handleAddressOptionChange(e)}
-                    />
-                    <Text field={{ value: 'Same As Shipping Address' }} tag="label" htmlFor="r12" />
-                  </li>
-                </ul>
+                <AddressOptions
+                  selectedAddressOption={this.state.selectedAddressOption}
+                  onAddressOptionChange={this.handleAddressOptionChange}
+                />
               </div>
             </div>
           </fieldset>
           <FieldSet
-            customVisibility={(formValues) => {
-              const addressTypeValue = formValues[FIELDS.ADDRESS_TYPE];
-              return addressTypeValue === ADDRESS_TYPE.NEW;
-            }}
+            customVisibility={(formValues) => this.state.selectedAddressOption === ADDRESS_TYPE.NEW}
           >
             <fieldset>
               <Text field={{ value: 'Billing Location' }} tag="h2" />
@@ -187,15 +167,15 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
     this.setState({ email: e.currentTarget.value });
   }
 
-  private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({ selectedAddressOption: e.currentTarget.value });
+  private handleAddressOptionChange(value: string) {
+    this.setState({ selectedAddressOption: value });
   }
 
   private handleSaveAndContinueClick(formValues: FormValues) {
     const { SubmitStep } = this.props;
-    const { email } = this.state;
+    const { email, selectedAddressOption } = this.state;
 
-    const useSameAsShipping = formValues[FIELDS.ADDRESS_TYPE] === ADDRESS_TYPE.SAME_AS_SHIPPING;
+    const useSameAsShipping = selectedAddressOption === ADDRESS_TYPE.SAME_AS_SHIPPING;
 
     if (useSameAsShipping) {
       SubmitStep({

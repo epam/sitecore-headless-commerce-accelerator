@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, HTMLProps } from 'react';
+import React, { FC, forwardRef, HTMLProps } from 'react';
 
 import { cnRadioButton } from './cn';
 
@@ -22,12 +22,12 @@ export type RadioButtonProps = HTMLProps<HTMLInputElement> & {
   size?: 'm';
 };
 
-export const RadioButton: FC<RadioButtonProps> = ({
+export const RadioButton: FC<RadioButtonProps> = forwardRef(({
   checked,
   className,
   size = 'm',
   ...rest
-}) => {
+}, ref) => {
   return (
     <div className={cnRadioButton({ size }, [className])} tabIndex={0}>
       <input
@@ -35,8 +35,9 @@ export const RadioButton: FC<RadioButtonProps> = ({
         checked={checked}
         className={cnRadioButton('Input')}
         type="radio"
+        ref={ref}
       />
       <div className={cnRadioButton('Circle', { checked })} tabIndex={-1} />
     </div>
   );
-};
+});

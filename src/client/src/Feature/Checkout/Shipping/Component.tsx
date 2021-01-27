@@ -21,6 +21,7 @@ import { DependentField, FieldSet, Form, FormValues, Input, Select, Submit } fro
 
 import { CheckoutStepType } from 'Feature/Checkout/Integration/Checkout';
 
+import { AddressOptions } from './AddressOptions';
 import { ADDRESS_TYPE, FIELDS } from './constants';
 import { ShippingProps, ShippingState } from './models';
 
@@ -36,6 +37,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       email: '',
       selectedAddressOption,
     };
+
+    this.handleAddressOptionChange = this.handleAddressOptionChange.bind(this);
   }
 
   public componentDidMount() {
@@ -67,32 +70,11 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <Text field={{ value: 'Ship To' }} tag="h3" />
             <div className="row">
               <div className="col-md-12">
-                <ul className="options">
-                  <li>
-                    <Input
-                      type="radio"
-                      id="r1"
-                      name={FIELDS.ADDRESS_TYPE}
-                      defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.NEW}
-                      defaultValue={ADDRESS_TYPE.NEW}
-                      onChange={(e) => this.handleAddressOptionChange(e)}
-                    />
-                    <Text field={{ value: 'A New Address' }} tag="label" htmlFor="r1" />
-                  </li>
-                  {isLoggedIn && (
-                    <li>
-                      <Input
-                        type="radio"
-                        id="r2"
-                        name={FIELDS.ADDRESS_TYPE}
-                        defaultChecked={this.state.selectedAddressOption === ADDRESS_TYPE.SAVED}
-                        defaultValue={ADDRESS_TYPE.SAVED}
-                        onChange={(e) => this.handleAddressOptionChange(e)}
-                      />
-                      <Text field={{ value: 'A Saved Address' }} tag="label" htmlFor="r2" />
-                    </li>
-                  )}
-                </ul>
+                <AddressOptions
+                  isLoggedIn={!!isLoggedIn}
+                  selectedAddressOption={this.state.selectedAddressOption}
+                  onAddressOptionChange={this.handleAddressOptionChange}
+                />
               </div>
             </div>
           </FieldSet>
@@ -283,10 +265,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     this.setState({ email: e.currentTarget.value });
   }
 
-  private handleAddressOptionChange(e: React.FormEvent<HTMLInputElement>) {
-    this.setState({ selectedAddressOption: e.currentTarget.value });
+  private handleAddressOptionChange(value: string) {
+    this.setState({ selectedAddressOption: value });
 
-    if (e.currentTarget.value === ADDRESS_TYPE.SAVED) {
+    if (value === ADDRESS_TYPE.SAVED) {
       const { commerceUser } = this.props;
       const isLoggedIn = commerceUser && commerceUser.customerId;
 
@@ -305,7 +287,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   // tslint:disable-next-line:cognitive-complexity
   private handleSaveAndContinueClick(formValues: FormValues) {
     const { SubmitStep, shippingInfo, AddAddressToAccount } = this.props;
-
     const selectedShippingMethodId = formValues[FIELDS.SELECTED_SHIPPING_METHOD];
     const shippingMethod = shippingInfo.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
 
@@ -317,7 +298,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       useForBillingAddress,
     };
     const address = this.getShippingAddress(formValues);
-
     if (saveToMyAccount) {
       AddAddressToAccount(address);
     }
@@ -336,22 +316,25 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   private getShippingAddress(formValues: FormValues) {
     const { deliveryInfo, commerceUser } = this.props;
+    const { selectedAddressOption } = this.state;
 
-    const addressTypeValue: string = formValues[FIELDS.ADDRESS_TYPE] as string;
-
-    if (addressTypeValue === ADDRESS_TYPE.SAVED) {
+    if (selectedAddressOption === ADDRESS_TYPE.SAVED) {
       const selectedAddress = formValues[FIELDS.SELECTED_ADDRESS];
       let address;
+
       if (deliveryInfo.data && deliveryInfo.data.userAddresses) {
         address = deliveryInfo.data.userAddresses.find((a) => a.partyId === selectedAddress);
       }
+
       address.email = commerceUser.email;
+
       return address;
     }
 
-    if (addressTypeValue === ADDRESS_TYPE.NEW) {
+    if (selectedAddressOption === ADDRESS_TYPE.NEW) {
       const isLoggedIn = commerceUser && commerceUser.customerId;
       const selectedCountry = this.getSelectedCountry(formValues[FIELDS.COUNTRY] as string);
+
       return (
         (isLoggedIn) ? (
           {

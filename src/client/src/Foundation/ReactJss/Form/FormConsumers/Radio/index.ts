@@ -12,9 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Input';
-export * from './Select';
-export * from './FieldSet';
-export * from './Submit';
-export * from './DependentField';
-export * from './Radio';
+import { contextConnect } from './../enhancers';
+import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';
+import RadioField from './Radio';
+
+export const Radio = contextConnect<BaseFieldProps<HTMLInputElement>, BaseFieldEnhancedProps<HTMLInputElement>>(
+  RadioField
+);

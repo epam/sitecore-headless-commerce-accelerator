@@ -20,9 +20,10 @@ $radio-button-checked-background-color: #a749ff;
   display: inline-block;
   position: relative;  
 
-  &-Input {    
+  &-Input#{&}-Input {    
     width: $radio-button-size-m-width;
     height: $radio-button-size-m-height;
+    display: inline-block;
     margin: 0;
     position: absolute;
     opacity: 0;

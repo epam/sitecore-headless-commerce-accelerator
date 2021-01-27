@@ -12,9 +12,31 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Input';
-export * from './Select';
-export * from './FieldSet';
-export * from './Submit';
-export * from './DependentField';
-export * from './Radio';
+@import 'Foundation/UI/common/scss/variables';
+
+.Shipping {
+    &-AddressOptions {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        list-style: outside none none;
+    }
+
+    &-AddressOption {
+        cursor: pointer;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+
+        @media (min-width: $screen-sm-min) {
+            margin-right: 20px;
+        }
+    }
+
+    &-AddressOptionLabel {
+        margin-left: 8px;
+        margin-bottom: 0;
+    }
+}

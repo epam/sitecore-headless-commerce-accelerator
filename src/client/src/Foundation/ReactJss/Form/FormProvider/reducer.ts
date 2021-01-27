@@ -85,7 +85,6 @@ export default (state: FormState = { ...initialState }, action: FormAction<Dispa
     case actionTypes.UPDATE_STATUS: {
       const { fields } = state;
       const invalidFields = Object.keys(fields).filter((key) => !fields[key].validity.valid);
-
       return {
         ...state,
         status: {

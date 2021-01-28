@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spoiler renders correctly 1`] = `
+<div
+  className="Spoiler"
+>
+  <div
+    className="Spoiler-Caption"
+    onClick={[Function]}
+  >
+    I'm a spoiler's caption. Click me please
+  </div>
+  <div
+    className="Spoiler-Body"
+  >
+    <div
+      style={
+        Object {
+          "padding": "50px 40px",
+        }
+      }
+    >
+      <h1>
+        Hidden text
+      </h1>
+    </div>
+  </div>
+</div>
+`;

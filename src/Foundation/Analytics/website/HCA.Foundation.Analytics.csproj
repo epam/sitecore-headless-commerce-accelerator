@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -86,90 +85,6 @@
     <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.DotNet.PlatformAbstractions.2.1.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.RetailProxy, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.RetailProxy.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.RetailProxy.ConfigurationProviders, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.RetailProxy.ConfigurationProviders.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Client, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.DataServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.SqlServer, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.DataServices.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.GenericTaxEngine, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.GenericTaxEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Localization, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.NotSupported, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.NotSupported.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Services.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Desktop, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Services.Desktop.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.TransactionService, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.TransactionService.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Workflow, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.Workflow.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Diagnostics.Sinks.Portable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Diagnostics.Sinks.Portable.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.Sinks, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Runtime.9.19.20030.3\lib\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.2.1.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -178,9 +93,6 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Redis, Version=2.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Redis.2.1.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Redis.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.CommandLineUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Extensions.CommandLineUtils.1.0.0\lib\net451\Microsoft.Extensions.CommandLineUtils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
@@ -299,9 +211,6 @@
     <Reference Include="MongoDB.Driver.Core, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MongoDB.Driver.Core.2.6.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Legacy, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\mongocsharpdriver.2.6.1\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
-    </Reference>
     <Reference Include="Mvp.Xml, Version=2.3.0.0, Culture=neutral, PublicKeyToken=6ead800d778c9b9f, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Mvp.Xml.2.3.0\lib\net20\Mvp.Xml.dll</HintPath>
     </Reference>
@@ -310,9 +219,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.Bson.1.0.1\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json.Portable, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Dynamics.Retail.Newtonsoft.json.6.0.4.17603\lib\Newtonsoft.Json.Portable.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
@@ -371,17 +277,8 @@
     <Reference Include="Sitecore.Commerce.Connect.Core, Version=14.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.14.0.27\lib\net471\Sitecore.Commerce.Connect.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Connect.DynamicsRetail, Version=1.0.7548.20987, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.DynamicsRetail.1.0.7548.20987\lib\net471\Sitecore.Commerce.Connect.DynamicsRetail.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Commerce.Engine.Connect, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.5.0.55\lib\net471\Sitecore.Commerce.Engine.Connect.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Commerce.Engine.Connect.Caching, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.Caching.5.0.55\lib\net471\Sitecore.Commerce.Engine.Connect.Caching.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Commerce.ServiceProxy, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.ServiceProxy.5.0.76\lib\net471\Sitecore.Commerce.ServiceProxy.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.9.3.0\lib\net471\Sitecore.ContentSearch.dll</HintPath>
@@ -491,9 +388,6 @@
     <Reference Include="Sitecore.Nexus.Licensing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9de34fe2109de40c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Nexus.Licensing.2.0.6\lib\netstandard2.0\Sitecore.Nexus.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Publishing.WebDeploy, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Publishing.WebDeploy.9.2.0\lib\net471\Sitecore.Publishing.WebDeploy.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Update, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Update.9.3.0\lib\net471\Sitecore.Update.dll</HintPath>
     </Reference>
@@ -555,24 +449,6 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Composition.AttributedModel, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Convention, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Hosting, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.Runtime, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Composition.TypedParts, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Globalization" />
@@ -606,7 +482,6 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
@@ -649,23 +524,17 @@
       <HintPath>..\..\..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Thread" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Extensions.Design" />
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -681,11 +550,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\Contact\ContactMapper.cs" />
@@ -743,12 +607,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

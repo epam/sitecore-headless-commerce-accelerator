@@ -95,7 +95,7 @@ The script predefines the list of tasks to skip.
 ### Known issues of the sitecre commerce server installation
 
 * `The service cannot accept control messages at this time. (Exception from HRESULT: 0x80070425)`
-To resolve the issue follow the link to [StackOverflow](https://sitecore.stackexchange.com/questions/12870/the-service-cannot-accept-control-messages-at-this-time-while-installing-sitec). Before you start the installation proccess from the begining you have to delete the folders created by the failed commerce server installation procces (i.e. sitecoreCatalogItemsScope, sitecoreCustomersScope, sitecoreOrdersScope from solr_root_folder/server/solr).
+To resolve the issue follow the link to [StackOverflow](https://sitecore.stackexchange.com/questions/12870/the-service-cannot-accept-control-messages-at-this-time-while-installing-sitec). Before you start the installation process from the beginning you have to delete the folders created by the failed commerce server installation process (i.e. sitecoreCatalogItemsScope, sitecoreCustomersScope, sitecoreOrdersScope from solr_root_folder/server/solr).
 
 ----
 ### Bootstrapping the sitecore commerce server
@@ -128,7 +128,7 @@ To bootstrap the Commerce Server follow these instructions:
 5. Change default IP address to VM address (if it's different) in
 - .\src\publishsettings.targets: `192.168.50.4 -> VM IP`;
 - .\src\build.cake: `192.168.50.4 -> VM IP`.
-6. Create a symbol link with `unicorn-hca` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folded is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc).
+6. Create a symbol link with `unicorn-hca` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folder is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc).
 7. In IIS bind **hca.local** to the site, add **hca.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), HCA - is internal name of the Headless Commerce Accelerator.
 8. Run `.\src\build.ps1` in PowerShell with administration privileges (script will restore **NuGet** packages, install **npm** dependencies and run deployment process). Next time cake scripts can be run from Visual Studio (install [Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandTaskRunner)) or from Visual Studio Code (install [Cake Build](https://marketplace.visualstudio.com/items?itemName=cake-build.cake-vscode)) or from PowerShell.
 9. In sitecore content editor modify **sitecore/Commerce/Catalog Management/Catalogs** item. Select **Habitat_Master** in the **Selected Catalogs** field.

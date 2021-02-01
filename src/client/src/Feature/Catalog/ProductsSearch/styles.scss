@@ -19,10 +19,14 @@
   padding: 0 30px 50px 0;
   text-transform: uppercase;
   margin: 0;
+  @media (max-width: $screen-md) {
+    margin-bottom: 50px;
+    padding: 0;
+  }
   @media (max-width: $screen-sm-max) {
     text-transform: none;
     padding: 20px 0 0;
-  }
+  }  
   .search-heading {
     text-transform: capitalize;
     margin-bottom: 25px;

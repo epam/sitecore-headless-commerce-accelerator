@@ -22,11 +22,27 @@
   @media (max-width: $screen-sm-max) {
     padding: 20px 0;
   }
+  .row {
+    @media (max-width: $screen-md) {
+      display: flex;
+      flex-wrap: wrap;
+      .col-md-3 {
+        order: 2;
+        width: 100%;
+      }
+      .col-md-9 {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .listing-product-grid {
   position: relative;
   margin-bottom: 100px;
+  @media (max-width: $screen-md) {
+    margin-bottom: 25px;
+  }
   > ul {
     // padding: 20px 0;
     //to prevent spreading elements using max-width to items and centering them with flexbox

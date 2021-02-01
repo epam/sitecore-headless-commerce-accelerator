@@ -52,9 +52,6 @@
 }
 
 .productGridFilter {
-  @media (max-width: $screen-sm-max) {
-    display: none; // don't display desktop filters in mobile view
-  }
   font-family: $poppins;
   position: relative;
   display: block;
@@ -260,7 +257,6 @@
     }
     li {
       //TODO: need to prevent long text in the label of the checkbox from overflowing.. requires changes to checbox+label css
-      height: 29px;
       margin: 10px 0 10px 0;
     }
     li:last-child {
@@ -272,6 +268,10 @@
           line-height: 1;
           height: 100%;
           margin-top: 3px;
+          @media (max-width: $screen-md) {
+            margin-top: 0;
+            line-height: 18px;
+          }
         }
       }
     }

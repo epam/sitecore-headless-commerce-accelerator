@@ -29,7 +29,7 @@ namespace HCA.Foundation.Commerce.Services.Catalog
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
+    using System.Collections.Generic;
     using Connect = Connect.Models.Catalog;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
@@ -62,7 +62,10 @@ namespace HCA.Foundation.Commerce.Services.Catalog
             var item = this.searchService.GetProductItem(productId);
             if (item == null)
             {
-                return new Result<Product>(null);
+                return new Result<Product>(new Product(), new List<string>() { "Product Not Found." })
+                {
+                    Success = false
+                };
             }
 
             var product = this.productBuilder.Build(item);

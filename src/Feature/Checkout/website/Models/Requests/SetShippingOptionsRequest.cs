@@ -31,7 +31,7 @@ namespace HCA.Feature.Checkout.Models.Requests
         public string OrderShippingPreferenceType { get; set; }
 
         [Required]
-        public Address ShippingAddress { get; set; }
+        public List<Address> ShippingAddresses { get; set; }
 
         [Required]
         public ShippingMethod ShippingMethod { get; set; }

@@ -45,8 +45,12 @@ namespace HCA.Foundation.Commerce.Builders.Search
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
 
             if (!string.IsNullOrWhiteSpace(searchOptions.SortField)
-                && !searchSettings.SortFieldNames.Contains(searchOptions.SortField))
+                && !searchSettings.SortFieldNames.Contains(
+                    searchOptions.SortField,
+                    StringComparer.InvariantCultureIgnoreCase))
+            {
                 throw new Exception("Sort field not found");
+            }
 
             return new Connect.SearchOptions
             {

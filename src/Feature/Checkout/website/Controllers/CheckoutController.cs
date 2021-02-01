@@ -85,7 +85,7 @@ namespace HCA.Feature.Checkout.Controllers
             return this.Execute(
                 () => this.deliveryService.SetShippingOptions(
                     request.OrderShippingPreferenceType,
-                    new List<Address> { request.ShippingAddress },
+                    request.ShippingAddresses,
                     new List<ShippingMethod> { request.ShippingMethod }));
         }
 

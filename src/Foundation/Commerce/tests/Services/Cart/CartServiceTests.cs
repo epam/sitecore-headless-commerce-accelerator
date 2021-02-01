@@ -17,6 +17,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using System;
     using System.Collections.Generic;
 
+    using Base.Models.Result;
     using Base.Tests.Customization;
 
     using Commerce.Builders.Cart;
@@ -27,6 +28,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using Connect.Managers.Cart;
 
     using Context;
+    using HCA.Foundation.Commerce.Services.Catalog;
+    using HCA.Foundation.Connect.Managers.Inventory;
+    using Models.Entities.Promotion;
 
     using NSubstitute;
 
@@ -41,35 +45,44 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
     public class CartServiceTests
     {
+        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+
         private readonly ICartManager cartManager;
+        private readonly IInventoryManager inventoryManager;
 
         private readonly CartResult cartResult;
 
         private readonly ICartService cartService;
 
+        private readonly ICatalogService catalogService;
+
         private readonly CommerceCart commerceCart;
 
-        private readonly ICartBuilder<Connect.Cart> cartBuilder;
-
         private readonly IFixture fixture;
+
 
         private readonly IVisitorContext visitorContext;
 
         public CartServiceTests()
         {
-            var storefrontContext = Substitute.For<IStorefrontContext>();
-            var catalogContext = Substitute.For<ICatalogContext>();
-
-            this.cartManager = Substitute.For<ICartManager>();
             this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
-            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
+            this.cartManager = Substitute.For<ICartManager>();
+            this.inventoryManager = Substitute.For<IInventoryManager>();
+            var catalogContext = Substitute.For<ICatalogContext>();
+            this.catalogService = Substitute.For<ICatalogService>();
+            var storefrontContext = Substitute.For<IStorefrontContext>();
             this.visitorContext = Substitute.For<IVisitorContext>();
+
             this.cartService = new CartService(
+                this.cartBuilder,
                 this.cartManager,
-                storefrontContext,
+                this.inventoryManager,
                 catalogContext,
-                this.visitorContext,
-                this.cartBuilder);
+                catalogService,
+                storefrontContext,
+                this.visitorContext);
+
+            this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
 
             this.cartResult = this.fixture.Create<CartResult>();
             this.commerceCart = this.fixture.Create<CommerceCart>();

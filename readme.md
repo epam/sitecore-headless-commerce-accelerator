@@ -92,7 +92,7 @@ The script predefines the list of tasks to skip.
 * Pro tip: should one of the steps fail, you don't have to start from scratch, just edit the appropriate json file(s) and remove from it (them) the previous, successfully completed steps and run the script again after fixing the problem that prevented it running the first time.
 
 ----
-### Known issues of the sitecre commerce server installation
+### Known issues of the sitecore commerce server installation
 
 * `The service cannot accept control messages at this time. (Exception from HRESULT: 0x80070425)`
 To resolve the issue follow the link to [StackOverflow](https://sitecore.stackexchange.com/questions/12870/the-service-cannot-accept-control-messages-at-this-time-while-installing-sitec). Before you start the installation process from the beginning you have to delete the folders created by the failed commerce server installation process (i.e. sitecoreCatalogItemsScope, sitecoreCustomersScope, sitecoreOrdersScope from solr_root_folder/server/solr).

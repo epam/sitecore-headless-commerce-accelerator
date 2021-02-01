@@ -1,8 +1,11 @@
 const autoprefixer = require('autoprefixer');
+const { resolve } = require('path');
 
 module.exports = {
   stories: ['../../src/**/stories/**/*.stories.mdx', '../../src/**/stories/**/*.stories.@(js|jsx|ts|tsx)'],
   webpackFinal: (config) => {
+    config.resolve.alias['Foundation'] = resolve(__dirname, '../../src/Foundation');
+
     config.module.rules.push({
       test: /\.scss$/,
       use: [

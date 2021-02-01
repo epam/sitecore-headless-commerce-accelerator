@@ -2,7 +2,7 @@
 
 exports[`RadioButton renders correctly 1`] = `
 <div
-  className="RadioButton RadioButton_size_m"
+  className="RadioButton RadioButton_controlSize_m"
   tabIndex={0}
 >
   <input

@@ -75,19 +75,31 @@
       }
     }
 
-    button {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1;
-      margin-top: 38px;
-      padding: 15px 52px;
-      text-transform: uppercase;
-      color: $contact-button-color;
-      border: none;
-      background-color: $contact-button-background-color;
-
-      &:hover {
-        background-color: $theme-color;
+    .Button-Container {
+      display: flex;   
+      button {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        margin-top: 38px;
+        padding: 15px 52px;
+        text-transform: uppercase;
+        color: $contact-button-color;
+        border: none;
+        background-color: $contact-button-background-color;
+  
+        &:hover {
+          background-color: $theme-color;
+        }
+  
+        &:disabled,
+        button[disabled]{
+          opacity: 0.65;
+        }
+      }
+  
+      .Status_Message {
+        margin: 48px 0px 0px 15px;
       }
     }
   }

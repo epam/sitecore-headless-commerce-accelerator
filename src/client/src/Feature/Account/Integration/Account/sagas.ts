@@ -35,6 +35,8 @@ import * as selectors from './selectors';
 
 import { Authentication } from '../Authentication';
 
+import ReactGA from 'react-ga';
+
 export function* create(action: Action<CreateAccountPayload>) {
   const { returnUrl, request } = action.payload;
   yield put(actions.CreateAccountRequest());
@@ -44,7 +46,10 @@ export function* create(action: Action<CreateAccountPayload>) {
   if (error) {
     return yield put(actions.CreateAccountFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Account created',
+    category: 'Account'
+  });
   yield put(actions.CreateAccountSuccess(data));
 
   yield put(Authentication(request.email, request.password, returnUrl || '/'));
@@ -70,7 +75,10 @@ export function* validation(action: Action<ValidateEmailPayload>) {
   if (error) {
     return yield put(actions.AccountValidationFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Email validated',
+    category: 'Account'
+  });
   yield put(actions.AccountValidationSuccess(data.invalid, data.inUse));
 }
 
@@ -99,7 +107,10 @@ export function* changePassword(action: Action<ChangePasswordPayload>) {
   if (!data) {
     return yield put(actions.ChangePasswordFailure('can not change password'));
   }
-
+  ReactGA.event({
+    action: 'Password changed',
+    category: 'Account'
+  });
   yield put(actions.ChangePasswordSuccess());
 }
 
@@ -123,7 +134,10 @@ export function* getAddressList() {
   if (error || !data) {
     return yield put(actions.GetAddressListFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Get addresses',
+    category: 'Account'
+  });
   yield put(actions.GetAddressListSuccess(data));
 }
 
@@ -137,7 +151,10 @@ export function* updateAddress(action: Action<Commerce.Address>) {
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Address updated',
+    category: 'Account'
+  });
   yield put(actions.UpdateAddressSuccess(data));
 }
 
@@ -151,7 +168,10 @@ export function* addAddress(action: Action<Commerce.Address>) {
   if (error || !data) {
     return yield put(actions.AddAddressFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Address added',
+    category: 'Account'
+  });
   yield put(actions.AddAddressSuccess(data));
 }
 
@@ -165,7 +185,10 @@ export function* removeAddress(action: Action<string>) {
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Address removed',
+    category: 'Account'
+  });
   yield put(actions.UpdateAddressSuccess(data));
 }
 
@@ -187,7 +210,10 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
   if (!data && !error) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
+  ReactGA.event({
+    action: 'Account updated',
+    category: 'Account'
+  });
   yield put(actions.UpdateAccountSuccess());
 
   // we want to reload commerce user properties

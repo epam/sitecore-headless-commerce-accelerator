@@ -25,4 +25,10 @@ export interface GetInTouchFormDataSource extends JSS.BaseDataSourceItem {
 
 export interface GetInTouchFormProps extends JSS.GraphQLRendering<GetInTouchFormDataSource> {}
 
-export interface GetInTouchFormState extends JSS.SafePureComponentState {}
+export interface GetInTouchFormState extends JSS.SafePureComponentState {
+  email: string;
+  formSubmission: boolean;
+  message: string;
+  name: string;
+  subject: string;
+}

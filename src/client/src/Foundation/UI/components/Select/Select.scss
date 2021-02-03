@@ -48,15 +48,40 @@ $select-size-m-padding: 3px 8px;
     width: 100%;
   }
 
-  &_error {
-    border-color: #e9322d;
-    color: #b94a48;
+  &_error {   
 
     &:focus {
       border-color: #e9322d;
       box-shadow: 0 0 6px #f8b9b7;
+      color: #b94a48;
       -webkit-box-shadow: 0 0 6px #f8b9b7;      
     }
+  }
+
+  &_address_form {
+    color: #000;
+    height: 40px;
+    padding: 0 15px;
+  }
+
+  &_order_summary {
+    font-size: 12px;
+    height: 40px;
+    padding: 0 50px 0 15px;
+    color: #242424;
+    -webkit-appearance: none;
+    option {
+      font-size: 14px;
+      padding-left: 10px;
+      border: 0 solid #626262;
+      background: #fff;
+    }
+  }
+
+  &_store_locator {
+    color: #606060;
+    height: 40px;
+    padding: 0 10px 0 20px;
   }
 
 }

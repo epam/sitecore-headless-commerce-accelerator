@@ -107,7 +107,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Country' }} tag="label" className="input-title required" />
-                <Select name={FIELDS.COUNTRY} type="text" required={true}>
+                <Select fullWidth={true} name={FIELDS.COUNTRY} required={true}>
                   <option value="">Not Selected</option>
                   {fields.countries.map((country, index) => (
                     <option key={`${index}-${country.countryCode}`} value={country.countryCode}>
@@ -120,7 +120,12 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                 <Text field={{ value: 'Province' }} tag="label" className="input-title required" />
                 <DependentField>
                   {(form) => (
-                    <Select name={FIELDS.PROVINCE} required={true} disabled={!form.values[FIELDS.COUNTRY]}>
+                    <Select
+                      fullWidth={true}
+                      name={FIELDS.PROVINCE}
+                      required={true}
+                      disabled={!form.values[FIELDS.COUNTRY]}
+                    >
                       <option value="">Not Selected</option>
                       {this.renderSubdivisions(form.values[FIELDS.COUNTRY] as string)}
                     </Select>
@@ -160,7 +165,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-sm-12">
                 <Text field={{ value: 'Shipping Location' }} tag="h3" />
-                <Select name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
+                <Select fullWidth={true} name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
                   <option disabled={true} value="">
                     Select Option
                   </option>
@@ -225,7 +230,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             </div>
             <div className="row">
               <div className="col-sm-12">
-                <Select name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>
+                <Select fullWidth={true} name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>
                   <option disabled={true} value="">
                     Select Option
                   </option>

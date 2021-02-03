@@ -16,11 +16,6 @@
 .checkout-container {
   @include loading-overlay(99998);
 
-  select {
-    width: 100%;
-    border: 1px solid #cccccc;
-    margin-bottom: 20px;
-  }
   .btn-animated-main{
     width: 100%;
     line-height: 38px;

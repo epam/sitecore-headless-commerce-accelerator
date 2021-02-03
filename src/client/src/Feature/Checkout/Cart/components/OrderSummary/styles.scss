@@ -109,25 +109,6 @@
       margin: 0 0 5px;
       color: $order-table-text-color;
     }
-    > select {
-      font-size: 12px;
-      width: 100%;
-      height: 40px;
-      padding: 0 50px 0 15px;
-      margin-bottom: 0;
-      cursor: pointer;
-      color: $order-table-text-color;
-      border: 1px solid $summary-table-border-color;
-      box-shadow: none;
-      -webkit-appearance: none;
-      background: transparent;
-      option {
-        font-size: 14px;
-        padding-left: 10px;
-        border: 0 solid #626262;
-        background: $white;
-      }
-    }
   }
 
   .zipCodeWrapper, .promoCodeWrapper {

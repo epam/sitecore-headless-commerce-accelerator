@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, HTMLProps } from 'react';
+import React, { FC, forwardRef, HTMLProps } from 'react';
 
 import { cnSelect } from './cn';
 
@@ -24,22 +24,17 @@ export type SelectProps = HTMLProps<HTMLSelectElement> & {
   fullWidth?: boolean;
 };
 
-export const Select: FC<SelectProps> = ({
-  children,
-  className,
-  disabled = false,
-  controlSize = 'm',
-  error = false,
-  fullWidth = false,
-  ...rest
-}) => {
-  return (
-    <select
-      {...rest}
-      className={cnSelect({ controlSize, disabled, error, fullWidth }, [className])}
-      disabled={disabled}
-    >
-      {children}
-    </select>
-  );
-};
+export const Select: FC<SelectProps> = forwardRef(
+  ({ children, className, disabled = false, controlSize = 'm', error = false, fullWidth = false, ...rest }, ref) => {
+    return (
+      <select
+        {...rest}
+        className={cnSelect({ controlSize, disabled, error, fullWidth }, [className])}
+        disabled={disabled}
+        ref={ref}
+      >
+        {children}
+      </select>
+    );
+  },
+);

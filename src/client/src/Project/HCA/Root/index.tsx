@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,6 +13,9 @@
 //    limitations under the License.
 
 import * as React from 'react';
+
+import ReactGA from 'react-ga';
+
 import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 
@@ -26,7 +29,8 @@ import ActionTypes from './actionTypes';
 
 class Root extends React.Component<RootProps> {
   public constructor(props: RootProps) {
-      super(props);
+    super(props);
+    ReactGA.initialize(process.env.TRACKING_ID);
   }
 
   public componentDidMount() {
@@ -37,7 +41,9 @@ class Root extends React.Component<RootProps> {
     return (
       <ApolloProvider client={this.props.graphQLClient}>
         <Provider store={this.props.store}>
-          <SitecoreContext componentFactory={componentFactory} contextFactory={SitecoreContextFactory}>{this.props.children}</SitecoreContext>
+          <SitecoreContext componentFactory={componentFactory} contextFactory={SitecoreContextFactory}>
+            {this.props.children}
+          </SitecoreContext>
         </Provider>
       </ApolloProvider>
     );

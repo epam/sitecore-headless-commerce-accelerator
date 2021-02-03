@@ -24,6 +24,8 @@ import { SignUpOwnState, SignUpProps } from './models';
 import './styles.scss';
 
 export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUpOwnState> {
+  public formValues?: FormValues;
+
   public constructor(props: SignUpProps) {
     super(props);
 
@@ -39,12 +41,39 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       isPasswordsValid: true,
     };
   }
+
+  public componentDidUpdate(prevProps: SignUpProps) {
+    const {
+      accountValidation: { inUse, invalid, status },
+      returnUrl,
+      CreateAccount,
+    } = this.props;
+    const {
+      accountValidation: { status: prevStatus },
+    } = prevProps;
+
+    if (status === LoadingStatus.Loaded && prevStatus === LoadingStatus.Loading && !inUse && !invalid) {
+      const isValid = this.validate(this.formValues);
+
+      if (isValid) {
+        const createAccountDto = {
+          email: this.formValues[FORM_FIELDS.EMAIL] as string,
+          firstName: this.formValues[FORM_FIELDS.FIRST_NAME] as string,
+          lastName: this.formValues[FORM_FIELDS.LAST_NAME] as string,
+          password: this.formValues[FORM_FIELDS.PASSWORD] as string,
+        };
+
+        CreateAccount(createAccountDto, returnUrl);
+      }
+    }
+  }
+
   public componentWillUnmount() {
     this.props.ResetValidation();
   }
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
-    const { loading, accountValidation } = this.props;
+    const { loading, accountValidation, createAccount } = this.props;
     const {
       isConfirmPasswordEmpty,
       isEmailEmpty,
@@ -54,29 +83,37 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       isPasswordEmpty,
       isPasswordsValid,
     } = this.state;
+    const formDisabled =
+      createAccount.status === LoadingStatus.Loading || accountValidation.status === LoadingStatus.Loading;
+
     return (
       <div className="register_form">
         <Form>
           <div className="form-field">
-            <Input type="text" name={FORM_FIELDS.FIRST_NAME} placeholder="First Name" />
+            <Input type="text" name={FORM_FIELDS.FIRST_NAME} placeholder="First Name" disabled={formDisabled} />
             {isFirstNameEmpty && <div className="form-field-error-message">First Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input type="text" name={FORM_FIELDS.LAST_NAME} placeholder="Last Name" />
+            <Input type="text" name={FORM_FIELDS.LAST_NAME} placeholder="Last Name" disabled={formDisabled} />
             {isLastNameEmpty && <div className="form-field-error-message">Last Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input type="email" name={FORM_FIELDS.EMAIL} placeholder="Email" />
+            <Input type="text" name={FORM_FIELDS.EMAIL} placeholder="Email" disabled={formDisabled} />
             {(!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) && (
               <div className="form-field-error-message">{this.checkEmailValidation()}</div>
             )}
           </div>
           <div className="form-field">
-            <Input type="password" name={FORM_FIELDS.PASSWORD} placeholder="Password" />
+            <Input type="password" name={FORM_FIELDS.PASSWORD} placeholder="Password" disabled={formDisabled} />
             {isPasswordEmpty && <div className="form-field-error-message">Password field is required!</div>}
           </div>
           <div className="form-field">
-            <Input type="password" name={FORM_FIELDS.CONFIRM_PASSWORD} placeholder="Confirm Password" />
+            <Input
+              type="password"
+              name={FORM_FIELDS.CONFIRM_PASSWORD}
+              placeholder="Confirm Password"
+              disabled={formDisabled}
+            />
             {(isConfirmPasswordEmpty || !isPasswordsValid) && (
               <div className="form-field-error-message">
                 {isConfirmPasswordEmpty ? 'Confirm Password field is required!' : 'Passwords do not match!'}
@@ -84,11 +121,11 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
             )}
           </div>
           <Submit
-            disabled={false}
+            disabled={formDisabled}
             className="btn-login-register"
             onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
           >
-            {loading && <i className="fa fa-spinner fa-spin" />}
+            {(loading || formDisabled) && <i className="fa fa-spinner fa-spin" />}
             <span>Register</span>
           </Submit>
         </Form>
@@ -98,45 +135,55 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
 
   private checkEmailValidation() {
     const { accountValidation } = this.props;
-    const { isEmailEmpty } = this.state;
+    const { isEmailEmpty, isEmailValid } = this.state;
+
+    if (
+      accountValidation.inUse &&
+      accountValidation.status !== LoadingStatus.Loading &&
+      !isEmailEmpty &&
+      isEmailValid
+    ) {
+      return 'Email is already in use!';
+    }
+
     if (isEmailEmpty) {
       return 'Email field is required!';
-    } else {
-      if (accountValidation.inUse) {
-        return 'Email is already in use!';
-      } else {
-        return 'Email is invalid!';
-      }
     }
+
+    if (!isEmailValid) {
+      return 'Email is invalid!';
+    }
+
+    return '';
   }
 
-  private handleFormSubmit(formValues: FormValues) {
-    const { CreateAccount, returnUrl } = this.props;
-    const { accountValidation } = this.props;
+  private validate(formValues: FormValues) {
     const isFirstNameValid = this.validateFirstName(formValues);
     const isLastNameValid = this.validateLastName(formValues);
-    const isEmailValid = this.validateEmail(formValues);
     const isPasswordValid = this.validatePassword(formValues);
     const isConfirmPasswordValid = this.validateConfirmPassword(formValues);
     let isPasswordsMatch = false;
+
     if (isPasswordValid && isConfirmPasswordValid) {
       isPasswordsMatch = this.passwordValidator(formValues);
     }
-    if (
-      isFirstNameValid &&
-      isLastNameValid &&
-      isEmailValid &&
-      isPasswordsMatch &&
-      accountValidation.status === LoadingStatus.Loaded &&
-      accountValidation.invalid === false
-    ) {
-      const createAccountDto = {
-        email: formValues[FORM_FIELDS.EMAIL] as string,
-        firstName: formValues[FORM_FIELDS.FIRST_NAME] as string,
-        lastName: formValues[FORM_FIELDS.LAST_NAME] as string,
-        password: formValues[FORM_FIELDS.PASSWORD] as string,
-      };
-      CreateAccount(createAccountDto, returnUrl);
+
+    if (isFirstNameValid && isLastNameValid && isPasswordsMatch) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private handleFormSubmit(formValues: FormValues) {
+    const { AccountValidation } = this.props;
+    this.validate(formValues);
+    const isEmailValid = this.validateEmail(formValues);
+
+    if (isEmailValid) {
+      const email = formValues[FORM_FIELDS.EMAIL] as string;
+      this.formValues = formValues;
+      AccountValidation(email);
     }
   }
 
@@ -172,22 +219,23 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
   }
 
   private validateEmail(form: FormValues) {
-    const { AccountValidation } = this.props;
     const email = form[FORM_FIELDS.EMAIL] as string;
-    if (form && email) {
-      this.setState({ isEmailEmpty: false });
-      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        AccountValidation(email);
-        this.setState({ isEmailValid: true });
-        return true;
-      } else {
-        this.setState({ isEmailValid: false });
-        return false;
-      }
-    } else {
-      this.setState({ isEmailEmpty: true });
+
+    if (email === '') {
+      this.setState({ isEmailEmpty: true, isEmailValid: false });
       return false;
     }
+
+    const isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+
+    if (isValid) {
+      this.setState({ isEmailEmpty: false, isEmailValid: true });
+      return true;
+    }
+
+    this.setState({ isEmailEmpty: false, isEmailValid: false });
+
+    return false;
   }
 
   private validatePassword(form: FormValues) {

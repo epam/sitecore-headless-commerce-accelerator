@@ -80,7 +80,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
                 <Text field={{ value: 'Expires' }} tag="label" className="required" />
                 <div className="expires-date">
                   <div className="cc-month">
-                    <Select name={FIELDS.EXPIRES_MONTH} required={true} defaultValue={'1'}>
+                    <Select fullWidth={true} name={FIELDS.EXPIRES_MONTH} required={true} defaultValue={'1'}>
                       {[
                         'January',
                         'February',
@@ -104,6 +104,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
                   <span className="slashy">/</span>
                   <div className="cc-year">
                     <Select
+                      fullWidth={true}
                       name={FIELDS.EXPIRES_YEAR}
                       required={true}
                       defaultValue={(new Date().getFullYear() + 1).toString()}

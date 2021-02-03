@@ -94,7 +94,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
               <div className="row">
                 <div className="col-ms-6">
                   <Text field={{ value: 'Country' }} tag="label" className="required" />
-                  <Select name={FIELDS.COUNTRY} required={true}>
+                  <Select fullWidth={true} name={FIELDS.COUNTRY} required={true}>
                     <option>Not Selected</option>
                     {fields.countries.map((country, index) => (
                       <option key={`${index}-${country.countryCode}`} value={country.countryCode}>
@@ -107,7 +107,12 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
                   <Text field={{ value: 'Province' }} tag="label" className="required" />
                   <DependentField>
                     {(form) => (
-                      <Select name={FIELDS.PROVINCE} required={true} disabled={!form.values[FIELDS.COUNTRY]}>
+                      <Select
+                        fullWidth={true}
+                        name={FIELDS.PROVINCE}
+                        required={true}
+                        disabled={!form.values[FIELDS.COUNTRY]}
+                      >
                         <option value="">Not Selected</option>
                         {this.renderSubdivisions(form.values[FIELDS.COUNTRY] as string)}
                       </Select>

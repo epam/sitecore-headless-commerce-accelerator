@@ -16,7 +16,9 @@ import * as React from 'react';
 
 import BaseField from '../BaseField';
 
-export default class InputField extends BaseField<HTMLSelectElement> {
+import { Select } from 'Foundation/UI/components/Select';
+
+export default class SelectField extends BaseField<HTMLSelectElement> {
   public componentDidMount() {
     const { defaultValue } = this.props;
     const { validity } = this.currentFieldRef;
@@ -26,11 +28,13 @@ export default class InputField extends BaseField<HTMLSelectElement> {
 
   public render() {
     const pureProps = this.getPureProps();
+    const { current } = this.getFieldRef;
+    const hasError = current ? !current.validity.valid : true;
 
     return (
-      <select ref={this.getFieldRef} {...pureProps} onChange={(e) => this.handleOnChange(e)}>
+      <Select error={hasError} ref={this.getFieldRef} {...pureProps} onChange={(e: any) => this.handleOnChange(e)}>
         {this.props.children}
-      </select>
+      </Select>
     );
   }
 

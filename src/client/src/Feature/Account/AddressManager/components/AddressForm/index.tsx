@@ -17,6 +17,8 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { DependentField, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
+import { Select as PureSelect } from 'Foundation/UI/components/Select';
+
 import { ADDRESS_MANAGER_FIELDS } from './constants';
 import { AddressFromProps } from './models';
 
@@ -87,7 +89,13 @@ export default class AddressForm extends React.Component<AddressFromProps> {
               </div>
               <div className="col-lg-6 col-md-6 select-country-state">
                 <Jss.Text field={{ value: 'Country:', editable: 'Country' }} tag="label" className="required" />
-                <Select name={ADDRESS_MANAGER_FIELDS.COUNTRY} required={true} defaultValue={defaultValues.countryCode}>
+                <Select
+                  fullWidth={true}
+                  name={ADDRESS_MANAGER_FIELDS.COUNTRY}
+                  required={true}
+                  defaultValue={defaultValues.countryCode}
+                  className="Select_address_form"
+                >
                   <option value="">Not Selected</option>
                   {countries.map((c, index) => (
                     <option key={index} value={c.countryCode}>
@@ -101,14 +109,19 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                 <DependentField>
                   {(form) =>
                     form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] ? (
-                      <Select name={ADDRESS_MANAGER_FIELDS.PROVINCE} required={true} defaultValue={defaultValues.state}>
+                      <Select
+                        fullWidth={true}
+                        name={ADDRESS_MANAGER_FIELDS.PROVINCE}
+                        required={true}
+                        defaultValue={defaultValues.state}
+                      >
                         <option value="">Not Selected</option>
                         {this.renderSubdivisions(form.values[ADDRESS_MANAGER_FIELDS.COUNTRY] as string)}
                       </Select>
                     ) : (
-                      <select disabled={true}>
+                      <PureSelect disabled={true} fullWidth={true}>
                         <option>Not Selected</option>
-                      </select>
+                      </PureSelect>
                     )
                   }
                 </DependentField>

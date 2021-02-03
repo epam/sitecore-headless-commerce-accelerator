@@ -21,6 +21,8 @@ import { NavigationLink } from 'Foundation/UI';
 import { FIELDS } from './constants';
 import { OrderSummaryProps } from './models';
 
+import { Select as PureSelect } from 'Foundation/UI/components/Select';
+
 import './styles.scss';
 export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryProps, any> {
   constructor(props: OrderSummaryProps) {
@@ -42,7 +44,13 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               </div>
               <div className="countrySelectWrapper">
                 <Jss.Text field={{ value: '* Country:', editable: '* Country:' }} tag="label" className="required" />
-                <Select name={FIELDS.COUNTRY} type="text" required={true}>
+                <Select
+                  className="Select_order_summary"
+                  fullWidth={true}
+                  name={FIELDS.COUNTRY}
+                  type="text"
+                  required={true}
+                >
                   <option value="">Not Selected</option>
                   {countries.map((country, index) => (
                     <option key={`${index}-${country.countryCode}`} value={country.countryCode}>
@@ -56,14 +64,20 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
                 <DependentField>
                   {(form) =>
                     form.values[FIELDS.COUNTRY] ? (
-                      <Select name={FIELDS.PROVINCE} required={true} disabled={!form.values[FIELDS.COUNTRY]}>
+                      <Select
+                        className="Select_order_summary"
+                        fullWidth={true}
+                        name={FIELDS.PROVINCE}
+                        required={true}
+                        disabled={!form.values[FIELDS.COUNTRY]}
+                      >
                         <option value="">Not Selected</option>
                         {this.renderSubdivisions(form.values[FIELDS.COUNTRY] as string)}
                       </Select>
                     ) : (
-                      <select disabled={true}>
+                      <PureSelect className="Select_order_summary" disabled={true} fullWidth={true}>
                         <option>Not Selected</option>
-                      </select>
+                      </PureSelect>
                     )
                   }
                 </DependentField>

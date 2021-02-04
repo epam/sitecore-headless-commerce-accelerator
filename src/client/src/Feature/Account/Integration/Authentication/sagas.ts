@@ -46,8 +46,9 @@ export function* authentication(action: Action<AuthenticationPayload>) {
     action: 'Login',
     category: 'Authentification'
   });
-  yield put(actions.AuthenticationSuccess());
+
   yield put(ChangeRoute(returnUrl || '/'));
+  yield put(actions.AuthenticationSuccess());
 }
 
 export function* initAuthentication() {
@@ -70,8 +71,9 @@ export function* logout(action: Action<LogoutPayload>) {
     action: 'Logout',
     category: 'Authentification'
   });
-  yield put(actions.LogoutSuccess());
+
   yield put(ChangeRoute(returnUrl || '/'));
+  yield put(actions.LogoutSuccess());
 }
 
 export function* resetState() {

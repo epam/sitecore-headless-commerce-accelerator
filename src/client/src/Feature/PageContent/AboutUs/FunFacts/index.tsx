@@ -36,7 +36,7 @@ export class FunFacts extends JSS.SafePureComponent<FunFactsProps, FunFactsState
     return (
       <div className="funfact-area">
         <div className="container">
-          <div className="row">
+          <div className="row row-flexible">
             {items &&
               items.map((data, key) => {
                 const endNumber = countUp ? parseInt(data.fields.count.value, 10) : 0;

@@ -29,10 +29,10 @@ export class Team extends JSS.SafePureComponent<TeamProps, TeamState> {
       <div className="team-area">
         <div className="container">
           <div className="team-title">
-            <Text tag="h2" field={datasource.title.jss} />
+            <Text tag="h2" field={datasource.title.jss} className="about-us-heading " />
             <Text tag="p" field={datasource.text.jss} />
           </div>
-          <div className="row">
+          <div className="row row-flexible">
             {datasource &&
               datasource.items &&
               datasource.items.map((data, key) => {

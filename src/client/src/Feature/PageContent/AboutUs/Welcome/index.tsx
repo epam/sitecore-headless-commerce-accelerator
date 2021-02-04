@@ -29,7 +29,7 @@ export class Welcome extends JSS.SafePureComponent<WelcomeProps, WelcomeState> {
         <div className="container">
           <div className="welcome-content">
             <Text tag="h5" field={fields.subtitle} />
-            <Text tag="h1" field={fields.title} />
+            <Text tag="h1" field={fields.title} className="about-us-heading" />
             <Text tag="p" field={fields.text} />
           </div>
         </div>

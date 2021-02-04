@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import classnames from 'classnames';
+import { LoadingStatus } from 'Foundation/Integration';
 import * as JSS from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
@@ -38,6 +39,12 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
 
   public componentDidUnMount() {
     document.removeEventListener('click', this.handleOutsidePopupClick.bind(this), false);
+  }
+
+  public componentDidUpdate() {
+    if (this.props.logoutProcess.status === LoadingStatus.Loaded) {
+      location.reload();
+    }
   }
 
   protected safeRender() {

@@ -25,9 +25,11 @@ import { AppState } from './models';
 const mapStateToProps = (state: AppState) => {
   const commerceUser = JSS.sitecoreContext(state).commerceUser;
   const returnUrl = JSS.routingLocationPathname(state);
+  const logoutProcess = Authentication.logoutProcess(state);
 
   return {
     commerceUser,
+    logoutProcess,
     returnUrl,
   };
 };

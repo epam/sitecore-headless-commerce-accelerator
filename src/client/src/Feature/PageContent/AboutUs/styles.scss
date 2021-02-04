@@ -13,37 +13,57 @@
 //    limitations under the License.
 
 @import "Foundation/UI/common/scss/variables";
+// Common styles
+
+.about-us-heading {
+    position: relative;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: .3px;
+    margin: 8px 0 30px;
+    color: #433f3f;
+    padding: 0 0 23px;
+    line-height: 1;
+    text-transform: capitalize;
+    &:before {
+        position: absolute;
+        background-color: #070508;
+        height: 3px;
+        width: 70px;
+        content: "";
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+    }
+}
+
+.row-flexible {
+    @media (max-width: $screen-sm) and (min-width: $screen-xs ) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        .col-sm-6 {
+            flex: 0 0 50%;
+            max-width: 50%; 
+        }
+    }
+}
 
 // Welcome area
 
 .welcome-area {
-    padding-bottom: 95px;
     padding-top: 100px;
+    padding-bottom: 95px;    
+    @media (max-width: $screen-sm) {
+        padding-top: 60px;
+        padding-bottom: 55px;
+    }
 }
 
 .welcome-content {
     text-align: center;
-    h1 {
-        position: relative;
-        font-size: 30px;
-        font-weight: 500;
-        letter-spacing: .3px;
-        margin: 8px 0 30px;
-        color: #433f3f;
-        padding: 0 0 23px;
-        line-height: 1;
-        &:before {
-            position: absolute;
-            background-color: #070508;
-            height: 3px;
-            width: 70px;
-            content: "";
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0 auto;
-        }
-    }
     h5 {
         font-weight: 500;
         font-size: 16px;
@@ -57,6 +77,10 @@
         line-height: 30px;
         width: 66%;
         margin: 0 auto;
+        @media (max-width: $screen-sm) {
+            width: 100%;
+            font-size: 15px;
+        }
     }
 }
 
@@ -64,6 +88,9 @@
 
 .about-mission-area {
     padding-bottom: 70px;
+    @media (max-width: $screen-sm) {
+        padding-bottom: 30px;
+    }
     .single-mission {
         margin-bottom: 30px;
         h3 {
@@ -73,6 +100,9 @@
             text-transform: capitalize;
             line-height: 22px;
             color: $grey-dark;
+            @media (max-width: $screen-sm) {
+                margin: 0 0 10px;
+            }
         }
         p {
             margin: 0;
@@ -107,9 +137,18 @@
 .team-area {
     padding-bottom: 70px;
     padding-top: 95px;
+    @media (max-width: $screen-sm) {
+        padding-bottom: 30px;
+        padding-top: 55px;
+    }
     .team-title {
         margin-bottom: 60px;
         text-align: center;
+        .about-us-heading {
+            margin: 0 0 15px;
+            padding: 0 0 15px;
+            font-weight: 600;
+        }
     }
     .team-wrapper {
         background-color: $breadcrumbs-bar-color;
@@ -251,9 +290,13 @@
     background-color: $breadcrumbs-bar-color;
     padding-bottom: 70px;
     padding-top: 100px;
+    @media (max-width: $screen-sm) {
+        padding-top:60px;
+        padding-bottom: 30px;
+    }
     .single-count {
         margin-bottom: 30px;
-        text-align: center;
+        text-align: center;        
         h2>span {
             color: $main-color;
             font-size: 40px;

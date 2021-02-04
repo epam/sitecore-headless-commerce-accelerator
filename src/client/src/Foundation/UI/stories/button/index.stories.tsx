@@ -1,9 +1,62 @@
-import * as React from 'react';
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
 
-export default { title: 'Button' };
+import React from 'react';
 
-export const withText = () => <button>Hello Button</button>;
+import { storiesOf } from '@storybook/react';
 
-export const withEmoji = () => (
-  <button>Click me please</button>
-);
+import { Button } from '../../components/Button';
+
+storiesOf('Button', module)
+  .add('Default Color', () => <Button onClick={() => console.log('clicked')}>Click me!</Button>)
+  .add('Default Color Reversed', () => (
+    <Button buttonTheme="default-reversed" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Grey Color', () => (
+    <Button buttonTheme="grey" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Grey Color Reversed', () => (
+    <Button buttonTheme="grey-reversed" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Orange Color', () => (
+    <Button buttonTheme="orange" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Black', () => (
+    <Button buttonTheme="black" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Link Type', () => (
+    <Button buttonType="link" href="/test">
+      Click me!
+    </Button>
+  ))
+  .add('Default Color with Rounded Borders', () => (
+    <Button rounded={true} onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Default Color with Full Width', () => (
+    <Button fullWidth={true} onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ));

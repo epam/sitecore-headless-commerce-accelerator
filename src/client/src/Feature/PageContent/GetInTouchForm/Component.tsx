@@ -14,6 +14,9 @@
 
 import * as JSS from 'Foundation/ReactJss';
 import React, { ChangeEvent } from 'react';
+
+import { validateEmail } from 'Foundation/utils/validation';
+
 import { GetInTouchFormProps, GetInTouchFormState } from './models';
 import './styles.scss';
 
@@ -30,11 +33,6 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
     };
   }
 
-  public validateEmail(email: string) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
-
   public handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = e.currentTarget.name;
     this.setState({ ...this.state, [name]: e.currentTarget.value });
@@ -43,7 +41,7 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
   protected safeRender() {
     const { datasource } = this.props.fields.data;
     const { email, formSubmission, message, name, subject } = this.state;
-    const areFieldsFilled = message && email && name && subject && this.validateEmail(email);
+    const areFieldsFilled = message && email && name && subject && validateEmail(email);
     return (
       <div className="contact-area_content_form">
         <div className="contact-area_content_form_title">

@@ -22,7 +22,7 @@ import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import { Checkout } from 'Feature/Checkout/Integration/api';
 
-import { SetPaymentInfoRequest, SetShippingOptionsRequest } from '../../dataModel.Generated';
+import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from '../../dataModel.Generated';
 import { CreditCard } from '../api/Checkout';
 import * as actions from './actions';
 import { sagaActionTypes } from './constants';
@@ -167,10 +167,13 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
   shippingMethod.partyId = address.externalId;
   shippingMethod.shippingPreferenceType = '1';
 
+  const addresses: Address[] = [];
+  addresses.push(address);
+
   const setShippingOptionsRequest: SetShippingOptionsRequest = {
     orderShippingPreferenceType: '1',
-    shippingAddress: address,
-    shippingMethod
+    shippingAddresses: addresses,
+    shippingMethod,
   };
 
   yield put(actions.SubmitStepRequest());

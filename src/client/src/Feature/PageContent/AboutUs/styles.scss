@@ -303,6 +303,10 @@
             font-weight: 700;
             margin: 25px 0 12px;
             display: inline-block;
+            @media (max-width: $screen-sm) {
+                margin: 6px 0 8px;
+                font-size: 35px;
+            }
         }
         span {
             color: $grey-dark;
@@ -314,6 +318,9 @@
             font-size: 50px;
             line-height: 1;
             display: inline-block;
+            @media (max-width: $screen-sm) {
+                font-size: 45px;
+            }
         }
     }
 }

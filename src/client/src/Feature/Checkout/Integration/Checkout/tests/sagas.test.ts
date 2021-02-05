@@ -244,6 +244,9 @@ describe('submitFulfillmentStep', () => {
       partyId: 'TEST2',
     } as any;
 
+    const addresses: Address[] = [];
+    addresses.push(address);
+
     const shippingMethod = {
       partyId: 'TEST2',
       shippingMethodId: 'cf0af82a-e1b8-45c2-91db-7b9847af287c',
@@ -254,7 +257,7 @@ describe('submitFulfillmentStep', () => {
     test('should call setShippingOptions', () => {
       const fakeShippingArgs: SetShippingOptionsRequest = {
         orderShippingPreferenceType: '1',
-        shippingAddress: address,
+        shippingAddresses: addresses,
         shippingMethod,
       };
       const expected = call(Checkout.setShippingOptions, fakeShippingArgs);

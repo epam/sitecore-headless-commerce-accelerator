@@ -17,6 +17,7 @@ import * as React from 'react';
 import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
 import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
+import { validateEmail } from 'Foundation/utils/validation';
 
 import { FORM_FIELDS } from './constants';
 import { SignUpOwnState, SignUpProps } from './models';
@@ -226,7 +227,7 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
       return false;
     }
 
-    const isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+    const isValid = validateEmail(email);
 
     if (isValid) {
       this.setState({ isEmailEmpty: false, isEmailValid: true });

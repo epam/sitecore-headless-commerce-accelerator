@@ -18,6 +18,7 @@ import * as React from 'react';
 import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
 
 import { LoadingStatus } from 'Foundation/Integration';
+import { validateEmail } from 'Foundation/utils/validation';
 
 import { LogInProps, LogInStates, LogInValues } from './models';
 import './styles.scss';
@@ -40,7 +41,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     }
   }
   public validateUser(form: LogInValues) {
-    if (form.email && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.email)) {
+    if (validateEmail(form.email)) {
       this.setState({ isUsernameValid: true });
       return true;
     } else {

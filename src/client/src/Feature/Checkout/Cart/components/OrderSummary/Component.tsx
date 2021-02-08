@@ -90,9 +90,6 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             </Form>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6">
-          <div className="column tax" />
-        </div>
         <div className="col-lg-4 col-md-12">
           <div className="column tax">
             <div className="titleWrap">

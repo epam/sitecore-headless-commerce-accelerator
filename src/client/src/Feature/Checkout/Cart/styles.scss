@@ -58,3 +58,43 @@
     }
   }
 }
+
+.action_container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 0px 55px;
+
+  @media (max-width: $screen-sm) {
+    flex-direction: column;    
+  }
+
+  button {
+    @media (max-width: $screen-sm) {
+      width: 100%;
+    }
+  }
+
+  .link-button-style{
+    padding: 18px 63px 17px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: $poppins;
+    line-height: 1;
+    background-color: #F2F2F2;
+    color: $actions-button-color;
+    border-radius: 50px;
+    border: 0;
+    text-transform: uppercase;
+    &:hover{
+      background-color: $theme-color;
+      color: white;
+    }
+
+    @media (max-width: $screen-sm) {
+      margin-bottom: 20px;
+      padding: 18px 38px 17px;
+    }
+  }
+}

@@ -46,7 +46,12 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   public safeRender() {
     const { shoppingCartData, sitecoreContext } = this.props;
     const { isFirstInitLoadPage } = this.state;
-    if (!isFirstInitLoadPage && shoppingCartData && shoppingCartData.cartLines.length === 0) {
+    if (
+      !isFirstInitLoadPage &&
+      shoppingCartData &&
+      shoppingCartData.cartLines &&
+      shoppingCartData.cartLines.length === 0
+    ) {
       return (
         <div className="empty-cart">
           <i className="pe-7s-cart" />
@@ -70,11 +75,13 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           <div className="row">
             <>
               <div className="col-xs-12">
-                <CartSummary
-                  cartLines={shoppingCartData.cartLines}
-                  productColors={sitecoreContext.productColors}
-                  fallbackImageUrl={sitecoreContext.fallbackImageUrl}
-                />
+                {shoppingCartData && shoppingCartData.cartLines && (
+                  <CartSummary
+                    cartLines={shoppingCartData.cartLines}
+                    productColors={sitecoreContext.productColors}
+                    fallbackImageUrl={sitecoreContext.fallbackImageUrl}
+                  />
+                )}
               </div>
             </>
           </div>
@@ -86,11 +93,13 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </NavigationLink>
         </div>
         <div className="row cart2-last-row">
-          <OrderSummary
-            price={shoppingCartData.price}
-            rendering={this.props.rendering}
-            countries={this.props.fields.countries}
-          />
+          {shoppingCartData && shoppingCartData.price && (
+            <OrderSummary
+              price={shoppingCartData.price}
+              rendering={this.props.rendering}
+              countries={this.props.fields.countries}
+            />
+          )}
         </div>
       </div>
     );

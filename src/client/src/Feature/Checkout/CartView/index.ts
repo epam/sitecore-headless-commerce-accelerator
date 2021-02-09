@@ -21,14 +21,20 @@ import { renderingWithContext } from 'Foundation/ReactJss';
 
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
+import * as Authentication from 'Feature/Account/Integration/Authentication';
+
 import CartComponent from './Component';
 import { AppState, CartDispatchProps, CartFunctionProps, CartOwnProps, CartProps, CartStateProps } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const data = ShoppingCart.shoppingCartData(state);
   const status = ShoppingCart.shoppingCart(state).status;
+  const authenticationProcess = Authentication.authenticationProcess(state);
+  const logoutProcess = Authentication.logoutProcess(state);
   return {
+    authenticationProcess,
     isLoading: status === LoadingStatus.Loading || status === LoadingStatus.NotLoaded,
+    logoutProcess,
     shoppingCartData: data,
   };
 };

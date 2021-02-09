@@ -18,6 +18,8 @@ import { ProductColorsContext } from 'Foundation/Commerce';
 
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
+import * as Authentication from 'Feature/Account/Integration/Authentication';
+
 export interface CartOwnProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, CartContext> {}
 export interface CartFunctionProps {
   ToggleClick: () => void;
@@ -26,6 +28,8 @@ export interface CartFunctionProps {
 export interface CartStateProps {
   isLoading: boolean;
   shoppingCartData: ShoppingCart.ShoppingCartData;
+  authenticationProcess: Authentication.AuthenticationProcessState;
+  logoutProcess: Authentication.LogoutProcessState;
 }
 
 export interface CartDispatchProps {
@@ -35,5 +39,5 @@ export interface CartDispatchProps {
 
 export interface CartProps extends CartFunctionProps, CartStateProps, CartDispatchProps, CartOwnProps {}
 export interface CartState extends JSS.SafePureComponentState {}
-export interface AppState extends ShoppingCart.GlobalShoppingCartState {}
+export interface AppState extends ShoppingCart.GlobalShoppingCartState, Authentication.GlobalAuthenticationState, Authentication.LogoutProcessState {}
 export interface CartContext extends ProductColorsContext, JSS.ImageFallbackContext {}

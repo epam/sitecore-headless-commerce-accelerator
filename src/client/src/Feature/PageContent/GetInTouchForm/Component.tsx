@@ -35,7 +35,7 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
 
   public handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const name = e.currentTarget.name;
-    this.setState({ ...this.state, [name]: e.currentTarget.value });
+    this.setState({ ...this.state, [name]: e.currentTarget.value.trim(), formSubmission: false });
   };
 
   protected safeRender() {
@@ -62,7 +62,7 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
               <input
                 name="email"
                 placeholder={datasource.emailPlaceholder.jss.value}
-                type="email"
+                type="text"
                 value={email}
                 onChange={this.handleChange}
               />

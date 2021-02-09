@@ -20,9 +20,17 @@ import { CartProps, CartState } from './models';
 
 import './styles.scss';
 
+import { LoadingStatus } from 'Foundation/Integration';
+
 export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   public componentDidMount() {
     this.props.LoadCart();
+  }
+  public componentDidUpdate() {
+    const { authenticationProcess, logoutProcess} = this.props;
+    if (authenticationProcess.status === LoadingStatus.Loaded || logoutProcess.status === LoadingStatus.Loaded) {
+      this.props.LoadCart();
+    }
   }
   public safeRender() {
     const { shoppingCartData, RemoveCartLine, ToggleClick } = this.props;

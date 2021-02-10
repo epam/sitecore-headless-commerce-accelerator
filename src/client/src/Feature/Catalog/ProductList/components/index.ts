@@ -14,3 +14,4 @@
 
 export * from './ProductListItem';
 export * from './ProductListHeader';
+export * from './ProductListSorting';

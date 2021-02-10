@@ -20,6 +20,7 @@ import * as Models from './models';
 export type InitialSearch = (payload: Models.InitSearchPayload) => Action<Models.InitSearchPayload>;
 export type ClearSearch = () => Action;
 export type LoadMore = () => Action;
+export type ChangeSortingType = (payload: Models.ChangeSortingTypePayload) => Action<Models.ChangeSortingTypePayload>;
 
 export type ApplyFacet = (name: string, value: string, search: string) => Action<Models.FacetPayload>;
 export type DiscardFacet = (name: string, value: string, search: string) => Action<Models.FacetPayload>;

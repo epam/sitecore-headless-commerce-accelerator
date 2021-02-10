@@ -12,21 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Jss from 'Foundation/ReactJss';
-
-import * as ProductsSearch from 'Feature/Catalog/Integration/ProductsSearch';
-
-export interface ProductListHeaderProps {
-  currentPageNumber: number;
-  itemsCount: number;
-  search: string;
-  isLoading: boolean;
-  sortingDirection: string;
-  sortingField: string;
-  DiscardFacet: (name: string, value: string, search: string) => void;
-  ChangeSorting: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
-}
-
-export interface ProductListHeaderState extends Jss.SafePureComponentState {
-  numberOfDisplayedItems: number;
-}
+export * from './ProductListSorting';

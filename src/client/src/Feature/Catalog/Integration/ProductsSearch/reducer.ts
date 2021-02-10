@@ -30,7 +30,8 @@ export default (state: ProductSearchState = { ...initialState }, action: Action)
     case reducerActionTypes.PRODUCTS_SEARCH_FAILURE:
     case reducerActionTypes.PRODUCTS_SEARCH_REQUEST:
     case reducerActionTypes.PRODUCTS_SEARCH_SUCCESS:
-    case reducerActionTypes.UPDATE_APPLIED_FACET: {
+    case reducerActionTypes.UPDATE_APPLIED_FACET:
+    case reducerActionTypes.UPDATE_SORTING_TYPE: {
       return {
         ...state,
         ...action.payload,

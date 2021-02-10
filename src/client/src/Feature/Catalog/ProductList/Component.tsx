@@ -39,6 +39,9 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
       isLoading,
       DiscardFacet,
       sitecoreContext,
+      sortingDirection,
+      sortingField,
+      ChangeSorting,
     } = this.props;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
@@ -50,6 +53,9 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
             isLoading={isLoading}
             DiscardFacet={DiscardFacet}
             itemsCount={totalItemCount}
+            sortingDirection={sortingDirection}
+            sortingField={sortingField}
+            ChangeSorting={ChangeSorting}
           />
         )}
         <ul>
@@ -94,10 +100,10 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
   }
 
   private initSearch(prevCategoryId: string = '', prevSearch: string = '') {
-    const { InitSearch, categoryId, search } = this.props;
+    const { InitSearch, categoryId, search, sortingDirection, sortingField } = this.props;
 
     if ((categoryId && prevCategoryId !== categoryId) || prevSearch !== search) {
-      InitSearch({ categoryId, search });
+      InitSearch({ categoryId, search, sortingDirection, sortingField });
     }
   }
 }

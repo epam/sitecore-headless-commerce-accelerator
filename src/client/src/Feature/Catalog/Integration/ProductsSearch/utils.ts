@@ -94,3 +94,8 @@ export const facetsManager = (facetsString: string) => {
 
   return new FacetsManager(facets);
 };
+
+export const saveSortingParametersToLS = (sortDirection: string, sortField: string) => {
+  localStorage.setItem('sortDirection', sortDirection);
+  localStorage.setItem('sortField', sortField);
+};

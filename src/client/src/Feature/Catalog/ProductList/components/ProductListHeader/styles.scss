@@ -40,6 +40,15 @@
         display: block;
       }
     }
+
+    &_panel {
+      display: flex;
+      align-items: center;
+
+      @media (max-width: $screen-xs-max) {
+        flex-direction: column;
+      }
+    }
   
     label {
       color: #666666;
@@ -51,11 +60,7 @@
     }
   
     select {
-      text-transform: uppercase;
       margin: 0;
-      display: inline;
-      height: 30px;
-      width: 155px;
     }
   
     ul.inline > li {

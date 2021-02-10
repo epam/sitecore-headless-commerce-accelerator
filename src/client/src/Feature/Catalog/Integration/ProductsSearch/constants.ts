@@ -34,6 +34,7 @@ export const reducerActionTypes = keyMirrorReducer(
     PRODUCTS_SEARCH_SUCCESS: null,
     RESET_STATE: null,
     UPDATE_APPLIED_FACET: null,
+    UPDATE_SORTING_TYPE: null,
   },
   ACTION_TYPES_NAMESPACE
 );
@@ -43,6 +44,7 @@ export const sagaActionTypes = keyMirrorSaga(
     APPLY_FACET: null,
     DISCARD_FACET: null,
 
+    CHANGE_SORTING: null,
     CLEAR_SEARCH: null,
     INIT_SEARCH: null,
     LOAD_MORE: null,

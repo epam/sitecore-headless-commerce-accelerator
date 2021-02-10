@@ -1,0 +1,120 @@
+//    Copyright 2020 EPAM Systems, Inc.
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import 'Foundation/UI/common/scss/variables.scss';
+@import 'Foundation/UI/common/scss/mixins';
+
+.Loading_Container {
+  display: flex;
+  justify-content: center;
+}
+
+.Loading {
+  display: flex;
+  justify-content: center;
+
+  .init-lazy-load & {
+    display: block;
+  }
+
+  &_Spinner {
+    &_Display {
+      display: flex !important;
+      align-content: space-between;
+      justify-content: center;
+    }
+
+    &.Spinner {
+      display: none;
+      top: 0;
+      height: 15px;
+      border-radius: 0;
+      background: none;
+
+      & .Object {
+        background: $theme-color;
+        width: 15px;
+        height: auto;
+        margin: 0 5px;
+        border-radius: 50% 50% 50% 50%;
+
+        &.Object-one {
+          animation: object_one 1.5s infinite;
+        }
+        &.Object-two {
+          animation: object_two 1.5s infinite;
+          animation-delay: 0.25s;
+        }
+        &.Object-three {
+          animation: object_three 1.5s infinite;
+          animation-delay: 0.5s;
+        }
+        
+        @keyframes object_one {
+          75% {
+            transform: scale(0);
+          }
+        }
+        
+        @keyframes object_two {
+          75% {
+            transform: scale(0);
+          }
+        }
+        
+        @keyframes object_three {
+          75% {
+            transform: scale(0);
+          }
+        }
+      }
+
+      .is-loading & {
+        display: flex;
+        align-content: space-between;
+        justify-content: center;
+      }
+    }
+  }
+  &_loadMore {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    &_hidden{
+      display: none !important;
+    }
+    .btn-load-more {
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1;
+      display: inline-block;
+      padding-bottom: 2px;
+      text-align: center;
+      color: #555;
+      border-bottom: 1px solid #ccc;
+      font-family: $poppins;
+      font-size: 14px;
+
+      &:hover {
+        color: $theme-color;
+        border-bottom-color: $theme-color;
+      }
+
+      .show-load-btn & {
+        display: block;
+      }
+    }
+  }
+}

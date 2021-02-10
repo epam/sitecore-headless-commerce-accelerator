@@ -28,7 +28,7 @@ class OneColumnComponent extends JSS.SafePureComponent<GridProps, GridState> {
           className={classnames('container', { [this.props.params.wrapperClass]: !!this.props.params.wrapperClass })}
         >
           <div className="row">
-            <div className="col-md-12">
+            <div className={this.props.params.firstColumnClass || 'col-md-12'}>
               <Placeholder name="w-col-wide" rendering={this.props.rendering} />
             </div>
           </div>

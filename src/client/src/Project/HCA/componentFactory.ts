@@ -59,6 +59,7 @@ components.set('Product List', Catalog.ProductList);
 components.set('Product Filters', Catalog.ProductFilters);
 components.set('Product Variants', Catalog.ProductVariants);
 components.set('Products Search', Catalog.ProductsSearch);
+components.set('Product Shop', Catalog.ProductShop);
 
 // Checkout renderings
 components.set('Add To Cart', Checkout.AddToCart);

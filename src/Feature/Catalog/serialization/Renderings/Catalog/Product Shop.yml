@@ -1,0 +1,24 @@
+﻿---
+ID: "9a3a7222-8f3f-4556-aebb-ae737718a02b"
+Parent: "a30f65cc-dcf5-4769-8679-947561dca7ec"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/Catalog/Product Shop
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Product Shop
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: |
+    {9BBCB98E-EC75-47D4-ABC1-F1BD20279CCE}
+    {243380B3-8348-4411-B988-9F55CC0A160F}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210129T142052Z

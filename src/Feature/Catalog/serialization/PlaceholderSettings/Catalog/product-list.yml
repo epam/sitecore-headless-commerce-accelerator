@@ -1,0 +1,22 @@
+﻿---
+ID: "243380b3-8348-4411-b988-9f55cc0a160f"
+Parent: "a5d2a17d-9104-434b-8b19-c77c09f0e796"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Catalog/product-list"
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "product-list"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Type: TreelistEx
+  Value: "{A7569D2D-A585-424C-B21C-74684D895B8E}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210129T142147Z

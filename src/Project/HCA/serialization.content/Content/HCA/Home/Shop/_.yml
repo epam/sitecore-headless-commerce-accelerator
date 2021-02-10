@@ -14,8 +14,31 @@ SharedFields:
       <d
         id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
         <r
-          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
-          p:after="*[1=2]" />
+          uid="{396289BF-B997-40A2-8957-25879825842B}"
+          p:before="*"
+          s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0/product-list-{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}-0" />
+        <r
+          uid="{47D51774-7BE5-4B20-BFB7-1CD101101D75}"
+          p:after="r[@uid='{396289BF-B997-40A2-8957-25879825842B}']"
+          s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0/product-filters-{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}-0" />
+        <r
+          uid="{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}"
+          p:after="r[@uid='{47D51774-7BE5-4B20-BFB7-1CD101101D75}']"
+          s:id="{9A3A7222-8F3F-4556-AEBB-AE737718A02B}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0" />
+        <r
+          uid="{FAFFB7FF-D578-4E26-9E78-6C950852D181}"
+          p:after="r[@uid='{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class&amp;First Column Class=col-md-12%20productshop%20product-list-container&amp;Second Column Class&amp;Third Column Class"
+          s:ph="main-content" />
+        <r
+          uid="{AFC091B2-7B99-45B6-8E30-0C96736C326C}">
+          <p:d />
+        </r>
       </d>
     </r>
 Languages:

@@ -31,7 +31,7 @@ import {
   KEYWORD_PARAMETER_NAME,
   sagaActionTypes,
 } from './constants';
-import { FacetPayload, InitSearchPayload, Params } from './models';
+import { ChangeSortingTypePayload, FacetPayload, InitSearchPayload, Params } from './models';
 import * as selectors from './selectors';
 import * as utils from './utils';
 
@@ -86,6 +86,14 @@ export function* initialSearch(action: Action<InitSearchPayload>): SagaIterator 
     newParams.cci = payload.categoryId;
   }
 
+  if (payload.sortingField) {
+    newParams.s = payload.sortingField;
+  }
+
+  if (payload.sortingDirection) {
+    newParams.sd = payload.sortingDirection;
+  }
+
   yield fork(fetchProductsSearch, newParams);
 }
 
@@ -99,6 +107,31 @@ export function* loadMoreProducts(): SagaIterator {
 
   const newParams = { ...params };
   newParams.pg = typeof pg === 'number' ? pg + 1 : 0;
+
+  yield fork(fetchProductsSearch, newParams);
+}
+
+export function* changeSortingType(action: Action<ChangeSortingTypePayload>): SagaIterator {
+  const params: Params = yield select(selectors.productSearchParams);
+  const status: LoadingStatus = yield select(selectors.productsSearchStatus);
+
+  if (status === LoadingStatus.Loaded) {
+    yield put(actions.ClearItems());
+  }
+
+  // @ts-ignore
+  // const { payload } = action;
+  // const newParams = { ...params };
+  // newParams.s = payload.sortingField;
+  // newParams.sd = payload.sortingDirection;
+
+  // This is temporary mock sorting params, because backend doesn't support any other perams, except brand
+  const newParams = { ...params };
+
+  newParams.s = 'brand';
+  newParams.sd = params.sd === '0' ? '1' : '0';
+
+  utils.saveSortingParametersToLS(newParams.sd, newParams.s);
 
   yield fork(fetchProductsSearch, newParams);
 }
@@ -152,6 +185,7 @@ export function* watch(): SagaIterator {
   yield takeEvery(sagaActionTypes.LOAD_MORE, loadMoreProducts);
   yield takeLatest(sagaActionTypes.INIT_SEARCH, initialSearch);
   yield takeEvery(sagaActionTypes.CLEAR_SEARCH, clearSearch);
+  yield takeEvery(sagaActionTypes.CHANGE_SORTING, changeSortingType);
 }
 
 export default [watch()];

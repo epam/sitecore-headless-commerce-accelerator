@@ -21,6 +21,8 @@ import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'Feature/
 
 import { ProductListHeaderProps, ProductListHeaderState } from './models';
 
+import { ProductListSorting } from '../ProductListSorting';
+
 import './styles.scss';
 
 export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderProps, ProductListHeaderState> {
@@ -45,7 +47,7 @@ export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderPr
   }
 
   public safeRender() {
-    const { search, itemsCount, isLoading } = this.props;
+    const { search, itemsCount, isLoading, sortingDirection, sortingField, ChangeSorting } = this.props;
     const { numberOfDisplayedItems } = this.state;
     const parsedSearch = tryParseUrlSearch(search);
     const appliedFacets = facetsManager(parsedSearch[FACET_PARAMETER_NAME]).getFacets();
@@ -53,10 +55,13 @@ export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderPr
       <div className="product_list_header">
         <div className="header">
           {!isLoading && (
-            <div className="header_stats">
-              <span>
-                Showing {numberOfDisplayedItems} of {itemsCount} results
-              </span>
+            <div className="header_panel">
+              <ProductListSorting ChangeSorting={ChangeSorting} selectedOption={{ sortingDirection, sortingField }} />
+              <div className="header_stats">
+                <span>
+                  Showing {numberOfDisplayedItems} of {itemsCount} results
+                </span>
+              </div>
             </div>
           )}
         </div>

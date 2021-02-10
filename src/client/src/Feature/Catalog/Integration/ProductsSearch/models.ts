@@ -58,7 +58,12 @@ export interface AppliedFacets {
   [name: string]: string[];
 }
 
-export interface InitSearchPayload {
+export interface ChangeSortingTypePayload {
+  sortingDirection?: string;
+  sortingField?: string;
+}
+
+export interface InitSearchPayload extends ChangeSortingTypePayload {
   categoryId?: string;
   search?: string;
 }

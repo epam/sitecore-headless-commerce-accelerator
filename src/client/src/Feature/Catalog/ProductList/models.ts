@@ -28,6 +28,8 @@ export interface ProductListStateProps {
   currentPageNumber: number;
   search: string;
   isLoading: boolean;
+  sortingDirection: string;
+  sortingField: string;
   totalPageCount: number;
   totalItemCount: number;
   itemsPerPage: number;
@@ -38,6 +40,7 @@ export interface ProductListDispatchProps {
   ClearSearch: () => void;
   LoadMore: () => void;
   DiscardFacet: (name: string, value: string, search: string) => void;
+  ChangeSorting: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
 }
 export interface ProductListProps extends ProductListOwnProps, ProductListStateProps, ProductListDispatchProps {}
 

@@ -35,6 +35,13 @@ export const LoadMore: actionCreators.LoadMore = () => ({
   type: sagaActionTypes.LOAD_MORE,
 });
 
+export const ChangeSortingType: actionCreators.ChangeSortingType = (payload) => ({
+  payload: {
+    ...payload,
+  },
+  type: sagaActionTypes.CHANGE_SORTING,
+});
+
 export const ApplyFacet: actionCreators.ApplyFacet = (name: string, value: string, search: string) => ({
   payload: {
     name,

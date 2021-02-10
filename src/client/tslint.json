@@ -10,6 +10,7 @@
     "import-blacklist": [ true, "rxjs" ],
     "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
+    "interface-over-type-literal": false,
     "jsdoc-format": true,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,

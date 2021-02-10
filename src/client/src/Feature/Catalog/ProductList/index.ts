@@ -36,6 +36,14 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
   const totalPageCount = ProductSearch.productSearchTotalPageCount(state);
   const totalItemCount = ProductSearch.productsSearch(state).totalItemCount;
   const itemsPerPage = Number(ProductSearch.productSearchParams(state).ps) || 12;
+  const sortingDirection =
+    ProductSearch.productSearchParams(state).sd || localStorage.getItem('sortDirection')
+      ? localStorage.getItem('sortDirection')
+      : '0';
+  const sortingField =
+    ProductSearch.productSearchParams(state).s || localStorage.getItem('sortField')
+      ? localStorage.getItem('sortField')
+      : 'brand';
 
   return {
     categoryId,
@@ -44,6 +52,8 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
     items,
     itemsPerPage,
     search,
+    sortingDirection,
+    sortingField,
     totalItemCount,
     totalPageCount,
   };
@@ -52,6 +62,7 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
+      ChangeSorting: ProductSearch.ChangeSortingType,
       ClearSearch: ProductSearch.ClearSearch,
       DiscardFacet: ProductSearch.DiscardFacet,
       InitSearch: ProductSearch.InitialSearch,

@@ -12,21 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Jss from 'Foundation/ReactJss';
+@import 'Foundation/UI/common/scss/variables.scss';
 
-import * as ProductsSearch from 'Feature/Catalog/Integration/ProductsSearch';
+.ProductList-Sorting {
+  width: 190px;
+  margin-right: 50px;
 
-export interface ProductListHeaderProps {
-  currentPageNumber: number;
-  itemsCount: number;
-  search: string;
-  isLoading: boolean;
-  sortingDirection: string;
-  sortingField: string;
-  DiscardFacet: (name: string, value: string, search: string) => void;
-  ChangeSorting: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
-}
-
-export interface ProductListHeaderState extends Jss.SafePureComponentState {
-  numberOfDisplayedItems: number;
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }

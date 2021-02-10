@@ -26,7 +26,7 @@ import { sagaActionTypes } from './constants';
 import { AuthenticationPayload, LogoutPayload } from './models';
 import * as selectors from './selectors';
 
-import ReactGA from 'react-ga';
+import { eventHub, events } from 'Foundation/EventHub';
 
 export function* authentication(action: Action<AuthenticationPayload>) {
   const { payload } = action;
@@ -42,11 +42,10 @@ export function* authentication(action: Action<AuthenticationPayload>) {
   if (error) {
     return yield put(actions.AuthenticationFailure());
   }
-  ReactGA.event({
-    action: 'Login',
-    category: 'Authentification'
-  });
 
+  eventHub.publish(events.AUTHENTICATION.LOGIN);
+
+  yield put(actions.AuthenticationSuccess());
   yield put(ChangeRoute(returnUrl || '/'));
   yield put(actions.AuthenticationSuccess());
 }
@@ -58,8 +57,6 @@ export function* initAuthentication() {
 }
 
 export function* logout(action: Action<LogoutPayload>) {
-  const { returnUrl } = action.payload;
-
   yield put(actions.LogoutRequest());
 
   const { error }: Result<VoidResult> = yield call(AuthenticationApi.logout);
@@ -67,12 +64,9 @@ export function* logout(action: Action<LogoutPayload>) {
   if (error) {
     return yield put(actions.LogoutFailure());
   }
-  ReactGA.event({
-    action: 'Logout',
-    category: 'Authentification'
-  });
 
-  yield put(ChangeRoute(returnUrl || '/'));
+  eventHub.publish(events.AUTHENTICATION.LOGOUT);
+
   yield put(actions.LogoutSuccess());
 }
 

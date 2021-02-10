@@ -12,11 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export const keyMirror = <T extends {}>(keys: T, namespace?: string): { [K in keyof T]: string } => {
+export const keyMirror = <T extends {}>(
+  keys: T,
+  namespace?: string,
+  divider: string = '/',
+  start: string = '@',
+): { [K in keyof T]: string } => {
   const mirror = {};
 
   Object.keys(keys).forEach((key) => {
-    mirror[key] = namespace ? `@${namespace}/${key}` : key;
+    mirror[key] = namespace ? `${start}${namespace}${divider}${key}` : key;
   });
 
   return mirror as { [K in keyof T]: string };
@@ -34,4 +39,11 @@ const REDUCER_NAMESPACE = 'REDUCER';
 export const keyMirrorReducer = <T extends {}>(keys: T, namespace?: string): { [K in keyof T]: string } => {
   const sagaNameSpace = namespace ? `${namespace}/${REDUCER_NAMESPACE}` : REDUCER_NAMESPACE;
   return keyMirror(keys, sagaNameSpace);
+};
+
+const EVENT_NAMESPACE = 'event';
+
+export const keyMirrorEvent = <T extends {}>(keys: T, namespace?: string): { [K in keyof T]: string } => {
+  const eventNameSpace = namespace ? `${EVENT_NAMESPACE}.${namespace}` : EVENT_NAMESPACE;
+  return keyMirror(keys, eventNameSpace, '.', '');
 };

@@ -14,8 +14,6 @@
 
 import * as React from 'react';
 
-import ReactGA from 'react-ga';
-
 import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 
@@ -27,10 +25,16 @@ import { RootProps } from '../models';
 import componentFactory from './../componentFactory';
 import ActionTypes from './actionTypes';
 
+import { eventHub, events } from 'Foundation/EventHub';
+
+import { subscribeAnalyticsEvents } from 'Foundation/Analytics';
+
+subscribeAnalyticsEvents();
+
 class Root extends React.Component<RootProps> {
   public constructor(props: RootProps) {
     super(props);
-    ReactGA.initialize(process.env.TRACKING_ID);
+    eventHub.publish(events.ANALYTICS.INITIALIZE);
   }
 
   public componentDidMount() {

@@ -17,4 +17,5 @@ export * from './ProductInformation';
 export * from './ProductList';
 export * from './ProductFilters';
 export * from './ProductsSearch';
+export * from './ProductShop';
 export * from './ProductVariants';

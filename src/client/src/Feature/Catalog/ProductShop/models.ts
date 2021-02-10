@@ -19,32 +19,17 @@ import * as JSS from 'Foundation/ReactJss';
 import * as commonModels from 'Feature/Catalog/Integration/common/models';
 import * as ProductsSearch from 'Feature/Catalog/Integration/ProductsSearch';
 
-export interface ProductListOwnProps
+export interface ProductShopOwnProps
   extends RouterProps,
     JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
 
-export interface ProductListStateProps {
-  categoryId: string;
-  currentPageNumber: number;
-  search: string;
-  isLoading: boolean;
-  sortingDirection: string;
-  sortingField: string;
-  totalPageCount: number;
-  totalItemCount: number;
-  itemsPerPage: number;
-  items: ProductsSearch.Product[];
-}
-export interface ProductListOwnState extends JSS.SafePureComponentState {
+export interface ProductShopOwnState extends JSS.SafePureComponentState {
   firstLoad: boolean;
 }
-export interface ProductListDispatchProps {
-  InitSearch: (payload: ProductsSearch.InitSearchPayload) => void;
-  ClearSearch: () => void;
-  LoadMore: () => void;
-  DiscardFacet: (name: string, value: string, search: string) => void;
-  ChangeSorting: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
+export interface ProductShopStateProps {
+  isLoading: boolean;
 }
-export interface ProductListProps extends ProductListOwnProps, ProductListStateProps, ProductListDispatchProps {}
+export interface ProductShopDispatchProps {}
+export interface ProductShopProps extends ProductShopStateProps, ProductShopOwnProps, ProductShopDispatchProps {}
 
 export interface AppState extends ProductsSearch.GlobalProductSearchState, commonModels.AppState {}

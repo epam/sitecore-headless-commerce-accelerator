@@ -17,16 +17,27 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 import { ProductListHeader, ProductListItem } from './components';
-import { ProductListProps } from './models';
+import { ProductListOwnState, ProductListProps } from './models';
 import './styles.scss';
 
-export default class ProductListComponent extends JSS.SafePureComponent<ProductListProps, {}> {
+export default class ProductListComponent extends JSS.SafePureComponent<ProductListProps, ProductListOwnState> {
+  public constructor(props: ProductListProps) {
+    super(props);
+
+    this.state = {
+      firstLoad: true,
+    };
+  }
+
   public componentWillMount() {
     this.initSearch();
   }
 
   public componentDidUpdate(prevProps: ProductListProps) {
     this.initSearch(prevProps.categoryId, prevProps.search);
+    if (!this.props.isLoading) {
+      this.setState({ firstLoad: false });
+    }
   }
 
   public safeRender() {
@@ -43,6 +54,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
       sortingField,
       ChangeSorting,
     } = this.props;
+    const { firstLoad } = this.state;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
     return (
       <section className="listing-product-grid">
@@ -77,7 +89,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           ))}
         </ul>
         <div className={classnames({ 'is-loading': isLoading, 'show-load-btn': !isLoading && showLoadMore })}>
-          <div className={`lazyLoad_spinner spinner ${isLoading ? 'lazyLoad_spinner_display' : ''}`}>
+          <div className={`lazyLoad_spinner spinner ${isLoading && !firstLoad ? 'lazyLoad_spinner_display' : ''}`}>
             <div className="object object-one" />
             <div className="object object-two" />
             <div className="object object-three" />

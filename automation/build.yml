@@ -29,12 +29,15 @@ jobs:
           $PatchVersionNumber = $LastReleaseNumber.Split(".")[2]
           $VersionNumber = $MajorVersionNumber + "." + $MinorVersionNumber + "." + $PatchVersionNumber
           $LastVersion = "$(HCA_Version)".Split("-")[1]
-          if ($VersionNumber -ne $LastVersion) {
-            $BranchVersion = $VersionNumber + "-$(branch_revision)"
-          }
-          else {
+          Write-Output $LastVersion
+          $LastMajorVersion = "$LastVersion".Split(".")[0]
+          if ($LastMajorVersion -gt $MajorVersionNumber){
             $BranchVersion = "$(HCA_Version)"
           }
+          else {
+            $BranchVersion = $VersionNumber + "-$(branch_revision)"
+          }
+          Write-Output $BranchVersion
           Write-Host "##vso[task.setvariable variable=BranchVersion]$BranchVersion"
 
 

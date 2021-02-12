@@ -14,14 +14,10 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { GlobalAuthenticationState, LogoutProcessState } from 'Feature/Account/Integration/Authentication';
+import { GlobalAuthenticationState } from 'Feature/Account/Integration/Authentication';
 import * as Commerce from 'Foundation/Commerce';
 
-export interface LogOutStateProps {
-  logoutProcess: LogoutProcessState;
-}
-
-export interface UserButtonProps extends LogOutStateProps {
+export interface UserButtonProps {
   commerceUser: Commerce.User;
   returnUrl: string;
   Logout: (returnUrl: string) => void;

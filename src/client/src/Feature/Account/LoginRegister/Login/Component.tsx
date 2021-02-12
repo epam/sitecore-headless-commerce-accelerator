@@ -35,11 +35,6 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
   public componentWillUnmount() {
     this.props.ResetState();
   }
-  public componentDidUpdate() {
-    if (this.props.authenticationProcess.status === LoadingStatus.Loaded) {
-      window.location.assign('/');
-    }
-  }
   public validateUser(form: LogInValues) {
     if (validateEmail(form.email)) {
       this.setState({ isUsernameValid: true });

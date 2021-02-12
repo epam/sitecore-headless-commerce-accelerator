@@ -53,7 +53,7 @@ export default (state: AuthenticationState = { ...initialState }, action: Action
       const { logoutProcess } = state;
       return {
         ...state,
-        logoutProcess: {
+        authenticationProcess: {
           ...logoutProcess,
           ...action.payload,
         },

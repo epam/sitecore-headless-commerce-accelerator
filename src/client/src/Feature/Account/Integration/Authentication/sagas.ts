@@ -47,7 +47,6 @@ export function* authentication(action: Action<AuthenticationPayload>) {
 
   yield put(actions.AuthenticationSuccess());
   yield put(ChangeRoute(returnUrl || '/'));
-  yield put(actions.AuthenticationSuccess());
 }
 
 export function* initAuthentication() {
@@ -57,6 +56,7 @@ export function* initAuthentication() {
 }
 
 export function* logout(action: Action<LogoutPayload>) {
+  const { returnUrl } = action.payload;
   yield put(actions.LogoutRequest());
 
   const { error }: Result<VoidResult> = yield call(AuthenticationApi.logout);
@@ -68,6 +68,7 @@ export function* logout(action: Action<LogoutPayload>) {
   eventHub.publish(events.AUTHENTICATION.LOGOUT);
 
   yield put(actions.LogoutSuccess());
+  yield put(ChangeRoute(returnUrl || '/'));
 }
 
 export function* resetState() {

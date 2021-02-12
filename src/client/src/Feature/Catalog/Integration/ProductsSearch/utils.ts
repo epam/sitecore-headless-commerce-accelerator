@@ -12,7 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { FACET_NAME_VALUE_SEPARATOR, FACET_SEPARATOR, FACET_VALUE_SEPARATOR } from './constants';
+import Cookies from 'universal-cookie';
+
+import {
+  FACET_NAME_VALUE_SEPARATOR,
+  FACET_SEPARATOR,
+  FACET_VALUE_SEPARATOR,
+  SORTING_COOKIE_EXPIRATION_TIME,
+} from './constants';
 import { AppliedFacets } from './models';
 
 export class FacetsManager {
@@ -96,6 +103,12 @@ export const facetsManager = (facetsString: string) => {
 };
 
 export const saveSortingParametersToLS = (sortDirection: string, sortField: string) => {
-  localStorage.setItem('sortDirection', sortDirection);
-  localStorage.setItem('sortField', sortField);
+  const cookies = new Cookies();
+  const cookieOptions = {
+    expires: new Date(Date.now() + SORTING_COOKIE_EXPIRATION_TIME),
+    path: '/',
+  };
+
+  cookies.set('sortDirection', sortDirection, cookieOptions);
+  cookies.set('sortField', sortField, cookieOptions);
 };

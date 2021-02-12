@@ -17,6 +17,8 @@ import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import Cookies from 'universal-cookie';
+
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
@@ -25,6 +27,8 @@ import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 
 import ProductListComponent from './Component';
 import { AppState, ProductListDispatchProps, ProductListOwnProps, ProductListStateProps } from './models';
+
+const cookies = new Cookies();
 
 const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
   const search = ownProps.history.location.search;
@@ -37,13 +41,9 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
   const totalItemCount = ProductSearch.productsSearch(state).totalItemCount;
   const itemsPerPage = Number(ProductSearch.productSearchParams(state).ps) || 12;
   const sortingDirection =
-    ProductSearch.productSearchParams(state).sd || localStorage.getItem('sortDirection')
-      ? localStorage.getItem('sortDirection')
-      : '0';
+    ProductSearch.productSearchParams(state).sd || cookies.get('sortDirection') ? cookies.get('sortDirection') : '0';
   const sortingField =
-    ProductSearch.productSearchParams(state).s || localStorage.getItem('sortField')
-      ? localStorage.getItem('sortField')
-      : 'brand';
+    ProductSearch.productSearchParams(state).s || cookies.get('sortField') ? cookies.get('sortField') : 'brand';
 
   return {
     categoryId,

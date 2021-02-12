@@ -26,6 +26,8 @@ export const FACET_VALUE_SEPARATOR = '|';
 
 export const ACTION_TYPES_NAMESPACE = 'PRODUCTS_SEARCH';
 
+export const SORTING_COOKIE_EXPIRATION_TIME = 86400e6;
+
 export const reducerActionTypes = keyMirrorReducer(
   {
     CLEAR_ITEMS: null,

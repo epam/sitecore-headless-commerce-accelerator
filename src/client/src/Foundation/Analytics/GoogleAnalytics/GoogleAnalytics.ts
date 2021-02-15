@@ -14,13 +14,19 @@
 
 import ReactGA from 'react-ga';
 
-import { AnalyticsEventArgs, CartLine, ProductImpression } from './models';
+import { AnalyticsEventArgs, CartLine, ProductDetailsView, ProductImpression } from './models';
 
 class GoogleAnalytics {
   public initialize(debug: boolean = false): void {
     ReactGA.initialize(process.env.TRACKING_ID, { debug });
 
     ReactGA.plugin.require('ec');
+  }
+
+  public viewProductDetails(productDetailsView: ProductDetailsView, pageUri: string) {
+    ReactGA.plugin.execute('ec', 'addProduct', productDetailsView);
+    ReactGA.plugin.execute('ec', 'setAction', 'detail');
+    ReactGA.pageview(pageUri);
   }
 
   public addProductImpression(productImpression: ProductImpression): void {

@@ -110,8 +110,11 @@ export const UpdateCartLineSuccess: actionCreators.UpdateCartLineSuccess = (data
 
 export const RemoveCartLine: actionCreators.RemoveCartLine = (model: ShoppingCartLine) => ({
   payload: {
+    name: model.product.displayName,
     productId: model.product.productId,
+    quantity: model.quantity,
     variantId: model.variant.variantId,
+    variantName: model.variant.displayName,
   },
   type: actionTypes.REMOVE_CART_LINE,
 });

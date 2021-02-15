@@ -40,4 +40,12 @@ export const events = {
     },
     'AUTHENTICATION',
   ),
+  CART: keyMirrorEvent(
+    {
+      CARTLINE_ADDED: null,
+      CARTLINE_REMOVED: null,
+      CARTLINE_UPDATED: null,
+    },
+    'CART',
+  ),
 };

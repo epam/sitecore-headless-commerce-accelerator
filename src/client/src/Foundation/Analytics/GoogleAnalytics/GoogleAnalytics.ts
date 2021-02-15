@@ -14,11 +14,13 @@
 
 import ReactGA from 'react-ga';
 
-import { AnalyticsEventArgs } from './models';
+import { AnalyticsEventArgs, CartLine } from './models';
 
 class GoogleAnalytics {
   public initialize(debug: boolean = false): void {
     ReactGA.initialize(process.env.TRACKING_ID, { debug });
+
+    ReactGA.plugin.require('ec');
   }
 
   public raiseEmailValidatedEvent(): void {
@@ -55,6 +57,22 @@ class GoogleAnalytics {
 
   public raiseLogoutEvent(): void {
     this.event({ action: 'Logout', category: 'Authentification' });
+  }
+
+  public raiseCartLineAddedEvent(cartLine: CartLine): void {
+    ReactGA.plugin.execute('ec', 'addProduct', cartLine);
+    ReactGA.plugin.execute('ec', 'setAction', 'add', cartLine);
+    this.event({ action: 'Click', category: 'Cart', label: 'CartLine added' });
+  }
+
+  public raiseCartLineUpdatedEvent(cartLine: CartLine): void {
+    this.event({ action: 'Click', category: 'Cart', label: 'CartLine updated' });
+  }
+
+  public raiseCartLineRemovedEvent(cartLine: CartLine): void {
+    ReactGA.plugin.execute('ec', 'addProduct', cartLine);
+    ReactGA.plugin.execute('ec', 'setAction', 'remove');
+    this.event({ action: 'Click', category: 'Cart', label: 'CartLine removed' });
   }
 
   private event(args: AnalyticsEventArgs): void {

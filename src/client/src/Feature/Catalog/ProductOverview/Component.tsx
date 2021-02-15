@@ -24,6 +24,8 @@ import { ProductRating } from 'Feature/Catalog/ProductRating';
 import GlassesImg from 'Foundation/UI/common/media/images/glasses-for-slider.png';
 import { ProductGallery } from './components/ProductGallery';
 
+import { eventHub, events } from 'Foundation/EventHub';
+
 export default class ProductOverviewComponent extends JSS.SafePureComponent<
   ProductOverviewProps,
   ProductOverviewState
@@ -31,9 +33,19 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   constructor(props: ProductOverviewProps) {
     super(props);
   }
-  public closeAddedModal(e: any) {
-    console.log(e);
+
+  public componentDidUpdate() {
+    const { product } = this.props.sitecoreContext;
+    const { selectedVariant } = this.props;
+
+    eventHub.publish(events.PRODUCT_DETAILS.PRODUCT_DETAILS_VIEWED, {
+      ...product,
+      pageUri: window.location.pathname,
+      price: selectedVariant.adjustedPrice,
+      variant: selectedVariant.displayName,
+    });
   }
+
   protected safeRender() {
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedVariant = this.props.selectedVariant;
@@ -137,7 +149,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
           </div>
           <div className="panel-productAdded">
             <div className="productAdded">
-              <a href="" title="Close modal window" onClick={(e) => this.closeAddedModal(e)} className="close">
+              <a href="" title="Close modal window" className="close">
                 <i className="fa fa-close" />
               </a>
               <div className="row">

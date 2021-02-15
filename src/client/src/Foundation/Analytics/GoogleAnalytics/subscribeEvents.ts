@@ -48,4 +48,17 @@ export const subscribeGoogleAnalyticsEvents = () => {
   eventHub.subscribe(events.CART.CARTLINE_REMOVED, (cartLine: CartLine) => {
     googleAnalytics.raiseCartLineRemovedEvent(cartLine);
   });
+  eventHub.subscribe(
+    events.PRODUCT_DETAILS.PRODUCT_DETAILS_VIEWED,
+    ({ productId: id, displayName: name, adjustedPrice: price = null, pageUri, ...params }) =>
+      googleAnalytics.viewProductDetails(
+        {
+          ...params,
+          id,
+          name,
+          price,
+        },
+        pageUri,
+      ),
+  );
 };

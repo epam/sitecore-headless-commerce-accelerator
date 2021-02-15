@@ -48,6 +48,12 @@ export const events = {
     },
     'CART',
   ),
+  PRODUCT_DETAILS: keyMirrorEvent(
+    {
+      PRODUCT_DETAILS_VIEWED: null,
+    },
+    'PRODUCT_DETAILS',
+  ),
   PRODUCT_LIST: keyMirrorEvent(
     {
       PRODUCT_SHOWN: null,

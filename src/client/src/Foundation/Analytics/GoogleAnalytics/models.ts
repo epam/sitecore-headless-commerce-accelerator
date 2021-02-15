@@ -38,3 +38,12 @@ export interface ProductImpression {
   variant?: string;
   list?: string;
 }
+
+export interface ProductDetailsView {
+  id: string;
+  name: string;
+  brand?: string;
+  category?: string;
+  variant?: string;
+  price?: number;
+}

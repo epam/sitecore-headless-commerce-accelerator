@@ -29,3 +29,12 @@ export interface CartLine {
   variant?: string;
   quantity?: number;
 }
+
+export interface ProductImpression {
+  id: string;
+  name: string;
+  brand?: string;
+  price?: number;
+  variant?: string;
+  list?: string;
+}

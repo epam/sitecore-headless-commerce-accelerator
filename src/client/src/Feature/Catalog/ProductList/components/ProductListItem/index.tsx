@@ -20,9 +20,18 @@ import { NavigationLink } from 'Foundation/UI';
 import { ProductRating } from 'Feature/Catalog/ProductRating';
 import { ProductListItemProps } from './models';
 
+import { eventHub, events } from 'Foundation/EventHub';
+
 import './styles.scss';
 
 export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps, Jss.SafePureComponentState> {
+  public componentDidMount() {
+    eventHub.publish(events.PRODUCT_LIST.PRODUCT_SHOWN, {
+      ...this.props.product,
+      list: window.location.pathname,
+    });
+  }
+
   public safeRender() {
     const { product, fallbackImageUrl } = this.props;
     return (

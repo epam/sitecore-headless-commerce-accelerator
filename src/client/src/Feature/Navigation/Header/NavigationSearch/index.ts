@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import * as ProductsSearchSuggestions from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as Context from 'Foundation/ReactJss/SitecoreContext';
 
 import { NavigationSearchComponent } from './Component';
@@ -25,6 +26,8 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       ChangeRoute: Context.ChangeRoute,
+      requestSuggestions: ProductsSearchSuggestions.RequestSuggestions,
+      resetSuggestionsState: ProductsSearchSuggestions.ResetState,
     },
     dispatch,
   );

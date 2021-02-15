@@ -148,3 +148,9 @@
     }
   }
 }
+
+@media #{$header-switch-mobile-mode} {
+  .navigation-search_link.navigation-search_link {
+    display: none;
+  }
+}

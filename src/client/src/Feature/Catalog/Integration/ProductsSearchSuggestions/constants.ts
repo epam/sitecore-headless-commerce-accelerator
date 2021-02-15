@@ -12,14 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { keyMirrorReducer, keyMirrorSaga } from 'Foundation/ReactJss';
 
-export interface NavigationSearchProps extends JSS.Rendering {
-  ChangeRoute: (newRoute: string) => void;
-  requestSuggestions: (search: string) => void;
-  resetSuggestionsState: () => void;
-}
+export const ACTION_TYPES_NAMESPACE = 'PRODUCTS_SEARCH_SUGGESTIONS';
 
-export interface NavigationSearchState extends JSS.SafePureComponentState {
-  isOpen: boolean;
-}
+export const reducerActionTypes = keyMirrorReducer(
+  {
+    RESET_STATE: null,
+
+    PRODUCTS_SEARCH_SUGGESTIONS_FAILURE: null,
+    PRODUCTS_SEARCH_SUGGESTIONS_REQUEST: null,
+    PRODUCTS_SEARCH_SUGGESTIONS_SUCCESS: null,
+  },
+  ACTION_TYPES_NAMESPACE,
+);
+
+export const sagaActionTypes = keyMirrorSaga(
+  {
+    REQUEST_SUGGESTIONS: null,
+  },
+  ACTION_TYPES_NAMESPACE,
+);

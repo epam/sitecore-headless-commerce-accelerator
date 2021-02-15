@@ -12,14 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { GlobalProductsSearchSuggestionsState } from './models';
 
-export interface NavigationSearchProps extends JSS.Rendering {
-  ChangeRoute: (newRoute: string) => void;
-  requestSuggestions: (search: string) => void;
-  resetSuggestionsState: () => void;
-}
+export const productsSearchSuggestions = (state: GlobalProductsSearchSuggestionsState) => state.productSearchSuggestion;
 
-export interface NavigationSearchState extends JSS.SafePureComponentState {
-  isOpen: boolean;
-}
+export const productsSearchSuggestionsStatus = (state: GlobalProductsSearchSuggestionsState) =>
+  productsSearchSuggestions(state).status;
+
+export const productsSearchSuggestionsProducts = (state: GlobalProductsSearchSuggestionsState) =>
+  productsSearchSuggestions(state).products || [];

@@ -12,14 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { cn } from '@bem-react/classname';
 
-export interface NavigationSearchProps extends JSS.Rendering {
-  ChangeRoute: (newRoute: string) => void;
-  requestSuggestions: (search: string) => void;
-  resetSuggestionsState: () => void;
-}
-
-export interface NavigationSearchState extends JSS.SafePureComponentState {
-  isOpen: boolean;
-}
+export const cnNavigationSearch = cn('NavigationSearch');

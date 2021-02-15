@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,6 +26,7 @@ import * as Authentication from 'Feature/Account/Integration/Authentication';
 import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
+import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
@@ -39,6 +40,7 @@ export const makeRootReducer = (history: History) =>
     currentOrder: Order.rootReducer,
     globalError: GlobalError.reducer,
     orderHistory: OrderHistory.rootReducer,
+    productSearchSuggestion: ProductSearchSuggestion.reducer,
     productsSearch: ProductSearch.reducer,
     router: connectRouter(history),
     selectedProductVariant: ProductVariant.reducer,

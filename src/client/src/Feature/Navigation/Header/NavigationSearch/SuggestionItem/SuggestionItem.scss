@@ -12,14 +12,41 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+.NavigationSearch {
+  &-SuggestionItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0px;
+  }
 
-export interface NavigationSearchProps extends JSS.Rendering {
-  ChangeRoute: (newRoute: string) => void;
-  requestSuggestions: (search: string) => void;
-  resetSuggestionsState: () => void;
-}
+  &-LeftColumn {
+    flex-shrink: 0;
+    margin-right: 5px;
+  }
 
-export interface NavigationSearchState extends JSS.SafePureComponentState {
-  isOpen: boolean;
+  &-RightColumn {
+    flex-grow: 1;
+  }
+
+  &-Description {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-Image {
+    width: 90px;
+    height: 90px;
+  }
+
+  &-PriceTag {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    font-weight: 600;
+    font-size: 15px;
+  }
 }

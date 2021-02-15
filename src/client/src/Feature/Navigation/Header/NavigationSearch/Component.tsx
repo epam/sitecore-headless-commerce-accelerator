@@ -12,12 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 import * as JSS from 'Foundation/ReactJss';
-import * as React from 'react';
+import { debounce } from 'lodash';
+import React, { ChangeEvent } from 'react';
+
 import { NavigationSearchProps, NavigationSearchState } from './models';
+import { SuggestionList } from './SuggestionList';
+
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
 const TIME_ASYNC_FOCUS = 50;
+const DEBOUNCE_DELAY = 400;
 
 import classnames from 'classnames';
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
@@ -25,6 +30,11 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   private searchInput: HTMLInputElement | null;
   private wrapperRef: React.MutableRefObject<HTMLDivElement>;
   private timeOutFocus: ReturnType<typeof setTimeout>;
+
+  private debouncedRequestSuggestions = debounce((value: string) => {
+    this.props.requestSuggestions(value);
+  }, DEBOUNCE_DELAY);
+
   constructor(props: NavigationSearchProps) {
     super(props);
     this.state = {
@@ -34,12 +44,9 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   }
 
   public setTimeOutFocus() {
-    this.timeOutFocus = setTimeout(
-      () => {
-        this.searchInput.focus();
-      },
-      TIME_ASYNC_FOCUS
-    );
+    this.timeOutFocus = setTimeout(() => {
+      this.searchInput.focus();
+    }, TIME_ASYNC_FOCUS);
   }
 
   public clearTimeOutFocus() {
@@ -64,7 +71,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   protected safeRender() {
     return (
       <div className="navigation-buttons_item search" ref={this.wrapperRef}>
-        <a onClick={this.handleClick}>
+        <a className="navigation-search_link" onClick={this.handleClick}>
           <i className="pe-7s-search" />
         </a>
         <div className={classnames('search_popup', { 'search_popup--visible': this.state.isOpen })}>
@@ -80,17 +87,21 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
               type="search"
               name={SEARCH_INPUT_NAME}
               placeholder="Search"
+              autoComplete="off"
+              onChange={this.handleSearchChange}
             />
             <button className="search_button">
               <i className="pe-7s-search" />
               <i className="fa fa-search" />
             </button>
           </form>
+          <SuggestionList onItemClick={this.handleItemClick} />
         </div>
       </div>
     );
   }
   private handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    this.resetSuggestions();
     e.preventDefault();
     const formData = new FormData(this.form);
     const q = formData.get(SEARCH_INPUT_NAME);
@@ -98,16 +109,34 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
       this.searchInput.value = '';
       this.props.ChangeRoute(`/search?q=${q}`);
     }
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
   }
   private handleOutsidePopupClick(e: MouseEvent) {
-    if (
-      this.wrapperRef.current &&
-      !this.wrapperRef.current.contains(e.target as Node) &&
-      this.state.isOpen
-    ) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target as Node) && this.state.isOpen) {
+      this.resetSuggestions();
+      this.searchInput.value = '';
       this.setState({
         isOpen: !this.state.isOpen,
       });
     }
   }
+
+  private resetSuggestions = () => {
+    this.debouncedRequestSuggestions.cancel();
+    this.props.resetSuggestionsState();
+  };
+
+  private handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.debouncedRequestSuggestions(e.target.value);
+  };
+
+  private handleItemClick = () => {
+    this.resetSuggestions();
+    this.searchInput.value = '';
+    this.setState({
+      isOpen: false,
+    });
+  };
 }

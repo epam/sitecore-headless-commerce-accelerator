@@ -103,13 +103,6 @@
   }
 }
 
-.navigation-buttons_item.search {
-  @media #{$header-switch-mobile-mode} {
-    a:first-child {
-      display: none;
-    }
-  }
-}
 .mobile-menu {
   &_content {
     display: flex;
@@ -123,9 +116,6 @@
       }
       .navigation-buttons_item.search {
         @media #{$header-switch-mobile-mode} {
-          a:first-child {
-            display: none;
-          }
           .search_popup {
             visibility: visible;
             transform: rotateX(0deg);

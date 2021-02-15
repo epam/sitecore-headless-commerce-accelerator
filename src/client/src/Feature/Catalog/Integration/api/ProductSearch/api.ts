@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,8 @@ import axios from 'axios';
 import { ProductsSearchRequest, SortDirection } from 'Feature/Catalog/dataModel.Generated';
 import { Facet, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
 import { Result } from 'Foundation/Integration';
-import { SearchProductsParams } from './models';
+import { productsSuggestions } from './mock';
+import { ProductSearchSuggestionResponse, SearchProductsParams } from './models';
 
 const parseFacets = (facetsString: string): Facet[] => {
   const facets: Facet[] = [];
@@ -29,7 +30,7 @@ const parseFacets = (facetsString: string): Facet[] => {
       displayName: null,
       foundValues: [],
       name: decodeURIComponent(pair[0]),
-      values: [decodeURIComponent(pair[1])]
+      values: [decodeURIComponent(pair[1])],
     });
   }
   return facets;
@@ -42,8 +43,9 @@ const mapToProductSearchRequest = (params: SearchProductsParams): ProductsSearch
     pageNumber: params.pg,
     pageSize: +params.ps,
     searchKeyword: params.q ? params.q : '',
-    sortDirection: !params.sd || params.sd === SortDirection.Asc.toLocaleString() ? SortDirection.Asc : SortDirection.Desc,
-    sortField: params.s
+    sortDirection:
+      !params.sd || params.sd === SortDirection.Asc.toLocaleString() ? SortDirection.Asc : SortDirection.Desc,
+    sortField: params.s,
   };
 };
 
@@ -58,13 +60,23 @@ export const searchProducts = async (params: SearchProductsParams): Promise<Resu
     if (!data.data || data.error) {
       return { error: new Error(data.error.message) };
     }
-    return { data: {
-      facets: data.data.facets,
-      products: data.data.products,
-      totalItemCount: data.data.totalItemCount,
-      totalPageCount: data.data.totalPageCount
-    } };
+    return {
+      data: {
+        facets: data.data.facets,
+        products: data.data.products,
+        totalItemCount: data.data.totalItemCount,
+        totalPageCount: data.data.totalPageCount,
+      },
+    };
   } catch (e) {
     return { error: e };
   }
+};
+
+export const requestSuggestions = async (search: string): Promise<Result<ProductSearchSuggestionResponse>> => {
+  return {
+    data: {
+      products: productsSuggestions,
+    },
+  };
 };

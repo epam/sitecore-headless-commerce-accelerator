@@ -81,7 +81,7 @@ module.exports = (compilerOptions) => ({
                 require('postcss-flexbugs-fixes'),
                 require('postcss-object-fit-images'),
                 autoprefixer({
-                  browsers: [
+                  overrideBrowserslist: [
                     '>1%',
                     'last 4 versions',
                     'Firefox ESR',

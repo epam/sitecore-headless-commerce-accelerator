@@ -14,13 +14,18 @@
 
 import ReactGA from 'react-ga';
 
-import { AnalyticsEventArgs, CartLine } from './models';
+import { AnalyticsEventArgs, CartLine, ProductImpression } from './models';
 
 class GoogleAnalytics {
   public initialize(debug: boolean = false): void {
     ReactGA.initialize(process.env.TRACKING_ID, { debug });
 
     ReactGA.plugin.require('ec');
+  }
+
+  public addProductImpression(productImpression: ProductImpression): void {
+    ReactGA.plugin.execute('ec', 'addImpression', { ...productImpression });
+    ReactGA.pageview(productImpression.list);
   }
 
   public raiseEmailValidatedEvent(): void {

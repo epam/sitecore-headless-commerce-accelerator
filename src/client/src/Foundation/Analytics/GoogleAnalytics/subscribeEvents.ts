@@ -28,6 +28,17 @@ export const subscribeGoogleAnalyticsEvents = () => {
   eventHub.subscribe(events.ACCOUNT.ADDRESS_REMOVED, () => googleAnalytics.raiseAddressRemovedEvent());
   eventHub.subscribe(events.AUTHENTICATION.LOGIN, () => googleAnalytics.raiseLoginEvent());
   eventHub.subscribe(events.AUTHENTICATION.LOGOUT, () => googleAnalytics.raiseLogoutEvent());
+  eventHub.subscribe(
+    events.PRODUCT_LIST.PRODUCT_SHOWN,
+    ({ productId: id, displayName: name, adjustedPrice: price = null, variants = null, ...params }) =>
+      googleAnalytics.addProductImpression({
+        ...params,
+        id,
+        name,
+        price,
+        variant: variants && variants[0] && variants[0].displayName,
+      }),
+  );
   eventHub.subscribe(events.CART.CARTLINE_ADDED, (cartLine: CartLine) => {
     googleAnalytics.raiseCartLineAddedEvent(cartLine);
   });

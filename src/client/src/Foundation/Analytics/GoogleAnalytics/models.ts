@@ -15,4 +15,17 @@
 export interface AnalyticsEventArgs {
   action: string;
   category: string;
+  label?: string;
+  value?: number;
+  nonInteraction?: boolean;
+}
+
+export interface CartLine {
+  id: string;
+  name: string;
+  categoty?: string;
+  brand?: string;
+  price?: number;
+  variant?: string;
+  quantity?: number;
 }

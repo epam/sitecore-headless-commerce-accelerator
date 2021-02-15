@@ -15,6 +15,7 @@
 import { eventHub, events } from 'Foundation/EventHub';
 
 import { googleAnalytics } from './GoogleAnalytics';
+import { CartLine } from './models';
 
 export const subscribeGoogleAnalyticsEvents = () => {
   eventHub.subscribe(events.ANALYTICS.INITIALIZE, (params) => googleAnalytics.initialize(params && params.debug));
@@ -27,4 +28,13 @@ export const subscribeGoogleAnalyticsEvents = () => {
   eventHub.subscribe(events.ACCOUNT.ADDRESS_REMOVED, () => googleAnalytics.raiseAddressRemovedEvent());
   eventHub.subscribe(events.AUTHENTICATION.LOGIN, () => googleAnalytics.raiseLoginEvent());
   eventHub.subscribe(events.AUTHENTICATION.LOGOUT, () => googleAnalytics.raiseLogoutEvent());
+  eventHub.subscribe(events.CART.CARTLINE_ADDED, (cartLine: CartLine) => {
+    googleAnalytics.raiseCartLineAddedEvent(cartLine);
+  });
+  eventHub.subscribe(events.CART.CARTLINE_UPDATED, (cartLine: CartLine) => {
+    googleAnalytics.raiseCartLineUpdatedEvent(cartLine);
+  });
+  eventHub.subscribe(events.CART.CARTLINE_REMOVED, (cartLine: CartLine) => {
+    googleAnalytics.raiseCartLineRemovedEvent(cartLine);
+  });
 };

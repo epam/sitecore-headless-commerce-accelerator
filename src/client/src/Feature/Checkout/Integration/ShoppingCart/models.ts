@@ -46,6 +46,9 @@ export interface CartLineSuccessPayload {
 }
 
 export interface RemoveCartLinePayload {
+  name: string;
   productId: string;
+  quantity: number;
   variantId: string;
+  variantName: string;
 }

@@ -1,0 +1,124 @@
+# Build using Visual Studio 2017 on Windows Server 2016.
+# Variables with password stored in Azure secrets
+
+trigger: none
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  build_cake: './src/build.cake'
+
+steps:
+
+- task: UseNode@1
+  displayName: Install Node 10
+  inputs:
+    script: 'npm --version'
+
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download node modules
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'node_modules'
+    targetPath: '$(Pipeline.Workspace)/s/src/node_modules'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download client node modules
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'client_node_modules'
+    targetPath: '$(Pipeline.Workspace)/s/src/client/node_modules'
+
+- task: DownloadSecureFile@1
+  displayName: Download license
+  name: license_file
+  inputs:
+    secureFile: 'license.xml'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download NuGet packages
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'packages'
+    targetPath: '$(Pipeline.Workspace)/s/src/packages'
+
+- task: DownloadPipelineArtifact@2
+  displayName: Download tools
+  inputs:
+    buildType: 'specific'
+    project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+    definition: '10'
+    buildVersionToDownload: 'latest'
+    artifactName: 'tools'
+    targetPath: '$(Pipeline.Workspace)/s/src/tools'
+
+- task: PowerShell@2
+  displayName: Move license_file
+  inputs:
+    targetType: 'inline'
+    script: |
+      move $(license_file.secureFilePath) ./src/ -Force
+
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Pipeline.Workspace)/s/src/HCA.sln'
+    feedsToUse: 'config'
+    nugetConfigPath: '$(Pipeline.Workspace)/s/src/nuget.config'
+
+- task: MSBuild@1
+  displayName: MSBuild
+  inputs:
+    solution: './src/HCA.sln'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Rebuild'
+
+- task: PowerShell@2
+  displayName: Run Unit tests
+  inputs:
+    filePath: './src/build.ps1'
+    arguments: '-Target 003-Tests'
+    workingDirectory: './src/'
+
+- task: MSBuild@1
+  displayName: MSBuild Foundation
+  inputs:
+    solution: './src/Foundation/**/*.csproj'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+- task: MSBuild@1
+  displayName: MSBuild Feature
+  inputs:
+    solution: './src/Feature/**/*.csproj'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+- task: MSBuild@1
+  displayName: MSBuild Project
+  inputs:
+    solution: './src/Project/**/*.csproj'
+    msbuildVersion: '15.0'
+    configuration: 'Debug'
+    msbuildArguments: '/t:Build /p:Verbosity=Minimal /p:DeployOnBuild=True'
+
+- task: PublishCodeCoverageResults@1
+  displayName: Publish code coverage
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Pipeline.Workspace)/s/output/tests/coverage/cobertura-coverage.xml'

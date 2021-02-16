@@ -17,6 +17,7 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { BackToTop } from 'Foundation/UI/common/components';
 import { GlobalFooterProps, GlobalFooterState } from './models';
 
 import './styles.scss';
@@ -28,6 +29,7 @@ class GlobalFooterComponent extends JSS.SafePureComponent<GlobalFooterProps, Glo
         <div className="footer-wrap">
           <Placeholder name="footer-content" rendering={this.props.rendering} />
         </div>
+        <BackToTop disabled={false} />
       </footer>
     );
   }

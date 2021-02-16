@@ -16,6 +16,9 @@ import * as React from 'react';
 
 import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
+
+import { eventHub, events } from 'Foundation/EventHub';
+import { LoadingStatus } from 'Foundation/Integration';
 import { NavigationLink } from 'Foundation/UI';
 import { Button } from 'Foundation/UI/components/Button';
 
@@ -48,13 +51,19 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
             return (
               <li className="shopping-cart-view-populated-single-item" key={key}>
                 <div className="shopping-cart-view-populated-single-item-img">
-                  <NavigationLink to={'/product/' + single.variant.productId}>
+                  <NavigationLink
+                    to={'/product/' + single.variant.productId}
+                    onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...single.variant})}
+                  >
                     <img alt="" src={single.variant.imageUrls[0]} className="img-fluid" />
                   </NavigationLink>
                 </div>
                 <div className="shopping-cart-view-populated-single-item-title">
                   <h4>
-                    <NavigationLink to={'/product/' + single.variant.productId}>
+                    <NavigationLink
+                      to={'/product/' + single.variant.productId}
+                      onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...single.variant})}
+                    >
                       {' '}
                       {single.variant.displayName}{' '}
                     </NavigationLink>

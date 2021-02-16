@@ -18,9 +18,8 @@ import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 
 import { ProductRating } from 'Feature/Catalog/ProductRating';
-import { ProductListItemProps } from './models';
-
 import { eventHub, events } from 'Foundation/EventHub';
+import { ProductListItemProps } from './models';
 
 import './styles.scss';
 
@@ -37,12 +36,12 @@ export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps,
     return (
       <figure className="listing-grid-item">
         <div className="img-wrap">
-          <NavigationLink to={`/product/${product.productId}`}>
+          <NavigationLink to={`/product/${product.productId}`} onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...product, list: window.location.pathname})}>
             <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
           </NavigationLink>
         </div>
         <figcaption>
-          <NavigationLink to={`/product/${product.productId}`}>
+          <NavigationLink to={`/product/${product.productId}`} onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...product, list: window.location.pathname})}>
             <h3>{product.displayName}</h3>
           </NavigationLink>
           <ProductRating rating={product.customerAverageRating} />

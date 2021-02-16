@@ -1,17 +1,17 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
 @import 'Foundation/UI/common/scss/variables.scss';
 @import 'Foundation/UI/common/scss/mixins';
@@ -19,7 +19,7 @@
 .last-row {
   margin-bottom: 100px;
 }
-.visible-cart{
+.visible-cart {
   visibility: visible !important;
   opacity: 1 !important;
   transform: rotateX(0deg) !important;
@@ -50,7 +50,7 @@
   border-radius: 5px;
   background: #fff none repeat scroll 0 0;
 
-  &-empty-text{
+  &-empty-text {
     font-family: $poppins;
     font-size: 14px;
     font-weight: 400;
@@ -60,8 +60,8 @@
     text-align: center !important;
     margin-bottom: 0;
   }
-  &-populated{
-    & ul{
+  &-populated {
+    & ul {
       overflow-y: auto;
       max-height: 400px;
       margin-right: -15px;
@@ -69,7 +69,7 @@
       padding-right: 15px;
       list-style: outside none none;
     }
-    &-single-item{
+    &-single-item {
       position: relative;
       display: flex;
       flex-wrap: nowrap;
@@ -79,45 +79,45 @@
       box-sizing: border-box;
       list-style: outside none none;
 
-      &-img{
+      &-img {
         flex: 0 0 82px;
         margin-right: 15px;
-        & img{
+        & img {
           max-width: 100%;
           height: auto;
           vertical-align: middle;
           border-style: none;
         }
       }
-      &-title{
+      &-title {
         font-family: $poppins;
         font-weight: 400;
         color: #000;
-        & h4{
+        & h4 {
           font-size: 15px;
           line-height: 16px;
           margin: 0 20px 0 0;
-          & a{
+          & a {
             line-height: 1.2;
             background-color: transparent;
-            &:hover{
+            &:hover {
               color: $theme-color;
             }
           }
         }
-        & h6{
+        & h6 {
           font-size: 13px;
           margin: 5px 0 8px;
           line-height: 14px;
         }
-        & span{
+        & span {
           font-size: 14px;
         }
 
-        &-variation{
+        &-variation {
           margin-top: 10px;
           display: block;
-          & span{
+          & span {
             font-size: 14px;
             display: block;
             text-transform: none;
@@ -125,11 +125,11 @@
         }
       }
 
-      &-delete{
+      &-delete {
         position: absolute;
         top: 0;
         right: 0;
-        a,
+
         button {
           font-size: 16px;
           border: none !important;
@@ -141,8 +141,8 @@
         }
       }
     }
-    &-total{
-      & h4{
+    &-total {
+      & h4 {
         font-size: 14px;
         margin-top: 17px;
         margin-bottom: 17px;
@@ -150,54 +150,20 @@
         font-family: $poppins;
         font-weight: 400;
         color: #000;
-        & span{
+        & span {
           float: right;
         }
       }
     }
-    &-buttons {
-      margin-top: 23px;
-      a {
-        position: relative;
-        font-size: 14px;
-        line-height: 1;
-        font-weight: 500;
-        text-transform: uppercase;
-        color: $quick-cart-view-button-font-color;
-        border: 1px solid #333;
-        display: block;
-        margin-bottom: 20px;
-        padding: 16px 40px 17px;
-        text-align: center!important;
-        &:hover {
-          color: #fff !important;
-          border: 1px solid $theme-color;
-        }
-        &:hover {
-          &:after {
-              right: auto !important;
-              left: 0px !important;
-              width: 100% !important;
-          }
-        }
-        &:after {
-            right: 0;
-            left: auto !important;
-            width: 0 !important;
-            background-color: $theme-color;
-        }
-        &:before, &:after {
-            position: absolute;
-            z-index: -1;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            content: "";
-            -webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-      }
+  }
+}
+
+.ShoppingCartView {
+  &-Button {
+    margin: 0 0 20px 0;
+
+    &:hover {
+      color: #ffffff;
     }
   }
 }

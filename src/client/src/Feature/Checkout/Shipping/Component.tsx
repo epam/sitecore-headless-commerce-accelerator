@@ -246,8 +246,9 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               </div>
               <div className="col-sm-12">
                 <Submit
+                  buttonTheme="grey"
                   disabled={isSubmitting}
-                  className="btn"
+                  fullWidth={true}
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}
                 >
                   <Text field={{ value: 'Save & Continue' }} tag="span" />

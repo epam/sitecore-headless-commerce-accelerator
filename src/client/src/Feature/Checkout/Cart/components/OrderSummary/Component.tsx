@@ -16,7 +16,7 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 import { DependentField, Form, Select } from 'Foundation/ReactJss/Form';
-import { NavigationLink } from 'Foundation/UI';
+import { Button } from 'Foundation/UI/components/Button';
 
 import { FIELDS } from './constants';
 import { OrderSummaryProps } from './models';
@@ -86,7 +86,9 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
                 <label>* Zip/Postal Code</label>
                 <input type="text" />
               </div>
-              <button className="cartBtn">Get A Quote</button>
+              <Button className="OrderSummary-Button" buttonType="submit" buttonTheme="defaultReversed" rounded={true}>
+                Get A Quote
+              </Button>
             </Form>
           </div>
         </div>
@@ -115,10 +117,17 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               <label>Estimated Total:</label>
               <span>${price.total.toFixed(2)}</span>
             </div>
-            <div className="checkoutWrapper">
-              <NavigationLink to="/Checkout/Shipping" className="cartBtn checkout">
+            <div className="OrderSummary-ProceedButtonContainer">
+              <Button
+                className="OrderSummary-Button"
+                buttonType="link"
+                buttonTheme="defaultReversed"
+                rounded={true}
+                fullWidth={true}
+                href="/Checkout/Shipping"
+              >
                 Proceed to Checkout
-              </NavigationLink>
+              </Button>
             </div>
           </div>
         </div>

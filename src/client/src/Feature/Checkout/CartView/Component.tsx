@@ -14,20 +14,21 @@
 
 import * as React from 'react';
 
+import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
+import { Button } from 'Foundation/UI/components/Button';
+
 import { CartProps, CartState } from './models';
 
 import './styles.scss';
-
-import { LoadingStatus } from 'Foundation/Integration';
 
 export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
   public componentDidMount() {
     this.props.LoadCart();
   }
   public componentDidUpdate() {
-    const { authenticationProcess, logoutProcess} = this.props;
+    const { authenticationProcess, logoutProcess } = this.props;
     if (authenticationProcess.status === LoadingStatus.Loaded || logoutProcess.status === LoadingStatus.Loaded) {
       this.props.LoadCart();
     }
@@ -82,12 +83,26 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
           </h4>
         </div>
         <div className="shopping-cart-view-populated-buttons">
-          <a className="shopping-cart-view-populated-buttons-view" href="/cart" onClick={ToggleClick}>
+          <Button
+            className="ShoppingCartView-Button"
+            buttonType="link"
+            buttonTheme="transparentSlide"
+            fullWidth={true}
+            href="/cart"
+            onClick={ToggleClick}
+          >
             View Cart
-          </a>
-          <a className="shopping-cart-view-populated-buttons-checkout" href="/checkout/shipping" onClick={ToggleClick}>
+          </Button>
+          <Button
+            className="ShoppingCartView-Button"
+            buttonType="link"
+            buttonTheme="transparentSlide"
+            fullWidth={true}
+            href="/checkout/shipping"
+            onClick={ToggleClick}
+          >
             Checkout
-          </a>
+          </Button>
         </div>
       </div>
     ) : (

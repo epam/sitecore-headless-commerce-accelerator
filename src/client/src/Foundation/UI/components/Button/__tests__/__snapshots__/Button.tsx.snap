@@ -2,7 +2,7 @@
 
 exports[`Button renders correctly 1`] = `
 <button
-  className="Button Button_buttonSize_m Button_buttonTheme_default"
+  className="Button Button_buttonTheme_default Button_buttonSize_m"
   onClick={[Function]}
   type="button"
 />

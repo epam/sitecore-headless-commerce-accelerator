@@ -15,7 +15,7 @@ const extractSass = new MiniCssExtractPlugin({
 module.exports = (compilerOptions) => ({
   mode: 'development',
   entry: {
-    common: path.resolve(__dirname, `./../../../../src/Project/${compilerOptions.project}/${compilerOptions.entry}`)
+    common: path.resolve(__dirname, `./../../../../src/Project/${compilerOptions.project}/${compilerOptions.entry}`),
   },
   output: {
     filename: '[name].bundle.js',
@@ -104,12 +104,6 @@ module.exports = (compilerOptions) => ({
     ],
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-      include: ['/src/Project/', '/src/Feature/', '/src/Foundation/'],
-      tsconfig: './tsconfig.dev.json',
-      tslint: './tslint.json',
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.ENV_URL': JSON.stringify(compilerOptions.envUrl),

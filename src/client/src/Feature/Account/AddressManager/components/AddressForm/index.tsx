@@ -17,6 +17,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { DependentField, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
+import { Button } from 'Foundation/UI/components/Button';
 import { Select as PureSelect } from 'Foundation/UI/components/Select';
 
 import { ADDRESS_MANAGER_FIELDS } from './constants';
@@ -139,14 +140,14 @@ export default class AddressForm extends React.Component<AddressFromProps> {
             </div>
             <div className="submit-container">
               <Submit
-                className="btn btn-outline-main"
-                onSubmitHandler={(formValues) => this.submitAddressForm(formValues)}
+                buttonTheme="grey"
+                onSubmitHandler={(formValues: FormValues) => this.submitAddressForm(formValues)}
               >
                 Submit
               </Submit>
-              <button className="btn btn-outline-focus" onClick={() => this.props.ToggleForm()}>
+              <Button className="AddressManager-CancelButton" buttonTheme="grey" onClick={this.props.ToggleForm}>
                 Cancel
-              </button>
+              </Button>
             </div>
           </Form>
         </div>

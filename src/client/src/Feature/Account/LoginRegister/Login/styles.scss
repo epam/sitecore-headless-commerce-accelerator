@@ -12,7 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
+
+.Login {
+  &-Button {
+    padding: 10px 30px;
+  }
+}
+
 .login {
   margin: 0;
   padding: 0;
@@ -28,28 +35,11 @@
   .btn-login-in {
     margin-top: 12px;
   }
+
   &_buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    button{
-      background-color: $login-button-default-color;
-      border: none;
-      color: $login-default-font-color;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1;
-      padding: 11px 30px;
-      text-transform: uppercase;
-      -webkit-transition: all .3s ease 0s;
-      transition: all .3s ease 0s;
-      font-family: $poppins;
-      &:hover{
-        background-color: $theme-color;
-        color: $login-hover-font-color;
-      }
-    }
   }
   &_invalid-msg {
     color: $login-failure-font-color;
@@ -94,27 +84,7 @@
     padding: 0;
     color: $focus-color;
   }
-  button {
-    background-color: $login-button-default-color;
-    border: medium none;
-    color: $login-default-font-color;
-    cursor: pointer;
-    font-size: 14px;
-    height: 35px;
-    font-weight: 500;
-    line-height: 1;
-    padding: 11px 30px;
-    text-transform: uppercase;
-    transition: all 0.3s ease 0s;
-    &:hover {
-      background-color: $theme-color;
-      color: $login-hover-font-color;
-    }
-    &[disabled]:hover {
-      background-color: $login-button-default-color;
-      color: $second-color-light;
-    }
-  }
+
   h5 {
     display: inline-block;
   }

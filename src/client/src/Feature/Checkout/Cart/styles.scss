@@ -1,17 +1,17 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
 @import 'Foundation/UI/common/scss/variables';
 @import 'Foundation/UI/common/scss/mixins';
@@ -19,7 +19,7 @@
 .title-cart-item {
   font-size: 20px;
   font-weight: 500;
-  margin: 90px 0 15px
+  margin: 90px 0 15px;
 }
 
 .cart2-last-row {
@@ -47,10 +47,11 @@
     font-weight: 500;
     margin-top: 30px;
     padding: 10px 30px;
-    -webkit-transition: .3s;
-    transition: .3s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
     background-color: $button-color;
-    > a, :hover {
+    > a,
+    :hover {
       color: $button-text-color;
     }
     &:hover {
@@ -59,7 +60,7 @@
   }
 }
 
-.action_container{
+.action_container {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -67,7 +68,7 @@
   padding: 30px 0px 55px;
 
   @media (max-width: $screen-sm) {
-    flex-direction: column;    
+    flex-direction: column;
   }
 
   button {
@@ -75,22 +76,11 @@
       width: 100%;
     }
   }
+}
 
-  .link-button-style{
+.Cart {
+  &-ContinueShoppingButton {
     padding: 18px 63px 17px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: $poppins;
-    line-height: 1;
-    background-color: #F2F2F2;
-    color: $actions-button-color;
-    border-radius: 50px;
-    border: 0;
-    text-transform: uppercase;
-    &:hover{
-      background-color: $theme-color;
-      color: white;
-    }
 
     @media (max-width: $screen-sm) {
       margin-bottom: 20px;

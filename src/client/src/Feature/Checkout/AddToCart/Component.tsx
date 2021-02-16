@@ -19,8 +19,11 @@ import * as JSS from 'Foundation/ReactJss';
 import { Common } from 'Feature/Catalog/Integration';
 import { QuantityProductCommon } from 'Feature/Checkout/common/Quantity';
 import { ShoppingCart } from 'Feature/Checkout/Integration/api';
+import { Button } from 'Foundation/UI/components/Button';
 
 import { AddToCartProps, AddToCartState } from './models';
+
+import './styles.scss';
 
 export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartProps, AddToCartState> {
   constructor(props: AddToCartProps) {
@@ -49,21 +52,22 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
           setQuantity={(isIncrease: boolean) => this.setQuantity(isIncrease)}
           quantityString={quantityCount.toString()}
         />
-        <button
+        <Button
+          className="AddToCart-AddToCartButton"
           disabled={isDisabled}
           title="Add to Cart"
-          onClick={(e) => this.addToCart(e)}
-          className="btn btn-main btn-add"
+          onClick={this.addToCart}
+          buttonTheme="defaultSlide"
         >
           {isLoading && <i className="fa fa-spinner fa-spin" />}
           &nbsp;
           {isDisabled && !isLoading ? 'Out of Stock' : 'Add to Cart'}
-        </button>
+        </Button>
       </>
     );
   }
 
-  private addToCart(e: React.MouseEvent<HTMLButtonElement>) {
+  private addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { productId, variant } = this.props;
     const { quantityCount } = this.state;
     // TODO: allow user to select variant
@@ -74,5 +78,5 @@ export default class AddToCartComponent extends JSS.SafePureComponent<AddToCartP
     };
 
     this.props.AddToCart(addToCartModel);
-  }
+  };
 }

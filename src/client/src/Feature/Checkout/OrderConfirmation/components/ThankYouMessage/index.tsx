@@ -15,6 +15,7 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
+import { Button } from 'Foundation/UI/components/Button';
 
 import './styles.scss';
 
@@ -42,9 +43,9 @@ export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps,
               </div>
               <div className="col-md-3">
                 <div className="thank-you-col2">
-                  <a className="btn-order-print">
+                  <Button className="OrderConfirmation-PrintButton" buttonTheme="defaultReversed" rounded={true}>
                     <i className="fa fa-print" /> <span>Print Receipt</span>
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>

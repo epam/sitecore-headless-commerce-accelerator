@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/mixins";
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/mixins';
+@import 'Foundation/UI/common/scss/variables';
 .account-details-container {
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
     }
 
     .header-accordion.active:after {
-      content: "\2212";
+      content: '\2212';
     }
     &_header {
       @include clearfix;
@@ -133,29 +133,9 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 26px;
-        button {
-          display: block;
-          background-color: #f2f2f2;
-          border: none;
-          border-radius: 0px;
-          color: $text-main-color;
-          display: inline-block;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 1;
-          padding: 16px 35px 17px;
-          text-transform: uppercase;
-          cursor: pointer;
-          -webkit-transition: all 0.3s ease 0s;
-          transition: all 0.3s ease 0s;
-          &:hover {
-            background: $theme-color;
-            color: $font-hover-color;
-          }
-        }
       }
       .error-message {
-        color: $focus-color
+        color: $focus-color;
       }
     }
     .account-details-form_main.active {

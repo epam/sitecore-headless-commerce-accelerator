@@ -12,9 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 $login-register-form-indention: 15px;
+
+.Register {
+  &-Button {
+    padding: 10px 30px;
+  }
+}
 
 .register {
   &_form {
@@ -41,7 +47,6 @@ $login-register-form-indention: 15px;
         padding: 0 15px;
         box-shadow: none;
         margin-bottom: 0px;
-
       }
       .form-field-async-validation {
         position: absolute;
@@ -51,28 +56,6 @@ $login-register-form-indention: 15px;
       .form-field-error-message {
         font-size: 10px;
         color: $register-failure-font-color;
-      }
-    }
-    button{
-      background-color: $login-button-default-color;
-      border: none;
-      color: $login-default-font-color;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1;
-      padding: 11px 30px;
-      text-transform: uppercase;
-      -webkit-transition: all .3s ease 0s;
-      transition: all .3s ease 0s;
-      font-family: $poppins;
-      &:hover{
-        background-color: $theme-color;
-        color: $login-hover-font-color;
-      }
-      &[disabled]:hover {
-        background-color: $theme-color;
-        color: $login-hover-font-color;
       }
     }
   }

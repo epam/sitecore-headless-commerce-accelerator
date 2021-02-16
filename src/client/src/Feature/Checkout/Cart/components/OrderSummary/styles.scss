@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import "Foundation/UI/common/scss/variables";
-@import "Foundation/UI/common/scss/mixins";
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
 
 .orderSummary {
   .column {
@@ -25,7 +25,9 @@
     border-radius: 5px;
     background-color: $summary-table-background;
   }
-  .tax, .promoCode, .cartTotal {
+  .tax,
+  .promoCode,
+  .cartTotal {
     .invalid-promo-code-msg {
       color: $invalid-promo-code-msg-color;
     }
@@ -52,20 +54,20 @@
         left: 0;
         width: 100%;
         height: 1px;
-        content: "";
+        content: '';
         transition: all 0.4s ease 0s;
         background-color: #e3e1e1;
       }
     }
-    .promo-code-list{
+    .promo-code-list {
       margin: 10px 0px;
 
-      .adjustment-list>.adjustment-item {
+      .adjustment-list > .adjustment-item {
         display: flex;
         height: 20px;
         margin: 4px 0;
-        .fa-spinner{
-          margin-left: 10px;        
+        .fa-spinner {
+          margin-left: 10px;
         }
         .btn {
           font-size: 14px;
@@ -75,19 +77,21 @@
           align-self: center;
 
           color: $checkout-form-font-color;
-          &:hover{
+          &:hover {
             color: $theme-color;
           }
         }
       }
-      label{
+      label {
         margin: 5px 0;
       }
 
-      input, .btn {
+      input,
+      .btn {
         margin: 0;
       }
-      input, .btn {
+      input,
+      .btn {
         clear: left;
       }
       input {
@@ -111,7 +115,8 @@
     }
   }
 
-  .zipCodeWrapper, .promoCodeWrapper {
+  .zipCodeWrapper,
+  .promoCodeWrapper {
     margin: 0px;
     > label {
       font-weight: 400;
@@ -162,7 +167,7 @@
     background-color: $summary-table-action-hover;
     font-family: $poppins;
     margin-top: 26px;
-    .fa-spinner{
+    .fa-spinner {
       margin-left: 5px;
     }
     &:hover {
@@ -203,5 +208,19 @@
       font-size: 20px;
       font-weight: 500;
     }
+  }
+}
+
+.OrderSummary {
+  &-Button {
+    margin-top: 26px;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  &-ProceedButtonContainer {
+    display: flex;
   }
 }

@@ -21,7 +21,17 @@ import { Button } from '../../components/Button';
 storiesOf('Button', module)
   .add('Default Color', () => <Button onClick={() => console.log('clicked')}>Click me!</Button>)
   .add('Default Color Reversed', () => (
-    <Button buttonTheme="default-reversed" onClick={() => console.log('clicked')}>
+    <Button buttonTheme="defaultReversed" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Default Color Slide', () => (
+    <Button buttonTheme="defaultSlide" onClick={() => console.log('clicked')}>
+      Click me!
+    </Button>
+  ))
+  .add('Transparent Color Slide', () => (
+    <Button buttonTheme="transparentSlide" onClick={() => console.log('clicked')}>
       Click me!
     </Button>
   ))
@@ -31,7 +41,7 @@ storiesOf('Button', module)
     </Button>
   ))
   .add('Grey Color Reversed', () => (
-    <Button buttonTheme="grey-reversed" onClick={() => console.log('clicked')}>
+    <Button buttonTheme="greyReversed" onClick={() => console.log('clicked')}>
       Click me!
     </Button>
   ))

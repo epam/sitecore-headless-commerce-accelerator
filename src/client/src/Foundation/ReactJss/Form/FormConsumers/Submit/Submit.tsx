@@ -14,6 +14,8 @@
 
 import * as React from 'react';
 
+import { Button } from 'Foundation/UI/components/Button';
+
 import { SubmitEnhancedProps } from './models';
 
 export default class Submit extends React.Component<SubmitEnhancedProps> {
@@ -23,11 +25,7 @@ export default class Submit extends React.Component<SubmitEnhancedProps> {
     const isDisabled = !formContext.form.status.valid || disabled;
     const pureProps = this.getPureProps();
 
-    return (
-      <button {...pureProps} type="submit" disabled={isDisabled} onClick={(e) => this.handleFormSubmit(e)}>
-        {this.props.children}
-      </button>
-    );
+    return <Button buttonType="submit" {...pureProps} disabled={isDisabled} onClick={this.handleFormSubmit} />;
   }
 
   protected getPureProps() {
@@ -46,11 +44,11 @@ export default class Submit extends React.Component<SubmitEnhancedProps> {
     return pureProps;
   }
 
-  private handleFormSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+  private handleFormSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     const { onSubmitHandler, formContext } = this.props;
 
     onSubmitHandler(formContext.form.values, formContext.form.fields);
-  }
+  };
 }

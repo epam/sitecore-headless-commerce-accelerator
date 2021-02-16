@@ -56,6 +56,7 @@ export const events = {
   ),
   PRODUCT_LIST: keyMirrorEvent(
     {
+      PRODUCT_CLICKED: null,
       PRODUCT_SHOWN: null,
     },
     'PRODUCT_LIST',

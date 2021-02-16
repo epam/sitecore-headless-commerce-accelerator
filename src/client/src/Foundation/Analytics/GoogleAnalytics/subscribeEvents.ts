@@ -61,4 +61,16 @@ export const subscribeGoogleAnalyticsEvents = () => {
         pageUri,
       ),
   );
+  eventHub.subscribe(
+    events.PRODUCT_LIST.PRODUCT_CLICKED,
+    ({ productId: id, displayName: name, adjustedPrice: price = null, variants = null, ...params }) => {
+      googleAnalytics.raiseProductClickedEvent({
+        ...params,
+        id,
+        name,
+        price,
+        variant: variants && variants[0] && variants[0].displayName || name,
+      });
+    }
+  );
 };

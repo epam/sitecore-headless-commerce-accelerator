@@ -47,3 +47,14 @@ export interface ProductDetailsView {
   variant?: string;
   price?: number;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  category?: string;
+  brand?: string;
+  price?: number;
+  position?: number;
+  variant?: string;
+  list?: string;
+}

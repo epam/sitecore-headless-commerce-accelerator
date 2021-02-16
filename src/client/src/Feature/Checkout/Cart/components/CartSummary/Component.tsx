@@ -16,8 +16,8 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
+import { eventHub, events } from 'Foundation/EventHub';
 import { NavigationLink } from 'Foundation/UI';
-
 import { Quantity } from './components';
 import { CartSummaryProps, CartSummaryState } from './models';
 
@@ -72,6 +72,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                               className="heading-productTitle"
                               to={`/product/${cartLine.product.productId}`}
                               data-autotests="productInfoTitle"
+                              onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...cartLine.variant, list: window.location.pathname})}
                             >
                               {cartLine.variant.displayName || cartLine.product.displayName}
                             </NavigationLink>

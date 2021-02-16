@@ -14,7 +14,7 @@
 
 import ReactGA from 'react-ga';
 
-import { AnalyticsEventArgs, CartLine, ProductDetailsView, ProductImpression } from './models';
+import { AnalyticsEventArgs, CartLine, Product, ProductDetailsView, ProductImpression } from './models';
 
 class GoogleAnalytics {
   public initialize(debug: boolean = false): void {
@@ -84,6 +84,12 @@ class GoogleAnalytics {
     ReactGA.plugin.execute('ec', 'addProduct', cartLine);
     ReactGA.plugin.execute('ec', 'setAction', 'remove');
     this.event({ action: 'Click', category: 'Cart', label: 'CartLine removed' });
+  }
+
+  public raiseProductClickedEvent(product: Product): void {
+    ReactGA.plugin.execute('ec', 'addProduct', product);
+    ReactGA.plugin.execute('ec', 'setAction', 'click', {list: product.list || 'not set'});
+    this.event({ action: 'Click', category: 'ProductList', label: 'Product clicked'});
   }
 
   private event(args: AnalyticsEventArgs): void {

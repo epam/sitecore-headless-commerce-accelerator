@@ -34,10 +34,10 @@ subscribeAnalyticsEvents();
 class Root extends React.Component<RootProps> {
   public constructor(props: RootProps) {
     super(props);
-    eventHub.publish(events.ANALYTICS.INITIALIZE);
   }
 
   public componentDidMount() {
+    eventHub.publish(events.ANALYTICS.INITIALIZE);
     this.props.store.dispatch({ type: ActionTypes.INITIALIZATION_COMPLETE });
   }
 

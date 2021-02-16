@@ -104,6 +104,12 @@ module.exports = (compilerOptions) => ({
     ],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      include: ['/src/Project/', '/src/Feature/', '/src/Foundation/'],
+      tsconfig: './tsconfig.dev.json',
+      tslint: './tslint.json',
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.ENV_URL': JSON.stringify(compilerOptions.envUrl),

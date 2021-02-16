@@ -16,6 +16,7 @@ declare module 'data-api-alias';
 declare module 'isomorphic-fetch';
 declare module 'i18next-fetch-backend';
 declare module 'react-lightgallery';
+declare module 'react-scroll';
 
 declare module '*.html' {
   const value: string;

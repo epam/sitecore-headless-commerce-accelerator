@@ -12,10 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import './styles.scss';
+import * as JSS from 'Foundation/ReactJss';
 
-export * from './Button';
-export * from './LinkButton';
-export * from './NavigationLink';
-export * from './StaticLinkButton';
-export * from './BackToTop';
+export interface BackToTopProps {
+  disabled: boolean;
+}
+
+export interface BackToTopState extends JSS.SafePureComponentState {
+  scrollTop: number;
+}

@@ -122,8 +122,10 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
             )}
           </div>
           <Submit
+            className="Register-Button"
+            buttonTheme="grey"
+            buttonSize="s"
             disabled={formDisabled}
-            className="btn-login-register"
             onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
           >
             {(loading || formDisabled) && <i className="fa fa-spinner fa-spin" />}

@@ -15,6 +15,7 @@
 import * as JSS from 'Foundation/ReactJss';
 import React, { ChangeEvent } from 'react';
 
+import { Button } from 'Foundation/UI/components/Button';
 import { validateEmail } from 'Foundation/utils/validation';
 
 import { GetInTouchFormProps, GetInTouchFormState } from './models';
@@ -85,14 +86,9 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
                 onChange={this.handleChange}
               />
               <div className="Button-Container">
-                <button
-                  className="submit"
-                  type="submit"
-                  disabled={!areFieldsFilled}
-                  onClick={(e) => this.submitContactForm(e)}
-                >
+                <Button buttonType="submit" disabled={!areFieldsFilled} onClick={this.submitContactForm}>
                   <JSS.Text field={datasource.submitButtonText.jss} />
-                </button>
+                </Button>
                 <span className="Status_Message">
                   {formSubmission && 'Message is successfully sent! We will be in touch'}
                 </span>
@@ -105,10 +101,10 @@ export class GetInTouchFormComponent extends JSS.SafePureComponent<GetInTouchFor
     );
   }
 
-  private submitContactForm(e: React.MouseEvent<HTMLButtonElement>) {
+  private submitContactForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     this.setState({ name: '', email: '', subject: '', message: '' });
 
     setTimeout(() => this.setState({ formSubmission: true }), 1000);
-  }
+  };
 }

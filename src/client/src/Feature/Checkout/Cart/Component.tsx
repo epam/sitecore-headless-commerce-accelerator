@@ -16,6 +16,7 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 import { Loader, NavigationLink } from 'Foundation/UI';
+import { Button } from 'Foundation/UI/components/Button';
 
 import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';
@@ -88,9 +89,9 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
 
         <div className="action_container">
-          <NavigationLink to={`/`}>
-            <div className="link-button-style">Continue Shopping</div>
-          </NavigationLink>
+          <Button className="Cart-ContinueShoppingButton" buttonType="link" buttonTheme="grey" rounded={true} href="/">
+            Continue Shopping
+          </Button>
         </div>
         <div className="row cart2-last-row">
           {shoppingCartData && shoppingCartData.price && (

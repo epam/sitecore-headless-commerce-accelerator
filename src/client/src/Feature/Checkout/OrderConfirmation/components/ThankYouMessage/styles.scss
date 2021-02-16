@@ -12,52 +12,37 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
-.thank-you-bg-wrapper {
-  background-color: #fff;
-  width: 100%;
-  .btn-order-print {
+.OrderConfirmation {
+  &-PrintButton {
     font-size: 15px;
     font-weight: 700;
     padding: 0 15px 0 15px;
     display: none;
-    background-color: $theme-color;
+
     @media (min-width: $screen-md-min) {
       //1024+
       display: flex;
       justify-content: space-around;
       align-items: center;
       font-weight: 500;
-      line-height: 1;
       z-index: 9;
       width: 100%;
       padding: 18px 20px;
       letter-spacing: 1px;
-      text-transform: uppercase;
-      color: $print-text-color;
-      border: none;
-      border-radius: 50px;
-      background: none;
-      background-color: $theme-color;
     }
-  
+
     i {
       font-size: 25px;
       color: $print-text-color;
     }
-  
-    &:hover {
-      background-color: $text-main-color;
-      color: $print-text-color;
-    }
-    span {
-      color: $print-text-color;
-      font-weight: 500;
-      font-size: 14px;
-      font-family: $poppins;
-    }
-  }  
+  }
+}
+
+.thank-you-bg-wrapper {
+  background-color: #fff;
+  width: 100%;
 }
 
 /* if necessary: class to remove the right and left padding 15px from bootstrap grid */
@@ -93,9 +78,8 @@
     font-size: 18px;
     font-family: $poppins;
     margin-top: 7px;
-    &_bold{
+    &_bold {
       font-weight: 600;
     }
   }
 }
-

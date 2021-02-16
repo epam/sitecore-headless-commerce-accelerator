@@ -12,43 +12,73 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { ButtonHTMLAttributes, FC, HTMLProps } from 'react';
+import React, { FC, FocusEventHandler, KeyboardEventHandler, MouseEventHandler } from 'react';
 import { cnButton } from './cn';
 
 import './Button.scss';
 
-type ThemeTypes = 'default' | 'default-reversed' | 'grey' | 'grey-reversed' | 'orange' | 'black';
-type Types = 'link' | 'submit' | 'button' | 'reset';
+type ThemeTypes =
+  | 'default'
+  | 'defaultReversed'
+  | 'defaultSlide'
+  | 'transparentSlide'
+  | 'grey'
+  | 'greyReversed'
+  | 'orange'
+  | 'black';
+type ButtonTypes = 'link' | 'submit' | 'button' | 'reset';
+
+type ContainerElement = HTMLButtonElement | HTMLAnchorElement;
 
 export type ButtonProps = {
-  buttonSize?: 's' | 'm' | 'l';
+  id?: string;
+  className?: string;
+  disabled?: boolean;
+  href?: string;
+  target?: string;
+  buttonType?: ButtonTypes;
+  title?: string;
   buttonTheme?: ThemeTypes;
-  buttonType?: Types;
+  buttonSize?: 's' | 'm' | 'l';
   rounded?: boolean;
   fullWidth?: boolean;
-} & HTMLProps<HTMLButtonElement> &
-  HTMLProps<HTMLAnchorElement> &
-  ButtonHTMLAttributes<HTMLButtonElement>;
+
+  onKeyDown?: KeyboardEventHandler<ContainerElement>;
+  onKeyUp?: KeyboardEventHandler<ContainerElement>;
+  onClick?: MouseEventHandler<ContainerElement>;
+  onMouseDown?: MouseEventHandler<ContainerElement>;
+  onMouseUp?: MouseEventHandler<ContainerElement>;
+  onMouseLeave?: MouseEventHandler<ContainerElement>;
+  onBlur?: FocusEventHandler<ContainerElement>;
+};
 
 export const Button: FC<ButtonProps> = ({
-  children,
   className,
-  buttonSize = 'm',
-  buttonTheme = 'default',
+  children,
   buttonType = 'button',
-  rounded = false,
-  fullWidth = false,
-  ...restProps
+
+  buttonTheme = 'default',
+  buttonSize = 'm',
+  href,
+  target,
+  rounded,
+  fullWidth,
+  ...rest
 }) => {
   return buttonType === 'link' ? (
-    <a className={cnButton({ buttonSize, buttonTheme, rounded, fullWidth }, [className])} {...restProps}>
+    <a
+      {...rest}
+      className={cnButton({ buttonTheme, buttonSize, rounded, fullWidth }, [className])}
+      href={href}
+      target={target}
+    >
       {children}
     </a>
   ) : (
     <button
+      {...rest}
+      className={cnButton({ buttonTheme, buttonSize, rounded, fullWidth }, [className])}
       type={buttonType}
-      className={cnButton({ buttonSize, buttonTheme, rounded, fullWidth }, [className])}
-      {...restProps}
     >
       {children}
     </button>

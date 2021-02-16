@@ -172,9 +172,8 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,css}": [
-      "prettier --write"
-    ],
+    "*.{ts,tsx,scss}": "prettier --write",
+    "*.{ts,tsx}": "tslint",
     "*.ts": "jest --onlyChanged --passWithNoTests"
   }
 }

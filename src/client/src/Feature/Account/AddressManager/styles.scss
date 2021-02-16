@@ -12,8 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/mixins";
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/mixins';
+@import 'Foundation/UI/common/scss/variables';
 
 .address-manager {
   margin: 20px 0;
@@ -148,28 +148,9 @@
       justify-content: flex-end;
       align-items: center;
       margin-top: 26px;
-      .add-address-btn {
-        button {
-          background-color: #f2f2f2;
-          border: medium none;
-          color: #000;
-          display: inline-block;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 1;
-          padding: 16px 35px 17px;
-          text-transform: uppercase;
-          cursor: pointer;
-          transition: all 0.3s ease 0s;
-          &:hover {
-            background: $theme-color;
-            color: #fff;
-          }
-        }
-      }
     }
     .entries-wrapper {
-      &:first-of-type{
+      &:first-of-type {
         border-top: 1px solid $address-table-border-color;
       }
       border-left: 1px solid $address-table-border-color;
@@ -184,7 +165,7 @@
       }
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         height: 100%;
         width: 1px;
         left: 50%;
@@ -215,30 +196,6 @@
           text-transform: capitalize;
         }
       }
-      .entries-edit-delete {
-        a,
-        button {
-          background: none;
-          border: none;
-          background-color: #000;
-          color: #fff;
-          display: inline-block;
-          line-height: 1;
-          margin: 0 2px;
-          padding: 12px 15px;
-          text-transform: uppercase;
-          font-weight: 500;
-          &:hover {
-            background-color: $theme-color;
-          }
-          &.edit {
-            background-color: $edit-button-color;
-            &:hover {
-              background-color: $theme-color;
-            }
-          }
-        }
-      }
     }
     .address_container-empty {
       display: flex;
@@ -262,5 +219,14 @@
       font-family: $poppins;
       margin-bottom: 5px;
     }
+  }
+}
+
+.AddressManager {
+  &-EditButton,
+  &-DeleteButton {
+    padding: 12px 15px;
+    height: 38px;
+    margin: 0px 2px;
   }
 }

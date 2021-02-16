@@ -101,7 +101,9 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
         </div>
         <div className="login_buttons">
           <Submit
-            className="btn-log-in"
+            className="Login-Button"
+            buttonTheme="grey"
+            buttonSize="s"
             onSubmitHandler={(form: LogInValues) => {
               isError = false;
               this.validateForm(form);

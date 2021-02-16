@@ -17,6 +17,7 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
 import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
+import { Button } from 'Foundation/UI/components/Button';
 
 import { ProductInformationProps, ProductInformationState } from './models';
 
@@ -176,7 +177,9 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                           <div className="col-md-12">
                             <div className="rating-form-style form-submit">
                               <textarea name="Your Review" placeholder="Message" defaultValue={''} />
-                              <input type="submit" defaultValue="Submit" />
+                              <Button buttonType="submit" buttonTheme="defaultReversed">
+                                Submit
+                              </Button>
                             </div>
                           </div>
                         </div>

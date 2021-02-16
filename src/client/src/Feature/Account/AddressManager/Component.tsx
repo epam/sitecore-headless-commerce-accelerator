@@ -12,10 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
+import React, { MouseEvent } from 'react';
 
 import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
+import { Button } from 'Foundation/UI/components/Button';
 
 import { AddressForm } from './components';
 import { AddressManagerOwnState, AddressManagerProps } from './models';
@@ -23,7 +24,6 @@ import { AddressManagerOwnState, AddressManagerProps } from './models';
 import * as Commerce from 'Foundation/Commerce';
 
 import './styles.scss';
-
 export default class AddressManager extends Jss.SafePureComponent<AddressManagerProps, AddressManagerOwnState> {
   public constructor(props: AddressManagerProps) {
     super(props);
@@ -95,12 +95,24 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                               </div>
                               <div className="col-lg-6 col-md-6 entries_col_wrapper">
                                 <div className="entries-edit-delete text-center">
-                                  <button className="edit" onClick={(e) => this.editAddressByButtonClick(true, e)}>
+                                  <Button
+                                    className="AddressManager-EditButton"
+                                    buttonTheme="orange"
+                                    onClick={(e: MouseEvent<HTMLButtonElement>) =>
+                                      this.editAddressByButtonClick(true, e)
+                                    }
+                                  >
                                     Edit
-                                  </button>
-                                  <button onClick={(e) => this.onDeleteButtonClick(e, address.externalId)}>
+                                  </Button>
+                                  <Button
+                                    className="AddressManager-DeleteButton"
+                                    buttonTheme="black"
+                                    onClick={(e: MouseEvent<HTMLButtonElement>) =>
+                                      this.onDeleteButtonClick(e, address.externalId)
+                                    }
+                                  >
                                     Delete
-                                  </button>
+                                  </Button>
                                 </div>
                               </div>
                             </div>
@@ -114,22 +126,26 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
                         </div>
                         <label className="address_label-empty">No saved address</label>
                         <div className="add-address-btn-container">
-                          <div className="add-address-btn">
-                            <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
-                              Add
-                            </button>
-                          </div>
+                          <Button
+                            buttonType="submit"
+                            buttonTheme="grey"
+                            onClick={(e: MouseEvent<HTMLButtonElement>) => this.editAddressByButtonClick(false, e)}
+                          >
+                            Add
+                          </Button>
                         </div>
                       </div>
                     )}
                   </div>
                   {isExistAddressItems && (
                     <div className="add-address-btn-container">
-                      <div className="add-address-btn">
-                        <button type="submit" onClick={(e) => this.editAddressByButtonClick(false, e)}>
-                          Add
-                        </button>
-                      </div>
+                      <Button
+                        buttonType="submit"
+                        buttonTheme="grey"
+                        onClick={(e: MouseEvent<HTMLButtonElement>) => this.editAddressByButtonClick(false, e)}
+                      >
+                        Add
+                      </Button>
                     </div>
                   )}
                 </div>

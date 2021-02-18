@@ -35,20 +35,23 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
   }
 
   public componentDidUpdate() {
-    const { product } = this.props.sitecoreContext;
     const { selectedVariant } = this.props;
+    const { product } = this.props.sitecoreContext;
+    const selectedCatalogItem = selectedVariant || product;
 
-    eventHub.publish(events.PRODUCT_DETAILS.PRODUCT_DETAILS_VIEWED, {
-      ...product,
-      pageUri: window.location.pathname,
-      price: selectedVariant.adjustedPrice,
-      variant: selectedVariant.displayName,
-    });
+    if (selectedCatalogItem) {
+      eventHub.publish(events.PRODUCT_DETAILS.PRODUCT_DETAILS_VIEWED, {
+        ...selectedCatalogItem,
+        pageUri: window.location.pathname,
+        price: selectedCatalogItem.adjustedPrice,
+        variant: selectedCatalogItem.displayName,
+      });
+    }
   }
 
   protected safeRender() {
+    const { selectedVariant } = this.props;
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
-    const selectedVariant = this.props.selectedVariant;
     const selectedCatalogItem = selectedVariant || product;
 
     return (

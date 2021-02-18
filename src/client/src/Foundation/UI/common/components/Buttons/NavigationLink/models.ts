@@ -12,12 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 
 export interface NavigationLinkOwnProps {
   className?: string;
   to: string;
   ['data-autotests']?: string;
+  children?: ReactNode;
 
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }

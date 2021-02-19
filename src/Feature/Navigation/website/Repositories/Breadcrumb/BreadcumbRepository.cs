@@ -47,7 +47,7 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
             var pageLinks = ancestors.Select(
                     item => new PageLink
                     {
-                        Title = item.Name,
+                        Title = !string.IsNullOrWhiteSpace(item?.DisplayName) ? item?.DisplayName : item?.Name,
                         Link = LinkManager.GetItemUrl(item)
                     })
                 .ToList();
@@ -55,7 +55,7 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
             pageLinks.Add(
                 new PageLink
                 {
-                    Title = currentItem.Name,
+                    Title = !string.IsNullOrWhiteSpace(currentItem?.DisplayName) ? currentItem?.DisplayName : currentItem?.Name,
                     Link = LinkManager.GetItemUrl(currentItem)
                 });
             return pageLinks;

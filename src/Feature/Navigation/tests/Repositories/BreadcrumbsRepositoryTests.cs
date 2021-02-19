@@ -54,8 +54,8 @@ namespace HCA.Feature.Navigation.Tests.Repositories
         [InlineData("/sitecore/content/HCA/Home/Product", new[] { "Home", "Product" })]
         [InlineData("/sitecore/content/HCA/Home/Product/*", new[] { "Home", "Product", "*" })]
         [InlineData("/sitecore/content/HCA/Home/Shop", new[] { "Home", "Shop" })]
-        [InlineData("/sitecore/content/HCA/Home/Shop/*", new[] { "Home", "Shop", "*" })]
-        [InlineData("/sitecore/content/HCA/Home/Shop/*/*", new[] { "Home", "Shop", "*", "*" })]
+        [InlineData("/sitecore/content/HCA/Home/Shop/*", new[] { "Home", "Shop", "Desktops" })]
+        [InlineData("/sitecore/content/HCA/Home/Shop/*/*", new[] { "Home", "Shop", "Desktops", "SPARK DESKTOP" })]
         public void GetPageLinks_ShouldReturnBreadcrumbWithCorrectPageLinkTitles(
             string currentItemPath,
             string[] expectedTitles)

@@ -21,7 +21,7 @@ import { DatasourceRequiredComponent } from '../Components/ExperienceEditorWarni
 
 import { RenderingWithContextProps } from './models';
 
-export const rendering = <P, S = {}>(component: React.ComponentClass<P, S>) =>
+export const rendering = <P, S = {}>(component: React.ComponentClass<P, S> | React.FC<P>) =>
   withExperienceEditorChromes(component) as React.ComponentClass<P, S>;
 
 export const renderingWithContext = <P extends { sitecoreContext: any }, S = {}>(

@@ -71,6 +71,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                       required={true}
                       disabled={isLoading}
                       defaultValue={commerceUser && commerceUser.firstName ? commerceUser.firstName : ''}
+                      fullWidth={true}
                     />
                   </div>
                   <div className="col-lg-6 col-md-6">
@@ -81,6 +82,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                       required={true}
                       disabled={isLoading}
                       defaultValue={commerceUser && commerceUser.lastName ? commerceUser.lastName : ''}
+                      fullWidth={true}
                     />
                   </div>
                 </div>

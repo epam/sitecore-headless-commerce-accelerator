@@ -12,339 +12,321 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import "Foundation/UI/common/scss/variables";
-@import "Foundation/UI/common/scss/mixins";
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
 
 .product-description {
-    padding-bottom: 40px;
-    background: $product-detail-background;
-    font-family: $poppins;
+  padding-bottom: 40px;
+  background: $product-detail-background;
+  font-family: $poppins;
 
-    // #Grid
-    &-row {
-        @include make-row();
-    }
-    &-col {
-        @include make-md-column(6);
+  // #Grid
+  &-row {
+    @include make-row();
+  }
+  &-col {
+    @include make-md-column(6);
+  }
+
+  .tab {
+    border-bottom: 1px solid #d7d7d7;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 33px;
+    button {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .tab {
-        border-bottom: 1px solid #d7d7d7;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 33px;
-        button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button.active {
-            border-bottom: 3px solid #000;
-            background-color: transparent;
-            color: $text-main-color;
-        }
-        &-links {
-            font-family: $poppins;
-            text-transform: inherit;
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 1;
-            margin: 0 18px;
-            padding: 0 0 12px;
-            color: $brand-font-color;
-            @media #{$sm-layout} {
-                top: 100%;
-                font-size: 16px;
-              }
-        }
+    button.active {
+      border-bottom: 3px solid #000;
+      background-color: transparent;
+      color: $text-main-color;
     }
-    // Grid end
+    &-links {
+      font-family: $poppins;
+      text-transform: inherit;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1;
+      margin: 0 18px;
+      padding: 0 0 12px;
+      color: $brand-font-color;
+      @media #{$sm-layout} {
+        top: 100%;
+        font-size: 16px;
+      }
+    }
+  }
+  // Grid end
+
+  h2 {
+    font-size: 26px;
+    line-height: 26px;
+    margin: 0;
+    color: $title-font-color;
+    text-transform: uppercase;
+
+    @media (min-width: $screen-md-min) {
+      margin-bottom: 12px;
+    }
+  }
+  .description-features,
+  .description-rating {
+    margin: 0 (-$grid-gutter-width/2);
+    padding: 0 $grid-gutter-width/2 18px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    transition: max-height 0.2s;
 
     h2 {
-        font-size: 26px;
-        line-height: 26px;
-        margin: 0;
-        color: $title-font-color;
-        text-transform: uppercase;
+      padding: 18px 0;
+      position: relative;
+      cursor: pointer;
 
+      &:before {
+        content: '';
+        transition: transform 0.2s;
+        display: block;
+        height: 26px;
+        width: 4px;
+        background-color: $font-color;
+        position: absolute;
+        top: 18px; //(62px-26px)/2, where 62px - height of the h2
+        right: 11px; //(26px-4px)/2
+      }
+      &:after {
+        content: '';
+        display: block;
+        height: 4px;
+        width: 26px;
+        background-color: $font-color;
+        position: absolute;
+        top: 29px; //(62px-4px)/2
+        right: 0;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+      max-height: 100%;
+      overflow: visible;
+      cursor: default;
+
+      h2 {
+        padding: 0;
+        cursor: default;
+      }
+      h2:before,
+      h2:after {
+        content: none;
+      }
+    }
+
+    &.is-open {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.2s;
+
+      h2:before {
+        content: '';
+        transform: rotate(90deg);
+        transition: transform 0.2s;
         @media (min-width: $screen-md-min) {
-            margin-bottom: 12px;
+          content: none;
         }
+      }
     }
-    .description-features,
-    .description-rating {
-        margin: 0 (-$grid-gutter-width/2);
-        padding: 0 $grid-gutter-width/2 18px;
-        border-bottom: 1px solid #ccc;
-        overflow: hidden;
-        transition: max-height 0.2s;
-
-        h2 {
-            padding: 18px 0;
-            position: relative;
-            cursor: pointer;
-
-            &:before {
-                content: "";
-                transition: transform 0.2s;
-                display: block;
-                height: 26px;
-                width: 4px;
-                background-color: $font-color;
-                position: absolute;
-                top: 18px; //(62px-26px)/2, where 62px - height of the h2
-                right: 11px; //(26px-4px)/2
-            }
-            &:after {
-                content: "";
-                display: block;
-                height: 4px;
-                width: 26px;
-                background-color: $font-color;
-                position: absolute;
-                top: 29px; //(62px-4px)/2
-                right: 0;
-            }
-        }
-
-        @media (min-width: $screen-md-min) {
-            margin: 0;
-            padding: 0;
-            border-bottom: none;
-            max-height: 100%;
-            overflow: visible;
-            cursor: default;
-
-            h2 {
-                padding: 0;
-                cursor: default;
-            }
-            h2:before,
-            h2:after {
-                content: none;
-            }
-        }
-
-        &.is-open {
-            max-height: 1000px;
-            overflow: hidden;
-            transition: max-height 0.2s;
-
-            h2:before {
-                content: "";
-                transform: rotate(90deg);
-                transition: transform 0.2s;
-                @media (min-width: $screen-md-min) {
-                    content: none;
-                }
-            }
-        }
+  }
+  .description-text {
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      font-family: $poppins;
+      font-weight: 400;
+      color: $text-main-color;
     }
-    .description-text {
-        p {
-            font-size: 14px;
-            line-height: 24px;
-            font-family: $poppins;
-            font-weight: 400;
-            color: $text-main-color;
-        }
+  }
+  .description-features {
+    border-top: 1px solid #ccc;
+    @media (min-width: $screen-md-min) {
+      border-top: none;
     }
-    .description-features {
-        border-top: 1px solid #ccc;
-        @media (min-width: $screen-md-min) {
-            border-top: none;
-        }
 
-        li {
-            margin: 0 0 13px;
-            list-style: outside none none;
-            font-size: 14px;
-            color: $text-main-color;
-            font-family: $poppins;
-            font-weight: 400;
-            line-height: 24px;
-            span {
-                font-weight: 500;
-                display: inline-block;
-                min-width: 85px;
-                margin: 0 26px 0 0;
-                color: #000;
-            }
-        }
+    li {
+      margin: 0 0 13px;
+      list-style: outside none none;
+      font-size: 14px;
+      color: $text-main-color;
+      font-family: $poppins;
+      font-weight: 400;
+      line-height: 24px;
+      span {
+        font-weight: 500;
+        display: inline-block;
+        min-width: 85px;
+        margin: 0 26px 0 0;
+        color: #000;
+      }
     }
-    .description-rating {
-        table {
-            thead {
-                font-family: $poppins;
-                font-size: 15px;
-                font-weight: 600;
-                color: $brand-font-color;
-            }
-            color: $text-main-color;
-            font-size: 14px;
-            font-family: $poppins;
-            font-weight: 400;
-            margin-bottom: 0;
-        } 
-        table.table-striped.table-sm{
-            td{
-                color: $text-main-color;
-                &:last-of-type{
-                    font-weight: 700;
-                }
-            }
-        }
-        
+  }
+  .description-rating {
+    table {
+      thead {
+        font-family: $poppins;
+        font-size: 15px;
+        font-weight: 600;
+        color: $brand-font-color;
+      }
+      color: $text-main-color;
+      font-size: 14px;
+      font-family: $poppins;
+      font-weight: 400;
+      margin-bottom: 0;
     }
+    table.table-striped.table-sm {
+      td {
+        color: $text-main-color;
+        &:last-of-type {
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }
 
-.product-content{
-    .pl-50{
-        padding-left: 50px;
-        @media (max-width: $screen-sm-max) {
-            padding-left: 0px;
-            margin-top: 50px;
-        }
+.product-content {
+  .pl-50 {
+    padding-left: 50px;
+    @media (max-width: $screen-sm-max) {
+      padding-left: 0px;
+      margin-top: 50px;
     }
-    .ratting-form-wrapper{
-        & h3{
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1;
+  }
+  .rating-form-wrapper {
+    & h3 {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1;
+      margin: 0;
+      font-family: $poppins;
+    }
+
+    .rating-form {
+      .star-box {
+        display: flex;
+        margin: 6px 0 20px;
+        & span {
+          margin: 0 15px 0 0;
+        }
+        .rating-star {
+          font-size: 12px;
+          color: $review-star-color;
+        }
+      }
+      .mb-10 {
+        margin-bottom: 10px;
+      }
+      .rating-form-input {
+        padding: 2px 10px 2px 20px;
+        border: 1px solid #e6e6e6;
+        background: transparent;
+        font-size: 14px;
+        width: 100%;
+        color: $review-input-border;
+        box-shadow: none;
+        height: 45px;
+        margin-bottom: 0;
+        font-family: $poppins;
+      }
+      .rating-form-submit {
+        & textarea {
+          height: 180px;
+          margin-bottom: 20px;
+          padding: 20px 10px 2px 20px;
+          color: $review-input-border;
+          border: 1px solid #e6e6e6;
+          background: transparent;
+          font-size: 14px;
+          width: 100%;
+          resize: vertical;
+          overflow: auto;
+          box-shadow: none;
+          font-family: $poppins;
+        }
+      }
+    }
+  }
+
+  .review-wrapper {
+    .child-review {
+      margin-bottom: 0 !important;
+      margin-left: 70px !important;
+      @media (max-width: $screen-sm-max) {
+        margin-left: 0px !important;
+      }
+    }
+    .single-review {
+      display: flex;
+      margin: 0 0 50px;
+      .review-img {
+        flex: 0 0 90px;
+        margin: 0 15px 0 0;
+      }
+      .review-content {
+        .review-top-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 0 0 10px;
+          .review-left {
+            display: flex;
+            .review-name {
+              margin-right: 25px;
+              & h4 {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1;
+                margin: 0;
+              }
+            }
+            .review-rating {
+              line-height: 1;
+              & i {
+                font-size: 12px;
+                margin-right: 1px;
+                color: $review-star-color;
+              }
+            }
+            & button {
+              border: none;
+              background: none;
+              cursor: pointer;
+              &:hover {
+                color: $theme-color;
+              }
+            }
+          }
+        }
+        .review-bottom {
+          & p {
+            width: 93%;
             margin: 0;
             font-family: $poppins;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+          }
         }
-
-        .ratting-form{
-            .star-box{
-                display: flex;
-                margin: 6px 0 20px;
-                & span{
-                    margin: 0 15px 0 0;
-                }
-                .ratting-star{
-                    font-size: 12px;
-                    color: $review-star-color;
-                }
-            }
-            .mb-10{
-                margin-bottom: 10px;
-            }
-            .rating-form-style{
-                & input{
-                    padding: 2px 10px 2px 20px; 
-                    border: 1px solid #e6e6e6;
-                    background: transparent;
-                    font-size: 14px;
-                    width: 100%;
-                    color: $review-input-border;
-                    box-shadow: none;
-                    height: 45px;
-                    margin-bottom: 0;
-                    font-family: $poppins;  
-                }
-            }
-            .form-submit{
-                & textarea{
-                    height: 180px;
-                    margin-bottom: 20px;
-                    padding: 20px 10px 2px 20px;
-                    color: $review-input-border;
-                    border: 1px solid #e6e6e6;
-                    background: transparent;
-                    font-size: 14px;
-                    width: 100%;
-                    resize: vertical;
-                    overflow: auto;
-                    box-shadow: none;
-                    font-family: $poppins;
-                }
-                & input{
-                    font-weight: 500;
-                    width: auto;
-                    height: auto;
-                    padding: 12px 50px;
-                    text-transform: uppercase;
-                    color: $review-text-color;
-                    border: 1px solid $theme-color;
-                    background-color: $theme-color;
-                    line-height: 24px;
-                    &:hover {
-                        border: 1px solid $review-input-border;
-                        background-color: $review-input-border;
-                    }
-                }
-            }
-        }
+      }
     }
-
-    .review-wrapper{
-        .child-review{
-            margin-bottom: 0 !important;
-            margin-left: 70px !important;
-            @media (max-width: $screen-sm-max) {
-                margin-left: 0px !important;
-            }
-        }
-        .single-review{
-            display: flex;
-            margin: 0 0 50px;
-            .review-img{
-                flex: 0 0 90px;
-                margin: 0 15px 0 0;
-            }
-            .review-content{
-                .review-top-wrap{
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin: 0 0 10px;
-                    .review-left{
-                        display: flex;
-                        .review-name{
-                            margin-right: 25px;
-                            & h4{
-                                font-size: 16px;
-                                font-weight: 500;
-                                line-height: 1;
-                                margin: 0;
-                            }
-                        }
-                        .review-rating{
-                            line-height: 1;
-                            & i{
-                                font-size: 12px;
-                                margin-right: 1px;
-                                color: $review-star-color;
-                            }
-                        }
-                        & button{
-                            border: none;
-                            background: none;
-                            cursor: pointer;
-                            &:hover{
-                                color: $theme-color;
-                            }
-                        }
-                    }
-                }
-                .review-bottom{
-                    & p{
-                        width: 93%;
-                        margin: 0;
-                        font-family: $poppins;
-                        font-size: 14px;
-                        font-weight: 400;
-                        line-height: 24px;
-                    }
-                }
-            }
-        }
-    }
+  }
 }

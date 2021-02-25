@@ -87,21 +87,21 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'First Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'Last Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Address Line 1' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'City' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
@@ -136,7 +136,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Postal Code' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
@@ -151,6 +151,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     onChange={(e) => this.handleEmailInput(e)}
                     value={email}
                     maxLength={100}
+                    fullWidth={true}
                   />
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
@@ -214,12 +215,13 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     </li>
                   </ul>
                   {!isLoggedIn && (
-                  <Text
-                    field={{ value: 'Create Account' }}
-                    className="right-car create"
-                    href="/account/login-register"
-                    tag="a"
-                  />)}
+                    <Text
+                      field={{ value: 'Create Account' }}
+                      className="right-car create"
+                      href="/account/login-register"
+                      tag="a"
+                    />
+                  )}
                 </div>
               )}
             </div>
@@ -341,9 +343,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
       const isLoggedIn = commerceUser && commerceUser.customerId;
       const selectedCountry = this.getSelectedCountry(formValues[FIELDS.COUNTRY] as string);
 
-      return (
-        (isLoggedIn) ? (
-          {
+      return isLoggedIn
+        ? {
             address1: formValues[FIELDS.ADDRESS_LINE] as string,
             address2: '',
             city: formValues[FIELDS.CITY] as string,
@@ -359,8 +360,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             state: formValues[FIELDS.PROVINCE] as string,
             zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
           }
-        ) : (
-          {
+        : {
             address1: formValues[FIELDS.ADDRESS_LINE] as string,
             address2: '',
             city: formValues[FIELDS.CITY] as string,
@@ -375,9 +375,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             partyId: '',
             state: formValues[FIELDS.PROVINCE] as string,
             zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
-          }
-        )
-      );
+          };
     }
 
     return null;

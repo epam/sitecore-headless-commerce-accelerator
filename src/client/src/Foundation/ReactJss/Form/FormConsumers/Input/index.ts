@@ -16,6 +16,9 @@ import { contextConnect } from './../enhancers';
 import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';
 import InputField from './Input';
 
-export const Input = contextConnect<BaseFieldProps<HTMLInputElement>, BaseFieldEnhancedProps<HTMLInputElement>>(
-  InputField
-);
+import { InputProps } from 'Foundation/UI/components/Input';
+
+export const Input = contextConnect<
+  BaseFieldProps<HTMLInputElement> & InputProps,
+  BaseFieldEnhancedProps<HTMLInputElement>
+>(InputField);

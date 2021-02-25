@@ -17,6 +17,8 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
 import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
+import { Button } from 'Foundation/UI/components/Button';
+import { Input } from 'Foundation/UI/components/Input';
 
 import { ProductInformationProps, ProductInformationState } from './models';
 
@@ -148,13 +150,13 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                   </div>
                 </div>
                 <div className="col-lg-5">
-                  <div className="ratting-form-wrapper pl-50">
+                  <div className="rating-form-wrapper pl-50">
                     <h3>Add a Review</h3>
-                    <div className="ratting-form">
+                    <div className="rating-form">
                       <form action="#">
                         <div className="star-box">
                           <span>Your rating:</span>
-                          <div className="ratting-star">
+                          <div className="rating-star">
                             <i className="fa fa-star" />
                             <i className="fa fa-star" />
                             <i className="fa fa-star" />
@@ -164,17 +166,17 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                         </div>
                         <div className="row">
                           <div className="col-md-6">
-                            <div className="rating-form-style mb-10">
-                              <input placeholder="Name" type="text" />
+                            <div className="mb-10">
+                              <Input type="text" className="rating-form-input" placeholder="Name" />
                             </div>
                           </div>
                           <div className="col-md-6">
-                            <div className="rating-form-style mb-10">
-                              <input placeholder="Email" type="email" />
+                            <div className="mb-10">
+                              <Input type="email" className="rating-form-input" placeholder="Email" />
                             </div>
                           </div>
                           <div className="col-md-12">
-                            <div className="rating-form-style form-submit">
+                            <div className="rating-form-submit">
                               <textarea name="Your Review" placeholder="Message" defaultValue={''} />
                               <input type="submit" defaultValue="Submit" />
                             </div>

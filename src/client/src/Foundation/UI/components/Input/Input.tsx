@@ -12,13 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, HTMLProps } from 'react';
+import React, { FC, forwardRef, HTMLProps } from 'react';
 
 import { cnInput } from './cn';
 
 import './Input.scss';
 
-export type InputType = 'text' | 'password' | 'number' | 'email';
+export type InputType = 'text' | 'password' | 'number' | 'email' | 'search' | 'checkbox';
 
 export type InputProps = HTMLProps<HTMLInputElement> & {
   error?: boolean;
@@ -27,19 +27,15 @@ export type InputProps = HTMLProps<HTMLInputElement> & {
   type?: InputType;
 };
 
-export const Input: FC<InputProps> = ({
-  className,
-  error = false,
-  fullWidth = false,
-  controlSize = 'm',
-  type = 'text',
-  ...rest
-}) => {
-  return (
-    <input
-      {...rest}
-      className={cnInput({ error, fullWidth, controlSize, type }, [className])}
-      type={type}
-    />
-  );
-};
+export const Input: FC<InputProps> = forwardRef(
+  ({ className, error = false, fullWidth = false, controlSize = 'm', type = 'text', ...rest }, ref) => {
+    return (
+      <input
+        {...rest}
+        className={cnInput({ error, fullWidth, controlSize, type }, [className])}
+        type={type}
+        ref={ref}
+      />
+    );
+  },
+);

@@ -82,6 +82,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                       required={true}
                       customValidator={(formValues) => this.passwordCustomValidator(formValues)}
                       disabled={isLoading}
+                      fullWidth={true}
                     />
                   </div>
                   <div className="col-lg-12 col-md-12">
@@ -92,6 +93,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                       required={true}
                       customValidator={(formValues) => this.passwordCustomValidator(formValues)}
                       disabled={isLoading}
+                      fullWidth={true}
                     />
                   </div>
                   <div className="col-lg-12 col-md-12">
@@ -102,6 +104,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                       required={true}
                       customValidator={(formValues) => this.passwordCustomValidator(formValues)}
                       disabled={isLoading}
+                      fullWidth={true}
                     />
                   </div>
                   {isError && (

@@ -21,6 +21,7 @@ import { NavigationLink } from 'Foundation/UI';
 import { FIELDS } from './constants';
 import { OrderSummaryProps } from './models';
 
+import { Input } from 'Foundation/UI/components/Input';
 import { Select as PureSelect } from 'Foundation/UI/components/Select';
 
 import './styles.scss';
@@ -84,10 +85,74 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               </div>
               <div className="zipCodeWrapper">
                 <label>* Zip/Postal Code</label>
-                <input type="text" />
+                <Input type="text" />
               </div>
               <button className="cartBtn">Get A Quote</button>
             </Form>
+          </div>
+        </div>
+        <div className="col-lg-4 col-md-6">
+          <div className="column promoCode">
+            <div className="titleWrap">
+              <h4 className="titleWrap-title">Use Promotional Code</h4>
+            </div>
+            {adjustments && adjustments.length !== 0 && (
+              <div className="promo-code-list">
+                <ul className="adjustment-list">
+                  {adjustments.map((item: string, index: number) => (
+                    <div key={index} className="adjustment-item">
+                      {freeShipping && (
+                        <button
+                          className="btn small"
+                          disabled={freeShipping.displayName === item}
+                          onClick={(e) => this.props.RemovePromoCode({ promoCode: item })}
+                        >
+                          <i className="fa fa-times" />
+                        </button>
+                      )}
+                      <li>{item}</li>
+                      {isRemovePromoCodeLoading && <i className="fa fa-spinner fa-spin" />}
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="subTitleWrap">
+              <p>Enter your promotional code if you have one.</p>
+            </div>
+            <div className="promoCodeWrapper">
+              <Input
+                type="text"
+                disabled={isAddPromoCodeLoading}
+                required={true}
+                onChange={this.handlePromoInput}
+                value={promoCode}
+              />
+            </div>
+            {isSuccess ? (
+              <p className="valid-promo-code-msg">Promo code applied!</p>
+            ) : (
+              isFailure && (
+                <p className="invalid-promo-code-msg">
+                  {hasBeenApplied ? 'Promo code already applied!' : 'Invalid promo code'}
+                </p>
+              )
+            )}
+            {promoCodeIsEmpty && <p className="invalid-promo-code-msg">Promo code can not be empty</p>}
+            <Button
+              className="OrderSummary-Button"
+              buttonTheme="defaultReversed"
+              rounded={true}
+              disabled={isAddPromoCodeLoading}
+              onClick={this.addPromoCode}
+            >
+              Apply Promotional
+              {isAddPromoCodeLoading && (
+                <span className="OrderSummary-IconContainer">
+                  <i className="fa fa-spinner fa-spin" />
+                </span>
+              )}
+            </Button>
           </div>
         </div>
         <div className="col-lg-4 col-md-12">

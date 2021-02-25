@@ -86,17 +86,11 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
       <Form className="login">
         <div className="login_form-group">
           <div className="form-field">
-            <Input className="login_input" name="email" type="text" placeholder="Email" disabled={isLoading} />
+            <Input name="email" type="text" placeholder="Email" disabled={isLoading} />
             {!isUsernameValid && <div className="login_invalid-msg">Enter valid email</div>}
           </div>
           <div className="form-field">
-            <Input
-              className="form-field-password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              disabled={isLoading}
-            />
+            <Input name="password" type="password" placeholder="Password" disabled={isLoading} />
             {(isError || isPasswordEmpty) && (
               <div className="login_invalid-msg">
                 {isError ? 'The email or password you entered is incorrect' : isPasswordEmpty && 'Enter valid password'}

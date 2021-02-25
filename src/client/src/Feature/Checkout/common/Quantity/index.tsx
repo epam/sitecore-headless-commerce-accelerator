@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { Input } from 'Foundation/UI/components/Input';
+
 interface Quantity {
   cartLineId?: string;
   setQuantity: (quantity: boolean) => void;
@@ -9,7 +12,13 @@ const QuantityProductCommon = ({ cartLineId, setQuantity, quantityString }: Quan
   return (
     <div className="quantity" data-autotests="productQty">
       <input type="button" value="-" className="qty-button qty-minus" onClick={() => setQuantity(false)} />
-      <input type="text" id={`qty-${cartLineId}`} className="cart-plus-minus-box" value={quantityString} disabled={true} />
+      <Input
+        type="text"
+        id={`qty-${cartLineId}`}
+        className="cart-plus-minus-box"
+        value={quantityString}
+        disabled={true}
+      />
       <input type="button" value="+" className="qty-button qty-plus" onClick={() => setQuantity(true)} />
     </div>
   );

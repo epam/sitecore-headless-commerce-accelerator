@@ -87,21 +87,21 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'First Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'Last Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Address Line 1' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'City' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
@@ -136,7 +136,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Postal Code' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} />
+                <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} fullWidth={true} />
               </div>
             </div>
             <div className="row">
@@ -151,6 +151,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     onChange={(e) => this.handleEmailInput(e)}
                     value={email}
                     maxLength={100}
+                    fullWidth={true}
                   />
                   <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>

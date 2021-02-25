@@ -16,6 +16,8 @@ import * as React from 'react';
 
 import BaseField from '../BaseField';
 
+import { Input, InputType } from 'Foundation/UI/components/Input';
+
 export default class InputField extends BaseField<HTMLInputElement> {
   public componentDidMount() {
     const { validity } = this.currentFieldRef;
@@ -28,11 +30,12 @@ export default class InputField extends BaseField<HTMLInputElement> {
     const pureProps = this.getPureProps();
 
     return (
-      <input
+      <Input
         ref={this.getFieldRef}
         {...pureProps}
-        onChange={(e) => this.handleOnChange(e)}
-        onBlur={(e) => this.handleOnBlur(e)}
+        onChange={(e: any) => this.handleOnChange(e)}
+        onBlur={(e: any) => this.handleOnBlur(e)}
+        type={pureProps.type as InputType}
       />
     );
   }

@@ -16,6 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 import React, { useState } from 'react';
 
 import { Button } from 'Foundation/UI/components/Button';
+import { Input } from 'Foundation/UI/components/Input';
 import { validateEmail } from 'Foundation/utils/validation';
 
 import { GetInTouchFormProps } from './models';
@@ -27,12 +28,12 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
 
   const { datasource } = props.fields.data;
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setShowStatusMessage(false);
     setValues({ ...values, [target.name]: target.value });
   };
 
-  const handleBlur = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleBlur = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [target.name]: target.value.trim() });
   };
 
@@ -51,7 +52,7 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
       <form className="contact-area_content_form_style">
         <div className="row">
           <div className="col-lg-6">
-            <input
+            <Input
               name="name"
               placeholder={datasource.namePlaceholder.jss.value}
               type="text"
@@ -61,7 +62,7 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
             />
           </div>
           <div className="col-lg-6">
-            <input
+            <Input
               name="email"
               placeholder={datasource.emailPlaceholder.jss.value}
               type="text"
@@ -71,7 +72,7 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
             />
           </div>
           <div className="col-lg-12">
-            <input
+            <Input
               name="subject"
               placeholder={datasource.subjectPlaceholder.jss.value}
               type="text"
@@ -86,8 +87,8 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
               placeholder={datasource.subjectPlaceholder.jss.value}
               defaultValue={''}
               value={values.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              onChange={(e: any) => handleChange(e)}
+              onBlur={(e: any) => handleBlur(e)}
             />
             <div className="Button-Container">
               <Button

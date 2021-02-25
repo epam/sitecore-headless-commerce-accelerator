@@ -21,6 +21,7 @@ import { Button } from 'Foundation/UI/components/Button';
 import { FIELDS } from './constants';
 import { OrderSummaryProps } from './models';
 
+import { Input } from 'Foundation/UI/components/Input';
 import { Select as PureSelect } from 'Foundation/UI/components/Select';
 
 import './styles.scss';
@@ -60,7 +61,11 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
                 </Select>
               </div>
               <div className="regionSelectWrapper">
-                <Jss.Text field={{ value: '* Region / State:', editable: '* Region / State:' }} tag="label" className="required" />
+                <Jss.Text
+                  field={{ value: '* Region / State:', editable: '* Region / State:' }}
+                  tag="label"
+                  className="required"
+                />
                 <DependentField>
                   {(form) =>
                     form.values[FIELDS.COUNTRY] ? (
@@ -84,7 +89,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               </div>
               <div className="zipCodeWrapper">
                 <label>* Zip/Postal Code</label>
-                <input type="text" />
+                <Input type="text" />
               </div>
               <Button className="OrderSummary-Button" buttonType="submit" buttonTheme="defaultReversed" rounded={true}>
                 Get A Quote

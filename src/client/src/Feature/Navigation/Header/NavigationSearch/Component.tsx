@@ -18,6 +18,8 @@ import React, { ChangeEvent } from 'react';
 import { NavigationSearchProps, NavigationSearchState } from './models';
 import { SuggestionList } from './SuggestionList';
 
+import { Input } from 'Foundation/UI/components/Input';
+
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
@@ -81,7 +83,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
             ref={(el) => (this.form = el)}
             onSubmit={(e) => this.handleFormSubmit(e)}
           >
-            <input
+            <Input
               className="search_field"
               ref={(el) => (this.searchInput = el)}
               type="search"

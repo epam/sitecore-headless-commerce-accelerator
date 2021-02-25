@@ -52,6 +52,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                   required={true}
                   maxLength={100}
                   defaultValue={firstName}
+                  fullWidth={true}
                 />
               </div>
               <div className="col-lg-12 col-md-12">
@@ -62,6 +63,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                   required={true}
                   maxLength={100}
                   defaultValue={lastName}
+                  fullWidth={true}
                 />
               </div>
               <div className="col-lg-12 col-md-12">
@@ -76,6 +78,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                   required={true}
                   maxLength={100}
                   defaultValue={address1}
+                  fullWidth={true}
                 />
               </div>
               <div className="col-lg-12 col-md-12">
@@ -86,6 +89,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                   required={true}
                   maxLength={100}
                   defaultValue={city}
+                  fullWidth={true}
                 />
               </div>
               <div className="col-lg-6 col-md-6 select-country-state">
@@ -135,6 +139,7 @@ export default class AddressForm extends React.Component<AddressFromProps> {
                   required={true}
                   maxLength={100}
                   defaultValue={zipPostalCode}
+                  fullWidth={true}
                 />
               </div>
             </div>

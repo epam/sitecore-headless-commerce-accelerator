@@ -12,27 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, HTMLProps } from 'react';
+import React, { FC, forwardRef, HTMLProps } from 'react';
 import { cnCheckbox } from './cn';
 
 import './Checkbox.scss';
 
 export type CheckboxProps = {
   checked?: boolean;
+  hovered?: boolean;
   className?: string;
-  size?: string;
+  controlSize?: 's' | 'm' | 'l';
 } & HTMLProps<HTMLInputElement>;
 
-export const Checkbox: FC<CheckboxProps> = ({
-  checked = false,
-  className,
-  size = 'm',
-  ...restProps
-}) => {
-  return (
-    <span className={cnCheckbox({size, checked}, [className])}>
-      <input className={cnCheckbox('Control')} type="checkbox" checked={checked} {...restProps}/>
-      <span className={cnCheckbox('Checkmark', {size})} />
-    </span>
-  );
-};
+export const Checkbox: FC<CheckboxProps> = forwardRef(
+  ({ checked = false, hovered = false, className, controlSize = 'm', ...restProps }, ref) => {
+    return (
+      <span className={cnCheckbox({ controlSize, checked, hovered }, [className])}>
+        <input type="checkbox" className={cnCheckbox('Control')} checked={checked} {...restProps} ref={ref} />
+        <span className={cnCheckbox('Checkmark', { controlSize })} />
+      </span>
+    );
+  },
+);

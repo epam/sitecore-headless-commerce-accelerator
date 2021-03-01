@@ -19,7 +19,7 @@
 //-some parent class to know whether to display a dark or light version (ex/ buttons), so will use this
 //-class for now...  forms.scss will further define the differences in color based on the presence of this class
 //note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
-@import "./variables";
+@import './variables';
 
 main {
   background: #fff;
@@ -238,100 +238,12 @@ a {
           margin-right: 20px;
         }
 
-        .selection-container input {
-          position: absolute;
-          opacity: 0;
+        .selection-container {
           cursor: pointer;
-        }
-        /* Create a custom radio button */
-        .checkbox {
-          min-height: 0;
-          padding: 0;
-          position: relative;
-          content: "";
-          display: inline-block;
-          width: 16px;
-          height: 15px;
-          border-radius: 3px;
-          margin: 3px 16px 5px 3px;
-          border: 2px solid #888888;
-          vertical-align: middle;
-          background-color: $checkbox-bg-color;
-          transition: background-color 0.2s ease-in;
-        }
 
-        &:hover .checkbox::after {
-          position: absolute;
-          display: block;
-          content: "";
-          top: 0;
-          left: 3px;
-          width: 5px;
-          height: 8px;
-          -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-          border: solid #fff;
-          border-width: 0 2px 2px 0;
-        }
-
-        .selection-container:hover {
-          .checkbox {
-            background-color: $checkbox-selected-bg-color !important;
-            border-color: $checkbox-selected-border-color !important;
-
-            &::after {
-              position: absolute;
-              display: block;
-              content: "";
-              top: 0;
-              left: 3px;
-              width: 5px;
-              height: 8px;
-              -webkit-transform: rotate(45deg);
-              transform: rotate(45deg);
-              border: solid #fff;
-              border-width: 0 2px 2px 0;
-            }
+          .checkbox-label {
+            padding-left: 30px;
           }
-        }
-
-        /* When the radio button is checked, add a blue background */
-        .selection-container input:checked ~ .checkbox {
-          background-color: $checkbox-selected-bg-color !important;
-          border-color: $checkbox-selected-border-color !important;
-
-          &::after {
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 3px;
-            width: 5px;
-            height: 8px;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-            border: solid #fff;
-            border-width: 0 2px 2px 0;
-          }
-        }
-
-        /* Create the indicator (the dot/circle - hidden when not checked) */
-        .checkbox:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-
-        /* Show the indicator (dot/circle) when checked */
-        input:checked ~ .checkbox:after {
-          display: block;
-        }
-
-        /* Style the indicator (dot/circle) */
-        .checkbox:after {
-          top: 9px;
-          left: 9px;
-          width: 8px;
-          height: 8px;
         }
       }
     }
@@ -357,14 +269,14 @@ a {
       color: $text-main-color;
 
       &.required:after {
-        content: " *";
+        content: ' *';
         font-weight: 900;
         font-size: 10px;
         vertical-align: super;
       }
     }
-    input[type="checkbox"] + label,
-    input[type="radio"] + label {
+    input[type='checkbox'] + label,
+    input[type='radio'] + label {
       text-transform: none;
     }
     input {
@@ -389,15 +301,15 @@ a {
         color: #5e5e5e;
         text-decoration: underline;
         &:after {
-          content: " \f0da";
-          font-family: "FontAwesome";
+          content: ' \f0da';
+          font-family: 'FontAwesome';
         }
       }
       &.plus {
         color: #5e5e5e;
         text-decoration: underline;
         &:after {
-          content: " +";
+          content: ' +';
         }
       }
       &.btn {

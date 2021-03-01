@@ -18,7 +18,7 @@ import { cnInput } from './cn';
 
 import './Input.scss';
 
-export type InputType = 'text' | 'password' | 'number' | 'email' | 'search' | 'checkbox';
+export type InputType = 'text' | 'password' | 'number' | 'email' | 'search';
 
 export type InputProps = HTMLProps<HTMLInputElement> & {
   error?: boolean;

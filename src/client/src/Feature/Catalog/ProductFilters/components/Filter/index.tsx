@@ -15,7 +15,10 @@
 import classNames from 'classnames';
 import * as React from 'react';
 
+import { FilterItem } from './FilterItem';
 import { FilterProps, FilterState } from './models';
+
+import { partial } from 'Foundation/utils/function-utils';
 
 export class Filter extends React.Component<FilterProps, FilterState> {
   public constructor(props: FilterProps) {
@@ -51,20 +54,14 @@ export class Filter extends React.Component<FilterProps, FilterState> {
                     return 0;
                   })
                   .map((foundValue, i) => {
-                    const id = `${foundValue.name}${foundValue.aggregateCount}${i}`;
                     return (
                       <li key={i}>
-                        <label className="container">
-                          <input
-                            type="checkbox"
-                            id={id}
-                            checked={IsApplied(facet.name, foundValue.name)}
-                            onChange={(e) => HandleFacetOnChange(facet.name, foundValue.name, e)}
-                          />
-                          <span className="checkbox" title={foundValue.name} />
-                          <label className="name" htmlFor={id} title={foundValue.name}>{`${foundValue.name}`}</label>
-                          <span className="total">{foundValue.aggregateCount}</span>
-                        </label>
+                        <FilterItem
+                          checked={IsApplied(facet.name, foundValue.name)}
+                          onChange={partial(HandleFacetOnChange, facet.name, foundValue.name)}
+                          title={foundValue.name}
+                          total={foundValue.aggregateCount}
+                        />
                       </li>
                     );
                   })}

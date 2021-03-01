@@ -42,5 +42,8 @@ export interface ShippingState extends Jss.SafePureComponentState {
   email: string;
   selectedAddressOption: string;
   canResetDeliveryInfo: boolean;
+  containsGift: boolean;
+  useForBillingAddress: boolean;
+  saveToAccount: boolean;
 }
 export interface AppState extends Checkout.GlobalCheckoutState, Checkout.AppState {}

@@ -64,7 +64,6 @@ export default class InputField extends BaseField<HTMLInputElement> {
     const { defaultValue, type } = this.props;
 
     switch (type) {
-      case 'checkbox':
       case 'radio': {
         const { defaultChecked } = this.props;
 
@@ -77,16 +76,6 @@ export default class InputField extends BaseField<HTMLInputElement> {
   }
 
   private getValue(e: React.ChangeEvent<HTMLInputElement>) {
-    const { type } = this.props;
-
-    switch (type) {
-      case 'checkbox': {
-        return e.target.checked;
-      }
-      case 'radio':
-      default: {
-        return e.target.value;
-      }
-    }
+    return e.target.value;
   }
 }

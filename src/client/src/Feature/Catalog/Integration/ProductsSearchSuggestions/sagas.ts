@@ -29,25 +29,20 @@ export function* fetchProductsSearchSuggestions(params: Action<Models.Suggestion
   const {
     payload: { search },
   } = params;
+  try {
+    yield put(actions.ProductsSearchSuggestionsRequest(search));
+    const { data, error }: Result<ProductSearchSuggestionResponse> = yield call(
+      ProductSearch.requestSuggestions,
+      search,
+    );
 
-  if (search.trim() === '') {
-    yield put(actions.ResetState());
-  } else {
-    try {
-      yield put(actions.ProductsSearchSuggestionsRequest(search));
-      const { data, error }: Result<ProductSearchSuggestionResponse> = yield call(
-        ProductSearch.requestSuggestions,
-        search,
-      );
-
-      if (error) {
-        return yield put(addError(error.message));
-      }
-
-      yield put(actions.ProductsSearchSuggestionsSuccess(data.products));
-    } catch (e) {
-      yield put(actions.ProductsSearchSuggestionsFailure(e.message || 'Products search failure'));
+    if (error) {
+      return yield put(addError(error.message));
     }
+
+    yield put(actions.ProductsSearchSuggestionsSuccess(data.products));
+  } catch (e) {
+    yield put(actions.ProductsSearchSuggestionsFailure(e.message || 'Products search failure'));
   }
 }
 

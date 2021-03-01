@@ -21,6 +21,15 @@ import * as ProductsSearchSuggestions from 'Feature/Catalog/Integration/Products
 import * as Context from 'Foundation/ReactJss/SitecoreContext';
 
 import { NavigationSearchComponent } from './Component';
+import { AppState } from './models';
+
+const mapStateToProps = (state: AppState) => {
+  const searchSuggestionsStatus = ProductsSearchSuggestions.productsSearchSuggestionsStatus(state);
+
+  return {
+    searchSuggestionsStatus,
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
@@ -32,4 +41,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     dispatch,
   );
 
-export const NavigationSearch = compose(JSS.rendering, connect(null, mapDispatchToProps))(NavigationSearchComponent);
+export const NavigationSearch = compose(
+  JSS.rendering,
+  connect(mapStateToProps, mapDispatchToProps),
+)(NavigationSearchComponent);

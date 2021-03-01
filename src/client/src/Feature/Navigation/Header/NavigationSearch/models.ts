@@ -12,14 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as commonModels from 'Feature/Catalog/Integration/common/models';
+import { GlobalProductsSearchSuggestionsState } from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as JSS from 'Foundation/ReactJss';
 
 export interface NavigationSearchProps extends JSS.Rendering {
   ChangeRoute: (newRoute: string) => void;
   requestSuggestions: (search: string) => void;
   resetSuggestionsState: () => void;
+  searchSuggestionsStatus: string;
 }
 
 export interface NavigationSearchState extends JSS.SafePureComponentState {
   isOpen: boolean;
 }
+
+export type AppState = GlobalProductsSearchSuggestionsState & commonModels.AppState;

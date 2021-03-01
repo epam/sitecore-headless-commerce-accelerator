@@ -12,10 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Input';
-export * from './Select';
-export * from './FieldSet';
-export * from './Submit';
-export * from './DependentField';
-export * from './Radio';
-export * from './Checkbox';
+/**
+ * Utility function to preset arguments so that we specify some of those up front
+ * and leave the rest to be specified later
+ * @param {*} fn 
+ * @param  {...any} presetArgs 
+ */
+export function partial(fn, ...presetArgs) {
+    return function partiallyApplied(...laterArgs) {
+        return fn(...presetArgs, ...laterArgs);
+    };
+}

@@ -12,10 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Input';
-export * from './Select';
-export * from './FieldSet';
-export * from './Submit';
-export * from './DependentField';
-export * from './Radio';
-export * from './Checkbox';
+import { cn } from '@bem-react/classname';
+
+export const cnFilterItem = cn('FilterItem');

@@ -12,10 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Input';
-export * from './Select';
-export * from './FieldSet';
-export * from './Submit';
-export * from './DependentField';
-export * from './Radio';
-export * from './Checkbox';
+import { CheckboxProps } from 'Foundation/UI/components/Checkbox';
+
+import { contextConnect } from './../enhancers';
+import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';
+import CheckboxField from './Checkbox';
+
+export const Checkbox = contextConnect<
+  BaseFieldProps<HTMLInputElement> & CheckboxProps,
+  BaseFieldEnhancedProps<HTMLInputElement>
+>(CheckboxField);

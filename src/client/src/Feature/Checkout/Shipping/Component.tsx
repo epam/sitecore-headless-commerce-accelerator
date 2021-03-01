@@ -13,11 +13,11 @@
 //    limitations under the License.
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import * as React from 'react';
+import React, { FormEvent } from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { DependentField, FieldSet, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
+import { Checkbox, DependentField, FieldSet, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
 import { CheckoutStepType } from 'Feature/Checkout/Integration/Checkout';
 
@@ -34,11 +34,17 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
     this.state = {
       canResetDeliveryInfo: true,
+      containsGift: false,
       email: '',
+      saveToAccount: false,
       selectedAddressOption,
+      useForBillingAddress: false,
     };
 
     this.handleAddressOptionChange = this.handleAddressOptionChange.bind(this);
+    this.handleUseForBillingAddressChange = this.handleUseForBillingAddressChange.bind(this);
+    this.handleContainsGiftChange = this.handleContainsGiftChange.bind(this);
+    this.handleSaveToAccountChange = this.handleSaveToAccountChange.bind(this);
   }
 
   public componentDidMount() {
@@ -188,16 +194,24 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                 <ul className="options">
                   <li>
                     <label htmlFor="use-for-billing" className="selection-container">
-                      <Input type="checkbox" name={FIELDS.USE_FOR_BILLING} id="use-for-billing" />
-                      <span className="checkbox" />
-                      Also use for billing address
+                      <Checkbox
+                        name={FIELDS.USE_FOR_BILLING}
+                        id="use-for-billing"
+                        checked={this.state.useForBillingAddress}
+                        onChange={this.handleUseForBillingAddressChange}
+                      />
+                      <span className="checkbox-label">Also use for billing address</span>
                     </label>
                   </li>
                   <li>
                     <label htmlFor="contains-gift" className="selection-container">
-                      <Input type="checkbox" name={FIELDS.CONTAINS_GIFT} id="contains-gift" />
-                      <span className="checkbox" />
-                      This order contains a gift
+                      <Checkbox
+                        name={FIELDS.CONTAINS_GIFT}
+                        id="contains-gift"
+                        checked={this.state.containsGift}
+                        onChange={this.handleContainsGiftChange}
+                      />
+                      <span className="checkbox-label">This order contains a gift</span>
                     </label>
                   </li>
                 </ul>
@@ -207,10 +221,16 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                   <ul className="options">
                     <li>
                       <label htmlFor="save-to-account" className="selection-container">
-                        <Input type="checkbox" name={FIELDS.SAVE_TO_MY_ACCOUNT} id="save-to-account" />
-                        <span className="checkbox" />
-                        <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
-                        <Text field={{ value: 'My Account.' }} tag="strong" />
+                        <Checkbox
+                          name={FIELDS.SAVE_TO_MY_ACCOUNT}
+                          id="save-to-account"
+                          checked={this.state.saveToAccount}
+                          onChange={this.handleSaveToAccountChange}
+                        />
+                        <span className="checkbox-label">
+                          <Text field={{ value: 'Save this address to' }} tag="span" />{' '}
+                          <Text field={{ value: 'My Account.' }} tag="strong" />
+                        </span>
                       </label>
                     </li>
                   </ul>
@@ -290,6 +310,18 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
         this.setState({ canResetDeliveryInfo: false });
       }
     }
+  }
+
+  private handleUseForBillingAddressChange(e: FormEvent<HTMLInputElement>) {
+    this.setState({ useForBillingAddress: Boolean(e.currentTarget.checked) });
+  }
+
+  private handleContainsGiftChange(e: FormEvent<HTMLInputElement>) {
+    this.setState({ containsGift: Boolean(e.currentTarget.checked) });
+  }
+
+  private handleSaveToAccountChange(e: FormEvent<HTMLInputElement>) {
+    this.setState({ saveToAccount: Boolean(e.currentTarget.checked) });
   }
 
   // tslint:disable-next-line:cognitive-complexity

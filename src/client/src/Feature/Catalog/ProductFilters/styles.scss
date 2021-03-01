@@ -1,18 +1,18 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
 @import 'Foundation/UI/common/scss/variables';
 
@@ -115,14 +115,14 @@
   i {
     padding-left: 10px;
   }
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: $theme-color;
   }
 
   .productGridFilter-mobile & {
     display: none;
   }
-
 }
 
 .productGridSort {
@@ -130,7 +130,6 @@
   position: relative;
 
   .sortOptions {
-
     li {
       @include clearfix;
       padding: 0 15px 0 15px;
@@ -198,7 +197,6 @@
   }
 
   .productGridFilter-mobile &-sale {
-
     &_label {
       padding: 10px 15px;
       color: #888888;
@@ -225,23 +223,23 @@
   /* Styles for .filter_options */
   &_options {
     display: block;
-     //max show 7 of the li's max-height: 203px;
+    //max show 7 of the li's max-height: 203px;
     margin-bottom: 22px;
     overflow-y: visible;
 
     &.show-all-links {
-      transition: max-height .2s;
+      transition: max-height 0.2s;
     }
     &.hide-all-links {
       max-height: 0;
-      transition: max-height .2s;
+      transition: max-height 0.2s;
     }
 
     /* Styles for filter_options in mobile side-panel */
     .productGridFilter-mobile & {
       display: none;
       max-height: 100%;
-      background: #F2F2F2;
+      background: #f2f2f2;
       border-top: 1px solid $border-color;
       border-bottom: 1px solid $border-color;
       margin: 0;
@@ -261,127 +259,6 @@
     }
     li:last-child {
       height: 100% !important;
-      .container {
-        margin-bottom: 0;
-        .name {
-          margin-bottom: 0;
-          line-height: 1;
-          height: 100%;
-          margin-top: 3px;
-          @media (max-width: $screen-md) {
-            margin-top: 0;
-            line-height: 18px;
-          }
-        }
-      }
-    }
-    .container{
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      padding: 0;
-      cursor: pointer;
-
-      input {
-        display: none;
-      }
-
-      .name {
-        font-family: $poppins;
-        font-size: 14px;
-        font-weight: normal;
-        color: black;
-        cursor: pointer;
-        margin-right: 2px;
-        padding-left: 30px;
-        @media (min-width: $screen-md-min) {
-          -o-text-overflow: ellipsis; /* Opera */
-          text-overflow: ellipsis; /* IE, Safari (WebKit) */
-          overflow: hidden; /* don't show excess chars */
-          white-space: nowrap; /* force single line */
-          width: 110px; /* fixed width */
-        }
-        @media (min-width: $screen-lg-min) {
-          width: 160px; /* fixed width */
-        }
-      }
-
-      .total {
-        display: inline-block;
-        line-height: 20px;
-        width: 30px;
-        min-width: 30px;
-        height: 20px;
-        font-weight: 500;
-        font-family: $poppins;
-        font-size: 14px;
-        -webkit-transition: all .3s ease 0s;
-        transition: all .3s ease 0s;
-        text-align: center;
-        color: $count-bg-color;
-        border-radius: 50px;
-        background-color: #eee;
-      }
-
-      .checkbox{
-        min-height: 0;
-        padding: 0;
-        position: absolute;
-        content: '';
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 24%;
-        margin: 3px 16px 1px 0px;
-        border: 2px solid #888888;
-        vertical-align: middle;
-        background-color: $checkbox-bg-color;
-        transition: background-color .2s ease-in;
-      }
-      &:hover .checkbox {
-        background-color: $checkbox-selected-bg-color;
-        border-color: $checkbox-selected-border-color;
-
-        &::after{
-          position: absolute;
-          content: "";
-          left: 3px;
-          top: 0px;
-          width: 5px;
-          height: 8px;
-          border: solid white !important;
-          border-width: 0px 2px 2px 0px !important;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
-      }
-      &:hover .total {
-        background-color: $checkbox-selected-bg-color;
-        color: $white;
-      }
-      input[type=checkbox]:checked + .checkbox{
-        background-color: $checkbox-selected-bg-color !important;
-        border-color: $checkbox-selected-border-color !important;
-
-        &::after{
-          position: absolute;
-          content: "";
-          left: 3px;
-          top: 0px;
-          width: 5px;
-          height: 8px;
-          border: solid white !important;
-          border-top-width: medium;
-          border-right-width: medium;
-          border-bottom-width: medium;
-          border-left-width: medium;
-          border-width: 0px 2px 2px 0px !important;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
-      }
     }
   }
 
@@ -412,7 +289,7 @@
       }
       &:after {
         transform: rotate(90deg);
-        transition: transform .2s;
+        transition: transform 0.2s;
       }
     }
 
@@ -424,7 +301,7 @@
     }
     .is-open &:after {
       transform: rotate(0deg);
-      transition: transform .2s;
+      transition: transform 0.2s;
     }
   }
 
@@ -502,18 +379,19 @@
       display: block;
       width: 40px;
       height: 40px;
-      border: 1px solid rgba(0, 0, 0, .3);
-      transition: transform .2s;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
 
       @media (min-width: $screen-md-min) {
         height: 26px;
         width: 26px;
       }
 
-      &.is-selected, &:hover {
+      &.is-selected,
+      &:hover {
         transform: scale3d(1.2, 1.2, 1);
         border-width: 2px;
-        transition: transform .2s;
+        transition: transform 0.2s;
       }
     }
   }

@@ -28,7 +28,7 @@ export type SuggestionItemProps = {
 };
 
 export const SuggestionItem: FC<SuggestionItemProps> = ({ product, onClick = noop }) => {
-  const { brand, link, imageUrl, displayName, currencySymbol, price } = product;
+  const { brand, imageUrl, displayName, currencySymbol, price, productId } = product;
   const productDescription = `${brand} ${displayName}`;
 
   const handleClick = useCallback(() => {
@@ -36,7 +36,7 @@ export const SuggestionItem: FC<SuggestionItemProps> = ({ product, onClick = noo
   }, [product, onClick]);
 
   return (
-    <NavigationLink className={cnNavigationSearch('SuggestionItem')} to={link} onClick={handleClick}>
+    <NavigationLink className={cnNavigationSearch('SuggestionItem')} to={`/product/${productId}`} onClick={handleClick}>
       <div className={cnNavigationSearch('LeftColumn')}>
         <img className={cnNavigationSearch('Image')} src={imageUrl} />
       </div>

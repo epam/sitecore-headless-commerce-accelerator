@@ -189,7 +189,6 @@ export interface ProductSearchSuggestion {
   currencySymbol: string;
   displayName: string;
   imageUrl: string;
-  link: string;
   price: number;
   productId: string;
 }

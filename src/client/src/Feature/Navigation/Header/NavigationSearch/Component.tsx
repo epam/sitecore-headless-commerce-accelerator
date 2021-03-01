@@ -15,16 +15,18 @@ import * as JSS from 'Foundation/ReactJss';
 import { debounce } from 'lodash';
 import React, { ChangeEvent } from 'react';
 
+import { LoadingStatus } from 'Foundation/Integration';
+import { Input } from 'Foundation/UI/components/Input';
+
 import { NavigationSearchProps, NavigationSearchState } from './models';
 import { SuggestionList } from './SuggestionList';
-
-import { Input } from 'Foundation/UI/components/Input';
 
 import './styles.scss';
 
 const SEARCH_INPUT_NAME = 'q';
 const TIME_ASYNC_FOCUS = 50;
 const DEBOUNCE_DELAY = 400;
+const MIN_CHARACTERS_TO_SEARCH = 3;
 
 import classnames from 'classnames';
 export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationSearchProps, NavigationSearchState> {
@@ -131,7 +133,14 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   };
 
   private handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.debouncedRequestSuggestions(e.target.value);
+    const { searchSuggestionsStatus } = this.props;
+    const value = e.target.value.trim();
+
+    if (value.length >= MIN_CHARACTERS_TO_SEARCH) {
+      this.debouncedRequestSuggestions(value);
+    } else if (searchSuggestionsStatus === LoadingStatus.Loaded) {
+      this.resetSuggestions();
+    }
   };
 
   private handleItemClick = () => {

@@ -1,10 +1,17 @@
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
 
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+
 module.exports = {
   stories: ['../../src/**/stories/**/*.stories.mdx', '../../src/**/stories/**/*.stories.@(js|jsx|ts|tsx)'],
   webpackFinal: (config) => {
-    config.resolve.alias['Foundation'] = resolve(__dirname, '../../src/Foundation');
+    config.resolve.extensions = ['.tsx', '.ts', '.js', '.css', '.scss'];
+    config.resolve.alias['Feature'] = resolve(process.cwd(), './src/Feature');
+    config.resolve.alias['Foundation'] = resolve(process.cwd(), './src/Foundation');
+    config.resolve.alias['Project'] = resolve(process.cwd(), './src/Project');
+    config.resolve.alias['data-api-alias'] = resolve(process.cwd(), './scripts/webpack/environments/development/JssDataApi');
+    config.plugins = config.plugins.filter((plugin) => !(plugin instanceof CaseSensitivePathsPlugin));
 
     config.module.rules.push({
       test: /\.scss$/,

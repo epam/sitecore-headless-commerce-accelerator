@@ -54,6 +54,7 @@ $checkbox-checkmark-size-l-height: 20px;
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+        box-sizing: border-box;
       }
       &_controlSize {
         &_s {
@@ -67,8 +68,8 @@ $checkbox-checkmark-size-l-height: 20px;
         &_m {
           &::after {
             left: 3px;
-            top: 1px;
-            width: 5px;
+            top: 0;
+            width: 6px;
             height: 8px;
           }
         }

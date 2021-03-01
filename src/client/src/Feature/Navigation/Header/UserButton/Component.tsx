@@ -71,12 +71,12 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           ) : (
             <>
               <li className="account_dropdown-item">
-                <NavigationLink className="account_link" to="/account/login-register?form=login">
+                <NavigationLink className="account_link" to="/login-or-register?form=login">
                   Login
                 </NavigationLink>
               </li>
               <li className="account_dropdown-item">
-                <NavigationLink className="account_link" to="/account/login-register?form=register">
+                <NavigationLink className="account_link" to="/login-or-register?form=register">
                   Register
                 </NavigationLink>
               </li>

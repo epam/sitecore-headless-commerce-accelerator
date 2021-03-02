@@ -20,7 +20,7 @@ $z-index-s: 10;
 $z-index-xs: 1;
 
 // Font Family  ---------------
-$poppins: "Poppins", "Arial", sans-serif;
+$poppins: 'Poppins', 'Arial', sans-serif;
 
 // Text Colors ---------------
 $white: #ffffff;
@@ -61,8 +61,8 @@ $second-color-dark: #191919;
 $breadcrumbs-bar-color: #f7f7f7;
 $checkout-area-color: #d8d8d8;
 // Responsive Variables
-$xl-layout: "only screen and (min-width: 1200px) and (max-width: 1365px)";
-$xs-layout: "only screen and (max-width: 767px)";
+$xl-layout: 'only screen and (min-width: 1200px) and (max-width: 1365px)';
+$xs-layout: 'only screen and (max-width: 767px)';
 
 //Search color
 
@@ -72,65 +72,65 @@ $count-bg-color: #9a9a9a;
 $breadcrumbs-bar-color: #f7f7f7;
 
 // @todo remove unnecessary breakpoints
-$xx-layout: "(max-width: 1600px)";
-$xl-layout: "(max-width: 1365px)";
-$lg-layout: "(max-width: 1199px)";
-$md-layout: "(max-width: 991px)";
-$xs-layout: "(max-width: 767px)";
-$sm-layout: "(max-width: 767px)";
-$xxs-layout: "(max-width: 479px)";
-$footer-switch-mode: "(max-width: 1024px)";
-$header-switch-mode: "(max-width: 1024px)";
-$header-switch-mobile-mode: "(max-width: 1101px)";
-$header-switch-padding-mobile-mode: "(max-width: 991px) and (min-width: 768px)";
-$recommended-product-border-color:  #ededf1;
+$xx-layout: '(max-width: 1600px)';
+$xl-layout: '(max-width: 1365px)';
+$lg-layout: '(max-width: 1199px)';
+$md-layout: '(max-width: 991px)';
+$xs-layout: '(max-width: 767px)';
+$sm-layout: '(max-width: 767px)';
+$xxs-layout: '(max-width: 479px)';
+$footer-switch-mode: '(max-width: 1024px)';
+$header-switch-mode: '(max-width: 1024px)';
+$header-switch-mobile-mode: '(max-width: 1101px)';
+$header-switch-padding-mobile-mode: '(max-width: 991px) and (min-width: 768px)';
+$recommended-product-border-color: #ededf1;
 $placeholder-search-input-text-color: #797878;
-$footer-switch-mode-min: "(min-width: 590px)";
-$account-switch-layout: "(max-width: 920px)";
+$footer-switch-mode-min: '(min-width: 590px)';
+$account-switch-layout: '(max-width: 920px)';
 
 $checkout-form-font-color: #242424;
 $checkout-back-button: #666666;
 $checkout-text-color: #212121;
 $order-form-background-color: #f9f9f9;
-$checkout-title-background-color: #f8f9f9;  
+$checkout-title-background-color: #f8f9f9;
 $checkout-confirmation-title-before-color: #e3e1e1;
 $checkout-cart-list-color: #fafafa;
 $checkout-button-second-main-color: #f2f2f2;
-$invalid-promo-code-msg-color: #FF0000;
+$invalid-promo-code-msg-color: #ff0000;
 $valid-promo-code-msg-color: #fa6bff;
 // Extra small screen / phone
 //** Deprecated `$screen-xs` as of v3.0.1
-$screen-xs:                  480px;
+$screen-xs: 480px;
 //** Deprecated `$screen-xs-min` as of v3.2.0
-$screen-xs-min:              $screen-xs;
+$screen-xs-min: $screen-xs;
 //** Deprecated `$screen-phone` as of v3.0.1
-$screen-phone:               $screen-xs-min;
+$screen-phone: $screen-xs-min;
 
 // Small screen / tablet
 //** Deprecated `$screen-sm` as of v3.0.1
-$screen-sm:                  768px;
-$screen-sm-min:              $screen-sm;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
 //** Deprecated `$screen-tablet` as of v3.0.1
-$screen-tablet:              $screen-sm-min;
+$screen-tablet: $screen-sm-min;
 
 // Medium screen / desktop
 //** Deprecated `$screen-md` as of v3.0.1
-$screen-md:                  1024px;
-$screen-md-min:              $screen-md;
+$screen-md: 1024px;
+$screen-md-min: $screen-md;
 //** Deprecated `$screen-desktop` as of v3.0.1
-$screen-desktop:             $screen-md-min;
+$screen-desktop: $screen-md-min;
 
 // Large screen / wide desktop
 //** Deprecated `$screen-lg` as of v3.0.1
-$screen-lg:                  1310px;
-$screen-lg-min:              $screen-lg;
+$screen-lg: 1310px;
+$screen-lg-min: $screen-lg;
 //** Deprecated `$screen-lg-desktop` as of v3.0.1
-$screen-lg-desktop:          $screen-lg-min;
+$screen-lg-desktop: $screen-lg-min;
 
 // So media queries don't overlap when required, provide a maximum
-$screen-xs-max:              ($screen-sm-min - 1);
-$screen-sm-max:              ($screen-md-min - 1);
-$screen-md-max:              ($screen-lg-min - 1);
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
 
 // Mid-Small breakpoint
 $screen-ms: 480px;
@@ -141,34 +141,33 @@ $screen-ms-max: ($screen-sm-min - 1);
 $screen-xs-max-new: ($screen-ms-min - 1);
 
 //** Number of columns in the grid.
-$grid-columns:              12;
+$grid-columns: 12;
 //** Padding between columns. Gets divided in half for the left and right.
-$grid-gutter-width:         30px;
+$grid-gutter-width: 30px;
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
-$grid-float-breakpoint:     $screen-sm-min;
+$grid-float-breakpoint: $screen-sm-min;
 //** Point at which the navbar begins collapsing.
 $grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
-
 
 //== Container sizes
 //
 //## Define the maximum width of `.container` for different screen sizes.
 
 // Small screen / tablet
-$container-tablet:             (720px + $grid-gutter-width);
+$container-tablet: (720px + $grid-gutter-width);
 //** For `$screen-sm-min` and up.
-$container-sm:                 $container-tablet;
+$container-sm: $container-tablet;
 
 // Medium screen / desktop
-$container-desktop:            (940px + $grid-gutter-width);
+$container-desktop: (940px + $grid-gutter-width);
 //** For `$screen-md-min` and up.
-$container-md:                 $container-desktop;
+$container-md: $container-desktop;
 
 // Large screen / wide desktop
-$container-large-desktop:      (1250px + $grid-gutter-width);
+$container-large-desktop: (1250px + $grid-gutter-width);
 //** For `$screen-lg-min` and up.
-$container-lg:                 $container-large-desktop;
+$container-lg: $container-large-desktop;
 
 // Font colors
 $brand-font-color: #666;
@@ -216,13 +215,11 @@ $increment-btn-background: #ffffff;
 $increment-btn-border-color: #e5e5e5;
 //Wishlist COLORS
 $actions-button-color: #363f4d;
-$table-font-color: #333;
 
 //Not Found
 $not-found-code: $theme-color;
 $button-color: #363f4d;
 $button-text-color: $white;
-
 
 //Review Form
 $review-star-color: #ffa900;
@@ -234,6 +231,7 @@ $main-color-dark: #043838;
 
 // Login/register Styles
 $login-button-default-color: #f2f2f2;
+$wishlist-second-btn-color: #f2f2f2;
 $login-default-font-color: #333;
 $login-hover-font-color: #fff;
 $register-failure-font-color: #db1628;
@@ -256,8 +254,8 @@ $filter-header-font-color: #242424;
 //Product Section
 $original-price-font-color: #8e8e8e;
 //Order history
-$btn-shop-now: #363F4D;
-$order-history-price: #F977FE;
+$btn-shop-now: #363f4d;
+$order-history-price: #f977fe;
 $order-history-header-text-background: #f9f9f9;
 //Global Error
 $global-error-background: #db1628;
@@ -277,6 +275,25 @@ $contact-form-input-border-color: #c1c1c1;
 $contact-form-input-color: #000;
 
 // Global Button Vars
-$global-button-bg-color-purple: #A749FF;
-$global-button-bg-color-darkgrey: #363F4D;
-$global-button-bg-color-lightgrey: #F2F2F2;
+$global-button-bg-color-purple: #a749ff;
+$global-button-bg-color-darkgrey: #363f4d;
+$global-button-bg-color-lightgrey: #f2f2f2;
+
+// Navigation
+$bullet-active-bg-color: #9a56f6;
+
+//Table
+$table-border-color: #ebebeb;
+$table-header-background: #f9f9f9;
+$table-font-color: #333333;
+
+// Blog Article
+$textarea-border-color: #eaeaea;
+$publication-date-delimiter-bg-color: #555555;
+$article-card-box-shadow-color: rgba(85, 85, 85, 0.2);
+$article-card-font-color: #333;
+$article-card-content-preview-color: #666;
+$share-link-color: #fff;
+$facebook-color: #3b5998;
+$twitter-color: #55acee;
+$instagram-color: #c32aa3;

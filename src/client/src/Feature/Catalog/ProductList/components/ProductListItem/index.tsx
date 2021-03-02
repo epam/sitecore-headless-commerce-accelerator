@@ -14,26 +14,51 @@
 
 import * as React from 'react';
 
+import { ProductRating } from 'Feature/Catalog/ProductRating';
+import { eventHub, events } from 'Foundation/EventHub';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
+import { ImageSlider, Slide } from 'Foundation/UI/components/ImageSlider';
 
-import { ProductRating } from 'Feature/Catalog/ProductRating';
 import { ProductListItemProps } from './models';
 
+import { cnProductListItem } from './cn';
 import './styles.scss';
 
 export class ProductListItem extends Jss.SafePureComponent<ProductListItemProps, Jss.SafePureComponentState> {
   public safeRender() {
     const { product, fallbackImageUrl } = this.props;
+    const { productId, imageUrls } = product;
+    const hasImages = imageUrls.length !== 0;
+
     return (
       <figure className="listing-grid-item">
-        <div className="img-wrap">
-          <NavigationLink to={`/product/${product.productId}`}>
-            <img src={!!product.imageUrls[0] ? product.imageUrls[0] : fallbackImageUrl} alt="product image" />
-          </NavigationLink>
+        <div className={cnProductListItem('ImageWrapper')}>
+          <div className={cnProductListItem('ImageInner')}>
+            <NavigationLink
+              to={`/product/${productId}`}
+              onClick={() =>
+                eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, { ...product, list: window.location.pathname })
+              }
+            >
+              <ImageSlider>
+                {hasImages ? (
+                  imageUrls.map((url, i) => <Slide key={`${productId}-${i}`} url={url} />)
+                ) : fallbackImageUrl ? (
+                  <Slide url={fallbackImageUrl} />
+                ) : null}
+              </ImageSlider>
+            </NavigationLink>
+          </div>
         </div>
+
         <figcaption>
-          <NavigationLink to={`/product/${product.productId}`}>
+          <NavigationLink
+            to={`/product/${productId}`}
+            onClick={() =>
+              eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, { ...product, list: window.location.pathname })
+            }
+          >
             <h3>{product.displayName}</h3>
           </NavigationLink>
           <ProductRating rating={product.customerAverageRating} />

@@ -69,6 +69,8 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^5.0.0-alpha.8",
+    "react-scroll": "^1.8.1",
+    "react-use": "^17.1.1",
     "react-visibility-sensor": "^5.1.1",
     "recompose": "^0.27.1",
     "redux": "^4.0.1",

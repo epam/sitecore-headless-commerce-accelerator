@@ -29,6 +29,10 @@ SharedFields:
           s:id="{B1737F32-C7B0-464C-B271-7E0C3FEDF95F}"
           s:ph="/main-content/w-col-wide-{D8830798-2CEC-4965-9841-814483AF86CC}-0" />
         <r
+          uid="{041F4022-8724-4471-BB90-F44C7F98535F}">
+          <p:d />
+        </r>
+        <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
       </d>

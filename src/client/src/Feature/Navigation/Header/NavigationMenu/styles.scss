@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 .navigation {
   ul.navigation-content {
@@ -49,7 +49,8 @@
         padding: 0 10px;
       }
 
-      > a, span {
+      > a,
+      span {
         font-size: 15px;
         font-weight: 500;
         display: inline-block;
@@ -160,7 +161,7 @@
             left: 0;
             width: 7px;
             height: 7px;
-            content: "";
+            content: '';
             transition: all 0.3s ease-in-out 0s;
             opacity: 0;
             border-radius: 50%;
@@ -202,9 +203,11 @@
             text-transform: uppercase;
             font-size: 14px;
             color: $text-main-header-color;
-            &:hover{
+            &:hover {
               color: $theme-color;
             }
+
+            letter-spacing: normal;
           }
         }
         &:hover .navigation_submenu {
@@ -236,7 +239,7 @@
               top: 0;
               display: block;
               width: 100%;
-              content: "";
+              content: '';
               -webkit-transform: rotate(90deg);
               transform: rotate(90deg);
               border-bottom: 1px solid;
@@ -264,7 +267,8 @@
               color: $theme-color;
             }
           }
-          .fa-plus, .fa-minus{
+          .fa-plus,
+          .fa-minus {
             -webkit-text-stroke: 2px white;
             color: black;
           }
@@ -303,7 +307,8 @@
                     color: $theme-color;
                   }
                 }
-                .fa-plus, .fa-minus {
+                .fa-plus,
+                .fa-minus {
                   -webkit-text-stroke: 2px white;
                   color: black;
                 }

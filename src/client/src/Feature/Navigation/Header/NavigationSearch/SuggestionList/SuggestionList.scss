@@ -19,7 +19,7 @@
     justify-content: start;
     list-style: outside none none;
     max-height: calc(70vh - 70px);
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   &-NotFound {

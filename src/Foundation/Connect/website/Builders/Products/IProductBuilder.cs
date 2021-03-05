@@ -18,6 +18,8 @@ namespace HCA.Foundation.Connect.Builders.Products
 
     using Models.Catalog;
 
+    using Sitecore.Data.Items;
+
     /// <summary>
     /// Builds product entities from TSource
     /// </summary>
@@ -33,10 +35,11 @@ namespace HCA.Foundation.Connect.Builders.Products
         Product Build(TSource source);
 
         /// <summary>
-        /// Builds enumerable of product entities without variants from TSource
+        /// Builds enumerable of product entities from TSource
         /// </summary>
         /// <param name="sources">Source model</param>
+        /// <param name="includeVariants">Include variants</param>
         /// <returns></returns>
-        IEnumerable<Product> BuildWithoutVariants(IEnumerable<TSource> sources);
+        IEnumerable<Product> Build(IEnumerable<Item> sources, bool includeVariants);
     }
 }

@@ -84,7 +84,7 @@ namespace HCA.Foundation.Connect.Services.Search
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
             var searchResults = this.searchMapper.Map<SearchResponse, SearchResults<Product>>(searchResponse);
-            searchResults.Results = this.productBuilder.BuildWithoutVariants(searchResponse.ResponseItems).ToList();
+            searchResults.Results = this.productBuilder.Build(searchResponse.ResponseItems, true).ToList();
 
             return searchResults;
         }

@@ -15,6 +15,7 @@
 namespace HCA.Foundation.Connect.Tests.Services.Search
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Connect.Builders.Products;
@@ -213,6 +214,7 @@ namespace HCA.Foundation.Connect.Tests.Services.Search
             //assert
             Assert.Equal(searchResponse.TotalItemCount, results.TotalItemCount);
 
+            this.productBuilder.Received(1).Build(Arg.Any<List<Item>>(), true);
             this.searchMapper.Received(1).Map<SearchResponse, Models.Search.SearchResults<Product>>(searchResponse);
         }
     }

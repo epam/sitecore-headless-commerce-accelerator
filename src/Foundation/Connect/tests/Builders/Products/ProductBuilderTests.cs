@@ -118,13 +118,13 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
         }
 
         [Fact]
-        public void BuildWithoutVariants_IfItemsAreValid_ShouldReturnValidProducts()
+        public void Build_IfItemsAreValidAndIncludeVariantsIsFalse_ShouldReturnValidProducts()
         {
             // arrange
             var items = this.Fixture.Create<List<Item>>();
 
             // act
-            var products = this.productBuilder.BuildWithoutVariants(items).ToList();
+            var products = this.productBuilder.Build(items, false).ToList();
 
             // assert
             Assert.NotNull(products);
@@ -132,6 +132,29 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             this.pricingManager
                 .Received(1)
                 .GetProductBulkPrices(Arg.Any<string>(), Arg.Any<IEnumerable<string>>(), Arg.Any<string[]>());
+            this.inventoryManager
+                .Received(1)
+                .GetStockInformation(
+                    Arg.Any<string>(),
+                    Arg.Any<IEnumerable<CommerceInventoryProduct>>(),
+                    Arg.Any<StockDetailsLevel>());
+        }
+
+        [Fact]
+        public void Build_IfItemsAreValidAndIncludeVariantsIsTrue_ShouldReturnValidProducts()
+        {
+            // arrange
+            var items = this.Fixture.Create<List<Item>>();
+
+            // act
+            var products = this.productBuilder.Build(items, true).ToList();
+
+            // assert
+            Assert.NotNull(products);
+            Assert.Equal(items.Count, products.Count);
+            this.pricingManager
+                .Received()
+                .GetProductPrices(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<string>(), Arg.Any<string>());
             this.inventoryManager
                 .Received(1)
                 .GetStockInformation(

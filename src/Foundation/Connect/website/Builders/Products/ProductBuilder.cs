@@ -79,12 +79,21 @@ namespace HCA.Foundation.Connect.Builders.Products
             return product;
         }
 
-        public IEnumerable<Product> BuildWithoutVariants(IEnumerable<Item> sources)
+        public IEnumerable<Product> Build(IEnumerable<Item> sources, bool includeVariants = false)
         {
             Assert.ArgumentNotNull(sources, nameof(sources));
 
-            var products = sources.Select(source => this.InitializeProduct(source, false)).ToList();
-            this.SetPricesWithoutVariants(products);
+            var products = sources.Select(source => this.InitializeProduct(source, includeVariants)).ToList();
+
+            if (includeVariants)
+            {
+                products.ForEach(this.SetPricesWithVariants);
+            }
+            else
+            {
+                this.SetPricesWithoutVariants(products);
+            }
+
             this.SetStockStatus(products);
 
             return products;

@@ -62,8 +62,8 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
             </i>
           </a>
         </Mobile>
-        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`} >
-          <CartView ToggleClick={this.toggleClick}/>
+        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
+          <CartView toggleClick={this.toggleClick} />
         </div>
       </div>
     );

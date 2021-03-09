@@ -12,36 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
-import { bindActionCreators } from 'redux';
+import { rendering } from 'Foundation/ReactJss';
 
-import { LoadingStatus } from 'Foundation/Integration';
-import { renderingWithContext } from 'Foundation/ReactJss';
+import { CartViewComponent } from './CartView';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
-
-import CartComponent from './Component';
-import { AppState, CartDispatchProps, CartFunctionProps, CartOwnProps, CartProps, CartStateProps } from './models';
-
-const mapStateToProps = (state: AppState) => {
-  const data = ShoppingCart.shoppingCartData(state);
-  const status = ShoppingCart.shoppingCart(state).status;
-  return {
-    isLoading: status === LoadingStatus.Loading || status === LoadingStatus.NotLoaded,
-    shoppingCartData: data,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators(
-    {
-      LoadCart: ShoppingCart.LoadCart,
-      RemoveCartLine: ShoppingCart.RemoveCartLine,
-    },
-    dispatch,
-  );
-
-const connectedToStore = connect<CartStateProps, CartDispatchProps, CartOwnProps>(mapStateToProps, mapDispatchToProps);
-
-export const CartView = compose<CartProps, CartFunctionProps>(connectedToStore, renderingWithContext)(CartComponent);
+export const CartView = rendering(CartViewComponent);

@@ -156,11 +156,6 @@
     }
   }
   .description-features {
-    border-top: 1px solid #ccc;
-    @media (min-width: $screen-md-min) {
-      border-top: none;
-    }
-
     li {
       margin: 0 0 13px;
       list-style: outside none none;

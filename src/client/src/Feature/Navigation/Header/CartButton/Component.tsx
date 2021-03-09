@@ -62,8 +62,8 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
             </i>
           </a>
         </Mobile>
-        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`} >
-          <CartView ToggleClick={this.toggleClick}/>
+        <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
+          <CartView toggleClick={this.toggleClick} />
         </div>
       </div>
     );
@@ -72,14 +72,10 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
     this.setState({
       cartVisible: false,
     });
-  }
+  };
 
   private handleClickOutside(e: MouseEvent) {
-    if (
-      this.wrapperRef.current &&
-      !this.wrapperRef.current.contains(e.target as Node) &&
-      this.state.cartVisible
-    ) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target as Node) && this.state.cartVisible) {
       this.setState({
         cartVisible: !this.state.cartVisible,
       });

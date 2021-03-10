@@ -12,5 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+.ProductCard {
+  &-ColorVariants {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+  }
+}

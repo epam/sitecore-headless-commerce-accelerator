@@ -12,5 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+@import 'Foundation/UI/common/scss/variables.scss';
+
+.ProductCard {
+  &-Separator {
+    padding: 0 8px;
+  }
+
+  &-FullPriceContainer {
+    &_lineThrough {
+      text-decoration: line-through;
+      color: $original-price-font-color;
+    }
+  }
+}

@@ -181,6 +181,11 @@ $button-transparentSlide-before-border-color: #a749ff;
         background-color: $theme-color;
       }
     }
+
+    &_clear {
+      background: none;
+      padding: 0;
+    }
   }
 
   &_rounded {

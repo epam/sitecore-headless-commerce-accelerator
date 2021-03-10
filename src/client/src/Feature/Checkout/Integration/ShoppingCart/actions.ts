@@ -87,6 +87,9 @@ export const UpdateCartLine: actionCreators.UpdateCartLine = (model: DataModels.
 });
 
 export const UpdateCartLineRequest: StatusType = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
   type: actionTypes.UPDATE_CART_LINE_REQUEST,
 });
 
@@ -120,6 +123,9 @@ export const RemoveCartLine: actionCreators.RemoveCartLine = (model: ShoppingCar
 });
 
 export const RemoveCartLineRequest: StatusType = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
   type: actionTypes.REMOVE_CART_LINE_REQUEST,
 });
 

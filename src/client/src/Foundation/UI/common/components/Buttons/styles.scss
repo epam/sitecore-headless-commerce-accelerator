@@ -1,18 +1,18 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 @import '../../scss/variables';
 @import '../../scss/mixins';
 // Variables for button sizes
@@ -37,67 +37,6 @@ $btn-main-border: $main-color;
 $btn-focus-color: #fff;
 $btn-focus-bg: $focus-color;
 $btn-focus-border: $focus-color;
-
-.btn,
-button {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 20px;
-  font-size: 20px;
-  line-height: 42px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  color: $main-color;
-  background-color: #fff;
-  background-repeat: repeat-x;
-  border: 3px solid $main-color;
-  border-radius: 0px;
-  text-transform: uppercase;
-  transition: background-color 0.20s ease-out 0.10s, color 0.20s ease-out 0.10s;
-  &.small {
-    font-size: 12px;
-    line-height: 21px;
-    font-weight: 900;
-    border-width: 1px;
-  }
-  &+.btn {
-    margin-left: 12px;
-  }
-}
-
-.btn:hover,
-.btn:focus,
-.btn:active,
-.btn.active,
-.btn.disabled,
-.btn[disabled] {
-  color: #333333;
-  background-color: #e6e6e6;
-  *background-color: #d9d9d9;
-}
-
-.btn:active,
-.btn.active {
-  background-color: #cccccc \9;
-}
-
-.btn:first-child {
-  *margin-left: 0;
-}
-
-.btn:hover,
-.btn:focus {
-  color: #fff;
-  background-color: $main-color;
-  text-decoration: none;
-}
-
-.btn:focus {
-  outline: thin dotted #333;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
 
 .btn-new-design-active {
   background-color: #f2f2f2;
@@ -161,7 +100,7 @@ a.btn.animated {
   &:after,
   span:before,
   span:after {
-    content: "";
+    content: '';
     position: absolute;
     background-color: $main-color;
     transition: transform 0.2s;
@@ -217,13 +156,13 @@ a.btn.animated {
 }
 
 button.btn,
-input[type="submit"].btn {
+input[type='submit'].btn {
   *padding-top: 3px;
   *padding-bottom: 3px;
 }
 
 button.btn::-moz-focus-inner,
-input[type="submit"].btn::-moz-focus-inner {
+input[type='submit'].btn::-moz-focus-inner {
   padding: 0;
   border: 0;
 }

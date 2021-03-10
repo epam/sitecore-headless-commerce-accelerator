@@ -20,6 +20,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Cart
     using Commerce.Builders.Cart;
     using Commerce.Mappers.Cart;
     using Commerce.Services.Catalog;
+    using Commerce.Services.Promotion;
 
     using Models.Entities.Cart;
     using Models.Entities.Catalog;
@@ -38,6 +39,7 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Cart
 
         private readonly ICatalogService catalogService;
         private readonly ICartMapper cartMapper;
+        private readonly IPromotionService promotionService;
 
         private readonly IFixture fixture;
 
@@ -47,8 +49,9 @@ namespace HCA.Foundation.Commerce.Tests.Builders.Cart
 
             this.catalogService = Substitute.For<ICatalogService>();
             this.cartMapper = Substitute.For<ICartMapper>();
+            this.promotionService = Substitute.For<IPromotionService>();
 
-            this.cartBuilder = new CartBuilder(this.catalogService, this.cartMapper);
+            this.cartBuilder = new CartBuilder(this.catalogService, this.cartMapper, this.promotionService);
         }
 
         [Fact]

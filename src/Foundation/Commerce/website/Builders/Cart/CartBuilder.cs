@@ -14,16 +14,18 @@
 
 namespace HCA.Foundation.Commerce.Builders.Cart
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using DependencyInjection;
-
+    using HCA.Foundation.Commerce.Models.Entities.Adjustments;
     using Mappers.Cart;
 
     using Models.Entities.Cart;
 
     using Services.Catalog;
+    using Services.Promotion;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Diagnostics;
@@ -37,13 +39,17 @@ namespace HCA.Foundation.Commerce.Builders.Cart
 
         private readonly ICatalogService catalogService;
 
-        public CartBuilder(ICatalogService catalogService, ICartMapper cartMapper)
+        private readonly IPromotionService promotionService;
+
+        public CartBuilder(ICatalogService catalogService, ICartMapper cartMapper, IPromotionService promotionService)
         {
             Assert.ArgumentNotNull(catalogService, nameof(catalogService));
             Assert.ArgumentNotNull(cartMapper, nameof(cartMapper));
+            Assert.ArgumentNotNull(promotionService, nameof(promotionService));
 
             this.catalogService = catalogService;
             this.cartMapper = cartMapper;
+            this.promotionService = promotionService;
         }
 
         public Cart Build(Connect.Cart source)
@@ -55,8 +61,24 @@ namespace HCA.Foundation.Commerce.Builders.Cart
 
             var cart = this.cartMapper.Map<Connect.Cart, Cart>(source);
             cart.CartLines = this.BuildCartLines(source.Lines);
+            cart.Adjustments = this.BuildAdjustments(cart.Adjustments);
 
             return cart;
+        }
+
+        private IList<Adjustment> BuildAdjustments(IList<Adjustment> adjustments)
+        {
+            foreach (var adjustment in adjustments)
+            {
+                var promotion = this.promotionService.GetPromotionByDisplayName(adjustment.Description);
+
+                if (promotion != null && promotion.Success)
+                {
+                    adjustment.IsAutomatic = string.IsNullOrWhiteSpace(promotion.Data.PublicCoupon);
+                }
+            }
+
+            return adjustments;
         }
 
         private List<CartLine> BuildCartLines(List<Connect.CartLine> sourceCartLines)

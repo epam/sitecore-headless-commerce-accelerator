@@ -13,7 +13,7 @@
     "build:Debug": "copyfiles -f  ./src/Project/HCA/public/**/* ./src/Project/HCA/build/ && cross-env NODE_ENV=production webpack && stylelint \"**/*.scss\"",
     "sc:codegen": "gulp generate-ts --gulpfile ./scripts/code-generation/codeGen.js",
     "sc:codegen:commerce": "gulp generate-ts-commerce --gulpfile ./scripts/code-generation/codeGen.js",
-    "test": "jest --no-cache --config ./scripts/jest/jest.config.js || exit 0",
+    "test": "jest --no-cache --config ./scripts/jest/jest.config.js",
     "test-watch": "jest --watch --notify --config ./scripts/jest/jest.config.js",
     "test-cover": "jest --coverage --config ./scripts/jest/jest.config.js",
     "lint": "npm run lint:scripts && npm run lint:styles",
@@ -181,6 +181,6 @@
   "lint-staged": {
     "*.{ts,tsx,scss}": "prettier --write",
     "*.{ts,tsx}": "tslint",
-    "*.ts": "jest --onlyChanged --passWithNoTests"
+    "*.ts": "jest --onlyChanged --passWithNoTests --config ./scripts/jest/jest.config.js"
   }
 }

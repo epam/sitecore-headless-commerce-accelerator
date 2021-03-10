@@ -12,4 +12,25 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
+@import 'Foundation/UI/common/scss/variables.scss';
+
+.ProductCard {
+  &-QuantityPickerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-ExtraInfo {
+    padding-left: 14px;
+  }
+
+  &-Spinner {
+    margin-right: 4px;
+  }
+
+  &-AddToCartButton {
+    padding: 13px 40px;
+  }
+}

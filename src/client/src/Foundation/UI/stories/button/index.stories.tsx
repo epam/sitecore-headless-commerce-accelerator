@@ -16,7 +16,8 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Button } from '../../components/Button';
+import { Button } from 'Foundation/UI/components/Button';
+import { StarIcon } from 'Foundation/UI/components/StarIcon';
 
 storiesOf('Button', module)
   .add('Default Color', () => <Button onClick={() => console.log('clicked')}>Click me!</Button>)
@@ -58,5 +59,12 @@ storiesOf('Button', module)
   .add('Default Color with Full Width', () => (
     <Button fullWidth={true} onClick={() => console.log('clicked')}>
       Click me!
+    </Button>
+  ))
+  .add('Clear', () => (
+    <Button buttonTheme="clear" onClick={() => console.log('clicked')}>
+      <span style={{ color: 'red' }}>
+        <StarIcon fill={true} />
+      </span>
     </Button>
   ));

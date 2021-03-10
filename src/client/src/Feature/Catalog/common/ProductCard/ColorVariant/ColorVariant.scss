@@ -12,4 +12,30 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
+.ProductCard {
+  &-ColorVariant:not(:first-child) {
+    margin-left: 8px;
+  }
+
+  &-ColorVariantOuter {
+    display: block;
+    border-radius: 50%;
+    border: solid 2px transparent;
+    width: 20px;
+    height: 20px;
+  }
+
+  &-ColorVariantInner {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 1px;
+  }
+
+  &-ColorVariant_selected {
+    .ProductCard-ColorVariantOuter {
+      border-color: #333;
+    }
+  }
+}

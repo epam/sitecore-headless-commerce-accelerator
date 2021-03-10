@@ -12,4 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
+import React, { FC } from 'react';
+
+import { cnIconFa } from './cn';
+
+export type IconFaProps = {
+  className?: string;
+  name?: string;
+};
+
+export const IconFa: FC<IconFaProps> = ({
+  className,
+  name,
+
+  ...rest
+}) => {
+  return <i {...rest} className={cnIconFa(null, ['fa', name, className])} />;
+};

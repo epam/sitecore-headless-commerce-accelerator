@@ -12,4 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
+import { createContext } from 'react';
+
+import { Product, Variant } from 'Foundation/Commerce';
+
+export type ProductCardContextValue = {
+  product: Product;
+  fallbackImageUrl: string | null;
+  productColors: Record<string, string>;
+
+  selectedVariant: Variant;
+  onChangeVariant: (variantId: string) => void;
+};
+
+export const ProductCardContext = createContext<ProductCardContextValue>(null);

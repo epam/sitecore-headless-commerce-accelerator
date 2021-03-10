@@ -12,4 +12,27 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
+import React, { useCallback, useState } from 'react';
+
+import { QuantityPicker } from 'Foundation/UI/components/QuantityPicker';
+
+export default {
+  title: 'QuantityPicker',
+};
+
+export const QuantityPickerStory = () => {
+  const [quantity, setQuantity] = useState<number>(0);
+
+  const handleChange = useCallback(
+    (value) => {
+      setQuantity(value);
+    },
+    [setQuantity],
+  );
+
+  return (
+    <div style={{}}>
+      <QuantityPicker value={quantity} onChange={handleChange} />
+    </div>
+  );
+};

@@ -16,8 +16,11 @@ import classnames from 'classnames';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import { ProductListHeader, ProductListItem } from './components';
-import { ProductListProps } from './models';
+
+import { ProductItem } from '../ProductItem';
+import { ProductListHeader } from './components';
+import { ProductListOwnState, ProductListProps } from './models';
+
 import './styles.scss';
 
 export default class ProductListComponent extends JSS.SafePureComponent<ProductListProps, {}> {
@@ -63,9 +66,13 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
               </ul>
             </div>
           )}
-          {items.map((product, index) => (
-            <li key={index}>
-              <ProductListItem product={product} fallbackImageUrl={sitecoreContext.fallbackImageUrl} />
+          {items.map((product) => (
+            <li key={product.productId}>
+              <ProductItem
+                product={product}
+                productColors={sitecoreContext.productColors}
+                fallbackImageUrl={sitecoreContext.fallbackImageUrl}
+              />
               <span className="triangle" />
             </li>
           ))}

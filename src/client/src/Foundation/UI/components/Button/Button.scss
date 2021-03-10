@@ -87,6 +87,11 @@
         background-color: $theme-color;
       }
     }
+
+    &_clear {
+      background: none;
+      padding: 0;
+    }
   }
 
   &_rounded {

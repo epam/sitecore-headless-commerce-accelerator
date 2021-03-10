@@ -17,8 +17,19 @@ import { cnButton } from './cn';
 
 import './Button.scss';
 
-type ThemeTypes = 'default' | 'default-reversed' | 'grey' | 'grey-reversed' | 'orange' | 'black';
-type Types = 'link' | 'submit' | 'button' | 'reset';
+type ThemeTypes =
+  | 'default'
+  | 'defaultReversed'
+  | 'defaultSlide'
+  | 'transparentSlide'
+  | 'grey'
+  | 'greyReversed'
+  | 'orange'
+  | 'black'
+  | 'clear';
+type ButtonTypes = 'link' | 'submit' | 'button' | 'reset';
+
+type ContainerElement = HTMLButtonElement | HTMLAnchorElement;
 
 export type ButtonProps = {
   buttonSize?: 's' | 'm' | 'l';

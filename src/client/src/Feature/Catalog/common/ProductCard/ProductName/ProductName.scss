@@ -12,5 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+@import 'Foundation/UI/common/scss/variables.scss';
+
+.ProductCard {
+  &-ProductName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+
+    &:hover {
+      cursor: pointer;
+      color: $theme-color;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+  }
+}

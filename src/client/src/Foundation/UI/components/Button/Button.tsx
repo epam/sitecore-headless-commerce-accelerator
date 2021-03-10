@@ -25,7 +25,8 @@ type ThemeTypes =
   | 'grey'
   | 'greyReversed'
   | 'orange'
-  | 'black';
+  | 'black'
+  | 'clear';
 type ButtonTypes = 'link' | 'submit' | 'button' | 'reset';
 
 type ContainerElement = HTMLButtonElement | HTMLAnchorElement;

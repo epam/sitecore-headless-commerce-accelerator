@@ -12,5 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+import React, { FC } from 'react';
+
+import { IconFa } from 'Foundation/UI/components/IconFa';
+
+import { cnStarIcon } from './cn';
+
+export type StarIconProps = {
+  className?: string;
+  fill?: boolean;
+};
+
+export const StarIcon: FC<StarIconProps> = ({
+  className,
+  fill = false,
+
+  ...rest
+}) => {
+  return <IconFa {...rest} className={cnStarIcon({}, [fill ? 'fa-star' : 'fa-star-o', className])} />;
+};

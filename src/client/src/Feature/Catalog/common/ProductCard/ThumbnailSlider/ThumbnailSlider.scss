@@ -12,6 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { cn } from '@bem-react/classname';
+.ProductCard {
+  &-ImageWrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 103%;
+  }
 
-export const cnProductListItem = cn('ProductListItem');
+  &-ImageInner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

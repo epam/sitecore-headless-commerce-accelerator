@@ -12,9 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
+import { cn } from '@bem-react/classname';
 
-export interface ProductListItemProps {
-  fallbackImageUrl: string;
-  product: ProductSearch.Product;
-}
+export const cnProductCard = cn('ProductCard');

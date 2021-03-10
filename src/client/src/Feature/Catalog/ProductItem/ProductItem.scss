@@ -12,5 +12,33 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+.ProductItem {
+  &-ProductCard {
+    padding: 0 15px;
+  }
+
+  &-Rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 17px;
+    padding: 4px 0;
+  }
+
+  &-Price {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0 0 4px 0;
+  }
+
+  &-Variants {
+    margin: 4px 0;
+  }
+}

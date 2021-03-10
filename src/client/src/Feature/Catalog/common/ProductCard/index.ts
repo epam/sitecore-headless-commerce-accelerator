@@ -12,5 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './ProductListHeader';
-export * from './ProductListSorting';
+export * from './ProductCard';
+export * from './AddToCart';
+export * from './ThumbnailSlider';
+export * from './ProductName';
+export * from './ProductRating';
+export * from './Price';
+export * from './ColorVariants';

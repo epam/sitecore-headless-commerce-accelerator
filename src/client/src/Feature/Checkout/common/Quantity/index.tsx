@@ -13,6 +13,7 @@ const QuantityProductCommon = ({ cartLineId, setQuantity, quantityString }: Quan
     <div className="quantity" data-autotests="productQty">
       <input type="button" value="-" className="qty-button qty-minus" onClick={() => setQuantity(false)} />
       <Input
+        fullWidth={true}
         type="text"
         id={`qty-${cartLineId}`}
         className="cart-plus-minus-box"

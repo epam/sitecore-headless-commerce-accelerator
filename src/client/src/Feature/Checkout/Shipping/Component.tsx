@@ -238,7 +238,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     <Text
                       field={{ value: 'Create Account' }}
                       className="right-car create"
-                      href="/account/login-register"
+                      href="/login-register"
                       tag="a"
                     />
                   )}

@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,12 +15,25 @@
 namespace HCA.Feature.Checkout.Tests.Utils
 {
     using System;
+    using System.Collections.Generic;
 
     using Checkout.Utils;
 
+    using Configuration.Models;
+    using Configuration.Providers;
+
     using Context;
 
+    using DocumentFormat.OpenXml.Office2010.Drawing;
+
+    using Foundation.Base.Models.Logging;
+    using Foundation.Base.Models.Result;
+    using Foundation.Base.Services.Logging;
+    using Foundation.Commerce.Models.Entities.Order;
+    using Foundation.Commerce.Services.Order;
+
     using NSubstitute;
+    using NSubstitute.Core.Arguments;
 
     using Ploeh.AutoFixture;
 
@@ -28,26 +41,32 @@ namespace HCA.Feature.Checkout.Tests.Utils
 
     public class OrderEmailUtilsTests
     {
-        private readonly OrderEmailUtils orderEmailUtils;
-
         private readonly IExmContext exmContext;
 
         private readonly IFixture fixture;
+
+        private readonly OrderEmailUtils orderEmailUtils;
+
+        private readonly IOrderService orderService;
+
+        private readonly ILogService<CommonLog> logService;
+
+        private readonly IStorefrontConfigurationProvider storefrontConfigurationProvider;
 
         public OrderEmailUtilsTests()
         {
             this.fixture = new Fixture();
 
             this.exmContext = Substitute.For<IExmContext>();
+            this.orderService = Substitute.For<IOrderService>();
+            this.logService = Substitute.For<ILogService<CommonLog>>();
+            this.storefrontConfigurationProvider = Substitute.For<IStorefrontConfigurationProvider>();
 
-            this.orderEmailUtils = new OrderEmailUtils(this.exmContext);
-        }
-
-        [Fact]
-        public void ResolveTokens_IfMessageBodyIsNull_ShouldThrowArgumentNullException()
-        {
-            // act, assert
-            Assert.Throws<ArgumentNullException>(() => this.orderEmailUtils.ResolveTokens(null));
+            this.orderEmailUtils = new OrderEmailUtils(
+                this.exmContext,
+                this.orderService,
+                this.storefrontConfigurationProvider,
+                this.logService);
         }
 
         [Fact]
@@ -65,19 +84,82 @@ namespace HCA.Feature.Checkout.Tests.Utils
         }
 
         [Fact]
-        public void ResolveTokens_IfIsRenderRequestTrue_ShouldReplaceTokenWithOrderId()
+        public void ResolveTokens_IfMessageBodyIsNull_ShouldThrowArgumentNullException()
+        {
+            // act, assert
+            Assert.Throws<ArgumentNullException>(() => this.orderEmailUtils.ResolveTokens(null));
+        }
+
+        [Fact]
+        public void ResolveTokens_IfIsRenderRequestTrue_ShouldReplaceTokenWithTrackingNumber()
         {
             // arrange
             var messageBody = Constants.OrderEmail.OrderTrackingNumberToken;
-            var orderId = this.fixture.Create<string>();
+            var trackingNumber = new Guid().ToString();
+
             this.exmContext.IsRenderRequest.Returns(true);
-            this.exmContext.GetValue("order_id").Returns(orderId);
+            this.SetupTrackingNumber("", trackingNumber);
+            
+            // act
+            var actual = this.orderEmailUtils.ResolveTokens(messageBody);
+
+            // assert
+            Assert.Equal(trackingNumber, actual);
+        }
+
+        [Fact]
+        public void ResolveTokens_IfIsRenderRequestTrueAndTrackingNumberIsNull_ShouldReplaceTokenWithOrderId()
+        {
+            // arrange
+            var messageBody = Constants.OrderEmail.OrderTrackingNumberToken;
+            var orderId = "order_id";
+
+            this.exmContext.IsRenderRequest.Returns(true);
+            this.SetupTrackingNumber(orderId, null);
 
             // act
             var actual = this.orderEmailUtils.ResolveTokens(messageBody);
 
             // assert
             Assert.Equal(orderId, actual);
+        }
+
+        [Fact]
+        public void ResolveTokens_IfIsRenderRequestFalse_ShouldReturnMessageBody()
+        {
+            // arrange
+            var messageBody = Constants.OrderEmail.OrderTrackingNumberToken;
+
+            this.exmContext.IsRenderRequest.Returns(false);
+
+            // act
+            var actual = this.orderEmailUtils.ResolveTokens(messageBody);
+
+            // assert
+            Assert.Equal(messageBody, actual);
+        }
+
+        private void SetupTrackingNumber(string orderId, string trackingNumber)
+        {
+            var orderResult = new Result<Order>();
+            orderResult.SetResult(
+                new Order
+                {
+                    TrackingNumber = trackingNumber
+                });
+
+            var storefronts = new Storefronts()
+            {
+                ShopNames = new List<string>
+                {
+                    ""
+                }
+            };
+
+            this.exmContext.GetValue("order_id").Returns(orderId);
+            this.exmContext.GetContactIdentifier().Returns("");
+            this.storefrontConfigurationProvider.Get().Returns(storefronts);
+            this.orderService.GetOrder(orderId, "", "").Returns(orderResult);
         }
     }
 }

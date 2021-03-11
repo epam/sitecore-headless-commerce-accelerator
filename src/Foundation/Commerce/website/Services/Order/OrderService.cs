@@ -1,11 +1,11 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
-//
+﻿//    Copyright 2021 EPAM Systems, Inc.
+// 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-//
+// 
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Models.Entities.Order;
 
     using Newtonsoft.Json;
-    using Sitecore.Commerce.Services.Carts;
+
     using Sitecore.Diagnostics;
 
     [Service(typeof(IOrderService), Lifetime = Lifetime.Singleton)]
@@ -77,14 +77,21 @@ namespace HCA.Foundation.Commerce.Services.Order
 
         public Result<Order> GetOrder(string orderId)
         {
-            Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
-
-            var result = new Result<Order>();
-
-            var orderResult = this.orderManager.GetOrder(
+            return this.GetOrder(
                 orderId,
                 this.visitorContext.ContactId,
                 this.storefrontContext.ShopName);
+        }
+
+        public Result<Order> GetOrder(string orderId, string customerId, string shopName)
+        {
+            Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
+            Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
+            Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
+
+            var result = new Result<Order>();
+
+            var orderResult = this.orderManager.GetOrder(orderId, customerId, shopName);
 
             if (!orderResult.Success)
             {

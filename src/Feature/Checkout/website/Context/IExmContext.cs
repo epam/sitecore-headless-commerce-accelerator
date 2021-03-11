@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,6 +23,12 @@ namespace HCA.Feature.Checkout.Context
         /// Is current request is render request
         /// </summary>
         bool IsRenderRequest { get; }
+
+        /// <summary>
+        /// Gets contact identifier from ExmContext
+        /// </summary>
+        /// <returns>Contact Id</returns>
+        string GetContactIdentifier();
 
         /// <summary>
         /// Gets value from query string

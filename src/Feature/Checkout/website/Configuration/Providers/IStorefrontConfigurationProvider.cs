@@ -12,19 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Feature.Checkout
+namespace HCA.Feature.Checkout.Configuration.Providers
 {
-    public static class Constants
-    {
-        public static class OrderEmail
-        {
-            public const string OrderIdKey = "order_id";
-            public const string OrderTrackingNumberToken = "$orderTrackingNumber$";
-        }
+    using Foundation.Base.Providers.Configuration;
 
-        public static class Context
-        {
-            public const string CommerceUserPropertyName = "commerceUser";
-        }
+    using Models;
+
+    public interface IStorefrontConfigurationProvider : IConfigurationProvider<Storefronts>
+    {
     }
 }

@@ -12,28 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Feature.Checkout.Context
+namespace HCA.Feature.Checkout.Configuration.Providers
 {
     using System.Diagnostics.CodeAnalysis;
 
+    using Foundation.Base.Providers.Configuration;
+    using Foundation.Base.Providers.Object;
     using Foundation.DependencyInjection;
 
-    using EmailCampaign = Sitecore.Modules.EmailCampaign.Core;
+    using Models;
 
     [ExcludeFromCodeCoverage]
-    [Service(typeof(IExmContext), Lifetime = Lifetime.Transient)]
-    public class ExmContext : IExmContext
+    [Service(typeof(IStorefrontConfigurationProvider), Lifetime = Lifetime.Singleton)]
+    public class StorefrontConfigurationProvider : ConfigurationProvider<Storefronts>, IStorefrontConfigurationProvider
     {
-        public bool IsRenderRequest => EmailCampaign.ExmContext.IsRenderRequest;
-
-        public string GetValue(string key)
+        public StorefrontConfigurationProvider(IObjectProvider objectProvider) : base(objectProvider)
         {
-            return EmailCampaign.ExmContext.QueryString?[key];
         }
 
-        public string GetContactIdentifier()
-        {
-            return EmailCampaign.ExmContext.ContactIdentifier.Identifier;
-        }
+        protected override string Path { get; set; } = "Storefronts";
     }
 }

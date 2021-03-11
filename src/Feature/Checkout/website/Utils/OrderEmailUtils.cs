@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,8 +14,13 @@
 
 namespace HCA.Feature.Checkout.Utils
 {
+    using Configuration.Providers;
+
     using Context;
 
+    using Foundation.Base.Models.Logging;
+    using Foundation.Base.Services.Logging;
+    using Foundation.Commerce.Services.Order;
     using Foundation.DependencyInjection;
 
     using Sitecore.Diagnostics;
@@ -23,15 +28,26 @@ namespace HCA.Feature.Checkout.Utils
     [Service(typeof(IOrderEmailUtils), Lifetime = Lifetime.Singleton)]
     public class OrderEmailUtils : IOrderEmailUtils
     {
-        private const string OrderIdKey = "order_id";
-
         private readonly IExmContext exmContext;
+        private readonly ILogService<CommonLog> logService;
+        private readonly IOrderService orderService;
+        private readonly IStorefrontConfigurationProvider storefrontConfigurationProvider;
 
-        public OrderEmailUtils(IExmContext exmContext)
+        public OrderEmailUtils(
+            IExmContext exmContext,
+            IOrderService orderService,
+            IStorefrontConfigurationProvider storefrontConfigurationProvider,
+            ILogService<CommonLog> logService)
         {
             Assert.ArgumentNotNull(exmContext, nameof(exmContext));
+            Assert.ArgumentNotNull(storefrontConfigurationProvider, nameof(storefrontConfigurationProvider));
+            Assert.ArgumentNotNull(orderService, nameof(orderService));
+            Assert.ArgumentNotNull(logService, nameof(logService));
 
             this.exmContext = exmContext;
+            this.storefrontConfigurationProvider = storefrontConfigurationProvider;
+            this.orderService = orderService;
+            this.logService = logService;
         }
 
         public string ResolveTokens(string messageBody)
@@ -45,11 +61,40 @@ namespace HCA.Feature.Checkout.Utils
         {
             if (this.exmContext.IsRenderRequest)
             {
-                var orderId = this.exmContext.GetValue(OrderIdKey);
+                var orderId = this.exmContext.GetValue(Constants.OrderEmail.OrderIdKey);
+                var contactId = this.exmContext.GetContactIdentifier();
+                var shopNames = this.storefrontConfigurationProvider.Get()?.ShopNames.ToArray();
+
+                if (shopNames != null)
+                {
+                    var trackingNumber = this.TryGetTrackingNumber(orderId, contactId, shopNames);
+                    this.logService.Info($"Order {orderId} has tracking number: {trackingNumber}");
+
+                    return messageBody.Replace(
+                        Constants.OrderEmail.OrderTrackingNumberToken,
+                        trackingNumber ?? orderId);
+                }
+
                 return messageBody.Replace(Constants.OrderEmail.OrderTrackingNumberToken, orderId);
             }
 
             return messageBody;
+        }
+
+        private string TryGetTrackingNumber(string orderId, string contactId, params string[] shopNames)
+        {
+            foreach (var shopName in shopNames)
+            {
+                var order = this.orderService.GetOrder(orderId, contactId, shopName);
+                var trackingNumber = order.Data?.TrackingNumber;
+
+                if (!string.IsNullOrWhiteSpace(trackingNumber))
+                {
+                    return trackingNumber;
+                }
+            }
+
+            return null;
         }
     }
 }

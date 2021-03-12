@@ -661,6 +661,7 @@
     <Compile Include="Mappers\Users\UserMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
+    <Compile Include="Models\Entities\Adjustments\Adjustment.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />

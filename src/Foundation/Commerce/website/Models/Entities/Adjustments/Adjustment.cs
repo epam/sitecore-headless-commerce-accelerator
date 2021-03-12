@@ -12,37 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Models.Entities.Cart
+namespace HCA.Foundation.Commerce.Models.Entities.Adjustments
 {
-    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
-
-    using Addresses;
-    using HCA.Foundation.Commerce.Models.Entities.Adjustments;
-    using Payment;
-
-    using Shipping;
-
     using TypeLite;
 
-    [ExcludeFromCodeCoverage]
     [TsClass]
-    public class Cart
+    [ExcludeFromCodeCoverage]
+    public class Adjustment
     {
-        public string Id { get; set; }
+        public string Description { get; set; }
 
-        public string Email { get; internal set; }
-
-        public TotalPrice Price { get; set; }
-
-        public IList<CartLine> CartLines { get; set; }
-
-        public IList<Address> Addresses { get; set; }
-
-        public IList<Adjustment> Adjustments { get; set; }
-
-        public IList<ShippingMethod> Shipping { get; set; }
-
-        public IList<FederatedPaymentInfo> Payment { get; set; }
+        public bool IsAutomatic { get; set; }
     }
 }

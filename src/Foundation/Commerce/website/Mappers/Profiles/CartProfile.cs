@@ -18,7 +18,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using System.Linq;
 
     using AutoMapper;
-
+    using HCA.Foundation.Commerce.Models.Entities.Adjustments;
     using Models.Entities.Cart;
 
     using Providers;
@@ -41,9 +41,12 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Total))
                 .ForMember(dest => dest.CartLines, opt => opt.Ignore())
                 .ForMember(dest => dest.Addresses, opt => opt.MapFrom(src => src.Parties))
-                .ForMember(
-                    dest => dest.Adjustments,
-                    opt => opt.MapFrom(src => src.Adjustments.Select(a => a.Description).ToList()))
+                .ForMember(dest => dest.Adjustments, opt => opt.MapFrom(src => src.Adjustments))
+                .ReverseMap();
+
+            this.CreateMap<Connect.CartAdjustment, Adjustment>()
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.IsAutomatic, opt => opt.Ignore())
                 .ReverseMap();
 
             this.CreateMap<CommerceCart, Cart>()

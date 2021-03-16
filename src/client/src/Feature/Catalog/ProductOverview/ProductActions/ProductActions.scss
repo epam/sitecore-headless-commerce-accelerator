@@ -12,12 +12,37 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Cart';
-export * from './OrderConfirmation';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderHistory';
-export * from './GoToCheckout';
+@import 'Foundation/UI/common/scss/variables';
+
+.ProductActions {
+  &-Row {
+    display: flex;
+
+    @media #{$pdp-md-switch-layout} {
+      flex-wrap: wrap;
+    }
+  }
+
+  &-ContainedButton {
+    margin: 0 25px 0 10px;
+    min-height: 60px;
+
+    @media #{$pdp-md-switch-layout} {
+      margin: 10px 0 0 0;
+      order: 3;
+    }
+
+    &_outOfStock {
+      margin: 0 25px 0 0;
+
+      @media #{$pdp-md-switch-layout} {
+        order: 0;
+      }
+    }
+  }
+
+  &-InformMeButton {
+    margin: 0 25px 0 0;
+    font-size: 10px;
+  }
+}

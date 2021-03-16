@@ -14,6 +14,8 @@
 
 $counter-text-color: #343538;
 $counter-border-color: #8f8f8f;
+$counter-text-color-grey: #8f8f8f;
+$counter-border-color-grey: #e8e8e8;
 
 .QuantityPicker {
   display: flex;
@@ -48,9 +50,29 @@ $counter-border-color: #8f8f8f;
     }
   }
 
+  &_theme_grey {
+    color: $counter-text-color-grey;
+    border-color: $counter-border-color-grey;
+
+    .QuantityPicker-DecreaseButton,
+    .QuantityPicker-IncreaseButton {
+      color: $counter-text-color-grey;
+    }
+  }
+
   &_size_m {
     width: 85px;
     height: 40px;
+
+    .QuantityPicker-DecreaseButton,
+    .QuantityPicker-IncreaseButton {
+      width: 24px;
+    }
+  }
+
+  &_size_l {
+    width: 80px;
+    height: 60px;
 
     .QuantityPicker-DecreaseButton,
     .QuantityPicker-IncreaseButton {

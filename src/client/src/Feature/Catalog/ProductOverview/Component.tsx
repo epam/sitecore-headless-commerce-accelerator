@@ -23,6 +23,7 @@ import './styles.scss';
 import { ProductRating } from 'Feature/Catalog/ProductRating';
 import GlassesImg from 'Foundation/UI/common/media/images/glasses-for-slider.png';
 import { ProductGallery } from './components/ProductGallery';
+import { ProductActions } from './ProductActions';
 
 import { eventHub, events } from 'Foundation/EventHub';
 
@@ -98,8 +99,8 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                   <div className="product-params">
                     <Placeholder name="product-properties" rendering={this.props.rendering} />
                     <div className="property-selectors" />
-                    <div className="links">
-                      <Placeholder name="product-actions" rendering={this.props.rendering} />
+                    <div className="actions">
+                      <ProductActions />
                     </div>
                   </div>
                   <div className="product-tags">

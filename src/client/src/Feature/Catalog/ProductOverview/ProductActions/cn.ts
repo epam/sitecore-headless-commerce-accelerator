@@ -12,9 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-.AddToCart {
-  &-AddToCartButton {
-    padding: 23px 38px;
-    margin: 0 25px 0 10px;
-  }
-}
+import { cn } from '@bem-react/classname';
+
+export const cnProductActions = cn('ProductActions');

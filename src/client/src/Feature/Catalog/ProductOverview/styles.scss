@@ -279,20 +279,11 @@
   }
   // #Property selectors end
 
-  // #Links
-  .links {
+  // #Actions
+  .actions {
     margin: 40px 0 34px 0;
-    display: flex;
-    @media #{$pdp-md-switch-layout} {
-      flex-wrap: wrap;
-    }
-    .AddToCart-AddToCartButton {
-      @media #{$pdp-md-switch-layout} {
-        order: 3;
-        margin: 10px 0 0 0;
-      }
-    }
     .quantity {
+      margin-right: 10px;
       position: relative;
       display: inline-block;
       overflow: hidden;
@@ -342,8 +333,19 @@
         border: medium none;
         background: transparent none repeat scroll 0 0;
       }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type='number'] {
+        -moz-appearance: textfield;
+      }
     }
-    .btn-main:nth-child(2) {
+    .btn-main.btn-add-to-cart {
       font-family: $poppins;
       color: #fff;
       font-size: 14px;
@@ -414,7 +416,7 @@
       }
     }
 
-    .btn-main:nth-child(4) {
+    .btn-main.btn-print {
       font-size: 18px;
       color: $product-overview-main-color;
       border: none;
@@ -453,7 +455,7 @@
       }
     }
   }
-  // #Links end
+  // #Actions end
 
   .fallback-image {
     display: block;
@@ -544,6 +546,10 @@
           font-family: $poppins;
           margin-bottom: 10px;
           color: #676767;
+          @media #{$pdp-md-switch-layout} {
+            display: flex;
+            flex-wrap: wrap;
+          }
           &_title {
             margin-right: 5px;
           }
@@ -555,10 +561,6 @@
             &:hover {
               color: $theme-color;
             }
-          }
-          @media #{$pdp-md-switch-layout} {
-            display: flex;
-            flex-wrap: wrap;
           }
         }
       }

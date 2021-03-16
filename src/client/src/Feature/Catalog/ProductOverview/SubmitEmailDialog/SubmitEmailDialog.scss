@@ -12,12 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Cart';
-export * from './OrderConfirmation';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderHistory';
-export * from './GoToCheckout';
+.SubmitEmailDialog {
+  &-Content {
+    padding: 2em 1em 0 1em;
+  }
+
+  &-Header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &-Title {
+    margin-bottom: 10px;
+  }
+
+  &-SubmitContainer {
+    text-align: center;
+  }
+}

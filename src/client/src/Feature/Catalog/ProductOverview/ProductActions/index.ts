@@ -16,22 +16,22 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
 import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { LoadingStatus } from 'Foundation/Integration';
 import { rendering } from 'Foundation/ReactJss';
+import { ProductActionsComponent } from './ProductActions';
 
-import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
+import { AppState, ProductActionsDispatchProps, ProductActionsOwnProps, ProductActionsStateProps } from './models';
 
-import AddToCartComponent from './Component';
-import { AddToCartDispatchProps, AddToCartOwnProps, AddToCartStateProps, AppState } from './models';
-
-const mapStateToProps = (state: AppState): AddToCartStateProps => {
+const mapStateToProps = (state: AppState) => {
   const shoppingCartState = shoppingCart(state);
   const productId = ProductVariant.productId(state);
   const variant = ProductVariant.selectedProductVariant(state, productId);
   const isLoading = shoppingCartState.status === LoadingStatus.Loading &&
     shoppingCartState.actionType === actionTypes.ADD_TO_CART_REQUEST;
+
   return {
     isLoading,
     productId,
@@ -48,9 +48,9 @@ const mapDispatchToProps = (dispatch: any) => {
   );
 };
 
-const connectedToStore = connect<AddToCartStateProps, AddToCartDispatchProps, AddToCartOwnProps>(
+const connectedToStore = connect<ProductActionsStateProps, ProductActionsDispatchProps, ProductActionsOwnProps>(
   mapStateToProps,
   mapDispatchToProps
 );
 
-export const AddToCart = compose(rendering, connectedToStore)(AddToCartComponent);
+export const ProductActions = compose(rendering, connectedToStore)(ProductActionsComponent);

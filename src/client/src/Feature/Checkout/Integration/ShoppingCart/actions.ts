@@ -87,9 +87,6 @@ export const UpdateCartLine: actionCreators.UpdateCartLine = (model: DataModels.
 });
 
 export const UpdateCartLineRequest: StatusType = () => ({
-  payload: {
-    status: LoadingStatus.Loading,
-  },
   type: actionTypes.UPDATE_CART_LINE_REQUEST,
 });
 
@@ -123,9 +120,6 @@ export const RemoveCartLine: actionCreators.RemoveCartLine = (model: ShoppingCar
 });
 
 export const RemoveCartLineRequest: StatusType = () => ({
-  payload: {
-    status: LoadingStatus.Loading,
-  },
   type: actionTypes.REMOVE_CART_LINE_REQUEST,
 });
 
@@ -146,34 +140,17 @@ export const RemoveCartLineSuccess: actionCreators.RemoveCartLineSuccess = (data
   type: actionTypes.REMOVE_CART_LINE_SUCCESS,
 });
 
-export const AddPromoCode: actionCreators.AddPromoCode = (model: DataModels.PromoCodeRequest) => ({
-  payload: {
-    ...model,
-  },
-  type: actionTypes.ADD_PROMO_CODE,
+export const updateCartItemRequest: actionCreators.UpdateCartItemRequest = (payload) => ({
+  payload,
+  type: actionTypes.UPDATE_CART_ITEM_REQUEST,
 });
 
-export const AddPromoCodeRequest: StatusType = () => ({
-  payload: {
-    status: LoadingStatus.Loading,
-  },
-  type: actionTypes.ADD_PROMO_CODE_REQUEST,
+export const updateCartItemSuccess: actionCreators.UpdateCartItemSuccess = (payload) => ({
+  payload,
+  type: actionTypes.UPDATE_CART_ITEM_SUCCESS,
 });
 
-export const AddPromoCodeFailure: FailureType = (error: string, stack?: string) => ({
-  payload: {
-    error,
-    stack,
-    status: LoadingStatus.Failure,
-  },
-  type: actionTypes.ADD_PROMO_CODE_FAILURE,
-});
-
-export const AddPromoCodeSuccess: actionCreators.AddPromoCodeSuccess = (data: ShoppingCartData) => ({
-  payload: {
-    cartUpdated: true,
-    data,
-    status: LoadingStatus.Loaded,
-  },
-  type: actionTypes.ADD_PROMO_CODE_SUCCESS,
+export const updateCartItemFailure: actionCreators.UpdateCartItemFailure = (payload) => ({
+  payload,
+  type: actionTypes.UPDATE_CART_ITEM_FAILURE,
 });

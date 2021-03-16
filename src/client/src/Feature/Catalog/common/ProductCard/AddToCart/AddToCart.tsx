@@ -19,12 +19,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Common } from 'Feature/Catalog/Integration';
 import { shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import {
-  AddToCart as addToCart,
-  RemoveCartLine as removeFromCart,
-  UpdateCartLine as updateToCart,
-} from 'Feature/Checkout/Integration/ShoppingCart/actions';
+import { updateCartItemRequest } from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { CartLine } from 'Foundation/Commerce';
+import { LoadingStatus } from 'Foundation/Integration';
 
 import { Button } from 'Foundation/UI/components/Button';
 import { QuantityPicker } from 'Foundation/UI/components/QuantityPicker';
@@ -50,10 +47,23 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
   const initializedRef = useRef(false);
 
   const { product, selectedVariant } = contextData;
-  const { data: cartData } = cartState;
+  const { data: cartData, cartItemsState } = cartState;
+  const statusId = `${product.productId}-${selectedVariant.variantId}`;
+  const loadingStatus = get(cartItemsState, [statusId, 'status']);
   const quantity = quantities[selectedVariant.variantId] || 0;
-
   const cartLinesState: CartLine[] | null = get(cartData, 'cartLines', null);
+
+  const inCart = useMemo(() => {
+    if (!cartLinesState) {
+      return false;
+    }
+
+    const cartLine = cartLinesState.find(
+      (item) => item.product.productId === product.productId && item.variant.variantId === selectedVariant.variantId,
+    );
+
+    return Boolean(cartLine);
+  }, [cartLinesState]);
 
   useEffect(() => {
     if (!initializedRef.current && cartLinesState) {
@@ -74,7 +84,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     () =>
       debounce(({ productId, productQuantity, variantId }) => {
         dispatch(
-          updateToCart({
+          updateCartItemRequest({
             productId,
             quantity: productQuantity,
             variantId,
@@ -87,7 +97,6 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
   const handleChangeQuantity = useCallback(
     (value) => {
       const { variantId, productId } = selectedVariant;
-      const { id: cartId, price: cartPrice } = cartData;
 
       setQuantities((currentQuantities) => ({
         ...currentQuantities,
@@ -95,15 +104,8 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
       }));
 
       if (value === 0) {
-        dispatch(
-          removeFromCart({
-            id: cartId,
-            price: cartPrice,
-            product,
-            quantity: value,
-            variant: selectedVariant,
-          }),
-        );
+        debouncedRequestUpdate.cancel();
+        dispatch(updateCartItemRequest({ productId, quantity: value, variantId }));
       } else {
         debouncedRequestUpdate({ productId, productQuantity: value, variantId });
       }
@@ -119,35 +121,29 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
       [variantId]: DEFAULT_QUANTITY_FOR_ADD_TO_CART,
     }));
 
-    dispatch(
-      addToCart({
-        productId,
-        quantity: DEFAULT_QUANTITY_FOR_ADD_TO_CART,
-        variantId,
-      }),
-    );
+    dispatch(updateCartItemRequest({ productId, quantity: DEFAULT_QUANTITY_FOR_ADD_TO_CART, variantId }));
   }, [selectedVariant, dispatch]);
 
   const outOfStock = selectedVariant.stockStatusName === Common.StockStatus.OutOfStock;
 
   return (
     <div className={cnProductCard('AddToCart', [className])}>
-      {quantity > 0 ? (
-        <div className={cnProductCard('QuantityPickerContainer')}>
-          <QuantityPicker value={quantity} max={MAX_QUANTITY} onChange={handleChangeQuantity} />
-          <span className={cnProductCard('ExtraInfo')}>In your cart</span>
-        </div>
-      ) : (
+      {quantity === 0 || !inCart ? (
         <Button
           className={cnProductCard('AddToCartButton')}
-          buttonTheme={outOfStock ? 'default' : 'defaultSlide'}
+          buttonTheme={'defaultSlide'}
           fullWidth={true}
-          disabled={outOfStock || !cartLinesState}
+          disabled={outOfStock || loadingStatus === LoadingStatus.Loading || !cartLinesState}
           onClick={handleClickAddToCart}
         >
           {/* {isLoading && <i className={cnProductCard('Spinner', ['fa fa-spinner fa-spin'])} />} */}
           {outOfStock ? 'out of stock' : 'add to cart'}
         </Button>
+      ) : (
+        <div className={cnProductCard('QuantityPickerContainer')}>
+          <QuantityPicker value={quantity} max={MAX_QUANTITY} onChange={handleChangeQuantity} />
+          <span className={cnProductCard('ExtraInfo')}>In your cart</span>
+        </div>
       )}
     </div>
   );

@@ -13,18 +13,18 @@
 //    limitations under the License.
 
 import { SagaIterator } from 'redux-saga';
-import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, race, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as DataModels from 'Feature/Checkout/dataModel.Generated';
-import { Promotions, ShoppingCart } from 'Feature/Checkout/Integration/api';
+import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 import * as Commerce from 'Foundation/Commerce';
 import { eventHub, events } from 'Foundation/EventHub';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
-import { GerPromotionPayload, RemoveCartLinePayload, ShoppingCartState } from './models';
-import { shoppingCart } from './selectors';
+import { RemoveCartLinePayload, ShoppingCartData, ShoppingCartState, UpdateCartItemRequestPayload } from './models';
+import { shoppingCart, shoppingCartData } from './selectors';
 
 import * as Order from '../Order/actionTypes';
 
@@ -111,37 +111,51 @@ export function* removeCartLine(action: Action<RemoveCartLinePayload>) {
   }
 }
 
-export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
-  const addPromoCodeModel = requestData.payload;
-  yield put(actions.AddPromoCodeRequest());
-  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);
+export function* updateCartItem(requestData: Action<UpdateCartItemRequestPayload>) {
+  const { productId, variantId, quantity } = requestData.payload;
+  const cartData: ShoppingCartData = yield select(shoppingCartData);
+  const cartLines = (cartData && cartData.cartLines) || [];
+  const cartItem = cartLines.find(
+    ({ product, variant }) => product.productId === productId && variant.variantId === variantId,
+  );
 
-  if (error) {
-    yield put(actions.AddPromoCodeFailure(error.message || 'can not add promo code'));
+  let updateError;
+
+  if (cartItem) {
+    if (quantity > 0) {
+      yield put(actions.UpdateCartLine({ productId, variantId, quantity }));
+
+      const [, error] = yield race([
+        take(actionTypes.UPDATE_CART_LINE_SUCCESS),
+        take(actionTypes.UPDATE_CART_LINE_FAILURE),
+      ]);
+      updateError = error;
+    } else {
+      yield put(
+        actions.RemoveCartLine({
+          id: cartData.id,
+          price: cartData.price,
+          product: cartItem.product,
+          quantity,
+          variant: cartItem.variant,
+        }),
+      );
+      const [, error] = yield race([
+        take(actionTypes.REMOVE_CART_LINE_SUCCESS),
+        take(actionTypes.REMOVE_CART_LINE_FAILURE),
+      ]);
+      updateError = error;
+    }
   } else {
-    yield put(actions.AddPromoCodeSuccess(data));
+    yield put(actions.AddToCart({ productId, variantId, quantity }));
+    const [, error] = yield race([take(actionTypes.ADD_TO_CART_SUCCESS), take(actionTypes.ADD_TO_CART_FAILURE)]);
+    updateError = error;
   }
-}
 
-export function* removePromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
-  const { payload } = requestData;
-
-  yield put(actions.RemovePromoCodeRequest());
-  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removePromoCode, payload);
-
-  if (error) {
-    yield put(actions.RemovePromoCodeFailure(error.message || 'can not remove promo code'));
+  if (updateError) {
+    yield put(actions.updateCartItemFailure({ productId, variantId, error: updateError }));
   } else {
-    yield put(actions.RemovePromoCodeSuccess(data));
-  }
-}
-
-export function* getFreeShippingSubtotal(requestData: Action<GerPromotionPayload>): SagaIterator {
-  const { callback } = requestData.payload;
-  const { data, error }: Result<Commerce.FreeShippingResult> = yield call(Promotions.getFreeShippingSubtotal);
-
-  if (!error) {
-    callback(data);
+    yield put(actions.updateCartItemSuccess({ productId, variantId }));
   }
 }
 
@@ -151,9 +165,7 @@ function* watch(): SagaIterator {
   yield takeEvery(actionTypes.ADD_TO_CART, addToCart);
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
   yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
-  yield takeEvery(actionTypes.ADD_PROMO_CODE, addPromoCode);
-  yield takeEvery(actionTypes.REMOVE_PROMO_CODE, removePromoCode);
-  yield takeEvery(actionTypes.GET_FREE_SHIPPING_SUBTOTAL, getFreeShippingSubtotal);
+  yield takeEvery(actionTypes.UPDATE_CART_ITEM_REQUEST, updateCartItem);
 }
 
 export default [watch()];

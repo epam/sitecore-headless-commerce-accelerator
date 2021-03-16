@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Status } from 'Foundation/Integration';
+import { LoadingStatus, Status } from 'Foundation/Integration';
 
 import * as Commerce from 'Foundation/Commerce';
 
@@ -31,6 +31,12 @@ export interface RequestData {
 
 export interface ShoppingCartState extends Status, RequestData {
   data?: ShoppingCartData;
+  cartItemsState?: {
+    string?: {
+      status: LoadingStatus;
+      error?: string;
+    };
+  };
 }
 
 export interface GlobalShoppingCartState {
@@ -51,4 +57,21 @@ export interface RemoveCartLinePayload {
   quantity: number;
   variantId: string;
   variantName: string;
+}
+
+export interface UpdateCartItemRequestPayload {
+  productId: string;
+  variantId: string;
+  quantity: number;
+}
+
+export interface UpdateCartItemSuccessPayload {
+  productId: string;
+  variantId: string;
+}
+
+export interface UpdateCartItemFailurePayload {
+  productId: string;
+  variantId: string;
+  error: string;
 }

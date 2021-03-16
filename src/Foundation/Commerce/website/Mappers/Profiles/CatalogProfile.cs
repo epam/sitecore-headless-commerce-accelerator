@@ -15,12 +15,14 @@
 namespace HCA.Foundation.Commerce.Mappers.Profiles
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     using AutoMapper;
 
     using Connect.Mappers.Resolvers;
 
     using Models.Entities.Catalog;
+    using Models.Entities.Search;
 
     using Providers;
 
@@ -46,6 +48,14 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
             this.CreateMap<Connect.Product, Product>()
                 .IncludeBase<Connect.BaseProduct, BaseProduct>();
+
+            this.CreateMap<Product, ProductSuggestion>()
+                .ForMember(
+                    dest => dest.ImageUrl,
+                    opt => opt.MapFrom(src => src.ImageUrls.FirstOrDefault()))
+                .ForMember(
+                    dest => dest.Price,
+                    opt => opt.MapFrom(src => src.AdjustedPrice ?? src.ListPrice));
 
             this.CreateMap<Connect.Variant, Variant>()
                 .IncludeBase<Connect.BaseProduct, BaseProduct>()

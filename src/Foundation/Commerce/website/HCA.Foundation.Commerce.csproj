@@ -618,6 +618,11 @@
     <Compile Include="Builders\Order\IOrderBuilder.cs" />
     <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\ISuggestionOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\SuggestionOptionsBuilder.cs" />
+    <Compile Include="Configuration\Models\SuggesterConfiguration.cs" />
+    <Compile Include="Configuration\Providers\ISuggesterConfigurationProvider.cs" />
+    <Compile Include="Configuration\Providers\SuggesterConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
@@ -662,10 +667,14 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Adjustments\Adjustment.cs" />
+    <Compile Include="Models\Entities\Search\ProductSuggestion.cs" />
+    <Compile Include="Models\Entities\Geolocation\GeolocationInfo.cs" />
+    <Compile Include="Models\Entities\Geolocation\SearchByGeolocationResult.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />
     <Compile Include="Models\Entities\Region\Subdivision.cs" />
+    <Compile Include="Models\Entities\Search\ProductSuggestionResults.cs" />
     <Compile Include="Models\Entities\Users\User.cs" />
     <Compile Include="Models\Entities\Catalog\Category.cs" />
     <Compile Include="Models\Entities\Search\ProductSearchOptions.cs" />
@@ -703,6 +712,9 @@
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
+    <Compile Include="Providers\Search\IProductSuggestionProvider.cs" />
+    <Compile Include="Providers\Search\ProductSuggestionProvider.cs" />
+    <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />
@@ -720,6 +732,8 @@
     <Compile Include="Services\Catalog\ICatalogService.cs" />
     <Compile Include="Services\Search\IProductSearchService.cs" />
     <Compile Include="Services\Search\ProductSearchService.cs" />
+    <Compile Include="Services\Search\IProductSuggestionService.cs" />
+    <Compile Include="Services\Search\ProductSuggestionService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
@@ -728,11 +742,14 @@
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.SuggesterSettings.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Entities\Search\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>

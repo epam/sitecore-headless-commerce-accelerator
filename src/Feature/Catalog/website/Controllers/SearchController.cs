@@ -30,14 +30,18 @@ namespace HCA.Feature.Catalog.Controllers
     {
         private readonly IProductSearchService productSearchService;
 
+        private readonly IProductSuggestionService productSuggestionService;
+
         private readonly ISearchMapper searchMapper;
 
-        public SearchController(IProductSearchService productSearchService, ISearchMapper searchMapper)
+        public SearchController(IProductSearchService productSearchService, IProductSuggestionService productSuggestionService, ISearchMapper searchMapper)
         {
             Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
+            Assert.ArgumentNotNull(productSuggestionService, nameof(productSuggestionService));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
             this.productSearchService = productSearchService;
+            this.productSuggestionService = productSuggestionService;
             this.searchMapper = searchMapper;
         }
 
@@ -52,6 +56,14 @@ namespace HCA.Feature.Catalog.Controllers
                         this.searchMapper.Map<ProductsSearchRequest, ProductSearchOptions>(searchRequest);
                     return this.productSearchService.GetProducts(searchOptions);
                 });
+        }
+
+        [HttpGet]
+        [ActionName("suggestions")]
+        public ActionResult GetProductsSuggestion(string search)
+        {
+            return this.Execute(
+                () => this.productSuggestionService.GetSuggestedProducts(search));
         }
     }
 }

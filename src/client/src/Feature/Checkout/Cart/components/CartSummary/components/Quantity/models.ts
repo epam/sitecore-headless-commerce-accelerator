@@ -24,5 +24,5 @@ export interface QuantityProps {
 }
 
 export interface QuantityState extends JSS.SafePureComponentState {
-  quantityString: string;
+  quantity: number;
 }

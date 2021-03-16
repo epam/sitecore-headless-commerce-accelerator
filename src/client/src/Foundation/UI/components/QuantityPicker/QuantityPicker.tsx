@@ -24,8 +24,8 @@ export type QuantityPickerProps = {
   value?: number;
   step?: number;
   disabled?: boolean;
-  theme?: 'withBorder';
-  size?: 'm';
+  theme?: 'withBorder' | 'grey';
+  size?: 'm' | 'l';
   min?: number;
   max?: number;
 

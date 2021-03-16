@@ -62,7 +62,6 @@ components.set('Products Search', Catalog.ProductsSearch);
 components.set('Product Shop', Catalog.ProductShop);
 
 // Checkout renderings
-components.set('Add To Cart', Checkout.AddToCart);
 components.set('Shopping Cart', Checkout.Cart);
 components.set('Billing', Checkout.Billing);
 components.set('Shipping', Checkout.Shipping);

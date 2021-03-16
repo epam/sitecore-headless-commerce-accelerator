@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Input } from 'Foundation/UI/components/Input';
 
-interface Quantity {
+type Props = {
   cartLineId?: string;
-  setQuantity: (quantity: boolean) => void;
-  quantityString: string;
-}
+  inc: () => void;
+  dec: () => void;
+  quantity: number;
+};
 
-const QuantityProductCommon = ({ cartLineId, setQuantity, quantityString }: Quantity) => {
+export const QuantityProductCommon: FC<Props> = ({ cartLineId, inc, dec, quantity }) => {
   return (
     <div className="quantity" data-autotests="productQty">
-      <input type="button" value="-" className="qty-button qty-minus" onClick={() => setQuantity(false)} />
+      <input type="button" value="-" className="qty-button qty-minus" onClick={dec} />
       <Input
         fullWidth={true}
-        type="text"
+        type="number"
         id={`qty-${cartLineId}`}
         className="cart-plus-minus-box"
-        value={quantityString}
+        value={quantity}
         disabled={true}
       />
-      <input type="button" value="+" className="qty-button qty-plus" onClick={() => setQuantity(true)} />
+      <input type="button" value="+" className="qty-button qty-plus" onClick={inc} />
     </div>
   );
 };
-
-export { QuantityProductCommon };

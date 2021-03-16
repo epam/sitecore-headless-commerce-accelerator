@@ -12,12 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Cart';
-export * from './OrderConfirmation';
-export * from './Billing';
-export * from './Shipping';
-export * from './Payment';
-export * from './CheckoutNavigation';
-export * from './OrderInformation';
-export * from './OrderHistory';
-export * from './GoToCheckout';
+export * from './SubmitEmailDialog';

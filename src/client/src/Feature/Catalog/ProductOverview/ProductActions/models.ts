@@ -12,27 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { ShoppingCart } from 'Feature/Checkout/Integration/api';
+import { Variant } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
 
-import { Variant } from 'Foundation/Commerce';
-
 import { ProductVariantGlobalState } from 'Feature/Catalog/Integration/ProductVariant';
-import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
 
-export interface AddToCartOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
-export interface AddToCartStateProps {
-  isLoading: boolean;
-  productId: string;
-  variant: Variant;
+export interface ProductActionsOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
+export interface ProductActionsStateProps {
+  isLoading?: boolean;
+  productId?: string;
+  variant?: Variant;
 }
-export interface AddToCartDispatchProps {
+export interface ProductActionsDispatchProps {
   AddToCart: (model: ShoppingCart.CartItemDto) => void;
 }
 
-export interface AddToCartProps extends AddToCartOwnProps, AddToCartStateProps, AddToCartDispatchProps {}
-export interface AddToCartState extends Jss.SafePureComponentState {
-  quantityCount: number;
-}
-
 export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState {}
+
+export interface ProductActionsProps
+  extends ProductActionsOwnProps,
+    ProductActionsStateProps,
+    ProductActionsDispatchProps {}

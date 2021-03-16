@@ -27,24 +27,31 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     super(props);
     const quantity = this.props.cartLine.quantity;
     this.state = {
-      quantityString: quantity.toString(),
+      quantity,
     };
   }
 
-  public setQuantityString(increase: boolean) {
-    const { quantityString } = this.state;
+  public handleInc() {
+    this.setQuantity(true);
+  }
+
+  public handleDec() {
+    this.setQuantity(false);
+  }
+
+  public setQuantity(increase: boolean) {
+    const { quantity } = this.state;
     const { RemoveCartLine, cartLine } = this.props;
-    const quantity = parseInt(quantityString, 10);
     const newQuantity = increase ? quantity + 1 : quantity - 1;
     if (!increase && quantity === 1) {
       RemoveCartLine(cartLine);
     } else {
-      this.setState({ quantityString: newQuantity.toString() }, () => this.updateCartLine(cartLine));
+      this.setState({ quantity: newQuantity }, () => this.updateCartLine(cartLine));
     }
   }
 
   public updateCartLine(cartLine: ShoppingCart.ShoppingCartLine) {
-    const quantity = parseInt(this.state.quantityString, 10);
+    const quantity = this.state.quantity;
     if (quantity >= 0) {
       const updateCartLineModel: ShoppingCartApi.CartItemDto = {
         productId: cartLine.product.productId,
@@ -54,19 +61,19 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
       this.props.UpdateCartLine(updateCartLineModel);
     } else {
       this.setState({
-        quantityString: cartLine.quantity.toString(),
+        quantity: cartLine.quantity,
       });
     }
   }
 
   public safeRender() {
     const cartLine = this.props.cartLine;
-    const quantityString = this.state.quantityString;
     return (
       <QuantityProductCommon
         cartLineId={cartLine.id}
-        setQuantity={(isIncrease: boolean) => this.setQuantityString(isIncrease)}
-        quantityString={quantityString}
+        inc={this.handleInc}
+        dec={this.handleDec}
+        quantity={this.state.quantity}
       />
     );
   }

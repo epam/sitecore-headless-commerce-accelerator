@@ -20,7 +20,7 @@ import { Variant } from 'Foundation/Commerce/dataModel.Generated';
 import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 
 export interface ProductOverviewOwnProps
-  extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductOwerviewContext> {}
+  extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductOverviewContext> {}
 
 export interface ProductOverviewStateProps {
   selectedVariant: Variant;
@@ -35,4 +35,4 @@ export interface ProductOverviewState extends JSS.SafePureComponentState {}
 
 export interface AppState extends ProductVariant.ProductVariantGlobalState {}
 
-export interface ProductOwerviewContext extends ProductContext, JSS.ImageFallbackContext {}
+export interface ProductOverviewContext extends ProductContext, JSS.ImageFallbackContext {}

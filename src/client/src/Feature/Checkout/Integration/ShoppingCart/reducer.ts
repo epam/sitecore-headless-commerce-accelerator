@@ -15,10 +15,16 @@
 import { Action, LoadingStatus } from 'Foundation/Integration';
 
 import { actionTypes } from './actionTypes';
-import { ShoppingCartState } from './models';
+import {
+  ShoppingCartState,
+  UpdateCartItemFailurePayload,
+  UpdateCartItemRequestPayload,
+  UpdateCartItemSuccessPayload,
+} from './models';
 
 export const initialState: ShoppingCartState = {
   actionType: '',
+  cartItemsState: {},
   status: LoadingStatus.NotLoaded,
 };
 
@@ -34,16 +40,63 @@ export default (state: ShoppingCartState = initialState, action: Action) => {
     case actionTypes.UPDATE_CART_LINE_FAILURE:
     case actionTypes.REMOVE_CART_LINE_REQUEST:
     case actionTypes.REMOVE_CART_LINE_SUCCESS:
-    case actionTypes.REMOVE_CART_LINE_FAILURE:
-    case actionTypes.ADD_PROMO_CODE_REQUEST:
-    case actionTypes.ADD_PROMO_CODE_SUCCESS:
-    case actionTypes.ADD_PROMO_CODE_FAILURE: {
+    case actionTypes.REMOVE_CART_LINE_FAILURE: {
       return {
         ...state,
         ...action.payload,
         actionType: action.type,
       };
     }
+
+    case actionTypes.UPDATE_CART_ITEM_REQUEST: {
+      const { productId, variantId } = action.payload as UpdateCartItemRequestPayload;
+      const id = `${productId}-${variantId}`;
+
+      return {
+        ...state,
+        cartItemsState: {
+          ...state.cartItemsState,
+          [id]: {
+            ...state.cartItemsState[id],
+            status: LoadingStatus.Loading,
+          },
+        },
+      };
+    }
+
+    case actionTypes.UPDATE_CART_ITEM_SUCCESS: {
+      const { productId, variantId } = action.payload as UpdateCartItemSuccessPayload;
+      const id = `${productId}-${variantId}`;
+
+      return {
+        ...state,
+        cartItemsState: {
+          ...state.cartItemsState,
+          [id]: {
+            ...state.cartItemsState[id],
+            status: LoadingStatus.Loaded,
+          },
+        },
+      };
+    }
+
+    case actionTypes.UPDATE_CART_ITEM_FAILURE: {
+      const { error, productId, variantId } = action.payload as UpdateCartItemFailurePayload;
+      const id = `${productId}-${variantId}`;
+
+      return {
+        ...state,
+        cartItemsState: {
+          ...state.cartItemsState,
+          [id]: {
+            ...state.cartItemsState[id],
+            error,
+            status: LoadingStatus.Loaded,
+          },
+        },
+      };
+    }
+
     default:
       return state;
   }

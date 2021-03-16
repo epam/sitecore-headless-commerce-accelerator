@@ -16,14 +16,15 @@ import { Action } from 'Foundation/Integration';
 
 import * as ShoppingCart from 'Feature/Checkout/Integration/api/ShoppingCart';
 
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
-
 import {
   CartLineSuccessPayload,
   CartSuccessPayload,
   RemoveCartLinePayload,
   ShoppingCartData,
   ShoppingCartLine,
+  UpdateCartItemFailurePayload,
+  UpdateCartItemRequestPayload,
+  UpdateCartItemSuccessPayload,
 } from './models';
 
 export type LoadCart = () => Action;
@@ -42,6 +43,6 @@ export type RemoveCartLine = (model: ShoppingCartLine) => Action<RemoveCartLineP
 
 export type RemoveCartLineSuccess = (model: ShoppingCartData) => Action<CartSuccessPayload>;
 
-export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
-
-export type AddPromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
+export type UpdateCartItemRequest = (payload: UpdateCartItemRequestPayload) => Action<UpdateCartItemRequestPayload>;
+export type UpdateCartItemSuccess = (payload: UpdateCartItemSuccessPayload) => Action<UpdateCartItemSuccessPayload>;
+export type UpdateCartItemFailure = (payload: UpdateCartItemFailurePayload) => Action<UpdateCartItemFailurePayload>;

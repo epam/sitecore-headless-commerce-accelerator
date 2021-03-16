@@ -7,6 +7,7 @@
 #load ./scripts/cake/xunit.cake
 #load ./scripts/cake/coverage.cake
 #load ./scripts/cake/client.cake
+#load ./scripts/cake/solr.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -36,6 +37,12 @@ Client.InitParams(
     clientBuildScript: $"build:{Sitecore.Parameters.BuildConfiguration}"
 );
 
+Solr.InitParams(
+    context: Context,
+    solrPort: "8983",
+    solrCore: "sc9_master_index"
+);
+
 // //////////////////////////////////////////////////
 // Extensions
 // //////////////////////////////////////////////////
@@ -58,7 +65,7 @@ Task("Generate-Commerce-Code")
 // //////////////////////////////////////////////////
 // Tasks
 // //////////////////////////////////////////////////
-
+	
 Task("000-Clean")
     .IsDependentOn(Sitecore.Tasks.ConfigureToolsTaskName)
     .IsDependentOn(Sitecore.Tasks.CleanWildcardFoldersTaskName)
@@ -108,6 +115,10 @@ Task("006-Sync-Content")
     .IsDependentOn(Sitecore.Tasks.SyncAllUnicornItems)
     ;
 
+Task("007-Update-SolrConfig")
+    .IsDependentOn(Solr.AddSuggesterComponents)
+    ;
+	
 // //////////////////////////////////////////////////
 // Targets
 // //////////////////////////////////////////////////
@@ -129,6 +140,11 @@ Task("Build-and-Publish") // LocalDev
 
 Task("Generate-Client-Models")
     .IsDependentOn(Client.GenerateModels)
+    ;
+
+Task("Initial-Deploy")
+    .IsDependentOn("Default")
+    .IsDependentOn("007-Update-SolrConfig")
     ;
 
 // //////////////////////////////////////////////////

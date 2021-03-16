@@ -315,6 +315,12 @@
     <Reference Include="Sitecore.ContentSearch.Linq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.Linq.9.3.0\lib\net471\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.ContentSearch.SolrNetExtension, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.ContentSearch.SolrNetExtension.9.3.0\lib\net471\Sitecore.ContentSearch.SolrNetExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.SolrProvider, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Sitecore.ContentSearch.SolrProvider.9.3.0\lib\net471\Sitecore.ContentSearch.SolrProvider.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.ExperienceEditor, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ExperienceEditor.9.3.0\lib\net471\Sitecore.ExperienceEditor.dll</HintPath>
     </Reference>
@@ -474,6 +480,7 @@
       <HintPath>..\..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -514,6 +521,9 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Threading.Thread" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
@@ -596,15 +606,24 @@
     <Compile Include="Mappers\Profiles\AddressProfile.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfile.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfile.cs" />
+    <Compile Include="Mappers\Profiles\SuggestionProfile.cs" />
     <Compile Include="Mappers\Resolvers\MultilistFieldResolver.cs" />
+    <Compile Include="Mappers\Search\ISuggestionMapper.cs" />
+    <Compile Include="Mappers\Search\SuggestionMapper.cs" />
     <Compile Include="Models\Catalog\StockStatus.cs" />
     <Compile Include="Models\Payment\PaymentClientTokenResult.cs" />
+    <Compile Include="Models\Search\Suggestion.cs" />
+    <Compile Include="Models\Search\SuggestionResult.cs" />
+    <Compile Include="Models\Search\SuggestionOptions.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionConfigurationModel.cs" />
     <Compile Include="Models\StorefrontSettings\CountryRegionModel.cs" />
     <Compile Include="Models\StorefrontSettings\PaymentConfigurationModel.cs" />
     <Compile Include="Models\StorefrontSettings\StorefrontModel.cs" />
     <Compile Include="Providers\ConnectEntityProvider.cs" />
     <Compile Include="Providers\IConnectEntityProvider.cs" />
+    <Compile Include="Providers\Search\CommerceSellableItemSuggestionResultProvider.cs" />
+    <Compile Include="Providers\Search\ISuggestionResultProvider.cs" />
+    <Compile Include="Providers\Search\SuggestionResultProvider.cs" />
     <Compile Include="Services\Search\ISearchService.cs" />
     <Compile Include="Managers\Pricing\IPricingManager.cs" />
     <Compile Include="Managers\Pricing\PricingManager.cs" />
@@ -636,6 +655,8 @@
     <Compile Include="Providers\Search\SearchResponseProvider.cs" />
     <Compile Include="Providers\Search\SearchResultProvider.cs" />
     <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
+    <Compile Include="Services\Search\ISuggestionService.cs" />
+    <Compile Include="Services\Search\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Commerce.Serialization.config">

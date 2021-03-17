@@ -12,16 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
 import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME } from 'Feature/Catalog/Integration/ProductsSearch';
 import { tryParseUrlSearch } from 'Foundation/Base';
-import { Input } from 'Foundation/UI/components/Input';
+import { SidebarSearch } from 'Foundation/UI/components/SidebarSearch';
 
 import { ProductsSearchOwnState, ProductsSearchProps } from './models';
-import './styles.scss';
 
 export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearchProps, ProductsSearchOwnState> {
   public static getDerivedStateFromProps(
@@ -48,6 +47,9 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
       keyword: this.getKeywordFromSearch(),
       submitted: false,
     };
+
+    this.handleFormClear = this.handleFormClear.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   protected safeRender() {
@@ -55,23 +57,13 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     const { isLoading } = this.props;
 
     return (
-      <section className="products-search">
-        <h3 className="search-heading">Search</h3>
-        <div className="search-wrap">
-          <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            <Input
-              onChange={this.handleKeywordChange}
-              type="search"
-              value={keyword}
-              disabled={isLoading}
-              placeholder="Search"
-            />
-            <button type="button" onClick={(e) => this.handleFormClear(e)}>
-              <i className="fa fa-times" />
-            </button>
-          </form>
-        </div>
-      </section>
+      <SidebarSearch
+        disabled={isLoading}
+        value={keyword}
+        onChange={this.handleKeywordChange}
+        onClear={this.handleFormClear}
+        onSubmit={this.handleFormSubmit}
+      />
     );
   }
 
@@ -82,16 +74,14 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     return parsedSearch[KEYWORD_PARAMETER_NAME] || '';
   }
 
-  private handleKeywordChange(e: React.ChangeEvent<HTMLInputElement>) {
+  private handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({
       keyword: e.target.value,
       submitted: false,
     });
-  }
+  };
 
-  private handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  private handleFormSubmit() {
     const { keyword, submitted } = this.state;
 
     if (submitted) {
@@ -101,7 +91,7 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     this.startSearch(keyword);
   }
 
-  private handleFormClear(e: React.MouseEvent<HTMLButtonElement>) {
+  private handleFormClear() {
     this.setState({ keyword: '', submitted: true });
     const { ChangeRoute, history } = this.props;
     const params = new URLSearchParams(history.location.search);

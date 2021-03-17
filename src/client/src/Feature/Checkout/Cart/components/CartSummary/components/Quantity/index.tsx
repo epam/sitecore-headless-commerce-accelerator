@@ -29,6 +29,9 @@ export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState
     this.state = {
       quantity,
     };
+
+    this.handleInc = this.handleInc.bind(this);
+    this.handleDec = this.handleDec.bind(this);
   }
 
   public handleInc() {

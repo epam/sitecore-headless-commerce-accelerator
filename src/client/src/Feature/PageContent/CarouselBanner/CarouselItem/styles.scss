@@ -16,24 +16,24 @@
 /* Animation */
 @keyframes fadeInUp {
   from {
-      transform: translate3d(0,40px,0)
+    transform: translate3d(0, 40px, 0);
   }
   to {
-      transform: translate3d(0,0,0);
-      opacity: 1
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
 @-webkit-keyframes fadeInUp {
   from {
-      transform: translate3d(0,40px,0)
+    transform: translate3d(0, 40px, 0);
   }
   to {
-      transform: translate3d(0,0,0);
-      opacity: 1
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
 
-.banner-container{
+.banner-container {
   width: 100%;
   max-width: 1200px;
   margin-right: auto;
@@ -45,191 +45,192 @@
 }
 
 .single-slider {
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @media #{$xl-layout} {
+    background-position: 50%;
+  }
+  @media #{$lg-layout} {
+    background-position: 42%;
+  }
+  @media #{$xs-layout} {
+    background-position: 30%;
+  }
+  @media #{$sm-layout} {
+    background-position: 22%;
+  }
+}
+
+.slider-height {
+  height: 800px;
+  @media #{$xl-layout} {
+    height: 570px;
+  }
+  @media #{$lg-layout} {
+    height: 500px;
+  }
+  @media #{$md-layout} {
+    height: 500px;
+  }
+  @media #{$xs-layout} {
+    height: 400px;
+  }
+  &.slider-content-center {
     display: flex;
     align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    @media #{$xl-layout} {
-      background-position: 50%;
-    }
-    @media #{$lg-layout} {
-      background-position: 42%;
-    }
-    @media #{$xs-layout} {
-      background-position: 30%;
-    }
-    @media #{$sm-layout} {
-      background-position: 22%;
+  }
+}
+
+.slider-content {
+  &_container {
+    margin-left: auto;
+    float: none !important;
+    flex: 0 0 50%;
+    max-width: 50%;
+    @media (max-width: 767px) {
+      padding: 0;
+      margin: 0;
     }
   }
-
-  .slider-height {
-    height: 800px;
-    @media #{$xl-layout} {
-      height: 570px;
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+  }
+  h3 {
+    opacity: 0;
+    font-size: 24px;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    &::before {
+      position: absolute;
+      top: 16px;
+      left: -110px;
+      width: 80px;
+      height: 2px;
+      content: '';
+      background-color: #000000;
     }
+    &::after {
+      position: absolute;
+      top: 16px;
+      right: -110px;
+      width: 80px;
+      height: 2px;
+      content: '';
+      background-color: #000000;
+    }
+  }
+  h1 {
+    opacity: 0;
+    font-size: 72px;
+    line-height: 56px;
+
+    margin: 28px 0 23px;
     @media #{$lg-layout} {
-      height: 500px;
+      font-size: 52px;
+      line-height: 40px;
     }
     @media #{$md-layout} {
-      height: 500px;
+      font-size: 52px;
+      line-height: 40px;
     }
     @media #{$xs-layout} {
-      height: 400px;
-    }
-    &.slider-content-center {
-      display: flex;
-      align-items: center;
+      font-size: 35px;
+      line-height: 30px;
+
+      margin: 18px 0 13px;
     }
   }
-
-  .slider-content {
-    &_container{
-      margin-left: auto;
-      float: none !important;
-      flex: 0 0 50%;
-      max-width: 50%;
-      @media (max-width: 767px) {
-        padding: 0;
-        margin: 0;
-      }
-    }
-    .animated { 
-      animation-duration: 1s;
-      animation-fill-mode: both;
-      -webkit-animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-    }
-    h3 {
+  p {
+    opacity: 0;
+    font-size: 18px;
+    margin: 0 0 44px;
+    color: #010101;
+  }
+  .slider-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    a {
       opacity: 0;
-      font-size: 24px;
-      font-weight: 500;
-      position: relative;
+      font-size: 16px;
+      line-height: 1;
       display: inline-block;
-      margin: 0;
-      &::before {
-        position: absolute;
-        top: 16px;
-        left: -110px;
-        width: 80px;
-        height: 2px;
-        content: "";
-        background-color: #000000;
+      padding: 19px 50px 21px;
+      text-transform: uppercase;
+      color: #010101;
+      box-shadow: 0 0 0 1px #333;
+      position: relative;
+      span {
+        z-index: 5;
+        white-space: nowrap;
       }
-      &::after {
-        position: absolute;
-        top: 16px;
-        right: -110px;
-        width: 80px;
-        height: 2px;
-        content: "";
-        background-color: #000000;
+      &:hover {
+        color: #fff;
+        box-shadow: 0 0 0 1px $theme-color;
       }
+
+      &:hover {
+        &:after {
+          right: auto !important;
+          left: 0px !important;
+          width: 101% !important;
+        }
+      }
+      &:after {
+        right: 0;
+        left: auto !important;
+        width: 0 !important;
+        background-color: $theme-color;
+      }
+      &:before,
+      &:after {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+        width: 101%;
+        height: 101%;
+        content: '';
+        -webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    }
+  }
+}
+
+.swiper-slide-active {
+  .slider-animated {
+    h3 {
+      -webkit-animation-name: fadeInUp;
+      animation-name: fadeInUp;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
     }
     h1 {
-      opacity: 0;
-      font-size: 72px;
-      line-height: 56px;
-
-      margin: 28px 0 23px;
-      @media #{$lg-layout} {
-        font-size: 52px;
-        line-height: 40px;
-      }
-      @media #{$md-layout} {
-        font-size: 52px;
-        line-height: 40px;
-      }
-      @media #{$xs-layout} {
-        font-size: 35px;
-        line-height: 30px;
-
-        margin: 18px 0 13px;
-      }
+      -webkit-animation-name: fadeInUp;
+      animation-name: fadeInUp;
+      -webkit-animation-delay: 1.3s;
+      animation-delay: 1.3s;
     }
     p {
-      opacity: 0;
-      font-size: 18px;
-      margin: 0 0 44px;
-      color: #010101;
+      -webkit-animation-name: fadeInUp;
+      animation-name: fadeInUp;
+      -webkit-animation-delay: 1.5s;
+      animation-delay: 1.5s;
     }
-    .slider-btn {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      a {
-        opacity: 0;
-        font-size: 16px;
-        line-height: 1;
-        display: inline-block;
-        padding: 19px 50px 21px;
-        text-transform: uppercase;
-        color: #010101;
-        border: 1px solid #333;
-        position: relative;
-        span {
-          z-index: 5; 
-          white-space: nowrap;
-        }
-        &:hover {
-          color: #fff;
-          border: 1px solid $theme-color;
-        }
-        
-        &:hover {
-          &:after {
-              right: auto !important;
-              left: 0px !important;
-              width: 101% !important;
-          }
-        }
-        &:after {
-            right: 0;
-            left: auto !important;
-            width: 0 !important;
-            background-color: $theme-color;
-        }
-        &:before, &:after {
-            position: absolute;
-            z-index: -1;
-            bottom: 0;
-            left: 0;
-            width: 101%;
-            height: 101%;
-            content: "";
-            -webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-      }
+    .slider-btn a {
+      -webkit-animation-name: fadeInUp;
+      animation-name: fadeInUp;
+      -webkit-animation-delay: 1.6s;
+      animation-delay: 1.6s;
     }
   }
-
-  .swiper-slide-active {
-    .slider-animated {
-      h3 {
-        -webkit-animation-name: fadeInUp;
-                animation-name: fadeInUp;
-        -webkit-animation-delay: 1s;
-                animation-delay: 1s;
-      }
-      h1 {
-        -webkit-animation-name: fadeInUp;
-                animation-name: fadeInUp;
-        -webkit-animation-delay: 1.3s;
-                animation-delay: 1.3s;
-      }
-      p {
-        -webkit-animation-name: fadeInUp;
-                animation-name: fadeInUp;
-        -webkit-animation-delay: 1.5s;
-                animation-delay: 1.5s;
-      }
-      .slider-btn a {
-        -webkit-animation-name: fadeInUp;
-                animation-name: fadeInUp;
-        -webkit-animation-delay: 1.6s;
-                animation-delay: 1.6s;
-      }
-    }
-  }
+}

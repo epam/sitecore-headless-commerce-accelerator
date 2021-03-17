@@ -19,7 +19,7 @@ import Modal, { Props as ModalProps } from 'react-modal';
 import { cnDialog } from './cn';
 import './Dialog.scss';
 
-Modal.setAppElement(document.getElementById('app'));
+Modal.setAppElement('#app');
 
 type Props = ModalProps & {
   toggleDialog: () => void;

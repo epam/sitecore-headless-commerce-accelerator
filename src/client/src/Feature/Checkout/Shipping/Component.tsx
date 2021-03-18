@@ -34,7 +34,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
     this.state = {
       canResetDeliveryInfo: true,
-      containsGift: false,
       email: '',
       saveToAccount: false,
       selectedAddressOption,
@@ -43,7 +42,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
     this.handleAddressOptionChange = this.handleAddressOptionChange.bind(this);
     this.handleUseForBillingAddressChange = this.handleUseForBillingAddressChange.bind(this);
-    this.handleContainsGiftChange = this.handleContainsGiftChange.bind(this);
     this.handleSaveToAccountChange = this.handleSaveToAccountChange.bind(this);
   }
 
@@ -203,17 +201,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                       <span className="checkbox-label">Also use for billing address</span>
                     </label>
                   </li>
-                  <li>
-                    <label htmlFor="contains-gift" className="selection-container">
-                      <Checkbox
-                        name={FIELDS.CONTAINS_GIFT}
-                        id="contains-gift"
-                        checked={this.state.containsGift}
-                        onChange={this.handleContainsGiftChange}
-                      />
-                      <span className="checkbox-label">This order contains a gift</span>
-                    </label>
-                  </li>
                 </ul>
               </div>
               {this.state.selectedAddressOption === ADDRESS_TYPE.NEW && isLoggedIn && (
@@ -314,10 +301,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   private handleUseForBillingAddressChange(e: FormEvent<HTMLInputElement>) {
     this.setState({ useForBillingAddress: Boolean(e.currentTarget.checked) });
-  }
-
-  private handleContainsGiftChange(e: FormEvent<HTMLInputElement>) {
-    this.setState({ containsGift: Boolean(e.currentTarget.checked) });
   }
 
   private handleSaveToAccountChange(e: FormEvent<HTMLInputElement>) {

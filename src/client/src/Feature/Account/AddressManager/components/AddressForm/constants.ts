@@ -19,7 +19,6 @@ export const ADDRESS_MANAGER_FIELDS = keyMirror(
     ADDRESS_LINE: null,
     ADDRESS_TYPE: null,
     CITY: null,
-    CONTAINS_GIFT: null,
     COUNTRY: null,
     EMAIL: null,
     FIRST_NAME: null,

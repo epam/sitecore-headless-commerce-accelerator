@@ -129,7 +129,7 @@ a:hover {
 }
 
 button,
-input[type="submit"] {
+input[type='submit'] {
   cursor: pointer;
 }
 
@@ -138,10 +138,11 @@ ul {
   padding: 0;
   list-style: outside none none;
 }
-table{
+table {
   width: 100%;
 }
-#app {
+
+.container {
   overflow: hidden;
 }
 

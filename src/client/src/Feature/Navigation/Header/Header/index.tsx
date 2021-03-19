@@ -35,9 +35,6 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
     this.headerRef = React.createRef();
   }
 
-  public componentDidUpdate(prevProps: Readonly<HeaderProps>, prevState: Readonly<HeaderState>, snapshot?: any) {
-    this.setState({ headerTop: this.headerRef.current.offsetTop });
-  }
   public componentDidMount() {
     document.addEventListener('scroll', this.handleScroll.bind(this));
   }
@@ -61,29 +58,31 @@ class HeaderComponent extends JSS.SafePureComponent<HeaderProps, HeaderState> {
 
   protected safeRender() {
     return (
-      <header
-        ref={this.headerRef}
-        className={classnames('header', 'header--inactive', {
-          'header--sticky': this.state.scroll > this.state.headerTop,
-        })}
-        data-el="header"
-      >
-        <div className="header-desktop">
-          <Placeholder name="header-content" rendering={this.props.rendering} />
-        </div>
+      <>
+        <header
+          ref={this.headerRef}
+          className={classnames('header', 'header--inactive', {
+            'header--sticky': this.state.scroll > this.state.headerTop,
+          })}
+          data-el="header"
+        >
+          <div className="header-desktop">
+            <Placeholder name="header-content" rendering={this.props.rendering} />
+          </div>
 
-        <div className={classnames('header_mobile mobile-menu')}>
-          <button className="mobile-menu_close" onClick={this.handleClick}>
-            <i className="pe-7s-close" />
-          </button>
-          <div className="mobile-menu_container">
-            <div className="mobile-menu_content">
-              <Placeholder name="header-content" rendering={this.props.rendering} />
+          <div className={classnames('header_mobile mobile-menu')}>
+            <button className="mobile-menu_close" onClick={this.handleClick}>
+              <i className="pe-7s-close" />
+            </button>
+            <div className="mobile-menu_container">
+              <div className="mobile-menu_content">
+                <Placeholder name="header-content" rendering={this.props.rendering} />
+              </div>
             </div>
           </div>
-        </div>
+        </header>
         <Placeholder name="breadcrumb" rendering={this.props.rendering} />
-      </header>
+      </>
     );
   }
 }

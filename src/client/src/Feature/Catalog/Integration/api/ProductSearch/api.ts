@@ -74,11 +74,17 @@ export const searchProducts = async (params: SearchProductsParams): Promise<Resu
 
 export const requestSuggestions = async (search: string): Promise<Result<ProductSearchSuggestionResponse>> => {
   try {
-    const response = await axios.post<Result<ProductSearchSuggestionResponse>>(
-      '/apix/client/commerce/search/suggestions',
-      { search },
+    const response = await axios.get<Result<ProductSearchSuggestionResponse>>(
+      `/apix/client/commerce/search/suggestions`,
+      {
+        params: {
+          search,
+        },
+      },
     );
+
     const { data } = response;
+
     return {
       data: {
         products: data.data.products,

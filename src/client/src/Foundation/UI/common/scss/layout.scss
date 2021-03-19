@@ -12,33 +12,33 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-html, body{
+html,
+body {
   height: 100%;
 }
-#app{
-  overflow: hidden;
-  @media (max-width: $screen-sm-max){
-    transition: padding-top .2s;
+#app {
+  @media (max-width: $screen-sm-max) {
+    transition: padding-top 0.2s;
 
     &.nav-up {
       padding-top: 0;
-      transition: padding-top .2s;
+      transition: padding-top 0.2s;
     }
   }
 }
-header#header-main{
-  transition: left .2s;
+header#header-main {
+  transition: left 0.2s;
   z-index: 1001;
   position: relative;
-  @media (max-width: $screen-sm-max){
+  @media (max-width: $screen-sm-max) {
     width: 400px;
     //padding-right: 20px; //make room for scroll bar which we tuck behind main
     position: fixed;
-    -webkit-transform: translate3d(-100%,0px,0px);
-    -moz-transform: translate3d(-100%,0px,0px);
-    -ms-transform: translate3d(-100%,0px,0px);
-    -o-transform: translate3d(-100%,0px,0px);
-    transform: translate3d(-100%,0px,0px);
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    -moz-transform: translate3d(-100%, 0px, 0px);
+    -ms-transform: translate3d(-100%, 0px, 0px);
+    -o-transform: translate3d(-100%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
     -webkit-transition: transform 2s;
     -moz-transition: transform 1s;
     -ms-transition: transform 1s;
@@ -49,14 +49,14 @@ header#header-main{
     overflow: auto;
     //z-index: 998; //move this back so we can tuck behind main
   }
-  @media (max-width: $screen-xs-max){
+  @media (max-width: $screen-xs-max) {
     width: 280px;
   }
-  @media (max-width: 321px){
+  @media (max-width: 321px) {
     width: 250px;
   }
 }
-header#header-main.panel-open{
+header#header-main.panel-open {
   -webkit-transform: translate3d(0%, 0px, 0px);
   -moz-transform: translate3d(0%, 0px, 0px);
   -ms-transform: translate3d(0%, 0px, 0px);
@@ -64,73 +64,72 @@ header#header-main.panel-open{
   transform: translate3d(0%, 0px, 0px);
 }
 header#header-mobile {
-  transition: left .2s, right .2s, top .2s;
+  transition: left 0.2s, right 0.2s, top 0.2s;
   z-index: 999;
   top: 0;
   .nav-up & {
     top: -50px;
-    transition: top .2s;
+    transition: top 0.2s;
 
     .nav-main-panel-open & {
       top: 0;
     }
   }
 }
-main{
+main {
   position: relative;
   left: 0;
-  transition: left .2s;
+  transition: left 0.2s;
   z-index: 999;
 }
-footer#footer-main{
+footer#footer-main {
   position: relative;
   left: 0;
-  transition: left .2s;
+  transition: left 0.2s;
   z-index: 999;
 }
 
-.nav-main-panel-open{
-  @media (max-width: $screen-sm-max){
-    header#header-main{
+.nav-main-panel-open {
+  @media (max-width: $screen-sm-max) {
+    header#header-main {
       left: 0;
     }
     header#header-mobile {
       left: 400px;
       right: -400px;
     }
-    main{
+    main {
       left: 400px;
     }
-    footer#footer-main{
+    footer#footer-main {
       left: 400px;
     }
   }
-  @media (max-width: $screen-xs-max){
+  @media (max-width: $screen-xs-max) {
     header#header-mobile {
       left: 280px;
       right: -280px;
     }
-    main{
+    main {
       left: 280px;
     }
-    footer#footer-main{
+    footer#footer-main {
       left: 280px;
     }
   }
-  @media (max-width: 321px){
+  @media (max-width: 321px) {
     header#header-mobile {
       left: 250px;
       right: -250px;
     }
-    main{
+    main {
       left: 250px;
     }
-    footer#footer-main{
+    footer#footer-main {
       left: 250px;
     }
   }
 }
-
 
 //styles for account page's layout
 .accountContainer {

@@ -226,6 +226,10 @@ jobs:
           $(Pipeline.Workspace)/s/src/client/node_modules/.bin/cross-env.cmd NODE_ENV=production $(Pipeline.Workspace)/s/src/client/node_modules/.bin/webpack.cmd
         workingDirectory: './src/client'
 
+    - task: NuGetAuthenticate@0
+      inputs:
+        nuGetServiceConnections: 'Connect.DynamicsRetail Nuget connection'
+
     - task: NuGetCommand@2
       displayName: 'NuGet restore'
       inputs:

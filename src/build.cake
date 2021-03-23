@@ -1,8 +1,8 @@
 // //////////////////////////////////////////////////
 // Dependencies
 // //////////////////////////////////////////////////
-#tool nuget:?package=Cake.Sitecore&prerelease
-#load nuget:?package=Cake.Sitecore&prerelease
+#tool nuget:?package=Cake.Sitecore.Recipe&prerelease
+#load nuget:?package=Cake.Sitecore.Recipe&prerelease
 
 #load ./scripts/cake/xunit.cake
 #load ./scripts/cake/coverage.cake

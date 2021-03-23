@@ -37,7 +37,7 @@ XUnitRunner.RunTests = Task("xUnit Tests :: Run Server Tests")
 
         var directories = GetDirectories(
                 $"{Sitecore.Parameters.SrcDir}/**/bin", 
-                fileSystemInfo => fileSystemInfo.Path.FullPath.IndexOf("node_modules", StringComparison.OrdinalIgnoreCase) < 0
+                new GlobberSettings { Predicate = fileSystemInfo => !fileSystemInfo.Path.FullPath.EndsWith("node_modules", StringComparison.OrdinalIgnoreCase) }
             );
         foreach (var directory in directories)
         {

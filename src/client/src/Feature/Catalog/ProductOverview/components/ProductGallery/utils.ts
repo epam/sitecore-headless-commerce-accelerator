@@ -12,15 +12,22 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import Swiper from 'swiper';
+const SLIDES_PER_VIEW = {
+  640: 2,
+  992: 4,
+  1024: 2,
+  1200: 3,
+};
 
-import * as Jss from 'Foundation/ReactJss';
+export const calculateNumberOfSlidesToShow = (images: string[]) => {
+  const breakpointsRules = {};
 
-export interface ProductGalleryProps {
-  images: string[];
-}
+  for (const breakpoint of Object.keys(SLIDES_PER_VIEW)) {
+    breakpointsRules[breakpoint] = {
+      slidesPerView:
+        images && images.length < SLIDES_PER_VIEW[breakpoint] ? images.length : SLIDES_PER_VIEW[breakpoint],
+    };
+  }
 
-export interface ProductGalleryState extends Jss.SafePureComponentState {
-  gallerySwiper: Swiper;
-  carouselSwiper: Swiper;
-}
+  return breakpointsRules;
+};

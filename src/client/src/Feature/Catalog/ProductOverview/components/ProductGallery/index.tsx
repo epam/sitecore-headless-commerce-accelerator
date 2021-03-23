@@ -12,68 +12,86 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
-
+import React, { createRef, MouseEvent } from 'react';
+import Swiper, { SwiperRefNode } from 'react-id-swiper';
 import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import Swiper, { SwiperRefNode } from 'react-id-swiper';
 import { ProductGalleryProps, ProductGalleryState } from './models';
+import { calculateNumberOfSlidesToShow } from './utils';
+
 import './styles.scss';
 
 export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, ProductGalleryState> {
-  private readonly imageSwiperRef: React.MutableRefObject<SwiperRefNode>;
+  private readonly gallerySwiperRef: React.MutableRefObject<SwiperRefNode>;
   private readonly carouselSwiperRef: React.MutableRefObject<SwiperRefNode>;
   constructor(props: ProductGalleryProps) {
     super(props);
 
-    this.imageSwiperRef = React.createRef();
-    this.carouselSwiperRef = React.createRef();
+    this.gallerySwiperRef = createRef();
+    this.carouselSwiperRef = createRef();
 
-    this.state = {};
+    this.state = {
+      carouselSwiper: null,
+      gallerySwiper: null,
+    };
 
     this.goPrev = this.goPrev.bind(this);
     this.goNext = this.goNext.bind(this);
-    this.changeIndex = this.changeIndex.bind(this);
+    this.onGallerySlideChange = this.onGallerySlideChange.bind(this);
+    this.onCarouselSlideClick = this.onCarouselSlideClick.bind(this);
   }
+
   public goPrev() {
-    const { images } = this.props;
-    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
-    if (thumbnailSwiper) {
-      const currentIndex = thumbnailSwiper.activeIndex;
-      currentIndex === 1 ? thumbnailSwiper.slideTo(images.length) : thumbnailSwiper.slideTo(currentIndex - 1);
-    }
-  }
-  public goNext() {
-    const { images } = this.props;
-    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
-    if (thumbnailSwiper) {
-      const currentIndex = thumbnailSwiper.activeIndex;
-      currentIndex === images.length ? thumbnailSwiper.slideTo(1) : thumbnailSwiper.slideTo(currentIndex + 1);
+    const { gallerySwiper, carouselSwiper } = this.state;
+
+    if (gallerySwiper && carouselSwiper) {
+      gallerySwiper.slidePrev();
+      carouselSwiper.slidePrev();
     }
   }
 
-  public changeIndex(e: React.MouseEvent<HTMLDivElement>) {
-    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
-    const index = parseInt(e.currentTarget.getAttribute('data-swiper-slide-index'), 10);
-    if (thumbnailSwiper) {
-      thumbnailSwiper.slideToLoop(index);
+  public goNext() {
+    const { gallerySwiper, carouselSwiper } = this.state;
+
+    if (gallerySwiper && carouselSwiper) {
+      gallerySwiper.slideNext();
+      carouselSwiper.slideNext();
+    }
+  }
+
+  public onCarouselSlideClick(e: MouseEvent<HTMLDivElement>) {
+    const slideElement = (e.target as Element).closest('.swiper-slide');
+
+    if (slideElement) {
+      const { gallerySwiper, carouselSwiper } = this.state;
+      const index = parseInt(slideElement.getAttribute('data-swiper-slide-index'), 10);
+
+      if (gallerySwiper && carouselSwiper) {
+        gallerySwiper.slideToLoop(index);
+        carouselSwiper.slideToLoop(index);
+      }
+    }
+  }
+
+  public onGallerySlideChange() {
+    const { gallerySwiper, carouselSwiper } = this.state;
+
+    if (gallerySwiper && carouselSwiper) {
+      carouselSwiper.slideToLoop(gallerySwiper.realIndex);
     }
   }
 
   public componentDidUpdate() {
-    const gallerySwiper = this.imageSwiperRef.current && this.imageSwiperRef.current.swiper;
-    const thumbnailSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
-    if (gallerySwiper && thumbnailSwiper) {
-      gallerySwiper.controller.control = thumbnailSwiper;
-      thumbnailSwiper.controller.control = gallerySwiper;
-      thumbnailSwiper.height = 140;
+    const gallerySwiper = this.gallerySwiperRef.current && this.gallerySwiperRef.current.swiper;
+    const carouselSwiper = this.carouselSwiperRef.current && this.carouselSwiperRef.current.swiper;
 
-      const listOfSlides = thumbnailSwiper.wrapperEl.children;
-      for (const slide of listOfSlides as any) {
-        slide.addEventListener('click', this.changeIndex);
-      }
+    if (gallerySwiper && carouselSwiper) {
+      this.setState({
+        carouselSwiper,
+        gallerySwiper,
+      });
     }
   }
 
@@ -84,12 +102,17 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
       freeMode: false,
       loop: true,
       loopedSlides: images && images.length % 4 === 0 ? 0 : images.length * 3,
+      on: {
+        slideChange: this.onGallerySlideChange,
+      },
       slidesPerView: 1,
       spaceBetween: 10,
     };
 
-    const thumbnailSwiperParams = {
+    const carouselSwiperParams = {
+      breakpoints: calculateNumberOfSlidesToShow(images),
       freeMode: false,
+      height: 140,
       loop: true,
       loopedSlides: images && images.length % 4 === 0 ? 0 : images.length * 3,
       slidesPerView: images && images.length < 4 ? images.length : 4,
@@ -101,7 +124,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
       <div className="product-gallery">
         <div className="product-gallery-header">
           <LightgalleryProvider>
-            <Swiper {...gallerySwiperParams} effect="fade" ref={this.imageSwiperRef}>
+            <Swiper {...gallerySwiperParams} effect="fade" ref={this.gallerySwiperRef}>
               {images &&
                 images.map((src, index) => (
                   <div key={index}>
@@ -119,10 +142,10 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
           </LightgalleryProvider>
         </div>
         {images && images.length > 1 && (
-          <div className="product-gallery-carousel">
-            <Swiper {...thumbnailSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
+          <div className="product-gallery-carousel" onClick={this.onCarouselSlideClick}>
+            <Swiper {...carouselSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
               {images.map((src, index) => (
-                <div key={index} onClick={(e) => this.changeIndex(e)}>
+                <div key={index}>
                   <div className="single-image">
                     <img src={src} className="img-fluid" alt="" />
                   </div>

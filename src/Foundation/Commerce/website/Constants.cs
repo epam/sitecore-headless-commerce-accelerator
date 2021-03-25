@@ -40,12 +40,44 @@ namespace HCA.Foundation.Commerce
         {
             public const string FederatedPaymentOptionTitle = "Federated";
         }
-		
+
+        public static class Promotion
+        {
+            public const string FreeShippingPromotion = "FreeShippingPromotion";
+        }
+
+        public static class Geolocation
+        {
+            public const double EarthRadiusInKilometers = 6371.0;
+        }
+
+        public static class PasswordRecovery
+        {
+            public const string PasswordRecoveryLink = "$passwordRecoveryLink$";
+
+            public const string ResetPasswordEndpoint = "apix/client/commerce/accounts/password";
+
+            public const string ConfirmTokenKey = "PasswordToken";
+        }
+
+        public static class Pipelines
+        {
+            public const string Login = "hca.foundation.account.login";
+
+            public const string Logout = "hca.foundation.account.logout";
+
+            public const string ConfirmPasswordRecovery = "hca.foundation.account.confirmPasswordRecovery";
+        }
+
         public static class ErrorMessages
         {
             public const string EmailInUse = "Email is in use.";
 
+            public const string UserNotFound = "User with specified email was not found";
+
             public const string IncorrectOldPassword = "Incorrect old password.";
+
+            public const string PasswordRecoveryLinkTokenMissing = "Missing password recovery link token in password recovery email";
         }
     }
 }

@@ -19,12 +19,15 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using System.Linq;
     using System.Net.Mail;
 
+    using Base.Services.Pipeline;
+    using Base.Tests.Common.Utils;
+
     using Commerce.Mappers.Account;
     using Commerce.Services.Account;
 
     using Connect.Context.Storefront;
     using Connect.Managers.Account;
-
+    using HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecovery;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
@@ -52,6 +55,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
         private readonly IStorefrontContext storefrontContext;
 
+        private readonly IPipelineService pipelineService;
+
         public AccountServiceTests()
         {
             this.fixture = new Fixture();
@@ -59,12 +64,14 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.accountManager = Substitute.For<IAccountManager>();
             this.mapper = Substitute.For<IAccountMapper>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
+            this.pipelineService = Substitute.For<IPipelineService>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
 
             this.service = Substitute.For<AccountService>(
                 this.accountManager,
                 this.mapper,
-                this.storefrontContext);
+                this.storefrontContext,
+                this.pipelineService);
         }
 
         public static IEnumerable<object[]> AddressParameters =>
@@ -154,7 +161,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
             return addPartiesResult;
         }
-
         #endregion
 
         #region ChangePassword
@@ -414,7 +420,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.accountManager
                 .GetUser(userName)
                 .Returns(userResult);
-            
+
             var getPartiesResult = this.fixture
                 .Build<GetPartiesResult>()
                 .With(gur => gur.Success, getPartiesResultSuccess)
@@ -790,6 +796,82 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
             // assert
             Assert.False(result.Data.InUse);
+        }
+
+        #endregion
+
+        #region ConfirmPasswordRecovery
+
+        [Fact]
+        public void ConfirmPasswordRecovery_IfPipelineAborted_ShouldReturnFailResult()
+        {
+            // arrange
+            HttpContextFaker.FakeGenericPrincipalContext();
+            this.pipelineService
+                .When(x => x.RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, Arg.Any<ConfirmPasswordRecoveryArgs>()))
+                .Do(
+                    info =>
+                    {
+                        var args = info[1] as ConfirmPasswordRecoveryArgs;
+
+                        args.AbortPipeline();
+                    });
+
+            // act
+            var result = this.service.ConfirmPasswordRecovery(this.fixture.Create<string>());
+
+            // assert
+            Assert.False(result.Success);
+        }
+
+        [Fact]
+        public void ConfirmPasswordRecovery_IfPipelineAbortedAndIsEmailValidFalse_ShouldReturnFailResultWithIsEmailValidFalseInData()
+        {
+            // arrange
+            HttpContextFaker.FakeGenericPrincipalContext();
+            this.pipelineService
+                .When(x => x.RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, Arg.Any<ConfirmPasswordRecoveryArgs>()))
+                .Do(
+                    info =>
+                    {
+                        var args = info[1] as ConfirmPasswordRecoveryArgs;
+
+                        args.IsEmailValid = false;
+                        args.AbortPipeline();
+                    });
+
+            // act
+            var result = this.service.ConfirmPasswordRecovery(this.fixture.Create<string>());
+
+            // assert
+            Assert.False(result.Success);
+            Assert.False(result.Data.IsEmailValid);
+        }
+
+        [Fact]
+        public void ConfirmPasswordRecovery_IfPipelineNotAborted_ShouldReturnSuccessResult()
+        {
+            // arrange
+            HttpContextFaker.FakeGenericPrincipalContext();
+
+            // act
+            var result = this.service.ConfirmPasswordRecovery(this.fixture.Create<string>());
+
+            // assert
+            Assert.True(result.Success);
+        }
+
+        [Fact]
+        public void ConfirmPasswordRecovery_ShouldRunConfirmPasswordRecoveryPipeline()
+        {
+            // arrange
+            HttpContextFaker.FakeGenericPrincipalContext();
+
+            // act
+            this.service.ConfirmPasswordRecovery(this.fixture.Create<string>());
+
+            // assert
+            this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, Arg.Any<ConfirmPasswordRecoveryArgs>());
         }
 
         #endregion

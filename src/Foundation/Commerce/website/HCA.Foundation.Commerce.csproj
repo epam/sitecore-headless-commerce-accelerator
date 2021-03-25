@@ -627,6 +627,12 @@
     <Compile Include="Context\Contracts\ISiteContext.cs" />
     <Compile Include="Context\SiteContext.cs" />
     <Compile Include="Context\VisitorContext.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\ConfirmPasswordRecoveryArgs.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\GenerateTokenProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\PopulateConfirmMailProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\SendConfirmPasswordRecoveryMailProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyEmailProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyUsernameProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Infrastructure\Pipelines\HttpRequestBegin\CustomerResolverProcessor.cs" />
@@ -665,6 +671,7 @@
     <Compile Include="Mappers\Users\IUserMapper.cs" />
     <Compile Include="Mappers\Users\UserMapper.cs" />
     <Compile Include="Models.Generated.cs" />
+    <Compile Include="Models\Entities\Account\ConfirmPasswordRecoveryResult.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Adjustments\Adjustment.cs" />
     <Compile Include="Models\Entities\Search\ProductSuggestion.cs" />

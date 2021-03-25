@@ -100,13 +100,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{8B6B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{D7471233-EE41-4080-8C58-12D5033C644A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.StoreLocator", "Feature\StoreLocator\website\HCA.Feature.StoreLocator.csproj", "{851A3E61-85D2-21FC-7DCB-13F7C712861F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoreLocator", "StoreLocator", "{C0A57B80-04F5-43FD-A4C3-6DA795523C9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Feature.StoreLocator.Tests", "Feature\StoreLocator\tests\HCA.Feature.StoreLocator.Tests.csproj", "{30C24882-E88A-4B3C-87F4-7D442AE5FE77}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analytics", "Analytics", "{BA112566-FFAA-4B5C-BD91-2F9FF03E9CDD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Analytics", "Foundation\Analytics\website\HCA.Foundation.Analytics.csproj", "{919F57BC-39FD-4EFC-A1F9-447A50D7A8B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Analytics.Tests", "Foundation\Analytics\tests\HCA.Foundation.Analytics.Tests.csproj", "{C9E1E3CD-1A25-4D33-B65E-845958519EE5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analytics", "Analytics", "{F4268787-EE68-4A5B-844F-570EED61CE9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Base.Tests.Common", "Foundation\Base\HCA.Foundation.Base.Tests.Common\HCA.Foundation.Base.Tests.Common.csproj", "{BCE2B29D-D4B6-403D-B22E-6EBFED226966}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -218,6 +224,14 @@ Global
 		{221EEF08-DE62-4336-87D0-1AB2A0BDBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{221EEF08-DE62-4336-87D0-1AB2A0BDBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{221EEF08-DE62-4336-87D0-1AB2A0BDBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{851A3E61-85D2-21FC-7DCB-13F7C712861F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{851A3E61-85D2-21FC-7DCB-13F7C712861F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{851A3E61-85D2-21FC-7DCB-13F7C712861F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{851A3E61-85D2-21FC-7DCB-13F7C712861F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C24882-E88A-4B3C-87F4-7D442AE5FE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C24882-E88A-4B3C-87F4-7D442AE5FE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C24882-E88A-4B3C-87F4-7D442AE5FE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C24882-E88A-4B3C-87F4-7D442AE5FE77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{919F57BC-39FD-4EFC-A1F9-447A50D7A8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{919F57BC-39FD-4EFC-A1F9-447A50D7A8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{919F57BC-39FD-4EFC-A1F9-447A50D7A8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -226,6 +240,10 @@ Global
 		{C9E1E3CD-1A25-4D33-B65E-845958519EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9E1E3CD-1A25-4D33-B65E-845958519EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9E1E3CD-1A25-4D33-B65E-845958519EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE2B29D-D4B6-403D-B22E-6EBFED226966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE2B29D-D4B6-403D-B22E-6EBFED226966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE2B29D-D4B6-403D-B22E-6EBFED226966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE2B29D-D4B6-403D-B22E-6EBFED226966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,9 +289,13 @@ Global
 		{CE6673B9-1F7B-466E-8E79-03E5E5A0A1D1} = {402DC165-AB11-4C12-A186-E30BEE7FB9F4}
 		{60CD1765-857B-4BC8-831E-7526264F1EC5} = {5AC8E2F9-D395-43AD-A8A9-628993206C83}
 		{221EEF08-DE62-4336-87D0-1AB2A0BDBFA8} = {5AC8E2F9-D395-43AD-A8A9-628993206C83}
+		{851A3E61-85D2-21FC-7DCB-13F7C712861F} = {C0A57B80-04F5-43FD-A4C3-6DA795523C9C}
+		{C0A57B80-04F5-43FD-A4C3-6DA795523C9C} = {8B6B8128-AD7B-4331-9DC0-0AFE37FC45E1}
+		{30C24882-E88A-4B3C-87F4-7D442AE5FE77} = {C0A57B80-04F5-43FD-A4C3-6DA795523C9C}
 		{BA112566-FFAA-4B5C-BD91-2F9FF03E9CDD} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
 		{919F57BC-39FD-4EFC-A1F9-447A50D7A8B0} = {BA112566-FFAA-4B5C-BD91-2F9FF03E9CDD}
 		{C9E1E3CD-1A25-4D33-B65E-845958519EE5} = {BA112566-FFAA-4B5C-BD91-2F9FF03E9CDD}
+		{BCE2B29D-D4B6-403D-B22E-6EBFED226966} = {BCE225B2-085A-4460-B74B-09F317A393DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\lib\NET45

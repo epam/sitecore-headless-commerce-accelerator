@@ -562,6 +562,10 @@
     <Compile Include="Builders\Cart\CartBuilderTests.cs" />
     <Compile Include="Builders\Order\OrderBuilderTests.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilderTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\GenerateTokenProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyEmailProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\SendConfirmPasswordRecoveryMailProcessorTests.cs" />
+    <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyUsernameProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Logout\EndVisitProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\GetCommerceUserProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\IdentifyCommerceUserProcessorTests.cs" />
@@ -607,6 +611,10 @@
     <ProjectReference Include="..\..\Account\website\HCA.Foundation.Account.csproj">
       <Project>{74c245aa-2561-4a2a-adbd-e7d4045f6227}</Project>
       <Name>HCA.Foundation.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Base\HCA.Foundation.Base.Tests.Common\HCA.Foundation.Base.Tests.Common.csproj">
+      <Project>{BCE2B29D-D4B6-403D-B22E-6EBFED226966}</Project>
+      <Name>HCA.Foundation.Base.Tests.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Base\tests\HCA.Foundation.Base.Tests.csproj">
       <Project>{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}</Project>

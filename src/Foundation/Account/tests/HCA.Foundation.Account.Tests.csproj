@@ -221,6 +221,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\Pipelines\Logout\LogoutProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\Login\LoginProcessorTests.cs" />
+    <Compile Include="Managers\User\UserManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication\AuthenticationServiceTests.cs" />
   </ItemGroup>

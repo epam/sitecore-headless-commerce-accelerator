@@ -39,6 +39,14 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     return state;
   }
 
+  public componentDidMount() {
+    const { search } = this.props.history.location;
+
+    if (!search) {
+      this.startSearch();
+    }
+  }
+
   constructor(props: ProductsSearchProps) {
     super(props);
 
@@ -82,13 +90,13 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
   };
 
   private handleFormSubmit() {
-    const { keyword, submitted } = this.state;
+    const { submitted } = this.state;
 
     if (submitted) {
       return;
     }
 
-    this.startSearch(keyword);
+    this.startSearch();
   }
 
   private handleFormClear() {
@@ -101,12 +109,13 @@ export default class ProductsSearch extends Jss.SafePureComponent<ProductsSearch
     ChangeRoute(newUrl);
   }
 
-  private startSearch(keyword: string) {
+  private startSearch() {
+    const { keyword } = this.state;
     const params = this.props.productSearchParams;
     const newSearchQuery = [];
-    if (keyword) {
-      newSearchQuery.push(`${KEYWORD_PARAMETER_NAME}=${keyword}`);
-    }
+
+    newSearchQuery.push(`${KEYWORD_PARAMETER_NAME}=${keyword}`);
+
     if (params.f) {
       newSearchQuery.push(`${FACET_PARAMETER_NAME}=${encodeURIComponent(params.f)}`);
     }

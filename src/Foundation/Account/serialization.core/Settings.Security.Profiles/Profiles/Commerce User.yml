@@ -1,0 +1,22 @@
+﻿---
+ID: "0ffec1bd-4d35-49cf-8b7d-7f01930834ed"
+Parent: "65701ce7-6ffc-4a76-88f0-05834afd7e9d"
+Template: "6ec85774-e68b-4e36-a754-1719d264ab70"
+Path: /sitecore/system/Settings/Security/Profiles/Commerce User
+DB: core
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20131015T121158
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

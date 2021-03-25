@@ -17,14 +17,18 @@ namespace HCA.Foundation.Commerce.Services.Account
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Security;
 
     using Base.Models.Result;
+    using Base.Services.Pipeline;
 
     using Connect.Context.Storefront;
     using Connect.Managers.Account;
 
     using DependencyInjection;
+
+    using Infrastructure.Pipelines.ConfirmPasswordRecovery;
 
     using Mappers.Account;
 
@@ -37,6 +41,7 @@ namespace HCA.Foundation.Commerce.Services.Account
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService
@@ -47,18 +52,23 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         private readonly IStorefrontContext storefrontContext;
 
+        private readonly IPipelineService pipelineService;
+
         public AccountService(
             IAccountManager accountManager,
             IAccountMapper accountMapper,
-            IStorefrontContext storefrontContext)
+            IStorefrontContext storefrontContext,
+            IPipelineService pipelineService)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
+            Assert.ArgumentNotNull(pipelineService, nameof(pipelineService));
 
             this.accountManager = accountManager;
             this.mapper = accountMapper;
             this.storefrontContext = storefrontContext;
+            this.pipelineService = pipelineService;
         }
 
         public Result<IEnumerable<Address>> AddAddress(string userName, Address address)
@@ -386,6 +396,39 @@ namespace HCA.Foundation.Commerce.Services.Account
                 ?.Subdivisions
                 .FirstOrDefault(s => s.Code == address.State)
                 ?.Name;
+        }
+
+        public Result<ConfirmPasswordRecoveryResult> ConfirmPasswordRecovery(string email)
+        {
+            Assert.ArgumentNotNullOrEmpty(email, nameof(email));
+
+            var args = new ConfirmPasswordRecoveryArgs(HttpContext.Current)
+            {
+                UserEmail = email
+            };
+
+            this.pipelineService.RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, args);
+
+            return this.ResolveResult(
+                args,
+                pipelineArgs => new ConfirmPasswordRecoveryResult
+                {
+                    IsEmailValid = pipelineArgs.IsEmailValid
+                });
+        }
+
+        private Result<TResult> ResolveResult<TResult, TArgs>(TArgs args, Func<TArgs, TResult> function = null)
+            where TResult : class
+            where TArgs : PipelineArgs
+        {
+            var errorMessages = args.GetMessages(PipelineMessageFilter.Errors);
+            var result = function?.Invoke(args);
+            return args.Aborted
+                ? new Result<TResult>(result, errorMessages.Select(message => message.Text).ToList())
+                {
+                    Success = false
+                }
+                : new Result<TResult>(result);
         }
     }
 }

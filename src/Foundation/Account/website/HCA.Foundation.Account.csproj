@@ -224,6 +224,8 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\User\IUserManager.cs" />
+    <Compile Include="Managers\User\UserManager.cs" />
     <Compile Include="Models\Authentication\LoginResult.cs" />
     <Compile Include="Managers\Authentication\AuthenticationManager.cs" />
     <Compile Include="Managers\Authentication\IAuthenticationManager.cs" />

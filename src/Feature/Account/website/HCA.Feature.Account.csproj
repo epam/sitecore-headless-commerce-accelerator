@@ -519,6 +519,7 @@
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Requests\AddressRequest.cs" />
     <Compile Include="Models\Requests\ChangePasswordRequest.cs" />
+    <Compile Include="Models\Requests\ConfirmResetPasswordRequest.cs" />
     <Compile Include="Models\Requests\CreateAccountRequest.cs" />
     <Compile Include="Models\Requests\UpdateAccountRequest.cs" />
     <Compile Include="Models\Requests\LoginRequest.cs" />

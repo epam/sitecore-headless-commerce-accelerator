@@ -39,5 +39,12 @@ namespace HCA.Foundation.Commerce.Services.Account
         Result<IEnumerable<Address>> UpdateAddress(string userName, Address address);
 
         Result<ValidateEmailResult> ValidateEmail(string email);
+
+        /// <summary>
+        /// Runs "confirmPasswordRecovery" pipeline"
+        /// </summary>
+        /// <param name="email">User's email</param>
+        /// <returns>Confirm password recovery result</returns>
+        Result<ConfirmPasswordRecoveryResult> ConfirmPasswordRecovery(string email);
     }
 }

@@ -16,12 +16,10 @@ namespace HCA.Foundation.Account.Services.Authentication
 {
     using System;
     using System.Linq;
-
     using Base.Models.Result;
     using Base.Services.Pipeline;
 
     using DependencyInjection;
-
     using Infrastructure.Pipelines.Login;
     using Infrastructure.Pipelines.Logout;
 

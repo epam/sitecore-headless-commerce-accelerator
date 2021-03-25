@@ -675,8 +675,6 @@
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Adjustments\Adjustment.cs" />
     <Compile Include="Models\Entities\Search\ProductSuggestion.cs" />
-    <Compile Include="Models\Entities\Geolocation\GeolocationInfo.cs" />
-    <Compile Include="Models\Entities\Geolocation\SearchByGeolocationResult.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />
@@ -721,7 +719,6 @@
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
     <Compile Include="Providers\Search\IProductSuggestionProvider.cs" />
     <Compile Include="Providers\Search\ProductSuggestionProvider.cs" />
-    <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />

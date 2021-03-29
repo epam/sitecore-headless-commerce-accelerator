@@ -81,7 +81,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.ConfirmPassword
         }
 
         [Fact]
-        public void Process_IfUserManagerGetUserFromNameReturnsUser_ShouldCallUserManagerAddCustomProperty()
+        public void Process_IfUserManagerGetUserFromNameReturnsUser_ShouldAddConfirmTokenToProfile()
         {
             // arrange
             HttpContextFaker.FakeGenericPrincipalContext();
@@ -96,7 +96,26 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.ConfirmPassword
             this.generateTokenProcessor.Process(args);
 
             // assert
-            this.userManager.Received(1).AddCustomProperty(user, Constants.PasswordRecovery.ConfirmTokenKey, args.CustomData[Constants.PasswordRecovery.ConfirmTokenKey].ToString());
+            this.userManager.Received(1).AddCustomProperty(user, Constants.PasswordRecovery.ConfirmTokenKey, Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Process_IfUserManagerGetUserFromNameReturnsUser_ShouldAddTokenCreationDateToProfile()
+        {
+            // arrange
+            HttpContextFaker.FakeGenericPrincipalContext();
+            var args = new ConfirmPasswordRecoveryArgs(HttpContext.Current)
+            {
+                Username = this.fixture.Create<string>()
+            };
+            var user = User.FromName(args.Username, false);
+            this.userManager.GetUserFromName(Arg.Any<string>(), Arg.Any<bool>()).Returns(user);
+
+            // act
+            this.generateTokenProcessor.Process(args);
+
+            // assert
+            this.userManager.Received(1).AddCustomProperty(user, Constants.PasswordRecovery.TokenCreationDatePropertyKey, Arg.Any<string>());
         }
 
         [Fact]

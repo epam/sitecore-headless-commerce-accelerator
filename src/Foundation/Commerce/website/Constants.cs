@@ -58,6 +58,8 @@ namespace HCA.Foundation.Commerce
             public const string ResetPasswordEndpoint = "apix/client/commerce/accounts/password";
 
             public const string ConfirmTokenKey = "PasswordToken";
+
+            public const string TokenCreationDatePropertyKey = "Token Creation Date";
         }
 
         public static class Pipelines

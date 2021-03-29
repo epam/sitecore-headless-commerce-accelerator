@@ -13,7 +13,7 @@ const constants = require('./constants');
 const root = './../../..';
 
 const resolve = {
-  extensions: ['.tsx', '.ts', '.js', '.css', '.scss'],
+  extensions: ['.tsx', '.ts', '.js', '.css', '.scss', '.json', '.webpack.js', '.web.js', '.mjs'],
   alias: {
     'data-api-alias': path.resolve(process.cwd(), constants.jssDataApiImplementationProdPath),
     Foundation: path.resolve(process.cwd(), './src/Foundation/'),
@@ -60,7 +60,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
             filename: '[name].bundle.js',
             test: /[\\/]node_modules[\\/]/,
           },
-        }
+        },
       },
     },
     resolve,
@@ -87,6 +87,11 @@ const clientWebpackConfigFactory = (projectManifest) => {
               },
             },
           ],
+        },
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
         },
         {
           test: /\.css$/,
@@ -201,6 +206,11 @@ const serverWebpackConfigFactory = (projectManifest) => {
               },
             },
           ],
+        },
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
         },
         {
           test: /\.html$/,

@@ -7,6 +7,11 @@ module.exports = (envUrl, publicPath, host, port) => ({
   historyApiFallback: true,
   proxy: {
     // TODO: improve manifest with project specific proxy
+    '/HCA/api/**': {
+      target: envUrl,
+      changeOrigin: true,
+      secure: false,
+    },
     '/apix/**': {
       target: envUrl,
       changeOrigin: true,

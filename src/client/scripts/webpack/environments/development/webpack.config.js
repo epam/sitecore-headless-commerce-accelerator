@@ -24,7 +24,7 @@ module.exports = (compilerOptions) => ({
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.css', '.scss', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.css', '.scss', '.json', '.webpack.js', '.web.js', '.mjs'],
     alias: {
       'data-api-alias': path.resolve(process.cwd(), compilerOptions.jssDataApiAlias),
       Foundation: path.resolve(process.cwd(), './src/Foundation/'),
@@ -100,6 +100,11 @@ module.exports = (compilerOptions) => ({
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
       },
     ],
   },

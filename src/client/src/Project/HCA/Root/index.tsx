@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 
 import { SitecoreContext } from '@sitecore-jss/sitecore-jss-react';

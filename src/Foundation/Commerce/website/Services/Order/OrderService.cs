@@ -105,10 +105,13 @@ namespace HCA.Foundation.Commerce.Services.Order
 
         public Result<IList<Order>> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)
         {
+            Assert.ArgumentNotNull(page, nameof(page));
+            Assert.ArgumentNotNull(count, nameof(count));
+
             var result = new Result<IList<Order>>();
 
             var headersResult = this.orderManager.GetOrdersHeaders(
-                this.visitorContext.ContactId,
+                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ContactId,
                 this.storefrontContext.ShopName);
 
             if (headersResult.Success)

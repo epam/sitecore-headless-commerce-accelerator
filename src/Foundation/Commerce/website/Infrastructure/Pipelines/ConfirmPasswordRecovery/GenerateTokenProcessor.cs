@@ -19,8 +19,8 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
     using Sitecore.Data;
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines.PasswordRecovery;
-    using Sitecore.Security.Accounts;
-    using Sitecore.Shell.Applications.ContentManager.ReturnFieldEditorValues;
+    
+    using System;
 
     public class GenerateTokenProcessor : PasswordRecoveryProcessor
     {
@@ -47,8 +47,10 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
             }
 
             var token = ID.NewID.ToShortID().ToString();
-
             this.userManager.AddCustomProperty(user, Constants.PasswordRecovery.ConfirmTokenKey, token);
+
+            var tokenCreationDate = Sitecore.DateUtil.ToUniversalTime(DateTime.UtcNow);
+            this.userManager.AddCustomProperty(user, Constants.PasswordRecovery.TokenCreationDatePropertyKey, Sitecore.DateUtil.ToIsoDate(tokenCreationDate));
 
             args.CustomData.Add(Constants.PasswordRecovery.ConfirmTokenKey, token);
         }

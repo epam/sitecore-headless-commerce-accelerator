@@ -24,8 +24,7 @@ import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
-import ApolloClient from 'apollo-client';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
 export interface SitecoreContext
   extends Commerce.ProductContext,

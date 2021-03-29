@@ -1,24 +1,22 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import {
-  resetExperienceEditorChromes,
-  withSitecoreContext,
-} from '@sitecore-jss/sitecore-jss-react';
-import { DefinitionNode, DocumentNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 import * as React from 'react';
-import { graphql } from 'react-apollo';
+
+import { graphql } from '@apollo/client/react/hoc';
+import { resetExperienceEditorChromes, withSitecoreContext } from '@sitecore-jss/sitecore-jss-react';
+import { DefinitionNode, DocumentNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql';
 
 /**
  * Higher order component that abstracts common JSS + Apollo integration needs.
@@ -31,8 +29,13 @@ import { graphql } from 'react-apollo';
  * @param {*} query The GraphQL AST to execute (should go through graphql-tag, no strings)
  * @param {*} configuration Values passed in are shipped to react-apollo configuration (https://www.apollographql.com/docs/react/basics/setup.html#graphql-config)
  */
-function GraphQLData(query: DocumentNode, configuration: any): (Component: React.ComponentClass<any, React.ComponentState> | React.StatelessComponent<any>) => any {
-  return function wrapComponent(Component: React.ComponentClass<any, React.ComponentState> | React.StatelessComponent<any>): any {
+function GraphQLData(
+  query: DocumentNode,
+  configuration: any,
+): (Component: React.ComponentClass<any, React.ComponentState> | React.StatelessComponent<any>) => any {
+  return function wrapComponent(
+    Component: React.ComponentClass<any, React.ComponentState> | React.StatelessComponent<any>,
+  ): any {
     interface SitecoreRenderingWrapperProps {
       sitecoreContext: {
         pageEditing?: boolean;
@@ -48,12 +51,14 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
     }
 
     class SitecoreRenderingWrapper extends React.Component<SitecoreRenderingWrapperProps> {
-      public static displayName: string = `JSSGraphQLComponent(${Component.displayName || Component.name || 'Component'})`;
+      public static displayName: string = `JSSGraphQLComponent(${
+        Component.displayName || Component.name || 'Component'
+      })`;
 
       public render() {
         if (!query) {
           throw new Error(
-            'query was falsy in GraphQLData. It should be a GraphQL query from graphql-tag. Perhaps missing graphql-tag/loader?'
+            'query was falsy in GraphQLData. It should be a GraphQL query from graphql-tag. Perhaps missing graphql-tag/loader?',
           );
         }
 
@@ -73,7 +78,7 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
           newConfiguration.options.ssr = false;
         } else if (
           query.definitions.some(
-            (def: DefinitionNode) => def.kind === 'OperationDefinition' && def.operation === 'subscription'
+            (def: DefinitionNode) => def.kind === 'OperationDefinition' && def.operation === 'subscription',
           )
         ) {
           // if the document includes any subscriptions, we also disable SSR as this hangs the SSR process
@@ -82,7 +87,7 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
         }
 
         // find all variable definitions in the GraphQL query, so we can send only ones we're using
-        const variableNames: { [s: string]: boolean; } = extractVariableNames(query);
+        const variableNames: { [s: string]: boolean } = extractVariableNames(query);
 
         // set the datasource variable, if we're using it
         if (variableNames.datasource && this.props.rendering && this.props.rendering.dataSource) {
@@ -90,11 +95,7 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
         }
 
         // set the contextItem variable, if we're using it
-        if (
-          variableNames.contextItem &&
-          this.props.sitecoreContext &&
-          this.props.sitecoreContext.itemId
-        ) {
+        if (variableNames.contextItem && this.props.sitecoreContext && this.props.sitecoreContext.itemId) {
           newConfiguration.options.variables.contextItem = this.props.sitecoreContext.itemId;
         }
 
@@ -108,12 +109,13 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
 
           // run a user-specified props function too if one exists
           if (configuration.props) {
-            resultProps = {...resultProps, ...configuration.props(props)};
+            resultProps = { ...resultProps, ...configuration.props(props) };
           }
           return resultProps;
         };
 
         const GQL = graphql(query, newConfiguration)(Component);
+
         return <GQL {...this.props} />;
       }
 
@@ -127,8 +129,8 @@ function GraphQLData(query: DocumentNode, configuration: any): (Component: React
   };
 }
 
-function extractVariableNames(query: any): { [s: string]: boolean; } {
-  const variableNames: { [s: string]: boolean; } = {};
+function extractVariableNames(query: any): { [s: string]: boolean } {
+  const variableNames: { [s: string]: boolean } = {};
 
   query.definitions
     .map((def: OperationDefinitionNode) => def.variableDefinitions)
@@ -138,7 +140,7 @@ function extractVariableNames(query: any): { [s: string]: boolean; } {
         if (def.kind && def.kind === 'VariableDefinition') {
           variableNames[def.variable.name.value] = true;
         }
-      })
+      }),
     );
 
   return variableNames;

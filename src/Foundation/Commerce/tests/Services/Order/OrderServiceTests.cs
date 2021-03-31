@@ -30,6 +30,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using Context;
 
     using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
 
     using Ploeh.AutoFixture;
 
@@ -320,6 +321,63 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
                 .Returns(submitOrderResult);
 
             return submitOrderResult;
+        }
+
+        [Fact]
+        public void GetOrderTrackingNumber_IfArgumentsNotNull_ShouldCallOrderManagerGetOrder()
+        {
+            // arrange
+            var orderId = this.fixture.Create<string>();
+            var contactId = this.fixture.Create<string>();
+            var shopName = this.fixture.Create<string>();
+
+            this.orderManager.GetOrder(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
+                .Returns(Substitute.For<GetVisitorOrderResult>());
+
+            // act
+            this.service.GetOrderTrackingNumber(orderId, contactId, shopName);
+
+            // assert
+            this.orderManager.Received(1).GetOrder(orderId, contactId, shopName);
+        }
+
+        [Fact]
+        public void GetOrderTrackingNumber_IfArgumentsNotNullAndOrderResultIsNull_ShouldReturnNull()
+        {
+            // arrange
+            var orderId = this.fixture.Create<string>();
+            var contactId = this.fixture.Create<string>();
+            var shopName = this.fixture.Create<string>();
+
+            this.orderManager.GetOrder(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).ReturnsNull();
+
+            // act
+            var trackingNumber = this.service.GetOrderTrackingNumber(orderId, contactId, shopName);
+
+            // assert
+            Assert.True(trackingNumber == null);
+        }
+
+        [Fact]
+        public void GetOrderTrackingNumber_IfArgumentsNotNullAndIsValidOrderResult_ShouldReturnTrackingNumber()
+        {
+            // arrange
+            var orderId = this.fixture.Create<string>();
+            var contactId = this.fixture.Create<string>();
+            var shopName = this.fixture.Create<string>();
+            var expectedTrackingNumber = this.fixture.Create<string>();
+
+            var orderResult = Substitute.For<GetVisitorOrderResult>();
+            orderResult.Order = Substitute.For<Order>();
+            orderResult.Order.TrackingNumber = expectedTrackingNumber;;
+
+            this.orderManager.GetOrder(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns(orderResult);
+
+            // act
+            var trackingNumber = this.service.GetOrderTrackingNumber(orderId, contactId, shopName);
+
+            // assert
+            Assert.Equal(trackingNumber, expectedTrackingNumber);
         }
     }
 }

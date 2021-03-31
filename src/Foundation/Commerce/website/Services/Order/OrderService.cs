@@ -79,7 +79,7 @@ namespace HCA.Foundation.Commerce.Services.Order
         {
             return this.GetOrder(
                 orderId,
-                this.visitorContext.ContactId,
+                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ContactId,
                 this.storefrontContext.ShopName);
         }
 
@@ -101,6 +101,17 @@ namespace HCA.Foundation.Commerce.Services.Order
             result.SetResult(this.builder.Build(orderResult.Order));
 
             return result;
+        }
+
+        public string GetOrderTrackingNumber(string orderId, string customerId, string shopName)
+        {
+            Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
+            Assert.ArgumentNotNullOrEmpty(customerId, nameof(customerId));
+            Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
+
+            var orderResult = this.orderManager.GetOrder(orderId, customerId, shopName);
+
+            return orderResult?.Order?.TrackingNumber;
         }
 
         public Result<IList<Order>> GetOrders(DateTime? fromDate, DateTime? untilDate, int page, int count)

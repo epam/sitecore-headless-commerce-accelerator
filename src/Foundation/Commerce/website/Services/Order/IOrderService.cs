@@ -21,6 +21,8 @@ namespace HCA.Foundation.Commerce.Services.Order
 
     using Models.Entities.Order;
 
+    using Sitecore.Commerce.Services.Orders;
+
     /// <summary>
     /// Performs main operations during checkout process
     /// </summary>
@@ -41,6 +43,15 @@ namespace HCA.Foundation.Commerce.Services.Order
         /// <param name="shopName">Shop name</param>
         /// <returns>Order</returns>
         Result<Order> GetOrder(string orderId, string customerId, string shopName);
+
+        /// <summary>
+        /// Get order tracking number by id, customerId and shopName.
+        /// </summary>
+        /// <param name="orderId">Order's id</param>
+        /// <param name="customerId">Customer's id</param>
+        /// <param name="shopName">Shop name</param>
+        /// <returns>string</returns>
+        string GetOrderTrackingNumber(string orderId, string customerId, string shopName);
 
         /// <summary>
         /// Get list of orders

@@ -16,6 +16,7 @@ namespace HCA.Feature.Checkout.Tests.Utils
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
     using Checkout.Utils;
 
@@ -34,6 +35,7 @@ namespace HCA.Feature.Checkout.Tests.Utils
 
     using NSubstitute;
     using NSubstitute.Core.Arguments;
+    using NSubstitute.Extensions;
 
     using Ploeh.AutoFixture;
 
@@ -95,11 +97,14 @@ namespace HCA.Feature.Checkout.Tests.Utils
         {
             // arrange
             var messageBody = Constants.OrderEmail.OrderTrackingNumberToken;
-            var trackingNumber = new Guid().ToString();
-
-            this.exmContext.IsRenderRequest.Returns(true);
-            this.SetupTrackingNumber("", trackingNumber);
+            var trackingNumber = this.fixture.Create<string>();
+            var id = this.fixture.Create<string>();
             
+            this.exmContext.IsRenderRequest.Returns(true); 
+            this.SetupTrackingNumber(id, trackingNumber);
+            this.orderService.GetOrderTrackingNumber(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>())
+                .Returns(trackingNumber);
+
             // act
             var actual = this.orderEmailUtils.ResolveTokens(messageBody);
 
@@ -156,10 +161,10 @@ namespace HCA.Feature.Checkout.Tests.Utils
                 }
             };
 
-            this.exmContext.GetValue("order_id").Returns(orderId);
-            this.exmContext.GetContactIdentifier().Returns("");
+            this.exmContext.GetValue(Arg.Any<string>()).Returns(orderId);
+            this.exmContext.GetContactIdentifier().Returns(this.fixture.Create<string>());
             this.storefrontConfigurationProvider.Get().Returns(storefronts);
-            this.orderService.GetOrder(orderId, "", "").Returns(orderResult);
+            this.orderService.GetOrder(orderId, Arg.Any<string>(), Arg.Any<string>()).Returns(orderResult);
         }
     }
 }

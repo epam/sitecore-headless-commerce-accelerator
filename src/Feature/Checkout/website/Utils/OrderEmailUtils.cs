@@ -65,10 +65,9 @@ namespace HCA.Feature.Checkout.Utils
                 var contactId = this.exmContext.GetContactIdentifier();
                 var shopNames = this.storefrontConfigurationProvider.Get()?.ShopNames.ToArray();
 
-                if (shopNames != null)
+                if (shopNames != null && !string.IsNullOrEmpty(orderId) && !string.IsNullOrEmpty(contactId))
                 {
-                    var trackingNumber = this.TryGetTrackingNumber(orderId, contactId, shopNames);
-                    this.logService.Info($"Order {orderId} has tracking number: {trackingNumber}");
+                    var trackingNumber = this.GetTrackingNumber(orderId, contactId, shopNames);
 
                     return messageBody.Replace(
                         Constants.OrderEmail.OrderTrackingNumberToken,
@@ -81,12 +80,15 @@ namespace HCA.Feature.Checkout.Utils
             return messageBody;
         }
 
-        private string TryGetTrackingNumber(string orderId, string contactId, params string[] shopNames)
+        private string GetTrackingNumber(string orderId, string contactId, params string[] shopNames)
         {
+            Assert.ArgumentNotNullOrEmpty(orderId, nameof(orderId));
+            Assert.ArgumentNotNullOrEmpty(contactId, nameof(contactId));
+            Assert.ArgumentNotNull(shopNames, nameof(shopNames));
+
             foreach (var shopName in shopNames)
             {
-                var order = this.orderService.GetOrder(orderId, contactId, shopName);
-                var trackingNumber = order.Data?.TrackingNumber;
+                var trackingNumber = this.orderService.GetOrderTrackingNumber(orderId, contactId, shopName);
 
                 if (!string.IsNullOrWhiteSpace(trackingNumber))
                 {

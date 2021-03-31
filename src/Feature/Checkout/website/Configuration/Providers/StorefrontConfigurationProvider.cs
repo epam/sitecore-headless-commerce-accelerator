@@ -30,6 +30,6 @@ namespace HCA.Feature.Checkout.Configuration.Providers
         {
         }
 
-        protected override string Path { get; set; } = "Storefronts";
+        protected override string Path { get; set; } = "storefronts";
     }
 }

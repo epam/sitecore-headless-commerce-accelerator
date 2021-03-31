@@ -33,7 +33,7 @@ namespace HCA.Feature.Checkout.Context
 
         public string GetContactIdentifier()
         {
-            return EmailCampaign.ExmContext.ContactIdentifier.Identifier;
+            return EmailCampaign.ExmContext.ContactIdentifier?.Identifier;
         }
     }
 }

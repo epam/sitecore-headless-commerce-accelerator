@@ -21,6 +21,7 @@ import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
 
 import { ProductRating } from 'Feature/Catalog/ProductRating';
+import { Variant } from 'Foundation/Commerce/dataModel.Generated';
 import GlassesImg from 'Foundation/UI/common/media/images/glasses-for-slider.png';
 import { ProductGallery } from './components/ProductGallery';
 import { ProductActions } from './ProductActions';
@@ -54,6 +55,9 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     const { selectedVariant } = this.props;
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedCatalogItem = selectedVariant || product;
+    const selectedCatalogItemId = selectedCatalogItem.hasOwnProperty('variantId')
+      ? (selectedCatalogItem as Variant).variantId
+      : selectedCatalogItem.productId;
 
     return (
       selectedCatalogItem && (
@@ -62,24 +66,14 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
             <div className="row">
               <div className="col-md-6">
                 {!!selectedCatalogItem.imageUrls && selectedCatalogItem.imageUrls.length > 0 ? (
-                  <ProductGallery images={selectedCatalogItem.imageUrls} />
+                  <ProductGallery key={selectedCatalogItemId} images={selectedCatalogItem.imageUrls} />
                 ) : (
                   <img src={fallbackImageUrl} alt="No image" className="fallback-image" />
                 )}
               </div>
               <div className="col-md-6">
                 <header className="product-header">
-                  <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
-                  {/* <div
-                className={classNames('product-stock-status', {
-                  'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
-                  'in-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.InStock,
-                  'out-of-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.OutOfStock,
-                  'pre-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.PreOrderable,
-                })}
-              >
-                <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
-              </div> */}
+                  <h1 className="product-title">{selectedCatalogItem.displayName}</h1>                 
                 </header>
                 <div className="product-info">
                   <p className="product-price">
@@ -221,18 +215,4 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
       )
     );
   }
-  // private getStockStatusLabel(stockStatus: string) {
-  //   switch (stockStatus) {
-  //     case Common.StockStatus.BackOrderable:
-  //       return 'Back Orderable';
-  //     case Common.StockStatus.InStock:
-  //       return 'In Stock';
-  //     case Common.StockStatus.OutOfStock:
-  //       return 'Out Of Stock';
-  //     case Common.StockStatus.PreOrderable:
-  //       return 'Pre Orderable';
-  //     default:
-  //       return '';
-  //   }
-  // }
 }

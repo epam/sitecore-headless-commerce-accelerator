@@ -12,27 +12,30 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import "Foundation/UI/common/scss/variables";
-@import "Foundation/UI/common/scss/mixins";
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
 
-h3.your-order{
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: 500;
+h3.your-order {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
 }
 .order-information {
-    padding: 38px 45px 44px;
-    margin-bottom: 30px;
-    background: #f6f6f6;
-    .header-information {
-        display: flex;
-        justify-content: space-between;
-        .title {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 0;
-        }
+  padding: 38px 45px 44px;
+  margin-bottom: 30px;
+  background: #f6f6f6;
+  .header-information {
+    display: flex;
+    justify-content: space-between;
+    .title {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
     }
+  }
+  @media #{$xs-layout} {
+    padding: 19px 15px 22px;
+  }
 }

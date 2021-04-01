@@ -42,88 +42,86 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
     const { order, productColors, fallbackImageUrl } = this.props;
     return (
       <div className="order-summary-wrapper">
-        <section className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="order-summary">
-                <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
-                <div className="product-container">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>IMAGE</th>
-                        <th>Product Name</th>
-                        <th>COLOR</th>
-                        <th>SIZE</th>
-                        <th>QTY</th>
-                        <th>SUBTOTAL</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {order.cartLines.map((cartLine, index) => {
-                        let imageUrl = fallbackImageUrl;
+        <div className="row">
+          <div className="col-md-12">
+            <div className="order-summary">
+              <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
+              <div className="product-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>IMAGE</th>
+                      <th>Product Name</th>
+                      <th>COLOR</th>
+                      <th>SIZE</th>
+                      <th>QTY</th>
+                      <th>SUBTOTAL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {order.cartLines.map((cartLine, index) => {
+                      let imageUrl = fallbackImageUrl;
 
-                        if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
-                          imageUrl = cartLine.variant.imageUrls[0];
-                        } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
-                          imageUrl = cartLine.product.imageUrls[0];
-                        }
+                      if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
+                        imageUrl = cartLine.variant.imageUrls[0];
+                      } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
+                        imageUrl = cartLine.product.imageUrls[0];
+                      }
 
-                        return (
-                          <tr key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}>
-                            <td className="product-image">
-                              <img className="image-border" src={imageUrl} alt="Product image" />
-                            </td>
-                            <td className="product-name">
-                              <div>
-                                <div className="brand">{cartLine.variant.brand}</div>
-                                <div className="full-name">{cartLine.variant.displayName}</div>
-                              </div>
-                            </td>
-                            <td className="product-features">
-                              {cartLine.variant.properties.color && (
-                                <div
-                                  className="color"
-                                  style={{
-                                    backgroundColor: resolveColor(cartLine.variant.properties.color, productColors),
-                                  }}
-                                />
-                              )}
-                            </td>
-                            <td className="product-features">
-                              {cartLine.variant.properties.size && (
-                                <span className="size">
-                                  <span>{cartLine.variant.properties.size}</span>
-                                </span>
-                              )}
-                            </td>
-                            <td className="product-features">
-                              <span className="quantity">
-                                <span>{cartLine.quantity}</span>
+                      return (
+                        <tr key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}>
+                          <td className="product-image">
+                            <img className="image-border" src={imageUrl} alt="Product image" />
+                          </td>
+                          <td className="product-name">
+                            <div>
+                              <div className="brand">{cartLine.variant.brand}</div>
+                              <div className="full-name">{cartLine.variant.displayName}</div>
+                            </div>
+                          </td>
+                          <td className="product-features">
+                            {cartLine.variant.properties.color && (
+                              <div
+                                className="color"
+                                style={{
+                                  backgroundColor: resolveColor(cartLine.variant.properties.color, productColors),
+                                }}
+                              />
+                            )}
+                          </td>
+                          <td className="product-features">
+                            {cartLine.variant.properties.size && (
+                              <span className="size">
+                                <span>{cartLine.variant.properties.size}</span>
                               </span>
-                            </td>
-                            <td className="product-price nopadding-bottom">
-                              <span>{cartLine.price.currencySymbol}</span>
-                              <span className="price-amount">{cartLine.price.total.toFixed(2)}</span>
-                              {!!cartLine.price.totalSavings && (
-                                <>
-                                  <br />
-                                  <Text field={fields.priceWasTitle} tag="span" />{' '}
-                                  <span className="price-was-sign">{cartLine.price.currencySymbol}</span>
-                                  <span className="price-was-amount">{cartLine.price.subtotal.toFixed(2)}</span>
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                            )}
+                          </td>
+                          <td className="product-features">
+                            <span className="quantity">
+                              <span>{cartLine.quantity}</span>
+                            </span>
+                          </td>
+                          <td className="product-price nopadding-bottom">
+                            <span>{cartLine.price.currencySymbol}</span>
+                            <span className="price-amount">{cartLine.price.total.toFixed(2)}</span>
+                            {!!cartLine.price.totalSavings && (
+                              <>
+                                <br />
+                                <Text field={fields.priceWasTitle} tag="span" />{' '}
+                                <span className="price-was-sign">{cartLine.price.currencySymbol}</span>
+                                <span className="price-was-amount">{cartLine.price.subtotal.toFixed(2)}</span>
+                              </>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     );
   }

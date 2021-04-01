@@ -24,6 +24,10 @@
     border: 1px solid $summary-table-border-color;
     border-radius: 5px;
     background-color: $summary-table-background;
+
+    @media #{$xs-layout} {
+      padding: 20px 15px 25px;
+    }
   }
   .tax,
   .promoCode,

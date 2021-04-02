@@ -54,7 +54,6 @@
         font-size: 15px;
         font-weight: 500;
         display: inline-block;
-        letter-spacing: 0.8px;
         color: $grey;
 
         i {
@@ -284,7 +283,6 @@
           width: auto;
           padding-right: 0;
           max-height: 0px;
-          transition: max-height 0.2s;
 
           nav {
             padding: 10px 10px;
@@ -346,7 +344,6 @@
             width: auto;
             padding-right: 0;
             max-height: 0px;
-            transition: max-height 0.2s;
           }
           .drop-category.drop-category-open,
           .drop-feature.drop-feature-open {
@@ -361,6 +358,8 @@
                 padding: 3px 0;
                 text-transform: uppercase;
                 font-family: $poppins;
+                transition: none;
+
                 &:hover {
                   color: $theme-color;
                 }

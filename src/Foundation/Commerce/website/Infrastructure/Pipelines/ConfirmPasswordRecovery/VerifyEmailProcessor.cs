@@ -41,7 +41,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
 
             if (user == null)
             {
-                this.LogService.Debug($"[{nameof(VerifyEmailProcessor)}.{nameof(SafeProcess)}]: {Constants.ErrorMessages.UserNotFound}");
+                this.LogService.Debug($"[{nameof(VerifyEmailProcessor)}.{nameof(SafeProcess)}]: {Constants.ErrorMessages.UserNotFoundEmail}");
 
                 args.IsEmailValid = false;
                 args.AbortPipeline();

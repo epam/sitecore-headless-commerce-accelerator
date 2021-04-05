@@ -27,11 +27,13 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
     using Connect.Context.Storefront;
     using Connect.Managers.Account;
+    using HCA.Foundation.Account.Managers.User;
     using HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecovery;
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
     using NSubstitute;
+    using NSubstitute.ReturnsExtensions;
 
     using Ploeh.AutoFixture;
 
@@ -40,7 +42,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Customers;
-
+    using Sitecore.Security;
     using Xunit;
 
     public class AccountServiceTests
@@ -57,6 +59,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
         private readonly IPipelineService pipelineService;
 
+        private readonly IUserManager userManager;
+
         public AccountServiceTests()
         {
             this.fixture = new Fixture();
@@ -65,13 +69,15 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.mapper = Substitute.For<IAccountMapper>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.pipelineService = Substitute.For<IPipelineService>();
+            this.userManager = Substitute.For<IUserManager>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
 
             this.service = Substitute.For<AccountService>(
                 this.accountManager,
                 this.mapper,
                 this.storefrontContext,
-                this.pipelineService);
+                this.pipelineService,
+                this.userManager);
         }
 
         public static IEnumerable<object[]> AddressParameters =>
@@ -874,6 +880,95 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.pipelineService.Received(1).RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, Arg.Any<ConfirmPasswordRecoveryArgs>());
         }
 
+        #endregion
+
+        #region VerifyRecoveryToken
+        [Fact]
+        public void VerifyRecoveryToken_IfTokenIsValid_ShouldReturnSuccessResult()
+        {
+            // arrange
+            var token = this.fixture.Create<string>();
+            var userName = this.fixture.Create<string>();
+            var user = Substitute.For<Sitecore.Security.Accounts.User>(userName, true);
+            var profile = Substitute.For<UserProfile>();
+            this.userManager.GetUserFromName(Arg.Any<string>(), false).Returns(user);
+            profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
+            user.Profile.Returns(profile);
+
+            // act
+            this.userManager.AddCustomProperty(user, Constants.PasswordRecovery.ConfirmTokenKey, token);
+            var result = this.service.VerifyRecoveryToken(userName, token);
+
+            // assert
+            Assert.True(result.Success);
+        }
+
+        [Fact]
+        public void VerifyRecoveryToken_IfTokenIsInvalid_ShouldReturnFailResult()
+        {
+            // arrange 
+            var userName = this.fixture.Create<string>();
+            var token = this.fixture.Create<string>();
+            var user = Substitute.For<Sitecore.Security.Accounts.User>(userName, true);
+            userManager.GetUserFromName(Arg.Any<string>(), false).Returns(user);
+            var profile = Substitute.For<UserProfile>();
+            user.Profile.Returns(profile);
+            profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
+
+            // act
+            var result = this.service.VerifyRecoveryToken(userName, this.fixture.Create<string>());
+            // assert
+            Assert.False(result.Success);
+            Assert.True(result.Errors.Contains(Constants.ErrorMessages.TokenIsInvalid));
+        }
+
+        [Fact]
+        public void VerifyRecoveryToken_IfUserDoesntExist_ShouldReturnFailResult()
+        {
+            // arrange
+            userManager.GetUserFromName(Arg.Any<string>(), false).ReturnsNull();
+            // act
+            var result = this.service.VerifyRecoveryToken(this.fixture.Create<string>(), this.fixture.Create<string>());
+            // assert
+            Assert.False(result.Success);
+            Assert.True(result.Errors.Contains(Constants.ErrorMessages.UserNotFoundName));
+        }
+        #endregion
+
+        #region ResetPassword
+        [Fact]
+        public void ResetPassword_IfUserDoesntExist_ShouldReturnFailResult()
+        {
+            // arrange
+            var userName = this.fixture.Create<string>();
+            var password = this.fixture.Create<string>();
+            var token = this.fixture.Create<string>();
+            userManager.GetUserFromName(Arg.Any<string>(), true).ReturnsNull();
+            // act
+            var result = this.service.ResetPassword(userName, password, token);
+            // assert
+            Assert.False(result.Success);
+            Assert.True(result.Errors.Contains(Constants.ErrorMessages.UserNotFoundName));
+        }
+
+        [Fact]
+        public void ResetPassword_IfTokenIsInvalid_ShouldReturnFailResult()
+        {
+            // arrange 
+            var userName = this.fixture.Create<string>();
+            var token = this.fixture.Create<string>();
+            var user = Substitute.For<Sitecore.Security.Accounts.User>(userName, true);
+            userManager.GetUserFromName(Arg.Any<string>(), true).Returns(user);
+            var profile = Substitute.For<UserProfile>();
+            user.Profile.Returns(profile);
+            profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
+
+            // act
+            var result = this.service.ResetPassword(userName, this.fixture.Create<string>(), this.fixture.Create<string>());
+            // assert
+            Assert.False(result.Success);
+            Assert.True(result.Errors.Contains(Constants.ErrorMessages.TokenIsInvalid));
+        }
         #endregion
     }
 }

@@ -46,5 +46,22 @@ namespace HCA.Foundation.Commerce.Services.Account
         /// <param name="email">User's email</param>
         /// <returns>Confirm password recovery result</returns>
         Result<ConfirmPasswordRecoveryResult> ConfirmPasswordRecovery(string email);
+
+        /// <summary>
+        /// Verifies if password recovery token associated with the username is valid
+        /// </summary>
+        /// <param name="userName">User name to verify for</param>
+        /// <param name="token">Token from the reset password email</param>
+        /// <returns></returns>
+        Result<VerifyRecoveryTokenResult> VerifyRecoveryToken(string userName, string token);
+
+        /// <summary>
+        /// Sets a new password if the provided token is correct
+        /// </summary>
+        /// <param name="userName">User name to reset password for</param>
+        /// <param name="newPassword"></param>
+        /// <param name="token">Token from the reset password email</param>
+        /// <returns></returns>
+        Result<VoidResult> ResetPassword(string userName, string newPassword, string token);
     }
 }

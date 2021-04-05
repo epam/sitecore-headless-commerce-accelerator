@@ -53,13 +53,15 @@ namespace HCA.Foundation.Commerce
 
         public static class PasswordRecovery
         {
-            public const string PasswordRecoveryLink = "$passwordRecoveryLink$";
+            public const string PasswordRecoveryLink = "%passwordRecoveryLink%";
 
-            public const string ResetPasswordEndpoint = "apix/client/commerce/accounts/password";
+            public const string ResetPasswordUrl = "account/new-password";
 
             public const string ConfirmTokenKey = "PasswordToken";
 
             public const string TokenCreationDatePropertyKey = "Token Creation Date";
+
+            public const string UsersDomain = "CommerceUsers";
         }
 
         public static class Pipelines
@@ -75,9 +77,15 @@ namespace HCA.Foundation.Commerce
         {
             public const string EmailInUse = "Email is in use.";
 
-            public const string UserNotFound = "User with specified email was not found";
+            public const string UserNotFoundEmail = "User with specified email was not found";
+
+            public const string UserNotFoundName = "User was not found.";
 
             public const string IncorrectOldPassword = "Incorrect old password.";
+
+            public const string UnableToChangePassword = "Unable to change password.";
+
+            public const string TokenIsInvalid = "Token is invalid.";
 
             public const string PasswordRecoveryLinkTokenMissing = "Missing password recovery link token in password recovery email";
         }

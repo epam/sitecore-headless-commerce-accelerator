@@ -20,6 +20,7 @@ namespace HCA.Foundation.Commerce.Services.Account
     using System.Web;
     using System.Web.Security;
 
+    using Foundation.Account.Managers.User;
     using Base.Models.Result;
     using Base.Services.Pipeline;
 
@@ -27,7 +28,6 @@ namespace HCA.Foundation.Commerce.Services.Account
     using Connect.Managers.Account;
 
     using DependencyInjection;
-
     using Infrastructure.Pipelines.ConfirmPasswordRecovery;
 
     using Mappers.Account;
@@ -54,21 +54,26 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         private readonly IPipelineService pipelineService;
 
+        private readonly IUserManager userManager;
+
         public AccountService(
             IAccountManager accountManager,
             IAccountMapper accountMapper,
             IStorefrontContext storefrontContext,
-            IPipelineService pipelineService)
+            IPipelineService pipelineService,
+            IUserManager userManager)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(pipelineService, nameof(pipelineService));
+            Assert.ArgumentNotNull(userManager, nameof(userManager));
 
             this.accountManager = accountManager;
             this.mapper = accountMapper;
             this.storefrontContext = storefrontContext;
             this.pipelineService = pipelineService;
+            this.userManager = userManager;
         }
 
         public Result<IEnumerable<Address>> AddAddress(string userName, Address address)
@@ -137,12 +142,12 @@ namespace HCA.Foundation.Commerce.Services.Account
                 }
                 else
                 {
-                    result.SetError("User was not found.");
+                    result.SetError(Constants.ErrorMessages.UserNotFoundEmail);
                 }
             }
             else
             {
-                result.SetError("Incorrect old password.");
+                result.SetError(Constants.ErrorMessages.IncorrectOldPassword);
             }
 
             return result;
@@ -334,6 +339,113 @@ namespace HCA.Foundation.Commerce.Services.Account
             return result;
         }
 
+        public Result<ConfirmPasswordRecoveryResult> ConfirmPasswordRecovery(string email)
+        {
+            Assert.ArgumentNotNullOrEmpty(email, nameof(email));
+
+            var args = new ConfirmPasswordRecoveryArgs(HttpContext.Current)
+            {
+                UserEmail = email
+            };
+
+            this.pipelineService.RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, args);
+
+            return this.ResolveResult(
+                args,
+                pipelineArgs => new ConfirmPasswordRecoveryResult
+                {
+                    IsEmailValid = pipelineArgs.IsEmailValid
+                });
+        }
+
+        public Result<VerifyRecoveryTokenResult> VerifyRecoveryToken(string userName, string token)
+        {
+            Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
+            Assert.ArgumentNotNullOrEmpty(token, nameof(token));
+
+            var result = new Result<VerifyRecoveryTokenResult>(new VerifyRecoveryTokenResult
+            {
+                Token = token,
+                UserName = userName
+            });
+
+            var user = userManager.GetUserFromName(Constants.PasswordRecovery.UsersDomain + "\\" + userName, false);
+            if (user == null)
+            {
+                result.SetError(Constants.ErrorMessages.UserNotFoundName);
+            }
+            else
+            {
+                var userToken = user.Profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey);
+                var isValid = !string.IsNullOrWhiteSpace(token)
+                    && !string.IsNullOrWhiteSpace(userToken)
+                    && string.Equals(token, userToken);
+                result.Data.IsTokenValid = isValid;
+                if (!isValid)
+                {
+                    result.SetError(Constants.ErrorMessages.TokenIsInvalid);
+                }
+            }
+
+            return result;
+        }
+
+        public Result<VoidResult> ResetPassword(string userName, string newPassword, string token)
+        {
+            Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
+            Assert.ArgumentNotNullOrEmpty(newPassword, nameof(newPassword));
+            Assert.ArgumentNotNullOrEmpty(token, nameof(token));
+
+            var result = new Result<VoidResult>();
+            var fullUserName = EnsureUserFullName(userName, Constants.PasswordRecovery.UsersDomain);
+            var sitecoreUser = userManager.GetUserFromName(fullUserName, true);
+            if (sitecoreUser == null)
+            {
+                result.SetError(Constants.ErrorMessages.UserNotFoundName);
+                return result;
+            }
+
+            if (!IsResetPasswordTokenValid(sitecoreUser, token))
+            {
+                result.SetError(Constants.ErrorMessages.TokenIsInvalid);
+                return result;
+            }
+
+            if(!ResetPassword(fullUserName, sitecoreUser, newPassword))
+            {
+                result.SetError(Constants.ErrorMessages.UnableToChangePassword);
+            }
+
+            return result;
+        }
+
+        private bool ResetPassword(string userName, Sitecore.Security.Accounts.User sitecoreUser, string newPassword)
+        {
+            var user = Membership.GetUser(userName);
+            var isChangeSuccessful = user.ChangePassword(user.ResetPassword(), newPassword);
+            if (isChangeSuccessful)
+            {
+                userManager.RemoveCustomProperty(sitecoreUser, Constants.PasswordRecovery.ConfirmTokenKey);
+            }
+
+            return isChangeSuccessful;
+        }
+
+        private string EnsureUserFullName(string userName, string domain)
+        {
+            if (!userName.StartsWith(domain + "\\"))
+                return domain + "\\" + userName;
+            return userName;
+        }
+
+        private bool IsResetPasswordTokenValid(Sitecore.Security.Accounts.User sitecoreUser, string token)
+        {
+            var userToken = sitecoreUser?.Profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey);
+            return !string.IsNullOrWhiteSpace(token)
+                && !string.IsNullOrWhiteSpace(userToken)
+                && string.Equals(token, userToken);
+        }
+
         private Result<T> ExecuteWithParties<T>(
             string userName,
             Func<CommerceCustomer, IReadOnlyCollection<Party>, Result<T>, Result<T>> action)
@@ -398,24 +510,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 ?.Name;
         }
 
-        public Result<ConfirmPasswordRecoveryResult> ConfirmPasswordRecovery(string email)
-        {
-            Assert.ArgumentNotNullOrEmpty(email, nameof(email));
-
-            var args = new ConfirmPasswordRecoveryArgs(HttpContext.Current)
-            {
-                UserEmail = email
-            };
-
-            this.pipelineService.RunPipeline(Constants.Pipelines.ConfirmPasswordRecovery, args);
-
-            return this.ResolveResult(
-                args,
-                pipelineArgs => new ConfirmPasswordRecoveryResult
-                {
-                    IsEmailValid = pipelineArgs.IsEmailValid
-                });
-        }
+        
 
         private Result<TResult> ResolveResult<TResult, TArgs>(TArgs args, Func<TArgs, TResult> function = null)
             where TResult : class

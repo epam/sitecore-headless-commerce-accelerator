@@ -37,5 +37,12 @@ namespace HCA.Foundation.Account.Managers.User
         /// <param name="value">Property's value</param>
         /// <returns></returns>
         void AddCustomProperty(User user, string key, string value);
+
+        /// <summary>
+        /// Removes custom property from User profile
+        /// </summary>
+        /// <param name="user">Sitecore user</param>
+        /// <param name="key">Property key</param>
+        void RemoveCustomProperty(User user, string key);
     }
 }

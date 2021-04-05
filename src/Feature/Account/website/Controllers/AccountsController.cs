@@ -166,5 +166,21 @@ namespace HCA.Feature.Account.Controllers
         {
             return this.Execute(() => this.accountService.ConfirmPasswordRecovery(request.Email));
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ActionName("verifytoken")]
+        public ActionResult ResetPassword(ResetPasswordRequest request)
+        {
+            return this.Execute(() => this.accountService.VerifyRecoveryToken(request.UserName, request.Token));
+        }
+
+        [HttpPut]
+        [AllowAnonymous]
+        [ActionName("recoverpassword")]
+        public ActionResult RecoverPassword(RecoverPasswordRequest request)
+        {
+            return this.Execute(() => this.accountService.ResetPassword(request.UserName, request.Password, request.Token));
+        }
     }
 }

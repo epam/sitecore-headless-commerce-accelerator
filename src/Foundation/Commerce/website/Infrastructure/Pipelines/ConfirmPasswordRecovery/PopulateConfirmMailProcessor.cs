@@ -26,14 +26,10 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
         protected virtual string GenerateConfirmLink(string token, string userName)
         {
             var serverUrl = Sitecore.StringUtil.EnsurePostfix('/', WebUtil.GetServerUrl());
+            var resetLink =
+                $"{serverUrl}{Constants.PasswordRecovery.ResetPasswordUrl}?username={userName.Replace(Constants.PasswordRecovery.UsersDomain + "\\", "")}&token={token}";
 
-            var sb = new StringBuilder();
-            sb.Append(serverUrl);
-            sb.Append(Constants.PasswordRecovery.ResetPasswordEndpoint);
-            sb.Append(userName.Replace('\\', '|'));
-            sb.Append($"/{token}");
-
-            return sb.ToString();
+            return resetLink;
         }
 
         protected override string GetEmailContent(PasswordRecoveryArgs args, string emailContentTemplate)

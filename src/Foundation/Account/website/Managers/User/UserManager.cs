@@ -33,6 +33,15 @@ namespace HCA.Foundation.Account.Managers.User
             user.Profile.Save();
         }
 
+        public void RemoveCustomProperty(User user, string key)
+        {
+            Assert.ArgumentNotNull(user, nameof(user));
+            Assert.ArgumentNotNullOrEmpty(key, nameof(key));
+
+            user.Profile.RemoveCustomProperty(key);
+            user.Profile.Save();
+        }
+
         public User GetUserFromName(string username, bool isAuthenticated)
         {
             Assert.ArgumentNotNullOrEmpty(username, nameof(username));

@@ -42,11 +42,23 @@ const permanentNavigationLinks = [
 
 class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps, NavigationMenuState> {
   protected dropMenuMobile(e: React.MouseEvent<HTMLElement>, dropdownType: string) {
-    const elem = e.target as HTMLElement;
+    const elem = e.currentTarget as HTMLElement;
+
     e.preventDefault();
-    elem.parentElement.nextElementSibling.classList.toggle(dropdownType);
-    elem.classList.toggle('fa-minus');
+    elem.nextElementSibling.classList.toggle(dropdownType);
+    elem.lastElementChild.classList.toggle('fa-minus');
   }
+
+  // TODO US2069 Menu refactoring
+  protected handleCategoryClick() {
+    const header = document.querySelector('[data-el="header"]');
+    header.classList.remove('header--active');
+
+    if (!header.classList.contains('header--inactive')) {
+      header.classList.add('header--inactive');
+    }
+  }
+
   protected safeRender() {
     const { menuCommerceItems, menuLinks } = this.props.fields.data.datasource;
 
@@ -96,18 +108,18 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                     </ul>
                   </li>
                   <li className="navigation_mobile_item">
-                    <div className="navigation_link">
+                    <div className="navigation_link" onClick={(e) => this.dropMenuMobile(e, 'drop-open')}>
                       <a className="navigation_link_first-level-title" href={`/shop/${value}`}>
                         {value}
                       </a>
-                      <i className="fa fa-plus" onClick={(e) => this.dropMenuMobile(e, 'drop-open')} />
+                      <i className="fa fa-plus" />
                     </div>
                     <div className="dropdown">
                       <nav>
                         <ul>
-                          <li>
+                          <li onClick={(e) => this.dropMenuMobile(e, 'drop-category-open')}>
                             <span className="title">Category</span>
-                            <i className="fa fa-plus" onClick={(e) => this.dropMenuMobile(e, 'drop-category-open')} />
+                            <i className="fa fa-plus" />
                           </li>
                           <ul className="drop-category">
                             {commerceCategories &&
@@ -117,16 +129,18 @@ class NavigationMenuComponent extends JSS.SafePureComponent<NavigationMenuProps,
                                 const link = '/shop/' + name;
                                 return (
                                   <li key={categoryIndex} data-autotests={`submenuCommerceItem_${name}`}>
-                                    <NavigationLink to={link}>{name}</NavigationLink>
+                                    <NavigationLink to={link} onClick={this.handleCategoryClick}>
+                                      {name}
+                                    </NavigationLink>
                                   </li>
                                 );
                               })}
                           </ul>
                         </ul>
                         <ul>
-                          <li>
+                          <li onClick={(e) => this.dropMenuMobile(e, 'drop-feature-open')}>
                             <span className="title">Featured</span>
-                            <i className="fa fa-plus" onClick={(e) => this.dropMenuMobile(e, 'drop-feature-open')} />
+                            <i className="fa fa-plus" />
                           </li>
                           <ul className="drop-feature">
                             <li data-autotests="newNavigationLink">

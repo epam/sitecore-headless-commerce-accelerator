@@ -12,315 +12,315 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 // Common styles
 
 .about-us-heading {
-    position: relative;
-    font-size: 30px;
-    font-weight: 500;
-    letter-spacing: .3px;
-    margin: 8px 0 30px;
-    color: #433f3f;
-    padding: 0 0 23px;
-    line-height: 1;
-    text-transform: capitalize;
-    &:before {
-        position: absolute;
-        background-color: #070508;
-        height: 3px;
-        width: 70px;
-        content: "";
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: 0 auto;
-    }
+  position: relative;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 8px 0 30px;
+  color: #433f3f;
+  padding: 0 0 23px;
+  line-height: 1;
+  text-transform: capitalize;
+  &:before {
+    position: absolute;
+    background-color: #070508;
+    height: 3px;
+    width: 70px;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
 }
 
 .row-flexible {
-    @media (max-width: $screen-sm) and (min-width: $screen-xs ) {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-        .col-sm-6 {
-            flex: 0 0 50%;
-            max-width: 50%; 
-        }
+  @media (max-width: $screen-sm) and (min-width: $screen-xs) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
     }
+  }
 }
 
 // Welcome area
 
 .welcome-area {
-    padding-top: 100px;
-    padding-bottom: 95px;    
-    @media (max-width: $screen-sm) {
-        padding-top: 60px;
-        padding-bottom: 55px;
-    }
+  padding-top: 50px;
+  padding-bottom: 95px;
+  @media (max-width: $screen-sm) {
+    padding-top: 60px;
+    padding-bottom: 55px;
+  }
 }
 
 .welcome-content {
-    text-align: center;
-    h5 {
-        font-weight: 500;
-        font-size: 16px;
-        color: $brand-font-color;
-        margin: 0;
-        letter-spacing: .3px;
+  text-align: center;
+  h5 {
+    font-weight: 500;
+    font-size: 16px;
+    color: $brand-font-color;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+  p {
+    font-size: 16px;
+    color: #4b4b4b;
+    line-height: 30px;
+    width: 66%;
+    margin: 0 auto;
+    @media (max-width: $screen-sm) {
+      width: 100%;
+      font-size: 15px;
     }
-    p {
-        font-size: 16px;
-        color: #4b4b4b;
-        line-height: 30px;
-        width: 66%;
-        margin: 0 auto;
-        @media (max-width: $screen-sm) {
-            width: 100%;
-            font-size: 15px;
-        }
-    }
+  }
 }
 
 // Our mission
 
 .about-mission-area {
-    padding-bottom: 70px;
-    @media (max-width: $screen-sm) {
-        padding-bottom: 30px;
+  padding-bottom: 70px;
+  @media (max-width: $screen-sm) {
+    padding-bottom: 30px;
+  }
+  .single-mission {
+    margin-bottom: 30px;
+    h3 {
+      font-size: 25px;
+      font-weight: 500;
+      margin: 0 0 20px;
+      text-transform: capitalize;
+      line-height: 22px;
+      color: $grey-dark;
+      @media (max-width: $screen-sm) {
+        margin: 0 0 10px;
+      }
     }
-    .single-mission {
-        margin-bottom: 30px;
-        h3 {
-            font-size: 25px;
-            font-weight: 500;
-            margin: 0 0 20px;
-            text-transform: capitalize;
-            line-height: 22px;
-            color: $grey-dark;
-            @media (max-width: $screen-sm) {
-                margin: 0 0 10px;
-            }
-        }
-        p {
-            margin: 0;
-        }
+    p {
+      margin: 0;
     }
+  }
 }
 
-// Logo area 
+// Logo area
 .brand-logo-area {
-    padding-bottom: 70px;
-    .swiper-container {
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-        overflow: hidden;
-        list-style: none;
-        padding: 0;
-        z-index: 1;
-        .swiper-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            display: flex;
-            transition-property: transform;
-            box-sizing: content-box;
-        }
-    } 
+  padding-bottom: 50px;
+  .swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    .swiper-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      transition-property: transform;
+      box-sizing: content-box;
+    }
+  }
 }
 
 // Team area
 .team-area {
-    padding-bottom: 70px;
-    padding-top: 95px;
-    @media (max-width: $screen-sm) {
-        padding-bottom: 30px;
-        padding-top: 55px;
+  padding-bottom: 70px;
+  padding-top: 95px;
+  @media (max-width: $screen-sm) {
+    padding-bottom: 30px;
+    padding-top: 55px;
+  }
+  .team-title {
+    margin-bottom: 60px;
+    text-align: center;
+    .about-us-heading {
+      margin: 0 0 15px;
+      padding: 0 0 15px;
+      font-weight: 600;
     }
-    .team-title {
-        margin-bottom: 60px;
+  }
+  .team-wrapper {
+    background-color: $breadcrumbs-bar-color;
+    margin-bottom: 30px;
+    .team-img {
+      position: relative;
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+      .team-action {
+        background: $white none repeat scroll 0 0;
+        left: 0;
+        opacity: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
         text-align: center;
-        .about-us-heading {
-            margin: 0 0 15px;
-            padding: 0 0 15px;
-            font-weight: 600;
+        top: 70%;
+        transform: translateY(-50%);
+        transition: all 0.6s ease 0s;
+        width: 100%;
+        z-index: 5;
+        a {
+          border-radius: 50px;
+          color: $white;
+          display: inline-block;
+          font-size: 14px;
+          height: 30px;
+          line-height: 28px;
+          text-align: center;
+          width: 30px;
+          margin: 0 3px;
+          &.facebook {
+            border: 1px solid #3b5998;
+            background-color: #3b5998;
+            &:hover {
+              background-color: transparent;
+              color: #3b5998;
+            }
+          }
+          &.twitter {
+            border: 1px solid #55acee;
+            background-color: #55acee;
+            &:hover {
+              background-color: transparent;
+              color: #55acee;
+            }
+          }
+          &.instagram {
+            border: 1px solid #c32aa3;
+            background-color: #c32aa3;
+            &:hover {
+              background-color: transparent;
+              color: #c32aa3;
+            }
+          }
         }
+      }
     }
-    .team-wrapper {
-        background-color: $breadcrumbs-bar-color;
-        margin-bottom: 30px;
-        .team-img {
-            position: relative;
-            img {
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-            }
-            .team-action {
-                background: $white none repeat scroll 0 0;
-                left: 0;
-                opacity: 0;
-                padding: 10px;
-                position: absolute;
-                right: 0;
-                text-align: center;
-                top: 70%;
-                transform: translateY(-50%);
-                transition: all .6s ease 0s;
-                width: 100%;
-                z-index: 5;
-                a {
-                    border-radius: 50px;
-                    color: $white;
-                    display: inline-block;
-                    font-size: 14px;
-                    height: 30px;
-                    line-height: 28px;
-                    text-align: center;
-                    width: 30px;
-                    margin: 0 3px;
-                    &.facebook {
-                      border: 1px solid #3b5998;
-                      background-color: #3b5998;
-                      &:hover {
-                        background-color: transparent;
-                        color: #3b5998;
-                      }
-                    }
-                    &.twitter {
-                      border: 1px solid #55acee;
-                      background-color: #55acee;
-                      &:hover {
-                        background-color: transparent;
-                        color: #55acee;
-                      }
-                    }
-                    &.instagram {
-                      border: 1px solid #c32aa3;
-                      background-color: #c32aa3;
-                      &:hover {
-                        background-color: transparent;
-                        color: #c32aa3;
-                      }
-                    }
-                }
-            }
-        }
-        .team-content {
-            padding: 20px 10px 23px;
-            h4 {
-              font-size: 18px;
-              font-weight: 500;
-              margin: 0 0 3px;
-              text-transform: capitalize;
-            }
-            span {
-              font-size: 15px;
-              font-style: italic;
-            }
-        }
-        &:hover .team-action {
-            top: 50%;
-            opacity: 1;
-        }
+    .team-content {
+      padding: 20px 10px 23px;
+      h4 {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0 0 3px;
+        text-transform: capitalize;
+      }
+      span {
+        font-size: 15px;
+        font-style: italic;
+      }
     }
+    &:hover .team-action {
+      top: 50%;
+      opacity: 1;
+    }
+  }
 }
 
 // Banner area
 
 .banner-area {
-    padding-bottom: 70px;
-    .single-banner {
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 30px;
-        a {
-            img {
-                width: 100%;
-                transition: all .5s ease 0s;
-                transform: scale(1);
-            }
-            &:hover {
-                img{
-                    transform: scale(1.2);
-                }
-            }
+  padding-bottom: 70px;
+  .single-banner {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    a {
+      img {
+        width: 100%;
+        transition: all 0.5s ease 0s;
+        transform: scale(1);
+      }
+      &:hover {
+        img {
+          transform: scale(1.2);
         }
-        .banner-content {
-            position: absolute;
-            top: 40px;
-            left: 36px;
-            content: "";
-            h3 {
-                font-family: $poppins;
-                font-size: 36px;
-                font-weight: 600;
-                margin: 0;
-                color: #915342;
-            }
-            h4 {
-                font-family: $poppins;
-                font-size: 18px;
-                font-weight: 600;
-                margin: 3px 0 58px;
-                color: #010101;
-                text-transform: none;
-            }
-            a {
-                font-size: 14px;
-                display: inline-block;
-                width: 28px;
-                height: 28px;
-                text-align: center;
-                color: #97584a;
-                border: 2px solid #97584a;
-                border-radius: 100%;
-            }
-        }
+      }
     }
+    .banner-content {
+      position: absolute;
+      top: 40px;
+      left: 36px;
+      content: '';
+      h3 {
+        font-family: $poppins;
+        font-size: 36px;
+        font-weight: 600;
+        margin: 0;
+        color: #915342;
+      }
+      h4 {
+        font-family: $poppins;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 3px 0 58px;
+        color: #010101;
+        text-transform: none;
+      }
+      a {
+        font-size: 14px;
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        text-align: center;
+        color: #97584a;
+        border: 2px solid #97584a;
+        border-radius: 100%;
+      }
+    }
+  }
 }
 
 // Fun Facts
 .funfact-area {
-    position: relative;
-    background-color: $breadcrumbs-bar-color;
-    padding-bottom: 70px;
-    padding-top: 100px;
-    @media (max-width: $screen-sm) {
-        padding-top:60px;
-        padding-bottom: 30px;
+  position: relative;
+  background-color: $breadcrumbs-bar-color;
+  padding-bottom: 70px;
+  padding-top: 100px;
+  @media (max-width: $screen-sm) {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+  .single-count {
+    margin-bottom: 30px;
+    text-align: center;
+    h2 > span {
+      color: $main-color;
+      font-size: 40px;
+      font-weight: 700;
+      margin: 25px 0 12px;
+      display: inline-block;
+      @media (max-width: $screen-sm) {
+        margin: 6px 0 8px;
+        font-size: 35px;
+      }
     }
-    .single-count {
-        margin-bottom: 30px;
-        text-align: center;        
-        h2>span {
-            color: $main-color;
-            font-size: 40px;
-            font-weight: 700;
-            margin: 25px 0 12px;
-            display: inline-block;
-            @media (max-width: $screen-sm) {
-                margin: 6px 0 8px;
-                font-size: 35px;
-            }
-        }
-        span {
-            color: $grey-dark;
-            font-size: 20px;
-            text-transform: capitalize;
-            font-weight: 500;
-        }
-        .count-icon i {
-            font-size: 50px;
-            line-height: 1;
-            display: inline-block;
-            @media (max-width: $screen-sm) {
-                font-size: 45px;
-            }
-        }
+    span {
+      color: $grey-dark;
+      font-size: 20px;
+      text-transform: capitalize;
+      font-weight: 500;
     }
+    .count-icon i {
+      font-size: 50px;
+      line-height: 1;
+      display: inline-block;
+      @media (max-width: $screen-sm) {
+        font-size: 45px;
+      }
+    }
+  }
 }

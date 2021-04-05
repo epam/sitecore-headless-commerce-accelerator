@@ -12,19 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 $login-register-form-indention: 15px;
 
 .login-register-form {
   margin: 20px 0;
-  padding: 65px 10px;
+  padding: 30px 10px;
   &-content {
     display: flex;
     justify-content: center;
     background-color: $white;
     padding: $login-register-form-indention;
-    .field_wrapper{
+    .field_wrapper {
       padding: 0px 48px;
     }
     .account-created-message {

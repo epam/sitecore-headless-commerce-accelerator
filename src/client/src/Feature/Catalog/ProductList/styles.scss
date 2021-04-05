@@ -17,8 +17,8 @@
 @import 'Foundation/UI/common/scss/mixins';
 
 .product-list-container {
-  padding-top: 95px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   @media (max-width: $screen-sm-max) {
     padding: 20px 0;
   }

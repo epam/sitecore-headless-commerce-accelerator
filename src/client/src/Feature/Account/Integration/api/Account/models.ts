@@ -24,3 +24,7 @@ export interface ChangePasswordResponse extends Base.OkJsonResultModel<Base.Void
 export interface UpdateAccountResponse extends Base.OkJsonResultModel<Base.VoidResult> {}
 
 export interface AddressResponse extends Base.OkJsonResultModel<Commerce.Address[]> {}
+
+export interface ConfirmPasswordRecoveryResponse extends Base.OkJsonResultModel<{ IsEmailValid: boolean }> {}
+
+export interface RecoverPasswordResponse extends Base.OkJsonResultModel<Base.VoidResult> {}

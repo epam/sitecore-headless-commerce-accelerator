@@ -21,8 +21,10 @@ import * as DataModel from 'Feature/Account/dataModel.Generated';
 import {
   AddressResponse,
   ChangePasswordResponse,
+  ConfirmPasswordRecoveryResponse,
   CreateAccountResponse,
   EmailValidationResponse,
+  RecoverPasswordResponse,
   UpdateAccountResponse,
 } from './models';
 
@@ -120,6 +122,30 @@ export const updateAccountInfo = async (
 ): Promise<Result<boolean>> => {
   return axios
     .put<UpdateAccountResponse>(`${routeBase}/account`, updateAccountRequest)
+    .then((response) => {
+      return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
+};
+
+export const confirmPasswordRecovery = async (email: string): Promise<Result<boolean>> => {
+  return axios
+    .post<ConfirmPasswordRecoveryResponse>(`${routeBase}/Password`, { email })
+    .then((response) => {
+      return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
+};
+
+export const recoverPassword = async (
+  recoverPasswordRequest: DataModel.RecoverPasswordRequest,
+): Promise<Result<boolean>> => {
+  return axios
+    .put<RecoverPasswordResponse>(`${routeBase}/RecoverPassword`, recoverPasswordRequest)
     .then((response) => {
       return { data: response.data.status === 'ok' };
     })

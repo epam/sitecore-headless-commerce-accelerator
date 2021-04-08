@@ -15,42 +15,47 @@
 // tslint:disable:indent array-type
 // tslint:disable: no-use-before-declare
 
-  export interface AddressRequest {
-    address1: string;
-    address2: string;
-    city: string;
-    country: string;
-    countryCode: string;
-    email: string;
-    externalId: string;
-    firstName: string;
-    isPrimary: boolean;
-    lastName: string;
-    name: string;
-    partyId: string;
-    state: string;
-    zipPostalCode: string;
-  }
-  export interface ChangePasswordRequest {
-    email: string;
-    newPassword: string;
-    oldPassword: string;
-  }
-  export interface CreateAccountRequest {
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-  }
-  export interface LoginRequest {
-    email: string;
-    password: string;
-  }
-  export interface UpdateAccountRequest {
-    contactId: string;
-    firstName: string;
-    lastName: string;
-  }
-  export interface ValidateEmailRequest {
-    email: string;
-  }
+export interface AddressRequest {
+  address1: string;
+  address2: string;
+  city: string;
+  country: string;
+  countryCode: string;
+  email: string;
+  externalId: string;
+  firstName: string;
+  isPrimary: boolean;
+  lastName: string;
+  name: string;
+  partyId: string;
+  state: string;
+  zipPostalCode: string;
+}
+export interface ChangePasswordRequest {
+  email: string;
+  newPassword: string;
+  oldPassword: string;
+}
+export interface CreateAccountRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+export interface UpdateAccountRequest {
+  contactId: string;
+  firstName: string;
+  lastName: string;
+}
+export interface ValidateEmailRequest {
+  email: string;
+}
+export interface RecoverPasswordRequest {
+  userName: string;
+  newPassword: string;
+  token: string;
+}

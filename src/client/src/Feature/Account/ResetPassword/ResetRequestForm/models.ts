@@ -12,8 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './LoginRegister';
-export * from './ResetPassword';
+import { GlobalAccountState, RequestPasswordResetState } from 'Feature/Account/Integration/Account';
+
+export interface ResetRequestFormStateProps {
+  requestPasswordResetState: RequestPasswordResetState;
+}
+
+export interface ResetRequestFormDispatchProps {
+  confirmPasswordRecovery: (email: string) => void;
+}
+
+export interface ResetRequestFormProps extends ResetRequestFormStateProps, ResetRequestFormDispatchProps {}
+
+export interface AppState extends GlobalAccountState {}

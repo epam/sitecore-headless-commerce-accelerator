@@ -30,6 +30,9 @@ export const sagaActionTypes = keyMirrorSaga(
     ADDRESS_GET_LIST: null,
     ADDRESS_REMOVE: null,
     ADDRESS_UPDATE: null,
+
+    PASSWORD_RESET: null,
+    REQUEST_PASSWORD_RESET: null,
   },
   ACCOUNT_NAMESPACE,
 );
@@ -65,6 +68,13 @@ export const reducerActionTypes = keyMirrorReducer(
     ADDRESS_UPDATE_FAILURE: null,
     ADDRESS_UPDATE_REQUEST: null,
     ADDRESS_UPDATE_SUCCESS: null,
+
+    PASSWORD_RESET_FAILURE: null,
+    PASSWORD_RESET_REQUEST: null,
+    PASSWORD_RESET_SUCCESS: null,
+    REQUEST_PASSWORD_RESET_FAILURE: null,
+    REQUEST_PASSWORD_RESET_REQUEST: null,
+    REQUEST_PASSWORD_RESET_SUCCESS: null,
   },
   ACCOUNT_NAMESPACE,
 );

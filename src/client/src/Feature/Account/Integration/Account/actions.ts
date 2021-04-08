@@ -81,6 +81,22 @@ export const UpdateAccount: actionCreators.UpdateAccount = (firstName: string, l
   type: sagaActionTypes.UPDATE,
 });
 
+export const RequestPasswordReset: actionCreators.RequestPasswordReset = (email: string) => ({
+  payload: {
+    email,
+  },
+  type: sagaActionTypes.REQUEST_PASSWORD_RESET,
+});
+
+export const ResetPassword: actionCreators.ResetPassword = (userName: string, newPassword: string, token: string) => ({
+  payload: {
+    newPassword,
+    token,
+    userName,
+  },
+  type: sagaActionTypes.PASSWORD_RESET,
+});
+
 export const CreateAccountRequest: actionCreators.CreateAccountRequest = () => ({
   payload: {
     status: LoadingStatus.Loading,
@@ -291,4 +307,52 @@ export const UpdateAccountSuccess: actionCreators.UpdateAccountSuccess = () => (
     status: LoadingStatus.Loaded,
   },
   type: reducerActionTypes.UPDATE_SUCCESS,
+});
+
+export const RequestPasswordResetRequest: actionCreators.RequestPasswordResetRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.REQUEST_PASSWORD_RESET_REQUEST,
+});
+
+export const RequestPasswordResetFailure: actionCreators.RequestPasswordResetFailure = (
+  error: string,
+  stack?: string,
+) => ({
+  payload: {
+    error,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.REQUEST_PASSWORD_RESET_FAILURE,
+});
+
+export const RequestPasswordResetSuccess: actionCreators.RequestPasswordResetSuccess = () => ({
+  payload: {
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.REQUEST_PASSWORD_RESET_SUCCESS,
+});
+
+export const ResetPasswordRequest: actionCreators.ResetPasswordRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.PASSWORD_RESET_REQUEST,
+});
+
+export const ResetPasswordFailure: actionCreators.ResetPasswordFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.PASSWORD_RESET_FAILURE,
+});
+
+export const ResetPasswordSuccess: actionCreators.ResetPasswordSuccess = () => ({
+  payload: {
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.PASSWORD_RESET_SUCCESS,
 });

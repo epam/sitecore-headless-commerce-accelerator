@@ -43,11 +43,23 @@ export interface SavedAddressListState extends Status {
 
 export interface UpdateAccountState extends Status {}
 
+export interface RequestPasswordResetState extends Status {
+  email: string;
+}
+
+export interface ResetPasswordState extends Status {
+  userName: string;
+  newPassword: string;
+  token: string;
+}
+
 export interface AccountState {
   signUp: SignUpState;
   changePassword: ChangePasswordState;
   savedAddressList: SavedAddressListState;
   update: UpdateAccountState;
+  requestPasswordReset: RequestPasswordResetState;
+  resetPassword: ResetPasswordState;
 }
 
 export interface GlobalAccountState {
@@ -77,4 +89,14 @@ export interface AddressPayload extends Status {
 export interface UpdateAccountPayload {
   firstName: string;
   lastName: string;
+}
+
+export interface RequestPasswordResetPayload {
+  email: string;
+}
+
+export interface ResetPasswordPayload {
+  userName: string;
+  newPassword: string;
+  token: string;
 }

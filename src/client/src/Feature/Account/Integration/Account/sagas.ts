@@ -28,6 +28,8 @@ import {
   AccountValidationState,
   ChangePasswordPayload,
   CreateAccountPayload,
+  RequestPasswordResetPayload,
+  ResetPasswordPayload,
   UpdateAccountPayload,
   ValidateEmailPayload,
 } from './models';
@@ -46,7 +48,6 @@ export function* create(action: Action<CreateAccountPayload>) {
   if (error) {
     return yield put(actions.CreateAccountFailure(error.message, error.stack));
   }
-
   yield put(actions.CreateAccountSuccess(data));
 
   eventHub.publish(events.ACCOUNT.CREATED);
@@ -74,7 +75,6 @@ export function* validation(action: Action<ValidateEmailPayload>) {
   if (error) {
     return yield put(actions.AccountValidationFailure(error.message, error.stack));
   }
-
   yield put(actions.AccountValidationSuccess(data.invalid, data.inUse));
 
   eventHub.publish(events.ACCOUNT.EMAIL_VALIDATED);
@@ -105,7 +105,6 @@ export function* changePassword(action: Action<ChangePasswordPayload>) {
   if (!data) {
     return yield put(actions.ChangePasswordFailure('can not change password'));
   }
-
   yield put(actions.ChangePasswordSuccess());
 
   eventHub.publish(events.ACCOUNT.PASSWORD_CHANGED);
@@ -131,7 +130,6 @@ export function* getAddressList() {
   if (error || !data) {
     return yield put(actions.GetAddressListFailure(error.message, error.stack));
   }
-
   yield put(actions.GetAddressListSuccess(data));
 }
 
@@ -145,7 +143,6 @@ export function* updateAddress(action: Action<Commerce.Address>) {
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
   yield put(actions.UpdateAddressSuccess(data));
 
   eventHub.publish(events.ACCOUNT.ADDRESS_UPDATED);
@@ -161,7 +158,6 @@ export function* addAddress(action: Action<Commerce.Address>) {
   if (error || !data) {
     return yield put(actions.AddAddressFailure(error.message, error.stack));
   }
-
   yield put(actions.AddAddressSuccess(data));
 
   eventHub.publish(events.ACCOUNT.ADDRESS_ADDED);
@@ -177,7 +173,6 @@ export function* removeAddress(action: Action<string>) {
   if (error || !data) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
   yield put(actions.UpdateAddressSuccess(data));
 
   eventHub.publish(events.ACCOUNT.ADDRESS_REMOVED);
@@ -201,13 +196,43 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
   if (!data && !error) {
     return yield put(actions.UpdateAddressFailure(error.message, error.stack));
   }
-
   yield put(actions.UpdateAccountSuccess());
 
   // we want to reload commerce user properties
   yield put(ChangeRoute(window.location.pathname));
 
   eventHub.publish(events.ACCOUNT.ADDRESS_UPDATED);
+}
+
+export function* requestPasswordReset(action: Action<RequestPasswordResetPayload>) {
+  yield put(actions.RequestPasswordResetRequest());
+  const { data, error }: Result<boolean> = yield call(Api.confirmPasswordRecovery, action.payload.email);
+
+  if (error) {
+    return yield put(actions.RequestPasswordResetFailure(error.message, error.stack));
+  }
+
+  if (!data) {
+    return yield put(actions.RequestPasswordResetFailure('Can not confirm password recovery'));
+  }
+
+  yield put(actions.RequestPasswordResetSuccess());
+}
+
+export function* resetPassword(action: Action<ResetPasswordPayload>) {
+  const { userName, newPassword, token } = action.payload;
+  yield put(actions.ResetPasswordRequest());
+  const { data, error }: Result<boolean> = yield call(Api.recoverPassword, { userName, newPassword, token });
+
+  if (error) {
+    return yield put(actions.ResetPasswordFailure(error.message, error.stack));
+  }
+
+  if (!data) {
+    return yield put(actions.ResetPasswordFailure('Can not recover password'));
+  }
+
+  yield put(actions.ResetPasswordSuccess());
 }
 
 function* watch() {
@@ -220,6 +245,8 @@ function* watch() {
   yield takeEvery(sagaActionTypes.CREATE, create);
   yield takeEvery(sagaActionTypes.UPDATE, updateAccount);
   yield takeEvery(sagaActionTypes.CHANGE_PASSWORD, changePassword);
+  yield takeEvery(sagaActionTypes.REQUEST_PASSWORD_RESET, requestPasswordReset);
+  yield takeEvery(sagaActionTypes.PASSWORD_RESET, resetPassword);
 
   yield takeLatest(sagaActionTypes.VERIFY_COMMERCE_USER, verifyCommerceUser);
 }

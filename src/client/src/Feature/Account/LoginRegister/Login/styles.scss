@@ -32,14 +32,40 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   padding: 80px;
   text-align: left;
-  .btn-login-in {
-    margin-top: 12px;
-  }
-
-  &_buttons {
+  &_actions{
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    .actions_toggle_btn {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 0 19px;
+      a {
+        font-size: 15px;
+        @media #{$xs-layout} {
+          font-size: 14px;
+        }
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+    button{
+      background-color: $login-button-default-color;
+      border: none;
+      color: $login-default-font-color;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 11px 30px;
+      text-transform: uppercase;
+      -webkit-transition: all .3s ease 0s;
+      transition: all .3s ease 0s;
+      font-family: $poppins;
+      &:hover{
+        background-color: $theme-color;
+        color: $login-hover-font-color;
+      }
+    }
   }
   &_invalid-msg {
     color: $login-failure-font-color;

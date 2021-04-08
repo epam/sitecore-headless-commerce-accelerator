@@ -77,6 +77,8 @@ components.set('Change Password Form', Account.ChangePassword);
 components.set('Address Manager', Account.AddressManager);
 components.set('Change User Information Form', Account.ChangeUserInformationForm);
 components.set('Login Register', Account.LoginRegister);
+components.set('Reset Request Form', Account.ResetRequestForm);
+components.set('Password Reset Form', Account.PasswordResetForm);
 
 // Navigation
 components.set('Breadcrumb', Navigation.Breadcrumb);

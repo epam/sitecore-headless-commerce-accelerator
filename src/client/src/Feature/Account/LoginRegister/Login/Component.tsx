@@ -18,6 +18,7 @@ import * as React from 'react';
 import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
 
 import { LoadingStatus } from 'Foundation/Integration';
+import { NavigationLink } from 'Foundation/UI';
 import { validateEmail } from 'Foundation/utils/validation';
 
 import { LogInProps, LogInStates, LogInValues } from './models';
@@ -93,7 +94,10 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
             )}
           </div>
         </div>
-        <div className="login_buttons">
+        <div className="login_actions">
+          <div className="actions_toggle_btn">
+            <NavigationLink to="/account/reset-password">Forgot Password?</NavigationLink>
+          </div>
           <Submit
             className="Login-Button"
             buttonTheme="grey"

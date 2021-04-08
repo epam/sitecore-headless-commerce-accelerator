@@ -21,6 +21,8 @@ import {
   AccountState,
   AddressPayload,
   ChangePasswordState,
+  RequestPasswordResetState,
+  ResetPasswordState,
   SavedAddressListState,
   SignUpState,
   UpdateAccountState,
@@ -160,8 +162,57 @@ export const updateAccountReducer = (state: UpdateAccountState = { ...updateAcco
   }
 };
 
+export const requestPasswordResetInitialState: RequestPasswordResetState = {
+  email: '',
+  status: LoadingStatus.NotLoaded,
+};
+
+export const requestPasswordResetReducer = (
+  state: RequestPasswordResetState = { ...requestPasswordResetInitialState },
+  action: Action,
+) => {
+  switch (action.type) {
+    case reducerActionTypes.REQUEST_PASSWORD_RESET_FAILURE:
+    case reducerActionTypes.REQUEST_PASSWORD_RESET_REQUEST:
+    case reducerActionTypes.REQUEST_PASSWORD_RESET_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
+export const resetPasswordInitialState: ResetPasswordState = {
+  newPassword: '',
+  status: LoadingStatus.NotLoaded,
+  token: '',
+  userName: '',
+};
+
+export const resetPasswordReducer = (state: ResetPasswordState = { ...resetPasswordInitialState }, action: Action) => {
+  switch (action.type) {
+    case reducerActionTypes.PASSWORD_RESET_FAILURE:
+    case reducerActionTypes.PASSWORD_RESET_REQUEST:
+    case reducerActionTypes.PASSWORD_RESET_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
 export default combineReducers<AccountState>({
   changePassword: changePasswordReducer,
+  requestPasswordReset: requestPasswordResetReducer,
+  resetPassword: resetPasswordReducer,
   savedAddressList: saveAddressListReducer,
   signUp: signUpReducer,
   update: updateAccountReducer,

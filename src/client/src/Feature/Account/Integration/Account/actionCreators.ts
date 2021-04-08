@@ -21,6 +21,8 @@ import {
   AddressPayload,
   ChangePasswordPayload,
   CreateAccountPayload,
+  RequestPasswordResetPayload,
+  ResetPasswordPayload,
   UpdateAccountPayload,
   ValidateAccountResultPayload,
   ValidateEmailPayload,
@@ -39,6 +41,8 @@ export type GetAddressList = () => Action;
 export type UpdateAddress = (address: Commerce.Address) => Action<Commerce.Address>;
 export type AddAddress = (address: Commerce.Address) => Action<Commerce.Address>;
 export type RemoveAddress = (externalId: string) => Action<string>;
+export type RequestPasswordReset = (email: string) => Action<RequestPasswordResetPayload>;
+export type ResetPassword = (userName: string, newPassword: string, token: string) => Action<ResetPasswordPayload>;
 
 export type CreateAccountRequest = StatusType;
 export type CreateAccountFailure = FailureType;
@@ -71,3 +75,11 @@ export type RemoveAddressSuccess = (addressList: Commerce.Address[]) => Action<A
 export type ChangePasswordRequest = StatusType;
 export type ChangePasswordFailure = FailureType;
 export type ChangePasswordSuccess = StatusType;
+
+export type RequestPasswordResetRequest = StatusType;
+export type RequestPasswordResetFailure = FailureType;
+export type RequestPasswordResetSuccess = StatusType;
+
+export type ResetPasswordRequest = StatusType;
+export type ResetPasswordFailure = FailureType;
+export type ResetPasswordSuccess = StatusType;

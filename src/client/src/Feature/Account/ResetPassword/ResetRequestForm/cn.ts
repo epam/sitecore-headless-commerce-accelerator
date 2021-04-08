@@ -12,8 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './AddressManager';
-export * from './ChangePassword';
-export * from './ChangeUserInformationForm';
-export * from './LoginRegister';
-export * from './ResetPassword';
+import { cn } from '@bem-react/classname';
+
+export const cnResetRequestForm = cn('ResetRequestForm');

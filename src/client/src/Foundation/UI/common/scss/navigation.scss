@@ -39,8 +39,8 @@
         right: -5px;
       }
     }
-    & [class*=" pe-7s-"],
-    [class^="pe-7s-"] {
+    & [class*=' pe-7s-'],
+    [class^='pe-7s-'] {
       font-size: 24px;
       position: relative;
       padding: 0;
@@ -49,23 +49,21 @@
       background: transparent;
     }
 
-    &:hover [class*=" pe-7s-"],
-    &:hover [class^="pe-7s-"] {
+    &:hover [class*=' pe-7s-'],
+    &:hover [class^='pe-7s-'] {
       color: $theme-color;
     }
   }
 
   & > a {
-    padding-left: 15px;
+    padding: 0 0.5em;
+
+    @media #{$header-switch-mobile-mode} {
+      padding: 0 0.7em;
+    }
+
     border: none;
     display: block;
-
-    @media #{$lg-layout} {
-      padding-left: 15px;
-    }
-    @media #{$header-switch-mobile-mode} {
-      padding-left: 20px;
-    }
 
     .quantity {
       font-size: 12px;
@@ -86,8 +84,8 @@
       }
     }
 
-    & [class*=" pe-7s-"],
-    [class^="pe-7s-"] {
+    & [class*=' pe-7s-'],
+    [class^='pe-7s-'] {
       font-size: 24px;
       position: relative;
       padding: 0;
@@ -96,8 +94,8 @@
       background: transparent;
     }
 
-    &:hover [class*=" pe-7s-"],
-    &:hover [class^="pe-7s-"] {
+    &:hover [class*=' pe-7s-'],
+    &:hover [class^='pe-7s-'] {
       color: $theme-color;
     }
   }

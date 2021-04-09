@@ -12,72 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
+import React, { FC, useState } from 'react';
 
-import * as Jss from 'Foundation/ReactJss';
-
-import { QuantityProductCommon } from 'Feature/Checkout/common/Quantity';
 import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
-import { QuantityProps, QuantityState } from './models';
+import { ShoppingCartLine } from 'Feature/Checkout/Integration/ShoppingCart';
+import { QuantityPicker } from 'Foundation/UI/components/QuantityPicker';
+
 import './styles.scss';
 
-export class Quantity extends Jss.SafePureComponent<QuantityProps, QuantityState> {
-  constructor(props: QuantityProps) {
-    super(props);
-    const quantity = this.props.cartLine.quantity;
-    this.state = {
-      quantity,
-    };
+type Props = {
+  cartLine: ShoppingCartLine;
+  updateCartLine: (model: ShoppingCartApi.CartItemDto) => void;
+  removeCartLine: (model: ShoppingCartLine) => void;
+};
 
-    this.handleInc = this.handleInc.bind(this);
-    this.handleDec = this.handleDec.bind(this);
-  }
+export const Quantity: FC<Props> = ({ cartLine, updateCartLine, removeCartLine }) => {
+  const [quantity, setQuantity] = useState(cartLine.quantity);
 
-  public handleInc() {
-    this.setQuantity(true);
-  }
-
-  public handleDec() {
-    this.setQuantity(false);
-  }
-
-  public setQuantity(increase: boolean) {
-    const { quantity } = this.state;
-    const { RemoveCartLine, cartLine } = this.props;
-    const newQuantity = increase ? quantity + 1 : quantity - 1;
-    if (!increase && quantity === 1) {
-      RemoveCartLine(cartLine);
+  const handleQuantityChange = (value: number) => {
+    if (value === 0) {
+      removeCartLine(cartLine);
     } else {
-      this.setState({ quantity: newQuantity }, () => this.updateCartLine(cartLine));
-    }
-  }
-
-  public updateCartLine(cartLine: ShoppingCart.ShoppingCartLine) {
-    const quantity = this.state.quantity;
-    if (quantity >= 0) {
-      const updateCartLineModel: ShoppingCartApi.CartItemDto = {
+      setQuantity(value);
+      updateCartLine({
         productId: cartLine.product.productId,
-        quantity,
+        quantity: value,
         variantId: cartLine.variant.variantId,
-      };
-      this.props.UpdateCartLine(updateCartLineModel);
-    } else {
-      this.setState({
-        quantity: cartLine.quantity,
       });
     }
-  }
+  };
 
-  public safeRender() {
-    const cartLine = this.props.cartLine;
-    return (
-      <QuantityProductCommon
-        cartLineId={cartLine.id}
-        inc={this.handleInc}
-        dec={this.handleDec}
-        quantity={this.state.quantity}
-      />
-    );
-  }
-}
+  return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={0} size="l" theme="grey" />;
+};

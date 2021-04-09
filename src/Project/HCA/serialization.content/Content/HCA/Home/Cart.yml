@@ -18,7 +18,7 @@ SharedFields:
           p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
           s:ds=""
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
-          s:par="Wrapper Class&amp;First Column Class=col-md12&amp;Second Column Class"
+          s:par="Wrapper Class&amp;First Column Class=col-md-12&amp;Second Column Class&amp;Third Column Class"
           s:ph="/main-content" />
         <r
           uid="{F464F6A2-78EC-4C25-9811-88578EE2073D}"

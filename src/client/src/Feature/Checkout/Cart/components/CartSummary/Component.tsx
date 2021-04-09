@@ -72,7 +72,12 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                               className="heading-productTitle"
                               to={`/product/${cartLine.product.productId}`}
                               data-autotests="productInfoTitle"
-                              onClick={() => eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {...cartLine.variant, list: window.location.pathname})}
+                              onClick={() =>
+                                eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {
+                                  ...cartLine.variant,
+                                  list: window.location.pathname,
+                                })
+                              }
                             >
                               {cartLine.variant.displayName || cartLine.product.displayName}
                             </NavigationLink>
@@ -105,7 +110,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         )}
                       </div>
                       <div className="col-xs-2 amount quantity-group product-quantity">
-                        <Quantity cartLine={cartLine} UpdateCartLine={UpdateCartLine} RemoveCartLine={RemoveCartLine} />
+                        <Quantity cartLine={cartLine} updateCartLine={UpdateCartLine} removeCartLine={RemoveCartLine} />
                       </div>
                       <div className="col-xs-2 amount product-subtotal">
                         <span className="currency">{cartLine.price.currencySymbol}</span>

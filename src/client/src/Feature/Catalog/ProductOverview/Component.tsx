@@ -56,9 +56,10 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     const { product, fallbackImageUrl } = this.props.sitecoreContext;
     const selectedCatalogItem = selectedVariant || product;
     const selectedCatalogItemId =
-      selectedCatalogItem && selectedCatalogItem.hasOwnProperty('variantId')
+      selectedCatalogItem &&
+      (selectedCatalogItem.hasOwnProperty('variantId')
         ? (selectedCatalogItem as Variant).variantId
-        : selectedCatalogItem.productId;
+        : selectedCatalogItem.productId);
 
     return (
       selectedCatalogItem && (

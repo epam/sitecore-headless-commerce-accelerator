@@ -14,6 +14,7 @@
 
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { registerCommerceInterceptor } from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
@@ -25,6 +26,8 @@ import { Layout, LoadingBar, ServerError } from './../../components';
 
 import { GlobalError } from 'Foundation/UI/common/components/Errors/GlobalError';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
+
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const { SitecoreContext } = JSS;
 
@@ -57,6 +60,7 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
           ))}
           <Route component={NotFound} />
         </Switch>
+        <ToastContainer hideProgressBar={true} />
       </>
     );
   }

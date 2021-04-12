@@ -87,7 +87,14 @@ namespace HCA.Foundation.Commerce
 
             public const string TokenIsInvalid = "Token is invalid.";
 
+            public const string TokenIsExpired = "Token is expired.";
+
             public const string PasswordRecoveryLinkTokenMissing = "Missing password recovery link token in password recovery email";
+        }
+
+        public static class Settings
+        {
+            public const string TokenExpirationTime = "RestorePasswordLinkExpirationTime";
         }
     }
 }

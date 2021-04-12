@@ -37,6 +37,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
     using Ploeh.AutoFixture;
 
+    using Sitecore;
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
@@ -44,6 +45,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Security;
     using Xunit;
+
+    using Constants = Commerce.Constants;
 
     public class AccountServiceTests
     {
@@ -943,7 +946,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             var userName = this.fixture.Create<string>();
             var password = this.fixture.Create<string>();
             var token = this.fixture.Create<string>();
-            userManager.GetUserFromName(Arg.Any<string>(), true).ReturnsNull();
+            this.userManager.GetUserFromName(Arg.Any<string>(), true).ReturnsNull();
             // act
             var result = this.service.ResetPassword(userName, password, token);
             // assert
@@ -958,16 +961,42 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             var userName = this.fixture.Create<string>();
             var token = this.fixture.Create<string>();
             var user = Substitute.For<Sitecore.Security.Accounts.User>(userName, true);
-            userManager.GetUserFromName(Arg.Any<string>(), true).Returns(user);
+            this.userManager.GetUserFromName(Arg.Any<string>(), true).Returns(user);
             var profile = Substitute.For<UserProfile>();
             user.Profile.Returns(profile);
             profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
 
             // act
             var result = this.service.ResetPassword(userName, this.fixture.Create<string>(), this.fixture.Create<string>());
+
             // assert
             Assert.False(result.Success);
             Assert.True(result.Errors.Contains(Constants.ErrorMessages.TokenIsInvalid));
+        }
+
+        [Fact]
+        public void ResetPassword_IfTokenIsExpired_ShouldReturnFailResult()
+        {
+            // arrange 
+            var userName = this.fixture.Create<string>();
+            var token = this.fixture.Create<string>();
+            var user = Substitute.For<Sitecore.Security.Accounts.User>(userName, true);
+            this.userManager.GetUserFromName(Arg.Any<string>(), true).Returns(user);
+            var profile = Substitute.For<UserProfile>();
+            user.Profile.Returns(profile);
+            profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
+            var minUniversalTime = DateUtil.ToUniversalTime(DateTime.MinValue.ToUniversalTime());
+            this.userManager.AddCustomProperty(
+                user, 
+                Constants.PasswordRecovery.TokenCreationDatePropertyKey, 
+                DateUtil.ToIsoDate(minUniversalTime));
+
+            // act
+            var result = this.service.ResetPassword(userName, this.fixture.Create<string>(), token);
+
+            // assert
+            Assert.False(result.Success);
+            Assert.True(result.Errors.Contains(Constants.ErrorMessages.TokenIsExpired));
         }
         #endregion
     }

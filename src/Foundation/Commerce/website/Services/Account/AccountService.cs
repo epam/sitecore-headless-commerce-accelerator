@@ -36,12 +36,15 @@ namespace HCA.Foundation.Commerce.Services.Account
     using Models.Entities.Addresses;
     using Models.Entities.Users;
 
+    using Sitecore;
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
+
+    using Constants = Commerce.Constants;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService
@@ -369,7 +372,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 UserName = userName
             });
 
-            var user = userManager.GetUserFromName(Constants.PasswordRecovery.UsersDomain + "\\" + userName, false);
+            var user = this.userManager.GetUserFromName(Constants.PasswordRecovery.UsersDomain + "\\" + userName, false);
             if (user == null)
             {
                 result.SetError(Constants.ErrorMessages.UserNotFoundName);
@@ -397,21 +400,27 @@ namespace HCA.Foundation.Commerce.Services.Account
             Assert.ArgumentNotNullOrEmpty(token, nameof(token));
 
             var result = new Result<VoidResult>();
-            var fullUserName = EnsureUserFullName(userName, Constants.PasswordRecovery.UsersDomain);
-            var sitecoreUser = userManager.GetUserFromName(fullUserName, true);
+            var fullUserName = this.EnsureUserFullName(userName, Constants.PasswordRecovery.UsersDomain);
+            var sitecoreUser = this.userManager.GetUserFromName(fullUserName, true);
             if (sitecoreUser == null)
             {
                 result.SetError(Constants.ErrorMessages.UserNotFoundName);
                 return result;
             }
 
-            if (!IsResetPasswordTokenValid(sitecoreUser, token))
+            if (!this.IsResetPasswordTokenValid(sitecoreUser, token))
             {
                 result.SetError(Constants.ErrorMessages.TokenIsInvalid);
                 return result;
             }
 
-            if(!ResetPassword(fullUserName, sitecoreUser, newPassword))
+            if (!this.IsResetPasswordTokenLive(sitecoreUser))
+            {
+                result.SetError(Constants.ErrorMessages.TokenIsExpired);
+                return result;
+            }
+
+            if (!this.ResetPassword(fullUserName, sitecoreUser, newPassword))
             {
                 result.SetError(Constants.ErrorMessages.UnableToChangePassword);
             }
@@ -422,10 +431,10 @@ namespace HCA.Foundation.Commerce.Services.Account
         private bool ResetPassword(string userName, Sitecore.Security.Accounts.User sitecoreUser, string newPassword)
         {
             var user = Membership.GetUser(userName);
-            var isChangeSuccessful = user.ChangePassword(user.ResetPassword(), newPassword);
+            var isChangeSuccessful = user?.ChangePassword(user.ResetPassword(), newPassword) ?? false;
             if (isChangeSuccessful)
             {
-                userManager.RemoveCustomProperty(sitecoreUser, Constants.PasswordRecovery.ConfirmTokenKey);
+                this.userManager.RemoveCustomProperty(sitecoreUser, Constants.PasswordRecovery.ConfirmTokenKey);
             }
 
             return isChangeSuccessful;
@@ -444,6 +453,18 @@ namespace HCA.Foundation.Commerce.Services.Account
             return !string.IsNullOrWhiteSpace(token)
                 && !string.IsNullOrWhiteSpace(userToken)
                 && string.Equals(token, userToken);
+        }
+
+        private bool IsResetPasswordTokenLive(Sitecore.Security.Accounts.User sitecoreUser)
+        {
+            var now = DateUtil.ToUniversalTime(DateTime.UtcNow);
+
+            var tokenCreationTime = DateUtil.ToServerTime(DateUtil.IsoDateToDateTime(
+                sitecoreUser.Profile.GetCustomProperty(Constants.PasswordRecovery.TokenCreationDatePropertyKey)));
+
+            var expirationTime = Sitecore.Configuration.Settings.GetDoubleSetting(Constants.Settings.TokenExpirationTime, 24);
+
+            return (now - tokenCreationTime) < TimeSpan.FromHours(expirationTime);
         }
 
         private Result<T> ExecuteWithParties<T>(

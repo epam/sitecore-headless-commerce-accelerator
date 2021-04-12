@@ -97,7 +97,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
           test: /\.css$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader',
@@ -222,7 +222,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
           test: /\.css$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader',
@@ -238,6 +238,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
       }),
+      extractSass,
       new StylelintPlugin(),
     ],
   };

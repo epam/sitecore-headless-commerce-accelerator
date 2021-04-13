@@ -96,7 +96,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
         </div>
         <div className="login_actions">
           <div className="actions_toggle_btn">
-            <NavigationLink to="/account/reset-password">Forgot Password?</NavigationLink>
+            <NavigationLink to="/reset-password">Forgot Password?</NavigationLink>
           </div>
           <Submit
             className="Login-Button"

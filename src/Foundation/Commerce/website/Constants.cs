@@ -55,7 +55,7 @@ namespace HCA.Foundation.Commerce
         {
             public const string PasswordRecoveryLink = "%passwordRecoveryLink%";
 
-            public const string ResetPasswordUrl = "account/new-password";
+            public const string ResetPasswordUrl = "new-password";
 
             public const string ConfirmTokenKey = "PasswordToken";
 

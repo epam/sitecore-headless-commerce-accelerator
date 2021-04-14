@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageSlider renders correctly 1`] = `
+<div
+  className="ImageSlider"
+>
+  <div
+    className="ImageSlider-SwiperContainer"
+  >
+    <div
+      className="swiper-container"
+    >
+      <div
+        className="swiper-wrapper"
+      >
+        <div
+          className="ImageSlider-Slide swiper-slide"
+        >
+          <img
+            alt=""
+            className="ImageSlider-Image swiper-lazy"
+            src="/-/media/HCA/Project/HCA/no-image250x150.ashx"
+          />
+          <div
+            className="swiper-lazy-preloader swiper-lazy-preloader-white"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ImageSlider-SwiperOverlay"
+    onMouseLeave={[Function]}
+  >
+    <div
+      className="ImageSlider-ButtonLeft"
+      onMouseEnter={[Function]}
+    />
+    <div
+      className="ImageSlider-ButtonRight"
+      onMouseEnter={[Function]}
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard renders correctly 1`] = `
+<div
+  className="ProductCard"
+>
+  <div
+    className="ProductCard-ImageWrapper"
+  >
+    <div
+      className="ProductCard-ImageInner"
+    >
+      <a
+        href="/product/6042236"
+        onClick={[Function]}
+      >
+        <div
+          className="ImageSlider"
+        >
+          <div
+            className="ImageSlider-SwiperContainer"
+          >
+            <div
+              className="swiper-container"
+            >
+              <div
+                className="swiper-wrapper"
+              >
+                <div
+                  className="ImageSlider-Slide swiper-slide"
+                >
+                  <img
+                    alt=""
+                    className="ImageSlider-Image swiper-lazy"
+                    src="/-/media/Images/Habitat/6042236_01.ashx"
+                  />
+                  <div
+                    className="swiper-lazy-preloader swiper-lazy-preloader-white"
+                  />
+                </div>
+                <div
+                  className="ImageSlider-Slide swiper-slide"
+                >
+                  <img
+                    alt=""
+                    className="ImageSlider-Image swiper-lazy"
+                    src="/-/media/Images/Habitat/6042236_02.ashx"
+                  />
+                  <div
+                    className="swiper-lazy-preloader swiper-lazy-preloader-white"
+                  />
+                </div>
+              </div>
+              <div
+                className="swiper-pagination"
+              />
+            </div>
+          </div>
+          <div
+            className="ImageSlider-SwiperOverlay"
+            onMouseLeave={[Function]}
+          >
+            <div
+              className="ImageSlider-ButtonLeft"
+              onMouseEnter={[Function]}
+            />
+            <div
+              className="ImageSlider-ButtonRight"
+              onMouseEnter={[Function]}
+            />
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ProductCard-ColorVariants"
+  />
+  <div
+    className="ProductCard-ProductName"
+  >
+    <a
+      href="/product/6042236"
+      onClick={[Function]}
+    >
+      <span>
+        Spark Desktop—4GB Memory, 500GB Hard Drive
+      </span>
+    </a>
+  </div>
+  <div
+    className="Rating Rating_theme_default Rating_size_m ProductCard-ProductRating"
+  >
+    <i
+      className="IconFa fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+    />
+    <i
+      className="IconFa fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+    />
+    <i
+      className="IconFa fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+    />
+    <i
+      className="IconFa fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+    />
+    <i
+      className="IconFa fa StarIcon fa-star-o Rating-Star"
+    />
+  </div>
+  <div
+    className="ProductCard-Price"
+  >
+    <span
+      className="ProductCard-FullPriceContainer"
+    >
+      <span
+        className="ProductCard-Currency"
+      >
+        $
+      </span>
+      <span
+        className="ProductCard-FullPrice"
+      >
+        240.17
+      </span>
+    </span>
+  </div>
+  <div
+    className="ProductCard-AddToCart"
+  >
+    <button
+      className="Button Button_buttonTheme_defaultSlide Button_buttonSize_m Button_fullWidth ProductCard-AddToCartButton"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      add to cart
+    </button>
+  </div>
+</div>
+`;

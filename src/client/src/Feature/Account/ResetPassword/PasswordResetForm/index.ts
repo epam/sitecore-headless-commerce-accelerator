@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
@@ -40,4 +41,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 const connectedToStore = connect(mapStateToProps, mapDispatchToProps);
 
-export const PasswordResetForm = compose(connectedToStore, rendering)(PasswordResetFormComponent);
+export const PasswordResetForm = compose(withRouter, connectedToStore, rendering)(PasswordResetFormComponent);

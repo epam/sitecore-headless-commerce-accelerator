@@ -70,7 +70,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                           <div className="product-heading">
                             <NavigationLink
                               className="heading-productTitle"
-                              to={`/product/${cartLine.product.productId}`}
+                              to={`/product/${cartLine.product.productId}?v=${cartLine.variant.variantId}`}
                               data-autotests="productInfoTitle"
                               onClick={() =>
                                 eventHub.publish(events.PRODUCT_LIST.PRODUCT_CLICKED, {

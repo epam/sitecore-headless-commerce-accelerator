@@ -67,7 +67,7 @@ export const CartViewComponent: FC<CartViewPropsType> = ({ toggleClick }) => {
               ? single.variant.adjustedPrice
               : single.variant.listPrice;
           cartTotalPrice += single.price.total;
-          const link = `/product/${single.variant.productId}`;
+          const link = `/product/${single.variant.productId}?v=${single.variant.variantId}`;
 
           return (
             <li className="shopping-cart-view-populated-single-item" key={key}>

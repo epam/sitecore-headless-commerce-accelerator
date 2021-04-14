@@ -33,10 +33,14 @@ const FORM_FIELDS = JSS.keyMirror(
   'PASSWORD_RESET_FORM',
 );
 
-export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({ recoverPassword, resetPasswordState }) => {
+export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
+  history,
+  recoverPassword,
+  resetPasswordState,
+}) => {
   const [valid, setValid] = useState(false);
   const [showValidationMessage, setShowValidationMessage] = useState(false);
-  const { username, token } = qs.parse(location.search) as { username: string; token: string };
+  const { username, token } = qs.parse(history.location.search) as { username: string; token: string };
 
   const validateForm = (formValues: FormValues) => {
     const formIsValid = formValues[FORM_FIELDS.NEW_PASSWORD] === formValues[FORM_FIELDS.NEW_PASSWORD_CONFIRM];

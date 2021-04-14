@@ -12,7 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { RouterProps } from 'react-router';
+
 import { GlobalAccountState, ResetPasswordState } from 'Feature/Account/Integration/Account';
+
+export interface PasswordResetOwnProps extends RouterProps {}
 
 export interface PasswordResetFormStateProps {
   resetPasswordState: ResetPasswordState;
@@ -22,6 +26,9 @@ export interface PasswordResetFormDispatchProps {
   recoverPassword: (userName: string, newPassword: string, token: string) => void;
 }
 
-export interface PasswordResetFormProps extends PasswordResetFormStateProps, PasswordResetFormDispatchProps {}
+export interface PasswordResetFormProps
+  extends PasswordResetOwnProps,
+    PasswordResetFormStateProps,
+    PasswordResetFormDispatchProps {}
 
 export interface AppState extends GlobalAccountState {}

@@ -29,8 +29,9 @@ $button-search-cancel-border-color: #e6e6e6;
 
   &-FormContainer {
     position: relative;
+    display: flex;
 
-    &::before {
+    .Input::before {
       font: normal normal normal 14px/1 FontAwesome;
       font-size: 20px;
       width: 20px;
@@ -57,6 +58,27 @@ $button-search-cancel-border-color: #e6e6e6;
     &:hover {
       background-color: transparent;
       color: $theme-color;
+    }
+  }
+}
+
+// Temporary increased selector's specifity because some global styles override it
+
+.Input {
+  flex: 1;
+
+  .Input-Control.Input_search {
+    padding: 2px 55px 2px 36px;
+    border: 1px solid #e6e6e6;
+    height: 43px;
+    color: #333;
+    margin-bottom: 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+      -webkit-box-shadow: none;
     }
   }
 }

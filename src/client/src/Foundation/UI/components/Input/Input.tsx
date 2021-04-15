@@ -25,17 +25,21 @@ export type InputProps = HTMLProps<HTMLInputElement> & {
   fullWidth?: boolean;
   controlSize?: 'm';
   type?: InputType;
+  adornment?: React.ReactElement;
 };
 
 export const Input: FC<InputProps> = forwardRef(
-  ({ className, error = false, fullWidth = false, controlSize = 'm', type = 'text', ...rest }, ref) => {
+  ({ className, error = false, fullWidth = false, controlSize = 'm', type = 'text', adornment, ...rest }, ref) => {
     return (
-      <input
-        {...rest}
-        className={cnInput({ error, fullWidth, controlSize, type }, [className])}
-        type={type}
-        ref={ref}
-      />
+      <div className={cnInput()}>
+        <input
+          {...rest}
+          className={cnInput('Control', { error, fullWidth, controlSize, type }, [className])}
+          type={type}
+          ref={ref}
+        />
+        {adornment && <div className={cnInput('Adornment')}>{adornment}</div>}
+      </div>
     );
   },
 );

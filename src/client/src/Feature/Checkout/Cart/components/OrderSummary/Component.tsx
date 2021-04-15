@@ -89,7 +89,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
               </div>
               <div className="zipCodeWrapper">
                 <label>* Zip/Postal Code</label>
-                <Input type="text" />
+                <Input type="text" fullWidth={true} />
               </div>
               <Button className="OrderSummary-Button" buttonType="submit" buttonTheme="defaultReversed" rounded={true}>
                 Get A Quote

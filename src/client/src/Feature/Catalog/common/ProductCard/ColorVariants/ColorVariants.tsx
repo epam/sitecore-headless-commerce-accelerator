@@ -16,15 +16,17 @@ import React, { FC, useContext, useMemo } from 'react';
 
 import { get } from 'lodash';
 
-import { ColorVariant } from '../ColorVariant';
 import { ProductCardContext } from '../context';
 import { getColorVariants } from '../utils';
+
+import { ColorVariant } from '../ColorVariant';
+import { LinkMore } from '../LinkMore';
 
 import { cnProductCard } from '../cn';
 
 import './ColorVariants.scss';
 
-const MAX_ITEMS = 5;
+const MAX_ITEMS = 3;
 
 export type ColorVariantsProps = {
   className?: string;
@@ -33,20 +35,19 @@ export type ColorVariantsProps = {
 export const ColorVariants: FC<ColorVariantsProps> = ({ className }) => {
   const contextData = useContext(ProductCardContext);
   const { product, productColors } = contextData;
-  const colorVariants = useMemo(() => getColorVariants(product, productColors).slice(0, MAX_ITEMS), [
-    product,
-    productColors,
-  ]);
+  const colorVariants = useMemo(() => getColorVariants(product, productColors), [product, productColors]);
 
   return (
     <div className={cnProductCard('ColorVariants', [className])}>
-      {colorVariants.map((x) => {
+      {colorVariants.slice(0, MAX_ITEMS).map((x) => {
         const { variantId } = x;
         const propertyColor = get(x, ['properties', 'color']);
         const color = get(productColors, [propertyColor]);
 
         return <ColorVariant key={variantId} variantId={variantId} color={color} />;
       })}
+
+      {colorVariants.length > MAX_ITEMS && <LinkMore>{`+ ${colorVariants.length - MAX_ITEMS} more`}</LinkMore>}
     </div>
   );
 };

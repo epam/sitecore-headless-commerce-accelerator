@@ -20,58 +20,50 @@ $input-size-m-padding: 0 15px;
 $input-border-color: #e6e6e6;
 
 .Input {
-  color: #333;
-  border: 1px solid $input-border-color;
-  background: transparent none repeat scroll 0 0;
-  box-sizing: border-box;
-  font-family: inherit;
-  transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+  position: relative;
 
-  &:focus {
-    border-color: rgba(82, 168, 236, 0.8);
-    box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
-    -webkit-box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
-    outline: none;
-  }
-
-  &_controlSize_m {
-    font-size: $input-size-m-font-size;
-    line-height: $input-size-m-line-height;
-    width: $input-size-m-width;
-    height: $input-size-m-height;
-    padding: $input-size-m-padding;
-  }
-
-  &_fullWidth {
-    width: 100%;
-  }
-
-  &_error {
-    border-color: #e9322d;
-    color: #b94a48;
+  &-Control {
+    color: #333;
+    border: 1px solid $input-border-color;
+    background: transparent none repeat scroll 0 0;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 
     &:focus {
+      border-color: rgba(82, 168, 236, 0.8);
+      box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
+      -webkit-box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
+      outline: none;
+    }
+
+    &_controlSize_m {
+      font-size: $input-size-m-font-size;
+      line-height: $input-size-m-line-height;
+      width: $input-size-m-width;
+      height: $input-size-m-height;
+      padding: $input-size-m-padding;
+    }
+
+    &_fullWidth {
+      width: 100%;
+    }
+
+    &_error {
       border-color: #e9322d;
-      box-shadow: 0 0 8px #f8b9b7;
-      -webkit-box-shadow: 0 0 6px #f8b9b7;
+      color: #b94a48;
+
+      &:focus {
+        border-color: #e9322d;
+        box-shadow: 0 0 8px #f8b9b7;
+        -webkit-box-shadow: 0 0 6px #f8b9b7;
+      }
     }
   }
-}
 
-// Temporary increased selector's specifity because some global styles override it
-
-.Input.Input_search {
-  padding: 2px 55px 2px 36px;
-  border: 1px solid $input-border-color;
-  height: 43px;
-  color: #333;
-  margin-bottom: 0;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-
-  &:focus {
-    border-color: $input-border-color;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+  &-Adornment {
+    position: absolute;
+    right: 1em;
+    bottom: 0.7em;
   }
 }

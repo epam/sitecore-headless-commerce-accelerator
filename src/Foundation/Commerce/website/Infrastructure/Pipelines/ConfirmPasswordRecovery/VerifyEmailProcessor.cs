@@ -20,6 +20,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
     using Providers;
 
     using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
 
     public class VerifyEmailProcessor : SafePipelineProcessor<ConfirmPasswordRecoveryArgs>
     {
@@ -44,6 +45,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
                 this.LogService.Debug($"[{nameof(VerifyEmailProcessor)}.{nameof(SafeProcess)}]: {Constants.ErrorMessages.UserNotFoundEmail}");
 
                 args.IsEmailValid = false;
+                args.AddMessage(Constants.ErrorMessages.UserNotFoundEmail, PipelineMessageType.Error);
                 args.AbortPipeline();
             }
             else

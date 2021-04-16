@@ -77,7 +77,7 @@ namespace HCA.Foundation.Commerce
         {
             public const string EmailInUse = "Email is in use.";
 
-            public const string UserNotFoundEmail = "User with specified email was not found";
+            public const string UserNotFoundEmail = "User with the specified email was not found";
 
             public const string UserNotFoundName = "User was not found.";
 

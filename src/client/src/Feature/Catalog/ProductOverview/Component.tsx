@@ -75,7 +75,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               </div>
               <div className="col-md-6">
                 <header className="product-header">
-                  <h1 className="product-title">{selectedCatalogItem.displayName}</h1>                 
+                  <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
                 </header>
                 <div className="product-info">
                   <p className="product-price">

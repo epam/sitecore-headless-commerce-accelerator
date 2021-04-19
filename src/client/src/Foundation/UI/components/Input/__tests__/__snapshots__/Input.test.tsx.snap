@@ -2,13 +2,17 @@
 
 exports[`Input renders correctly 1`] = `
 <div
-  className="Input"
+  className="Input Input_controlSize_m"
 >
-  <input
-    className="Input-Control Input-Control_controlSize_m Input-Control_type_text"
-    id="firstName"
-    name="firstName"
-    type="text"
-  />
+  <div
+    className="Input-ControlWrapper"
+  >
+    <input
+      className="Input-Control"
+      id="firstName"
+      name="firstName"
+      type="text"
+    />
+  </div>
 </div>
 `;

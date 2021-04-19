@@ -20,7 +20,41 @@ $input-size-m-padding: 0 15px;
 $input-border-color: #e6e6e6;
 
 .Input {
-  position: relative;
+  &-ControlWrapper {
+    position: relative;
+  }
+
+  &_error {
+    .Input-Control {
+      border-color: #e9322d;
+      color: #b94a48;
+
+      &:focus {
+        border-color: #e9322d;
+        box-shadow: 0 0 8px #f8b9b7;
+        -webkit-box-shadow: 0 0 6px #f8b9b7;
+      }
+    }
+    .Input-HelperText {
+      color: #dc3545;
+    }
+  }
+
+  &_controlSize_m {
+    .Input-Control {
+      font-size: $input-size-m-font-size;
+      line-height: $input-size-m-line-height;
+      width: $input-size-m-width;
+      height: $input-size-m-height;
+      padding: $input-size-m-padding;
+    }
+  }
+
+  &_fullWidth {
+    .Input-Control {
+      width: 100%;
+    }
+  }
 
   &-Control {
     color: #333;
@@ -36,34 +70,16 @@ $input-border-color: #e6e6e6;
       -webkit-box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
       outline: none;
     }
-
-    &_controlSize_m {
-      font-size: $input-size-m-font-size;
-      line-height: $input-size-m-line-height;
-      width: $input-size-m-width;
-      height: $input-size-m-height;
-      padding: $input-size-m-padding;
-    }
-
-    &_fullWidth {
-      width: 100%;
-    }
-
-    &_error {
-      border-color: #e9322d;
-      color: #b94a48;
-
-      &:focus {
-        border-color: #e9322d;
-        box-shadow: 0 0 8px #f8b9b7;
-        -webkit-box-shadow: 0 0 6px #f8b9b7;
-      }
-    }
   }
 
   &-Adornment {
     position: absolute;
     right: 1em;
     bottom: 0.7em;
+  }
+
+  &-HelperText {
+    margin-top: 3px;
+    font-size: 10px;
   }
 }

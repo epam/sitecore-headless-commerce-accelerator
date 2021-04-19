@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 .ResetRequestForm {
   margin: 20px 0;
@@ -47,15 +47,6 @@
       width: 100%;
     }
   }
-  
-  &-ValidationMessage {
-    font-size: 10px;
-    color: $focus-color;
-
-    &_hidden {
-      display: none;
-    }
-  }
 
   &-SubmitMessage {
     margin-top: 10px;
@@ -63,16 +54,23 @@
 
   // Increased the specificity of the selector due to the fact that it is interrupted by global styles
   & &-Input {
-    border: 1px solid #e6e6e6;
-    color: $grey-dark;
-    height: 45px;
-    margin-bottom: 0;
-    padding: 0 15px;
-    transition: border  .2s linear, box-shadow .2s linear, -webkit-box-shadow .2s linear;
+    .Input-ControlWrapper {
+      .Input-Control {
+        color: $grey-dark;
+        height: 45px;
+        margin-bottom: 0;
+        padding: 0 15px;
+        transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+      }
+    }
 
     &_error {
-      border-color: #e9322d;
-      color: #b94a48;
+      .Input-ControlWrapper {
+        .Input-Control {
+          border-color: #e9322d;
+          color: #b94a48;
+        }
+      }
     }
   }
 

@@ -93,6 +93,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
               placeholder="Search"
               autoComplete="off"
               onChange={this.handleSearchChange}
+              fullWidth={true}
             />
             <button className="search_button">
               <i className="pe-7s-search" />

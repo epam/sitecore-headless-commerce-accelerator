@@ -22,6 +22,7 @@ export type InputType = 'text' | 'password' | 'number' | 'email' | 'search';
 
 export type InputProps = HTMLProps<HTMLInputElement> & {
   error?: boolean;
+  helperText?: string;
   fullWidth?: boolean;
   controlSize?: 'm';
   type?: InputType;
@@ -29,16 +30,17 @@ export type InputProps = HTMLProps<HTMLInputElement> & {
 };
 
 export const Input: FC<InputProps> = forwardRef(
-  ({ className, error = false, fullWidth = false, controlSize = 'm', type = 'text', adornment, ...rest }, ref) => {
+  (
+    { className, error = false, helperText, fullWidth = false, controlSize = 'm', type = 'text', adornment, ...rest },
+    ref,
+  ) => {
     return (
-      <div className={cnInput()}>
-        <input
-          {...rest}
-          className={cnInput('Control', { error, fullWidth, controlSize, type }, [className])}
-          type={type}
-          ref={ref}
-        />
-        {adornment && <div className={cnInput('Adornment')}>{adornment}</div>}
+      <div className={cnInput({ error, fullWidth, controlSize }, [className])}>
+        <div className={cnInput('ControlWrapper')}>
+          <input {...rest} className={cnInput('Control')} type={type} ref={ref} />
+          {adornment && <div className={cnInput('Adornment')}>{adornment}</div>}
+        </div>
+        {helperText && <p className={cnInput('HelperText')}>{helperText}</p>}
       </div>
     );
   },

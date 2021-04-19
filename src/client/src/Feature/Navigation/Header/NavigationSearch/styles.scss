@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 .header {
   .search {
@@ -37,8 +37,8 @@
         outline: medium none;
         &:focus {
           outline: none !important;
-          box-shadow: none!important;
-          border-color: none!important;
+          box-shadow: none !important;
+          border-color: none !important;
         }
         box-shadow: none;
         border-color: none;
@@ -71,10 +71,8 @@
       margin: 0;
       height: 45px;
       display: block;
-      padding: 5px 72px 5px 15px;
       transition: all 0.4s ease 0s;
       color: $black;
-      border: 1px solid $grey-lightest;
       outline: medium none;
       background: transparent;
       font-family: $poppins;

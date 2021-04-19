@@ -97,8 +97,9 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               placeholder="First Name"
               disabled={formDisabled}
               fullWidth={true}
+              error={isFirstNameEmpty}
+              helperText={isFirstNameEmpty && 'First Name field is required!'}
             />
-            {isFirstNameEmpty && <div className="form-field-error-message">First Name field is required!</div>}
           </div>
           <div className="form-field">
             <Input
@@ -107,14 +108,23 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               placeholder="Last Name"
               disabled={formDisabled}
               fullWidth={true}
+              error={isLastNameEmpty}
+              helperText={isLastNameEmpty && 'Last Name field is required!'}
             />
-            {isLastNameEmpty && <div className="form-field-error-message">Last Name field is required!</div>}
           </div>
           <div className="form-field">
-            <Input type="text" name={FORM_FIELDS.EMAIL} placeholder="Email" disabled={formDisabled} fullWidth={true} />
-            {(!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) && (
-              <div className="form-field-error-message">{this.checkEmailValidation()}</div>
-            )}
+            <Input
+              type="text"
+              name={FORM_FIELDS.EMAIL}
+              placeholder="Email"
+              disabled={formDisabled}
+              fullWidth={true}
+              error={!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty}
+              helperText={
+                (!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) &&
+                this.checkEmailValidation()
+              }
+            />
           </div>
           <div className="form-field">
             <Input
@@ -123,8 +133,9 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               placeholder="Password"
               disabled={formDisabled}
               fullWidth={true}
+              error={isPasswordEmpty}
+              helperText={isPasswordEmpty && 'Password field is required!'}
             />
-            {isPasswordEmpty && <div className="form-field-error-message">Password field is required!</div>}
           </div>
           <div className="form-field">
             <Input
@@ -133,12 +144,12 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
               placeholder="Confirm Password"
               disabled={formDisabled}
               fullWidth={true}
+              error={isConfirmPasswordEmpty || !isPasswordsValid}
+              helperText={
+                (isConfirmPasswordEmpty && 'Confirm Password field is required!') ||
+                (!isPasswordsValid && 'Passwords do not match!')
+              }
             />
-            {(isConfirmPasswordEmpty || !isPasswordsValid) && (
-              <div className="form-field-error-message">
-                {isConfirmPasswordEmpty ? 'Confirm Password field is required!' : 'Passwords do not match!'}
-              </div>
-            )}
           </div>
           <Submit
             className="Register-Button"

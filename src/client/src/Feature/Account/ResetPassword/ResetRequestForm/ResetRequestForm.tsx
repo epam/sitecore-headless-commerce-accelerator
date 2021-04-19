@@ -30,15 +30,14 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
   confirmPasswordRecovery,
   requestPasswordResetState,
 }) => {
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isValidationMessageHidden, setIsValidationMessageHidden] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const [email, setEmail] = useState('');
 
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     const newEmail = e.currentTarget.value;
 
     setEmail(newEmail);
-    setIsFormValid(validateEmail(newEmail));
+    setIsEmailValid(validateEmail(newEmail));
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -47,7 +46,7 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
     confirmPasswordRecovery(email);
 
     setEmail('');
-    setIsFormValid(false);
+    setIsEmailValid(true);
   };
 
   return (
@@ -56,26 +55,20 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
       <div className={cnResetRequestForm('FormContainer')}>
         <Form className={cnResetRequestForm('Form')} onSubmit={handleFormSubmit}>
           <Input
-            className={cnResetRequestForm('Input', { error: !isValidationMessageHidden })}
-            error={!isFormValid}
+            className={cnResetRequestForm('Input', { error: !isEmailValid })}
+            error={!isEmailValid}
+            helperText={!isEmailValid && 'Please enter a valid email'}
             fullWidth={true}
             placeholder="Email"
             type="text"
             value={email}
             onChange={handleInputChange}
-            onFocus={() => setIsValidationMessageHidden(true)}
-            onBlur={() => setIsValidationMessageHidden(validateEmail(email))}
+            onFocus={() => setIsEmailValid(true)}
+            onBlur={() => setIsEmailValid(validateEmail(email))}
           />
-          <div
-            className={cnResetRequestForm('ValidationMessage', {
-              hidden: isValidationMessageHidden,
-            })}
-          >
-            Please enter a valid email
-          </div>
           <Button
-            className={cnResetRequestForm('Submit', { disabled: !isFormValid })}
-            disabled={!isFormValid}
+            className={cnResetRequestForm('Submit', { disabled: !isEmailValid })}
+            disabled={!isEmailValid}
             buttonType="submit"
             buttonTheme="grey"
           >

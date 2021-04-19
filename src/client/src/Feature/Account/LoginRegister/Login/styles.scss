@@ -32,7 +32,7 @@
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   padding: 80px;
   text-align: left;
-  &_actions{
+  &_actions {
     width: 100%;
     .actions_toggle_btn {
       display: flex;
@@ -48,7 +48,7 @@
         }
       }
     }
-    button{
+    button {
       background-color: $login-button-default-color;
       border: none;
       color: $login-default-font-color;
@@ -58,18 +58,14 @@
       line-height: 1;
       padding: 11px 30px;
       text-transform: uppercase;
-      -webkit-transition: all .3s ease 0s;
-      transition: all .3s ease 0s;
+      -webkit-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
       font-family: $poppins;
-      &:hover{
+      &:hover {
         background-color: $theme-color;
         color: $login-hover-font-color;
       }
     }
-  }
-  &_invalid-msg {
-    color: $login-failure-font-color;
-    font-size: 10px;
   }
   &_title-welcome {
     font-size: 35px;

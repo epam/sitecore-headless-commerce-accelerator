@@ -30,6 +30,7 @@ module.exports = (compilerOptions) => ({
       Foundation: path.resolve(process.cwd(), './src/Foundation/'),
       Project: path.resolve(process.cwd(), './src/Project/'),
       Feature: path.resolve(process.cwd(), './src/Feature/'),
+      layouts: path.resolve(process.cwd(), './src/layouts/'),
     },
   },
   module: {

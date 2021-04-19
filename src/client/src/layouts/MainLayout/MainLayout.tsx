@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,29 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import React, { FC, useMemo } from 'react';
+
 import { Placeholder, VisitorIdentification } from '@sitecore-jss/sitecore-jss-react';
-import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { LayoutProps } from '../../models';
+import { useSitecoreContext } from 'Foundation/hooks';
+import { getRenderingSitecoreProps } from 'Foundation/utils';
+import { LayoutProps } from 'Project/HCA/models';
 
-export default class Layout extends React.Component<LayoutProps> {
-  public render() {
-    const title = this.getPageTitle();
-    return (
-      <React.Fragment>
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
-        <VisitorIdentification />
-        <Placeholder name="main-content" rendering={this.props.rendering} {...this.props} />
-      </React.Fragment>
-    );
-  }
-
-  private getPageTitle(): string {
-    const rendering = this.props.rendering as any;
-    const { category, product } = this.props.sitecoreContext;
+export const MainLayout: FC<LayoutProps> = (props) => {
+  const rendering = getRenderingSitecoreProps(props);
+  const sitecoreContext = useSitecoreContext;
+  const title = useMemo(() => {
+    const { category, product } = sitecoreContext;
     const globalTitle = 'HCA';
     const pageTitle =
       (category && category.displayName) ||
@@ -43,5 +34,15 @@ export default class Layout extends React.Component<LayoutProps> {
       '';
 
     return pageTitle ? `${pageTitle} | ${globalTitle} ` : globalTitle;
-  }
-}
+  }, [sitecoreContext, rendering]);
+
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <VisitorIdentification />
+      <Placeholder name="main-content" rendering={rendering} {...props} />
+    </>
+  );
+};

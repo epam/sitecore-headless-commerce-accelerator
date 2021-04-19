@@ -16,7 +16,7 @@ import { useContext } from 'react';
 
 import { SitecoreContextReactContext } from '@sitecore-jss/sitecore-jss-react';
 
-export const useSitecoreContext = () => {
+export const useSitecoreContext: any = () => {
   const sitecoreContextFactory = useContext(SitecoreContextReactContext);
 
   return sitecoreContextFactory.getSitecoreContext();

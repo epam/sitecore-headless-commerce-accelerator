@@ -20,7 +20,7 @@ import * as Checkout from 'Feature/Checkout';
 import * as Navigation from 'Feature/Navigation';
 import * as PageContent from 'Feature/PageContent';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
-import * as Scaffolding from 'Project/HCA/App/components/Scaffolding/components';
+import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
 const components = new Map<string, any>();
 
@@ -28,11 +28,11 @@ const components = new Map<string, any>();
 // components.set('Component', <Component />);
 
 // Page Scaffolding
-components.set('One Column', Scaffolding.OneColumn);
-components.set('Two Column', Scaffolding.TwoColumn);
-components.set('Two Column Row', Scaffolding.TwoColumnRow);
-components.set('Three Column Row', Scaffolding.ThreeColumnRow);
-components.set('Full Width', Scaffolding.FullWidth);
+components.set('One Column', OneColumn);
+components.set('Two Column', TwoColumn);
+components.set('Two Column Row', TwoColumnRow);
+components.set('Three Column Row', ThreeColumnRow);
+components.set('Full Width', FullWidth);
 
 // Home renderings
 components.set('Carousel Banner', PageContent.CarouselBanner);

@@ -22,10 +22,11 @@ import { SITECORE_ROUTES } from 'Foundation/ReactJss/SitecoreContext';
 import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
 
 import { AppProps } from './../../../models';
-import { Layout, LoadingBar, ServerError } from './../../components';
+import { LoadingBar, ServerError } from './../../components';
 
 import { GlobalError } from 'Foundation/UI/common/components/Errors/GlobalError';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
+import { MainLayout } from 'layouts';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -56,7 +57,7 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
           <Route exact={true} path={SitecoreContext.NOT_FOUND_ROUTE} component={NotFound} />
           <Route exact={true} path={SitecoreContext.SERVER_ERROR_ROUTE} component={ServerError} />
           {SITECORE_ROUTES.map((path, index) => (
-            <Route key={index} path={path} render={(routeProps) => <Layout {...routeProps} {...this.props} />} />
+            <Route key={index} path={path} render={(routeProps) => <MainLayout {...routeProps} {...this.props} />} />
           ))}
           <Route component={NotFound} />
         </Switch>

@@ -16,10 +16,14 @@ import React, { FC, FormEvent, useState } from 'react';
 
 import { LoadingStatus } from 'Foundation/Integration';
 import { Form } from 'Foundation/ReactJss/Form';
+import { NavigationLink } from 'Foundation/UI';
 import { Button } from 'Foundation/UI/components/Button';
 import { Input } from 'Foundation/UI/components/Input';
 import { SpinnerIcon } from 'Foundation/UI/components/SpinnerIcon';
 import { validateEmail } from 'Foundation/utils/validation';
+
+import { ErrorMessage } from './ErrorMessage';
+import { SuccessMessage } from './SuccessMessage';
 
 import { ResetRequestFormProps } from './models';
 
@@ -30,6 +34,7 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
   confirmPasswordRecovery,
   requestPasswordResetState,
 }) => {
+  const [displaySubmitMessage, setDisplaySubmitMessage] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [email, setEmail] = useState('');
 
@@ -44,42 +49,46 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
     e.preventDefault();
 
     confirmPasswordRecovery(email);
-
-    setEmail('');
-    setIsEmailValid(true);
+    setDisplaySubmitMessage(true);
   };
 
   return (
     <div className={cnResetRequestForm()}>
-      <h1 className={cnResetRequestForm('Title')}>Reset Password</h1>
+      <h1 className={cnResetRequestForm('Title')}>Reset your password</h1>
       <div className={cnResetRequestForm('FormContainer')}>
         <Form className={cnResetRequestForm('Form')} onSubmit={handleFormSubmit}>
+          {displaySubmitMessage && requestPasswordResetState.status === LoadingStatus.Loaded && <SuccessMessage />}
+          {displaySubmitMessage && requestPasswordResetState.status === LoadingStatus.Failure && <ErrorMessage />}
+          <p>Submit your email and we’ll send you a link to reset your password</p>
+          <label htmlFor="email-address">Email address</label>
           <Input
-            className={cnResetRequestForm('Input', { error: !isEmailValid })}
+            id="email-address"
+            className={cnResetRequestForm('Input')}
             error={!isEmailValid}
             helperText={!isEmailValid && 'Please enter a valid email'}
             fullWidth={true}
-            placeholder="Email"
             type="text"
             value={email}
             onChange={handleInputChange}
             onFocus={() => setIsEmailValid(true)}
             onBlur={() => setIsEmailValid(validateEmail(email))}
+            disabled={requestPasswordResetState.status === LoadingStatus.Loading}
           />
-          <Button
-            className={cnResetRequestForm('Submit', { disabled: !isEmailValid })}
-            disabled={!isEmailValid}
-            buttonType="submit"
-            buttonTheme="grey"
-          >
-            {requestPasswordResetState.status === LoadingStatus.Loading && <SpinnerIcon />}
-            Reset my password
-          </Button>
-          <div className={cnResetRequestForm('SubmitMessage')}>
-            {requestPasswordResetState.status === LoadingStatus.Loaded &&
-              'Password reset link has successfully been sent to your email'}
-            {requestPasswordResetState.status === LoadingStatus.Failure &&
-              `Sorry, something went wrong: ${requestPasswordResetState.error}`}
+          <div className={cnResetRequestForm('Actions')}>
+            <Button
+              className={cnResetRequestForm('Submit', {
+                disabled: !isEmailValid || requestPasswordResetState.status === LoadingStatus.Loading,
+              })}
+              disabled={!isEmailValid || requestPasswordResetState.status === LoadingStatus.Loading}
+              buttonType="submit"
+              buttonTheme="grey"
+            >
+              {requestPasswordResetState.status === LoadingStatus.Loading && <SpinnerIcon />}
+              Reset password
+            </Button>
+            <div className={cnResetRequestForm('BackToSignIn')}>
+              <NavigationLink to="/login-register?form=login">Back to sign in</NavigationLink>
+            </div>
           </div>
         </Form>
       </div>

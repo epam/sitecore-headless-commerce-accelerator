@@ -48,28 +48,27 @@
     }
   }
 
-  &-SubmitMessage {
-    margin-top: 10px;
+  &-Actions {
+    display: flex;
+
+    @media (max-width: $screen-xs-max) {
+      display: block;
+    }
+  }
+
+  &-BackToSignIn {
+    text-align: center;
+    padding: 1em;
   }
 
   // Increased the specificity of the selector due to the fact that it is interrupted by global styles
   & &-Input {
+    margin-bottom: 30px;
+
     .Input-ControlWrapper {
       .Input-Control {
         color: $grey-dark;
-        height: 45px;
         margin-bottom: 0;
-        padding: 0 15px;
-        transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-      }
-    }
-
-    &_error {
-      .Input-ControlWrapper {
-        .Input-Control {
-          border-color: #e9322d;
-          color: #b94a48;
-        }
       }
     }
   }
@@ -85,8 +84,8 @@
       }
     }
 
-    @media (max-width: 375px) {
-      padding: 10px 15px;
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
     }
   }
 }

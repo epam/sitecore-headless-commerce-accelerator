@@ -14,6 +14,8 @@
 
 import React, { ChangeEvent, FC, useCallback } from 'react';
 
+import { get } from 'lodash';
+
 import { Checkbox } from 'Foundation/UI/components/Checkbox';
 
 import { cnSidebarFilter } from '../cn';
@@ -29,27 +31,31 @@ export const TagFilterItem: FC<FilterItemProps> = ({
   isApplied,
   onFacetChange,
 }) => {
+  const name = get(foundValue, ['name']);
+  const displayName = get(foundValue, ['displayName']) || name;
+  const value = get(foundValue, ['value']) || name;
+
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      onFacetChange(facetName, foundValue.name, event);
+      onFacetChange(facetName, value, event);
     },
-    [onFacetChange],
+    [facetName, value, onFacetChange],
   );
 
   return (
     <li className={cnSidebarFilter('TagFilterItem', [className])}>
       <label>
         <Checkbox
-          checked={isApplied(facetName, foundValue.name)}
+          checked={isApplied(facetName, value)}
           className={cnSidebarFilter('CheckboxControl', { hidden: true })}
           id={id}
           onChange={handleChange}
         />
         <label
-          className={cnSidebarFilter('TagLabel', { checked: isApplied(facetName, foundValue.name) })}
+          className={cnSidebarFilter('TagLabel', { checked: isApplied(facetName, value) })}
           htmlFor={id}
-          title={foundValue.name}
-        >{`${foundValue.name}`}</label>
+          title={name}
+        >{`${displayName}`}</label>
       </label>
     </li>
   );

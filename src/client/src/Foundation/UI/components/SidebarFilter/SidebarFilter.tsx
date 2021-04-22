@@ -38,7 +38,7 @@ export const SidebarFilter: FC<SidebarFilterProps> = ({
   const [isValuesVisible, setIsValuesVisible] = useState(true);
   return (
     <div className={cnSidebarFilter(null, [className])}>
-      <h4 className={cnSidebarFilter('Title')}>{facet.displayName}</h4>
+      <h4 className={cnSidebarFilter('Title')}>{facet.displayName || facet.name}</h4>
       {isValuesVisible && (
         <FiltersList
           facetName={facet.name}

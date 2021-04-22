@@ -25,18 +25,22 @@ const mockFacet: Facet = {
   foundValues: [
     {
       aggregateCount: 100,
+      displayName: 'NextCube Now',
       name: 'NextCube Now',
     },
     {
       aggregateCount: 34,
+      displayName: 'Dwell Lifestyle Appliances',
       name: 'Dwell Lifestyle Appliances',
     },
     {
       aggregateCount: 31,
+      displayName: 'Optix',
       name: 'Optix',
     },
     {
       aggregateCount: 22,
+      displayName: 'Optix',
       name: 'Gesture Tablets',
     },
   ],
@@ -49,22 +53,27 @@ const mockTagFacet: Facet = {
   foundValues: [
     {
       aggregateCount: 100,
+      displayName: 'Clothing',
       name: 'Clothing',
     },
     {
       aggregateCount: 34,
+      displayName: 'Accessories',
       name: 'Accessories',
     },
     {
       aggregateCount: 31,
+      displayName: 'For Men',
       name: 'For Men',
     },
     {
       aggregateCount: 22,
+      displayName: 'Women',
       name: 'Women',
     },
     {
       aggregateCount: 21,
+      displayName: 'Fashion',
       name: 'Fashion',
     },
   ],

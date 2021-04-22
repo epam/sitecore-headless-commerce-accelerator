@@ -1,0 +1,14 @@
+﻿---
+ID: "7f18b8a9-e90f-472b-98ec-8e3db7ee2617"
+Parent: "441ff12d-0754-4eb2-b842-2862ffa3891c"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Settings/HCA/Foundation/UI
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210407T045422Z

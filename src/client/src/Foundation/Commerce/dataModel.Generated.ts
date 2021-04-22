@@ -134,16 +134,6 @@ export interface BillingInfo {
   paymentMethods: PaymentMethod[];
   paymentOptions: PaymentOption[];
 }
-export interface Facet {
-  displayName: string;
-  foundValues: FacetValue[];
-  name: string;
-  values: any[];
-}
-export interface FacetValue {
-  aggregateCount: number;
-  name: string;
-}
 export interface ProductSearchResults {
   facets: Facet[];
   products: Product[];
@@ -191,4 +181,17 @@ export interface ProductSearchSuggestion {
   imageUrl: string;
   price: number;
   productId: string;
+}
+export interface Facet {
+  displayName?: string;
+  foundValues: FacetValue[];
+  name: string;
+  values: any[];
+  facetType?: 'checkbox' | 'tag';
+}
+export interface FacetValue {
+  name: string;
+  displayName?: string;
+  aggregateCount: number;
+  value?: string;
 }

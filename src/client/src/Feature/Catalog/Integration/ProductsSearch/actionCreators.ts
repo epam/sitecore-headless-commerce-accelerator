@@ -14,7 +14,7 @@
 
 import { Action } from 'Foundation/Integration';
 
-import { Facet, Product } from 'Foundation/Commerce/dataModel.Generated';
+import { Facet, Product } from 'Foundation/Commerce';
 import * as Models from './models';
 
 export type InitialSearch = (payload: Models.InitSearchPayload) => Action<Models.InitSearchPayload>;

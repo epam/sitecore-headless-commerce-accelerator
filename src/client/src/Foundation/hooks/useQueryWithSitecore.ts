@@ -19,12 +19,6 @@ import { get, set } from 'lodash';
 
 import { useSitecoreContext } from './useSitecoreContext';
 
-const PAGE_STATE = {
-  edit: 'edit',
-  normal: 'normal',
-  preview: 'preview',
-};
-
 export const useQueryWithSitecore = (
   query: DocumentNode,
   options: QueryHookOptions<any, OperationVariables> = {},
@@ -34,10 +28,7 @@ export const useQueryWithSitecore = (
   const newOptions: QueryHookOptions = { ...options };
   const definition = getMainDefinition(query);
 
-  if (
-    (sitecoreContext && sitecoreContext.pageState !== PAGE_STATE.normal) ||
-    (definition.kind === 'OperationDefinition' && definition.operation === 'subscription')
-  ) {
+  if (definition.kind === 'OperationDefinition' && definition.operation === 'subscription') {
     newOptions['ssr'] = false;
   }
 

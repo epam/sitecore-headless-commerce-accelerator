@@ -1,0 +1,18 @@
+﻿---
+ID: "58a4195d-269a-466c-ad66-a8f08d8d3fad"
+Parent: "4953f73d-bd90-44ae-adb4-f1300b2ab3b7"
+Template: "f9a592be-29fc-4e37-b5e4-8c4df04b3d61"
+Path: /sitecore/system/Settings/HCA/Foundation/UI/Filter Types/checkbox
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210407T045503Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

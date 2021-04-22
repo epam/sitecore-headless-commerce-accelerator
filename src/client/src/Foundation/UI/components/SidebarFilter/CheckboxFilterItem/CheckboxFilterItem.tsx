@@ -14,6 +14,8 @@
 
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
+import { get } from 'lodash';
+
 import { Checkbox } from 'Foundation/UI/components/Checkbox';
 
 import { cnSidebarFilter } from '../cn';
@@ -31,11 +33,16 @@ export const CheckboxFilterItem: FC<FilterItemProps> = ({
 }) => {
   const [hovered, setHovered] = useState(false);
 
+  const name = get(foundValue, ['name']);
+  const aggregateCount = get(foundValue, ['aggregateCount']);
+  const displayName = get(foundValue, ['displayName']) || name;
+  const value = get(foundValue, ['value']) || name;
+
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      onFacetChange(facetName, foundValue.name, event);
+      onFacetChange(facetName, value, event);
     },
-    [onFacetChange],
+    [facetName, value, onFacetChange],
   );
 
   const handleMouseEnter = useCallback(() => {
@@ -54,18 +61,14 @@ export const CheckboxFilterItem: FC<FilterItemProps> = ({
     >
       <label className={cnSidebarFilter('ItemContainer')}>
         <Checkbox
-          checked={isApplied(facetName, foundValue.name)}
+          checked={isApplied(facetName, value)}
           className={cnSidebarFilter('CheckboxControl')}
           hovered={hovered}
           id={id}
           onChange={handleChange}
         />
-        <label
-          className={cnSidebarFilter('CheckboxLabel')}
-          htmlFor={id}
-          title={foundValue.name}
-        >{`${foundValue.name}`}</label>
-        <span className={cnSidebarFilter('TotalCountTitle')}>{foundValue.aggregateCount}</span>
+        <label className={cnSidebarFilter('CheckboxLabel')} htmlFor={id} title={name}>{`${displayName}`}</label>
+        <span className={cnSidebarFilter('TotalCountTitle')}>{aggregateCount}</span>
       </label>
     </li>
   );

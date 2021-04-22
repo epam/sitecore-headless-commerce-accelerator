@@ -1,0 +1,14 @@
+﻿---
+ID: "ec7b20a6-bf8e-4737-b2be-98fb931f52ad"
+Parent: "038e0285-d2e8-4439-892e-00cb667441e9"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Foundation/UI/Filter/_Filter/Settings
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210407T041105Z

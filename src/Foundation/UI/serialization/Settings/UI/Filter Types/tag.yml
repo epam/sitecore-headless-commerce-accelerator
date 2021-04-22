@@ -1,0 +1,18 @@
+﻿---
+ID: "808ceb9f-2759-4226-853d-1a6f1024e8f8"
+Parent: "4953f73d-bd90-44ae-adb4-f1300b2ab3b7"
+Template: "f9a592be-29fc-4e37-b5e4-8c4df04b3d61"
+Path: /sitecore/system/Settings/HCA/Foundation/UI/Filter Types/tag
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210407T045508Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

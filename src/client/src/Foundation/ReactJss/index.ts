@@ -20,6 +20,8 @@ export * from './controls/Dictionary';
 export * from './controls/Image';
 export * from './controls/Link';
 export * from './controls/Text';
+export * from './controls/RichText';
+export * from './controls/Date';
 
 // base models
 export * from './models';

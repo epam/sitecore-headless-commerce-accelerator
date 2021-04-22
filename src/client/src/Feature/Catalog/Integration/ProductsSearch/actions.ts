@@ -18,7 +18,7 @@ import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
 import { Params } from './models';
 
-import { Facet, Product } from 'Foundation/Commerce/dataModel.Generated';
+import { Facet, Product } from 'Foundation/Commerce';
 
 export const InitialSearch: actionCreators.InitialSearch = (payload) => ({
   payload: {

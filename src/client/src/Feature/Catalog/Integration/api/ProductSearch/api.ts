@@ -15,7 +15,7 @@
 import axios from 'axios';
 
 import { ProductsSearchRequest, SortDirection } from 'Feature/Catalog/dataModel.Generated';
-import { Facet, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
+import { Facet, ProductSearchResults } from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
 import { ProductSearchSuggestionResponse, SearchProductsParams } from './models';
 

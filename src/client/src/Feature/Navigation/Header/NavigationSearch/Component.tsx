@@ -145,18 +145,14 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
   };
 
   private handleItemClick = () => {
+    const { closeHamburgerMenu } = this.props;
+
     this.resetSuggestions();
     this.searchInput.value = '';
     this.setState({
       isOpen: false,
     });
 
-    // TODO US2069 Menu refactoring
-    const header = document.querySelector('[data-el="header"]');
-    header.classList.remove('header--active');
-
-    if (!header.classList.contains('header--inactive')) {
-      header.classList.add('header--inactive');
-    }
+    closeHamburgerMenu();
   };
 }

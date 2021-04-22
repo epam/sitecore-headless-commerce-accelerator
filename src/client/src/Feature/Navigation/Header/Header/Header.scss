@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 .header {
   text-transform: capitalize;
@@ -31,16 +31,15 @@
       padding-left: 60px;
       transition: 0.6s;
       transform: translateX(100%);
-      .navigation-buttons{
-        &_item{
+      .navigation-buttons {
+        &_item {
           display: none;
         }
-        .navigation-buttons_item.search{
+        .navigation-buttons_item.search {
           display: block;
           width: 100%;
           margin-left: 0;
         }
-
       }
       &_content {
         overflow: auto;

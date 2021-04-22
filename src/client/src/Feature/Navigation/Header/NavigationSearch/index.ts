@@ -20,6 +20,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import * as ProductsSearchSuggestions from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as Context from 'Foundation/ReactJss/SitecoreContext';
 
+import { closeHamburgerMenu } from '../NavigationMenu/Integration';
 import { NavigationSearchComponent } from './Component';
 import { AppState } from './models';
 
@@ -35,6 +36,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       ChangeRoute: Context.ChangeRoute,
+      closeHamburgerMenu,
       requestSuggestions: ProductsSearchSuggestions.RequestSuggestions,
       resetSuggestionsState: ProductsSearchSuggestions.ResetState,
     },

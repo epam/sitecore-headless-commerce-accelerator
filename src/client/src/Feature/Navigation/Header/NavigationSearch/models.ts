@@ -18,6 +18,7 @@ import * as JSS from 'Foundation/ReactJss';
 
 export interface NavigationSearchProps extends JSS.Rendering {
   ChangeRoute: (newRoute: string) => void;
+  closeHamburgerMenu: () => void;
   requestSuggestions: (search: string) => void;
   resetSuggestionsState: () => void;
   searchSuggestionsStatus: string;

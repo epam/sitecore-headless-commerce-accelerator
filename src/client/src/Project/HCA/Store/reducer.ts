@@ -31,6 +31,7 @@ import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as HamburgerMenu from 'Feature/Navigation/Header/NavigationMenu/Integration';
 
 export const makeRootReducer = (history: History) =>
   combineReducers({
@@ -39,6 +40,7 @@ export const makeRootReducer = (history: History) =>
     checkout: Checkout.rootReducer,
     currentOrder: Order.rootReducer,
     globalError: GlobalError.reducer,
+    hamburgerMenu: HamburgerMenu.reducer,
     orderHistory: OrderHistory.rootReducer,
     productSearchSuggestion: ProductSearchSuggestion.reducer,
     productsSearch: ProductSearch.reducer,

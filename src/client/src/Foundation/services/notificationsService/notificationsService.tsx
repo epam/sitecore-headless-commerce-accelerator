@@ -13,10 +13,10 @@
 //    limitations under the License.
 
 import React from 'react';
-import { toast, TypeOptions } from 'react-toastify';
+import { toast, ToastOptions, TypeOptions } from 'react-toastify';
 
 import { ToastContent } from './ToastContent';
 
-export const notify = (type: TypeOptions, message: string) => {
-  return toast(() => <ToastContent type={type} message={message} />);
+export const notify = (type: TypeOptions, message: string, options?: ToastOptions) => {
+  return toast(() => <ToastContent type={type} message={message} />, options);
 };

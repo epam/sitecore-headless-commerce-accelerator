@@ -17,8 +17,16 @@
   align-items: center;
 
   &-CheckIcon {
-    color: green;
-    font-size: 30px;
+    color: #0f9e0d;
     margin-right: 10px;
+  }
+
+  &-ExclamationCircleIcon {
+    color: #eb5757;
+    margin-right: 10px;
+  }
+
+  &-CircleIcon {
+    width: 1em !important;
   }
 }

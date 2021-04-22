@@ -12,12 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import qs from 'query-string';
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import { LoadingStatus } from 'Foundation/Integration';
-import * as JSS from 'Foundation/ReactJss';
-import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
+import { Form } from 'Foundation/ReactJss/Form';
+import { notify } from 'Foundation/services/notificationsService';
+import { Button } from 'Foundation/UI/components/Button';
+import { Input } from 'Foundation/UI/components/Input';
 import { SpinnerIcon } from 'Foundation/UI/components/SpinnerIcon';
 
 import { PasswordResetFormProps } from './models';
@@ -25,76 +30,119 @@ import { PasswordResetFormProps } from './models';
 import { cnPasswordResetForm } from './cn';
 import './PasswordResetForm.scss';
 
-const FORM_FIELDS = JSS.keyMirror(
-  {
-    NEW_PASSWORD: null,
-    NEW_PASSWORD_CONFIRM: null,
-  },
-  'PASSWORD_RESET_FORM',
-);
-
 export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
   history,
   recoverPassword,
   resetPasswordState,
 }) => {
-  const [valid, setValid] = useState(false);
-  const [showValidationMessage, setShowValidationMessage] = useState(false);
   const { username, token } = qs.parse(history.location.search) as { username: string; token: string };
 
-  const validateForm = (formValues: FormValues) => {
-    const formIsValid = formValues[FORM_FIELDS.NEW_PASSWORD] === formValues[FORM_FIELDS.NEW_PASSWORD_CONFIRM];
+  const [formIsValid, setFormIsValid] = useState(true);
+  const [passwordValue, setPasswordValue] = useState('');
+  const [showPasswordValue, setShowPasswordValue] = useState(false);
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
+  const [showConfirmPasswordValue, setShowConfirmPasswordValue] = useState(false);
 
-    setValid(formIsValid);
-    setShowValidationMessage(
-      formValues[FORM_FIELDS.NEW_PASSWORD] && formValues[FORM_FIELDS.NEW_PASSWORD_CONFIRM] && !formIsValid,
-    );
+  useEffect(() => {
+    if (resetPasswordState.status === LoadingStatus.Loaded) {
+      notify('success', 'Your password has been succesfully changed', isMobile && { position: 'bottom-right' });
+    }
+    if (resetPasswordState.status === LoadingStatus.Failure) {
+      notify('error', 'Sorry, something went wrong', isMobile && { position: 'bottom-right' });
+    }
+  }, [resetPasswordState.status]);
 
-    return formIsValid;
-  };
+  useEffect(() => {
+    if (passwordValue && confirmPasswordValue) {
+      setFormIsValid(passwordValue === confirmPasswordValue);
+    }
+  }, [passwordValue, confirmPasswordValue]);
 
-  const handleSubmit = (formValues: FormValues) => {
-    recoverPassword(username, formValues[FORM_FIELDS.NEW_PASSWORD] as string, token);
+  const toggleShowPasswordValue = useCallback(() => {
+    setShowPasswordValue((value) => !value);
+  }, [setShowPasswordValue, showPasswordValue]);
+
+  const toggleShowConfirmPasswordValue = useCallback(() => {
+    setShowConfirmPasswordValue((value) => !value);
+  }, [setShowConfirmPasswordValue, confirmPasswordValue]);
+
+  const handlePasswordValueChange = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      setPasswordValue(e.currentTarget.value);
+    },
+    [setPasswordValue],
+  );
+
+  const handleConfirmPasswordValueChange = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      setConfirmPasswordValue(e.currentTarget.value);
+    },
+    [setConfirmPasswordValue],
+  );
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    recoverPassword(username, passwordValue, token);
   };
 
   return (
     <div className={cnPasswordResetForm()}>
-      <h1 className={cnPasswordResetForm('Title')}>Enter New Password</h1>
+      <h1 className={cnPasswordResetForm('Title')}>Change your password</h1>
       <div className={cnPasswordResetForm('FormContainer')}>
-        <Form className={cnPasswordResetForm('Form')}>
+        <Form className={cnPasswordResetForm('Form')} onSubmit={handleFormSubmit}>
+          <p>Enter your new password</p>
+          <label htmlFor="password">New password</label>
           <Input
-            type="password"
+            id="password"
+            type={showPasswordValue ? 'text' : 'password'}
             className={cnPasswordResetForm('Input')}
-            name={FORM_FIELDS.NEW_PASSWORD}
-            placeholder="New Password"
+            error={!formIsValid}
+            helperText={!formIsValid ? 'Both passwords should be identical' : 'Must be at least 6 characters'}
             required={true}
-            customValidator={(formValues) => validateForm(formValues)}
-            disabled={false}
+            minLength={6}
+            disabled={resetPasswordState.status === LoadingStatus.Loading}
+            fullWidth={true}
+            onChange={handlePasswordValueChange}
+            adornment={
+              <FontAwesomeIcon
+                icon={showPasswordValue ? faEyeSlash : faEye}
+                className={cnPasswordResetForm('FaEyeIcon')}
+                size="lg"
+                onClick={toggleShowPasswordValue}
+              />
+            }
           />
+          <label htmlFor="confirm-password">Confirm new password</label>
           <Input
-            type="password"
+            id="confirm-password"
+            type={showConfirmPasswordValue ? 'text' : 'password'}
             className={cnPasswordResetForm('Input')}
-            name={FORM_FIELDS.NEW_PASSWORD_CONFIRM}
-            placeholder="Confirm New Password"
+            error={!formIsValid}
+            helperText={!formIsValid && 'Both passwords should be identical'}
             required={true}
-            customValidator={(formValues) => validateForm(formValues)}
-            disabled={false}
+            minLength={6}
+            disabled={resetPasswordState.status === LoadingStatus.Loading}
+            fullWidth={true}
+            onChange={handleConfirmPasswordValueChange}
+            adornment={
+              <FontAwesomeIcon
+                icon={showConfirmPasswordValue ? faEyeSlash : faEye}
+                className={cnPasswordResetForm('FaEyeIcon')}
+                size="lg"
+                onClick={toggleShowConfirmPasswordValue}
+              />
+            }
           />
-          {showValidationMessage && (
-            <div className={cnPasswordResetForm('ValidationMessage')}>Both passwords should be identical</div>
-          )}
-          <Submit
-            onSubmitHandler={(formValues) => handleSubmit(formValues)}
-            disabled={!valid || resetPasswordState.status === LoadingStatus.Loading}
+          <Button
+            className={cnPasswordResetForm('Submit', { disabled: !formIsValid })}
+            disabled={!formIsValid}
+            buttonType="submit"
+            buttonTheme="grey"
           >
             {resetPasswordState.status === LoadingStatus.Loading && <SpinnerIcon />}
-            Reset my password
-          </Submit>
-          <div className={cnPasswordResetForm('SubmitMessage')}>
-            {resetPasswordState.status === LoadingStatus.Loaded && 'Your password has been successfully updated'}
-            {resetPasswordState.status === LoadingStatus.Failure &&
-              `Sorry, something went wrong: ${resetPasswordState.error}`}
-          </div>
+            Change password
+          </Button>
         </Form>
       </div>
     </div>

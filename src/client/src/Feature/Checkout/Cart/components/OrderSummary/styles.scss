@@ -30,14 +30,7 @@
     }
   }
   .tax,
-  .promoCode,
   .cartTotal {
-    .invalid-promo-code-msg {
-      color: $invalid-promo-code-msg-color;
-    }
-    .valid-promo-code-msg {
-      color: $valid-promo-code-msg-color;
-    }
     .titleWrap {
       position: relative;
       margin-bottom: 10px;
@@ -63,46 +56,6 @@
         background-color: #e3e1e1;
       }
     }
-    .promo-code-list {
-      margin: 10px 0px;
-
-      .adjustment-list > .adjustment-item {
-        display: flex;
-        height: 20px;
-        margin: 4px 0;
-        .fa-spinner {
-          margin-left: 10px;
-        }
-        .btn {
-          font-size: 14px;
-          background-color: transparent;
-          padding: 0;
-          margin: 0px 12px 0px 0px;
-          align-self: center;
-
-          color: $checkout-form-font-color;
-          &:hover {
-            color: $theme-color;
-          }
-        }
-      }
-      label {
-        margin: 5px 0;
-      }
-
-      input,
-      .btn {
-        margin: 0;
-      }
-      input,
-      .btn {
-        clear: left;
-      }
-      input {
-        width: 50%;
-        margin-right: 10px;
-      }
-    }
   }
 
   .subTitleWrap {
@@ -119,8 +72,7 @@
     }
   }
 
-  .zipCodeWrapper,
-  .promoCodeWrapper {
+  .zipCodeWrapper {
     margin: 0px;
     > label {
       font-weight: 400;
@@ -226,5 +178,15 @@
 
   &-ProceedButtonContainer {
     display: flex;
+  }
+
+  &-IconContainer {
+    margin-left: 5px;
+  }
+
+  &-Column {
+    @media (min-width: 992px) {
+      max-width: 50%;
+    }
   }
 }

@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { Button } from 'Foundation/UI/components/Button';
+import { Button } from 'components';
 
 import { SubmitEnhancedProps } from './models';
 

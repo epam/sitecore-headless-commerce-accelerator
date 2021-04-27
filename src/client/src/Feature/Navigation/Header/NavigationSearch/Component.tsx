@@ -11,12 +11,15 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
-import * as JSS from 'Foundation/ReactJss';
-import { debounce } from 'lodash';
+
 import React, { ChangeEvent } from 'react';
 
+import * as JSS from 'Foundation/ReactJss';
+import { debounce } from 'lodash';
+
 import { LoadingStatus } from 'Foundation/Integration';
-import { Input } from 'Foundation/UI/components/Input';
+
+import { Input } from 'components';
 
 import { NavigationSearchProps, NavigationSearchState } from './models';
 import { SuggestionList } from './SuggestionList';

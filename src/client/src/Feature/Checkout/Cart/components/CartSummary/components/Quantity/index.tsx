@@ -16,7 +16,8 @@ import React, { FC, useState } from 'react';
 
 import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
 import { ShoppingCartLine } from 'Feature/Checkout/Integration/ShoppingCart';
-import { QuantityPicker } from 'Foundation/UI/components/QuantityPicker';
+
+import { QuantityPicker } from 'components';
 
 import './styles.scss';
 

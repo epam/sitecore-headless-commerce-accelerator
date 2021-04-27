@@ -14,7 +14,7 @@
 
 import React, { FC, useContext } from 'react';
 
-import { Rating } from 'Foundation/UI/components/Rating';
+import { Rating } from 'components';
 
 import { ProductCardContext } from '../context';
 

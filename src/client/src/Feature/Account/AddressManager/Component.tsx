@@ -14,17 +14,18 @@
 
 import React, { MouseEvent } from 'react';
 
+import { Address } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
-import * as Jss from 'Foundation/ReactJss';
-import { Button } from 'Foundation/UI/components/Button';
+
+import { Button } from 'components';
+import { SafePureComponent } from 'Foundation/ReactJss';
 
 import { AddressForm } from './components';
 import { AddressManagerOwnState, AddressManagerProps } from './models';
 
-import * as Commerce from 'Foundation/Commerce';
-
 import './styles.scss';
-export default class AddressManager extends Jss.SafePureComponent<AddressManagerProps, AddressManagerOwnState> {
+
+export default class AddressManager extends SafePureComponent<AddressManagerProps, AddressManagerOwnState> {
   public constructor(props: AddressManagerProps) {
     super(props);
 
@@ -202,12 +203,12 @@ export default class AddressManager extends Jss.SafePureComponent<AddressManager
     this.props.RemoveAddress(externalId);
   }
 
-  private onUpdateAdress(address: Commerce.Address) {
+  private onUpdateAdress(address: Address) {
     this.props.UpdateAddress(address);
     this.setState({ isListFormVisible: true, editForm: false });
   }
 
-  private onAddAdress(address: Commerce.Address) {
+  private onAddAdress(address: Address) {
     this.props.AddAddress(address);
     this.setState({ isListFormVisible: true, editForm: false });
   }

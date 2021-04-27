@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ButtonProps } from 'Foundation/UI/components/Button';
+import { ButtonProps } from 'components';
 
 import { contextConnect } from './../enhancers';
 import { SubmitEnhancedProps, SubmitProps } from './models';

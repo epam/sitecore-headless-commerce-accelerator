@@ -11,7 +11,8 @@
       "Foundation": ["Foundation"],
       "Project": ["Project"],
       "Feature": ["Feature"],
-      "layouts": ["layouts"]
+      "layouts": ["layouts"],
+      "components": ["components"]
     },
     "sourceMap": true,
     "allowJs": true,
@@ -35,7 +36,8 @@
     "src/Feature/**/*",
     "src/Project/**/*",
     "src/Project/HCA/modules.d.ts",
-    "src/layouts/**/*"
+    "src/layouts/**/*",
+    "src/components/**/*"
   ],
   "exclude": [
     "src/Foundation/**/*.js",

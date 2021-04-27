@@ -15,14 +15,12 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
+
+import { Button, Input, Select as PureSelect } from 'components';
 import { DependentField, Form, Select } from 'Foundation/ReactJss/Form';
-import { Button } from 'Foundation/UI/components/Button';
 
 import { FIELDS } from './constants';
 import { OrderSummaryProps } from './models';
-
-import { Input } from 'Foundation/UI/components/Input';
-import { Select as PureSelect } from 'Foundation/UI/components/Select';
 
 import './styles.scss';
 export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryProps, any> {

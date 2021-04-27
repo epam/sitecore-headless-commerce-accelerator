@@ -18,7 +18,8 @@ import * as Jss from 'Foundation/ReactJss';
 
 import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME } from 'Feature/Catalog/Integration/ProductsSearch';
 import { tryParseUrlSearch } from 'Foundation/Base';
-import { SidebarSearch } from 'Foundation/UI/components/SidebarSearch';
+
+import { SidebarSearch } from 'components';
 
 import { ProductsSearchOwnState, ProductsSearchProps } from './models';
 

@@ -15,12 +15,11 @@
 import React, { FC, FormEvent, useState } from 'react';
 
 import { LoadingStatus } from 'Foundation/Integration';
+import { validateEmail } from 'Foundation/utils/validation';
+
+import { Button, Input, SpinnerIcon } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'Foundation/UI';
-import { Button } from 'Foundation/UI/components/Button';
-import { Input } from 'Foundation/UI/components/Input';
-import { SpinnerIcon } from 'Foundation/UI/components/SpinnerIcon';
-import { validateEmail } from 'Foundation/utils/validation';
 
 import { ErrorMessage } from './ErrorMessage';
 import { SuccessMessage } from './SuccessMessage';

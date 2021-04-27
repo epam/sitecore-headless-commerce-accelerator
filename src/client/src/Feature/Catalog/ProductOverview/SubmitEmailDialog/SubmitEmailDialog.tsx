@@ -14,9 +14,7 @@
 
 import React, { FC, useCallback } from 'react';
 
-import { Button } from 'Foundation/UI/components/Button';
-import { Dialog } from 'Foundation/UI/components/Dialog';
-import { Input } from 'Foundation/UI/components/Input';
+import { Button, Dialog, Input } from 'components';
 
 import { cnSubmitEmailDialog } from './cn';
 import './SubmitEmailDialog.scss';

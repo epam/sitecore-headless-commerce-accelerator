@@ -14,7 +14,7 @@
 
 import React, { FC, useCallback, useContext } from 'react';
 
-import { Button } from 'Foundation/UI/components/Button';
+import { Button } from 'components';
 
 import { ProductCardContext } from '../context';
 

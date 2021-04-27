@@ -14,7 +14,6 @@
 
 import './styles.scss';
 
-export * from './Button';
 export * from './LinkButton';
 export * from './NavigationLink';
 export * from './StaticLinkButton';

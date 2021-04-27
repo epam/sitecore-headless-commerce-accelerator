@@ -14,7 +14,7 @@
 
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
-import { Checkbox } from 'Foundation/UI/components/Checkbox';
+import { Checkbox } from 'components';
 
 import { cnFilterItem } from './cn';
 import './FilterItem.scss';

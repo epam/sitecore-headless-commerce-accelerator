@@ -15,10 +15,9 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
-import { DependentField, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
-import { Button } from 'Foundation/UI/components/Button';
-import { Select as PureSelect } from 'Foundation/UI/components/Select';
+import { Button, Select as PureSelect } from 'components';
+import { DependentField, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
 import { ADDRESS_MANAGER_FIELDS } from './constants';
 import { AddressFromProps } from './models';

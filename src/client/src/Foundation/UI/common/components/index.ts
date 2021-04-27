@@ -14,5 +14,4 @@
 
 export * from './Buttons';
 export * from './Carousel';
-export * from './Loader';
 export * from './NoResultsFound';

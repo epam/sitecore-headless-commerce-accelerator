@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
 import React, { useState } from 'react';
 
-import { Button } from 'Foundation/UI/components/Button';
-import { Input } from 'Foundation/UI/components/Input';
+import * as JSS from 'Foundation/ReactJss';
 import { validateEmail } from 'Foundation/utils/validation';
+
+import { Button, Input } from 'components';
 
 import { GetInTouchFormProps } from './models';
 import './styles.scss';

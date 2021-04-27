@@ -17,8 +17,8 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
 import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
-import { Button } from 'Foundation/UI/components/Button';
-import { Input } from 'Foundation/UI/components/Input';
+
+import { Button, Input } from 'components';
 
 import { ProductInformationProps, ProductInformationState } from './models';
 

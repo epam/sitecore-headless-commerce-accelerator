@@ -12,13 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import React, { FC } from 'react';
+
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC } from 'react';
 
+import { Button } from 'components';
 import { NavigationLink } from 'Foundation/UI';
-import { Button } from 'Foundation/UI/components/Button';
 
 import { cnResetRequestForm } from '../cn';
 import './ErrorMessage.scss';

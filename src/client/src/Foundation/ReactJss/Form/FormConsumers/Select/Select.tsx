@@ -16,7 +16,7 @@ import * as React from 'react';
 
 import BaseField from '../BaseField';
 
-import { Select } from 'Foundation/UI/components/Select';
+import { Select } from 'components';
 
 export default class SelectField extends BaseField<HTMLSelectElement> {
   public componentDidMount() {

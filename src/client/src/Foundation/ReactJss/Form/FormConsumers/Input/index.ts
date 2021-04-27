@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { InputProps } from 'components';
+
 import { contextConnect } from './../enhancers';
 import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';
 import InputField from './Input';
-
-import { InputProps } from 'Foundation/UI/components/Input';
 
 export const Input = contextConnect<
   BaseFieldProps<HTMLInputElement> & InputProps,

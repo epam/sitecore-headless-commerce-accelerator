@@ -14,9 +14,9 @@
 
 import * as React from 'react';
 
-import BaseField from '../BaseField';
+import { Input, InputType } from 'components';
 
-import { Input, InputType } from 'Foundation/UI/components/Input';
+import BaseField from '../BaseField';
 
 export default class InputField extends BaseField<HTMLInputElement> {
   public componentDidMount() {

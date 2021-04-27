@@ -1,0 +1,212 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/variables';
+
+$button-defaultSlide-bg-color: #343538;
+$button-defaultSlide-before-bg-color: #a749ff;
+
+$button-transparentSlide-bg-color: transparent;
+$button-transparentSlide-text-color: #010101;
+$button-transparentSlide-border-color: #010101;
+
+$button-transparentSlide-before-bg-color: #a749ff;
+$button-transparentSlide-before-text-color: #ffffff;
+$button-transparentSlide-before-border-color: #a749ff;
+
+.Button {
+  padding: 10px 30px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-family: $poppins;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+
+  &_buttonSize {
+    &_s {
+      padding: 10px 15px;
+    }
+
+    &_m {
+      padding: 17.5px 40px;
+    }
+
+    &_l {
+      padding: 18px 60px;
+    }
+  }
+
+  &_buttonTheme {
+    &_default {
+      background-color: $global-button-bg-color-darkgrey;
+
+      &:hover {
+        background-color: $global-button-bg-color-purple;
+      }
+    }
+
+    &_defaultReversed {
+      background-color: $global-button-bg-color-purple;
+
+      &:hover {
+        background-color: $global-button-bg-color-darkgrey;
+      }
+    }
+
+    &_defaultSlide {
+      display: inline-block;
+      position: relative;
+      z-index: 0;
+      background-color: $button-defaultSlide-bg-color;
+      transition: all 0.5s ease-in-out 0s;
+      font-weight: 700;
+
+      &:before {
+        position: absolute;
+        z-index: -1;
+        content: '';
+        transition: all 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+        background: $button-defaultSlide-before-bg-color;
+        right: 0;
+        left: auto;
+        bottom: 0;
+        height: 100%;
+        width: 0;
+      }
+
+      &:hover:before {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+
+      &:disabled:before {
+        right: 0;
+        left: auto;
+        width: 0;
+      }
+    }
+
+    &_transparentSlide {
+      display: inline-block;
+      position: relative;
+      z-index: 0;
+      background-color: $button-transparentSlide-bg-color;
+      transition: all 0.5s ease-in-out 0s;
+      color: $button-transparentSlide-text-color;
+      border: 1px solid $button-transparentSlide-border-color;
+
+      &:before {
+        position: absolute;
+        z-index: -1;
+        content: '';
+        transition: all 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+        background: $button-transparentSlide-before-bg-color;
+        right: 0;
+        left: auto;
+        bottom: 0;
+        height: 100%;
+        width: 0;
+      }
+
+      &:hover:before {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+
+      &:hover:enabled {
+        color: $button-transparentSlide-before-text-color;
+        border: 1px solid $button-transparentSlide-before-border-color;
+      }
+
+      &:disabled:before {
+        right: 0;
+        left: auto;
+        width: 0;
+      }
+    }
+
+    &_grey {
+      color: $global-button-bg-color-darkgrey;
+      background-color: $global-button-bg-color-lightgrey;
+
+      &:hover {
+        background-color: $global-button-bg-color-purple;
+        color: white;
+      }
+    }
+
+    &_greyReversed {
+      background-color: $global-button-bg-color-purple;
+      color: white;
+
+      &:hover {
+        color: $global-button-bg-color-darkgrey;
+        background-color: $global-button-bg-color-lightgrey;
+      }
+    }
+
+    &_orange {
+      background-color: $edit-button-color;
+      color: #fff;
+
+      &:hover {
+        background-color: $theme-color;
+      }
+    }
+
+    &_black {
+      background-color: #000;
+      color: #fff;
+
+      &:hover {
+        background-color: $theme-color;
+      }
+    }
+
+    &_clear {
+      background: none;
+      padding: 0;
+    }
+
+    &_text {
+      background: none;
+      border: none;
+      padding: 0;
+      /* input has an OS specific font-family */
+      color: #069;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  &_rounded {
+    border-radius: 50px;
+  }
+
+  &_fullWidth {
+    width: 100%;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}

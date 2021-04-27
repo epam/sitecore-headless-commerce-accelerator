@@ -14,7 +14,7 @@
 
 import React from 'react';
 
-import { RadioButton } from 'Foundation/UI/components/RadioButton';
+import { RadioButton } from 'components';
 
 import BaseField from '../BaseField';
 

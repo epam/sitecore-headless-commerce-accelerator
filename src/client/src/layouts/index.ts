@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './MainLayout';
+export * from './Default';
 export * from './FullWidth';
 export * from './OneColumn';
 export * from './TwoColumn';

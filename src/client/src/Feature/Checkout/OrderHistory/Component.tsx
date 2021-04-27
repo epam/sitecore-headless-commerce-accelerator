@@ -12,18 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { Loader, NavigationLink } from 'Foundation/UI';
-import * as React from 'react';
+import React, { MouseEvent } from 'react';
 
-import * as JSS from 'Foundation/ReactJss';
+import { SafePureComponent } from 'Foundation/ReactJss';
+
+import { Text } from '@sitecore-jss/sitecore-jss-react';
+import { Spinner } from 'components';
+import { NavigationLink } from 'Foundation/UI';
 
 import { OrderHistoryItem } from './components';
 import { OrderHistoryProps, OrderHistoryState } from './models';
 
 import './styles.scss';
 
-export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryProps, OrderHistoryState> {
+export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, OrderHistoryState> {
   constructor(props: OrderHistoryProps) {
     super(props);
     this.state = {
@@ -59,7 +61,7 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
                   </a>
                 </div>
               )}
-              {isLoading && !isFirstLoad && <Loader />}
+              {isLoading && !isFirstLoad && <Spinner />}
             </div>
           ) : (
             <div className="order-history_container-empty">
@@ -73,13 +75,13 @@ export class OrderHistoryComponent extends JSS.SafePureComponent<OrderHistoryPro
             </div>
           )
         ) : (
-          <Loader />
+          <Spinner />
         )}
       </div>
     );
   }
 
-  private loadMoreHandler(e: React.MouseEvent<HTMLAnchorElement>) {
+  private loadMoreHandler(e: MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
     this.setState({ isFirstLoad: false });
     this.props.LoadMore();

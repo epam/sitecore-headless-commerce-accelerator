@@ -1,0 +1,106 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'Foundation/UI/common/scss/variables';
+
+$checkbox-checkmark-size-s-width: 10px;
+$checkbox-checkmark-size-s-height: 10px;
+
+$checkbox-checkmark-size-m-width: 15px;
+$checkbox-checkmark-size-m-height: 15px;
+
+$checkbox-checkmark-size-l-width: 20px;
+$checkbox-checkmark-size-l-height: 20px;
+
+.Checkbox {
+  min-height: 0;
+  padding: 0;
+  position: absolute;
+  content: '';
+  display: inline-block;
+  border-radius: 24%;
+  margin: 3px 16px 1px 0px;
+  border: 2px solid #888888;
+  vertical-align: middle;
+  background-color: $checkbox-bg-color;
+  transition: background-color 0.2s ease-in;
+
+  &_checked,
+  &_hovered {
+    background-color: $checkbox-selected-bg-color;
+    border-color: $checkbox-selected-border-color;
+
+    .Checkbox-Checkmark {
+      &::after {
+        position: absolute;
+        content: '';
+        border: solid white;
+        border-top-width: medium;
+        border-right-width: medium;
+        border-bottom-width: medium;
+        border-left-width: medium;
+        border-width: 0px 2px 2px 0px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        box-sizing: border-box;
+      }
+      &_controlSize {
+        &_s {
+          &::after {
+            left: 2px;
+            top: 0px;
+            width: 3px;
+            height: 6px;
+          }
+        }
+        &_m {
+          &::after {
+            left: 3px;
+            top: 0;
+            width: 6px;
+            height: 8px;
+          }
+        }
+        &_l {
+          &::after {
+            left: 5px;
+            top: 1px;
+            width: 7px;
+            height: 11px;
+          }
+        }
+      }
+    }
+  }
+
+  &_controlSize {
+    &_s {
+      width: $checkbox-checkmark-size-s-width;
+      height: $checkbox-checkmark-size-s-height;
+    }
+    &_m {
+      width: $checkbox-checkmark-size-m-width;
+      height: $checkbox-checkmark-size-m-height;
+    }
+    &_l {
+      width: $checkbox-checkmark-size-l-width;
+      height: $checkbox-checkmark-size-l-height;
+    }
+  }
+
+  &-Control {
+    display: none;
+  }
+}

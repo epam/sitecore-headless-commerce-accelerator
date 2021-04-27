@@ -14,8 +14,9 @@
 
 import React, { FC, FormEvent } from 'react';
 
-import * as ProductsSearch from 'Feature/Catalog/Integration/ProductsSearch';
-import { Select, SelectProps } from 'Foundation/UI/components/Select';
+import { ChangeSortingTypePayload } from 'Feature/Catalog/Integration/ProductsSearch';
+
+import { Select, SelectProps } from 'components';
 
 import { cnProductList } from '../../cn';
 import { defaultSortingOption, sortingOptions } from './sortingOptions';
@@ -31,12 +32,12 @@ export type SortingType = {
 export type SortingProps = SelectProps & {
   options?: SortingType[];
   selectedOption?: SortingType;
-  ChangeSorting?: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
+  ChangeSorting?: (payload: ChangeSortingTypePayload) => void;
 };
 
 const changeSortingTypeHandler = (
   e: FormEvent<HTMLSelectElement>,
-  handler: (payload: ProductsSearch.ChangeSortingTypePayload) => void,
+  handler: (payload: ChangeSortingTypePayload) => void,
 ) => {
   const [newSortingField, newSortingDirection] = e.currentTarget.value.split('-');
 

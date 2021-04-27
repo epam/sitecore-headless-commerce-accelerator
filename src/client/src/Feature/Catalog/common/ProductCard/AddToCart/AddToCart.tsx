@@ -23,8 +23,7 @@ import { updateCartItemRequest } from 'Feature/Checkout/Integration/ShoppingCart
 import { CartLine } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { Button } from 'Foundation/UI/components/Button';
-import { QuantityPicker } from 'Foundation/UI/components/QuantityPicker';
+import { Button, QuantityPicker } from 'components';
 
 import { ProductCardContext } from '../context';
 

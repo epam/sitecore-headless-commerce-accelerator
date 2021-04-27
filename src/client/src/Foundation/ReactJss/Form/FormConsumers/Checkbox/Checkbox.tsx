@@ -14,7 +14,7 @@
 
 import React, { ChangeEvent } from 'react';
 
-import { Checkbox } from 'Foundation/UI/components/Checkbox';
+import { Checkbox } from 'components';
 
 import BaseField from '../BaseField';
 

@@ -15,8 +15,9 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
-import { Loader, NavigationLink } from 'Foundation/UI';
-import { Button } from 'Foundation/UI/components/Button';
+
+import { Button, Spinner } from 'components';
+import { NavigationLink } from 'Foundation/UI';
 
 import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';
@@ -63,8 +64,9 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
       );
     }
+
     return isFirstInitLoadPage ? (
-      <Loader />
+      <Spinner className="Cart-Spinner" />
     ) : (
       <div>
         <div>

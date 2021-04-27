@@ -14,14 +14,14 @@
 
 import * as React from 'react';
 
-import * as Jss from 'Foundation/ReactJss';
-import { Button } from 'Foundation/UI/components/Button';
+import { Button } from 'components';
+import { SafePureComponent } from 'Foundation/ReactJss';
 
 import './styles.scss';
 
 import { ThankYouMessageProps, ThankYouMessageState } from './models';
 
-export class ThankYouMessage extends Jss.SafePureComponent<ThankYouMessageProps, ThankYouMessageState> {
+export class ThankYouMessage extends SafePureComponent<ThankYouMessageProps, ThankYouMessageState> {
   public safeRender() {
     const { order } = this.props;
     return (

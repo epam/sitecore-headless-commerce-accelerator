@@ -15,8 +15,9 @@
 import React, { FC, useCallback, useContext } from 'react';
 
 import { eventHub, events } from 'Foundation/EventHub';
+
+import { ImageSlider, Slide } from 'components';
 import { NavigationLink } from 'Foundation/UI';
-import { ImageSlider, Slide } from 'Foundation/UI/components/ImageSlider';
 
 import { cnProductCard } from '../cn';
 import { ProductCardContext } from '../context';

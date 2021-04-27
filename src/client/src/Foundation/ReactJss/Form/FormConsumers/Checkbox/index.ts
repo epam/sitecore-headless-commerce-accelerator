@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { CheckboxProps } from 'Foundation/UI/components/Checkbox';
+import { CheckboxProps } from 'components';
 
 import { contextConnect } from './../enhancers';
 import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';

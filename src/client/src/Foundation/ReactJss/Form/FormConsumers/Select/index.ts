@@ -16,7 +16,7 @@ import { contextConnect } from './../enhancers';
 import { BaseFieldEnhancedProps, BaseFieldProps } from './../models';
 import SelectField from './Select';
 
-import { SelectProps } from 'Foundation/UI/components/Select';
+import { SelectProps } from 'components';
 
 export const Select = contextConnect<
   BaseFieldProps<HTMLSelectElement> & SelectProps,

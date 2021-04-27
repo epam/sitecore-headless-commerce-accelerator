@@ -24,8 +24,9 @@ import {
 } from 'Feature/Checkout/Integration/ShoppingCart';
 import { eventHub, events } from 'Foundation/EventHub';
 import { LoadingStatus } from 'Foundation/Integration';
+
+import { Button } from 'components';
 import { NavigationLink } from 'Foundation/UI';
-import { Button } from 'Foundation/UI/components/Button';
 
 import './CartView.scss';
 

@@ -12,18 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import qs from 'query-string';
 import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
+
+import qs from 'query-string';
 import { isMobile } from 'react-device-detect';
 
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { LoadingStatus } from 'Foundation/Integration';
-import { Form } from 'Foundation/ReactJss/Form';
 import { notify } from 'Foundation/services/notificationsService';
-import { Button } from 'Foundation/UI/components/Button';
-import { Input } from 'Foundation/UI/components/Input';
-import { SpinnerIcon } from 'Foundation/UI/components/SpinnerIcon';
+
+import { Button, Input, SpinnerIcon } from 'components';
+import { Form } from 'Foundation/ReactJss/Form';
 
 import { PasswordResetFormProps } from './models';
 

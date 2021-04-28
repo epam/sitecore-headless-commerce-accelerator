@@ -30,26 +30,35 @@
   }
 
   &_content {
+    &_container {
+      display: flex;
+
+      @media #{$md-layout} {
+        display: block;
+      }
+    }
+
     &:nth-child(1) {
       padding-right: 5px;
-      @media (max-width: $screen-sm) {
+      @media #{$md-layout} {
         padding-right: 15px;
       }
     }
     &:nth-child(2) {
       padding-left: 5px;
-      @media (max-width: $screen-sm) {
+      @media #{$md-layout} {
         padding-left: 15px;
       }
     }
 
     &_info {
+      height: 100%;
       padding: 120px 70px 116px 90px;
       background-color: $contact-information-panel-background-color;
       display: flex;
       flex-direction: column;
 
-      @media (max-width: $screen-sm) {
+      @media #{$md-layout} {
         margin-top: 20px;
         margin-bottom: 30px;
         padding: 50px 20px 45px 30px;

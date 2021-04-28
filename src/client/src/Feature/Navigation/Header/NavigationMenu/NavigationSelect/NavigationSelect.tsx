@@ -14,8 +14,9 @@
 
 import React, { FC } from 'react';
 
+import { Select } from 'components';
+
 import { cnNavigation } from 'Feature/Navigation/Header/NavigationMenu/cn';
-import { Select } from 'Foundation/UI/components/Select';
 
 import './NavigationSelect.scss';
 

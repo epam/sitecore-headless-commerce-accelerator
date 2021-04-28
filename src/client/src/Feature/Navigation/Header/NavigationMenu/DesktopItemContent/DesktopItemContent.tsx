@@ -12,13 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Image } from '@sitecore-jss/sitecore-jss-react';
 import React, { FC } from 'react';
 
-import { NavigationLinks } from 'Feature/Navigation/Header/NavigationLinks';
+import { Image } from '@sitecore-jss/sitecore-jss-react';
+
 import { permanentNavigationLinks } from 'Feature/Navigation/Header/NavigationMenu';
+
+import { AngleDownIcon } from 'components';
+import { NavigationLinks } from 'Feature/Navigation/Header/NavigationLinks';
 import { ImageField } from 'Foundation/ReactJss';
-import { AngleDownIcon } from 'Foundation/UI/components/AngleDownIcon';
 
 import { cnNavigation } from '../cn';
 

@@ -14,22 +14,22 @@
 
 import React, { FC } from 'react';
 
-import { IconFa } from 'Foundation/UI/components/IconFa';
+import { Icon } from 'components/Icon';
 
-import { cnPlusIcon } from './cn';
+import { cnMinusIcon } from './cn';
 
-import './PlusIcon.scss';
+import './MinusIcon.scss';
 
-export type PlusIconProps = {
+export type MinusIconProps = {
   className?: string;
   iconTheme?: 'thin';
 };
 
-export const PlusIcon: FC<PlusIconProps> = ({
+export const MinusIcon: FC<MinusIconProps> = ({
   className,
   iconTheme,
 
   ...rest
 }) => {
-  return <IconFa {...rest} className={cnPlusIcon({ iconTheme }, ['fa-plus', className])} />;
+  return <Icon {...rest} className={cnMinusIcon({ iconTheme }, ['fa-minus', className])} />;
 };

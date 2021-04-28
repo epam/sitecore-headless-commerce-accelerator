@@ -14,8 +14,7 @@
 
 import React, { FC, HTMLProps, useCallback, useState } from 'react';
 
-import { MinusIcon } from 'Foundation/UI/components/MinusIcon';
-import { PlusIcon } from 'Foundation/UI/components/PlusIcon';
+import { MinusIcon, PlusIcon } from 'components';
 
 import { cnNavigation } from '../cn';
 

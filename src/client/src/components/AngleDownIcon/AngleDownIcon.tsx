@@ -14,22 +14,18 @@
 
 import React, { FC } from 'react';
 
-import { IconFa } from 'Foundation/UI/components/IconFa';
+import { Icon } from 'components/Icon';
 
-import { cnMinusIcon } from './cn';
+import { cnAngleDownIcon } from './cn';
 
-import './MinusIcon.scss';
-
-export type MinusIconProps = {
+export type AngleDownIconProps = {
   className?: string;
-  iconTheme?: 'thin';
 };
 
-export const MinusIcon: FC<MinusIconProps> = ({
+export const AngleDownIcon: FC<AngleDownIconProps> = ({
   className,
-  iconTheme,
 
   ...rest
 }) => {
-  return <IconFa {...rest} className={cnMinusIcon({ iconTheme }, ['fa-minus', className])} />;
+  return <Icon {...rest} className={cnAngleDownIcon({}, ['fa-angle-down', className])} />;
 };

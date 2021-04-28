@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+export * from './AngleDownIcon';
 export * from './AngleLeftIcon';
 export * from './AngleRightIcon';
 export * from './Button';
@@ -20,7 +21,9 @@ export * from './Dialog';
 export * from './Icon';
 export * from './ImageSlider';
 export * from './Input';
+export * from './MinusIcon';
 export * from './Pagination';
+export * from './PlusIcon';
 export * from './PopularItems';
 export * from './QuantityPicker';
 export * from './RadioButton';

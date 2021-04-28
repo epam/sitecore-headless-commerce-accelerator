@@ -12,5 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+.MinusIcon {
+  &_iconTheme {
+    &_thin {
+      -webkit-text-stroke: 2px white;
+    }
+  }
+}

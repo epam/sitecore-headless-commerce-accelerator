@@ -12,5 +12,37 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+@import 'Foundation/UI/common/scss/variables';
+
+.Navigation {
+  &-Dropdown {
+    &Heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+
+      &_firstLevel {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      &:active {
+        color: $theme-color;
+      }
+    }
+
+    &Content {
+      display: none;
+      padding: 0px 10px 0px 25px;
+
+      &_open {
+        display: block;
+      }
+    }
+  }
+}

@@ -21,7 +21,7 @@ export class NavigationLinks extends JSS.SafePureComponent<NavigationProps, {}> 
   protected safeRender() {
     return (
       <ul>
-        {this.props.links.map((link, index, firstLinkClassname) => {
+        {this.props.links.map((link) => {
           return (
             <li key={link.title}>
               {link.url ? (
@@ -29,7 +29,7 @@ export class NavigationLinks extends JSS.SafePureComponent<NavigationProps, {}> 
                   {link.title}
                 </NavigationLink>
               ) : (
-                <span className="submenu_title">{link.title}</span>
+                <span className={this.props.titleClass}>{link.title}</span>
               )}
             </li>
           );

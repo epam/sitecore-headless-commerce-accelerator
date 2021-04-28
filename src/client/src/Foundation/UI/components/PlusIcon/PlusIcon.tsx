@@ -12,5 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+import React, { FC } from 'react';
+
+import { IconFa } from 'Foundation/UI/components/IconFa';
+
+import { cnPlusIcon } from './cn';
+
+import './PlusIcon.scss';
+
+export type PlusIconProps = {
+  className?: string;
+  iconTheme?: 'thin';
+};
+
+export const PlusIcon: FC<PlusIconProps> = ({
+  className,
+  iconTheme,
+
+  ...rest
+}) => {
+  return <IconFa {...rest} className={cnPlusIcon({ iconTheme }, ['fa-plus', className])} />;
+};

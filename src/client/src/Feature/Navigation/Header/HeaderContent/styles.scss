@@ -39,6 +39,12 @@
       &:last-of-type {
         background-color: $bg-white;
       }
+
+      @media #{$header-switch-mobile-mode} {
+        .Navigation {
+          display: none;
+        }
+      }
     }
   }
   &_container {
@@ -91,9 +97,6 @@
       }
       @media #{$header-switch-mobile-mode} {
         display: flex;
-        .navigation ul.navigation-content {
-          display: none;
-        }
       }
 
       @media #{$header-switch-padding-mobile-mode} {
@@ -121,36 +124,28 @@
     justify-content: space-between;
   }
 
-  &--active {
-    .mobile-menu {
-      &-content {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .header_container {
-        &:first-of-type {
-          .header_content {
-            display: block;
-            border-bottom: none;
-            .navigation-buttons {
-              display: none;
-            }
+  .mobile-menu {
+    &-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .header_container {
+      &:first-of-type {
+        .header_content {
+          display: block;
+          border-bottom: none;
+          .navigation-buttons {
+            display: none;
           }
         }
-        &:last-of-type {
-          .header_content {
-            > div.navigation-buttons_item.search {
-              display: block;
-            }
-            @media #{$header-switch-mobile-mode} {
-              padding: 0px;
-              .navigation ul.navigation-content {
-                display: block;
-                height: 100vh;
-                overflow-y: scroll;
-                padding-top: 100px;
-              }
-            }
+      }
+      &:last-of-type {
+        .header_content {
+          > div.navigation-buttons_item.search {
+            display: block;
+          }
+          @media #{$header-switch-mobile-mode} {
+            padding: 0px;
           }
         }
       }
@@ -167,24 +162,6 @@
         animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
         border-bottom: 0 solid $blue;
         box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.06);
-        .header_content {
-          @media #{$header-switch-mobile-mode} {
-            .search {
-              margin-right: 0px;
-            }
-          }
-        }
-      }
-    }
-    .mobile-menu_container {
-      .header_container:last-of-type {
-        .header_content {
-          @media #{$header-switch-mobile-mode} {
-            .navigation-content {
-              margin-right: 0px;
-            }
-          }
-        }
       }
     }
   }

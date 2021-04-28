@@ -12,5 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+import React, { FC } from 'react';
+
+import { IconFa } from 'Foundation/UI/components/IconFa';
+
+import { cnMinusIcon } from './cn';
+
+import './MinusIcon.scss';
+
+export type MinusIconProps = {
+  className?: string;
+  iconTheme?: 'thin';
+};
+
+export const MinusIcon: FC<MinusIconProps> = ({
+  className,
+  iconTheme,
+
+  ...rest
+}) => {
+  return <IconFa {...rest} className={cnMinusIcon({ iconTheme }, ['fa-minus', className])} />;
+};

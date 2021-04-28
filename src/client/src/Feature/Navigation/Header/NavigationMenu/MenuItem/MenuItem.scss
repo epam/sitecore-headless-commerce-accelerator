@@ -12,5 +12,35 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+@import 'Foundation/UI/common/scss/variables';
+
+.Navigation {
+  &-MenuItem {
+    flex-shrink: 0;
+    padding: 0px 15px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+
+    @media #{$header-switch-mobile-mode} {
+      width: 100%;
+      padding: 10px 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    &Link {
+      color: $grey;
+
+      @media #{$header-switch-mobile-mode} {
+        color: $black;
+      }
+
+      &:hover,
+      &:active {
+        color: $theme-color;
+      }
+    }
+  }
+}

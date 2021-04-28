@@ -12,5 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+import React, { FC } from 'react';
+
+import { IconFa } from 'Foundation/UI/components/IconFa';
+
+import { cnAngleDownIcon } from './cn';
+
+export type AngleDownIconProps = {
+  className?: string;
+};
+
+export const AngleDownIcon: FC<AngleDownIconProps> = ({
+  className,
+
+  ...rest
+}) => {
+  return <IconFa {...rest} className={cnAngleDownIcon({}, ['fa-angle-down', className])} />;
+};

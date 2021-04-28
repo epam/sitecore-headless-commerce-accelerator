@@ -12,5 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './constants';
-export * from './NavigationMenu';
+@import 'Foundation/UI/common/scss/variables';
+
+.Navigation {
+  &-Item {
+    flex-shrink: 0;
+
+    @media #{$header-switch-mobile-mode} {
+      width: 100%;
+    }
+  }
+}

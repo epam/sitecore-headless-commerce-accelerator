@@ -30,3 +30,14 @@ export const permanentNavigationLinks = [
     url: '/Blog',
   },
 ];
+
+export const navigationSelectors = [
+  {
+    options: ['English'],
+    title: 'Choose Language',
+  },
+  {
+    options: ['USD'],
+    title: 'Choose Currency',
+  },
+];

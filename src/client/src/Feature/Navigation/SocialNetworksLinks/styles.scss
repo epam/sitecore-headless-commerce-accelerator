@@ -12,9 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import "Foundation/UI/common/scss/variables";
+@import 'Foundation/UI/common/scss/variables';
 
 .social-network-container {
   display: flex;
@@ -61,7 +61,6 @@
       }
     }
   }
-  
 }
 @media #{$footer-switch-mode} {
   .social-network-container {
@@ -69,5 +68,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+  }
+}
+
+.widgets-social {
+  padding: 0px 30px;
+  .social {
+    &-list {
+      display: flex;
+    }
+
+    &-item {
+      margin-right: 20px;
+    }
   }
 }

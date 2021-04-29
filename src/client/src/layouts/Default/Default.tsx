@@ -17,8 +17,8 @@ import React, { FC, useMemo } from 'react';
 import { Placeholder, VisitorIdentification } from '@sitecore-jss/sitecore-jss-react';
 import Helmet from 'react-helmet';
 
-import { useSitecoreContext } from 'Foundation/hooks';
 import { getRenderingSitecoreProps } from 'Foundation/utils';
+import { useSitecoreContext } from 'hooks';
 import { LayoutProps } from 'Project/HCA/models';
 
 export const Default: FC<LayoutProps> = (props) => {

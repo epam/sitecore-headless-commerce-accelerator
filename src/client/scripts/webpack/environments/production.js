@@ -21,6 +21,7 @@ const resolve = {
     Feature: path.resolve(process.cwd(), './src/Feature/'),
     layouts: path.resolve(process.cwd(), './src/layouts/'),
     components: path.resolve(process.cwd(), './src/components/'),
+    hooks: path.resolve(process.cwd(), './src/hooks/'),
   },
 };
 

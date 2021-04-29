@@ -23,7 +23,7 @@ import {
 } from 'Feature/Catalog/Integration/ProductVariant';
 import { resolveColor } from 'Foundation/Commerce';
 import { Variant } from 'Foundation/Commerce/dataModel.Generated';
-import { useSitecoreContext } from 'Foundation/hooks';
+import { useSitecoreContext } from 'hooks';
 
 import { getVariantIdFromQuery } from './utils';
 

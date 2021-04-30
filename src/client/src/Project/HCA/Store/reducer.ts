@@ -19,10 +19,12 @@ import { connectRouter } from 'connected-react-router';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
 
+import * as Authentication from 'services/authentication';
+
 import * as GlobalError from 'Foundation/UI/common/components/Errors/Integration';
 
 import * as Account from 'Feature/Account/Integration/Account';
-import * as Authentication from 'Feature/Account/Integration/Authentication';
+
 import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';

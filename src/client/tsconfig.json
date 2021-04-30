@@ -40,6 +40,7 @@
     "src/layouts/**/*",
     "src/components/**/*",
     "src/hooks/**/*",
+    "src/services/**/*"
   ],
   "exclude": [
     "src/Foundation/**/*.js",

@@ -19,7 +19,7 @@ import { User } from 'Foundation/Commerce';
 import { Action, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
-import * as AuthenticationApi from '../api/Authentication';
+import * as AuthenticationApi from './api';
 
 import * as actions from './actions';
 import { sagaActionTypes } from './constants';

@@ -33,6 +33,7 @@ module.exports = (compilerOptions) => ({
       layouts: path.resolve(process.cwd(), './src/layouts/'),
       components: path.resolve(process.cwd(), './src/components/'),
       hooks: path.resolve(process.cwd(), './src/hooks/'),
+      services: path.resolve(process.cwd(), './src/services/'),
     },
   },
   module: {
@@ -114,7 +115,14 @@ module.exports = (compilerOptions) => ({
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      include: ['/src/Project/', '/src/Feature/', '/src/Foundation/'],
+      include: [
+        '/src/Project/',
+        '/src/Feature/',
+        '/src/Foundation/',
+        '/src/components/',
+        '/src/hooks/',
+        '/src/services/',
+      ],
       tsconfig: './tsconfig.dev.json',
       tslint: './tslint.json',
     }),

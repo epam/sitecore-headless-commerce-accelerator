@@ -15,7 +15,6 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { authenticationProcess, logoutProcess } from 'Feature/Account/Integration/Authentication';
 import {
   LoadCart as loadCart,
   RemoveCartLine as removeCartLine,
@@ -24,6 +23,7 @@ import {
 } from 'Feature/Checkout/Integration/ShoppingCart';
 import { eventHub, events } from 'Foundation/EventHub';
 import { LoadingStatus } from 'Foundation/Integration';
+import { authenticationProcess, logoutProcess } from 'services/authentication';
 
 import { Button } from 'components';
 import { NavigationLink } from 'Foundation/UI';

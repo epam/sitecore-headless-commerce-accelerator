@@ -22,6 +22,7 @@ const resolve = {
     layouts: path.resolve(process.cwd(), './src/layouts/'),
     components: path.resolve(process.cwd(), './src/components/'),
     hooks: path.resolve(process.cwd(), './src/hooks/'),
+    services: path.resolve(process.cwd(), './src/services/'),
   },
 };
 
@@ -153,7 +154,14 @@ const clientWebpackConfigFactory = (projectManifest) => {
     plugins: [
       new ForkTsCheckerWebpackPlugin({
         async: false,
-        include: ['/src/Project/', '/src/Feature/', '/src/Foundation/'],
+        include: [
+          '/src/Project/',
+          '/src/Feature/',
+          '/src/Foundation/',
+          '/src/components/',
+          '/src/hooks/',
+          '/src/services/',
+        ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
       }),
@@ -237,7 +245,14 @@ const serverWebpackConfigFactory = (projectManifest) => {
     plugins: [
       new ForkTsCheckerWebpackPlugin({
         async: false,
-        include: ['/src/Project/', '/src/Feature/', '/src/Foundation/'],
+        include: [
+          '/src/Project/',
+          '/src/Feature/',
+          '/src/Foundation/',
+          '/src/components/',
+          '/src/hooks/',
+          '/src/services/',
+        ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
       }),

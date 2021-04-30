@@ -35,7 +35,7 @@ import {
 } from './models';
 import * as selectors from './selectors';
 
-import { Authentication } from '../Authentication';
+import { Authentication } from 'services/authentication';
 
 import { eventHub, events } from 'Foundation/EventHub';
 

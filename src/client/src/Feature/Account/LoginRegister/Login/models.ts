@@ -13,9 +13,8 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { AuthenticationProcessState, GlobalAuthenticationState } from 'Feature/Account/Integration/Authentication';
 import { FormValues } from 'Foundation/ReactJss/Form';
+import { AuthenticationProcessState, GlobalAuthenticationState } from 'services/authentication';
 
 export interface LogInDispatchProps {
   Authentication: (email: string, password: string, returnUrl: string) => void;

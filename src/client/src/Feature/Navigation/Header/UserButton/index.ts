@@ -15,7 +15,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import * as Authentication from 'Feature/Account/Integration/Authentication';
+import * as Authentication from 'services/authentication';
 
 import * as JSS from 'Foundation/ReactJss';
 

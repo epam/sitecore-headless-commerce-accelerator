@@ -20,7 +20,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import * as Account from 'Feature/Account/Integration/Account';
+import * as Account from 'services/account';
 
 import { RegisterComponent } from './Component';
 import { AppState, SignUpDispatchProps, SignUpStateProps } from './models';

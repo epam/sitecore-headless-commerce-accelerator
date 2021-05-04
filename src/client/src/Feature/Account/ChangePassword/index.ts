@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import * as Account from 'Feature/Account/Integration/Account';
+import * as Account from 'services/account';
 
 import Component from './Component';
 

@@ -18,7 +18,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { rendering } from 'Foundation/ReactJss';
 
-import * as Account from 'Feature/Account/Integration/Account';
+import * as Account from 'services/account';
 
 import Component from './Component';
 import { AddressManagerDispatchProps, AddressManagerOwnProps, AddressManagerStateProps, AppState } from './models';

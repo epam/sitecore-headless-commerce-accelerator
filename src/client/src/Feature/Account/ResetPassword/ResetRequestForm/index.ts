@@ -16,11 +16,10 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import {
-  requestPasswordReset,
-  RequestPasswordReset as confirmPasswordRecovery,
-} from 'Feature/Account/Integration/Account';
 import { rendering } from 'Foundation/ReactJss';
+
+import { requestPasswordReset, RequestPasswordReset as confirmPasswordRecovery } from 'services/account';
+
 import { AppState } from './models';
 import { ResetRequestFormComponent } from './ResetRequestForm';
 

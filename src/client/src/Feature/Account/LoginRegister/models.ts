@@ -15,7 +15,7 @@
 import * as Commerce from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 
-import * as Account from 'Feature/Account/Integration/Account';
+import * as Account from 'services/account';
 
 export interface LoginRegisterOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 

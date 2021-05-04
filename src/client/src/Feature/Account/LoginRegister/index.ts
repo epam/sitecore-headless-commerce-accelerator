@@ -12,16 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
-
 import { Location, Pathname } from 'history';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as Account from 'Feature/Account/Integration/Account';
 import * as Extensions from 'Foundation/Base';
+import * as JSS from 'Foundation/ReactJss';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
+
+import * as Account from 'services/account';
 
 import { LoginRegisterFormComponent } from './Component';
 import { AppState, LoginRegisterStateProps } from './models';

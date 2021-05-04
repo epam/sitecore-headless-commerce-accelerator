@@ -14,15 +14,13 @@
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
+import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Commerce from 'Foundation/Commerce';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
-import * as Api from './../api/Account';
-
-import * as DataModel from '../../dataModel.Generated';
-
 import * as actions from './actions';
+import * as Api from './api';
 import { sagaActionTypes } from './constants';
 import {
   AccountValidationState,

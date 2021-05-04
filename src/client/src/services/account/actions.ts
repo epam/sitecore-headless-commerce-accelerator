@@ -12,10 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Commerce from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
-
-import * as DataModel from '../../dataModel.Generated';
 
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';

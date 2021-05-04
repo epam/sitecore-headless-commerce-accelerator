@@ -14,7 +14,7 @@
 
 import { RouterProps } from 'react-router';
 
-import { GlobalAccountState, ResetPasswordState } from 'Feature/Account/Integration/Account';
+import { GlobalAccountState, ResetPasswordState } from 'services/account';
 
 export interface PasswordResetOwnProps extends RouterProps {}
 

@@ -12,10 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Account from 'Feature/Account/Integration/Account';
 import * as Commerce from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
+
+import * as Account from 'services/account';
 
 export interface AddressDataSource extends Jss.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];

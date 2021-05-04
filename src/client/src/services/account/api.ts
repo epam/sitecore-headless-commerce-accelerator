@@ -14,10 +14,10 @@
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
+import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Commerce from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
 
-import * as DataModel from 'Feature/Account/dataModel.Generated';
 import {
   AddressResponse,
   ChangePasswordResponse,

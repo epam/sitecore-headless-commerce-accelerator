@@ -17,8 +17,10 @@ import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { resetPassword, ResetPassword as recoverPassword } from 'Feature/Account/Integration/Account';
 import { rendering } from 'Foundation/ReactJss';
+
+import { resetPassword, ResetPassword as recoverPassword } from 'services/account';
+
 import { AppState } from './models';
 import { PasswordResetFormComponent } from './PasswordResetForm';
 

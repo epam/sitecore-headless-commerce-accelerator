@@ -12,16 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Account from 'Feature/Account/Integration/Account';
-
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as Checkout from 'Feature/Checkout/Integration/Checkout';
+import * as Account from 'services/account';
 
 import ShippingComponent from './Component';
 import { AppState, ShippingDispatchProps, ShippingOwnProps, ShippingStateProps } from './models';

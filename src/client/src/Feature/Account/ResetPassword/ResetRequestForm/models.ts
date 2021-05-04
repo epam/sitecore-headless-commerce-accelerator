@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { GlobalAccountState, RequestPasswordResetState } from 'Feature/Account/Integration/Account';
+import { GlobalAccountState, RequestPasswordResetState } from 'services/account';
 
 export interface ResetRequestFormStateProps {
   requestPasswordResetState: RequestPasswordResetState;

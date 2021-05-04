@@ -16,7 +16,7 @@ import * as Commerce from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
 
-import * as Account from 'Feature/Account/Integration/Account';
+import * as Account from 'services/account';
 
 export interface ChangeUserInformationFormOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
 

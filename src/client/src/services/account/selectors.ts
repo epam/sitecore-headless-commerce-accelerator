@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import { sitecoreContext } from 'Foundation/ReactJss';
+
 import { AppState, GlobalAccountState } from './models';
 
 export const commerceUser = (state: AppState) => sitecoreContext(state).commerceUser;

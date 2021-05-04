@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
 
@@ -30,6 +31,7 @@ import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
+import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';

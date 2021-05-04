@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as DataModel from 'Feature/Account/dataModel.Generated';
+import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { Status } from 'Foundation/Integration';
 import { SitecoreState } from 'Foundation/ReactJss';
-
-import * as DataModel from '../../dataModel.Generated';
 
 export interface AccountValidationState extends Status {
   email: string;
@@ -100,3 +100,17 @@ export interface ResetPasswordPayload {
   newPassword: string;
   token: string;
 }
+
+export interface CreateAccountResponse extends Base.OkJsonResultModel<Commerce.User> {}
+
+export interface EmailValidationResponse extends Base.OkJsonResultModel<Commerce.ValidateEmail> {}
+
+export interface ChangePasswordResponse extends Base.OkJsonResultModel<Base.VoidResult> {}
+
+export interface UpdateAccountResponse extends Base.OkJsonResultModel<Base.VoidResult> {}
+
+export interface AddressResponse extends Base.OkJsonResultModel<Commerce.Address[]> {}
+
+export interface ConfirmPasswordRecoveryResponse extends Base.OkJsonResultModel<{ IsEmailValid: boolean }> {}
+
+export interface RecoverPasswordResponse extends Base.OkJsonResultModel<Base.VoidResult> {}

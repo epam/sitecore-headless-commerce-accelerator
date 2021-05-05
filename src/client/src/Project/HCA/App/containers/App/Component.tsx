@@ -61,7 +61,7 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
           ))}
           <Route component={NotFound} />
         </Switch>
-        <ToastContainer hideProgressBar={true} />
+        <ToastContainer hideProgressBar={true} closeOnClick={false} />
       </>
     );
   }

@@ -20,19 +20,21 @@ import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
 import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { LoadingStatus } from 'Foundation/Integration';
-import { rendering } from 'Foundation/ReactJss';
+import { renderingWithContext } from 'Foundation/ReactJss';
 import { ProductActionsComponent } from './ProductActions';
 
 import { AppState, ProductActionsDispatchProps, ProductActionsOwnProps, ProductActionsStateProps } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const shoppingCartState = shoppingCart(state);
+  const commerceUser = ProductVariant.commerceUser(state);
   const productId = ProductVariant.productId(state);
   const variant = ProductVariant.selectedProductVariant(state, productId);
   const isLoading = shoppingCartState.status === LoadingStatus.Loading &&
     shoppingCartState.actionType === actionTypes.ADD_TO_CART_REQUEST;
 
   return {
+    commerceUser,
     isLoading,
     productId,
     variant,
@@ -53,4 +55,4 @@ const connectedToStore = connect<ProductActionsStateProps, ProductActionsDispatc
   mapDispatchToProps
 );
 
-export const ProductActions = compose(rendering, connectedToStore)(ProductActionsComponent);
+export const ProductActions = compose(renderingWithContext, connectedToStore)(ProductActionsComponent);

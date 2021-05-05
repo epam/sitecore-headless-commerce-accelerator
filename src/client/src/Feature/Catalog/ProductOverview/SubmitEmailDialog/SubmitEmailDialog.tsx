@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback } from 'react';
+import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
 import { Button, Dialog, Input } from 'components';
 
@@ -22,12 +22,19 @@ import './SubmitEmailDialog.scss';
 type Props = {
   dialogOpen: boolean;
   toggleDialog: (open: boolean) => void;
+  submitDialogData: (email: string) => void;
 };
 
-export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog }) => {
+export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitDialogData }) => {
+  const [email, setEmail] = useState('');
+
   const handleToggleDialogClick = useCallback(() => {
     toggleDialog(!dialogOpen);
   }, [dialogOpen]);
+
+  const handleInputValueChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, []);
 
   return (
     <Dialog isOpen={dialogOpen} toggleDialog={handleToggleDialogClick}>
@@ -37,12 +44,23 @@ export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog }) => {
           <h6>And we will send a notification when the product is available again</h6>
         </div>
         <form>
-          <Input name="email" required={true} type="email" placeholder="Email*" fullWidth={true} />
+          <Input
+            name="email"
+            value={email}
+            required={true}
+            onChange={handleInputValueChange}
+            type="email"
+            placeholder="Email*"
+            fullWidth={true}
+          />
           <div className={cnSubmitEmailDialog('SubmitContainer')}>
             <Button
               buttonType="submit"
-              onClick={() => {
-                // TO-DO:: handle form submit action
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+
+                submitDialogData(email);
+                toggleDialog(false);
               }}
             >
               Submit

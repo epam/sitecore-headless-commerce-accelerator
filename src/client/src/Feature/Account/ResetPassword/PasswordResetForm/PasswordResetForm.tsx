@@ -15,7 +15,6 @@
 import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
 
 import qs from 'query-string';
-import { isMobile } from 'react-device-detect';
 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -46,10 +45,10 @@ export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
 
   useEffect(() => {
     if (resetPasswordState.status === LoadingStatus.Loaded) {
-      notify('success', 'Your password has been succesfully changed', isMobile && { position: 'bottom-right' });
+      notify('success', 'Your password has been succesfully changed');
     }
     if (resetPasswordState.status === LoadingStatus.Failure) {
-      notify('error', 'Sorry, something went wrong', isMobile && { position: 'bottom-right' });
+      notify('error', 'Sorry, something went wrong');
     }
   }, [resetPasswordState.status]);
 

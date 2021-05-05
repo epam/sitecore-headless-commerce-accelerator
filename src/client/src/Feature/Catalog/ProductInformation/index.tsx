@@ -167,12 +167,12 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                         <div className="row">
                           <div className="col-md-6">
                             <div className="mb-10">
-                              <Input type="text" className="rating-form-input" placeholder="Name" />
+                              <Input type="text" className="rating-form-input" placeholder="Name" fullWidth={true} />
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="mb-10">
-                              <Input type="email" className="rating-form-input" placeholder="Email" />
+                              <Input type="email" className="rating-form-input" placeholder="Email" fullWidth={true} />
                             </div>
                           </div>
                           <div className="col-md-12">

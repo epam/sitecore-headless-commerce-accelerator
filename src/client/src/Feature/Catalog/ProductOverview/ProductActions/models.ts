@@ -13,17 +13,20 @@
 //    limitations under the License.
 
 import { ShoppingCart } from 'Feature/Checkout/Integration/api';
-import { Variant } from 'Foundation/Commerce';
+import { User, Variant } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
 
 import { ProductVariantGlobalState } from 'Feature/Catalog/Integration/ProductVariant';
 import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
+import { ProductOverviewContext } from '../models';
 
-export interface ProductActionsOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}
+export interface ProductActionsOwnProps
+  extends Jss.RenderingWithContext<Jss.BaseDataSourceItem, ProductOverviewContext> {}
 export interface ProductActionsStateProps {
   isLoading?: boolean;
   productId?: string;
   variant?: Variant;
+  commerceUser: User;
 }
 export interface ProductActionsDispatchProps {
   AddToCart: (model: ShoppingCart.CartItemDto) => void;

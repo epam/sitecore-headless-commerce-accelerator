@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Product } from 'Foundation/Commerce';
+import { Product, UserContext } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
 
 export enum StockStatus {
@@ -39,6 +39,6 @@ export interface ProductContext {
   product: Product;
 }
 
-export interface SitecoreContext extends CategoryContext, ProductContext {}
+export interface SitecoreContext extends CategoryContext, ProductContext, UserContext {}
 
 export interface AppState extends Jss.SitecoreState<SitecoreContext> {}

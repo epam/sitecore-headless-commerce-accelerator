@@ -15,6 +15,7 @@
 import React, { FC, useCallback, useState } from 'react';
 
 import { Common } from 'Feature/Catalog/Integration';
+import { notify, notifySubscribed } from 'Foundation/services/notificationsService';
 
 import { Button, QuantityPicker } from 'components';
 
@@ -28,7 +29,9 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
   isLoading,
   variant,
   productId,
-  AddToCart
+  AddToCart,
+  sitecoreContext,
+  commerceUser,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -38,9 +41,19 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
     AddToCart({ productId, quantity, variantId: variant.variantId });
   }, [productId, quantity, variant]);
 
+  const subscribeToOOSProduct = (email: string) => {
+    // TO-DO:: handle subscribe to oos product action
+
+    notifySubscribed(sitecoreContext.product);
+  };
+
   const handleInformMeButtonClick = useCallback(() => {
-    setDialogOpen(true);
-  }, []);
+    if (commerceUser && commerceUser.customerId) {
+      subscribeToOOSProduct('');
+    } else {
+      setDialogOpen(true);
+    }
+  }, [commerceUser]);
 
   const handleQuantityChange = useCallback(
     (newQuantity) => {
@@ -74,7 +87,11 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
           <Button buttonTheme="text" className={cnProductActions('InformMeButton')} onClick={handleInformMeButtonClick}>
             Inform me when it back in
           </Button>
-          <SubmitEmailDialog dialogOpen={dialogOpen} toggleDialog={setDialogOpen} />
+          <SubmitEmailDialog
+            dialogOpen={dialogOpen}
+            toggleDialog={setDialogOpen}
+            submitDialogData={subscribeToOOSProduct}
+          />
         </>
       )}
     </>

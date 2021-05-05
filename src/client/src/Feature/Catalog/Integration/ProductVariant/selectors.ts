@@ -28,3 +28,5 @@ export const productId = (state: ProductVariantGlobalState) => {
   return productInStore ? productInStore.productId : '';
 };
 export const variants = (state: ProductVariantGlobalState) => product(state) && product(state).variants;
+
+export const commerceUser = (state: ProductVariantGlobalState) => Jss.sitecoreContext(state).commerceUser;

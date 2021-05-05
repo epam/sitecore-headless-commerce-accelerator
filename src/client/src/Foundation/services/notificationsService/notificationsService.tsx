@@ -13,10 +13,21 @@
 //    limitations under the License.
 
 import React from 'react';
-import { toast, ToastOptions, TypeOptions } from 'react-toastify';
+import { isMobile } from 'react-device-detect';
+import { toast, TypeOptions } from 'react-toastify';
 
+import { Product } from 'Foundation/Commerce';
+
+import { SubscriptionMessage } from './SubscriptionMessage';
 import { ToastContent } from './ToastContent';
 
-export const notify = (type: TypeOptions, message: string, options?: ToastOptions) => {
-  return toast(() => <ToastContent type={type} message={message} />, options);
+export const notify = (type: TypeOptions, message: string) => {
+  return toast(() => <ToastContent type={type} message={message} />, isMobile && { position: 'bottom-right' });
+};
+
+export const notifySubscribed = (product: Product) => {
+  return toast(
+    () => <SubscriptionMessage product={product} configuration={{ includeDetails: !isMobile }} />,
+    isMobile && { position: 'bottom-right' },
+  );
 };

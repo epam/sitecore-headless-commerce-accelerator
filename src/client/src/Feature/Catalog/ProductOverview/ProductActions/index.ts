@@ -16,7 +16,8 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
+import * as ProductVariant from 'services/productVariant';
+
 import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
 import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { LoadingStatus } from 'Foundation/Integration';

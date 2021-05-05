@@ -15,6 +15,5 @@
 import * as Common from './common';
 import * as ProductSearch from './ProductsSearch';
 import * as ProductSearchSuggestion from './ProductsSearchSuggestions';
-import * as ProductVariant from './ProductVariant';
 
-export { Common, ProductSearch, ProductSearchSuggestion, ProductVariant };
+export { Common, ProductSearch, ProductSearchSuggestion };

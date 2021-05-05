@@ -17,7 +17,7 @@ import * as JSS from 'Foundation/ReactJss';
 import { ProductContext } from 'Foundation/Commerce';
 import { Variant } from 'Foundation/Commerce/dataModel.Generated';
 
-import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
+import * as ProductVariant from 'services/productVariant';
 
 export interface ProductOverviewOwnProps
   extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductOverviewContext> {}

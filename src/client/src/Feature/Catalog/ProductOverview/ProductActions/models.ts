@@ -15,8 +15,7 @@
 import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 import { User, Variant } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
-
-import { ProductVariantGlobalState } from 'Feature/Catalog/Integration/ProductVariant';
+import { ProductVariantGlobalState } from 'services/productVariant';
 import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
 import { ProductOverviewContext } from '../models';
 

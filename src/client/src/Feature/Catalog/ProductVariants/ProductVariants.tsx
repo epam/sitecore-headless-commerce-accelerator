@@ -16,14 +16,14 @@ import React, { FC, MouseEvent, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import { resolveColor } from 'Foundation/Commerce';
+import { Variant } from 'Foundation/Commerce/dataModel.Generated';
+import { useSitecoreContext } from 'hooks';
 import {
   productId as productIdSelector,
   SelectColorVariant as selectColorVariant,
   variants as variantsSelector,
-} from 'Feature/Catalog/Integration/ProductVariant';
-import { resolveColor } from 'Foundation/Commerce';
-import { Variant } from 'Foundation/Commerce/dataModel.Generated';
-import { useSitecoreContext } from 'hooks';
+} from 'services/productVariant';
 
 import { getVariantIdFromQuery } from './utils';
 

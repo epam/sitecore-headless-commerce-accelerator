@@ -14,7 +14,7 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { product } from './../common/selectors';
+import { product } from 'Feature/Catalog/Integration/common/selectors';
 
 import { ProductVariantGlobalState } from './models';
 

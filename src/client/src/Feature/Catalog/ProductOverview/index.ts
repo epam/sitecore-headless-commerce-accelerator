@@ -16,8 +16,9 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import { ProductVariant } from 'Feature/Catalog/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss/Enhancers/rendering';
+import * as ProductVariant from 'services/productVariant';
+
 import ProductOverviewComponent from './Component';
 
 import { AppState, ProductOverviewDispatchProps, ProductOverviewOwnProps, ProductOverviewStateProps } from './models';

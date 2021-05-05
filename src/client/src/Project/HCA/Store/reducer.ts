@@ -20,22 +20,20 @@ import { connectRouter } from 'connected-react-router';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
 
-import * as Authentication from 'services/authentication';
-
 import * as GlobalError from 'Foundation/UI/common/components/Errors/Integration';
-
-import * as Account from 'Feature/Account/Integration/Account';
 
 import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
-import * as ProductVariant from 'Feature/Catalog/Integration/ProductVariant';
 import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 import * as HamburgerMenu from 'Feature/Navigation/Header/NavigationMenu/Integration';
+import * as Account from 'services/account';
+import * as Authentication from 'services/authentication';
+import * as ProductVariant from 'services/productVariant';
 
 export const makeRootReducer = (history: History) =>
   combineReducers({

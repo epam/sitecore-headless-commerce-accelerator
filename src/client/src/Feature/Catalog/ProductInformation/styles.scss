@@ -230,18 +230,6 @@
       .mb-10 {
         margin-bottom: 10px;
       }
-      .rating-form-input {
-        padding: 2px 10px 2px 20px;
-        border: 1px solid #e6e6e6;
-        background: transparent;
-        font-size: 14px;
-        width: 100%;
-        color: $review-input-border;
-        box-shadow: none;
-        height: 45px;
-        margin-bottom: 0;
-        font-family: $poppins;
-      }
       .rating-form-submit {
         & textarea {
           height: 180px;
@@ -321,6 +309,23 @@
             line-height: 24px;
           }
         }
+      }
+    }
+  }
+}
+
+// Temporary increased selector's specifity because some global styles override it
+
+.Input.rating-form-input {
+  .Input-ControlWrapper {
+    .Input-Control {
+      border: 1px solid #e6e6e6;
+      color: $review-input-border;
+      font-family: $poppins;
+
+      &:focus {
+        box-shadow: none;
+        -webkit-box-shadow: none;
       }
     }
   }

@@ -12,11 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Commerce from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 
-import * as Commerce from 'Foundation/Commerce';
-
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 export interface OrderInformationOwnProps
   extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}

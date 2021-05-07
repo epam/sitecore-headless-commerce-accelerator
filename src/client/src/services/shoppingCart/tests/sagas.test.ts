@@ -14,9 +14,8 @@
 
 import { call, put, select } from 'redux-saga/effects';
 
-import { ShoppingCart } from 'Feature/Checkout/Integration/api';
-
 import * as actions from '../actions';
+import * as ShoppingCart from '../api';
 import * as sagas from '../sagas';
 import { shoppingCart } from '../selectors';
 

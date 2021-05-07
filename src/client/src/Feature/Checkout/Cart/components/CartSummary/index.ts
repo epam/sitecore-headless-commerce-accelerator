@@ -14,9 +14,7 @@
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
+import { actionTypes, RemoveCartLine, shoppingCart, UpdateCartLine } from 'services/shoppingCart';
 import { LoadingStatus } from 'Foundation/Integration';
 import { CartSummaryComponent } from './Component';
 
@@ -34,8 +32,8 @@ const mapStateToProps = (state: AppState): CartSummaryStateProps => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
-      RemoveCartLine: actions.RemoveCartLine,
-      UpdateCartLine: actions.UpdateCartLine,
+      RemoveCartLine,
+      UpdateCartLine,
     },
     dispatch,
   );

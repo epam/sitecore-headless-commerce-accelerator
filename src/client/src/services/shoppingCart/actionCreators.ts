@@ -13,10 +13,11 @@
 //    limitations under the License.
 
 import { Action } from 'Foundation/Integration';
-
 import * as ShoppingCart from 'Feature/Checkout/Integration/api/ShoppingCart';
+import * as DataModels from 'Feature/Checkout/dataModel.Generated';
 
 import {
+  CartItemDto,
   CartLineSuccessPayload,
   CartSuccessPayload,
   RemoveCartLinePayload,
@@ -31,11 +32,11 @@ export type LoadCart = () => Action;
 
 export type GetCartSuccess = (cart: ShoppingCartData) => Action<CartSuccessPayload>;
 
-export type AddToCart = (model: ShoppingCart.CartItemDto) => Action<ShoppingCart.CartItemDto>;
+export type AddToCart = (model: CartItemDto) => Action<CartItemDto>;
 
 export type AddToCartSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
 
-export type UpdateCartLine = (model: ShoppingCart.CartItemDto) => Action<ShoppingCart.CartItemDto>;
+export type UpdateCartLine = (model: CartItemDto) => Action<CartItemDto>;
 
 export type UpdateCartLineSuccess = (model: ShoppingCartData) => Action<CartLineSuccessPayload>;
 

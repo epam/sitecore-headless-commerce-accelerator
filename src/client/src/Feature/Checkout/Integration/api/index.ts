@@ -13,5 +13,4 @@
 //    limitations under the License.
 
 import * as Order from './Order';
-import * as ShoppingCart from './ShoppingCart';
-export { Order, ShoppingCart };
+export { Order };

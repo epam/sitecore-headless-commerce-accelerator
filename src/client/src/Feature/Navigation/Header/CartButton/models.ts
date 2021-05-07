@@ -14,7 +14,7 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
+import { GlobalShoppingCartState } from 'services/shoppingCart';
 
 export interface CartButtonProps {
   cartQuantity: number;

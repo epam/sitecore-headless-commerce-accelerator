@@ -20,14 +20,14 @@ import { LoadingStatus } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import { SetShippingOptionsRequest } from 'Feature/Checkout/dataModel.Generated';
-import { loadCart } from 'Feature/Checkout/Integration/ShoppingCart/sagas';
-
 import { CheckoutStepType, StepValuesPayload } from '..';
 import * as actions from '../actions';
 import * as Checkout from '../api';
 import { CreditCard } from '../models';
 import * as sagas from '../sagas';
 import * as selectors from '../selectors';
+
+import { loadCart } from 'services/shoppingCart/sagas';
 
 describe('getCheckoutData', () => {
   const gen = sagas.getCheckoutData();

@@ -14,7 +14,7 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 export interface OrderSummaryPriceLinesProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement> {

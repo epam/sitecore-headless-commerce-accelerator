@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 import CartComponent from './Component';
 import { AppState, CartDispatchProps, CartOwnProps, CartStateProps } from './models';

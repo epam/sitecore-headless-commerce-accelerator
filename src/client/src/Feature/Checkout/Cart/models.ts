@@ -15,7 +15,7 @@
 import * as Commerce from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 export interface CartDataSource extends JSS.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];

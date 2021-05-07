@@ -15,7 +15,8 @@
 import { initialState as productsSearch } from 'Feature/Catalog/Integration/ProductsSearch';
 import { initialState as currentOrder } from 'Feature/Checkout/Integration/Order';
 import { initialState as orderHistory } from 'Feature/Checkout/Integration/OrderHistory';
-import { initialState as shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
+
+import { initialState as shoppingCart } from 'services/shoppingCart';
 
 import { AppState } from '../models';
 

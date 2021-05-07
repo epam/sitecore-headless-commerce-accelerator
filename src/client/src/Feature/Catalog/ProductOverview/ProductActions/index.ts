@@ -17,9 +17,8 @@ import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import * as ProductVariant from 'services/productVariant';
+import { actionTypes, AddToCart, shoppingCart } from 'services/shoppingCart';
 
-import { actionTypes, shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import * as actions from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 import { ProductActionsComponent } from './ProductActions';
@@ -45,7 +44,7 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
-      AddToCart: actions.AddToCart,
+      AddToCart,
     },
     dispatch
   );

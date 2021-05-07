@@ -75,3 +75,16 @@ export interface UpdateCartItemFailurePayload {
   variantId: string;
   error: string;
 }
+
+export interface Response<T> {
+  data: T;
+  status: string;
+}
+
+export interface GetCartResponse extends Response<Commerce.Cart> {}
+
+export interface CartItemDto {
+  productId: string;
+  variantId: string;
+  quantity: number;
+}

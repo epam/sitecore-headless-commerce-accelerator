@@ -20,6 +20,7 @@ module.exports = {
     'Feature/(.*)': '<rootDir>/src/Feature/$1',
     '((\\.(css|scss)$)|(/styles$))': '<rootDir>/scripts/jest/__mocks__/styleMock.js',
     '^components(.*)$': '<rootDir>/src/components/$1',
+    '^services(.*)$': '<rootDir>/src/services/$1',
   },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',

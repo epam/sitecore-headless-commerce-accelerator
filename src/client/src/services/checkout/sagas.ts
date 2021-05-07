@@ -15,20 +15,19 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
+import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from 'Feature/Checkout/dataModel.Generated';
 import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
-import { Checkout } from 'Feature/Checkout/Integration/api';
-
-import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from '../../dataModel.Generated';
-import { CreditCard } from '../api/Checkout';
 import * as actions from './actions';
+import * as Checkout from './api';
 import { sagaActionTypes } from './constants';
 import {
   BillingStep,
   CheckoutStepType,
+  CreditCard,
   CurrentStep,
   CurrentStepPayload,
   Data,
@@ -38,7 +37,7 @@ import {
 } from './models';
 import * as selectors from './selectors';
 
-import { loadCart } from '../ShoppingCart/sagas';
+import { loadCart } from 'Feature/Checkout/Integration/ShoppingCart/sagas';
 
 export function* handleDeliveryInfoResult(deliveryInfoResponse: Result<Commerce.DeliveryInfo>) {
   const { data, error } = deliveryInfoResponse;

@@ -14,6 +14,7 @@
 
 import { Status } from 'Foundation/Integration';
 
+import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { SitecoreState } from 'Foundation/ReactJss';
 
@@ -86,4 +87,28 @@ export interface AppState extends SitecoreState<Commerce.UserContext> {}
 
 export interface GlobalCheckoutState {
   checkout: CheckoutState;
+}
+
+export interface Response<T> {
+  data: T;
+  status: string;
+}
+
+export interface DeliveryInfoResponse extends Response<Commerce.DeliveryInfo> {}
+
+export interface ShippingInfoResponse extends Response<Commerce.ShippingInfo> {}
+
+export interface SetShippingOptionsResponse extends Response<Base.VoidResult> {}
+
+export interface BillingInfoResponse extends Response<Commerce.BillingInfo> {}
+
+export interface SetPaymentInfoResponse extends Response<Base.VoidResult> {}
+
+export interface SubmitOrderResponse extends Response<Commerce.OrderConfirmation> {}
+
+export interface CreditCard {
+  cvv: string;
+  expirationDate: string;
+  number: string;
+  authToken: string;
 }

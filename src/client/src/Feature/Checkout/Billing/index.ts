@@ -18,7 +18,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as Checkout from 'Feature/Checkout/Integration/Checkout';
+import * as Checkout from 'services/checkout';
 
 import BillingComponent from './Component';
 import { AppState, BillingDispatchProps, BillingOwnProps, BillingStateProps } from './models';

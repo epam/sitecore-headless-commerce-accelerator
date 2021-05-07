@@ -12,8 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Checkout from './Checkout';
 import * as Order from './Order';
 import * as ShoppingCart from './ShoppingCart';
-
-export { Checkout, Order, ShoppingCart };
+export { Order, ShoppingCart };

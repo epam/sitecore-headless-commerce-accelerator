@@ -19,7 +19,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as Checkout from 'Feature/Checkout/Integration/Checkout';
+import * as Checkout from 'services/checkout';
 
 import PaymentComponent from './Component';
 import * as Models from './models';

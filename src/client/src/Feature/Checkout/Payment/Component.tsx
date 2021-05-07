@@ -18,7 +18,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
-import { CheckoutStepType } from 'Feature/Checkout/Integration/Checkout';
+import { CheckoutStepType } from 'services/checkout';
 
 import { CreditCardTypes } from './components';
 import { FIELDS } from './constants';

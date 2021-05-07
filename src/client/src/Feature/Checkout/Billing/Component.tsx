@@ -18,7 +18,7 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { DependentField, FieldSet, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
 
-import { CheckoutStepType } from 'Feature/Checkout/Integration/Checkout';
+import { CheckoutStepType } from 'services/checkout';
 
 import { AddressOptions } from './AddressOptions';
 import { ADDRESS_TYPE, FIELDS } from './constants';

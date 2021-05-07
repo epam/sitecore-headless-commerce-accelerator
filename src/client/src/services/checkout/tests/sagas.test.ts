@@ -20,12 +20,12 @@ import { LoadingStatus } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import { SetShippingOptionsRequest } from 'Feature/Checkout/dataModel.Generated';
-import { Checkout } from 'Feature/Checkout/Integration/api';
+import { loadCart } from 'Feature/Checkout/Integration/ShoppingCart/sagas';
 
 import { CheckoutStepType, StepValuesPayload } from '..';
-import { CreditCard } from '../../api/Checkout';
-import { loadCart } from '../../ShoppingCart/sagas';
 import * as actions from '../actions';
+import * as Checkout from '../api';
+import { CreditCard } from '../models';
 import * as sagas from '../sagas';
 import * as selectors from '../selectors';
 

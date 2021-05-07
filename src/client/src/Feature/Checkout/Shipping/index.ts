@@ -16,14 +16,15 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as Checkout from 'Feature/Checkout/Integration/Checkout';
+import * as Account from 'services/account';
+import * as Checkout from 'services/checkout';
+
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as Account from 'services/account';
+import { AppState, ShippingDispatchProps, ShippingOwnProps, ShippingStateProps } from './models';
 
 import ShippingComponent from './Component';
-import { AppState, ShippingDispatchProps, ShippingOwnProps, ShippingStateProps } from './models';
 
 const mapStateToProps = (state: AppState): ShippingStateProps => {
   const commerceUser = Checkout.commerceUser(state);

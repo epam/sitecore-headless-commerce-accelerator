@@ -17,7 +17,7 @@
 .contact-area_content_form {
   padding: 50px 110px;
   @media (max-width: $screen-sm) {
-     padding: 50px 30px !important;
+    padding: 50px 30px !important;
   }
   background-color: $contact-information-panel-background-color;
   display: flex;
@@ -41,42 +41,8 @@
       margin-bottom: 0px;
     }
 
-    input {
-      box-shadow: none !important;
-      font-size: 14px !important;
-      width: 100% !important;
-      height: 40px !important;
-      margin-bottom: 30px !important;
-      padding: 2px 14px !important;
-      color: $contact-form-input-color !important;
-      border: 1px solid $contact-form-input-border-color !important;
-      background: transparent !important;
-      font-family: $poppins !important;
-    }
-
-    textarea {
-      height: 175px !important;
-      margin-bottom: 0 !important;
-      padding: 20px 14px !important;
-      color: $contact-form-input-color !important;
-      border: 1px solid $contact-form-input-border-color !important;
-      background: transparent !important;
-      font-size: 14px !important;
-      width: 100% !important;
-      padding: 10px !important;
-      resize: vertical !important;
-      font-family: $poppins !important;
-      box-shadow: none !important;
-
-      &:focus, &:active {
-        outline: 0px !important;
-        -webkit-appearance: none !important;
-        box-shadow: none !important;
-      }
-    }
-
     .Button-Container {
-      display: flex;   
+      display: flex;
       button {
         font-size: 14px;
         font-weight: 500;
@@ -87,20 +53,53 @@
         color: $contact-button-color;
         border: none;
         background-color: $contact-button-background-color;
-  
+
         &:hover {
           background-color: $theme-color;
         }
-  
+
         &:disabled,
-        button[disabled]{
+        button[disabled] {
           opacity: 0.65;
         }
       }
-  
+
       .Status_Message {
         margin: 48px 0px 0px 15px;
       }
     }
+  }
+}
+
+.ContactUsForm-Input {
+  .Input-Control {
+    background-color: transparent;
+  }
+}
+
+.ContactUsForm-Textarea {
+  height: 175px;
+  min-height: 45px;
+  margin-bottom: 0;
+  border: 1px solid $contact-form-input-border-color;
+  background: transparent;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 15px;
+  resize: vertical;
+
+  @media #{$xxs-layout} {
+    font-size: 16px;
+  }
+}
+
+.ContactUsForm-Textarea,
+.ContactUsForm-Input .Input-Control {
+  &:focus,
+  &:active {
+    border-color: $contact-form-input-border-color;
+    outline: 0px;
+    -webkit-appearance: none;
+    box-shadow: none;
   }
 }

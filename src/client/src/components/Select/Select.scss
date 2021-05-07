@@ -12,7 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+@import 'Foundation/UI/common/scss/variables.scss';
+
 $select-size-m-font-size: 14px;
+$select-size-m-mobile-font-size: 16px;
 $select-size-m-line-height: 20px;
 $select-size-m-width: 200px;
 $select-size-m-height: 45px;
@@ -37,6 +40,10 @@ $select-size-m-padding: 3px 8px;
     width: $select-size-m-width;
     height: $select-size-m-height;
     padding: $select-size-m-padding;
+
+    @media #{$xxs-layout} {
+      font-size: $select-size-m-mobile-font-size;
+    }
   }
 
   &_disabled {
@@ -69,6 +76,11 @@ $select-size-m-padding: 3px 8px;
     padding: 0 50px 0 15px;
     color: #242424;
     -webkit-appearance: none;
+
+    @media #{$xxs-layout} {
+      font-size: $select-size-m-mobile-font-size;
+    }
+
     option {
       font-size: 14px;
       padding-left: 10px;

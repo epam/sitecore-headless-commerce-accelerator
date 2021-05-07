@@ -12,7 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+@import 'Foundation/UI/common/scss/variables.scss';
+
 $input-size-m-font-size: 14px;
+$input-size-m-mobile-font-size: 16px;
 $input-size-m-line-height: 20px;
 $input-size-m-width: 200px;
 $input-size-m-height: 45px;
@@ -47,6 +50,13 @@ $input-border-color: #e6e6e6;
       width: $input-size-m-width;
       height: $input-size-m-height;
       padding: $input-size-m-padding;
+
+      @media #{$xxs-layout} {
+        // Increased the specificity of the selector due to the fact that it is interrupted by global styles
+        &.Input-Control {
+          font-size: $input-size-m-mobile-font-size;
+        }
+      }
     }
   }
 

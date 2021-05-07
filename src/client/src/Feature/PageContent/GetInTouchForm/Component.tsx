@@ -53,6 +53,8 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
         <div className="row">
           <div className="col-lg-6">
             <Input
+              className="ContactUsForm-Input"
+              fullWidth={true}
               name="name"
               placeholder={datasource.namePlaceholder.jss.value}
               type="text"
@@ -63,6 +65,8 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
           </div>
           <div className="col-lg-6">
             <Input
+              className="ContactUsForm-Input"
+              fullWidth={true}
               name="email"
               placeholder={datasource.emailPlaceholder.jss.value}
               type="text"
@@ -73,6 +77,8 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
           </div>
           <div className="col-lg-12">
             <Input
+              className="ContactUsForm-Input"
+              fullWidth={true}
               name="subject"
               placeholder={datasource.subjectPlaceholder.jss.value}
               type="text"
@@ -83,6 +89,7 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
           </div>
           <div className="col-lg-12">
             <textarea
+              className="ContactUsForm-Textarea"
               name="message"
               placeholder={datasource.subjectPlaceholder.jss.value}
               defaultValue={''}

@@ -12,11 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 import { User, Variant } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
 import { ProductVariantGlobalState } from 'services/productVariant';
-import { GlobalShoppingCartState } from 'Feature/Checkout/Integration/ShoppingCart';
+import { CartItemDto, GlobalShoppingCartState } from 'services/shoppingCart';
+import { LoadingStatus } from 'Foundation/Integration';
 import { ProductOverviewContext } from '../models';
 
 export interface ProductActionsOwnProps
@@ -28,7 +28,7 @@ export interface ProductActionsStateProps {
   commerceUser: User;
 }
 export interface ProductActionsDispatchProps {
-  AddToCart: (model: ShoppingCart.CartItemDto) => void;
+  AddToCart: (model: CartItemDto) => void;
 }
 
 export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState {}

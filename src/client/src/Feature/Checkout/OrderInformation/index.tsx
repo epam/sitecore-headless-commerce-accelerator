@@ -18,7 +18,7 @@ import { bindActionCreators } from 'redux';
 
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 import { OrderInformationComponent } from './Component';
 import { AppState, OrderInformationDispatchProps, OrderInformationOwnProps, OrderInformationState } from './models';

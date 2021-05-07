@@ -24,9 +24,18 @@ import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
 import { RemoveCartLinePayload, ShoppingCartData, ShoppingCartState, UpdateCartItemRequestPayload } from './models';
+import * as ShoppingCart from './api';
+import {
+  GerPromotionPayload,
+  RemoveCartLinePayload,
+  ShoppingCartData,
+  ShoppingCartState,
+  UpdateCartItemRequestPayload,
+} from './models';
+
 import { shoppingCart, shoppingCartData } from './selectors';
 
-import * as Order from '../Order/actionTypes';
+import * as Order from 'Feature/Checkout/Integration/Order/actionTypes';
 
 export function* loadCart(): SagaIterator {
   const { status: cartLoadingStatus }: ShoppingCartState = yield select(shoppingCart);

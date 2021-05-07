@@ -21,6 +21,7 @@ import * as Wishlist from 'services/wishlist';
 
 import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
+import * as ShoppingCart from 'services/shoppingCart';
 
 import * as Checkout from 'services/checkout';
 
@@ -28,7 +29,6 @@ import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 
 export default function* rootSaga() {
   yield all([

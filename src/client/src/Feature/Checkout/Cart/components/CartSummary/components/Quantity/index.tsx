@@ -14,8 +14,7 @@
 
 import React, { FC, useState } from 'react';
 
-import { ShoppingCart as ShoppingCartApi } from 'Feature/Checkout/Integration/api';
-import { ShoppingCartLine } from 'Feature/Checkout/Integration/ShoppingCart';
+import { CartItemDto, ShoppingCartLine } from 'services/shoppingCart';
 
 import { QuantityPicker } from 'components';
 
@@ -23,7 +22,7 @@ import './styles.scss';
 
 type Props = {
   cartLine: ShoppingCartLine;
-  updateCartLine: (model: ShoppingCartApi.CartItemDto) => void;
+  updateCartLine: (model: CartItemDto) => void;
   removeCartLine: (model: ShoppingCartLine) => void;
 };
 

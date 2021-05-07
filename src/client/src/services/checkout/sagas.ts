@@ -37,7 +37,7 @@ import {
 } from './models';
 import * as selectors from './selectors';
 
-import { loadCart } from 'Feature/Checkout/Integration/ShoppingCart/sagas';
+import { loadCart } from 'services/shoppingCart/sagas';
 
 export function* handleDeliveryInfoResult(deliveryInfoResponse: Result<Commerce.DeliveryInfo>) {
   const { data, error } = deliveryInfoResponse;

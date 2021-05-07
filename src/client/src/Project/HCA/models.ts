@@ -22,7 +22,8 @@ import * as Jss from 'Foundation/ReactJss';
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as Order from 'Feature/Checkout/Integration/Order';
 import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+
+import * as ShoppingCart from 'services/shoppingCart';
 
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 

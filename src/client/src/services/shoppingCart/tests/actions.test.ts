@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
 import { LoadingStatus } from 'Foundation/Integration';
 
 import * as actions from '../actions';
 import { actionTypes } from '../actionTypes';
+import { ShoppingCartData } from '../models';
 
 describe('ShoppingCart actions', () => {
-  const fakeCartData: ShoppingCart.ShoppingCartData = {
+  const fakeCartData: ShoppingCartData = {
     addresses: [],
     adjustments: [],
     cartLines: [],

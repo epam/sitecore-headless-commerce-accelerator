@@ -18,10 +18,10 @@ import { debounce, get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Common } from 'Feature/Catalog/Integration';
-import { shoppingCart } from 'Feature/Checkout/Integration/ShoppingCart';
-import { updateCartItemRequest } from 'Feature/Checkout/Integration/ShoppingCart/actions';
 import { CartLine } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
+
+import { shoppingCart, updateCartItemRequest } from 'services/shoppingCart';
 
 import { Button, QuantityPicker } from 'components';
 

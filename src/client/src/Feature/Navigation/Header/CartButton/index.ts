@@ -14,7 +14,7 @@
 
 import { connect } from 'react-redux';
 
-import * as ShoppingCart from 'Feature/Checkout/Integration/ShoppingCart';
+import * as ShoppingCart from 'services/shoppingCart';
 
 import { CartButtonComponent } from './Component';
 import { AppState } from './models';

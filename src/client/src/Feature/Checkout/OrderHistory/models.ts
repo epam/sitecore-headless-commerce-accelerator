@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Models from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 
-import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
-import * as Models from 'Foundation/Commerce';
+import { GlobalOrderState } from 'services/order';
 
 export interface OrderHistoryOwnProps
   extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, JSS.ImageFallbackContext> {}
@@ -36,4 +36,4 @@ export interface OrderHistoryState extends JSS.SafePureComponentState {
   isFirstLoad: boolean;
 }
 
-export interface AppState extends OrderHistory.GlobalCurrentOrderHistoryState, JSS.RoutingState {}
+export interface AppState extends GlobalOrderState, JSS.RoutingState {}

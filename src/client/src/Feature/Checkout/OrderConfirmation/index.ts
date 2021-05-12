@@ -20,8 +20,7 @@ import { bindActionCreators } from 'redux';
 import * as Extensions from 'Foundation/Base';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import { currentOrder } from 'Feature/Checkout/Integration/Order';
-import * as OrderActions from 'Feature/Checkout/Integration/Order/actions';
+import { currentOrder, GetOrder } from 'services/order';
 
 import { OrderConfirmationComponent } from './Component';
 import {
@@ -45,7 +44,7 @@ const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators(
     {
-      GetOrder: OrderActions.GetOrder,
+      GetOrder,
     },
     dispatch,
   );

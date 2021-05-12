@@ -13,17 +13,38 @@
 //    limitations under the License.
 
 import { Action, LoadingStatus } from 'Foundation/Integration';
+import { combineReducers } from 'redux';
 
 import { actionTypes } from './actionTypes';
-import { CurrentOrderHistoryState } from './models';
+import { CurrentOrderHistoryState, CurrentOrderState, OrderState } from './models';
 
-export const initialState: CurrentOrderHistoryState = {
+export const orderInitialState: CurrentOrderState = {
+  status: LoadingStatus.NotLoaded,
+  trackingNumber: null,
+};
+
+const orderReducer = (state: CurrentOrderState = orderInitialState, action: Action) => {
+  switch (action.type) {
+    case actionTypes.GET_ORDER:
+    case actionTypes.GET_ORDER_REQUEST:
+    case actionTypes.GET_ORDER_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const orderHistoryInitialState: CurrentOrderHistoryState = {
   currentPageNumber: 0,
   isLastPage: false,
   status: LoadingStatus.NotLoaded
 };
 
-export default (state: CurrentOrderHistoryState = initialState, action: Action) => {
+const orderHistoryReducer = (state: CurrentOrderHistoryState = orderHistoryInitialState, action: Action) => {
   switch (action.type) {
     case actionTypes.ORDER_HISTORY_LOAD_MORE:
     case actionTypes.GET_ORDER_HISTORY:
@@ -38,3 +59,13 @@ export default (state: CurrentOrderHistoryState = initialState, action: Action) 
       return state;
   }
 };
+
+export const initialState: OrderState = {
+  currentOrder: orderInitialState,
+  orderHistory: orderHistoryInitialState,
+};
+
+export default combineReducers<OrderState>({
+  currentOrder: orderReducer,
+  orderHistory: orderHistoryReducer,
+});

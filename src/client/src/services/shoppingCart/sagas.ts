@@ -35,7 +35,7 @@ import {
 
 import { shoppingCart, shoppingCartData } from './selectors';
 
-import * as Order from 'Feature/Checkout/Integration/Order/actionTypes';
+import * as Order from 'services/order';
 
 export function* loadCart(): SagaIterator {
   const { status: cartLoadingStatus }: ShoppingCartState = yield select(shoppingCart);

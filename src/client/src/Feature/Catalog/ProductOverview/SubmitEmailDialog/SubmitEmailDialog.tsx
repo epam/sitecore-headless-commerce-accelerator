@@ -14,6 +14,8 @@
 
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
+import { validateEmail } from 'Foundation/utils/validation';
+
 import { Button, Dialog, Input } from 'components';
 
 import { cnSubmitEmailDialog } from './cn';
@@ -27,6 +29,7 @@ type Props = {
 
 export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitDialogData }) => {
   const [email, setEmail] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   const handleToggleDialogClick = useCallback(() => {
     toggleDialog(!dialogOpen);
@@ -34,6 +37,7 @@ export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitD
 
   const handleInputValueChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setIsEmailValid(validateEmail(e.target.value));
   }, []);
 
   return (
@@ -46,7 +50,10 @@ export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitD
         <form>
           <Input
             name="email"
+            className={cnSubmitEmailDialog('Input')}
             value={email}
+            error={!isEmailValid}
+            helperText={!isEmailValid && 'Please enter a valid email'}
             required={true}
             onChange={handleInputValueChange}
             type="email"
@@ -62,6 +69,7 @@ export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitD
                 submitDialogData(email);
                 toggleDialog(false);
               }}
+              disabled={!isEmailValid}
             >
               Submit
             </Button>

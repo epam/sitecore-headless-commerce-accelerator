@@ -12,6 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+@import 'Foundation/UI/common/scss/variables';
+
 .SubmitEmailDialog {
   &-Content {
     padding: 2em 1em 0 1em;
@@ -28,5 +30,16 @@
 
   &-SubmitContainer {
     text-align: center;
+  }
+
+  &-Input {
+    margin-bottom: 20px;
+
+    .Input-ControlWrapper {
+      .Input-Control {
+        color: $grey-dark;
+        margin-bottom: 0;
+      }
+    }
   }
 }

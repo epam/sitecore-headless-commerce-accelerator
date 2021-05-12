@@ -16,7 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 
 import { Order, ProductColorsContext } from 'Foundation/Commerce';
 
-import * as Orders from 'Feature/Checkout/Integration/Order';
+import * as Orders from 'services/order';
 
 export interface OrderConfirmationOwnProps
   extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, OrderConfirmationContext> {}
@@ -37,6 +37,6 @@ export interface OrderConfirmationProps
 
 export interface OrderConfirmationState extends JSS.SafePureComponentState {}
 
-export interface AppState extends Orders.GlobalCurrentOrderState, JSS.RoutingState {}
+export interface AppState extends Orders.GlobalOrderState, JSS.RoutingState {}
 
 export interface OrderConfirmationContext extends ProductColorsContext, JSS.ImageFallbackContext {}

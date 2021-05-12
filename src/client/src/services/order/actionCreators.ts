@@ -17,6 +17,12 @@ import { Action, StatusPayload } from 'Foundation/Integration';
 
 import * as Models from './models';
 
+export type GetOrder = (trackingNumber: string) => Action<Models.OrderRequestPayload>;
+
+export type GetOrderRequest = (trackingNumber: string) => Action<StatusPayload>;
+
+export type GetOrderSuccess = (value: Commerce.Order) => Action<Models.OrderSuccessPayload>;
+
 export type GetOrderHistory = () => Action<Models.OrderHistoryRequestPayload>;
 
 export type GetOrderHistoryRequest = () => Action<StatusPayload>;

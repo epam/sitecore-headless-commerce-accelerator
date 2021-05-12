@@ -26,12 +26,11 @@ import * as Checkout from 'Feature/Checkout/Integration/Checkout';
 
 import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
-import * as Order from 'Feature/Checkout/Integration/Order';
-import * as OrderHistory from 'Feature/Checkout/Integration/OrderHistory';
 import * as HamburgerMenu from 'Feature/Navigation/Header/NavigationMenu/Integration';
 import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
+import * as Order from 'services/order';
 import * as ProductVariant from 'services/productVariant';
 import * as ShoppingCart from 'services/shoppingCart';
 
@@ -40,10 +39,9 @@ export const makeRootReducer = (history: History) =>
     account: Account.rootReducer,
     authentication: Authentication.rootReducer,
     checkout: Checkout.rootReducer,
-    currentOrder: Order.rootReducer,
     globalError: GlobalError.reducer,
     hamburgerMenu: HamburgerMenu.reducer,
-    orderHistory: OrderHistory.rootReducer,
+    order: Order.rootReducer,
     productSearchSuggestion: ProductSearchSuggestion.reducer,
     productsSearch: ProductSearch.reducer,
     router: connectRouter(history),

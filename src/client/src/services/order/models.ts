@@ -12,9 +12,28 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import * as Commerce from 'Foundation/Commerce';
 import { Status } from 'Foundation/Integration';
 
-import * as Commerce from 'Foundation/Commerce';
+export interface Response<T> {
+  data: T;
+  status: string;
+}
+
+export interface GetOrderResponse extends Response<Commerce.Order> {}
+
+export interface GetOrdersResponse extends Response<Commerce.Order[]> {}
+
+export interface OrderRequestPayload {
+  requestTrackingNumber?: string;
+}
+
+export interface OrderSuccessPayload extends Status {
+  order?: Commerce.Order;
+  trackingNumber?: string;
+}
+
+export interface CurrentOrderState extends OrderSuccessPayload, OrderRequestPayload, Status {}
 
 export interface OrderHistoryRequestPayload {
 }
@@ -27,6 +46,14 @@ export interface OrderHistorySuccessPayload extends Status {
 
 export interface CurrentOrderHistoryState extends OrderHistorySuccessPayload, OrderHistoryRequestPayload {}
 
-export interface GlobalCurrentOrderHistoryState {
+export interface GlobalOrderState {
+  order: {
+    currentOrder: CurrentOrderState;
+    orderHistory: CurrentOrderHistoryState;
+  };
+}
+
+export interface OrderState {
+  currentOrder: CurrentOrderState;
   orderHistory: CurrentOrderHistoryState;
 }

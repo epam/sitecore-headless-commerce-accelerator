@@ -12,8 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME, Params } from 'Feature/Catalog/Integration/ProductsSearch';
 import { tryParseUrlSearch } from 'Foundation/Base';
+
+import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME, Params } from 'services/productsSearch';
 
 export const getKeywordFromSearch = (search: string) => {
   const parsedSearch = tryParseUrlSearch(search);

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import ProductShopComponent from './Component';
-
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
-import { AppState, ProductShopDispatchProps, ProductShopOwnProps, ProductShopStateProps } from './models';
 
-import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
+
+import * as ProductSearch from 'services/productsSearch';
+
+import ProductShopComponent from './Component';
+import { AppState, ProductShopDispatchProps, ProductShopOwnProps, ProductShopStateProps } from './models';
 
 const mapStateToProps = (state: AppState) => {
   const status = ProductSearch.productsSearchStatus(state);

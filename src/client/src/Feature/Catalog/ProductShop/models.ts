@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 import { RouterProps } from 'react-router';
 
+import * as commonModels from 'Feature/Catalog/Integration/common/models';
 import * as JSS from 'Foundation/ReactJss';
 
-import * as commonModels from 'Feature/Catalog/Integration/common/models';
-import * as ProductsSearch from 'Feature/Catalog/Integration/ProductsSearch';
+import * as ProductsSearch from 'services/productsSearch';
 
 export interface ProductShopOwnProps
   extends RouterProps,

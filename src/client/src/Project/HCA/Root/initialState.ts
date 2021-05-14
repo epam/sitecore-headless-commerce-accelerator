@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { initialState as productsSearch } from 'Feature/Catalog/Integration/ProductsSearch';
-
 import { initialState as order } from 'services/order';
+import { initialState as productsSearch } from 'services/productsSearch';
 import { initialState as shoppingCart } from 'services/shoppingCart';
 
 import { AppState } from '../models';

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ import * as React from 'react';
 import { tryParseUrlSearch } from 'Foundation/Base';
 import * as Jss from 'Foundation/ReactJss';
 
-import { FACET_PARAMETER_NAME, facetsManager } from 'Feature/Catalog/Integration/ProductsSearch';
+import { FACET_PARAMETER_NAME, facetsManager } from 'services/productsSearch';
 
 import { Filter } from './components';
 import { ProductFiltersOwnState, ProductFiltersProps } from './models';

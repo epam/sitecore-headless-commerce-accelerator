@@ -1,16 +1,16 @@
 const isUpper = (str) => {
-  return Array.from(str).every(x => x == x.toUpperCase());
-}
+  return Array.from(str).every((x) => x === x.toUpperCase());
+};
 
 const isLower = (str) => {
-  return Array.from(str).every(x => x == x.toLowerCase());
-}
+  return Array.from(str).every((x) => x === x.toLowerCase());
+};
 
 const formatFirstChar = (str, formatter) => {
   let firstPart = formatter(str.substring(0, 1));
   let lastPart = str.substring(1);
   return firstPart + lastPart;
-}
+};
 
 const toPascalCase = (str) => {
   return str
@@ -26,14 +26,15 @@ const toCamelCase = (str) => {
   let result = '';
   let isFirst = true;
   splittedPhrase.forEach(function (s) {
-    if (s.length <= 0)
+    if (s.length <= 0) {
       return;
+    }
 
     let modifiedValue = !isFirst
-      ? formatFirstChar(s, x => x.toUpperCase())
-      : (isUpper(s)
-        ? s.toLowerCase()
-        : formatFirstChar(s, x => x.toLowerCase()));
+      ? formatFirstChar(s, (x) => x.toUpperCase())
+      : isUpper(s)
+      ? s.toLowerCase()
+      : formatFirstChar(s, (x) => x.toLowerCase());
 
     result += modifiedValue;
     isFirst = false;
@@ -44,15 +45,15 @@ const toCamelCase = (str) => {
 
 module.exports.toClass = function (name) {
   return toPascalCase(name);
-}
+};
 
 module.exports.toInterface = function (name) {
   return toPascalCase(name);
-}
+};
 
 module.exports.toProperty = function (name) {
   return toCamelCase(name);
-}
+};
 
 module.exports.toPropertyType = function (typeName, id) {
   switch (typeName.toLowerCase()) {
@@ -110,4 +111,4 @@ module.exports.toPropertyType = function (typeName, id) {
   }
 
   return `{} /* UNKNOWN TYPE: ${typeName} */`;
-}
+};

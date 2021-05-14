@@ -34,6 +34,7 @@ module.exports = (compilerOptions) => ({
       components: path.resolve(process.cwd(), './src/components/'),
       hooks: path.resolve(process.cwd(), './src/hooks/'),
       services: path.resolve(process.cwd(), './src/services/'),
+      ui: path.resolve(process.cwd(), './src/ui/'),
     },
   },
   module: {
@@ -122,6 +123,7 @@ module.exports = (compilerOptions) => ({
         '/src/components/',
         '/src/hooks/',
         '/src/services/',
+        '/src/ui/',
       ],
       tsconfig: './tsconfig.dev.json',
       tslint: './tslint.json',

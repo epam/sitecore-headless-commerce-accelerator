@@ -12,11 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
 
 import { connectRouter } from 'connected-react-router';
+import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
+import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
 
@@ -30,6 +31,7 @@ import * as HamburgerMenu from 'Feature/Navigation/Header/NavigationMenu/Integra
 import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
+import * as HamburgerMenu from 'services/navigationMenu';
 import * as Order from 'services/order';
 import * as ProductVariant from 'services/productVariant';
 import * as ShoppingCart from 'services/shoppingCart';

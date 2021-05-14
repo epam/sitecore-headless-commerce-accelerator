@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,12 +14,13 @@
 
 import React, { FC, useCallback, useMemo, useState } from 'react';
 
-import { Product } from 'Feature/Catalog/Integration/ProductsSearch';
+import { Product } from 'services/productsSearch';
 
 import { ProductCardContext } from './context';
 import { getInitialVariant } from './utils';
 
 import { cnProductCard } from './cn';
+
 import './ProductCard.scss';
 
 export type ProductCardProps = {

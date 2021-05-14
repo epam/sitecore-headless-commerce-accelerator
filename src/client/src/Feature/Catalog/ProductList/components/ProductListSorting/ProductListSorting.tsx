@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
 
 import React, { FC, FormEvent } from 'react';
 
-import { ChangeSortingTypePayload } from 'Feature/Catalog/Integration/ProductsSearch';
-
 import { Select, SelectProps } from 'components';
+import { ChangeSortingTypePayload } from 'services/productsSearch';
 
 import { cnProductList } from '../../cn';
 import { defaultSortingOption, sortingOptions } from './sortingOptions';

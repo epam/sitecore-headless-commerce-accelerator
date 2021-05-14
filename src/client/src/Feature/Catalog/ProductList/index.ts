@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -16,14 +16,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
-
 import Cookies from 'universal-cookie';
 
+import * as commonSelectors from 'Feature/Catalog/Integration/common/selectors';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import * as commonSelectors from 'Feature/Catalog/Integration/common/selectors';
-import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
+import * as ProductSearch from 'services/productsSearch';
 
 import ProductListComponent from './Component';
 import { AppState, ProductListDispatchProps, ProductListOwnProps, ProductListStateProps } from './models';

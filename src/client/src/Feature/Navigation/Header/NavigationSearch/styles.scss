@@ -111,7 +111,7 @@
   &_mobile {
     .search {
       input {
-        font-size: 16px;
+        font-size: 14px;
         display: block;
         width: 100%;
         padding: 9px 15px 9px 20px;
@@ -119,6 +119,11 @@
         border: none;
         background: #e6e6e6;
         box-shadow: none;
+
+        @media #{$xxs-layout} {
+          font-size: 16px;
+        }
+
         &:focus {
           box-shadow: none;
         }

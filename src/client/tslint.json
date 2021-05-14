@@ -39,6 +39,7 @@
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-useless-cast": false,
+    "ordered-imports": false,
     "one-line": [ true, "check-catch", "check-else", "check-open-brace", "check-whitespace" ],
     "quotemark": [true, "single", "jsx-double"],
     "radix": true,
@@ -62,6 +63,7 @@
   },
   "jsRules": {
     "max-line-length": { "severity": "warning", "options": [200] },
-    "quotemark": [true, "single", "jsx-double"]
+    "quotemark": [true, "single", "jsx-double"],
+    "object-literal-sort-keys": false
   }
 }

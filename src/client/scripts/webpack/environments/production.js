@@ -23,6 +23,7 @@ const resolve = {
     components: path.resolve(process.cwd(), './src/components/'),
     hooks: path.resolve(process.cwd(), './src/hooks/'),
     services: path.resolve(process.cwd(), './src/services/'),
+    ui: path.resolve(process.cwd(), './src/ui/'),
   },
 };
 
@@ -161,6 +162,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
           '/src/components/',
           '/src/hooks/',
           '/src/services/',
+          '/src/ui/',
         ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
@@ -252,6 +254,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
           '/src/components/',
           '/src/hooks/',
           '/src/services/',
+          '/src/ui/',
         ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',

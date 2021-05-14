@@ -17,10 +17,17 @@ import * as AboutUs from 'Feature/PageContent/AboutUs';
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
 import * as Checkout from 'Feature/Checkout';
-import * as Navigation from 'Feature/Navigation';
+
 import * as PageContent from 'Feature/PageContent';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
+
+import { Breadcrumb } from 'ui/Breadcrumb';
+import { Copyright } from 'ui/Copyright';
+import { FooterLinks } from 'ui/FooterLinks';
+import { GlobalFooter } from 'ui/GlobalFooter';
+import * as Navigation from 'ui/Header';
+import { SocialNetworksLinks } from 'ui/SocialNetworksLinks';
 
 const components = new Map<string, any>();
 
@@ -47,10 +54,10 @@ components.set('Quick Navigation', Navigation.QuickNavigation);
 components.set('User Navigation', Navigation.UserNavigation);
 
 // Footer renderings
-components.set('Footer', Navigation.GlobalFooter);
-components.set('Copyright', Navigation.Copyright);
-components.set('Footer Links', Navigation.FooterLinks);
-components.set('Social Networks Links', Navigation.SocialNetworksLinks);
+components.set('Footer', GlobalFooter);
+components.set('Copyright', Copyright);
+components.set('Footer Links', FooterLinks);
+components.set('Social Networks Links', SocialNetworksLinks);
 
 // Catalog renderings
 components.set('Product Overview', Catalog.ProductOverview);
@@ -81,7 +88,7 @@ components.set('Reset Request Form', Account.ResetRequestForm);
 components.set('Password Reset Form', Account.PasswordResetForm);
 
 // Navigation
-components.set('Breadcrumb', Navigation.Breadcrumb);
+components.set('Breadcrumb', Breadcrumb);
 
 // Not Found
 components.set('Not Found', NotFound);

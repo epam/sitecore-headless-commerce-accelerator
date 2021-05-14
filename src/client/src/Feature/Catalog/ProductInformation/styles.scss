@@ -244,6 +244,10 @@
           overflow: auto;
           box-shadow: none;
           font-family: $poppins;
+
+          @media #{$xxs-layout} {
+            font-size: 16px;
+          }
         }
       }
     }

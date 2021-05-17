@@ -37,16 +37,4 @@ export interface SignUpDispatchProps {
 
 export interface SignUpProps extends SignUpOwnProps, SignUpDispatchProps, SignUpStateProps {}
 
-export interface SignUpOwnState extends JSS.SafePureComponentState {
-  isSignUp: boolean;
-
-  isFirstNameEmpty: boolean;
-  isLastNameEmpty: boolean;
-  isEmailEmpty: boolean;
-  isEmailValid: boolean;
-  isPasswordEmpty: boolean;
-  isConfirmPasswordEmpty: boolean;
-  isPasswordsValid: boolean;
-}
-
 export interface AppState extends Account.GlobalAccountState, Account.AppState, JSS.RoutingState {}

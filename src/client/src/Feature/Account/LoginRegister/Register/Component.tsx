@@ -12,193 +12,174 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as React from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { Button, Checkbox } from 'components';
 
 import { LoadingStatus } from 'Foundation/Integration';
-import * as Jss from 'Foundation/ReactJss';
 import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
-import { validateEmail } from 'Foundation/utils/validation';
+import { NavigationLink } from 'Foundation/UI';
+import { validateEmail as validateEmailUtils } from 'Foundation/utils/validation';
 
 import { FORM_FIELDS } from './constants';
-import { SignUpOwnState, SignUpProps } from './models';
+import { SignUpProps } from './models';
 
+import { cnRegister } from './cn';
 import './styles.scss';
 
-export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUpOwnState> {
-  public formValues?: FormValues;
+// tslint:disable-next-line:no-big-function
+export const RegisterComponent: FC<SignUpProps> = ({
+  accountValidation,
+  returnUrl,
+  AccountValidation,
+  loading,
+  createAccount,
+  CreateAccount,
+  ResetValidation,
+  // tslint:disable-next-line:no-big-function
+}) => {
+  const [formValues, setFormValues] = useState({});
 
-  public constructor(props: SignUpProps) {
-    super(props);
+  const [isConfirmPasswordEmpty, setIsConfirmPasswordEmpty] = useState(false);
+  const [isEmailEmpty, setIsEmailEmpty] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isFirstNameEmpty, setIsFirstNameEmpty] = useState(false);
+  const [isLastNameEmpty, setIsLastNameEmpty] = useState(false);
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
+  const [isPasswordsValid, setIsPasswordsValid] = useState(true);
+  const [termsAndConditionsAccepted, setTermsAndConditionsAccepted] = useState(false);
 
-    this.state = {
-      isSignUp: false,
+  const [showPasswordValue, setShowPasswordValue] = useState(false);
+  const [showConfirmPasswordValue, setShowConfirmPasswordValue] = useState(false);
 
-      isConfirmPasswordEmpty: false,
-      isEmailEmpty: false,
-      isEmailValid: true,
-      isFirstNameEmpty: false,
-      isLastNameEmpty: false,
-      isPasswordEmpty: false,
-      isPasswordsValid: true,
+  const toggleShowPasswordValue = useCallback(() => {
+    setShowPasswordValue((value) => !value);
+  }, [setShowPasswordValue, showPasswordValue]);
+
+  const toggleShowConfirmPasswordValue = useCallback(() => {
+    setShowConfirmPasswordValue((value) => !value);
+  }, [setShowConfirmPasswordValue, showConfirmPasswordValue]);
+
+  const toggleTermsAndConditions = useCallback(() => {
+    setTermsAndConditionsAccepted((value) => !value);
+  }, [setTermsAndConditionsAccepted]);
+
+  useEffect(() => {
+    return () => {
+      ResetValidation();
     };
-  }
+  }, []);
 
-  public componentDidUpdate(prevProps: SignUpProps) {
-    const {
-      accountValidation: { inUse, invalid, status },
-      returnUrl,
-      CreateAccount,
-    } = this.props;
-    const {
-      accountValidation: { status: prevStatus },
-    } = prevProps;
-
-    if (status === LoadingStatus.Loaded && prevStatus === LoadingStatus.Loading && !inUse && !invalid) {
-      const isValid = this.validate(this.formValues);
-
-      if (isValid) {
-        const createAccountDto = {
-          email: this.formValues[FORM_FIELDS.EMAIL] as string,
-          firstName: this.formValues[FORM_FIELDS.FIRST_NAME] as string,
-          lastName: this.formValues[FORM_FIELDS.LAST_NAME] as string,
-          password: this.formValues[FORM_FIELDS.PASSWORD] as string,
-        };
-
-        CreateAccount(createAccountDto, returnUrl);
-      }
-    }
-  }
-
-  public componentWillUnmount() {
-    this.props.ResetValidation();
-  }
-  // tslint:disable-next-line:cognitive-complexity
-  protected safeRender() {
-    const { loading, accountValidation, createAccount } = this.props;
-    const {
-      isConfirmPasswordEmpty,
-      isEmailEmpty,
-      isEmailValid,
-      isFirstNameEmpty,
-      isLastNameEmpty,
-      isPasswordEmpty,
-      isPasswordsValid,
-    } = this.state;
-    const formDisabled =
-      createAccount.status === LoadingStatus.Loading || accountValidation.status === LoadingStatus.Loading;
-
-    return (
-      <div className="register_form">
-        <Form>
-          <div className="form-field">
-            <Input
-              type="text"
-              name={FORM_FIELDS.FIRST_NAME}
-              placeholder="First Name"
-              disabled={formDisabled}
-              fullWidth={true}
-              error={isFirstNameEmpty}
-              helperText={isFirstNameEmpty && 'First Name field is required!'}
-            />
-          </div>
-          <div className="form-field">
-            <Input
-              type="text"
-              name={FORM_FIELDS.LAST_NAME}
-              placeholder="Last Name"
-              disabled={formDisabled}
-              fullWidth={true}
-              error={isLastNameEmpty}
-              helperText={isLastNameEmpty && 'Last Name field is required!'}
-            />
-          </div>
-          <div className="form-field">
-            <Input
-              type="text"
-              name={FORM_FIELDS.EMAIL}
-              placeholder="Email"
-              disabled={formDisabled}
-              fullWidth={true}
-              error={!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty}
-              helperText={
-                (!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) &&
-                this.checkEmailValidation()
-              }
-            />
-          </div>
-          <div className="form-field">
-            <Input
-              type="password"
-              name={FORM_FIELDS.PASSWORD}
-              placeholder="Password"
-              disabled={formDisabled}
-              fullWidth={true}
-              error={isPasswordEmpty}
-              helperText={isPasswordEmpty && 'Password field is required!'}
-            />
-          </div>
-          <div className="form-field">
-            <Input
-              type="password"
-              name={FORM_FIELDS.CONFIRM_PASSWORD}
-              placeholder="Confirm Password"
-              disabled={formDisabled}
-              fullWidth={true}
-              error={isConfirmPasswordEmpty || !isPasswordsValid}
-              helperText={
-                (isConfirmPasswordEmpty && 'Confirm Password field is required!') ||
-                (!isPasswordsValid && 'Passwords do not match!')
-              }
-            />
-          </div>
-          <Submit
-            className="Register-Button"
-            buttonTheme="grey"
-            buttonSize="s"
-            disabled={formDisabled}
-            onSubmitHandler={(formValues) => this.handleFormSubmit(formValues)}
-          >
-            {(loading || formDisabled) && <i className="fa fa-spinner fa-spin" />}
-            <span>Register</span>
-          </Submit>
-        </Form>
-      </div>
-    );
-  }
-
-  private checkEmailValidation() {
-    const { accountValidation } = this.props;
-    const { isEmailEmpty, isEmailValid } = this.state;
-
+  const checkEmailValidation = () => {
     if (
       accountValidation.inUse &&
       accountValidation.status !== LoadingStatus.Loading &&
       !isEmailEmpty &&
       isEmailValid
     ) {
-      return 'Email is already in use!';
+      return 'Email is already in use';
     }
 
     if (isEmailEmpty) {
-      return 'Email field is required!';
+      return 'Email field is required';
     }
 
     if (!isEmailValid) {
-      return 'Email is invalid!';
+      return 'Email is invalid';
     }
 
     return '';
-  }
+  };
 
-  private validate(formValues: FormValues) {
-    const isFirstNameValid = this.validateFirstName(formValues);
-    const isLastNameValid = this.validateLastName(formValues);
-    const isPasswordValid = this.validatePassword(formValues);
-    const isConfirmPasswordValid = this.validateConfirmPassword(formValues);
+  const passwordValidator = (form: FormValues) => {
+    if (form[FORM_FIELDS.PASSWORD] === form[FORM_FIELDS.CONFIRM_PASSWORD]) {
+      setIsPasswordsValid(true);
+      return true;
+    } else {
+      setIsPasswordsValid(false);
+      return false;
+    }
+  };
+
+  const validateFirstName = (form: FormValues) => {
+    const fName = form[FORM_FIELDS.FIRST_NAME] as string;
+    if (form && fName) {
+      setIsFirstNameEmpty(false);
+      return true;
+    } else {
+      setIsFirstNameEmpty(true);
+      return false;
+    }
+  };
+
+  const validateLastName = (form: FormValues) => {
+    const lName = form[FORM_FIELDS.LAST_NAME] as string;
+    if (form && lName) {
+      setIsLastNameEmpty(false);
+      return true;
+    } else {
+      setIsLastNameEmpty(true);
+      return false;
+    }
+  };
+
+  const validateEmail = (form: FormValues) => {
+    const email = form[FORM_FIELDS.EMAIL] as string;
+
+    if (email === '') {
+      setIsEmailEmpty(true);
+      setIsEmailValid(false);
+      return false;
+    }
+
+    const isValid = validateEmailUtils(email);
+
+    if (isValid) {
+      setIsEmailEmpty(false);
+      setIsEmailValid(true);
+      return true;
+    }
+
+    setIsEmailEmpty(false);
+    setIsEmailValid(false);
+
+    return false;
+  };
+
+  const validatePassword = (form: FormValues) => {
+    const password = form[FORM_FIELDS.PASSWORD] as string;
+    if (form && password) {
+      setIsPasswordEmpty(false);
+      return true;
+    } else {
+      setIsPasswordEmpty(true);
+      return false;
+    }
+  };
+
+  const validateConfirmPassword = (form: FormValues) => {
+    const confirmPassword = form[FORM_FIELDS.CONFIRM_PASSWORD] as string;
+    if (form && confirmPassword) {
+      setIsConfirmPasswordEmpty(false);
+      return true;
+    } else {
+      setIsConfirmPasswordEmpty(true);
+      return false;
+    }
+  };
+
+  const validate = (form: FormValues) => {
+    const isFirstNameValid = validateFirstName(form);
+    const isLastNameValid = validateLastName(form);
+    const isPasswordValid = validatePassword(form);
+    const isConfirmPasswordValid = validateConfirmPassword(form);
     let isPasswordsMatch = false;
 
     if (isPasswordValid && isConfirmPasswordValid) {
-      isPasswordsMatch = this.passwordValidator(formValues);
+      isPasswordsMatch = passwordValidator(form);
     }
 
     if (isFirstNameValid && isLastNameValid && isPasswordsMatch) {
@@ -206,90 +187,180 @@ export class RegisterComponent extends Jss.SafePureComponent<SignUpProps, SignUp
     }
 
     return false;
-  }
+  };
 
-  private handleFormSubmit(formValues: FormValues) {
-    const { AccountValidation } = this.props;
-    this.validate(formValues);
-    const isEmailValid = this.validateEmail(formValues);
+  useEffect(() => {
+    const { status, inUse, invalid } = accountValidation;
 
-    if (isEmailValid) {
-      const email = formValues[FORM_FIELDS.EMAIL] as string;
-      this.formValues = formValues;
+    if (status === LoadingStatus.Loaded && !inUse && !invalid) {
+      const isValid = validate(formValues);
+
+      if (isValid) {
+        const createAccountDto = {
+          email: formValues[FORM_FIELDS.EMAIL] as string,
+          firstName: formValues[FORM_FIELDS.FIRST_NAME] as string,
+          lastName: formValues[FORM_FIELDS.LAST_NAME] as string,
+          password: formValues[FORM_FIELDS.PASSWORD] as string,
+        };
+
+        CreateAccount(createAccountDto, returnUrl);
+      }
+    }
+  }, [accountValidation]);
+
+  const handleFormSubmit = (form: FormValues) => {
+    validate(form);
+
+    if (validateEmail(form)) {
+      const email = form[FORM_FIELDS.EMAIL] as string;
+      setFormValues(form);
       AccountValidation(email);
     }
-  }
+  };
 
-  private passwordValidator(formValues: FormValues) {
-    if (formValues[FORM_FIELDS.PASSWORD] === formValues[FORM_FIELDS.CONFIRM_PASSWORD]) {
-      this.setState({ isPasswordsValid: true });
-      return true;
-    } else {
-      this.setState({ isPasswordsValid: false });
-      return false;
-    }
-  }
-  private validateFirstName(form: FormValues) {
-    const fName = form[FORM_FIELDS.FIRST_NAME] as string;
-    if (form && fName) {
-      this.setState({ isFirstNameEmpty: false });
-      return true;
-    } else {
-      this.setState({ isFirstNameEmpty: true });
-      return false;
-    }
-  }
+  const formDisabled =
+    createAccount.status === LoadingStatus.Loading || accountValidation.status === LoadingStatus.Loading;
 
-  private validateLastName(form: FormValues) {
-    const lName = form[FORM_FIELDS.LAST_NAME] as string;
-    if (form && lName) {
-      this.setState({ isLastNameEmpty: false });
-      return true;
-    } else {
-      this.setState({ isLastNameEmpty: true });
-      return false;
-    }
-  }
-
-  private validateEmail(form: FormValues) {
-    const email = form[FORM_FIELDS.EMAIL] as string;
-
-    if (email === '') {
-      this.setState({ isEmailEmpty: true, isEmailValid: false });
-      return false;
-    }
-
-    const isValid = validateEmail(email);
-
-    if (isValid) {
-      this.setState({ isEmailEmpty: false, isEmailValid: true });
-      return true;
-    }
-
-    this.setState({ isEmailEmpty: false, isEmailValid: false });
-
-    return false;
-  }
-
-  private validatePassword(form: FormValues) {
-    const password = form[FORM_FIELDS.PASSWORD] as string;
-    if (form && password) {
-      this.setState({ isPasswordEmpty: false });
-      return true;
-    } else {
-      this.setState({ isPasswordEmpty: true });
-      return false;
-    }
-  }
-
-  private validateConfirmPassword(form: FormValues) {
-    const confirmPassword = form[FORM_FIELDS.CONFIRM_PASSWORD] as string;
-    if (form && confirmPassword) {
-      this.setState({ isConfirmPasswordEmpty: false });
-      return true;
-    } else {
-      this.setState({ isConfirmPasswordEmpty: true });
-      return false;
-    }
-  }
-}
+  return (
+    <Form className={cnRegister()}>
+      <div className={cnRegister('SignUpOptions')}>
+        <p>Sign up with</p>
+        <div className={cnRegister('SocialButtons')}>
+          <Button
+            className={cnRegister('SocialButton', { first: true })}
+            buttonTheme="transparentSlide"
+            fullWidth={true}
+          >
+            Facebook
+          </Button>
+          <Button className={cnRegister('SocialButton')} buttonTheme="transparentSlide" fullWidth={true}>
+            Google
+          </Button>
+          <Button
+            className={cnRegister('SocialButton', { last: true })}
+            buttonTheme="transparentSlide"
+            fullWidth={true}
+          >
+            Apple
+          </Button>
+        </div>
+        <p className={cnRegister('SignUpOptionsDescription')}>
+          Signing up with social is super quick. Don't worry, we'd never share any of your data or post anything on your
+          behalf
+        </p>
+      </div>
+      <h5 className={cnRegister('Divider')}>
+        <span>or</span>
+      </h5>
+      <div className={cnRegister('FormField')}>
+        <label htmlFor="first-name">First name</label>
+        <Input
+          id="first-name"
+          type="text"
+          name={FORM_FIELDS.FIRST_NAME}
+          disabled={formDisabled}
+          fullWidth={true}
+          error={isFirstNameEmpty}
+          helperText={isFirstNameEmpty && 'First name field is required'}
+        />
+      </div>
+      <div className={cnRegister('FormField')}>
+        <label htmlFor="last-name">Last name</label>
+        <Input
+          id="last-name"
+          type="text"
+          name={FORM_FIELDS.LAST_NAME}
+          disabled={formDisabled}
+          fullWidth={true}
+          error={isLastNameEmpty}
+          helperText={isLastNameEmpty && 'Last name field is required'}
+        />
+      </div>
+      <div className={cnRegister('FormField')}>
+        <label htmlFor="email-address">Email address</label>
+        <Input
+          id="email-address"
+          type="text"
+          name={FORM_FIELDS.EMAIL}
+          disabled={formDisabled}
+          fullWidth={true}
+          error={!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty}
+          helperText={
+            (!isEmailValid || accountValidation.inUse || accountValidation.invalid || isEmailEmpty) &&
+            checkEmailValidation()
+          }
+        />
+      </div>
+      <div className={cnRegister('FormField')}>
+        <label htmlFor="password">Password</label>
+        <Input
+          id="password"
+          type={showPasswordValue ? 'text' : 'password'}
+          minLength={6}
+          name={FORM_FIELDS.PASSWORD}
+          disabled={formDisabled}
+          fullWidth={true}
+          error={isPasswordEmpty}
+          helperText={(isPasswordEmpty && 'Password field is required') || 'Must be at least 6 characters'}
+          adornment={
+            <FontAwesomeIcon
+              icon={showPasswordValue ? faEyeSlash : faEye}
+              className={cnRegister('FaEyeIcon')}
+              size="lg"
+              onClick={toggleShowPasswordValue}
+            />
+          }
+        />
+      </div>
+      <div className={cnRegister('FormField')}>
+        <label htmlFor="confirm-password">Confirm new password</label>
+        <Input
+          id="confirm-password"
+          type={showConfirmPasswordValue ? 'text' : 'password'}
+          minLength={6}
+          name={FORM_FIELDS.CONFIRM_PASSWORD}
+          disabled={formDisabled}
+          fullWidth={true}
+          error={isConfirmPasswordEmpty || !isPasswordsValid}
+          helperText={
+            (isConfirmPasswordEmpty && 'Confirm password field is required') ||
+            (!isPasswordsValid && 'Passwords do not match')
+          }
+          adornment={
+            <FontAwesomeIcon
+              icon={showConfirmPasswordValue ? faEyeSlash : faEye}
+              className={cnRegister('FaEyeIcon')}
+              size="lg"
+              onClick={toggleShowConfirmPasswordValue}
+            />
+          }
+        />
+      </div>
+      <div className={cnRegister('Actions')}>
+        <Submit
+          className={cnRegister('Button')}
+          buttonTheme="grey"
+          buttonSize="s"
+          disabled={formDisabled}
+          onSubmitHandler={(form) => handleFormSubmit(form)}
+        >
+          {(loading || formDisabled) && <i className="fa fa-spinner fa-spin" />}
+          <span>Register</span>
+        </Submit>
+        <div className={cnRegister('TermsAndConditions')}>
+          <label className={cnRegister('TermsAndConditionsLabel')}>
+            <Checkbox
+              id="terms-and-conditions"
+              checked={termsAndConditionsAccepted}
+              onChange={toggleTermsAndConditions}
+            />
+            <label htmlFor="terms-and-conditions" className={cnRegister('TermsAndConditionsText')}>
+              I have read and agree to the <NavigationLink to="/">Terms of Use</NavigationLink> and{' '}
+              <NavigationLink to="/">Customer Privacy Policy.</NavigationLink>
+            </label>
+          </label>
+        </div>
+      </div>
+    </Form>
+  );
+};

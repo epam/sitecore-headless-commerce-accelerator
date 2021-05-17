@@ -16,7 +16,66 @@
 
 $login-register-form-indention: 15px;
 
-.login-register-form {
+.LoginRegister {
+  &-Header {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+
+  &-FormWrapper {
+    width: 66%;
+    background: transparent none repeat scroll 0 0;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    padding: 80px;
+    text-align: left;
+
+    @media (max-width: $screen-xs-max) {
+      padding: 25px;
+      width: 100%;
+    }
+  }
+
+  &-Tabs {
+    border-bottom: 1px solid $grey-light;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 3em;
+  }
+
+  &-Tab {
+    position: relative;
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    color: $grey-middle;
+    cursor: pointer;
+
+    &_active {
+      color: $text-main-color;
+
+      &:after {
+        content: '';
+        position: absolute;
+        background-color: $theme-color;
+        width: 100%;
+        height: 2px;
+        bottom: -1px;
+        left: 0;
+      }
+    }
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}
+
+.login-register {
   margin: 20px 0;
   padding: 30px 10px;
   &-content {
@@ -24,9 +83,6 @@ $login-register-form-indention: 15px;
     justify-content: center;
     background-color: $white;
     padding: $login-register-form-indention;
-    .field_wrapper {
-      padding: 0px 48px;
-    }
     .account-created-message {
       &_inform {
         font-size: 30px;
@@ -51,34 +107,6 @@ $login-register-form-indention: 15px;
       align-content: center;
       align-items: center;
       font-family: $poppins;
-    }
-  }
-  &-header {
-    display: flex;
-    justify-content: center;
-    background-color: $white;
-    font-size: 25px;
-    font-weight: 500;
-    color: $font-color-light;
-    padding: $login-register-form-indention;
-    padding-bottom: 25px;
-    .form-title {
-      color: $second-color-dark;
-      font-size: 25px;
-      font-weight: 700;
-      padding: 0 20px;
-      text-transform: capitalize;
-      transition: all 0.3s ease 0s;
-      font-family: $poppins;
-
-      margin-left: 0px;
-      cursor: pointer;
-    }
-    .form-title.active {
-      color: $theme-color;
-    }
-    div:nth-child(2) {
-      border-left: 1px solid #000;
     }
   }
 }

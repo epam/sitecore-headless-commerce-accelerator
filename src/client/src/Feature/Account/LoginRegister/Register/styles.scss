@@ -14,44 +14,106 @@
 
 @import 'Foundation/UI/common/scss/variables';
 
-$login-register-form-indention: 15px;
-
 .Register {
+  &-SignUpOptionsDescription {
+    font-size: 12px;
+    color: $grey-middle;
+  }
+
+  &-SocialButtons {
+    display: flex;
+
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+  }
+
+  &-SocialButton {
+    margin: 0 10px 10px 10px;
+
+    &_first {
+      margin: 0 10px 10px 0;
+    }
+
+    &_last {
+      margin: 0 0 10px 10px;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      margin: 0 0 10px 0;
+    }
+  }
+
+  &-Divider {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid $grey-light;
+    line-height: 0.1em;
+    margin: 20px 0;
+
+    span {
+      background: #fff;
+      padding: 0 15px;
+    }
+  }
+
+  &-FaEyeIcon {
+    cursor: pointer;
+    color: #555252;
+  }
+
+  &-Actions {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: $screen-sm-max) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &-TermsAndConditions {
+    flex: 3;
+    margin-left: 30px;
+
+    @media (max-width: $screen-sm-max) {
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
+  }
+
+  &-TermsAndConditionsLabel {
+    cursor: pointer;
+  }
+
+  &-TermsAndConditionsText {
+    margin-left: 30px;
+  }
+
   &-Button {
+    flex: 1;
     padding: 10px 30px;
   }
-}
 
-.register {
-  &_form {
-    background: transparent none repeat scroll 0 0;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    padding: 80px;
-    text-align: left;
-    form {
-      margin: 0;
+  &-FormField {
+    margin-bottom: 30px;
+    label {
+      margin-bottom: 5px;
     }
-    .form-field {
-      margin-bottom: 30px;
-      label {
-        margin-bottom: 5px;
-      }
-      input {
-        box-shadow: none !important;
-        font-family: $poppins;
-        background-color: transparent;
-        border: 1px solid #ebebeb !important;
-        color: $login-default-font-color !important;
-        font-size: 14px;
-        height: 45px;
-        padding: 0 15px;
-        box-shadow: none;
-        margin-bottom: 0px;
-      }
-      .form-field-async-validation {
-        position: absolute;
-        right: 20px;
-        padding: 5px;
+    .Input {
+      .Input-ControlWrapper {
+        .Input-Control {
+          box-shadow: none !important;
+          font-family: $poppins;
+          background-color: transparent;
+          border: 1px solid #ebebeb !important;
+          color: $login-default-font-color !important;
+          font-size: 14px;
+          height: 45px;
+          padding: 0 15px;
+          box-shadow: none;
+          margin-bottom: 0px;
+        }
       }
     }
   }

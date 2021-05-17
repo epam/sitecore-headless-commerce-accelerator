@@ -21,6 +21,7 @@ import { Login } from './Login';
 import { LoginRegisterOwnState, LoginRegisterProps } from './models';
 import { Register } from './Register';
 
+import { cnLoginRegister } from './cn';
 import './styles.scss';
 
 export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegisterProps, LoginRegisterOwnState> {
@@ -42,9 +43,9 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
     const { commerceUser } = this.props;
     const { isSignUp } = this.state;
     return (
-      <section className="login-register-form">
+      <section className="login-register">
         {!!commerceUser && commerceUser.customerId ? (
-          <div className="row login-register-form-content">
+          <div className="row login-register-content">
             <div className="col-md-12">
               <div className="account-created-message">
                 <div className="account-created-message_inform">Congratulations!</div>
@@ -58,19 +59,29 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
           </div>
         ) : (
           <div>
-            <div className="login-register-form-header">
-              <div className={`form-title ${!isSignUp && 'active'}`} onClick={(e) => this.handleFormChange(e, 'login')}>
-                <Jss.Text tag="span" field={{ value: 'Login', editable: 'Login' }} />
-              </div>
-              <div
-                className={`form-title ${isSignUp && 'active'}`}
-                onClick={(e) => this.handleFormChange(e, 'register')}
-              >
+            <div className={cnLoginRegister('Header')}>
+              {isSignUp ? (
                 <Jss.Text tag="span" field={{ value: 'Register', editable: 'Register' }} />
-              </div>
+              ) : (
+                <Jss.Text tag="span" field={{ value: 'Login', editable: 'Login' }} />
+              )}
             </div>
-            <div className="row login-register-form-content">
-              <div className="col-lg-8 col-md-12 ml-auto mr-auto field_wrapper">
+            <div className="row login-register-content">
+              <div className={cnLoginRegister('FormWrapper')}>
+                <div className={cnLoginRegister('Tabs')}>
+                  <div
+                    className={cnLoginRegister('Tab', { active: !isSignUp })}
+                    onClick={(e) => this.handleFormChange(e, 'login')}
+                  >
+                    login
+                  </div>
+                  <div
+                    className={cnLoginRegister('Tab', { active: isSignUp })}
+                    onClick={(e) => this.handleFormChange(e, 'register')}
+                  >
+                    register
+                  </div>
+                </div>
                 {isSignUp ? <Register /> : <Login />}
               </div>
             </div>

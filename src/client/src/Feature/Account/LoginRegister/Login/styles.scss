@@ -21,17 +21,6 @@
 }
 
 .login {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  background: transparent none repeat scroll 0 0;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  padding: 80px;
-  text-align: left;
   &_actions {
     width: 100%;
     .actions_toggle_btn {
@@ -109,20 +98,6 @@
 
   h5 {
     display: inline-block;
-  }
-  .sign-up {
-    display: inline-block;
-    margin: 4px 0;
-    padding: 0;
-    > span {
-      display: block;
-      line-height: 50px;
-      color: $black;
-      font-family: $poppins;
-      &:hover {
-        color: $theme-color;
-      }
-    }
   }
 }
 

@@ -17,7 +17,7 @@ import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useStat
 import { debounce, get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Common } from 'Feature/Catalog/Integration';
+import { StockStatus } from 'Feature/Catalog/Integration/common';
 import { CartLine } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
 
@@ -123,7 +123,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     dispatch(updateCartItemRequest({ productId, quantity: DEFAULT_QUANTITY_FOR_ADD_TO_CART, variantId }));
   }, [selectedVariant, dispatch]);
 
-  const outOfStock = selectedVariant.stockStatusName === Common.StockStatus.OutOfStock;
+  const outOfStock = selectedVariant.stockStatusName === StockStatus.OutOfStock;
 
   return (
     <div className={cnProductCard('AddToCart', [className])}>

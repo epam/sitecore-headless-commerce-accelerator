@@ -23,22 +23,19 @@ import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
 import * as Order from 'services/order';
-import * as ProductSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 import * as ShoppingCart from 'services/shoppingCart';
-
-import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 
 export default function* rootSaga() {
   yield all([
     ...Account.rootSaga,
     ...Authentication.rootSaga,
     ...Wishlist.rootSaga,
-    ...ProductSearch.rootSaga,
     ...ShoppingCart.rootSaga,
     ...Checkout.rootSaga,
     ...SitecoreContext.rootSaga,
     ...StoreLocator.rootSaga,
     ...Order.rootSaga,
-    ...ProductSearchSuggestion.rootSaga,
+    ...Search.rootSaga,
   ]);
 }

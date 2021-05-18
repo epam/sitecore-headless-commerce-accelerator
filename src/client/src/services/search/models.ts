@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,10 +12,73 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'Foundation/Commerce/dataModel.Generated';
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { ProductSearch } from 'Feature/Catalog/Integration/api';
+export type SuggestionProduct = Commerce.ProductSearchSuggestion;
+
+export type ProductsSearchSuggestionsState = {
+  products: SuggestionProduct[];
+  status: LoadingStatus;
+};
+
+export type SuggestionsRequestPayload = {
+  search: string;
+};
+
+export type ProductsSearchSuggestionsRequestPayload = {
+  search: string;
+  status: LoadingStatus;
+};
+
+export type ProductsSearchSuggestionsSuccessPayload = {
+  products: SuggestionProduct[];
+  status: LoadingStatus;
+};
+
+export type SearchProductsParams = {
+  /**
+   * searchKeyword
+   */
+  q?: string;
+  /**
+   * page
+   */
+  pg?: number;
+  /**
+   * facetValues
+   */
+  f?: string;
+  /**
+   * sortField
+   */
+  s?: string;
+  /**
+   * pageSize
+   */
+  ps?: string;
+  /**
+   * sortDirection
+   */
+  sd?: string;
+  /**
+   * currentCatalogItemId
+   */
+  cci?: string;
+  /**
+   * currentItemId
+   */
+  ci?: string;
+};
+
+export type SearchProductsResponse = {
+  data: Commerce.ProductSearchResults;
+  status: string;
+};
+
+export type ProductSearchSuggestionResponse = {
+  products: Commerce.ProductSearchSuggestion[];
+};
 
 export interface Status {
   status: LoadingStatus;
@@ -23,7 +86,7 @@ export interface Status {
 
 export interface Facets extends Commerce.Facet {}
 export interface Product extends Commerce.Product {}
-export interface Params extends ProductSearch.SearchProductsParams {}
+export interface Params extends SearchProductsParams {}
 export interface ProductSearchState extends Status {
   facets: Facets[];
   items: Product[];
@@ -31,10 +94,6 @@ export interface ProductSearchState extends Status {
   currentPageNumber: number;
   totalPageCount?: number;
   totalItemCount?: number;
-}
-
-export interface GlobalProductSearchState {
-  productsSearch: ProductSearchState;
 }
 
 export interface ProductsSearchRequestPayload extends Status {
@@ -66,4 +125,16 @@ export interface ChangeSortingTypePayload {
 export interface InitSearchPayload extends ChangeSortingTypePayload {
   categoryId?: string;
   search?: string;
+}
+
+export interface SearchState {
+  productSearch: ProductSearchState;
+  productSearchSuggestion: ProductsSearchSuggestionsState;
+}
+
+export interface GlobalSearchState {
+  search: {
+    productSearch: ProductSearchState;
+    productSearchSuggestion: ProductsSearchSuggestionsState;
+  };
 }

@@ -16,10 +16,10 @@ import { call, fork, put, select } from 'redux-saga/effects';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { ProductSearch } from 'Feature/Catalog/Integration/api';
 import { addError } from 'Foundation/UI/common/components/Errors/Integration';
 
 import * as actions from '../actions';
+import { searchProducts } from '../api';
 import * as sagas from '../sagas';
 import * as selectors from '../selectors';
 
@@ -38,7 +38,7 @@ describe('ProductsSearch sagas', () => {
     });
 
     test('should call api', () => {
-      const expected = call(ProductSearch.searchProducts, fakeParams);
+      const expected = call(searchProducts, fakeParams);
       const actual = gen.next();
       expect(actual.value).toEqual(expected);
     });

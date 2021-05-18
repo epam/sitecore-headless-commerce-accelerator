@@ -17,9 +17,9 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import * as ProductsSearchSuggestions from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
 import * as Context from 'Foundation/ReactJss/SitecoreContext';
 import { closeHamburgerMenu } from 'services/navigationMenu';
+import * as ProductsSearchSuggestions from 'services/search';
 
 import { NavigationSearchComponent } from './Component';
 import { AppState } from './models';
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
       ChangeRoute: Context.ChangeRoute,
       closeHamburgerMenu,
       requestSuggestions: ProductsSearchSuggestions.RequestSuggestions,
-      resetSuggestionsState: ProductsSearchSuggestions.ResetState,
+      resetSuggestionsState: ProductsSearchSuggestions.ResetSuggestionsState,
     },
     dispatch,
   );

@@ -1,9 +1,9 @@
 import * as commonModels from 'Feature/Catalog/Integration/common/models';
-import { GlobalProductsSearchSuggestionsState, Product } from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
+import { GlobalSearchState, SuggestionProduct } from 'services/search';
 
 export type SuggestionListStateProps = {
   status: string;
-  products: Product[];
+  products: SuggestionProduct[];
 };
 
 export type SuggestionListDispatchProps = {
@@ -11,9 +11,9 @@ export type SuggestionListDispatchProps = {
 };
 
 export type SuggestionListOwnProps = {
-  onItemClick?: (product: Product) => void;
+  onItemClick?: (product: SuggestionProduct) => void;
 };
 
 export type SuggestionListProps = SuggestionListStateProps & SuggestionListOwnProps & SuggestionListDispatchProps;
 
-export type AppState = GlobalProductsSearchSuggestionsState & commonModels.AppState;
+export type AppState = GlobalSearchState & commonModels.AppState;

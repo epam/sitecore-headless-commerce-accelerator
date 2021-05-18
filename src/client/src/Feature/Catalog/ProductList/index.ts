@@ -21,8 +21,7 @@ import Cookies from 'universal-cookie';
 import * as commonSelectors from 'Feature/Catalog/Integration/common/selectors';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
-
-import * as ProductSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 
 import ProductListComponent from './Component';
 import { AppState, ProductListDispatchProps, ProductListOwnProps, ProductListStateProps } from './models';
@@ -33,16 +32,16 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
   const search = ownProps.history.location.search;
   const category = commonSelectors.category(state);
   const categoryId = category ? category.sitecoreId : '';
-  const items = ProductSearch.productSearchItems(state) || [];
-  const status = ProductSearch.productsSearchStatus(state);
-  const currentPageNumber = ProductSearch.productSearchCurrentPageNumber(state);
-  const totalPageCount = ProductSearch.productSearchTotalPageCount(state);
-  const totalItemCount = ProductSearch.productsSearch(state).totalItemCount;
-  const itemsPerPage = Number(ProductSearch.productSearchParams(state).ps) || 12;
+  const items = Search.productSearchItems(state) || [];
+  const status = Search.productsSearchStatus(state);
+  const currentPageNumber = Search.productSearchCurrentPageNumber(state);
+  const totalPageCount = Search.productSearchTotalPageCount(state);
+  const totalItemCount = Search.productsSearch(state).totalItemCount;
+  const itemsPerPage = Number(Search.productSearchParams(state).ps) || 12;
   const sortingDirection =
-    ProductSearch.productSearchParams(state).sd || cookies.get('sortDirection') ? cookies.get('sortDirection') : '0';
+    Search.productSearchParams(state).sd || cookies.get('sortDirection') ? cookies.get('sortDirection') : '0';
   const sortingField =
-    ProductSearch.productSearchParams(state).s || cookies.get('sortField') ? cookies.get('sortField') : 'brand';
+    Search.productSearchParams(state).s || cookies.get('sortField') ? cookies.get('sortField') : 'brand';
 
   return {
     categoryId,
@@ -61,11 +60,11 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
-      ChangeSorting: ProductSearch.ChangeSortingType,
-      ClearSearch: ProductSearch.ClearSearch,
-      DiscardFacet: ProductSearch.DiscardFacet,
-      InitSearch: ProductSearch.InitialSearch,
-      LoadMore: ProductSearch.LoadMore,
+      ChangeSorting: Search.ChangeSortingType,
+      ClearSearch: Search.ClearSearch,
+      DiscardFacet: Search.DiscardFacet,
+      InitSearch: Search.InitialSearch,
+      LoadMore: Search.LoadMore,
     },
     dispatch,
   );

@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import * as Jss from 'Foundation/ReactJss';
-
-import * as ProductsSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 
 export interface ProductListHeaderProps {
   currentPageNumber: number;
@@ -24,7 +23,7 @@ export interface ProductListHeaderProps {
   sortingDirection: string;
   sortingField: string;
   DiscardFacet: (name: string, value: string, search: string) => void;
-  ChangeSorting: (payload: ProductsSearch.ChangeSortingTypePayload) => void;
+  ChangeSorting: (payload: Search.ChangeSortingTypePayload) => void;
 }
 
 export interface ProductListHeaderState extends Jss.SafePureComponentState {

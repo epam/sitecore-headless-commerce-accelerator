@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Facets } from 'services/productsSearch';
+import { Facets } from 'services/search';
 
 export interface FilterProps {
   facet: Facets;

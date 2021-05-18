@@ -15,7 +15,7 @@
 import { LoadingStatus } from 'Foundation/Integration';
 
 import * as actions from '../actions';
-import { reducerActionTypes, sagaActionTypes } from '../constants';
+import { productsSearchReducerActionTypes, productsSearchSagaActionTypes } from '../constants';
 
 describe('Products Search actions', () => {
   // preparation
@@ -29,7 +29,7 @@ describe('Products Search actions', () => {
 
     expect(actual).toEqual({
       payload: { categoryId: fakeCategoryId },
-      type: sagaActionTypes.INIT_SEARCH,
+      type: productsSearchSagaActionTypes.INIT_SEARCH,
     });
   });
 
@@ -37,7 +37,7 @@ describe('Products Search actions', () => {
     const actual = actions.LoadMore();
 
     expect(actual).toEqual({
-      type: sagaActionTypes.LOAD_MORE,
+      type: productsSearchSagaActionTypes.LOAD_MORE,
     });
   });
 
@@ -50,7 +50,7 @@ describe('Products Search actions', () => {
         search: fakeSearch,
         value: fakeFacetValue,
       },
-      type: sagaActionTypes.APPLY_FACET,
+      type: productsSearchSagaActionTypes.APPLY_FACET,
     });
   });
 
@@ -63,7 +63,7 @@ describe('Products Search actions', () => {
         search: fakeSearch,
         value: fakeFacetValue,
       },
-      type: sagaActionTypes.DISCARD_FACET,
+      type: productsSearchSagaActionTypes.DISCARD_FACET,
     });
   });
 
@@ -71,7 +71,7 @@ describe('Products Search actions', () => {
     const actual = actions.ClearItems();
 
     expect(actual).toEqual({
-      type: reducerActionTypes.CLEAR_ITEMS,
+      type: productsSearchReducerActionTypes.CLEAR_ITEMS,
     });
   });
 
@@ -85,7 +85,7 @@ describe('Products Search actions', () => {
         params: fakeParams,
         status: LoadingStatus.Loading,
       },
-      type: reducerActionTypes.PRODUCTS_SEARCH_REQUEST,
+      type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_REQUEST,
     });
   });
 
@@ -99,7 +99,7 @@ describe('Products Search actions', () => {
         error: fakeError,
         status: LoadingStatus.Failure,
       },
-      type: reducerActionTypes.PRODUCTS_SEARCH_FAILURE,
+      type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_FAILURE,
     });
   });
 
@@ -119,7 +119,7 @@ describe('Products Search actions', () => {
         totalItemCount: fakeTotalItemCount,
         totalPageCount: fakeTotalPageCount,
       },
-      type: reducerActionTypes.PRODUCTS_SEARCH_SUCCESS,
+      type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_SUCCESS,
     });
   });
 });

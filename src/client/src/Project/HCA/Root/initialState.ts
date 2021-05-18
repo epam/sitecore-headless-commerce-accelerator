@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import { initialState as order } from 'services/order';
-import { initialState as productsSearch } from 'services/productsSearch';
+import { initialState as search } from 'services/search';
 import { initialState as shoppingCart } from 'services/shoppingCart';
 
 import { AppState } from '../models';
@@ -21,9 +21,9 @@ import { AppState } from '../models';
 // allow any here due to complex structure of view bag and sitecore
 export default (sitecore: any = {}, viewBag: any = {}): AppState => ({
   order,
-  productsSearch,
   // fix to get rid of "Could not find router reducer in state tree, it must be mounted under "router""
   router: undefined,
+  search,
   shoppingCart,
   sitecore,
   viewBag

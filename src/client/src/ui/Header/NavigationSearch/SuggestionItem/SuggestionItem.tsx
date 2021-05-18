@@ -14,17 +14,18 @@
 
 import React, { FC, useCallback } from 'react';
 
-import { Product } from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
-import { NavigationLink } from 'Foundation/UI';
 import { noop } from 'lodash';
+
+import { NavigationLink } from 'Foundation/UI';
+import { SuggestionProduct } from 'services/search';
 
 import { cnNavigationSearch } from '../cn';
 import './SuggestionItem.scss';
 
 export type SuggestionItemProps = {
-  product: Product;
+  product: SuggestionProduct;
 
-  onClick?: (product: Product) => void;
+  onClick?: (product: SuggestionProduct) => void;
 };
 
 export const SuggestionItem: FC<SuggestionItemProps> = ({ product, onClick = noop }) => {

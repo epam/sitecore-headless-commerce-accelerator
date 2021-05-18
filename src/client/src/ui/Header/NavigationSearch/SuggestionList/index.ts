@@ -17,8 +17,8 @@ import { connect } from 'react-redux';
 import {
   productsSearchSuggestionsProducts,
   productsSearchSuggestionsStatus,
-  ResetState,
-} from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
+  ResetSuggestionsState,
+} from 'services/search';
 
 import { AppState, SuggestionListDispatchProps, SuggestionListOwnProps, SuggestionListStateProps } from './models';
 import { SuggestionListComponent } from './SuggestionList';
@@ -34,7 +34,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = {
-  resetState: ResetState,
+  resetState: ResetSuggestionsState,
 };
 
 const connectedToStore = connect<SuggestionListStateProps, SuggestionListDispatchProps, SuggestionListOwnProps>(

@@ -14,7 +14,7 @@
 
 import { get } from 'lodash';
 
-import { Product } from 'services/productsSearch';
+import { Product } from 'services/search';
 
 export const getColorVariants = (product: Product, productColors: Record<string, string>) =>
   product.variants.filter((x, i) => {

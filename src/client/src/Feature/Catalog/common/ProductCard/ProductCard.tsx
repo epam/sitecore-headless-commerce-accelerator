@@ -14,7 +14,7 @@
 
 import React, { FC, useCallback, useMemo, useState } from 'react';
 
-import { Product } from 'services/productsSearch';
+import { Product } from 'services/search';
 
 import { ProductCardContext } from './context';
 import { getInitialVariant } from './utils';

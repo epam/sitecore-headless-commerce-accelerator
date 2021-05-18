@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ export const ACTION_TYPES_NAMESPACE = 'PRODUCTS_SEARCH';
 
 export const SORTING_COOKIE_EXPIRATION_TIME = 86400e6;
 
-export const reducerActionTypes = keyMirrorReducer(
+export const productsSearchReducerActionTypes = keyMirrorReducer(
   {
     CLEAR_ITEMS: null,
     PRODUCTS_SEARCH_FAILURE: null,
@@ -41,7 +41,7 @@ export const reducerActionTypes = keyMirrorReducer(
   ACTION_TYPES_NAMESPACE,
 );
 
-export const sagaActionTypes = keyMirrorSaga(
+export const productsSearchSagaActionTypes = keyMirrorSaga(
   {
     APPLY_FACET: null,
     DISCARD_FACET: null,
@@ -52,4 +52,24 @@ export const sagaActionTypes = keyMirrorSaga(
     LOAD_MORE: null,
   },
   ACTION_TYPES_NAMESPACE,
+);
+
+export const ACTION_TYPES_NAMESPACE_SUGGESTIONS = 'PRODUCTS_SEARCH_SUGGESTIONS';
+
+export const productsSearchSuggestionsReducerActionTypes = keyMirrorReducer(
+  {
+    RESET_STATE: null,
+
+    PRODUCTS_SEARCH_SUGGESTIONS_FAILURE: null,
+    PRODUCTS_SEARCH_SUGGESTIONS_REQUEST: null,
+    PRODUCTS_SEARCH_SUGGESTIONS_SUCCESS: null,
+  },
+  ACTION_TYPES_NAMESPACE_SUGGESTIONS,
+);
+
+export const productsSearchSuggestionsSagaActionTypes = keyMirrorSaga(
+  {
+    REQUEST_SUGGESTIONS: null,
+  },
+  ACTION_TYPES_NAMESPACE_SUGGESTIONS,
 );

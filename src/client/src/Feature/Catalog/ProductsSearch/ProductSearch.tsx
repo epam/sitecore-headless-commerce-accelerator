@@ -16,11 +16,10 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import { SidebarSearch } from 'components';
 import { LoadingStatus } from 'Foundation/Integration';
 import { ChangeRoute as changeRoute } from 'Foundation/ReactJss/SitecoreContext';
-
-import { SidebarSearch } from 'components';
-import { KEYWORD_PARAMETER_NAME, productSearchParams, productsSearchStatus } from 'services/productsSearch';
+import { KEYWORD_PARAMETER_NAME, productSearchParams, productsSearchStatus } from 'services/search';
 
 import { buildQueryString, getKeywordFromSearch } from './utils';
 

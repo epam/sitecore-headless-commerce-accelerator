@@ -16,8 +16,7 @@ import * as React from 'react';
 
 import { tryParseUrlSearch } from 'Foundation/Base';
 import * as Jss from 'Foundation/ReactJss';
-
-import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'services/productsSearch';
+import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'services/search';
 
 import { ProductListSorting } from '../ProductListSorting';
 import { ProductListHeaderProps, ProductListHeaderState } from './models';

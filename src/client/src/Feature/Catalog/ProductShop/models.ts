@@ -16,8 +16,7 @@ import { RouterProps } from 'react-router';
 
 import * as commonModels from 'Feature/Catalog/Integration/common/models';
 import * as JSS from 'Foundation/ReactJss';
-
-import * as ProductsSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 
 export interface ProductShopOwnProps
   extends RouterProps,
@@ -32,4 +31,4 @@ export interface ProductShopStateProps {
 export interface ProductShopDispatchProps {}
 export interface ProductShopProps extends ProductShopStateProps, ProductShopOwnProps, ProductShopDispatchProps {}
 
-export interface AppState extends ProductsSearch.GlobalProductSearchState, commonModels.AppState {}
+export interface AppState extends Search.GlobalSearchState, commonModels.AppState {}

@@ -23,8 +23,7 @@ import {
   ProductRating,
   ThumbnailSlider,
 } from 'Feature/Catalog/common/ProductCard';
-
-import { Product } from 'services/productsSearch';
+import { Product } from 'services/search';
 
 import { cnProductItem } from './cn';
 import './ProductItem.scss';

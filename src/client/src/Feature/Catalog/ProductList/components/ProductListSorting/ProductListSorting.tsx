@@ -15,7 +15,7 @@
 import React, { FC, FormEvent } from 'react';
 
 import { Select, SelectProps } from 'components';
-import { ChangeSortingTypePayload } from 'services/productsSearch';
+import { ChangeSortingTypePayload } from 'services/search';
 
 import { cnProductList } from '../../cn';
 import { defaultSortingOption, sortingOptions } from './sortingOptions';

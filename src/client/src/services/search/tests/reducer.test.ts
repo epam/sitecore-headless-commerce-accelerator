@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { reducerActionTypes } from '../constants';
+import { productsSearchReducerActionTypes as reducerActionTypes } from '../constants';
 import reducer, { initialState } from '../reducer';
 
 describe('ProductsSearch reducer', () => {
@@ -39,7 +39,10 @@ describe('ProductsSearch reducer', () => {
 
       expect(actual).toEqual({
         ...initialState,
-        ...fakeAction.payload,
+        productSearch: {
+          ...initialState.productSearch,
+          ...fakeAction.payload,
+        },
       });
     });
   });
@@ -58,7 +61,7 @@ describe('ProductsSearch reducer', () => {
       type: reducerActionTypes.CLEAR_ITEMS,
     });
 
-    expect(stateWithItems.items.length).toBe(fakeItems.length);
-    expect(actual.items.length).toBe(0);
+    expect(stateWithItems.productSearch.items.length).toBe(fakeItems.length);
+    expect(actual.productSearch.items.length).toBe(0);
   });
 });

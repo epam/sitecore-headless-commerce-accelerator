@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { GlobalProductsSearchSuggestionsState } from './models';
-
-export const productsSearchSuggestions = (state: GlobalProductsSearchSuggestionsState) => state.productSearchSuggestion;
-
-export const productsSearchSuggestionsStatus = (state: GlobalProductsSearchSuggestionsState) =>
-  productsSearchSuggestions(state).status;
-
-export const productsSearchSuggestionsProducts = (state: GlobalProductsSearchSuggestionsState) =>
-  productsSearchSuggestions(state).products || [];
+export * from './actions';
+export * from './api';
+export * from './constants';
+export * from './models';
+export * from './reducer';
+export { default as reducer } from './reducer';
+export { default as rootSaga } from './sagas';
+export * from './selectors';
+export * from './utils';

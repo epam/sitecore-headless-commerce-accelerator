@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import { tryParseUrlSearch } from 'Foundation/Base';
-
-import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME, Params } from 'services/productsSearch';
+import { FACET_PARAMETER_NAME, KEYWORD_PARAMETER_NAME, Params } from 'services/search';
 
 export const getKeywordFromSearch = (search: string) => {
   const parsedSearch = tryParseUrlSearch(search);

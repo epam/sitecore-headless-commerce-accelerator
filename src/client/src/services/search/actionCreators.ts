@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -13,9 +13,22 @@
 //    limitations under the License.
 
 import { Action } from 'Foundation/Integration';
-
 import { Facet, Product } from 'Foundation/Commerce';
+import { ProductSearchSuggestion } from 'Foundation/Commerce/dataModel.Generated';
+
 import * as Models from './models';
+
+export type ResetSuggestionsState = () => Action;
+
+export type RequestSuggestions = (search: string) => Action<Models.SuggestionsRequestPayload>;
+
+export type ProductsSearchSuggestionsRequest = (
+  search: string,
+) => Action<Models.ProductsSearchSuggestionsRequestPayload>;
+
+export type ProductsSearchSuggestionsSuccess = (
+  products: ProductSearchSuggestion[],
+) => Action<Models.ProductsSearchSuggestionsSuccessPayload>;
 
 export type InitialSearch = (payload: Models.InitSearchPayload) => Action<Models.InitSearchPayload>;
 export type ClearSearch = () => Action;

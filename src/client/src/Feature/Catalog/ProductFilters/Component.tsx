@@ -17,7 +17,7 @@ import * as React from 'react';
 import { tryParseUrlSearch } from 'Foundation/Base';
 import * as Jss from 'Foundation/ReactJss';
 
-import { FACET_PARAMETER_NAME, facetsManager } from 'services/productsSearch';
+import { FACET_PARAMETER_NAME, facetsManager } from 'services/search';
 
 import { Filter } from './components';
 import { ProductFiltersOwnState, ProductFiltersProps } from './models';

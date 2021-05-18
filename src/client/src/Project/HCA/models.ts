@@ -18,12 +18,11 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Store } from 'redux';
 
 import * as Order from 'services/order';
+import * as Search from 'services/search';
 import * as ShoppingCart from 'services/shoppingCart';
 
 import * as Commerce from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
-
-import * as ProductSearch from 'services/productsSearch';
 
 export interface SitecoreContext
   extends Commerce.ProductContext,
@@ -61,7 +60,7 @@ export interface RoutingState extends Jss.RoutingState {}
 export interface AppState
   extends SitecoreState,
     ViewBagState,
-    ProductSearch.GlobalProductSearchState,
+    Search.GlobalSearchState,
     ShoppingCart.GlobalShoppingCartState,
     Order.GlobalOrderState,
     RoutingState {

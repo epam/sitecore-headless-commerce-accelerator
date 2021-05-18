@@ -32,8 +32,8 @@ import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
 import * as HamburgerMenu from 'services/navigationMenu';
 import * as Order from 'services/order';
-import * as ProductSearch from 'services/productsSearch';
 import * as ProductVariant from 'services/productVariant';
+import * as Search from 'services/search';
 import * as ShoppingCart from 'services/shoppingCart';
 
 export const makeRootReducer = (history: History) =>
@@ -44,9 +44,8 @@ export const makeRootReducer = (history: History) =>
     globalError: GlobalError.reducer,
     hamburgerMenu: HamburgerMenu.reducer,
     order: Order.rootReducer,
-    productSearchSuggestion: ProductSearchSuggestion.reducer,
-    productsSearch: ProductSearch.reducer,
     router: connectRouter(history),
+    search: Search.reducer,
     selectedProductVariant: ProductVariant.reducer,
     shoppingCart: ShoppingCart.reducer,
     sitecore: SitecoreContext.reducer,

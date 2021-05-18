@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -19,26 +19,44 @@ import { tryParseUrlSearch } from 'Foundation/Base';
 import { Product, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
-
-import { ProductSearch } from 'Feature/Catalog/Integration/api';
 import { addError } from 'Foundation/UI/common/components/Errors/Integration/actions';
 
 import * as actions from './actions';
+import { requestSuggestions, searchProducts } from './api';
 import {
   DEFAULT_ITEMS_PER_PAGE,
   DEFAULT_START_PAGE_NUMBER,
   FACET_PARAMETER_NAME,
   KEYWORD_PARAMETER_NAME,
-  sagaActionTypes,
+  productsSearchSagaActionTypes,
+  productsSearchSuggestionsSagaActionTypes,
 } from './constants';
-import { ChangeSortingTypePayload, FacetPayload, InitSearchPayload, Params } from './models';
+import * as Models from './models';
 import * as selectors from './selectors';
 import * as utils from './utils';
 
-export function* fetchProductsSearch(params: Params) {
+export function* fetchProductsSearchSuggestions(params: Action<Models.SuggestionsRequestPayload>) {
+  const {
+    payload: { search },
+  } = params;
+  try {
+    yield put(actions.ProductsSearchSuggestionsRequest(search));
+    const { data, error }: Result<Models.ProductSearchSuggestionResponse> = yield call(requestSuggestions, search);
+
+    if (error) {
+      return yield put(addError(error.message));
+    }
+
+    yield put(actions.ProductsSearchSuggestionsSuccess(data.products));
+  } catch (e) {
+    yield put(actions.ProductsSearchSuggestionsFailure(e.message || 'Products search failure'));
+  }
+}
+
+export function* fetchProductsSearch(params: Models.Params) {
   try {
     yield put(actions.ProductsSearchRequest(params));
-    const { data, error }: Result<ProductSearchResults> = yield call(ProductSearch.searchProducts, params);
+    const { data, error }: Result<ProductSearchResults> = yield call(searchProducts, params);
     if (error) {
       return yield put(addError(error.message));
     }
@@ -53,7 +71,7 @@ export function* fetchProductsSearch(params: Params) {
   }
 }
 
-export function* initialSearch(action: Action<InitSearchPayload>): SagaIterator {
+export function* initialSearch(action: Action<Models.InitSearchPayload>): SagaIterator {
   const { payload } = action;
 
   const status: LoadingStatus = yield select(selectors.productsSearchStatus);
@@ -67,7 +85,7 @@ export function* initialSearch(action: Action<InitSearchPayload>): SagaIterator 
     yield put(actions.ResetState());
   }
 
-  const newParams: Params = {
+  const newParams: Models.Params = {
     pg: DEFAULT_START_PAGE_NUMBER,
     ps: DEFAULT_ITEMS_PER_PAGE,
   };
@@ -102,7 +120,7 @@ export function* clearSearch() {
 }
 
 export function* loadMoreProducts(): SagaIterator {
-  const params: Params = yield select(selectors.productSearchParams);
+  const params: Models.Params = yield select(selectors.productSearchParams);
   const { pg } = params;
 
   const newParams = { ...params };
@@ -111,8 +129,8 @@ export function* loadMoreProducts(): SagaIterator {
   yield fork(fetchProductsSearch, newParams);
 }
 
-export function* changeSortingType(action: Action<ChangeSortingTypePayload>): SagaIterator {
-  const params: Params = yield select(selectors.productSearchParams);
+export function* changeSortingType(action: Action<Models.ChangeSortingTypePayload>): SagaIterator {
+  const params: Models.Params = yield select(selectors.productSearchParams);
   const status: LoadingStatus = yield select(selectors.productsSearchStatus);
 
   if (status === LoadingStatus.Loaded) {
@@ -137,7 +155,7 @@ export function* changeSortingType(action: Action<ChangeSortingTypePayload>): Sa
 }
 
 export function* handleFacetChange(facetQueryString: string) {
-  const params: Params = yield select(selectors.productSearchParams);
+  const params: Models.Params = yield select(selectors.productSearchParams);
 
   const newSearchQuery = [];
 
@@ -153,7 +171,7 @@ export function* handleFacetChange(facetQueryString: string) {
 
   yield put(ChangeRoute(`${location.pathname}${newSearchQueryString}`));
 }
-export function* applyFacet(action: Action<FacetPayload>) {
+export function* applyFacet(action: Action<Models.FacetPayload>) {
   const { name, value, search } = action.payload;
 
   const parsedSearch = tryParseUrlSearch(search);
@@ -166,7 +184,7 @@ export function* applyFacet(action: Action<FacetPayload>) {
   yield fork(handleFacetChange, newFacetQuery);
 }
 
-export function* discardFacet(action: Action<FacetPayload>) {
+export function* discardFacet(action: Action<Models.FacetPayload>) {
   const { name, value, search } = action.payload;
 
   const parsedSearch = tryParseUrlSearch(search);
@@ -180,12 +198,14 @@ export function* discardFacet(action: Action<FacetPayload>) {
 }
 
 export function* watch(): SagaIterator {
-  yield takeEvery(sagaActionTypes.APPLY_FACET, applyFacet);
-  yield takeEvery(sagaActionTypes.DISCARD_FACET, discardFacet);
-  yield takeEvery(sagaActionTypes.LOAD_MORE, loadMoreProducts);
-  yield takeLatest(sagaActionTypes.INIT_SEARCH, initialSearch);
-  yield takeEvery(sagaActionTypes.CLEAR_SEARCH, clearSearch);
-  yield takeEvery(sagaActionTypes.CHANGE_SORTING, changeSortingType);
+  yield takeEvery(productsSearchSagaActionTypes.APPLY_FACET, applyFacet);
+  yield takeEvery(productsSearchSagaActionTypes.DISCARD_FACET, discardFacet);
+  yield takeEvery(productsSearchSagaActionTypes.LOAD_MORE, loadMoreProducts);
+  yield takeLatest(productsSearchSagaActionTypes.INIT_SEARCH, initialSearch);
+  yield takeEvery(productsSearchSagaActionTypes.CLEAR_SEARCH, clearSearch);
+  yield takeEvery(productsSearchSagaActionTypes.CHANGE_SORTING, changeSortingType);
+
+  yield takeLatest(productsSearchSuggestionsSagaActionTypes.REQUEST_SUGGESTIONS, fetchProductsSearchSuggestions);
 }
 
 export default [watch()];

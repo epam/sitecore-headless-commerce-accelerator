@@ -19,8 +19,7 @@ import { bindActionCreators } from 'redux';
 
 import { LoadingStatus } from 'Foundation/Integration';
 import { rendering } from 'Foundation/ReactJss';
-
-import * as ProductSearch from 'services/productsSearch';
+import * as ProductSearch from 'services/search';
 
 import ProductFiltersComponent from './Component';
 import { AppState, ProductFiltersDispatchProps, ProductFiltersOwnProps, ProductFiltersStateProps } from './models';

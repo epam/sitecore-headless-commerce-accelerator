@@ -18,14 +18,13 @@ import { compose } from 'recompose';
 
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
-
-import * as ProductSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 
 import ProductShopComponent from './Component';
 import { AppState, ProductShopDispatchProps, ProductShopOwnProps, ProductShopStateProps } from './models';
 
 const mapStateToProps = (state: AppState) => {
-  const status = ProductSearch.productsSearchStatus(state);
+  const status = Search.productsSearchStatus(state);
   return {
     isLoading: status === LoadingStatus.Loading,
   };

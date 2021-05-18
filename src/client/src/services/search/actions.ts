@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,34 +12,76 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { Facet, Product } from 'Foundation/Commerce';
+import { ProductSearchSuggestion } from 'Foundation/Commerce/dataModel.Generated';
 import { FailureType, LoadingStatus } from 'Foundation/Integration';
 
 import * as actionCreators from './actionCreators';
-import { reducerActionTypes, sagaActionTypes } from './constants';
+import {
+  productsSearchReducerActionTypes,
+  productsSearchSagaActionTypes,
+  productsSearchSuggestionsReducerActionTypes,
+  productsSearchSuggestionsSagaActionTypes,
+} from './constants';
 import { Params } from './models';
 
-import { Facet, Product } from 'Foundation/Commerce';
+export const ResetSuggestionsState: actionCreators.ResetSuggestionsState = () => ({
+  type: productsSearchSuggestionsReducerActionTypes.RESET_STATE,
+});
+
+export const RequestSuggestions: actionCreators.RequestSuggestions = (search) => ({
+  payload: {
+    search,
+  },
+  type: productsSearchSuggestionsSagaActionTypes.REQUEST_SUGGESTIONS,
+});
+
+export const ProductsSearchSuggestionsRequest: actionCreators.ProductsSearchSuggestionsRequest = (search: string) => ({
+  payload: {
+    search,
+    status: LoadingStatus.Loading,
+  },
+  type: productsSearchSuggestionsReducerActionTypes.PRODUCTS_SEARCH_SUGGESTIONS_REQUEST,
+});
+
+export const ProductsSearchSuggestionsSuccess: actionCreators.ProductsSearchSuggestionsSuccess = (
+  products: ProductSearchSuggestion[],
+) => ({
+  payload: {
+    products,
+    status: LoadingStatus.Loaded,
+  },
+  type: productsSearchSuggestionsReducerActionTypes.PRODUCTS_SEARCH_SUGGESTIONS_SUCCESS,
+});
+
+export const ProductsSearchSuggestionsFailure: FailureType = (error: string) => ({
+  payload: {
+    error,
+    status: LoadingStatus.Failure,
+  },
+  type: productsSearchSuggestionsReducerActionTypes.PRODUCTS_SEARCH_SUGGESTIONS_FAILURE,
+});
 
 export const InitialSearch: actionCreators.InitialSearch = (payload) => ({
   payload: {
     ...payload,
   },
-  type: sagaActionTypes.INIT_SEARCH,
+  type: productsSearchSagaActionTypes.INIT_SEARCH,
 });
 
 export const ClearSearch: actionCreators.ClearSearch = () => ({
-  type: sagaActionTypes.CLEAR_SEARCH,
+  type: productsSearchSagaActionTypes.CLEAR_SEARCH,
 });
 
 export const LoadMore: actionCreators.LoadMore = () => ({
-  type: sagaActionTypes.LOAD_MORE,
+  type: productsSearchSagaActionTypes.LOAD_MORE,
 });
 
 export const ChangeSortingType: actionCreators.ChangeSortingType = (payload) => ({
   payload: {
     ...payload,
   },
-  type: sagaActionTypes.CHANGE_SORTING,
+  type: productsSearchSagaActionTypes.CHANGE_SORTING,
 });
 
 export const ApplyFacet: actionCreators.ApplyFacet = (name: string, value: string, search: string) => ({
@@ -48,7 +90,7 @@ export const ApplyFacet: actionCreators.ApplyFacet = (name: string, value: strin
     search,
     value,
   },
-  type: sagaActionTypes.APPLY_FACET,
+  type: productsSearchSagaActionTypes.APPLY_FACET,
 });
 
 export const DiscardFacet: actionCreators.DiscardFacet = (name: string, value: string, search: string) => ({
@@ -57,15 +99,15 @@ export const DiscardFacet: actionCreators.DiscardFacet = (name: string, value: s
     search,
     value,
   },
-  type: sagaActionTypes.DISCARD_FACET,
+  type: productsSearchSagaActionTypes.DISCARD_FACET,
 });
 
 export const ClearItems: actionCreators.ClearItems = () => ({
-  type: reducerActionTypes.CLEAR_ITEMS,
+  type: productsSearchReducerActionTypes.CLEAR_ITEMS,
 });
 
 export const ResetState: actionCreators.ResetState = () => ({
-  type: reducerActionTypes.RESET_STATE,
+  type: productsSearchReducerActionTypes.RESET_STATE,
 });
 
 export const ProductsSearchRequest: actionCreators.ProductSearchRequest = (params: Params) => ({
@@ -73,7 +115,7 @@ export const ProductsSearchRequest: actionCreators.ProductSearchRequest = (param
     params,
     status: LoadingStatus.Loading,
   },
-  type: reducerActionTypes.PRODUCTS_SEARCH_REQUEST,
+  type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_REQUEST,
 });
 
 export const ProductsSearchFailure: FailureType = (error: string) => ({
@@ -81,7 +123,7 @@ export const ProductsSearchFailure: FailureType = (error: string) => ({
     error,
     status: LoadingStatus.Failure,
   },
-  type: reducerActionTypes.PRODUCTS_SEARCH_FAILURE,
+  type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_FAILURE,
 });
 
 export const ProductsSearchSuccess: actionCreators.ProductSearchSuccess = (
@@ -99,5 +141,5 @@ export const ProductsSearchSuccess: actionCreators.ProductSearchSuccess = (
     totalItemCount,
     totalPageCount,
   },
-  type: reducerActionTypes.PRODUCTS_SEARCH_SUCCESS,
+  type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_SUCCESS,
 });

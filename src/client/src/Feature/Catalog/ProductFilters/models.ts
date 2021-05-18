@@ -15,15 +15,14 @@
 import { RouterProps } from 'react-router';
 
 import * as Jss from 'Foundation/ReactJss';
-
-import * as ProductSearch from 'services/productsSearch';
+import * as Search from 'services/search';
 
 export interface ProductFiltersOwnProps extends RouterProps {}
 export interface ProductFiltersStateProps {
   search: string;
-  facets: ProductSearch.Facets[];
+  facets: Search.Facets[];
   isLoading: boolean;
-  items: ProductSearch.Product[];
+  items: Search.Product[];
   totalItemCount: number;
 }
 export interface ProductFiltersDispatchProps {
@@ -37,4 +36,4 @@ export interface ProductFiltersProps
 
 export interface ProductFiltersOwnState extends Jss.SafePureComponentState {}
 
-export interface AppState extends ProductSearch.GlobalProductSearchState {}
+export interface AppState extends Search.GlobalSearchState {}

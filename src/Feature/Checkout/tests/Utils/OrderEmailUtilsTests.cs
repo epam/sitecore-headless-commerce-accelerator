@@ -25,8 +25,6 @@ namespace HCA.Feature.Checkout.Tests.Utils
 
     using Context;
 
-    using DocumentFormat.OpenXml.Office2010.Drawing;
-
     using Foundation.Base.Models.Logging;
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Logging;

@@ -20,9 +20,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Billing
 
     using Commerce.Services.Billing;
     using Connect.Managers.Cart;
-    using FluentAssertions;
+
     using HCA.Foundation.Base.Tests.Customization;
-    using Moq;
+
     using Ploeh.AutoFixture.Xunit2;
     using Sitecore.Collections;
     using Sitecore.Commerce.Services;
@@ -355,13 +355,13 @@ namespace HCA.Foundation.Commerce.Tests.Services.Billing
             //arrange
             loadCartResult.Success = true;
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(loadCartResult);
-            
+
             updateCartResult.Success = true;
             this.cartManager.UpdateCart(Arg.Any<Cart>(), Arg.Any<CartBase>()).Returns(updateCartResult);
-            
+
             removeCartResult.Success = true;
             this.cartManager.RemovePaymentInfo(Arg.Any<Cart>()).Returns(removeCartResult);
-            
+
             addCartResult.Success = false;
             addCartResult.SystemMessages.Add(systemMessage);
             this.cartManager.AddPaymentInfo(Arg.Any<Cart>(), Arg.Any<Party>(), Arg.Any<FederatedPaymentInfo>()).Returns(addCartResult);

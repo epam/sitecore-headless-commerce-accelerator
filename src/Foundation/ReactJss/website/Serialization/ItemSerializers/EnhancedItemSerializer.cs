@@ -45,7 +45,7 @@ namespace HCA.Foundation.ReactJss.Serialization.ItemSerializers
                     var options = new SerializationOptions();
                     foreach (var itemField in itemFields)
                     {
-                        this.SerializeField(itemField, writer, options);
+                        this.SerializeField(itemField, writer, options, 0);
                     }
 
                     writer.WriteEndObject();

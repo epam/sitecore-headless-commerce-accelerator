@@ -19,6 +19,8 @@ namespace HCA.Foundation.Base.Services.Tracking
     using System.Linq;
     using DependencyInjection;
 
+    using Microsoft.Extensions.DependencyInjection;
+
     using Sitecore.Analytics;
     using Sitecore.XConnect;
 
@@ -33,7 +35,14 @@ namespace HCA.Foundation.Base.Services.Tracking
             if (!Tracker.Current.Contact.Identifiers.Any())
             {
                 var identifier = Guid.NewGuid().ToString();
-                Tracker.Current.Session.IdentifyAs(IdentificationSource, identifier);
+                
+                //IdentifyAs() Method is obsolete
+                //Tracker.Current.Session.IdentifyAs(IdentificationSource, identifier);
+
+                var identificationManager = Sitecore.DependencyInjection.ServiceLocator.ServiceProvider
+                    .GetRequiredService<Sitecore.Analytics.Tracking.Identification.IContactIdentificationManager>();
+                var result = identificationManager.IdentifyAs(new Sitecore.Analytics.Tracking.Identification.KnownContactIdentifier(IdentificationSource, identifier));
+                
                 return new IdentifiedContactReference(IdentificationSource, identifier);
             }
             else

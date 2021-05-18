@@ -60,7 +60,7 @@ namespace HCA.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
 
             // Commerce needs domain name to be presented in the user name
-            var commerceUserName = $"{Constants.CommerceUsersDomainName}\\{userName}";
+            var commerceUserName = $"{Sitecore.Context.Site?.Domain?.Name ?? Constants.CommerceUsersDomainName}\\{userName}";
 
             return this.Execute(
                 new CreateUserRequest(commerceUserName, password, email, shopName),

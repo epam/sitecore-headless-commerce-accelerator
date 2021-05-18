@@ -25,6 +25,8 @@ namespace HCA.Foundation.ReactJss.Infrastructure.Pipelines.GetLayoutServiceConte
     using Sitecore.JavaScriptServices.Configuration;
     using Sitecore.LayoutService.ItemRendering.Pipelines.GetLayoutServiceContext;
 
+    using Constants = Constants;
+
     public class ImageFallbackContextProcessor : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly ISiteSettingsProvider siteSettingsProvider;

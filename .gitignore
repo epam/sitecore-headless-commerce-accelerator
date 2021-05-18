@@ -142,6 +142,11 @@ Code Generation Templates/*.tt
 /generators/.npmrc
 /generators/secret.json
 /generators/.yo-rc.json 
+/tests/private/AutoTests.HCA.Tests/appsettings.local.json
 
 #Generated Documents
 /src/client/CodeDocs
+
+#Docker
+/environment/docker/xc0/data/
+/environment/docker/xc0/deploy/

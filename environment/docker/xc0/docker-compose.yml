@@ -241,7 +241,7 @@ services:
   bizfx:
     hostname: bizfx
     isolation: ${ISOLATION}
-    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-bizfx-hca:v1
+    image: ${XC_SITECORE_DOCKER_REGISTRY}sitecore-xc-bizfx:${XC_PACKAGES_TAG}
     depends_on:
       engine-authoring:
         condition: service_started

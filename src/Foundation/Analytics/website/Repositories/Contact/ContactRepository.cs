@@ -1,16 +1,16 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
-// 
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-// 
-//      http://www.apache.org/licenses/LICENSE-2.0
-// 
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
+﻿// Copyright 2020 EPAM Systems, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 namespace HCA.Foundation.Analytics.Repositories.Contact
 {
@@ -50,7 +50,10 @@ namespace HCA.Foundation.Analytics.Repositories.Contact
         {
             using (var client = SitecoreXConnectClientConfiguration.GetClient())
             {
-                var contact = client.Get(reference, new ExpandOptions(EmailAddressList.DefaultFacetKey));
+                //Get() Method is obsolete
+                //var contact = client.Get(reference, new ExpandOptions(EmailAddressList.DefaultFacetKey));
+
+                var contact = client.Get(reference, new ContactExecutionOptions(new ContactExpandOptions(EmailAddressList.DefaultFacetKey)));
 
                 var emailAddress = new EmailAddress(email, true);
                 var emailAddressList = contact.GetFacet<EmailAddressList>(EmailAddressList.DefaultFacetKey);
@@ -74,12 +77,15 @@ namespace HCA.Foundation.Analytics.Repositories.Contact
         {
             using (var client = SitecoreXConnectClientConfiguration.GetClient())
             {
-                var contact = client.Get(reference, new ContactExpandOptions(PersonalInformation.DefaultFacetKey));
+                //Get() Method is obsolete
+                //var contact = client.Get(reference, new ContactExpandOptions(PersonalInformation.DefaultFacetKey));
+
+                var contact = client.Get(reference, new ContactExecutionOptions(new ContactExpandOptions(PersonalInformation.DefaultFacetKey)));
 
                 var personalInfoFacet = contact.GetFacet<PersonalInformation>(PersonalInformation.DefaultFacetKey);
                 personalInfoFacet = personalInfoFacet == null
-                    ? this.contactMapper.Map<PersonalInfo, PersonalInformation>(info)
-                    : this.contactMapper.MapToPersonalInformation(info, personalInfoFacet);
+                ? this.contactMapper.Map<PersonalInfo, PersonalInformation>(info)
+                : this.contactMapper.MapToPersonalInformation(info, personalInfoFacet);
 
                 client.SetFacet(contact, PersonalInformation.DefaultFacetKey, personalInfoFacet);
 

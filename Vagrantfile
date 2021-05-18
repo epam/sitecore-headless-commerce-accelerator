@@ -8,16 +8,17 @@
 	- you may also want to navigate to your box file system - you can do that by opening "\\<private_network_ip>\c$" using explorer
 =end
 
-sitecore_prefix = 'sc9' # sc9 used by default for boxes with Sitecore 9.x.x
-vagrant_box_name = 'w16s-sc930-xc930-hca300' # box name added to vagrant for example 'w16s-sc911'
-project_name = 'W16S-SC930-XC930-HCA300' # your project name
+sitecore_prefix = 'sc10' # sc10 used by default for boxes with Sitecore 10.x.x
+sitecore_postfix = 'dev'
+vagrant_box_name = 'w16s-sc10-xc10-jss14-hca' # box name added to vagrant for example 'w16s-sc911'
+project_name = 'W16S-SC10-XC10-JSS14-HCA' # your project name
 vm_hostname = "#{ENV['COMPUTERNAME']}T#{project_name}"
 private_network_ip = '192.168.50.4'
 vb_name = "#{project_name}"
 
 vagrant_root = File.dirname(__FILE__) # folder with current Vagrantfile
 host_serialization_root = "#{vagrant_root}/src" # path on host opprating system, which is hosting Vagrant and VirtualBox
-guest_serialization_root = "/inetpub/wwwroot/#{sitecore_prefix}.local/App_Data/unicorn-hca" # path inside VM that you creating
+guest_serialization_root = "/inetpub/wwwroot/#{sitecore_prefix}_sc.#{sitecore_postfix}.local/App_Data/unicorn-hca" # path inside VM that you creating
 
 Vagrant.configure('2') do |config|
   config.vm.box = "#{vagrant_box_name}"
@@ -49,12 +50,12 @@ Vagrant.configure('2') do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
-  config.hostmanager.aliases = %W(#{sitecore_prefix}.local #{sitecore_prefix}.identityserver #{sitecore_prefix}.xconnect #{sitecore_prefix}.commerce bizfx.#{sitecore_prefix}.local commerceauthoring.#{sitecore_prefix}.local)
+  config.hostmanager.aliases = %W(#{sitecore_prefix}_sc.#{sitecore_postfix}.local #{sitecore_prefix}_identityserver.#{sitecore_postfix}.local #{sitecore_prefix}_xconnect.#{sitecore_postfix}.local #{sitecore_prefix}.commerce bizfx.#{sitecore_prefix}.local commerceauthoring.#{sitecore_prefix}.local)
 
   config.vm.provider 'virtualbox' do |vb|
     vb.name = "#{vb_name}"
     vb.gui = false
-	vb.memory = 12288
+	vb.memory = 8000
     vb.cpus = 4
     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
 	vb.customize ["modifyvm", :id, "--ioapic", "on"]

@@ -21,6 +21,11 @@ import * as PageContent from 'Feature/PageContent';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
+import { AddressManager } from 'ui/AddressManager';
+import { ChangePassword } from 'ui/ChangePassword';
+import { ChangeUserInformationForm } from 'ui/ChangeUserInformationForm';
+import { LoginRegister } from 'ui/LoginRegister';
+import { ResetRequestForm, PasswordResetForm } from 'ui/ResetPassword';
 import { Billing } from 'ui/Billing';
 import { Cart } from 'ui/Cart';
 import { CheckoutNavigation } from 'ui/CheckoutNavigation';
@@ -89,12 +94,12 @@ components.set('Checkout Navigation', CheckoutNavigation);
 components.set('Go To Checkout', GoToCheckout);
 
 // Account renderings
-components.set('Change Password Form', Account.ChangePassword);
-components.set('Address Manager', Account.AddressManager);
-components.set('Change User Information Form', Account.ChangeUserInformationForm);
-components.set('Login Register', Account.LoginRegister);
-components.set('Reset Request Form', Account.ResetRequestForm);
-components.set('Password Reset Form', Account.PasswordResetForm);
+components.set('Change Password Form', ChangePassword);
+components.set('Address Manager', AddressManager);
+components.set('Change User Information Form', ChangeUserInformationForm);
+components.set('Login Register', LoginRegister);
+components.set('Reset Request Form', ResetRequestForm);
+components.set('Password Reset Form', PasswordResetForm);
 
 // Navigation
 components.set('Breadcrumb', Breadcrumb);

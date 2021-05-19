@@ -1,0 +1,105 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
+//note, this SASS is for form-shipping, form-billing, and form-payment, since so many identical styles are used in those components
+.billing-shipping-info {
+  @include loading-overlay(99998);
+  section {
+    .credit-cards-row {
+      @include make-row();
+    }
+    .credit-cards-col {
+      padding: 0 $grid-gutter-width/2;
+      @media (min-width: 600px) {
+        width: 50%;
+        float: left;
+      }
+    }
+    .card-number {
+      width: 100%;
+    }
+    ul.card-types {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      @media (min-width: 480px) {
+        justify-content: flex-start;
+      }
+      @media (min-width: 600px) {
+        margin-bottom: 0;
+      }
+      li {
+        margin-bottom: 0;
+        margin-right: 10px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      img {
+        display: block;
+        @media (min-width: 480px) {
+          max-height: 30px;
+        }
+      }
+    }
+    .cc-month {
+      width: 120px;
+    }
+    .cc-year {
+      width: 79px;
+    }
+    .slashy {
+      color: #ccc;
+      font-size: 31px;
+      font-weight: 400;
+      padding: 0 7px 0 9px;
+      vertical-align: top;
+    }
+    .security-code {
+      width: 120px;
+    }
+    ul.cart {
+      padding: 15px;
+      background-color: $checkout-cart-list-color;
+      margin-top: 1px;
+      li {
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+        &:last-child {
+          border-bottom: none;
+        }
+        figure {
+          @include clearfix();
+          img {
+            max-width: 142px;
+            width: 40%;
+            float: left;
+            padding-right: 10px;
+          }
+          figcaption {
+            width: 60%;
+            float: left;
+          }
+          .price {
+            font-weight: 900;
+          }
+        }
+      }
+    }
+  }
+}

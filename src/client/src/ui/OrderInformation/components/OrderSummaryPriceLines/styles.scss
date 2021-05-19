@@ -1,18 +1,18 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
 @import 'Foundation/UI/common/scss/variables';
 @import 'Foundation/UI/common/scss/mixins';
@@ -35,18 +35,19 @@
       font-size: 14px;
       font-weight: 400;
     }
-    .name, .val{
+    .name,
+    .val {
       font-family: $poppins;
       color: $checkout-text-color;
       font-size: 14px;
       font-weight: 400;
     }
-    .total-price{
+    .total-price {
       color: $theme-color;
       font-size: 16px;
       font-weight: 500;
     }
-    .order-total{
+    .order-total {
       font-size: 18px;
       font-weight: 500;
     }

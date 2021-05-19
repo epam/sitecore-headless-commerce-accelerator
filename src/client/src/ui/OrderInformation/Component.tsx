@@ -17,9 +17,7 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { OrderSummaryPriceLines } from 'Feature/Checkout/common/OrderSummaryPriceLines';
-
-import { CartLinesSummary } from './components';
+import { CartLinesSummary, OrderSummaryPriceLines } from './components';
 import { OrderInformationProps, OrderInformationState } from './models';
 
 import './styles.scss';

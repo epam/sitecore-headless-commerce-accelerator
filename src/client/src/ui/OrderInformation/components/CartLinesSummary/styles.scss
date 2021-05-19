@@ -17,32 +17,32 @@
 @import 'Foundation/UI/common/scss/variables';
 @import 'Foundation/UI/common/scss/mixins';
 
-.quantity {
-  display: flex;
-  width: 110px;
-  height: 40px;
-  > input {
-    &.qty-button {
-      height: 40px;
-      width: 20px;
-      min-width: 20px;
-      padding: 4px;
-      border: 1px solid $increment-btn-border-color;
-      background-color: $increment-btn-background;
+.cart2 {
+  .product-title {
+    max-width: 70%;
+    .product-brand,
+    .product-name,
+    .product-price,
+    .product-quantity-prefix,
+    .product-quantity {
+      font-size: 14px;
       font-family: $poppins;
-      font-size: 16px;
+      font-weight: 400;
+      color: $text-main-color;
+      text-transform: none;
     }
-    &:nth-child(2) {
-      height: 40px;
-      text-align: center;
-      border-radius: 0;
-      border: 1px solid $increment-btn-border-color;
-      border-top-width: 0;
-      border-left-width: 0;
-      border-right-width: 0;
-      color: $summary-table-text-color;
-      background-color: $increment-btn-background;
-      font-family: $poppins;
+    .product-brand {
+      margin: 0;
     }
   }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  margin: 29px 0 0 0;
+  padding: 19px 0 18px;
+  border-top: 1px solid #dee0e4;
+  border-bottom: 1px solid #dee0e4;
 }

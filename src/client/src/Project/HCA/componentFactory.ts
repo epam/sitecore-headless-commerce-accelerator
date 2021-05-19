@@ -16,11 +16,20 @@ import * as AboutUs from 'Feature/PageContent/AboutUs';
 
 import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
-import * as Checkout from 'Feature/Checkout';
 
 import * as PageContent from 'Feature/PageContent';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
+
+import { Billing } from 'ui/Billing';
+import { Cart } from 'ui/Cart';
+import { CheckoutNavigation } from 'ui/CheckoutNavigation';
+import { GoToCheckout } from 'ui/GoToCheckout';
+import { OrderConfirmation } from 'ui/OrderConfirmation';
+import { OrderHistory } from 'ui/OrderHistory';
+import { OrderInformation } from 'ui/OrderInformation';
+import { Payment } from 'ui/Payment';
+import { Shipping } from 'ui/Shipping';
 
 import { Breadcrumb } from 'ui/Breadcrumb';
 import { Copyright } from 'ui/Copyright';
@@ -69,15 +78,15 @@ components.set('Products Search', Catalog.ProductsSearch);
 components.set('Product Shop', Catalog.ProductShop);
 
 // Checkout renderings
-components.set('Shopping Cart', Checkout.Cart);
-components.set('Billing', Checkout.Billing);
-components.set('Shipping', Checkout.Shipping);
-components.set('Order Summary', Checkout.OrderInformation);
-components.set('Order Confirmation', Checkout.OrderConfirmation);
-components.set('Order History', Checkout.OrderHistory);
-components.set('Payment', Checkout.Payment);
-components.set('Checkout Navigation', Checkout.CheckoutNavigation);
-components.set('Go To Checkout', Checkout.GoToCheckout);
+components.set('Shopping Cart', Cart);
+components.set('Billing', Billing);
+components.set('Shipping', Shipping);
+components.set('Order Summary', OrderInformation);
+components.set('Order Confirmation', OrderConfirmation);
+components.set('Order History', OrderHistory);
+components.set('Payment', Payment);
+components.set('Checkout Navigation', CheckoutNavigation);
+components.set('Go To Checkout', GoToCheckout);
 
 // Account renderings
 components.set('Change Password Form', Account.ChangePassword);

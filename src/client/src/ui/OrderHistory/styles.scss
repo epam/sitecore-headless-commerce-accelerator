@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,29 +20,29 @@
   width: auto;
   padding: 95px 0 100px 0;
   font-family: $poppins;
-  &_container-empty{
+  &_container-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    
-    .order-history-icon{
+
+    .order-history-icon {
       margin-bottom: 30px;
-      i{
+      i {
         font-size: 140px;
         line-height: 1;
         color: black;
       }
     }
   }
-  &_label-empty{
+  &_label-empty {
     color: black;
     font-size: 20px;
     font-weight: 400;
     font-family: $poppins;
     margin-bottom: 1px;
   }
-  &_btn-empty{
+  &_btn-empty {
     padding: 10px 30px;
     background-color: $btn-shop-now;
     border: none;
@@ -53,8 +53,8 @@
     font-size: 14px;
     margin-top: 30px;
     height: 44px;
-    &:hover{
-      background-color: #A749FF;
+    &:hover {
+      background-color: #a749ff;
     }
   }
   &-loadMore {
@@ -86,7 +86,7 @@
 
   // .color-title should be used as a wrapper to .color-bar
   &-color-title {
-    @include  clearfix;
+    @include clearfix;
     position: relative;
     font-size: 26px;
     margin: 0px 0px 55px 0px;

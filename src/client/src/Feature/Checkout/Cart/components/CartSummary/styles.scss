@@ -12,10 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import "Foundation/UI/common/scss/variables";
-@import "Foundation/UI/common/scss/mixins";
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
 .cart-summary-container {
   overflow-x: auto;
   .cartSummary {

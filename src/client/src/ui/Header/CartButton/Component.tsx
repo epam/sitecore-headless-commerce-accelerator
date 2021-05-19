@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { CartView } from 'Feature/Checkout/CartView';
+import { CartView } from 'ui/CartView';
 import * as JSS from 'Foundation/ReactJss';
 import { Desktop, Mobile } from 'Foundation/UI/common/components/Responsive';
 

@@ -17,7 +17,7 @@ import * as JSS from 'Foundation/ReactJss';
 
 import * as Account from 'services/account';
 
-import { CreateAccountRequest } from '../../dataModel.Generated';
+import { CreateAccountRequest } from 'Feature/Account/dataModel.Generated';
 
 export interface SignUpOwnProps extends JSS.Rendering<JSS.BaseDataSourceItem> {}
 

@@ -19,7 +19,7 @@ import * as Jss from 'Foundation/ReactJss';
 import { Button, Spinner } from 'components';
 import { NavigationLink } from 'Foundation/UI';
 
-import { CartSummary, OrderSummary } from 'Feature/Checkout/Cart/components';
+import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';
 
 import './styles.scss';

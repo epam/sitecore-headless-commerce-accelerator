@@ -12,7 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './RecommendedProducts';
-export * from './CarouselBanner';
-export * from './ContactUs';
-export * from './GetInTouchForm';
+import * as Jss from 'Foundation/ReactJss';
+
+import { FunFactDataSource } from 'Feature/PageContent/Models.Generated';
+
+export interface FunFactsState extends Jss.SafePureComponentState {
+  countUp: boolean;
+}
+
+export interface FunFactsDatasource extends Jss.BaseDataSourceItem {
+  items: Array<Jss.Item<FunFactDataSource>>;
+}
+
+export interface FunFactsProps extends Jss.RenderingWithContext<FunFactsDatasource> {}

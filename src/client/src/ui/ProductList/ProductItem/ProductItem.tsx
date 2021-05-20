@@ -22,10 +22,10 @@ import {
   ProductName,
   ProductRating,
   ThumbnailSlider,
-} from 'Feature/Catalog/common/ProductCard';
+} from 'ui/ProductCard';
 import { Product } from 'services/search';
 
-import { cnProductItem } from './cn';
+import { cnProductList } from '../cn';
 import './ProductItem.scss';
 
 export type ProductItemProps = {
@@ -36,16 +36,16 @@ export type ProductItemProps = {
 
 export const ProductItem: FC<ProductItemProps> = ({ fallbackImageUrl, product, productColors }) => (
   <ProductCard
-    className={cnProductItem('ProductCard')}
+    className={cnProductList('ProductCard')}
     fallbackImageUrl={fallbackImageUrl}
     product={product}
     productColors={productColors}
   >
     <ThumbnailSlider />
-    <ColorVariants className={cnProductItem('Variants')} />
+    <ColorVariants className={cnProductList('Variants')} />
     <ProductName />
-    <ProductRating className={cnProductItem('Rating')} />
-    <Price className={cnProductItem('Price')} />
+    <ProductRating className={cnProductList('Rating')} />
+    <Price className={cnProductList('Price')} />
     <AddToCart />
   </ProductCard>
 );

@@ -12,6 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { cn } from '@bem-react/classname';
+@import 'Foundation/UI/common/scss/variables.scss';
 
-export const cnProductItem = cn('ProductItem');
+.ProductList-Sorting {
+  width: 190px;
+  margin-right: 50px;
+
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}

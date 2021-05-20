@@ -14,8 +14,6 @@
 
 import * as AboutUs from 'ui/AboutUs';
 
-import * as Catalog from 'Feature/Catalog';
-
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
@@ -47,6 +45,13 @@ import { GetInTouchForm } from 'ui/GetInTouchForm';
 import { ContactUs } from 'ui/ContactUs';
 import { CarouselBanner } from 'ui/CarouselBanner';
 import { RecommendedProducts } from 'ui/RecommendedProducts';
+import { ProductInformation } from 'ui/ProductInformation';
+import { ProductFilters } from 'ui/ProductFilters';
+import { ProductList } from 'ui/ProductList';
+import { ProductOverview } from 'ui/ProductOverview';
+import { ProductsSearch } from 'ui/ProductsSearch';
+import { ProductShop } from 'ui/ProductShop';
+import { ProductVariants } from 'ui/ProductVariants';
 
 import * as StoreLocator from 'ui/StoreLocator';
 
@@ -84,13 +89,13 @@ components.set('Footer Links', FooterLinks);
 components.set('Social Networks Links', SocialNetworksLinks);
 
 // Catalog renderings
-components.set('Product Overview', Catalog.ProductOverview);
-components.set('Product Information', Catalog.ProductInformation);
-components.set('Product List', Catalog.ProductList);
-components.set('Product Filters', Catalog.ProductFilters);
-components.set('Product Variants', Catalog.ProductVariants);
-components.set('Products Search', Catalog.ProductsSearch);
-components.set('Product Shop', Catalog.ProductShop);
+components.set('Product Overview', ProductOverview);
+components.set('Product Information', ProductInformation);
+components.set('Product List', ProductList);
+components.set('Product Filters', ProductFilters);
+components.set('Product Variants', ProductVariants);
+components.set('Products Search', ProductsSearch);
+components.set('Product Shop', ProductShop);
 
 // Checkout renderings
 components.set('Shopping Cart', Cart);

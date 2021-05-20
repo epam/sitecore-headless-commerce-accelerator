@@ -20,9 +20,10 @@ namespace HCA.Foundation.Base.Services.GraphQL.Queries
     using Extensions;
 
     using global::GraphQL.Types;
-
+    using HCA.Foundation.Base.Models;
     using Sitecore;
     using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.Linq;
     using Sitecore.Data.Items;
     using Sitecore.Data.Managers;
     using Sitecore.Diagnostics;
@@ -72,7 +73,7 @@ namespace HCA.Foundation.Base.Services.GraphQL.Queries
 
             this.Facets = fieldContext.GetArgument("facetOn", this.Facets);
             this.FieldsAnd = fieldContext.GetArgument("fieldsEqual", this.FieldsAnd);
-            this.FieldsOr = fieldContext.GetArgument("fieldsInclude", this.FieldsAnd);
+            this.FieldsOr = fieldContext.GetArgument("fieldsInclude", this.FieldsOr);
 
             this.SortBy = fieldContext.GetArgument("sortBy", this.SortBy);
             this.SortDesc = fieldContext.GetArgument("sortDesc", this.SortDesc);
@@ -103,9 +104,9 @@ namespace HCA.Foundation.Base.Services.GraphQL.Queries
                 searchQueryable = searchQueryable.FilterByKeyword(this.Keyword);
                 searchQueryable = searchQueryable.FilterByLanguage(this.Lang);
                 searchQueryable = searchQueryable.FilterByVersion(this.Version);
-                searchQueryable = searchQueryable.FacetOn(this.Facets);
                 searchQueryable = searchQueryable.FilterByFields(this.FieldsAnd, this.FieldsOr);
                 searchQueryable = searchQueryable.SortResults(this.SortBy, this.SortDesc);
+                searchQueryable = searchQueryable.FacetOn(this.Facets);
 
                 return new ContentSearchResults(searchQueryable.PaginateAndFinalizeResults(fieldContext), this.After);
             }

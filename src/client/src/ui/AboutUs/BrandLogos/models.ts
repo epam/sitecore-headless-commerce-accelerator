@@ -12,16 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { BrandLogoDataSource } from 'Feature/PageContent/Models.Generated';
+
 import * as Jss from 'Foundation/ReactJss';
 
-import { FunFactDataSource } from '../../Models.Generated';
-
-export interface FunFactsState extends Jss.SafePureComponentState {
-  countUp: boolean;
+export interface BrandLogosDataSource extends Jss.BaseDataSourceItem {
+  items: Array<Jss.Item<BrandLogoDataSource>>;
 }
 
-export interface FunFactsDatasource extends Jss.BaseDataSourceItem {
-  items: Array<Jss.Item<FunFactDataSource>>;
-}
+export interface BrandLogosProps extends Jss.RenderingWithContext<BrandLogosDataSource> {}
 
-export interface FunFactsProps extends Jss.RenderingWithContext<FunFactsDatasource> {}
+export interface BrandLogosState extends Jss.SafePureComponentState {}

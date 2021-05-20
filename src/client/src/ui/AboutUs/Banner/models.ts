@@ -12,10 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { WelcomeDataSource } from '../../Models.Generated';
+import { AboutUsBannerItemDataSource } from 'Feature/PageContent/Models.Generated';
 
 import * as Jss from 'Foundation/ReactJss';
 
-export interface WelcomeProps extends Jss.RenderingWithContext<WelcomeDataSource> {}
+export interface AboutUsBannerDataSource extends Jss.BaseDataSourceItem {
+  items: Array<Jss.Item<AboutUsBannerItemDataSource>>;
+}
 
-export interface WelcomeState extends Jss.SafePureComponentState {}
+export interface AboutUsBannerProps extends Jss.RenderingWithContext<AboutUsBannerDataSource> {}
+
+export interface AboutUsBannerState extends Jss.SafePureComponentState {}

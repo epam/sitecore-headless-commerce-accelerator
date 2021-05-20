@@ -12,12 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as AboutUs from 'Feature/PageContent/AboutUs';
+import * as AboutUs from 'ui/AboutUs';
 
-import * as Account from 'Feature/Account';
 import * as Catalog from 'Feature/Catalog';
 
-import * as PageContent from 'Feature/PageContent';
 import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
@@ -26,7 +24,10 @@ import { ChangePassword } from 'ui/ChangePassword';
 import { ChangeUserInformationForm } from 'ui/ChangeUserInformationForm';
 import { LoginRegister } from 'ui/LoginRegister';
 import { ResetRequestForm, PasswordResetForm } from 'ui/ResetPassword';
+import { Wishlist } from 'ui/WishList';
+
 import { Billing } from 'ui/Billing';
+import { BlogPage } from 'ui/Blog';
 import { Cart } from 'ui/Cart';
 import { CheckoutNavigation } from 'ui/CheckoutNavigation';
 import { GoToCheckout } from 'ui/GoToCheckout';
@@ -42,11 +43,20 @@ import { FooterLinks } from 'ui/FooterLinks';
 import { GlobalFooter } from 'ui/GlobalFooter';
 import * as Navigation from 'ui/Header';
 import { SocialNetworksLinks } from 'ui/SocialNetworksLinks';
+import { GetInTouchForm } from 'ui/GetInTouchForm';
+import { ContactUs } from 'ui/ContactUs';
+import { CarouselBanner } from 'ui/CarouselBanner';
+import { RecommendedProducts } from 'ui/RecommendedProducts';
+
+import * as StoreLocator from 'ui/StoreLocator';
 
 const components = new Map<string, any>();
 
 // add components to the map
 // components.set('Component', <Component />);
+
+// Store Locator
+components.set('Store Locator', StoreLocator.StoreLocator);
 
 // Page Scaffolding
 components.set('One Column', OneColumn);
@@ -56,8 +66,8 @@ components.set('Three Column Row', ThreeColumnRow);
 components.set('Full Width', FullWidth);
 
 // Home renderings
-components.set('Carousel Banner', PageContent.CarouselBanner);
-components.set('Recommended Products', PageContent.RecommendedProducts);
+components.set('Carousel Banner', CarouselBanner);
+components.set('Recommended Products', RecommendedProducts);
 
 // Header renderings
 components.set('Header', Navigation.Header);
@@ -97,6 +107,7 @@ components.set('Go To Checkout', GoToCheckout);
 components.set('Change Password Form', ChangePassword);
 components.set('Address Manager', AddressManager);
 components.set('Change User Information Form', ChangeUserInformationForm);
+components.set('Wishlist', Wishlist);
 components.set('Login Register', LoginRegister);
 components.set('Reset Request Form', ResetRequestForm);
 components.set('Password Reset Form', PasswordResetForm);
@@ -115,8 +126,11 @@ components.set('Fun Facts', AboutUs.FunFacts);
 components.set('Team', AboutUs.Team);
 components.set('Brand Logos', AboutUs.BrandLogos);
 
+// Blog
+components.set('Blog Page', BlogPage);
+
 // Contact Us
-components.set('Contact Us', PageContent.ContactUs);
-components.set('Get In Touch Form', PageContent.GetInTouchForm);
+components.set('Contact Us', ContactUs);
+components.set('Get In Touch Form', GetInTouchForm);
 
 export default (componentName: string) => components.get(componentName);

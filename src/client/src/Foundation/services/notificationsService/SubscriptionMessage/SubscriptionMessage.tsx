@@ -16,7 +16,7 @@ import React, { FC } from 'react';
 
 import { Button } from 'components';
 
-import { ProductRating } from 'Feature/Catalog/ProductRating';
+import { ProductRating } from 'ui/ProductRating';
 import { Product } from 'Foundation/Commerce/dataModel.Generated';
 
 import { cnSubscriptionMessage } from './cn';

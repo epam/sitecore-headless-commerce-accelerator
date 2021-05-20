@@ -12,9 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import "Foundation/UI/common/scss/variables";
-@import "~lightgallery.js/dist/css/lightgallery.css";
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+@import 'Foundation/UI/common/scss/variables';
+@import '~lightgallery.js/dist/css/lightgallery.css';
 
 .product-overview {
   .product-gallery {
@@ -24,21 +24,21 @@
       max-width: 570px;
       margin: auto;
       border: none !important;
-      .pe-7s-expand1{
+      .pe-7s-expand1 {
         font-size: 30px;
       }
       position: relative;
       margin-bottom: 15px;
-      
-      .react_lightgallery_item{
+
+      .react_lightgallery_item {
         position: absolute;
         top: 0;
         right: 0;
-        & button{
+        & button {
           border: none;
           margin: 0;
           padding: 0;
-          &:focus #product-gallery-header-modal{
+          &:focus #product-gallery-header-modal {
             display: block;
           }
         }
@@ -53,15 +53,15 @@
         }
       }
 
-      &-expand{
+      &-expand {
         position: absolute;
         top: 20px;
         right: 20px;
-        & button{
+        & button {
           border: none;
           margin: 0;
           padding: 0;
-          &:focus #product-gallery-header-modal{
+          &:focus #product-gallery-header-modal {
             display: block;
           }
         }
@@ -110,21 +110,21 @@
         }
       }
     }
-    &-carousel{
+    &-carousel {
       position: relative;
-      &-prev{
+      &-prev {
         margin-right: auto;
       }
-      &-next{
-        margin-left: auto; 
+      &-next {
+        margin-left: auto;
       }
-      &:hover button{
+      &:hover button {
         visibility: visible;
         opacity: 1;
       }
-      button{
+      button {
         position: absolute;
-        left: 0; 
+        left: 0;
         right: 0;
         top: 0;
         bottom: 0;
@@ -137,15 +137,15 @@
         color: #333;
         border: none;
         background: none;
-        i{
+        i {
           font-size: 40px;
         }
       }
-      .swiper-container{
-        img{
+      .swiper-container {
+        img {
           max-height: 140px;
         }
-        .swiper-slide{
+        .swiper-slide {
           cursor: pointer;
         }
       }

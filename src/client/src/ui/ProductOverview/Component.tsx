@@ -20,9 +20,11 @@ import * as JSS from 'Foundation/ReactJss';
 import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
 
-import { ProductRating } from 'Feature/Catalog/ProductRating';
+import { ProductRating } from 'ui/ProductRating';
+
 import { Variant } from 'Foundation/Commerce/dataModel.Generated';
 import GlassesImg from 'Foundation/UI/common/media/images/glasses-for-slider.png';
+
 import { ProductGallery } from './components/ProductGallery';
 import { ProductActions } from './ProductActions';
 
@@ -76,6 +78,16 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               <div className="col-md-6">
                 <header className="product-header">
                   <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
+                  {/* <div
+                className={classNames('product-stock-status', {
+                  'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
+                  'in-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.InStock,
+                  'out-of-stock': selectedCatalogItem.stockStatusName === Common.StockStatus.OutOfStock,
+                  'pre-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.PreOrderable,
+                })}
+              >
+                <div>{this.getStockStatusLabel(selectedCatalogItem.stockStatusName)}</div>
+              </div> */}
                 </header>
                 <div className="product-info">
                   <p className="product-price">
@@ -217,4 +229,18 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
       )
     );
   }
+  // private getStockStatusLabel(stockStatus: string) {
+  //   switch (stockStatus) {
+  //     case Common.StockStatus.BackOrderable:
+  //       return 'Back Orderable';
+  //     case Common.StockStatus.InStock:
+  //       return 'In Stock';
+  //     case Common.StockStatus.OutOfStock:
+  //       return 'Out Of Stock';
+  //     case Common.StockStatus.PreOrderable:
+  //       return 'Pre Orderable';
+  //     default:
+  //       return '';
+  //   }
+  // }
 }

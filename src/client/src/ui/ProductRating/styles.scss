@@ -12,33 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-.ProductItem {
-  &-ProductCard {
-    padding: 0 15px;
-  }
+@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-  &-Rating {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 17px;
-    padding: 4px 0;
-  }
-
-  &-Price {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: 500;
-    font-size: 15px;
-    padding: 0 0 4px 0;
-  }
-
-  &-Variants {
-    margin: 4px 0;
+@import 'Foundation/UI/common/scss/variables';
+@import 'Foundation/UI/common/scss/mixins';
+// #Star rating and review links
+.product-rating {
+  margin-bottom: 17px;
+  .items-rating {
+    .star {
+      .fa-star-o {
+        font-size: 17px;
+      }
+      padding: 0 8px 0 0;
+      color: $product-rating-empty-star;
+      .orange {
+        color: $product-rating-star;
+      }
+    }
   }
 }

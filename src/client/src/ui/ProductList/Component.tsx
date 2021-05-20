@@ -17,8 +17,8 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { ProductItem } from '../ProductItem';
-import { ProductListHeader } from './components';
+import { ProductItem } from './ProductItem';
+import { ProductListHeader } from './ProductListHeader';
 import { ProductListOwnState, ProductListProps } from './models';
 
 import './styles.scss';

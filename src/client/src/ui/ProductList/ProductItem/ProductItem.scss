@@ -12,15 +12,33 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'Foundation/UI/common/scss/variables.scss';
+.ProductList {
+  &-ProductCard {
+    padding: 0 15px;
+  }
 
-.ProductList-Sorting {
-  width: 190px;
-  margin-right: 50px;
+  &-Rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-  @media (max-width: $screen-xs-max) {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
+    font-size: 17px;
+    padding: 4px 0;
+  }
+
+  &-Price {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0 0 4px 0;
+  }
+
+  &-Variants {
+    margin: 4px 0;
   }
 }

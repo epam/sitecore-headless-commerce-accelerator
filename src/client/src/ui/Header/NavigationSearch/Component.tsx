@@ -120,6 +120,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
     this.setState({
       isOpen: !this.state.isOpen,
     });
+    this.props.closeHamburgerMenu();
   }
   private handleOutsidePopupClick(e: MouseEvent) {
     if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target as Node) && this.state.isOpen) {

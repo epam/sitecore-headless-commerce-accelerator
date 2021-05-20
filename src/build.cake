@@ -8,6 +8,7 @@
 #load ./scripts/cake/coverage.cake
 #load ./scripts/cake/client.cake
 #load ./scripts/cake/solr.cake
+#load ./scripts/cake/backendbuild.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -39,8 +40,12 @@ Client.InitParams(
 
 Solr.InitParams(
     context: Context,
+    vagrantIP: "192.168.50.4",
+    solrInstance: "s10_solr-8.4.0",
     solrPort: "8983",
-    solrCore: "sc10__master_index"
+    solrCore: "sc10__master_index",
+    recreateCoresIfExist: false,
+    coresToCreate: new string[] {}
 );
 
 // //////////////////////////////////////////////////
@@ -118,6 +123,14 @@ Task("006-Sync-Content")
 Task("007-Update-SolrConfig")
     .IsDependentOn(Solr.AddSuggesterComponents)
     ;
+
+Task("008-Build-Server-Code")
+    .IsDependentOn(Server.BuildCodeTask)
+    ;
+
+Task("009-Create-SolrCores")
+    .IsDependentOn(Solr.CreateCores)
+    ;
 	
 // //////////////////////////////////////////////////
 // Targets
@@ -143,8 +156,9 @@ Task("Generate-Client-Models")
     ;
 
 Task("Initial-Deploy")
-    .IsDependentOn("Default")
     .IsDependentOn("007-Update-SolrConfig")
+    .IsDependentOn("009-Create-SolrCores")
+    .IsDependentOn("Default")
     ;
 
 // //////////////////////////////////////////////////

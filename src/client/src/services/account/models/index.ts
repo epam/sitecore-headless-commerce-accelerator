@@ -12,11 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { Status } from 'Foundation/Integration';
 import { SitecoreState } from 'Foundation/ReactJss';
+
+import * as DataModel from './generated/dataModel.Generated';
 
 export interface AccountValidationState extends Status {
   email: string;

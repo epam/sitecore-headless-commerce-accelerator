@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as commonModels from 'Feature/Catalog/Integration/common/models';
+import * as commonModels from 'services/catalog';
 import * as JSS from 'Foundation/ReactJss';
 import { GlobalSearchState } from 'services/search';
 

@@ -1,8 +1,9 @@
-var path = require("path");
-var codeGenTsUtils = require("../../../scripts/code-generation/codeGenTsUtils");
+var path = require('path');
+var codeGenTsUtils = require('../../../../../scripts/code-generation/codeGenTsUtils');
+
 
 module.exports = {
-    cwd: path.join(__dirname, '../../../../'),
+    cwd: path.join(__dirname, '../../../../../../'),
     pattern: 'Feature/Checkout/serialization/Templates/**/*.yml',
     reactJssModule: 'Foundation/ReactJss',
     modules: [],

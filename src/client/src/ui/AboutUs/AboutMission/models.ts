@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { AboutMissionParagraphDataSource } from 'Feature/PageContent/Models.Generated';
+import { AboutMissionParagraphDataSource } from 'services/pageContent/models/generated';
 
 import * as Jss from 'Foundation/ReactJss';
 

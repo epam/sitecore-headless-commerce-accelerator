@@ -13,9 +13,7 @@
 //    limitations under the License.
 
 import { Action } from 'Foundation/Integration';
-import * as ShoppingCart from 'Feature/Checkout/Integration/api/ShoppingCart';
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
-
+import * as DataModels from 'services/checkout/models/generated';
 import {
   CartItemDto,
   CartLineSuccessPayload,

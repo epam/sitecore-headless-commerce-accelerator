@@ -14,17 +14,15 @@
 
 import { SagaIterator } from 'redux-saga';
 import { call, put, race, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
-
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
-import { ShoppingCart } from 'Feature/Checkout/Integration/api';
 import * as Commerce from 'Foundation/Commerce';
 import { eventHub, events } from 'Foundation/EventHub';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
-
+import * as DataModels from 'services/checkout/models/generated';
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
 import { RemoveCartLinePayload, ShoppingCartData, ShoppingCartState, UpdateCartItemRequestPayload } from './models';
 import * as ShoppingCart from './api';
+
 import {
   GerPromotionPayload,
   RemoveCartLinePayload,

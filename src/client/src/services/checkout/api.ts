@@ -19,7 +19,7 @@ import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
 
-import { SetPaymentInfoRequest, SetShippingOptionsRequest } from 'Feature/Checkout/dataModel.Generated';
+import { SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';
 
 import { BillingInfoResponse, CreditCard, DeliveryInfoResponse, SetPaymentInfoResponse, SetShippingOptionsResponse, ShippingInfoResponse, SubmitOrderResponse } from './models';
 

@@ -17,10 +17,10 @@ import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useStat
 import { debounce, get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { StockStatus } from 'Feature/Catalog/Integration/common';
 import { CartLine } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
 
+import { StockStatus } from 'services/catalog';
 import { shoppingCart, updateCartItemRequest } from 'services/shoppingCart';
 
 import { Button, QuantityPicker } from 'components';

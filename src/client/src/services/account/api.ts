@@ -14,7 +14,6 @@
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Commerce from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
 
@@ -27,6 +26,7 @@ import {
   RecoverPasswordResponse,
   UpdateAccountResponse,
 } from './models';
+import * as DataModel from './models/generated';
 
 const routeBase = '/apix/client/commerce/accounts';
 

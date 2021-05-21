@@ -13,7 +13,8 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-import { RecommendedProductsDataSource } from 'Feature/PageContent/Models.Generated';
+
+import { RecommendedProductsDataSource } from 'services/pageContent/models/generated';
 
 export interface RecommendedProductsProps extends JSS.RenderingWithContext<RecommendedProductsDataSource> {}
 

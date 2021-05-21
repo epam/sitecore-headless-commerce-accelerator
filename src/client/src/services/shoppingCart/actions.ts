@@ -14,7 +14,8 @@
 
 import { FailureType, LoadingStatus, StatusType } from 'Foundation/Integration';
 
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
+import * as DataModels from 'services/checkout/models/generated';
+
 import * as actionCreators from './actionCreators';
 import { actionTypes } from './actionTypes';
 import { ShoppingCartData, ShoppingCartLine } from './models';

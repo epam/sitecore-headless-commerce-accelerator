@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-import { GridLayoutRenderingParams } from 'Project/HCA/Models.Generated';
+import { GridLayoutRenderingParams } from 'Project/HCA/models/generated';
 
 interface HeaderContentParams extends GridLayoutRenderingParams {
   isMain: string;

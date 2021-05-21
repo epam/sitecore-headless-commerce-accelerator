@@ -27,7 +27,8 @@ namespace HCA.Feature.Account.Models.Requests
         public string UserName { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        [MinLength(Constants.PasswordValidation.MinimumPasswordLength)]
+        public string NewPassword { get; set; }
 
         [Required]
         public string Token { get; set; }

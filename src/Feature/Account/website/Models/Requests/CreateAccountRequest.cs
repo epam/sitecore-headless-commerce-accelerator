@@ -34,6 +34,7 @@ namespace HCA.Feature.Account.Models.Requests
         public string LastName { get; set; }
 
         [Required]
+        [MinLength(Constants.PasswordValidation.MinimumPasswordLength)]
         public string Password { get; set; }
     }
 }

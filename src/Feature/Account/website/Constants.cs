@@ -25,5 +25,10 @@ namespace HCA.Feature.Account
 
             public const string CurrentPage = "/";
         }
+
+        public static class PasswordValidation
+        {
+            public const int MinimumPasswordLength = 6; 
+        }
     }
 }

@@ -14,7 +14,7 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import * as Models from 'Feature/Checkout/Models.Generated';
+import * as Models from 'services/checkout/models/generated';
 
 export interface CheckoutNavigationDatasource extends Models.CheckoutNavigationDataSource {
     checkoutSteps: JSS.ItemList<Models.CheckoutStepDataSource>;

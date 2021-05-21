@@ -14,7 +14,7 @@
 
 import { Variant } from 'Foundation/Commerce';
 
-import { AppState as SitecoreState } from 'Feature/Catalog/Integration/common/models';
+import { AppState as SitecoreState } from 'services/catalog';
 
 export interface SelectedProductVariant {
   [productId: string]: Variant;

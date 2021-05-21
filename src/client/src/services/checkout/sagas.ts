@@ -15,7 +15,8 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from 'Feature/Checkout/dataModel.Generated';
+import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';
+
 import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';

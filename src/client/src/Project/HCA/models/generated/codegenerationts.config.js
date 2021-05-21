@@ -1,8 +1,8 @@
 var path = require('path');
-var codeGenTsUtils = require('../../../scripts/code-generation/codeGenTsUtils');
+var codeGenTsUtils = require('../../../../../scripts/code-generation/codeGenTsUtils');
 
 module.exports = {
-  cwd: path.join(__dirname, '../../../../'),
+  cwd: path.join(__dirname, '../../../../../../'),
   pattern: 'Project/HCA/serialization/Templates/**/*.yml',
   reactJssModule: 'Foundation/ReactJss',
   modules: [],

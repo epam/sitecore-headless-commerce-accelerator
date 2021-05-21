@@ -14,9 +14,10 @@
 
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
-import { StockStatus } from 'Feature/Catalog/Integration/common';
 import { LoadingStatus } from 'Foundation/Integration';
 import { notify, notifySubscribed } from 'Foundation/services/notificationsService';
+
+import { StockStatus } from 'services/catalog';
 
 import { Button, QuantityPicker } from 'components';
 

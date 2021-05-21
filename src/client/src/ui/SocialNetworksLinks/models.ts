@@ -13,7 +13,8 @@
 //    limitations under the License.
 
 import * as Jss from 'Foundation/ReactJss';
-import { SocialNetworksLinksParamsRenderingParams } from './Models.Generated';
+
+import { SocialNetworksLinksParamsRenderingParams } from 'services/socialNetworkLink/models/generated';
 
 export interface SocialNetworkLinkDataSource extends Jss.BaseDataSourceItem {
   uri: Jss.GraphQLField<Jss.LinkField>;

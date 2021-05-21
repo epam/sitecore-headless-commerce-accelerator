@@ -14,8 +14,9 @@
 
 import { RouterProps } from 'react-router';
 
-import * as commonModels from 'Feature/Catalog/Integration/common/models';
 import * as JSS from 'Foundation/ReactJss';
+
+import * as commonModels from 'services/catalog';
 import * as Search from 'services/search';
 
 export interface ProductListOwnProps

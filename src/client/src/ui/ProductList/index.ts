@@ -18,9 +18,10 @@ import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import Cookies from 'universal-cookie';
 
-import * as commonSelectors from 'Feature/Catalog/Integration/common/selectors';
 import { LoadingStatus } from 'Foundation/Integration';
 import { renderingWithContext } from 'Foundation/ReactJss';
+
+import * as commonSelectors from 'services/catalog';
 import * as Search from 'services/search';
 
 import ProductListComponent from './Component';

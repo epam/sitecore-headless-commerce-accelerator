@@ -19,7 +19,7 @@ import { Result } from 'Foundation/Integration';
 
 import { GetCartResponse } from './models';
 
-import * as DataModels from 'Feature/Checkout/dataModel.Generated';
+import * as DataModels from 'services/checkout/models/generated';
 
 const routeBase = '/apix/client/commerce/carts';
 

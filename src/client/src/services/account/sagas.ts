@@ -14,7 +14,6 @@
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import * as DataModel from 'Feature/Account/dataModel.Generated';
 import * as Commerce from 'Foundation/Commerce';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
@@ -31,6 +30,7 @@ import {
   UpdateAccountPayload,
   ValidateEmailPayload,
 } from './models';
+import * as DataModel from './models/generated';
 import * as selectors from './selectors';
 
 import { Authentication } from 'services/authentication';

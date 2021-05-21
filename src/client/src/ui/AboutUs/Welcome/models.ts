@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { WelcomeDataSource } from 'Feature/PageContent/Models.Generated';
+import { WelcomeDataSource } from 'services/pageContent/models/generated';
 
 import * as Jss from 'Foundation/ReactJss';
 

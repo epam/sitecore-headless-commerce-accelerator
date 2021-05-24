@@ -17,7 +17,6 @@ module.exports = {
     'data-api-alias': '<rootDir>/src/Foundation/ReactJss/api/JssDataApi',
     'Foundation/(.*)': '<rootDir>/src/Foundation/$1',
     'Project/(.*)': '<rootDir>/src/Project/$1',
-    'Feature/(.*)': '<rootDir>/src/Feature/$1',
     '((\\.(css|scss)$)|(/styles$))': '<rootDir>/scripts/jest/__mocks__/styleMock.js',
     '^components(.*)$': '<rootDir>/src/components/$1',
     '^services(.*)$': '<rootDir>/src/services/$1',

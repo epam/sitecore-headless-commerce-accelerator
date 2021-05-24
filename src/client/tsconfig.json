@@ -10,7 +10,6 @@
     "paths": {
       "Foundation": ["Foundation"],
       "Project": ["Project"],
-      "Feature": ["Feature"],
       "layouts": ["layouts"],
       "components": ["components"],
       "hooks": ["hooks"],
@@ -35,7 +34,6 @@
   "files":["src/Project/HCA/modules.d.ts"],
   "include": [
     "src/Foundation/**/*",
-    "src/Feature/**/*",
     "src/Project/**/*",
     "src/Project/HCA/modules.d.ts",
     "src/layouts/**/*",
@@ -46,7 +44,6 @@
   ],
   "exclude": [
     "src/Foundation/**/*.js",
-    "src/Feature/**/*.js",
     "src/Project/**/*.js"
   ]
 }

@@ -7,7 +7,6 @@ module.exports = {
   stories: ['../../src/**/**/stories/*.stories.mdx', '../../src/**/**/__stories__/*.stories.@(js|jsx|ts|tsx)'],
   webpackFinal: (config) => {
     config.resolve.extensions = ['.tsx', '.ts', '.js', '.css', '.scss'];
-    config.resolve.alias['Feature'] = resolve(process.cwd(), './src/Feature');
     config.resolve.alias['Foundation'] = resolve(process.cwd(), './src/Foundation');
     config.resolve.alias['Project'] = resolve(process.cwd(), './src/Project');
     config.resolve.alias['components'] = resolve(process.cwd(), './src/components');

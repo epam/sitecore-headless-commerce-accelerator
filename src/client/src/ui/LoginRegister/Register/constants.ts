@@ -21,6 +21,7 @@ export const FORM_FIELDS = keyMirror(
     FIRST_NAME: null,
     LAST_NAME: null,
     PASSWORD: null,
+    TERMS_CONDITIONS: null,
   },
   'SIGN_UP_FORM',
 );

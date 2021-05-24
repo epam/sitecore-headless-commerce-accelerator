@@ -23,12 +23,13 @@ export type CheckboxProps = {
   hovered?: boolean;
   className?: string;
   controlSize?: 's' | 'm' | 'l';
+  error?: boolean;
 } & HTMLProps<HTMLInputElement>;
 
 export const Checkbox: FC<CheckboxProps> = forwardRef(
-  ({ checked = false, hovered = false, className, controlSize = 'm', ...restProps }, ref) => {
+  ({ error = false, checked = false, hovered = false, className, controlSize = 'm', ...restProps }, ref) => {
     return (
-      <span className={cnCheckbox({ controlSize, checked, hovered }, [className])}>
+      <span className={cnCheckbox({ error, controlSize, checked, hovered }, [className])}>
         <input type="checkbox" className={cnCheckbox('Control')} checked={checked} {...restProps} ref={ref} />
         <span className={cnCheckbox('Checkmark', { controlSize })} />
       </span>

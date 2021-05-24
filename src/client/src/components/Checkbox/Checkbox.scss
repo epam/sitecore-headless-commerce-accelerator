@@ -36,6 +36,12 @@ $checkbox-checkmark-size-l-height: 20px;
   background-color: $checkbox-bg-color;
   transition: background-color 0.2s ease-in;
 
+  &_error {
+    border-color: $checkbox-error-border-color;
+    box-shadow: 0 0 8px $checkbox-error-box-shadow-color;
+    -webkit-box-shadow: 0 0 8px $checkbox-error-box-shadow-color;
+  }
+
   &_checked,
   &_hovered {
     background-color: $checkbox-selected-bg-color;

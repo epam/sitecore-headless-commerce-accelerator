@@ -12,15 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { Button, Checkbox } from 'components';
+import { Button } from 'components';
 
 import { LoadingStatus } from 'Foundation/Integration';
-import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
+import { Checkbox, Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'Foundation/UI';
 import { validateEmail as validateEmailUtils } from 'Foundation/utils/validation';
 
@@ -51,6 +51,7 @@ export const RegisterComponent: FC<SignUpProps> = ({
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
   const [isPasswordsValid, setIsPasswordsValid] = useState(true);
   const [termsAndConditionsAccepted, setTermsAndConditionsAccepted] = useState(false);
+  const [termsAndConditionsValid, setTermsAndConditionsValid] = useState(true);
 
   const [showPasswordValue, setShowPasswordValue] = useState(false);
   const [showConfirmPasswordValue, setShowConfirmPasswordValue] = useState(false);
@@ -63,9 +64,13 @@ export const RegisterComponent: FC<SignUpProps> = ({
     setShowConfirmPasswordValue((value) => !value);
   }, [setShowConfirmPasswordValue, showConfirmPasswordValue]);
 
-  const toggleTermsAndConditions = useCallback(() => {
-    setTermsAndConditionsAccepted((value) => !value);
-  }, [setTermsAndConditionsAccepted]);
+  const toggleTermsAndConditions = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      setTermsAndConditionsAccepted(e.currentTarget.checked);
+      setTermsAndConditionsValid(e.currentTarget.checked);
+    },
+    [setTermsAndConditionsAccepted],
+  );
 
   useEffect(() => {
     return () => {
@@ -177,6 +182,7 @@ export const RegisterComponent: FC<SignUpProps> = ({
     const isPasswordValid = validatePassword(form);
     const isConfirmPasswordValid = validateConfirmPassword(form);
     let isPasswordsMatch = false;
+    setTermsAndConditionsValid(termsAndConditionsAccepted);
 
     if (isPasswordValid && isConfirmPasswordValid) {
       isPasswordsMatch = passwordValidator(form);
@@ -211,7 +217,7 @@ export const RegisterComponent: FC<SignUpProps> = ({
   const handleFormSubmit = (form: FormValues) => {
     validate(form);
 
-    if (validateEmail(form)) {
+    if (validateEmail(form) && termsAndConditionsAccepted) {
       const email = form[FORM_FIELDS.EMAIL] as string;
       setFormValues(form);
       AccountValidation(email);
@@ -351,8 +357,10 @@ export const RegisterComponent: FC<SignUpProps> = ({
           <label className={cnRegister('TermsAndConditionsLabel')}>
             <Checkbox
               id="terms-and-conditions"
+              name={FORM_FIELDS.TERMS_CONDITIONS}
               checked={termsAndConditionsAccepted}
               onChange={toggleTermsAndConditions}
+              error={!termsAndConditionsValid}
             />
             <label htmlFor="terms-and-conditions" className={cnRegister('TermsAndConditionsText')}>
               I have read and agree to the <NavigationLink to="/">Terms of Use</NavigationLink> and{' '}

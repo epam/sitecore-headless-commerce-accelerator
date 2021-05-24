@@ -31,7 +31,6 @@ export default class NavigationLinkComponent extends Jss.SafePureComponent<Navig
 
   private handleLinkOnClick(e: MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
-    e.stopPropagation();
 
     const { to, ChangeRoute } = this.props;
     ChangeRoute(to);

@@ -42,14 +42,17 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
 
   protected safeRender() {
     const { isDropdownVisible } = this.state;
-    const { commerceUser, returnUrl, Logout } = this.props;
+    const { commerceUser } = this.props;
 
     return (
       <div ref={this.wrapperRef} className="navigation-buttons_item account">
         <a onClick={this.toggleDropdown}>
           <i className="pe-7s-user-female" />
         </a>
-        <ul className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}>
+        <ul
+          className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}
+          onClick={this.toggleDropdown}
+        >
           {commerceUser && commerceUser.customerId ? (
             <>
               <li className="account_dropdown-item">
@@ -63,7 +66,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
                 </NavigationLink>
               </li>
               <li className="account_dropdown-item">
-                <a href="#" className="account_link" onClick={() => Logout(returnUrl)}>
+                <a href="#" className="account_link" onClick={this.handleClickLogout}>
                   Sign Out
                 </a>
               </li>
@@ -96,6 +99,11 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
       this.toggleDropdown();
     }
   }
+
+  private handleClickLogout = () => {
+    const { logout, returnUrl } = this.props;
+    logout(returnUrl);
+  };
 
   private toggleDropdown = () => this.setState({ isDropdownVisible: !this.state.isDropdownVisible });
 }

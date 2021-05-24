@@ -20,7 +20,7 @@ import { GlobalAuthenticationState } from 'services/authentication';
 export interface UserButtonProps {
   commerceUser: Commerce.User;
   returnUrl: string;
-  Logout: (returnUrl: string) => void;
+  logout: (returnUrl: string) => void;
 }
 
 export interface UserButtonState extends JSS.SafePureComponentState {

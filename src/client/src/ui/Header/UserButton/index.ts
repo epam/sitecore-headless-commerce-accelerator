@@ -35,7 +35,7 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
-      Logout: Authentication.Logout,
+      logout: Authentication.Logout,
     },
     dispatch,
   );

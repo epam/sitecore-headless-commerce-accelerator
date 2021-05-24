@@ -29,7 +29,6 @@ module.exports = (compilerOptions) => ({
       'data-api-alias': path.resolve(process.cwd(), compilerOptions.jssDataApiAlias),
       Foundation: path.resolve(process.cwd(), './src/Foundation/'),
       Project: path.resolve(process.cwd(), './src/Project/'),
-      Feature: path.resolve(process.cwd(), './src/Feature/'),
       layouts: path.resolve(process.cwd(), './src/layouts/'),
       components: path.resolve(process.cwd(), './src/components/'),
       hooks: path.resolve(process.cwd(), './src/hooks/'),
@@ -118,7 +117,6 @@ module.exports = (compilerOptions) => ({
       async: false,
       include: [
         '/src/Project/',
-        '/src/Feature/',
         '/src/Foundation/',
         '/src/components/',
         '/src/hooks/',

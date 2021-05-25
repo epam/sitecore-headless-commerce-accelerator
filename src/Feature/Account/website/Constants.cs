@@ -26,9 +26,18 @@ namespace HCA.Feature.Account
             public const string CurrentPage = "/";
         }
 
-        public static class PasswordValidation
+        public static class Account
         {
-            public const int MinimumPasswordLength = 6; 
+            public static class ErrorMessages
+            {
+                public const string TermsAndPolicyAgreementMessage =
+                    "You have to agree to the Terms of Use and Customer Privacy Policy";
+            }
+
+            public static class PasswordValidation
+            {
+                public const int MinimumPasswordLength = 6;
+            }
         }
     }
 }

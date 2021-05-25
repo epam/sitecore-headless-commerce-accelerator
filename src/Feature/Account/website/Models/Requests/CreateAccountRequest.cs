@@ -34,7 +34,14 @@ namespace HCA.Feature.Account.Models.Requests
         public string LastName { get; set; }
 
         [Required]
-        [MinLength(Constants.PasswordValidation.MinimumPasswordLength)]
+        [MinLength(Constants.Account.PasswordValidation.MinimumPasswordLength)]
         public string Password { get; set; }
+
+        /// <summary>
+        /// User have to accept our terms of use and privacy policy agreement
+        /// </summary>
+        [Required]
+        [Range(typeof(bool), "true", "true", ErrorMessage = Constants.Account.ErrorMessages.TermsAndPolicyAgreementMessage)]
+        public bool TermsAndPolicyAgreement { get; set; }
     }
 }

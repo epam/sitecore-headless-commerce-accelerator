@@ -513,6 +513,7 @@
       <HintPath>..\..\..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Thread" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Cors, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.Cors.5.2.6\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -612,6 +613,18 @@
     <Compile Include="Services\Logging\LogService.cs" />
     <Compile Include="Services\Pipeline\IPipelineService.cs" />
     <Compile Include="Services\Pipeline\PipelineService.cs" />
+    <Compile Include="Services\ISitecoreItemService.cs" />
+    <Compile Include="Services\ILinkManagerService.cs" />
+    <Compile Include="Services\IMainUtilService.cs" />
+    <Compile Include="Services\IMembershipService.cs" />
+    <Compile Include="Services\ISitecoreXConnectClientConfigurationService.cs" />
+    <Compile Include="Services\ISiteExtensionsService.cs" />
+    <Compile Include="Services\SitecoreItemService.cs" />
+    <Compile Include="Services\LinkManagerService.cs" />
+    <Compile Include="Services\MainUtilService.cs" />
+    <Compile Include="Services\MembershipService.cs" />
+    <Compile Include="Services\SitecoreXConnectClientConfigurationService.cs" />
+    <Compile Include="Services\SiteExtensionsService.cs" />
     <Compile Include="Services\Tracking\TrackingService.cs" />
     <Compile Include="Services\Tracking\ITrackingService.cs" />
   </ItemGroup>

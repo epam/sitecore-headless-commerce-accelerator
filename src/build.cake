@@ -44,7 +44,7 @@ Solr.InitParams(
     solrInstance: "s10_solr-8.4.0",
     solrPort: "8983",
     solrCore: "sc10__master_index",
-    recreateCoresIfExist: false,
+    recreateCoresIfExist: true,
     coresToCreate: new string[] {}
 );
 
@@ -160,6 +160,9 @@ Task("Initial-Deploy")
     .IsDependentOn("009-Create-SolrCores")
     .IsDependentOn("Default")
     ;
+
+Task("Create-Solr-Cores")
+    .IsDependentOn("009-Create-SolrCores");
 
 // //////////////////////////////////////////////////
 // Execution

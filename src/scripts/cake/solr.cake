@@ -5,6 +5,7 @@
 
 using System.IO;
 using System.Net;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -74,9 +75,9 @@ public class FsUtils
     }
 }
 
-public class SolrConfigurationManager
+public class HttpManager
 {
-    public string ChangeSolrConfig(string url, string command, string jsonRequest){
+    public string Post(string url, string command, string jsonRequest){
 
         return HttpClientAliases.HttpPost(Solr.Context, url, settings =>
             {
@@ -85,7 +86,7 @@ public class SolrConfigurationManager
             });
     }
 
-    public string GetSolrConfig(string url){
+    public string Get(string url){
         return HttpClientAliases.HttpGet(Solr.Context, url);
     }
 }
@@ -97,7 +98,7 @@ Solr.AddSuggesterComponents = Task("Solr :: Add Suggester Components")
         Sitecore.Utils.AssertIfNullOrEmpty(Solr.SolrPort, "SolrPort", "SOLR_PORT");
         Sitecore.Utils.AssertIfNullOrEmpty(Solr.SolrCore, "SolrCore", "SOLR_CORE");
 
-        var solrConfigurationManager = new SolrConfigurationManager();
+        var HttpManager = new HttpManager();
 
         var solrConfigUrl = $"https://{Solr.VagrantIP}:{Solr.SolrPort}/solr/{Solr.SolrCore}/config";
         var solrOverlayUrl = $"{solrConfigUrl}/overlay";
@@ -133,19 +134,19 @@ Solr.AddSuggesterComponents = Task("Solr :: Add Suggester Components")
 
         ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
-        string searchComponentResp = solrConfigurationManager.GetSolrConfig($"{solrConfigUrl}/searchComponent?componentName=suggest");
-        string handlerComponentResp = solrConfigurationManager.GetSolrConfig($"{solrConfigUrl}/requestHandler?componentName=/suggest");
+        string searchComponentResp = HttpManager.Get($"{solrConfigUrl}/searchComponent?componentName=suggest");
+        string handlerComponentResp = HttpManager.Get($"{solrConfigUrl}/requestHandler?componentName=/suggest");
 
         JObject suggesterComponent = JsonConvert.DeserializeObject<JObject>(searchComponentResp);
         JObject handlerComponent = JsonConvert.DeserializeObject<JObject>(handlerComponentResp);
 
         var changeSearchComponentResponse = suggesterComponent["config"]["searchComponent"]["suggest"].HasValues
-            ? solrConfigurationManager.ChangeSolrConfig(solrOverlayUrl, "update-searchcomponent", jsonSuggester)
-            : solrConfigurationManager.ChangeSolrConfig(solrOverlayUrl, "add-searchcomponent", jsonSuggester);
+            ? HttpManager.Post(solrOverlayUrl, "update-searchcomponent", jsonSuggester)
+            : HttpManager.Post(solrOverlayUrl, "add-searchcomponent", jsonSuggester);
         
         var changeHandlerComponentResponse = handlerComponent["config"]["requestHandler"]["/suggest"].HasValues
-            ? solrConfigurationManager.ChangeSolrConfig(solrOverlayUrl, "update-requesthandler", jsonRequestHandler)
-            : solrConfigurationManager.ChangeSolrConfig(solrOverlayUrl, "add-requesthandler", jsonRequestHandler);
+            ? HttpManager.Post(solrOverlayUrl, "update-requesthandler", jsonRequestHandler)
+            : HttpManager.Post(solrOverlayUrl, "add-requesthandler", jsonRequestHandler);
     });
 
 Solr.CreateCores = Task("Solr :: Create Cores")
@@ -155,12 +156,12 @@ Solr.CreateCores = Task("Solr :: Create Cores")
         Sitecore.Utils.AssertIfNullOrEmpty(Solr.SolrPort, "SolrPort", "SOLR_PORT");
         
         ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-        var solrConfigurationManager = new SolrConfigurationManager();
+        var HttpManager = new HttpManager();
 
         var baseUrl = $"https://{Solr.VagrantIP}:{Solr.SolrPort}/solr/admin/cores";
         var basePath = $"\\\\{Solr.VagrantIP}\\c$\\Solr\\{Solr.SolrInstance}\\server\\solr";
             
-        var defaultConfPath = $"{basePath}\\configsets\\_default\\conf";
+        var defaultConfPath = $"{basePath}\\sc10__web_index\\conf";
         var coreSolrConfigPath = "conf/solrconfig.xml";
 
         foreach (var core in Solr.CoresToCreate)
@@ -170,7 +171,7 @@ Solr.CreateCores = Task("Solr :: Create Cores")
             var coreStatusUrl = $"{baseUrl}?action=STATUS&core={core}";
 
             Information($"\tExecuting request to: {coreStatusUrl}");
-            var coreStatusRes = solrConfigurationManager.GetSolrConfig(coreStatusUrl);
+            var coreStatusRes = HttpManager.Get(coreStatusUrl);
                 
             Information("\tParsing core status...");
             JObject coreStatus = JsonConvert.DeserializeObject<JObject>(coreStatusRes);
@@ -181,12 +182,13 @@ Solr.CreateCores = Task("Solr :: Create Cores")
                     var coreDeleteUrl = $"{baseUrl}?action=UNLOAD&core={core}&deleteInstanceDir=true";
 
                     Information($"\tExecuting request to: {coreDeleteUrl}");
-                    solrConfigurationManager.GetSolrConfig(coreDeleteUrl);
+                    HttpManager.Get(coreDeleteUrl);
                 }
                 else {
                     Warning($"\t{core} already exists. No need to create one!");
                 }
             }
+
             if (!coreExists || Solr.RecreateCoresIfExist) {
                 var corePath = $"{basePath}\\{core}";
                 var coreConfPath = $"{corePath}\\conf";
@@ -200,8 +202,13 @@ Solr.CreateCores = Task("Solr :: Create Cores")
                 FsUtils.Copy(defaultConfPath, coreConfPath);
                 
                 Information($"\tExecuting request to: {coreCreateUrl}");
-                solrConfigurationManager.GetSolrConfig(coreCreateUrl);
+                HttpManager.Get(coreCreateUrl);               
             }
         }
+
+        string coresToPopulateSchema = string.Join("|", Solr.CoresToCreate);
+        var populateManagedSchemaUrl = $"http://hca.local/sitecore/admin/PopulateManagedSchema.aspx?indexes={coresToPopulateSchema}";
+        Information($"\tExecuting request to: {populateManagedSchemaUrl}");
+        HttpManager.Get(populateManagedSchemaUrl);
     });
                 

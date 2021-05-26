@@ -2,7 +2,7 @@
 ID: "fb696e0b-93ed-4707-8c57-3e3cf70037f8"
 Parent: "cfe5f572-3b62-428f-b4f1-7a023a8c569d"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/AboutUs/Fun Facts
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/About Us/Fun Facts
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"

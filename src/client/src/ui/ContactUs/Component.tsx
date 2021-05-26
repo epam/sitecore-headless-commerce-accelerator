@@ -19,17 +19,22 @@ import {
   ContactLinkDataSource,
   ContactPhoneDataSource,
   ContactUsProps,
-  ContactUsState
+  ContactUsState,
 } from './models';
 
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
-import ContactUsImg from 'Foundation/UI/common/media/images/contact-us.jpg';
-
 export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, ContactUsState> {
   public constructor(props: ContactUsProps) {
     super(props);
+    this.state = {
+      errors: {},
+      radiuses: [],
+    };
+  }
+  public componentDidMount() {
+    this.props.GetStores();
   }
 
   protected safeRender() {
@@ -37,11 +42,8 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
 
     return (
       <div className="contact-area">
-        <div className="contact-area_text">
-          <p>Please email us your questions regarding our products.</p>
-        </div>
-        <div className="contact-area_image">
-          <img src={ContactUsImg} alt="contact-us"/>
+        <div className="contact-intro-area">
+          <Placeholder name="contact-intro" rendering={this.props.rendering} />
         </div>
         <div className="contact-area_content_container row">
           <div className="contact-area_content col-lg-4 col-md-5">

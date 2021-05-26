@@ -1,0 +1,75 @@
+﻿---
+ID: "7438a283-7511-4983-b1da-09e0a13a66c4"
+Parent: "1fad08c6-309d-41a5-ae86-19b9fc3b03b5"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/Contact Us/Contact Us
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Contact Us
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: |
+    {50D92B32-D3FC-4650-86E6-5B36D7C214EF}
+    {D5EAC96A-4FB7-4E85-BFC7-B771AF149456}
+    {4D770C28-EA5C-4809-8843-415982D10EFA}
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query ContactUs($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on Contacts {
+          id
+          phones {
+            items: targetItems {
+              ... on ContactPhone {
+                id
+                phone {
+                  jss
+                }
+              }
+            }
+          }
+          links {
+            items: targetItems {
+              ... on ContactLink {
+                id
+                uri {
+                  jss
+                }
+              }
+            }
+          }
+          addresses {
+            items: targetItems {
+              ... on ContactAddress {
+                id
+                address {
+                  jss
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: 
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{1B87628C-EA15-4C9E-8F6F-339BBCF222EE}']"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201216T162109Z

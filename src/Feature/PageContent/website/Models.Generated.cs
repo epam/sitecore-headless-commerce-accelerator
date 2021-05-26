@@ -28,11 +28,17 @@ namespace HCA.Feature.PageContent.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
     using System.Text;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Fields;
+    using Sitecore.Globalization;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
 
+    using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
 
 
@@ -720,6 +726,70 @@ namespace HCA.Feature.PageContent.Models
         /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses
         /// </summary>
         public const string TemplateId = "e31ddc89-fefd-47d4-8f57-240af742ec35";
+
+    }
+
+
+    /// <summary>
+    /// IContactIntro Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro</para>
+    /// <para>ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="252becf7-cdf0-4cf7-970c-313d1e98c0a1")]
+    public partial interface IContactIntro: IGlassBase
+    {
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        Image Image {get; set;}
+
+        /// <summary>
+        /// The IntroLine field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1</para>
+        /// </summary>
+        [SitecoreField("IntroLine")]
+        string IntroLine {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// ContactIntro Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro</para>
+    /// <para>ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="252becf7-cdf0-4cf7-970c-313d1e98c0a1")]
+    public partial class ContactIntro: GlassBase, IContactIntro
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
+        /// </summary>
+        public const string TemplateId = "252becf7-cdf0-4cf7-970c-313d1e98c0a1";
+
+        /// <summary>
+        /// The Image field.
+        /// <para>Field Type: Image</para>
+        /// <para>Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150</para>
+        /// </summary>
+        [SitecoreField("Image")]
+        public virtual Image Image {get; set;}
+        public const string ImageFieldId = "31f05fc6-a229-406d-b57d-14c13a4a7150";
+        public const string ImageFieldName = "Image";
+
+        /// <summary>
+        /// The IntroLine field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1</para>
+        /// </summary>
+        [SitecoreField("IntroLine")]
+        public virtual string IntroLine {get; set;}
+        public const string IntroLineFieldId = "12c05cc3-2307-49b2-9230-4c9816463bb1";
+        public const string IntroLineFieldName = "IntroLine";
 
     }
 

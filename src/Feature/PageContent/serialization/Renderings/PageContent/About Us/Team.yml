@@ -2,7 +2,7 @@
 ID: "2caf16ed-9a96-4e14-8bbb-58de909a4d1b"
 Parent: "cfe5f572-3b62-428f-b4f1-7a023a8c569d"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
-Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/AboutUs/Team
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/About Us/Team
 DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"

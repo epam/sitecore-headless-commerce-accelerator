@@ -43,6 +43,7 @@ import * as Navigation from 'ui/Header';
 import { SocialNetworksLinks } from 'ui/SocialNetworksLinks';
 import { GetInTouchForm } from 'ui/GetInTouchForm';
 import { ContactUs } from 'ui/ContactUs';
+import { ContactIntro } from 'ui/ContactUs/ContactIntro';
 import { CarouselBanner } from 'ui/CarouselBanner';
 import { RecommendedProducts } from 'ui/RecommendedProducts';
 import { ProductInformation } from 'ui/ProductInformation';
@@ -136,6 +137,7 @@ components.set('Blog Page', BlogPage);
 
 // Contact Us
 components.set('Contact Us', ContactUs);
+components.set('Contact Intro', ContactIntro);
 components.set('Get In Touch Form', GetInTouchForm);
 
 export default (componentName: string) => components.get(componentName);

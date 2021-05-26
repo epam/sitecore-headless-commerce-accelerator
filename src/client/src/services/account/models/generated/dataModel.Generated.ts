@@ -41,6 +41,7 @@ export interface CreateAccountRequest {
   firstName: string;
   lastName: string;
   password: string;
+  termsAndPolicyAgreement: boolean;
 }
 export interface LoginRequest {
   email: string;

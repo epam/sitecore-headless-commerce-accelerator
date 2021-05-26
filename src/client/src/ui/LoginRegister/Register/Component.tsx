@@ -207,6 +207,7 @@ export const RegisterComponent: FC<SignUpProps> = ({
           firstName: formValues[FORM_FIELDS.FIRST_NAME] as string,
           lastName: formValues[FORM_FIELDS.LAST_NAME] as string,
           password: formValues[FORM_FIELDS.PASSWORD] as string,
+          termsAndPolicyAgreement: formValues[FORM_FIELDS.TERMS_CONDITIONS] as boolean,
         };
 
         CreateAccount(createAccountDto, returnUrl);

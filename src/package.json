@@ -11,14 +11,9 @@
     "gulp": "^4.0.2",
     "gulp-foreach": "^0.1.0",
     "gulp-rename": "^2.0.0",
-    "husky": "^4.2.5",
-    "prettier": "2.0.5",
-    "pretty-quick": "^2.0.1",
     "rainbow-js-codegeneration": "^1.0.7"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "sh hooks/commit-msg"
-    }
+  "dependencies": {
+    "react-geocode": "^0.2.1"
   }
 }

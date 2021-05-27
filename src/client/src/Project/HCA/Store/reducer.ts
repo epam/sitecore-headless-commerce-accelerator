@@ -12,21 +12,15 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
-import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
-import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
+
+import * as StoreLocator from 'services/storeLocator';
+import * as Wishlist from 'services/wishlist';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
 
-import * as GlobalError from 'Foundation/UI/common/components/Errors/Integration';
-
-import * as Checkout from 'Feature/Checkout/Integration/Checkout';
-
-import * as ProductSearch from 'Feature/Catalog/Integration/ProductsSearch';
-import * as ProductSearchSuggestion from 'Feature/Catalog/Integration/ProductsSearchSuggestions';
-import * as HamburgerMenu from 'Feature/Navigation/Header/NavigationMenu/Integration';
 import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
@@ -41,7 +35,6 @@ export const makeRootReducer = (history: History) =>
     account: Account.rootReducer,
     authentication: Authentication.rootReducer,
     checkout: Checkout.rootReducer,
-    globalError: GlobalError.reducer,
     hamburgerMenu: HamburgerMenu.reducer,
     order: Order.rootReducer,
     router: connectRouter(history),
@@ -49,7 +42,9 @@ export const makeRootReducer = (history: History) =>
     selectedProductVariant: ProductVariant.reducer,
     shoppingCart: ShoppingCart.reducer,
     sitecore: SitecoreContext.reducer,
+    storeLocator: StoreLocator.reducer,
     viewBag: (state = {}) => state,
+    wishlist: Wishlist.rootReducer,
   });
 
 export default makeRootReducer;

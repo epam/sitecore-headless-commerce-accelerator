@@ -20,12 +20,11 @@ import { registerCommerceInterceptor } from 'Foundation/Commerce';
 import * as JSS from 'Foundation/ReactJss';
 import { SITECORE_ROUTES } from 'Foundation/ReactJss/SitecoreContext';
 import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
+import { NotFound } from 'Foundation/UI/common/components/NotFound';
 
 import { AppProps } from './../../../models';
 import { LoadingBar, ServerError } from './../../components';
 
-import { GlobalError } from 'Foundation/UI/common/components/Errors/GlobalError';
-import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
 import { Default } from 'layouts';
 
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -52,7 +51,6 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
     return (
       <>
         <LoadingBar loading={this.props.isLoading} />
-        <GlobalError/>
         <Switch>
           <Route exact={true} path={SitecoreContext.NOT_FOUND_ROUTE} component={NotFound} />
           <Route exact={true} path={SitecoreContext.SERVER_ERROR_ROUTE} component={ServerError} />

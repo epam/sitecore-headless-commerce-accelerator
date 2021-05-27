@@ -19,7 +19,7 @@ import { tryParseUrlSearch } from 'Foundation/Base';
 import { Product, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
 import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
-import { addError } from 'Foundation/UI/common/components/Errors/Integration/actions';
+import { notify } from 'Foundation/services/notificationsService';
 
 import * as actions from './actions';
 import { requestSuggestions, searchProducts } from './api';
@@ -44,7 +44,8 @@ export function* fetchProductsSearchSuggestions(params: Action<Models.Suggestion
     const { data, error }: Result<Models.ProductSearchSuggestionResponse> = yield call(requestSuggestions, search);
 
     if (error) {
-      return yield put(addError(error.message));
+      notify('error', error.message);
+      return;
     }
 
     yield put(actions.ProductsSearchSuggestionsSuccess(data.products));
@@ -58,7 +59,8 @@ export function* fetchProductsSearch(params: Models.Params) {
     yield put(actions.ProductsSearchRequest(params));
     const { data, error }: Result<ProductSearchResults> = yield call(searchProducts, params);
     if (error) {
-      return yield put(addError(error.message));
+      notify('error', error.message);
+      return;
     }
 
     const { facets, products, totalPageCount, totalItemCount } = data;

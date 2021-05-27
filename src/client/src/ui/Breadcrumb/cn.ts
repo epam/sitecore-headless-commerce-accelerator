@@ -12,31 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
-@import 'Foundation/UI/common/scss/variables';
+import { cn } from '@bem-react/classname';
 
-.Breadcrumbs {
-  background-color: $breadcrumbs-bar-color;
-  padding: 35px 0;
-  text-align: center;
-  text-transform: uppercase;
-
-  &-LinkItem {
-    display: inline-block;
-    font-size: 15px;
-    font-weight: 500;
-    color: $main-text-color;
-  }
-
-  &-Link {
-    font-weight: 500;
-    color: #5b5858;
-    &:hover {
-      color: $theme-color;
-    }
-  }
-
-  &-Slash {
-    margin: 0 15px;
-  }
-}
+export const cnBreadcrumbs = cn('Breadcrumbs');

@@ -29,13 +29,12 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     super(props);
 
     this.state = {
-      isFirstInitLoadPage: false,
+      isFirstInitLoadPage: true,
     };
   }
+
   public componentDidMount() {
     this.props.LoadCart();
-    const { isLoading } = this.props;
-    this.setState({ isFirstInitLoadPage: isLoading });
   }
 
   public componentDidUpdate(prevProps: any) {

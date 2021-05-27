@@ -60,6 +60,12 @@ $input-border-color: #e6e6e6;
     }
   }
 
+  &_adornment {
+    .Input-Control {
+      padding-right: 45px;
+    }
+  }
+
   &_fullWidth {
     .Input-Control {
       width: 100%;

@@ -35,7 +35,7 @@ export const Input: FC<InputProps> = forwardRef(
     ref,
   ) => {
     return (
-      <div className={cnInput({ error, fullWidth, controlSize }, [className])}>
+      <div className={cnInput({ error, fullWidth, controlSize, adornment: !!adornment }, [className])}>
         <div className={cnInput('ControlWrapper')}>
           <input {...rest} className={cnInput('Control')} type={type} ref={ref} />
           {adornment && <div className={cnInput('Adornment')}>{adornment}</div>}

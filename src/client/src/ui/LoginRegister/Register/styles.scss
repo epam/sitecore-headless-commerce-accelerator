@@ -103,16 +103,7 @@
     .Input {
       .Input-ControlWrapper {
         .Input-Control {
-          box-shadow: none !important;
-          font-family: $poppins;
-          background-color: transparent;
-          border: 1px solid #ebebeb !important;
-          color: $login-default-font-color !important;
-          font-size: 14px;
-          height: 45px;
-          padding: 0 15px;
-          box-shadow: none;
-          margin-bottom: 0px;
+          margin-bottom: 0;
         }
       }
     }

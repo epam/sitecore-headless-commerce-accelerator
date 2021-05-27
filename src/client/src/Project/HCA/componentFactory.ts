@@ -14,7 +14,8 @@
 
 import * as AboutUs from 'ui/AboutUs';
 
-import { NotFound } from 'Foundation/UI/common/components/Errors/NotFound';
+import { NotFound } from 'Foundation/UI/common/components/NotFound';
+
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
 import { AddressManager } from 'ui/AddressManager';

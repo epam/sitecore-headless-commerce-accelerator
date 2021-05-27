@@ -12,12 +12,13 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import './styles.scss';
-
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { BreadcrumbProps, BreadcrumbState, PageLink } from './models';
+
+import { cnBreadcrumbs } from './cn';
+import './styles.scss';
 
 export default class BreadcrumbComponent extends JSS.SafePureComponent<BreadcrumbProps, BreadcrumbState> {
   protected safeRender() {
@@ -25,18 +26,16 @@ export default class BreadcrumbComponent extends JSS.SafePureComponent<Breadcrum
     const pageLinks = breadcrumb && breadcrumb.pageLinks;
 
     return (
-      <div className="header_breadcrumbs">
-        <span>
-          {pageLinks &&
-            pageLinks.map((pageLink: PageLink, index: number, array: PageLink[]) => (
-              <span key={pageLink.title}>
-                <a aria-current="page" className="active" href={pageLink.link}>
-                  {pageLink.title}
-                </a>
-                {index < array.length - 1 && <span className="slash">/</span>}
-              </span>
-            ))}
-        </span>
+      <div className={cnBreadcrumbs()}>
+        {pageLinks &&
+          pageLinks.map((pageLink: PageLink, index: number, array: PageLink[]) => (
+            <span key={pageLink.title} className={cnBreadcrumbs('LinkItem')}>
+              <a aria-current="page" className={cnBreadcrumbs('Link')} href={pageLink.link}>
+                {pageLink.title}
+              </a>
+              {index < array.length - 1 && <span className={cnBreadcrumbs('Slash')}>/</span>}
+            </span>
+          ))}
       </div>
     );
   }

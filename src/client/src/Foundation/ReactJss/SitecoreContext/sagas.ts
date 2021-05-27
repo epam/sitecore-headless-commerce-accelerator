@@ -54,11 +54,6 @@ export function* getRoute(payload: ChangeRoutePayload) {
 
     yield put(actions.GetSitecoreContextRequest());
 
-    // TODO: cancel all request, running on current page
-    if (window) {
-      window.stop();
-    }
-
     const search = queryString.parse(location.search) as { sc_itemid: string };
     const parsedUrlData = tryParseUrl(newUrl);
 

@@ -201,8 +201,8 @@
 .product-content {
   .pl-50 {
     padding-left: 50px;
-    @media (max-width: $screen-sm-max) {
-      padding-left: 0px;
+    @media (max-width: $screen-md-max) {
+      padding-left: 0;
       margin-top: 50px;
     }
   }

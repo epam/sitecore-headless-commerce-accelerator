@@ -92,13 +92,6 @@ namespace HCA.Feature.Account.Controllers
         [ActionName("account")]
         public ActionResult CreateAccount(CreateAccountRequest requests)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.JsonError(
-                    this.ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).FirstOrDefault(),
-                    HttpStatusCode.BadRequest);
-            }
-
             return this.Execute(
                 () =>
                 {

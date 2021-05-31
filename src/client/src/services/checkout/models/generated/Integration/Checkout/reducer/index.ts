@@ -12,16 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { combineReducers } from 'redux';
+import { cn } from '@bem-react/classname';
 
-import { CheckoutState } from './../models';
-
-import currentStepReducer from './currentStep';
-import dataReducer from './data';
-import stepValuesReducer from './stepValues';
-
-export default combineReducers<CheckoutState>({
-  currentStep: currentStepReducer,
-  data: dataReducer,
-  stepValues: stepValuesReducer,
-});
+export const cnSocialNetworksLinks = cn('SocialNetworksLinks');

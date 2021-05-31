@@ -13,7 +13,6 @@
 //    limitations under the License.
 
 import { Action } from 'Foundation/Integration';
-import * as DataModels from 'services/checkout/models/generated';
 import {
   CartItemDto,
   CartLineSuccessPayload,

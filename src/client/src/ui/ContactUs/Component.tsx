@@ -33,10 +33,6 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
       radiuses: [],
     };
   }
-  public componentDidMount() {
-    this.props.GetStores();
-  }
-
   protected safeRender() {
     const { datasource } = this.props.fields.data;
 

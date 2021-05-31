@@ -16,7 +16,6 @@ import { User, Variant } from 'Foundation/Commerce';
 import * as Jss from 'Foundation/ReactJss';
 import { ProductVariantGlobalState } from 'services/productVariant';
 import { CartItemDto, GlobalShoppingCartState } from 'services/shoppingCart';
-import { LoadingStatus } from 'Foundation/Integration';
 import { ProductOverviewContext } from '../models';
 
 export interface ProductActionsOwnProps

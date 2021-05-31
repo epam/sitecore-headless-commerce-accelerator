@@ -79,6 +79,10 @@
     }
     &:first-of-type .header_content.header-full-width {
       padding: 13px 70px;
+
+      @media (max-width: 1310px) {
+        padding: 15px 15px;
+      }
     }
     &:last-of-type .header_content {
       padding-top: 30px;
@@ -111,6 +115,11 @@
       @media #{$header-switch-padding-mobile-mode} {
         padding: 13px 40px;
       }
+
+      @media (max-width: 1310px) {
+        padding: 15px 15px;
+      }
+
       @media #{$xs-layout} {
         padding: 13px 15px;
       }

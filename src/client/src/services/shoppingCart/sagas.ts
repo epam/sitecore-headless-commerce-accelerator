@@ -20,11 +20,8 @@ import { Action, LoadingStatus, Result } from 'Foundation/Integration';
 import * as DataModels from 'services/checkout/models/generated';
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
-import { RemoveCartLinePayload, ShoppingCartData, ShoppingCartState, UpdateCartItemRequestPayload } from './models';
 import * as ShoppingCart from './api';
-
 import {
-  GerPromotionPayload,
   RemoveCartLinePayload,
   ShoppingCartData,
   ShoppingCartState,

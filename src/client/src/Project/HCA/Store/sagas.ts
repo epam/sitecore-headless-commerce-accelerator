@@ -15,10 +15,6 @@
 import { all } from 'redux-saga/effects';
 
 import { SitecoreContext } from 'Foundation/ReactJss';
-
-import * as StoreLocator from 'services/storeLocator';
-import * as Wishlist from 'services/wishlist';
-
 import * as Account from 'services/account';
 import * as Authentication from 'services/authentication';
 import * as Checkout from 'services/checkout';
@@ -30,11 +26,9 @@ export default function* rootSaga() {
   yield all([
     ...Account.rootSaga,
     ...Authentication.rootSaga,
-    ...Wishlist.rootSaga,
     ...ShoppingCart.rootSaga,
     ...Checkout.rootSaga,
     ...SitecoreContext.rootSaga,
-    ...StoreLocator.rootSaga,
     ...Order.rootSaga,
     ...Search.rootSaga,
   ]);

@@ -15,10 +15,6 @@
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
 import { combineReducers } from 'redux';
-
-import * as StoreLocator from 'services/storeLocator';
-import * as Wishlist from 'services/wishlist';
-
 import { SitecoreContext } from 'Foundation/ReactJss';
 
 import * as Account from 'services/account';
@@ -42,9 +38,7 @@ export const makeRootReducer = (history: History) =>
     selectedProductVariant: ProductVariant.reducer,
     shoppingCart: ShoppingCart.reducer,
     sitecore: SitecoreContext.reducer,
-    storeLocator: StoreLocator.reducer,
     viewBag: (state = {}) => state,
-    wishlist: Wishlist.rootReducer,
   });
 
 export default makeRootReducer;

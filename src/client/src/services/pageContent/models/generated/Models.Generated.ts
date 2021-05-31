@@ -486,6 +486,52 @@ export const ContactAddressesTemplate = {
   templateId: 'e31ddc89-fefd-47d4-8f57-240af742ec35',
 };
 
+// Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
+// ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1
+export interface ContactIntroDataSource extends ReactJssModule.BaseDataSourceItem {
+  /// The Image field.
+  /// Field Type: Image
+  /// Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150
+  image: ReactJssModule.ImageField;
+
+  /// The Intro Line field.
+  /// Field Type: Single-Line Text
+  /// Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1
+  introLine: ReactJssModule.TextField;
+}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
+// ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1
+export interface ContactIntroRenderingParams extends ReactJssModule.BaseRenderingParam {
+  /// The Image field.
+  /// Field Type: Image
+  /// Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150
+  image: string;
+
+  /// The Intro Line field.
+  /// Field Type: Single-Line Text
+  /// Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1
+  introLine: string;
+}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
+// ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1
+export const ContactIntroTemplate = {
+  templateId: '252becf7-cdf0-4cf7-970c-313d1e98c0a1',
+
+  /// The Image field.
+  /// <para>Field Type: Image</para>
+  /// <para>Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150</para>
+  imageFieldId: '31f05fc6-a229-406d-b57d-14c13a4a7150',
+  imageFieldName: 'Image',
+
+  /// The Intro Line field.
+  /// <para>Field Type: Single-Line Text</para>
+  /// <para>Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1</para>
+  introLineFieldId: '12c05cc3-2307-49b2-9230-4c9816463bb1',
+  introLineFieldName: 'Intro Line',
+};
+
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link
 // ID: c140817d-2718-4c74-8f0f-46d220b0fa91
 export interface ContactLinkDataSource extends ReactJssModule.BaseDataSourceItem {

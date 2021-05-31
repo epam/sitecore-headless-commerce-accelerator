@@ -93,7 +93,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
                     ))}
                 </div>
               </div>
-              <div className="contact-social text-center">
+              <div className="ContactUs-SocialNetworksLinks">
                 <Placeholder name="contact-social-networks" rendering={this.props.rendering} />
               </div>
             </div>

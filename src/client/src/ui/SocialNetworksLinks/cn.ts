@@ -12,10 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Jss from 'Foundation/ReactJss';
+import { cn } from '@bem-react/classname';
 
-import { ContactIntroDataSource } from 'services/pageContent/models/generated';
-
-export interface ContactIntroProps extends Jss.RenderingWithContext<ContactIntroDataSource> {}
-
-export interface ContractIntroState extends Jss.SafePureComponentState {}
+export const cnSocialNetworksLinks = cn('SocialNetworksLinks');

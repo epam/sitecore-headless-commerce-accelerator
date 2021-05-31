@@ -13,14 +13,17 @@
 //    limitations under the License.
 
 import React, { FC } from 'react';
+
+import { RenderingWithContext } from 'Foundation/ReactJss';
+import { ContactIntroDataSource } from 'services/pageContent/models/generated';
 import { Image, Text } from '@sitecore-jss/sitecore-jss-react';
 
 import '../styles.scss';
 
-import { ContactIntroProps } from './models';
+type ContactIntroProps = RenderingWithContext<ContactIntroDataSource>;
 
-export const ContactIntro: FC<ContactIntroProps> = ({ fields }) => {
-  const { image, introLine } = fields;
+export const ContactIntro: FC<ContactIntroProps> = (props) => {
+  const { image, introLine } = props.fields;
 
   return (
     <div className="contact-area_content">

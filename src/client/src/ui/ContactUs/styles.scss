@@ -105,34 +105,16 @@
           }
         }
       }
+    }
+  }
+}
 
-      .contact-social {
-        text-align: center !important;
-        margin-top: 58px;
-        h3 {
-          font-size: 24px;
-          font-weight: 500;
-          line-height: 1;
-          margin: 0 0 17px;
-          color: $contact-information-header-font-color;
-        }
-        ul {
-          margin: 0;
-          padding: 0;
-          list-style: outside none none;
-          li {
-            display: inline-block;
-            margin: 0 10px;
-            a {
-              color: $contact-social-network-link-clolor;
-            }
-            &:hover,
-            a:hover {
-              color: $theme-color;
-            }
-          }
-        }
-      }
+.ContactUs-SocialNetworksLinks {
+  margin-top: 58px;
+
+  @media (max-width: 1024px) {
+    .SocialNetworksLinks {
+      align-items: flex-start;
     }
   }
 }

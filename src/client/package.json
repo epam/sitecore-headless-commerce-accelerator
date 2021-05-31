@@ -181,7 +181,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,scss}": "prettier --write",
-    "*.{ts,tsx}": "tslint",
+    "*.{ts,tsx}": "tslint --project ./tsconfig.json",
     "*.ts": "jest --onlyChanged --passWithNoTests --config ./scripts/jest/jest.config.js"
   }
 }

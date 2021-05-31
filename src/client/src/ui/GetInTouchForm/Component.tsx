@@ -92,7 +92,6 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
               className="ContactUsForm-Textarea"
               name="message"
               placeholder={datasource.subjectPlaceholder.jss.value}
-              defaultValue={''}
               value={values.message}
               onChange={(e: any) => handleChange(e)}
               onBlur={(e: any) => handleBlur(e)}

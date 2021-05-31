@@ -25,6 +25,13 @@
   @media #{$footer-switch-mode} {
     padding-top: 0;
   }
+
+  @media (max-width: 1024px) {
+    .SocialNetworksLinks {
+      align-items: flex-start;
+    }
+  }
+
   .footer-columns {
     margin-bottom: 0px;
     width: 72%;

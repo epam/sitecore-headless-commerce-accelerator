@@ -100,9 +100,7 @@ export interface SitecoreRoute<TRoute> {
   route: TRoute;
 }
 
-export interface Sitecore<TContext, TRoute> extends SitecoreContext<TContext>, SitecoreRoute<TRoute>, Status {
-  loadedUrl?: string;
-}
+export interface Sitecore<TContext, TRoute> extends SitecoreContext<TContext>, SitecoreRoute<TRoute>, Status {}
 
 export interface SitecorePayload extends Partial<Sitecore<{}, {}>> {}
 

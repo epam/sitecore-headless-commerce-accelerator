@@ -20,5 +20,4 @@ export type InitializationComplete = () => Action;
 // tslint:disable-next-line:bool-param-default
 export type ChangeRoute = (newRoute: string, shouldPushNewRoute?: boolean) => Action<ChangeRoutePayload>;
 
-export type SetLoadedUrl = (loadedUrl: string) => Action<SitecorePayload>;
 export type GetSitecoreContextSuccess = (sitecoreContext: Sitecore<{}, {}>) => Action<SitecorePayload>;

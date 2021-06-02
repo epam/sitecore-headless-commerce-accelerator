@@ -27,8 +27,7 @@ export default (state: Sitecore<{}, {}> = initialState, action: Action) => {
   switch (action.type) {
     case reducerActionTypes.GET_SITECORE_CONTEXT_FAILURE:
     case reducerActionTypes.GET_SITECORE_CONTEXT_REQUEST:
-    case reducerActionTypes.GET_SITECORE_CONTEXT_SUCCESS:
-    case reducerActionTypes.SET_LOADED_URL: {
+    case reducerActionTypes.GET_SITECORE_CONTEXT_SUCCESS: {
       return { ...state, ...action.payload };
     }
     default: {

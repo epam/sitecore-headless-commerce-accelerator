@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import * as Models from './models';
 import './styles.scss';
@@ -72,7 +73,7 @@ export class SafePureComponent<P, S extends Models.SafePureComponentState> exten
           className="error_message_modal_header"
         />
         <span className="error_message_modal_text">{(this.state && this.state.errorMessage) || e.message}</span>
-        <a href="/">OK</a>
+        <Link to="/">OK</Link>
       </div>
     );
   }

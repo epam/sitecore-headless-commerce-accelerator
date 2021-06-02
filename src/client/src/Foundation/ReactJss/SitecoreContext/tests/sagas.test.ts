@@ -51,15 +51,9 @@ describe('SitecoreContext sagas', () => {
       expect(actual.value).toEqual(expected);
     });
 
-    test('should put SetLoadedUrl', () => {
-      const expected = put(actions.SetLoadedUrl(fakeNewRoute));
-
-      const actual = gen.next(fakeSitecore);
-      expect(actual.value).toEqual(expected);
-    });
     test('should put new route', () => {
       const expected = put(push(fakeNewRoute));
-      const actual = gen.next();
+      const actual = gen.next(fakeSitecore);
       expect(actual.value).toEqual(expected);
     });
 

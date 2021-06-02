@@ -67,8 +67,6 @@ export function* getRoute(payload: ChangeRoutePayload) {
       },
     ]);
 
-    yield put(actions.SetLoadedUrl(newUrl));
-
     if (payload.shouldPushNewRoute) {
       yield put(push(newUrl));
     }

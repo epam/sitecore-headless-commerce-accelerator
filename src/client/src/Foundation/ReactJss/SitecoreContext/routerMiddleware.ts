@@ -17,34 +17,18 @@ import { Store } from 'redux';
 
 import { Action } from 'Foundation/Integration';
 
-import * as selectors from '../selectors';
 import { ChangeRoute } from './actions';
-
-const hasNewRoute = (loadedUrl: string = '', pathname: string = '', search: string = '') => {
-  const [loadedPathname, loadedSearch] = loadedUrl.split('?');
-  return (
-    loadedPathname.toLocaleLowerCase() !== pathname.toLocaleLowerCase() ||
-    (loadedSearch || '').toLocaleLowerCase() !== search.slice(search.indexOf('?') + 1).toLocaleLowerCase()
-  );
-};
 
 export default (store: Store<any>) => (next: any) => (action: Action) => {
   // we have to intercept location change here, in order add some custom handling for default LOCATION_CHANGE event
   if (action.type === LOCATION_CHANGE) {
     const { payload } = action as LocationChangeAction;
-    const loadedUrl = selectors.loadedUrl(store.getState());
 
-    if (loadedUrl) {
-      const { pathname, search } = payload.location;
-      if (hasNewRoute(loadedUrl, pathname, search)) {
-        next(action);
-        const newUrl = search ? `${pathname}${search}` : pathname;
-        return store.dispatch(ChangeRoute(newUrl, false));
-      }
-    }
-
-    return next(action);
+    const { pathname, search } = payload.location;
+    next(action);
+    const newUrl = search ? `${pathname}${search}` : pathname;
+    return store.dispatch(ChangeRoute(newUrl, false));
   }
 
-  next(action);
+  return next(action);
 };

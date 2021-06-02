@@ -12,8 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
+import * as JSS from 'Foundation/ReactJss';
 
 import { BreadcrumbProps, BreadcrumbState, PageLink } from './models';
 
@@ -30,9 +32,9 @@ export default class BreadcrumbComponent extends JSS.SafePureComponent<Breadcrum
         {pageLinks &&
           pageLinks.map((pageLink: PageLink, index: number, array: PageLink[]) => (
             <span key={pageLink.title} className={cnBreadcrumbs('LinkItem')}>
-              <a aria-current="page" className={cnBreadcrumbs('Link')} href={pageLink.link}>
+              <Link aria-current="page" className={cnBreadcrumbs('Link')} to={pageLink.link}>
                 {pageLink.title}
-              </a>
+              </Link>
               {index < array.length - 1 && <span className={cnBreadcrumbs('Slash')}>/</span>}
             </span>
           ))}

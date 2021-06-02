@@ -12,12 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 
 import { Product } from 'services/search';
+
+import makeRootReducer from 'Project/HCA/store/reducer';
 
 import { AddToCart, ColorVariants, Price, ProductCard, ProductName, ProductRating, ThumbnailSlider } from '../index';
 
@@ -84,21 +88,27 @@ const productColors: Record<string, string> = {
   Yellow: '#FFFF00',
 };
 
-const mockStore = configureStore();
-const store = mockStore({ shoppingCart: { data: {} } });
+const history = createBrowserHistory();
+const store = createStore(
+  makeRootReducer(history),
+  { shoppingCart: { data: {} } },
+  compose(applyMiddleware(routerMiddleware(history))),
+);
 
 it('ProductCard renders correctly', () => {
   const tree = renderer
     .create(
       <Provider store={store}>
-        <ProductCard fallbackImageUrl={fallbackImageUrl} product={mockProduct} productColors={productColors}>
-          <ThumbnailSlider />
-          <ColorVariants />
-          <ProductName />
-          <ProductRating />
-          <Price />
-          <AddToCart />
-        </ProductCard>
+        <ConnectedRouter history={history}>
+          <ProductCard fallbackImageUrl={fallbackImageUrl} product={mockProduct} productColors={productColors}>
+            <ThumbnailSlider />
+            <ColorVariants />
+            <ProductName />
+            <ProductRating />
+            <Price />
+            <AddToCart />
+          </ProductCard>
+        </ConnectedRouter>
       </Provider>,
     )
     .toJSON();

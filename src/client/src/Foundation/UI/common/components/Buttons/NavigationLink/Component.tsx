@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import React, { MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as Jss from 'Foundation/ReactJss';
 
@@ -21,11 +22,12 @@ import { NavigationLinkProps } from './models';
 export default class NavigationLinkComponent extends Jss.SafePureComponent<NavigationLinkProps, {}> {
   public safeRender() {
     const { to, className, children } = this.props;
+    const autotests = this.props['data-autotests'];
 
     return (
-      <a onClick={(e) => this.handleLinkOnClick(e)} href={to} className={className}>
+      <Link to={to} onClick={(e) => this.handleLinkOnClick(e)} className={className} data-autotests={autotests}>
         {children}
-      </a>
+      </Link>
     );
   }
 

@@ -28,13 +28,6 @@ export const ChangeRoute: actionCreators.ChangeRoute = (newRoute: string, should
   type: sagaActionTypes.CHANGE_ROUTE,
 });
 
-export const SetLoadedUrl: actionCreators.SetLoadedUrl = (loadedUrl: string) => ({
-  payload: {
-    loadedUrl,
-  },
-  type: reducerActionTypes.SET_LOADED_URL,
-});
-
 export const GetSitecoreContextRequest: StatusType = () => ({
   payload: {
     status: LoadingStatus.Loading,

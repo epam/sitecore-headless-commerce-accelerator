@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import { CartView } from 'ui/CartView';
 import * as JSS from 'Foundation/ReactJss';
@@ -57,11 +58,11 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
           </a>
         </Desktop>
         <Mobile>
-          <a href="/cart">
+          <Link to="/cart">
             <i className="pe-7s-shopbag">
               <span className="quantity">{cartQuantity}</span>
             </i>
-          </a>
+          </Link>
         </Mobile>
         <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>
           <CartView toggleClick={this.toggleClick} />

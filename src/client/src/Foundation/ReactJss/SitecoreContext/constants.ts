@@ -29,8 +29,6 @@ export const reducerActionTypes = keyMirrorReducer(
     GET_SITECORE_CONTEXT_FAILURE: null,
     GET_SITECORE_CONTEXT_REQUEST: null,
     GET_SITECORE_CONTEXT_SUCCESS: null,
-
-    SET_LOADED_URL: null,
   },
   SITECORE_CONTEXT_NAMESPACE,
 );

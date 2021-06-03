@@ -69,9 +69,11 @@ export const updateCartItemAsync = async (
   }
 };
 
-export const removeCartItem = async (productId: string, variantId: string): Promise<Result<Commerce.Cart>> =>
+export const removeCartItem = async (
+  requestPayload: DataModels.RemoveCartLineRequest,
+): Promise<Result<Commerce.Cart>> =>
   axios
-    .delete(`${routeBase}/cartLines?productId=${productId}&variantId=${variantId}`)
+    .delete(`${routeBase}/cartLines?productId=${requestPayload.productId}&variantId=${requestPayload.variantId}`)
     .then((response: AxiosResponse<GetCartResponse>) => ({ data: response.data.data }))
     .catch((error) => ({ error }));
 

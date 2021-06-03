@@ -17,14 +17,15 @@ import axios from 'axios';
 import { VoidResult } from 'Foundation/Base';
 import { Result } from 'Foundation/Integration';
 
+import * as DataModel from 'services/account/models/generated';
+
 export const authentication = async (
-  email: string,
-  password: string,
+  loginRequest: DataModel.LoginRequest,
   returnUrl?: string,
 ): Promise<Result<VoidResult>> => {
   returnUrl = returnUrl ? `?returnUrl=${returnUrl}` : '';
   return axios
-    .post<VoidResult>(`/apix/client/commerce/auth/login${returnUrl}`, { email, password })
+    .post<VoidResult>(`/apix/client/commerce/auth/login${returnUrl}`, loginRequest)
     .then((response) => ({ data: response.data }))
     .catch((error) => ({ error }));
 };

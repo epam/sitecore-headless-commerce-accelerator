@@ -50,7 +50,7 @@ export function* create(action: Action<CreateAccountPayload>) {
 
   eventHub.publish(events.ACCOUNT.CREATED);
 
-  yield put(Authentication(request.email, request.password, returnUrl || '/'));
+  yield put(Authentication({ email: request.email, password: request.password }, returnUrl || '/'));
 }
 
 export function* validation(action: Action<ValidateEmailPayload>) {

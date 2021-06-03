@@ -59,7 +59,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     const passwordSuccess = this.validatePassword(form);
     const userSuccess = this.validateUser(form);
     if (passwordSuccess && userSuccess) {
-      Authentication(form.email, form.password, '/');
+      Authentication({ email: form.email, password: form.password }, '/');
     }
   }
 

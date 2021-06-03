@@ -15,11 +15,14 @@
 import { LoadingStatus } from 'Foundation/Integration';
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';
+import * as DataModel from 'services/account/models/generated';
 
-export const Authentication: actionCreators.Authentication = (email: string, password: string, returnUrl?: string) => ({
+export const Authentication: actionCreators.Authentication = (
+  loginRequest: DataModel.LoginRequest,
+  returnUrl?: string,
+) => ({
   payload: {
-    email,
-    password,
+    request: loginRequest,
     returnUrl,
   },
   type: sagaActionTypes.AUTHENTICATION,

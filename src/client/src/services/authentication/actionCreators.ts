@@ -19,8 +19,12 @@ import {
   LogoutPayload,
   SetAuthenticatedPayload,
 } from './models';
+import * as DataModel from 'services/account/models/generated';
 
-export type Authentication = (email: string, passwords: string, returnUrl?: string) => Action<AuthenticationPayload>;
+export type Authentication = (
+  loginRequest: DataModel.LoginRequest,
+  returnUrl?: string,
+) => Action<AuthenticationPayload>;
 export type InitAuthentication = () => Action;
 export type Logout = (returnUrl?: string) => Action<LogoutPayload>;
 

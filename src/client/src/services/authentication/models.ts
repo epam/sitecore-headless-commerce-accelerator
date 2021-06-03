@@ -14,9 +14,10 @@
 
 import { LoadingStatus } from 'Foundation/Integration';
 
+import * as DataModel from 'services/account/models/generated';
+
 export interface AuthenticationPayload {
-  email: string;
-  password: string;
+  request: DataModel.LoginRequest;
   returnUrl?: string;
 }
 

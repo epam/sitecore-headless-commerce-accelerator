@@ -14,10 +14,12 @@
 
 import * as JSS from 'Foundation/ReactJss';
 import { FormValues } from 'Foundation/ReactJss/Form';
+
 import { AuthenticationProcessState, GlobalAuthenticationState } from 'services/authentication';
+import * as DataModel from 'services/account/models/generated';
 
 export interface LogInDispatchProps {
-  Authentication: (email: string, password: string, returnUrl: string) => void;
+  Authentication: (loginRequestDto: DataModel.LoginRequest, returnUrl: string) => void;
   ResetState: () => void;
   onLoaded?: () => void;
 }

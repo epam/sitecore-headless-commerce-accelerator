@@ -30,14 +30,14 @@ import { eventHub, events } from 'Foundation/EventHub';
 
 export function* authentication(action: Action<AuthenticationPayload>) {
   const { payload } = action;
-  const { email, password, returnUrl } = payload;
-  if (!email && !password) {
+  const { request, returnUrl } = payload;
+  if (!request.email && !request.password) {
     return;
   }
 
   yield put(actions.AuthenticationRequest());
 
-  const { error }: Result<VoidResult> = yield call(AuthenticationApi.authentication, email, password);
+  const { error }: Result<VoidResult> = yield call(AuthenticationApi.authentication, request);
 
   if (error) {
     return yield put(actions.AuthenticationFailure());

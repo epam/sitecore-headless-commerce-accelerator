@@ -100,7 +100,7 @@ export function* removeCartLine(action: Action<RemoveCartLinePayload>) {
   const { name, productId, quantity, variantId, variantName } = action.payload;
   yield put(actions.RemoveCartLineRequest());
 
-  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removeCartItem, productId, variantId);
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removeCartItem, { productId, variantId });
 
   if (error) {
     yield put(actions.RemoveCartLineFailure(error.message || 'can not remove cart line'));

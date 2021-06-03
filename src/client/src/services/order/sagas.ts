@@ -53,7 +53,12 @@ export function* getOrderHistory(requestData: Action<OrderHistoryRequestPayload>
   try {
     yield put(actions.GetOrderHistoryRequest());
     const firstPageNumber = 0;
-    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, firstPageNumber, ItemsPerPage);
+    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, {
+      count: ItemsPerPage,
+      fromDate: null,
+      page: firstPageNumber,
+      untilDate: null,
+    });
 
     if (error) {
       return yield put(actions.GetOrderHistoryFailure(error.message || 'Error Occured'));
@@ -72,7 +77,12 @@ export function* loadMoreHistory() {
     currentPageNumber++;
 
     yield put(actions.GetOrderHistoryRequest());
-    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, currentPageNumber, ItemsPerPage);
+    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, {
+      count: ItemsPerPage,
+      fromDate: null,
+      page: currentPageNumber,
+      untilDate: null,
+    });
 
     if (error) {
       return yield put(actions.GetOrderHistoryFailure(error.message || 'Error Occured'));

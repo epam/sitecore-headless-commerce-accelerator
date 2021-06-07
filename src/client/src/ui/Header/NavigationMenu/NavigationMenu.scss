@@ -31,7 +31,7 @@
 
   &-SocialLinks {
     display: none;
-    margin: 0 30px 30px 60px;
+    margin: 0 30px 60px 30px;
 
     @media #{$header-switch-mobile-mode} {
       display: block;

@@ -29,7 +29,7 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
     super(props);
 
     this.state = {
-      isSignUp: false,
+      isSignUp: props.currentForm === 'login',
     };
   }
 

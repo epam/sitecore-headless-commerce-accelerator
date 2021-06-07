@@ -30,7 +30,7 @@ SharedFields:
           s:par="Wrapper Class=hca&amp;First Column Class=header-full-width&amp;Second Column Class&amp;Third Column Class" />
         <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
-          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks_alignItems_left" />
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{DA35B17C-16C3-4018-9E31-AA106F6B396F}"
           s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />

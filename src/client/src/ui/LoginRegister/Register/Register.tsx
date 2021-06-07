@@ -12,4 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './Register';
+import React, { FC } from 'react';
+
+import { Form } from 'Foundation/ReactJss/Form';
+
+import { FormFields } from './FormFields';
+
+import { cnRegister } from './cn';
+import './Register.scss';
+
+export const Register: FC = () => {
+  return (
+    <Form className={cnRegister()}>
+      <FormFields />
+    </Form>
+  );
+};

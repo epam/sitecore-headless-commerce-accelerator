@@ -39,7 +39,7 @@ SharedFields:
           p:after="r[@uid='{6774901E-A43F-47B7-9EFF-35A491E140FF}']"
           s:ds="{87CA9DAA-9709-4089-AA59-EEB814EDF3AA}"
           s:id="{EFAA6F19-1DEC-4AA8-A5AE-131F7D49E7E6}"
-          s:par="Title Class=social-title&amp;Show Title=1&amp;Container Class=social-network-container&amp;Title Tag=h3"
+          s:par="Title Class=SocialNetworksLinks-Title_size_xl&amp;Show Title=1&amp;Container Class=SocialNetworksLinks_alignItems_center&amp;Title Tag=h3"
           s:ph="/main-content/w-col-wide-{D02BEC18-6953-440C-9C7A-BA64EA487C84}-0/contact-social_lists-{3F47B2F9-E737-40E6-9B43-A185DD9A9538}-0" />
         <r
           uid="{3F47B2F9-E737-40E6-9B43-A185DD9A9538}"

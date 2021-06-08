@@ -127,7 +127,8 @@ Client.GenerateModels = Task("Client :: Generate Models")
         Sitecore.Utils.AssertIfNullOrEmpty(Client.ClientDir, "ClientDir", "CLIENT_DIR");
         Sitecore.Utils.AssertIfNullOrEmpty(Sitecore.Parameters.SrcDir, "SrcDir", "SRC_DIR");
 
-        var regex = @"^.+[/\\](src)[/\\](?<layerName>[^/\\]+)[/\\](?<projectName>[^/\\]+)[/\\].+$";
+        // pattern to extract dll name from parameter value
+        var regex = new Regex("\\w*name=\"DllName\"\\s+value=\"(?<layerName>\\w+)\\.(?<projectName>\\w+)\"");
 
         var templateFiles = GetFiles($"{Client.ClientDir}/src/**/*.tt");
         Information($"Found files: {templateFiles.Count}");
@@ -136,8 +137,9 @@ Client.GenerateModels = Task("Client :: Generate Models")
         {
             Information($"Running client generation in {templateFile}.");
 
-            Regex fileRegex = new Regex(regex);
-            System.Text.RegularExpressions.Match match = fileRegex.Match(templateFile.FullPath);
+            string templateFileData = System.IO.File.ReadAllText(templateFile.FullPath);
+            System.Text.RegularExpressions.Match match = regex.Match(templateFileData);
+            
             var layer = match.Groups["layerName"];
             var project = match.Groups["projectName"];
 

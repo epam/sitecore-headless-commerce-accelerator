@@ -40,6 +40,12 @@ SharedFields:
           s:par=""
           s:ph="/main-content/w-col-wide-{782D562A-A0A4-4DA3-9B92-89677AF5149C}-0/product-properties-{AF30A71C-96C1-47C3-B08B-C289472A29FE}-0" />
         <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{3D3E26F5-8E1E-4A43-9BDA-DD48AE0AA0B0}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
       </d>

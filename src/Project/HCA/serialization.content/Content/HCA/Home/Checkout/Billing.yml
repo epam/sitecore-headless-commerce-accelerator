@@ -51,6 +51,12 @@ SharedFields:
           s:id="{B167B5C0-E815-444D-AC46-8B653A1A571A}"
           s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-2-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
         <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{38D0C4EC-8D2C-4656-A430-A68BB2C76B01}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
       </d>

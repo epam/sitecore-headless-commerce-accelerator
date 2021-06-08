@@ -15,6 +15,8 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { Icon } from 'components';
+
 import { QuickNavigationProps, QuickNavigationState } from './models';
 import './styles.scss';
 
@@ -26,7 +28,7 @@ class QuickNavigationComponent extends JSS.SafePureComponent<QuickNavigationProp
           <div className="settings_item settings_item-lang">
             <span>
               <span className="settings_item_title">English</span>
-              <i className="fa fa-angle-down" />
+              <Icon icon="icon-angle-down" />
             </span>
             <div className="settings_item_dropdown-lang">
               <ul>
@@ -39,7 +41,7 @@ class QuickNavigationComponent extends JSS.SafePureComponent<QuickNavigationProp
           <div className="settings_item settings_item-currency">
             <span>
               <span className="settings_item_title">USD</span>
-              <i className="fa fa-angle-down" />
+              <Icon icon="icon-angle-down" />
             </span>
             <div className="settings_item_dropdown-currency">
               <ul>

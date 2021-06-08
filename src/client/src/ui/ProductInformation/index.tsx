@@ -18,7 +18,7 @@ import * as JSS from 'Foundation/ReactJss';
 import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
 import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
 
-import { Button, Input } from 'components';
+import { Button, Icon, Input } from 'components';
 
 import { ProductInformationProps, ProductInformationState } from './models';
 
@@ -98,11 +98,11 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                               <h4>White Lewis</h4>
                             </div>
                             <div className="review-rating">
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
                             </div>
                           </div>
                           <div className="review-left">
@@ -128,11 +128,11 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                               <h4>White Lewis</h4>
                             </div>
                             <div className="review-rating">
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
+                              <Icon icon="icon-star-solid" />
                             </div>
                           </div>
                           <div className="review-left">
@@ -157,11 +157,11 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                         <div className="star-box">
                           <span>Your rating:</span>
                           <div className="rating-star">
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
+                            <Icon icon="icon-star-solid" />
+                            <Icon icon="icon-star-solid" />
+                            <Icon icon="icon-star-solid" />
+                            <Icon icon="icon-star-solid" />
+                            <Icon icon="icon-star-solid" />
                           </div>
                         </div>
                         <div className="row">

@@ -274,11 +274,11 @@ fieldset[disabled] a.btn {
 }
 
 .btn-loading {
-  & .fa-spinner {
+  & .icon-spinner-solid {
     display: none;
     margin-right: 8px;
   }
-  &.is-loading .fa-spinner {
+  &.is-loading .icon-spinner-solid {
     display: inline-block;
     animation: fa-spin 2s infinite linear;
   }

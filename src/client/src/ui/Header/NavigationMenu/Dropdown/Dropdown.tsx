@@ -14,10 +14,9 @@
 
 import React, { FC, HTMLProps, useCallback, useState } from 'react';
 
-import { MinusIcon, PlusIcon } from 'components';
+import { Icon } from 'components';
 
 import { cnNavigation } from '../cn';
-
 import './Dropdown.scss';
 
 type DropdownProps = HTMLProps<HTMLDivElement> & {
@@ -36,7 +35,7 @@ export const Dropdown: FC<DropdownProps> = ({ children, firstLevel = false, titl
     <div className={cnNavigation('Dropdown')}>
       <div className={cnNavigation('DropdownHeading', { firstLevel })} onClick={toggleDropdownList}>
         <span>{title}</span>
-        {isExpanded ? <MinusIcon iconTheme="thin" /> : <PlusIcon iconTheme="thin" />}
+        {isExpanded ? <Icon icon="icon-minus" /> : <Icon icon="icon-plus" />}
       </div>
       <div className={cnNavigation('DropdownContent', { open: isExpanded })}>{children}</div>
     </div>

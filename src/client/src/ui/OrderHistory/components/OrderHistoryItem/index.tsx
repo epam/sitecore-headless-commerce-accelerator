@@ -18,6 +18,8 @@ import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 import Swiper, { SwiperRefNode } from 'react-id-swiper';
 
+import { Icon } from 'components';
+
 import './styles.scss';
 
 import { OrderHistoryItemProps } from './models';
@@ -79,10 +81,10 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                 {order && order.cartLines.length > 4 && (
                   <>
                     <button className="order-list-item-header_title-carousel-prev" onClick={this.goPrev}>
-                      <i className="pe-7s-angle-left" />
+                      <Icon icon="icon-angle-left" />
                     </button>
                     <button className="order-list-item-header_title-carousel-next" onClick={this.goNext}>
-                      <i className="pe-7s-angle-right" />
+                      <Icon icon="icon-angle-right" />
                     </button>
                   </>
                 )}
@@ -100,7 +102,7 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
                     {cartLine.product.listPrice}
                   </span>
                   <span className="purple">
-                    <i className="fa fa-times" />
+                    <Icon icon="icon-close" />
                     <span className="quantity-text">{cartLine.quantity}</span>
                   </span>
                 </div>

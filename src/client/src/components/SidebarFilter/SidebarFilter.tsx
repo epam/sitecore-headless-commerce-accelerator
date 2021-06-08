@@ -14,6 +14,8 @@
 
 import React, { ChangeEvent, FC, HTMLProps, useState } from 'react';
 
+import { Icon } from 'components';
+
 import { cnSidebarFilter } from './cn';
 import { FiltersList } from './FiltersList';
 
@@ -68,12 +70,12 @@ export const SidebarFilter: FC<SidebarFilterProps> = ({
         {isValuesVisible ? (
           <span>
             Hide all
-            <i className={cnSidebarFilter('Icon', ['fa fa-angle-up'])} />
+            <Icon icon="icon-angle-up" className={cnSidebarFilter('Icon')} />
           </span>
         ) : (
           <span>
             Show all
-            <i className={cnSidebarFilter('Icon', ['fa fa-angle-down'])} />
+            <Icon icon="icon-angle-down" className={cnSidebarFilter('Icon')} />
           </span>
         )}
       </div>

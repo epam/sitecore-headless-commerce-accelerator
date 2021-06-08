@@ -17,7 +17,7 @@ import React, { MouseEvent } from 'react';
 import { SafePureComponent } from 'Foundation/ReactJss';
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { Spinner } from 'components';
+import { Icon, Spinner } from 'components';
 import { NavigationLink } from 'Foundation/UI';
 
 import { OrderHistoryItem } from './components';
@@ -66,7 +66,7 @@ export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, 
           ) : (
             <div className="order-history_container-empty">
               <div className="order-history-icon">
-                <i className="pe-7s-note2" />
+                <Icon icon="icon-note2" />
               </div>
               <label className="order-history_label-empty">Order history is empty</label>
               <NavigationLink to={'/'}>

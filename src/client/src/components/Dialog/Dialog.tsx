@@ -16,8 +16,7 @@ import React, { FC } from 'react';
 
 import Modal, { Props as ModalProps } from 'react-modal';
 
-import { Button } from 'components/Button';
-import { Icon } from 'components/Icon';
+import { Button, Icon } from 'components';
 
 import { cnDialog } from './cn';
 import './Dialog.scss';
@@ -35,7 +34,7 @@ export const Dialog: FC<Props> = ({ isOpen, toggleDialog, children, ...props }) 
     <Modal isOpen={isOpen} className={cnDialog('Content')} overlayClassName={cnDialog('Overlay')} {...props}>
       <div className={cnDialog('Header')}>
         <Button buttonTheme="clear" className={cnDialog('CloseButton')} onClick={toggleDialog}>
-          <Icon className="fa-times" />
+          <Icon icon="icon-close" />
         </Button>
       </div>
       {children}

@@ -13,15 +13,15 @@
 //    limitations under the License.
 
 import React, { FC } from 'react';
-
 import ReactPaginate, { ReactPaginateProps } from 'react-paginate';
 
-import { cnPagination } from './cn';
+import { Icon } from 'components';
 
+import { cnPagination } from './cn';
 import './Pagination.scss';
 
-const previousLabel = <i className={'fa fa-angle-double-left'} />;
-const nextLabel = <i className={'fa fa-angle-double-right'} />;
+const previousLabel = <Icon icon="icon-angle-double-left" />;
+const nextLabel = <Icon icon="icon-angle-double-right" />;
 
 export const Pagination: FC<ReactPaginateProps> = ({
   pageCount,

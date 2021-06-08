@@ -16,7 +16,8 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { Button, Spinner } from 'components';
+import { Button, Icon, Spinner } from 'components';
+
 import { NavigationLink } from 'Foundation/UI';
 
 import { CartSummary, OrderSummary } from './components';
@@ -55,7 +56,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     ) {
       return (
         <div className="empty-cart">
-          <i className="pe-7s-cart" />
+          <Icon icon="icon-cart" />
           <div className="empty-cart-not-found-text">No items found in cart</div>
           <div className="empty-cart-button">
             <NavigationLink to={`/`}>Shop Now</NavigationLink>

@@ -17,6 +17,8 @@ import Swiper, { ReactIdSwiperProps } from 'react-id-swiper';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Icon } from 'components';
+
 import { CarouselItem } from './CarouselItem';
 
 import { CarouselBannerProps, CarouselBannerState } from './models';
@@ -39,12 +41,12 @@ export class CarouselBannerComponent extends JSS.SafePureComponent<CarouselBanne
       },
       renderNextButton: () => (
         <button className="swiper-button-next ht-swiper-button-nav">
-          <i className="pe-7s-angle-right" />
+          <Icon icon="icon-angle-right" />
         </button>
       ),
       renderPrevButton: () => (
         <button className="swiper-button-prev ht-swiper-button-nav">
-          <i className="pe-7s-angle-left" />
+          <Icon icon="icon-angle-left" />
         </button>
       ),
       speed: 1000,

@@ -16,9 +16,10 @@ import React, { FC } from 'react';
 
 import { Image } from '@sitecore-jss/sitecore-jss-react';
 
-import { AngleDownIcon } from 'components';
 import { ImageField } from 'Foundation/ReactJss';
 import { NavigationLinks, permanentNavigationLinks } from 'ui/Header';
+
+import { Icon } from 'components';
 
 import { cnNavigation } from '../cn';
 import './DesktopItemContent.scss';
@@ -45,7 +46,7 @@ export const DesktopItemContent: FC<DesktopItemContentProps> = ({
     <div className={cnNavigation('DesktopItemContent')}>
       <span className={cnNavigation('DesktopItemHeader', { opened: isOpen })}>
         {commerceItemName}
-        <AngleDownIcon className={cnNavigation('AngleDownIcon')} />
+        <Icon icon="icon-angle-down" className={cnNavigation('AngleDownIcon')} />
       </span>
       <ul className={cnNavigation('DesktopSubmenu', { opened: isOpen })}>
         <li className={cnNavigation('DesktopSubmenuColumn')}>

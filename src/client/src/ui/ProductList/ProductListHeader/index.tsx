@@ -18,6 +18,8 @@ import { tryParseUrlSearch } from 'Foundation/Base';
 import * as Jss from 'Foundation/ReactJss';
 import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'services/search';
 
+import { Icon } from 'components';
+
 import { ProductListSorting } from '../ProductListSorting';
 import { ProductListHeaderProps, ProductListHeaderState } from './models';
 
@@ -73,7 +75,7 @@ export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderPr
                   key={valueIndex}
                   onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}
                 >
-                  <i className="fa fa-close" />
+                  <Icon icon="icon-close" />
                   <span className="filter-label_text">{value}</span>
                 </div>
               ));

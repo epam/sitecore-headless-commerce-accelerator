@@ -15,6 +15,8 @@
 import classNames from 'classnames';
 import * as React from 'react';
 
+import { Icon } from 'components';
+
 import { FilterItem } from './FilterItem';
 import { FilterProps, FilterState } from './models';
 
@@ -75,12 +77,12 @@ export class Filter extends React.Component<FilterProps, FilterState> {
               {isValuesVisible ? (
                 <>
                   Hide all
-                  <i className="fa fa-angle-up" />
+                  <Icon icon="icon-angle-up" />
                 </>
               ) : (
                 <>
                   Show All
-                  <i className="fa fa-angle-down" />
+                  <Icon icon="icon-angle-down" />
                 </>
               )}
             </span>

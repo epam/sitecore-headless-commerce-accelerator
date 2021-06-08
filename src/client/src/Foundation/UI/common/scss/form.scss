@@ -207,8 +207,8 @@ input[type='checkbox']:focus {
   position: relative;
   width: 100%;
   &:after {
-    content: '\f0d7';
-    font: 14px/28px 'FontAwesome';
+    content: '\e910';
+    font: 14px/28px 'Custom';
     right: 0;
     top: 0;
     padding: 0 10px;

@@ -16,13 +16,10 @@ import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
 
 import qs from 'query-string';
 
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { LoadingStatus } from 'Foundation/Integration';
 import { notify } from 'Foundation/services/notificationsService';
 
-import { Button, Input, SpinnerIcon } from 'components';
+import { Button, Icon, Input } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
 
 import { PasswordResetFormProps } from './models';
@@ -105,12 +102,13 @@ export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
             fullWidth={true}
             onChange={handlePasswordValueChange}
             adornment={
-              <FontAwesomeIcon
-                icon={showPasswordValue ? faEyeSlash : faEye}
-                className={cnPasswordResetForm('FaEyeIcon')}
-                size="lg"
-                onClick={toggleShowPasswordValue}
-              />
+              <div onClick={toggleShowPasswordValue}>
+                <Icon
+                  icon={showPasswordValue ? 'icon-look-slash' : 'icon-look'}
+                  size="l"
+                  className={cnPasswordResetForm('FaEyeIcon')}
+                />
+              </div>
             }
           />
           <label htmlFor="confirm-password">Confirm new password</label>
@@ -126,12 +124,13 @@ export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
             fullWidth={true}
             onChange={handleConfirmPasswordValueChange}
             adornment={
-              <FontAwesomeIcon
-                icon={showConfirmPasswordValue ? faEyeSlash : faEye}
-                className={cnPasswordResetForm('FaEyeIcon')}
-                size="lg"
-                onClick={toggleShowConfirmPasswordValue}
-              />
+              <div onClick={toggleShowConfirmPasswordValue}>
+                <Icon
+                  icon={showConfirmPasswordValue ? 'icon-look-slash' : 'icon-look'}
+                  size="l"
+                  className={cnPasswordResetForm('FaEyeIcon')}
+                />
+              </div>
             }
           />
           <Button
@@ -140,7 +139,7 @@ export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
             buttonType="submit"
             buttonTheme="grey"
           >
-            {resetPasswordState.status === LoadingStatus.Loading && <SpinnerIcon />}
+            {resetPasswordState.status === LoadingStatus.Loading && <Icon icon="icon-spinner-solid" />}
             Change password
           </Button>
         </Form>

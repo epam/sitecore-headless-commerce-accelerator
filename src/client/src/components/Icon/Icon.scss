@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,6 +12,43 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { cn } from '@bem-react/classname';
+.Icon {
+  &_size_xs {
+    font-size: 0.75em;
+  }
 
-export const cnSpinnerIcon = cn('SpinnerIcon');
+  &_size_s {
+    font-size: 0.875em;
+  }
+
+  &_size_m {
+    font-size: 1.33em;
+  }
+
+  &_size_l {
+    font-size: 1.7em;
+  }
+
+  &_size_xl {
+    font-size: 2em;
+  }
+
+  &_size_xxl {
+    font-size: 3em;
+  }
+
+  &_size_xxxl {
+    font-size: 4em;
+  }
+
+  &.icon-spinner-solid {
+    display: inline-block;
+    animation: spin 1s infinite linear;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

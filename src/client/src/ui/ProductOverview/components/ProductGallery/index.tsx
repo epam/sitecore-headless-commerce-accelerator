@@ -18,6 +18,8 @@ import { LightgalleryItem, LightgalleryProvider } from 'react-lightgallery';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Icon } from 'components';
+
 import { ProductGalleryProps, ProductGalleryState } from './models';
 import { calculateNumberOfSlidesToShow } from './utils';
 
@@ -130,7 +132,7 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
                   <div key={index}>
                     <LightgalleryItem group="any" src={src} thumb={src}>
                       <button>
-                        <i className="pe-7s-expand1" />
+                        <Icon icon="icon-expand1" size="xl" />
                       </button>
                     </LightgalleryItem>
                     <div className="single-image">
@@ -153,10 +155,10 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
               ))}
             </Swiper>
             <button className="product-gallery-carousel-prev" onClick={this.goPrev}>
-              <i className="pe-7s-angle-left" />
+              <Icon icon="icon-angle-left" />
             </button>
             <button className="product-gallery-carousel-next" onClick={this.goNext}>
-              <i className="pe-7s-angle-right" />
+              <Icon icon="icon-angle-right" />
             </button>
           </div>
         )}

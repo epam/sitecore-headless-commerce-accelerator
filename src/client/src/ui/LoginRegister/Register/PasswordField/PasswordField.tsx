@@ -14,10 +14,9 @@
 
 import React, { FC } from 'react';
 
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { Input } from 'Foundation/ReactJss/Form';
+
+import { Icon } from 'components';
 
 import { cnRegister } from '../cn';
 import '../Register.scss';
@@ -57,12 +56,9 @@ export const PasswordField: FC<PasswordFieldProps> = ({
         error={error}
         helperText={helperText}
         adornment={
-          <FontAwesomeIcon
-            icon={showPassword ? faEyeSlash : faEye}
-            className={cnRegister('FaEyeIcon')}
-            size="lg"
-            onClick={onClickAdornment}
-          />
+          <div onClick={onClickAdornment}>
+            <Icon icon={showPassword ? 'icon-look-slash' : 'icon-look'} className={cnRegister('FaEyeIcon')} size="l" />
+          </div>
         }
       />
     </>

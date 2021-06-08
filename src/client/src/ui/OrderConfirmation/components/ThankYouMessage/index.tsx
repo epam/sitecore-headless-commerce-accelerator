@@ -14,7 +14,8 @@
 
 import * as React from 'react';
 
-import { Button } from 'components';
+import { Button, Icon } from 'components';
+
 import { SafePureComponent } from 'Foundation/ReactJss';
 
 import './styles.scss';
@@ -43,7 +44,8 @@ export class ThankYouMessage extends SafePureComponent<ThankYouMessageProps, Tha
             <div className="col-md-3">
               <div className="thank-you-col2">
                 <Button className="OrderConfirmation-PrintButton" buttonTheme="defaultReversed" rounded={true}>
-                  <i className="fa fa-print" /> <span>Print Receipt</span>
+                  <Icon icon="icon-print" />
+                  <span>Print Receipt</span>
                 </Button>
               </div>
             </div>

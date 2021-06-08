@@ -27,7 +27,7 @@ import {
   ShoppingCartLine,
 } from 'services/shoppingCart';
 
-import { Button } from 'components';
+import { Button, Icon } from 'components';
 
 import './CartView.scss';
 
@@ -101,7 +101,7 @@ export const CartViewComponent: FC<CartViewPropsType> = ({ toggleClick }) => {
               </div>
               <div className="shopping-cart-view-populated-single-item-delete">
                 <button onClick={() => onRemoveCartLine(single)}>
-                  <i className="fa fa-times-circle" />
+                  <Icon icon="icon-close" size="l" />
                 </button>
               </div>
             </li>

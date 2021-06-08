@@ -22,6 +22,8 @@ import {
   ContactUsState,
 } from './models';
 
+import { Icon } from 'components';
+
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
@@ -46,7 +48,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
             <div className="contact-area_content_info">
               <div className="single-contact-info">
                 <div className="contact-icon">
-                  <i className="fa fa-phone" />
+                  <Icon icon="icon-call-solid" />
                 </div>
                 <div className="contact-info-dec">
                   {datasource &&
@@ -61,7 +63,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
               </div>
               <div className="single-contact-info">
                 <div className="contact-icon">
-                  <i className="fa fa-globe" />
+                  <Icon icon="icon-global" />
                 </div>
                 <div className="contact-info-dec">
                   {datasource &&
@@ -76,7 +78,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
               </div>
               <div className="single-contact-info">
                 <div className="contact-icon">
-                  <i className="fa fa-map-marker" />
+                  <Icon icon="icon-map-marker-solid" />
                 </div>
                 <div className="contact-info-dec">
                   {datasource &&

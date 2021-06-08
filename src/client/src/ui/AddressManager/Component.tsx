@@ -16,9 +16,9 @@ import React, { MouseEvent } from 'react';
 
 import { Address } from 'Foundation/Commerce';
 import { LoadingStatus } from 'Foundation/Integration';
-
-import { Button } from 'components';
 import { SafePureComponent } from 'Foundation/ReactJss';
+
+import { Button, Icon } from 'components';
 
 import { AddressForm } from './components';
 import { AddressManagerOwnState, AddressManagerProps } from './models';
@@ -61,7 +61,7 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
             <h3 className="header-title">
               <span className="header-title_number">2. </span>
               <span>SAVED ADDRESSES</span>
-              <i className="fa fa-angle-down" aria-hidden="true" />
+              <Icon icon="icon-angle-down" aria-hidden="true" />
             </h3>
           </div>
           <div className="account-details-form_main address-management-body">
@@ -123,7 +123,7 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
                     ) : (
                       <div className="address_container-empty">
                         <div className="address-icon">
-                          <i className="pe-7s-way" />
+                          <Icon icon="icon-way" />
                         </div>
                         <label className="address_label-empty">No saved address</label>
                         <div className="add-address-btn-container">

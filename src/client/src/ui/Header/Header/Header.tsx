@@ -20,6 +20,8 @@ import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import { BaseDataSourceItem, BaseRenderingParam, RenderingWithParams } from 'Foundation/ReactJss';
 import { closeHamburgerMenu, selectHamburgerMenuVisibility } from 'services/navigationMenu';
 
+import { Icon } from 'components';
+
 import classnames from 'classnames';
 
 import './Header.scss';
@@ -65,7 +67,7 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
 
         <div className={classnames('header_mobile mobile-menu')}>
           <button className="mobile-menu_close" onClick={handleHamburgerMenuClose}>
-            <i className="pe-7s-close" />
+            <Icon icon="icon-close" />
           </button>
           <div className="mobile-menu_container">
             <div className="mobile-menu_content">

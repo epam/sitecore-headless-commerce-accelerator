@@ -16,4 +16,4 @@
 // tslint:disable: no-use-before-declare
 
 // Value parameter is linked to asp.net project. (Helix achtitecture)
-// <#@ parameter type="System.String" name="DllName" value="Foundation.Commerce" #>
+// <#@ parameter type="System.String" name="DllName" value="Feature.Catalog" #>

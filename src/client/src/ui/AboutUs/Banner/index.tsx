@@ -17,6 +17,8 @@ import { Link, Text } from '@sitecore-jss/sitecore-jss-react';
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { Icon } from 'components';
+
 import { AboutUsBannerProps, AboutUsBannerState } from './models';
 
 import '../styles.scss';
@@ -45,7 +47,7 @@ export class AboutUsBanner extends JSS.SafePureComponent<AboutUsBannerProps, Abo
                           <Text tag="span" field={data.fields.price} />
                         </h4>
                         <Link field={data.fields.uri}>
-                          <i className="fa fa-long-arrow-right" />
+                          <Icon icon="icon-long-arrow" />
                         </Link>
                       </div>
                     </div>

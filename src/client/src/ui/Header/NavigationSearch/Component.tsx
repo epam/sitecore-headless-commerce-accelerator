@@ -19,7 +19,7 @@ import { debounce } from 'lodash';
 
 import { LoadingStatus } from 'Foundation/Integration';
 
-import { Input } from 'components';
+import { Icon, Input } from 'components';
 
 import { NavigationSearchProps, NavigationSearchState } from './models';
 import { SuggestionList } from './SuggestionList';
@@ -79,7 +79,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
     return (
       <div className="navigation-buttons_item search" ref={this.wrapperRef}>
         <a className="navigation-search_link" onClick={this.handleClick}>
-          <i className="pe-7s-search" />
+          <Icon icon="icon-search" size="l" />
         </a>
         <div className={classnames('search_popup', { 'search_popup--visible': this.state.isOpen })}>
           <form
@@ -99,8 +99,7 @@ export class NavigationSearchComponent extends JSS.SafePureComponent<NavigationS
               fullWidth={true}
             />
             <button className="search_button">
-              <i className="pe-7s-search" />
-              <i className="fa fa-search" />
+              <Icon icon="icon-search" size="l" />
             </button>
           </form>
           <SuggestionList onItemClick={this.handleItemClick} />

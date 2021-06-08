@@ -14,11 +14,9 @@
 
 import React, { ChangeEvent, FC, HTMLProps, KeyboardEvent, useCallback } from 'react';
 
-import { Button } from 'components/Button';
-import { Input } from 'components/Input';
+import { Button, Icon, Input } from 'components';
 
 import { cnSidebarSearch } from './cn';
-
 import './SidebarSearch.scss';
 
 export type SidebarSearchProps = HTMLProps<HTMLDivElement> & {
@@ -53,7 +51,7 @@ export const SidebarSearch: FC<SidebarSearchProps> = ({ className, disabled, val
           placeholder="Search"
         />
         <Button buttonType="reset" className={cnSidebarSearch('Button')} onClick={onClear}>
-          <i className="fa fa-times" />
+          <Icon icon="icon-close" size="xl" />
         </Button>
       </div>
     </div>

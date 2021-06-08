@@ -18,6 +18,8 @@ import { LoadingStatus } from 'Foundation/Integration';
 import * as Jss from 'Foundation/ReactJss';
 import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
 
+import { Icon } from 'components';
+
 import { ACCOUNT_DETAILS_FORM_FIELDS } from './constants';
 import { ChangeUserInformationFormOwnState, ChangeUserInformationFormProps } from './models';
 
@@ -52,7 +54,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
             <h3 className="header-title">
               <span className="header-title_number">1. </span>
               <span>EDIT YOUR ACCOUNT INFORMATION</span>
-              <i className="fa fa-angle-down" aria-hidden="true" />
+              <Icon icon="icon-angle-down" aria-hidden="true" />
             </h3>
           </div>
           <div className="account-details-form_main user-information-body">
@@ -92,7 +94,7 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                     disabled={isLoading}
                     onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
                   >
-                    {isLoading && <i className="fa fa-spinner fa-spin" />}
+                    {isLoading && <Icon icon="icon-spinner-solid" />}
                     Save Changes
                   </Submit>
                 </div>

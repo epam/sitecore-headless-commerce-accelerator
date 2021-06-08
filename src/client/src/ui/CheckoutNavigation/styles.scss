@@ -101,8 +101,8 @@ nav.nav-checkout {
     font-size: 15px;
     padding: 0px;
     &:before {
-      content: '\f0d9';
-      font-family: 'FontAwesome';
+      content: '\f104';
+      font-family: 'Custom';
       padding-right: 5px;
     }
     @media (max-width: $screen-md-min) {
@@ -139,8 +139,8 @@ nav.nav-checkout {
     letter-spacing: 1px;
     padding: 0 15px;
     &:before {
-      content: '\f137';
-      font-family: 'FontAwesome';
+      content: '\f104';
+      font-family: 'Custom';
       padding-right: 5px;
     }
     @media (max-width: $screen-md-min) {

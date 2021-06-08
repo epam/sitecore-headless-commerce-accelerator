@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import classnames from 'classnames';
+import { Icon } from 'components';
 import * as JSS from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 import * as React from 'react';
@@ -47,7 +48,7 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
     return (
       <div ref={this.wrapperRef} className="navigation-buttons_item account">
         <a onClick={this.toggleDropdown}>
-          <i className="pe-7s-user-female" />
+          <Icon icon="icon-user-simple" size="l" />
         </a>
         <ul
           className={classnames('account_dropdown', { 'account_dropdown--visible': isDropdownVisible })}

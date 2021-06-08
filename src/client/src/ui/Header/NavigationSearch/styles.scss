@@ -100,7 +100,7 @@
       border: none;
       border-color: $orange;
       background: $theme-color;
-      .fa-search {
+      .icon-search {
         display: none;
       }
       &:hover {
@@ -136,10 +136,10 @@
         background: none;
         color: #aaa;
         padding-right: 11px;
-        .pe-7s-search {
+        .icon-search {
           display: none;
         }
-        .fa-search {
+        .icon-search {
           display: block;
           font-size: 18px;
         }

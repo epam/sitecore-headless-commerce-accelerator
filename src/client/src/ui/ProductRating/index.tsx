@@ -16,6 +16,8 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Icon } from 'components';
+
 import { ProductRatingProps, ProductRatingState } from './models';
 import './styles.scss';
 
@@ -24,27 +26,22 @@ export class ProductRating extends JSS.SafePureComponent<ProductRatingProps, Pro
     const ratings = this.props.rating || 4;
     const ratedStars = new Array(5).fill(
       <span className="star">
-        <i className="fa fa-star-o orange" />
-      </span>
+        <Icon icon="icon-star" className="orange" />
+      </span>,
     );
     ratedStars.fill(
-      (
       <span className="star">
-        <i className="fa fa-star-o" />
-      </span>
-      ),
-      ratings
+        <Icon icon="icon-star" />
+      </span>,
+      ratings,
     );
     return (
       <div className="product-rating">
         <div className="items-rating">
-          {ratedStars && ratedStars.map((value, index) => {
-            return (
-              <React.Fragment key={index}>
-                {value}
-              </React.Fragment>
-            );
-          })}
+          {ratedStars &&
+            ratedStars.map((value, index) => {
+              return <React.Fragment key={index}>{value}</React.Fragment>;
+            })}
         </div>
       </div>
     );

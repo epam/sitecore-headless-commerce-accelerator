@@ -21,6 +21,8 @@ import { LoadingStatus } from 'Foundation/Integration';
 import { NavigationLink } from 'Foundation/UI';
 import { validateEmail } from 'Foundation/utils/validation';
 
+import { Icon } from 'components';
+
 import { LogInProps, LogInStates, LogInValues } from './models';
 import './styles.scss';
 
@@ -118,7 +120,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
             }}
             disabled={false}
           >
-            {isLoading && <i className="fa fa-spinner fa-spin" />}
+            {isLoading && <Icon icon="icon-spinner-solid" />}
             <span>Login</span>
           </Submit>
         </div>

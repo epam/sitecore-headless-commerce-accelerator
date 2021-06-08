@@ -16,8 +16,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Button } from 'components/Button';
-import { StarIcon } from 'components/StarIcon';
+import { Button, Icon } from 'components';
 
 import 'Foundation/UI/common/scss/typography';
 
@@ -76,7 +75,7 @@ storiesOf('Button', module)
   .add('Clear', () => (
     <Button buttonTheme="clear" onClick={() => console.log('clicked')}>
       <div style={{ color: 'red' }}>
-        <StarIcon />
+        <Icon icon="icon-star" />
       </div>
     </Button>
   ));

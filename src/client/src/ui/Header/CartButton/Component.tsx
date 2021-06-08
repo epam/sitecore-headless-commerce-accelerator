@@ -19,6 +19,8 @@ import { CartView } from 'ui/CartView';
 import * as JSS from 'Foundation/ReactJss';
 import { Desktop, Mobile } from 'Foundation/UI/common/components/Responsive';
 
+import { Icon } from 'components';
+
 import { CartButtonProps, CartButtonState } from './models';
 
 export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, CartButtonState> {
@@ -52,16 +54,16 @@ export class CartButtonComponent extends JSS.SafePureComponent<CartButtonProps, 
       <div className="navigation-buttons_item cart-wrap" style={{ position: 'relative' }} ref={this.wrapperRef}>
         <Desktop>
           <a onClick={() => handleClick()}>
-            <i className="pe-7s-shopbag">
+            <Icon icon="icon-shopbag" size="l">
               <span className="quantity">{cartQuantity}</span>
-            </i>
+            </Icon>
           </a>
         </Desktop>
         <Mobile>
           <Link to="/cart">
-            <i className="pe-7s-shopbag">
+            <Icon icon="icon-shopbag" size="l">
               <span className="quantity">{cartQuantity}</span>
-            </i>
+            </Icon>
           </Link>
         </Mobile>
         <div className={`shopping-cart-view ${cartVisible ? 'visible-cart' : ''}`}>

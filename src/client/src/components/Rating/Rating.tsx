@@ -14,7 +14,7 @@
 
 import React, { memo } from 'react';
 
-import { StarIcon } from 'components/StarIcon';
+import { Icon } from 'components';
 
 import { cnRating } from './cn';
 import './Rating.scss';
@@ -31,7 +31,7 @@ export const Rating = memo<RatingProps>(({ className, size = 'm', maxRating = 5,
   const Stars = [];
 
   for (let i = 0; i < maxRating; i++) {
-    Stars.push(<StarIcon key={i} className={cnRating('Star', { active: i < rating })} />);
+    Stars.push(<Icon key={i} icon="icon-star" className={cnRating('Star', { active: i < rating })} />);
   }
 
   return <div className={cnRating({ theme, size }, [className])}>{Stars}</div>;

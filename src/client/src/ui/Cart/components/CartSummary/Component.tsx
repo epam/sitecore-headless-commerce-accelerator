@@ -21,6 +21,8 @@ import { NavigationLink } from 'Foundation/UI';
 import { Quantity } from './components';
 import { CartSummaryProps, CartSummaryState } from './models';
 
+import { Icon } from 'components';
+
 import './styles.scss';
 
 export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps, CartSummaryState> {
@@ -118,10 +120,10 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                       </div>
                       <div className="col-xs-2 actions product-actions">
                         <button>
-                          <i className="fa fa-heart" />
+                          <Icon icon="icon-heart" />
                         </button>
-                        <button>
-                          <i className="fa fa-times" onClick={(e) => RemoveCartLine(cartLine)} />
+                        <button onClick={(e) => RemoveCartLine(cartLine)}>
+                          <Icon icon="icon-close" size="l" />
                         </button>
                       </div>
                     </div>

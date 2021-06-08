@@ -17,7 +17,7 @@ import React, { FC, FormEvent, useState } from 'react';
 import { LoadingStatus } from 'Foundation/Integration';
 import { validateEmail } from 'Foundation/utils/validation';
 
-import { Button, Input, SpinnerIcon } from 'components';
+import { Button, Icon, Input } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'Foundation/UI';
 
@@ -82,7 +82,7 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
               buttonType="submit"
               buttonTheme="grey"
             >
-              {requestPasswordResetState.status === LoadingStatus.Loading && <SpinnerIcon />}
+              {requestPasswordResetState.status === LoadingStatus.Loading && <Icon icon="icon-spinner-solid" />}
               Reset password
             </Button>
             <div className={cnResetRequestForm('BackToSignIn')}>

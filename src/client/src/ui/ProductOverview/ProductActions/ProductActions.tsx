@@ -18,7 +18,7 @@ import { notifySubscribed } from 'Foundation/services/notificationsService';
 
 import { StockStatus } from 'services/catalog';
 
-import { Button, QuantityPicker } from 'components';
+import { Button, Icon, QuantityPicker } from 'components';
 
 import { SubmitEmailDialog } from '../SubmitEmailDialog';
 import { ProductActionsProps } from './models';
@@ -77,11 +77,11 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
           onClick={handleAddToCartClick}
           buttonTheme="defaultSlide"
         >
-          {isLoading && <i className="fa fa-spinner fa-spin" />}
+          {isLoading && <Icon icon="icon-spinner-solid" />}
           {outOfStock ? 'Out of Stock' : 'Add to Cart'}
         </Button>
         <a href="javascript:if(window.print)window.print()" title="Print button" className="btn btn-main btn-print">
-          <i className="pe-7s-print" />
+          <Icon icon="icon-print" />
         </a>
       </div>
       {outOfStock && (

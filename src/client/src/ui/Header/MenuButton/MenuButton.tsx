@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 
 import { openHamburgerMenu } from 'services/navigationMenu';
 
+import { Icon } from 'components';
+
 import './MenuButton.scss';
 
 export const MenuButton: FC = () => {
@@ -29,7 +31,7 @@ export const MenuButton: FC = () => {
   return (
     <div className="navigation-buttons_item menu-button">
       <a onClick={handleHamburgerMenuOpen}>
-        <i className="pe-7s-menu" />
+        <Icon icon="icon-menu" size="l" />
       </a>
     </div>
   );

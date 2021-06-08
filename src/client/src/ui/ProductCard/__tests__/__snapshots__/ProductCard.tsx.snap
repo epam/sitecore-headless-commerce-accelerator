@@ -92,19 +92,19 @@ exports[`ProductCard renders correctly 1`] = `
     className="Rating Rating_theme_default Rating_size_m ProductCard-ProductRating"
   >
     <i
-      className="Icon fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+      className="Icon icon-star Rating-Star Rating-Star_active"
     />
     <i
-      className="Icon fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+      className="Icon icon-star Rating-Star Rating-Star_active"
     />
     <i
-      className="Icon fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+      className="Icon icon-star Rating-Star Rating-Star_active"
     />
     <i
-      className="Icon fa StarIcon fa-star-o Rating-Star Rating-Star_active"
+      className="Icon icon-star Rating-Star Rating-Star_active"
     />
     <i
-      className="Icon fa StarIcon fa-star-o Rating-Star"
+      className="Icon icon-star Rating-Star"
     />
   </div>
   <div

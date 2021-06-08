@@ -30,6 +30,8 @@ import { LoadingStatus } from 'Foundation/Integration';
 import { Checkbox, Input, Submit } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'Foundation/UI';
 
+import { Icon } from 'components';
+
 import { FORM_FIELDS } from '../constants';
 import { validate } from '../utils';
 
@@ -188,7 +190,7 @@ export const FormFields: FC = () => {
           disabled={formDisabled}
           onSubmitHandler={handleFormSubmit}
         >
-          {(loading || formDisabled) && <i className="fa fa-spinner fa-spin" />}
+          {(loading || formDisabled) && <Icon icon="icon-spinner-solid" />}
           <span>Register</span>
         </Submit>
         <div className={cnRegister('TermsAndConditions')}>

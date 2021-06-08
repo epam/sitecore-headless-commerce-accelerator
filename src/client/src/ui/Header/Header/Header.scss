@@ -80,13 +80,6 @@
         &:focus {
           color: $white;
         }
-        i {
-          font-size: 40px;
-          line-height: 1;
-          margin-top: 12px;
-          transition: 0.3s;
-          transform: rotate(0);
-        }
 
         &:hover {
           i {

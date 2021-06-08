@@ -26,10 +26,6 @@
   "dependencies": {
     "@apollo/client": "^3.3.12",
     "@bem-react/classname": "^1.5.8",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-regular-svg-icons": "^5.15.2",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.11",
     "@sitecore-jss/sitecore-jss-react": "^13.0.0",
     "@types/react-responsive": "^8.0.2",
     "apollo-link-http": "^1.5.17",

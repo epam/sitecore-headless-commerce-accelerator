@@ -32,12 +32,12 @@ $button-search-cancel-border-color: #e6e6e6;
     display: flex;
 
     .Input .Input-ControlWrapper::before {
-      font: normal normal normal 14px/1 FontAwesome;
+      font: normal normal normal 14px/1 Custom;
       font-size: 20px;
       width: 20px;
       text-align: center;
       line-height: 1;
-      content: '\F002';
+      content: '\e618';
       position: absolute;
       left: 15px;
       top: 50%;

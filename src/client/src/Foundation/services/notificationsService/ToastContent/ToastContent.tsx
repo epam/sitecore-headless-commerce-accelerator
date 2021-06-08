@@ -12,11 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { faCheckCircle, faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 import { TypeOptions } from 'react-toastify';
+
+import { Icon } from 'components';
 
 import { cnToastContent } from './cn';
 import './ToastContent.scss';
@@ -30,14 +29,9 @@ export const ToastContent: FC<Props> = ({ type, message }) => (
   <div className={cnToastContent()}>
     {type === 'dark' && null}
     {type === 'default' && null}
-    {type === 'error' && (
-      <span className={cnToastContent('ExclamationCircleIcon', ['fa-stack fa-lg'])}>
-        <FontAwesomeIcon icon={faCircle} className={cnToastContent('CircleIcon', ['fa-stack-2x'])} />
-        <FontAwesomeIcon icon={faExclamation} className={'fa-stack-1x'} />
-      </span>
-    )}
+    {type === 'error' && <Icon icon="icon-error" size="xxl" className={cnToastContent('ExclamationCircleIcon')} />}
     {type === 'info' && null}
-    {type === 'success' && <FontAwesomeIcon icon={faCheckCircle} size="3x" className={cnToastContent('CheckIcon')} />}
+    {type === 'success' && <Icon icon="icon-check" size="xxl" className={cnToastContent('CheckIcon')} />}
     {type === 'warning' && null}
     <p>{message}</p>
   </div>

@@ -14,11 +14,7 @@
 
 import React, { FC } from 'react';
 
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { Button } from 'components';
+import { Button, Icon } from 'components';
 import { NavigationLink } from 'Foundation/UI';
 
 import { cnResetRequestForm } from '../cn';
@@ -28,10 +24,7 @@ export const ErrorMessage: FC = () => (
   <>
     <div className={cnResetRequestForm('ErrorMessage')}>
       <div className={cnResetRequestForm('FaExclamationCircleIcon')}>
-        <span className="fa-stack fa-2x">
-          <FontAwesomeIcon icon={faCircle} className={cnResetRequestForm('FaCircleIcon', ['fa-stack-2x'])} />
-          <FontAwesomeIcon icon={faExclamation} className={'fa-stack-1x'} />
-        </span>
+        <Icon icon="icon-error" size="xxxl" />
       </div>
       <p>
         Sorry, we didn’t recognize that email address. Want to try another? <br />

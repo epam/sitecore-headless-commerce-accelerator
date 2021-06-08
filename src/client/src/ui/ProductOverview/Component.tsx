@@ -17,6 +17,8 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Icon } from 'components';
+
 import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
 
@@ -130,27 +132,27 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                     <ul>
                       <li>
                         <a href="//facebook.com">
-                          <i className="fa fa-facebook" />
+                          <Icon icon="icon-facebook-f-brands" size="s" />
                         </a>
                       </li>
                       <li>
                         <a href="//dribbble.com">
-                          <i className="fa fa-dribbble" />
+                          <Icon icon="icon-dribbble-brands" size="s" />
                         </a>
                       </li>
                       <li>
                         <a href="//pinterest.com">
-                          <i className="fa fa-pinterest-p" />
+                          <Icon icon="icon-pinterest-brands" size="s" />
                         </a>
                       </li>
                       <li>
                         <a href="//twitter.com">
-                          <i className="fa fa-twitter" />
+                          <Icon icon="icon-twitter-brands" size="s" />
                         </a>
                       </li>
                       <li>
                         <a href="//linkedin.com">
-                          <i className="fa fa-linkedin" />
+                          <Icon icon="icon-linkedin-brands" size="s" />
                         </a>
                       </li>
                     </ul>
@@ -162,7 +164,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
           <div className="panel-productAdded">
             <div className="productAdded">
               <a href="" title="Close modal window" className="close">
-                <i className="fa fa-close" />
+                <Icon icon="icon-close" />
               </a>
               <div className="row">
                 <div className="col-sm-6 col-lg-4 col-lg-offset">

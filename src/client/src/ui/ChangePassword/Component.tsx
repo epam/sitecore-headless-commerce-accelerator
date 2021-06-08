@@ -19,6 +19,8 @@ import * as Jss from 'Foundation/ReactJss';
 import { LoadingStatus } from 'Foundation/Integration';
 import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
 
+import { Icon } from 'components';
+
 import { CHANGE_PASSWORD_FORM_FIELDS } from './constants';
 import { ChangePasswordOwnState, ChangePasswordProps } from './models';
 
@@ -64,7 +66,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
             <h3 className="header-title">
               <span className="header-title_number">3. </span>
               <span>CHANGE YOUR PASSWORD</span>
-              <i className="fa fa-angle-down" aria-hidden="true" />
+              <Icon icon="icon-angle-down" aria-hidden="true" />
             </h3>
           </div>
           <div className="account-details-form_main change-password-body">
@@ -136,7 +138,7 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                     buttonTheme="grey"
                     onSubmitHandler={(formValues) => this.handleChangePasswordSubmit(formValues)}
                   >
-                    {isLoading && <i className="fa fa-spinner fa-spin" />}
+                    {isLoading && <Icon icon="icon-spinner-solid" />}
                     Change Password
                   </Submit>
                 </div>

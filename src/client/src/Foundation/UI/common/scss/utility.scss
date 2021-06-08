@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,12 +24,24 @@
   left: -9999em;
 }
 
-.left {float: left !important; }
-.right {float: right !important; }
-.text-left {text-align: left !important; }
-.text-right {text-align: right !important; }
-.text-center {text-align: center !important; }
-.text-justify {text-align: justify !important; }
+.left {
+  float: left !important;
+}
+.right {
+  float: right !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
 ul.unstyled,
 ol.unstyled {
   margin-left: 0;
@@ -45,11 +57,11 @@ ol.inline > li {
   display: inline-block;
   padding-right: 10px;
 }
-.block{
+.block {
   display: block;
 }
 .pad {
-  padding:20px; //-20px is arbitrary. Just wanted a class to give space around containers. Adjust later if needed
+  padding: 20px; //-20px is arbitrary. Just wanted a class to give space around containers. Adjust later if needed
 }
 // Windows 8 snap fix;
 // To get IE10 in snap mode does not respect the values set in the META tags;
@@ -57,55 +69,100 @@ ol.inline > li {
   width: device-width;
 }
 
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-@-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
-@-moz-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
-@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
-
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 .fade-in {
-  opacity:0;  /* make things invisible upon start */
-  -webkit-animation:fadeIn ease-in .5s;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-  -moz-animation:fadeIn ease-in .5s;
-  animation:fadeIn ease-in .5s;
-  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
+  opacity: 0; /* make things invisible upon start */
+  -webkit-animation: fadeIn ease-in 0.5s; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation: fadeIn ease-in 0.5s;
+  animation: fadeIn ease-in 0.5s;
+  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 .fade-out {
-  opacity:0;
-  -webkit-animation:fadeOut ease-in .15s;
-  -moz-animation:fadeOut ease-in .15s;
-  animation:fadeOut ease-in .15s;
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
+  opacity: 0;
+  -webkit-animation: fadeOut ease-in 0.15s;
+  -moz-animation: fadeOut ease-in 0.15s;
+  animation: fadeOut ease-in 0.15s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 // no transitions in old IE
-.lt-ie10{
-  .fade-in{
+.lt-ie10 {
+  .fade-in {
     opacity: 1;
   }
 }
 
 @keyframes loading {
-  to {transform: rotate(360deg);}
-}
- 
-@-webkit-keyframes loading {
-  to {-webkit-transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-//css spinner 
+@-webkit-keyframes loading {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+//css spinner
 .loading {
   position: relative;
   //override at the component if need be
-  min-height: 450px; 
+  min-height: 450px;
 }
- 
+
 .loading:before {
   content: 'Loading…';
   position: absolute;
@@ -117,15 +174,15 @@ ol.inline > li {
   margin-left: -18px;
   z-index: 10000;
 }
- 
+
 .loading:not(:required):before {
   content: '';
   border-radius: 50%;
   border: 2px solid transparent;
   border-top-color: #000;
   border-bottom-color: #000;
-  animation: loading .8s ease infinite;
-  -webkit-animation: loading .8s ease infinite;
+  animation: loading 0.8s ease infinite;
+  -webkit-animation: loading 0.8s ease infinite;
   z-index: 10000;
 }
 
@@ -146,7 +203,7 @@ ol.inline > li {
 
 // .color-title should be used as a wrapper to .color-bar
 .color-title {
-  @include  clearfix;
+  @include clearfix;
   position: relative;
   font-size: 26px;
   margin: 16px 0;
@@ -155,7 +212,7 @@ ol.inline > li {
     float: left;
     margin: 0;
     padding-right: 17px;
-    font-size: inherit;  //should be inherited from .color-title, so .color-bar could be positioned properly
+    font-size: inherit; //should be inherited from .color-title, so .color-bar could be positioned properly
     line-height: 1em;
   }
   .color-bar {
@@ -164,7 +221,7 @@ ol.inline > li {
     height: 1em;
     &:after {
       top: auto;
-      bottom: .16em; // depend's on header's font-size
+      bottom: 0.16em; // depend's on header's font-size
     }
   }
 }
@@ -174,7 +231,7 @@ ol.inline > li {
 
   & .star {
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
+    font: normal normal normal 14px/1 Custom;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -189,20 +246,24 @@ ol.inline > li {
     }
 
     &:before {
-      content: "\f006";
+      content: '\e902';
     }
     &.filled {
       &:before {
-        content: "\f005";
+        content: '\e901';
       }
     }
   }
 }
 
-.main{color:$main-color;}
-.focus{color:$focus-color;}
-.no-mobile{
-  @media(max-width: $screen-sm){
+.main {
+  color: $main-color;
+}
+.focus {
+  color: $focus-color;
+}
+.no-mobile {
+  @media (max-width: $screen-sm) {
     display: none;
   }
 }

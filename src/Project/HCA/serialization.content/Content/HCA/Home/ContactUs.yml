@@ -60,6 +60,9 @@ SharedFields:
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
       </d>
@@ -81,13 +84,6 @@ Languages:
           p:p="1">
           <d
             id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-            <r
-              uid="{EEF62ABC-444E-4432-A743-3948CD240754}">
-              <p:d />
-            </r>
-            <r
-              uid="{A3E59DAE-9C5F-4795-BBE1-7B461731FEAE}"
-              s:par="Title Class=social-title&amp;Show Title=1&amp;Container Class=social-network-container&amp;Title Tag=h3" />
             <r
               uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
               s:par="Title Class=social-title&amp;Show Title=1&amp;Container Class=widgets-social&amp;Title Tag=h2" />

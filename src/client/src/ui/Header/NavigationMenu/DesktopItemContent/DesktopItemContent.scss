@@ -102,4 +102,10 @@
   &-AngleDownIcon {
     margin-left: 3px;
   }
+
+  &-DesktopSubmenuTitle {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

@@ -25,6 +25,10 @@
       font-size: 13px;
       text-transform: uppercase;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       &_firstLevel {
         padding: 10px 20px;
         font-size: 14px;

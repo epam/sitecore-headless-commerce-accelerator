@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -19,16 +19,6 @@ namespace HCA.Foundation.Connect
         public const string CommerceUsersDomainName = "CommerceUsers";
 
         public const string DefaultCartName = "Default";
-
-        public static class Search
-        {
-            public static class ItemType
-            {
-                public const string Product = "SellableItem";
-
-                public const string Category = "Category";
-            }
-        }
 
         public static class Pricing
         {

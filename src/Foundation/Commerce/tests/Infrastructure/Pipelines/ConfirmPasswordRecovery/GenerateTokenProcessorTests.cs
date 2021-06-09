@@ -24,7 +24,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.ConfirmPassword
 
     using Account.Managers.User;
 
-    using Base.Tests.Common.Utils;
+    using Base.Tests.Utils;
 
     using Ploeh.AutoFixture;
 

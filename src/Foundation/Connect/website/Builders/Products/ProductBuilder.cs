@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -99,6 +99,42 @@ namespace HCA.Foundation.Connect.Builders.Products
             return products;
         }
 
+        private void AddProduct(List<CommerceInventoryProduct> products, Product product)
+        {
+            products.Add(this.CatalogMapper.Map<Product, CommerceInventoryProduct>(product));
+
+            foreach (var productVariant in product.Variants)
+            {
+                products.Add(this.CatalogMapper.Map<Variant, CommerceInventoryProduct>(productVariant));
+            }
+        }
+
+        private IEnumerable<CommerceInventoryProduct> GetInventoryProducts(IEnumerable<Product> products)
+        {
+            var inventoryProducts = new List<CommerceInventoryProduct>();
+
+            foreach (var product in products)
+            {
+                this.AddProduct(inventoryProducts, product);
+            }
+
+            return inventoryProducts;
+        }
+
+        private IEnumerable<StockInformation> GetStockInformation(
+            IEnumerable<CommerceInventoryProduct> inventoryProducts)
+        {
+            if (inventoryProducts == null)
+            {
+                return Enumerable.Empty<StockInformation>();
+            }
+
+            var shopName = this.storefrontContext.ShopName;
+            return this.inventoryManager
+                .GetStockInformation(shopName, inventoryProducts, StockDetailsLevel.StatusAndAvailability)
+                ?.StockInformation;
+        }
+
         private Product InitializeProduct(Item source, bool includeVariants)
         {
             var product = this.Initialize<Product>(source);
@@ -113,13 +149,6 @@ namespace HCA.Foundation.Connect.Builders.Products
             }
 
             return product;
-        }
-
-        private void SetVariants(Product product, Item source)
-        {
-            product.Variants = source.HasChildren
-                ? this.variantBuilder.Build(source.Children).ToList()
-                : new List<Variant>();
         }
 
         private void SetPricesWithoutVariants(IList<Product> products)
@@ -189,42 +218,6 @@ namespace HCA.Foundation.Connect.Builders.Products
             this.SetStockStatus(productsList, stockInformation);
         }
 
-        private IEnumerable<CommerceInventoryProduct> GetInventoryProducts(IEnumerable<Product> products)
-        {
-            var inventoryProducts = new List<CommerceInventoryProduct>();
-
-            foreach (var product in products)
-            {
-                this.AddProduct(inventoryProducts, product);
-            }
-
-            return inventoryProducts;
-        }
-
-        private void AddProduct(List<CommerceInventoryProduct> products, Product product)
-        {
-            products.Add(this.CatalogMapper.Map<Product, CommerceInventoryProduct>(product));
-
-            foreach (var productVariant in product.Variants)
-            {
-                products.Add(this.CatalogMapper.Map<Variant, CommerceInventoryProduct>(productVariant));
-            }
-        }
-
-        private IEnumerable<StockInformation> GetStockInformation(
-            IEnumerable<CommerceInventoryProduct> inventoryProducts)
-        {
-            if (inventoryProducts == null)
-            {
-                return Enumerable.Empty<StockInformation>();
-            }
-
-            var shopName = this.storefrontContext.ShopName;
-            return this.inventoryManager
-                .GetStockInformation(shopName, inventoryProducts, StockDetailsLevel.StatusAndAvailability)
-                ?.StockInformation;
-        }
-
         private void SetStockStatus(List<Product> products, IEnumerable<StockInformation> stockInformation)
         {
             foreach (var information in stockInformation)
@@ -247,6 +240,13 @@ namespace HCA.Foundation.Connect.Builders.Products
                     }
                 }
             }
+        }
+
+        private void SetVariants(Product product, Item source)
+        {
+            product.Variants = source.HasChildren
+                ? this.variantBuilder.Build(source.Children).ToList()
+                : new List<Variant>();
         }
     }
 }

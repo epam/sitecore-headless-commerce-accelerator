@@ -14,7 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Builders.Search
 {
-    using Connect.Models.Search;
+    using Foundation.Search.Models.Common;
 
     /// <summary>
     /// Suggestion options builder

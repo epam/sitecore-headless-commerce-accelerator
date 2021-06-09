@@ -237,6 +237,7 @@
     <Compile Include="Infrastructure\Pipelines\SafePipelineProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SiteSettings\SiteSettingsProviderTests.cs" />
+    <Compile Include="Utils\HttpContextFaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

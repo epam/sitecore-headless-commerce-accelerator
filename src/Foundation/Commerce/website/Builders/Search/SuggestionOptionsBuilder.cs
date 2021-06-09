@@ -17,8 +17,9 @@ namespace HCA.Foundation.Commerce.Builders.Search
     using Configuration.Providers;
 
     using DependencyInjection;
-    using HCA.Foundation.Connect.Models.Search;
 
+    using Foundation.Search.Models.Common;
+    
     using Sitecore.Diagnostics;
 
     [Service(typeof(ISuggestionOptionsBuilder), Lifetime = Lifetime.Singleton)]

@@ -14,9 +14,8 @@
 
 namespace HCA.Foundation.Commerce.Builders.Search
 {
-    using Connect.Models.Search;
-
-    using Models.Entities.Search;
+    using Foundation.Search.Models.Common;
+    using Search = Foundation.Search.Models.Entities.Product;
 
     /// <summary>
     /// Search options builder
@@ -29,6 +28,6 @@ namespace HCA.Foundation.Commerce.Builders.Search
         /// <param name="searchSettings">Predefined default search settings</param>
         /// <param name="searchOptions">Product search options</param>
         /// <returns>Search options</returns>
-        SearchOptions Build(SearchSettings searchSettings, ProductSearchOptions searchOptions);
+        Search.ProductSearchOptions Build(SearchSettings searchSettings, Models.Entities.Search.ProductSearchOptions searchOptions);
     }
 }

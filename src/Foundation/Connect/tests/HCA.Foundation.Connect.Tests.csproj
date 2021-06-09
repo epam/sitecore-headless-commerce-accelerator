@@ -598,7 +598,6 @@
     <Compile Include="Builders\Products\BaseProductBuilderTests.cs" />
     <Compile Include="Builders\Products\ProductBuilderTests.cs" />
     <Compile Include="Builders\Products\VariantBuilderTests.cs" />
-    <Compile Include="Builders\Search\SearchQueryBuilderTests.cs" />
     <Compile Include="Context\Storefront\StorefrontContextTests.cs" />
     <Compile Include="Context\Catalog\CatalogContextTests.cs" />
     <Compile Include="Managers\Account\AccountManagerTests.cs" />
@@ -611,10 +610,8 @@
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
-    <Compile Include="Services\Search\SearchServiceTests.cs" />
     <Compile Include="Managers\Pricing\PricingManagerTests.cs" />
     <Compile Include="Managers\Shipping\ShippingManagerTests.cs" />
-    <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -24,10 +24,13 @@ namespace HCA.Foundation.Connect.Managers.Account
 
     using Providers;
 
+    using Sitecore;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Diagnostics;
+
+    using Constants = Connect.Constants;
 
     [Service(typeof(IAccountManager), Lifetime = Lifetime.Singleton)]
     public class AccountManager : BaseManager, IAccountManager
@@ -60,7 +63,7 @@ namespace HCA.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(shopName, nameof(shopName));
 
             // Commerce needs domain name to be presented in the user name
-            var commerceUserName = $"{Sitecore.Context.Site?.Domain?.Name ?? Constants.CommerceUsersDomainName}\\{userName}";
+            var commerceUserName = $"{Context.Site?.Domain?.Name ?? Constants.CommerceUsersDomainName}\\{userName}";
 
             return this.Execute(
                 new CreateUserRequest(commerceUserName, password, email, shopName),

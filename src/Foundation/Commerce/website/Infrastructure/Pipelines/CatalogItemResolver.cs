@@ -17,43 +17,38 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using System.Linq;
 
     using Base.Providers.SiteDefinitions;
-
-    using Connect.Context.Storefront;
-    using Connect.Services.Search;
-
+    
     using Context;
 
     using DependencyInjection;
 
     using Providers;
 
+    using Services.Search;
+
     using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
+    
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
     {
         private readonly IPageTypeProvider pageTypeProvider;
 
-        private readonly ISearchService searchService;
+        private readonly ICommerceSearchService commerceSearchService;
 
         private readonly ISiteContext siteContext;
 
         private readonly ISiteDefinitionsProvider siteDefinitionsProvider;
 
-        private readonly IStorefrontContext storefrontContext;
-
         public CatalogItemResolver(
-            ISearchService searchService,
+            ICommerceSearchService commerceSearchService,
             IPageTypeProvider pageTypeProvider,
-            IStorefrontContext storefrontContext,
             ISiteDefinitionsProvider siteDefinitionsProvider,
             ISiteContext siteContext)
         {
-            this.searchService = searchService;
+            this.commerceSearchService = commerceSearchService;
             this.pageTypeProvider = pageTypeProvider;
-            this.storefrontContext = storefrontContext;
             this.siteDefinitionsProvider = siteDefinitionsProvider;
             this.siteContext = siteContext;
         }
@@ -112,11 +107,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
             switch (contextItemType)
             {
                 case Commerce.Constants.ItemType.Category:
-                    currentItem = this.searchService.GetCategoryItem(itemName);
+                    currentItem = this.commerceSearchService.GetCategoryByName(itemName);
                     this.siteContext.CurrentCategoryItem = currentItem;
                     break;
                 case Commerce.Constants.ItemType.Product:
-                    currentItem = this.searchService.GetProductItem(itemName);
+                    currentItem = this.commerceSearchService.GetProductByName(itemName);
                     this.siteContext.CurrentProductItem = currentItem;
                     break;
                 default:

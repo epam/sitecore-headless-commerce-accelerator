@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,19 +14,12 @@
 
 namespace HCA.Foundation.Connect.Models.Catalog
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
-    using Sitecore.Data.Items;
 
     [ExcludeFromCodeCoverage]
     public class Variant : BaseProduct
     {
-        public Variant()
-        {
-        }
-
         public IDictionary<string, string> Properties { get; set; }
     }
 }

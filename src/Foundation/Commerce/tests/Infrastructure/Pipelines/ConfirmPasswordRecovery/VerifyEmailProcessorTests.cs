@@ -20,9 +20,9 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.ConfirmPassword
 
     using System.Web;
 
-    using Xunit;
+    using Base.Tests.Utils;
 
-    using Base.Tests.Common.Utils;
+    using Xunit;
 
     using Commerce.Providers;
     using HCA.Foundation.Base.Services.Logging;

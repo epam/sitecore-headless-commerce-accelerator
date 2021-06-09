@@ -1,6 +1,6 @@
 ﻿namespace HCA.Foundation.Commerce.Providers.Search
 {
-    using Connect.Models.Search;
+    using Foundation.Search.Models.Common;
 
     using Models.Entities.Search;
 

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -22,6 +22,18 @@ namespace HCA.Foundation.Connect.Managers.Analytics
     public interface IAnalyticsManager
     {
         /// <summary>
+        /// Registers search initiated page event.
+        /// </summary>
+        /// <param name="shopName">Shop name</param>
+        /// <param name="searchKeyword">Search keyword</param>
+        /// <param name="totalItemsCount">Search total items count</param>
+        /// <returns>The result of the catalog service provider.</returns>
+        CatalogResult SearchInitiated(
+            string shopName,
+            string searchKeyword,
+            int totalItemsCount);
+
+        /// <summary>
         /// Registers category visited page event.
         /// </summary>
         /// <param name="shopName">Shop name</param>
@@ -38,17 +50,5 @@ namespace HCA.Foundation.Connect.Managers.Analytics
         /// <param name="productName"></param>
         /// <returns>The result of the catalog service provider.</returns>
         CatalogResult VisitedProductDetailsPage(string shopName, string productId, string productName);
-
-        /// <summary>
-        /// Registers search initiated page event.
-        /// </summary>
-        /// <param name="shopName">Shop name</param>
-        /// <param name="searchKeyword">Search keyword</param>
-        /// <param name="totalItemsCount">Search total items count</param>
-        /// <returns>The result of the catalog service provider.</returns>
-        CatalogResult SearchInitiated(
-            string shopName,
-            string searchKeyword,
-            int totalItemsCount);
     }
 }

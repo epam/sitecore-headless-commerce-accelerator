@@ -1,10 +1,10 @@
 ﻿namespace HCA.Foundation.Commerce.Providers.Search
 {
     using System.Linq;
-
-    using Connect.Models.Search;
-
+    
     using DependencyInjection;
+
+    using Foundation.Search.Models.Common;
 
     using Mappers.Catalog;
 

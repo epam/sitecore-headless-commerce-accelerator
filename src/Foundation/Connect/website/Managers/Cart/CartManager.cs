@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -40,9 +40,8 @@ namespace HCA.Foundation.Connect.Managers.Cart
     [Service(typeof(ICartManager), Lifetime = Lifetime.Singleton)]
     public class CartManager : BaseManager, ICartManager
     {
-        private readonly CommerceCartServiceProvider cartServiceProvider;
-
         private readonly ICartMapper cartMapper;
+        private readonly CommerceCartServiceProvider cartServiceProvider;
 
         public CartManager(
             ILogService<CommonLog> logService,

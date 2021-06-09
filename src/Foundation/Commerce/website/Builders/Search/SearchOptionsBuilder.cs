@@ -20,13 +20,18 @@ namespace HCA.Foundation.Commerce.Builders.Search
 
     using DependencyInjection;
 
+    using Foundation.Search.Models.Common;
+
     using Mappers.Search;
 
     using Models.Entities.Search;
 
     using Sitecore.Diagnostics;
+    using Facet = Models.Entities.Search.Facet;
 
-    using Connect = Connect.Models.Search;
+    using Search = Foundation.Search.Models.Entities.Product;
+
+    using SortDirection = Models.Entities.Search.SortDirection;
 
     [Service(typeof(ISearchOptionsBuilder), Lifetime = Lifetime.Singleton)]
     public class SearchOptionsBuilder : ISearchOptionsBuilder
@@ -39,7 +44,7 @@ namespace HCA.Foundation.Commerce.Builders.Search
             this.searchMapper = searchMapper;
         }
 
-        public Connect.SearchOptions Build(Connect.SearchSettings searchSettings, ProductSearchOptions searchOptions)
+        public Search.ProductSearchOptions Build(SearchSettings searchSettings, ProductSearchOptions searchOptions)
         {
             Assert.ArgumentNotNull(searchSettings, nameof(searchSettings));
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
@@ -52,7 +57,7 @@ namespace HCA.Foundation.Commerce.Builders.Search
                 throw new Exception("Sort field not found");
             }
 
-            return new Connect.SearchOptions
+            return new Search.ProductSearchOptions
             {
                 SearchKeyword = searchOptions.SearchKeyword,
                 Facets = this.GetFacetsIntersection(searchSettings.Facets, searchOptions.Facets),
@@ -64,13 +69,13 @@ namespace HCA.Foundation.Commerce.Builders.Search
                     ? searchOptions.SortField
                     : searchSettings.SortFieldNames?.FirstOrDefault(),
                 SortDirection = searchOptions.SortDirection == SortDirection.Asc
-                    ? Connect.SortDirection.Asc
-                    : Connect.SortDirection.Desc
+                    ? Foundation.Search.Models.Common.SortDirection.Asc
+                    : Foundation.Search.Models.Common.SortDirection.Desc
             };
         }
 
-        private IEnumerable<Connect.Facet> GetFacetsIntersection(
-            IEnumerable<Connect.Facet> searchSettingsFacets,
+        private IEnumerable<Foundation.Search.Models.Common.Facet> GetFacetsIntersection(
+            IEnumerable<Foundation.Search.Models.Common.Facet> searchSettingsFacets,
             IEnumerable<Facet> searchOptionsFacets)
         {
             if (searchOptionsFacets == null || !searchOptionsFacets.Any())
@@ -92,7 +97,7 @@ namespace HCA.Foundation.Commerce.Builders.Search
                     return true;
                 });
 
-            return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Connect.Facet>>(facets);
+            return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(facets);
         }
     }
 }

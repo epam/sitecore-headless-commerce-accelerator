@@ -25,7 +25,7 @@ namespace HCA.Foundation.Commerce.Models.Entities.Search
     [ExcludeFromCodeCoverage]
     public class ProductSearchResults
     {
-        public IList<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
 
         public IList<Facet> Facets { get; set; }
 

@@ -17,7 +17,6 @@ namespace HCA.Foundation.Commerce.Services.Catalog
     using Base.Models.Result;
 
     using Connect.Builders.Products;
-    using Connect.Services.Search;
 
     using Context;
 
@@ -30,36 +29,43 @@ namespace HCA.Foundation.Commerce.Services.Catalog
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using System.Collections.Generic;
+    using System.Linq;
+
+    using Foundation.Search.Models.Entities.Product;
+    using Foundation.Search.Services.Product;
+
+    using Search;
+
     using Connect = Connect.Models.Catalog;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService
     {
         private readonly ICatalogMapper catalogMapper;
-        private readonly ISearchService searchService;
+        private readonly ICommerceSearchService commerceSearchService;
         private readonly ISiteContext siteContext;
         private readonly IProductBuilder<Item> productBuilder;
 
         public CatalogService(
             ISiteContext siteContext,
             ICatalogMapper catalogMapper,
-            ISearchService searchService,
+            ICommerceSearchService commerceSearchService,
             IProductBuilder<Item> productBuilder)
         {
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
-            Assert.ArgumentNotNull(searchService, nameof(searchService));
+            Assert.ArgumentNotNull(commerceSearchService, nameof(commerceSearchService));
             Assert.ArgumentNotNull(productBuilder, nameof(productBuilder));
 
             this.siteContext = siteContext;
             this.catalogMapper = catalogMapper;
-            this.searchService = searchService;
+            this.commerceSearchService = commerceSearchService;
             this.productBuilder = productBuilder;
         }
 
         public Result<Product> GetProduct(string productId)
         {
-            var item = this.searchService.GetProductItem(productId);
+            var item = this.commerceSearchService.GetProductByName(productId);
             if (item == null)
             {
                 return new Result<Product>(new Product(), new List<string>() { "Product Not Found." })

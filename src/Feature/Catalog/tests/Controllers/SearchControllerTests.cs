@@ -33,7 +33,7 @@ namespace HCA.Feature.Catalog.Tests.Controllers
     {
         private readonly SearchController controller;
 
-        private readonly IProductSearchService productSearchService;
+        private readonly ICommerceSearchService commerceSearchService;
 
         private readonly IProductSuggestionService productSuggestionService;
 
@@ -41,11 +41,11 @@ namespace HCA.Feature.Catalog.Tests.Controllers
 
         public SearchControllerTests()
         {
-            this.productSearchService = Substitute.For<IProductSearchService>();
+            this.commerceSearchService = Substitute.For<ICommerceSearchService>();
             this.productSuggestionService = Substitute.For<IProductSuggestionService>();
             this.searchMapper = Substitute.For<ISearchMapper>();
 
-            this.controller = Substitute.For<SearchController>(this.productSearchService, this.productSuggestionService, this.searchMapper);
+            this.controller = Substitute.For<SearchController>(this.commerceSearchService, this.productSuggestionService, this.searchMapper);
         }
 
         [Fact]

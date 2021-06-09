@@ -20,7 +20,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using System.Net.Mail;
 
     using Base.Services.Pipeline;
-    using Base.Tests.Common.Utils;
+    using Base.Tests.Utils;
 
     using Commerce.Mappers.Account;
     using Commerce.Services.Account;

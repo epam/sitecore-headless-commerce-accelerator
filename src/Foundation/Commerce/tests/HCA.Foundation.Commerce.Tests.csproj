@@ -640,10 +640,6 @@
       <Project>{74c245aa-2561-4a2a-adbd-e7d4045f6227}</Project>
       <Name>HCA.Foundation.Account</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Base\HCA.Foundation.Base.Tests.Common\HCA.Foundation.Base.Tests.Common.csproj">
-      <Project>{BCE2B29D-D4B6-403D-B22E-6EBFED226966}</Project>
-      <Name>HCA.Foundation.Base.Tests.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Base\tests\HCA.Foundation.Base.Tests.csproj">
       <Project>{D21D9F75-F1D7-42C7-998C-712CCE2F2F0E}</Project>
       <Name>HCA.Foundation.Base.Tests</Name>
@@ -659,6 +655,10 @@
     <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>HCA.Foundation.GlassMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Search\website\HCA.Foundation.Search.csproj">
+      <Project>{54eecef5-4c9d-4353-ac43-67fded4bbe1e}</Project>
+      <Name>HCA.Foundation.Search</Name>
     </ProjectReference>
     <ProjectReference Include="..\website\HCA.Foundation.Commerce.csproj">
       <Project>{4cd01a37-76d8-4a6a-8822-014369c4243d}</Project>

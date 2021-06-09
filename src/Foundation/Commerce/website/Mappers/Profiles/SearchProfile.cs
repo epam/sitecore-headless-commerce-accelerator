@@ -19,11 +19,13 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using AutoMapper;
 
     using Connect.Models.Catalog;
-    using Connect.Models.Search;
+
+    using Foundation.Search.Models.Common;
 
     using Models.Entities.Search;
 
-    using Connect = Connect.Models;
+    using Sitecore.Data.Items;
+
     using Facet = Models.Entities.Search.Facet;
     using FacetValue = Models.Entities.Search.FacetValue;
 
@@ -32,14 +34,14 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     {
         public SearchProfile()
         {
-            this.CreateMap<Facet, Foundation.Connect.Models.Search.Facet>()
+            this.CreateMap<Facet, Foundation.Search.Models.Common.Facet>()
                 .ReverseMap();
 
-            this.CreateMap<FacetValue, Foundation.Connect.Models.Search.FacetValue>()
+            this.CreateMap<FacetValue, Foundation.Search.Models.Common.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
 
-            this.CreateMap<SearchResults<Product>, ProductSearchResults>()
-                .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Results));
+            this.CreateMap<SearchResults<Item>, ProductSearchResults>()
+                .ForMember(dest => dest.Products, opt => opt.Ignore());
         }
     }
 }

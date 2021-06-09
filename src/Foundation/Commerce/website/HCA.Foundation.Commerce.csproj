@@ -323,21 +323,7 @@
     <Reference Include="Sitecore.Commerce.ServiceProxy, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.ServiceProxy.6.0.130\lib\net48\Sitecore.Commerce.ServiceProxy.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.ContentSearch.10.0.0\lib\net48\Sitecore.ContentSearch.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Client, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.ContentSearch.Client.10.0.0\lib\net48\Sitecore.ContentSearch.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.ContentExtraction, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.ContentSearch.ContentExtraction.10.0.0\lib\net48\Sitecore.ContentSearch.ContentExtraction.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Data, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.ContentSearch.Data.10.0.0\lib\net48\Sitecore.ContentSearch.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Linq, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.ContentSearch.Linq.10.0.0\lib\net48\Sitecore.ContentSearch.Linq.dll</HintPath>
-    </Reference>
+    <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Sitecore.ExperienceEditor, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ExperienceEditor.10.0.0\lib\net48\Sitecore.ExperienceEditor.dll</HintPath>
     </Reference>
@@ -780,8 +766,8 @@
     <Compile Include="Services\Catalog\ICatalogService.cs" />
     <Compile Include="Services\Promotion\IPromotionService.cs" />
     <Compile Include="Services\Promotion\PromotionService.cs" />
-    <Compile Include="Services\Search\IProductSearchService.cs" />
-    <Compile Include="Services\Search\ProductSearchService.cs" />
+    <Compile Include="Services\Search\ICommerceSearchService.cs" />
+    <Compile Include="Services\Search\CommerceSearchService.cs" />
     <Compile Include="Services\Search\IProductSuggestionService.cs" />
     <Compile Include="Services\Search\ProductSuggestionService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
@@ -835,6 +821,10 @@
     <ProjectReference Include="..\..\DependencyInjection\website\HCA.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>HCA.Foundation.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Search\website\HCA.Foundation.Search.csproj">
+      <Project>{54eecef5-4c9d-4353-ac43-67fded4bbe1e}</Project>
+      <Name>HCA.Foundation.Search</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

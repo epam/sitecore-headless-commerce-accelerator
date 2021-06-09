@@ -18,9 +18,9 @@ namespace HCA.Foundation.Commerce.Services.Search
 
     using Builders.Search;
 
-    using Connect.Services.Search;
-
     using DependencyInjection;
+
+    using Foundation.Search.Services.Product;
 
     using Models.Entities.Search;
 

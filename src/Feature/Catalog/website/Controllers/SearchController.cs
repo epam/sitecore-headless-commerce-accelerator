@@ -28,19 +28,19 @@ namespace HCA.Feature.Catalog.Controllers
 
     public class SearchController : BaseController
     {
-        private readonly IProductSearchService productSearchService;
+        private readonly ICommerceSearchService commerceSearchService;
 
         private readonly IProductSuggestionService productSuggestionService;
 
         private readonly ISearchMapper searchMapper;
 
-        public SearchController(IProductSearchService productSearchService, IProductSuggestionService productSuggestionService, ISearchMapper searchMapper)
+        public SearchController(ICommerceSearchService commerceSearchService, IProductSuggestionService productSuggestionService, ISearchMapper searchMapper)
         {
-            Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
+            Assert.ArgumentNotNull(commerceSearchService, nameof(commerceSearchService));
             Assert.ArgumentNotNull(productSuggestionService, nameof(productSuggestionService));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
-            this.productSearchService = productSearchService;
+            this.commerceSearchService = commerceSearchService;
             this.productSuggestionService = productSuggestionService;
             this.searchMapper = searchMapper;
         }
@@ -54,7 +54,7 @@ namespace HCA.Feature.Catalog.Controllers
                 {
                     var searchOptions =
                         this.searchMapper.Map<ProductsSearchRequest, ProductSearchOptions>(searchRequest);
-                    return this.productSearchService.GetProducts(searchOptions);
+                    return this.commerceSearchService.GetProducts(searchOptions);
                 });
         }
 

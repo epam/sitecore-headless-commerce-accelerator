@@ -20,6 +20,8 @@ import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 
 import { ProductShopOwnState, ProductShopProps } from './models';
 
+import { cnProductShop } from './cn';
+
 import './styles.scss';
 
 export default class ProductShopComponent extends Jss.SafePureComponent<ProductShopProps, ProductShopOwnState> {
@@ -42,7 +44,7 @@ export default class ProductShopComponent extends Jss.SafePureComponent<ProductS
     const { firstLoad } = this.state;
 
     return (
-      <div>
+      <div className={cnProductShop()}>
         <div className="col-md-3">
           <Placeholder name="product-filters" rendering={this.props.rendering} />
         </div>

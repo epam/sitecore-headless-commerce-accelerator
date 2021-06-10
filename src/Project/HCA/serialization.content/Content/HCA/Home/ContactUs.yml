@@ -86,7 +86,7 @@ Languages:
             id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
             <r
               uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
-              s:par="Title Class=social-title&amp;Show Title=1&amp;Container Class=widgets-social&amp;Title Tag=h2" />
+              s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
           </d>
         </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"

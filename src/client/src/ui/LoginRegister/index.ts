@@ -31,6 +31,7 @@ const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   const location: Location = state.router.location;
   const currentForm = Extensions.tryParseUrlSearch(location.search).form;
   const pathname: Pathname = location.pathname;
+
   return {
     commerceUser,
     currentForm,

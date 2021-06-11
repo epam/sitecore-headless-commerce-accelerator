@@ -18,8 +18,8 @@ import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'Foundation/UI';
 
 import { Login } from './Login';
-import { LoginRegisterOwnState, LoginRegisterProps } from './models';
 import { Register } from './Register';
+import { LoginRegisterOwnState, LoginRegisterProps } from './models';
 
 import { cnLoginRegister } from './cn';
 import './styles.scss';
@@ -43,6 +43,7 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
   protected safeRender() {
     const { commerceUser } = this.props;
     const { isSignUp } = this.state;
+
     return (
       <section className="login-register">
         {!!commerceUser && commerceUser.customerId ? (

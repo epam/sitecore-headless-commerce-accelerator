@@ -65,22 +65,27 @@ export const FormFields: FC = () => {
   }, [showConfirmPassword]);
 
   useEffect(() => {
-    const { email, inUse, status } = accountValidation;
+    const { email, inUse, status, errorMessage, invalid } = accountValidation;
 
-    if (status === LoadingStatus.Loaded && inUse && email === formValues[FORM_FIELDS.EMAIL]) {
+    if (status === LoadingStatus.Loaded && (inUse || invalid) && email === formValues[FORM_FIELDS.EMAIL]) {
       setStateFormFields((value) => ({
         ...value,
         email: {
           hasError: true,
-          message: 'Email is already in use',
+          message: inUse ? 'Email is already in use' : errorMessage,
         },
       }));
     }
   }, [accountValidation, formValues[FORM_FIELDS.EMAIL]]);
 
   useEffect(() => {
-    if (accountValidation.status === LoadingStatus.Loaded && isEmpty(stateFormFields) && !isEmpty(formValues)) {
-      console.log('create');
+    if (
+      accountValidation.status === LoadingStatus.Loaded &&
+      !accountValidation.inUse &&
+      !accountValidation.invalid &&
+      isEmpty(stateFormFields) &&
+      !isEmpty(formValues)
+    ) {
       dispatch(
         onCreateAccount(
           {

@@ -64,16 +64,12 @@ export function* validation(action: Action<ValidateEmailPayload>) {
 
   const { email } = payload;
 
-  if (email === accountValidationState.email) {
-    return;
-  }
-
   yield put(actions.AccountValidationRequest(email));
   const { data, error }: Result<Commerce.ValidateEmail> = yield call(Api.emailValidation, payload);
   if (error) {
     return yield put(actions.AccountValidationFailure(error.message, error.stack));
   }
-  yield put(actions.AccountValidationSuccess(data.invalid, data.inUse));
+  yield put(actions.AccountValidationSuccess(data.invalid, data.inUse, data.errorMessage));
 
   eventHub.publish(events.ACCOUNT.EMAIL_VALIDATED);
 }

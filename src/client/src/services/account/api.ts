@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { get } from 'lodash';
 
 import * as Commerce from 'Foundation/Commerce';
 import { Result } from 'Foundation/Integration';
@@ -53,7 +54,7 @@ export const emailValidation = async (
     })
     .catch((error: AxiosError) => {
       if (error.response.status === 400) {
-        return { data: { invalid: true, inUse: false } };
+        return { data: { errorMessage: get(error, ['response', 'data', 'error']), invalid: true, inUse: false } };
       }
 
       return { error };

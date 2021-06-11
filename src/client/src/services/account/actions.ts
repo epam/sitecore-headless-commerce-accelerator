@@ -137,8 +137,13 @@ export const AccountValidationFailure: actionCreators.EmailValidationFailure = (
   type: reducerActionTypes.ACCOUNT_VALIDATION_FAILURE,
 });
 
-export const AccountValidationSuccess: actionCreators.EmailValidationSuccess = (invalid: boolean, inUse: boolean) => ({
+export const AccountValidationSuccess: actionCreators.EmailValidationSuccess = (
+  invalid: boolean,
+  inUse: boolean,
+  errorMessage: string = '',
+) => ({
   payload: {
+    errorMessage,
     inUse,
     invalid,
     status: LoadingStatus.Loaded,

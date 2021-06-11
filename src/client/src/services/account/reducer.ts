@@ -31,6 +31,7 @@ import {
 export const initialSignUpState: SignUpState = {
   accountValidation: {
     email: '',
+    errorMessage: '',
     inUse: false,
     invalid: false,
     status: LoadingStatus.NotLoaded,

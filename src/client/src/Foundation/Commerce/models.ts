@@ -37,4 +37,5 @@ export interface ProductColors {
 export interface ValidateEmail {
   inUse: boolean;
   invalid: boolean;
+  errorMessage?: string;
 }

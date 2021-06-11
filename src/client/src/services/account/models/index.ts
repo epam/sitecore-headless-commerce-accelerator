@@ -23,6 +23,7 @@ export interface AccountValidationState extends Status {
   email: string;
   invalid: boolean;
   inUse: boolean;
+  errorMessage: string;
 }
 
 export interface CreateState extends Status {

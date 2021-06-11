@@ -53,7 +53,11 @@ export type UpdateAccountSuccess = StatusType;
 
 export type EmailValidationRequest = (email: string) => Action<ValidateAccountResultPayload>;
 export type EmailValidationFailure = FailureType;
-export type EmailValidationSuccess = (invalid: boolean, inUse: boolean) => Action<ValidateAccountResultPayload>;
+export type EmailValidationSuccess = (
+  invalid: boolean,
+  inUse: boolean,
+  errorMessage?: string,
+) => Action<ValidateAccountResultPayload>;
 
 export type ResetEmailValidation = () => Action;
 

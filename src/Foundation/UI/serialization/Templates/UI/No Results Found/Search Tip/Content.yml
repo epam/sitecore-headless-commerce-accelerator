@@ -1,0 +1,14 @@
+﻿---
+ID: "0ec4774f-768a-49f6-93c1-0a88888f7d42"
+Parent: "826a09fd-613e-4280-86df-36a1548baeb0"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tip/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210528T062633Z

@@ -14,7 +14,6 @@
 
 import classnames from 'classnames';
 import * as React from 'react';
-
 import * as JSS from 'Foundation/ReactJss';
 
 import { ProductItem } from './ProductItem';
@@ -22,6 +21,7 @@ import { ProductListHeader } from './ProductListHeader';
 import { ProductListOwnState, ProductListProps } from './models';
 
 import './styles.scss';
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 
 export default class ProductListComponent extends JSS.SafePureComponent<ProductListProps, ProductListOwnState> {
   public constructor(props: ProductListProps) {
@@ -59,9 +59,15 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
     } = this.props;
     const { firstLoad } = this.state;
     const showLoadMore = totalPageCount !== 0 && currentPageNumber !== totalPageCount - 1;
+
     return (
       <section className="listing-product-grid">
-        {items.length !== 0 && !isLoading &&  (
+        {items.length === 0 && (
+          <div className="no-results-found">
+            <Placeholder name="no-results-found" rendering={this.props.rendering} />
+          </div>
+        )}
+        {items.length !== 0 && !isLoading && (
           <ProductListHeader
             currentPageNumber={currentPageNumber}
             search={search}
@@ -74,26 +80,17 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           />
         )}
         <ul>
-          {items.length === 0 && totalItemCount === 0 && !isLoading && (
-            <div className="not-found">
-              <h3>No results found</h3>
-              <h4>Search tips</h4>
-              <ul>
-                <li>Make sure that all words are spelled correctly</li>
-                <li>Try more general keywords</li>
-              </ul>
-            </div>
-          )}
-          {items.map((product) => (
-            <li key={product.productId}>
-              <ProductItem
-                product={product}
-                productColors={sitecoreContext.productColors}
-                fallbackImageUrl={sitecoreContext.fallbackImageUrl}
-              />
-              <span className="triangle" />
-            </li>
-          ))}
+          {items.length !== 0 &&
+            items.map((product) => (
+              <li key={product.productId}>
+                <ProductItem
+                  product={product}
+                  productColors={sitecoreContext.productColors}
+                  fallbackImageUrl={sitecoreContext.fallbackImageUrl}
+                />
+                <span className="triangle" />
+              </li>
+            ))}
         </ul>
         <div className={classnames({ 'is-loading': isLoading, 'show-load-btn': !isLoading && showLoadMore })}>
           <div className={`lazyLoad_spinner spinner ${isLoading && !firstLoad ? 'lazyLoad_spinner_display' : ''}`}>

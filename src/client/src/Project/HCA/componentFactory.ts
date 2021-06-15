@@ -52,6 +52,7 @@ import { ProductOverview } from 'ui/ProductOverview';
 import { ProductsSearch } from 'ui/ProductsSearch';
 import { ProductShop } from 'ui/ProductShop';
 import { ProductVariants } from 'ui/ProductVariants';
+import { NoResultsFound } from 'Foundation/UI/common/components/NoResultsFound/NoResultsFound';
 
 const components = new Map<string, any>();
 
@@ -116,6 +117,9 @@ components.set('Breadcrumb', Breadcrumb);
 
 // Not Found
 components.set('Not Found', NotFound);
+
+// No Results Found
+components.set('No Results Found', NoResultsFound);
 
 // About Us
 components.set('Welcome', AboutUs.Welcome);

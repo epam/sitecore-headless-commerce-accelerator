@@ -16,7 +16,7 @@ SharedFields:
   Value: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
 - ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
   Hint: Datasource Location
-  Value: /sitecore/content/HCA/Data/Contact Us/Contact Intro
+  Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Data']//*[@@templateid='{252BECF7-CDF0-4CF7-970C-313D1E98C0A1}']"
 Languages:
 - Language: en
   Versions:

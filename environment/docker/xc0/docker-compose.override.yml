@@ -20,6 +20,8 @@ services:
         SPE_IMAGE: ${SITECORE_MODULE_REGISTRY}spe-assets:${SPE_VERSION}
         JSS_IMAGE: ${SITECORE_MODULE_REGISTRY}jss-xp1-assets:${JSS_VERSION}
         HCA_IMAGE: ${XC_SITECORE_DOCKER_REGISTRY}hca-assets:v1
+        TOOL_IMAGE: ${SITECORE_TOOLS_REGISTRY}sitecore-docker-tools-assets:${TOOLS_VERSION}
+        NODE_IMAGE: ${NODEJS_DOCKER_REGISTRY}nodejs:latest
     volumes:
       - ${PATH_TO_DEPLOY_FOLDER}\website:C:\deploy
       - ${PATH_TO_DATA_FOLDER}\cm\logs:C:\inetpub\wwwroot\App_Data\logs

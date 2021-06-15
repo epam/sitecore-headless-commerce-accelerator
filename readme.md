@@ -20,9 +20,98 @@
 * Offers a proven alternative to the Sitecore Experience Accelerator (SXA)-based storefront
 
 ----
+
 ## Installation Guide
 
+<details>
+  <summary>Installation on Docker (Sitecore 10)</summary>
+
+## System Requirements
+
+* RAM: 32 GB (Recommended) or 16 GB (Minimal)
+* Disk: 35 GB (by default on disk C)
+
+## Initial Requirements
+
+1. **INSTALL** Docker for Windows: [direct link](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) | [download page](https://hub.docker.com/editions/community/docker-ce-desktop-windows/)
+    * After installation right click on the Docker icon in the tray and select Switch to Windows containers... option
+2. **INSTALL** Azure CLI tools: [direct link](https://aka.ms/installazurecliwindows) | [download page](https://docs.microsoft.com/ru-ru/cli/azure/install-azure-cli-windows?view=azure-cli-latest)
+
+## Setup Environment
+
+1. **CLONE** repository
+2. **SET** environment variables:
+    * OPEN `<repository path>\environment\EnvironmentVariables.ps1`
+    * CHANGE values for
+        * licenseFilePath (we usually use `"<repository path>\src\license.xml"`, put your license.xml file here)
+        * braintreeMerchantId
+        * braintreePublicKey
+        * braintreePrivateKey
+3. **MODIFY** build.cake file
+    * **OPEN** `<repository path>\src\build.cake`
+    * **CHANGE** the following strings:
+        * scSiteUrl: `"https://hca.local"`
+        * publishingTargetDir: `".\\..\\environment\\docker\\xc0\\deploy\\website"`
+4. **OPEN** PowerShell CLI under Administrator and set execution policy
+
+    * `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
+
+5. **GO TO** `<repository path>\environment`
+6. **RUN** `SetupEnvironment.ps1`
+7. **RUN** `RunContainers.ps1`
+8. **CHECK** the Docker containers status:
+    * **RUN** `docker container ls`
+    * **GO** to the next step when all *containers* have status *healthy*.
+9. **RUN** ConfigureCommerce.ps1
+10. **DEPLOY** marketing definitions:
+    * Log in to the Sitecore Experience Platform desktop.
+    * Click Control Panel and navigate to the ANALYTICS section.
+    * Click Deploy Marketing Definitions.
+11. **RUN** SQL Database Cleanup:
+    * Log in to Sitecore as an Admin.
+    * On the Sitecore Launchpad, click Control Panel.
+    * In the Control Panel, open the Administration tab, and click Administration Tools.
+    * On the Database and Operations tab, click Database Cleanup.
+    * In the Database section, select master and core.
+    * In the Tasks section, select all.
+    * Click Execute Cleanup.
+
+## Deploy Environment
+
+### Execute watcher on docker container
+
+1. **OPEN** Powershell CLI with Administrator rights and run the following command: docker container ls
+2. **COPY** ID of the container **"sitecore-xc0-cm-hca:latest"**
+3. **RUN** the following commands in order to run watcher for the deployment process:
+    * `docker exec -it <ID>` powershell (this will connect us to docker container)
+    * `cd C:\tools\scripts` (navigate to scripts folder)
+    * `.\Watch-Directory.ps1` (run watcher)
+4. **SPECIFY** the next parameters for watcher:
+    * path: `C:\deploy`
+    * destination: `C:\inetpub\wwwroot`
+
+### THEN
+
+1. **GO TO** your local `<repository path>\src`
+2. **RUN** `.\build.ps1 -Target "Initial-Deploy"` in Powershell CLI
+
+## Cleanup Environment
+
+1. **RUN** RemoveContainers.ps1
+2. **RUN** CleanEnvironment.ps1
+
+## Known Issues
+
+In case when you run `.\RunContainers.ps1` script and get errors, restart docker and run `.\RunContainers.ps1` script again.
+
+----
+</details>
+
+<details>
+  <summary>Regular instance installation</summary>
+
 ### Prerequisites
+
 * Make sure these packages are installed on your PC:
 * `Solr 8.1.1` (installing the service with NSSM is recommended)
 * `Node 10.15.3 x64`
@@ -32,6 +121,7 @@
 * Machine should have at least 8, and 12-16 RAM for comfort work.
 
 ### Packages
+
 Make sure you use these packages during installation:
 
 * Sitecore Experience Platform 9.3 Initial Release ([download](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/93/Sitecore_Experience_Platform_93_Initial_Release.aspx))
@@ -40,15 +130,19 @@ Make sure you use these packages during installation:
 * Sitecore PowerShell Extensions-5.1
 
 ----
+
 ## Steps
 
 ### License
+
 Acquire a Sitecore license that authorizes the use of JSS (open it in Notepad and check for "Sitecore.JSS")
 
 ### Install Prerequisites
+
 * Install the software specified in the prerequisites
 
 ### Install Sitecore Experience Platform 9.3 Initial Release
+
 * Download & unpack the Packages for On Premises
 * Follow the Installation Guide for XP Single (XP0).
 * It’s recommended to set a standard password for the admin sitecore user (password: b).
@@ -59,12 +153,15 @@ Acquire a Sitecore license that authorizes the use of JSS (open it in Notepad an
 * It is strongly suggested that at this point a backup copy of the Sitecore installation be created (using SIM).
 
 ### Install Sitecore Commerce 9.3 Initial Release
+
 * Make sure you have backed up the Sitecore installation prior to installing it, if the script fails you might need to roll everything back.
 * It’s important to follow the installation guide to the letter, and pay close attention to the prerequisites, making sure everything specified is installed. Otherwise the script might fail later on and without an informative error message.
 * Prior to running the script it needs to be tweaked:
 
 ----
+
 ### Configuration of the installation process.
+
 * Make sure UserAccount's username/password meets the local username/password requirements, because it will be created if it doesn't exist yet.
 * Make sure names and directories for all the required sites in the commerce deployment script correspond the ones that have been installed with sitecore installation.
 * Add the CommerceServicesPostfix parameter to postfix these commerce sites in IIS:
@@ -80,11 +177,12 @@ Acquire a Sitecore license that authorizes the use of JSS (open it in Notepad an
 > CommerceMinionsServicesPort
 
 ### Advanced configuration of the installation process:
+
 * The **Sitecore Experience Accelerator (SXA)** was not working with Headless Commerce Accelerator at the time of writing, so it’s recommended that it be removed from installation. To do it, set the
 value of the parameter **$skipInstallDefaultStorefront** to **true** and **$skipDeployStorefrontPackages** to **true**.
 The script predefines the list of tasks to skip.
 
-** Important to say the **Sitecore Experience Accelerator** module is not needed so it should not be downloaded either.
+**Important to say the**Sitecore Experience Accelerator** module is not needed so it should not be downloaded either.
 
 * SitecoreBizFx website & app pool's names are hardcoded. To change them, edit the following configs in SIF: **.\Configuration\Commerce\SitecoreBizFx\SitecoreBizFx.json**
 * The next to last step RebuildIndexes might fail due to timeout, it’s suggested increasing the timeout by editing the following file: **.\Modules\SitecoreUtilityTasks\SitecoreUtilityTasks.psm1** and setting **–TimeoutSec** to something like 100000, escecially on a slow env.
@@ -92,12 +190,14 @@ The script predefines the list of tasks to skip.
 * Pro tip: should one of the steps fail, you don't have to start from scratch, just edit the appropriate json file(s) and remove from it (them) the previous, successfully completed steps and run the script again after fixing the problem that prevented it running the first time.
 
 ----
+
 ### Known issues of the sitecore commerce server installation
 
 * `The service cannot accept control messages at this time. (Exception from HRESULT: 0x80070425)`
 To resolve the issue follow the link to [StackOverflow](https://sitecore.stackexchange.com/questions/12870/the-service-cannot-accept-control-messages-at-this-time-while-installing-sitec). Before you start the installation process from the beginning you have to delete the folders created by the failed commerce server installation process (i.e. sitecoreCatalogItemsScope, sitecoreCustomersScope, sitecoreOrdersScope from solr_root_folder/server/solr).
 
 ----
+
 ### Bootstrapping the sitecore commerce server
 
 To bootstrap the Commerce Server follow these instructions:
@@ -111,6 +211,7 @@ To bootstrap the Commerce Server follow these instructions:
   * Then the Bootstrap Sitecore Commerce request (from Sitecore.Commerce.Engine.SDK_folder\postman\DevOps\SitecoreCommerce_DevOps.postman_collection.json collection).
 
 ----
+
 ### Install the Sitecore JavaScript Services 13.0.0
 
 * Download & install the package
@@ -118,7 +219,9 @@ To bootstrap the Commerce Server follow these instructions:
 `<add verb="*" path="sitecorejss_media.ashx" type="Sitecore.JavaScriptServices.Media.MediaRequestHandler, Sitecore.JavaScriptServices.Media" name="Sitecore.JavaScriptServices.Media.MediaRequestHandler" />`
 
 ----
-### Building & deploying Headless Commerce Accelerator      
+
+### Building & deploying Headless Commerce Accelerator
+
 1. Fetch **Headless Commerce Accelerator** code base.
 2. Copy Sitecore license to **./src** folder.
 3. Local automation is implemented on the top of the [Cake tool](https://cakebuild.net/). Check [**src/build.cake**](src/build.cake) if `Sitecore/Parameters.InitParams` are correct for your installation.
@@ -126,8 +229,8 @@ To bootstrap the Commerce Server follow these instructions:
    * 17: change to **msBuildToolVersion: MSBuildToolVersion.VS2017**;
    * 19: change to **msBuildToolVersion: MSBuildToolVersion.VS2019**.
 5. Change default IP address to VM address (if it's different) in
-- .\src\publishsettings.targets: `192.168.50.4 -> VM IP`;
-- .\src\build.cake: `192.168.50.4 -> VM IP`.
+    * .\src\publishsettings.targets: `192.168.50.4 -> VM IP`;
+    * .\src\build.cake: `192.168.50.4 -> VM IP`.
 6. Create a symbol link with `unicorn-hca` name inside the **Root_Sitecore_Folder\App_Data** folder to the .\src folder (Root_Sitecore_Folder is the folder where Sitecore is installed, for ex. c:\inetpub\wwwroot\xp0.sc).
 7. In IIS bind **hca.local** to the site, add **hca.local** entry for localhost to the hosts list (C:\Windows\System32\drivers\etc\hosts), HCA - is internal name of the Headless Commerce Accelerator.
 8. Run `.\src\build.ps1` in PowerShell with administration privileges (script will restore **NuGet** packages, install **npm** dependencies and run deployment process). Next time cake scripts can be run from Visual Studio (install [Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandTaskRunner)) or from Visual Studio Code (install [Cake Build](https://marketplace.visualstudio.com/items?itemName=cake-build.cake-vscode)) or from PowerShell.
@@ -135,24 +238,33 @@ To bootstrap the Commerce Server follow these instructions:
 10. Publish content tree & Rebuild all the indexes in sitecore indexing manager.
 
 ----
-### Troubleshooting deployment 
+
+### Troubleshooting deployment
 
 In case of issues with the installation process you have several diagnostic options:
 
-  * In **src/build.cake**, set **BuildConfiguration = "Debug"**;  
-  * In **src/build.cake**, set **var publishingTargetDir = artifactsBuildDir** 
-  * In **src/scripts/webpack/environments/production.js** make sure **mode="development"** and **minimize: false** 
+* In **src/build.cake**, set **BuildConfiguration = "Debug"**;  
+* In **src/build.cake**, set **var publishingTargetDir = artifactsBuildDir** 
+* In **src/scripts/webpack/environments/production.js** make sure **mode="development"** and **minimize: false** 
+
+</details>
 
 ----
+
 ## Front-End
 
 Front-end code is processed using webpack. In order to start development server run following commands.
 For more details see [readme.md](src/readme.md) in the 'src' folder.
-```
+
+```code
 cd ./src
 npm start
 ```
 
 ----
+
 ## Known issues
-1. If you have errors in Unicorn sync after run `.\src\build.ps1` you should log in to the sitecore then make a GET request on **http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**
+
+1. If you have errors in Unicorn sync after run `.\src\build.ps1` you should log in to the sitecore then make a GET request on `**http://{website}/unicorn.aspx?verb=Sync&log=null&skipTransparentConfigs=false**`
+
+----

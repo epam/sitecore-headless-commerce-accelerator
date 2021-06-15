@@ -1,11 +1,11 @@
-#    Copyright 2020 EPAM Systems, Inc.
-#
+#    Copyright 2021 EPAM Systems, Inc.
+# 
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
 #    You may obtain a copy of the License at
-#
+# 
 #      http://www.apache.org/licenses/LICENSE-2.0
-#
+# 
 #    Unless required by applicable law or agreed to in writing, software
 #    distributed under the License is distributed on an "AS IS" BASIS,
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,8 +26,7 @@ $ErrorActionPreference = "Stop";
 ########################
 # Initialize Environment
 ########################
-
-Import-Module (Join-Path $PSScriptRoot "$moduleName") -DisableNameChecking
+Import-Module (Join-Path $PSScriptRoot "$moduleName") -DisableNameChecking -Force
 
 Write-Host 'Initialize Environment' -fore Green
 
@@ -37,8 +36,8 @@ $token = Get-Token -UserName $userName -Password $idPassword -IdentityServiceUri
 Write-Host "Bootstrap SitecoreCommerce"
 Bootstrap-SitecoreCommerce -Token $token -CommerceOpsServiceUri "https://$authoringAlias" -Verbose
 
-Write-Host "Initialize Environment $SitecoreEnvironemnt"
-Initialize-Environment -Token $token -SitecoreEnvironemnt $sitecoreEnvironemnt -CommerceOpsServiceUri "https://$authoringAlias" -Verbose
+Write-Host "Initialize Environment $SitecoreEnvironment"
+Initialize-Environment -Token $token -SitecoreEnvironment $sitecoreEnvironment -CommerceOpsServiceUri "https://$authoringAlias" -Verbose
 
 ########################
 # Select Catalog
@@ -48,27 +47,33 @@ Write-Host "Select Habitat_Master Catalog"
 Select-Catalog -UserName $userName -Password $idPassword -sitecoreInstanceUri "https://$cmAlias"
 
 #######################
-# Import Habitat images
+# Import Shop
 #######################
 
-Write-Host "Import Habitat Images"
-Import-Images -UserName $userName -Password $idPassword -sitecoreInstanceUri "https://$cmAlias" -ImagesZipSource "C:\hca\HCA-commerce-images-1.zip"
+Write-Host "Import Shop"
+Import-Package -UserName $userName -Password $idPassword -sitecoreInstanceUri "https://$cmAlias" -PackageSource "C:\hca\HCA-Shop.zip"
 
 #######################
-# Import Catalog
+# Sync Shop content item
 #######################
 
-Write-Host "Import Catalog"
-Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptDirectory\$pathToCatalogZipFile" -SitecoreEnvironemnt $sitecoreEnvironemnt -Uri "https://$authoringAlias/api/ImportCatalogs()"
+Write-Host "Sync Shop content item"
+Syncronize-Content-Path -Token $token -SitecoreEnvironment $sitecoreEnvironment -CommerceOpsServiceUri "https://$authoringAlias" -Verbose
 
-Start-Sleep -s 15
+# #######################
+# # Import Catalog
+# #######################
 
-#######################
-# Import InventorySet
-#######################
+# Write-Host "Import Catalog"
+# Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptDirectory\$pathToCatalogZipFile" -SitecoreEnvironment $sitecoreEnvironment -Uri "https://$authoringAlias/api/ImportCatalogs()"
 
-Write-Host "Import InventorySet"
-Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptDirectory\$pathToInventoryZipFile" -SitecoreEnvironemnt $sitecoreEnvironemnt -Uri "https://$authoringAlias/api/ImportInventorySets()"
+# Start-Sleep -s 30
+# #######################
+# # Import InventorySet
+# #######################
+
+# Write-Host "Import InventorySet"
+# Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptDirectory\$pathToInventoryZipFile" -SitecoreEnvironment $sitecoreEnvironment -Uri "https://$authoringAlias/api/ImportInventorySets()"
 
 ########################
 # Refresh Selected Catalog
@@ -76,6 +81,13 @@ Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptDirectory\$p
 
 Unselect-Catalog -UserName $userName -Password $idPassword -sitecoreInstanceUri "https://$cmAlias"
 Select-Catalog -UserName $userName -Password $idPassword -sitecoreInstanceUri "https://$cmAlias"
+
+########################
+# Full index minion
+########################
+
+Write-Host "Full index minion"
+Full-Index-Minion -Token $token -SitecoreEnvironment $sitecoreEnvironment -CommerceOpsServiceUri "https://$authoringAlias" -MinionsEnvironment $minionsEnvironment -Verbose
 
 #######################
 # Rebuild Indexes

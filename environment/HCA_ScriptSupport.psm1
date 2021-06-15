@@ -1,11 +1,11 @@
-#    Copyright 2020 EPAM Systems, Inc.
-#
+#    Copyright 2021 EPAM Systems, Inc.
+# 
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
 #    You may obtain a copy of the License at
-#
+# 
 #      http://www.apache.org/licenses/LICENSE-2.0
-#
+# 
 #    Unless required by applicable law or agreed to in writing, software
 #    distributed under the License is distributed on an "AS IS" BASIS,
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,6 @@ Function Install-SPE {
         Write-Host "SPE module already exists. Skipping."
     }
 }
-
 Function Confirm-VolumeFoldersExist {
     param (
         [string] $Path,
@@ -57,7 +56,6 @@ Function Confirm-VolumeFoldersExist {
         }
     }
 }
-
 Function Make-Certificate {
 	param(
 	[string] $pathToCertFolder,
@@ -89,7 +87,6 @@ Function Make-Certificate {
         Pop-Location
     }
 }
-
 Function Config-Traefik {
 	param(
 		[string] $certFolder,
@@ -128,7 +125,6 @@ Function Config-Traefik {
 	$result = ConvertTo-Yaml -Data $tls
 	Add-Content -Path "$traefikConfigFolder\certs_config.yaml" -Value $result
 }
-
 Function Import-SitecoreDockerTools {
 	# Check for Sitecore Gallery
 	Import-Module PowerShellGet
@@ -154,23 +150,22 @@ Function Import-SitecoreDockerTools {
 	Write-Host "Importing SitecoreDockerTools..." -ForegroundColor Green
 	Import-Module SitecoreDockerTools -RequiredVersion $dockerToolsVersion
 }
-
-Function Import-Images {
+Function Import-Package {
     [CmdletBinding()]
     PARAM(
         [string][parameter(Mandatory = $true)]$userName,
         [string][parameter(Mandatory = $true)]$password,
         [string][parameter(Mandatory = $true)]$sitecoreInstanceUri,
-        [string][parameter(Mandatory = $true)]$imagesZipSource
+        [string][parameter(Mandatory = $true)]$packageSource
     )
 
     $session = New-ScriptSession -Username $userName -Password $password -ConnectionUri $sitecoreInstanceUri
     
     try {
-        $data = @{ 'path' = "$imagesZipSource"}
+        $data = @{ 'path' = "$packageSource"}
  
        Invoke-RemoteScript -Session $session -ScriptBlock { 
-            Install-Package -Path $(($using:data).path) -InstallMode Overwrite -MergeMode Clear
+            Install-Package -Path $(($using:data).path) -InstallMode Overwrite -MergeMode Clear -Verbose
         }
     }
     catch {
@@ -180,7 +175,6 @@ Function Import-Images {
         Stop-ScriptSession -Session $session
     }
 }
-
 Function Rebuild-Index {
     [CmdletBinding()]
     PARAM(
@@ -274,18 +268,19 @@ Function Bootstrap-SitecoreCommerce {
     }
 }
 
-# InitializeEnvironment -Token $token -SitecoreEnvironemnt 'HabitatAuthoring' -CommerceOpsServiceUri 'http://commerce-ops'
+# InitializeEnvironment -Token $token -SitecoreEnvironment 'HabitatAuthoring' -CommerceOpsServiceUri 'http://commerce-ops'
+
 Function Initialize-Environment {
     [CmdletBinding()]
     PARAM
     (
         [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$token,
-        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$sitecoreEnvironemnt,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$sitecoreEnvironment,
         [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$commerceOpsServiceUri
     )
 
     $body = @{ 
-        environment = $sitecoreEnvironemnt 
+        environment = $sitecoreEnvironment 
         sampleData = $true }  | ConvertTo-Json;
 
     $headers = @{
@@ -298,6 +293,106 @@ Function Initialize-Environment {
 
     try {
         Invoke-RestMethod "$commerceOpsServiceUri/commerceops/InitializeEnvironment()" -Method Post -Body $body -Headers $headers
+    }
+    catch {
+        $PSCmdlet.ThrowTerminatingError($_)
+    }
+}
+
+Function Syncronize-Content-Path {
+    [CmdletBinding()]
+    PARAM
+    (
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$token,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$sitecoreEnvironment,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$commerceOpsServiceUri
+    )
+
+    $body = @"
+	{
+    "entityView": {
+        "Name": "SynchronizeContentItem",
+        "DisplayName": "SynchronizeContentItem",
+        "EntityId": "Entity-ContentPath-Commerce Control Panel",
+        "Action": "SynchronizeContentItem",
+        "ItemId": "",
+        "Properties": [
+            {
+                "Name": "Version",
+                "DisplayName": "Version",
+                "Value": "2",
+                "IsHidden": true,
+                "OriginalType": "System.Int32",
+                "IsReadOnly": true,
+                "IsRequired": true
+            },
+            {
+                "Name": "Path",
+                "DisplayName": "Path",
+                "Value": "/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/HCA",
+                "IsHidden": false,
+                "OriginalType": "System.String",
+                "IsReadOnly": false,
+                "IsRequired": true
+            }
+        ],
+        "DisplayRank": 500,
+        "UiHint": "Flat",
+        "Icon": "chart_column_stacked"
+    }
+}
+"@;		
+
+    $headers = @{
+        "Cache-Control"   = "no-cache"
+        "Content-Type"    = "application/json"
+        "Accept"          = "*/*"
+        "Accept-Encoding" = "gzip, deflate, br"
+        "Authorization"   = "Bearer $Token"
+    }
+
+    try {
+        Invoke-RestMethod "$commerceOpsServiceUri/api/DoAction()" -Method Post -Body $body -Headers $headers
+    }
+    catch {
+        $PSCmdlet.ThrowTerminatingError($_)
+    }
+}
+
+
+Function Full-Index-Minion {
+    [CmdletBinding()]
+    PARAM
+    (
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$token,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$sitecoreEnvironment,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$commerceOpsServiceUri,
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$minionsEnvironment
+    )
+
+    $body = @"
+	{
+		"minionFullName":"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search",
+		"environmentName": "HabitatMinions",
+		"policies": [ 
+			{
+				"@odata.type": "Sitecore.Commerce.Core.RunMinionPolicy",
+				"WithListToWatch": "Catalogs"
+			}
+		]
+	}
+"@;		
+
+    $headers = @{
+        "Cache-Control"   = "no-cache"
+        "Content-Type"    = "application/json"
+        "Accept"          = "*/*"
+        "Accept-Encoding" = "gzip, deflate, br"
+        "Authorization"   = "Bearer $Token"
+    }
+
+    try {
+        Invoke-RestMethod "$commerceOpsServiceUri/commerceops/RunMinion()" -Method Post -Body $body -Headers $headers
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)
@@ -356,7 +451,8 @@ Function Unselect-Catalog {
     }
 }
 
-#Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptPath\HCA-Catalogs.zip" -SitecoreEnvironemnt  'HabitatAuthoring' -Uri "$CommerceAuthoringService/api/ImportCatalogs()"
+#Invoke-MultipartFormDataUpload  -Token "$token" -ImportFile "$ScriptPath\HCA-Catalogs.zip" -SitecoreEnvironment  'HabitatAuthoring' -Uri "$CommerceAuthoringService/api/ImportCatalogs()"
+
 Function Invoke-MultipartFormDataUpload {
     [CmdletBinding()]
     PARAM
@@ -364,7 +460,7 @@ Function Invoke-MultipartFormDataUpload {
         [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$ImportFile,
         [Uri][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$Uri,
         [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$Token,        
-        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$SitecoreEnvironemnt
+        [string][parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$SitecoreEnvironment
     )
     BEGIN {
         if (-not (Test-Path $ImportFile)) {
@@ -384,7 +480,7 @@ Function Invoke-MultipartFormDataUpload {
         $httpClient.DefaultRequestHeaders.Add('ShopperId', 'ShopperId')
         $httpClient.DefaultRequestHeaders.Add('Language', 'en-US')
         $httpClient.DefaultRequestHeaders.Add('Currency', 'USD')
-        $httpClient.DefaultRequestHeaders.Add('Environment', "$SitecoreEnvironemnt")
+        $httpClient.DefaultRequestHeaders.Add('Environment', "$SitecoreEnvironment")
         $httpClient.DefaultRequestHeaders.Add('GeoLocation', 'IpAddress=1.0.0.0')
         $httpClient.DefaultRequestHeaders.Add('CustomerId', '{{CustomerId}}')
         $httpClient.DefaultRequestHeaders.Add('PolicyKeys', 'IgnoreIndexDeletedSitecoreItem|IgnoreAddEntityToIndexList|IgnoreIndexUpdatedSitecoreItem|IgnoreLocalizeEntity')

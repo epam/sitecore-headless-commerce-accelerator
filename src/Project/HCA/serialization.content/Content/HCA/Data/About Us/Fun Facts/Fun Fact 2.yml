@@ -21,7 +21,7 @@ Languages:
         sitecore\Admin
     - ID: "c6d1bff6-7e74-44f8-ab16-f494c1de52f9"
       Hint: Icon Class
-      Value: "pe-7s-light"
+      Value: "icon-light"
     - ID: "fe79f45e-da7a-4924-ba49-9d3b73774a59"
       Hint: Count
       Value: 690

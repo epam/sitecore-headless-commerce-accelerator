@@ -7,11 +7,11 @@ DB: master
 SharedFields:
 - ID: "5fb8c44b-7a28-4d89-a38e-738e35911baf"
   Hint: Css Class
-  Value: "fa fa-youtube"
+  Value: "icon-youtube-brands"
 - ID: "c99f9ed0-3626-48ef-96ab-f837ce37e6a1"
   Hint: Uri
   Value: |
-    <link linktype="external" class="fa fa-youtube" url="http://youtube.com" anchor="" target="" />
+    <link linktype="external" url="http://youtube.com" anchor="" class="icon-youtube-brands" target="" />
 Languages:
 - Language: en
   Versions:

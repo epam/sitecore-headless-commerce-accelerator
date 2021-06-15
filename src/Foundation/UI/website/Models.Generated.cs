@@ -99,6 +99,190 @@ namespace HCA.Foundation.UI.Models
 
 
     /// <summary>
+    /// INoResultsFound Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found</para>
+    /// <para>ID: 1973dfe5-c0a3-471a-9a4e-5a3922a38c49</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1973dfe5-c0a3-471a-9a4e-5a3922a38c49")]
+    public partial interface INoResultsFound: IGlassBase
+    {
+
+        /// <summary>
+        /// The Header Line field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f1de21b2-57b8-4286-ad5f-01d5001614c7</para>
+        /// </summary>
+        [SitecoreField("Header Line")]
+        string HeaderLine {get; set;}
+
+        /// <summary>
+        /// The Tips field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: cc774dab-368c-4aac-a344-75cf54d14760</para>
+        /// </summary>
+        [SitecoreField("Tips")]
+        IEnumerable<Guid> Tips {get; set;}
+
+        /// <summary>
+        /// The Tips Header field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 32ec9797-99f5-40d5-8aaa-71506aeb3dbc</para>
+        /// </summary>
+        [SitecoreField("Tips Header")]
+        string TipsHeader {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// NoResultsFound Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found</para>
+    /// <para>ID: 1973dfe5-c0a3-471a-9a4e-5a3922a38c49</para>
+    /// </summary>
+    [SitecoreType(TemplateId="1973dfe5-c0a3-471a-9a4e-5a3922a38c49")]
+    public partial class NoResultsFound: GlassBase, INoResultsFound
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found
+        /// </summary>
+        public const string TemplateId = "1973dfe5-c0a3-471a-9a4e-5a3922a38c49";
+
+        /// <summary>
+        /// The Header Line field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: f1de21b2-57b8-4286-ad5f-01d5001614c7</para>
+        /// </summary>
+        [SitecoreField("Header Line")]
+        public virtual string HeaderLine {get; set;}
+        public const string HeaderLineFieldId = "f1de21b2-57b8-4286-ad5f-01d5001614c7";
+        public const string HeaderLineFieldName = "Header Line";
+
+        /// <summary>
+        /// The Tips field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: cc774dab-368c-4aac-a344-75cf54d14760</para>
+        /// </summary>
+        [SitecoreField("Tips")]
+        public virtual IEnumerable<Guid> Tips {get; set;}
+        public const string TipsFieldId = "cc774dab-368c-4aac-a344-75cf54d14760";
+        public const string TipsFieldName = "Tips";
+
+        /// <summary>
+        /// The Tips Header field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 32ec9797-99f5-40d5-8aaa-71506aeb3dbc</para>
+        /// </summary>
+        [SitecoreField("Tips Header")]
+        public virtual string TipsHeader {get; set;}
+        public const string TipsHeaderFieldId = "32ec9797-99f5-40d5-8aaa-71506aeb3dbc";
+        public const string TipsHeaderFieldName = "Tips Header";
+
+    }
+
+
+    /// <summary>
+    /// INoResultsFoundFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found Folder</para>
+    /// <para>ID: 22ada616-bdfa-4d4c-bdfb-8e33616bc3c0</para>
+    /// </summary>
+    [SitecoreType(TemplateId="22ada616-bdfa-4d4c-bdfb-8e33616bc3c0")]
+    public partial interface INoResultsFoundFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// NoResultsFoundFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found Folder</para>
+    /// <para>ID: 22ada616-bdfa-4d4c-bdfb-8e33616bc3c0</para>
+    /// </summary>
+    [SitecoreType(TemplateId="22ada616-bdfa-4d4c-bdfb-8e33616bc3c0")]
+    public partial class NoResultsFoundFolder: GlassBase, INoResultsFoundFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/UI/No Results Found/No Results Found Folder
+        /// </summary>
+        public const string TemplateId = "22ada616-bdfa-4d4c-bdfb-8e33616bc3c0";
+
+    }
+
+
+    /// <summary>
+    /// ISearchTip Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tip</para>
+    /// <para>ID: 826a09fd-613e-4280-86df-36a1548baeb0</para>
+    /// </summary>
+    [SitecoreType(TemplateId="826a09fd-613e-4280-86df-36a1548baeb0")]
+    public partial interface ISearchTip: IGlassBase
+    {
+
+        /// <summary>
+        /// The Tip field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 6f4cf02f-963d-45be-afec-7903db6e2248</para>
+        /// </summary>
+        [SitecoreField("Tip")]
+        string Tip {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// SearchTip Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tip</para>
+    /// <para>ID: 826a09fd-613e-4280-86df-36a1548baeb0</para>
+    /// </summary>
+    [SitecoreType(TemplateId="826a09fd-613e-4280-86df-36a1548baeb0")]
+    public partial class SearchTip: GlassBase, ISearchTip
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tip
+        /// </summary>
+        public const string TemplateId = "826a09fd-613e-4280-86df-36a1548baeb0";
+
+        /// <summary>
+        /// The Tip field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 6f4cf02f-963d-45be-afec-7903db6e2248</para>
+        /// </summary>
+        [SitecoreField("Tip")]
+        public virtual string Tip {get; set;}
+        public const string TipFieldId = "6f4cf02f-963d-45be-afec-7903db6e2248";
+        public const string TipFieldName = "Tip";
+
+    }
+
+
+    /// <summary>
+    /// ISearchTips Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tips</para>
+    /// <para>ID: 2508d62c-70e1-4962-b606-27a5ee4ac020</para>
+    /// </summary>
+    [SitecoreType(TemplateId="2508d62c-70e1-4962-b606-27a5ee4ac020")]
+    public partial interface ISearchTips: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// SearchTips Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tips</para>
+    /// <para>ID: 2508d62c-70e1-4962-b606-27a5ee4ac020</para>
+    /// </summary>
+    [SitecoreType(TemplateId="2508d62c-70e1-4962-b606-27a5ee4ac020")]
+    public partial class SearchTips: GlassBase, ISearchTips
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tips
+        /// </summary>
+        public const string TemplateId = "2508d62c-70e1-4962-b606-27a5ee4ac020";
+
+    }
+
+
+    /// <summary>
     /// IFilter Interface
     /// <para>Path: /sitecore/templates/HCA/Foundation/UI/Filter/_Filter</para>
     /// <para>ID: 038e0285-d2e8-4439-892e-00cb667441e9</para>

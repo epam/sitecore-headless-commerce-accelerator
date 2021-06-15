@@ -13,18 +13,33 @@
 //    limitations under the License.
 
 import React, { FC } from 'react';
+import { BaseDataSourceItem, ItemList, RenderingWithContext, TextField } from 'Foundation/ReactJss';
+import { Text } from '@sitecore-jss/sitecore-jss-react';
 
-type NoResultsFoundProps = {
-  className?: string;
+export interface NoResultsFoundData extends BaseDataSourceItem {
+  headerLine: TextField;
+  tipsHeader: TextField;
+  tips: ItemList<Tip>;
+}
+
+export interface Tip extends BaseDataSourceItem {
+  tip: TextField;
+}
+
+export type NoResultsFoundProps = RenderingWithContext<NoResultsFoundData>;
+
+export const NoResultsFound: FC<NoResultsFoundProps> = (props) => {
+  const { headerLine, tipsHeader, tips } = props.fields;
+
+  return (
+    <div className="not-found">
+      <Text tag="h3" field={headerLine} />
+      <Text tag="h4" field={tipsHeader} />
+      <ul>
+        {tips.map((tip: any) => {
+          return <Text key={tip.id} tag="li" field={tip.fields.tip} />;
+        })}
+      </ul>
+    </div>
+  );
 };
-
-export const NoResultsFound: FC<NoResultsFoundProps> = ({ className }: NoResultsFoundProps) => (
-  <div className={className}>
-    <h3>No results found</h3>
-    <h4>Search tips</h4>
-    <ul>
-      <li>Make sure that all words are spelled correctly</li>
-      <li>Try more general keywords</li>
-    </ul>
-  </div>
-);

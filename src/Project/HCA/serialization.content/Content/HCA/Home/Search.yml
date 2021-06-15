@@ -40,7 +40,9 @@ SharedFields:
         <r
           uid="{9ADD87FA-468C-4848-A836-8DBCAA098786}"
           p:after="r[@uid='{F4AFBAD1-F563-4B30-89F9-64800D674A73}']"
+          s:ds=""
           s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
+          s:par=""
           s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0/w-col-2-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
         <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
@@ -50,7 +52,14 @@ SharedFields:
           s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
-          p:after="*[1=2]" />
+          p:after="r[@uid='{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}']" />
+        <r
+          uid="{38935CD7-D18B-4844-84A2-F03309A61007}"
+          p:after="*[1=2]"
+          s:ds="{A4AC3D4B-069F-4771-9FB0-0B2414CD1F79}"
+          s:id="{79219F47-D113-4ECF-AF2F-72FE32A310CC}"
+          s:par=""
+          s:ph="/main-content/w-col-wide-{57257C7A-D47B-4800-9E33-F5C2D599683C}-0/w-col-2-{3F34D5B4-FA11-4E2B-A04A-692D64CECEC6}-0" />
       </d>
     </r>
 Languages:

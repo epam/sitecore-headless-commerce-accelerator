@@ -1,0 +1,22 @@
+﻿---
+ID: "4765eac0-d6cc-4584-8280-f1666f55e145"
+Parent: "764e96b4-1801-450e-b9b0-3394707dbcc2"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Foundation/UI/no-found-results"
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: "no-found-results"
+- ID: "e391b526-d0c5-439d-803e-17512eae6222"
+  Hint: Allowed Controls
+  Type: TreelistEx
+  Value: "{79219F47-D113-4ECF-AF2F-72FE32A310CC}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210531T092414Z

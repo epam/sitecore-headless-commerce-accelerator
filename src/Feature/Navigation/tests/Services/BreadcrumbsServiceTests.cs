@@ -17,6 +17,7 @@ namespace HCA.Feature.Navigation.Tests.Services
     using System;
     using System.Linq;
 
+    using Foundation.Base.Services;
     using Foundation.Commerce.Context;
 
     using Models.Entities.Breadcrumb;
@@ -34,16 +35,19 @@ namespace HCA.Feature.Navigation.Tests.Services
 
         protected readonly BreadcrumbService BreadcrumbService;
         protected readonly ISiteContext SiteContext;
+        protected readonly ILinkManagerService LinkManagerService;
 
         public BreadcrumbServiceTests()
         {
             this.SiteContext = Substitute.For<ISiteContext>();
             this.BreadcrumbRepository = Substitute.For<IBreadcrumbRepository>();
+            this.LinkManagerService = Substitute.For<ILinkManagerService>();
 
             this.BreadcrumbService = new BreadcrumbService(
                 this.SitecoreContext,
                 this.SiteContext,
-                this.BreadcrumbRepository);
+                this.BreadcrumbRepository,
+                this.LinkManagerService);
         }
 
         [Fact]
@@ -125,5 +129,34 @@ namespace HCA.Feature.Navigation.Tests.Services
             // assert
             Assert.Equal(expectedTitles, resultTitles);
         }
+        [Theory]
+        [InlineData(new[] { "Home", "Product", "*" }, new[] { "Home", CategoryName, ProductName }, new[] { "/Home", "/" + CategoryName, ""})]
+        public void ResolveProductPage_ShouldReturnBreadcrumbWithCorrectPageLinkTitlesAndLinks(
+            string[] initialTitles,
+            string[] expectedTitles,
+            string[] expectedLinks)
+        {
+            // arrange
+            var productItem = this.SitecoreTree.GetItem(ProductId);
+            this.SiteContext.IsProduct.Returns(x => true);
+            this.SiteContext.CurrentProductItem.Returns(x => productItem);
+            var shopPageUrl = this.LinkManagerService.GetItemUrl(productItem);
+
+            var initialPageLinks = initialTitles.Select(title => new PageLink { Title = title, Link = $"{shopPageUrl}/{title}" }).ToList();
+            var breadcrumb = new Breadcrumb
+            {
+                PageLinks = initialPageLinks
+            };
+
+            // act
+            var result = this.BreadcrumbService.ResolveProductPage(breadcrumb);
+            var resultTitles = result.PageLinks.Select(p => p.Title).ToArray();
+            var resultLinks = result.PageLinks.Select(p => p.Link).ToArray();
+
+            // assert
+            Assert.Equal(expectedTitles, resultTitles);
+            Assert.Equal(expectedLinks, resultLinks);
+        }
+
     }
 }

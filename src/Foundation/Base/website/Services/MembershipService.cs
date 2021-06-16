@@ -14,8 +14,10 @@
 
 namespace HCA.Foundation.Base.Services
 {
+    using HCA.Foundation.DependencyInjection;
     using System.Web.Security;
-    
+
+    [Service(typeof(IMembershipService), Lifetime = Lifetime.Singleton)]
     public class MembershipService : IMembershipService
     {
         public string GetUserNameByEmail(string email) => System.Web.Security.Membership.GetUserNameByEmail(email);

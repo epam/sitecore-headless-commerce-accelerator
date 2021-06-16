@@ -19,6 +19,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using System.Linq;
     using System.Net.Mail;
 
+    using Base.Services;
     using Base.Services.Pipeline;
     using Base.Tests.Utils;
 
@@ -30,7 +31,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using HCA.Foundation.Account.Managers.User;
     using HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecovery;
     using Models.Entities.Addresses;
-    using Models.Entities.Users;
 
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
@@ -44,9 +44,15 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Security;
+    using Sitecore.Security.Accounts;
+    using System.Web.Security;
+
+    using FluentAssertions;
+
     using Xunit;
 
     using Constants = Commerce.Constants;
+    using User = Models.Entities.Users.User;
 
     public class AccountServiceTests
     {
@@ -64,6 +70,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
         private readonly IUserManager userManager;
 
+        private readonly IMembershipService membershipService;
+
         public AccountServiceTests()
         {
             this.fixture = new Fixture();
@@ -73,6 +81,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.storefrontContext = Substitute.For<IStorefrontContext>();
             this.pipelineService = Substitute.For<IPipelineService>();
             this.userManager = Substitute.For<IUserManager>();
+            this.membershipService = Substitute.For<IMembershipService>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
 
             this.service = Substitute.For<AccountService>(
@@ -80,7 +89,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
                 this.mapper,
                 this.storefrontContext,
                 this.pipelineService,
-                this.userManager);
+                this.userManager,
+                this.membershipService);
         }
 
         public static IEnumerable<object[]> AddressParameters =>
@@ -200,6 +210,45 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             Assert.Throws<ArgumentNullException>(() => this.service.ChangePassword(email, newPassword, oldPassword));
         }
 
+        [Theory]
+        [InlineData("testUser", "test@test.com", "111111", "222222")]
+        public void ChangePassword_Successful_Flow(
+            string userName,
+            string email,
+            string newPassword,
+            string oldPassword)
+        {
+            var user = Substitute.For<MembershipUser>();
+            this.membershipService.GetUserNameByEmail(email).Returns(userName);
+            this.membershipService.ValidateUser(userName, oldPassword).Returns((true));
+            this.membershipService.GetUser(userName).Returns(user);
+
+            var result = this.service.ChangePassword(email, newPassword, oldPassword);
+            Assert.True(result.Success);
+        }
+
+        [Theory]
+        [InlineData("testUser", "test@test.com", "111111", "222222", Constants.ErrorMessages.UserNotFoundEmail)]
+        [InlineData("", "test@test.com", "111111", "222222", Constants.ErrorMessages.IncorrectOldPassword)]
+        public void ChangePassword_IfUserNotFound_ShouldReturn_ErrorMessage(
+            string userName,
+            string email,
+            string newPassword,
+            string oldPassword,
+            string errorMessage)
+        {
+            var user = Substitute.For<MembershipUser>();
+            MembershipUser nullUser = null;
+
+            this.membershipService.GetUserNameByEmail(email).Returns(userName);
+            this.membershipService.ValidateUser(userName, oldPassword).Returns((true));
+            this.membershipService.GetUser(userName).Returns(nullUser);
+
+            var result = this.service.ChangePassword(email, newPassword, oldPassword);
+
+            Assert.False(result.Success);
+            Assert.Contains(result.Errors, x => x.Equals(errorMessage));
+        }
         #endregion
 
         #region CreateAccount

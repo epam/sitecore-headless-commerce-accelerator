@@ -45,6 +45,7 @@ namespace HCA.Foundation.Commerce.Services.Account
     using Sitecore.Pipelines;
 
     using Constants = Commerce.Constants;
+    using HCA.Foundation.Base.Services;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService
@@ -58,25 +59,30 @@ namespace HCA.Foundation.Commerce.Services.Account
         private readonly IPipelineService pipelineService;
 
         private readonly IUserManager userManager;
+        
+        private readonly IMembershipService membershipService;
 
         public AccountService(
             IAccountManager accountManager,
             IAccountMapper accountMapper,
             IStorefrontContext storefrontContext,
             IPipelineService pipelineService,
-            IUserManager userManager)
+            IUserManager userManager,
+            IMembershipService membershipService)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(pipelineService, nameof(pipelineService));
             Assert.ArgumentNotNull(userManager, nameof(userManager));
+            Assert.ArgumentNotNull(membershipService, nameof(membershipService));
 
             this.accountManager = accountManager;
             this.mapper = accountMapper;
             this.storefrontContext = storefrontContext;
             this.pipelineService = pipelineService;
             this.userManager = userManager;
+            this.membershipService = membershipService;
         }
 
         public Result<IEnumerable<Address>> AddAddress(string userName, Address address)
@@ -133,11 +139,11 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             var result = new Result<VoidResult>();
 
-            var userName = Membership.GetUserNameByEmail(email);
+            var userName = this.membershipService.GetUserNameByEmail(email);
 
-            if (!string.IsNullOrWhiteSpace(userName) && Membership.ValidateUser(userName, oldPassword))
+            if (!string.IsNullOrWhiteSpace(userName) && this.membershipService.ValidateUser(userName, oldPassword))
             {
-                var sitecoreUser = Membership.GetUser(userName);
+                var sitecoreUser = this.membershipService.GetUser(userName);
 
                 if (sitecoreUser != null)
                 {
@@ -430,7 +436,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         private bool ResetPassword(string userName, Sitecore.Security.Accounts.User sitecoreUser, string newPassword)
         {
-            var user = Membership.GetUser(userName);
+            var user = this.membershipService.GetUser(userName);
             var isChangeSuccessful = user?.ChangePassword(user.ResetPassword(), newPassword) ?? false;
             if (isChangeSuccessful)
             {

@@ -28,11 +28,17 @@ namespace HCA.Feature.Navigation.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
     using System.Text;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Fields;
+    using Sitecore.Globalization;
+    using Sitecore.Data;
+    using Sitecore.Data.Items;
 
+    using System.CodeDom.Compiler;
     using HCA.Foundation.GlassMapper.Models;
 
 
@@ -323,12 +329,12 @@ namespace HCA.Feature.Navigation.Models
 
 
     /// <summary>
-    /// IMenuItem Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item</para>
+    /// IMenuCommerceItem Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Commerce Item</para>
     /// <para>ID: 001f1d60-f8a4-4b1d-9506-41aeedb1ab03</para>
     /// </summary>
     [SitecoreType(TemplateId="001f1d60-f8a4-4b1d-9506-41aeedb1ab03")]
-    public partial interface IMenuItem: IGlassBase
+    public partial interface IMenuCommerceItem: IGlassBase
     {
 
         /// <summary>
@@ -359,15 +365,15 @@ namespace HCA.Feature.Navigation.Models
 
 
     /// <summary>
-    /// MenuItem Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item</para>
+    /// MenuCommerceItem Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Commerce Item</para>
     /// <para>ID: 001f1d60-f8a4-4b1d-9506-41aeedb1ab03</para>
     /// </summary>
     [SitecoreType(TemplateId="001f1d60-f8a4-4b1d-9506-41aeedb1ab03")]
-    public partial class MenuItem: GlassBase, IMenuItem
+    public partial class MenuCommerceItem: GlassBase, IMenuCommerceItem
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Menu Item
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Menu Commerce Item
         /// </summary>
         public const string TemplateId = "001f1d60-f8a4-4b1d-9506-41aeedb1ab03";
 
@@ -405,6 +411,52 @@ namespace HCA.Feature.Navigation.Models
 
 
     /// <summary>
+    /// IMenuLink Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Link</para>
+    /// <para>ID: ae3ff355-fa34-4997-a942-4afce72196aa</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ae3ff355-fa34-4997-a942-4afce72196aa")]
+    public partial interface IMenuLink: IGlassBase
+    {
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 7082583e-b447-47c3-ab03-7ca6f619e0ce</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        Link Uri {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// MenuLink Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Link</para>
+    /// <para>ID: ae3ff355-fa34-4997-a942-4afce72196aa</para>
+    /// </summary>
+    [SitecoreType(TemplateId="ae3ff355-fa34-4997-a942-4afce72196aa")]
+    public partial class MenuLink: GlassBase, IMenuLink
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Header/Menu Link
+        /// </summary>
+        public const string TemplateId = "ae3ff355-fa34-4997-a942-4afce72196aa";
+
+        /// <summary>
+        /// The Uri field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 7082583e-b447-47c3-ab03-7ca6f619e0ce</para>
+        /// </summary>
+        [SitecoreField("Uri")]
+        public virtual Link Uri {get; set;}
+        public const string UriFieldId = "7082583e-b447-47c3-ab03-7ca6f619e0ce";
+        public const string UriFieldName = "Uri";
+
+    }
+
+
+    /// <summary>
     /// INavigationMenu Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Header/Navigation Menu</para>
     /// <para>ID: c2518164-6043-4d73-b26c-08d13ab49118</para>
@@ -414,12 +466,20 @@ namespace HCA.Feature.Navigation.Models
     {
 
         /// <summary>
-        /// The Menu Items field.
+        /// The Menu Commerce Items field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 9f4a6483-00e9-47b6-abdb-6dc148d2c890</para>
         /// </summary>
-        [SitecoreField("Menu Items")]
-        IEnumerable<Guid> MenuItems {get; set;}
+        [SitecoreField("Menu Commerce Items")]
+        IEnumerable<Guid> MenuCommerceItems {get; set;}
+
+        /// <summary>
+        /// The Menu Links field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 3cabcdf6-36af-4395-b645-c14dd5d4a2be</para>
+        /// </summary>
+        [SitecoreField("Menu Links")]
+        IEnumerable<Guid> MenuLinks {get; set;}
 
     }
 
@@ -438,21 +498,31 @@ namespace HCA.Feature.Navigation.Models
         public const string TemplateId = "c2518164-6043-4d73-b26c-08d13ab49118";
 
         /// <summary>
-        /// The Menu Items field.
+        /// The Menu Commerce Items field.
         /// <para>Field Type: Multilist</para>
         /// <para>Field ID: 9f4a6483-00e9-47b6-abdb-6dc148d2c890</para>
         /// </summary>
-        [SitecoreField("Menu Items")]
-        public virtual IEnumerable<Guid> MenuItems {get; set;}
-        public const string MenuItemsFieldId = "9f4a6483-00e9-47b6-abdb-6dc148d2c890";
-        public const string MenuItemsFieldName = "Menu Items";
+        [SitecoreField("Menu Commerce Items")]
+        public virtual IEnumerable<Guid> MenuCommerceItems {get; set;}
+        public const string MenuCommerceItemsFieldId = "9f4a6483-00e9-47b6-abdb-6dc148d2c890";
+        public const string MenuCommerceItemsFieldName = "Menu Commerce Items";
+
+        /// <summary>
+        /// The Menu Links field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 3cabcdf6-36af-4395-b645-c14dd5d4a2be</para>
+        /// </summary>
+        [SitecoreField("Menu Links")]
+        public virtual IEnumerable<Guid> MenuLinks {get; set;}
+        public const string MenuLinksFieldId = "3cabcdf6-36af-4395-b645-c14dd5d4a2be";
+        public const string MenuLinksFieldName = "Menu Links";
 
     }
 
 
     /// <summary>
     /// ISocialNetworkLink Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Network Link</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Network Link</para>
     /// <para>ID: 656950e2-cdb1-4899-8106-067a6b76468b</para>
     /// </summary>
     [SitecoreType(TemplateId="656950e2-cdb1-4899-8106-067a6b76468b")]
@@ -488,14 +558,14 @@ namespace HCA.Feature.Navigation.Models
 
     /// <summary>
     /// SocialNetworkLink Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Network Link</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Network Link</para>
     /// <para>ID: 656950e2-cdb1-4899-8106-067a6b76468b</para>
     /// </summary>
     [SitecoreType(TemplateId="656950e2-cdb1-4899-8106-067a6b76468b")]
     public partial class SocialNetworkLink: GlassBase, ISocialNetworkLink
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Footer/Social Network Link
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Network Link
         /// </summary>
         public const string TemplateId = "656950e2-cdb1-4899-8106-067a6b76468b";
 
@@ -534,7 +604,7 @@ namespace HCA.Feature.Navigation.Models
 
     /// <summary>
     /// ISocialNetworksLinks Interface
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links</para>
     /// <para>ID: 94fb0bb4-f041-45f7-a0ce-1e3899fc40e0</para>
     /// </summary>
     [SitecoreType(TemplateId="94fb0bb4-f041-45f7-a0ce-1e3899fc40e0")]
@@ -543,7 +613,7 @@ namespace HCA.Feature.Navigation.Models
 
         /// <summary>
         /// The Links field.
-        /// <para>Field Type: Multilist</para>
+        /// <para>Field Type: Treelist</para>
         /// <para>Field ID: 69e30764-9342-4ade-9c1b-db74d087537d</para>
         /// </summary>
         [SitecoreField("Links")]
@@ -562,20 +632,20 @@ namespace HCA.Feature.Navigation.Models
 
     /// <summary>
     /// SocialNetworksLinks Class
-    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links</para>
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links</para>
     /// <para>ID: 94fb0bb4-f041-45f7-a0ce-1e3899fc40e0</para>
     /// </summary>
     [SitecoreType(TemplateId="94fb0bb4-f041-45f7-a0ce-1e3899fc40e0")]
     public partial class SocialNetworksLinks: GlassBase, ISocialNetworksLinks
     {
         /// <summary>
-        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Footer/Social Networks Links
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links
         /// </summary>
         public const string TemplateId = "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0";
 
         /// <summary>
         /// The Links field.
-        /// <para>Field Type: Multilist</para>
+        /// <para>Field Type: Treelist</para>
         /// <para>Field ID: 69e30764-9342-4ade-9c1b-db74d087537d</para>
         /// </summary>
         [SitecoreField("Links")]
@@ -592,6 +662,134 @@ namespace HCA.Feature.Navigation.Models
         public virtual string SectionTitle {get; set;}
         public const string SectionTitleFieldId = "ef68acf6-1155-4c4c-9e38-fe1dcccb7d1f";
         public const string SectionTitleFieldName = "Section Title";
+
+    }
+
+
+    /// <summary>
+    /// ISocialNetworksLinksFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Folder</para>
+    /// <para>ID: 06baa321-f0c9-4e47-933e-3c0ae7ba1d61</para>
+    /// </summary>
+    [SitecoreType(TemplateId="06baa321-f0c9-4e47-933e-3c0ae7ba1d61")]
+    public partial interface ISocialNetworksLinksFolder: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// SocialNetworksLinksFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Folder</para>
+    /// <para>ID: 06baa321-f0c9-4e47-933e-3c0ae7ba1d61</para>
+    /// </summary>
+    [SitecoreType(TemplateId="06baa321-f0c9-4e47-933e-3c0ae7ba1d61")]
+    public partial class SocialNetworksLinksFolder: GlassBase, ISocialNetworksLinksFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Folder
+        /// </summary>
+        public const string TemplateId = "06baa321-f0c9-4e47-933e-3c0ae7ba1d61";
+
+    }
+
+
+    /// <summary>
+    /// ISocialNetworksLinksParams Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Params</para>
+    /// <para>ID: 49f79318-adc9-492b-82f2-e29fa8f5dfb1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="49f79318-adc9-492b-82f2-e29fa8f5dfb1")]
+    public partial interface ISocialNetworksLinksParams: IGlassBase
+    {
+
+        /// <summary>
+        /// The Container Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 489896f2-c063-433a-aef0-980605450800</para>
+        /// </summary>
+        [SitecoreField("Container Class")]
+        string ContainerClass {get; set;}
+
+        /// <summary>
+        /// The Show Title field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 8ca8968a-f2ba-48d4-b589-b528fb251cc1</para>
+        /// </summary>
+        [SitecoreField("Show Title")]
+        bool ShowTitle {get; set;}
+
+        /// <summary>
+        /// The Title Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 45f1d33d-bebd-4f5f-9548-ad78cf2ada54</para>
+        /// </summary>
+        [SitecoreField("Title Class")]
+        string TitleClass {get; set;}
+
+        /// <summary>
+        /// The Title Tag field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cb67858c-b67c-422f-975d-aacb0e5f845d</para>
+        /// </summary>
+        [SitecoreField("Title Tag")]
+        string TitleTag {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// SocialNetworksLinksParams Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Params</para>
+    /// <para>ID: 49f79318-adc9-492b-82f2-e29fa8f5dfb1</para>
+    /// </summary>
+    [SitecoreType(TemplateId="49f79318-adc9-492b-82f2-e29fa8f5dfb1")]
+    public partial class SocialNetworksLinksParams: GlassBase, ISocialNetworksLinksParams
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Params
+        /// </summary>
+        public const string TemplateId = "49f79318-adc9-492b-82f2-e29fa8f5dfb1";
+
+        /// <summary>
+        /// The Container Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 489896f2-c063-433a-aef0-980605450800</para>
+        /// </summary>
+        [SitecoreField("Container Class")]
+        public virtual string ContainerClass {get; set;}
+        public const string ContainerClassFieldId = "489896f2-c063-433a-aef0-980605450800";
+        public const string ContainerClassFieldName = "Container Class";
+
+        /// <summary>
+        /// The Show Title field.
+        /// <para>Field Type: Checkbox</para>
+        /// <para>Field ID: 8ca8968a-f2ba-48d4-b589-b528fb251cc1</para>
+        /// </summary>
+        [SitecoreField("Show Title")]
+        public virtual bool ShowTitle {get; set;}
+        public const string ShowTitleFieldId = "8ca8968a-f2ba-48d4-b589-b528fb251cc1";
+        public const string ShowTitleFieldName = "Show Title";
+
+        /// <summary>
+        /// The Title Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 45f1d33d-bebd-4f5f-9548-ad78cf2ada54</para>
+        /// </summary>
+        [SitecoreField("Title Class")]
+        public virtual string TitleClass {get; set;}
+        public const string TitleClassFieldId = "45f1d33d-bebd-4f5f-9548-ad78cf2ada54";
+        public const string TitleClassFieldName = "Title Class";
+
+        /// <summary>
+        /// The Title Tag field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: cb67858c-b67c-422f-975d-aacb0e5f845d</para>
+        /// </summary>
+        [SitecoreField("Title Tag")]
+        public virtual string TitleTag {get; set;}
+        public const string TitleTagFieldId = "cb67858c-b67c-422f-975d-aacb0e5f845d";
+        public const string TitleTagFieldName = "Title Tag";
 
     }
 

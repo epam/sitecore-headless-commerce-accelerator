@@ -14,11 +14,13 @@
 
 namespace HCA.Foundation.Base.Services
 {
+    using HCA.Foundation.DependencyInjection;
     using Sitecore.Data.Items;
     using Sitecore.Links;
 
+    [Service(typeof(ILinkManagerService), Lifetime = Lifetime.Singleton)]
     public class LinkManagerService : ILinkManagerService
     {
-        public string GetItemUrl(Item item) => Sitecore.Links.LinkManager.GetItemUrl(item);
+        public string GetItemUrl(Item item) => LinkManager.GetItemUrl(item);
     }
 }

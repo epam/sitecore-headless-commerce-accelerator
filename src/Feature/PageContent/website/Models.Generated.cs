@@ -748,11 +748,11 @@ namespace HCA.Feature.PageContent.Models
         Image Image {get; set;}
 
         /// <summary>
-        /// The IntroLine field.
+        /// The Intro Line field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1</para>
         /// </summary>
-        [SitecoreField("IntroLine")]
+        [SitecoreField("Intro Line")]
         string IntroLine {get; set;}
 
     }
@@ -782,14 +782,14 @@ namespace HCA.Feature.PageContent.Models
         public const string ImageFieldName = "Image";
 
         /// <summary>
-        /// The IntroLine field.
+        /// The Intro Line field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1</para>
         /// </summary>
-        [SitecoreField("IntroLine")]
+        [SitecoreField("Intro Line")]
         public virtual string IntroLine {get; set;}
         public const string IntroLineFieldId = "12c05cc3-2307-49b2-9230-4c9816463bb1";
-        public const string IntroLineFieldName = "IntroLine";
+        public const string IntroLineFieldName = "Intro Line";
 
     }
 

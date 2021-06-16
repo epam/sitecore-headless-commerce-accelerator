@@ -18,6 +18,7 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
     using System.Linq;
 
     using Foundation.Base.Context;
+    using Foundation.Base.Services;
     using Foundation.Commerce.Context;
     using Foundation.DependencyInjection;
 
@@ -38,19 +39,23 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
         private readonly IBreadcrumbRepository breadcrumbRepository;
         private readonly ISiteContext siteContext;
         private readonly ISitecoreContext sitecoreContext;
+        private readonly ILinkManagerService linkManagerService;
 
         public BreadcrumbService(
             ISitecoreContext sitecoreContext,
             ISiteContext siteContext,
-            IBreadcrumbRepository breadcrumbRepository)
+            IBreadcrumbRepository breadcrumbRepository, 
+            ILinkManagerService linkManagerService)
         {
             Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(breadcrumbRepository, nameof(breadcrumbRepository));
+            Assert.ArgumentNotNull(linkManagerService, nameof(linkManagerService));
 
             this.sitecoreContext = sitecoreContext;
             this.siteContext = siteContext;
             this.breadcrumbRepository = breadcrumbRepository;
+            this.linkManagerService = linkManagerService;
         }
 
         public Breadcrumb GenerateBreadcrumb()
@@ -134,7 +139,7 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
 
                 if (categorySegmentIndex != -1 && !string.IsNullOrEmpty(categoryName))
                 {
-                    var shopPageUrl = LinkManager.GetItemUrl(this.GetShopPage());
+                    var shopPageUrl = this.linkManagerService.GetItemUrl(this.GetShopPage());
                     var categoryPageUrl = $"{shopPageUrl}/{categoryName}";
                     breadcrumb.PageLinks[categorySegmentIndex] = new PageLink
                     {

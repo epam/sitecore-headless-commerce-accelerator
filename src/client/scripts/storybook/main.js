@@ -10,6 +10,9 @@ module.exports = {
     config.resolve.alias['Foundation'] = resolve(process.cwd(), './src/Foundation');
     config.resolve.alias['Project'] = resolve(process.cwd(), './src/Project');
     config.resolve.alias['components'] = resolve(process.cwd(), './src/components');
+    config.resolve.alias['services'] = resolve(process.cwd(), './src/services');
+    config.resolve.alias['styles'] = resolve(process.cwd(), './src/styles');
+    config.resolve.alias['models'] = resolve(process.cwd(), './src/models');
     config.resolve.alias['data-api-alias'] = resolve(
       process.cwd(),
       './scripts/webpack/environments/development/JssDataApi',

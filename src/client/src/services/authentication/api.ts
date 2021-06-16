@@ -14,8 +14,7 @@
 
 import axios from 'axios';
 
-import { VoidResult } from 'Foundation/Base';
-import { Result } from 'Foundation/Integration';
+import { Result, VoidResult } from 'models';
 
 import * as DataModel from 'services/account/models/generated';
 

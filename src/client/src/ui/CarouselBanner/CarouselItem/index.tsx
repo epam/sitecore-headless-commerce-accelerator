@@ -15,7 +15,7 @@
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { CarouselItemProps, CarouselItemState } from './models';
 import './styles.scss';

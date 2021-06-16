@@ -15,7 +15,7 @@
 import React, { useState } from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import { validateEmail } from 'Foundation/utils/validation';
+import { validateEmail } from 'utils';
 
 import { Button, Input } from 'components';
 

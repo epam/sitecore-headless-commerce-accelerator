@@ -14,7 +14,7 @@
 
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
-import { validateEmail } from 'Foundation/utils/validation';
+import { validateEmail } from 'utils';
 
 import { Button, Dialog, Input } from 'components';
 

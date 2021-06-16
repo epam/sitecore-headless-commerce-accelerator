@@ -14,10 +14,10 @@
 
 import * as React from 'react';
 
-import AmericanExpress from 'Foundation/UI/common/media/images/cc-american-express-straight-32px.png';
-import Discover from 'Foundation/UI/common/media/images/cc-discover-straight-32px.png';
-import MasterCard from 'Foundation/UI/common/media/images/cc-mastercard-straight-32px.png';
-import Visa from 'Foundation/UI/common/media/images/cc-visa-straight-32px.png';
+import AmericanExpress from 'static/images/cc-american-express-straight-32px.png';
+import Discover from 'static/images/cc-discover-straight-32px.png';
+import MasterCard from 'static/images/cc-mastercard-straight-32px.png';
+import Visa from 'static/images/cc-visa-straight-32px.png';
 
 export default () => (
   <div className="credit-cards-col">

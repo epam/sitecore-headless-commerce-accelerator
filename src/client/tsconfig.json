@@ -13,7 +13,11 @@
       "layouts": ["layouts"],
       "components": ["components"],
       "hooks": ["hooks"],
-      "ui": ["ui"]
+      "ui": ["ui"],
+      "utils": ["utils"],
+      "styles": ["styles"],
+      "models": ["models"],
+      "static": ["static"],
     },
     "sourceMap": true,
     "allowJs": true,
@@ -40,10 +44,15 @@
     "src/components/**/*",
     "src/hooks/**/*",
     "src/services/**/*",
-    "src/ui/**/*"
+    "src/ui/**/*",
+    "src/utils/**/*",
+    "src/styles/**/*",
+    "src/models/**/*",
+    "static/**/*"
   ],
   "exclude": [
     "src/Foundation/**/*.js",
-    "src/Project/**/*.js"
+    "src/Project/**/*.js",
+    "src/utils/**/*.js"
   ]
 }

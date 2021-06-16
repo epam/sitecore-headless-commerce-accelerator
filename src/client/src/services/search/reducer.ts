@@ -14,7 +14,7 @@
 
 import { combineReducers } from 'redux';
 
-import { Action, LoadingStatus } from 'Foundation/Integration';
+import { Action, LoadingStatus } from 'models';
 
 import { productsSearchReducerActionTypes, productsSearchSuggestionsReducerActionTypes } from './constants';
 import { ProductSearchState, ProductsSearchSuggestionsState, SearchState } from './models';

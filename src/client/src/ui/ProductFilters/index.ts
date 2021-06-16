@@ -17,7 +17,7 @@ import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { rendering } from 'Foundation/ReactJss';
 import * as ProductSearch from 'services/search';
 

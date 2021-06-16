@@ -16,7 +16,7 @@ import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
 import { Image } from '@sitecore-jss/sitecore-jss-react';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { LogoProps, LogoState } from './models';
 import './styles.scss';

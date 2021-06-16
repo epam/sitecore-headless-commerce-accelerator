@@ -13,5 +13,3 @@
 //    limitations under the License.
 
 export * from './Buttons';
-export * from './Carousel';
-export * from './NoResultsFound';

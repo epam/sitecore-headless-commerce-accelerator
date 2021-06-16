@@ -17,8 +17,8 @@ import { push } from 'connected-react-router';
 import queryString from 'query-string';
 import { apply, fork, put, takeEvery } from 'redux-saga/effects';
 
-import * as Extensions from 'Foundation/Base';
-import { Action } from 'Foundation/Integration';
+import { tryParseUrlSearch } from 'utils';
+import { Action } from 'models';
 
 import dataProvider from '../dataProvider';
 import { ChangeRoutePayload, SitecoreState } from '../models';
@@ -29,7 +29,7 @@ import * as constants from './constants';
 const tryParseUrl = (urlString: string): { pathname: string; params: { [key: string]: string } } => {
   try {
     const [pathname, search] = urlString.split('?');
-    const queryParams = Extensions.tryParseUrlSearch(search);
+    const queryParams = tryParseUrlSearch(search);
 
     return {
       params: queryParams,

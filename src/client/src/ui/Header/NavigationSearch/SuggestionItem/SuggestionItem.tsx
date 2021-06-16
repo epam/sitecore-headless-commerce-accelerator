@@ -16,7 +16,7 @@ import React, { FC, useCallback } from 'react';
 
 import { noop } from 'lodash';
 
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 import { SuggestionProduct } from 'services/search';
 
 import { cnNavigationSearch } from '../cn';

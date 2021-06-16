@@ -15,7 +15,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 import * as Commerce from 'Foundation/Commerce';
-import { Result } from 'Foundation/Integration';
+import { Result } from 'models';
 
 import { GetCartResponse } from './models';
 

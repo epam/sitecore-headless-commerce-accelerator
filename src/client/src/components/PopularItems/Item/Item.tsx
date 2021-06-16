@@ -14,7 +14,7 @@
 
 import React, { FC } from 'react';
 
-import { NavigationLink } from 'Foundation/UI/common/components';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { cnPopularItems } from '../cn';
 import { PopularItemProps } from '../PopularItems';

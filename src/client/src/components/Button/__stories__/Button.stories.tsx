@@ -18,7 +18,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Button, Icon } from 'components';
 
-import 'Foundation/UI/common/scss/typography';
+import 'styles/typography';
 
 storiesOf('Button', module)
   .add('Default Color', () => <Button onClick={() => console.log('clicked')}>Click me!</Button>)

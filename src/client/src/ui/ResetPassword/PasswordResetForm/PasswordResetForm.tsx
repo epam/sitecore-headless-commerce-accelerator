@@ -16,8 +16,8 @@ import React, { FC, FormEvent, useCallback, useEffect, useState } from 'react';
 
 import qs from 'query-string';
 
-import { LoadingStatus } from 'Foundation/Integration';
-import { notify } from 'Foundation/services/notificationsService';
+import { LoadingStatus } from 'models';
+import { notify } from 'services/notifications';
 
 import { Button, Icon, Input } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';

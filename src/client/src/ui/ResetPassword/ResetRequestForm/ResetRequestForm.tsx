@@ -14,12 +14,12 @@
 
 import React, { FC, FormEvent, useState } from 'react';
 
-import { LoadingStatus } from 'Foundation/Integration';
-import { validateEmail } from 'Foundation/utils/validation';
+import { LoadingStatus } from 'models';
+import { validateEmail } from 'utils';
 
 import { Button, Icon, Input } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { ErrorMessage } from './ErrorMessage';
 import { SuccessMessage } from './SuccessMessage';

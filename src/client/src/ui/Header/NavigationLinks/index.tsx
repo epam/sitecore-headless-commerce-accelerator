@@ -15,7 +15,7 @@
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI/common/components/Buttons/NavigationLink';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { NavigationProps } from './models';
 

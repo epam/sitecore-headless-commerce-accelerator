@@ -14,7 +14,7 @@
 
 import { call, fork, put, select } from 'redux-saga/effects';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import * as actions from '../actions';
 import { searchProducts } from '../api';

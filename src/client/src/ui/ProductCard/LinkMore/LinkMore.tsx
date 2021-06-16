@@ -14,8 +14,8 @@
 
 import React, { FC, useCallback, useContext } from 'react';
 
-import { eventHub, events } from 'Foundation/EventHub';
-import { NavigationLink } from 'Foundation/UI';
+import { eventHub, events } from 'services/eventHub';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { ProductCardContext } from '../context';
 

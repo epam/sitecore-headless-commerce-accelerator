@@ -14,7 +14,7 @@
 
 import { get } from 'lodash';
 
-import { tryParseUrlSearch } from 'Foundation/Base';
+import { tryParseUrlSearch } from 'utils';
 import { VARIANT_PARAMETER_NAME } from 'services/productVariant';
 
 export const getVariantIdFromQuery = (query: string) => {

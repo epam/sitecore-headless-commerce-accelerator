@@ -12,7 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Action } from 'Foundation/Integration';
+import { Action } from 'models';
+
+import * as DataModels from 'services/checkout/models/generated';
+
+import { FreeShippingResult } from 'Foundation/Commerce';
+
 import {
   CartItemDto,
   CartLineSuccessPayload,
@@ -40,6 +45,16 @@ export type UpdateCartLineSuccess = (model: ShoppingCartData) => Action<CartLine
 export type RemoveCartLine = (model: ShoppingCartLine) => Action<RemoveCartLinePayload>;
 
 export type RemoveCartLineSuccess = (model: ShoppingCartData) => Action<CartSuccessPayload>;
+
+export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
+
+export type AddPromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
+
+export type GetFreeShippingSubtotal = (callback: (value: FreeShippingResult) => void) => Action;
+
+export type RemovePromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
+
+export type RemovePromoCodeSuccess = (cart: ShoppingCartData) => Action<CartLineSuccessPayload>;
 
 export type UpdateCartItemRequest = (payload: UpdateCartItemRequestPayload) => Action<UpdateCartItemRequestPayload>;
 export type UpdateCartItemSuccess = (payload: UpdateCartItemSuccessPayload) => Action<UpdateCartItemSuccessPayload>;

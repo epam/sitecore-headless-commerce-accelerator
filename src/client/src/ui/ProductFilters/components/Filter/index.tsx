@@ -20,7 +20,7 @@ import { Icon } from 'components';
 import { FilterItem } from './FilterItem';
 import { FilterProps, FilterState } from './models';
 
-import { partial } from 'Foundation/utils/function-utils';
+import { partial } from 'utils';
 
 export class Filter extends React.Component<FilterProps, FilterState> {
   public constructor(props: FilterProps) {

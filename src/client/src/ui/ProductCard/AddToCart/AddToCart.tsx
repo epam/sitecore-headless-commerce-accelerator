@@ -18,7 +18,7 @@ import { debounce, get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CartLine } from 'Foundation/Commerce';
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import { StockStatus } from 'services/catalog';
 import { shoppingCart, updateCartItemRequest } from 'services/shoppingCart';

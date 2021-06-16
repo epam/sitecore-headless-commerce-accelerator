@@ -15,7 +15,7 @@
 import React, { FC } from 'react';
 
 import { Button, Icon } from 'components';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { cnResetRequestForm } from '../cn';
 import './ErrorMessage.scss';

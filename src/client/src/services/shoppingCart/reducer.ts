@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Action, LoadingStatus } from 'Foundation/Integration';
+import { Action, LoadingStatus } from 'models';
 
 import { actionTypes } from './actionTypes';
 import {

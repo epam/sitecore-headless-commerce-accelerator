@@ -15,7 +15,7 @@
 import classnames from 'classnames';
 import { Icon } from 'components';
 import * as JSS from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 import * as React from 'react';
 import { UserButtonProps, UserButtonState } from './models';
 import './styles.scss';

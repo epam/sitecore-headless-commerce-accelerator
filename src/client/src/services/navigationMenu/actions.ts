@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Action } from 'Foundation/Integration';
+import { Action } from 'models';
 import { keyMirrorReducer } from 'Foundation/ReactJss';
 
 const ACTION_TYPES_NAMESPACE = 'HAMBURGER_MENU';

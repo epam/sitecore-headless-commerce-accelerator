@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as Extensions from 'Foundation/Base';
+import { tryParseUrlSearch } from 'utils';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
 import { currentOrder, GetOrder } from 'services/order';
@@ -32,7 +32,7 @@ import {
 
 const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
   const location: Location = state.router.location;
-  const trackingNumber = Extensions.tryParseUrlSearch(location.search).trackingNumber;
+  const trackingNumber = tryParseUrlSearch(location.search).trackingNumber;
 
   const order = currentOrder(state);
   return {

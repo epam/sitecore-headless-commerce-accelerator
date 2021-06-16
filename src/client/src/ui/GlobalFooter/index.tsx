@@ -16,8 +16,8 @@ import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
+import { BackToTop } from 'components/BackToTop';
 
-import { BackToTop } from 'Foundation/UI/common/components';
 import { GlobalFooterProps, GlobalFooterState } from './models';
 
 import './styles.scss';

@@ -17,7 +17,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import * as JSS from 'Foundation/ReactJss';
 
 import { InitAuthentication } from 'services/authentication';

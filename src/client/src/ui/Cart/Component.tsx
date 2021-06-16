@@ -18,7 +18,7 @@ import * as Jss from 'Foundation/ReactJss';
 
 import { Button, Icon, Spinner } from 'components';
 
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { CartSummary, OrderSummary } from './components';
 import { CartProps, CartState } from './models';

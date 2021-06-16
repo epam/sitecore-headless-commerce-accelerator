@@ -25,10 +25,10 @@ import {
   ResetValidation as onResetValidation,
   signUp as signUpSelector,
 } from 'services/account';
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import { Checkbox, Input, Submit } from 'Foundation/ReactJss/Form';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { Icon } from 'components';
 

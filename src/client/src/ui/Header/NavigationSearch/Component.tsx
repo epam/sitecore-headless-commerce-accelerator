@@ -17,7 +17,7 @@ import React, { ChangeEvent } from 'react';
 import * as JSS from 'Foundation/ReactJss';
 import { debounce } from 'lodash';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import { Icon, Input } from 'components';
 

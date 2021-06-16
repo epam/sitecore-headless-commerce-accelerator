@@ -17,7 +17,7 @@ import React, { FC } from 'react';
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import { get } from 'lodash';
 
-import { getRenderingSitecoreProps } from 'Foundation/utils';
+import { getRenderingSitecoreProps } from 'utils';
 
 import { GridProps } from '../models';
 

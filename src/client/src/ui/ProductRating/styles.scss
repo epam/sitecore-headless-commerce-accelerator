@@ -14,8 +14,9 @@
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'styles/variables';
+@import 'styles/mixins';
+
 // #Star rating and review links
 .product-rating {
   margin-bottom: 17px;

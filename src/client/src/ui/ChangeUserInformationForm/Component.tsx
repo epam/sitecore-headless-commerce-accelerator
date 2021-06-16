@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import * as Jss from 'Foundation/ReactJss';
 import { Form, FormValues, Input, Submit } from 'Foundation/ReactJss/Form';
 

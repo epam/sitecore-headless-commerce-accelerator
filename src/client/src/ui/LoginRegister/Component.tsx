@@ -15,7 +15,7 @@
 import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { Login } from './Login';
 import { Register } from './Register';

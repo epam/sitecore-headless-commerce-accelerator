@@ -14,7 +14,7 @@
 
 import { get } from 'lodash';
 
-import { validateEmail } from 'Foundation/utils/validation';
+import { validateEmail } from 'utils';
 import { FormValues } from 'Foundation/ReactJss/Form';
 
 import { FORM_FIELDS } from './constants';

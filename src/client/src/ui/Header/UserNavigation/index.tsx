@@ -15,6 +15,7 @@
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
 
+import { NavigationLink } from 'ui/NavigationLink';
 import { CartButton } from '../CartButton';
 import { MenuButton } from '../MenuButton';
 import { NavigationSearch } from '../NavigationSearch';

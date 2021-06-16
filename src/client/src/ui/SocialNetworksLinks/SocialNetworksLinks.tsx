@@ -4,7 +4,7 @@ import { GraphQLRenderingWithParams } from 'Foundation/ReactJss';
 import { get, omit } from 'lodash';
 import { Link, Text } from '@sitecore-jss/sitecore-jss-react';
 
-import { getRenderingSitecoreProps } from 'Foundation/utils';
+import { getRenderingSitecoreProps } from 'utils';
 import {
   SocialNetworksLinksParamsRenderingParams,
   SocialNetworksLinksDataSource,

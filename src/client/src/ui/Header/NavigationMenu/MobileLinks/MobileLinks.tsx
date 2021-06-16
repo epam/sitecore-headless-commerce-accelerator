@@ -15,7 +15,7 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 import { closeHamburgerMenu } from 'services/navigationMenu';
 
 import { cnNavigation } from '../cn';

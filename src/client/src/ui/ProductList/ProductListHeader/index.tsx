@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { tryParseUrlSearch } from 'Foundation/Base';
+import { tryParseUrlSearch } from 'utils';
 import * as Jss from 'Foundation/ReactJss';
 import { FACET_PARAMETER_NAME, facetsManager, PRODUCTS_PER_PAGE } from 'services/search';
 

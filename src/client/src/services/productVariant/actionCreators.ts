@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import { Variant } from 'Foundation/Commerce';
-import { Action } from 'Foundation/Integration';
+import { Action } from 'models';
 import { SelectedProductVariantPayload } from './models';
 
 export type SelectColorVariant = (

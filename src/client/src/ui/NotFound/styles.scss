@@ -1,0 +1,75 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin: 100px 0;
+  &-404 {
+    margin: 80px 0;
+    font-size: 186px;
+    font-weight: 200;
+    color: $not-found-code;
+  }
+  &-desc {
+    font-size: 33px;
+    font-weight: 200;
+    text-transform: uppercase;
+    margin-top: 30px;
+    letter-spacing: 3px;
+    line-height: 1.4;
+    height: 92px;
+  }
+  &-subdesc {
+    font-size: 15px;
+    font-weight: 200;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    width: 95%;
+    max-width: 737px;
+    align-self: center;
+    &-link {
+      color: $not-found-code;
+      font-weight: 200;
+      text-decoration: none;
+      border-bottom: 1px dashed $not-found-code;
+      border-radius: 2px;
+      &:hover {
+        color: $not-found-code;
+      }
+    }
+  }
+  &-social-icon {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    font-size: 14px;
+    color: $not-found-code;
+    border: 1px solid #efefef;
+    border-radius: 50%;
+    margin: 3px 5px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    &:hover {
+      color: #fff;
+      background-color: $not-found-code;
+      border-color: $not-found-code;
+    }
+  }
+}

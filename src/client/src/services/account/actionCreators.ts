@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce';
-import { Action, FailureType, StatusType } from 'Foundation/Integration';
+import { Action, FailureType, StatusType } from 'models';
 
 import {
   AddressPayload,

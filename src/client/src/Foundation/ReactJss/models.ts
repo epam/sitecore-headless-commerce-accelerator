@@ -15,7 +15,7 @@
 import { ComponentRendering, LayoutServiceContextData } from '@sitecore-jss/sitecore-jss-react';
 import * as Router from 'connected-react-router';
 
-import { Status } from 'Foundation/Integration';
+import { Status } from 'models';
 
 export interface BaseDataSourceItem {
   id: string;

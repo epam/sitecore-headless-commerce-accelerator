@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { FailureType, LoadingStatus } from 'Foundation/Integration';
+import { FailureType, LoadingStatus } from 'models';
 
 import * as Commerce from 'Foundation/Commerce';
 

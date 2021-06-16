@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
 import * as Search from 'services/search';
 

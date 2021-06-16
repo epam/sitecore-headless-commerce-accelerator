@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 import { CartView } from 'ui/CartView';
 import * as JSS from 'Foundation/ReactJss';
-import { Desktop, Mobile } from 'Foundation/UI/common/components/Responsive';
+import { Desktop, Mobile } from 'components/Responsive';
 
 import { Icon } from 'components';
 

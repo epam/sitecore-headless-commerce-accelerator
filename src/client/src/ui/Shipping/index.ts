@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
 import * as Account from 'services/account';
 import * as Checkout from 'services/checkout';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
 import { AppState, ShippingDispatchProps, ShippingOwnProps, ShippingStateProps } from './models';

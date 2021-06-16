@@ -16,7 +16,7 @@ import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { VoidResult } from 'Foundation/Base/dataModel.Generated';
 import { User } from 'Foundation/Commerce';
-import { Action, Result } from 'Foundation/Integration';
+import { Action, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import * as AuthenticationApi from './api';
@@ -26,7 +26,7 @@ import { sagaActionTypes } from './constants';
 import { AuthenticationPayload, LogoutPayload } from './models';
 import * as selectors from './selectors';
 
-import { eventHub, events } from 'Foundation/EventHub';
+import { eventHub, events } from 'services/eventHub';
 
 export function* authentication(action: Action<AuthenticationPayload>) {
   const { payload } = action;

@@ -16,7 +16,7 @@ import { RichText } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import Logo from 'Foundation/UI/common/media/images/logo-main-black.png';
+import Logo from 'static/images/logo-main-black.png';
 
 import { CopyrightProps, CopyrightState } from './models';
 

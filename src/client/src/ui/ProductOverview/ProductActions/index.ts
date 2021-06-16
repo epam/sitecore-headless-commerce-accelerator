@@ -19,7 +19,7 @@ import { bindActionCreators } from 'redux';
 import * as ProductVariant from 'services/productVariant';
 import { actionTypes, AddToCart, shoppingCart } from 'services/shoppingCart';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
 import { ProductActionsComponent } from './ProductActions';
 

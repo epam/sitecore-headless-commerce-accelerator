@@ -15,8 +15,8 @@
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import pictureOne from 'Foundation/UI/common/media/images/testimonial/1.jpg';
-import pictureTwo from 'Foundation/UI/common/media/images/testimonial/2.jpg';
+import pictureOne from 'static/images/testimonial/1.jpg';
+import pictureTwo from 'static/images/testimonial/2.jpg';
 
 import { Button, Icon, Input } from 'components';
 

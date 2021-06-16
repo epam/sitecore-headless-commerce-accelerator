@@ -15,7 +15,7 @@
 import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { resolveColor } from 'Foundation/Commerce';
+import { resolveColor } from 'utils';
 import * as Jss from 'Foundation/ReactJss';
 
 import { SummaryProps, SummaryState } from './models';

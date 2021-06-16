@@ -13,8 +13,8 @@
 //    limitations under the License.
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
-@import 'Foundation/UI/common/scss/variables.scss';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'styles/variables.scss';
+@import 'styles/mixins';
 
 .ProductShop {
   @media (max-width: 1023px) {

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Action, StatusType } from 'Foundation/Integration';
+import { Action, StatusType } from 'models';
 import {
   AuthenticationPayload,
   AuthenticationProcessSuccessPayload,

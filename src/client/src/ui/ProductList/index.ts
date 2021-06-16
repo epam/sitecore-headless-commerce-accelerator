@@ -18,7 +18,7 @@ import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import Cookies from 'universal-cookie';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
 import * as commonSelectors from 'services/catalog';

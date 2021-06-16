@@ -16,8 +16,8 @@ import * as React from 'react';
 
 import * as Jss from 'Foundation/ReactJss';
 
-import { eventHub, events } from 'Foundation/EventHub';
-import { NavigationLink } from 'Foundation/UI';
+import { eventHub, events } from 'services/eventHub';
+import { NavigationLink } from 'ui/NavigationLink';
 import { Quantity } from './components';
 import { CartSummaryProps, CartSummaryState } from './models';
 

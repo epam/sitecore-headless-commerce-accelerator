@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { SidebarSearch } from 'components';
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { ChangeRoute as changeRoute } from 'Foundation/ReactJss/SitecoreContext';
 import { KEYWORD_PARAMETER_NAME, productSearchParams, productsSearchStatus } from 'services/search';
 

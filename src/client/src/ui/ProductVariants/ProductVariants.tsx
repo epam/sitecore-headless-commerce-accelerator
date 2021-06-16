@@ -16,7 +16,7 @@ import React, { FC, MouseEvent, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { resolveColor } from 'Foundation/Commerce';
+import { resolveColor } from 'utils';
 import { Variant } from 'Foundation/Commerce/dataModel.Generated';
 import { useSitecoreContext } from 'hooks';
 import {

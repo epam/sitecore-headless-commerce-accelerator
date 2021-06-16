@@ -15,7 +15,7 @@
 import { push } from 'connected-react-router';
 import { apply, put } from 'redux-saga/effects';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import dataProvider from '../../dataProvider';
 

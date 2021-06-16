@@ -12,9 +12,10 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 
-import { notifySubscribed } from 'Foundation/services/notificationsService';
+import { LoadingStatus } from 'Foundation/Integration';
+import { notify, notifySubscribed } from 'services/notifications';
 
 import { StockStatus } from 'services/catalog';
 
@@ -33,11 +34,24 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
   AddToCart,
   sitecoreContext,
   commerceUser,
+
+  wishlistStatus,
+  AddWishlistItem,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [displayNotifications, setDisplayNotifications] = useState(false);
 
   const outOfStock = variant && variant.stockStatusName === StockStatus.OutOfStock;
+
+  useEffect(() => {
+    if (displayNotifications && wishlistStatus === LoadingStatus.Loaded) {
+      notify('success', 'Product added!');
+    }
+    if (displayNotifications && wishlistStatus === LoadingStatus.Failure) {
+      notify('success', 'Sorry, something went wrong');
+    }
+  }, [wishlistStatus]);
 
   const handleAddToCartClick = useCallback(() => {
     AddToCart({ productId, quantity, variantId: variant.variantId });
@@ -56,6 +70,17 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
       setDialogOpen(true);
     }
   }, [commerceUser]);
+
+  const handleAddToWishlistClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      AddWishlistItem(variant);
+      setDisplayNotifications(true);
+      e.currentTarget.classList.contains('add-wishlist-active')
+        ? e.currentTarget.classList.remove('add-wishlist-active')
+        : e.currentTarget.classList.add('add-wishlist-active');
+    },
+    [variant],
+  );
 
   const handleQuantityChange = useCallback(
     (newQuantity) => {
@@ -80,6 +105,9 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
           {isLoading && <Icon icon="icon-spinner-solid" />}
           {outOfStock ? 'Out of Stock' : 'Add to Cart'}
         </Button>
+        <button title="Add to Wishlist" onClick={handleAddToWishlistClick} className="btn btn-main btn-wishlist">
+          <Icon icon="icon-heart" />
+        </button>
         <a href="javascript:if(window.print)window.print()" title="Print button" className="btn btn-main btn-print">
           <Icon icon="icon-print" />
         </a>

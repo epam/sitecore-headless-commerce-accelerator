@@ -14,7 +14,7 @@
 
 import * as React from 'react';
 
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 export default () => (
   <section style={{ paddingTop: 50 }}>

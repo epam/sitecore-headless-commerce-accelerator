@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
 import * as OrderModule from 'services/order';

@@ -14,7 +14,7 @@
 
 import { Facet, Product } from 'Foundation/Commerce';
 import { ProductSearchSuggestion } from 'Foundation/Commerce/dataModel.Generated';
-import { FailureType, LoadingStatus } from 'Foundation/Integration';
+import { FailureType, LoadingStatus } from 'models';
 
 import * as actionCreators from './actionCreators';
 import {

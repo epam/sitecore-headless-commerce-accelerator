@@ -13,8 +13,8 @@
 //    limitations under the License.
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import 'Foundation/UI/common/scss/variables.scss';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'styles/variables';
+@import 'styles/mixins';
 
 .last-row {
   margin-bottom: 100px;

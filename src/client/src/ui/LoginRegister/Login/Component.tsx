@@ -17,9 +17,9 @@ import * as React from 'react';
 
 import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
 
-import { LoadingStatus } from 'Foundation/Integration';
-import { NavigationLink } from 'Foundation/UI';
-import { validateEmail } from 'Foundation/utils/validation';
+import { LoadingStatus } from 'models';
+import { NavigationLink } from 'ui/NavigationLink';
+import { validateEmail } from 'utils';
 
 import { Icon } from 'components';
 

@@ -16,7 +16,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as Commerce from 'Foundation/Commerce';
-import { Action, LoadingStatus, Result } from 'Foundation/Integration';
+import { Action, LoadingStatus, Result } from 'models';
 
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';

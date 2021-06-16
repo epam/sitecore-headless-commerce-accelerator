@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce';
-import { Status } from 'Foundation/Integration';
+import { Status } from 'models';
 
 export interface Response<T> {
   data: T;

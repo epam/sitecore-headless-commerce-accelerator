@@ -15,14 +15,15 @@
 import * as React from 'react';
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
-import { Carousel, NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
+import { Carousel } from './Carousel';
 import { RecommendedProductsProps, RecommendedProductsState } from './models';
 
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
-import GlassesImage from 'Foundation/UI/common/media/images/glasses-for-slider.png';
+import GlassesImage from 'static/images/glasses-for-slider.png';
 import { productsMockData } from './constant';
 class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProductsProps, RecommendedProductsState> {
   public safeRender() {

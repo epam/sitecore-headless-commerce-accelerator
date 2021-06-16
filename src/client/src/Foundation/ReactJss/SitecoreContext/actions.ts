@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { FailureType, LoadingStatus, StatusType } from 'Foundation/Integration';
+import { FailureType, LoadingStatus, StatusType } from 'models';
 
 import { Sitecore } from '../models';
 

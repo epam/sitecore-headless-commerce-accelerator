@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce';
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import * as actionCreators from './actionCreators';
 import { reducerActionTypes, sagaActionTypes } from './constants';

@@ -13,7 +13,7 @@
 //    limitations under the License.
 
 import * as Commerce from 'Foundation/Commerce';
-import { Action } from 'Foundation/Integration';
+import { Action } from 'models';
 
 import * as Models from './models';
 

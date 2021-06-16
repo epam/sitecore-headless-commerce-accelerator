@@ -17,9 +17,8 @@ import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/
 
 import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';
 
-import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
-import { Action, LoadingStatus, Result } from 'Foundation/Integration';
+import { Action, LoadingStatus, Result, VoidResult } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import * as actions from './actions';
@@ -177,7 +176,7 @@ export function* submitFulfillmentStep(fulfillment: ShippingStep) {
   };
 
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Base.VoidResult> = yield call(Checkout.setShippingOptions, setShippingOptionsRequest);
+  const { error }: Result<VoidResult> = yield call(Checkout.setShippingOptions, setShippingOptionsRequest);
 
   if (error) {
     yield put(actions.SubmitStepFailure(error.message, error.stack));
@@ -245,7 +244,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
   };
   const curUrlPath = document.location.pathname.toLowerCase();
   yield put(actions.SubmitStepRequest());
-  const { error }: Result<Base.VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
+  const { error }: Result<VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
     yield put(actions.SubmitStepFailure(error.message || 'can not update shipping details'));
   } else {

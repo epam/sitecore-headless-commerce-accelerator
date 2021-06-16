@@ -15,7 +15,7 @@
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as Commerce from 'Foundation/Commerce';
-import { Action, LoadingStatus, Result } from 'Foundation/Integration';
+import { Action, LoadingStatus, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import * as actions from './actions';
@@ -35,7 +35,7 @@ import * as selectors from './selectors';
 
 import { Authentication } from 'services/authentication';
 
-import { eventHub, events } from 'Foundation/EventHub';
+import { eventHub, events } from 'services/eventHub';
 
 export function* create(action: Action<CreateAccountPayload>) {
   const { returnUrl, request } = action.payload;

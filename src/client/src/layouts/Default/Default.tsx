@@ -17,7 +17,7 @@ import React, { FC, useMemo } from 'react';
 import { Placeholder, VisitorIdentification } from '@sitecore-jss/sitecore-jss-react';
 import Helmet from 'react-helmet';
 
-import { getRenderingSitecoreProps } from 'Foundation/utils';
+import { getRenderingSitecoreProps } from 'utils';
 import { useSitecoreContext } from 'hooks';
 import { LayoutProps } from 'Project/HCA/models';
 

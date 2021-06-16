@@ -32,7 +32,7 @@ import AppStore from './store';
 // styles entry point
 import { ConnectedRouter } from 'connected-react-router';
 import GraphQLClientFactory from 'Foundation/ReactJss/graphQL/GraphQLClientFactory';
-import 'Foundation/UI/common/scss/style.scss';
+import 'styles/style.scss';
 import i18nInit from './App/i18n';
 
 const DEFAULT_LANGUAGE = 'en';

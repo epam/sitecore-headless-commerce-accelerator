@@ -16,11 +16,11 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import { registerCommerceInterceptor } from 'Foundation/Commerce';
+import { registerCommerceInterceptor } from 'services/commerce';
 import * as JSS from 'Foundation/ReactJss';
 import { SITECORE_ROUTES } from 'Foundation/ReactJss/SitecoreContext';
 import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
-import { NotFound } from 'Foundation/UI/common/components/NotFound';
+import { NotFound } from 'ui/NotFound';
 
 import { AppProps } from './../../../models';
 import { LoadingBar, ServerError } from './../../components';

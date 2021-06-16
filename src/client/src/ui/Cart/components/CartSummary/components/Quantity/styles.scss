@@ -14,8 +14,8 @@
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
 
-@import 'Foundation/UI/common/scss/variables';
-@import 'Foundation/UI/common/scss/mixins';
+@import 'styles/variables';
+@import 'styles/mixins';
 
 .quantity {
   display: flex;

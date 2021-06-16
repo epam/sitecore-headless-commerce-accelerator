@@ -25,9 +25,9 @@ import { RootProps } from '../models';
 import componentFactory from './../componentFactory';
 import ActionTypes from './actionTypes';
 
-import { eventHub, events } from 'Foundation/EventHub';
+import { eventHub, events } from 'services/eventHub';
 
-import { subscribeAnalyticsEvents } from 'Foundation/Analytics';
+import { subscribeAnalyticsEvents } from 'services/analytics';
 
 subscribeAnalyticsEvents();
 

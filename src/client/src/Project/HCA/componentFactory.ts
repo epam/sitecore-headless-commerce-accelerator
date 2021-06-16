@@ -14,7 +14,7 @@
 
 import * as AboutUs from 'ui/AboutUs';
 
-import { NotFound } from 'Foundation/UI/common/components/NotFound';
+import { NotFound } from 'ui/NotFound';
 
 import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'layouts';
 
@@ -52,7 +52,7 @@ import { ProductOverview } from 'ui/ProductOverview';
 import { ProductsSearch } from 'ui/ProductsSearch';
 import { ProductShop } from 'ui/ProductShop';
 import { ProductVariants } from 'ui/ProductVariants';
-import { NoResultsFound } from 'Foundation/UI/common/components/NoResultsFound/NoResultsFound';
+import { NoResultsFound } from 'ui/NoResultsFound';
 
 const components = new Map<string, any>();
 

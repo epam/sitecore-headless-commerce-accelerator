@@ -14,7 +14,7 @@
 
 import React, { PureComponent } from 'react';
 
-import { LoadingStatus } from 'Foundation/Integration';
+import { LoadingStatus } from 'models';
 
 import { SuggestionItem } from '../SuggestionItem';
 

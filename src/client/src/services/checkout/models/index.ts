@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Status } from 'Foundation/Integration';
+import { Status, VoidResult } from 'models';
 
-import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
 import { SitecoreState } from 'Foundation/ReactJss';
 
@@ -98,11 +97,11 @@ export interface DeliveryInfoResponse extends Response<Commerce.DeliveryInfo> {}
 
 export interface ShippingInfoResponse extends Response<Commerce.ShippingInfo> {}
 
-export interface SetShippingOptionsResponse extends Response<Base.VoidResult> {}
+export interface SetShippingOptionsResponse extends Response<VoidResult> {}
 
 export interface BillingInfoResponse extends Response<Commerce.BillingInfo> {}
 
-export interface SetPaymentInfoResponse extends Response<Base.VoidResult> {}
+export interface SetPaymentInfoResponse extends Response<VoidResult> {}
 
 export interface SubmitOrderResponse extends Response<Commerce.OrderConfirmation> {}
 

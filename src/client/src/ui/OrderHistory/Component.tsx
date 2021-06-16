@@ -18,7 +18,7 @@ import { SafePureComponent } from 'Foundation/ReactJss';
 
 import { Text } from '@sitecore-jss/sitecore-jss-react';
 import { Icon, Spinner } from 'components';
-import { NavigationLink } from 'Foundation/UI';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { OrderHistoryItem } from './components';
 import { OrderHistoryProps, OrderHistoryState } from './models';

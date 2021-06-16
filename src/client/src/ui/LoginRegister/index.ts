@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
-import * as Extensions from 'Foundation/Base';
+import { tryParseUrlSearch } from 'utils';
 import * as JSS from 'Foundation/ReactJss';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
@@ -29,7 +29,7 @@ import { AppState, LoginRegisterStateProps } from './models';
 const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   const commerceUser = Account.commerceUser(state);
   const location: Location = state.router.location;
-  const currentForm = Extensions.tryParseUrlSearch(location.search).form;
+  const currentForm = tryParseUrlSearch(location.search).form;
   const pathname: Pathname = location.pathname;
 
   return {

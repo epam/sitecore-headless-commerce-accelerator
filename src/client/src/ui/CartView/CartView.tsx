@@ -15,9 +15,9 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { eventHub, events } from 'Foundation/EventHub';
-import { LoadingStatus } from 'Foundation/Integration';
-import { NavigationLink } from 'Foundation/UI';
+import { eventHub, events } from 'services/eventHub';
+import { LoadingStatus } from 'models';
+import { NavigationLink } from 'ui/NavigationLink';
 
 import { authenticationProcess, logoutProcess } from 'services/authentication';
 import {

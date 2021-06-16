@@ -15,11 +15,11 @@
 import { SagaIterator } from 'redux-saga';
 import { call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { tryParseUrlSearch } from 'Foundation/Base';
+import { tryParseUrlSearch } from 'utils';
 import { Product, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
-import { Action, LoadingStatus, Result } from 'Foundation/Integration';
+import { Action, LoadingStatus, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
-import { notify } from 'Foundation/services/notificationsService';
+import { notify } from 'services/notifications';
 
 import * as actions from './actions';
 import { requestSuggestions, searchProducts } from './api';

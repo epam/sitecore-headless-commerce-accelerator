@@ -15,13 +15,20 @@
 import axios from 'axios';
 import Braintree from 'braintree-web';
 
-import * as Base from 'Foundation/Base';
 import * as Commerce from 'Foundation/Commerce';
-import { Result } from 'Foundation/Integration';
+import { Result, VoidResult } from 'models';
 
 import { SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';
 
-import { BillingInfoResponse, CreditCard, DeliveryInfoResponse, SetPaymentInfoResponse, SetShippingOptionsResponse, ShippingInfoResponse, SubmitOrderResponse } from './models';
+import {
+  BillingInfoResponse,
+  CreditCard,
+  DeliveryInfoResponse,
+  SetPaymentInfoResponse,
+  SetShippingOptionsResponse,
+  ShippingInfoResponse,
+  SubmitOrderResponse,
+} from './models';
 
 const routeBase = '/apix/client/commerce/checkout';
 
@@ -53,7 +60,7 @@ export const getShippingInfo = async (): Promise<Result<Commerce.ShippingInfo>> 
   }
 };
 
-export const setShippingOptions = async (requestPayload: SetShippingOptionsRequest): Promise<Result<Base.VoidResult>> => {
+export const setShippingOptions = async (requestPayload: SetShippingOptionsRequest): Promise<Result<VoidResult>> => {
   try {
     const response = await axios.post<SetShippingOptionsResponse>(`${routeBase}/shippingOptions`, requestPayload);
     const { data } = response;
@@ -80,29 +87,29 @@ export const getBillingInfo = async (): Promise<Result<Commerce.BillingInfo>> =>
 };
 
 export const submitCreditCard = async (creditCard: CreditCard): Promise<Result<string>> => {
-    const request = {
-      data: { creditCard },
-      endpoint: 'payment_methods/credit_cards',
-      method: 'post'
-    };
-    return new Promise<Result<string>>((resolve, reject) => {
-      Braintree.client.create({ authorization: creditCard.authToken }, (createErr, client: Braintree.Client) => {
-        if (createErr) {
-          resolve({ error: new Error(createErr.message)});
-        } else {
-          client.request(request, (err, response) => {
-            if (err) {
-              resolve({ error: new Error(err.message) });
-            } else {
-              resolve({ data: response.creditCards[0].nonce });
-            }
-          });
-        }
-      });
+  const request = {
+    data: { creditCard },
+    endpoint: 'payment_methods/credit_cards',
+    method: 'post',
+  };
+  return new Promise<Result<string>>((resolve, reject) => {
+    Braintree.client.create({ authorization: creditCard.authToken }, (createErr, client: Braintree.Client) => {
+      if (createErr) {
+        resolve({ error: new Error(createErr.message) });
+      } else {
+        client.request(request, (err, response) => {
+          if (err) {
+            resolve({ error: new Error(err.message) });
+          } else {
+            resolve({ data: response.creditCards[0].nonce });
+          }
+        });
+      }
     });
+  });
 };
 
-export const setPaymentInfo = async (requestPayload: SetPaymentInfoRequest): Promise<Result<Base.VoidResult>> => {
+export const setPaymentInfo = async (requestPayload: SetPaymentInfoRequest): Promise<Result<VoidResult>> => {
   try {
     const response = await axios.post<SetPaymentInfoResponse>(`${routeBase}/paymentInfo`, requestPayload);
     const { data } = response;

@@ -15,7 +15,7 @@
 import { LOCATION_CHANGE, LocationChangeAction } from 'connected-react-router';
 import { Store } from 'redux';
 
-import { Action } from 'Foundation/Integration';
+import { Action } from 'models';
 
 import { ChangeRoute } from './actions';
 

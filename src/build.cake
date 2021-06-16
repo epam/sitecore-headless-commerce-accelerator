@@ -116,6 +116,12 @@ Task("005-Publish")
     .IsDependentOn(Client.Publish)
     ;
 
+Task("005-Publish-Back-Only")
+    .IsDependentOn(Sitecore.Tasks.PublishFoundationTaskName)
+    .IsDependentOn(Sitecore.Tasks.PublishFeatureTaskName)
+    .IsDependentOn(Sitecore.Tasks.PublishProjectTaskName)
+    ;
+
 Task("006-Sync-Content")
     .IsDependentOn(Sitecore.Tasks.SyncAllUnicornItems)
     ;
@@ -149,6 +155,33 @@ Task("Default") // LocalDev
 Task("Build-and-Publish") // LocalDev
     .IsDependentOn("002-Build")
     .IsDependentOn("005-Publish")
+    ;
+
+Task("Build-Backend")
+    .IsDependentOn("000-Clean")
+    .IsDependentOn(Sitecore.Tasks.RestoreNuGetPackagesTask)
+    .IsDependentOn(Sitecore.Tasks.RestoreNpmPackagesTaskName)
+    .IsDependentOn(Sitecore.Tasks.GenerateCodeTaskName)
+    .IsDependentOn(Sitecore.Tasks.BuildServerCodeTaskName)
+    .IsDependentOn(Sitecore.Tasks.PrepareWebConfigTask)
+    .IsDependentOn(Sitecore.Tasks.RunPackagesInstallationTask)
+    .IsDependentOn("005-Publish-Back-Only")
+    .IsDependentOn("006-Sync-Content")
+    ;
+
+Task("Build-Backend-With-Tests")
+    .IsDependentOn("000-Clean")
+    .IsDependentOn(Sitecore.Tasks.RestoreNuGetPackagesTask)
+    .IsDependentOn(Sitecore.Tasks.RestoreNpmPackagesTaskName)
+    .IsDependentOn(Sitecore.Tasks.GenerateCodeTaskName)
+    .IsDependentOn(Sitecore.Tasks.BuildServerCodeTaskName)
+    .IsDependentOn(Sitecore.Tasks.PrepareWebConfigTask)
+    .IsDependentOn(Sitecore.Tasks.RunPackagesInstallationTask)
+    .IsDependentOn(XUnitRunner.RunTests)
+    .IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
+    .IsDependentOn(Coverage.OutputCoverage)
+    .IsDependentOn("005-Publish-Back-Only")
+    .IsDependentOn("006-Sync-Content")
     ;
 
 Task("Generate-Client-Models")

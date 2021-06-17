@@ -17,7 +17,7 @@
       "utils": ["utils"],
       "styles": ["styles"],
       "models": ["models"],
-      "static": ["static"],
+      "static": ["static"]
     },
     "sourceMap": true,
     "allowJs": true,
@@ -37,6 +37,7 @@
   }, 
   "files":["src/Project/HCA/modules.d.ts"],
   "include": [
+    "src/ui/**/*",
     "src/Foundation/**/*",
     "src/Project/**/*",
     "src/Project/HCA/modules.d.ts",
@@ -44,7 +45,6 @@
     "src/components/**/*",
     "src/hooks/**/*",
     "src/services/**/*",
-    "src/ui/**/*",
     "src/utils/**/*",
     "src/styles/**/*",
     "src/models/**/*",
@@ -53,6 +53,6 @@
   "exclude": [
     "src/Foundation/**/*.js",
     "src/Project/**/*.js",
-    "src/utils/**/*.js"
+    "scripts/**/*.js"
   ]
 }

@@ -13,9 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { Order, ProductColorsContext } from 'Foundation/Commerce';
-
+import { Order, ProductColorsContext } from 'services/commerce';
 import * as Orders from 'services/order';
 
 export interface OrderConfirmationOwnProps

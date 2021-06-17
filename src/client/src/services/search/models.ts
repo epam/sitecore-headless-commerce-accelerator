@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce/dataModel.Generated';
+import * as Commerce from 'services/commerce';
 import { LoadingStatus } from 'models';
 
 export type SuggestionProduct = Commerce.ProductSearchSuggestion;

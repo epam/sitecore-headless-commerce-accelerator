@@ -13,11 +13,12 @@
 //    limitations under the License.
 
 import React, { FC, MouseEvent, useCallback, useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { resolveColor } from 'utils';
-import { Variant } from 'Foundation/Commerce/dataModel.Generated';
+import { Variant } from 'services/commerce';
 import { useSitecoreContext } from 'hooks';
 import {
   productId as productIdSelector,

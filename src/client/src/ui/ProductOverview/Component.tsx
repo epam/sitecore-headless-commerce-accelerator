@@ -24,7 +24,7 @@ import './styles.scss';
 
 import { ProductRating } from 'ui/ProductRating';
 
-import { Variant } from 'Foundation/Commerce/dataModel.Generated';
+import { Variant } from 'services/commerce';
 import GlassesImg from 'static/images/glasses-for-slider.png';
 
 import { ProductGallery } from './components/ProductGallery';

@@ -15,7 +15,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { get } from 'lodash';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Result } from 'models';
 
 import {

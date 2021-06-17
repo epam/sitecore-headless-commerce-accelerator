@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Product, UserContext } from 'Foundation/Commerce';
+import { Product, UserContext } from 'services/commerce';
 import * as Jss from 'Foundation/ReactJss';
 
 export enum StockStatus {

@@ -13,10 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { ProductContext } from 'Foundation/Commerce';
-import { Variant } from 'Foundation/Commerce/dataModel.Generated';
-
+import { Variant, ProductContext } from 'services/commerce';
 import * as ProductVariant from 'services/productVariant';
 
 export interface ProductOverviewOwnProps

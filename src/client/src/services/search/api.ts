@@ -14,7 +14,7 @@
 
 import axios from 'axios';
 
-import { Facet, ProductSearchResults } from 'Foundation/Commerce';
+import { Facet, ProductSearchResults } from 'services/commerce';
 import { Result } from 'models';
 
 import { ProductsSearchRequest, SortDirection } from 'services/catalog/models/generated';

@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Variant } from 'Foundation/Commerce';
+import { Variant } from 'services/commerce';
 
 import * as actionCreators from './actionCreators';
 import { actionTypes } from './constants';

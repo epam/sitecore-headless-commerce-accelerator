@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Address, CountryRegion } from 'Foundation/Commerce';
+import { Address, CountryRegion } from 'services/commerce';
 
 export interface AddressFromProps {
   countries: CountryRegion[];

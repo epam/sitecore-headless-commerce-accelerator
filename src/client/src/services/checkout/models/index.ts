@@ -14,7 +14,7 @@
 
 import { Status, VoidResult } from 'models';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { SitecoreState } from 'Foundation/ReactJss';
 
 export enum CheckoutStepType {

@@ -12,8 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Facet, Product } from 'Foundation/Commerce';
-import { ProductSearchSuggestion } from 'Foundation/Commerce/dataModel.Generated';
+import { Facet, Product, ProductSearchSuggestion } from 'services/commerce';
 import { FailureType, LoadingStatus } from 'models';
 
 import * as actionCreators from './actionCreators';

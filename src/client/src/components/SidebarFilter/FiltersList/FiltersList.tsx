@@ -14,7 +14,7 @@
 
 import React, { FC } from 'react';
 
-import { FacetValue } from 'Foundation/Commerce';
+import { FacetValue } from 'services/commerce';
 
 import { CheckboxFilterItem } from '../CheckboxFilterItem';
 import { cnSidebarFilter } from '../cn';

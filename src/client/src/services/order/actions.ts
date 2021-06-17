@@ -14,7 +14,7 @@
 
 import { FailureType, LoadingStatus } from 'models';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 
 import * as actionCreators from './actionCreators';
 import { actionTypes } from './actionTypes';

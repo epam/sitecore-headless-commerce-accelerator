@@ -15,8 +15,7 @@
 import { Action } from 'models';
 
 import * as DataModels from 'services/checkout/models/generated';
-
-import { FreeShippingResult } from 'Foundation/Commerce';
+import { FreeShippingResult } from 'services/commerce';
 
 import {
   CartItemDto,

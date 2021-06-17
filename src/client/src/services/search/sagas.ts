@@ -16,7 +16,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { tryParseUrlSearch } from 'utils';
-import { Product, ProductSearchResults } from 'Foundation/Commerce/dataModel.Generated';
+import { Product, ProductSearchResults } from 'services/commerce';
 import { Action, LoadingStatus, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 import { notify } from 'services/notifications';

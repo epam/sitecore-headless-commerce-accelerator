@@ -17,7 +17,7 @@ import { all, call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/
 
 import { Address, SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Action, LoadingStatus, Result, VoidResult } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 

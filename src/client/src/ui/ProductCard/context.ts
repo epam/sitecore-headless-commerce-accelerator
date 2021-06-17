@@ -14,7 +14,7 @@
 
 import { createContext } from 'react';
 
-import { Product, Variant } from 'Foundation/Commerce';
+import { Product, Variant } from 'services/commerce';
 
 export type ProductCardContextValue = {
   product: Product;

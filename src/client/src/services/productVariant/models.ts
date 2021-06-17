@@ -12,8 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Variant } from 'Foundation/Commerce';
-
+import { Variant } from 'services/commerce';
 import { AppState as SitecoreState } from 'services/catalog';
 
 export interface SelectedProductVariant {

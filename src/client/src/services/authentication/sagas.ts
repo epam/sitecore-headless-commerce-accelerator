@@ -14,9 +14,8 @@
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { VoidResult } from 'Foundation/Base/dataModel.Generated';
-import { User } from 'Foundation/Commerce';
-import { Action, Result } from 'models';
+import { User } from 'services/commerce';
+import { Action, Result, VoidResult } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 
 import * as AuthenticationApi from './api';

@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import * as Jss from 'Foundation/ReactJss';
-
 import * as Checkout from 'services/checkout';
 
 export interface BillingDataSource extends Jss.BaseDataSourceItem {

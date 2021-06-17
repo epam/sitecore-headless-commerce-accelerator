@@ -14,7 +14,7 @@
 
 import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Action, LoadingStatus, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 

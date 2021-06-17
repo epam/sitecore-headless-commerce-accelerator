@@ -14,12 +14,11 @@
 
 import axios, { AxiosResponse } from 'axios';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Result } from 'models';
+import * as DataModels from 'services/checkout/models/generated';
 
 import { GetCartResponse } from './models';
-
-import * as DataModels from 'services/checkout/models/generated';
 
 const routeBase = '/apix/client/commerce/carts';
 

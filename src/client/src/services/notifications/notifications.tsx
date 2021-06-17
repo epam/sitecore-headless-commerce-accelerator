@@ -13,10 +13,11 @@
 //    limitations under the License.
 
 import React from 'react';
+
 import { isMobile } from 'react-device-detect';
 import { toast, TypeOptions } from 'react-toastify';
 
-import { Product } from 'Foundation/Commerce';
+import { Product } from 'services/commerce';
 
 import { SubscriptionMessage } from './SubscriptionMessage';
 import { ToastContent } from './ToastContent';

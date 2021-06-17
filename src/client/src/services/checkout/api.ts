@@ -15,7 +15,7 @@
 import axios from 'axios';
 import Braintree from 'braintree-web';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Result, VoidResult } from 'models';
 
 import { SetPaymentInfoRequest, SetShippingOptionsRequest } from 'services/checkout/models/generated';

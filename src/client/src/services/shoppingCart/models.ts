@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import { LoadingStatus, Status } from 'models';
-
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 
 export interface ShoppingCartLine extends Commerce.CartLine {}
 

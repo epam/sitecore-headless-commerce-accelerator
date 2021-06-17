@@ -23,7 +23,7 @@ export const productsSearchSuggestionsProducts = (state: GlobalSearchState) =>
 
 export const productsSearch = (state: GlobalSearchState) => state.search.productSearch;
 export const productsSearchStatus = (state: GlobalSearchState) => productsSearch(state).status;
-export const productSearchFacets = (state: GlobalSearchState) => productsSearch(state).facets;
+export const productSearchFacets = (state: GlobalSearchState) => productsSearch(state).facets || [];
 export const productSearchItems = (state: GlobalSearchState) => productsSearch(state).items || [];
 export const productSearchParams = (state: GlobalSearchState) => productsSearch(state).params;
 export const productSearchCurrentPageNumber = (state: GlobalSearchState) => productsSearch(state).currentPageNumber;

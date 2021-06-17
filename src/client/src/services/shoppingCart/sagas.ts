@@ -15,10 +15,9 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, race, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { eventHub, events } from 'services/eventHub';
 import { Action, LoadingStatus, Result } from 'models';
-
 import * as DataModels from 'services/checkout/models/generated';
 import * as Promotions from 'services/promotions';
 

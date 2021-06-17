@@ -17,7 +17,7 @@ import React, { FC, useCallback, useContext, useEffect, useMemo, useRef, useStat
 import { debounce, get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CartLine } from 'Foundation/Commerce';
+import { CartLine } from 'services/commerce';
 import { LoadingStatus } from 'models';
 
 import { StockStatus } from 'services/catalog';

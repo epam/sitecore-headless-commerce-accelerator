@@ -21,7 +21,7 @@ import * as Order from 'services/order';
 import * as Search from 'services/search';
 import * as ShoppingCart from 'services/shoppingCart';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import * as Jss from 'Foundation/ReactJss';
 
 export interface SitecoreContext

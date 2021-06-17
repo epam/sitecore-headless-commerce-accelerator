@@ -15,7 +15,7 @@
 import { cloneableGenerator, SagaIteratorClone } from '@redux-saga/testing-utils';
 import { all, call, fork, put, select } from 'redux-saga/effects';
 
-import { Address } from 'Foundation/Commerce';
+import { Address } from 'services/commerce';
 import { LoadingStatus } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 

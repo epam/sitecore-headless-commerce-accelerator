@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Action, FailureType, StatusType } from 'models';
 
 import {

@@ -12,9 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Models from 'Foundation/Commerce';
+import * as Models from 'services/commerce';
 import * as JSS from 'Foundation/ReactJss';
-
 import { GlobalOrderState } from 'services/order';
 
 export interface OrderHistoryOwnProps

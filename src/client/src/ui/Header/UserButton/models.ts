@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { GlobalAuthenticationState } from 'services/authentication';
 
 export interface UserButtonProps {

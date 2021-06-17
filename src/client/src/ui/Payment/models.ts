@@ -13,9 +13,8 @@
 //    limitations under the License.
 
 // tslint:disable-next-line:no-commented-code
-// import * as Commerce from 'Foundation/Commerce';
-import * as Jss from 'Foundation/ReactJss';
 
+import * as Jss from 'Foundation/ReactJss';
 import * as Checkout from 'services/checkout';
 
 export interface PaymentOwnProps extends Jss.RenderingWithContext<Jss.BaseDataSourceItem> {}

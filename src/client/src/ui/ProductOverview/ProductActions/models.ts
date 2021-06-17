@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { User, Variant } from 'Foundation/Commerce';
+import { User, Variant } from 'services/commerce';
 import * as Jss from 'Foundation/ReactJss';
 import { ProductVariantGlobalState } from 'services/productVariant';
 import { CartItemDto, GlobalShoppingCartState } from 'services/shoppingCart';

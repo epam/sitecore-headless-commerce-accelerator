@@ -12,8 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Variant } from 'Foundation/Commerce';
+import { Variant } from 'services/commerce';
 import { Action } from 'models';
+
 import { SelectedProductVariantPayload } from './models';
 
 export type SelectColorVariant = (

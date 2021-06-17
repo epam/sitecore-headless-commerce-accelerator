@@ -14,7 +14,7 @@
 
 import React, { MouseEvent } from 'react';
 
-import { Address } from 'Foundation/Commerce';
+import { Address } from 'services/commerce';
 import { LoadingStatus } from 'models';
 import { SafePureComponent } from 'Foundation/ReactJss';
 

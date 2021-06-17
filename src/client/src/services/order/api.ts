@@ -14,7 +14,7 @@
 
 import axios from 'axios';
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { Result } from 'models';
 
 import { GetOrderResponse, GetOrdersResponse } from './models';

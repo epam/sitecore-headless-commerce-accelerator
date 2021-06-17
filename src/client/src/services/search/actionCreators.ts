@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import { Action } from 'models';
-import { Facet, Product } from 'Foundation/Commerce';
-import { ProductSearchSuggestion } from 'Foundation/Commerce/dataModel.Generated';
+import { Facet, Product, ProductSearchSuggestion } from 'services/commerce';
 
 import * as Models from './models';
 

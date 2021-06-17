@@ -13,8 +13,7 @@
 //    limitations under the License.
 
 import * as JSS from 'Foundation/ReactJss';
-
-import { ProductContext } from 'Foundation/Commerce';
+import { ProductContext } from 'services/commerce';
 
 export interface ProductInformationProps extends JSS.RenderingWithContext<JSS.BaseDataSourceItem, ProductContext> {}
 

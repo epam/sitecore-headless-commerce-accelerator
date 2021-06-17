@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { UserContext } from 'Foundation/Commerce';
+import { UserContext } from 'services/commerce';
 import { SitecoreState } from 'Foundation/ReactJss';
 
 import { GlobalAuthenticationState } from './models';

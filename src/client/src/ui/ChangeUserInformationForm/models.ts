@@ -12,10 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as Commerce from 'Foundation/Commerce';
+import * as Commerce from 'services/commerce';
 import { LoadingStatus } from 'models';
 import * as Jss from 'Foundation/ReactJss';
-
 import * as Account from 'services/account';
 
 export interface ChangeUserInformationFormOwnProps extends Jss.Rendering<Jss.BaseDataSourceItem> {}

@@ -13,6 +13,6 @@
 //    limitations under the License.
 
 import { BaseDataSourceItem, RenderingWithParams } from 'Foundation/ReactJss';
-import { GridLayoutRenderingParams } from 'Project/HCA/models/generated';
+import { GridLayoutRenderingParams } from 'bootstrap/models';
 
 export interface GridProps extends RenderingWithParams<BaseDataSourceItem, GridLayoutRenderingParams> {}

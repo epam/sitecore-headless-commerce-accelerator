@@ -23,7 +23,7 @@ import SitecoreContextFactory from 'Foundation/ReactJss/SitecoreContextFactory';
 import { NotFound } from 'ui/NotFound';
 
 import { AppProps } from './../../../models';
-import { LoadingBar, ServerError } from './../../components';
+import { LoadingBar, ServerError } from '../../components';
 
 import { Default } from 'layouts';
 

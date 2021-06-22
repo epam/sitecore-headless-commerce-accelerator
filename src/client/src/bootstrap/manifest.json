@@ -2,7 +2,7 @@
   "name": "HCA",
   "clientEntry": "client.index.tsx",
   "serverEntry": "server.index.tsx",
-  "publicFolderPath": "./src/Project/HCA/public/**/*",
+  "publicFolderPath": "./src/bootstrap/public/**/*",
   "outputPath": "build",
   "env": [
     {

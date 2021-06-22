@@ -27,6 +27,7 @@ const resolve = {
     styles: path.resolve(process.cwd(), './src/styles/'),
     models: path.resolve(process.cwd(), './src/models/'),
     static: path.resolve(process.cwd(), './static/'),
+    bootstrap: path.resolve(process.cwd(), './bootstrap/'),
   },
 };
 
@@ -39,8 +40,8 @@ const clientWebpackConfigFactory = (projectManifest) => {
   const { name, clientEntry, outputPath } = projectManifest;
   const { apiKey } = projectManifest.env[0];
 
-  const clientEntryPath = `./src/Project/${name}/${clientEntry}`;
-  const clientOutputPath = `${root}/src/Project/${name}/${outputPath}`;
+  const clientEntryPath = `./src/bootstrap/${clientEntry}`;
+  const clientOutputPath = `${root}/src/bootstrap/${outputPath}`;
 
   return {
     mode: 'production',
@@ -168,7 +169,7 @@ const clientWebpackConfigFactory = (projectManifest) => {
           '/src/utils/',
           '/src/styles/',
           '/src/models/',
-          '/static/',
+          '/src/bootstrap/',
         ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',
@@ -185,8 +186,9 @@ const clientWebpackConfigFactory = (projectManifest) => {
 const serverWebpackConfigFactory = (projectManifest) => {
   const { name, serverEntry, outputPath, publicFolderPath } = projectManifest;
 
-  const serverEntryPath = `./src/Project/${name}/${serverEntry}`;
-  const serverOutputPath = `${root}/src/Project/${name}/${outputPath}`;
+  const serverEntryPath = `./src/bootstrap/${serverEntry}`;
+  const serverOutputPath = `${root}/src/bootstrap/${outputPath}`;
+
   return {
     mode: 'production',
     target: 'node',
@@ -239,14 +241,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
         { test: /\.scss$/, loader: 'ignore-loader' },
         {
           test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-            },
-          ],
+          loader: 'ignore-loader',
         },
       ],
     },
@@ -263,7 +258,7 @@ const serverWebpackConfigFactory = (projectManifest) => {
           '/src/utils/',
           '/src/styles/',
           '/src/models/',
-          '/static/',
+          '/src/bootstrap/',
         ],
         tsconfig: './tsconfig.json',
         tslint: './tslint.json',

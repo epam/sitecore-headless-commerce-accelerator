@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node ./scripts/webpack/environments/development/server.js --project=HCA --env=local",
-    "build:Debug": "copyfiles -f  ./src/Project/HCA/public/**/* ./src/Project/HCA/build/ && cross-env NODE_ENV=production webpack && stylelint \"**/*.scss\"",
+    "build:Debug": "copyfiles -f  ./src/bootstrap/public/**/* ./src/bootstrap/build/ && cross-env NODE_ENV=production webpack && stylelint \"**/*.scss\"",
     "sc:codegen": "gulp generate-ts --gulpfile ./scripts/code-generation/codeGen.js",
     "sc:codegen:commerce": "gulp generate-ts-commerce --gulpfile ./scripts/code-generation/codeGen.js",
     "test": "jest --no-cache --config ./scripts/jest/jest.config.js",

@@ -9,7 +9,7 @@ const devServerOptionsBuilder = require('./devServerOptions');
 const { ManifestsManager } = require('./utils');
 
 // import project manifests
-const hcaManifest = require('./../../../../src/Project/HCA/manifest');
+const hcaManifest = require('./../../../../src/bootstrap/manifest');
 
 // get params
 const { project, env } = yargs.argv;

@@ -121,7 +121,7 @@ Code Generation Templates/*.tt
 /license.xml
 
 # Front-end artifacts
-/src/client/src/Project/HCA/build
+/src/client/src/bootstrap/build
 
 # Development environment
 /src/client/scripts/webpack/environments/development/JssDataApi/sitecore-context.json

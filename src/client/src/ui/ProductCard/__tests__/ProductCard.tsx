@@ -20,8 +20,7 @@ import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import renderer from 'react-test-renderer';
 
 import { Product } from 'services/search';
-
-import makeRootReducer from 'Project/HCA/store/reducer';
+import makeRootReducer from 'bootstrap/store/reducer';
 
 import { AddToCart, ColorVariants, Price, ProductCard, ProductName, ProductRating, ThumbnailSlider } from '../index';
 

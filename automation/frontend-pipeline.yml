@@ -86,7 +86,7 @@ steps:
       $env:path="$env:path;$(Pipeline.Workspace)/s/src/node_modules/.bin"
       $env:path="$env:path;$(Pipeline.Workspace)/s/src/client/node_modules/.bin"
       $env:path="$env:path;$(Pipeline.Workspace)/s/src/tools"
-      copyfiles -f  ./src/Project/HCA/public/**/* ./src/Project/HCA/build/
+      copyfiles -f  ./src/bootstrap/public/**/* ./src/bootstrap/build/
       $(Pipeline.Workspace)/s/src/client/node_modules/.bin/cross-env.cmd NODE_ENV=production $(Pipeline.Workspace)/s/src/client/node_modules/.bin/webpack.cmd
     workingDirectory: './src/client'
 

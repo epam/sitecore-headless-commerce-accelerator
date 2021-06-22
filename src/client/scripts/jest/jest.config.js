@@ -24,6 +24,7 @@ module.exports = {
     '^utils(.*)$': '<rootDir>/src/utils/$1',
     '^styles(.*)$': '<rootDir>/src/styles/$1',
     '^models(.*)$': '<rootDir>/src/models/$1',
+    '^bootstrap(.*)$': '<rootDir>/src/bootstrap/$1',
   },
   collectCoverageFrom: [
     '**/*.{ts,tsx}',

@@ -62,7 +62,7 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
 
     return (
       <section className="listing-product-grid">
-        {items.length === 0 && (
+        {items.length === 0 && !isLoading && (
           <div className="no-results-found">
             <Placeholder name="no-results-found" rendering={this.props.rendering} />
           </div>

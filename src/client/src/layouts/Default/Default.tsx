@@ -19,7 +19,7 @@ import Helmet from 'react-helmet';
 
 import { getRenderingSitecoreProps } from 'utils';
 import { useSitecoreContext } from 'hooks';
-import { LayoutProps } from 'Project/HCA/models';
+import { LayoutProps } from 'bootstrap/models';
 
 export const Default: FC<LayoutProps> = (props) => {
   const rendering = getRenderingSitecoreProps(props);

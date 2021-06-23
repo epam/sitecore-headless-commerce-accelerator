@@ -64,7 +64,7 @@ export const searchProducts = async (params: SearchProductsParams): Promise<Resu
     return {
       data: {
         facets: data.data.facets,
-        products: data.data.products,
+        products: data.data.products.filter((x) => x.productId),
         totalItemCount: data.data.totalItemCount,
         totalPageCount: data.data.totalPageCount,
       },

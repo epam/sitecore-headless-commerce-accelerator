@@ -2,12 +2,12 @@
 ID: "4765eac0-d6cc-4584-8280-f1666f55e145"
 Parent: "764e96b4-1801-450e-b9b0-3394707dbcc2"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
-Path: "/sitecore/layout/Placeholder Settings/HCA/Foundation/UI/no-found-results"
+Path: "/sitecore/layout/Placeholder Settings/HCA/Foundation/UI/no-results-found"
 DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
-  Value: "no-found-results"
+  Value: "no-results-found"
 - ID: "e391b526-d0c5-439d-803e-17512eae6222"
   Hint: Allowed Controls
   Type: TreelistEx

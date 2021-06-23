@@ -8,6 +8,10 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Product List
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Type: Treelist
+  Value: "{4765EAC0-D6CC-4584-8280-F1666F55E145}"
 Languages:
 - Language: en
   Versions:

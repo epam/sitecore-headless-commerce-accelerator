@@ -100,7 +100,7 @@ Client.Publish = Task("Client :: Publish")
         Sitecore.Utils.AssertIfNullOrEmpty(Sitecore.Parameters.SolutionName, "SolutionName", "SOLUTION_NAME");
         Sitecore.Utils.AssertIfNullOrEmpty(Client.ClientDir, "ClientDir", "CLIENT_DIR");
 
-        var buildDirectoryList = GetDirectories($"{Client.ClientDir}/src/Project/*/build");
+        var buildDirectoryList = GetDirectories($"{Client.ClientDir}/src/bootstrap/build");
 
         foreach (var buildDirectory in buildDirectoryList)
         {
@@ -109,7 +109,7 @@ Client.Publish = Task("Client :: Publish")
               .Split('/');
             var project = pathSegments[pathSegments.Length -1];
 
-            var targetDir = $"{Sitecore.Parameters.PublishingTargetDir}/dist/{Sitecore.Parameters.SolutionName}/Project/{project}";
+            var targetDir = $"{Sitecore.Parameters.PublishingTargetDir}/dist/{Sitecore.Parameters.SolutionName}/Project/{Sitecore.Parameters.SolutionName}";
             
             if (DirectoryExists(targetDir))
             {

@@ -151,7 +151,7 @@ steps:
         ./automation/Get-Artifacts.ps1 Feature
         ./automation/Get-Artifacts.ps1 Foundation
         ./automation/Get-Artifacts.ps1 Project
-        robocopy $(Pipeline.Workspace)/s/src/client/src/Project/$(project_name)/build $(Pipeline.Workspace)/s/output/Project/dist/$(project_name)/Project/$(project_name) /s
+        robocopy $(Pipeline.Workspace)/s/src/client/src/bootstrap/build $(Pipeline.Workspace)/s/output/Project/dist/$(project_name)/Project/$(project_name) /s
       errorActionPreference: 'continue'
       ignoreLASTEXITCODE: true
 

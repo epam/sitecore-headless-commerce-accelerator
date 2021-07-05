@@ -52,7 +52,7 @@ export default class ProductShopComponent extends Jss.SafePureComponent<ProductS
           <Placeholder name="product-list" rendering={this.props.rendering} />
         </div>
         <div className={isLoading && firstLoad ? 'col-md-12 Loading' : 'hidden'}>
-          <div className={'Loading_Spinner Spinner Loading_Spinner_Display'}>
+          <div className={'Loading_Spinner Spinner Loading_Spinner_Display'} data-autotests="loading_spinner">
             <div className="Object Object-one" />
             <div className="Object Object-two" />
             <div className="Object Object-three" />

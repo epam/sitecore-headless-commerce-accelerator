@@ -61,7 +61,7 @@ export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, 
                   </a>
                 </div>
               )}
-              {isLoading && !isFirstLoad && <Spinner />}
+              {isLoading && !isFirstLoad && <Spinner data-autotests="loading_spinner" />}
             </div>
           ) : (
             <div className="order-history_container-empty">

@@ -66,7 +66,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
     }
 
     return isFirstInitLoadPage ? (
-      <Spinner className="Cart-Spinner" />
+      <Spinner className="Cart-Spinner" data-autotests="loading_spinner" />
     ) : (
       <div>
         <div>

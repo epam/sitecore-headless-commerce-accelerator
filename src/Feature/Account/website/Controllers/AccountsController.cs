@@ -180,7 +180,7 @@ namespace HCA.Feature.Account.Controllers
         [ActionName("recoverpassword")]
         public ActionResult RecoverPassword(RecoverPasswordRequest request)
         {
-            return this.Execute(() => this.accountService.ResetPassword(request.UserName, request.Password, request.Token));
+            return this.Execute(() => this.accountService.ResetPassword(request.UserName, request.NewPassword, request.Token));
         }
     }
 }

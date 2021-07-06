@@ -19,18 +19,11 @@ import * as Commerce from 'services/commerce';
 import { eventHub, events } from 'services/eventHub';
 import { Action, LoadingStatus, Result } from 'models';
 import * as DataModels from 'services/checkout/models/generated';
-import * as Promotions from 'services/promotions';
 
 import * as actions from './actions';
 import { actionTypes } from './actionTypes';
 import * as ShoppingCart from './api';
-import {
-  GerPromotionPayload,
-  RemoveCartLinePayload,
-  ShoppingCartData,
-  ShoppingCartState,
-  UpdateCartItemRequestPayload,
-} from './models';
+import { RemoveCartLinePayload, ShoppingCartData, ShoppingCartState, UpdateCartItemRequestPayload } from './models';
 import { shoppingCart, shoppingCartData } from './selectors';
 
 import * as Order from 'services/order';
@@ -118,40 +111,6 @@ export function* removeCartLine(action: Action<RemoveCartLinePayload>) {
   }
 }
 
-export function* addPromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
-  const addPromoCodeModel = requestData.payload;
-  yield put(actions.AddPromoCodeRequest());
-  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.addPromoCode, addPromoCodeModel);
-
-  if (error) {
-    yield put(actions.AddPromoCodeFailure(error.message || 'can not add promo code'));
-  } else {
-    yield put(actions.AddPromoCodeSuccess(data));
-  }
-}
-
-export function* removePromoCode(requestData: Action<DataModels.PromoCodeRequest>): SagaIterator {
-  const { payload } = requestData;
-
-  yield put(actions.RemovePromoCodeRequest());
-  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.removePromoCode, payload);
-
-  if (error) {
-    yield put(actions.RemovePromoCodeFailure(error.message || 'can not remove promo code'));
-  } else {
-    yield put(actions.RemovePromoCodeSuccess(data));
-  }
-}
-
-export function* getFreeShippingSubtotal(requestData: Action<GerPromotionPayload>): SagaIterator {
-  const { callback } = requestData.payload;
-  const { data, error }: Result<Commerce.FreeShippingResult> = yield call(Promotions.getFreeShippingSubtotal);
-
-  if (!error) {
-    callback(data);
-  }
-}
-
 export function* updateCartItem(requestData: Action<UpdateCartItemRequestPayload>) {
   const { productId, variantId, quantity } = requestData.payload;
   const cartData: ShoppingCartData = yield select(shoppingCartData);
@@ -206,9 +165,6 @@ function* watch(): SagaIterator {
   yield takeEvery(actionTypes.ADD_TO_CART, addToCart);
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
   yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
-  yield takeEvery(actionTypes.ADD_PROMO_CODE, addPromoCode);
-  yield takeEvery(actionTypes.REMOVE_PROMO_CODE, removePromoCode);
-  yield takeEvery(actionTypes.GET_FREE_SHIPPING_SUBTOTAL, getFreeShippingSubtotal);
   yield takeEvery(actionTypes.UPDATE_CART_ITEM_REQUEST, updateCartItem);
 }
 

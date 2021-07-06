@@ -75,7 +75,9 @@ export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, 
             </div>
           )
         ) : (
-          <Spinner />
+          <div data-autotests="loading_spinner">
+            <Spinner />
+          </div>
         )}
       </div>
     );

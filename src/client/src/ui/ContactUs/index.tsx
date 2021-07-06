@@ -13,29 +13,10 @@
 //    limitations under the License.
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import { FindStores, GetStores, status, stores } from 'services/storeLocator';
 
 import { ContactUsComponent } from './Component';
 
 import { rendering } from 'Foundation/ReactJss/Enhancers/rendering';
 import { compose } from 'recompose';
-import { AppState, ContactUsStateProps } from './models';
 
-import { LoadingStatus } from 'models';
-
-const mapStateToProps = (state: AppState): ContactUsStateProps => {
-  return { stores: stores(state) || [], isLoading: status(state) === LoadingStatus.Loading };
-};
-
-const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators(
-    {
-      FindStores,
-      GetStores,
-    },
-    dispatch,
-  );
-
-export const ContactUs = compose(rendering, connect(mapStateToProps, mapDispatchToProps))(ContactUsComponent);
+export const ContactUs = compose(rendering, connect())(ContactUsComponent);

@@ -101,8 +101,8 @@ export default class ProductListComponent extends JSS.SafePureComponent<ProductL
           )}
         </div>
         {isLoading && !firstLoad && (
-          <div className="lazyLoad_spinner">
-            <Spinner className={'col-md-12 Loading'} data-autotests="loading_spinner" />
+          <div className="lazyLoad_spinner" data-autotests="loading_spinner">
+            <Spinner className={'col-md-12 Loading'} />
           </div>
         )}
       </section>

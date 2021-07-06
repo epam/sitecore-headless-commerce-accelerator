@@ -606,7 +606,6 @@
     <Compile Include="Managers\Inventory\InventoryManagerTests.cs" />
     <Compile Include="Managers\Order\OrderManagerTests.cs" />
     <Compile Include="Managers\Payment\PaymentManagerTests.cs" />
-    <Compile Include="Managers\Promotion\PromotionManagerTests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />

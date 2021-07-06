@@ -14,7 +14,7 @@
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { ProductColors } from 'Foundation/Commerce';
+import { ProductColors } from 'services/commerce';
 
 import * as ShoppingCart from 'services/shoppingCart';
 

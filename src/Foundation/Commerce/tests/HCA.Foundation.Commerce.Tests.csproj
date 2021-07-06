@@ -584,7 +584,6 @@
   <ItemGroup>
     <Compile Include="Builders\Cart\CartBuilderTests.cs" />
     <Compile Include="Builders\Order\OrderBuilderTests.cs" />
-    <Compile Include="Builders\Promotion\PromotionBuilderTests.cs" />
     <Compile Include="Builders\Search\SearchOptionsBuilderTests.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\GenerateTokenProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyEmailProcessorTests.cs" />
@@ -599,7 +598,6 @@
     <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CartProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
-    <Compile Include="Mappers\Profiles\GeolocationProfileTests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
     <Compile Include="Mappers\Profiles\RegionProfileTests.cs" />
     <Compile Include="Mappers\Profiles\SearchProfileTests.cs" />
@@ -608,17 +606,13 @@
     <Compile Include="Mappers\Profiles\OrderProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProviderTests.cs" />
-    <Compile Include="Repository\Geolocation\GeolocationRepositoryTests.cs" />
     <Compile Include="Services\Account\AccountServiceTests.cs" />
     <Compile Include="Services\Analytics\CommerceAnalyticsServiceTests.cs" />
     <Compile Include="Services\Billing\BillingServiceTests.cs" />
     <Compile Include="Services\Cart\CartServiceTests.cs" />
     <Compile Include="Services\Delivery\DeliveryServiceTests.cs" />
-    <Compile Include="Services\Geolocation\GeolocationServiceTests.cs" />
     <Compile Include="Services\Order\OrderServiceTests.cs" />
-    <Compile Include="Services\Promotion\PromotionServiceTests.cs" />
     <Compile Include="Services\Search\ProductSearchServiceTests.cs" />
-    <Compile Include="Utils\GeolocationHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\license.xml">
@@ -666,7 +660,9 @@
       <Name>HCA.Foundation.Commerce</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -21,7 +21,6 @@ import { ShoppingCartData } from '../models';
 describe('ShoppingCart actions', () => {
   const fakeCartData: ShoppingCartData = {
     addresses: [],
-    adjustments: [],
     cartLines: [],
     email: null,
     id: 'id',

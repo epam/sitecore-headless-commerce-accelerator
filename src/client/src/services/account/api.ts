@@ -16,7 +16,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { get } from 'lodash';
 
 import * as Commerce from 'services/commerce';
-import { Result } from 'models';
+import { Result, VoidResult } from 'models';
 
 import {
   AddressResponse,
@@ -26,6 +26,7 @@ import {
   EmailValidationResponse,
   RecoverPasswordResponse,
   UpdateAccountResponse,
+  DeleteAccountResponse,
 } from './models';
 import * as DataModel from './models/generated';
 
@@ -125,6 +126,19 @@ export const updateAccountInfo = async (
     .put<UpdateAccountResponse>(`${routeBase}/account`, updateAccountRequest)
     .then((response) => {
       return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
+};
+
+export const deleteAccountInfo = async (
+  deleteAccountRequest: DataModel.DeleteAccountRequest,
+): Promise<Result<VoidResult>> => {
+  return axios
+    .delete<DeleteAccountResponse>(`${routeBase}/account`, { data: deleteAccountRequest })
+    .then((response: AxiosResponse<DeleteAccountResponse>) => {
+      return { data: response.data.data };
     })
     .catch((error: AxiosError) => {
       return { error };

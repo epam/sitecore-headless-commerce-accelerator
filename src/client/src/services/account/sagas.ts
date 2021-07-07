@@ -33,9 +33,10 @@ import {
 import * as DataModel from './models/generated';
 import * as selectors from './selectors';
 
-import { Authentication } from 'services/authentication';
+import { Authentication, Logout } from 'services/authentication';
 
 import { eventHub, events } from 'services/eventHub';
+import { push } from 'connected-react-router';
 
 export function* create(action: Action<CreateAccountPayload>) {
   const { returnUrl, request } = action.payload;
@@ -198,6 +199,29 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
   eventHub.publish(events.ACCOUNT.ADDRESS_UPDATED);
 }
 
+export function* deleteAccount(action: Action) {
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
+  if (!commerceUser) {
+    return;
+  }
+
+  const payload: DataModel.DeleteAccountRequest = {
+    ...action.payload,
+  };
+
+  yield put(actions.DeleteAccountRequest());
+
+  yield call(Api.deleteAccountInfo, payload);
+
+  yield put(actions.DeleteAccountSuccess());
+
+  eventHub.publish(events.ACCOUNT.DELETED);
+
+  yield put(Logout());
+
+  yield put(push('/'));
+}
+
 export function* requestPasswordReset(action: Action<RequestPasswordResetPayload>) {
   yield put(actions.RequestPasswordResetRequest());
   const { data, error }: Result<boolean> = yield call(Api.confirmPasswordRecovery, action.payload.email);
@@ -238,6 +262,7 @@ function* watch() {
   yield takeEvery(sagaActionTypes.ADDRESS_REMOVE, removeAddress);
   yield takeEvery(sagaActionTypes.CREATE, create);
   yield takeEvery(sagaActionTypes.UPDATE, updateAccount);
+  yield takeEvery(sagaActionTypes.DELETE, deleteAccount);
   yield takeEvery(sagaActionTypes.CHANGE_PASSWORD, changePassword);
   yield takeEvery(sagaActionTypes.REQUEST_PASSWORD_RESET, requestPasswordReset);
   yield takeEvery(sagaActionTypes.PASSWORD_RESET, resetPassword);

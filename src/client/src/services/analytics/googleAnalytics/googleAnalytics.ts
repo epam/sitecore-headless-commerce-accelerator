@@ -46,6 +46,10 @@ class GoogleAnalytics {
     this.event({ action: 'Account updated', category: 'Account' });
   }
 
+  public raiseAccountDeletedEvent(): void {
+    this.event({ action: 'Account deleted', category: 'Account' });
+  }
+
   public raisePasswordChangedEvent(): void {
     this.event({ action: 'Password changed', category: 'Account' });
   }

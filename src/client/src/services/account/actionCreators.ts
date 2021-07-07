@@ -32,6 +32,7 @@ export type CreateAccount = (
   returnUrl?: string,
 ) => Action<CreateAccountPayload>;
 export type UpdateAccount = (firstName: string, lastName: string) => Action<UpdateAccountPayload>;
+export type DeleteAccount = () => Action;
 export type EmailValidation = (email: string) => Action<ValidateEmailPayload>;
 export type ResetValidation = () => Action;
 export type ChangePassword = (oldPassword: string, newPassword: string) => Action<ChangePasswordPayload>;
@@ -50,6 +51,10 @@ export type CreateAccountSuccess = (user: Commerce.User) => Action;
 export type UpdateAccountRequest = StatusType;
 export type UpdateAccountFailure = FailureType;
 export type UpdateAccountSuccess = StatusType;
+
+export type DeleteAccountRequest = StatusType;
+export type DeleteAccountFailure = FailureType;
+export type DeleteAccountSuccess = StatusType;
 
 export type EmailValidationRequest = (email: string) => Action<ValidateAccountResultPayload>;
 export type EmailValidationFailure = FailureType;

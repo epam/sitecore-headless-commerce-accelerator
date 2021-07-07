@@ -22,6 +22,7 @@ export const account = (state: GlobalAccountState) => state.account;
 export const signUp = (state: GlobalAccountState) => account(state).signUp;
 export const accountValidation = (state: GlobalAccountState) => signUp(state).accountValidation;
 export const createAccount = (state: GlobalAccountState) => signUp(state).create;
+export const deleteAccount = (state: GlobalAccountState) => signUp(state).delete;
 export const changePassword = (state: GlobalAccountState) => account(state).changePassword;
 export const savedAddressList = (state: GlobalAccountState) => account(state).savedAddressList;
 export const updateStatus = (state: GlobalAccountState) => account(state).update.status;

@@ -36,6 +36,8 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         Result<VoidResult> UpdateAccount(string contactId, string firstName, string lastName);
 
+        Result<VoidResult> DeleteAccount(string userId);
+
         Result<IEnumerable<Address>> UpdateAddress(string userName, Address address);
 
         Result<ValidateEmailResult> ValidateEmail(string email);

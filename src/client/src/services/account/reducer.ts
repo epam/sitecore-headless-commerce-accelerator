@@ -26,6 +26,7 @@ import {
   SavedAddressListState,
   SignUpState,
   UpdateAccountState,
+  DeleteAccountState,
 } from './models';
 
 export const initialSignUpState: SignUpState = {
@@ -37,6 +38,9 @@ export const initialSignUpState: SignUpState = {
     status: LoadingStatus.NotLoaded,
   },
   create: {
+    status: LoadingStatus.NotLoaded,
+  },
+  delete: {
     status: LoadingStatus.NotLoaded,
   },
 };
@@ -147,11 +151,31 @@ export const updateAccountInitialState: UpdateAccountState = {
   status: LoadingStatus.NotLoaded,
 };
 
+export const deleteAccountInitialState: UpdateAccountState = {
+  status: LoadingStatus.NotLoaded,
+};
+
 export const updateAccountReducer = (state: UpdateAccountState = { ...updateAccountInitialState }, action: Action) => {
   switch (action.type) {
     case reducerActionTypes.UPDATE_FAILURE:
     case reducerActionTypes.UPDATE_REQUEST:
     case reducerActionTypes.UPDATE_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default: {
+      return { ...state };
+    }
+  }
+};
+
+export const deleteAccountReducer = (state: DeleteAccountState = { ...deleteAccountInitialState }, action: Action) => {
+  switch (action.type) {
+    case reducerActionTypes.DELETE_FAILURE:
+    case reducerActionTypes.DELETE_REQUEST:
+    case reducerActionTypes.DELETE_SUCCESS: {
       return {
         ...state,
         ...action.payload,
@@ -212,6 +236,7 @@ export const resetPasswordReducer = (state: ResetPasswordState = { ...resetPassw
 
 export default combineReducers<AccountState>({
   changePassword: changePasswordReducer,
+  delete: deleteAccountReducer,
   requestPasswordReset: requestPasswordResetReducer,
   resetPassword: resetPasswordReducer,
   savedAddressList: saveAddressListReducer,

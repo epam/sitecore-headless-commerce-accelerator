@@ -27,7 +27,7 @@ namespace HCA.Feature.Account.Tests.Controllers
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
-
+    using HCA.Foundation.Account.Services.Authentication;
     using Models.Requests;
 
     using NSubstitute;
@@ -48,10 +48,12 @@ namespace HCA.Feature.Account.Tests.Controllers
             var mapper = Substitute.For<IAccountMapper>();
             var visitorContext = Substitute.For<IVisitorContext>();
             var trackingService = Substitute.For<ITrackingService>();
+            var authenticationService = Substitute.For<IAuthenticationService>();
 
             this.controller = Substitute.For<AccountsController>(
                 accountService,
                 mapper,
+                authenticationService,
                 visitorContext,
                 trackingService);
 
@@ -86,6 +88,16 @@ namespace HCA.Feature.Account.Tests.Controllers
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<User>>>(), Arg.Any<Func<Result<User>, ActionResult>>());
+        }
+
+        [Fact]
+        public void DeleteAccount_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controller.DeleteAccount(new DeleteAccountRequest());
+
+            // assert
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>(), Arg.Any<Func<Result<VoidResult>, ActionResult>>());
         }
 
         [Fact]

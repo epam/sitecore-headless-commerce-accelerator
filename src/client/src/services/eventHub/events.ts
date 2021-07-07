@@ -21,6 +21,7 @@ export const events = {
       ADDRESS_REMOVED: null,
       ADDRESS_UPDATED: null,
       CREATED: null,
+      DELETED: null,
       EMAIL_VALIDATED: null,
       PASSWORD_CHANGED: null,
       UPDATED: null,

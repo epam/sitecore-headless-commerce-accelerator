@@ -52,6 +52,8 @@ export interface UpdateAccountRequest {
   firstName: string;
   lastName: string;
 }
+export interface DeleteAccountRequest {}
+
 export interface ValidateEmailRequest {
   email: string;
 }

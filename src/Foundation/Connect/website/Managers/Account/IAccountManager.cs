@@ -107,5 +107,12 @@ namespace HCA.Foundation.Connect.Managers.Account
         /// <param name="commerceUser">Commerce user</param>
         /// <returns>Enable user result</returns>
         UpdateUserResult UpdateUser(CommerceUser commerceUser);
+
+        /// <summary>
+        /// Update user
+        /// </summary>
+        /// <param name="commerceUser">Commerce user</param>
+        /// <returns>Enable user result</returns>
+        DeleteUserResult DeleteUser(CommerceUser commerceUser);
     }
 }

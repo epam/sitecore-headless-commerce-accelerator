@@ -159,5 +159,14 @@ namespace HCA.Foundation.Connect.Managers.Account
                 new UpdateUserRequest(commerceUser),
                 this.customerServiceProvider.UpdateUser);
         }
+
+        public DeleteUserResult DeleteUser(CommerceUser commerceUser)
+        {
+            Assert.ArgumentNotNull(commerceUser, nameof(commerceUser));
+
+            return this.Execute(
+                new DeleteUserRequest(commerceUser),
+                this.customerServiceProvider.DeleteUser);
+        }
     }
 }

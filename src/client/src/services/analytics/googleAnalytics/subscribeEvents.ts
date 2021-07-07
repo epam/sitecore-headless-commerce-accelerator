@@ -22,6 +22,7 @@ export const subscribeGoogleAnalyticsEvents = () => {
   eventHub.subscribe(events.ACCOUNT.EMAIL_VALIDATED, () => googleAnalytics.raiseEmailValidatedEvent());
   eventHub.subscribe(events.ACCOUNT.CREATED, () => googleAnalytics.raiseAccountCreatedEvent());
   eventHub.subscribe(events.ACCOUNT.UPDATED, () => googleAnalytics.raiseAccountUpdatedEvent());
+  eventHub.subscribe(events.ACCOUNT.DELETED, () => googleAnalytics.raiseAccountDeletedEvent());
   eventHub.subscribe(events.ACCOUNT.PASSWORD_CHANGED, () => googleAnalytics.raisePasswordChangedEvent());
   eventHub.subscribe(events.ACCOUNT.ADDRESS_ADDED, () => googleAnalytics.raiseAddressAddedEvent());
   eventHub.subscribe(events.ACCOUNT.ADDRESS_UPDATED, () => googleAnalytics.raiseAddressUpdatedEvent());

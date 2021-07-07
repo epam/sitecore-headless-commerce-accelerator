@@ -285,6 +285,31 @@ namespace HCA.Foundation.Commerce.Services.Account
             return result;
         }
 
+        public Result<VoidResult> DeleteAccount(string userId)
+        {
+            Assert.ArgumentNotNullOrEmpty(userId, nameof(userId));
+
+            var result = new Result<VoidResult>();
+
+            var getUserResult = this.accountManager.GetUser(userId);
+
+            if (getUserResult.Success)
+            {
+                var deleteResult = this.accountManager.DeleteUser(getUserResult.CommerceUser);
+
+                if (!deleteResult.Success)
+                {
+                    result.SetErrors(deleteResult.SystemMessages.Select(sm => sm.Message).ToList());
+                }
+            }
+            else
+            {
+                result.SetErrors(getUserResult.SystemMessages.Select(sm => sm.Message).ToList());
+            }
+
+            return result;
+        }
+
         public Result<IEnumerable<Address>> UpdateAddress(string userName, Address address)
         {
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));

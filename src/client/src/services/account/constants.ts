@@ -21,6 +21,7 @@ export const sagaActionTypes = keyMirrorSaga(
     ACCOUNT_VALIDATION: null,
     CHANGE_PASSWORD: null,
     CREATE: null,
+    DELETE: null,
     RESET_VALIDATION: null,
     UPDATE: null,
 
@@ -55,6 +56,10 @@ export const reducerActionTypes = keyMirrorReducer(
     UPDATE_FAILURE: null,
     UPDATE_REQUEST: null,
     UPDATE_SUCCESS: null,
+
+    DELETE_FAILURE: null,
+    DELETE_REQUEST: null,
+    DELETE_SUCCESS: null,
 
     ADDRESS_ADD_FAILURE: null,
     ADDRESS_ADD_REQUEST: null,

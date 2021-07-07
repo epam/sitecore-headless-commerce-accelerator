@@ -485,6 +485,7 @@
     <Reference Include="System" />
     <Reference Include="System.Threading.Thread" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -538,6 +539,7 @@
     <Compile Include="Models\Requests\ChangePasswordRequest.cs" />
     <Compile Include="Models\Requests\ConfirmResetPasswordRequest.cs" />
     <Compile Include="Models\Requests\CreateAccountRequest.cs" />
+    <Compile Include="Models\Requests\DeleteAccountRequest.cs" />
     <Compile Include="Models\Requests\UpdateAccountRequest.cs" />
     <Compile Include="Models\Requests\LoginRequest.cs" />
     <Compile Include="Models\Requests\ValidateEmailRequest.cs" />

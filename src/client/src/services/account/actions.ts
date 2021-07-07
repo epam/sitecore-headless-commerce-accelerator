@@ -80,6 +80,10 @@ export const UpdateAccount: actionCreators.UpdateAccount = (firstName: string, l
   type: sagaActionTypes.UPDATE,
 });
 
+export const DeleteAccount: actionCreators.DeleteAccount = () => ({
+  type: sagaActionTypes.DELETE,
+});
+
 export const RequestPasswordReset: actionCreators.RequestPasswordReset = (email: string) => ({
   payload: {
     email,
@@ -359,4 +363,27 @@ export const ResetPasswordSuccess: actionCreators.ResetPasswordSuccess = () => (
     status: LoadingStatus.Loaded,
   },
   type: reducerActionTypes.PASSWORD_RESET_SUCCESS,
+});
+
+export const DeleteAccountRequest: actionCreators.DeleteAccountRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.DELETE_REQUEST,
+});
+
+export const DeleteAccountFailure: actionCreators.DeleteAccountFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.DELETE_FAILURE,
+});
+
+export const DeleteAccountSuccess: actionCreators.DeleteAccountSuccess = () => ({
+  payload: {
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.DELETE_SUCCESS,
 });

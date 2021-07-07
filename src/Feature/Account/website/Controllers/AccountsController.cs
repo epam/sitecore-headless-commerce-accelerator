@@ -17,25 +17,35 @@ namespace HCA.Feature.Account.Controllers
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+    using System.Web.Security;
 
+    using Foundation.Account.Managers.User;
     using Foundation.Base.Controllers;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context;
     using Foundation.Commerce.Models.Entities.Addresses;
+    using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
     using HCA.Foundation.Base.Extensions;
     using HCA.Foundation.Base.Models.Result;
+    using HCA.Foundation.Account.Services.Authentication;
+
     using Mappers;
 
     using Models.Requests;
 
+    using Sitecore.ContentSearch.Utilities;
     using Sitecore.Diagnostics;
 
     public class AccountsController : BaseController
     {
         private readonly IAccountService accountService;
 
+        private readonly IUserManager userManager;
+
         private readonly IAccountMapper mapper;
+
+        private readonly IAuthenticationService authenticationService;
 
         private readonly ITrackingService trackingService;
 
@@ -44,6 +54,7 @@ namespace HCA.Feature.Account.Controllers
         public AccountsController(
             IAccountService accountService,
             IAccountMapper accountMapper,
+            IAuthenticationService authenticationService,
             IVisitorContext visitorContext,
             ITrackingService trackingService)
         {
@@ -51,11 +62,13 @@ namespace HCA.Feature.Account.Controllers
             Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
             Assert.ArgumentNotNull(trackingService, nameof(trackingService));
+            Assert.ArgumentNotNull(authenticationService, nameof(authenticationService));
 
             this.accountService = accountService;
             this.mapper = accountMapper;
             this.visitorContext = visitorContext;
             this.trackingService = trackingService;
+            this.authenticationService = authenticationService;
         }
 
         [HttpPost]
@@ -181,6 +194,27 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult RecoverPassword(RecoverPasswordRequest request)
         {
             return this.Execute(() => this.accountService.ResetPassword(request.UserName, request.NewPassword, request.Token));
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [ActionName("account")]
+        public ActionResult DeleteAccount(DeleteAccountRequest request)
+        {
+            var userId = this.visitorContext.ContactId;
+            
+            return this.Execute(() =>
+                {
+                    return this.accountService.DeleteAccount(userId);
+                },
+                result =>
+                {
+                    if (result.Success)
+                        return this.JsonOk(result.Data);
+
+                    return this.JsonError(result.Errors?.FirstOrDefault(), HttpStatusCode.InternalServerError);
+                }
+            );
         }
     }
 }

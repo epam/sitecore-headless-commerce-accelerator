@@ -32,18 +32,17 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
   public constructor(props: ChangeUserInformationFormProps) {
     super(props);
   }
+
   protected toggleAccordion() {
     const lstNodeToogle = document.querySelectorAll('.account-details-form_main');
     lstNodeToogle.forEach((item) => {
-      if (item.classList.contains('active') && !item.classList.contains('user-information-body')) {
-        item.classList.remove('active');
-      } else if (item.classList.contains('active') && item.classList.contains('user-information-body')) {
-        item.classList.remove('active');
-      } else if (!item.classList.contains('active') && item.classList.contains('user-information-body')) {
-        item.classList.add('active');
-      }
+      const isActive = item.classList.contains('active');
+      const hasContent = item.classList.contains('user-information-body');
+
+      !isActive && hasContent ? item.classList.add('active') : item.classList.remove('active');
     });
   }
+
   protected safeRender() {
     const { commerceUser, updateStatus } = this.props;
     const isLoading = updateStatus === LoadingStatus.Loading;

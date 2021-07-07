@@ -29,11 +29,16 @@ export interface CreateState extends Status {
   accountInfo?: Commerce.User;
 }
 
+export interface DeleteState extends Status {
+  accountInfo?: Commerce.User;
+}
+
 export interface ChangePasswordState extends Status {}
 
 export interface SignUpState {
   accountValidation: AccountValidationState;
   create: CreateState;
+  delete: DeleteState;
 }
 
 export interface SavedAddressListState extends Status {
@@ -43,6 +48,8 @@ export interface SavedAddressListState extends Status {
 }
 
 export interface UpdateAccountState extends Status {}
+
+export interface DeleteAccountState extends Status {}
 
 export interface RequestPasswordResetState extends Status {
   email: string;
@@ -59,6 +66,7 @@ export interface AccountState {
   changePassword: ChangePasswordState;
   savedAddressList: SavedAddressListState;
   update: UpdateAccountState;
+  delete: DeleteAccountState;
   requestPasswordReset: RequestPasswordResetState;
   resetPassword: ResetPasswordState;
 }
@@ -109,6 +117,8 @@ export interface EmailValidationResponse extends OkJsonResultModel<Commerce.Vali
 export interface ChangePasswordResponse extends OkJsonResultModel<VoidResult> {}
 
 export interface UpdateAccountResponse extends OkJsonResultModel<VoidResult> {}
+
+export interface DeleteAccountResponse extends OkJsonResultModel<VoidResult> {}
 
 export interface AddressResponse extends OkJsonResultModel<Commerce.Address[]> {}
 

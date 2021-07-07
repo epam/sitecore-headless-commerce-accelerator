@@ -21,6 +21,7 @@ import { FullWidth, OneColumn, ThreeColumnRow, TwoColumn, TwoColumnRow } from 'l
 import { AddressManager } from 'ui/AddressManager';
 import { ChangePassword } from 'ui/ChangePassword';
 import { ChangeUserInformationForm } from 'ui/ChangeUserInformationForm';
+import { DeleteAccount } from 'ui/DeleteAccount';
 import { LoginRegister } from 'ui/LoginRegister';
 import { ResetRequestForm, PasswordResetForm } from 'ui/ResetPassword';
 
@@ -111,6 +112,7 @@ components.set('Change User Information Form', ChangeUserInformationForm);
 components.set('Login Register', LoginRegister);
 components.set('Reset Request Form', ResetRequestForm);
 components.set('Password Reset Form', PasswordResetForm);
+components.set('Delete Account Form', DeleteAccount);
 
 // Navigation
 components.set('Breadcrumb', Breadcrumb);

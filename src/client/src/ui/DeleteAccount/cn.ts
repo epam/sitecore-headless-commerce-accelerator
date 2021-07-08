@@ -12,4 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './DeleteAccount';
+// This is a private feature and changes shouldn't get to the Public Repo
+
+import { cn } from '@bem-react/classname';
+
+export const cnDeleteAccount = cn('DeleteAccount');

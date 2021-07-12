@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "003a72cd-4cd6-4392-9862-41d4159929cd"
   Hint: Data source
-  Value: /sitecore/content/HCA/Data/Carousel Banner
+  Value: 
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Carousel Banner
@@ -43,6 +43,12 @@ SharedFields:
         }
       }         
     }
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: 
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: /sitecore/content/HCA/Data
 Languages:
 - Language: en
   Versions:

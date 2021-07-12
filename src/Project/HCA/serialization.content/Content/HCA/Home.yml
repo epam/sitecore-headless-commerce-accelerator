@@ -29,6 +29,51 @@ SharedFields:
           s:ds=""
           s:par="Wrapper Class=hca&amp;First Column Class=header-full-width&amp;Second Column Class&amp;Third Column Class" />
         <r
+          uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
+          s:pt="{9DE78875-A731-4923-A341-09A78C8F70F5}"
+          s:uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}">
+          <rls>
+            <ruleset
+              s:pet="true">
+              <rule
+                uid="{0CD30F08-E87C-4336-BD23-850C5C5F9807}"
+                s:name="Gaming banner"
+                s:test="true">
+                <conditions>
+                  <condition
+                    uid="5B4C3BA7AEE043C2865EA4E34D78DCBD"
+                    s:id="{9D3B7B5B-48BA-4B54-A522-166FFDEAC33D}"
+                    s:ProductId="6042430"
+                    s:operatorid="{814EF7D0-1639-44FD-AEEF-735B5AC14425}"
+                    s:ProductQuantity="1" />
+                </conditions>
+                <actions>
+                  <action
+                    uid="4AE8DE52D3E64A00978FBB158BBA60C3"
+                    s:id="{0F3C6BEC-E56B-4875-93D7-2846A75881D2}"
+                    s:DataSource="{0CD65CD7-63F7-41C6-AB78-31090789C20D}" />
+                </actions>
+              </rule>
+              <rule
+                uid="{00000000-0000-0000-0000-000000000000}"
+                s:name="Default"
+                s:test="true">
+                <conditions>
+                  <condition
+                    uid="363A2B34BED24B3B9F4A609D17D09B06"
+                    s:id="{4888ABBB-F17D-4485-B14B-842413F88732}" />
+                </conditions>
+                <actions>
+                  <action
+                    uid="F81A92A8F1DA4BB2BF13BCBF5CDE2A8B"
+                    s:id="{0F3C6BEC-E56B-4875-93D7-2846A75881D2}"
+                    s:DataSource="{90DAC3A3-0DA1-4AFD-BDC8-F0F0513C63B6}" />
+                </actions>
+              </rule>
+            </ruleset>
+          </rls>
+        </r>
+        <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
@@ -44,6 +89,19 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Type: Layout
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
+              s:pt="{9DE78875-A731-4923-A341-09A78C8F70F5}" />
+          </d>
+        </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180418T153723Z

@@ -1,0 +1,35 @@
+﻿---
+ID: "9f6e7f26-3f1c-4c35-9114-dd5a2c4c9004"
+Parent: "0cd65cd7-63f7-41c6-ab78-31090789c20d"
+Template: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
+Path: /sitecore/content/HCA/Data/Carousel Banner Gaming/Banner 1
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
+      Hint: Subtitle
+      Value: Xbox
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200911T132913Z
+    - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
+      Hint: Link
+      Value: |
+        <link linktype="external" url="/shop/gaming" anchor="" target="" />
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "ab878a5d-cfad-471c-949e-1f590caa233c"
+      Hint: Text
+      Value: Save up to 20% with a promocode
+    - ID: "b2b0d2d9-a822-4647-80c9-0b221b8cb569"
+      Hint: Title
+      Value: Your unique gaming set
+    - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
+      Hint: Image
+      Value: |
+        <image mediaid="{05AAF5CA-595D-42F8-B3AA-9AE6771B5F57}" />

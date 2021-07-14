@@ -1,0 +1,24 @@
+#Global
+mode: ContinuousDeployment
+#next-version: 4.0.1
+
+#Branches
+branches:
+  develop:
+    mode: ContinuousDeployment
+    increment: Patch
+    tag: 'dev'
+    is-release-branch: false
+    prevent-increment-of-merged-branch-version: false
+  feature:
+    regex: feature?[/]
+    mode: ContinuousDeployment
+    increment: Inherit
+    tag: 'dev'
+    is-release-branch: false
+    prevent-increment-of-merged-branch-version: true
+
+ignore:
+  sha: 
+  - 48d521055aec15967e9983454b1bc366251c3507
+  - 2f8cff607f9d153fee90cc573ee08ef19173cfdf 

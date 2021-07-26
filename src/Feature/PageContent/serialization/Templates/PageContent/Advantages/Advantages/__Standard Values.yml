@@ -1,0 +1,21 @@
+﻿---
+ID: "979ee770-4b84-4de4-be5b-77f9dbf0d1b6"
+Parent: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
+Template: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
+Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "205f79a5-c5bf-498c-8863-6d669f3f6341"
+      Hint: Title
+      Value: $name
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T085509Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin

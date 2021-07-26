@@ -1,0 +1,60 @@
+﻿---
+ID: "ca95ee68-8d42-4c31-81b1-61b0362dacad"
+Parent: "1ced522b-7a0a-47c4-8cc7-680e3906a1b6"
+Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
+Path: /sitecore/layout/Renderings/HCA/Feature/PageContent/Advantages
+DB: master
+SharedFields:
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: Advantages
+- ID: "17bb046a-a32a-41b3-8315-81217947611b"
+  Hint: ComponentQuery
+  Value: |
+    query Advantages($datasource: String!) {
+      datasource(value: $datasource) {
+        ... on AdvantagesFolder{
+          id
+          advantages {
+            items: targetItems  {
+              ... on Advantages {
+                id
+                title {
+                    jss
+                }
+                description {
+                    jss
+                }
+                icon
+                link {
+                    jss
+                }
+              }
+            }
+          }
+        }
+      }         
+    }
+- ID: "1a7c85e5-dc0b-490d-9187-bb1dbcb4c72f"
+  Hint: Datasource Template
+  Value: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder
+- ID: "7d8ae35f-9ed1-43b5-96a2-0a5f040d4e4e"
+  Hint: Open Properties after Add
+  Value: 1
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: "{E01B4FDD-75CF-4632-84B1-74A75DBA4A4F}"
+- ID: "b0b15510-b138-470e-8f33-8da2e228aafe"
+  Hint: Rendering Contents Resolver
+  Value: 
+- ID: "b5b27af1-25ef-405c-87ce-369b3a004016"
+  Hint: Datasource Location
+  Value: /sitecore/content/HCA/Data
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T084618Z

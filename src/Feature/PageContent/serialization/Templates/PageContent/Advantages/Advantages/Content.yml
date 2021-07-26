@@ -1,0 +1,14 @@
+﻿---
+ID: "059fecd8-86e7-4c04-abcf-bbcd032be005"
+Parent: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages/Content
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T085015Z

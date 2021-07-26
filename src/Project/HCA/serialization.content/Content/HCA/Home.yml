@@ -30,7 +30,7 @@ SharedFields:
           s:par="Wrapper Class=hca&amp;First Column Class=header-full-width&amp;Second Column Class&amp;Third Column Class" />
         <r
           uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
-          s:pt="{9DE78875-A731-4923-A341-09A78C8F70F5}"
+          s:pt="{5EB21C64-BB16-4359-B4C6-C2DC3BC8B614}"
           s:uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}">
           <rls>
             <ruleset
@@ -74,6 +74,13 @@ SharedFields:
           </rls>
         </r>
         <r
+          uid="{868D359F-6DAB-454A-9281-CE3541664672}"
+          p:after="r[@uid='{54D580EB-7FC6-4A09-9131-4B855C36F423}']"
+          s:ds="{71454CDE-8FC1-4F4D-BC41-D48BFE899DEE}"
+          s:id="{CA95EE68-8D42-4C31-81B1-61B0362DACAD}"
+          s:par=""
+          s:ph="main-content" />
+        <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
@@ -99,7 +106,7 @@ Languages:
             id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
             <r
               uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
-              s:pt="{9DE78875-A731-4923-A341-09A78C8F70F5}" />
+              s:pt="{5EB21C64-BB16-4359-B4C6-C2DC3BC8B614}" />
           </d>
         </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"

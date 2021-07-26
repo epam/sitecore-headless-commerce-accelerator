@@ -1,0 +1,14 @@
+﻿---
+ID: "d2099843-8f7e-4979-9b35-86827e32417d"
+Parent: "e01b4fdd-75cf-4632-84b1-74a75dba4a4f"
+Template: "e01b4fdd-75cf-4632-84b1-74a75dba4a4f"
+Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T095421Z

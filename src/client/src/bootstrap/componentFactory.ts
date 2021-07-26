@@ -54,6 +54,7 @@ import { ProductsSearch } from 'ui/ProductsSearch';
 import { ProductShop } from 'ui/ProductShop';
 import { ProductVariants } from 'ui/ProductVariants';
 import { NoResultsFound } from 'ui/NoResultsFound';
+import { Advantages } from 'ui/Advantages/Component';
 
 const components = new Map<string, any>();
 
@@ -135,5 +136,8 @@ components.set('Brand Logos', AboutUs.BrandLogos);
 components.set('Contact Us', ContactUs);
 components.set('Contact Intro', ContactIntro);
 components.set('Get In Touch Form', GetInTouchForm);
+
+// Advantages
+components.set('Advantages', Advantages);
 
 export default (componentName: string) => components.get(componentName);

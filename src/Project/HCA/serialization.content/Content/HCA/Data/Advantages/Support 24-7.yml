@@ -1,0 +1,27 @@
+﻿---
+ID: "40ddac4d-cac5-47ad-b208-d584d8360092"
+Parent: "71454cde-8fc1-4f4d-bc41-d48bfe899dee"
+Template: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
+Path: "/sitecore/content/HCA/Data/Advantages/Support 24-7"
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "205f79a5-c5bf-498c-8863-6d669f3f6341"
+      Hint: Title
+      Value: 24/7 Online support
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T090512Z
+    - ID: "44a66b2a-190e-4b2a-b42a-caf3eac0107d"
+      Hint: Description
+      Value: Ready to help you anytime
+    - ID: "80968376-a314-4a17-8182-9123a819536b"
+      Hint: Link
+      Value: |
+        <link linktype="external" url="https://www.google.com/" anchor="" target="_blank" />
+    - ID: "ff3f4d26-a588-421b-b17c-3aa70552e6da"
+      Hint: Icon
+      Value: support

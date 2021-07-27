@@ -25,7 +25,9 @@ SharedFields:
                 description {
                     jss
                 }
-                icon
+                image {
+                    jss
+                }
                 link {
                     jss
                 }

@@ -326,12 +326,12 @@ namespace HCA.Feature.PageContent.Models
         string Description {get; set;}
 
         /// <summary>
-        /// The Icon field.
+        /// The Image field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da</para>
         /// </summary>
-        [SitecoreField("Icon")]
-        string Icon {get; set;}
+        [SitecoreField("Image")]
+        string Image {get; set;}
 
         /// <summary>
         /// The Link field.
@@ -376,14 +376,14 @@ namespace HCA.Feature.PageContent.Models
         public const string DescriptionFieldName = "Description";
 
         /// <summary>
-        /// The Icon field.
+        /// The Image field.
         /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da</para>
         /// </summary>
-        [SitecoreField("Icon")]
-        public virtual string Icon {get; set;}
-        public const string IconFieldId = "ff3f4d26-a588-421b-b17c-3aa70552e6da";
-        public const string IconFieldName = "Icon";
+        [SitecoreField("Image")]
+        public virtual string Image {get; set;}
+        public const string ImageFieldId = "ff3f4d26-a588-421b-b17c-3aa70552e6da";
+        public const string ImageFieldName = "Image";
 
         /// <summary>
         /// The Link field.

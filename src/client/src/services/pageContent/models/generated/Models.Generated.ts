@@ -206,10 +206,10 @@ export interface AdvantagesDataSource extends ReactJssModule.BaseDataSourceItem 
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
   description: ReactJssModule.RichTextField;
 
-  /// The Icon field.
+  /// The Image field.
   /// Field Type: Single-Line Text
   /// Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da
-  icon: ReactJssModule.TextField;
+  image: ReactJssModule.TextField;
 
   /// The Link field.
   /// Field Type: General Link
@@ -230,10 +230,10 @@ export interface AdvantagesRenderingParams extends ReactJssModule.BaseRenderingP
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
   description: string;
 
-  /// The Icon field.
+  /// The Image field.
   /// Field Type: Single-Line Text
   /// Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da
-  icon: string;
+  image: string;
 
   /// The Link field.
   /// Field Type: General Link
@@ -257,11 +257,11 @@ export const AdvantagesTemplate = {
   descriptionFieldId: '44a66b2a-190e-4b2a-b42a-caf3eac0107d',
   descriptionFieldName: 'Description',
 
-  /// The Icon field.
+  /// The Image field.
   /// <para>Field Type: Single-Line Text</para>
   /// <para>Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da</para>
-  iconFieldId: 'ff3f4d26-a588-421b-b17c-3aa70552e6da',
-  iconFieldName: 'Icon',
+  imageFieldId: 'ff3f4d26-a588-421b-b17c-3aa70552e6da',
+  imageFieldName: 'Image',
 
   /// The Link field.
   /// <para>Field Type: General Link</para>

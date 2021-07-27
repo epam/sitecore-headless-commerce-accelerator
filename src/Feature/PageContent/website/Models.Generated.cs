@@ -309,6 +309,180 @@ namespace HCA.Feature.PageContent.Models
 
 
     /// <summary>
+    /// IAdvantages Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages</para>
+    /// <para>ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb</para>
+    /// </summary>
+    [SitecoreType(TemplateId="41e8abef-3803-47b0-adc6-d225a8d91ffb")]
+    public partial interface IAdvantages: IGlassBase
+    {
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Rich Text</para>
+        /// <para>Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        string Description {get; set;}
+
+        /// <summary>
+        /// The Icon field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da</para>
+        /// </summary>
+        [SitecoreField("Icon")]
+        string Icon {get; set;}
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 80968376-a314-4a17-8182-9123a819536b</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        Link Link {get; set;}
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 205f79a5-c5bf-498c-8863-6d669f3f6341</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        string Title {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// Advantages Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages</para>
+    /// <para>ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb</para>
+    /// </summary>
+    [SitecoreType(TemplateId="41e8abef-3803-47b0-adc6-d225a8d91ffb")]
+    public partial class Advantages: GlassBase, IAdvantages
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages
+        /// </summary>
+        public const string TemplateId = "41e8abef-3803-47b0-adc6-d225a8d91ffb";
+
+        /// <summary>
+        /// The Description field.
+        /// <para>Field Type: Rich Text</para>
+        /// <para>Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d</para>
+        /// </summary>
+        [SitecoreField("Description")]
+        public virtual string Description {get; set;}
+        public const string DescriptionFieldId = "44a66b2a-190e-4b2a-b42a-caf3eac0107d";
+        public const string DescriptionFieldName = "Description";
+
+        /// <summary>
+        /// The Icon field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da</para>
+        /// </summary>
+        [SitecoreField("Icon")]
+        public virtual string Icon {get; set;}
+        public const string IconFieldId = "ff3f4d26-a588-421b-b17c-3aa70552e6da";
+        public const string IconFieldName = "Icon";
+
+        /// <summary>
+        /// The Link field.
+        /// <para>Field Type: General Link</para>
+        /// <para>Field ID: 80968376-a314-4a17-8182-9123a819536b</para>
+        /// </summary>
+        [SitecoreField("Link")]
+        public virtual Link Link {get; set;}
+        public const string LinkFieldId = "80968376-a314-4a17-8182-9123a819536b";
+        public const string LinkFieldName = "Link";
+
+        /// <summary>
+        /// The Title field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 205f79a5-c5bf-498c-8863-6d669f3f6341</para>
+        /// </summary>
+        [SitecoreField("Title")]
+        public virtual string Title {get; set;}
+        public const string TitleFieldId = "205f79a5-c5bf-498c-8863-6d669f3f6341";
+        public const string TitleFieldName = "Title";
+
+    }
+
+
+    /// <summary>
+    /// IAdvantagesFolder Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder</para>
+    /// <para>ID: 48571882-2196-4e19-a0fa-673cede42b56</para>
+    /// </summary>
+    [SitecoreType(TemplateId="48571882-2196-4e19-a0fa-673cede42b56")]
+    public partial interface IAdvantagesFolder: IGlassBase
+    {
+
+        /// <summary>
+        /// The Advantages field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 0e23c1d8-37c8-420a-90bf-b669bdbd01b1</para>
+        /// </summary>
+        [SitecoreField("Advantages")]
+        IEnumerable<Guid> Advantages {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// AdvantagesFolder Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder</para>
+    /// <para>ID: 48571882-2196-4e19-a0fa-673cede42b56</para>
+    /// </summary>
+    [SitecoreType(TemplateId="48571882-2196-4e19-a0fa-673cede42b56")]
+    public partial class AdvantagesFolder: GlassBase, IAdvantagesFolder
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder
+        /// </summary>
+        public const string TemplateId = "48571882-2196-4e19-a0fa-673cede42b56";
+
+        /// <summary>
+        /// The Advantages field.
+        /// <para>Field Type: Multilist</para>
+        /// <para>Field ID: 0e23c1d8-37c8-420a-90bf-b669bdbd01b1</para>
+        /// </summary>
+        [SitecoreField("Advantages")]
+        public virtual IEnumerable<Guid> Advantages {get; set;}
+        public const string AdvantagesFieldId = "0e23c1d8-37c8-420a-90bf-b669bdbd01b1";
+        public const string AdvantagesFieldName = "Advantages";
+
+    }
+
+
+    /// <summary>
+    /// IAdvantagesRenderingParameters Interface
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters</para>
+    /// <para>ID: e01b4fdd-75cf-4632-84b1-74a75dba4a4f</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e01b4fdd-75cf-4632-84b1-74a75dba4a4f")]
+    public partial interface IAdvantagesRenderingParameters: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// AdvantagesRenderingParameters Class
+    /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters</para>
+    /// <para>ID: e01b4fdd-75cf-4632-84b1-74a75dba4a4f</para>
+    /// </summary>
+    [SitecoreType(TemplateId="e01b4fdd-75cf-4632-84b1-74a75dba4a4f")]
+    public partial class AdvantagesRenderingParameters: GlassBase, IAdvantagesRenderingParameters
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters
+        /// </summary>
+        public const string TemplateId = "e01b4fdd-75cf-4632-84b1-74a75dba4a4f";
+
+    }
+
+
+    /// <summary>
     /// IBanner Interface
     /// <para>Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner</para>
     /// <para>ID: aca0aaff-3317-4535-8bc5-504256e08255</para>

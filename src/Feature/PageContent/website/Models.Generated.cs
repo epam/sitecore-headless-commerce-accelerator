@@ -319,7 +319,7 @@ namespace HCA.Feature.PageContent.Models
 
         /// <summary>
         /// The Description field.
-        /// <para>Field Type: Rich Text</para>
+        /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d</para>
         /// </summary>
         [SitecoreField("Description")]
@@ -367,7 +367,7 @@ namespace HCA.Feature.PageContent.Models
 
         /// <summary>
         /// The Description field.
-        /// <para>Field Type: Rich Text</para>
+        /// <para>Field Type: Single-Line Text</para>
         /// <para>Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d</para>
         /// </summary>
         [SitecoreField("Description")]

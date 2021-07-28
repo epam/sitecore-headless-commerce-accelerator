@@ -202,9 +202,9 @@ export const AboutUsFolderTemplate = {
 // ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb
 export interface AdvantagesDataSource extends ReactJssModule.BaseDataSourceItem {
   /// The Description field.
-  /// Field Type: Rich Text
+  /// Field Type: Single-Line Text
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
-  description: ReactJssModule.RichTextField;
+  description: ReactJssModule.TextField;
 
   /// The Image field.
   /// Field Type: Single-Line Text
@@ -226,7 +226,7 @@ export interface AdvantagesDataSource extends ReactJssModule.BaseDataSourceItem 
 // ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb
 export interface AdvantagesRenderingParams extends ReactJssModule.BaseRenderingParam {
   /// The Description field.
-  /// Field Type: Rich Text
+  /// Field Type: Single-Line Text
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
   description: string;
 
@@ -252,7 +252,7 @@ export const AdvantagesTemplate = {
   templateId: '41e8abef-3803-47b0-adc6-d225a8d91ffb',
 
   /// The Description field.
-  /// <para>Field Type: Rich Text</para>
+  /// <para>Field Type: Single-Line Text</para>
   /// <para>Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d</para>
   descriptionFieldId: '44a66b2a-190e-4b2a-b42a-caf3eac0107d',
   descriptionFieldName: 'Description',

@@ -17,9 +17,7 @@ Languages:
       Value: 20210723T090501Z
     - ID: "44a66b2a-190e-4b2a-b42a-caf3eac0107d"
       Hint: Description
-      Value: |
-        <p>For orders above 100$</p>
-        <p>some text on new line</p>
+      Value: For orders above 100$
     - ID: "80968376-a314-4a17-8182-9123a819536b"
       Hint: Link
       Value: |

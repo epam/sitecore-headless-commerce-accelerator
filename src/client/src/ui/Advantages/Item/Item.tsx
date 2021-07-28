@@ -12,10 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-// This is a private feature and changes shouldn't get to the Public Repo
+import React, { FC, ReactNode } from 'react';
 
-import React, { FC } from 'react';
+import { Icon } from 'components';
 
-export const Advantages: FC = () => {
-  return <div>Advantages</div>;
+import { cnAdvantages } from '../cn';
+
+export type ItemProps = {
+  item?: any;
+  children?: ReactNode;
+};
+
+export const Item: FC<ItemProps> = ({ item }) => {
+  const iconName: any = `icon-${item.image.jss.value}`;
+  return (
+    <li className={cnAdvantages('Item')}>
+      <Icon icon={iconName} size="xxxl" />
+      <div className={cnAdvantages('Title')}>{item.title.jss.value}</div>
+      <div className={cnAdvantages('Description')}>{item.description.jss.value}</div>
+    </li>
+  );
 };

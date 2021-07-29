@@ -109,4 +109,27 @@ $login-register-form-indention: 15px;
       font-family: $poppins;
     }
   }
+
+  .btn,
+  .btn-new-design-active {
+    text-transform: uppercase;
+    padding: 11px 30px;
+    background: #343538;
+    color: #ffffff;
+    border-radius: 0;
+    border: 2px solid #343538;
+    @media (hover) {
+      &:hover {
+        border: 2px solid #a03bff;
+        background: #a03bff;
+        color: #ffffff;
+      }
+    }
+    @media (max-width: $screen-desktop) {
+      &:active {
+        border: 2px solid #a03bff;
+        color: #ffffff;
+      }
+    }
+  }
 }

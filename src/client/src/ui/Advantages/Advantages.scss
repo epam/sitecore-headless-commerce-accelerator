@@ -35,6 +35,12 @@
     box-sizing: border-box;
     padding: 30px 30px 0;
     color: black;
+    transition: 1s;
+    @media (hover) {
+      &:hover {
+        filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));
+      }
+    }
   }
 
   &-Title {
@@ -51,6 +57,7 @@
       }
     }
   }
+
   &-Description {
     font-family: Poppins;
     font-style: normal;
@@ -68,4 +75,8 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+}
+
+.swiper-wrapper {
+  margin: 10px;
 }

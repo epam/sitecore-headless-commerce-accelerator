@@ -20,6 +20,8 @@ import { NavigationLink } from 'ui/NavigationLink';
 import { Carousel } from './Carousel';
 import { RecommendedProductsProps, RecommendedProductsState } from './models';
 
+import {​​​​​​​​ Icon }​​​​​​​​ from 'components';
+
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
@@ -40,8 +42,8 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
 
         <Carousel
           className="gallery-thumbs"
-          buttonPreviousText={<i className="fa fa-angle-left" />}
-          buttonNextText={<i className="fa fa-angle-right" />}
+          buttonPreviousText={<Icon icon="icon-angle-left" />}
+          buttonNextText={<Icon icon="icon-angle-right" />}
           options={{
             breakpoints: {
               480: {

@@ -54,7 +54,7 @@ import { ProductsSearch } from 'ui/ProductsSearch';
 import { ProductShop } from 'ui/ProductShop';
 import { ProductVariants } from 'ui/ProductVariants';
 import { NoResultsFound } from 'ui/NoResultsFound';
-import { Advantages } from 'ui/Advantages/Component';
+import { Advantages } from 'ui/Advantages/Advantages';
 
 const components = new Map<string, any>();
 

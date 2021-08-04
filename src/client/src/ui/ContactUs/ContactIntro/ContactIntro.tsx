@@ -24,6 +24,8 @@ type ContactIntroProps = RenderingWithContext<ContactIntroDataSource>;
 
 export const ContactIntro: FC<ContactIntroProps> = (props) => {
   const { image, introLine } = props.fields;
+  image.value.height = '100%';
+  image.value.width = '100%';
 
   return (
     <div className="contact-area_content">

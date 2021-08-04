@@ -12,12 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
 import { LoadingStatus } from 'models';
-import { notify, notifySubscribed } from 'services/notifications';
+import { notifySubscribed } from 'services/notifications';
 
 import { StockStatus } from 'services/catalog';
 import { variants as Variants } from 'services/productVariant';
@@ -36,12 +36,9 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
   AddToCart,
   sitecoreContext,
   commerceUser,
-  wishlistStatus,
-  AddWishlistItem,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [displayNotifications, setDisplayNotifications] = useState(false);
 
   const variants = useSelector(Variants);
   const shoppingCartState = useSelector(ShoppingCart);
@@ -49,15 +46,6 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
   const [variant] = variants;
   const isLoading = shoppingCartState.status === LoadingStatus.Loading;
   const outOfStock = variant && variant.stockStatusName === StockStatus.OutOfStock;
-
-  useEffect(() => {
-    if (displayNotifications && wishlistStatus === LoadingStatus.Loaded) {
-      notify('success', 'Product added!');
-    }
-    if (displayNotifications && wishlistStatus === LoadingStatus.Failure) {
-      notify('success', 'Sorry, something went wrong');
-    }
-  }, [wishlistStatus]);
 
   const handleAddToCartClick = useCallback(() => {
     AddToCart({ productId, quantity, variantId: variant.variantId });
@@ -76,17 +64,6 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
       setDialogOpen(true);
     }
   }, [commerceUser]);
-
-  const handleAddToWishlistClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      AddWishlistItem(variant);
-      setDisplayNotifications(true);
-      e.currentTarget.classList.contains('add-wishlist-active')
-        ? e.currentTarget.classList.remove('add-wishlist-active')
-        : e.currentTarget.classList.add('add-wishlist-active');
-    },
-    [variant],
-  );
 
   const handleQuantityChange = useCallback(
     (newQuantity) => {
@@ -110,9 +87,6 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
         >
           {outOfStock ? 'Out of Stock' : 'Add to Cart'}
         </Button>
-        <button title="Add to Wishlist" onClick={handleAddToWishlistClick} className="btn btn-main btn-wishlist">
-          <Icon icon="icon-heart" />
-        </button>
         <a href="javascript:if(window.print)window.print()" title="Print button" className="btn btn-main btn-print">
           <Icon icon="icon-print" />
         </a>

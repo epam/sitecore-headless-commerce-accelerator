@@ -49,10 +49,8 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
                             </div>
                             <Text field={{ value: 'Address' }} tag="div" className="sub-title" />
                             <div className="sub-content">
-                              <span>
-                                {address.firstName} {address.lastName}
-                              </span>
-                              <span>{address.address1}</span>
+                              <span>{`${address.firstName} ${address.lastName}, `}</span>
+                              <span>{`${address.address1}, `}</span>
                               <span>
                                 {address.city}, {address.state} {address.zipPostalCode}
                               </span>
@@ -81,10 +79,8 @@ export class Confirmation extends Jss.SafePureComponent<ConfirmationProps, Confi
                             </div>
                             <Text field={{ value: 'Address' }} tag="div" className="sub-title" />
                             <div className="sub-content">
-                              <span>
-                                {address.firstName} {address.lastName}
-                              </span>
-                              <span>{address.address1}</span>
+                              <span>{`${address.firstName} ${address.lastName}, `}</span>
+                              <span>{`${address.address1}, `}</span>
                               <span>
                                 {address.city}, {address.state} {address.zipPostalCode}
                               </span>

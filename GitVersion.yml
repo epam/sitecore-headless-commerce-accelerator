@@ -1,6 +1,6 @@
 #Global
 mode: ContinuousDeployment
-#next-version: 4.0.1
+next-version: 4.0.0
 
 #Branches
 branches:

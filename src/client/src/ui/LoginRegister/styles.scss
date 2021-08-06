@@ -25,7 +25,8 @@ $login-register-form-indention: 15px;
   }
 
   &-FormWrapper {
-    width: 66%;
+    max-width: $container-sm;
+    width: 100%;
     background: transparent none repeat scroll 0 0;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
     padding: 80px;

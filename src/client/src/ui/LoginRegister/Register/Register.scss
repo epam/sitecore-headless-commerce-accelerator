@@ -22,6 +22,7 @@
 
   &-SocialButtons {
     display: flex;
+    justify-content: space-between;
 
     @media (max-width: $screen-sm-max) {
       display: block;
@@ -29,7 +30,8 @@
   }
 
   &-SocialButton {
-    margin: 0 10px 10px 10px;
+    width: 100%;
+    height: 100%;
 
     &_first {
       margin: 0 10px 10px 0;

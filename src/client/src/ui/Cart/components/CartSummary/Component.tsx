@@ -31,8 +31,9 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
   }
 
   public safeRender() {
-    const { UpdateCartLine, RemoveCartLine } = this.props;
     const { cartLines, isLoading, fallbackImageUrl } = this.props;
+    const { UpdateCartLine, RemoveCartLine } = this.props;
+
     return (
       <>
         {isLoading && (

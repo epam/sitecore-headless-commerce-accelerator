@@ -94,9 +94,11 @@
       background: transparent;
     }
 
-    &:hover [class*=' icon-'],
-    &:hover [class^='icon-'] {
-      color: $theme-color;
+    @media (hover) {
+      &:hover [class*=' icon-'],
+      &:hover [class^='icon-'] {
+        color: $theme-color;
+      }
     }
   }
 }

@@ -12,20 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-
-import * as ShoppingCart from 'services/shoppingCart';
-
-import { CartButtonComponent } from './Component';
-import { AppState } from './models';
-
-const mapStateToProps = (state: AppState) => {
-  const cartData = ShoppingCart.shoppingCartData(state);
-  const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
-
-  return {
-    cartQuantity,
-  };
-};
-
-export const CartButton = connect(mapStateToProps)(CartButtonComponent);
+export * from './CartButton';

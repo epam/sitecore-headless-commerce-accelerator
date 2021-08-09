@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,16 +12,23 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { useState, useEffect } from 'react';
 
-import { GlobalShoppingCartState } from 'services/shoppingCart';
+export const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+  });
 
-export interface CartButtonProps {
-  cartQuantity: number;
-}
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+      });
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-export interface CartButtonState extends JSS.SafePureComponentState {
-  cartVisible: boolean;
-}
-
-export interface AppState extends GlobalShoppingCartState {}
+  return windowSize;
+};

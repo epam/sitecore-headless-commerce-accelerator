@@ -88,14 +88,14 @@ $input-border-color: #e6e6e6;
     }
   }
 
+  &-HelperText {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
   &-Adornment {
     position: absolute;
     right: 1em;
     bottom: 0.3em;
-  }
-
-  &-HelperText {
-    margin-top: 3px;
-    font-size: 10px;
   }
 }

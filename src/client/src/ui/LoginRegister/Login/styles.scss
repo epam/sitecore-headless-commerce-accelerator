@@ -37,6 +37,7 @@
         }
       }
     }
+
     button {
       background-color: $login-button-default-color;
       border: none;
@@ -56,6 +57,7 @@
       }
     }
   }
+
   &_title-welcome {
     font-size: 35px;
     font-weight: 700;
@@ -66,6 +68,7 @@
     color: $theme-color;
     margin-left: 0px;
   }
+
   &_form-group {
     width: 100%;
     display: flex;

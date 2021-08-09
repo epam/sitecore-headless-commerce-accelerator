@@ -128,6 +128,7 @@ input[type='color']:focus,
   //outline: thin dotted;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
+
 input[type='radio'] {
   margin: 0;
   padding: 0;
@@ -148,6 +149,7 @@ input[type='radio'] {
       transition: background-color 0.2s ease-in;
     }
   }
+
   & + label:hover:before {
     background-color: $main-color-light;
   }

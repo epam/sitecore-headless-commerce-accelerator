@@ -141,8 +141,10 @@
 
       left: 15px;
     }
-    &:hover {
-      color: $theme-color;
+    @media (hover) {
+      &:hover {
+        color: $theme-color;
+      }
     }
     &.swiper-button-next {
       right: 80px;

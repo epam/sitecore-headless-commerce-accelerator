@@ -76,8 +76,10 @@
         &_number {
           margin-right: 25px;
         }
-        &:hover {
-          color: $theme-color;
+        @media (hover) {
+          &:hover {
+            color: $theme-color;
+          }
         }
       }
     }

@@ -12,6 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-export * from './useQueryWithSitecore';
-export * from './useSitecoreContext';
-export * from './useWindowSize';
+export const MOBILE_MAX_SCREEN_WIDTH = 1023;

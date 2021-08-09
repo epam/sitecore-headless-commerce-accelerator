@@ -68,13 +68,9 @@
         }
       }
       .navigation-buttons {
-        display: none;
         @media #{$header-switch-mobile-mode} {
           display: block;
         }
-      }
-      .navigation-buttons {
-        display: none;
       }
     }
     &:first-of-type .header_content.header-full-width {

@@ -140,7 +140,9 @@
           display: block;
           border-bottom: none;
           .navigation-buttons {
-            display: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
           }
         }
       }

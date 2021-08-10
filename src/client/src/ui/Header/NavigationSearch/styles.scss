@@ -108,6 +108,9 @@
 
   &_mobile {
     .search {
+      &_form {
+        width: 320px;
+      }
       input {
         font-size: 14px;
         display: block;

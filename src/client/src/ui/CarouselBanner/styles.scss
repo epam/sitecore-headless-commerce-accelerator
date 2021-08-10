@@ -146,6 +146,7 @@
         color: $theme-color;
       }
     }
+
     &.swiper-button-next {
       right: 80px;
       left: auto;
@@ -162,6 +163,9 @@
         right: 15px;
         font-size: 50px;
       }
+    }
+    &:active {
+      color: $theme-color;
     }
   }
 

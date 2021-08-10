@@ -81,6 +81,9 @@
             color: $theme-color;
           }
         }
+        & span:active {
+          color: $theme-color;
+        }
       }
     }
     &_main {

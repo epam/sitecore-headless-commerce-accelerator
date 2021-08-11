@@ -17,6 +17,8 @@ import * as React from 'react';
 import * as Jss from 'Foundation/ReactJss';
 import { NavigationLink } from 'ui/NavigationLink';
 
+import { Spinner } from 'components';
+
 import { Login } from './Login';
 import { Register } from './Register';
 import { LoginRegisterOwnState, LoginRegisterProps } from './models';
@@ -41,11 +43,16 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
 
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
-    const { commerceUser } = this.props;
+    const { commerceUser, isLoading } = this.props;
     const { isSignUp } = this.state;
 
     return (
       <section className="login-register">
+        {isLoading && (
+          <div className="lazyLoad_spinner" data-autotests="loading_spinner">
+            <Spinner className="Loading" />
+          </div>
+        )}
         {!!commerceUser && commerceUser.customerId ? (
           <div className="row login-register-content">
             <div className="col-md-12">

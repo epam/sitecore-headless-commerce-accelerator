@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3.9"
 services:
   traefik:
     hostname: traefik
@@ -149,6 +149,7 @@ services:
       - "traefik.http.routers.cm-secure.middlewares=force-STS-Header"
     volumes:
       - ${PATH_TO_DATA_FOLDER}\cm\domains-shared:C:\inetpub\wwwroot\App_Config\Security-Shared:RW
+    restart: unless-stopped
   xconnect:
     hostname: xconnect
     isolation: ${ISOLATION}

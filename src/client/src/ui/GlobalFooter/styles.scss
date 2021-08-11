@@ -27,7 +27,7 @@
     padding-top: 0;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: $screen-desktop) {
     .SocialNetworksLinks {
       align-items: flex-start;
     }
@@ -40,6 +40,12 @@
       .hca {
         display: flex;
         flex-direction: column;
+      }
+    }
+    @media (min-width: $screen-desktop) {
+      .col-md-3 {
+        display: flex;
+        justify-content: flex-end;
       }
     }
   }

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -48,6 +48,17 @@
         justify-content: flex-end;
       }
     }
+  }
+  .SocialNetworksLinks_alignItems_right {
+    display: inline-block;
+  }
+  .SocialNetworksLinks-List {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .SocialNetworksLinks-Item {
+    margin-right: 0;
   }
 }
 

@@ -36,7 +36,6 @@
 }
 
 .SocialNetworksLinks_alignItems_right {
-  display: inline-block;
   align-items: flex-end;
 
   .SocialNetworksLinks-Title {
@@ -62,11 +61,14 @@
 .SocialNetworksLinks-List {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .SocialNetworksLinks-List :last-child {
   margin-right: 0;
+}
+
+.SocialNetworksLinks-Item {
+  margin-right: 20px;
 }
 
 .SocialNetworksLinks-Item:hover {

@@ -256,6 +256,9 @@
         }
       }
     }
+    @media #{$lg-layout} {
+      margin-top: 40px;
+    }
   }
 
   .review-wrapper {

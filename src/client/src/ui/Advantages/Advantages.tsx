@@ -37,25 +37,32 @@ export const Advantages: FC<AdvantagesProps> = (props) => {
 
   const settings = {
     breakpoints: {
-      620: {
-        slidesPerView: 1,
-        spaceBetween: 20,
+      460: {
+        slidesPerView: 1.1,
       },
-      1023: {
-        slidesPerView: 2,
-        spaceBetween: 20,
+      650: {
+        slidesPerView: 1.5,
       },
-      1309: {
-        slidesPerView: 3,
-        spaceBetween: 20,
+      730: {
+        slidesPerView: 2.2,
       },
-      slidesPerView: 4,
-      spaceBetween: 0,
+      950: {
+        slidesPerView: 2.3,
+      },
+      1035: {
+        slidesPerView: 3.2,
+      },
+      1170: {
+        slidesPerView: 3.5,
+      },
     },
+    centerInsufficientSlides: true,
+    setWrapperSize: true,
+    slidesPerView: 4,
   };
 
   return (
-    <div className="container hca">
+    <div className={cnAdvantages()}>
       <List className={cnAdvantages('List')}>
         <Swiper {...settings}>
           {advantagesList.map((item: any) => {

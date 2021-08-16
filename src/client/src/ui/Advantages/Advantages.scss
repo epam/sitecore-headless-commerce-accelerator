@@ -15,13 +15,30 @@
 @import 'styles/variables';
 
 .Advantages {
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 1170px) {
+    max-width: 1000px;
+  }
+
+  @media (max-width: 950px) {
+    max-width: 700px;
+  }
+  @media (max-width: 650px) {
+    max-width: 470px;
+  }
+  @media (max-width: 460px) {
+    max-width: 350px;
+  }
+
   &-List {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 55px 0 90px;
-    width: 100%;
+    margin: 55px auto 90px;
   }
   &-ItemContainer {
     flex-shrink: inherit;
@@ -36,6 +53,11 @@
     padding: 30px 30px 0;
     color: black;
     transition: 1s;
+    margin-right: 20px;
+    @media (max-width: 370px) {
+      width: 260px;
+      padding: 25px 25px 0;
+    }
     @media (hover) {
       &:hover {
         filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));

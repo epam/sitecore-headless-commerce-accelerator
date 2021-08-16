@@ -41,6 +41,21 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
     this.setState({ isSignUp: currentForm === 'register' });
   }
 
+  public getCurrentForm() {
+    switch (this.props.currentForm) {
+      case 'register':
+        return <Register />;
+      case 'login':
+        return <Login />;
+      default:
+        return (
+          <div className="lazyLoad_spinner" data-autotests="loading_spinner">
+            <Spinner className="Loading" />
+          </div>
+        );
+    }
+  }
+
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
     const { commerceUser, isLoading } = this.props;
@@ -91,7 +106,7 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
                     register
                   </div>
                 </div>
-                {isSignUp ? <Register /> : <Login />}
+                {this.getCurrentForm()}
               </div>
             </div>
           </div>

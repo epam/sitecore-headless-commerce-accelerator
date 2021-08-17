@@ -22,7 +22,6 @@ export interface LoginRegisterStateProps {
   commerceUser: Commerce.User;
   currentForm: string;
   pathname: string;
-  isLoading: boolean;
 }
 
 export interface LoginRegisterDispatchProps {

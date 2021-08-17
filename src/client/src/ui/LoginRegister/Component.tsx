@@ -58,16 +58,11 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
 
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
-    const { commerceUser, isLoading } = this.props;
+    const { commerceUser } = this.props;
     const { isSignUp } = this.state;
 
     return (
       <section className="login-register">
-        {isLoading && (
-          <div className="lazyLoad_spinner" data-autotests="loading_spinner">
-            <Spinner className="Loading" />
-          </div>
-        )}
         {!!commerceUser && commerceUser.customerId ? (
           <div className="row login-register-content">
             <div className="col-md-12">

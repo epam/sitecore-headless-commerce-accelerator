@@ -137,6 +137,10 @@ Task("008-Build-Server-Code")
 Task("009-Create-SolrCores")
     .IsDependentOn(Solr.CreateCores)
     ;
+
+Task("010-Update-Solr-Schema")
+    .IsDependentOn(Solr.UpdateSchema)
+    ;
 	
 // //////////////////////////////////////////////////
 // Targets
@@ -191,6 +195,7 @@ Task("Generate-Client-Models")
 Task("Initial-Deploy")
     .IsDependentOn("007-Update-SolrConfig")
     .IsDependentOn("009-Create-SolrCores")
+    .IsDependentOn("010-Update-Solr-Schema")
     .IsDependentOn("Default")
     ;
 

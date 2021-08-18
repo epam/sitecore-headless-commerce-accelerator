@@ -26,6 +26,7 @@ public static class Solr
 
     public static CakeTaskBuilder AddSuggesterComponents { get; set; }
     public static CakeTaskBuilder CreateCores { get; set; }
+    public static CakeTaskBuilder UpdateSchema {get; set; }
 
     public static void InitParams(
         ICakeContext context,
@@ -87,6 +88,15 @@ public class HttpManager
     }
 
     public string Get(string url){
+        try
+        {
+            HttpClientAliases.HttpGet(Solr.Context, url);
+        }
+        catch (System.Exception)
+        {
+            return JsonConvert.SerializeObject(new {});
+        }
+        
         return HttpClientAliases.HttpGet(Solr.Context, url);
     }
 }
@@ -211,4 +221,62 @@ Solr.CreateCores = Task("Solr :: Create Cores")
         Information($"\tExecuting request to: {populateManagedSchemaUrl}");
         HttpManager.Get(populateManagedSchemaUrl);
     });
-                
+
+Solr.UpdateSchema = Task("Solr :: Update Schema")
+    .Does(()=>
+    {
+        Sitecore.Utils.AssertIfNullOrEmpty(Solr.VagrantIP, "VagrantIP", "VAGRANT_IP");
+        Sitecore.Utils.AssertIfNullOrEmpty(Solr.SolrPort, "SolrPort", "SOLR_PORT");
+        Sitecore.Utils.AssertIfNullOrEmpty(Solr.SolrCore, "SolrCore", "SOLR_CORE");
+
+        var HttpManager = new HttpManager();
+
+        var solrSchemaUrl = $"https://{Solr.VagrantIP}:{Solr.SolrPort}/solr/{Solr.SolrCore}/schema";
+        var solrReloadCoreUrl = $"https://{Solr.VagrantIP}:{Solr.SolrPort}/solr/admin/cores?action=RELOAD&core={Solr.SolrCore}";
+        string fieldTypeName = "search_string";
+        string dynamicFieldName = "*_s";
+
+        string jsonFildType = JsonConvert.SerializeObject(new
+            {
+                name = fieldTypeName,
+                @class = "solr.TextField",
+                analyzer = new
+                {
+                    tokenizer = new
+                    {
+                        @class = "solr.KeywordTokenizerFactory"
+                    },
+                    filters = new[]
+                    {
+                        new { @class = "solr.TrimFilterFactory" }
+                    }
+                }
+            });           
+
+        string jsonDynamicField = JsonConvert.SerializeObject(new
+            {
+                name = dynamicFieldName,
+                type = fieldTypeName,
+                indexed = true,
+                stored = true
+            });
+
+        ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+        string dynamicFieldResponse = HttpManager.Get($"{solrSchemaUrl}/dynamicfields/{dynamicFieldName}");
+        string searchStringResponse = HttpManager.Get($"{solrSchemaUrl}/fieldtypes/{fieldTypeName}");
+
+        JObject dynamicFieldComponent = JsonConvert.DeserializeObject<JObject>(dynamicFieldResponse);
+        JObject searchStringComponent = JsonConvert.DeserializeObject<JObject>(searchStringResponse);
+        
+        var add_update_field_type = searchStringComponent["fieldType"].HasValues
+            ? HttpManager.Post(solrSchemaUrl, "replace-field-type", jsonFildType)
+            : HttpManager.Post(solrSchemaUrl, "add-field-type", jsonFildType);
+
+        var add_update_dynamic_field = dynamicFieldComponent["dynamicField"].HasValues
+            ? HttpManager.Post(solrSchemaUrl, "replace-dynamic-field", jsonDynamicField)
+            : HttpManager.Post(solrSchemaUrl, "add-dynamic-field", jsonDynamicField);     
+
+        Information($"Executing request to: {solrReloadCoreUrl}");
+        HttpManager.Get(solrReloadCoreUrl);
+    });

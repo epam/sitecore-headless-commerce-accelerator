@@ -44,7 +44,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
           <Placeholder name="contact-intro" rendering={this.props.rendering} />
         </div>
         <div className="contact-area_content_container row">
-          <div className="contact-area_content col-lg-4 col-md-5">
+          <div className="contact-area_content col-lg-4 col-md-6">
             <div className="contact-area_content_info">
               <div className="single-contact-info">
                 <div className="contact-icon">
@@ -96,7 +96,7 @@ export class ContactUsComponent extends JSS.SafePureComponent<ContactUsProps, Co
               </div>
             </div>
           </div>
-          <div className="contact-area_content col-lg-8 col-md-7">
+          <div className="contact-area_content col-lg-8 col-md-6">
             <Placeholder name="get-in-touch-form" rendering={this.props.rendering} />
           </div>
         </div>

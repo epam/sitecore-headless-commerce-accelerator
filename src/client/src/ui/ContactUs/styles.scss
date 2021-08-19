@@ -55,7 +55,9 @@
       background-color: $contact-information-panel-background-color;
       display: flex;
       flex-direction: column;
-
+      @media (max-width: $screen-sm-max) {
+        padding: 120px 30px 116px 30px;
+      }
       @media #{$md-layout} {
         margin-top: 20px;
         margin-bottom: 30px;
@@ -109,8 +111,10 @@
 
 .ContactUs-SocialNetworksLinks {
   margin-top: 58px;
-
-  @media (max-width: 1024px) {
+  @media #{$pdp-md-switch-layout} {
+    margin: 58px auto 0;
+  }
+  @media (max-width: 992px) {
     .SocialNetworksLinks {
       align-items: flex-start;
     }

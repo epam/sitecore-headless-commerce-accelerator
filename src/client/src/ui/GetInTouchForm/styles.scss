@@ -17,7 +17,9 @@
 .contact-area_content_form {
   padding: 50px 110px;
   height: 100%;
-
+  @media (max-width: $screen-sm-max) {
+    padding: 50px 30px;
+  }
   @media (max-width: $screen-sm) {
     padding: 50px 30px !important;
   }

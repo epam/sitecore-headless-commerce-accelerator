@@ -20,12 +20,13 @@ namespace HCA.Foundation.Commerce.Builders.Search
 
     using DependencyInjection;
 
-    using Foundation.Search.Models.Common;
+    using Foundation.Search.Providers;
 
     using Mappers.Search;
 
     using Models.Entities.Search;
 
+    using Sitecore.Data;
     using Sitecore.Diagnostics;
     using Facet = Models.Entities.Search.Facet;
 
@@ -33,24 +34,35 @@ namespace HCA.Foundation.Commerce.Builders.Search
 
     using SortDirection = Models.Entities.Search.SortDirection;
 
-    [Service(typeof(ISearchOptionsBuilder), Lifetime = Lifetime.Singleton)]
-    public class SearchOptionsBuilder : ISearchOptionsBuilder
+    /// <summary>
+    /// Merges product search options with predefined search settings 
+    /// </summary>
+    [Service(typeof(ISearchOptionsConverter), Lifetime = Lifetime.Singleton)]
+    public class SettingsSearchOptionsConverter : ISearchOptionsConverter
     {
         private readonly ISearchMapper searchMapper;
+        private readonly ISearchSettingsProvider searchSettingsProvider;
 
-        public SearchOptionsBuilder(ISearchMapper searchMapper)
+        public SettingsSearchOptionsConverter(ISearchMapper searchMapper, ISearchSettingsProvider searchSettingsProvider)
         {
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
-            this.searchMapper = searchMapper;
-        }
+            Assert.ArgumentNotNull(searchSettingsProvider, nameof(searchSettingsProvider));
 
-        public Search.ProductSearchOptions Build(SearchSettings searchSettings, ProductSearchOptions searchOptions)
+            this.searchMapper = searchMapper;
+            this.searchSettingsProvider = searchSettingsProvider;
+        }
+        
+        public Search.ProductSearchOptions Convert(ProductSearchOptions searchOptions)
         {
-            Assert.ArgumentNotNull(searchSettings, nameof(searchSettings));
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
 
+            var settingsItem = searchOptions.CategoryId != Guid.Empty
+                ? Sitecore.Context.Database.GetItem(new ID(searchOptions.CategoryId))
+                : null;
+            var searchSettings = this.searchSettingsProvider.GetSearchSettings(settingsItem);
+
             if (!string.IsNullOrWhiteSpace(searchOptions.SortField)
-                && !searchSettings.SortFieldNames.Contains(
+                && searchSettings != null && !searchSettings.SortFieldNames.Contains(
                     searchOptions.SortField,
                     StringComparer.InvariantCultureIgnoreCase))
             {
@@ -60,7 +72,7 @@ namespace HCA.Foundation.Commerce.Builders.Search
             return new Search.ProductSearchOptions
             {
                 SearchKeyword = searchOptions.SearchKeyword,
-                Facets = this.GetFacetsIntersection(searchSettings.Facets, searchOptions.Facets),
+                Facets = this.GetFacetsIntersection(searchSettings?.Facets, searchOptions.Facets),
                 StartPageIndex = searchOptions.PageNumber,
                 NumberOfItemsToReturn =
                     searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage,
@@ -78,6 +90,12 @@ namespace HCA.Foundation.Commerce.Builders.Search
             IEnumerable<Foundation.Search.Models.Common.Facet> searchSettingsFacets,
             IEnumerable<Facet> searchOptionsFacets)
         {
+            if (searchSettingsFacets == null)
+            {
+                return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(
+                    searchOptionsFacets);
+            }
+
             if (searchOptionsFacets == null || !searchOptionsFacets.Any())
             {
                 return searchSettingsFacets;

@@ -87,7 +87,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             // arrange
             var dbItem = this.InitializeBaseProductItem();
 
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             using (var db = new Db
             {
@@ -121,7 +121,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
         {
             // arrange
             var product = this.Fixture.Create<TestBaseProduct>();
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             // act
             var exception = Record.Exception(() => builder.SetPrices(product, prices));
@@ -145,7 +145,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
                 { product.Id, price }
             };
 
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             // act
             builder.SetPrices(product, prices);
@@ -162,7 +162,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
         {
             // arrange
             var prices = this.Fixture.Create<Dictionary<string, Price>>();
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             // act
             var exception = Record.Exception(() => builder.SetPrices(product, prices));
@@ -178,7 +178,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             StockInformation stockInformation)
         {
             // arrange
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             // act
             var exception = Record.Exception(() => builder.SetStockStatus(product, stockInformation));
@@ -199,7 +199,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
                     Arg.Any<Sitecore.Commerce.Entities.Inventory.StockStatus>())
                 .Returns(stockStatus);
 
-            var builder = new TestBaseProductBuilder(this.CatalogContext, this.CatalogMapper);
+            var builder = new TestBaseProductConverter(this.CatalogContext, this.CatalogMapper);
 
             // act
             builder.SetStockStatus(product, stockInformation);
@@ -226,9 +226,9 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             };
         }
 
-        private class TestBaseProductBuilder : BaseProductBuilder
+        private class TestBaseProductConverter : BaseProductConverter
         {
-            public TestBaseProductBuilder(ICatalogContext catalogContext, ICatalogMapper catalogMapper) : base(
+            public TestBaseProductConverter(ICatalogContext catalogContext, ICatalogMapper catalogMapper) : base(
                 catalogContext,
                 catalogMapper)
             {

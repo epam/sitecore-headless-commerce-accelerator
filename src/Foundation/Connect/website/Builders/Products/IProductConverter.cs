@@ -21,25 +21,25 @@ namespace HCA.Foundation.Connect.Builders.Products
     using Sitecore.Data.Items;
 
     /// <summary>
-    /// Builds product entities from TSource
+    /// Convert to product entities from TSource
     /// </summary>
     /// <typeparam name="TSource"></typeparam>
-    public interface IProductBuilder<in TSource>
+    public interface IProductConverter<in TSource>
         where TSource : class
     {
         /// <summary>
-        /// Builds product entity from TSource
+        /// Creates product entity from TSource
         /// </summary>
         /// <param name="source">Source model</param>
         /// <returns></returns>
-        Product Build(TSource source);
+        Product Convert(TSource source);
 
         /// <summary>
-        /// Builds enumerable of product entities from TSource
+        /// Creates enumerable of product entities from TSource
         /// </summary>
         /// <param name="sources">Source model</param>
         /// <param name="includeVariants">Include variants</param>
         /// <returns></returns>
-        IEnumerable<Product> Build(IEnumerable<Item> sources, bool includeVariants);
+        IEnumerable<Product> Convert(IEnumerable<Item> sources, bool includeVariants);
     }
 }

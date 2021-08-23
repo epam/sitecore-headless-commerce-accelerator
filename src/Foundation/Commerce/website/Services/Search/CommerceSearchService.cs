@@ -51,68 +51,38 @@ namespace HCA.Foundation.Commerce.Services.Search
 
         private readonly ICategorySearchService categorySearchService;
 
-        private readonly ISearchMapper searchMapper;
+        private readonly ISearchOptionsConverter searchOptionsConverter;
 
-        private readonly ISearchOptionsBuilder searchOptionsBuilder;
-
-        private readonly ISearchSettingsProvider searchSettingsProvider;
-
-        private readonly ICatalogContext catalogContext;
-
-        private readonly IProductBuilder<Item> productBuilder;
+        private readonly ISearchResultsConverter searchResultsConverter;
 
         public CommerceSearchService(
-            ISearchSettingsProvider searchSettingsProvider,
-            ICatalogContext catalogContext,
-            ISearchOptionsBuilder searchOptionsBuilder,
+            ISearchOptionsConverter searchOptionsConverter,
             IProductSearchService productSearchService,
             ICategorySearchService categorySearchService,
-            ISearchMapper searchMapper,
-            IProductBuilder<Item> productBuilder)
+            ISearchResultsConverter searchResultsConverter)
         {
-            Assert.ArgumentNotNull(searchSettingsProvider, nameof(searchSettingsProvider));
-            Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
-            Assert.ArgumentNotNull(searchOptionsBuilder, nameof(searchOptionsBuilder));
+            Assert.ArgumentNotNull(searchOptionsConverter, nameof(searchOptionsConverter));
             Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
             Assert.ArgumentNotNull(categorySearchService, nameof(categorySearchService));
-            Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
-            Assert.ArgumentNotNull(productBuilder, nameof(productBuilder));
-
-            this.searchSettingsProvider = searchSettingsProvider;
-            this.catalogContext = catalogContext;
-            this.searchOptionsBuilder = searchOptionsBuilder;
+            Assert.ArgumentNotNull(searchResultsConverter, nameof(searchResultsConverter));
+            
+            this.searchOptionsConverter = searchOptionsConverter;
             this.productSearchService = productSearchService;
             this.categorySearchService = categorySearchService;
-            this.searchMapper = searchMapper;
-            this.productBuilder = productBuilder;
+            this.searchResultsConverter = searchResultsConverter;
         }
-
+        
         public Result<ProductSearchResults> GetProducts(Models.Entities.Search.ProductSearchOptions productSearchOptions)
         {
             Assert.ArgumentNotNull(productSearchOptions, nameof(productSearchOptions));
-
-            var catalog = productSearchOptions.CategoryId == Guid.Empty
-                ? this.catalogContext.CatalogItem
-                : Sitecore.Context.Database.GetItem(new ID(productSearchOptions.CategoryId));
             
-            var searchSettings = this.searchSettingsProvider.GetSearchSettings(catalog);
-            var searchOptions = this.searchOptionsBuilder.Build(searchSettings, productSearchOptions);
+            var searchOptions = this.searchOptionsConverter.Convert(productSearchOptions);
             var searchResults = this.productSearchService.GetSearchResults(searchOptions);
 
-            var results = new Result<ProductSearchResults>(
-                this.searchMapper.Map<SearchResults<Item>, ProductSearchResults>(searchResults))
-            {
-                Data =
-                {
-                    Products = this.searchMapper.Map<List<Connect.Models.Catalog.Product>, List<Product>>(
-                        this.productBuilder.Build(searchResults.Results, true).ToList())
-                }
-            };
-
-
-            return results;
+            return new Result<ProductSearchResults>(this.searchResultsConverter.Convert(searchResults));
         }
 
+        
         public Item GetCategoryByName(string categoryName)
         {
             Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));

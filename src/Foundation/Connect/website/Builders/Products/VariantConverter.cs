@@ -29,9 +29,9 @@ namespace HCA.Foundation.Connect.Builders.Products
     using Sitecore.Diagnostics;
 
     [Service(typeof(IVariantBuilder<Item>), Lifetime = Lifetime.Singleton)]
-    public class VariantBuilder : BaseProductBuilder, IVariantBuilder<Item>
+    public class VariantConverter : BaseProductConverter, IVariantBuilder<Item>
     {
-        public VariantBuilder(
+        public VariantConverter(
             ICatalogContext catalogContext,
             ICatalogMapper catalogMapper) : base(catalogContext, catalogMapper)
         {

@@ -15,6 +15,7 @@
 namespace HCA.Foundation.Search.Providers
 {
     using Models.Common;
+    using Models.Entities.Product;
 
     using Sitecore.Data.Items;
 
@@ -24,10 +25,9 @@ namespace HCA.Foundation.Search.Providers
     public interface ISearchSettingsProvider
     {
         /// <summary>
-        /// Gets search settings from current context Sitecore Catalog item or category item if specified
+        /// Gets predefined search settings from Sitecore item or from context
         /// </summary>
-        /// <param name="catalog">Catalog item</param>
         /// <returns>Search settings</returns>
-        SearchSettings GetSearchSettings(Item catalog);
+        SearchSettings GetSearchSettings(Item settings = null);
     }
 }

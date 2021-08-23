@@ -616,8 +616,8 @@
     <Compile Include="Builders\Cart\ICartBuilder.cs" />
     <Compile Include="Builders\Order\OrderBuilder.cs" />
     <Compile Include="Builders\Order\IOrderBuilder.cs" />
-    <Compile Include="Builders\Search\ISearchOptionsBuilder.cs" />
-    <Compile Include="Builders\Search\SearchOptionsBuilder.cs" />
+    <Compile Include="Builders\Search\ISearchOptionsConverter.cs" />
+    <Compile Include="Builders\Search\SettingsSearchOptionsConverter.cs" />
     <Compile Include="Builders\Search\ISuggestionOptionsBuilder.cs" />
     <Compile Include="Builders\Search\SuggestionOptionsBuilder.cs" />
     <Compile Include="Configuration\Models\SuggesterConfiguration.cs" />
@@ -728,6 +728,8 @@
     <Compile Include="Services\Cart\CartService.cs" />
     <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Billing\BillingService.cs" />
+    <Compile Include="Services\Search\ISearchResultsConverter.cs" />
+    <Compile Include="Services\Search\SearchResultsConverter.cs" />
     <Compile Include="Services\Order\OrderService.cs" />
     <Compile Include="Services\Delivery\DeliveryService.cs" />
     <Compile Include="Services\Billing\IBillingService.cs" />

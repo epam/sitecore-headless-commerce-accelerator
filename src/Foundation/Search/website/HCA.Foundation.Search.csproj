@@ -714,7 +714,6 @@
     <Compile Include="Models\Entities\SearchResultItem.cs" />
     <Compile Include="Providers\SearchResponseProvider.cs" />
     <Compile Include="Providers\SearchResultProvider.cs" />
-    <Compile Include="Providers\SearchSettingsProvider.cs" />
     <Compile Include="Providers\SuggestionResultProvider.cs" />
     <Compile Include="Mappers\ISearchMapper.cs" />
     <Compile Include="Mappers\ISuggestionMapper.cs" />

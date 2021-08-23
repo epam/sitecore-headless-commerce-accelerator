@@ -35,7 +35,7 @@ namespace HCA.Foundation.Connect.Builders.Products
     using Sitecore.Diagnostics;
 
     [Service(typeof(IProductConverter<Item>), Lifetime = Lifetime.Singleton)]
-    public class ProductConverter : BaseProductBuilder, IProductConverter<Item>
+    public class ProductConverter : BaseProductConverter, IProductConverter<Item>
     {
         private static readonly string[] PriceTypes =
         {
@@ -68,7 +68,7 @@ namespace HCA.Foundation.Connect.Builders.Products
             this.storefrontContext = storefrontContext;
         }
 
-        public Product Build(Item source)
+        public Product Convert(Item source)
         {
             Assert.ArgumentNotNull(source, nameof(source));
 
@@ -79,7 +79,7 @@ namespace HCA.Foundation.Connect.Builders.Products
             return product;
         }
 
-        public IEnumerable<Product> Build(IEnumerable<Item> sources, bool includeVariants = false)
+        public IEnumerable<Product> Convert(IEnumerable<Item> sources, bool includeVariants = false)
         {
             Assert.ArgumentNotNull(sources, nameof(sources));
 

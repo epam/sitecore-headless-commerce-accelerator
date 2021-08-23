@@ -44,23 +44,23 @@ namespace HCA.Foundation.Commerce.Services.Catalog
         private readonly ICatalogMapper catalogMapper;
         private readonly ICommerceSearchService commerceSearchService;
         private readonly ISiteContext siteContext;
-        private readonly IProductBuilder<Item> productBuilder;
+        private readonly IProductConverter<Item> productConverter;
 
         public CatalogService(
             ISiteContext siteContext,
             ICatalogMapper catalogMapper,
             ICommerceSearchService commerceSearchService,
-            IProductBuilder<Item> productBuilder)
+            IProductConverter<Item> productConverter)
         {
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
             Assert.ArgumentNotNull(commerceSearchService, nameof(commerceSearchService));
-            Assert.ArgumentNotNull(productBuilder, nameof(productBuilder));
+            Assert.ArgumentNotNull(productConverter, nameof(productConverter));
 
             this.siteContext = siteContext;
             this.catalogMapper = catalogMapper;
             this.commerceSearchService = commerceSearchService;
-            this.productBuilder = productBuilder;
+            this.productConverter = productConverter;
         }
 
         public Result<Product> GetProduct(string productId)
@@ -74,7 +74,7 @@ namespace HCA.Foundation.Commerce.Services.Catalog
                 };
             }
 
-            var product = this.productBuilder.Build(item);
+            var product = this.productConverter.Convert(item);
             return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
         }
 
@@ -86,7 +86,7 @@ namespace HCA.Foundation.Commerce.Services.Catalog
                 return new Result<Product>(null);
             }
 
-            var product = this.productBuilder.Build(item);
+            var product = this.productConverter.Convert(item);
             return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
         }
 

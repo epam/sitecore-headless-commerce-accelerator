@@ -28,13 +28,13 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
 
     public class VariantBuilderTests : BaseProductBuilderTests
     {
-        private readonly VariantBuilder variantBuilder;
+        private readonly VariantConverter variantConverter;
 
         private readonly Dictionary<string, string> variantProperties;
 
         public VariantBuilderTests()
         {
-            this.variantBuilder = new VariantBuilder(this.CatalogContext, this.CatalogMapper);
+            this.variantConverter = new VariantConverter(this.CatalogContext, this.CatalogMapper);
 
             this.variantProperties = new Dictionary<string, string>();
             this.variantProperties.Add(this.Fixture.Create<string>(), this.Fixture.Create<string>());
@@ -55,7 +55,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
                 var item = db.GetItem(dbItem.ID);
 
                 // act
-                var variants = this.variantBuilder.Build(
+                var variants = this.variantConverter.Build(
                         new List<Item>
                         {
                             item

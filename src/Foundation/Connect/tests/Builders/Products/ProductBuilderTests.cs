@@ -41,7 +41,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
     {
         private readonly IInventoryManager inventoryManager;
         private readonly IPricingManager pricingManager;
-        private readonly ProductBuilder productBuilder;
+        private readonly ProductConverter productConverter;
         private readonly IVariantBuilder<Item> variantBuilder;
         private readonly IStorefrontContext storefrontContext;
 
@@ -74,7 +74,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
                     Arg.Any<StockDetailsLevel>())
                 .Returns(this.getStockInformationResult);
 
-            this.productBuilder = new ProductBuilder(
+            this.productConverter = new ProductConverter(
                 this.variantBuilder,
                 this.CatalogContext,
                 this.pricingManager,
@@ -99,7 +99,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
                 var item = db.GetItem(dbItem.ID);
 
                 // act
-                var product = this.productBuilder.Build(item);
+                var product = this.productConverter.Convert(item);
 
                 // assert
                 Assert.NotNull(product);
@@ -124,7 +124,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             var items = this.Fixture.Create<List<Item>>();
 
             // act
-            var products = this.productBuilder.Build(items, false).ToList();
+            var products = this.productConverter.Convert(items, false).ToList();
 
             // assert
             Assert.NotNull(products);
@@ -147,7 +147,7 @@ namespace HCA.Foundation.Connect.Tests.Builders.Products
             var items = this.Fixture.Create<List<Item>>();
 
             // act
-            var products = this.productBuilder.Build(items, true).ToList();
+            var products = this.productConverter.Convert(items, true).ToList();
 
             // assert
             Assert.NotNull(products);

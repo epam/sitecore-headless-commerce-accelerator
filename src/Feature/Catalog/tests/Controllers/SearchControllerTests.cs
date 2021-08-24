@@ -22,6 +22,7 @@ namespace HCA.Feature.Catalog.Tests.Controllers
     using Foundation.Base.Models.Result;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
+    using Foundation.Commerce.Services.Search.Commerce;
 
     using Models.Requests.Search;
 
@@ -33,7 +34,7 @@ namespace HCA.Feature.Catalog.Tests.Controllers
     {
         private readonly SearchController controller;
 
-        private readonly ICommerceSearchService commerceSearchService;
+        private readonly IProductSearchService productSearchService;
 
         private readonly IProductSuggestionService productSuggestionService;
 
@@ -41,11 +42,11 @@ namespace HCA.Feature.Catalog.Tests.Controllers
 
         public SearchControllerTests()
         {
-            this.commerceSearchService = Substitute.For<ICommerceSearchService>();
+            this.productSearchService = Substitute.For<IProductSearchService>();
             this.productSuggestionService = Substitute.For<IProductSuggestionService>();
             this.searchMapper = Substitute.For<ISearchMapper>();
 
-            this.controller = Substitute.For<SearchController>(this.commerceSearchService, this.productSuggestionService, this.searchMapper);
+            this.controller = Substitute.For<SearchController>(this.productSearchService, this.productSuggestionService, this.searchMapper);
         }
 
         [Fact]

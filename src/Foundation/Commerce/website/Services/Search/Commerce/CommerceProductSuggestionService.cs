@@ -12,13 +12,11 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Services.Search
+namespace HCA.Foundation.Commerce.Services.Search.Commerce
 {
     using Base.Models.Result;
 
     using Builders.Search;
-
-    using DependencyInjection;
 
     using Foundation.Search.Services.Product;
 
@@ -28,8 +26,7 @@ namespace HCA.Foundation.Commerce.Services.Search
 
     using Sitecore.Diagnostics;
 
-    [Service(typeof(IProductSuggestionService), Lifetime = Lifetime.Singleton)]
-    public class ProductSuggestionService : IProductSuggestionService
+    public class CommerceProductSuggestionService : IProductSuggestionService
     {
         private readonly ISuggestionService suggestionService;
 
@@ -37,7 +34,7 @@ namespace HCA.Foundation.Commerce.Services.Search
 
         private readonly IProductSuggestionProvider productSuggestionProvider;
 
-        public ProductSuggestionService(
+        public CommerceProductSuggestionService(
             ISuggestionService suggestionService,
             ISuggestionOptionsBuilder suggestionOptionsBuilder,
             IProductSuggestionProvider productSuggestionProvider)

@@ -726,10 +726,11 @@
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Services\Product\IProductSearchService.cs" />
     <Compile Include="Services\Product\ISuggestionService.cs" />
-    <Compile Include="Services\Product\ProductSearchService.cs" />
+    <Compile Include="Services\Product\CommerceProductSearchService.cs" />
     <Compile Include="Services\Product\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Search.Provider.Sitecore.Services.config" />
     <None Include="packages.config" />
     <None Include="web.config" />
     <None Include="web.Debug.config">

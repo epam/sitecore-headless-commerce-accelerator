@@ -37,35 +37,36 @@ namespace HCA.Foundation.Commerce.Services.Catalog
     using Search;
 
     using Connect = Connect.Models.Catalog;
+    using IProductSearchService = Search.IProductSearchService;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService
     {
         private readonly ICatalogMapper catalogMapper;
-        private readonly ICommerceSearchService commerceSearchService;
+        private readonly IProductSearchService productSearchService;
         private readonly ISiteContext siteContext;
         private readonly IProductConverter<Item> productConverter;
 
         public CatalogService(
             ISiteContext siteContext,
             ICatalogMapper catalogMapper,
-            ICommerceSearchService commerceSearchService,
+            IProductSearchService productSearchService,
             IProductConverter<Item> productConverter)
         {
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
-            Assert.ArgumentNotNull(commerceSearchService, nameof(commerceSearchService));
+            Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
             Assert.ArgumentNotNull(productConverter, nameof(productConverter));
 
             this.siteContext = siteContext;
             this.catalogMapper = catalogMapper;
-            this.commerceSearchService = commerceSearchService;
+            this.productSearchService = productSearchService;
             this.productConverter = productConverter;
         }
 
         public Result<Product> GetProduct(string productId)
         {
-            var item = this.commerceSearchService.GetProductByName(productId);
+            var item = this.productSearchService.GetProductByName(productId);
             if (item == null)
             {
                 return new Result<Product>(new Product(), new List<string>() { "Product Not Found." })

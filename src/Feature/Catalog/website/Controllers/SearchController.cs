@@ -19,6 +19,7 @@ namespace HCA.Feature.Catalog.Controllers
     using Foundation.Base.Controllers;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
+    using Foundation.Commerce.Services.Search.Commerce;
 
     using Mappers;
 
@@ -28,19 +29,19 @@ namespace HCA.Feature.Catalog.Controllers
 
     public class SearchController : BaseController
     {
-        private readonly ICommerceSearchService commerceSearchService;
+        private readonly IProductSearchService productSearchService;
 
         private readonly IProductSuggestionService productSuggestionService;
 
         private readonly ISearchMapper searchMapper;
 
-        public SearchController(ICommerceSearchService commerceSearchService, IProductSuggestionService productSuggestionService, ISearchMapper searchMapper)
+        public SearchController(IProductSearchService productSearchService, IProductSuggestionService productSuggestionService, ISearchMapper searchMapper)
         {
-            Assert.ArgumentNotNull(commerceSearchService, nameof(commerceSearchService));
+            Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
             Assert.ArgumentNotNull(productSuggestionService, nameof(productSuggestionService));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
-            this.commerceSearchService = commerceSearchService;
+            this.productSearchService = productSearchService;
             this.productSuggestionService = productSuggestionService;
             this.searchMapper = searchMapper;
         }
@@ -54,7 +55,7 @@ namespace HCA.Feature.Catalog.Controllers
                 {
                     var searchOptions =
                         this.searchMapper.Map<ProductsSearchRequest, ProductSearchOptions>(searchRequest);
-                    return this.commerceSearchService.GetProducts(searchOptions);
+                    return this.productSearchService.GetProducts(searchOptions);
                 });
         }
 

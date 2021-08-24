@@ -25,6 +25,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using Providers;
 
     using Services.Search;
+    using Services.Search.Commerce;
 
     using Sitecore;
     using Sitecore.Data.Items;
@@ -35,19 +36,19 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     {
         private readonly IPageTypeProvider pageTypeProvider;
 
-        private readonly ICommerceSearchService commerceSearchService;
+        private readonly IProductSearchService productSearchService;
 
         private readonly ISiteContext siteContext;
 
         private readonly ISiteDefinitionsProvider siteDefinitionsProvider;
 
         public CatalogItemResolver(
-            ICommerceSearchService commerceSearchService,
+            IProductSearchService productSearchService,
             IPageTypeProvider pageTypeProvider,
             ISiteDefinitionsProvider siteDefinitionsProvider,
             ISiteContext siteContext)
         {
-            this.commerceSearchService = commerceSearchService;
+            this.productSearchService = productSearchService;
             this.pageTypeProvider = pageTypeProvider;
             this.siteDefinitionsProvider = siteDefinitionsProvider;
             this.siteContext = siteContext;
@@ -107,11 +108,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
             switch (contextItemType)
             {
                 case Commerce.Constants.ItemType.Category:
-                    currentItem = this.commerceSearchService.GetCategoryByName(itemName);
+                    currentItem = this.productSearchService.GetCategoryByName(itemName);
                     this.siteContext.CurrentCategoryItem = currentItem;
                     break;
                 case Commerce.Constants.ItemType.Product:
-                    currentItem = this.commerceSearchService.GetProductByName(itemName);
+                    currentItem = this.productSearchService.GetProductByName(itemName);
                     this.siteContext.CurrentProductItem = currentItem;
                     break;
                 default:

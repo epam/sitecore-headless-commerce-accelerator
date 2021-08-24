@@ -15,9 +15,7 @@
 namespace HCA.Foundation.Search.Services.Product
 {
     using Builders.Product;
-
-    using DependencyInjection;
-
+    
     using Mappers;
 
     using Models.Common;
@@ -29,9 +27,8 @@ namespace HCA.Foundation.Search.Services.Product
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    [Service(typeof(IProductSearchService), Lifetime = Lifetime.Singleton)]
-    public class ProductSearchService : IProductSearchService
+    
+    public class CommerceProductSearchService : IProductSearchService
     {
         private readonly IProductSearchQueryBuilder queryBuilder;
 
@@ -41,7 +38,7 @@ namespace HCA.Foundation.Search.Services.Product
 
         private readonly ISearchResultProvider searchResultProvider;
 
-        public ProductSearchService(
+        public CommerceProductSearchService(
             ISearchMapper searchMapper,
             ISearchResponseProvider searchResponseProvider,
             ISearchResultProvider searchResultProvider,

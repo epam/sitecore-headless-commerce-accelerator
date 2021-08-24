@@ -74,12 +74,9 @@ $button-search-cancel-border-color: #e6e6e6;
       height: 43px;
       color: #333;
       margin-bottom: 0;
-      box-shadow: none;
-      -webkit-box-shadow: none;
 
       &:focus {
-        box-shadow: none;
-        -webkit-box-shadow: none;
+        border: 1px solid #a03bff;
       }
     }
   }

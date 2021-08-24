@@ -336,8 +336,8 @@
       font-family: $poppins;
 
       &:focus {
-        box-shadow: none;
-        -webkit-box-shadow: none;
+        border: 1px solid #a03bff;
+        box-sizing: border-box;
       }
     }
   }

@@ -34,8 +34,6 @@ $input-border-color: #e6e6e6;
 
       &:focus {
         border-color: #e9322d;
-        box-shadow: 0 0 8px #f8b9b7;
-        -webkit-box-shadow: 0 0 6px #f8b9b7;
       }
     }
     .Input-HelperText {
@@ -81,9 +79,7 @@ $input-border-color: #e6e6e6;
     transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
 
     &:focus {
-      border-color: rgba(82, 168, 236, 0.8);
-      box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
-      -webkit-box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
+      border: 1px solid #a03bff;
       outline: none;
     }
   }

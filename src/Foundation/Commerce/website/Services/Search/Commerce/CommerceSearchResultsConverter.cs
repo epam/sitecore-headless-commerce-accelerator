@@ -1,11 +1,9 @@
-﻿namespace HCA.Foundation.Commerce.Services.Search
+﻿namespace HCA.Foundation.Commerce.Services.Search.Commerce
 {
     using System.Collections.Generic;
     using System.Linq;
-    
-    using Connect.Builders.Products;
 
-    using DependencyInjection;
+    using Connect.Builders.Products;
 
     using Foundation.Search.Models.Common;
 
@@ -16,14 +14,13 @@
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    
-    [Service(typeof(ISearchResultsConverter), Lifetime = Lifetime.Singleton)]
-    public class SearchResultsConverter : ISearchResultsConverter
+
+    public class CommerceSearchResultsConverter : ISearchResultsConverter
     {
         private readonly ISearchMapper searchMapper;
         private readonly IProductConverter<Item> productConverter;
 
-        public SearchResultsConverter(ISearchMapper searchMapper, IProductConverter<Item> productConverter)
+        public CommerceSearchResultsConverter(ISearchMapper searchMapper, IProductConverter<Item> productConverter)
         {
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));

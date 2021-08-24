@@ -23,7 +23,7 @@ namespace HCA.Foundation.Commerce.Services.Search
     /// <summary>
     /// Performs products search
     /// </summary>
-    public interface ICommerceSearchService
+    public interface IProductSearchService
     {
         /// <summary>
         /// Gets products using searching options

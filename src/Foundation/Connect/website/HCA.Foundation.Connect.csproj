@@ -647,13 +647,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ConnectServiceProvider.cs" />
     <Compile Include="Providers\IConnectServiceProvider.cs" />
-    <Compile Include="Providers\SearchSettingsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Commerce.Serialization.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.Fixes.config">
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Connect.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config">
@@ -683,10 +682,6 @@
     <ProjectReference Include="..\..\DependencyInjection\website\HCA.Foundation.DependencyInjection.csproj">
       <Project>{A5A4DCEB-88ED-4B5F-A06D-DBCBC828D45F}</Project>
       <Name>HCA.Foundation.DependencyInjection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Search\website\HCA.Foundation.Search.csproj">
-      <Project>{54EECEF5-4C9D-4353-AC43-67FDED4BBE1E}</Project>
-      <Name>HCA.Foundation.Search</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

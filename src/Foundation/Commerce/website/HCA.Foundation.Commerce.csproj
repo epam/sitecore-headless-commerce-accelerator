@@ -715,6 +715,7 @@
     <Compile Include="Providers\ItemTypeProvider.cs" />
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
+    <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
     <Compile Include="Providers\Search\IProductSuggestionProvider.cs" />
@@ -729,7 +730,7 @@
     <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Billing\BillingService.cs" />
     <Compile Include="Services\Search\ISearchResultsConverter.cs" />
-    <Compile Include="Services\Search\SearchResultsConverter.cs" />
+    <Compile Include="Services\Search\Commerce\CommerceSearchResultsConverter.cs" />
     <Compile Include="Services\Order\OrderService.cs" />
     <Compile Include="Services\Delivery\DeliveryService.cs" />
     <Compile Include="Services\Billing\IBillingService.cs" />
@@ -737,19 +738,18 @@
     <Compile Include="Services\Delivery\IDeliveryService.cs" />
     <Compile Include="Services\Catalog\CatalogService.cs" />
     <Compile Include="Services\Catalog\ICatalogService.cs" />
-    <Compile Include="Services\Search\ICommerceSearchService.cs" />
-    <Compile Include="Services\Search\CommerceSearchService.cs" />
+    <Compile Include="Services\Search\IProductSearchService.cs" />
+    <Compile Include="Services\Search\Commerce\CommerceProductSearchService.cs" />
     <Compile Include="Services\Search\IProductSuggestionService.cs" />
-    <Compile Include="Services\Search\ProductSuggestionService.cs" />
+    <Compile Include="Services\Search\Commerce\CommerceProductSuggestionService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.config" />
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.SuggesterSettings.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.Provider.Sitecore.Services.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

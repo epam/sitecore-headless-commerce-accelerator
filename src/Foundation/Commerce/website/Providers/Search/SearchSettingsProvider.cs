@@ -12,22 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Connect.Providers
+namespace HCA.Foundation.Commerce.Providers.Search
 {
-    using System;
     using System.Linq;
 
-    using Context.Catalog;
+    using Connect.Context.Catalog;
 
     using DependencyInjection;
 
-    using Search.Models.Common;
-    using Search.Models.Entities.Product;
-    using Search.Providers;
+    using Foundation.Search.Models.Common;
+    using Foundation.Search.Providers;
 
     using Sitecore.Commerce.Engine.Connect;
     using Sitecore.Commerce.Engine.Connect.Interfaces;
-    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
 

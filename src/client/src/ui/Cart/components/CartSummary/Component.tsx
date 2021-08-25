@@ -120,9 +120,6 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         {cartLine.price.total.toFixed(2)}
                       </div>
                       <div className="col-xs-2 actions product-actions">
-                        <button>
-                          <Icon icon="icon-heart" />
-                        </button>
                         <button onClick={(e) => RemoveCartLine(cartLine)}>
                           <Icon icon="icon-close" size="l" />
                         </button>

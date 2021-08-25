@@ -15,6 +15,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionTypes, RemoveCartLine, shoppingCart, UpdateCartLine } from 'services/shoppingCart';
+
 import { LoadingStatus } from 'models';
 import { CartSummaryComponent } from './Component';
 

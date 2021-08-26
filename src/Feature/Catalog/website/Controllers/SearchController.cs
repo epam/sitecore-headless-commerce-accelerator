@@ -19,7 +19,6 @@ namespace HCA.Feature.Catalog.Controllers
     using Foundation.Base.Controllers;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
-    using Foundation.Commerce.Services.Search.Commerce;
 
     using Mappers;
 

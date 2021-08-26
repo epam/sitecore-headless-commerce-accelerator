@@ -591,11 +591,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\Products\BaseProductConverter.cs" />
-    <Compile Include="Builders\Products\IProductConverter.cs" />
-    <Compile Include="Builders\Products\IVariantBuilder.cs" />
-    <Compile Include="Builders\Products\VariantConverter.cs" />
-    <Compile Include="Builders\Products\ProductConverter.cs" />
+    <Compile Include="Converters\Products\BaseProductConverter.cs" />
+    <Compile Include="Converters\Products\IProductConverter.cs" />
+    <Compile Include="Converters\Products\IVariantConverter.cs" />
+    <Compile Include="Converters\Products\VariantConverter.cs" />
+    <Compile Include="Converters\Products\ProductConverter.cs" />
     <Compile Include="Commerce.Generated.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Context\Catalog\CatalogContext.cs" />

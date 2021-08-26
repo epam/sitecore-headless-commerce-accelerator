@@ -22,7 +22,6 @@ namespace HCA.Feature.Catalog.Tests.Controllers
     using Foundation.Base.Models.Result;
     using Foundation.Commerce.Models.Entities.Search;
     using Foundation.Commerce.Services.Search;
-    using Foundation.Commerce.Services.Search.Commerce;
 
     using Models.Requests.Search;
 

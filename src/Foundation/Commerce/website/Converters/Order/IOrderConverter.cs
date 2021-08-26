@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,21 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Search.Providers
+namespace HCA.Foundation.Commerce.Converters.Order
 {
-    using Models.Common;
-
-    using Sitecore.Data.Items;
+    using Models.Entities.Order;
 
     /// <summary>
-    /// Provides search setting
+    /// Converts Order entities
     /// </summary>
-    public interface ISearchSettingsProvider
+    public interface IOrderConverter
     {
         /// <summary>
-        /// Gets predefined search settings from Sitecore item or from context
+        /// Converts Order entity
         /// </summary>
-        /// <returns>Search settings</returns>
-        SearchSettings GetSearchSettings(Item settings = null);
+        /// <param name="source">Source object</param>
+        /// <returns>Instance of Order type</returns>
+        Order Build(Sitecore.Commerce.Entities.Orders.Order source);
     }
 }

@@ -612,14 +612,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\Cart\CartBuilder.cs" />
-    <Compile Include="Builders\Cart\ICartBuilder.cs" />
-    <Compile Include="Builders\Order\OrderBuilder.cs" />
-    <Compile Include="Builders\Order\IOrderBuilder.cs" />
-    <Compile Include="Builders\Search\ISearchOptionsConverter.cs" />
-    <Compile Include="Builders\Search\SettingsSearchOptionsConverter.cs" />
-    <Compile Include="Builders\Search\ISuggestionOptionsBuilder.cs" />
-    <Compile Include="Builders\Search\SuggestionOptionsBuilder.cs" />
+    <Compile Include="Converters\Cart\CartConverter.cs" />
+    <Compile Include="Converters\Cart\ICartConverter.cs" />
+    <Compile Include="Converters\Order\OrderConverter.cs" />
+    <Compile Include="Converters\Order\IOrderConverter.cs" />
+    <Compile Include="Converters\Search\ISearchOptionsConverter.cs" />
+    <Compile Include="Converters\Search\SettingsSearchOptionsConverter.cs" />
+    <Compile Include="Converters\Search\ISuggestionOptionsConverter.cs" />
+    <Compile Include="Converters\Search\SuggestionOptionsConverter.cs" />
     <Compile Include="Configuration\Models\SuggesterConfiguration.cs" />
     <Compile Include="Configuration\Providers\ISuggesterConfigurationProvider.cs" />
     <Compile Include="Configuration\Providers\SuggesterConfigurationProvider.cs" />
@@ -730,7 +730,6 @@
     <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Billing\BillingService.cs" />
     <Compile Include="Services\Search\ISearchResultsConverter.cs" />
-    <Compile Include="Services\Search\Commerce\CommerceSearchResultsConverter.cs" />
     <Compile Include="Services\Order\OrderService.cs" />
     <Compile Include="Services\Delivery\DeliveryService.cs" />
     <Compile Include="Services\Billing\IBillingService.cs" />
@@ -739,9 +738,9 @@
     <Compile Include="Services\Catalog\CatalogService.cs" />
     <Compile Include="Services\Catalog\ICatalogService.cs" />
     <Compile Include="Services\Search\IProductSearchService.cs" />
-    <Compile Include="Services\Search\Commerce\CommerceProductSearchService.cs" />
+    <Compile Include="Services\Search\CommerceProductSearchService.cs" />
     <Compile Include="Services\Search\IProductSuggestionService.cs" />
-    <Compile Include="Services\Search\Commerce\CommerceProductSuggestionService.cs" />
+    <Compile Include="Services\Search\ProductSuggestionService.cs" />
     <Compile Include="Services\Tracking\CommerceTrackingService.cs" />
     <Compile Include="Services\Tracking\ICommerceTrackingService.cs" />
     <Compile Include="Utils\ConnectOptionTypeHelper.cs" />

@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,21 +12,12 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Search.Providers
+namespace HCA.Foundation.Search.Providers.Product
 {
-    using Models.Common;
-
-    using Sitecore.Data.Items;
-
     /// <summary>
-    /// Provides search setting
+    /// Provides product search results
     /// </summary>
-    public interface ISearchSettingsProvider
+    public interface IProductSearchResultProvider : ISearchResultProvider
     {
-        /// <summary>
-        /// Gets predefined search settings from Sitecore item or from context
-        /// </summary>
-        /// <returns>Search settings</returns>
-        SearchSettings GetSearchSettings(Item settings = null);
     }
 }

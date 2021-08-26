@@ -25,7 +25,6 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using Providers;
 
     using Services.Search;
-    using Services.Search.Commerce;
 
     using Sitecore;
     using Sitecore.Data.Items;

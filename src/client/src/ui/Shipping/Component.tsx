@@ -157,7 +157,6 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     maxLength={100}
                     fullWidth={true}
                   />
-                  <Text field={{ value: 'For order status and updates' }} tag="sub" />
                 </div>
               </div>
             </div>

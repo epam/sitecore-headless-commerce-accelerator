@@ -20,14 +20,14 @@ namespace HCA.Foundation.Commerce.Services.Cart
 
     using Base.Models.Result;
 
-    using Builders.Cart;
-
     using Connect.Context.Catalog;
     using Connect.Context.Storefront;
     using Connect.Managers.Cart;
     using Connect.Managers.Inventory;
 
     using Context;
+
+    using Converters.Cart;
 
     using DependencyInjection;
     using HCA.Foundation.Commerce.Services.Catalog;
@@ -44,7 +44,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
     public class CartService : ICartService
     {
-        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+        private readonly ICartConverter<Connect.Cart> cartConverter;
 
         private readonly ICartManager cartManager;
 
@@ -60,7 +60,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
         private readonly IVisitorContext visitorContext;
 
         public CartService(
-            ICartBuilder<Connect.Cart> cartBuilder,
+            ICartConverter<Connect.Cart> cartConverter,
             ICartManager cartManager,
             IInventoryManager inventoryManager,
             ICatalogContext catalogContext,
@@ -68,7 +68,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             IStorefrontContext storefrontContext,
             IVisitorContext visitorContext)
         {
-            Assert.ArgumentNotNull(cartBuilder, nameof(cartBuilder));
+            Assert.ArgumentNotNull(cartConverter, nameof(cartConverter));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
             Assert.ArgumentNotNull(inventoryManager, nameof(inventoryManager));
             Assert.ArgumentNotNull(catalogContext, nameof(catalogContext));
@@ -76,7 +76,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
-            this.cartBuilder = cartBuilder;
+            this.cartConverter = cartConverter;
             this.cartManager = cartManager;
             this.inventoryManager = inventoryManager;
             this.catalogContext = catalogContext;
@@ -188,7 +188,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
         }
         private Result<Cart> BuildResult(CartResult cartResult)
         {
-            var cart = this.cartBuilder.Build(cartResult?.Cart);
+            var cart = this.cartConverter.Convert(cartResult?.Cart);
             return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
         }
 

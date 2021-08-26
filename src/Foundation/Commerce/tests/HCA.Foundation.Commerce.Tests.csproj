@@ -582,9 +582,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\Cart\CartBuilderTests.cs" />
-    <Compile Include="Builders\Order\OrderBuilderTests.cs" />
-    <Compile Include="Builders\Search\SettingsSearchOptionsConverterTests.cs" />
+    <Compile Include="Converters\Cart\CartConverterTests.cs" />
+    <Compile Include="Converters\Order\OrderConverterTests.cs" />
+    <Compile Include="Converters\Search\SettingsSearchOptionsConverterTests.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\GenerateTokenProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\VerifyEmailProcessorTests.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\SendConfirmPasswordRecoveryMailProcessorTests.cs" />

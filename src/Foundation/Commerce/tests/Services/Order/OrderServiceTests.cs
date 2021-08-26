@@ -20,7 +20,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using Base.Models.Logging;
     using Base.Services.Logging;
 
-    using Commerce.Builders.Order;
+    using Commerce.Converters.Order;
     using Commerce.Services.Order;
 
     using Connect.Context.Storefront;
@@ -28,6 +28,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using Connect.Managers.Order;
 
     using Context;
+
+    using Converters.Order;
 
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
@@ -44,7 +46,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
     public class OrderServiceTests
     {
-        private readonly IOrderBuilder builder;
+        private readonly IOrderConverter converter;
 
         private readonly ICartManager cartManager;
 
@@ -60,7 +62,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
         public OrderServiceTests()
         {
-            this.builder = Substitute.For<IOrderBuilder>();
+            this.converter = Substitute.For<IOrderConverter>();
             this.orderManager = Substitute.For<IOrderManager>();
             this.cartManager = Substitute.For<ICartManager>();
             this.storefrontContext = Substitute.For<IStorefrontContext>();
@@ -68,7 +70,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
             var logService = Substitute.For<ILogService<CommonLog>>();
 
             this.service = new OrderService(
-                this.builder,
+                this.converter,
                 logService,
                 this.orderManager,
                 this.cartManager,
@@ -122,7 +124,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.builder.Received(1).Build(orderResult.Order);
+            this.converter.Received(1).Build(orderResult.Order);
         }
 
         [Fact]
@@ -163,7 +165,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.builder.Received(1).Build(orderResult.Order);
+            this.converter.Received(1).Build(orderResult.Order);
         }
 
         [Fact]
@@ -177,7 +179,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
 
             // assert
             Assert.True(result.Success);
-            this.builder.Received(3).Build(orderResult.Order);
+            this.converter.Received(3).Build(orderResult.Order);
         }
 
         [Fact]

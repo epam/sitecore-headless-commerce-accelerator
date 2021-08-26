@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+﻿//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,21 +12,21 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Search.Providers
+namespace HCA.Foundation.Commerce.Converters.Search
 {
-    using Models.Common;
-
-    using Sitecore.Data.Items;
+    using Foundation.Search.Models.Common;
 
     /// <summary>
-    /// Provides search setting
+    /// Converts suggestion options basing on products search string
+    /// Suggestion options builder
     /// </summary>
-    public interface ISearchSettingsProvider
+    public interface ISuggestionOptionsConverter
     {
         /// <summary>
-        /// Gets predefined search settings from Sitecore item or from context
+        /// Converts suggestion options basing on products search string
         /// </summary>
-        /// <returns>Search settings</returns>
-        SearchSettings GetSearchSettings(Item settings = null);
+        /// <param name="search">Product search string</param>
+        /// <returns>Suggestion options</returns>
+        SuggestionOptions Convert(string search);
     }
 }

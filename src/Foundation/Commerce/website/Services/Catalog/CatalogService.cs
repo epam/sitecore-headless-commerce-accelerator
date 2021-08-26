@@ -16,8 +16,6 @@ namespace HCA.Foundation.Commerce.Services.Catalog
 {
     using Base.Models.Result;
 
-    using Connect.Builders.Products;
-
     using Context;
 
     using DependencyInjection;
@@ -30,6 +28,8 @@ namespace HCA.Foundation.Commerce.Services.Catalog
     using Sitecore.Diagnostics;
     using System.Collections.Generic;
     using System.Linq;
+
+    using Connect.Converters.Products;
 
     using Foundation.Search.Models.Entities.Product;
     using Foundation.Search.Services.Product;

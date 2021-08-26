@@ -22,13 +22,13 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Base.Models.Result;
     using Base.Services.Logging;
 
-    using Builders.Order;
-
     using Connect.Context.Storefront;
     using Connect.Managers.Cart;
     using Connect.Managers.Order;
 
     using Context;
+
+    using Converters.Order;
 
     using DependencyInjection;
 
@@ -41,7 +41,7 @@ namespace HCA.Foundation.Commerce.Services.Order
     [Service(typeof(IOrderService), Lifetime = Lifetime.Singleton)]
     public class OrderService : IOrderService
     {
-        private readonly IOrderBuilder builder;
+        private readonly IOrderConverter converter;
 
         private readonly ICartManager cartManager;
 
@@ -54,7 +54,7 @@ namespace HCA.Foundation.Commerce.Services.Order
         private readonly IVisitorContext visitorContext;
 
         public OrderService(
-            IOrderBuilder orderBuilder,
+            IOrderConverter orderConverter,
             ILogService<CommonLog> logService,
             IOrderManager orderManager,
             ICartManager cartManager,
@@ -63,13 +63,13 @@ namespace HCA.Foundation.Commerce.Services.Order
         {
             Assert.ArgumentNotNull(orderManager, nameof(orderManager));
             Assert.ArgumentNotNull(cartManager, nameof(cartManager));
-            Assert.ArgumentNotNull(orderBuilder, nameof(orderBuilder));
+            Assert.ArgumentNotNull(orderConverter, nameof(orderConverter));
             Assert.ArgumentNotNull(storefrontContext, nameof(storefrontContext));
             Assert.ArgumentNotNull(visitorContext, nameof(visitorContext));
 
             this.orderManager = orderManager;
             this.logService = logService;
-            this.builder = orderBuilder;
+            this.converter = orderConverter;
             this.cartManager = cartManager;
             this.storefrontContext = storefrontContext;
             this.visitorContext = visitorContext;
@@ -98,7 +98,7 @@ namespace HCA.Foundation.Commerce.Services.Order
                 result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());
             }
 
-            result.SetResult(this.builder.Build(orderResult.Order));
+            result.SetResult(this.converter.Build(orderResult.Order));
 
             return result;
         }
@@ -142,7 +142,7 @@ namespace HCA.Foundation.Commerce.Services.Order
 
                             if (orderResult.Success)
                             {
-                                return this.builder.Build(orderResult.Order);
+                                return this.converter.Build(orderResult.Order);
                             }
 
                             result.SetErrors(orderResult.SystemMessages.Select(sm => sm.Message).ToList());

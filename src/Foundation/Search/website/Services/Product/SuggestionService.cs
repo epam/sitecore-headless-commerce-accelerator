@@ -19,8 +19,8 @@ namespace HCA.Foundation.Search.Services.Product
     using Mappers;
 
     using Models.Common;
-
-    using Providers;
+    
+    using Providers.Product;
 
     using Sitecore.ContentSearch.SolrNetExtension;
     using Sitecore.Diagnostics;
@@ -30,11 +30,11 @@ namespace HCA.Foundation.Search.Services.Product
     {
         private readonly ISuggestionMapper suggestionMapper;
 
-        private readonly ISuggestionResultProvider suggestionResultProvider;
+        private readonly IProductSuggestionResultProvider suggestionResultProvider;
 
         public SuggestionService(
             ISuggestionMapper suggestionMapper,
-            ISuggestionResultProvider suggestionResultProvider)
+            IProductSuggestionResultProvider suggestionResultProvider)
         {
             Assert.ArgumentNotNull(suggestionMapper, nameof(suggestionMapper));
             Assert.ArgumentNotNull(suggestionResultProvider, nameof(suggestionResultProvider));

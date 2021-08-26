@@ -14,45 +14,63 @@
 
 namespace HCA.Foundation.Search.Services.Product
 {
-    using Builders.Product;
+    using System.Linq;
+
+    using Base.Context;
     
+    using DependencyInjection;
+
+    using Loaders;
+
     using Mappers;
 
     using Models.Common;
     using Models.Entities.Product;
 
     using Providers;
+    using Providers.Product;
 
+    using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
+    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    
-    public class CommerceProductSearchService : IProductSearchService
+
+
+    [Service(typeof(ICommerceProductSearchService), Lifetime = Lifetime.Singleton)]
+    public class CommerceProductSearchService : ICommerceProductSearchService
     {
-        private readonly IProductSearchQueryBuilder queryBuilder;
+        private readonly ICommerceSearchManager commerceSearchManager;
+
+        private readonly ISitecoreContext sitecoreContext;
 
         private readonly ISearchMapper searchMapper;
 
         private readonly ISearchResponseProvider searchResponseProvider;
 
-        private readonly ISearchResultProvider searchResultProvider;
+        private readonly IProductSearchResultProvider searchResultProvider;
 
         public CommerceProductSearchService(
             ISearchMapper searchMapper,
             ISearchResponseProvider searchResponseProvider,
-            ISearchResultProvider searchResultProvider,
-            IProductSearchQueryBuilder queryBuilder)
+            IProductSearchResultProvider searchResultProvider,
+            ISitecoreContext sitecoreContext,
+            ICommerceTypeLoader commerceTypeLoader)
         {
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
             Assert.ArgumentNotNull(searchResponseProvider, nameof(searchResponseProvider));
             Assert.ArgumentNotNull(searchResponseProvider, nameof(searchResponseProvider));
-            Assert.ArgumentNotNull(queryBuilder, nameof(queryBuilder));
+            Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
+            Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
 
             this.searchMapper = searchMapper;
             this.searchResponseProvider = searchResponseProvider;
             this.searchResultProvider = searchResultProvider;
-            this.queryBuilder = queryBuilder;
+            this.sitecoreContext = sitecoreContext;
+
+            this.commerceSearchManager = commerceTypeLoader.CreateInstance<ICommerceSearchManager>();
+            Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
 
         public SearchResults<Item> GetSearchResults(ProductSearchOptions options)
@@ -63,10 +81,28 @@ namespace HCA.Foundation.Search.Services.Product
 
             var results =
                 this.searchResultProvider.GetSearchResults<CommerceSellableItemSearchResultItem>(
-                    queryable => this.queryBuilder.BuildProductQuery(
-                        queryable,
-                        options,
-                        commerceSearchOptions));
+                    queryable =>
+                    {
+                        queryable = queryable
+                            .Where(item => item.CommerceSearchItemType == Constants.Search.ItemType.Product)
+                            .Where(item => item.Language == this.sitecoreContext.Language.Name);
+
+                        var categoryId = new ID(options.CategoryId);
+                        queryable = !ID.IsNullOrEmpty(categoryId)
+                            ? queryable.Where(item => item.Parent == categoryId)
+                            : queryable.Where(item => !item.ExcludeFromWebsiteSearchResults);
+
+                        if (!string.IsNullOrWhiteSpace(options.SearchKeyword))
+                        {
+                            queryable = queryable.Where(
+                                item => item.Name.Contains(options.SearchKeyword) ||
+                                    item["_displayname"].Contains(options.SearchKeyword));
+                        }
+
+                        return commerceSearchOptions != null
+                            ? this.commerceSearchManager.AddSearchOptionsToQuery(queryable, commerceSearchOptions)
+                            : queryable;
+                    });
 
             var searchResponse =
                 this.searchResponseProvider.CreateFromSearchResultsItems(commerceSearchOptions, results);
@@ -74,22 +110,6 @@ namespace HCA.Foundation.Search.Services.Product
                 this.searchMapper.Map<SearchResponse, SearchResults<Item>>(searchResponse);
 
             return searchResults;
-        }
-        
-        public Item GetProductItemByProductId(string productId)
-        {
-            Assert.ArgumentNotNullOrEmpty(productId, nameof(productId));
-
-            var result = this.searchResultProvider.GetSearchResult<CommerceSellableItemSearchResultItem>(
-                queryable => this.queryBuilder.BuildProductQuery(
-                    queryable,
-                    new ProductSearchOptions
-                    {
-                        SearchKeyword = productId,
-                        NumberOfItemsToReturn = 1
-                    }));
-
-            return result?.GetItem();
         }
     }
 }

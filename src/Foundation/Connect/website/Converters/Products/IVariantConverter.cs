@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,21 +12,19 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Search.Providers
+namespace HCA.Foundation.Connect.Converters.Products
 {
-    using Models.Common;
+    using System.Collections.Generic;
 
-    using Sitecore.Data.Items;
+    using Models.Catalog;
 
-    /// <summary>
-    /// Provides search setting
-    /// </summary>
-    public interface ISearchSettingsProvider
+    public interface IVariantConverter<in TSource>
     {
         /// <summary>
-        /// Gets predefined search settings from Sitecore item or from context
+        /// Converts enumerable of variant entities without prices and stock status from TSource
         /// </summary>
-        /// <returns>Search settings</returns>
-        SearchSettings GetSearchSettings(Item settings = null);
+        /// <param name="sources">Source model</param>
+        /// <returns></returns>
+        IEnumerable<Variant> Convert(IEnumerable<TSource> sources);
     }
 }

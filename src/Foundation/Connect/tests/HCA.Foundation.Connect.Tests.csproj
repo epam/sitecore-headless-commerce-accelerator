@@ -595,9 +595,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\Products\BaseProductBuilderTests.cs" />
-    <Compile Include="Builders\Products\ProductBuilderTests.cs" />
-    <Compile Include="Builders\Products\VariantBuilderTests.cs" />
+    <Compile Include="Converters\Products\BaseProductConverterTests.cs" />
+    <Compile Include="Converters\Products\ProductConverterTests.cs" />
+    <Compile Include="Converters\Products\VariantConverterTests.cs" />
     <Compile Include="Context\Storefront\StorefrontContextTests.cs" />
     <Compile Include="Context\Catalog\CatalogContextTests.cs" />
     <Compile Include="Managers\Account\AccountManagerTests.cs" />

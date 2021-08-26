@@ -20,7 +20,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using Base.Models.Result;
     using Base.Tests.Customization;
 
-    using Commerce.Builders.Cart;
+    using Commerce.Converters.Cart;
     using Commerce.Services.Cart;
 
     using Connect.Context.Catalog;
@@ -28,6 +28,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using Connect.Managers.Cart;
 
     using Context;
+
+    using Converters.Cart;
+
     using HCA.Foundation.Commerce.Services.Catalog;
     using HCA.Foundation.Connect.Managers.Inventory;
 
@@ -44,7 +47,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
     public class CartServiceTests
     {
-        private readonly ICartBuilder<Connect.Cart> cartBuilder;
+        private readonly ICartConverter<Connect.Cart> cartConverter;
 
         private readonly ICartManager cartManager;
         private readonly IInventoryManager inventoryManager;
@@ -64,7 +67,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
         public CartServiceTests()
         {
-            this.cartBuilder = Substitute.For<ICartBuilder<Connect.Cart>>();
+            this.cartConverter = Substitute.For<ICartConverter<Connect.Cart>>();
             this.cartManager = Substitute.For<ICartManager>();
             this.inventoryManager = Substitute.For<IInventoryManager>();
             var catalogContext = Substitute.For<ICatalogContext>();
@@ -73,7 +76,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.visitorContext = Substitute.For<IVisitorContext>();
 
             this.cartService = new CartService(
-                this.cartBuilder,
+                this.cartConverter,
                 this.cartManager,
                 this.inventoryManager,
                 catalogContext,
@@ -118,7 +121,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartService.AddCartLine(productId, variantId, quantity);
 
             // assert
-            this.cartBuilder.Received(1).Build(addCartLineResult.Cart);
+            this.cartConverter.Received(1).Convert(addCartLineResult.Cart);
         }
 
 
@@ -129,7 +132,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartService.GetCart();
 
             // assert
-            this.cartBuilder.Received(1).Build(this.cartResult.Cart);
+            this.cartConverter.Received(1).Convert(this.cartResult.Cart);
         }
 
         [Fact]
@@ -152,7 +155,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.cartBuilder.Received(1).Build(arrange.MergedCartResult.Cart);
+            this.cartConverter.Received(1).Convert(arrange.MergedCartResult.Cart);
         }
 
         [Fact]
@@ -165,7 +168,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.cartBuilder.Received(1).Build(arrange.DestCartResult.Cart);
+            this.cartConverter.Received(1).Convert(arrange.DestCartResult.Cart);
         }
 
         [Theory]
@@ -180,7 +183,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             this.cartService.MergeCarts(this.fixture.Create<string>());
 
             // assert
-            this.cartBuilder.Received(1).Build(arrange.SrcCartResult.Cart);
+            this.cartConverter.Received(1).Convert(arrange.SrcCartResult.Cart);
         }
 
         [Theory]

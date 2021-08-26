@@ -35,6 +35,11 @@ h3.your-order {
       margin: 0;
     }
   }
+
+  @media #{$pdp-md-switch-layout} {
+    padding: 38px 20px 44px;
+  }
+
   @media #{$xs-layout} {
     padding: 19px 15px 22px;
   }

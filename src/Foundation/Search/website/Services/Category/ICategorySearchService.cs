@@ -16,7 +16,7 @@ namespace HCA.Foundation.Search.Services.Category
 {
     using Models.Entities.Category;
 
-    public interface ICommerceCategorySearchService : ISearchService<CategorySearchResultItem, CategorySearchOptions>
+    public interface ICategorySearchService : ISearchService<CategorySearchResultItem, CategorySearchOptions>
     {
     }
 }

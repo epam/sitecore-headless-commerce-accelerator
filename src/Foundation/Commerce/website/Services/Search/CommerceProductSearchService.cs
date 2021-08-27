@@ -27,7 +27,7 @@
 
     public class CommerceProductSearchService : IProductSearchService
     {
-        private readonly ICommerceCategorySearchService commerceCategorySearchService;
+        private readonly ICategorySearchService categorySearchService;
         private readonly ICommerceProductSearchService productSearchService;
         private readonly ISearchOptionsConverter searchOptionsConverter;
         private readonly ISearchMapper searchMapper;
@@ -36,19 +36,19 @@
         public CommerceProductSearchService(
             ISearchOptionsConverter searchOptionsConverter,
             ICommerceProductSearchService productSearchService,
-            ICommerceCategorySearchService commerceCategorySearchService,
+            ICategorySearchService categorySearchService,
             ISearchMapper searchMapper, 
             IProductConverter<Item> productConverter)
         {
             Assert.ArgumentNotNull(searchOptionsConverter, nameof(searchOptionsConverter));
             Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
-            Assert.ArgumentNotNull(commerceCategorySearchService, nameof(commerceCategorySearchService));
+            Assert.ArgumentNotNull(categorySearchService, nameof(categorySearchService));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
 
             this.searchOptionsConverter = searchOptionsConverter;
             this.productSearchService = productSearchService;
-            this.commerceCategorySearchService = commerceCategorySearchService;
+            this.categorySearchService = categorySearchService;
             this.searchMapper = searchMapper;
             this.productConverter = productConverter;
         }
@@ -72,7 +72,7 @@
         {
             Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
 
-            var searchResults = this.commerceCategorySearchService.GetSearchResults(
+            var searchResults = this.categorySearchService.GetSearchResults(
                 new CategorySearchOptions
                 {
                     CategoryName = categoryName,

@@ -26,19 +26,14 @@ namespace HCA.Foundation.Search.Services.Category
 
     using Models.Common;
     using Models.Entities.Category;
-
-    using Providers;
+    
     using Providers.Product;
-
-    using Sitecore.Commerce.Engine.Connect.Interfaces;
+    
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Diagnostics;
-
-    [Service(typeof(ICommerceCategorySearchService), Lifetime = Lifetime.Singleton)]
-    public class CommerceCategorySearchService : ICommerceCategorySearchService
+    
+    public class CommerceCategorySearchService : ICategorySearchService
     {
-        private readonly ICommerceSearchManager commerceSearchManager;
-
         private readonly ISitecoreContext sitecoreContext;
 
         private readonly ISearchMapper searchMapper;
@@ -48,20 +43,15 @@ namespace HCA.Foundation.Search.Services.Category
         public CommerceCategorySearchService(
             ISearchMapper searchMapper,
             IProductSearchResultProvider searchResultProvider,
-            ISitecoreContext sitecoreContext,
-            ICommerceTypeLoader commerceTypeLoader)
+            ISitecoreContext sitecoreContext)
         {
             Assert.ArgumentNotNull(searchMapper, nameof(searchMapper));
             Assert.ArgumentNotNull(searchResultProvider, nameof(searchResultProvider));
             Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
-            Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
             
             this.searchMapper = searchMapper;
             this.searchResultProvider = searchResultProvider;
             this.sitecoreContext = sitecoreContext;
-
-            this.commerceSearchManager = commerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            Assert.ArgumentNotNull(this.commerceSearchManager, nameof(this.commerceSearchManager));
         }
         
         public SearchResults<CategorySearchResultItem> GetSearchResults(CategorySearchOptions options)

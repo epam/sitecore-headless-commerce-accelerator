@@ -28,13 +28,13 @@ namespace HCA.Foundation.Connect.Tests.Converters.Products
 
     public class VariantConverterTests : BaseProductConverterTests
     {
-        private readonly VariantConverter variantConverter;
+        private readonly ItemToVariantConverter itemToVariantConverter;
 
         private readonly Dictionary<string, string> variantProperties;
 
         public VariantConverterTests()
         {
-            this.variantConverter = new VariantConverter(this.CatalogContext, this.CatalogMapper);
+            this.itemToVariantConverter = new ItemToVariantConverter(this.CatalogContext, this.CatalogMapper);
 
             this.variantProperties = new Dictionary<string, string>();
             this.variantProperties.Add(this.Fixture.Create<string>(), this.Fixture.Create<string>());
@@ -55,7 +55,7 @@ namespace HCA.Foundation.Connect.Tests.Converters.Products
                 var item = db.GetItem(dbItem.ID);
 
                 // act
-                var variants = this.variantConverter.Convert(
+                var variants = this.itemToVariantConverter.Convert(
                         new List<Item>
                         {
                             item

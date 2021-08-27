@@ -37,12 +37,12 @@ namespace HCA.Foundation.Connect.Converters.Products
     /// <summary>
     /// Sets Base Product properties
     /// </summary>
-    public abstract class BaseProductConverter
+    public abstract class BaseItemToProductConverter
     {
         protected readonly ICatalogContext CatalogContext;
         protected readonly ICatalogMapper CatalogMapper;
 
-        protected BaseProductConverter(
+        protected BaseItemToProductConverter(
             ICatalogContext catalogContext,
             ICatalogMapper catalogMapper)
         {

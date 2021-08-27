@@ -35,7 +35,7 @@ namespace HCA.Foundation.Connect.Converters.Products
     using Sitecore.Diagnostics;
 
     [Service(typeof(IProductConverter<Item>), Lifetime = Lifetime.Singleton)]
-    public class ProductConverter : BaseProductConverter, IProductConverter<Item>
+    public class ItemToProductConverter : BaseItemToProductConverter, IProductConverter<Item>
     {
         private static readonly string[] PriceTypes =
         {
@@ -47,7 +47,7 @@ namespace HCA.Foundation.Connect.Converters.Products
         private readonly IStorefrontContext storefrontContext;
         private readonly IVariantConverter<Item> variantConverter;
 
-        public ProductConverter(
+        public ItemToProductConverter(
             IVariantConverter<Item> variantConverter,
             ICatalogContext catalogContext,
             IPricingManager pricingManager,

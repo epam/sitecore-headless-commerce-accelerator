@@ -41,7 +41,7 @@ namespace HCA.Foundation.Connect.Tests.Converters.Products
     {
         private readonly IInventoryManager inventoryManager;
         private readonly IPricingManager pricingManager;
-        private readonly ProductConverter productConverter;
+        private readonly IProductConverter<Item> productConverter;
         private readonly IVariantConverter<Item> variantConverter;
         private readonly IStorefrontContext storefrontContext;
 
@@ -74,7 +74,7 @@ namespace HCA.Foundation.Connect.Tests.Converters.Products
                     Arg.Any<StockDetailsLevel>())
                 .Returns(this.getStockInformationResult);
 
-            this.productConverter = new ProductConverter(
+            this.productConverter = new ItemToProductConverter(
                 this.variantConverter,
                 this.CatalogContext,
                 this.pricingManager,

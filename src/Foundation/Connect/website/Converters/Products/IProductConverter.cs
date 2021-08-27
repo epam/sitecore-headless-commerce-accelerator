@@ -17,9 +17,7 @@ namespace HCA.Foundation.Connect.Converters.Products
     using System.Collections.Generic;
 
     using Models.Catalog;
-
-    using Sitecore.Data.Items;
-
+    
     /// <summary>
     /// Convert to product entities from TSource
     /// </summary>
@@ -40,6 +38,6 @@ namespace HCA.Foundation.Connect.Converters.Products
         /// <param name="sources">Source model</param>
         /// <param name="includeVariants">Include variants</param>
         /// <returns></returns>
-        IEnumerable<Product> Convert(IEnumerable<Item> sources, bool includeVariants);
+        IEnumerable<Product> Convert(IEnumerable<TSource> sources, bool includeVariants);
     }
 }

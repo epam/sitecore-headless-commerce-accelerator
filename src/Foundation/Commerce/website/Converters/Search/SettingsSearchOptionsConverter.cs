@@ -74,11 +74,11 @@ namespace HCA.Foundation.Commerce.Converters.Search
                 Facets = this.GetFacetsIntersection(searchSettings?.Facets, searchOptions.Facets),
                 StartPageIndex = searchOptions.PageNumber,
                 NumberOfItemsToReturn =
-                    searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings.ItemsPerPage,
+                    searchOptions.PageSize > 0 ? searchOptions.PageSize : searchSettings?.ItemsPerPage ?? 1,
                 CategoryId = searchOptions.CategoryId,
                 SortField = !string.IsNullOrEmpty(searchOptions.SortField)
                     ? searchOptions.SortField
-                    : searchSettings.SortFieldNames?.FirstOrDefault(),
+                    : searchSettings?.SortFieldNames?.FirstOrDefault(),
                 SortDirection = searchOptions.SortDirection == SortDirection.Asc
                     ? Foundation.Search.Models.Common.SortDirection.Asc
                     : Foundation.Search.Models.Common.SortDirection.Desc

@@ -719,7 +719,7 @@
     <Compile Include="Mappers\SuggestionMapper.cs" />
     <Compile Include="Models\Entities\Category\CategorySearchResultItem.cs" />
     <Compile Include="Models\Entities\Category\CategorySearchOptions.cs" />
-    <Compile Include="Services\Category\ICommerceCategorySearchService.cs" />
+    <Compile Include="Services\Category\ICategorySearchService.cs" />
     <Compile Include="Services\Category\CommerceCategorySearchService.cs" />
     <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Services\Product\ICommerceProductSearchService.cs" />

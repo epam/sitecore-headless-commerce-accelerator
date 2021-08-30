@@ -15,7 +15,7 @@
 import React, { useState } from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
-import { validateEmail } from 'utils';
+import { validateValue, EMAIL_REGEX } from 'utils';
 
 import { Button, Input } from 'components';
 
@@ -105,7 +105,7 @@ export const GetInTouchFormComponent: React.FC<GetInTouchFormProps> = (props) =>
                     values.message.trim() &&
                     values.name.trim() &&
                     values.subject.trim() &&
-                    validateEmail(values.email)
+                    validateValue(EMAIL_REGEX, values.email)
                   )
                 }
                 onClick={(e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => handleSubmit(e)}

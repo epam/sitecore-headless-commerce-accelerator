@@ -14,7 +14,7 @@
 
 import { get } from 'lodash';
 
-import { validateEmail } from 'utils';
+import { validateValue, EMAIL_REGEX, INPUT_REGEX } from 'utils';
 import { FormValues } from 'Foundation/ReactJss/Form';
 
 import { FORM_FIELDS } from './constants';
@@ -22,8 +22,8 @@ import { FORM_FIELDS } from './constants';
 const { FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, CONFIRM_PASSWORD, TERMS_CONDITIONS } = FORM_FIELDS;
 
 export const validate = (formValues: FormValues) => {
-  const firstName = get(formValues, [FIRST_NAME]);
-  const lastName = get(formValues, [LAST_NAME]);
+  const firstName: string = get(formValues, [FIRST_NAME], null);
+  const lastName: string = get(formValues, [LAST_NAME], null);
   const email = get(formValues, [EMAIL], null);
   const password = get(formValues, [PASSWORD]);
   const confirmPassword = get(formValues, [CONFIRM_PASSWORD]);
@@ -31,29 +31,24 @@ export const validate = (formValues: FormValues) => {
 
   const formFields = {};
 
-  if (!firstName) {
+  if (!validateValue(INPUT_REGEX, firstName)) {
     formFields['firstName'] = {
       hasError: true,
-      message: 'First name field is required',
+      message: firstName ? 'First name is invalid' : 'First name field is required',
     };
   }
 
-  if (!lastName) {
+  if (!validateValue(INPUT_REGEX, lastName)) {
     formFields['lastName'] = {
       hasError: true,
-      message: 'Last name field is required',
+      message: lastName ? 'Last name is invalid' : 'Last name field is required',
     };
   }
 
-  if (!email) {
+  if (!validateValue(EMAIL_REGEX, email)) {
     formFields['email'] = {
       hasError: true,
-      message: 'Email field is required',
-    };
-  } else if (!validateEmail(email)) {
-    formFields['email'] = {
-      hasError: true,
-      message: 'Email is invalid',
+      message: email ? 'Email is invalid' : 'Email field is required',
     };
   }
 

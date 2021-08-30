@@ -19,7 +19,7 @@ import { Form, Input, Submit } from 'Foundation/ReactJss/Form';
 
 import { LoadingStatus } from 'models';
 import { NavigationLink } from 'ui/NavigationLink';
-import { validateEmail } from 'utils';
+import { validateValue, EMAIL_REGEX } from 'utils';
 
 import { Icon } from 'components';
 
@@ -39,7 +39,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     this.props.ResetState();
   }
   public validateUser(form: LogInValues) {
-    if (validateEmail(form.email)) {
+    if (validateValue(EMAIL_REGEX, form.email)) {
       this.setState({ isUsernameValid: true });
       return true;
     } else {

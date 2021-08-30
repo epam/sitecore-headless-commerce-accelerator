@@ -15,7 +15,7 @@
 import React, { FC, FormEvent, useState } from 'react';
 
 import { LoadingStatus } from 'models';
-import { validateEmail } from 'utils';
+import { validateValue, EMAIL_REGEX } from 'utils';
 
 import { Button, Icon, Input } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
@@ -41,7 +41,7 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
     const newEmail = e.currentTarget.value;
 
     setEmail(newEmail);
-    setIsEmailValid(validateEmail(newEmail));
+    setIsEmailValid(validateValue(EMAIL_REGEX, newEmail));
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -70,7 +70,7 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
             value={email}
             onChange={handleInputChange}
             onFocus={() => setIsEmailValid(true)}
-            onBlur={() => setIsEmailValid(validateEmail(email))}
+            onBlur={() => setIsEmailValid(validateValue(EMAIL_REGEX, email))}
             disabled={requestPasswordResetState.status === LoadingStatus.Loading}
           />
           <div className={cnResetRequestForm('Actions')}>

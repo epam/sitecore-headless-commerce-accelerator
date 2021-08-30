@@ -12,16 +12,17 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+export const INPUT_REGEX = /^[a-zA-Z]+$/;
 /**
  * Method for validate emails in input field
  * @param email - string of  email in input field
  */
 
-export function validateEmail(email: string) {
-  if (email) {
-    return EMAIL_REGEX.test(email);
+export function validateValue(regex: RegExp, value: string) {
+  if (value) {
+    return regex.test(value);
   }
   return false;
 }

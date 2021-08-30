@@ -14,7 +14,7 @@
 
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
-import { validateEmail } from 'utils';
+import { validateValue, EMAIL_REGEX } from 'utils';
 
 import { Button, Dialog, Input } from 'components';
 
@@ -37,7 +37,7 @@ export const SubmitEmailDialog: FC<Props> = ({ dialogOpen, toggleDialog, submitD
 
   const handleInputValueChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    setIsEmailValid(validateEmail(e.target.value));
+    setIsEmailValid(validateValue(EMAIL_REGEX, e.target.value));
   }, []);
 
   return (

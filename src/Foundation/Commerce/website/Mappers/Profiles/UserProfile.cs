@@ -22,10 +22,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using Foundation.Account.Infrastructure.Pipelines.Login;
 
     using Models.Entities.Users;
-
+    using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities.Customers;
-
-    using Constants = Commerce.Constants;
 
     [ExcludeFromCodeCoverage]
     public class UserProfile : Profile
@@ -66,7 +64,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                     opt =>
                         opt.MapFrom(
                             src => src.ExternalId != null
-                                ? src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)
+                                ? src.ExternalId.Replace(PipelineUtility.CustomersPrefix, string.Empty)
                                 : null));
         }
     }

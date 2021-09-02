@@ -20,10 +20,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using AutoMapper;
 
     using Models.Entities.Users;
-
+    using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities.Customers;
-
-    using Constants = Commerce.Constants;
 
     [ExcludeFromCodeCoverage]
     public class AccountProfile : Profile
@@ -35,7 +33,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                     dest => dest.ContactId,
                     opt => opt.MapFrom(
                         src =>
-                            src.ExternalId.Replace(Constants.CommerceCustomerIdPrefix, string.Empty)))
+                            src.ExternalId.Replace(PipelineUtility.CustomersPrefix, string.Empty)))
                 .ForMember(
                     dest => dest.CustomerId,
                     opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))

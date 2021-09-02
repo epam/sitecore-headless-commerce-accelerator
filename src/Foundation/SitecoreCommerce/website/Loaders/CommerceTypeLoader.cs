@@ -1,4 +1,4 @@
-//    Copyright 2021 EPAM Systems, Inc.
+﻿//    Copyright 2021 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,18 +12,16 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Search
+namespace HCA.Foundation.SitecoreCommerce.Loaders
 {
-    public static class Constants
-    {
-        public static class Search
-        {
-            public static class ItemType
-            {
-                public const string Product = "Product";
+    using DependencyInjection;
 
-                public const string Category = "Category";
-            }
+    [Service(typeof(ICommerceTypeLoader), Lifetime = Lifetime.Singleton)]
+    public class CommerceTypeLoader : ICommerceTypeLoader
+    {
+        public T CreateInstance<T>()
+        {
+            return Sitecore.Commerce.Engine.Connect.CommerceTypeLoader.CreateInstance<T>();
         }
     }
 }

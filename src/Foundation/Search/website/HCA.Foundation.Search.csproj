@@ -309,12 +309,6 @@
     <Reference Include="Sitecore.Commerce.Connect.Core, Version=15.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Connect.Core.15.0.26\lib\net48\Sitecore.Commerce.Connect.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Engine.Connect, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.6.0.77\lib\net48\Sitecore.Commerce.Engine.Connect.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Commerce.Engine.Connect.Caching, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.Caching.6.0.77\lib\net48\Sitecore.Commerce.Engine.Connect.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.10.0.0\lib\net48\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -685,8 +679,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Loaders\CommerceTypeLoader.cs" />
-    <Compile Include="Loaders\ICommerceTypeLoader.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
     <Compile Include="Mappers\Profiles\SuggestionProfile.cs" />
     <Compile Include="Models\Common\Facet.cs" />
@@ -702,15 +694,11 @@
     <Compile Include="Models\Entities\Product\ProductSearchOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Product\IProductSearchResultProvider.cs" />
-    <Compile Include="Providers\Product\CommerceProductSearchResultProvider.cs" />
-    <Compile Include="Providers\Product\CommerceProductSuggestionResultProvider.cs" />
     <Compile Include="Providers\Product\IProductSuggestionResultProvider.cs" />
-    <Compile Include="Providers\ISearchResponseProvider.cs" />
     <Compile Include="Providers\ISearchResultProvider.cs" />
     <Compile Include="Providers\ISearchSettingsProvider.cs" />
     <Compile Include="Providers\ISuggestionResultProvider.cs" />
     <Compile Include="Models\Entities\SearchResultItem.cs" />
-    <Compile Include="Providers\SearchResponseProvider.cs" />
     <Compile Include="Providers\SearchResultProvider.cs" />
     <Compile Include="Providers\SuggestionResultProvider.cs" />
     <Compile Include="Mappers\ISearchMapper.cs" />
@@ -720,15 +708,11 @@
     <Compile Include="Models\Entities\Category\CategorySearchResultItem.cs" />
     <Compile Include="Models\Entities\Category\CategorySearchOptions.cs" />
     <Compile Include="Services\Category\ICategorySearchService.cs" />
-    <Compile Include="Services\Category\CommerceCategorySearchService.cs" />
     <Compile Include="Services\ISearchService.cs" />
-    <Compile Include="Services\Product\ICommerceProductSearchService.cs" />
     <Compile Include="Services\Product\ISuggestionService.cs" />
-    <Compile Include="Services\Product\CommerceProductSearchService.cs" />
     <Compile Include="Services\Product\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Search.Provider.Sitecore.Services.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml" />
     <None Include="web.config" />

@@ -17,15 +17,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using System.Diagnostics.CodeAnalysis;
 
     using AutoMapper;
-
-    using Connect.Models.Catalog;
-
-    using Foundation.Search.Models.Common;
-
-    using Models.Entities.Search;
-
-    using Sitecore.Data.Items;
-
+    
     using Facet = Models.Entities.Search.Facet;
     using FacetValue = Models.Entities.Search.FacetValue;
 
@@ -39,9 +31,6 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
             this.CreateMap<FacetValue, Foundation.Search.Models.Common.FacetValue>()
                 .ForMember(dest => dest.AggregateCount, opt => opt.Ignore());
-
-            this.CreateMap<SearchResults<Item>, ProductSearchResults>()
-                .ForMember(dest => dest.Products, opt => opt.Ignore());
         }
     }
 }

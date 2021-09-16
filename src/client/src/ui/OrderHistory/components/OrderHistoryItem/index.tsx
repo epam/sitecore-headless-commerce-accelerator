@@ -76,8 +76,6 @@ export class OrderHistoryItem extends Jss.SafePureComponent<OrderHistoryItemProp
               <span className="order-list-item-header_title-wrapper-status">{order.status}</span>
 
               <div className="order-list-item-header_title-wrapper-detail_control">
-                <button className="order-list-item-header_title-reorder">Reorder</button>
-
                 {order && order.cartLines.length > 4 && (
                   <>
                     <button className="order-list-item-header_title-carousel-prev" onClick={this.goPrev}>

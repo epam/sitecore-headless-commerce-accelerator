@@ -137,7 +137,7 @@ export const PasswordResetFormComponent: FC<PasswordResetFormProps> = ({
             className={cnPasswordResetForm('Submit', { disabled: !formIsValid })}
             disabled={!formIsValid}
             buttonType="submit"
-            buttonTheme="grey"
+            buttonTheme="default"
           >
             {resetPasswordState.status === LoadingStatus.Loading && <Icon icon="icon-spinner-solid" />}
             Change password

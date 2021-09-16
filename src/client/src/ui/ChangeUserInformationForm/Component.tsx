@@ -89,7 +89,8 @@ export default class ChangeUserInformationForm extends Jss.SafePureComponent<
                 </div>
                 <div className="submit-container">
                   <Submit
-                    buttonTheme="grey"
+                    className="SubmitButton"
+                    buttonTheme="default"
                     disabled={isLoading}
                     onSubmitHandler={(formValues) => this.handleSaveChangesClick(formValues)}
                   >

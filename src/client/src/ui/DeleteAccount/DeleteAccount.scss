@@ -21,6 +21,9 @@
   padding: 30px 0 50px;
   &-Button {
     margin: auto;
+    background: $bg-grey;
+    border: 1px solid $bg-grey;
+    @include primary-button-hover-focus-active;
   }
 
   &-Content {
@@ -37,5 +40,8 @@
   }
   &-Button-dialog {
     margin: 20px;
+    background: $bg-grey;
+    border: 1px solid $bg-grey;
+    @include primary-button-hover-focus-active;
   }
 }

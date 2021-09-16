@@ -99,8 +99,8 @@ Task("002-Build")
 Task("003-Tests")
     .IsDependentOn(XUnitRunner.RunTests)
     .IsDependentOn(Client.RunTests)
-    .IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
-    .IsDependentOn(Coverage.OutputCoverage)
+    //.IsDependentOn(Sitecore.Tasks.MergeCoverageReportsTaskName)
+    //.IsDependentOn(Coverage.OutputCoverage)
     ;
 
 Task("004-Packages")

@@ -70,12 +70,11 @@ export class ProductListHeader extends Jss.SafePureComponent<ProductListHeaderPr
             Object.keys(appliedFacets).map((facetName) => {
               const facet = appliedFacets[facetName];
               return facet.map((value, valueIndex) => (
-                <div
-                  className="filter-label"
-                  key={valueIndex}
-                  onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}
-                >
-                  <Icon icon="icon-close" />
+                <div className="filter-label" key={valueIndex}>
+                  <div className="iconClose" onClick={(e) => this.handleDiscardFacetClick(facetName, value, e)}>
+                    <Icon size="l" icon="icon-close" />
+                  </div>
+
                   <span className="filter-label_text">{value}</span>
                 </div>
               ));

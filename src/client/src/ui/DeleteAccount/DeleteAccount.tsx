@@ -38,8 +38,9 @@ export const DeleteAccount = () => {
   return (
     <div className={cnDeleteAccount()}>
       <Button
-        className={cnDeleteAccount('Button')} buttonType="submit"
-        buttonTheme="grey"
+        className={cnDeleteAccount('Button')}
+        buttonType="submit"
+        buttonTheme="default"
         onClick={() => handleToggleDialogClick()}
       >
         Delete Account
@@ -52,15 +53,17 @@ export const DeleteAccount = () => {
           <form>
             <div className={cnDeleteAccount('SubmitContainer')}>
               <Button
-                className={cnDeleteAccount('Button-dialog')} buttonType="submit"
-                buttonTheme="grey"
+                className={cnDeleteAccount('Button-dialog')}
+                buttonType="submit"
+                buttonTheme="default"
                 onClick={() => handleDeleteAccountSubmit()}
               >
                 DELETE
               </Button>
               <Button
-                className={cnDeleteAccount('Button-dialog')} buttonType="submit"
-                buttonTheme="grey"
+                className={cnDeleteAccount('Button-dialog')}
+                buttonType="submit"
+                buttonTheme="default"
                 onClick={() => handleToggleDialogClick()}
               >
                 CANCEL

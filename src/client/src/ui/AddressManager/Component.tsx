@@ -98,7 +98,7 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
                                 <div className="entries-edit-delete text-center">
                                   <Button
                                     className="AddressManager-EditButton"
-                                    buttonTheme="orange"
+                                    buttonTheme="default"
                                     onClick={(e: MouseEvent<HTMLButtonElement>) =>
                                       this.editAddressByButtonClick(true, e)
                                     }
@@ -107,7 +107,7 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
                                   </Button>
                                   <Button
                                     className="AddressManager-DeleteButton"
-                                    buttonTheme="black"
+                                    buttonTheme="default"
                                     onClick={(e: MouseEvent<HTMLButtonElement>) =>
                                       this.onDeleteButtonClick(e, address.externalId)
                                     }
@@ -128,8 +128,9 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
                         <label className="address_label-empty">No saved address</label>
                         <div className="add-address-btn-container">
                           <Button
+                            className="AddButton"
                             buttonType="submit"
-                            buttonTheme="grey"
+                            buttonTheme="default"
                             onClick={(e: MouseEvent<HTMLButtonElement>) => this.editAddressByButtonClick(false, e)}
                           >
                             Add
@@ -141,8 +142,9 @@ export default class AddressManager extends SafePureComponent<AddressManagerProp
                   {isExistAddressItems && (
                     <div className="add-address-btn-container">
                       <Button
+                        className="AddButton"
                         buttonType="submit"
-                        buttonTheme="grey"
+                        buttonTheme="default"
                         onClick={(e: MouseEvent<HTMLButtonElement>) => this.editAddressByButtonClick(false, e)}
                       >
                         Add

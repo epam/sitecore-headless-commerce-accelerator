@@ -133,9 +133,10 @@ export default class ChangePasswordComponent extends Jss.SafePureComponent<
                 </div>
                 <div className="submit-container">
                   <Submit
+                    className="SubmitButton"
                     disabled={isLoading}
                     type="button"
-                    buttonTheme="grey"
+                    buttonTheme="default"
                     onSubmitHandler={(formValues) => this.handleChangePasswordSubmit(formValues)}
                   >
                     {isLoading && <Icon icon="icon-spinner-solid" />}

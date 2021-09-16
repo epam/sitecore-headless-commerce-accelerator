@@ -89,7 +89,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
                 <label>* Zip/Postal Code</label>
                 <Input type="text" fullWidth={true} />
               </div>
-              <Button className="OrderSummary-Button" buttonType="submit" buttonTheme="defaultReversed" rounded={true}>
+              <Button className="OrderSummary-Button" buttonType="submit" buttonTheme="default">
                 Get A Quote
               </Button>
             </Form>
@@ -123,9 +123,8 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="OrderSummary-ProceedButtonContainer">
               <Button
                 className="OrderSummary-Button"
-                buttonType="link"
-                buttonTheme="defaultReversed"
-                rounded={true}
+                buttonType="button"
+                buttonTheme="default"
                 fullWidth={true}
                 href="/Checkout/Shipping"
               >

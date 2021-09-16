@@ -93,22 +93,36 @@
       margin: 10px 20px 0 0;
       padding: 5px 15px;
       border-radius: 3px;
-      cursor: pointer;
       background: $theme-color;
       text-transform: capitalize;
       border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      cursor: default;
 
-      &:hover {
-        color: $font-hover-color;
-        background: $theme-color;
-        .filter-label_text {
-          color: $font-hover-color;
+      &-iconClose {
+        display: inline;
+      }
+
+      & i {
+        color: #fff;
+        display: flex;
+        cursor: pointer;
+        @media (hover) {
+          &:hover {
+            color: #a03bff;
+            background-color: #fff;
+            border-radius: 50%;
+          }
+        }
+
+        &:active {
+          color: #a03bff;
+          background-color: #fff;
+          border-radius: 50%;
         }
       }
-      .fa {
-        font-size: 13px;
-        color: #fff;
-      }
+
       &_text {
         font-family: $poppins;
         font-size: 14px;
@@ -116,7 +130,7 @@
         margin: 0;
         color: #fff;
         line-height: inherit;
-        margin: 0;
+        margin: auto 0;
         padding: 0 0 0 5px;
       }
     }

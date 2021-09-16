@@ -127,17 +127,18 @@
 
       &-delete {
         position: absolute;
-        top: 0;
+        top: -5px;
         right: 0;
 
         button {
           font-size: 16px;
           border: none !important;
-          color: $theme-color;
           padding: 0px !important;
           background: none;
-          &:hover {
-            color: #333;
+          @media (hover) {
+            &:hover {
+              color: $theme-color;
+            }
           }
         }
       }

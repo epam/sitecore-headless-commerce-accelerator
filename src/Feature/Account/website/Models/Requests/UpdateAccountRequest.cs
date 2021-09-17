@@ -24,9 +24,6 @@ namespace HCA.Feature.Account.Models.Requests
     public class UpdateAccountRequest
     {
         [Required]
-        public string ContactId { get; set; }
-
-        [Required]
         public string FirstName { get; set; }
 
         [Required]

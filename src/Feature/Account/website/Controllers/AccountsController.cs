@@ -150,7 +150,7 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult UpdateAccount(UpdateAccountRequest request)
         {
             return this.Execute(
-                () => this.accountService.UpdateAccount(request.ContactId, request.FirstName, request.LastName));
+                () => this.accountService.UpdateAccount(this.visitorContext.ContactId, request.FirstName, request.LastName));
         }
 
         [HttpPut]
@@ -202,11 +202,11 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult DeleteAccount(DeleteAccountRequest request)
         {
             var userId = this.visitorContext.ContactId;
-            
+
             return this.Execute(() =>
-                {
-                    return this.accountService.DeleteAccount(userId);
-                },
+            {
+                return this.accountService.DeleteAccount(userId);
+            },
                 result =>
                 {
                     if (result.Success)

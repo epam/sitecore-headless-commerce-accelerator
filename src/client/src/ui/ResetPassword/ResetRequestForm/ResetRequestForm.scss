@@ -59,6 +59,11 @@
   &-BackToSignIn {
     text-align: center;
     padding: 1em;
+    & a {
+      &:hover {
+        color: $theme-color;
+      }
+    }
   }
 
   // Increased the specificity of the selector due to the fact that it is interrupted by global styles

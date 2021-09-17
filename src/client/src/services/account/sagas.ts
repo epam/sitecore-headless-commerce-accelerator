@@ -181,7 +181,6 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
 
   const payload: DataModel.UpdateAccountRequest = {
     ...action.payload,
-    contactId: commerceUser.contactId,
   };
 
   yield put(actions.UpdateAccountRequest());

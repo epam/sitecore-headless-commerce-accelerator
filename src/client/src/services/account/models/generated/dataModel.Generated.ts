@@ -48,7 +48,6 @@ export interface LoginRequest {
   password: string;
 }
 export interface UpdateAccountRequest {
-  contactId: string;
   firstName: string;
   lastName: string;
 }

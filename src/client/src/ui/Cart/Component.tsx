@@ -93,7 +93,7 @@ export default class Cart extends Jss.SafePureComponent<CartProps, CartState> {
         </div>
 
         <div className="action_container">
-          <Button className="Cart-ContinueShoppingButton" buttonType="button" buttonTheme="default" href="/">
+          <Button className="Cart-ContinueShoppingButton" buttonType="link" buttonTheme="default" href="/">
             Continue Shopping
           </Button>
         </div>

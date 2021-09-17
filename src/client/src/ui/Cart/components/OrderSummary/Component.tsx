@@ -123,7 +123,7 @@ export class OrderSummaryComponent extends Jss.SafePureComponent<OrderSummaryPro
             <div className="OrderSummary-ProceedButtonContainer">
               <Button
                 className="OrderSummary-Button"
-                buttonType="button"
+                buttonType="link"
                 buttonTheme="default"
                 fullWidth={true}
                 href="/Checkout/Shipping"

@@ -169,6 +169,10 @@
     margin-top: 26px;
     background: $bg-grey;
     border: 1px solid $bg-grey;
+
+    &:hover {
+      color: #fff;
+    }
     @include primary-button-hover-focus-active;
   }
 

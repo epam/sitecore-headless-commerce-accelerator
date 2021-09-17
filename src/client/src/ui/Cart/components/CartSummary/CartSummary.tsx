@@ -18,11 +18,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingStatus } from 'models';
 import { eventHub, events } from 'services/eventHub';
-import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine } from 'services/shoppingCart';
+import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine, UpdateCartLine } from 'services/shoppingCart';
 import { Variant } from 'services/commerce';
 
 import { Icon } from 'components';
 
+import { Quantity } from './components';
 import { NavigationLink } from 'ui/NavigationLink';
 import { useWishlistState } from 'ui/Wishlist/hooks';
 
@@ -134,6 +135,9 @@ export const CartSummary = (props: CartSummaryOwnProps) => {
                           {cartLine.variant.adjustedPrice.toFixed(2)}
                         </div>
                       )}
+                    </div>
+                    <div className="col-xs-2 amount quantity-group product-quantity">
+                      <Quantity cartLine={cartLine} updateCartLine={UpdateCartLine} />
                     </div>
                     <div className="col-xs-2 amount product-subtotal">
                       <span className="currency">{cartLine.price.currencySymbol}</span>

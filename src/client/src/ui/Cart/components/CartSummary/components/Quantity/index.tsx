@@ -23,24 +23,19 @@ import './styles.scss';
 type Props = {
   cartLine: ShoppingCartLine;
   updateCartLine: (model: CartItemDto) => void;
-  removeCartLine: (model: ShoppingCartLine) => void;
 };
 
-export const Quantity: FC<Props> = ({ cartLine, updateCartLine, removeCartLine }) => {
+export const Quantity: FC<Props> = ({ cartLine, updateCartLine }) => {
   const [quantity, setQuantity] = useState(cartLine.quantity);
 
   const handleQuantityChange = (value: number) => {
-    if (value === 0) {
-      removeCartLine(cartLine);
-    } else {
-      setQuantity(value);
-      updateCartLine({
-        productId: cartLine.product.productId,
-        quantity: value,
-        variantId: cartLine.variant.variantId,
-      });
-    }
+    setQuantity(value);
+    updateCartLine({
+      productId: cartLine.product.productId,
+      quantity: value,
+      variantId: cartLine.variant.variantId,
+    });
   };
 
-  return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={0} size="l" theme="grey" />;
+  return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={1} size="l" theme="grey" />;
 };

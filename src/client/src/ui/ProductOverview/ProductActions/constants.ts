@@ -12,26 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-@import 'styles/variables';
-@import 'styles/mixins';
-
-.ProductActions {
-  &-Row {
-    display: flex;
-
-    @media #{$pdp-md-switch-layout} {
-      flex-wrap: wrap;
-    }
-    .ProductCard-AddToCart {
-      margin-right: 25px;
-    }
-  }
-
-  &-InformMeButton {
-    margin: 0 25px 0 0;
-    font-size: 10px;
-  }
-  .add-wishlist-active i {
-    color: $theme-color !important;
-  }
-}
+export const DEFAULT_QUANTITY_FOR_ADD_TO_CART = 1;

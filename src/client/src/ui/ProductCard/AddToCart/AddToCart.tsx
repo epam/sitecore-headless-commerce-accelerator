@@ -47,9 +47,10 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
 
   const { product, selectedVariant } = contextData;
   const { data: cartData, cartItemsState } = cartState;
-  const statusId = `${product.productId}-${selectedVariant.variantId}`;
+  const selectedVariantId = selectedVariant ? selectedVariant.variantId : '';
+  const statusId = `${product.productId}-${selectedVariantId}`;
   const loadingStatus = get(cartItemsState, [statusId, 'status']);
-  const quantity = quantities[selectedVariant.variantId] || 0;
+  const quantity = quantities[selectedVariantId] || 0;
   const cartLinesState: CartLine[] | null = get(cartData, 'cartLines', null);
 
   const inCart = useMemo(() => {
@@ -58,7 +59,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     }
 
     const cartLine = cartLinesState.find(
-      (item) => item.product.productId === product.productId && item.variant.variantId === selectedVariant.variantId,
+      (item) => item.product.productId === product.productId && item.variant.variantId === selectedVariantId,
     );
 
     return Boolean(cartLine);
@@ -123,7 +124,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     dispatch(updateCartItemRequest({ productId, quantity: DEFAULT_QUANTITY_FOR_ADD_TO_CART, variantId }));
   }, [selectedVariant, dispatch]);
 
-  const outOfStock = selectedVariant.stockStatusName === StockStatus.OutOfStock;
+  const outOfStock = selectedVariant && selectedVariant.stockStatusName === StockStatus.OutOfStock;
 
   return (
     <div className={cnProductCard('AddToCart', [className])}>

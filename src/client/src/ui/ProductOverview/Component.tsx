@@ -31,6 +31,7 @@ import { ProductGallery } from './components/ProductGallery';
 import { ProductActions } from './ProductActions';
 
 import { eventHub, events } from 'services/eventHub';
+import { ProductCardContext } from 'ui/ProductCard/context';
 
 export default class ProductOverviewComponent extends JSS.SafePureComponent<
   ProductOverviewProps,
@@ -64,6 +65,16 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
       (selectedCatalogItem.hasOwnProperty('variantId')
         ? (selectedCatalogItem as Variant).variantId
         : selectedCatalogItem.productId);
+
+    const context = {
+      fallbackImageUrl,
+      onChangeVariant: (variantId: string) => {
+        return;
+      },
+      product,
+      productColors,
+      selectedVariant,
+    };
 
     return (
       selectedCatalogItem && (
@@ -110,7 +121,9 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                     <Placeholder name="product-properties" rendering={this.props.rendering} />
                     <div className="property-selectors" />
                     <div className="actions">
-                      <ProductActions />
+                      <ProductCardContext.Provider value={context}>
+                        <ProductActions />
+                      </ProductCardContext.Provider>
                     </div>
                   </div>
                   <div className="product-tags">

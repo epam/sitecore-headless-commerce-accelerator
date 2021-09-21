@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,81 +12,102 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState, useMemo } from 'react';
 
-import { useSelector } from 'react-redux';
+import axios, { AxiosError } from 'axios';
 
 import { LoadingStatus } from 'models';
-import { notifySubscribed } from 'services/notifications';
-
+import { notify, notifySubscribed } from 'services/notifications';
 import { StockStatus } from 'services/catalog';
-import { variants as Variants } from 'services/productVariant';
-import { shoppingCart as ShoppingCart } from 'services/shoppingCart';
+import { Variant } from 'services/commerce';
 
-import { Button, Icon, QuantityPicker } from 'components';
+import { AddToCart } from 'ui/ProductCard';
 
+import { Button, Icon } from 'components';
+
+import { useWishlistState } from 'ui/Wishlist/hooks';
 import { SubmitEmailDialog } from '../SubmitEmailDialog';
 import { ProductActionsProps } from './models';
+
+import classnames from 'classnames';
 
 import { cnProductActions } from './cn';
 import './ProductActions.scss';
 
 export const ProductActionsComponent: FC<ProductActionsProps> = ({
   productId,
-  AddToCart,
   sitecoreContext,
   commerceUser,
+  variants,
+  wishlistStatus,
 }) => {
-  const [quantity, setQuantity] = useState(1);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [displayNotifications, setDisplayNotifications] = useState(false);
 
-  const variants = useSelector(Variants);
-  const shoppingCartState = useSelector(ShoppingCart);
-
+  const [wishlistItems, setWishlistItems] = useWishlistState([]);
   const [variant] = variants;
-  const isLoading = shoppingCartState.status === LoadingStatus.Loading;
+
   const outOfStock = variant && variant.stockStatusName === StockStatus.OutOfStock;
 
-  const handleAddToCartClick = useCallback(() => {
-    AddToCart({ productId, quantity, variantId: variant.variantId });
-  }, [productId, quantity, variant]);
+  useEffect(() => {
+    if (displayNotifications && wishlistStatus === LoadingStatus.Loaded) {
+      notify('success', 'Product added!');
+    }
+    if (displayNotifications && wishlistStatus === LoadingStatus.Failure) {
+      notify('success', 'Sorry, something went wrong');
+    }
+  }, [wishlistStatus]);
 
   const subscribeToOOSProduct = (email: string) => {
-    // TO-DO:: handle subscribe to oos product action
+    const getApi = process.env.OUT_OF_STOCK_SUBSCRIPTION_API_URL || 'http://localhost:7071/api';
+    const outOfStockSubscriptionApiURL = getApi + '/Subscribe';
+    const data = {
+      email,
+      productId,
+    };
 
-    notifySubscribed(sitecoreContext.product);
+    axios
+      .post(outOfStockSubscriptionApiURL, data)
+      .then(() => notifySubscribed(sitecoreContext.product))
+      .catch((error: AxiosError) => notify('error', error.message));
   };
 
   const handleInformMeButtonClick = useCallback(() => {
     if (commerceUser && commerceUser.customerId) {
-      subscribeToOOSProduct('');
+      subscribeToOOSProduct(commerceUser.email);
     } else {
       setDialogOpen(true);
     }
   }, [commerceUser]);
 
-  const handleQuantityChange = useCallback(
-    (newQuantity) => {
-      setQuantity(newQuantity);
-    },
-    [setQuantity],
-  );
+  const isAddedItem = useMemo(() => {
+    return wishlistItems.some((x) => x.variantId === variant.variantId);
+  }, [wishlistItems]);
+
+  const handleAddToWishlistClick = () => {
+    if (!isAddedItem) {
+      const addItem: Variant[] = wishlistItems.concat(variant);
+      setWishlistItems(addItem);
+      setDisplayNotifications(true);
+    } else {
+      const removeItem: Variant[] = wishlistItems.filter((product) => product.variantId !== variant.variantId);
+      setWishlistItems(removeItem);
+    }
+  };
 
   return (
     <>
       <div className={cnProductActions('Row')}>
-        {!outOfStock && (
-          <QuantityPicker min={1} max={100} size="l" theme="grey" value={quantity} onChange={handleQuantityChange} />
-        )}
-        <Button
-          className={cnProductActions('ContainedButton', { outOfStock })}
-          disabled={isLoading || outOfStock}
-          title={outOfStock ? 'Out of Stock' : 'Add to Cart'}
-          onClick={handleAddToCartClick}
-          buttonTheme="defaultSlide"
+        <AddToCart />
+        <button
+          title={isAddedItem ? 'Remove from Wishlist' : 'Add to Wishlist'}
+          className={classnames('btn btn-main btn-wishlist', {
+            'add-wishlist-active': isAddedItem,
+          })}
+          onClick={handleAddToWishlistClick}
         >
-          {outOfStock ? 'Out of Stock' : 'Add to Cart'}
-        </Button>
+          <Icon icon="icon-heart" />
+        </button>
         <a href="javascript:if(window.print)window.print()" title="Print button" className="btn btn-main btn-print">
           <Icon icon="icon-print" />
         </a>

@@ -140,7 +140,6 @@ export interface ProductSearchResults {
   totalPageCount: number;
 }
 export interface User {
-  contactId: string;
   customerId: string;
   email: string;
   firstName: string;

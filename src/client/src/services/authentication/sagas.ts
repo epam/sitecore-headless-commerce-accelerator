@@ -51,7 +51,7 @@ export function* authentication(action: Action<AuthenticationPayload>) {
 export function* initAuthentication() {
   const commerceUser: User = yield select(selectors.commerceUser);
 
-  yield put(actions.SetAuthenticated(!!commerceUser && !!commerceUser.contactId));
+  yield put(actions.SetAuthenticated(!!commerceUser));
 }
 
 export function* logout(action: Action<LogoutPayload>) {

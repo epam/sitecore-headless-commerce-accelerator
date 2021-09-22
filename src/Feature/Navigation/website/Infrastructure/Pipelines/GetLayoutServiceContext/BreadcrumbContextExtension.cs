@@ -38,7 +38,7 @@ namespace HCA.Feature.Navigation.Infrastructure.Pipelines.GetLayoutServiceContex
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            args.ContextData.Add("breadcrumb", this.breadcrumbService.GenerateBreadcrumb());
+            args.ContextData.Add("breadcrumb", this.breadcrumbService.GetCurrentPageBreadcrumbs());
         }
     }
 }

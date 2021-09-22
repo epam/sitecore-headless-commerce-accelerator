@@ -14,6 +14,9 @@
 
 namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using System.ComponentModel;
+
+    using Foundation.Commerce.Context.Site;
     using Foundation.Commerce.Services.Analytics;
     using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;
@@ -25,32 +28,31 @@ namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
     public class CategoryContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly IAnalyticsService analyticsService;
-
-        private readonly ICatalogService catalogService;
+        private readonly ISiteContext siteContext;
 
         public CategoryContextExtension(
-            ICatalogService catalogService,
+            ISiteContext siteContext,
             IAnalyticsService analyticsService,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
-            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
+            Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(analyticsService, nameof(analyticsService));
 
-            this.catalogService = catalogService;
+            this.siteContext = siteContext;
             this.analyticsService = analyticsService;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            var result = this.catalogService.GetCurrentCategory();
+            var category = this.siteContext.CurrentCategory;
 
-            if (result.Success && result.Data != null)
+            if (category != null)
             {
-                this.analyticsService.RaiseCategoryVisitedEvent(result.Data);
+                this.analyticsService.RaiseCategoryVisitedEvent(category);
             }
 
-            args.ContextData.Add("category", result.Data);
+            args.ContextData.Add("category", category);
         }
     }
 }

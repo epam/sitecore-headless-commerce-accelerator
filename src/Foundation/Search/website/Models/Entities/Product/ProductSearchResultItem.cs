@@ -14,10 +14,20 @@
 
 namespace HCA.Foundation.Search.Models.Entities.Product
 {
+    using System.Collections.Generic;
+
+    using Sitecore.ContentSearch;
+
     public class ProductSearchResultItem : SearchResultItem
     {
         public string Title { get; set; }
 
-        public string ID { get; set; }
+        [IndexField("description")]
+        public string Description { get; set; }
+
+		public string ID { get; set; }
+
+        [IndexField("brand")]
+        public string Brand { get; set; }
     }
 }

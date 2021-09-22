@@ -54,7 +54,7 @@ namespace HCA.Feature.Catalog.Pipelines.MvcRequestBegin
 
                 this.catalogItemResolver.ProcessItemAndApplyContext(currentItem, urlSegments);
 
-                if (this.siteContext.CurrentItem == null)
+                if (this.siteContext.CurrentProduct == null && this.siteContext.CurrentCategory == null)
                 {
                     WebUtil.Redirect(Sitecore.Configuration.Settings.GetSetting(Constants.Settings.ItemNotFoundUrl));
                 }

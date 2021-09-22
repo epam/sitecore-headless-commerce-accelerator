@@ -89,32 +89,39 @@ namespace HCA.Foundation.Commerce.Converters.Search
             IEnumerable<Foundation.Search.Models.Common.Facet> searchSettingsFacets,
             IEnumerable<Facet> searchOptionsFacets)
         {
-            if (searchSettingsFacets == null)
+            if (searchOptionsFacets != null)
             {
-                return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(
-                    searchOptionsFacets);
-            }
-
-            if (searchOptionsFacets == null || !searchOptionsFacets.Any())
-            {
-                return searchSettingsFacets;
-            }
-
-            var facets = searchOptionsFacets.Where(
-                searchOptionsFacet =>
+                if (searchSettingsFacets == null)
                 {
-                    var searchSettingsFacet =
-                        searchSettingsFacets.FirstOrDefault(facet => facet.Name == searchOptionsFacet.Name);
-                    if (searchSettingsFacet == null)
+                    return this.searchMapper
+                        .Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(
+                            searchOptionsFacets);
+                }
+
+                if (searchOptionsFacets == null || !searchOptionsFacets.Any())
+                {
+                    return searchSettingsFacets;
+                }
+
+                var facets = searchOptionsFacets.Where(
+                    searchOptionsFacet =>
                     {
-                        return false;
-                    }
+                        var searchSettingsFacet =
+                            searchSettingsFacets.FirstOrDefault(facet => facet.Name == searchOptionsFacet.Name);
+                        if (searchSettingsFacet == null)
+                        {
+                            return false;
+                        }
 
-                    searchOptionsFacet.DisplayName = searchSettingsFacet.DisplayName;
-                    return true;
-                });
+                        searchOptionsFacet.DisplayName = searchSettingsFacet.DisplayName;
+                        return true;
+                    });
 
-            return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(facets);
+                return this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(
+                    facets);
+            }
+
+            return new List<Foundation.Search.Models.Common.Facet>();
         }
     }
 }

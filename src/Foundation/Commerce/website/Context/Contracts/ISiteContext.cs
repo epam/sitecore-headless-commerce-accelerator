@@ -14,27 +14,12 @@
 
 namespace HCA.Foundation.Commerce.Context
 {
-    using System.Collections;
-    using System.Web;
-
-    using Sitecore.Data.Items;
-
+    using Models.Entities.Catalog;
+    
     public interface ISiteContext
     {
-        Item CurrentCategoryItem { get; set; }
+        Category CurrentCategory { get; set; }
 
-        HttpContext CurrentContext { get; }
-
-        Item CurrentItem { get; set; }
-
-        Item CurrentProductItem { get; set; }
-
-        bool IsCategory { get; }
-
-        bool IsProduct { get; }
-
-        IDictionary Items { get; }
-
-        string VirtualFolder { get; }
+        Product CurrentProduct { get; set; }
     }
 }

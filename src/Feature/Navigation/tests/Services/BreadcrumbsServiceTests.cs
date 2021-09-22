@@ -14,11 +14,13 @@
 
 namespace HCA.Feature.Navigation.Tests.Services
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
+    using Foundation.Base.Context;
     using Foundation.Base.Services;
-    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Site;
+    using Foundation.Commerce.Models.Entities.Catalog;
 
     using Models.Entities.Breadcrumb;
 
@@ -26,137 +28,50 @@ namespace HCA.Feature.Navigation.Tests.Services
     using Navigation.Services.Breadcrumb;
 
     using NSubstitute;
-    using Sitecore.Data;
+
+    using Ploeh.AutoFixture;
+
+    using Sitecore.Collections;
+    using Sitecore.Data.Items;
+    using Sitecore.FakeDb.AutoFixture;
+    using Sitecore.Web;
+
     using Xunit;
 
-    public class BreadcrumbServiceTests : BaseBreadcrumbTests
-    {
-        protected readonly IBreadcrumbRepository BreadcrumbRepository;
+    using SiteContext = Sitecore.Sites.SiteContext;
 
-        protected readonly BreadcrumbService BreadcrumbService;
-        protected readonly ISiteContext SiteContext;
-        protected readonly ILinkManagerService LinkManagerService;
+    public class BreadcrumbServiceTests
+    {
+        private readonly IBreadcrumbRepository breadcrumbRepository;
+        private readonly IBreadcrumbService breadcrumbService;
+        private readonly ISiteContext siteContext;
+        private readonly ISitecoreContext sitecoreContext;
+        private readonly IFixture fixture;
 
         public BreadcrumbServiceTests()
         {
-            this.SiteContext = Substitute.For<ISiteContext>();
-            this.BreadcrumbRepository = Substitute.For<IBreadcrumbRepository>();
-            this.LinkManagerService = Substitute.For<ILinkManagerService>();
+            this.fixture = new Fixture().Customize(new AutoDbCustomization());
+            this.siteContext = Substitute.For<ISiteContext>();
+            
+            this.breadcrumbRepository = Substitute.For<IBreadcrumbRepository>();
 
-            this.BreadcrumbService = new BreadcrumbService(
-                this.SitecoreContext,
-                this.SiteContext,
-                this.BreadcrumbRepository,
-                this.LinkManagerService);
+            this.breadcrumbRepository.GetPageLinks(this.fixture.Create<Item>(), this.fixture.Create<string>())
+                .Returns(new List<PageLink>());
+
+            this.sitecoreContext = Substitute.For<ISitecoreContext>();
+            this.sitecoreContext.Site.Returns(new SiteContext(new SiteInfo(new StringDictionary())));
+
+            this.breadcrumbService = new BreadcrumbService(this.sitecoreContext, this.siteContext, this.breadcrumbRepository);
         }
 
         [Fact]
-        public void GetProductCategory_IfProductItemIsNull_ShouldThrowArgumentNullException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.BreadcrumbService.GetProductCategory(null));
-        }
-
-        [Fact]
-        public void GetProductCategory_ShouldReturnCategoryItem()
-        {
-            // arrange
-            var productItem = this.SitecoreTree.GetItem("/sitecore/content/HCA/Home/Shop/*/*");
-
-            // act
-            var categoryItem = this.BreadcrumbService.GetProductCategory(productItem);
-
-            // assert
-            Assert.Equal(new ID(CategoryTemplateId), categoryItem.TemplateID);
-        }
-
-        [Fact]
-        public void GetShopPage_ShouldReturnShopPage()
+        public void GenerateBreadcrumb_ShouldReturnBreadcrumbs()
         {
             // act
-            var shopPageItem = this.BreadcrumbService.GetShopPage();
+            var breadcrumbs = this.breadcrumbService.GetCurrentPageBreadcrumbs();
 
             // assert
-            Assert.Equal(new ID(ShopPageId), shopPageItem.ID);
+            Assert.NotNull(breadcrumbs);
         }
-
-        [Theory]
-        [InlineData(new[] { "Home", "Shop", "*", "*" }, new[] { "Home", CategoryName })]
-        public void ResolveCategoryPage_ShouldReturnBreadcrumbWithCorrectPageLinkTitles(
-            string[] initialTitles,
-            string[] expectedTitles)
-        {
-            // arrange
-            var categoryItem = this.SitecoreTree.GetItem(CategoryId);
-            this.SiteContext.IsCategory.Returns(x => true);
-            this.SiteContext.CurrentCategoryItem.Returns(x => categoryItem);
-
-            var initialPageLinks = initialTitles.Select(title => new PageLink { Title = title, Link = "" }).ToList();
-            var breadcrumb = new Breadcrumb
-            {
-                PageLinks = initialPageLinks
-            };
-
-            // act
-            var result = this.BreadcrumbService.ResolveCategoryPage(breadcrumb);
-            var resultTitles = result.PageLinks.Select(p => p.Title).ToArray();
-
-            // assert
-            Assert.Equal(expectedTitles, resultTitles);
-        }
-
-        [Theory]
-        [InlineData(new[] { "Home", "Product", "*" }, new[] { "Home", CategoryName, ProductName })]
-        public void ResolveProductPage_ShouldReturnBreadcrumbWithCorrectPageLinkTitles(
-            string[] initialTitles,
-            string[] expectedTitles)
-        {
-            // arrange
-            var productItem = this.SitecoreTree.GetItem(ProductId);
-            this.SiteContext.IsProduct.Returns(x => true);
-            this.SiteContext.CurrentProductItem.Returns(x => productItem);
-
-            var initialPageLinks = initialTitles.Select(title => new PageLink { Title = title, Link = "" }).ToList();
-            var breadcrumb = new Breadcrumb
-            {
-                PageLinks = initialPageLinks
-            };
-
-            // act
-            var result = this.BreadcrumbService.ResolveProductPage(breadcrumb);
-            var resultTitles = result.PageLinks.Select(p => p.Title).ToArray();
-
-            // assert
-            Assert.Equal(expectedTitles, resultTitles);
-        }
-        [Theory]
-        [InlineData(new[] { "Home", "Product", "*" }, new[] { "Home", CategoryName, ProductName }, new[] { "/Home", "/" + CategoryName, ""})]
-        public void ResolveProductPage_ShouldReturnBreadcrumbWithCorrectPageLinkTitlesAndLinks(
-            string[] initialTitles,
-            string[] expectedTitles,
-            string[] expectedLinks)
-        {
-            // arrange
-            var productItem = this.SitecoreTree.GetItem(ProductId);
-            this.SiteContext.IsProduct.Returns(x => true);
-            this.SiteContext.CurrentProductItem.Returns(x => productItem);
-            var shopPageUrl = this.LinkManagerService.GetItemUrl(productItem);
-
-            var initialPageLinks = initialTitles.Select(title => new PageLink { Title = title, Link = $"{shopPageUrl}/{title}" }).ToList();
-            var breadcrumb = new Breadcrumb
-            {
-                PageLinks = initialPageLinks
-            };
-
-            // act
-            var result = this.BreadcrumbService.ResolveProductPage(breadcrumb);
-            var resultTitles = result.PageLinks.Select(p => p.Title).ToArray();
-            var resultLinks = result.PageLinks.Select(p => p.Link).ToArray();
-
-            // assert
-            Assert.Equal(expectedTitles, resultTitles);
-            Assert.Equal(expectedLinks, resultLinks);
-        }
-
     }
 }

@@ -24,22 +24,17 @@ namespace HCA.Foundation.Commerce.Services.Catalog
     public interface ICatalogService
     {
         /// <summary>
-        /// Gets current context category
-        /// </summary>
-        /// <returns>Category result</returns>
-        Result<Category> GetCurrentCategory();
-
-        /// <summary>
-        /// Gets current context product
-        /// </summary>
-        /// <returns>Product result</returns>
-        Result<Product> GetCurrentProduct();
-
-        /// <summary>
         /// Gets product model by Id
         /// </summary>
         /// <param name="productId">Product Id</param>
         /// <returns>Product result</returns>
         Result<Product> GetProduct(string productId);
+
+        /// <summary>
+        /// Gets category model by name
+        /// </summary>
+        /// <param name="categoryName">Category name</param>
+        /// <returns>Category result</returns>
+        Result<Category> GetCategory(string categoryName);
     }
 }

@@ -14,8 +14,8 @@
 
 namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
 {
+    using Foundation.Commerce.Context.Site;
     using Foundation.Commerce.Services.Analytics;
-    using Foundation.Commerce.Services.Catalog;
     using Foundation.ReactJss.Infrastructure;
 
     using Sitecore.Diagnostics;
@@ -25,32 +25,31 @@ namespace HCA.Feature.Catalog.Pipelines.GetLayoutServiceContext
     public class ProductContextExtension : BaseSafeJssGetLayoutServiceContextProcessor
     {
         private readonly IAnalyticsService analyticsService;
-
-        private readonly ICatalogService catalogService;
+        private readonly ISiteContext siteContext;
 
         public ProductContextExtension(
-            ICatalogService catalogService,
             IAnalyticsService analyticsService,
+            ISiteContext siteContext,
             IConfigurationResolver configurationResolver)
             : base(configurationResolver)
         {
-            Assert.ArgumentNotNull(catalogService, nameof(catalogService));
             Assert.ArgumentNotNull(analyticsService, nameof(analyticsService));
+            Assert.ArgumentNotNull(siteContext, nameof(siteContext));
 
-            this.catalogService = catalogService;
             this.analyticsService = analyticsService;
+            this.siteContext = siteContext;
         }
 
         protected override void DoProcessSafe(GetLayoutServiceContextArgs args, AppConfiguration application)
         {
-            var result = this.catalogService.GetCurrentProduct();
+            var currentProduct = this.siteContext.CurrentProduct;
 
-            if (result.Success && result.Data != null)
+            if (currentProduct != null)
             {
-                this.analyticsService.RaiseProductVisitedEvent(result.Data);
+                this.analyticsService.RaiseProductVisitedEvent(currentProduct);
             }
 
-            args.ContextData.Add("product", result.Data);
+            args.ContextData.Add("product", currentProduct);
         }
     }
 }

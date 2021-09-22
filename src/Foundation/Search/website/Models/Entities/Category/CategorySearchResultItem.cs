@@ -14,7 +14,11 @@
 
 namespace HCA.Foundation.Search.Models.Entities.Category
 {
+    using Sitecore.ContentSearch;
+
     public class CategorySearchResultItem : SearchResultItem
     {
+        [IndexField("__display_name")]
+        public string DisplayName { get; set; }
     }
 }

@@ -14,89 +14,59 @@
 
 namespace HCA.Foundation.Commerce.Services.Catalog
 {
-    using Base.Models.Result;
-
-    using Context;
-
-    using DependencyInjection;
-
-    using Mappers.Catalog;
-
-    using Models.Entities.Catalog;
-
-    using Sitecore.Data.Items;
-    using Sitecore.Diagnostics;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Connect.Converters.Products;
+    using Base.Models.Result;
 
-    using Foundation.Search.Models.Entities.Product;
-    using Foundation.Search.Services.Product;
+    using DependencyInjection;
+
+    using Models.Entities.Catalog;
+    using Models.Entities.Search;
 
     using Search;
 
-    using Connect = Connect.Models.Catalog;
-    using IProductSearchService = Search.IProductSearchService;
+    using Sitecore.Diagnostics;
 
     [Service(typeof(ICatalogService), Lifetime = Lifetime.Transient)]
     public class CatalogService : ICatalogService
     {
-        private readonly ICatalogMapper catalogMapper;
         private readonly IProductSearchService productSearchService;
-        private readonly ISiteContext siteContext;
-        private readonly IProductConverter<Item> productConverter;
 
-        public CatalogService(
-            ISiteContext siteContext,
-            ICatalogMapper catalogMapper,
-            IProductSearchService productSearchService,
-            IProductConverter<Item> productConverter)
+        public CatalogService(IProductSearchService productSearchService)
         {
-            Assert.ArgumentNotNull(siteContext, nameof(siteContext));
-            Assert.ArgumentNotNull(catalogMapper, nameof(catalogMapper));
             Assert.ArgumentNotNull(productSearchService, nameof(productSearchService));
-            Assert.ArgumentNotNull(productConverter, nameof(productConverter));
-
-            this.siteContext = siteContext;
-            this.catalogMapper = catalogMapper;
             this.productSearchService = productSearchService;
-            this.productConverter = productConverter;
         }
 
         public Result<Product> GetProduct(string productId)
         {
-            var item = this.productSearchService.GetProductByName(productId);
-            if (item == null)
+            var result = this.productSearchService.GetProducts(
+                new ProductSearchOptions
+                {
+                    PageSize = 1,
+                    SearchKeyword = productId
+                });
+            if (result == null || !result.Success || result.Data == null)
             {
-                return new Result<Product>(new Product(), new List<string>() { "Product Not Found." })
+                return new Result<Product>(
+                    new Product(),
+                    new List<string>
+                    {
+                        "Product Not Found."
+                    })
                 {
                     Success = false
                 };
             }
 
-            var product = this.productConverter.Convert(item);
-            return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
+            return new Result<Product>(result.Data.Products?.FirstOrDefault());
         }
 
-        public Result<Product> GetCurrentProduct()
+        public Result<Category> GetCategory(string categoryName)
         {
-            var item = this.siteContext.CurrentProductItem;
-            if (item == null)
-            {
-                return new Result<Product>(null);
-            }
-
-            var product = this.productConverter.Convert(item);
-            return new Result<Product>(this.catalogMapper.Map<Connect.Product, Product>(product));
-        }
-
-        public Result<Category> GetCurrentCategory()
-        {
-            var categoryItem = this.siteContext.CurrentCategoryItem;
-            return categoryItem != null
-                ? new Result<Category>(this.catalogMapper.Map<Item, Category>(categoryItem))
-                : new Result<Category>(null);
+            //TODO: Return categorySearchResults from search service instead
+            return this.productSearchService.GetCategoryByName(categoryName);
         }
     }
 }

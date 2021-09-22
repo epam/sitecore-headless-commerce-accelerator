@@ -16,10 +16,9 @@ namespace HCA.Foundation.Commerce.Services.Search
 {
     using Base.Models.Result;
 
+    using Models.Entities.Catalog;
     using Models.Entities.Search;
-
-    using Sitecore.Data.Items;
-
+    
     /// <summary>
     /// Performs products search
     /// </summary>
@@ -36,13 +35,6 @@ namespace HCA.Foundation.Commerce.Services.Search
         /// </summary>
         /// <param name="categoryName">Category name</param>
         /// <returns>Category item</returns>
-        Item GetCategoryByName(string categoryName);
-
-        /// <summary>
-        /// Gets product item by product name
-        /// </summary>
-        /// <param name="productName">Product name</param>
-        /// <returns></returns>
-        Item GetProductByName(string productName);
+        Result<Category> GetCategoryByName(string categoryName);
     }
 }

@@ -87,7 +87,7 @@ namespace HCA.Foundation.Commerce.Services.Billing
                 var cartResult = this.cartManager.LoadCart(
                     this.storefrontContext.ShopName,
                     this.visitorContext.CurrentUser?.CustomerId ??
-                    this.visitorContext.ContactId);
+                    this.visitorContext.ExternalId);
 
                 if (!cartResult.Success)
                 {
@@ -125,7 +125,7 @@ namespace HCA.Foundation.Commerce.Services.Billing
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (!cartResult.Success)
             {

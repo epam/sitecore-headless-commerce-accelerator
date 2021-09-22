@@ -255,15 +255,15 @@ namespace HCA.Foundation.Commerce.Services.Account
                 });
         }
 
-        public Result<VoidResult> UpdateAccount(string contactId, string firstName, string lastName)
+        public Result<VoidResult> UpdateAccount(string externalId, string firstName, string lastName)
         {
-            Assert.ArgumentNotNullOrEmpty(contactId, nameof(contactId));
+            Assert.ArgumentNotNullOrEmpty(externalId, nameof(externalId));
             Assert.ArgumentNotNullOrEmpty(firstName, nameof(firstName));
             Assert.ArgumentNotNullOrEmpty(lastName, nameof(lastName));
 
             var result = new Result<VoidResult>();
 
-            var getUserResult = this.accountManager.GetUser(contactId);
+            var getUserResult = this.accountManager.GetUserById(externalId);
 
             if (getUserResult.Success)
             {
@@ -291,7 +291,7 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             var result = new Result<VoidResult>();
 
-            var getUserResult = this.accountManager.GetUser(userId);
+            var getUserResult = this.accountManager.GetUserById(userId);
 
             if (getUserResult.Success)
             {

@@ -79,7 +79,7 @@ namespace HCA.Foundation.Commerce.Services.Order
         {
             return this.GetOrder(
                 orderId,
-                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ContactId,
+                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ExternalId,
                 this.storefrontContext.ShopName);
         }
 
@@ -122,7 +122,7 @@ namespace HCA.Foundation.Commerce.Services.Order
             var result = new Result<IList<Order>>();
 
             var headersResult = this.orderManager.GetOrdersHeaders(
-                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ContactId,
+                this.visitorContext.CurrentUser?.CustomerId ?? this.visitorContext.ExternalId,
                 this.storefrontContext.ShopName);
 
             if (headersResult.Success)
@@ -137,7 +137,7 @@ namespace HCA.Foundation.Commerce.Services.Order
                         {
                             var orderResult = this.orderManager.GetOrder(
                                 header.OrderID,
-                                this.visitorContext.ContactId,
+                                this.visitorContext.ExternalId,
                                 this.storefrontContext.ShopName);
 
                             if (orderResult.Success)
@@ -168,7 +168,7 @@ namespace HCA.Foundation.Commerce.Services.Order
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (cartResult.Success)
             {

@@ -18,7 +18,7 @@ namespace HCA.Foundation.Commerce.Context
 
     public interface IVisitorContext
     {
-        string ContactId { get; }
+        string ExternalId { get; }
 
         User CurrentUser { get; set; }
     }

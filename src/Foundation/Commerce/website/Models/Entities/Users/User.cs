@@ -22,7 +22,7 @@ namespace HCA.Foundation.Commerce.Models.Entities.Users
     [TsClass]
     public class User
     {
-        public string ContactId { get; set; }
+        public string ExternalId { get; set; }
 
         public string CustomerId { get; set; }
 

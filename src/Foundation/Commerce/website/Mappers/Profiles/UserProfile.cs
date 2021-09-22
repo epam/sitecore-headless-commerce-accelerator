@@ -22,7 +22,6 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using Foundation.Account.Infrastructure.Pipelines.Login;
 
     using Models.Entities.Users;
-    using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities.Customers;
 
     [ExcludeFromCodeCoverage]
@@ -32,7 +31,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
         {
             this.CreateMap<User, LoginPipelineArgs>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
-                .ForMember(dest => dest.ContactId, opt => opt.MapFrom(src => src.ContactId))
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.ExternalId))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.CustomerId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
@@ -41,7 +40,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
             this.CreateMap<LoginPipelineArgs, User>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
-                .ForMember(dest => dest.ContactId, opt => opt.MapFrom(src => src.ContactId))
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.ExternalId))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.CustomerId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
@@ -57,15 +56,9 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                     opt =>
                         opt.MapFrom(src => src.Customers != null ? src.Customers.FirstOrDefault() : null))
 
-                // We extract contact id from externalId,
-                // it is not returned by current implementation of Sitecore.Commerce.Core
                 .ForMember(
-                    dest => dest.ContactId,
-                    opt =>
-                        opt.MapFrom(
-                            src => src.ExternalId != null
-                                ? src.ExternalId.Replace(PipelineUtility.CustomersPrefix, string.Empty)
-                                : null));
+                    dest => dest.ExternalId,
+                    opt => opt.MapFrom(src => src.ExternalId));
         }
     }
 }

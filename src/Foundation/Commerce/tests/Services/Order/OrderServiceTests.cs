@@ -226,7 +226,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
         {
             var orderId = this.fixture.Create<string>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
-            this.visitorContext.ContactId.Returns(this.fixture.Create<string>());
+            this.visitorContext.ExternalId.Returns(this.fixture.Create<string>());
 
             var orderResult = this.fixture
                 .Build<GetVisitorOrderResult>()
@@ -242,7 +242,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
             }
 
             this.orderManager
-                .GetOrder(orderId, this.visitorContext.ContactId, this.storefrontContext.ShopName)
+                .GetOrder(orderId, this.visitorContext.ExternalId, this.storefrontContext.ShopName)
                 .Returns(orderResult);
 
             return (orderId, orderResult);
@@ -283,7 +283,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
             }
 
             var headersResult = this.orderManager
-                .GetOrdersHeaders(this.visitorContext.ContactId, this.storefrontContext.ShopName)
+                .GetOrdersHeaders(this.visitorContext.ExternalId, this.storefrontContext.ShopName)
                 .Returns(orderHeadersResult);
 
             return (page, count, orderResult);
@@ -303,7 +303,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
             }
 
             this.cartManager
-                .LoadCart(this.storefrontContext.ShopName, this.visitorContext.ContactId)
+                .LoadCart(this.storefrontContext.ShopName, this.visitorContext.ExternalId)
                 .Returns(cartResult);
 
             var submitOrderResult = this.fixture

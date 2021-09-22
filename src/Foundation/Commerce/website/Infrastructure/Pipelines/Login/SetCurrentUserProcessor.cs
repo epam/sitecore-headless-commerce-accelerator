@@ -51,7 +51,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
         {
             Assert.ArgumentNotNull(args, nameof(args));
 
-            args.AnonymousContactId = this.visitorContext.ContactId;
+            args.AnonymousContactId = this.visitorContext.ExternalId;
 
             var user = this.userMapper.Map<LoginPipelineArgs, User>(args);
             this.visitorContext.CurrentUser = user;

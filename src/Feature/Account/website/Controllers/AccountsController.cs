@@ -17,7 +17,6 @@ namespace HCA.Feature.Account.Controllers
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
-    using System.Web.Security;
 
     using Foundation.Account.Managers.User;
     using Foundation.Base.Controllers;
@@ -33,8 +32,6 @@ namespace HCA.Feature.Account.Controllers
     using Mappers;
 
     using Models.Requests;
-
-    using Sitecore.ContentSearch.Utilities;
     using Sitecore.Diagnostics;
 
     public class AccountsController : BaseController
@@ -78,7 +75,7 @@ namespace HCA.Feature.Account.Controllers
         {
             return this.Execute(
                 () => this.accountService.AddAddress(
-                    this.visitorContext.ContactId,
+                    this.visitorContext.CurrentUser?.UserName,
                     this.mapper.Map<AddressRequest, Address>(request)));
         }
 
@@ -132,7 +129,7 @@ namespace HCA.Feature.Account.Controllers
         [ActionName("address")]
         public ActionResult GetAddresses()
         {
-            return this.Execute(() => this.accountService.GetAddresses(this.visitorContext.ContactId));
+            return this.Execute(() => this.accountService.GetAddresses(this.visitorContext.CurrentUser?.UserName));
         }
 
         [HttpDelete]
@@ -141,7 +138,7 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult RemoveAddress(string externalId)
         {
             return this.Execute(
-                () => this.accountService.RemoveAddress(this.visitorContext.ContactId, externalId));
+                () => this.accountService.RemoveAddress(this.visitorContext.CurrentUser?.UserName, externalId));
         }
 
         [HttpPut]
@@ -150,7 +147,7 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult UpdateAccount(UpdateAccountRequest request)
         {
             return this.Execute(
-                () => this.accountService.UpdateAccount(this.visitorContext.ContactId, request.FirstName, request.LastName));
+                () => this.accountService.UpdateAccount(this.visitorContext.ExternalId, request.FirstName, request.LastName));
         }
 
         [HttpPut]
@@ -160,7 +157,7 @@ namespace HCA.Feature.Account.Controllers
         {
             return this.Execute(
                 () => this.accountService.UpdateAddress(
-                    this.visitorContext.ContactId,
+                    this.visitorContext.CurrentUser?.UserName,
                     this.mapper.Map<AddressRequest, Address>(request)));
         }
 
@@ -201,7 +198,7 @@ namespace HCA.Feature.Account.Controllers
         [ActionName("account")]
         public ActionResult DeleteAccount(DeleteAccountRequest request)
         {
-            var userId = this.visitorContext.ContactId;
+            var userId = this.visitorContext.ExternalId;
 
             return this.Execute(() =>
             {

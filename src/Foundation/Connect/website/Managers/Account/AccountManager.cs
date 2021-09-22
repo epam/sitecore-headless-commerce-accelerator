@@ -92,7 +92,7 @@ namespace HCA.Foundation.Connect.Managers.Account
         {
             Assert.ArgumentNotNullOrEmpty(contactId, nameof(contactId));
 
-            var getUserResult = this.GetUser(contactId);
+            var getUserResult = this.GetUserById(contactId);
 
             if (!getUserResult.Success || getUserResult.CommerceUser == null)
             {
@@ -122,6 +122,13 @@ namespace HCA.Foundation.Connect.Managers.Account
             Assert.ArgumentNotNullOrEmpty(userName, nameof(userName));
 
             return this.Execute(new GetUserRequest(userName), this.customerServiceProvider.GetUser);
+        }
+
+        public GetUserResult GetUserById(string externalId)
+        {
+            Assert.ArgumentNotNullOrEmpty(externalId, nameof(externalId));
+
+            return this.Execute(new GetUserRequest { ExternalId = externalId }, this.customerServiceProvider.GetUser);
         }
 
         public GetUsersResult GetUsers(UserSearchCriteria userSearchCriteria)

@@ -28,7 +28,7 @@ namespace HCA.Foundation.Commerce.Context
 
         private IDictionary Items => HttpContext.Current.Items;
 
-        public string ContactId => this.CurrentUser?.ContactId;
+        public string ExternalId => this.CurrentUser?.ExternalId;
 
         public User CurrentUser
         {

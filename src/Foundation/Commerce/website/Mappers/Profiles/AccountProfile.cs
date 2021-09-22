@@ -20,7 +20,6 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using AutoMapper;
 
     using Models.Entities.Users;
-    using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities.Customers;
 
     [ExcludeFromCodeCoverage]
@@ -30,10 +29,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
         {
             this.CreateMap<CommerceUser, User>()
                 .ForMember(
-                    dest => dest.ContactId,
-                    opt => opt.MapFrom(
-                        src =>
-                            src.ExternalId.Replace(PipelineUtility.CustomersPrefix, string.Empty)))
+                    dest => dest.ExternalId,
+                    opt => opt.MapFrom(src => src.ExternalId))
                 .ForMember(
                     dest => dest.CustomerId,
                     opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))

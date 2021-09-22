@@ -21,7 +21,7 @@ namespace HCA.Foundation.Account.Infrastructure.Pipelines.Login
     [ExcludeFromCodeCoverage]
     public class LoginPipelineArgs : PipelineArgs
     {
-        public string ContactId { get; set; }
+        public string ExternalId { get; set; }
 
         public string CustomerId { get; set; }
 

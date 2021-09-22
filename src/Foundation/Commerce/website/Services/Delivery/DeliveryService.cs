@@ -94,7 +94,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (!cartResult.Success)
             {
@@ -126,7 +126,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (!cartResult.Success)
             {
@@ -168,7 +168,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (!cartResult.Success)
             {
@@ -224,7 +224,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
         private void AddUserInfo<T>(BaseCheckoutInfo baseCheckoutInfo, Result<T> result)
             where T : class
         {
-            var getPartiesResult = this.accountManager.GetCustomerParties(this.visitorContext.ContactId);
+            var getPartiesResult = this.accountManager.GetCustomerParties(this.visitorContext.ExternalId);
 
             if (getPartiesResult.Success)
             {

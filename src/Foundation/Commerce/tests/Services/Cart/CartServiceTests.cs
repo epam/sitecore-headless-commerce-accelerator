@@ -282,9 +282,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
 
             managerSrcCartResult.Success = srcCartSuccess;
             managerDestCartResult.Success = destCartSuccess;
-            this.visitorContext.ContactId.Returns(this.fixture.Create<string>());
+            this.visitorContext.ExternalId.Returns(this.fixture.Create<string>());
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(managerSrcCartResult);
-            this.cartManager.LoadCart(Arg.Any<string>(), this.visitorContext.ContactId).Returns(managerDestCartResult);
+            this.cartManager.LoadCart(Arg.Any<string>(), this.visitorContext.ExternalId).Returns(managerDestCartResult);
             this.cartManager.MergeCarts(
                     Arg.Any<Connect.Cart>(),
                     Arg.Any<Connect.Cart>())

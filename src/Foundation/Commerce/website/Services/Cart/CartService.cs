@@ -92,7 +92,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             var response = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             return this.BuildResult(response);
         }
@@ -106,7 +106,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             var destinationCartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             if (!sourceCartResult.Success || !destinationCartResult.Success)
             {
@@ -213,7 +213,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
             var loadCartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
                 this.visitorContext.CurrentUser?.CustomerId ??
-                this.visitorContext.ContactId);
+                this.visitorContext.ExternalId);
 
             return action(result, loadCartResult?.Cart);
         }

@@ -51,12 +51,7 @@ namespace HCA.Foundation.Commerce.Providers
             Assert.ArgumentNotNullOrEmpty(email, nameof(email));
 
             var userName = Membership.GetUserNameByEmail(email);
-            if (string.IsNullOrWhiteSpace(userName))
-            {
-                return null;
-            }
-
-            return this.GetCommerceUser(userName);
+            return string.IsNullOrWhiteSpace(userName) ? null : this.GetCommerceUser(userName);
         }
 
         public User GetCurrentCommerceUser(HttpContextBase httpContext)
@@ -75,32 +70,18 @@ namespace HCA.Foundation.Commerce.Providers
             var cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
             if (cookie != null)
             {
-                return this.GetCommerceUser(cookie.Value);
+                return new User { ExternalId = cookie.Value };
             }
 
             return null;
         }
 
-        private User GetCommerceUser(string contactIdOrName)
+        private User GetCommerceUser(string name)
         {
-            Assert.ArgumentNotNullOrEmpty(contactIdOrName, nameof(contactIdOrName));
+            Assert.ArgumentNotNullOrEmpty(name, nameof(name));
 
-            var getUserResult = this.accountManager.GetUser(contactIdOrName);
-
-            return this.MapToUser(getUserResult.CommerceUser, contactIdOrName);
-        }
-
-        private User MapToUser(CommerceUser commerceUser, string contactIdOrEmail)
-        {
-            if (commerceUser == null)
-            {
-                return new User
-                {
-                    ContactId = contactIdOrEmail
-                };
-            }
-
-            return this.userMapper.Map<CommerceUser, User>(commerceUser);
+            var getUserResult = this.accountManager.GetUser(name);
+            return this.userMapper.Map<CommerceUser, User>(getUserResult.CommerceUser);
         }
     }
 }

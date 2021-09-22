@@ -79,6 +79,13 @@ namespace HCA.Foundation.Connect.Managers.Account
         GetUserResult GetUser(string userName);
 
         /// <summary>
+        /// Gets user by Id
+        /// </summary>
+        /// <param name="externalId">User Id</param>
+        /// <returns>Get user result</returns>
+        GetUserResult GetUserById(string externalId);
+
+        /// <summary>
         /// Gets users filtered by parameters
         /// </summary>
         /// <param name="userSearchCriteria">Filter parameters</param>

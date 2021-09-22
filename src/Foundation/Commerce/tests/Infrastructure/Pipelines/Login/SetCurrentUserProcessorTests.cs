@@ -73,7 +73,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
             // arrange
             var args = new LoginPipelineArgs();
             var contactId = this.fixture.Create<string>();
-            this.visitorContext.ContactId.Returns(contactId);
+            this.visitorContext.ExternalId.Returns(contactId);
 
             // act
             this.processor.Process(args);

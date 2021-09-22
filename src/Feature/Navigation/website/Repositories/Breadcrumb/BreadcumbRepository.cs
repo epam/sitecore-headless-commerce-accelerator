@@ -16,8 +16,7 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
 {
     using System.Collections.Generic;
     using System.Linq;
-
-    using Foundation.Base.Context;
+    
     using Foundation.Base.Services;
     using Foundation.DependencyInjection;
 
@@ -29,17 +28,12 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
     [Service(typeof(IBreadcrumbRepository), Lifetime = Lifetime.Transient)]
     public class BreadcrumbRepository : IBreadcrumbRepository
     {
-        private readonly ISitecoreContext sitecoreContext;
         private readonly ILinkManagerService linkManagerService;
 
         public BreadcrumbRepository(
-            ISitecoreContext sitecoreContext,
             ILinkManagerService linkManagerService)
         {
-            Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
             Assert.ArgumentNotNull(linkManagerService, nameof(linkManagerService));
-
-            this.sitecoreContext = sitecoreContext;
             this.linkManagerService = linkManagerService;
         }
 
@@ -52,7 +46,7 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
             var pageLinks = ancestors.Select(
                     item => new PageLink
                     {
-                        Title = !string.IsNullOrWhiteSpace(item?.DisplayName) ? item?.DisplayName : item?.Name,
+                        Title = !string.IsNullOrWhiteSpace(item?.DisplayName) ? item.DisplayName : item?.Name,
                         Link = this.linkManagerService.GetItemUrl(item)
                     })
                 .ToList();
@@ -60,7 +54,7 @@ namespace HCA.Feature.Navigation.Repositories.Breadcrumb
             pageLinks.Add(
                 new PageLink
                 {
-                    Title = !string.IsNullOrWhiteSpace(currentItem?.DisplayName) ? currentItem?.DisplayName : currentItem?.Name,
+                    Title = !string.IsNullOrWhiteSpace(currentItem.DisplayName) ? currentItem.DisplayName : currentItem.Name,
                     Link = this.linkManagerService.GetItemUrl(currentItem)
                 });
             return pageLinks;

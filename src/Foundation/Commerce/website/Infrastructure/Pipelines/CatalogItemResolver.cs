@@ -22,8 +22,11 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
 
     using DependencyInjection;
 
+    using Models.Entities.Search;
+
     using Providers;
 
+    using Services.Catalog;
     using Services.Search;
 
     using Sitecore;
@@ -35,19 +38,19 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     {
         private readonly IPageTypeProvider pageTypeProvider;
 
-        private readonly IProductSearchService productSearchService;
+        private readonly ICatalogService catalogService;
 
         private readonly ISiteContext siteContext;
 
         private readonly ISiteDefinitionsProvider siteDefinitionsProvider;
 
         public CatalogItemResolver(
-            IProductSearchService productSearchService,
+            ICatalogService catalogService,
             IPageTypeProvider pageTypeProvider,
             ISiteDefinitionsProvider siteDefinitionsProvider,
             ISiteContext siteContext)
         {
-            this.productSearchService = productSearchService;
+            this.catalogService = catalogService;
             this.pageTypeProvider = pageTypeProvider;
             this.siteDefinitionsProvider = siteDefinitionsProvider;
             this.siteContext = siteContext;
@@ -68,7 +71,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
                 return;
             }
 
-            if (this.siteContext.CurrentItem != null)
+            if (this.siteContext.CurrentCategory != null || this.siteContext.CurrentProduct != null)
             {
                 return;
             }
@@ -102,25 +105,19 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
             {
                 return;
             }
-
-            Item currentItem;
+            
             switch (contextItemType)
             {
                 case Commerce.Constants.ItemType.Category:
-                    currentItem = this.productSearchService.GetCategoryByName(itemName);
-                    this.siteContext.CurrentCategoryItem = currentItem;
+                    var category = this.catalogService.GetCategory(itemName);
+                    this.siteContext.CurrentCategory = category != null && category.Success ? category.Data : null;
                     break;
                 case Commerce.Constants.ItemType.Product:
-                    currentItem = this.productSearchService.GetProductByName(itemName);
-                    this.siteContext.CurrentProductItem = currentItem;
+                    var product = this.catalogService.GetProduct(itemName);
+                    this.siteContext.CurrentProduct = product != null && product.Success ? product.Data : null;
                     break;
                 default:
                     return;
-            }
-
-            if (this.siteContext.CurrentItem == null)
-            {
-                this.siteContext.CurrentItem = currentItem;
             }
         }
     }

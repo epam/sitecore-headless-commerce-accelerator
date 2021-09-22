@@ -14,12 +14,9 @@
 
 namespace HCA.Feature.Navigation.Services.Breadcrumb
 {
-    using System;
-    using System.Linq;
-
     using Foundation.Base.Context;
     using Foundation.Base.Services;
-    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Site;
     using Foundation.DependencyInjection;
 
     using Models.Entities.Breadcrumb;
@@ -27,11 +24,7 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
     using Repositories.Breadcrumb;
 
     using Sitecore;
-    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Sitecore.Links;
-
-    using Constants = Navigation.Constants;
 
     [Service(typeof(IBreadcrumbService), Lifetime = Lifetime.Transient)]
     public class BreadcrumbService : IBreadcrumbService
@@ -39,117 +32,42 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
         private readonly IBreadcrumbRepository breadcrumbRepository;
         private readonly ISiteContext siteContext;
         private readonly ISitecoreContext sitecoreContext;
-        private readonly ILinkManagerService linkManagerService;
 
         public BreadcrumbService(
             ISitecoreContext sitecoreContext,
             ISiteContext siteContext,
-            IBreadcrumbRepository breadcrumbRepository, 
-            ILinkManagerService linkManagerService)
+            IBreadcrumbRepository breadcrumbRepository)
         {
             Assert.ArgumentNotNull(sitecoreContext, nameof(sitecoreContext));
             Assert.ArgumentNotNull(siteContext, nameof(siteContext));
             Assert.ArgumentNotNull(breadcrumbRepository, nameof(breadcrumbRepository));
-            Assert.ArgumentNotNull(linkManagerService, nameof(linkManagerService));
 
             this.sitecoreContext = sitecoreContext;
             this.siteContext = siteContext;
             this.breadcrumbRepository = breadcrumbRepository;
-            this.linkManagerService = linkManagerService;
         }
 
-        public Breadcrumb GenerateBreadcrumb()
+        public Breadcrumb GetCurrentPageBreadcrumbs()
         {
-            var startItemPath = this.sitecoreContext.Site.StartPath;
             var currentItem = Context.Item;
-
-            var pageLinks = this.breadcrumbRepository.GetPageLinks(currentItem, startItemPath);
-
-            var breadcrumb = new Breadcrumb
+            var breadcrumbs = new Breadcrumb
             {
-                PageLinks = pageLinks
+                PageLinks = this.breadcrumbRepository.GetPageLinks(currentItem, this.sitecoreContext.Site.StartPath)
             };
 
-            breadcrumb = this.ResolveCategoryPage(breadcrumb);
-            breadcrumb = this.ResolveProductPage(breadcrumb);
-
-            return breadcrumb;
-        }
-
-        public Item GetProductCategory(Item productItem)
-        {
-            Assert.ArgumentNotNull(productItem, nameof(productItem));
-
-            var productCategoryItem = productItem.Axes.GetAncestors()
-                .LastOrDefault(item => item.TemplateID.ToString() == Constants.CategoryTemplateId);
-
-            return productCategoryItem;
-        }
-
-        public Item GetShopPage()
-        {
-            return this.sitecoreContext.Database.GetItem(Constants.ShopPageId);
-        }
-
-        public Breadcrumb ResolveCategoryPage(Breadcrumb breadcrumb)
-        {
-            if (this.siteContext.IsCategory)
+            if (currentItem == null || currentItem.Name != "*")
             {
-                breadcrumb.PageLinks.RemoveAll(pageLink => pageLink.Title == "*");
-
-                var categorySegmentIndex = breadcrumb.PageLinks.FindIndex(
-                    pageLink => pageLink.Title.Equals("shop", StringComparison.InvariantCultureIgnoreCase));
-
-                var currentCategory = this.siteContext.CurrentCategoryItem;
-                var categoryName = currentCategory?.DisplayName;
-
-                if (categorySegmentIndex != -1 && !string.IsNullOrEmpty(categoryName))
-                {
-                    breadcrumb.PageLinks[categorySegmentIndex] = new PageLink
-                    {
-                        Title = categoryName,
-                        Link = ""
-                    };
-                }
+                return breadcrumbs;
             }
 
-            return breadcrumb;
-        }
-
-        public Breadcrumb ResolveProductPage(Breadcrumb breadcrumb)
-        {
-            if (this.siteContext.IsProduct)
-            {
-                var productSegmentIndex = breadcrumb.PageLinks.FindIndex(pageLink => pageLink.Title == "*");
-                var categorySegmentIndex = breadcrumb.PageLinks.FindIndex(
-                    pageLink => pageLink.Title.Equals("product", StringComparison.InvariantCultureIgnoreCase));
-
-                var currentProduct = this.siteContext.CurrentProductItem;
-                var productName = currentProduct?.DisplayName;
-                var categoryName = this.GetProductCategory(currentProduct)?.DisplayName;
-
-                if (productSegmentIndex != -1 && !string.IsNullOrEmpty(productName))
+            breadcrumbs.PageLinks.RemoveAt(breadcrumbs.PageLinks.Count - 1);
+            breadcrumbs.PageLinks.Add(
+                new PageLink
                 {
-                    breadcrumb.PageLinks[productSegmentIndex] = new PageLink
-                    {
-                        Title = productName,
-                        Link = ""
-                    };
-                }
+                    Title = this.siteContext.CurrentCategory != null ? this.siteContext.CurrentCategory.DisplayName : this.siteContext.CurrentProduct?.DisplayName
+                });
 
-                if (categorySegmentIndex != -1 && !string.IsNullOrEmpty(categoryName))
-                {
-                    var shopPageUrl = this.linkManagerService.GetItemUrl(this.GetShopPage());
-                    var categoryPageUrl = $"{shopPageUrl}/{categoryName}";
-                    breadcrumb.PageLinks[categorySegmentIndex] = new PageLink
-                    {
-                        Title = categoryName,
-                        Link = categoryPageUrl
-                    };
-                }
-            }
-
-            return breadcrumb;
+            return breadcrumbs;
         }
     }
 }

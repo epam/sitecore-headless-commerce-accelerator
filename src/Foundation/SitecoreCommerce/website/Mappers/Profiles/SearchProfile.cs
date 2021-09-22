@@ -18,6 +18,9 @@ namespace HCA.Foundation.SitecoreCommerce.Mappers.Profiles
     using System.Linq;
 
     using AutoMapper;
+
+    using Commerce.Models.Entities.Catalog;
+
     using Foundation.Search.Models.Common;
     using Foundation.Search.Models.Entities.Category;
 
@@ -46,6 +49,12 @@ namespace HCA.Foundation.SitecoreCommerce.Mappers.Profiles
             this.CreateMap<SearchResults<Item>, ProductSearchResults>()
                 .ForMember(dest => dest.Products, opt => opt.Ignore());
             
+            this.CreateMap<CategorySearchResultItem, Category>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.SitecoreId, opt => opt.MapFrom(src => src.ItemId))
+                .ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.DisplayName))
+                .ForAllOtherMembers(opt => opt.Ignore());
+            
             this.CreateMap<SearchResponse, SearchResults<Item>>()
                 .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.ResponseItems));
             
@@ -54,7 +63,7 @@ namespace HCA.Foundation.SitecoreCommerce.Mappers.Profiles
                 .ForMember(dest => dest.Facets, opt => opt.Ignore())
                 .ForMember(dest => dest.TotalItemCount, opt => opt.Ignore())
                 .ForMember(dest => dest.TotalPageCount, opt => opt.Ignore());
-            
+
             this.CreateMap<ProductSearchOptions, CommerceSearchOptions>()
                 .ForMember(dest => dest.FacetFields, opt => opt.MapFrom(src => src.Facets))
                 .ReverseMap();

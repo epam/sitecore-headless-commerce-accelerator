@@ -15,17 +15,13 @@
     using Foundation.Search.Models.Common;
     using Foundation.Search.Models.Entities.Category;
     using Foundation.Search.Services.Category;
-    using Foundation.Search.Services.Product;
-
     using Mappers.Search;
 
     using Product;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-
-    using ProductSearchOptions = Foundation.Search.Models.Entities.Product.ProductSearchOptions;
-
+    
     public class CommerceProductSearchService : IProductSearchService
     {
         private readonly ICategorySearchService categorySearchService;
@@ -54,7 +50,7 @@
             this.productConverter = productConverter;
         }
         
-        public Result<ProductSearchResults> GetProducts(Commerce.Models.Entities.Search.ProductSearchOptions productSearchOptions)
+        public Result<ProductSearchResults> GetProducts(ProductSearchOptions productSearchOptions)
         {
             Assert.ArgumentNotNull(productSearchOptions, nameof(productSearchOptions));
 
@@ -68,8 +64,8 @@
 
             return new Result<ProductSearchResults>(results);
         }
-
-        public Item GetCategoryByName(string categoryName)
+        
+        public Result<Category> GetCategoryByName(string categoryName)
         {
             Assert.ArgumentNotNullOrEmpty(categoryName, nameof(categoryName));
 
@@ -80,21 +76,8 @@
                     NumberOfItemsToReturn = 1
                 });
 
-            return searchResults?.Results?.FirstOrDefault()?.GetItem();
-        }
-
-        public Item GetProductByName(string productName)
-        {
-            Assert.ArgumentNotNullOrEmpty(productName, nameof(productName));
-
-            var searchResults = this.productSearchService.GetSearchResults(
-                new ProductSearchOptions
-                {
-                    SearchKeyword = productName,
-                    NumberOfItemsToReturn = 1
-                });
-
-            return searchResults?.Results?.FirstOrDefault();
+            return new Result<Category>(
+                this.searchMapper.Map<CategorySearchResultItem, Category>(searchResults?.Results?.FirstOrDefault()));
         }
     }
 }

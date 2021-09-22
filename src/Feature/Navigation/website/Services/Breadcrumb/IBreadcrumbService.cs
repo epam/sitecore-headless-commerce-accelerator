@@ -25,6 +25,6 @@ namespace HCA.Feature.Navigation.Services.Breadcrumb
         /// Generates breadcrumb for current page hierarchy
         /// </summary>
         /// <returns>Breadcrumb</returns>
-        Breadcrumb GenerateBreadcrumb();
+        Breadcrumb GetCurrentPageBreadcrumbs();
     }
 }

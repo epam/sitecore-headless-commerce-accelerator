@@ -57,10 +57,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     if (!cartLinesState) {
       return false;
     }
-
-    const cartLine = cartLinesState.find(
-      (item) => item.product.productId === product.productId && item.variant.variantId === selectedVariantId,
-    );
+    const cartLine = cartLinesState.find((item) => item.product.productId === product.productId);
 
     return Boolean(cartLine);
   }, [cartLinesState]);

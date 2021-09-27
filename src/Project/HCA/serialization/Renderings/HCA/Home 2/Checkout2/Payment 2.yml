@@ -3,7 +3,6 @@ ID: "7a6ebb86-c8d6-4023-840c-fada8f970e78"
 Parent: "160a3693-a9f0-4245-b80b-542d79a0c8c0"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Checkout2/Payment 2
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180504T145409Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f023e892-f11f-4af3-8bd4-38f67178004a"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150044Z

@@ -1,9 +1,8 @@
----
+﻿---
 ID: "f762a837-25c0-4575-ab67-f59574032e4a"
 Parent: "e3689be4-ca41-4ede-a758-c7e8f6028bfd"
 Template: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e"
 Path: /sitecore/templates/Branches/HCA/Foundation/Commerce
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b60c1852-2fad-4848-a028-5eb5fbd6906a"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150010Z

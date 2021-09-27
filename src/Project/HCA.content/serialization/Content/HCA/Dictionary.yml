@@ -1,0 +1,27 @@
+﻿---
+ID: "f0f9ec10-aee1-449f-89cd-37807173b61e"
+Parent: "bbf003f2-f4d3-415f-8136-357b71508316"
+Template: "0a2847e6-9885-450b-b61e-f9e6528480ef"
+Path: /sitecore/content/HCA/Dictionary
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: People/16x16/book_red.png
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201007T080639Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "00ab22e8-c44d-4b49-aaf9-9310108bee92"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

@@ -3,7 +3,6 @@ ID: "e6f1625c-2f66-4aba-8de1-33091ac2c694"
 Parent: "c911c7bd-55b0-4951-b309-7e8745746906"
 Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
 Path: /sitecore/templates/HCA/Foundation/UI/Filter
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20210407T044958Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "aff27268-672e-4baf-9587-9fa859ce4855"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124426Z

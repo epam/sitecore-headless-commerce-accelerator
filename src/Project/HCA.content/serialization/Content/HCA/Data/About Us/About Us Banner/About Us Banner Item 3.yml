@@ -1,0 +1,44 @@
+﻿---
+ID: "652db157-1431-4770-b6ff-d88a0c079cb3"
+Parent: "97c30824-7f8b-4f3f-90ec-8d1613ed87a0"
+Template: "19fac856-e53a-4b70-8283-e01b995f0921"
+Path: /sitecore/content/HCA/Data/About Us/About Us Banner/About Us Banner Item 3
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210125T003812Z
+    - ID: "3d9b2ee7-fba8-4d5e-a511-f05465c7f5b7"
+      Hint: Price
+      Value: 0$
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "17e83d4e-d269-4c9f-8529-8a31b5c929b1"
+    - ID: "a6dce57c-2e1d-46f0-9041-6faa6dcdd476"
+      Hint: Uri
+      Value: |
+        <link text="" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{A91CCFEC-F221-4BAC-AFAA-BC653B06C69E}" />
+    - ID: "aa21d98d-9b76-45ec-9526-5de099730af5"
+      Hint: Image
+      Value: |
+        <image mediaid="{0BA1B1E7-4C6F-4244-8CB3-332356D1AB60}" />
+    - ID: "abf631e7-0fb3-4b26-8c57-399e2c57a830"
+      Hint: Subtitle
+      Value: Starting at
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130621Z
+    - ID: "e82aad0f-7170-4659-ac5e-418b9b95d461"
+      Hint: Title
+      Value: Cameras

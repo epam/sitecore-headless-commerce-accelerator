@@ -1,0 +1,38 @@
+﻿---
+ID: "324f61f6-47c1-4a70-88ec-7604755edbcb"
+Parent: "9a7f30cd-fa9e-4fc8-9393-bd62e30c93eb"
+Template: "db02cc04-e764-4ee5-b9be-62a9b7fb9ce1"
+Path: /sitecore/content/HCA/Data/About Us/Team/Team Member 1/Twitter
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T224736Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "3cf3e3fa-ae30-459b-86fe-42da6dc96c82"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73"
+      Hint: Uri
+      Value: |
+        <link text="Twitter" linktype="external" url="https://twitter.com/" anchor="" class="twitter" target="_blank" />
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130622Z
+    - ID: "e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc"
+      Hint: Icon Class
+      Value: "icon-twitter-brands"

@@ -1,0 +1,27 @@
+﻿---
+ID: "736bb35c-51d3-4bc9-a913-b5ab676f36f4"
+Parent: "1d7c14bc-acaf-4b27-a8e3-79f3550ac631"
+Template: "b05afe71-d5f0-42d7-8f4f-ff4bcf446aee"
+Path: /sitecore/content/HCA/Data/About Us/Fun Facts
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T222520Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "7c31ed3e-7fbf-470f-b662-31361607aba6"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z

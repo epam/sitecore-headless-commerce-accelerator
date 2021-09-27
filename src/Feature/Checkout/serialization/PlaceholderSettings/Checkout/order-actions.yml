@@ -3,7 +3,6 @@ ID: "c365bd3b-0885-42c4-94e9-ca7d8de5f28d"
 Parent: "320ee556-891a-4d93-a792-cbca6461f2ca"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
 Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Checkout/order-actions"
-DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180514T123425Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "53fcaf72-b4ed-40a6-a9c5-1ca8b62e9170"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150015Z

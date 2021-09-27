@@ -1,0 +1,27 @@
+﻿---
+ID: "297bf411-ee4b-4879-81ef-3ccd7352f62e"
+Parent: "fa34af07-4a1d-dc82-ba83-0c82ba2ff0bc"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Commerce/Catalog Generated/Components/ConnectSellableItem/InstallationSellableItemToSellableItem/Relationships
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200212T094453Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        extranet\Anonymous
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "ac18c2e5-b59a-419a-8190-3eb0667e5e11"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T145959Z

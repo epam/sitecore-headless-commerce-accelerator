@@ -1,0 +1,28 @@
+﻿---
+ID: "5b001c54-1f83-42fe-9807-ecb870533cb9"
+Parent: "b73e494c-70d4-45ab-8699-7a1c8b96a47f"
+Template: "275950d5-b3a6-476a-8258-bb93a3a96f3c"
+Path: /sitecore/content/HCA/Settings/Image Fallback
+SharedFields:
+- ID: "de9c3007-14f7-45bc-b73f-3363f9b4decf"
+  Hint: Fallback Image
+  Value: |
+    <image mediaid="{FB711D43-D7EB-4010-9F6C-A62B92D045AF}" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200529T084654Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a733ce4e-70ba-48e0-a927-885757cbcb1f"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

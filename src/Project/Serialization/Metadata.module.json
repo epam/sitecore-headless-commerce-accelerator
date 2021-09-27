@@ -1,0 +1,88 @@
+{
+	"namespace": "HCA.Project",
+	"references": ["HCA.Foundation", "HCA.Feature"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings.HCA.Project",
+				"path": "/sitecore/system/Settings/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Models.HCA.Project",
+				"path": "/sitecore/layout/Models/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.HCA.Project",
+				"path": "/sitecore/layout/Layouts/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.HCA.Project",
+				"path": "/sitecore/layout/placeholder settings/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Renderings.HCA.Project",
+				"path": "/sitecore/layout/Renderings/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.HCA.Project",
+				"path": "/sitecore/templates/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Media.HCA.Project",
+				"path": "/sitecore/media library/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.Emails.HCA",
+				"path": "/sitecore/layout/Layouts/System/Email/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.Emails.HCA.Project",
+				"path": "/sitecore/layout/Layouts/System/Email/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.Emails.HCA",
+				"path": "/sitecore/layout/Placeholder Settings/Email/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.Emails.HCA.Project",
+				"path": "/sitecore/layout/Placeholder Settings/Email/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Branches.Emails.HCA",
+				"path": "/sitecore/templates/Branches/System/Email/Messages/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Branches.Emails.HCA.Project",
+				"path": "/sitecore/templates/Branches/System/Email/Messages/HCA/Project",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			}
+		]
+	}
+}

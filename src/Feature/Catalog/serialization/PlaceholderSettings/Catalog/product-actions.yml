@@ -3,7 +3,6 @@ ID: "1ac5575a-9610-4bba-860b-70bc4953782b"
 Parent: "a5d2a17d-9104-434b-8b19-c77c09f0e796"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
 Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/Catalog/product-actions"
-DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180503T113706Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "293fa6bb-9ef4-4b82-acd3-67fec88c7c24"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150013Z

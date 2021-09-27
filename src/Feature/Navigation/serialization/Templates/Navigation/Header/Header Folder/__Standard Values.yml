@@ -3,14 +3,12 @@ ID: "73fd6747-1368-4499-bcf3-aa567fd36efe"
 Parent: "5f257a2a-dfed-4617-a24a-3e85ba695305"
 Template: "5f257a2a-dfed-4617-a24a-3e85ba695305"
 Path: /sitecore/templates/HCA/Feature/Navigation/Header/Header Folder/__Standard Values
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: office/32x32/folder.png
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{4E6F821A-A5CC-4FD5-9AB3-F94A9A785F44}"
 Languages:
 - Language: en
@@ -24,3 +22,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "5e750b6e-1923-4086-bfe6-b5b79a295ddb"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

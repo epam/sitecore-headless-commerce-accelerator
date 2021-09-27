@@ -3,14 +3,12 @@ ID: "a7569d2d-a585-424c-b21c-74684d895b8e"
 Parent: "a30f65cc-dcf5-4769-8679-947561dca7ec"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Feature/Catalog/Product List
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Product List
 - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
   Hint: Placeholders
-  Type: Treelist
   Value: "{4765EAC0-D6CC-4584-8280-F1666F55E145}"
 Languages:
 - Language: en
@@ -20,3 +18,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180425T114655Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "041b4936-ddf4-4d54-9d8c-cd61ce00e603"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124438Z

@@ -1,0 +1,44 @@
+﻿---
+ID: "9f636e86-2115-4aa8-b211-e64132d5b00e"
+Parent: "0cd65cd7-63f7-41c6-ab78-31090789c20d"
+Template: "f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7"
+Path: /sitecore/content/HCA/Data/Carousel Banner Gaming/Banner 2
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "1751fa11-d5ca-42c7-b63a-da23a47f37db"
+      Hint: Subtitle
+      Value: Virtual reality at your home
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200911T135309Z
+    - ID: "4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f"
+      Hint: Link
+      Value: |
+        <link linktype="external" url="/shop/gaming" anchor="" target="" />
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "36811d66-4589-4790-b0c8-0e712dc9b3d4"
+    - ID: "ab878a5d-cfad-471c-949e-1f590caa233c"
+      Hint: Text
+      Value: Discover new worlds
+    - ID: "b2b0d2d9-a822-4647-80c9-0b221b8cb569"
+      Hint: Title
+      Value: Try now
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z
+    - ID: "f335bcc8-a000-4246-b7a5-ebb11e5ffc77"
+      Hint: Image
+      Value: |
+        <image mediaid="{DE509CDB-6519-492E-A88F-F35BA8138578}" />

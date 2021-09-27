@@ -3,11 +3,9 @@ ID: "5a6dfbe4-ecb0-400e-b795-7efcc73c9c9a"
 Parent: "1b87628c-ea15-4c9e-8f6f-339bbcf222ee"
 Template: "1b87628c-ea15-4c9e-8f6f-339bbcf222ee"
 Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: |
     {9300407F-67F7-459C-AE3D-BA2680058E21}
     {1E890498-C6CC-440A-9FBC-397D0E998B59}
@@ -24,3 +22,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d108de8d-56d6-4216-a293-1abcea5346a2"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150035Z

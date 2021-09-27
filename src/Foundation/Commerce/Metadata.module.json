@@ -1,0 +1,58 @@
+{
+	"namespace": "HCA.Foundation.Commerce",
+	"references": ["HCA.Foundation", "HCA.Foundation.Base"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Branches",
+				"path": "/sitecore/templates/Branches/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "ContentsResolvers",
+				"path": "/sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Foundation/Commerce",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+		]
+	}
+}

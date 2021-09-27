@@ -3,7 +3,6 @@ ID: "69f49102-c8c0-4e55-8f8e-c9cb130071e4"
 Parent: "f68bad05-9731-48fa-897a-8e0f0aff2fe3"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/Checkout/Abstract/_Checkout Step/Configuration/Checkout Step Name
-DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
@@ -19,3 +18,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180504T135126Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "30b756c6-2a98-4519-9657-93d1147a11ea"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150017Z

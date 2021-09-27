@@ -3,7 +3,6 @@ ID: "c6d1bff6-7e74-44f8-ab16-f494c1de52f9"
 Parent: "af9fd56c-d214-4f82-bd23-b00818d51d49"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact/Content/Icon Class
-DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
@@ -19,3 +18,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20210124T222347Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e9d865b8-dbba-4a36-8629-84d8368c00db"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210225T191440Z

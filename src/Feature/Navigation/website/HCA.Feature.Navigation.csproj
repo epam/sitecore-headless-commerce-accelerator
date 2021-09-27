@@ -581,7 +581,6 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Feature\HCA.Feature.Navigation.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

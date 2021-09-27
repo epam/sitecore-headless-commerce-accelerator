@@ -1,0 +1,58 @@
+{
+	"namespace": "HCA.Feature.Checkout",
+	"references": ["HCA.Foundation.*", "HCA.Feature"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "ContentsResolvers",
+				"path": "/sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates.Emails",
+				"path": "/sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

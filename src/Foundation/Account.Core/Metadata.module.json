@@ -1,0 +1,36 @@
+{
+	"namespace": "HCA.Foundation.Account.Core",
+	"references": "",
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings.Security.Profiles",
+				"path": "/sitecore/system/Settings/Security/Profiles",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants",
+				"database": "core"
+			},
+			{
+				"name": "Templates.System.Security",
+				"path": "/sitecore/templates/System/Security",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants",
+				"database": "core",
+				"rules": [
+					{
+					   "path": "/User",
+					   "scope": "ItemAndDescendants",
+					   "allowedPushOperations": "createUpdateAndDelete"
+					},
+					{
+					   "path": "*",
+					   "scope": "ignored"
+					}
+				]
+			}
+			
+		]
+	}
+}

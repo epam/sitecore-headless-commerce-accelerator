@@ -22,6 +22,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using Models.Entities.Cart;
 
     using Providers;
+    using Providers.Currency;
 
     using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Prices;

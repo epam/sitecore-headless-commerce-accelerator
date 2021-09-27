@@ -1,0 +1,23 @@
+﻿---
+ID: "63f05d80-c853-498d-a0d6-6eeb401e8077"
+Parent: "0b42dc05-5cf9-4dd5-9a3a-8bdf11be2b88"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Settings/Buckets/Facets/HCA
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210407T043352Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c30519f4-74bb-4988-8e0f-dd9fb5fbb467"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124425Z

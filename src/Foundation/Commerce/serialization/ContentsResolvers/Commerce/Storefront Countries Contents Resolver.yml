@@ -3,7 +3,6 @@ ID: "aa4e3d69-e525-4bea-9045-e4c1405a812c"
 Parent: "0b5b3cae-352f-425c-bd16-8ede9f683585"
 Template: "814c1dbb-b118-4511-ba2b-7288ed3d490b"
 Path: /sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Foundation/Commerce/Storefront Countries Contents Resolver
-DB: master
 SharedFields:
 - ID: "de218ede-a9ad-4b04-86c5-9ff593ccf39d"
   Hint: Type
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180613T135319Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f8c17c17-f739-4b70-973c-65ff1d2cb9d0"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150010Z

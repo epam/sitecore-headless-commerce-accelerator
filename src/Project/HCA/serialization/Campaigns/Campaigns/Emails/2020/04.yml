@@ -3,7 +3,6 @@ ID: "9f0c70f9-31b2-47d2-860e-7c68e506298e"
 Parent: "ee95d34a-2fc3-44ff-a8b6-b2424efe25b5"
 Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
 Path: /sitecore/system/Marketing Control Panel/Campaigns/Emails/2020/04
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200415T180557Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "048abcdf-9475-40cb-8ec3-9746411fa5b5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

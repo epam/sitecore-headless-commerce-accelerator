@@ -3,7 +3,6 @@ ID: "82234efa-df55-4255-aea5-faddd6a59b7d"
 Parent: "a30f65cc-dcf5-4769-8679-947561dca7ec"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Feature/Catalog/Products Search
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180529T124440Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "da0fdedc-2743-4f62-8db7-d3ddbfa8d8c5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150013Z

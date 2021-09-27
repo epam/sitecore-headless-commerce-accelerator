@@ -1,0 +1,49 @@
+﻿---
+ID: "556186b2-8131-4487-ae28-a36533ed4926"
+Parent: "fb4e15e5-5d5b-4165-805c-2ffb074a752e"
+Template: "94fd1606-139e-46ee-86ff-bc5bf3c79804"
+Path: "/sitecore/system/Marketing Control Panel/Campaigns/Emails/2020/04/28T09024650/New Order Placedf8ebf305-bbf0-4f02-8f54-397277ad549a"
+SharedFields:
+- ID: "43aa1c9a-d1be-498a-9841-1def2c2231ba"
+  Hint: Select Traffic Type
+  Value: "{3E11F7A7-0059-45EF-95D9-3B03425B3BAF}"
+- ID: "a4f985d9-98b3-4b52-aaaf-4344f6e747c6"
+  Hint: __Workflow
+  Value: "{689E2994-4656-4C58-9112-7826CB46EE69}"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: New Order Placed
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "0f47d1b4-bcb4-4f7f-9065-6ecb46aab9a1"
+      Hint: Title
+      Value: "New Order Placedf8ebf305-bbf0-4f02-8f54-397277ad549a"
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T090246Z
+    - ID: "3e431de1-525e-47a3-b6b0-1ccbec3a8c98"
+      Hint: __Workflow state
+      Value: "{EDCBB550-BED3-490F-82B8-7B2F14CCD26E}"
+    - ID: "4c1bf83b-06e2-4b07-ad16-0e65d95e356e"
+      Hint: Channel
+      Value: "{DDAFB85B-1511-48B8-9374-2A8A1F371645}"
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "86d8470e-87aa-4e9a-ac80-9fbbe3a06563"
+    - ID: "aa6a984d-37e6-478b-afc1-a8072e76d5bb"
+      Hint: Data
+      Value: "{4ED70D45-B821-461D-BBA8-3407B7B1D48E}{F8EBF305-BBF0-4F02-8F54-397277AD549A}"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "bd4720d7-9ed6-4438-959b-7b1c5c32c10b"
+      Hint: StartDate
+      Value: 20200428T090246Z
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

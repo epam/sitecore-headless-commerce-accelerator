@@ -1,9 +1,8 @@
----
+﻿---
 ID: "42d8df85-d33d-48e9-b8ae-9e92c01b978a"
 Parent: "dec6afd4-412f-4009-a897-d252b327dad5"
 Template: "93227c5d-4fef-474d-94c0-f252ec8e8219"
 Path: /sitecore/layout/Layouts/HCA/Foundation/Connect
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "611f83d3-d1cd-4f9d-aab9-aed5226eb2a1"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150011Z

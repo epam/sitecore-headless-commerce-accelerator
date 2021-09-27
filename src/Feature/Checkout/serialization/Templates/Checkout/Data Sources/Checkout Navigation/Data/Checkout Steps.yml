@@ -3,15 +3,13 @@ ID: "55a6fd7a-07be-4fcd-ab3a-138b4ecbdc6b"
 Parent: "d9830671-1866-4378-8a4e-cad6c82f04ed"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/Checkout/Data Sources/Checkout Navigation/Data/Checkout Steps
-DB: master
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
   Value: "query:./ancestor::*[@@templatename='App']/*[@@name='Home']/*[@@templatename='Checkout']/*"
 - ID: "39847666-389d-409b-95bd-f2016f11eed5"
   Hint: Unversioned
-  Type: Checkbox
-  Value: 0
+  Value: 
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
   Value: Multilist
@@ -20,7 +18,6 @@ SharedFields:
   Value: 300
 - ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
   Hint: Shared
-  Type: Checkbox
   Value: 1
 Languages:
 - Language: en
@@ -30,3 +27,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180504T135804Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c96f5ad3-8a84-4b3b-b6a9-66cf4042eea5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150017Z

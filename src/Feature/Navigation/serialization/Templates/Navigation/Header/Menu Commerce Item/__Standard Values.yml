@@ -3,7 +3,6 @@ ID: "e212a8fe-c662-4042-907a-67a82dbfa436"
 Parent: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
 Template: "001f1d60-f8a4-4b1d-9506-41aeedb1ab03"
 Path: /sitecore/templates/HCA/Feature/Navigation/Header/Menu Commerce Item/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -19,3 +18,13 @@ Languages:
     - ID: "5ded8fb9-7d05-400d-971c-affa49b5443b"
       Hint: Title
       Value: $name
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1f202294-3bc3-4d99-bdb9-8041cefb6fff"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

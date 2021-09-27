@@ -1,0 +1,28 @@
+﻿---
+ID: "8b4faf9a-d45e-4c3b-996c-57d8597b9e5f"
+Parent: "6c8d751f-d56e-4551-a5d5-312d105195c8"
+Template: "095aae19-603c-4caa-9848-a47fcfe18308"
+Path: /sitecore/content/HCA/Data/Logo/Main
+Languages:
+- Language: en
+  Fields:
+  - ID: "b33b2551-09c4-454e-b2d5-6f41d878cc63"
+    Hint: Image
+    Value: |
+      <image mediaid="{FD112A87-1379-4664-BE0F-014B23C6E598}" />
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200528T131809Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "295c83f6-8c75-4c5f-883f-2fc60ff53690"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z

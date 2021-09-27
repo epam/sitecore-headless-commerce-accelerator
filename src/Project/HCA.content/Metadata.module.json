@@ -1,0 +1,40 @@
+{
+	"namespace": "HCA.Project.HCA.Content",
+	"references": ["HCA.Foundation.*", "HCA.Feature.*", "HCA.Project.HCA"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Content",
+				"path": "/sitecore/content/HCA",
+				"allowedPushOperations": "createOnly",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Dictionary",
+				"path": "/sitecore/system/Dictionary/HCA",
+				"allowedPushOperations": "createOnly",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Storefront",
+				"path": "/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/HCA",
+				"allowedPushOperations": "createOnly",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Master.ApiKey",
+				"path": "/sitecore/system/Settings/Services/API Keys/JssKey",
+				"allowedPushOperations": "createOnly",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Commerce.Indexing.Settings",
+				"path": "/sitecore/Commerce/Commerce Control Panel/Shared Settings/Indexing Settings",
+				"allowedPushOperations": "createOnly",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

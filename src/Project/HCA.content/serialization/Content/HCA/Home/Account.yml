@@ -1,0 +1,71 @@
+﻿---
+ID: "141d9a06-eee9-4ef4-b2fc-1f84891326dd"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/HCA/Home/Account
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{881A9677-2B9A-47EC-9689-4BDE26819D5C}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="/main-content" />
+        <r
+          uid="{ABB80CF4-5EC7-4712-B60D-E5FCFCEAC437}"
+          p:after="r[@uid='{881A9677-2B9A-47EC-9689-4BDE26819D5C}']"
+          s:id="{E3538FC5-6E16-4D93-A988-7BC57E184E87}"
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{D8FE579C-1C38-4FE8-8BD0-AAB28594123E}"
+          p:after="r[@uid='{ABB80CF4-5EC7-4712-B60D-E5FCFCEAC437}']"
+          s:id="{D31E47A2-8874-42B9-BD6B-7F8618C4BA11}"
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{DEFDEC03-3CA6-48B1-B085-5D7C864EDAFA}"
+          p:after="r[@uid='{D8FE579C-1C38-4FE8-8BD0-AAB28594123E}']"
+          s:ds=""
+          s:id="{699BBC0B-B614-4951-AD37-53A10F49EAB9}"
+          s:par=""
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{62555568-C461-4030-BFAA-9B080ECF37D5}"
+          p:after="r[@uid='{DEFDEC03-3CA6-48B1-B085-5D7C864EDAFA}']"
+          s:ds=""
+          s:id="{44938FFB-C428-4106-9A60-2BC412615E8E}"
+          s:par=""
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180607T103416Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c422befd-f863-4fe1-a643-5d2faada34f5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

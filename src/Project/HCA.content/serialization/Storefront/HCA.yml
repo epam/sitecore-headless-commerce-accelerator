@@ -1,0 +1,33 @@
+﻿---
+ID: "5d7682df-27d9-4fc9-bb4e-7ac06d7bbd7c"
+Parent: "99a2d449-7cc0-4fac-b516-db2176898898"
+Template: "59190273-fdcc-4048-9537-7edbdf94b22d"
+Path: /sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/HCA
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: HCA
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171123T163010Z
+    - ID: "796b8793-0846-4396-a771-2361a4d55bc7"
+      Hint: Description
+      Value: 
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "0043eefa-e7d0-4ea7-9788-e991e0033505"
+    - ID: "a68724cc-9513-46f5-aa82-d26c0644b21d"
+      Hint: Title
+      Value: Commerce Engine Default Storefront
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210225T191450Z

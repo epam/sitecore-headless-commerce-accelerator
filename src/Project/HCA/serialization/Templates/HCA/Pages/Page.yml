@@ -3,14 +3,12 @@ ID: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
 Parent: "418e2ca1-26d5-43b1-9fed-d23f29240010"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
 Path: /sitecore/templates/HCA/Project/HCA/Pages/Page
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: Office/16x16/window.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
-  Type: tree list
   Value: "{B36BA9FD-0DC0-49C8-BEA2-E55D70E6AF28}"
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
@@ -30,3 +28,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "52edc86c-82bc-4465-96cf-2ff1fe2d7b81"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150046Z

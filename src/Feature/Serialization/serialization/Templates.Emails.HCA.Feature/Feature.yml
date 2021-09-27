@@ -1,0 +1,23 @@
+﻿---
+ID: "6c67d8f2-4e1e-4220-9bee-334a18e10b26"
+Parent: "1f0f3614-ade4-44cd-90aa-b33f4f93075f"
+Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
+Path: /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200416T142411Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "029b9a0d-b8cb-44d5-b481-dc2d66db838c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150005Z

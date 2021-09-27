@@ -3,11 +3,9 @@ ID: "c1df98f9-bc36-4dd8-9576-280e55982b79"
 Parent: "829bfcfc-d56b-4025-affa-3967aa246356"
 Template: "829bfcfc-d56b-4025-affa-3967aa246356"
 Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{3A856AA5-4790-4E47-B46B-BABC49C34F3B}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a28827fb-af57-4a4c-a9c1-0a5abbabf879"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210225T191442Z

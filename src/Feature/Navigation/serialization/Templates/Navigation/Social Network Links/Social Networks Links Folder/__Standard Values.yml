@@ -3,11 +3,9 @@ ID: "a4e00afd-d025-4668-854b-c74d39fc08a0"
 Parent: "06baa321-f0c9-4e47-933e-3c0ae7ba1d61"
 Template: "06baa321-f0c9-4e47-933e-3c0ae7ba1d61"
 Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links Folder/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{656950E2-CDB1-4899-8106-067A6B76468B}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "755c4ec9-1a62-42d4-a1c7-61c4eefa3a18"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150026Z

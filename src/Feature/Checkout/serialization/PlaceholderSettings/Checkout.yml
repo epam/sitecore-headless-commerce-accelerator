@@ -1,9 +1,8 @@
----
+﻿---
 ID: "320ee556-891a-4d93-a792-cbca6461f2ca"
 Parent: "7b3e68bf-4724-43b7-b937-c096e3577264"
 Template: "c3b037a0-46e5-4b67-ac7a-a144b962a56f"
 Path: /sitecore/layout/Placeholder Settings/HCA/Feature/Checkout
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "89c79406-4c7a-48a3-8b2d-6aefd5f94bd2"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150015Z

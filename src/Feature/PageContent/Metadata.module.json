@@ -1,0 +1,52 @@
+{
+	"namespace": "HCA.Feature.PageContent",
+	"references": ["HCA.Foundation.*", "HCA.Feature"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},	
+			{
+				"name": "Media",
+				"path": "/sitecore/media library/HCA/Feature/PageContent",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

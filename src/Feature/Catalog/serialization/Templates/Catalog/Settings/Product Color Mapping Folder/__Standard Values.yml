@@ -3,11 +3,9 @@ ID: "3e49fa1a-a09a-4fc3-890f-298936a7815c"
 Parent: "93687745-63f3-4022-8cb0-29848c918a18"
 Template: "93687745-63f3-4022-8cb0-29848c918a18"
 Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping Folder/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{CA4B8E4A-BFEC-474A-8A85-E7DF2D9C1404}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "72056f71-26cf-4af5-9f0e-5d97927c0307"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150015Z

@@ -1,0 +1,124 @@
+{
+	"namespace": "HCA.Foundation",
+	"references": "",
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings.HCA",
+				"path": "/sitecore/system/Settings/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Settings.HCA.Foundation",
+				"path": "/sitecore/system/Settings/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Models.HCA",
+				"path": "/sitecore/layout/Models/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Models.HCA.Foundation",
+				"path": "/sitecore/layout/Models/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.HCA",
+				"path": "/sitecore/layout/Layouts/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.HCA.Foundation",
+				"path": "/sitecore/layout/Layouts/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.HCA",
+				"path": "/sitecore/layout/placeholder settings/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.HCA.Foundation",
+				"path": "/sitecore/layout/placeholder settings/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Renderings.HCA",
+				"path": "/sitecore/layout/Renderings/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Renderings.HCA.Foundation",
+				"path": "/sitecore/layout/Renderings/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.HCA",
+				"path": "/sitecore/templates/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.HCA.Foundation",
+				"path": "/sitecore/templates/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Branches.HCA",
+				"path": "/sitecore/templates/Branches/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Branches.HCA.Foundation",
+				"path": "/sitecore/templates/Branches/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Media.HCA",
+				"path": "/sitecore/media library/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Facets.HCA",
+				"path": "/sitecore/system/Settings/Buckets/Facets/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "ContentsResolvers.HCA",
+				"path": "/sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "ContentsResolvers.HCA.Foundation",
+				"path": "/sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Foundation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.Emails.HCA",
+				"path": "/sitecore/templates/System/Email/Messages/Inner Content/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			}
+		]
+	}
+}

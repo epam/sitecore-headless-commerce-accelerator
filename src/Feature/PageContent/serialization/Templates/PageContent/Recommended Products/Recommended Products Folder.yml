@@ -3,14 +3,12 @@ ID: "2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731"
 Parent: "919f8c73-2007-45dd-8355-a340444a0c0d"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
 Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: office/32x32/folder.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
-  Type: tree list
   Value: "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}"
 - ID: "f7d48a55-2158-4f02-9356-756654404f73"
   Hint: __Standard values
@@ -23,3 +21,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200522T092315Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9fa957b5-624e-4ebc-bcbe-6a1348b47a05"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150030Z

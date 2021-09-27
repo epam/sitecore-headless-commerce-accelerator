@@ -549,8 +549,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\HCA.Feature.Account.config" />
-    <Content Include="App_Config\Include\Feature\HCA.Feature.Account.Serialization.config" />
-    <Content Include="App_Config\Include\Feature\HCA.Feature.Account.Core.Serialization.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

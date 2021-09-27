@@ -3,7 +3,6 @@ ID: "de9c3007-14f7-45bc-b73f-3363f9b4decf"
 Parent: "e2787df8-9c1a-4164-a18a-da02d72f0280"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings/Content/Fallback Image
-DB: master
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
@@ -16,7 +15,6 @@ SharedFields:
   Value: 100
 - ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
   Hint: Shared
-  Type: Checkbox
   Value: 1
 Languages:
 - Language: en
@@ -26,3 +24,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200528T100450Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "114d391a-3aaa-40fd-be0c-57478bdb0337"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150011Z

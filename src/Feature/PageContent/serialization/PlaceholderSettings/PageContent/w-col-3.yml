@@ -3,7 +3,6 @@ ID: "efe7e9b9-dafd-46e7-b7af-4a3fa070bdc6"
 Parent: "925b369f-6427-4f37-827d-30ff9d12def6"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
 Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/PageContent/w-col-3"
-DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180428T104819Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "6107013d-80d0-400f-820a-09d5d72b8c41"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

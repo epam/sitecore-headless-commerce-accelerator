@@ -3,7 +3,6 @@ ID: "79219f47-d113-4ecf-af2f-72fe32a310cc"
 Parent: "9d051c88-b361-492a-b981-e9dcb8eaf446"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Foundation/UI/No Results Found
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
@@ -22,3 +21,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20210531T092435Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "6bd0437c-2032-456e-b846-051f5a0fd79f"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124426Z

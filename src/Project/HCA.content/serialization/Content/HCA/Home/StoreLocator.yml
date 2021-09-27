@@ -1,0 +1,70 @@
+﻿---
+ID: "87ddb1eb-efd3-4dfa-8388-a9fcf27a50b2"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/HCA/Home/StoreLocator
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/map_location2.png
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: 
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{9DC7D664-3C14-42CE-888E-5711D624B358}"
+          p:after="r[@uid='{A5BED5B3-EE5E-4281-86A7-076450113EE1}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class=hca&amp;First Column Class&amp;Second Column Class&amp;Third Column Class"
+          s:ph="/main-content" />
+        <r
+          uid="{2C6C436D-59AA-468E-B906-8FE319C36C3C}"
+          p:after="r[@uid='{9DC7D664-3C14-42CE-888E-5711D624B358}']"
+          s:ds="{90C2E676-24F5-4D21-BC24-86CA695129F2}"
+          s:id="{F70ABA20-ACCC-4690-9E43-C8718E930213}"
+          s:par=""
+          s:ph="/main-content/w-col-wide-{9DC7D664-3C14-42CE-888E-5711D624B358}-0" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Store Locator
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200709T220403Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "5075596e-34e1-4cd0-b739-b9fe19105038"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

@@ -3,7 +3,6 @@ ID: "574c656a-bcc1-4520-9eed-acd249e5c47e"
 Parent: "4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44"
 Template: "4e6f821a-a5cc-4fd5-9ab3-f94a9a785f44"
 Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo Folder/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "afc5ecee-d1ac-4d18-bfb8-fd23fbc8adc2"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

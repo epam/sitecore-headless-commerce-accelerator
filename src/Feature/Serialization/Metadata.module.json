@@ -1,0 +1,76 @@
+{
+	"namespace": "HCA.Feature",
+	"references": ["HCA.Foundation"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings.HCA.Feature",
+				"path": "/sitecore/system/Settings/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Models.HCA.Feature",
+				"path": "/sitecore/layout/Models/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Layouts.HCA.Feature",
+				"path": "/sitecore/layout/Layouts/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "PlaceholderSettings.HCA.Feature",
+				"path": "/sitecore/layout/placeholder settings/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Renderings.HCA.Feature",
+				"path": "/sitecore/layout/Renderings/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.HCA.Feature",
+				"path": "/sitecore/templates/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Media.HCA.Feature",
+				"path": "/sitecore/media library/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Branches.HCA.Feature",
+				"path": "/sitecore/templates/Branches/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Facets.HCA.Feature",
+				"path": "/sitecore/system/Settings/Buckets/Facets/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "ContentsResolvers.HCA.Feature",
+				"path": "/sitecore/system/Modules/Layout Service/Rendering Contents Resolvers/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			},
+			{
+				"name": "Templates.Emails.HCA.Feature",
+				"path": "/sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "SingleItem"
+			}
+		]
+	}
+}

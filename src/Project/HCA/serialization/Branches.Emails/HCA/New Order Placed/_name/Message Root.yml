@@ -3,11 +3,9 @@ ID: "48501984-93c0-46d6-80e6-db435099c576"
 Parent: "284f83d9-2bf9-4e01-a760-44af73f3372b"
 Template: "3f12d78c-b7b7-4157-98fc-da3322ee1a5b"
 Path: /sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA/New Order Placed/$name/Message Root
-DB: master
 SharedFields:
 - ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
   Hint: __Renderings
-  Type: layout
   Value: |
     <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <d
@@ -33,6 +31,16 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200415T082658Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "07430145-cd6b-457d-8e96-305b696006bb"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
     - ID: "c0bfd467-0b74-4efe-b7c9-1ecf7f0e5370"
       Hint: Subject
       Value: Order confirmation
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

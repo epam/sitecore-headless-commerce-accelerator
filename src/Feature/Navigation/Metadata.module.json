@@ -1,0 +1,46 @@
+{
+	"namespace": "HCA.Feature.Navigation",
+	"references": ["HCA.Foundation.*", "HCA.Feature"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Feature/Navigation",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

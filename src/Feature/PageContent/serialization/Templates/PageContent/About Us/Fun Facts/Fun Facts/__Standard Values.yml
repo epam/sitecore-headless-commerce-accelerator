@@ -3,11 +3,9 @@ ID: "a5a3b5f8-6e65-4db2-8674-fae45369086e"
 Parent: "b05afe71-d5f0-42d7-8f4f-ff4bcf446aee"
 Template: "b05afe71-d5f0-42d7-8f4f-ff4bcf446aee"
 Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{465438D2-F2D3-4034-A2F5-38FE8BD243CC}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "eb685625-6e35-42e4-b62a-0aefa10086e3"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210225T191442Z

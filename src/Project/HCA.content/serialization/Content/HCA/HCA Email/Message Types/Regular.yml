@@ -1,0 +1,31 @@
+﻿---
+ID: "227dcd5b-6ec9-451f-8eb0-b49ba146ad77"
+Parent: "de2f35fd-47b6-45b3-8bfa-a3dd02542976"
+Template: "fa257176-aa15-4999-91c5-c03f3bda5027"
+Path: /sitecore/content/HCA/HCA Email/Message Types/Regular
+SharedFields:
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{A6FD0423-F0DA-4980-9441-9ECB8F8F5C77}"
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Regular Message
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200414T112820Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "df4fbdb5-9063-4f8c-8c1b-2b0cbee08f4d"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

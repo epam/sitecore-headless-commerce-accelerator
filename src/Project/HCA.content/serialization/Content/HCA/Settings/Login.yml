@@ -1,0 +1,30 @@
+﻿---
+ID: "2d65781d-2688-4e05-80b0-5fdce86476e0"
+Parent: "b73e494c-70d4-45ab-8699-7a1c8b96a47f"
+Template: "3fbc5bfa-6e94-493a-9128-f6356f5f3d16"
+Path: /sitecore/content/HCA/Settings/Login
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180528T140126Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1f036748-6c7b-4c0e-807b-075b9317c9ee"
+    - ID: "b99ca0c7-ee56-466b-99e5-d30dfddb75ae"
+      Hint: Default User
+      Value: b1a75ade9203451fb2c26a1138a1433b
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

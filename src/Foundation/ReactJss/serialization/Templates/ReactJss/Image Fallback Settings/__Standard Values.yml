@@ -3,7 +3,6 @@ ID: "337056a6-1118-47fe-8cd1-4bc50865ad76"
 Parent: "275950d5-b3a6-476a-8258-bb93a3a96f3c"
 Template: "275950d5-b3a6-476a-8258-bb93a3a96f3c"
 Path: /sitecore/templates/HCA/Foundation/ReactJss/Image Fallback Settings/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a807b988-e1e4-4fef-8767-a6848c9e12ae"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150012Z

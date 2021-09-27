@@ -1,0 +1,34 @@
+﻿---
+ID: "a4ac3d4b-069f-4771-9fb0-0b2414cd1f79"
+Parent: "efd0692c-6fb1-4977-8b0e-18b6e46dffc4"
+Template: "1973dfe5-c0a3-471a-9a4e-5a3922a38c49"
+Path: /sitecore/content/HCA/Data/No Results Found/No Results Found
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210528T064001Z
+    - ID: "32ec9797-99f5-40d5-8aaa-71506aeb3dbc"
+      Hint: Tips Header
+      Value: Search tips
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e514b6fe-e308-4c9a-8c1a-4ea9c3182d07"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "cc774dab-368c-4aac-a344-75cf54d14760"
+      Hint: Tips
+      Value: |
+        {2FFC9A79-58CA-4EDE-83F5-FDEE6851C1DA}
+        {ADC8AB73-079D-4886-84D3-6D70C643E484}
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z
+    - ID: "f1de21b2-57b8-4286-ad5f-01d5001614c7"
+      Hint: Header Line
+      Value: No results found

@@ -3,14 +3,12 @@ ID: "1daeff25-b075-4c13-b41a-72b553b22542"
 Parent: "418e2ca1-26d5-43b1-9fed-d23f29240010"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
 Path: /sitecore/templates/HCA/Project/HCA/Pages/Product
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
   Value: people/32x32/cube_yellow.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
-  Type: tree list
   Value: |
     {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
     {97FB3BFC-0774-495C-99F6-C63739985173}
@@ -32,3 +30,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "723471e5-03c4-4614-9b4e-5971bd9e504d"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150046Z

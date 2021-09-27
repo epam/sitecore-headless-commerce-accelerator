@@ -9,6 +9,7 @@
 #load ./scripts/cake/client.cake
 #load ./scripts/cake/solr.cake
 #load ./scripts/cake/backendbuild.cake
+#load ./scripts/cake/scs.cake
 
 // //////////////////////////////////////////////////
 // Arguments
@@ -124,7 +125,7 @@ Task("005-Publish-Back-Only")
     ;
 
 Task("006-Sync-Content")
-    .IsDependentOn(Sitecore.Tasks.SyncAllUnicornItems)
+    .IsDependentOn(SCS.Push)
     ;
 
 Task("007-Update-SolrConfig")

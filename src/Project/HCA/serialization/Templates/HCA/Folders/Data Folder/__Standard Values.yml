@@ -3,7 +3,6 @@ ID: "7cf1f94c-981d-494f-9135-6f8db57806b1"
 Parent: "5c07e9e8-6ca9-43ad-9cec-2988a77f6d70"
 Template: "5c07e9e8-6ca9-43ad-9cec-2988a77f6d70"
 Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200522T085837Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d3ede1e3-8b04-4ed3-81a9-8d4eab2c4dd7"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150051Z

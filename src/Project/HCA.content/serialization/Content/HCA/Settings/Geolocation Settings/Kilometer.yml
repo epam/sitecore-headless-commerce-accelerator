@@ -1,0 +1,34 @@
+﻿---
+ID: "866fd0e9-c965-49da-9a24-bdd46b1a01cc"
+Parent: "a3fcd4da-8ab2-4d59-a9d6-63cc4747a69f"
+Template: "16c07940-d853-40c6-8758-a3849e630b26"
+Path: /sitecore/content/HCA/Settings/Geolocation Settings/Kilometer
+SharedFields:
+- ID: "35061721-e99e-4b1c-bdd3-ba87a141f82a"
+  Hint: Unit Code
+  Value: km
+- ID: "d46e1f21-7b9b-4a58-b795-91f48396b60d"
+  Hint: Kilometer To Unit Multiplier
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200805T211017Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a17f04c2-53b3-4e8e-b4de-92683b039234"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

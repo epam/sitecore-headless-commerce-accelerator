@@ -3,7 +3,6 @@ ID: "b5868a9d-5954-48ab-ba7a-fda28db25659"
 Parent: "94fb0bb4-f041-45f7-a0ce-1e3899fc40e0"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
 Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links/Content
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200428T183852Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "2a05a6df-207b-4736-91f4-25a5d9231a7a"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150022Z

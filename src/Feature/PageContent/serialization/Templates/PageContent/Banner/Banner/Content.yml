@@ -3,7 +3,6 @@ ID: "466cb288-718c-46e4-bbd4-c577fd49c2f6"
 Parent: "aca0aaff-3317-4535-8bc5-504256e08255"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
 Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner/Content
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200520T074648Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "ce20d096-6421-46cc-8ea2-b4b06cfa3751"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150031Z

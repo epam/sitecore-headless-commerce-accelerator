@@ -1,0 +1,29 @@
+﻿---
+ID: "39d2c64d-7ea8-438c-82b0-300e97de236a"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "5f257a2a-dfed-4617-a24a-3e85ba695305"
+Path: /sitecore/content/HCA/Data/Header
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {4E6F821A-A5CC-4FD5-9AB3-F94A9A785F44}
+    {C2518164-6043-4D73-B26C-08D13AB49118}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200519T132318Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b1b42141-4837-4b11-9533-07bab73d38a2"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

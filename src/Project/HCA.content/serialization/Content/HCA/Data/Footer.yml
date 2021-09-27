@@ -1,0 +1,23 @@
+﻿---
+ID: "49c4e6b9-61f4-453b-b397-1a38d2db3ed8"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "54b74398-8b37-4f1c-8e59-a79cd1633d55"
+Path: /sitecore/content/HCA/Data/Footer
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190230Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "4760cadd-7849-4c33-8fb7-9cb8908c6a50"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

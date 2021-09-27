@@ -3,11 +3,9 @@ ID: "869f2c8d-f9ca-42d6-892c-c20136e05f84"
 Parent: "844a2cf8-2dd3-468f-820a-f79dec4481d4"
 Template: "844a2cf8-2dd3-468f-820a-f79dec4481d4"
 Path: /sitecore/templates/HCA/Foundation/UI/Filter/Filter Types/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{F9A592BE-29FC-4E37-B5E4-8C4DF04B3D61}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "0157689e-8d58-44ff-8a50-ae2f613e780a"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124429Z

@@ -3,7 +3,6 @@ ID: "6c871244-64d8-4175-a8f3-ff7eec595cf4"
 Parent: "dd4f63be-c4df-4e0b-9b39-13e59a6cb1d2"
 Template: "0437fee2-44c9-46a6-abe9-28858d9fee8c"
 Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c2f11fa6-ecf2-4172-aa41-44942a3126f9"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150046Z

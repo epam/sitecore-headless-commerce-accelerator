@@ -1,0 +1,41 @@
+﻿---
+ID: "00e6250c-3fdf-4540-ae42-ebc1d5c1f4fa"
+Parent: "14fdf1e0-a529-423f-9c8c-0d77fb870bbf"
+Template: "14fdf1e0-a529-423f-9c8c-0d77fb870bbf"
+Path: /sitecore/templates/CommerceConnect/Sitecore Commerce/Commerce Control Panel/Shared Settings/Shared Settings Folder/__Standard Values
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {D7640AFE-63C0-4CDF-876F-C17C5D3FA5C4}
+    {B678ECFB-87A3-4F27-B3FB-2877F332C950}
+    {310B1CBC-E05D-4B95-8E2A-D2E9BDA1BF0D}
+    {8A9DB89C-887D-4894-8208-E03F830B8861}
+    {9589531A-14F5-4313-B0D3-2BC5624D0706}
+    {237A09AB-FB5D-47CD-8096-0A8D65CC321B}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20161128T115059Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\Admin
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d5266f0c-298d-4bb7-b840-dfed5daa1f1e"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20161206T123335Z

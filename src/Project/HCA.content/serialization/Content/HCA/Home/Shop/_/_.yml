@@ -1,0 +1,42 @@
+﻿---
+ID: "4ba60d18-6973-4a69-9d14-ba602bed362a"
+Parent: "28a8c141-f104-4433-b50e-dbff74b4fef9"
+Template: "1daeff25-b075-4c13-b41a-72b553b22542"
+Path: /sitecore/content/HCA/Home/Shop/*/*
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{3D3E26F5-8E1E-4A43-9BDA-DD48AE0AA0B0}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=%20SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180425T131555Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9c54dffb-f552-4fe6-bf3e-b368503a7028"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z

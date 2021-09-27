@@ -1,0 +1,130 @@
+﻿---
+ID: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Parent: "bbf003f2-f4d3-415f-8136-357b71508316"
+Template: "83883836-8f50-4bb8-bf62-369b7661e815"
+Path: /sitecore/content/HCA/Home
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: |
+    {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
+    {D0466420-EECA-46A4-93B6-B17CC198E87B}
+    {0CBBB134-4025-4A51-9B46-1AB7021CCB0F}
+    {D5440345-D25E-4A9B-B8E4-5C2AEF3C9178}
+    {1DAEFF25-B075-4C13-B41A-72B553B22542}
+    {E5E2329C-B05A-4E98-9430-018503C2699A}
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}"
+          s:ds=""
+          s:par="" />
+        <r
+          uid="{68226758-D091-4D97-B160-31D1229247AF}"
+          s:ds=""
+          s:par="Wrapper Class=hca&amp;First Column Class=header-full-width&amp;Second Column Class&amp;Third Column Class" />
+        <r
+          uid="{4EBE8CF1-C85E-4E94-AAB6-91FA3C690BA4}"
+          s:ds=""
+          s:par="Wrapper Class=hca&amp;First Column Class=header-full-width&amp;Second Column Class&amp;Third Column Class" />
+        <r
+          uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
+          s:pt="{5EB21C64-BB16-4359-B4C6-C2DC3BC8B614}"
+          s:uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}">
+          <rls>
+            <ruleset
+              s:pet="true">
+              <rule
+                uid="{0CD30F08-E87C-4336-BD23-850C5C5F9807}"
+                s:name="Gaming banner"
+                s:test="true">
+                <conditions>
+                  <condition
+                    uid="5B4C3BA7AEE043C2865EA4E34D78DCBD"
+                    s:id="{9D3B7B5B-48BA-4B54-A522-166FFDEAC33D}"
+                    s:ProductId="6042430"
+                    s:operatorid="{814EF7D0-1639-44FD-AEEF-735B5AC14425}"
+                    s:ProductQuantity="1" />
+                </conditions>
+                <actions>
+                  <action
+                    uid="4AE8DE52D3E64A00978FBB158BBA60C3"
+                    s:id="{0F3C6BEC-E56B-4875-93D7-2846A75881D2}"
+                    s:DataSource="{0CD65CD7-63F7-41C6-AB78-31090789C20D}" />
+                </actions>
+              </rule>
+              <rule
+                uid="{00000000-0000-0000-0000-000000000000}"
+                s:name="Default"
+                s:test="true">
+                <conditions>
+                  <condition
+                    uid="363A2B34BED24B3B9F4A609D17D09B06"
+                    s:id="{4888ABBB-F17D-4485-B14B-842413F88732}" />
+                </conditions>
+                <actions>
+                  <action
+                    uid="F81A92A8F1DA4BB2BF13BCBF5CDE2A8B"
+                    s:id="{0F3C6BEC-E56B-4875-93D7-2846A75881D2}"
+                    s:DataSource="{90DAC3A3-0DA1-4AFD-BDC8-F0F0513C63B6}" />
+                </actions>
+              </rule>
+            </ruleset>
+          </rls>
+        </r>
+        <r
+          uid="{868D359F-6DAB-454A-9281-CE3541664672}"
+          p:after="r[@uid='{54D580EB-7FC6-4A09-9131-4B855C36F423}']"
+          s:ds="{71454CDE-8FC1-4F4D-BC41-D48BFE899DEE}"
+          s:id="{CA95EE68-8D42-4C31-81B1-61B0362DACAD}"
+          s:par=""
+          s:ph="main-content" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{DA35B17C-16C3-4018-9E31-AA106F6B396F}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{54D580EB-7FC6-4A09-9131-4B855C36F423}"
+              s:pt="{5EB21C64-BB16-4359-B4C6-C2DC3BC8B614}" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180418T153723Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "566154e9-1bbd-44e6-ac7a-2d4e3f223fc0"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

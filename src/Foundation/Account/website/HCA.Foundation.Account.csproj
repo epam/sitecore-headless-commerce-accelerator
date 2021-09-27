@@ -203,7 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Account.config" />
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Account.Core.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml" />
     <None Include="web.config" />
   </ItemGroup>

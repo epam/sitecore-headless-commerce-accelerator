@@ -3,7 +3,6 @@ ID: "c37cfbfd-52dd-41e6-9c6e-264858a7f835"
 Parent: "48571882-2196-4e19-a0fa-673cede42b56"
 Template: "e269fbb5-3750-427a-9149-7aa950b49301"
 Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder/Content
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20210723T095825Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d37b85b4-4556-4a51-b09f-0d7a6d7c7713"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124440Z

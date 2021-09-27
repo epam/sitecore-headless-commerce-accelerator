@@ -3,7 +3,6 @@ ID: "9cfe4894-eaa8-4ac8-b465-4e795d449a44"
 Parent: "0e7d733a-84f6-4898-9019-fc5190685e53"
 Template: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e"
 Path: /sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200416T142824Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "83bb91d5-e298-4d70-92cd-c4003c588183"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150049Z

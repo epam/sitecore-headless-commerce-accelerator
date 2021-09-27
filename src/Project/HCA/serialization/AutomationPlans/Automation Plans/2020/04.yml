@@ -3,7 +3,6 @@ ID: "7e49d9e4-d0fd-43bb-a2b2-3576a1c9c02e"
 Parent: "26907b64-222d-46a7-a736-332ea924458f"
 Template: "adb6ca4f-03ef-4f47-b9ac-9ce2ba53ff97"
 Path: /sitecore/system/Marketing Control Panel/Automation Plans/2020/04
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200413T191706Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "4e5eeb3b-bcb4-425f-9ac3-c8a9e36f6b32"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

@@ -3,7 +3,6 @@ ID: "2661ef03-4880-4a78-90cc-3f6929babeec"
 Parent: "aca0aaff-3317-4535-8bc5-504256e08255"
 Template: "aca0aaff-3317-4535-8bc5-504256e08255"
 Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "ce2f562e-9f19-43b4-8a7b-3ea97634f584"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150035Z

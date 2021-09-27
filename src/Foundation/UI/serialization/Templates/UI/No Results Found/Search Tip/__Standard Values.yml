@@ -3,7 +3,6 @@ ID: "57cd2254-94e2-487a-97ab-f9dca1b0eeb8"
 Parent: "826a09fd-613e-4280-86df-36a1548baeb0"
 Template: "826a09fd-613e-4280-86df-36a1548baeb0"
 Path: /sitecore/templates/HCA/Foundation/UI/No Results Found/Search Tip/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "4d5e067e-9ddd-4e0b-9634-d527dbf92543"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124429Z

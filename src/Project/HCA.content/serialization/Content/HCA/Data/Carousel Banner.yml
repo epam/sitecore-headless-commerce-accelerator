@@ -1,0 +1,38 @@
+﻿---
+ID: "90dac3a3-0da1-4afd-bdc8-f0f0513c63b6"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "764f7c1b-1d67-43fb-9074-df87a0deb60e"
+Path: /sitecore/content/HCA/Data/Carousel Banner
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{F3E176B7-C8D9-4C1F-BBE9-E83CE643E0D7}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200904T150648Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "af8e2b04-0353-4561-b6e7-17518b5291a4"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z
+    - ID: "e7bbd25a-3f42-4199-9e19-19a87b7020e7"
+      Hint: Banners
+      Value: |
+        {CF944FDF-8A71-42ED-AAA9-6B4D27938153}
+        {947DDA05-E5A9-4A4D-9995-CC0EB7A3BD7E}
+        {B6E11C34-BC71-49CA-81C7-7FF316A92BE0}
+        {52E38324-78C0-4C1B-8F1D-C3CE74132D49}

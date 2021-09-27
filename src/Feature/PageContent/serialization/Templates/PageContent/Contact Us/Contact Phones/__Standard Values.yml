@@ -3,11 +3,9 @@ ID: "093234a8-95e4-4ca6-a9e4-06feffd6d96f"
 Parent: "9300407f-67f7-459c-ae3d-ba2680058e21"
 Template: "9300407f-67f7-459c-ae3d-ba2680058e21"
 Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{BA4CAB76-AA33-465B-A385-A8B1D045B3CF}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b4da73ea-d68b-4826-849c-8a291bc663aa"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150035Z

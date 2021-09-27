@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Context
+namespace HCA.Foundation.Commerce.Context.Site
 {
     using System.Collections;
     using System.Web;
@@ -26,19 +26,19 @@ namespace HCA.Foundation.Commerce.Context
     {
         private const string CurrentCategoryItemKey = "_CurrentCategoryItem";
         private const string CurrentProductItemKey = "_CurrentProductItem";
-        
+
         public Category CurrentCategory
         {
             get => this.Items[CurrentCategoryItemKey] as Category;
             set => this.Items[CurrentCategoryItemKey] = value;
         }
-        
+
         public Product CurrentProduct
         {
             get => this.Items[CurrentProductItemKey] as Product;
             set => this.Items[CurrentProductItemKey] = value;
         }
-        
+
         private IDictionary Items => HttpContext.Current.Items;
     }
 }

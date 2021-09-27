@@ -26,6 +26,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
     using Connect.Managers.Inventory;
 
     using Context;
+    using Context.Visitor;
 
     using Converters.Cart;
 
@@ -33,7 +34,6 @@ namespace HCA.Foundation.Commerce.Services.Cart
     using HCA.Foundation.Commerce.Services.Catalog;
 
     using Models.Entities.Cart;
-
 
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;

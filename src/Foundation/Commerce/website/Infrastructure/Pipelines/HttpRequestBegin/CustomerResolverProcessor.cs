@@ -16,7 +16,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
 {
     using Base.Infrastructure.Pipelines;
 
-    using Context;
+    using Context.Visitor;
 
     using Providers;
 

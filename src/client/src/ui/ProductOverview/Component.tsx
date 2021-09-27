@@ -58,7 +58,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
 
   protected safeRender() {
     const { selectedVariant } = this.props;
-    const { product, fallbackImageUrl } = this.props.sitecoreContext;
+    const { product, fallbackImageUrl, productColors } = this.props.sitecoreContext;
     const selectedCatalogItem = selectedVariant || product;
     const selectedCatalogItemId =
       selectedCatalogItem &&

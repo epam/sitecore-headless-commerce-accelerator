@@ -113,7 +113,7 @@ export class CartSummaryComponent extends Jss.SafePureComponent<CartSummaryProps
                         )}
                       </div>
                       <div className="col-xs-2 amount quantity-group product-quantity">
-                        <Quantity cartLine={cartLine} updateCartLine={UpdateCartLine} removeCartLine={RemoveCartLine} />
+                        <Quantity cartLine={cartLine} updateCartLine={UpdateCartLine} />
                       </div>
                       <div className="col-xs-2 amount product-subtotal">
                         <span className="currency">{cartLine.price.currencySymbol}</span>

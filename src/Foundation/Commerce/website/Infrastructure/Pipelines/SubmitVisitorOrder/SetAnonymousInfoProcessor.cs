@@ -20,7 +20,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
     using Analytics.Models.Entities.Contact;
     using Analytics.Services.Contact;
 
-    using Context;
+    using Context.Visitor;
 
     using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities;

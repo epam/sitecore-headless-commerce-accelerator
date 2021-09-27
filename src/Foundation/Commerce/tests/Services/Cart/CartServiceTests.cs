@@ -28,6 +28,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
     using Connect.Managers.Cart;
 
     using Context;
+    using Context.Visitor;
 
     using Converters.Cart;
 

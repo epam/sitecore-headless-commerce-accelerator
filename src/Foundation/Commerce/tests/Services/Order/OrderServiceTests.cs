@@ -27,7 +27,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Order
     using Connect.Managers.Cart;
     using Connect.Managers.Order;
 
-    using Context;
+    using Context.Visitor;
 
     using Converters.Order;
 

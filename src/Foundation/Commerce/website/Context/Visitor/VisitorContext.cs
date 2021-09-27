@@ -12,14 +12,28 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Context
+namespace HCA.Foundation.Commerce.Context.Visitor
 {
-    using Models.Entities.Catalog;
-    
-    public interface ISiteContext
-    {
-        Category CurrentCategory { get; set; }
+    using System.Collections;
+    using System.Web;
 
-        Product CurrentProduct { get; set; }
+    using DependencyInjection;
+
+    using Models.Entities.Users;
+
+    [Service(typeof(IVisitorContext))]
+    public class VisitorContext : IVisitorContext
+    {
+        private const string CurrentUserItemKey = "_CurrentCommerceUser";
+
+        private IDictionary Items => HttpContext.Current.Items;
+
+        public string ExternalId => this.CurrentUser?.ExternalId;
+
+        public User CurrentUser
+        {
+            get => this.Items[CurrentUserItemKey] as User;
+            set => this.Items[CurrentUserItemKey] = value;
+        }
     }
 }

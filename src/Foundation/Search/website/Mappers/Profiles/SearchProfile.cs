@@ -6,7 +6,6 @@
     using AutoMapper;
 
     using Models.Common;
-    using Models.Entities.Blog;
     using Models.Entities.Category;
     using Models.Entities.Product;
 
@@ -29,15 +28,6 @@
                 .ForMember(dest => dest.FoundValues, opt => opt.Ignore());
 
             this.CreateMap<Sitecore.ContentSearch.Linq.FacetValue, FacetValue>();
-
-            this.CreateMap<Sitecore.ContentSearch.Linq.SearchResults<BlogSearchResultItem>,
-                    Models.Common.SearchResults<BlogSearchResultItem>>()
-                .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Hits.Select(h => h.Document).ToList()))
-                .ForMember(
-                    dest => dest.Facets,
-                    opt => opt.MapFrom(src => src.Facets != null ? src.Facets.Categories : null))
-                .ForMember(dest => dest.TotalItemCount, opt => opt.MapFrom(src => src.TotalSearchResults))
-                .ForMember(dest => dest.TotalPageCount, opt => opt.Ignore());
 
             this.CreateMap<Sitecore.ContentSearch.Linq.SearchResults<CategorySearchResultItem>, Models.Common.SearchResults<CategorySearchResultItem>>()
                 .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Hits.Select(h => h.Document).ToList()))

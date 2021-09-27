@@ -27,6 +27,7 @@ namespace HCA.Foundation.Commerce.Services.Order
     using Connect.Managers.Order;
 
     using Context;
+    using Context.Visitor;
 
     using Converters.Order;
 

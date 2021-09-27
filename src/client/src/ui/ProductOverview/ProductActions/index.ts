@@ -18,7 +18,6 @@ import { bindActionCreators } from 'redux';
 
 import * as ProductVariant from 'services/productVariant';
 import { actionTypes, updateCartItemRequest, shoppingCart } from 'services/shoppingCart';
-import { selector } from 'services/wishlist';
 
 import { LoadingStatus } from 'models';
 import { renderingWithContext } from 'Foundation/ReactJss';
@@ -40,7 +39,6 @@ const mapStateToProps = (state: AppState) => {
     isLoading,
     productId,
     variants,
-    wishlistStatus: selector.wishlistStatus(state),
   };
 };
 

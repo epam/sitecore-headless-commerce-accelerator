@@ -26,6 +26,7 @@ namespace HCA.Foundation.Commerce.Services.Billing
     using Connect.Models;
 
     using Context;
+    using Context.Visitor;
 
     using DependencyInjection;
 

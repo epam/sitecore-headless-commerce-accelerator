@@ -41,6 +41,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Billing
     using Connect.Models.Payment;
 
     using Context;
+    using Context.Visitor;
 
     using Models.Entities.Addresses;
     using Models.Entities.Billing;

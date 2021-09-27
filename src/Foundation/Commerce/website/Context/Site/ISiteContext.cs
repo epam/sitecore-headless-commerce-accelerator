@@ -12,14 +12,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-namespace HCA.Foundation.Commerce.Context
+namespace HCA.Foundation.Commerce.Context.Site
 {
-    using Models.Entities.Users;
+    using Models.Entities.Catalog;
 
-    public interface IVisitorContext
+    public interface ISiteContext
     {
-        string ExternalId { get; }
+        Category CurrentCategory { get; set; }
 
-        User CurrentUser { get; set; }
+        Product CurrentProduct { get; set; }
     }
 }

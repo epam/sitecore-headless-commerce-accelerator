@@ -69,7 +69,10 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                       }
 
                       return (
-                        <tr key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}>
+                        <tr
+                          className="cartLine"
+                          key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}
+                        >
                           <td className="product-image">
                             <img className="image-border" src={imageUrl} alt="Product image" />
                           </td>

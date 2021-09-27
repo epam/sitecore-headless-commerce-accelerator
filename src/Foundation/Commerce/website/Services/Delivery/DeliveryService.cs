@@ -24,8 +24,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
     using Connect.Managers.Account;
     using Connect.Managers.Cart;
     using Connect.Managers.Shipping;
-
-    using Context;
+    using Context.Visitor;
 
     using DependencyInjection;
 
@@ -39,7 +38,6 @@ namespace HCA.Foundation.Commerce.Services.Delivery
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
-    using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
     using ShippingInfo = Models.Entities.Shipping.ShippingInfo;

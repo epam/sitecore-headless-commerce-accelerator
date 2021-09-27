@@ -1,9 +1,8 @@
----
+﻿---
 ID: "aad18c86-43e4-4d99-a507-1d6441dab9bc"
 Parent: "d6a1aa65-1c77-4bb4-8848-2ca15ae39e22"
 Template: "7ee0975b-0698-493e-b3a2-0b2ef33d0522"
 Path: /sitecore/layout/Renderings/HCA/Foundation/ReactJss
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "30f714ca-b0a5-4cf0-a319-ca80c69ae482"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150011Z

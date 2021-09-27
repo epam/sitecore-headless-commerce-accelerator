@@ -3,7 +3,6 @@ ID: "fb4e15e5-5d5b-4165-805c-2ffb074a752e"
 Parent: "9f0c70f9-31b2-47d2-860e-7c68e506298e"
 Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
 Path: /sitecore/system/Marketing Control Panel/Campaigns/Emails/2020/04/28T09024650
-DB: master
 SharedFields:
 - ID: "6fd695e7-7f6d-4ca5-8b49-a829e5950ae9"
   Hint: __Subitems Sorting
@@ -16,3 +15,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200428T090246Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "fb34b266-2efc-4013-b28d-7e97d2539821"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

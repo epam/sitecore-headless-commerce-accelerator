@@ -1,0 +1,40 @@
+﻿---
+ID: "9d1d1fc1-8405-4fef-a3f1-b7ddbdb63290"
+Parent: "5d7682df-27d9-4fc9-bb4e-7ac06d7bbd7c"
+Template: "a2a80c92-826a-4928-beed-6e46fff31919"
+Path: /sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/HCA/Fulfillment Configuration
+SharedFields:
+- ID: "0452eb98-bc28-4fd8-a3b4-533f26c62705"
+  Hint: Fulfillment Options
+  Value: |
+    {2FB0128E-FBBD-4FCE-9197-F000D8D39F5C}
+    {3817F8D5-994B-4FBC-8BBE-4C342EC7553A}
+- ID: "769b63db-453f-44e6-aa90-cbc916e47f7d"
+  Hint: Allow items to be delivered Individually
+  Value: 1
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Fulfillment Configuration
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171123T163853Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "6066072e-9e7c-4d00-a7e6-41c26da8f681"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20200420T093524Z

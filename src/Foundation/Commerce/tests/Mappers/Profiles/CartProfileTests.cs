@@ -18,6 +18,7 @@ namespace HCA.Foundation.Commerce.Tests.Mappers.Profiles
 
     using Commerce.Mappers.Profiles;
     using Commerce.Providers;
+    using Commerce.Providers.Currency;
 
     using NSubstitute;
 

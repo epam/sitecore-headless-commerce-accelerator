@@ -1,0 +1,33 @@
+﻿---
+ID: "9697ac8b-3ac5-44ba-9efa-4aafa9226d27"
+Parent: "caf07d3a-8def-43a6-baa7-13a157f27533"
+Template: "3a856aa5-4790-4e47-b46b-babc49c34f3b"
+Path: /sitecore/content/HCA/Data/About Us/About Mission/About Mission Paragraph 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T220435Z
+    - ID: "303f54bb-3bd0-4172-81a5-bc6bcf0a6b6b"
+      Hint: Title
+      Value: Our Vision
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c00d3bc9-7ed5-417b-9bba-a1dc763cd225"
+    - ID: "8e352f92-e46b-4019-98ba-de8932b91479"
+      Hint: Text
+      Value: Flone provide how all this mistaken idea of denounc pleasure and sing pain was born an will give you a ete account of the system, and expound the actual teangs the eat explorer of the truth.
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130621Z

@@ -19,7 +19,7 @@ namespace HCA.Foundation.Commerce.Mappers.Search
     using AutoMapper;
 
     using DependencyInjection;
-
+    using Providers.Currency;
     using Profiles;
 
     using Providers;

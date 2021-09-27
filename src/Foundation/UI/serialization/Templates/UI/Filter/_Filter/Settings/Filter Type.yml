@@ -3,14 +3,12 @@ ID: "c7ff496e-141b-4b03-80e4-e1eedae5470d"
 Parent: "ec7b20a6-bf8e-4737-b2be-98fb931f52ad"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Foundation/UI/Filter/_Filter/Settings/Filter Type
-DB: master
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
   Value: /sitecore/system/Settings/HCA/Foundation/UI/Filter Types
 - ID: "337e20e1-999a-4eea-85ad-b58a03ae75cc"
   Hint: Quick Action Bar
-  Type: tree list
   Value: "{59D4EE10-627C-4FD3-A964-61A88B092CBC}"
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
@@ -26,3 +24,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20210407T041105Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a073257a-7bdd-4e92-bb83-80f19c056277"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124429Z

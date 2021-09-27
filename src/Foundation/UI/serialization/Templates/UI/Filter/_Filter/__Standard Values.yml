@@ -3,7 +3,6 @@ ID: "b08308e3-c666-44f4-b57b-0e67270e4efb"
 Parent: "038e0285-d2e8-4439-892e-00cb667441e9"
 Template: "038e0285-d2e8-4439-892e-00cb667441e9"
 Path: /sitecore/templates/HCA/Foundation/UI/Filter/_Filter/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,6 +15,16 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9af958fe-d2bd-4dfa-98f0-54f3276b5e5d"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
     - ID: "c7ff496e-141b-4b03-80e4-e1eedae5470d"
       Hint: Filter Type
       Value: checkbox
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124429Z

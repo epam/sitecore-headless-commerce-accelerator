@@ -1,0 +1,52 @@
+{
+	"namespace": "HCA.Foundation.UI",
+	"references": ["HCA.Foundation", "HCA.Foundation.Base"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Branches",
+				"path": "/sitecore/templates/Branches/HCA/Foundation/UI",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

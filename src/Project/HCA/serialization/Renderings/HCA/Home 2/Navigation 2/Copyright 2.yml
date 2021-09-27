@@ -3,14 +3,12 @@ ID: "837d101f-3337-4ac7-87f7-03f8f8f98c6c"
 Parent: "b04c8921-14e9-426a-a515-56349fefb207"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Project/HCA/Home 2/Navigation 2/Copyright 2
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Copyright 2
 - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
   Hint: Placeholders
-  Type: Treelist
   Value: "{EB709251-B6F9-4A2C-AE88-AC6C951C0A45}"
 - ID: "17bb046a-a32a-41b3-8315-81217947611b"
   Hint: ComponentQuery
@@ -40,3 +38,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200428T200812Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "cf47261a-f4b2-4f30-82f2-e4cd5bc75cb6"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150044Z

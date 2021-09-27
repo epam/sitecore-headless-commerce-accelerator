@@ -3,23 +3,31 @@ ID: "d3be8962-02f6-4cd8-8088-59589b7ecc8a"
 Parent: "e582bf7d-57b3-42d6-ad27-e87aa7ab4710"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Project/HCA/Scaffolding/One Column
-DB: master
 SharedFields:
-  - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
-    Hint: componentName
-    Value: One Column
-  - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
-    Hint: Placeholders
-    Type: Treelist
-    Value: "{A5E0CA8E-8991-476C-AD35-7C7B3D0D55BE}"
-  - ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
-    Hint: Parameters Template
-    Value: "{61ED6A03-BBDB-4937-87FA-DB5C53FC870C}"
+- ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
+  Hint: componentName
+  Value: One Column
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Value: "{A5E0CA8E-8991-476C-AD35-7C7B3D0D55BE}"
+- ID: "a77e8568-1ab3-44f1-a664-b7c37ec7810d"
+  Hint: Parameters Template
+  Value: "{61ED6A03-BBDB-4937-87FA-DB5C53FC870C}"
 Languages:
-  - Language: en
-    Versions:
-      - Version: 1
-        Fields:
-          - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
-            Hint: __Created
-            Value: 20180428T095807Z
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180428T095807Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "536e1096-09c0-48ec-a180-14d13671a990"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150041Z

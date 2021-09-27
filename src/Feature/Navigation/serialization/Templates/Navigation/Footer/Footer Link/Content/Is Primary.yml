@@ -3,11 +3,9 @@ ID: "743716bb-160d-4e5c-be88-a4fe043ba2c1"
 Parent: "08093088-2141-4881-9857-5fc9de8b087d"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Footer Link/Content/Is Primary
-DB: master
 SharedFields:
 - ID: "39847666-389d-409b-95bd-f2016f11eed5"
   Hint: Unversioned
-  Type: Checkbox
   Value: 1
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
@@ -17,7 +15,6 @@ SharedFields:
   Value: 300
 - ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
   Hint: Shared
-  Type: Checkbox
   Value: 1
 Languages:
 - Language: en
@@ -27,3 +24,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200502T181117Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e184cb75-976d-48ac-b499-9f2e1173dd70"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150024Z

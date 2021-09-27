@@ -1,0 +1,120 @@
+﻿---
+ID: "408c6d12-16fa-4146-b0dc-65d5b06f988a"
+Parent: "47d1a39e-3b4b-4428-a9f8-b446256c9581"
+Template: "47d1a39e-3b4b-4428-a9f8-b446256c9581"
+Path: /sitecore/templates/CommerceConnect/Products/Product/__Standard Values
+SharedFields:
+- ID: "0c894aab-962b-4a84-b923-cb24b05e60d2"
+  Hint: __Ribbon
+  Value: "{80B181AF-8E8E-4433-B9F7-B17B697A5D33}"
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Value: "{6E5FBB20-2D51-4B63-8563-65E6E8C61DFD}"
+- ID: "c9283d9e-7c29-4419-9c28-5a5c8ff53e84"
+  Hint: __Bucketable
+  Value: 1
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"
+        l="{CB98A6D3-DCD3-487F-BC28-46129E9CF888}">
+        <r
+          id="{F6EBB81A-557C-46E5-B8D0-01AAD59185F6}"
+          ph="top"
+          uid="{896B75EF-A664-4D03-95C0-D3911775D329}" />
+        <r
+          id="{5FE300A9-CAB0-4C24-83CF-3780E1724E1A}"
+          ph="topleft"
+          uid="{296C49B9-126D-404B-86DE-57F7B49B221F}" />
+        <r
+          id="{417DE6E8-CA7F-4BCB-8050-B355EB9A9EA3}"
+          ph="topright"
+          uid="{5E97FCE2-FFF6-445F-83B2-E365E9DADE55}" />
+        <r
+          id="{E3C861C0-4F36-4E60-BAA9-ABE4308B3DAD}"
+          ph="topcenter"
+          uid="{5A5B04E8-B63A-4F3A-A147-C3B50EF0051B}" />
+        <r
+          ds="{98CE979E-638E-4EE0-AD7F-05164173F1C1}"
+          id="{2208CD7C-864B-4502-B6DA-9CC54842D85B}"
+          par=""
+          ph="logo"
+          uid="{C58F0B15-516F-4BB5-8E0A-126F9EDC2494}" />
+        <r
+          id="{0710D1AC-A652-415D-A021-057D0473F872}"
+          ph="navigation"
+          uid="{FC7AF26F-75B0-4BED-BCF2-BDD5C4C25592}" />
+        <r
+          ds=""
+          id="{F030CEEB-E8AA-4DDD-A0CC-1EE1190204BD}"
+          par=""
+          ph="content"
+          uid="{57E9179B-2185-40C7-B126-EE287B7A659F}" />
+        <r
+          ds="{F6504124-F766-43D0-824B-EB339CAE8E5F}"
+          id="{D9ED49CE-1A53-4A72-A97F-0218CDCCC10F}"
+          par=""
+          ph="bottom"
+          uid="{6F62CCA1-3166-4747-862C-9E7523DE27E1}" />
+        <r
+          id="{8E891899-40D5-4C4F-98AB-FCFC29CAB351}"
+          ph="categories"
+          uid="{6549F4E2-B42E-4B69-8C15-82BF969E8557}" />
+      </d>
+    </r>
+- ID: "f7b94d8c-a842-49f8-ab7a-2169d00426b0"
+  Hint: __Should Not Organize In Bucket
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
+      Hint: __Final Renderings
+      Value: |
+        <r xmlns:p="p" xmlns:s="s"
+          p:p="1">
+          <d
+            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+            <r
+              uid="{5A5B04E8-B63A-4F3A-A147-C3B50EF0051B}"
+              p:before="r[@uid='{FC7AF26F-75B0-4BED-BCF2-BDD5C4C25592}']" />
+            <r
+              uid="{FC7AF26F-75B0-4BED-BCF2-BDD5C4C25592}"
+              p:before="r[@uid='{5E97FCE2-FFF6-445F-83B2-E365E9DADE55}']" />
+            <r
+              uid="{5E97FCE2-FFF6-445F-83B2-E365E9DADE55}"
+              p:before="r[@uid='{57E9179B-2185-40C7-B126-EE287B7A659F}']" />
+            <r
+              uid="{6549F4E2-B42E-4B69-8C15-82BF969E8557}"
+              s:id="{8E891899-40D5-4C4F-98AB-FCFC29CAB351}"
+              s:ph="categories" />
+          </d>
+        </r>
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130422T145000
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\admin
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "ca6ec8e2-7ed8-41d0-bb55-50648c2e32e1"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: "20150331T151653:635634118138956365Z"
+    - ID: "e2cea8d5-65f4-4789-a778-b1b400b56928"
+      Hint: Name
+      Value: $name

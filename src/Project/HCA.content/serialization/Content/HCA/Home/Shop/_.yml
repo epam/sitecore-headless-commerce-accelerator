@@ -1,0 +1,74 @@
+﻿---
+ID: "28a8c141-f104-4433-b50e-dbff74b4fef9"
+Parent: "66fb80e3-b83a-4cec-b367-85dd3cc63ba4"
+Template: "0cbbb134-4025-4a51-9b46-1ab7021ccb0f"
+Path: /sitecore/content/HCA/Home/Shop/*
+SharedFields:
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{396289BF-B997-40A2-8957-25879825842B}"
+          p:before="*"
+          s:id="{A7569D2D-A585-424C-B21C-74684D895B8E}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0/product-list-{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}-0" />
+        <r
+          uid="{47D51774-7BE5-4B20-BFB7-1CD101101D75}"
+          p:after="r[@uid='{396289BF-B997-40A2-8957-25879825842B}']"
+          s:id="{1C8D57C1-E884-48CC-9E45-E8472F07BD09}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0/product-filters-{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}-0" />
+        <r
+          uid="{41976C3B-32D2-47A0-9D3F-D9C3FBBD52B7}"
+          p:after="r[@uid='{47D51774-7BE5-4B20-BFB7-1CD101101D75}']"
+          s:id="{9A3A7222-8F3F-4556-AEBB-AE737718A02B}"
+          s:ph="/main-content/w-col-wide-{FAFFB7FF-D578-4E26-9E78-6C950852D181}-0" />
+        <r
+          uid="{FAFFB7FF-D578-4E26-9E78-6C950852D181}"
+          p:after="r[@uid='{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class&amp;First Column Class=col-md-12%20productshop%20product-list-container&amp;Second Column Class&amp;Third Column Class"
+          s:ph="main-content" />
+        <r
+          uid="{AFC091B2-7B99-45B6-8E30-0C96736C326C}">
+          <p:d />
+        </r>
+        <r
+          uid="{8A675429-673A-4837-ACB9-D3E729B137DA}"
+          p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="r[@uid='{8A675429-673A-4837-ACB9-D3E729B137DA}']" />
+        <r
+          uid="{70B51ADE-3E72-4024-A876-80545621B913}"
+          p:after="r[@uid='{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}']" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{44710877-1D1E-41A9-B7A9-B2E7F681AF7F}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180425T131119Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9d4d2c58-3355-4d99-a640-f293d34133a3"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

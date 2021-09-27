@@ -3,14 +3,12 @@ ID: "126ad5cb-d55b-45b8-900f-a0934ae699bd"
 Parent: "e582bf7d-57b3-42d6-ad27-e87aa7ab4710"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Project/HCA/Scaffolding/Full Width
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Full Width
 - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
   Hint: Placeholders
-  Type: Treelist
   Value: "{A5E0CA8E-8991-476C-AD35-7C7B3D0D55BE}"
 Languages:
 - Language: en
@@ -20,3 +18,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20201209T135536Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "8bd9d24c-d3e7-4d9f-af23-94fa76f37945"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150041Z

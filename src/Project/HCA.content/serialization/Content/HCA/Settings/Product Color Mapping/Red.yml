@@ -1,0 +1,30 @@
+﻿---
+ID: "18d1ec3e-0585-4d15-b110-a24ced05c503"
+Parent: "03b48bea-29af-42b3-8377-6018afedc61f"
+Template: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
+Path: /sitecore/content/HCA/Settings/Product Color Mapping/Red
+SharedFields:
+- ID: "634fdabf-59c5-4b31-9878-3c370fea110f"
+  Hint: Color HEX
+  Value: #FF0000
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180529T145826Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "328f318d-66ca-4192-9c84-a5d5dd17a82e"
+    - ID: "ba711f5f-bc6f-4bb0-9628-1f135ec399fa"
+      Hint: Color Name
+      Value: Red
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

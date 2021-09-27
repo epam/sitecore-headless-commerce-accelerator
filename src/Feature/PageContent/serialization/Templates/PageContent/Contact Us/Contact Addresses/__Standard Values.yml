@@ -3,11 +3,9 @@ ID: "2e592595-b349-4e87-b593-77b29982996a"
 Parent: "e31ddc89-fefd-47d4-8f57-240af742ec35"
 Template: "e31ddc89-fefd-47d4-8f57-240af742ec35"
 Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{4336232F-C7D3-4820-9784-11323307C054}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "0b01bd76-6b57-46b6-9448-d7095ba674bd"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150035Z

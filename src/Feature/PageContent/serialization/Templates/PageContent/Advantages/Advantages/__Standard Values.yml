@@ -3,7 +3,6 @@ ID: "979ee770-4b84-4de4-be5b-77f9dbf0d1b6"
 Parent: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
 Template: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
 Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -19,3 +18,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9d8d22c5-8c7c-4b91-8de8-597dd4a8a865"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124442Z

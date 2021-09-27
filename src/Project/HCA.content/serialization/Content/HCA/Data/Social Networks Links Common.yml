@@ -1,0 +1,23 @@
+﻿---
+ID: "292f0174-b519-472a-8f5a-978e2d5b0b12"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "06baa321-f0c9-4e47-933e-3c0ae7ba1d61"
+Path: /sitecore/content/HCA/Data/Social Networks Links Common
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20201224T082725Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "5244d859-54ee-4eea-a895-86aa204b71f4"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

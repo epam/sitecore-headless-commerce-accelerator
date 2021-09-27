@@ -3,7 +3,6 @@ ID: "284f83d9-2bf9-4e01-a760-44af73f3372b"
 Parent: "a87cd7dc-8d14-4a55-90d2-145b049ef3f2"
 Template: "078d8a76-f971-4891-b422-76c0bcf9fa03"
 Path: /sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA/New Order Placed/$name
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
@@ -29,3 +28,13 @@ Languages:
     - ID: "8436a90c-85c0-4f16-8373-393c4c0a82c6"
       Hint: From Name
       Value: HCA
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "983da89e-197c-4653-9e0a-19c372c9a31c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150049Z

@@ -3,7 +3,6 @@ ID: "aecafb78-3d1c-41de-a896-095dcca4a5ee"
 Parent: "02303189-7dc9-41c9-914a-4784878a6a7d"
 Template: "02303189-7dc9-41c9-914a-4784878a6a7d"
 Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,6 +15,16 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "8d1da91e-81ba-4a11-87b1-13cb0116b666"
     - ID: "ba9cd774-93ea-490e-b978-38efe2c648ed"
       Hint: Header
       Value: $name
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150035Z

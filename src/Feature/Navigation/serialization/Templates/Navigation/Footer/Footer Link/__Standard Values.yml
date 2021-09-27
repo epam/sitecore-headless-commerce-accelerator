@@ -3,7 +3,6 @@ ID: "6eb0dbdd-04b6-4d34-acc7-e1476bc67580"
 Parent: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
 Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
 Path: /sitecore/templates/HCA/Feature/Navigation/Footer/Footer Link/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "897e6feb-3239-4a4c-8266-18560f237898"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150026Z

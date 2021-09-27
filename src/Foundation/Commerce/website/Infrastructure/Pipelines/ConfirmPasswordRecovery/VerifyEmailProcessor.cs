@@ -17,6 +17,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.ConfirmPasswordRecove
     using Base.Infrastructure.Pipelines;
     using Base.Models.Logging;
     using Base.Services.Logging;
+    using Providers.Customer;
     using Providers;
 
     using Sitecore.Diagnostics;

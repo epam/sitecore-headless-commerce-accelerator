@@ -3,17 +3,14 @@ ID: "26a49085-60a7-482a-83c9-a4431a6ff18e"
 Parent: "1daeff25-b075-4c13-b41a-72b553b22542"
 Template: "1daeff25-b075-4c13-b41a-72b553b22542"
 Path: /sitecore/templates/HCA/Project/HCA/Pages/Product/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: |
     {9CA4A8C4-0295-49C1-A879-E008933D0A4F}
     {1DAEFF25-B075-4C13-B41A-72B553B22542}
 - ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
   Hint: __Renderings
-  Type: layout
   Value: |
     <r xmlns:xsd="http://www.w3.org/2001/XMLSchema">
       <d
@@ -127,3 +124,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20180425T131405Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "120a4d50-d0b8-433f-911b-a43fae48575c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150051Z

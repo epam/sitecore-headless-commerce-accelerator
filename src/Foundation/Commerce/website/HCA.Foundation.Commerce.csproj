@@ -705,16 +705,16 @@
     <Compile Include="Mappers\Profiles\UserProfile.cs" />
     <Compile Include="Models\Entities\Search\SortDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Contracts\ICurrencyProvider.cs" />
-    <Compile Include="Providers\CurrencyProvider.cs" />
-    <Compile Include="Providers\CustomerProvider.cs" />
-    <Compile Include="Providers\Contracts\ICustomerProvider.cs" />
-    <Compile Include="Providers\PageTypeProvider.cs" />
-    <Compile Include="Providers\Contracts\IPageTypeProvider.cs" />
-    <Compile Include="Providers\Contracts\IItemTypeProvider.cs" />
-    <Compile Include="Providers\ItemTypeProvider.cs" />
+    <Compile Include="Providers\Currency\CurrencyProvider.cs" />
+    <Compile Include="Providers\Currency\ICurrencyProvider.cs" />
+    <Compile Include="Providers\Customer\CustomerProvider.cs" />
+    <Compile Include="Providers\Customer\ICustomerProvider.cs" />
+    <Compile Include="Providers\ItemType\IItemTypeProvider.cs" />
+    <Compile Include="Providers\ItemType\ItemTypeProvider.cs" />
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
+    <Compile Include="Providers\PageType\IPageTypeProvider.cs" />
+    <Compile Include="Providers\PageType\PageTypeProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
     <Compile Include="Providers\Search\IProductSuggestionProvider.cs" />
@@ -755,7 +755,6 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Commerce.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

@@ -3,14 +3,12 @@ ID: "69e30764-9342-4ade-9c1b-db74d087537d"
 Parent: "b5868a9d-5954-48ab-ba7a-fda28db25659"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
 Path: /sitecore/templates/HCA/Feature/Navigation/Social Network Links/Social Networks Links/Content/Links
-DB: master
 SharedFields:
 - ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
   Hint: Source
   Value: "datasource=/sitecore/content/HCA/Data/&ExcludeItemsForSelection=Data&IncludeTemplatesForDisplay={06BAA321-F0C9-4E47-933E-3C0AE7BA1D61},Social Network Link&IncludeTemplatesForSelection=Social Network Link"
 - ID: "39847666-389d-409b-95bd-f2016f11eed5"
   Hint: Unversioned
-  Type: Checkbox
   Value: 1
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
@@ -20,7 +18,6 @@ SharedFields:
   Value: 200
 - ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
   Hint: Shared
-  Type: Checkbox
   Value: 1
 Languages:
 - Language: en
@@ -30,3 +27,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200428T183852Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "4ee614c3-2681-4ac2-a637-539604cff10f"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150023Z

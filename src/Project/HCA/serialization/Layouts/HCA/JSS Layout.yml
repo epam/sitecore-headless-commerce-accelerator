@@ -3,11 +3,9 @@ ID: "3ef1a39a-6c46-47c9-a3cd-317f24ff29c8"
 Parent: "c85a587e-20bd-4b5f-9fb6-307fe2760376"
 Template: "35c61e90-47dd-43dd-83a8-d1c4d5119720"
 Path: /sitecore/layout/Layouts/HCA/Project/HCA/JSS Layout
-DB: master
 SharedFields:
 - ID: "80334869-86dc-4472-aa89-44cf1b2f6c9b"
   Hint: Placeholders
-  Type: Treelist
   Value: "{B0F5CEB1-4B21-47ED-91E5-0D8D30C779D6}"
 - ID: "a036b2bc-ba04-44f6-a75f-bae6cd242abf"
   Hint: Path
@@ -24,3 +22,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "29b86d4b-45a5-48d5-94ff-68049d8a389b"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150041Z

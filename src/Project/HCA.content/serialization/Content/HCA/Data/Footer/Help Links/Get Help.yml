@@ -1,0 +1,31 @@
+﻿---
+ID: "e8670d78-a43f-4810-b896-b13eb7b71a58"
+Parent: "d2abf6d8-c766-4bc0-8886-f47ba96d6e7d"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/Help Links/Get Help
+SharedFields:
+- ID: "743716bb-160d-4e5c-be88-a4fe043ba2c1"
+  Hint: Is Primary
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190627Z
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link linktype="external" text="Get Help" url="" anchor="" target="" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "860ff809-d43b-4988-9fa9-6d3b0ac6c9fc"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130621Z

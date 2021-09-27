@@ -3,7 +3,6 @@ ID: "6207f692-4af1-4b2d-9b16-95e4863433a6"
 Parent: "48501984-93c0-46d6-80e6-db435099c576"
 Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
 Path: /sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA/New Order Placed/$name/Message Root/Order Confirmation
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -12,3 +11,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200415T110930Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "2c51b2c9-82a9-4d0b-ae3c-f526a0fc4a85"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z

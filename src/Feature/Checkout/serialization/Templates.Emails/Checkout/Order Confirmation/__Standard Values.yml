@@ -3,7 +3,6 @@ ID: "99c26435-ddf2-4f68-8a91-1f8011b21fb8"
 Parent: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
 Template: "79e38394-2c8e-400e-bdf5-15e608e3a9a3"
 Path: /sitecore/templates/System/Email/Messages/Inner Content/HCA/Feature/Checkout/Order Confirmation/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,11 +15,18 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a1d51b6d-1ca9-4e96-aa05-e92a165d4a9e"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
     - ID: "caaec975-c52a-43f5-b8f9-22883a8356c5"
       Hint: Message Body
       Value: |
-        <table cellspacing="0" cellpadding="10" border="0" width="600">
-        	<tbody bgcolor="#f7f7f7" style="padding-top:25px;">
+        <table cellspacing="0" cellpadding="0" border="0" width="600">
+        	<tbody style="background-color:#f7f7f7">
         		<tr>
         		<td align="center" valign="middle" style="font-family:Helvetica; font-size:18px;padding-bottom:15px; padding-top:25px;"><b>ORDER CONFIRMATION</b></td>
         		</tr>
@@ -46,10 +52,12 @@ Languages:
         		</tr>
         	</tbody>
         	<tfoot>
-                <td align="center" valign="middle" width="30%" style="font-family:Helvetica; font-size:14px;">
-        			<a href="/Checkout/Confirmation?trackingNumber=$orderTrackingNumber$"  style="display: inline-block;  text-decoration: underline; width:30%; padding:10px;color:#a749ff; font-weight: 400;">VIEW ORDER</a>
-        	    </td>       		
-        	</tfoot>                
+        	<td align="center" valign="middle" style="font-family:Helvetica; font-size:14px; padding-top:25px;">
+        				<a href="/Checkout/Confirmation?trackingNumber=$orderTrackingNumber$" style="display: block; text-decoration: none;width:30%; padding:10px; background-color:#a749ff; color:#FFFFFF; font-weight: 400;">VIEW ORDER</a>
+        			</td>
+        		
+        	</tfoot>
+                
         </table>
         <style>
         @media screen and (max-width:480px) {
@@ -58,3 +66,6 @@ Languages:
         	}
         }
         </style>
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210226T083543Z

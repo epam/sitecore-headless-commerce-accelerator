@@ -23,6 +23,7 @@ namespace HCA.Foundation.Commerce.Mappers.Cart
     using Profiles;
 
     using Providers;
+    using Providers.Currency;
     using Providers.StorefrontSettings;
 
     using Sitecore.Diagnostics;

@@ -1,0 +1,23 @@
+﻿---
+ID: "1d7c14bc-acaf-4b27-a8e3-79f3550ac631"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "82ff551a-fb69-4e09-befa-1bec040f5a62"
+Path: /sitecore/content/HCA/Data/About Us
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210124T214835Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "84398c12-8675-4c46-8690-10601dd9fb39"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

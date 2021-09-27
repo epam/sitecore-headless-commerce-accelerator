@@ -1,0 +1,23 @@
+﻿---
+ID: "03b48bea-29af-42b3-8377-6018afedc61f"
+Parent: "b73e494c-70d4-45ab-8699-7a1c8b96a47f"
+Template: "93687745-63f3-4022-8cb0-29848c918a18"
+Path: /sitecore/content/HCA/Settings/Product Color Mapping
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180529T124406Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "228e9f70-3347-42eb-ba72-35749ecffce5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130618Z

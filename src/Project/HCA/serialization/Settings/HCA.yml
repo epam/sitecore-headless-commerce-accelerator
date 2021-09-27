@@ -1,9 +1,8 @@
----
+﻿---
 ID: "b3b76785-67da-49ae-b26e-f39bf7c4d3b5"
 Parent: "79192324-9bf9-4ba3-9ae6-5195d6baccab"
 Template: "c3b037a0-46e5-4b67-ac7a-a144b962a56f"
 Path: /sitecore/system/Settings/HCA/Project/HCA
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c6924b79-069a-41da-a377-9fade54545dc"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150041Z

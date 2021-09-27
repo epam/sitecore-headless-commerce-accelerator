@@ -1,0 +1,36 @@
+﻿---
+ID: "b43441b7-57ff-47f8-ac51-4dc3d2ff4f5e"
+Parent: "71454cde-8fc1-4f4d-bc41-d48bfe899dee"
+Template: "41e8abef-3803-47b0-adc6-d225a8d91ffb"
+Path: /sitecore/content/HCA/Data/Advantages/Special promotions
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "205f79a5-c5bf-498c-8863-6d669f3f6341"
+      Hint: Title
+      Value: Special promotions
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T090529Z
+    - ID: "44a66b2a-190e-4b2a-b42a-caf3eac0107d"
+      Hint: Description
+      Value: Every week
+    - ID: "80968376-a314-4a17-8182-9123a819536b"
+      Hint: Link
+      Value: |
+        <link linktype="external" url="https://www.google.com/" anchor="" target="_blank" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "5f16f1cf-6062-4069-9712-e1a77ad124ce"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z
+    - ID: "ff3f4d26-a588-421b-b17c-3aa70552e6da"
+      Hint: Image
+      Value: sales

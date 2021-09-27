@@ -25,6 +25,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using Models.Entities.Search;
 
     using Providers;
+    using Providers.Currency;
 
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;

@@ -1,0 +1,31 @@
+﻿---
+ID: "112a563b-950c-4b27-9f93-7eb58cf668b9"
+Parent: "e55834fb-7c93-44a2-87c0-62beba282ced"
+Template: "e55834fb-7c93-44a2-87c0-62beba282ced"
+Path: /sitecore/templates/Commerce/Catalog/Commerce Navigation Item/__Standard Values
+SharedFields:
+- ID: "d3ae7222-425d-4b77-95d8-ee33ac2b6730"
+  Hint: __Context Menu
+  Value: "{64BA1004-F0BE-429E-AAAD-20BD42BD99B5}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130305T095100
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "57a38fa2-2684-4c4f-ad9b-357319602faa"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150005Z

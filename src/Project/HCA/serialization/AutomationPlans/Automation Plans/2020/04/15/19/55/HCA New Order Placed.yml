@@ -3,7 +3,6 @@ ID: "b0c8f5a8-b35f-46fa-93db-8e6683e97e86"
 Parent: "2e6a2452-6d2b-4db0-9b4f-0c2b0012d5a0"
 Template: "d4d43c33-3661-4630-af63-0754cab7b110"
 Path: /sitecore/system/Marketing Control Panel/Automation Plans/2020/04/15/19/55/HCA New Order Placed
-DB: master
 SharedFields:
 - ID: "1766652d-080b-409c-abbf-3a90e0f801f5"
   Hint: Start Date
@@ -38,6 +37,16 @@ Languages:
     - ID: "3e431de1-525e-47a3-b6b0-1ccbec3a8c98"
       Hint: __Workflow state
       Value: "{EDCBB550-BED3-490F-82B8-7B2F14CCD26E}"
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "7e8e7356-710d-4549-8c5b-839a1672df8b"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150050Z
     - ID: "e259e500-b38e-41fe-82db-8b604bcf9e75"
       Hint: Description
       Value: Handled the new order placed process.

@@ -1,0 +1,34 @@
+﻿---
+ID: "fe745aec-a7bd-42c1-9316-41a715302486"
+Parent: "292f0174-b519-472a-8f5a-978e2d5b0b12"
+Template: "656950e2-cdb1-4899-8106-067a6b76468b"
+Path: /sitecore/content/HCA/Data/Social Networks Links Common/Youtube
+SharedFields:
+- ID: "5fb8c44b-7a28-4d89-a38e-738e35911baf"
+  Hint: Css Class
+  Value: "icon-youtube-brands"
+- ID: "c99f9ed0-3626-48ef-96ab-f837ce37e6a1"
+  Hint: Uri
+  Value: |
+    <link linktype="external" url="http://youtube.com" anchor="" class="icon-youtube-brands" target="" />
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T192122Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "07b0ff61-fb4c-4d86-a39e-e5ed10502893"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d3fc7572-4cc4-42b9-92c1-10cf8c83ef42"
+      Hint: Title
+      Value: Youtube
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

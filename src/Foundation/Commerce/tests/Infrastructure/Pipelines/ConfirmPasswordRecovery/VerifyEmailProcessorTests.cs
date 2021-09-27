@@ -25,6 +25,8 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.ConfirmPassword
     using Xunit;
 
     using Commerce.Providers;
+    using Commerce.Providers.Customer;
+
     using HCA.Foundation.Base.Services.Logging;
     using HCA.Foundation.Base.Models.Logging;
 

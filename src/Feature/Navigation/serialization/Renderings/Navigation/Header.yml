@@ -3,14 +3,12 @@ ID: "7f6cab22-d5ef-4924-afbe-6024f6b2a758"
 Parent: "7ca13274-c949-49bf-836d-e32d49bc6782"
 Template: "04646a89-996f-4ee7-878a-ffdbf1f0ef0d"
 Path: /sitecore/layout/Renderings/HCA/Feature/Navigation/Header
-DB: master
 SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Header
 - ID: "069a8361-b1cd-437c-8c32-a3be78941446"
   Hint: Placeholders
-  Type: Treelist
   Value: |
     {169BC134-8637-41E3-81A6-775B10B374D8}
     {CE081C90-3501-4F74-A21D-2EAC39B3CF41}
@@ -26,3 +24,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20200518T143614Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d1958de0-23f9-4b8f-9b0a-f64d2b4d9edf"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150019Z

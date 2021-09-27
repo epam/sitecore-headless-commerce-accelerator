@@ -150,3 +150,7 @@ Code Generation Templates/*.tt
 #Docker
 /environment/docker/xc0/data/
 /environment/docker/xc0/deploy/
+.sitecore/user.json
+.sitecore/package-cache/
+src/client/src/bootstrap/node-headless-ssr-proxy/dist/
+*.scindex

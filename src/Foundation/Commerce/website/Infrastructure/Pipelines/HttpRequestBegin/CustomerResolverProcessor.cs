@@ -19,6 +19,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.HttpRequestBegin
     using Context.Visitor;
 
     using Providers;
+    using Providers.Customer;
 
     using Sitecore;
     using Sitecore.Pipelines.HttpRequest;

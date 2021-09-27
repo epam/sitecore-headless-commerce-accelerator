@@ -1,0 +1,37 @@
+﻿---
+ID: "e5d49480-b2f8-44ff-8a8b-dc571f672b25"
+Parent: "5d7682df-27d9-4fc9-bb4e-7ac06d7bbd7c"
+Template: "762364a6-3ccb-43d2-9acb-c889db0f7fcf"
+Path: "/sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/HCA/Country-Region configuration"
+SharedFields:
+- ID: "6d8c6738-20ec-4ca0-b9ee-dc6b64ca224f"
+  Hint: "Countries-Regions"
+  Value: |
+    {9E9E8CB4-B03D-4650-9388-2F73CD0AD28F}
+    {60D23160-C39D-4B72-89DB-489CCB57276A}
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: "Country-Region configuration"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171123T163137Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "53dd6e02-9b73-4546-8f85-c8a250b2daf9"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20200420T093523Z

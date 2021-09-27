@@ -1,0 +1,27 @@
+﻿---
+ID: "d08613dc-5413-451b-b954-b0bfc2731d87"
+Parent: "1d7c14bc-acaf-4b27-a8e3-79f3550ac631"
+Template: "42ac7b43-aa41-407c-bbb8-92f61642eb17"
+Path: /sitecore/content/HCA/Data/About Us/Brand Logos
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 500
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210125T000713Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a3619c41-f5c2-4a47-8448-43d5d435f0c0"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z

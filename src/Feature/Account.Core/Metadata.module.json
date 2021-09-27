@@ -1,0 +1,17 @@
+{
+	"namespace": "HCA.Feature.Account.Core",
+	"references": ["HCA.Foundation.*"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "PasswordRecovery",
+				"path": "/sitecore/system/Settings/Security/Password recovery",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants",
+				"database": "core"
+			}
+		]
+	}
+}

@@ -1,0 +1,23 @@
+﻿---
+ID: "0faee5cb-4bc0-4374-852e-ec2913b6dd11"
+Parent: "77018cc5-39b8-48e4-a2b6-a5dd7847c42b"
+Template: "611e79bd-6fbf-4fee-8f66-94b27238c033"
+Path: /sitecore/content/HCA/Data/Contact Us/Get In Touch Form
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210111T181945Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "6e542409-1259-48b6-a710-2c8660ad8da5"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130620Z

@@ -22,6 +22,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
     using Commerce.Infrastructure.Pipelines.Login;
     using Commerce.Mappers.Users;
     using Commerce.Providers;
+    using Commerce.Providers.Customer;
 
     using Models.Entities.Users;
 

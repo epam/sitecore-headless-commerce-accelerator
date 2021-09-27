@@ -3,7 +3,6 @@ ID: "de509cdb-6519-492e-a88f-f35ba8138578"
 Parent: "b159ef58-7b86-4c0e-b25c-aa561dac5afa"
 Template: "daf085e8-602e-43a6-8299-038ff171349f"
 Path: "/sitecore/media library/HCA/Project/HCA/Banner/Gaming/boy-virtual-headset"
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
@@ -47,3 +46,13 @@ Languages:
     - ID: "65885c44-8fcd-4a7f-94f1-ee63703fe193"
       Hint: Alt
       Value: "boy-virtual-headset"
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "c192fd1d-7118-4662-8a61-6bd5b3ce4822"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T124444Z

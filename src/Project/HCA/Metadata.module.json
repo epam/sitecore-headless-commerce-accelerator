@@ -1,0 +1,82 @@
+{
+	"namespace": "HCA.Project.HCA",
+	"references": ["HCA.Foundation.*", "HCA.Feature.*", "HCA.Project"],
+	"items": 
+	{
+		"includes":
+		[
+			{
+				"name": "Settings",
+				"path": "/sitecore/system/Settings/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Models",
+				"path": "/sitecore/layout/Models/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts",
+				"path": "/sitecore/layout/Layouts/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings",
+				"path": "/sitecore/layout/placeholder settings/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Renderings",
+				"path": "/sitecore/layout/Renderings/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Templates",
+				"path": "/sitecore/templates/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Media",
+				"path": "/sitecore/media library/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Layouts.Emails",
+				"path": "/sitecore/layout/Layouts/System/Email/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "PlaceholderSettings.Emails",
+				"path": "/sitecore/layout/Placeholder Settings/Email/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Branches.Emails",
+				"path": "/sitecore/templates/Branches/System/Email/Messages/HCA/Project/HCA",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "AutomationPlans",
+				"path": "/sitecore/system/Marketing Control Panel/Automation Plans",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			},
+			{
+				"name": "Campaigns",
+				"path": "/sitecore/system/Marketing Control Panel/Campaigns",
+				"allowedPushOperations": "createUpdateAndDelete",
+				"scope": "itemAndDescendants"
+			}
+		]
+	}
+}

@@ -22,7 +22,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using Context.Site;
 
     using DependencyInjection;
-
+    using Providers.PageType;
     using Models.Entities.Search;
 
     using Providers;

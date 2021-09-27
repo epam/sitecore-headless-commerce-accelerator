@@ -3,14 +3,12 @@ ID: "d5eac96a-4fb7-4e85-bfc7-b771af149456"
 Parent: "925b369f-6427-4f37-827d-30ff9d12def6"
 Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
 Path: "/sitecore/layout/Placeholder Settings/HCA/Feature/PageContent/contact-social-networks"
-DB: master
 SharedFields:
 - ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
   Hint: Placeholder Key
   Value: "contact-social-networks"
 - ID: "e391b526-d0c5-439d-803e-17512eae6222"
   Hint: Allowed Controls
-  Type: TreelistEx
   Value: "{EFAA6F19-1DEC-4AA8-A5AE-131F7D49E7E6}"
 Languages:
 - Language: en
@@ -20,3 +18,13 @@ Languages:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20201216T171700Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "72e9670e-f487-4218-92bd-6c1feea173ef"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

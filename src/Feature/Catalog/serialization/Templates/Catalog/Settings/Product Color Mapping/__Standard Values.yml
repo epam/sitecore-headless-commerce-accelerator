@@ -3,7 +3,6 @@ ID: "a9d59828-f14d-4dbd-90d0-58f596c66ae6"
 Parent: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
 Template: "ca4b8e4a-bfec-474a-8a85-e7df2d9c1404"
 Path: /sitecore/templates/HCA/Feature/Catalog/Settings/Product Color Mapping/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,6 +15,16 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "3f3fa9ca-1170-498e-a5d7-5eaf083a50c7"
     - ID: "ba711f5f-bc6f-4bb0-9628-1f135ec399fa"
       Hint: Color Name
       Value: $name
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150015Z

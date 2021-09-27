@@ -511,7 +511,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Site.config" />
-    <Content Include="App_Config\Include\Project\HCA.Project.HCA.Content.Serialization.config" />
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Search.config" />
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.Variables.config" />
     <Content Include="App_Config\Include\Project\HCA.Project.HCA.MemoryMonitor.config" />
@@ -529,7 +528,6 @@
     <Content Include="App_Data/unicorn/**/*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Project\HCA.Project.HCA.Serialization.config" />
     <None Include="Properties\PublishProfiles\LocalDev.pubxml">
       <SubType>Designer</SubType>
     </None>

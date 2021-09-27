@@ -1,9 +1,8 @@
----
+﻿---
 ID: "86f1979f-9178-4a16-9260-ce9769dffe59"
 Parent: "a5a0091c-c054-4189-a2d6-ba612352b8a5"
 Template: "c3b037a0-46e5-4b67-ac7a-a144b962a56f"
 Path: /sitecore/layout/Placeholder Settings/HCA/Foundation/Connect
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "ff61ba82-f957-4f38-bc49-0bbbe3b84514"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150011Z

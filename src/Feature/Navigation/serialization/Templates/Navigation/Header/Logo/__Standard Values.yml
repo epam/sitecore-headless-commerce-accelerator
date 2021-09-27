@@ -3,7 +3,6 @@ ID: "c1675a79-85cd-41c1-a587-9fcacd115e83"
 Parent: "095aae19-603c-4caa-9848-a47fcfe18308"
 Template: "095aae19-603c-4caa-9848-a47fcfe18308"
 Path: /sitecore/templates/HCA/Feature/Navigation/Header/Logo/__Standard Values
-DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
@@ -20,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "7a77da7d-f53a-4704-ba55-7f5c85a04c72"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150027Z

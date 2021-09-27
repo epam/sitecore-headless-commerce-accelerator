@@ -3,11 +3,9 @@ ID: "d86524ec-949e-4571-8b16-5343887bd8cc"
 Parent: "3921f0ca-20fb-4c66-bf7b-3d936e97d936"
 Template: "3921f0ca-20fb-4c66-bf7b-3d936e97d936"
 Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team/__Standard Values
-DB: master
 SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
-  Type: TreelistEx
   Value: "{6103E1A3-7AC0-4985-98AB-9238A3485DF9}"
 Languages:
 - Language: en
@@ -21,3 +19,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e71a88ba-19db-45cf-b083-aae88c6cd15c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210225T191442Z

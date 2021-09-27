@@ -23,6 +23,7 @@ namespace HCA.Foundation.Commerce.Mappers.Catalog
     using Profiles;
 
     using Providers;
+    using Providers.Currency;
 
     using Sitecore.Diagnostics;
 

@@ -3,7 +3,6 @@ ID: "0c521339-a7b6-4966-a0ed-e2b4d2701b0f"
 Parent: "7724bf37-c8c6-4189-b7c9-7ed566ac76d8"
 Template: "7724bf37-c8c6-4189-b7c9-7ed566ac76d8"
 Path: /sitecore/templates/HCA/Foundation/Base/_SiteSettings/__Standard Values
-DB: master
 Languages:
 - Language: en
   Versions:
@@ -16,3 +15,13 @@ Languages:
       Hint: __Created by
       Value: |
         sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1ddb3784-3382-4544-ac68-7274183b8e51"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210122T150007Z

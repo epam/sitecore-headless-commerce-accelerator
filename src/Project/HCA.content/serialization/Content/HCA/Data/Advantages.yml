@@ -1,0 +1,30 @@
+﻿---
+ID: "71454cde-8fc1-4f4d-bc41-d48bfe899dee"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "48571882-2196-4e19-a0fa-673cede42b56"
+Path: /sitecore/content/HCA/Data/Advantages
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "0e23c1d8-37c8-420a-90bf-b669bdbd01b1"
+      Hint: Advantages
+      Value: |
+        {89D9052B-BC60-41BA-8925-7E982292E6B0}
+        {D36E948E-7F04-49C6-816C-F244C52ABCC5}
+        {B43441B7-57FF-47F8-AC51-4DC3D2FF4F5E}
+        {40DDAC4D-CAC5-47AD-B208-D584D8360092}
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210723T090441Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "4966ac19-1cbd-469e-9220-76d2b9fd5700"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\unicorn
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20210811T130619Z

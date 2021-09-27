@@ -188,3 +188,20 @@
     clear: both;
   }
 }
+
+@mixin primary-button-hover-focus-active {
+  @media (hover) {
+    &:hover {
+      cursor: pointer;
+      background: #a03bff;
+      border: 1px solid #a03bff;
+    }
+  }
+  &:active {
+    background: #a03bff;
+    border: 1px solid #a03bff;
+  }
+  &:focus-visible {
+    border: 1px solid #a03bff;
+  }
+}

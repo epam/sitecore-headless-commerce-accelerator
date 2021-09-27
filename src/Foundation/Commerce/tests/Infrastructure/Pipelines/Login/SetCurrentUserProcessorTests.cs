@@ -23,6 +23,7 @@ namespace HCA.Foundation.Commerce.Tests.Infrastructure.Pipelines.Login
     using Commerce.Mappers.Users;
 
     using Context;
+    using Context.Visitor;
 
     using Models.Entities.Users;
 

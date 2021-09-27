@@ -21,9 +21,8 @@ namespace HCA.Feature.Account.Controllers
     using Foundation.Account.Managers.User;
     using Foundation.Base.Controllers;
     using Foundation.Base.Services.Tracking;
-    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Visitor;
     using Foundation.Commerce.Models.Entities.Addresses;
-    using Foundation.Commerce.Models.Entities.Users;
     using Foundation.Commerce.Services.Account;
     using HCA.Foundation.Base.Extensions;
     using HCA.Foundation.Base.Models.Result;

@@ -624,9 +624,9 @@
     <Compile Include="Configuration\Providers\ISuggesterConfigurationProvider.cs" />
     <Compile Include="Configuration\Providers\SuggesterConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Context\Contracts\ISiteContext.cs" />
-    <Compile Include="Context\SiteContext.cs" />
-    <Compile Include="Context\VisitorContext.cs" />
+    <Compile Include="Context\Site\ISiteContext.cs" />
+    <Compile Include="Context\Site\SiteContext.cs" />
+    <Compile Include="Context\Visitor\VisitorContext.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\ConfirmPasswordRecoveryArgs.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\GenerateTokenProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\ConfirmPasswordRecovery\PopulateConfirmMailProcessor.cs" />
@@ -724,7 +724,7 @@
     <Compile Include="Models\Entities\Account\VerifyRecoveryTokenResult.cs" />
     <Compile Include="Services\Analytics\AnalyticsService.cs" />
     <Compile Include="Services\Analytics\IAnalyticsService.cs" />
-    <Compile Include="Context\Contracts\IVisitorContext.cs" />
+    <Compile Include="Context\Visitor\IVisitorContext.cs" />
     <Compile Include="Services\Cart\CartService.cs" />
     <Compile Include="Services\Cart\ICartService.cs" />
     <Compile Include="Services\Billing\BillingService.cs" />

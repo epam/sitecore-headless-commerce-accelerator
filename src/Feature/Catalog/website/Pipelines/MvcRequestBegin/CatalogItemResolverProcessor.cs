@@ -18,6 +18,7 @@ namespace HCA.Feature.Catalog.Pipelines.MvcRequestBegin
     using System.Web;
 
     using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Site;
     using Foundation.Commerce.Infrastructure.Pipelines;
     using Foundation.DependencyInjection;
 

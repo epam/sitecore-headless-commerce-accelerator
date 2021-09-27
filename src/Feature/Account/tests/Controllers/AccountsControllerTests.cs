@@ -22,7 +22,7 @@ namespace HCA.Feature.Account.Tests.Controllers
 
     using Foundation.Base.Models.Result;
     using Foundation.Base.Services.Tracking;
-    using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Visitor;
     using Foundation.Commerce.Models.Entities.Account;
     using Foundation.Commerce.Models.Entities.Addresses;
     using Foundation.Commerce.Models.Entities.Users;

@@ -19,17 +19,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LoadingStatus } from 'models';
 import { eventHub, events } from 'services/eventHub';
 import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine, UpdateCartLine } from 'services/shoppingCart';
-import { Variant } from 'services/commerce';
 
 import { Icon } from 'components';
 
 import { Quantity } from './components';
 import { NavigationLink } from 'ui/NavigationLink';
-import { useWishlistState } from 'ui/Wishlist/hooks';
 
 import { CartSummaryOwnProps } from './models';
-
-import classnames from 'classnames';
 
 import './styles.scss';
 
@@ -38,26 +34,10 @@ export const CartSummary = (props: CartSummaryOwnProps) => {
   const shoppingCartState = useSelector(shoppingCart);
   const dispatch = useDispatch();
 
-  const [wishlistItems, setWishlistItems] = useWishlistState([]);
-
   const isLoading =
     shoppingCartState.status === LoadingStatus.Loading &&
     (shoppingCartState.actionType === actionTypes.UPDATE_CART_LINE_REQUEST ||
       shoppingCartState.actionType === actionTypes.REMOVE_CART_LINE_REQUEST);
-
-  const isAddedItem = (variant: Variant) => {
-    return wishlistItems.some((x) => x.variantId === variant.variantId);
-  };
-
-  const handleAddToWishlistClick = (variant: Variant) => {
-    if (!isAddedItem(variant)) {
-      const addItem: Variant[] = wishlistItems.concat(variant);
-      setWishlistItems(addItem);
-    } else {
-      const removeItem: Variant[] = wishlistItems.filter((product) => product.variantId !== variant.variantId);
-      setWishlistItems(removeItem);
-    }
-  };
 
   return (
     <>
@@ -144,14 +124,6 @@ export const CartSummary = (props: CartSummaryOwnProps) => {
                       {cartLine.price.total.toFixed(2)}
                     </div>
                     <div className="col-xs-2 actions product-actions">
-                      <button
-                        onClick={() => handleAddToWishlistClick(cartLine.variant)}
-                        className={classnames('btn btn-main btn-wishlist', {
-                          'add-wishlist-active': isAddedItem(cartLine.variant),
-                        })}
-                      >
-                        <Icon icon="icon-heart" />
-                      </button>
                       <button onClick={(e) => dispatch(RemoveCartLine(cartLine))}>
                         <Icon icon="icon-close" size="l" />
                       </button>

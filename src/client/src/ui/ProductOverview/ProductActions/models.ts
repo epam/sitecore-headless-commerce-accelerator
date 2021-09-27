@@ -17,9 +17,7 @@ import * as Jss from 'Foundation/ReactJss';
 
 import { ProductVariantGlobalState } from 'services/productVariant';
 import { CartItemDto, GlobalShoppingCartState } from 'services/shoppingCart';
-import { GlobalWishlistState } from 'services/wishlist';
 
-import { LoadingStatus } from 'models';
 import { ProductOverviewContext } from '../models';
 
 export interface ProductActionsOwnProps
@@ -28,14 +26,13 @@ export interface ProductActionsStateProps {
   isLoading?: boolean;
   productId?: string;
   variants?: Variant[];
-  wishlistStatus: LoadingStatus;
   commerceUser: User;
 }
 export interface ProductActionsDispatchProps {
   updateCartItemRequest: (model: CartItemDto) => void;
 }
 
-export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState, GlobalWishlistState {}
+export interface AppState extends GlobalShoppingCartState, ProductVariantGlobalState {}
 
 export interface ProductActionsProps
   extends ProductActionsOwnProps,

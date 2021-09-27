@@ -15,6 +15,7 @@
 namespace HCA.Feature.Checkout.Infrastructure.Pipelines.GetLayoutServiceContext
 {
     using Foundation.Commerce.Context;
+    using Foundation.Commerce.Context.Visitor;
     using Foundation.ReactJss.Infrastructure;
 
     using Sitecore.JavaScriptServices.Configuration;

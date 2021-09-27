@@ -17,8 +17,9 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using System.Linq;
 
     using Base.Providers.SiteDefinitions;
-    
+
     using Context;
+    using Context.Site;
 
     using DependencyInjection;
 
@@ -32,7 +33,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines
     using Sitecore;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    
+
     [Service(typeof(ICatalogItemResolver))]
     public class CatalogItemResolver : ICatalogItemResolver
     {

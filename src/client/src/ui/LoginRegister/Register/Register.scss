@@ -86,6 +86,11 @@
 
   &-TermsAndConditionsText {
     margin-left: 30px;
+    & a {
+      &:hover {
+        color: $theme-color;
+      }
+    }
   }
 
   &-Button {

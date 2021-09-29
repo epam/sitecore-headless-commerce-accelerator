@@ -34,13 +34,6 @@
                 .ForMember(dest => dest.Facets, opt => opt.Ignore())
                 .ForMember(dest => dest.TotalItemCount, opt => opt.Ignore())
                 .ForMember(dest => dest.TotalPageCount, opt => opt.Ignore());
-
-
-            this.CreateMap<Sitecore.ContentSearch.Linq.SearchResults<ProductSearchResultItem>, Models.Common.SearchResults<ProductSearchResultItem>>()
-                .ForMember(dest => dest.Results, opt => opt.MapFrom(src => src.Hits.Select(h => h.Document).ToList()))
-                .ForMember(dest => dest.Facets, opt => opt.MapFrom(src => src.Facets != null ? src.Facets.Categories : null))
-                .ForMember(dest => dest.TotalItemCount, opt => opt.MapFrom(src => src.TotalSearchResults))
-                .ForMember(dest => dest.TotalPageCount, opt => opt.Ignore());
         }
     }
 }

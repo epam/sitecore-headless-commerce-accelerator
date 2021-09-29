@@ -14,27 +14,30 @@
 
 import React, { FC, useState } from 'react';
 
-import { CartItemDto, ShoppingCartLine } from 'services/shoppingCart';
+import { ShoppingCartLine, UpdateCartLine as updateCartLine } from 'services/shoppingCart';
 
 import { QuantityPicker } from 'components';
 
 import './styles.scss';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   cartLine: ShoppingCartLine;
-  updateCartLine: (model: CartItemDto) => void;
 };
 
-export const Quantity: FC<Props> = ({ cartLine, updateCartLine }) => {
+export const Quantity: FC<Props> = ({ cartLine }) => {
   const [quantity, setQuantity] = useState(cartLine.quantity);
+  const dispatch = useDispatch();
 
   const handleQuantityChange = (value: number) => {
     setQuantity(value);
-    updateCartLine({
-      productId: cartLine.product.productId,
-      quantity: value,
-      variantId: cartLine.variant.variantId,
-    });
+    dispatch(
+      updateCartLine({
+        productId: cartLine.product.productId,
+        quantity: value,
+        variantId: cartLine.variant.variantId,
+      }),
+    );
   };
 
   return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={1} size="l" theme="grey" />;

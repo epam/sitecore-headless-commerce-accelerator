@@ -125,31 +125,4 @@ nav.nav-checkout {
       display: none;
     }
   }
-  a.previous-section {
-    //mobile-only link back
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 14px;
-    background-color: $checkout-area-color;
-    line-height: 32px;
-    color: #5e5e5e;
-    font-weight: 400;
-    text-align: center;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding-right: 15px;
-    height: 100%;
-    &:before {
-      content: '\f104';
-      font-family: 'Custom';
-      font-size: 24px;
-      position: relative;
-    }
-    @media (max-width: $screen-md-min) {
-      display: flex;
-    }
-  }
 }

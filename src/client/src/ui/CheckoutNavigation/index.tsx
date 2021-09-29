@@ -12,7 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
@@ -44,7 +43,6 @@ class NavigationComponent extends JSS.SafePureComponent<NavigationProps, Navigat
         <span className="back-to">
           <NavigationLink to={backToLink.value.href}>{backToLink.value.text}</NavigationLink>
         </span>
-        <Text field={{ value: 'Back' }} tag="a" className="previous-section" />
       </nav>
     );
   }

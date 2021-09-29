@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { LoadingStatus } from 'models';
 import { eventHub, events } from 'services/eventHub';
-import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine, UpdateCartLine } from 'services/shoppingCart';
+import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine } from 'services/shoppingCart';
+import { Variant } from 'services/commerce';
 
 import { Icon } from 'components';
 
@@ -65,6 +66,7 @@ export const CartSummary = (props: CartSummaryOwnProps) => {
               } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
                 imageUrl = cartLine.product.imageUrls[0];
               }
+
               return (
                 <li className="cartList-product" key={cartLine.id} data-autotests={`cartProduct_${cartLine.id}`}>
                   <div className="product">
@@ -117,7 +119,7 @@ export const CartSummary = (props: CartSummaryOwnProps) => {
                       )}
                     </div>
                     <div className="col-xs-2 amount quantity-group product-quantity">
-                      <Quantity cartLine={cartLine} updateCartLine={UpdateCartLine} />
+                      <Quantity cartLine={cartLine} />
                     </div>
                     <div className="col-xs-2 amount product-subtotal">
                       <span className="currency">{cartLine.price.currencySymbol}</span>

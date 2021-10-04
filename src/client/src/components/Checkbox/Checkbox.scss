@@ -17,8 +17,8 @@
 $checkbox-checkmark-size-s-width: 10px;
 $checkbox-checkmark-size-s-height: 10px;
 
-$checkbox-checkmark-size-m-width: 15px;
-$checkbox-checkmark-size-m-height: 15px;
+$checkbox-checkmark-size-m-width: 16px;
+$checkbox-checkmark-size-m-height: 16px;
 
 $checkbox-checkmark-size-l-width: 20px;
 $checkbox-checkmark-size-l-height: 20px;
@@ -35,17 +35,52 @@ $checkbox-checkmark-size-l-height: 20px;
   vertical-align: middle;
   background-color: $checkbox-bg-color;
   transition: background-color 0.2s ease-in;
-
+  z-index: 1;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #000;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+  }
+  &:hover {
+    &:before {
+      opacity: 0.1;
+    }
+  }
   &_error {
     border-color: $checkbox-error-border-color;
     box-shadow: 0 0 8px $checkbox-error-box-shadow-color;
     -webkit-box-shadow: 0 0 8px $checkbox-error-box-shadow-color;
   }
 
-  &_checked,
-  &_hovered {
+  &_checked {
     background-color: $checkbox-selected-bg-color;
     border-color: $checkbox-selected-border-color;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: -11px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #a749ff;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 2;
+    }
+    &:hover {
+      &:before {
+        opacity: 0.25;
+      }
+    }
 
     .Checkbox-Checkmark {
       &::after {
@@ -58,6 +93,7 @@ $checkbox-checkmark-size-l-height: 20px;
         transform: rotate(45deg);
         box-sizing: border-box;
       }
+
       &_controlSize {
         &_s {
           &::after {

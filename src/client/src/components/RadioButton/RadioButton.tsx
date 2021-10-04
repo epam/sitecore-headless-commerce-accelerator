@@ -25,7 +25,7 @@ export type RadioButtonProps = HTMLProps<HTMLInputElement> & {
 export const RadioButton: FC<RadioButtonProps> = forwardRef(
   ({ checked, className, controlSize = 'm', ...rest }, ref) => {
     return (
-      <div className={cnRadioButton({ controlSize }, [className])} tabIndex={0}>
+      <div className={cnRadioButton({ controlSize, checked }, [className])} tabIndex={0}>
         <input {...rest} checked={checked} className={cnRadioButton('Input')} type="radio" ref={ref} />
         <div className={cnRadioButton('Circle', { checked })} tabIndex={-1} />
       </div>

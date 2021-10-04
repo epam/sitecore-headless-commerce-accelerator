@@ -12,14 +12,36 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-$radio-button-size-m-width: 14px;
-$radio-button-size-m-height: 14px;
+$radio-button-size-m-width: 16px;
+$radio-button-size-m-height: 16px;
 $radio-button-checked-background-color: #a749ff;
 
 .RadioButton {
   display: inline-block;
+  width: $radio-button-size-m-width;
+  height: $radio-button-size-m-height;
   position: relative;
-
+  border-radius: 50%;
+  border: 2px solid #888;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease-in;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #000;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  &:hover {
+    &:before {
+      opacity: 0.1;
+    }
+  }
   &-Input#{&}-Input {
     width: $radio-button-size-m-width;
     height: $radio-button-size-m-height;
@@ -29,29 +51,40 @@ $radio-button-checked-background-color: #a749ff;
     opacity: 0;
     cursor: pointer;
   }
-
   &-Circle {
-    border: 2px solid #888;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
     border-radius: 50%;
-    box-sizing: border-box;
-    transition: background-color 0.2s ease-in;
-
+    border: none;
     &_checked {
-      background-color: $radio-button-checked-background-color;
+      background: #a749ff;
     }
   }
+  &_checked {
+    border: 2px solid #a749ff;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: -11px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #a749ff;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    &:hover {
+      &:before {
+        opacity: 0.25;
+      }
+    }
 
-  &_controlSize_m {
-    .RadioButton-Circle,
-    .RadioButton-Input {
+    &_controlSize_m {
       width: $radio-button-size-m-width;
       height: $radio-button-size-m-height;
-    }
-  }
-
-  &:hover {
-    .RadioButton-Circle {
-      background-color: $radio-button-checked-background-color;
     }
   }
 }

@@ -26,13 +26,16 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
   constructor(props: UserButtonProps) {
     super(props);
 
-    this.state = {
-      isDropdownVisible: false,
-    };
+    this.state = { isDropdownVisible: false, pathName: this.props.url };
 
     this.wrapperRef = React.createRef<HTMLDivElement>();
   }
 
+  public componentWillReceiveProps(nextProps: UserButtonProps) {
+    if (this.state.pathName !== nextProps.url) {
+      this.setState({ pathName: nextProps.url, isDropdownVisible: false });
+    }
+  }
   public componentDidMount() {
     document.addEventListener('click', this.handleOutsidePopupClick.bind(this), false);
   }

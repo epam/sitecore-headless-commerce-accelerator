@@ -16,6 +16,8 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useLocation } from 'react-router';
+
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import { BaseDataSourceItem, BaseRenderingParam, RenderingWithParams } from 'Foundation/ReactJss';
 import { closeHamburgerMenu, selectHamburgerMenuVisibility } from 'services/navigationMenu';
@@ -35,6 +37,8 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
 
   const [scroll, setScroll] = useState<number>(0);
 
+  const { pathname } = useLocation();
+
   const handleScroll = () => {
     setScroll(document.documentElement.scrollTop);
   };
@@ -44,8 +48,12 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
   }, [dispatch]);
 
   useEffect(() => {
-    document.addEventListener('scroll', handleScroll);
+    dispatch(closeHamburgerMenu());
+  }, [pathname]);
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('click', handleOutsideClick, false);
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };

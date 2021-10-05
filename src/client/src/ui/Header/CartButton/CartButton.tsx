@@ -15,6 +15,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
+
+import { useLocation } from 'react-router';
+
 import { Link } from 'react-router-dom';
 
 import { shoppingCartData } from 'services/shoppingCart';
@@ -28,6 +31,7 @@ import { CartView } from 'ui/CartView';
 
 export const CartButton = () => {
   const [cartVisible, setCartVisible] = useState(false);
+  const { pathname } = useLocation();
   const ref = useRef(null);
   const cartData = useSelector(shoppingCartData);
   const cartQuantity = cartData && cartData.cartLines ? cartData.cartLines.length : 0;
@@ -45,6 +49,11 @@ export const CartButton = () => {
       setCartVisible(!cartVisible);
     }
   };
+
+  useEffect(() => {
+    setCartVisible(false);
+  }, [pathname]);
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, false);
 

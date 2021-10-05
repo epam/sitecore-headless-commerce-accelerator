@@ -20,10 +20,12 @@ export interface UserButtonProps {
   commerceUser: Commerce.User;
   returnUrl: string;
   logout: (returnUrl: string) => void;
+  url: string;
 }
 
 export interface UserButtonState extends JSS.SafePureComponentState {
   isDropdownVisible: boolean;
+  pathName: string;
 }
 
 export interface AppState

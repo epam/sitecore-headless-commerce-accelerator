@@ -30,6 +30,7 @@ const mapStateToProps = (state: AppState) => {
   return {
     commerceUser,
     returnUrl,
+    url,
   };
 };
 

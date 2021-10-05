@@ -85,10 +85,16 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
                           <td className="product-features">
                             {cartLine.variant.properties.color && (
                               <div
-                                className="color"
-                                style={{
-                                  backgroundColor: resolveColor(cartLine.variant.properties.color, productColors),
+                                ref={(el) => {
+                                  if (el) {
+                                    el.style.setProperty(
+                                      'background-color',
+                                      resolveColor(cartLine.variant.properties.color, productColors),
+                                      'important',
+                                    );
+                                  }
                                 }}
+                                className="color"
                               />
                             )}
                           </td>

@@ -46,19 +46,7 @@
 				"path": "/sitecore/templates/Branches/HCA/Foundation/Connect",
 				"allowedPushOperations": "createUpdateAndDelete",
 				"scope": "itemAndDescendants"
-			},
-			{
-				"name": "Templates.CommerceConnect",
-				"path": "/sitecore/templates/CommerceConnect",
-				"allowedPushOperations": "createUpdateAndDelete",
-				"scope": "itemAndDescendants"
-			},
-			{
-				"name": "Templates.Commerce",
-				"path": "/sitecore/templates/Commerce",
-				"allowedPushOperations": "createUpdateAndDelete",
-				"scope": "itemAndDescendants"
-			},
+			}
 			
 		]
 	}

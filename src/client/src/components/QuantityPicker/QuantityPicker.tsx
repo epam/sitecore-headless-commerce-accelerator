@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { Button } from 'components/Button';
 
@@ -39,22 +39,41 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
   disabled = false,
   theme,
   size = 'm',
-
   min = 0,
   max = Number.POSITIVE_INFINITY,
-
   onChange,
 }) => {
+  const [valueInput, setValueInput] = useState(value);
   const handleDecreaseClick = useCallback(() => {
-    onChange(value - step);
-  }, [value, step, onChange]);
+    onChange(valueInput - step);
+    setValueInput(valueInput - step);
+  }, [valueInput, step, onChange]);
 
   const handleIncreaseClick = useCallback(() => {
-    onChange(value + step);
-  }, [value, step, onChange]);
+    onChange(valueInput + step);
+    setValueInput(valueInput + step);
+  }, [valueInput, step, onChange]);
 
-  const disabledDecrease = disabled || value <= min;
-  const disabledIncrease = disabled || value >= max;
+  const disabledDecrease = disabled || valueInput <= min;
+  const disabledIncrease = disabled || valueInput >= max;
+  const handleInputValueChange = useCallback((e) => {
+    setValueInput(+e.target.value);
+    if (+e.target.value > max) {
+      setValueInput(max);
+    }
+    if (e.target.value.charAt(0) === '0' || e.key === ('-' || '+')) {
+      const num = e.target.value.slice(1);
+      setValueInput(num);
+    }
+    if (e.key === 'Enter') {
+      onChange(valueInput);
+      e.target.blur();
+    }
+  }, []);
+  const handleBlur = useCallback((e) => {
+    onChange(+e.target.value);
+    setValueInput(+e.target.value);
+  }, []);
 
   return (
     <div className={cnQuantityPicker({ theme, disabled, size }, [className])}>
@@ -66,7 +85,15 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
       >
         -
       </Button>
-      <div className={cnQuantityPicker('Field')}>{value}</div>
+      <input
+        className={cnQuantityPicker('Field')}
+        type="number"
+        pattern="[0-9]"
+        value={valueInput}
+        onKeyDown={(e) => handleInputValueChange(e)}
+        onChange={(e) => handleInputValueChange(e)}
+        onBlur={(e) => handleBlur(e)}
+      />
       <Button
         buttonTheme="clear"
         className={cnQuantityPicker('IncreaseButton')}

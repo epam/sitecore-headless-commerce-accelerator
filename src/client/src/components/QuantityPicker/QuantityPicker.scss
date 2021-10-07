@@ -32,13 +32,26 @@ $counter-border-color-grey: #e8e8e8;
   border-style: solid;
 
   &-Field {
-    padding: 0 4px 0 4px;
+    margin: 0 4px;
     flex-grow: 1;
-
+    width: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    border: none;
+    -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type='number'] {
+    border: none;
+    color: $counter-text-color-grey;
+    margin: 0;
+    padding: 0;
   }
 
   &_theme_withBorder {

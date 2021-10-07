@@ -40,5 +40,5 @@ export const Quantity: FC<Props> = ({ cartLine }) => {
     );
   };
 
-  return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={1} size="l" theme="grey" />;
+  return <QuantityPicker value={quantity} onChange={handleQuantityChange} min={1} max={99} size="l" theme="grey" />;
 };

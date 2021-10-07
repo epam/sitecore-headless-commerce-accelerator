@@ -31,7 +31,7 @@ import { cnProductCard } from '../cn';
 import './AddToCart.scss';
 
 const DEFAULT_QUANTITY_FOR_ADD_TO_CART = 1;
-const MAX_QUANTITY = 100;
+const MAX_QUANTITY = 99;
 const DEBOUNCE_DELAY = 1000;
 
 export type AddToCartProps = {

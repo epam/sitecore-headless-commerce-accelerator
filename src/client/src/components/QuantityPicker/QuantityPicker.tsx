@@ -49,30 +49,51 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
     setValueInput(valueInput - step);
   }, [valueInput, step, onChange]);
 
-  const handleIncreaseClick = useCallback(() => {
-    onChange(valueInput + step);
-    setValueInput(valueInput + step);
-  }, [valueInput, step, onChange]);
+  const handleIncreaseClick = useCallback(
+    (e) => {
+      onChange(valueInput + step);
+      setValueInput(valueInput + step);
+    },
+    [valueInput, step, onChange],
+  );
 
   const disabledDecrease = disabled || valueInput <= min;
   const disabledIncrease = disabled || valueInput >= max;
-  const handleInputValueChange = useCallback((e) => {
+
+  const setCount = (e: any) => {
+    onChange(+e.target.value);
     setValueInput(+e.target.value);
+    e.target.blur();
+  };
+
+  const handleInputValueChange = useCallback((e: any) => {
+    setValueInput(+e.target.value);
+
     if (+e.target.value > max) {
       setValueInput(max);
     }
+
     if (e.target.value.charAt(0) === '0' || e.key === ('-' || '+')) {
       const num = e.target.value.slice(1);
       setValueInput(num);
     }
+
     if (e.key === 'Enter') {
-      onChange(valueInput);
-      e.target.blur();
+      if (+e.target.value < min) {
+        setValueInput(min);
+        e.target.value = min;
+      }
+      setCount(e);
     }
   }, []);
+
   const handleBlur = useCallback((e) => {
-    onChange(+e.target.value);
-    setValueInput(+e.target.value);
+    if (+e.target.value < min) {
+      setValueInput(min);
+      e.target.value = min;
+    }
+
+    setCount(e);
   }, []);
 
   return (

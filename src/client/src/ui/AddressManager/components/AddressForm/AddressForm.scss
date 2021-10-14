@@ -12,6 +12,20 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+.AddressForm {
+  &-FormField {
+    margin-bottom: 20px;
+
+    .Input {
+      .Input-ControlWrapper {
+        .Input-Control {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
 .address-form {
   margin-top: 10px;
 }

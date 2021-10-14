@@ -14,6 +14,7 @@
 
 @import 'styles/mixins';
 @import 'styles/variables';
+
 .account-details-container {
   display: flex;
   flex-direction: column;
@@ -108,6 +109,7 @@
         height: 40px;
         padding: 0 15px;
         box-shadow: none;
+        margin-bottom: 0;
         &:focus {
           outline: none;
         }

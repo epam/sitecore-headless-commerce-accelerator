@@ -15,6 +15,13 @@
 export const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 export const INPUT_REGEX = /^[a-zA-Z]+$/;
+
+export const POSTAL_CODE_REGEX = /^(\d{5}(?:\-\d{4})?)$/;
+
+export const ADDRESS_LINE_REGEX = /^[A-Za-z0-9'\.\-\s\,]+$/;
+
+export const CITY_REGEX = /^[a-zA-Z',.\s-]{1,25}$/;
+
 /**
  * Method for validate emails in input field
  * @param email - string of  email in input field

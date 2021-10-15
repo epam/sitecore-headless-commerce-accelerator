@@ -47,6 +47,10 @@
       }
     }
   }
+  &-RadioButton {
+    display: flex;
+    align-items: center;
+  }
 
   &-AddressOptionLabel {
     margin-left: 8px;

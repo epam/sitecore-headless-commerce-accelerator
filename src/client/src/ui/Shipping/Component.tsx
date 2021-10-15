@@ -254,7 +254,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
               </div>
               <div className="col-sm-12">
                 <Submit
-                  buttonTheme="grey"
+                  buttonTheme="default"
                   disabled={isSubmitting}
                   fullWidth={true}
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}

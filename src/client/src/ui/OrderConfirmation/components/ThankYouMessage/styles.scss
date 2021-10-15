@@ -20,6 +20,31 @@
     font-weight: 700;
     padding: 0 15px 0 15px;
     display: none;
+    border: 1px solid #000000;
+    background-color: white;
+    color: #000000;
+    span {
+      transition: none;
+    }
+    i {
+      font-size: 25px;
+    }
+    @media (hover) {
+      &:hover {
+        cursor: pointer;
+        background: #a03bff;
+        border: 1px solid #a03bff;
+        color: white;
+      }
+    }
+    &:active {
+      background: #a03bff;
+      border: 1px solid #a03bff;
+      color: white;
+    }
+    &:focus-visible {
+      border: 1px solid #a03bff;
+    }
 
     @media (min-width: $screen-md-min) {
       //1024+
@@ -31,11 +56,6 @@
       width: 100%;
       padding: 18px 20px;
       letter-spacing: 1px;
-    }
-
-    i {
-      font-size: 25px;
-      color: $print-text-color;
     }
   }
 }

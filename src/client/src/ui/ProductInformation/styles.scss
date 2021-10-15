@@ -254,6 +254,19 @@
             font-size: 16px;
           }
         }
+        .submit-button {
+          background: $bg-grey;
+          border: 1px solid $bg-grey;
+          width: 110px;
+          color: white !important;
+          font-weight: 500;
+          font-size: 12px;
+          letter-spacing: 1px;
+          cursor: pointer;
+          padding: 11px 30px 11px 30px;
+          height: 40px;
+          @include primary-button-hover-focus-active;
+        }
       }
     }
     @media #{$lg-layout} {

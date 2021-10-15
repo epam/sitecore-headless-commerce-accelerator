@@ -148,7 +148,7 @@ export default class BillingComponent extends Jss.SafePureComponent<BillingProps
             <div className="row">
               <div className="col-sm-12">
                 <Submit
-                  buttonTheme="grey"
+                  buttonTheme="default"
                   fullWidth={true}
                   onSubmitHandler={(formValues) => this.handleSaveAndContinueClick(formValues)}
                 >

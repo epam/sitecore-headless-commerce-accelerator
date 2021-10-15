@@ -125,7 +125,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
               </div>
               <div className="col-sm-12">
                 <Submit
-                  buttonTheme="grey"
+                  buttonTheme="default"
                   disabled={isSubmitting}
                   onSubmitHandler={(formValues) => this.handlePlaceOrderClick(formValues)}
                 >

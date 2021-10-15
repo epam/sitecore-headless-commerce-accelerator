@@ -43,12 +43,7 @@ export class ThankYouMessage extends SafePureComponent<ThankYouMessageProps, Tha
             </div>
             <div className="col-md-3">
               <div className="thank-you-col2">
-                <Button
-                  className="OrderConfirmation-PrintButton"
-                  buttonTheme="defaultReversed"
-                  rounded={true}
-                  onClick={() => window.print()}
-                >
+                <Button className="OrderConfirmation-PrintButton" buttonTheme="default" onClick={() => window.print()}>
                   <Icon icon="icon-print" />
                   <span>Print Receipt</span>
                 </Button>

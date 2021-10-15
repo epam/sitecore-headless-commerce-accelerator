@@ -178,7 +178,7 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
                           <div className="col-md-12">
                             <div className="rating-form-submit">
                               <textarea name="Your Review" placeholder="Message" defaultValue={''} />
-                              <Button buttonType="submit" buttonTheme="defaultReversed">
+                              <Button className="submit-button" buttonType="submit" buttonTheme="default">
                                 Submit
                               </Button>
                             </div>

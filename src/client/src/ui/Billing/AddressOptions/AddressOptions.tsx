@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,10 +27,7 @@ export type AddressOptionsProps = HTMLProps<HTMLUListElement> & {
   onAddressOptionChange: (value: string) => void;
 };
 
-export const AddressOptions: FC<AddressOptionsProps> = ({
-  selectedAddressOption,
-  onAddressOptionChange,
-}) => {
+export const AddressOptions: FC<AddressOptionsProps> = ({ selectedAddressOption, onAddressOptionChange }) => {
   const handleChange = useCallback((e) => {
     onAddressOptionChange(e.target.value);
   }, []);
@@ -44,6 +41,7 @@ export const AddressOptions: FC<AddressOptionsProps> = ({
     <ul className={cnBilling('AddressOptions')}>
       <li className={cnBilling('AddressOption')}>
         <Radio
+          className={cnBilling('RadioButton')}
           id={radioButtonIds.newAddress}
           name={FIELDS.ADDRESS_TYPE}
           value={ADDRESS_TYPE.NEW}
@@ -56,15 +54,21 @@ export const AddressOptions: FC<AddressOptionsProps> = ({
       </li>
 
       <li className={cnBilling('AddressOption')}>
-          <Radio
-            id={radioButtonIds.sameAsShippingAddress}
-            name={FIELDS.ADDRESS_TYPE}
-            value={ADDRESS_TYPE.SAME_AS_SHIPPING}
-            checked={selectedAddressOption === ADDRESS_TYPE.SAME_AS_SHIPPING}
-            onChange={handleChange}
-          />
-          <Text className={cnBilling('AddressOptionLabel')} field={{ value: 'Same As Shipping Address' }} tag="label" htmlFor={radioButtonIds.sameAsShippingAddress} />
-        </li>
+        <Radio
+          className={cnBilling('RadioButton')}
+          id={radioButtonIds.sameAsShippingAddress}
+          name={FIELDS.ADDRESS_TYPE}
+          value={ADDRESS_TYPE.SAME_AS_SHIPPING}
+          checked={selectedAddressOption === ADDRESS_TYPE.SAME_AS_SHIPPING}
+          onChange={handleChange}
+        />
+        <Text
+          className={cnBilling('AddressOptionLabel')}
+          field={{ value: 'Same As Shipping Address' }}
+          tag="label"
+          htmlFor={radioButtonIds.sameAsShippingAddress}
+        />
+      </li>
     </ul>
   );
 };

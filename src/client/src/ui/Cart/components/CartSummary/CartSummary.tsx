@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LoadingStatus } from 'models';
 import { eventHub, events } from 'services/eventHub';
 import { actionTypes, RemoveCartLine, shoppingCart, ShoppingCartLine } from 'services/shoppingCart';
-import { Variant } from 'services/commerce';
 
 import { Icon } from 'components';
 

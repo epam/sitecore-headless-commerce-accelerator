@@ -21,6 +21,7 @@ export interface OrderConfirmationOwnProps
 
 export interface OrderConfirmationStateProps {
   currentOrder: Order;
+  isLoading: boolean;
   trackingNumber: string;
 }
 
@@ -33,7 +34,9 @@ export interface OrderConfirmationProps
     OrderConfirmationStateProps,
     OrderConfirmationDispatchProps {}
 
-export interface OrderConfirmationState extends JSS.SafePureComponentState {}
+export interface OrderConfirmationState extends JSS.SafePureComponentState {
+  mounted: boolean;
+}
 
 export interface AppState extends Orders.GlobalOrderState, JSS.RoutingState {}
 

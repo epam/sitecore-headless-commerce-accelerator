@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +35,8 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
 
   const isHamburgerMenuVisible = useSelector(selectHamburgerMenuVisibility);
 
+  const hamburgerMenuRef = useRef(null);
+
   const [scroll, setScroll] = useState<number>(0);
 
   const { pathname } = useLocation();
@@ -47,6 +49,12 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
     dispatch(closeHamburgerMenu());
   }, [dispatch]);
 
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (hamburgerMenuRef.current && !hamburgerMenuRef.current.contains(e.target) && isHamburgerMenuVisible) {
+      dispatch(closeHamburgerMenu());
+    }
+  };
+
   useEffect(() => {
     dispatch(closeHamburgerMenu());
   }, [pathname]);
@@ -55,9 +63,10 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('click', handleOutsideClick, false);
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('click', handleOutsideClick, false);
     };
-  }, []);
+  });
 
   return (
     <>
@@ -73,7 +82,7 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
           <Placeholder name="header-content" rendering={rendering} />
         </div>
 
-        <div className={classnames('header_mobile mobile-menu')}>
+        <div ref={hamburgerMenuRef} className={classnames('header_mobile mobile-menu')}>
           <button className="mobile-menu_close" onClick={handleHamburgerMenuClose}>
             <Icon icon="icon-close" />
           </button>

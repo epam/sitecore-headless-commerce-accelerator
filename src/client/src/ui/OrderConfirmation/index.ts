@@ -17,10 +17,11 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import { LoadingStatus } from 'models';
 import { tryParseUrlSearch } from 'utils';
 import { renderingWithContext } from 'Foundation/ReactJss';
 
-import { currentOrder, GetOrder } from 'services/order';
+import { currentOrder, GetOrder, currentOrderStatus } from 'services/order';
 
 import { OrderConfirmationComponent } from './Component';
 import {
@@ -32,11 +33,16 @@ import {
 
 const mapStateToProps = (state: AppState): OrderConfirmationStateProps => {
   const location: Location = state.router.location;
-  const trackingNumber = tryParseUrlSearch(location.search).trackingNumber;
 
+  const trackingNumber = tryParseUrlSearch(location.search).trackingNumber;
   const order = currentOrder(state);
+  const status = currentOrderStatus(state);
+
+  const isLoading = status === LoadingStatus.Loading;
+
   return {
     currentOrder: order,
+    isLoading,
     trackingNumber,
   };
 };

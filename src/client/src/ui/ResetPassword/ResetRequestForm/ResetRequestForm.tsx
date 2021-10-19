@@ -16,8 +16,9 @@ import React, { FC, FormEvent, useState } from 'react';
 
 import { LoadingStatus } from 'models';
 import { validateValue, EMAIL_REGEX } from 'utils';
+import { sitecore } from 'Foundation/ReactJss';
 
-import { Button, Icon, Input } from 'components';
+import { Button, Icon, Input, Spinner } from 'components';
 import { Form } from 'Foundation/ReactJss/Form';
 import { NavigationLink } from 'ui/NavigationLink';
 
@@ -28,6 +29,7 @@ import { ResetRequestFormProps } from './models';
 
 import { cnResetRequestForm } from './cn';
 import './ResetRequestForm.scss';
+import { useSelector } from 'react-redux';
 
 export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
   confirmPasswordRecovery,
@@ -36,6 +38,9 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
   const [displaySubmitMessage, setDisplaySubmitMessage] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [email, setEmail] = useState('');
+  const sitecoreState = useSelector(sitecore);
+
+  const isLoading = sitecoreState.status === LoadingStatus.Loading;
 
   const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
     const newEmail = e.currentTarget.value;
@@ -51,7 +56,9 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
     setDisplaySubmitMessage(true);
   };
 
-  return (
+  return isLoading ? (
+    <Spinner data-autotests="loading_spinner" />
+  ) : (
     <div className={cnResetRequestForm()}>
       <h1 className={cnResetRequestForm('Title')}>Reset your password</h1>
       <div className={cnResetRequestForm('FormContainer')}>

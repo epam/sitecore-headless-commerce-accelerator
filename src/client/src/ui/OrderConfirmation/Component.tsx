@@ -16,12 +16,17 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
+import { Spinner } from 'components';
+
 import { Confirmation, Summary, ThankYouMessage } from './components';
 import { OrderConfirmationProps, OrderConfirmationState } from './models';
 
 export class OrderConfirmationComponent extends JSS.SafePureComponent<OrderConfirmationProps, OrderConfirmationState> {
   constructor(props: OrderConfirmationProps) {
     super(props);
+    this.state = {
+      mounted: false,
+    };
   }
 
   public updateState(props: OrderConfirmationProps) {
@@ -38,10 +43,16 @@ export class OrderConfirmationComponent extends JSS.SafePureComponent<OrderConfi
 
   public componentDidMount() {
     this.updateState(this.props);
+    this.setState({ mounted: true });
   }
 
   public safeRender() {
-    const { currentOrder, sitecoreContext } = this.props;
+    const { currentOrder, sitecoreContext, isLoading } = this.props;
+
+    if (!this.state.mounted || isLoading) {
+      return <Spinner data-autotests="loading_spinner" />;
+    }
+
     if (!currentOrder) {
       return null;
     }

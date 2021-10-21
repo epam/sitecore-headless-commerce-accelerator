@@ -37,6 +37,11 @@
     margin-bottom: 0px;
     width: 72%;
     @media #{$xs-layout} {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
       .hca {
         display: flex;
         flex-direction: column;
@@ -84,6 +89,22 @@
     }
     &.mr-70 {
       margin-right: 15px;
+    }
+  }
+}
+@media #{$xs-layout} {
+  .footer-columns {
+    .SocialNetworksLinks_alignItems_right {
+      display: table;
+      margin: auto;
+      width: 200px;
+      .SocialNetworksLinks-Title {
+        display: none;
+      }
+      .SocialNetworksLinks-Icon {
+        font-size: 22px;
+        color: #555252;
+      }
     }
   }
 }

@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/mixins';
+
 @import 'styles/variables';
 
 @media #{$xs-layout} {
@@ -27,15 +28,28 @@
     justify-content: center;
   }
 }
-// Footer grid for columns end
+
 .footer-links-list {
   .footer-list-item {
     line-height: 1.8;
     margin-bottom: 8px;
+    & div {
+      margin: auto 0;
+    }
+    &-accordion {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      & i {
+        margin-left: 10px;
+      }
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
   }
+
   .footer-link {
     font-weight: 900;
     text-transform: uppercase;

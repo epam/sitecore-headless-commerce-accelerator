@@ -11,8 +11,21 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+@import 'styles/variables';
 
 .ProductCard-LinkMore {
-  color: #337ab7;
+  color: $link-color;
   margin: 0 8px;
+
+  &:hover {
+    text-decoration: underline;
+    color: $link-color;
+  }
+
+  &:disabled,
+  &[disabled] {
+    text-decoration: none;
+    color: $grey-middle;
+    cursor: default;
+  }
 }

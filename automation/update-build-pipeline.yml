@@ -95,6 +95,19 @@ steps:
       enableCodeCoverage: false
 
   - task: PowerShell@2
+    displayName: Create wooli.itempackage
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet new tool-manifest
+        dotnet nuget add source -n Sitecore https://sitecore.myget.org/F/sc-packages/api/v3/index.json
+        dotnet tool install Sitecore.CLI --version 3.0.0
+        dotnet sitecore plugin add -n Sitecore.DevEx.Extensibility.Serialization --version 3.0.0
+        dotnet sitecore plugin add -n Sitecore.DevEx.Extensibility.Publishing --version 3.0.0
+        dotnet sitecore ser pkg create -o wooli.itempackage
+      workingDirectory: '$(Pipeline.Workspace)/s'
+
+  - task: PowerShell@2
     displayName: Webpack build
     inputs:
       targetType: "inline"
@@ -204,3 +217,17 @@ steps:
       targetPath: "$(artifacts_location)/unicorn-sync"
       artifact: "unicorn-sync"
       publishLocation: "pipeline"
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Sitecore.json file
+    inputs:
+      PathtoPublish: '$(Pipeline.Workspace)/s/sitecore.json'
+      ArtifactName: 'sitecore.json'
+      publishLocation: 'Container'
+  
+  - task: PublishBuildArtifacts@1
+    displayName: Publish wooli.itempackage
+    inputs:
+      PathtoPublish: '$(Pipeline.Workspace)/s/wooli.itempackage'
+      ArtifactName: 'itempackage'
+      publishLocation: 'Container'

@@ -38,6 +38,7 @@ import { Shipping } from 'ui/Shipping';
 import { Breadcrumb } from 'ui/Breadcrumb';
 import { Copyright } from 'ui/Copyright';
 import { FooterLinks } from 'ui/FooterLinks';
+import { DropdownFooterLinks } from 'ui/DropdownFooterLinks';
 import { GlobalFooter } from 'ui/GlobalFooter';
 import * as Navigation from 'ui/Header';
 import { SocialNetworksLinks } from 'ui/SocialNetworksLinks';
@@ -84,6 +85,7 @@ components.set('User Navigation', Navigation.UserNavigation);
 components.set('Footer', GlobalFooter);
 components.set('Copyright', Copyright);
 components.set('Footer Links', FooterLinks);
+components.set('Dropdown Footer Links', DropdownFooterLinks);
 components.set('Social Networks Links', SocialNetworksLinks);
 
 // Catalog renderings

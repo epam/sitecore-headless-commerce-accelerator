@@ -14,6 +14,7 @@
 
 @import 'styles/variables';
 @import 'styles/mixins';
+
 .footer-copyright-container {
   .footer-copyright {
     &_logo {
@@ -35,10 +36,15 @@
   }
 }
 
-@media #{$footer-switch-mode-min} and #{$footer-switch-mode} {
+@media #{$xs-layout} {
   .footer-copyright-container {
     .footer-copyright {
+      text-align: center;
       max-width: unset;
+      margin-top: 20px;
+      &_logo {
+        display: none;
+      }
     }
   }
 }

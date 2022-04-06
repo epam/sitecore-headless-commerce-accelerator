@@ -28,3 +28,5 @@ export const productSearchItems = (state: GlobalSearchState) => productsSearch(s
 export const productSearchParams = (state: GlobalSearchState) => productsSearch(state).params;
 export const productSearchCurrentPageNumber = (state: GlobalSearchState) => productsSearch(state).currentPageNumber;
 export const productSearchTotalPageCount = (state: GlobalSearchState) => productsSearch(state).totalPageCount || 0;
+export const productsByIds = (state: GlobalSearchState) => state.search.productsByIds?.items;
+export const productsByIdsStatus = (state: GlobalSearchState) => state.search.productsByIds?.status;

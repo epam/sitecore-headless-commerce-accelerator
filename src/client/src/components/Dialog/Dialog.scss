@@ -31,10 +31,11 @@
     font-size: 17px;
     border: none;
     margin: -1rem -1rem -1rem auto;
+    padding: 1rem;
 
-    i:hover {
-      cursor: pointer;
-      color: $summary-table-action-hover;
+    &:hover {
+      color: $theme-color;
+      transition: color 0.3s;
     }
   }
 
@@ -53,8 +54,8 @@
     overflow: auto;
     border-radius: 4px;
     outline: none;
-    padding: 20px;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    max-height: 100vh;
   }
 }

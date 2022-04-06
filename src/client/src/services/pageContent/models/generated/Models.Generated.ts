@@ -14,15 +14,15 @@
 
 // tslint:disable:no-empty-interface
 
-import * as ReactJssModule from 'Foundation/ReactJss';
+import * as HeadlessDefinitions from 'Foundation/ReactJss';
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission
 // ID: 829bfcfc-d56b-4025-affa-3967aa246356
-export interface AboutMissionDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface AboutMissionDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission
 // ID: 829bfcfc-d56b-4025-affa-3967aa246356
-export interface AboutMissionRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface AboutMissionRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission
 // ID: 829bfcfc-d56b-4025-affa-3967aa246356
@@ -32,21 +32,21 @@ export const AboutMissionTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission Paragraph
 // ID: 3a856aa5-4790-4e47-b46b-babc49c34f3b
-export interface AboutMissionParagraphDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface AboutMissionParagraphDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Text field.
   /// Field Type: Multi-Line Text
   /// Field ID: 8e352f92-e46b-4019-98ba-de8932b91479
-  text: ReactJssModule.TextField;
+  text: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: 303f54bb-3bd0-4172-81a5-bc6bcf0a6b6b
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Mission/About Mission Paragraph
 // ID: 3a856aa5-4790-4e47-b46b-babc49c34f3b
-export interface AboutMissionParagraphRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface AboutMissionParagraphRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Text field.
   /// Field Type: Multi-Line Text
   /// Field ID: 8e352f92-e46b-4019-98ba-de8932b91479
@@ -78,11 +78,11 @@ export const AboutMissionParagraphTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner
 // ID: db5f5088-5e5b-4480-a7ac-9560eb0f7210
-export interface AboutUsBannerDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface AboutUsBannerDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner
 // ID: db5f5088-5e5b-4480-a7ac-9560eb0f7210
-export interface AboutUsBannerRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface AboutUsBannerRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner
 // ID: db5f5088-5e5b-4480-a7ac-9560eb0f7210
@@ -92,36 +92,36 @@ export const AboutUsBannerTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner Item
 // ID: 19fac856-e53a-4b70-8283-e01b995f0921
-export interface AboutUsBannerItemDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface AboutUsBannerItemDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: aa21d98d-9b76-45ec-9526-5de099730af5
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 
   /// The Price field.
   /// Field Type: Single-Line Text
   /// Field ID: 3d9b2ee7-fba8-4d5e-a511-f05465c7f5b7
-  price: ReactJssModule.TextField;
+  price: HeadlessDefinitions.TextField;
 
   /// The Subtitle field.
   /// Field Type: Single-Line Text
   /// Field ID: abf631e7-0fb3-4b26-8c57-399e2c57a830
-  subtitle: ReactJssModule.TextField;
+  subtitle: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: e82aad0f-7170-4659-ac5e-418b9b95d461
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 
   /// The Uri field.
   /// Field Type: General Link
   /// Field ID: a6dce57c-2e1d-46f0-9041-6faa6dcdd476
-  uri: ReactJssModule.LinkField;
+  uri: HeadlessDefinitions.LinkField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Banner/About Us Banner Item
 // ID: 19fac856-e53a-4b70-8283-e01b995f0921
-export interface AboutUsBannerItemRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface AboutUsBannerItemRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: aa21d98d-9b76-45ec-9526-5de099730af5
@@ -186,11 +186,11 @@ export const AboutUsBannerItemTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder
 // ID: 82ff551a-fb69-4e09-befa-1bec040f5a62
-export interface AboutUsFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface AboutUsFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder
 // ID: 82ff551a-fb69-4e09-befa-1bec040f5a62
-export interface AboutUsFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface AboutUsFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/About Us Folder
 // ID: 82ff551a-fb69-4e09-befa-1bec040f5a62
@@ -198,33 +198,47 @@ export const AboutUsFolderTemplate = {
   templateId: '82ff551a-fb69-4e09-befa-1bec040f5a62',
 };
 
+// Path: /sitecore/templates/HCA/Feature/PageContent/Account/Account Folder
+// ID: d4f66f5b-66f7-4bbd-9757-0ec922562976
+export interface AccountFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Account/Account Folder
+// ID: d4f66f5b-66f7-4bbd-9757-0ec922562976
+export interface AccountFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
+
+// Path: /sitecore/templates/HCA/Feature/PageContent/Account/Account Folder
+// ID: d4f66f5b-66f7-4bbd-9757-0ec922562976
+export const AccountFolderTemplate = {
+  templateId: 'd4f66f5b-66f7-4bbd-9757-0ec922562976',
+};
+
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages
 // ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb
-export interface AdvantagesDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface AdvantagesDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Description field.
   /// Field Type: Single-Line Text
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
-  description: ReactJssModule.TextField;
+  description: HeadlessDefinitions.TextField;
 
   /// The Image field.
   /// Field Type: Single-Line Text
   /// Field ID: ff3f4d26-a588-421b-b17c-3aa70552e6da
-  image: ReactJssModule.TextField;
+  image: HeadlessDefinitions.TextField;
 
   /// The Link field.
   /// Field Type: General Link
   /// Field ID: 80968376-a314-4a17-8182-9123a819536b
-  link: ReactJssModule.LinkField;
+  link: HeadlessDefinitions.LinkField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: 205f79a5-c5bf-498c-8863-6d669f3f6341
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages
 // ID: 41e8abef-3803-47b0-adc6-d225a8d91ffb
-export interface AdvantagesRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface AdvantagesRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Description field.
   /// Field Type: Single-Line Text
   /// Field ID: 44a66b2a-190e-4b2a-b42a-caf3eac0107d
@@ -278,16 +292,16 @@ export const AdvantagesTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder
 // ID: 48571882-2196-4e19-a0fa-673cede42b56
-export interface AdvantagesFolderDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface AdvantagesFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Advantages field.
   /// Field Type: Multilist
   /// Field ID: 0e23c1d8-37c8-420a-90bf-b669bdbd01b1
-  advantages: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  advantages: HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Advantages Folder
 // ID: 48571882-2196-4e19-a0fa-673cede42b56
-export interface AdvantagesFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface AdvantagesFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Advantages field.
   /// Field Type: Multilist
   /// Field ID: 0e23c1d8-37c8-420a-90bf-b669bdbd01b1
@@ -308,11 +322,11 @@ export const AdvantagesFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters
 // ID: e01b4fdd-75cf-4632-84b1-74a75dba4a4f
-export interface AdvantagesRenderingParametersDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface AdvantagesRenderingParametersDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters
 // ID: e01b4fdd-75cf-4632-84b1-74a75dba4a4f
-export interface AdvantagesRenderingParametersRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface AdvantagesRenderingParametersRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Advantages/Rendering Parameters/Advantages Rendering Parameters
 // ID: e01b4fdd-75cf-4632-84b1-74a75dba4a4f
@@ -322,26 +336,26 @@ export const AdvantagesRenderingParametersTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
 // ID: aca0aaff-3317-4535-8bc5-504256e08255
-export interface BannerDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface BannerDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Button Text field.
   /// Field Type: Single-Line Text
   /// Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337
-  buttonText: ReactJssModule.TextField;
+  buttonText: HeadlessDefinitions.TextField;
 
   /// The Image field.
   /// Field Type: Image
   /// Field ID: cfb54c8b-6f8e-4bdb-9a07-7df0871196c7
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 
   /// The Link field.
   /// Field Type: General Link
   /// Field ID: ed641b03-6844-4ad0-ae83-ba9d351a2660
-  link: ReactJssModule.LinkField;
+  link: HeadlessDefinitions.LinkField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner
 // ID: aca0aaff-3317-4535-8bc5-504256e08255
-export interface BannerRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface BannerRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Button Text field.
   /// Field Type: Single-Line Text
   /// Field ID: 42ec7cba-9200-49fe-b5f1-03824e1dc337
@@ -384,11 +398,11 @@ export const BannerTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
 // ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
-export interface BannerFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface BannerFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
 // ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
-export interface BannerFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface BannerFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Banner/Banner Folder
 // ID: 60d1329d-bfbf-4c2a-a6be-426f1c700ba9
@@ -398,16 +412,16 @@ export const BannerFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo
 // ID: c451dcea-1dc8-4de8-9e1d-475633ba3d4d
-export interface BrandLogoDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface BrandLogoDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: 0f9d658b-1cfa-4e70-ac2d-a541841ace2b
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logo
 // ID: c451dcea-1dc8-4de8-9e1d-475633ba3d4d
-export interface BrandLogoRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface BrandLogoRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: 0f9d658b-1cfa-4e70-ac2d-a541841ace2b
@@ -428,11 +442,11 @@ export const BrandLogoTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos
 // ID: 42ac7b43-aa41-407c-bbb8-92f61642eb17
-export interface BrandLogosDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface BrandLogosDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos
 // ID: 42ac7b43-aa41-407c-bbb8-92f61642eb17
-export interface BrandLogosRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface BrandLogosRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Brand Logos/Brand Logos
 // ID: 42ac7b43-aa41-407c-bbb8-92f61642eb17
@@ -442,36 +456,36 @@ export const BrandLogosTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner
 // ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7
-export interface CarouselBannerDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface CarouselBannerDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 
   /// The Link field.
   /// Field Type: General Link
   /// Field ID: 4d22d3fa-f785-4f8c-92eb-b75ab4cf6e4f
-  link: ReactJssModule.LinkField;
+  link: HeadlessDefinitions.LinkField;
 
   /// The Subtitle field.
   /// Field Type: Single-Line Text
   /// Field ID: 1751fa11-d5ca-42c7-b63a-da23a47f37db
-  subtitle: ReactJssModule.TextField;
+  subtitle: HeadlessDefinitions.TextField;
 
   /// The Text field.
   /// Field Type: Single-Line Text
   /// Field ID: ab878a5d-cfad-471c-949e-1f590caa233c
-  text: ReactJssModule.TextField;
+  text: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: b2b0d2d9-a822-4647-80c9-0b221b8cb569
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner
 // ID: f3e176b7-c8d9-4c1f-bbe9-e83ce643e0d7
-export interface CarouselBannerRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface CarouselBannerRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: f335bcc8-a000-4246-b7a5-ebb11e5ffc77
@@ -536,16 +550,16 @@ export const CarouselBannerTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder
 // ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e
-export interface CarouselBannerFolderDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface CarouselBannerFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Banners field.
   /// Field Type: Multilist
   /// Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7
-  banners: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  banners: HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Carousel Banner/Carousel Banner Folder
 // ID: 764f7c1b-1d67-43fb-9074-df87a0deb60e
-export interface CarouselBannerFolderRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface CarouselBannerFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Banners field.
   /// Field Type: Multilist
   /// Field ID: e7bbd25a-3f42-4199-9e19-19a87b7020e7
@@ -566,16 +580,16 @@ export const CarouselBannerFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address
 // ID: 4336232f-c7d3-4820-9784-11323307c054
-export interface ContactAddressDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface ContactAddressDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Address field.
   /// Field Type: Single-Line Text
   /// Field ID: 988886e4-c5bf-4fd0-803f-61d1cae54112
-  address: ReactJssModule.TextField;
+  address: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Address
 // ID: 4336232f-c7d3-4820-9784-11323307c054
-export interface ContactAddressRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface ContactAddressRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Address field.
   /// Field Type: Single-Line Text
   /// Field ID: 988886e4-c5bf-4fd0-803f-61d1cae54112
@@ -596,11 +610,11 @@ export const ContactAddressTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses
 // ID: e31ddc89-fefd-47d4-8f57-240af742ec35
-export interface ContactAddressesDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface ContactAddressesDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses
 // ID: e31ddc89-fefd-47d4-8f57-240af742ec35
-export interface ContactAddressesRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface ContactAddressesRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Addresses
 // ID: e31ddc89-fefd-47d4-8f57-240af742ec35
@@ -610,21 +624,21 @@ export const ContactAddressesTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
 // ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1
-export interface ContactIntroDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface ContactIntroDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 
   /// The Intro Line field.
   /// Field Type: Single-Line Text
   /// Field ID: 12c05cc3-2307-49b2-9230-4c9816463bb1
-  introLine: ReactJssModule.TextField;
+  introLine: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Intro
 // ID: 252becf7-cdf0-4cf7-970c-313d1e98c0a1
-export interface ContactIntroRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface ContactIntroRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Image field.
   /// Field Type: Image
   /// Field ID: 31f05fc6-a229-406d-b57d-14c13a4a7150
@@ -656,16 +670,16 @@ export const ContactIntroTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link
 // ID: c140817d-2718-4c74-8f0f-46d220b0fa91
-export interface ContactLinkDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface ContactLinkDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Uri field.
   /// Field Type: General Link
   /// Field ID: a32b6e94-4bd9-4456-a9bf-40a1fc46c242
-  uri: ReactJssModule.LinkField;
+  uri: HeadlessDefinitions.LinkField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Link
 // ID: c140817d-2718-4c74-8f0f-46d220b0fa91
-export interface ContactLinkRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface ContactLinkRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Uri field.
   /// Field Type: General Link
   /// Field ID: a32b6e94-4bd9-4456-a9bf-40a1fc46c242
@@ -686,11 +700,11 @@ export const ContactLinkTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links
 // ID: 1e890498-c6cc-440a-9fbc-397d0e998b59
-export interface ContactLinksDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface ContactLinksDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links
 // ID: 1e890498-c6cc-440a-9fbc-397d0e998b59
-export interface ContactLinksRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface ContactLinksRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Links
 // ID: 1e890498-c6cc-440a-9fbc-397d0e998b59
@@ -700,16 +714,16 @@ export const ContactLinksTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone
 // ID: ba4cab76-aa33-465b-a385-a8b1d045b3cf
-export interface ContactPhoneDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface ContactPhoneDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Phone field.
   /// Field Type: Single-Line Text
   /// Field ID: eb187aa2-499d-4881-8284-4d77690fac60
-  phone: ReactJssModule.TextField;
+  phone: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phone
 // ID: ba4cab76-aa33-465b-a385-a8b1d045b3cf
-export interface ContactPhoneRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface ContactPhoneRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Phone field.
   /// Field Type: Single-Line Text
   /// Field ID: eb187aa2-499d-4881-8284-4d77690fac60
@@ -730,11 +744,11 @@ export const ContactPhoneTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones
 // ID: 9300407f-67f7-459c-ae3d-ba2680058e21
-export interface ContactPhonesDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface ContactPhonesDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones
 // ID: 9300407f-67f7-459c-ae3d-ba2680058e21
-export interface ContactPhonesRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface ContactPhonesRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Phones
 // ID: 9300407f-67f7-459c-ae3d-ba2680058e21
@@ -744,11 +758,11 @@ export const ContactPhonesTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder
 // ID: 6a683694-25c8-48da-9577-f9964fd58f17
-export interface ContactUsFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface ContactUsFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder
 // ID: 6a683694-25c8-48da-9577-f9964fd58f17
-export interface ContactUsFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface ContactUsFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contact Us Folder
 // ID: 6a683694-25c8-48da-9577-f9964fd58f17
@@ -758,26 +772,26 @@ export const ContactUsFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts
 // ID: 1b87628c-ea15-4c9e-8f6f-339bbcf222ee
-export interface ContactsDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface ContactsDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Addresses field.
   /// Field Type: Multilist
   /// Field ID: 657f4729-c214-4c33-919a-936ca4012273
-  addresses: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  addresses: HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>;
 
   /// The Links field.
   /// Field Type: Multilist
   /// Field ID: 11b3488a-1d66-42fb-a92d-0e9030d3ff46
-  links: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  links: HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>;
 
   /// The Phones field.
   /// Field Type: Multilist
   /// Field ID: e27ca199-3309-4618-bc8a-fcb867ffc15c
-  phones: ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>;
+  phones: HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Contacts
 // ID: 1b87628c-ea15-4c9e-8f6f-339bbcf222ee
-export interface ContactsRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface ContactsRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Addresses field.
   /// Field Type: Multilist
   /// Field ID: 657f4729-c214-4c33-919a-936ca4012273
@@ -820,26 +834,26 @@ export const ContactsTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact
 // ID: 465438d2-f2d3-4034-a2f5-38fe8bd243cc
-export interface FunFactDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface FunFactDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Count field.
   /// Field Type: Single-Line Text
   /// Field ID: fe79f45e-da7a-4924-ba49-9d3b73774a59
-  count: ReactJssModule.TextField;
+  count: HeadlessDefinitions.TextField;
 
   /// The Icon Class field.
   /// Field Type: Single-Line Text
   /// Field ID: c6d1bff6-7e74-44f8-ab16-f494c1de52f9
-  iconClass: ReactJssModule.TextField;
+  iconClass: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: 0c30560c-6b97-4505-818d-21f2c5316b55
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Fact
 // ID: 465438d2-f2d3-4034-a2f5-38fe8bd243cc
-export interface FunFactRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface FunFactRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Count field.
   /// Field Type: Single-Line Text
   /// Field ID: fe79f45e-da7a-4924-ba49-9d3b73774a59
@@ -882,11 +896,11 @@ export const FunFactTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
 // ID: b05afe71-d5f0-42d7-8f4f-ff4bcf446aee
-export interface FunFactsDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface FunFactsDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
 // ID: b05afe71-d5f0-42d7-8f4f-ff4bcf446aee
-export interface FunFactsRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface FunFactsRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Fun Facts/Fun Facts
 // ID: b05afe71-d5f0-42d7-8f4f-ff4bcf446aee
@@ -896,41 +910,41 @@ export const FunFactsTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form
 // ID: 611e79bd-6fbf-4fee-8f66-94b27238c033
-export interface GetInTouchFormDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface GetInTouchFormDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Email Placeholder field.
   /// Field Type: Single-Line Text
   /// Field ID: cd7f5292-5278-40d1-b004-5ad19595c96e
-  emailPlaceholder: ReactJssModule.TextField;
+  emailPlaceholder: HeadlessDefinitions.TextField;
 
   /// The Form Title field.
   /// Field Type: Single-Line Text
   /// Field ID: b22d3283-8235-4521-a321-958dae1d0403
-  formTitle: ReactJssModule.TextField;
+  formTitle: HeadlessDefinitions.TextField;
 
   /// The Message Placeholder field.
   /// Field Type: Multi-Line Text
   /// Field ID: 5ffe7eee-73a0-4320-be91-777b6f42457e
-  messagePlaceholder: ReactJssModule.TextField;
+  messagePlaceholder: HeadlessDefinitions.TextField;
 
   /// The Name Placeholder field.
   /// Field Type: Single-Line Text
   /// Field ID: 61f745b2-2e40-48af-90b3-ace97cb8f17d
-  namePlaceholder: ReactJssModule.TextField;
+  namePlaceholder: HeadlessDefinitions.TextField;
 
   /// The Subject Placeholder field.
   /// Field Type: Single-Line Text
   /// Field ID: 5d7813fd-a32d-47d6-a690-369da5851958
-  subjectPlaceholder: ReactJssModule.TextField;
+  subjectPlaceholder: HeadlessDefinitions.TextField;
 
   /// The Submit Button Text field.
   /// Field Type: Single-Line Text
   /// Field ID: 1ff5310c-3ed4-4c5b-ac20-79257e8d608e
-  submitButtonText: ReactJssModule.TextField;
+  submitButtonText: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Contact Us/Get In Touch Form
 // ID: 611e79bd-6fbf-4fee-8f66-94b27238c033
-export interface GetInTouchFormRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface GetInTouchFormRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Email Placeholder field.
   /// Field Type: Single-Line Text
   /// Field ID: cd7f5292-5278-40d1-b004-5ad19595c96e
@@ -1006,16 +1020,16 @@ export const GetInTouchFormTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
 // ID: 02303189-7dc9-41c9-914a-4784878a6a7d
-export interface RecommendedProductsDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface RecommendedProductsDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Header field.
   /// Field Type: Single-Line Text
   /// Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed
-  header: ReactJssModule.TextField;
+  header: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products
 // ID: 02303189-7dc9-41c9-914a-4784878a6a7d
-export interface RecommendedProductsRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface RecommendedProductsRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Header field.
   /// Field Type: Single-Line Text
   /// Field ID: ba9cd774-93ea-490e-b978-38efe2c648ed
@@ -1036,11 +1050,11 @@ export const RecommendedProductsTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
 // ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
-export interface RecommendedProductsFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface RecommendedProductsFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
 // ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
-export interface RecommendedProductsFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface RecommendedProductsFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/Recommended Products/Recommended Products Folder
 // ID: 2ef7b0f6-a5e5-43e6-acec-0f1c2eed1731
@@ -1050,21 +1064,21 @@ export const RecommendedProductsFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team
 // ID: 3921f0ca-20fb-4c66-bf7b-3d936e97d936
-export interface TeamDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface TeamDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Text field.
   /// Field Type: Multi-Line Text
   /// Field ID: 28913ab4-ede0-4201-b070-b3e376729d0e
-  text: ReactJssModule.TextField;
+  text: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: e4c9c92f-23af-4cb0-bbcf-323fa80109ba
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team
 // ID: 3921f0ca-20fb-4c66-bf7b-3d936e97d936
-export interface TeamRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface TeamRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Text field.
   /// Field Type: Multi-Line Text
   /// Field ID: 28913ab4-ede0-4201-b070-b3e376729d0e
@@ -1096,26 +1110,26 @@ export const TeamTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member
 // ID: 6103e1a3-7ac0-4985-98ab-9238a3485df9
-export interface TeamMemberDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface TeamMemberDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Full Name field.
   /// Field Type: Single-Line Text
   /// Field ID: 715e62c9-ac4f-457c-9aac-34c7f6d91b37
-  fullName: ReactJssModule.TextField;
+  fullName: HeadlessDefinitions.TextField;
 
   /// The Image field.
   /// Field Type: Image
   /// Field ID: 29de299b-340f-4dea-adf0-ec4ded7dd047
-  image: ReactJssModule.ImageField;
+  image: HeadlessDefinitions.ImageField;
 
   /// The Position field.
   /// Field Type: Single-Line Text
   /// Field ID: 9739e61c-f46d-4d19-a47e-86fd8aeb08fa
-  position: ReactJssModule.TextField;
+  position: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member
 // ID: 6103e1a3-7ac0-4985-98ab-9238a3485df9
-export interface TeamMemberRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface TeamMemberRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Full Name field.
   /// Field Type: Single-Line Text
   /// Field ID: 715e62c9-ac4f-457c-9aac-34c7f6d91b37
@@ -1158,21 +1172,21 @@ export const TeamMemberTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link
 // ID: db02cc04-e764-4ee5-b9be-62a9b7fb9ce1
-export interface TeamMemberSocialLinkDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface TeamMemberSocialLinkDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Icon Class field.
   /// Field Type: Single-Line Text
   /// Field ID: e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc
-  iconClass: ReactJssModule.TextField;
+  iconClass: HeadlessDefinitions.TextField;
 
   /// The Uri field.
   /// Field Type: General Link
   /// Field ID: bbe13012-d82b-4ad5-bf9f-f3f8c07eaf73
-  uri: ReactJssModule.LinkField;
+  uri: HeadlessDefinitions.LinkField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Team/Team Member Social Link
 // ID: db02cc04-e764-4ee5-b9be-62a9b7fb9ce1
-export interface TeamMemberSocialLinkRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface TeamMemberSocialLinkRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Icon Class field.
   /// Field Type: Single-Line Text
   /// Field ID: e2c7da05-4ca3-41c6-a19b-5b58e8aeffbc
@@ -1204,26 +1218,26 @@ export const TeamMemberSocialLinkTemplate = {
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome
 // ID: bcc4e809-3687-4676-9542-061712345c7b
-export interface WelcomeDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface WelcomeDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The Subtitle field.
   /// Field Type: Single-Line Text
   /// Field ID: 314819dc-f55d-4d42-a238-e8db57969ee5
-  subtitle: ReactJssModule.TextField;
+  subtitle: HeadlessDefinitions.TextField;
 
   /// The Text field.
   /// Field Type: Multi-Line Text
   /// Field ID: 0630149f-8a91-4715-91ee-bd2483e9e3a4
-  text: ReactJssModule.TextField;
+  text: HeadlessDefinitions.TextField;
 
   /// The Title field.
   /// Field Type: Single-Line Text
   /// Field ID: 214065bc-bcd8-49fc-ab7e-58a613017935
-  title: ReactJssModule.TextField;
+  title: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Feature/PageContent/About Us/Welcome/Welcome
 // ID: bcc4e809-3687-4676-9542-061712345c7b
-export interface WelcomeRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface WelcomeRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The Subtitle field.
   /// Field Type: Single-Line Text
   /// Field ID: 314819dc-f55d-4d42-a238-e8db57969ee5

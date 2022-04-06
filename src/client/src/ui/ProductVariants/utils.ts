@@ -16,9 +16,33 @@ import { get } from 'lodash';
 
 import { tryParseUrlSearch } from 'utils';
 import { VARIANT_PARAMETER_NAME } from 'services/productVariant';
+import { Variant } from 'services/commerce';
 
 export const getVariantIdFromQuery = (query: string) => {
   const parsedQuery = tryParseUrlSearch(query);
 
   return get(parsedQuery, VARIANT_PARAMETER_NAME, '');
+};
+
+export const sortVariantsArrayByNestedProperty = (prop: string, array: Variant[]) => {
+  const splitProp = prop.split('.');
+  const length = splitProp.length;
+
+  array.sort(function (a: any, b: any) {
+    let i = 0;
+    while (i < length) {
+      a = a[splitProp[i]];
+      b = b[splitProp[i]];
+      i++;
+    }
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  return array;
 };

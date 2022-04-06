@@ -26,17 +26,20 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 type Props = ModalProps & {
+  isHeader?: boolean;
   toggleDialog: () => void;
 };
 
-export const Dialog: FC<Props> = ({ isOpen, toggleDialog, children, ...props }) => {
+export const Dialog: FC<Props> = ({ isOpen, isHeader = true, toggleDialog, children, ...props }) => {
   return (
     <Modal isOpen={isOpen} className={cnDialog('Content')} overlayClassName={cnDialog('Overlay')} {...props}>
-      <div className={cnDialog('Header')}>
-        <Button buttonTheme="clear" className={cnDialog('CloseButton')} onClick={toggleDialog}>
-          <Icon icon="icon-close" />
-        </Button>
-      </div>
+      {isHeader && (
+        <div className={cnDialog('Header')}>
+          <Button buttonTheme="clear" className={cnDialog('CloseButton')} onClick={toggleDialog}>
+            <Icon icon="icon-close" />
+          </Button>
+        </div>
+      )}
       {children}
     </Modal>
   );

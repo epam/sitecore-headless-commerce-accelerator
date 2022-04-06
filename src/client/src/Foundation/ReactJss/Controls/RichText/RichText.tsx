@@ -16,7 +16,7 @@ import React from 'react';
 
 import { RichText as JssRichText } from '@sitecore-jss/sitecore-jss-react';
 
-import { Field } from '../../models';
+import { Field } from '../../headlessDefinitions';
 
 export type RichTextField = Field<string>;
 

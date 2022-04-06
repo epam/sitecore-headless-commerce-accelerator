@@ -1,0 +1,41 @@
+﻿---
+ID: "dab1d1da-88e0-41b2-b79f-c7a678a8aad9"
+Parent: "45ff5b62-bc65-406a-ab6c-c8514df9dd32"
+Template: "5fa8f13c-0263-4745-bf7a-709807409eec"
+Path: /sitecore/content/HCA/Data/Account/Left Menu
+SharedFields:
+- ID: "8492e03b-4c79-42d9-8b3d-17cc47ebd73b"
+  Hint: Links
+  Value: |
+    {8926DE7E-97E0-433C-A4AF-12B5D7B57E7A}
+    {49A8955E-0C51-41FA-9C77-DBE64FDFF1A6}
+    {CDE65F96-5F2F-498F-83FF-3A19A390898B}
+    {85778711-78EF-4AA9-91F6-B04ABBB0DDEB}
+    {CF6BAB34-B5C0-4392-8F76-95E60099E51A}
+    {147234CD-FCF9-47B8-B4B2-9E7CB1B14458}
+    {04F1E10A-EF7D-4FA6-A2F4-C5209FC57238}
+    {1CBDBA53-3C52-44A5-8037-BA449FDA78C9}
+    {15BDE8CF-4F86-4D98-B8AB-188DC4DF220E}
+    {DC734887-7ED7-4056-8BEC-726F440DFE8E}
+    {EC9FDBEC-EBB1-41E4-8878-067519BC9849}
+    {F3D1E499-63D1-4997-A5B9-64EFFFBD8489}
+    {E77AD1A4-96D9-4C45-84ED-C48DB7448FA8}
+    {860F5E01-63A0-4EF1-BE02-7B30CA889C16}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T203455Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1ec32d34-b742-4f61-9731-fd5a73e91bab"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220113T210544Z

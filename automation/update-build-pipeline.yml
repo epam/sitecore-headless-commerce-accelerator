@@ -13,23 +13,33 @@ steps:
 
   - task: gitversion/setup@0
     inputs:
-      versionSpec: '5.x'
+      versionSpec: '5.8.1'
 
   - task: GitVersion@5
     inputs:
-      runtime: 'core'
+      runtime: 'full'
       configFilePath: '$(Build.Repository.LocalPath)/GitVersion.yml'
 
   - task: UseNode@1
     displayName: Installing Node 10
     inputs:
-      script: "npm --version"
+      version: '16.x'
 
   - task: DownloadSecureFile@1
     displayName: Download license
     name: license_file
     inputs:
       secureFile: "license.xml"
+
+  - task: DownloadPipelineArtifact@2
+    displayName: Download tools
+    inputs:
+      buildType: 'specific'
+      project: 'c8a112df-eb95-41fa-bb80-48e83128fe75'
+      definition: '10'
+      buildVersionToDownload: 'latest'
+      artifactName: 'tools'
+      targetPath: '$(Pipeline.Workspace)/s/src/tools'
 
   - task: DownloadPipelineArtifact@2
     displayName: Download node modules
@@ -61,16 +71,6 @@ steps:
       artifactName: "packages"
       targetPath: "$(Pipeline.Workspace)/s/src/packages"
 
-  - task: DownloadPipelineArtifact@2
-    displayName: Download tools
-    inputs:
-      buildType: "specific"
-      project: "c8a112df-eb95-41fa-bb80-48e83128fe75"
-      definition: "10"
-      buildVersionToDownload: "latest"
-      artifactName: "tools"
-      targetPath: "$(Pipeline.Workspace)/s/src/tools"
-
   - task: PowerShell@2
     displayName: Config preparation
     inputs:
@@ -93,18 +93,34 @@ steps:
       targets:
       arguments: "generate-ts"
       enableCodeCoverage: false
+  
+  - task: DotNetCoreCLI@2
+    displayName: Add sitecore nuget source
+    inputs:
+      command: 'custom'
+      custom: 'nuget'
+      arguments: 'add source -n Sitecore https://sitecore.myget.org/F/sc-packages/api/v3/index.json'
+      workingDirectory: '$(Pipeline.Workspace)/s'
 
-  - task: PowerShell@2
+  - task: NuGetAuthenticate@0
+    displayName: Nuget Authenticate
+    inputs:
+      nuGetServiceConnections: 'Connect.DynamicsRetail Nuget connection'
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore .Net Core tools
+    inputs:
+      command: 'custom'
+      custom: 'tool'
+      arguments: 'restore'
+      workingDirectory: './'
+
+  - task: DotNetCoreCLI@2
     displayName: Create wooli.itempackage
     inputs:
-      targetType: 'inline'
-      script: |
-        dotnet new tool-manifest
-        dotnet nuget add source -n Sitecore https://sitecore.myget.org/F/sc-packages/api/v3/index.json
-        dotnet tool install Sitecore.CLI --version 3.0.0
-        dotnet sitecore plugin add -n Sitecore.DevEx.Extensibility.Serialization --version 3.0.0
-        dotnet sitecore plugin add -n Sitecore.DevEx.Extensibility.Publishing --version 3.0.0
-        dotnet sitecore ser pkg create -o wooli.itempackage
+      command: 'custom'
+      custom: 'sitecore'
+      arguments: 'ser pkg create -o wooli.itempackage'
       workingDirectory: '$(Pipeline.Workspace)/s'
 
   - task: PowerShell@2
@@ -119,32 +135,29 @@ steps:
         $(Pipeline.Workspace)/s/src/client/node_modules/.bin/cross-env.cmd NODE_ENV=production $(Pipeline.Workspace)/s/src/client/node_modules/.bin/webpack.cmd
       workingDirectory: "./src/client"
 
-  - task: NuGetAuthenticate@0
-    displayName: Nuget Authenticate
-    inputs:
-      nuGetServiceConnections: 'Connect.DynamicsRetail Nuget connection'
-
-  - task: NuGetCommand@2
+  - task: Cake@2
     displayName: "NuGet restore"
     inputs:
-      command: "restore"
-      restoreSolution: "$(Pipeline.Workspace)/s/src/HCA.sln"
-      feedsToUse: "config"
-      nugetConfigPath: "$(Pipeline.Workspace)/s/src/nuget.config"
-         
-  - task: PowerShell@2
+      script: 'src/build.cake'
+      target: 'Restore :: Restore NuGet Packages'
+      verbosity: 'Verbose'
+      Version: '1.3.0'
+
+  - task: Cake@2
     displayName: Build Server Code
     inputs:
-      filePath: './src/build.ps1'
-      arguments: '-Target 008-Build-Server-Code'
-      workingDirectory: './src/'
+      script: 'src/build.cake'
+      target: '008-Build-Server-Code'
+      verbosity: 'Verbose'
+      Version: '1.3.0'
 
-  - task: PowerShell@2
+  - task: Cake@2
     displayName: Run Unit tests
     inputs:
-      filePath: "./src/build.ps1"
-      arguments: "-Target 003-Tests"
-      workingDirectory: "./src/"
+      script: 'src/build.cake'
+      target: '003-Tests'
+      verbosity: 'Quiet'
+      Version: '1.3.0'
 
   - task: PublishCodeCoverageResults@1
     displayName: Publish code coverage
@@ -160,7 +173,6 @@ steps:
       targetType: 'inline'
       script: |
         robocopy $(Pipeline.Workspace)/s/src/configs/Sitecore/ $(Pipeline.Workspace)/s/output/ web.config
-        robocopy $(Pipeline.Workspace)/s/src/tools/cake.sitecore.recipe/Cake.Sitecore.Recipe/tools/unicorn $(Pipeline.Workspace)/s/output/unicorn-sync /s
         ./automation/Get-Artifacts.ps1 Feature
         ./automation/Get-Artifacts.ps1 Foundation
         ./automation/Get-Artifacts.ps1 Project
@@ -184,13 +196,6 @@ steps:
       publishLocation: "pipeline"
 
   - task: PublishPipelineArtifact@1
-    displayName: Publish unicorn
-    inputs:
-      targetPath: "$(artifacts_location)/unicorn"
-      artifact: "unicorn"
-      publishLocation: "pipeline"
-
-  - task: PublishPipelineArtifact@1
     displayName: Publish Feature
     inputs:
       targetPath: "$(artifacts_location)/Feature"
@@ -211,13 +216,6 @@ steps:
       artifact: "Project"
       publishLocation: "pipeline"
 
-  - task: PublishPipelineArtifact@1
-    displayName: Publish unicorn sync tool
-    inputs:
-      targetPath: "$(artifacts_location)/unicorn-sync"
-      artifact: "unicorn-sync"
-      publishLocation: "pipeline"
-
   - task: PublishBuildArtifacts@1
     displayName: Publish Sitecore.json file
     inputs:
@@ -230,4 +228,11 @@ steps:
     inputs:
       PathtoPublish: '$(Pipeline.Workspace)/s/wooli.itempackage'
       ArtifactName: 'itempackage'
+      publishLocation: 'Container'
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Test Reports
+    inputs:
+      PathtoPublish: '$(Pipeline.Workspace)/s/output/tests/'
+      ArtifactName: 'Coverage'
       publishLocation: 'Container'

@@ -20,10 +20,8 @@ namespace HCA.Foundation.Connect.Managers.Inventory
     using Base.Services.Logging;
 
     using DependencyInjection;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Providers;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Diagnostics;

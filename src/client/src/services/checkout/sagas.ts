@@ -118,21 +118,14 @@ export function* getCheckoutData() {
 
 export function* initStep(action: Action<CurrentStepPayload>) {
   const { payload } = action;
-  const curUrlPath = document.location.pathname.toLowerCase();
   const stepValues: StepValues = yield select(selectors.stepValues);
 
   if (payload.type === CheckoutStepType.Billing && !stepValues.shipping) {
-    return curUrlPath.includes('checkout2')
-      ? yield put(ChangeRoute('/Checkout2/Shipping2'))
-      : yield put(ChangeRoute('/Checkout/Shipping'));
+    yield put(ChangeRoute('/Checkout/Shipping'));
   }
-
   if (payload.type === CheckoutStepType.Payment && (!stepValues.billing || !stepValues.shipping)) {
-    return curUrlPath.includes('checkout2')
-      ? yield put(ChangeRoute('/Checkout2/Shipping2'))
-      : yield put(ChangeRoute('/Checkout/Shipping'));
+    yield put(ChangeRoute('/Checkout/Shipping'));
   }
-
   yield put(actions.SetCurrentStep(payload));
   yield fork(getCheckoutData);
 }
@@ -242,7 +235,6 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
       paymentMethodId: '',
     },
   };
-  const curUrlPath = document.location.pathname.toLowerCase();
   yield put(actions.SubmitStepRequest());
   const { error }: Result<VoidResult> = yield call(Checkout.setPaymentInfo, setPaymentInfoRequest);
   if (error) {
@@ -253,9 +245,7 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
       yield put(actions.SetStepValues({ payment }));
       yield put(actions.SubmitStepSuccess());
       const trackingNumber = data.confirmationId;
-      curUrlPath.includes('checkout2')
-        ? yield put(ChangeRoute(`/Checkout2/Confirmation2?trackingNumber=${trackingNumber}`))
-        : yield put(ChangeRoute(`/Checkout/Confirmation?trackingNumber=${trackingNumber}`));
+      yield put(ChangeRoute(`/Checkout/Confirmation?trackingNumber=${trackingNumber}`));
     } else {
       yield put(actions.SubmitStepFailure(placeOrderError.message, placeOrderError.stack));
     }
@@ -263,23 +253,16 @@ export function* handleCreditCard(payment: PaymentStep, billingAddress: Commerce
 }
 
 export function* nextStep(type: CheckoutStepType) {
-  const curUrlPath = document.location.pathname.toLowerCase();
   if (type === CheckoutStepType.Fulfillment) {
-    curUrlPath.includes('checkout2')
-      ? yield put(ChangeRoute('/Checkout2/Billing2'))
-      : yield put(ChangeRoute('/Checkout/Billing'));
+    yield put(ChangeRoute('/Checkout/Billing'));
   }
 
   if (type === CheckoutStepType.Billing) {
-    curUrlPath.includes('checkout2')
-      ? yield put(ChangeRoute('/Checkout2/Payment2'))
-      : yield put(ChangeRoute('/Checkout/Payment'));
+    yield put(ChangeRoute('/Checkout/Payment'));
   }
 
   if (type === CheckoutStepType.Payment) {
-    curUrlPath.includes('checkout2')
-      ? yield put(ChangeRoute('/Checkout2/Confirmation2'))
-      : yield put(ChangeRoute('/Checkout/Confirmation'));
+    yield put(ChangeRoute('/Checkout/Confirmation'));
   }
 }
 

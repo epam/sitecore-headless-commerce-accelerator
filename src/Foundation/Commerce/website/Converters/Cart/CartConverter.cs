@@ -82,7 +82,7 @@ namespace HCA.Foundation.Commerce.Converters.Cart
             {
                 destination.Product = result.Data;
                 destination.Variant = result.Data.Variants?.FirstOrDefault(
-                    x => x.VariantId == (source.Product as CommerceCartProduct)?.ProductVariantId);
+                    x => x.VariantId == (source.Product as ConnectBase.Entities.CommerceCartProduct)?.ProductVariantId);
             }
         }
     }

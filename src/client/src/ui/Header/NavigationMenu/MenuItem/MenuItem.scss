@@ -36,9 +36,18 @@
         color: $black;
       }
 
-      &:hover,
       &:active {
         color: $theme-color;
+      }
+
+      &:hover {
+        color: $grey;
+      }
+
+      @media (hover) {
+        &:hover {
+          color: $theme-color;
+        }
       }
     }
   }

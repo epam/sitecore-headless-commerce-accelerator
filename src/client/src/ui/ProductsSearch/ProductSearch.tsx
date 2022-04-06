@@ -34,7 +34,7 @@ export const ProductsSearch = () => {
   const [value, setValue] = useState('');
   const [isSearchApplied, setIsSearchApplied] = useState(false);
 
-  const loading = status === LoadingStatus.Loading;
+  const loading = status === LoadingStatus.NotLoaded || status === LoadingStatus.Loading;
 
   useEffect(() => {
     const queryValue = getKeywordFromSearch(search);
@@ -72,5 +72,9 @@ export const ProductsSearch = () => {
     }
   }, [dispatch, params, pathname, value]);
 
-  return <SidebarSearch disabled={loading} value={value} onChange={onChange} onClear={onClear} onSubmit={onSubmit} />;
+  return (
+    !loading && (
+      <SidebarSearch disabled={loading} value={value} onChange={onChange} onClear={onClear} onSubmit={onSubmit} />
+    )
+  );
 };

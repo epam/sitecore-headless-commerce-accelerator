@@ -31,6 +31,7 @@ const mapStateToProps = (state: AppState): ShippingStateProps => {
   const deliveryInfo = Checkout.checkoutDeliveryInfo(state);
   const shippingInfo = Checkout.checkoutShippingInfo(state);
   const currentStep = Checkout.currentStep(state);
+  const stepValues = Checkout.stepValues(state);
 
   return {
     commerceUser,
@@ -38,6 +39,7 @@ const mapStateToProps = (state: AppState): ShippingStateProps => {
     isLoading: deliveryInfo.status === LoadingStatus.Loading || shippingInfo.status === LoadingStatus.Loading,
     isSubmitting: currentStep.status === LoadingStatus.Loading,
     shippingInfo,
+    stepValues,
   };
 };
 
@@ -48,6 +50,7 @@ const mapDispatchToProps = (dispatch: any) => {
       InitStep: Checkout.InitStep,
       ResetDeliveryInfo: Checkout.ResetDeliveryInfo,
       SubmitStep: Checkout.SubmitStep,
+      GetCheckout: Checkout.GetCheckoutData,
     },
     dispatch,
   );

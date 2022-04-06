@@ -15,12 +15,12 @@
 import * as JSS from 'Foundation/ReactJss';
 
 export interface GetInTouchFormDataSource extends JSS.BaseDataSourceItem {
-  formTitle: JSS.GraphQLField<JSS.TextField>;
-  namePlaceholder: JSS.GraphQLField<JSS.TextField>;
-  emailPlaceholder: JSS.GraphQLField<JSS.TextField>;
-  subjectPlaceholder: JSS.GraphQLField<JSS.TextField>;
-  messagePlaceholder: JSS.GraphQLField<JSS.TextField>;
-  submitButtonText: JSS.GraphQLField<JSS.TextField>;
+  formTitle: JSS.GraphQLField<string>;
+  namePlaceholder: JSS.GraphQLField<string>;
+  emailPlaceholder: JSS.GraphQLField<string>;
+  subjectPlaceholder: JSS.GraphQLField<string>;
+  messagePlaceholder: JSS.GraphQLField<string>;
+  submitButtonText: JSS.GraphQLField<string>;
 }
 
 export interface GetInTouchFormProps extends JSS.GraphQLRendering<GetInTouchFormDataSource> {}

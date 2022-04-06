@@ -14,7 +14,13 @@
 
 .ProductList {
   &-ProductCard {
-    padding: 0 15px;
+    padding: 0 15px 10px;
+    transition: 0.5s;
+    @media (hover) {
+      &:hover {
+        box-shadow: 0px 1px 7px -1px rgba(0, 0, 0, 0.3);
+      }
+    }
   }
 
   &-Rating {

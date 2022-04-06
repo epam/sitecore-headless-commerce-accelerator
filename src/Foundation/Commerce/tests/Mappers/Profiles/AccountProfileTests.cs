@@ -15,9 +15,7 @@
 namespace HCA.Foundation.Commerce.Tests.Mappers.Profiles
 {
     using AutoMapper;
-
     using Commerce.Mappers.Profiles;
-
     using Xunit;
 
     public class AccountProfileTests
@@ -26,7 +24,11 @@ namespace HCA.Foundation.Commerce.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(cfg => { cfg.AddProfile<AccountProfile>(); });
+            var configuration = new MapperConfiguration(
+                cfg =>
+                {
+                    cfg.AddProfile<AccountProfile>();
+                });
 
             // act, assert
             configuration.AssertConfigurationIsValid();

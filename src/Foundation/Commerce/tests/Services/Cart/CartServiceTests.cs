@@ -14,36 +14,22 @@
 
 namespace HCA.Foundation.Commerce.Tests.Services.Cart
 {
-    using System;
-    using System.Collections.Generic;
-
-    using Base.Models.Result;
     using Base.Tests.Customization;
-
     using Commerce.Converters.Cart;
     using Commerce.Services.Cart;
-
     using Connect.Context.Catalog;
     using Connect.Context.Storefront;
     using Connect.Managers.Cart;
-
-    using Context;
+    using ConnectBase.Entities;
     using Context.Visitor;
-
-    using Converters.Cart;
-
     using HCA.Foundation.Commerce.Services.Catalog;
     using HCA.Foundation.Connect.Managers.Inventory;
-
     using NSubstitute;
-
     using Ploeh.AutoFixture;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Services.Carts;
-
+    using System;
+    using System.Collections.Generic;
     using Xunit;
-
     using Connect = Sitecore.Commerce.Entities.Carts;
 
     public class CartServiceTests
@@ -62,8 +48,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
         private readonly CommerceCart commerceCart;
 
         private readonly IFixture fixture;
-
-
+        
         private readonly IVisitorContext visitorContext;
 
         public CartServiceTests()
@@ -81,7 +66,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
                 this.cartManager,
                 this.inventoryManager,
                 catalogContext,
-                catalogService,
+                this.catalogService,
                 storefrontContext,
                 this.visitorContext);
 
@@ -124,8 +109,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Cart
             // assert
             this.cartConverter.Received(1).Convert(addCartLineResult.Cart);
         }
-
-
+        
         [Fact]
         public void GetCart_ShouldCallMapWithCartManagerResult()
         {

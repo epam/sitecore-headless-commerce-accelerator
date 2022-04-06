@@ -104,3 +104,15 @@
     }
   }
 }
+@media (max-width: 520px) {
+  .billing-shipping-info .payment .credit-cards-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .billing-shipping-info .payment .credit-cards-row .credit-cards-col ul {
+    margin-left: 0px;
+  }
+  .billing-shipping-info .payment .credit-cards-row .credit-cards-col ul li:first-child {
+    padding-left: 0px;
+  }
+}

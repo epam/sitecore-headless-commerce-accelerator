@@ -20,10 +20,10 @@ namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
 
     using Controllers;
 
+    using Foundation.Commerce;
+
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
-
-    using Constants = Foundation.Commerce.Constants;
 
     [ExcludeFromCodeCoverage]
     public class RegisterRoutes
@@ -36,12 +36,12 @@ namespace HCA.Feature.Account.Infrastructure.Pipelines.Initialize
         private void RegisterHttpRoutes(RouteCollection routeCollection)
         {
             Assert.ArgumentNotNull(routeCollection, nameof(routeCollection));
-            
+
             const string AccountsControllerName = "Accounts";
 
             routeCollection.MapRoute(
                 nameof(AccountsController),
-                Foundation.Commerce.Constants.CommerceRoutePrefix + $"/{AccountsControllerName.ToLowerInvariant()}" + "/{action}",
+                Constants.CommerceRoutePrefix + $"/{AccountsControllerName.ToLowerInvariant()}" + "/{action}",
                 namespaces: new[] { typeof(AccountsController).Namespace },
                 defaults: new
                 {

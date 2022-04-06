@@ -14,29 +14,21 @@
 
 namespace HCA.Foundation.SitecoreCommerce.Services.Product
 {
-    using System.Linq;
-
     using Base.Context;
-
     using DependencyInjection;
-    
     using Foundation.Search.Models.Common;
     using Foundation.Search.Models.Entities.Product;
     using Foundation.Search.Providers.Product;
-
     using Loaders;
-
     using Mappers.Search;
-
-    using Providers;
     using Providers.Search;
-
     using Sitecore.Commerce.Engine.Connect.Interfaces;
     using Sitecore.Commerce.Engine.Connect.Search;
     using Sitecore.Commerce.Engine.Connect.Search.Models;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+    using System.Linq;
 
     [Service(typeof(ICommerceProductSearchService), Lifetime = Lifetime.Singleton)]
     public class CommerceProductSearchService : ICommerceProductSearchService
@@ -96,7 +88,14 @@ namespace HCA.Foundation.SitecoreCommerce.Services.Product
                         {
                             queryable = queryable.Where(
                                 item => item.Name.Contains(options.SearchKeyword) ||
-                                    item["_displayname"].Contains(options.SearchKeyword));
+                                    item["_displayname"].Contains(options.SearchKeyword) || 
+                                    item.ProductId == options.SearchKeyword);
+                        }
+
+                        if (options.ProductIds?.Any() == true)
+                        {
+                            queryable = queryable.Where(
+                                item => options.ProductIds.Contains(item.ProductId));
                         }
 
                         return commerceSearchOptions != null

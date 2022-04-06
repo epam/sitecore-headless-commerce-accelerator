@@ -18,8 +18,9 @@ import { Product, Variant } from 'services/commerce';
 
 export type ProductCardContextValue = {
   product: Product;
-  fallbackImageUrl: string | null;
-  productColors: Record<string, string>;
+  fallbackImageUrl?: string | null;
+  productColors?: Record<string, string>;
+  isSubscription?: boolean;
 
   selectedVariant: Variant;
   onChangeVariant: (variantId: string) => void;

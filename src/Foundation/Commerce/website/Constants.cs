@@ -16,16 +16,7 @@ namespace HCA.Foundation.Commerce
 {
     public static class Constants
     {
-        public enum ItemType
-        {
-            Unknown,
-
-            Category,
-
-            Product,
-
-            Variant
-        }
+        public enum ItemType { Unknown, Category, Product, Variant }
 
         public const string CommerceRoutePrefix = "apix/client/commerce";
 
@@ -37,16 +28,6 @@ namespace HCA.Foundation.Commerce
         public static class StorefrontSettings
         {
             public const string FederatedPaymentOptionTitle = "Federated";
-        }
-
-        public static class Promotion
-        {
-            public const string FreeShippingPromotion = "FreeShippingPromotion";
-        }
-
-        public static class Geolocation
-        {
-            public const double EarthRadiusInKilometers = 6371.0;
         }
 
         public static class PasswordRecovery
@@ -93,6 +74,20 @@ namespace HCA.Foundation.Commerce
         public static class Settings
         {
             public const string TokenExpirationTime = "RestorePasswordLinkExpirationTime";
+        }
+
+        public static class Party 
+        {
+            public const string Name = "Name";
+            public const string CountryCode = "CountryCode";
+            public const string RegionName = "RegionName";
+        }
+
+        public static class DefaultUser
+        {
+            public const string FirstNameDefault = "firstNameDefault";
+            public const string LastNameDefault = "lastNameDefault";
+            public const string BirthDateDefault = "BirthDateDefault";
         }
     }
 }

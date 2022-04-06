@@ -22,76 +22,88 @@ $select-size-m-height: 45px;
 $select-size-m-padding: 3px 8px;
 
 .Select {
-  color: #333;
-  border: 1px solid #e6e6e6;
-  background: transparent none repeat scroll 0 0;
-  box-sizing: border-box;
-  font-family: inherit;
-  transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-  cursor: pointer;
+  &-SelectWrapper {
+    color: #333;
+    border: 1px solid #e6e6e6;
+    background: transparent none repeat scroll 0 0;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+    cursor: pointer;
 
-  &:focus {
-    outline: none;
-  }
-
-  &_controlSize_m {
-    font-size: $select-size-m-font-size;
-    line-height: $select-size-m-line-height;
-    width: $select-size-m-width;
-    height: $select-size-m-height;
-    padding: $select-size-m-padding;
-
-    @media #{$xxs-layout} {
-      font-size: $select-size-m-mobile-font-size;
+    &:focus {
+      outline: none;
     }
-  }
 
-  &_disabled {
-    cursor: not-allowed;
-    background-color: #eee;
-  }
+    &_controlSize_m {
+      font-size: $select-size-m-font-size;
+      line-height: $select-size-m-line-height;
+      width: $select-size-m-width;
+      height: $select-size-m-height;
+      padding: $select-size-m-padding;
 
-  &_fullWidth {
-    width: 100%;
+      @media #{$xxs-layout} {
+        font-size: $select-size-m-mobile-font-size;
+      }
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+      background-color: #eee;
+    }
+
+    &_fullWidth {
+      width: 100%;
+    }
+    &_error {
+      border-color: $error-border-color;
+      color: $error-font-color;
+      margin-bottom: 0;
+      &:focus {
+        border-color: $error-border-color;
+        box-shadow: 0 0 6px #f8b9b7;
+        color: $error-font-color;
+        -webkit-box-shadow: 0 0 6px #f8b9b7;
+      }
+    }
+
+    &_address_form {
+      color: #000;
+      height: 40px;
+      padding: 0 15px;
+    }
+
+    &_order_summary {
+      font-size: 14px;
+      height: 40px;
+      padding: 0 50px 0 15px;
+      color: #242424;
+      -webkit-appearance: none;
+
+      @media #{$xxs-layout} {
+        font-size: $select-size-m-mobile-font-size;
+      }
+
+      option {
+        font-size: 14px;
+        padding-left: 10px;
+        border: 0 solid #626262;
+        background: #fff;
+      }
+    }
+
+    &_store_locator {
+      color: #606060;
+      height: 40px;
+      padding: 0 10px 0 20px;
+      margin-bottom: 0;
+    }
   }
 
   &_error {
-    &:focus {
-      border-color: #e9322d;
-      box-shadow: 0 0 6px #f8b9b7;
-      color: #b94a48;
-      -webkit-box-shadow: 0 0 6px #f8b9b7;
+    .Select-HelperText {
+      color: $error-font-color;
+      font-size: 10px;
     }
-  }
-
-  &_address_form {
-    color: #000;
-    height: 40px;
-    padding: 0 15px;
-  }
-
-  &_order_summary {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 50px 0 15px;
-    color: #242424;
-    -webkit-appearance: none;
-
-    @media #{$xxs-layout} {
-      font-size: $select-size-m-mobile-font-size;
-    }
-
-    option {
-      font-size: 14px;
-      padding-left: 10px;
-      border: 0 solid #626262;
-      background: #fff;
-    }
-  }
-
-  &_store_locator {
-    color: #606060;
-    height: 40px;
-    padding: 0 10px 0 20px;
   }
 }

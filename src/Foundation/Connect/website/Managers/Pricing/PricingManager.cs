@@ -27,8 +27,8 @@ namespace HCA.Foundation.Connect.Managers.Pricing
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Diagnostics;
 
-    using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
-    using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
+    using GetProductBulkPricesRequest = ConnectBase.Pipelines.Arguments.GetProductBulkPricesRequest;
+    using GetProductPricesRequest = ConnectBase.Pipelines.Arguments.GetProductPricesRequest;
 
     [Service(typeof(IPricingManager), Lifetime = Lifetime.Singleton)]
     public class PricingManager : BaseManager, IPricingManager

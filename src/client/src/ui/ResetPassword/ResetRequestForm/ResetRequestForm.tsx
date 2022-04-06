@@ -87,7 +87,8 @@ export const ResetRequestFormComponent: FC<ResetRequestFormProps> = ({
               })}
               disabled={!isEmailValid || requestPasswordResetState.status === LoadingStatus.Loading}
               buttonType="submit"
-              buttonTheme="grey"
+              buttonTheme="default"
+              buttonSize="s"
             >
               {requestPasswordResetState.status === LoadingStatus.Loading && <Icon icon="icon-spinner-solid" />}
               Reset password

@@ -643,6 +643,10 @@
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762af-b6bc-4d02-9355-11284473eaf4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Connect\website\HCA.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
       <Name>HCA.Foundation.Connect</Name>
@@ -660,9 +664,7 @@
       <Name>HCA.Foundation.Commerce</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

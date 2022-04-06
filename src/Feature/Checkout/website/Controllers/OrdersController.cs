@@ -41,7 +41,7 @@ namespace HCA.Feature.Checkout.Controllers
             return this.Execute(() => this.orderService.GetOrder(id));
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("orders")]
         public ActionResult GetOrders(GetOrdersRequest request)
         {

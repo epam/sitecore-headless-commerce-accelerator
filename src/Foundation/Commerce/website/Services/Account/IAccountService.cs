@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Services.Account
 {
+    using System;
     using System.Collections.Generic;
 
     using Base.Models.Result;
@@ -34,13 +35,17 @@ namespace HCA.Foundation.Commerce.Services.Account
 
         Result<IEnumerable<Address>> RemoveAddress(string userName, string externalId);
 
-        Result<VoidResult> UpdateAccount(string contactId, string firstName, string lastName);
+        Result<VoidResult> UpdateAccount(string contactId, string firstName, string lastName, string phone, string dateOfBirth);
 
         Result<VoidResult> DeleteAccount(string userId);
 
         Result<IEnumerable<Address>> UpdateAddress(string userName, Address address);
 
         Result<ValidateEmailResult> ValidateEmail(string email);
+
+        Result<Dictionary<string, string>> UploadUserImage();
+
+        Result<Dictionary<string, string>> DeleteUserImage();
 
         /// <summary>
         /// Runs "confirmPasswordRecovery" pipeline"

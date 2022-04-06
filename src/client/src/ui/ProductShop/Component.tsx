@@ -27,22 +27,9 @@ import './styles.scss';
 export default class ProductShopComponent extends Jss.SafePureComponent<ProductShopProps, ProductShopOwnState> {
   public constructor(props: ProductShopProps) {
     super(props);
-
-    this.state = {
-      firstLoad: true,
-    };
-  }
-
-  public componentDidUpdate() {
-    if (!this.props.isLoading) {
-      this.setState({ firstLoad: false });
-    }
   }
 
   protected safeRender() {
-    const { isLoading } = this.props;
-    const { firstLoad } = this.state;
-
     return (
       <div className={cnProductShop()}>
         <div className="col-md-3">
@@ -50,13 +37,6 @@ export default class ProductShopComponent extends Jss.SafePureComponent<ProductS
         </div>
         <div className="col-md-9">
           <Placeholder name="product-list" rendering={this.props.rendering} />
-        </div>
-        <div className={isLoading && firstLoad ? 'col-md-12 Loading' : 'hidden'}>
-          <div className={'Loading_Spinner Spinner Loading_Spinner_Display'} data-autotests="loading_spinner">
-            <div className="Object Object-one" />
-            <div className="Object Object-two" />
-            <div className="Object Object-three" />
-          </div>
         </div>
       </div>
     );

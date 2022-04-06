@@ -19,7 +19,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using AutoMapper;
     
     using Facet = Models.Entities.Search.Facet;
-    using FacetValue = Models.Entities.Search.FacetValue;
+    using FacetValue = Foundation.Search.Models.Common.FacetValue;
 
     [ExcludeFromCodeCoverage]
     public class SearchProfile : Profile

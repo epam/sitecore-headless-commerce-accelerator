@@ -4,7 +4,7 @@
 trigger: none
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'windows-latest'
 
 variables:
   build_cake: './src/build.cake'
@@ -12,9 +12,9 @@ variables:
 steps:
 
 - task: UseNode@1
-  displayName: Install Node 10
+  displayName: Install Node 16
   inputs:
-    script: 'npm --version'
+    version: '16.x'
 
 
 - task: DownloadSecureFile@1
@@ -90,6 +90,12 @@ steps:
       $(Pipeline.Workspace)/s/src/client/node_modules/.bin/cross-env.cmd NODE_ENV=production $(Pipeline.Workspace)/s/src/client/node_modules/.bin/webpack.cmd
     workingDirectory: './src/client'
 
+- task: PowerShell@2
+  displayName: Run client tests
+  inputs:
+    targetType: 'inline'
+    script: 'npm run test'
+    workingDirectory: './src/client'
 
 - task: PublishCodeCoverageResults@1
   displayName: Publish code coverage

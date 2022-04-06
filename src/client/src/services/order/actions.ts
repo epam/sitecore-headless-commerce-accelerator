@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,7 +79,7 @@ export const GetOrderHistoryFailure: FailureType = (error: string, stack?) => ({
 export const GetOrderHistorySuccess: actionCreators.GetOrderHistorySuccess = (
   orders: Commerce.Order[],
   currentPageNumber: number,
-  isLastPage: boolean
+  isLastPage: boolean,
 ) => ({
   payload: {
     currentPageNumber,
@@ -88,4 +88,32 @@ export const GetOrderHistorySuccess: actionCreators.GetOrderHistorySuccess = (
     status: LoadingStatus.Loaded,
   },
   type: actionTypes.GET_ORDER_HISTORY_SUCCESS,
+});
+
+export const GetAllOrders: actionCreators.GetAllOrders = () => ({
+  type: actionTypes.GET_ALL_ORDERS,
+});
+
+export const GetAllOrdersRequest: actionCreators.GetAllOrdersRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: actionTypes.GET_ALL_ORDERS_REQUEST,
+});
+
+export const GetAllOrdersSuccess: actionCreators.GetAllOrdersSuccess = (allOrders: Commerce.Order[]) => ({
+  payload: {
+    allOrders,
+    status: LoadingStatus.Loaded,
+  },
+  type: actionTypes.GET_ALL_ORDERS_SUCCESS,
+});
+
+export const GetAllOrdersFailure: FailureType = (error: string, stack?) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: actionTypes.GET_ALL_ORDERS_FAILURE,
 });

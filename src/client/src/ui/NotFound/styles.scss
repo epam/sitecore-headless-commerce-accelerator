@@ -14,62 +14,55 @@
 
 @import 'styles/variables';
 
-.notfound {
+.NotFound {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  margin: 100px 0;
-  &-404 {
-    margin: 80px 0;
-    font-size: 186px;
-    font-weight: 200;
-    color: $not-found-code;
+  margin-top: 107px;
+  margin-right: 0;
+  margin-left: 0;
+
+  @media (max-width: $container-tablet) {
+    margin-top: 53px;
   }
-  &-desc {
-    font-size: 33px;
-    font-weight: 200;
-    text-transform: uppercase;
-    margin-top: 30px;
-    letter-spacing: 3px;
-    line-height: 1.4;
-    height: 92px;
+
+  &-Title {
+    margin-bottom: 20px;
+    font-size: 72px;
+    line-height: 72px;
+    font-weight: normal;
+    color: $black;
+
+    @media (max-width: $container-tablet) {
+      margin-bottom: 36px;
+      font-size: 30px;
+      line-height: 30px;
+      font-weight: 600;
+    }
   }
-  &-subdesc {
-    font-size: 15px;
-    font-weight: 200;
-    margin-top: 0px;
-    margin-bottom: 25px;
+
+  &-Description {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 12px;
     width: 95%;
     max-width: 737px;
     align-self: center;
-    &-link {
-      color: $not-found-code;
-      font-weight: 200;
-      text-decoration: none;
-      border-bottom: 1px dashed $not-found-code;
-      border-radius: 2px;
-      &:hover {
-        color: $not-found-code;
-      }
-    }
   }
-  &-social-icon {
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    width: 40px;
-    font-size: 14px;
-    color: $not-found-code;
-    border: 1px solid #efefef;
-    border-radius: 50%;
-    margin: 3px 5px;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
+
+  &-Link {
+    color: $link-color;
+    font-weight: normal;
+    text-decoration: none;
+    border-bottom: none;
+    letter-spacing: 0.2px;
+
     &:hover {
-      color: #fff;
-      background-color: $not-found-code;
-      border-color: $not-found-code;
+      color: $link-color;
+      text-decoration: underline;
     }
   }
 }

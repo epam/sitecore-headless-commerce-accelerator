@@ -14,38 +14,36 @@
 
 namespace HCA.Foundation.Commerce.Services.Account
 {
+    using Base.Extensions;
+    using Base.Models.Result;
+    using Base.Services.Pipeline;
+    using Connect.Context.Storefront;
+    using Connect.Managers.Account;
+    using DependencyInjection;
+    using Foundation.Account.Managers.User;
+    using HCA.Foundation.Base.Services;
+    using HCA.Foundation.Commerce.Services.Cart;
+    using HCA.Foundation.ConnectBase.Entities;
+    using Infrastructure.Pipelines.ConfirmPasswordRecovery;
+    using Mappers.Account;
+    using Models.Entities.Account;
+    using Models.Entities.Addresses;
+    using Sitecore;
+    using Sitecore.Analytics;
+    using Sitecore.Commerce.Entities;
+    using Sitecore.Commerce.Entities.Customers;
+    using Sitecore.Commerce.Services.Customers;
+    using Sitecore.Configuration;
+    using Sitecore.Diagnostics;
+    using Sitecore.Pipelines;
+    using Sitecore.Resources.Media;
+    using Sitecore.SecurityModel;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using System.Web.Security;
-
-    using Foundation.Account.Managers.User;
-    using Base.Models.Result;
-    using Base.Services.Pipeline;
-
-    using Connect.Context.Storefront;
-    using Connect.Managers.Account;
-
-    using DependencyInjection;
-    using Infrastructure.Pipelines.ConfirmPasswordRecovery;
-
-    using Mappers.Account;
-
-    using Models.Entities.Account;
-    using Models.Entities.Addresses;
-    using Models.Entities.Users;
-
-    using Sitecore;
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Entities;
-    using Sitecore.Commerce.Entities.Customers;
-    using Sitecore.Commerce.Services.Customers;
-    using Sitecore.Diagnostics;
-    using Sitecore.Pipelines;
-
     using Constants = Commerce.Constants;
-    using HCA.Foundation.Base.Services;
+    using User = Models.Entities.Users.User;
 
     [Service(typeof(IAccountService), Lifetime = Lifetime.Singleton)]
     public class AccountService : IAccountService
@@ -59,8 +57,10 @@ namespace HCA.Foundation.Commerce.Services.Account
         private readonly IPipelineService pipelineService;
 
         private readonly IUserManager userManager;
-        
+
         private readonly IMembershipService membershipService;
+
+        private readonly ICartService cartService;
 
         public AccountService(
             IAccountManager accountManager,
@@ -68,7 +68,8 @@ namespace HCA.Foundation.Commerce.Services.Account
             IStorefrontContext storefrontContext,
             IPipelineService pipelineService,
             IUserManager userManager,
-            IMembershipService membershipService)
+            IMembershipService membershipService,
+            ICartService cartService)
         {
             Assert.ArgumentNotNull(accountManager, nameof(accountManager));
             Assert.ArgumentNotNull(accountMapper, nameof(accountMapper));
@@ -76,7 +77,9 @@ namespace HCA.Foundation.Commerce.Services.Account
             Assert.ArgumentNotNull(pipelineService, nameof(pipelineService));
             Assert.ArgumentNotNull(userManager, nameof(userManager));
             Assert.ArgumentNotNull(membershipService, nameof(membershipService));
+            Assert.ArgumentNotNull(cartService, nameof(cartService));
 
+            this.cartService = cartService;
             this.accountManager = accountManager;
             this.mapper = accountMapper;
             this.storefrontContext = storefrontContext;
@@ -119,7 +122,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 }
                 else
                 {
-                    result.SetErrors(addPartiesResult.SystemMessages.Select(sm => sm.Message).ToList());
+                    result.SetErrors(addPartiesResult.SystemMessages.Select(sm => sm.Message));
                 }
             }
             else
@@ -224,7 +227,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 userName,
                 (_, parties, result) =>
                 {
-                    result.SetResult(parties.Select(party => this.mapper.Map<Party, Address>(party)).ToList());
+                    result.SetResult(parties.Select(party => this.mapper.Map<Party, Address>(party)));
                     return result;
                 });
         }
@@ -255,7 +258,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 });
         }
 
-        public Result<VoidResult> UpdateAccount(string externalId, string firstName, string lastName)
+        public Result<VoidResult> UpdateAccount(string externalId, string firstName, string lastName, string phone = null, string dateOfBirth = null)
         {
             Assert.ArgumentNotNullOrEmpty(externalId, nameof(externalId));
             Assert.ArgumentNotNullOrEmpty(firstName, nameof(firstName));
@@ -269,6 +272,11 @@ namespace HCA.Foundation.Commerce.Services.Account
             {
                 getUserResult.CommerceUser.FirstName = firstName;
                 getUserResult.CommerceUser.LastName = lastName;
+                getUserResult.CommerceUser.SetPropertyValue("Phone", phone ?? "");
+
+                Context.User.Profile.SetCustomProperty("BirthDate", dateOfBirth ?? "");
+
+                Context.User.Profile.Save();
 
                 var userUpdateResult = this.accountManager.UpdateUser(getUserResult.CommerceUser);
 
@@ -285,6 +293,125 @@ namespace HCA.Foundation.Commerce.Services.Account
             return result;
         }
 
+        public Result<Dictionary<string, string>> UploadUserImage()
+        {
+            var result = new Result<Dictionary<string, string>>();
+
+            var fileSizeLimit = Math.Pow(1024, 2); // 1mb
+            var allowedExtensions = new List<string> { ".jpg", ".png" };
+            var userName = Context.User.LocalName;
+
+            var httpRequest = HttpContext.Current.Request;
+            HttpPostedFile postedFile = null;
+
+            if (httpRequest.Files.Count == 0)
+            {
+                result.SetError("No image provided");
+            }
+
+            else
+            {
+                postedFile = httpRequest.Files[0];
+            }
+
+            try
+            {
+                if (postedFile != null && postedFile.ContentLength > 0)
+                {
+                    var ext = postedFile.FileName
+                            .Substring(postedFile.FileName
+                            .LastIndexOf('.'))
+                            .ToLower();
+
+                    if (!allowedExtensions.Contains(ext))
+                    {
+                        result.SetError("Please upload image of type .jpg,.png.");
+                    }
+
+                    else if (postedFile.ContentLength > fileSizeLimit)
+                    {
+                        result.SetError("Please upload a file up to 1 mb.");
+                    }
+
+                    else
+                    {
+                        var mediaCreator = new MediaCreator();
+                        var database = Factory.GetDatabase("master");
+                        var options = new MediaCreatorOptions
+                        {
+                            Versioned = false,
+                            IncludeExtensionInItemName = false,
+                            Database = database,
+                            Destination = $"/sitecore/media library/HCA/Userpics/{userName}",
+                            OverwriteExisting = true
+                        };
+
+
+                        Sitecore.Data.Items.Item item;
+                        using (new SecurityDisabler())
+                        {
+                            item = mediaCreator.CreateFromStream(
+                                postedFile.InputStream,
+                                postedFile.FileName,
+                                options);
+                        }
+
+                        var updatedTimeTicks = item.Statistics.Updated.Ticks;
+                        var mediaItem = new Sitecore.Data.Items.MediaItem(item);
+
+                        result.SetResult(
+                            new Dictionary<string, string>
+                            {
+                                { "initiator", $"{Context.User.Profile.FullName}" },
+                                { "imageUrl", $"{mediaItem.ImageUrl() + $"?{updatedTimeTicks}"}" }
+                            });
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                result.SetError(exception.Message);
+            }
+
+            return result;
+        }
+
+        public Result<Dictionary<string, string>> DeleteUserImage()
+        {
+            var result = new Result<Dictionary<string, string>>();
+
+            var userName = Context.User.LocalName;
+            using (new SecurityDisabler())
+            {
+                try
+                {
+                    var item = Context.Database.GetItem($"/sitecore/media library/HCA/Userpics/{userName}");
+                    if (item == null)
+                    {
+                        result.SetError("Image not found");
+                        return result;
+                    }
+
+                    item.Delete();
+
+                    result.SetResult(
+                        new Dictionary<string, string>
+                        {
+                            { "initiator", $"{Context.User.Profile.FullName}" },
+                            { "Status", "The image has been removed" }
+                        });
+                }
+
+                catch (Exception ex)
+                {
+                    result.SetError(ex.Message);
+                }
+            }
+
+            return result;
+        }
+
+
         public Result<VoidResult> DeleteAccount(string userId)
         {
             Assert.ArgumentNotNullOrEmpty(userId, nameof(userId));
@@ -295,11 +422,35 @@ namespace HCA.Foundation.Commerce.Services.Account
 
             if (getUserResult.Success)
             {
-                var deleteResult = this.accountManager.DeleteUser(getUserResult.CommerceUser);
+                var userName = this.membershipService.GetUserNameByEmail(getUserResult.CommerceUser.Email);
+                var sitecoreUser = this.membershipService.GetUser(userName);
 
-                if (!deleteResult.Success)
+                sitecoreUser.ChangePassword(sitecoreUser.ResetPassword(), $"{Guid.NewGuid():N}");
+
+                getUserResult.CommerceUser.FirstName = Constants.DefaultUser.FirstNameDefault;
+                getUserResult.CommerceUser.LastName = Constants.DefaultUser.LastNameDefault;
+                getUserResult.CommerceUser.Email = $"{Guid.NewGuid():N}@wooli.com";
+
+                Context.User.Profile.SetCustomProperty("BirthDate", Constants.DefaultUser.BirthDateDefault);
+                Context.User.Profile.Save();
+
+                var customerService = new CustomerServiceProvider();
+                customerService.DisableUser(new DisableUserRequest(getUserResult.CommerceUser));
+
+                cartService.CleanCartLines();
+
+                var userDeleteResult = this.accountManager.UpdateUser(getUserResult.CommerceUser);
+
+                var manager = Factory.CreateObject("tracking/contactManager", true) as Sitecore.Analytics.Tracking.ContactManager;
+                manager.RemoveFromSession(Tracker.Current.Contact.ContactId);
+                Tracker.Current.Session.Contact = manager.LoadContact(Tracker.Current.Contact.ContactId);
+
+                var args = new Foundation.Account.Infrastructure.Pipelines.Logout.LogoutPipelineArgs();
+                this.pipelineService.RunPipeline(Constants.Pipelines.Logout, args);
+
+                if (!userDeleteResult.Success)
                 {
-                    result.SetErrors(deleteResult.SystemMessages.Select(sm => sm.Message).ToList());
+                    result.SetErrors(userDeleteResult.SystemMessages.Select(sm => sm.Message).ToList());
                 }
             }
             else
@@ -342,7 +493,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                             return this.GetAddresses(userName);
                         }
 
-                        result.SetErrors(updatePartyResponse.SystemMessages.Select(sm => sm.Message).ToList());
+                        result.SetErrors(updatePartyResponse.SystemMessages.Select(sm => sm.Message));
                     }
                     else
                     {
@@ -562,7 +713,7 @@ namespace HCA.Foundation.Commerce.Services.Account
                 ?.Name;
         }
 
-        
+
 
         private Result<TResult> ResolveResult<TResult, TArgs>(TArgs args, Func<TArgs, TResult> function = null)
             where TResult : class

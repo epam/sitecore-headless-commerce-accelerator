@@ -1,0 +1,73 @@
+//    Copyright 2022 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.PersonalInformationStatic {
+  display: flex;
+  flex-wrap: wrap;
+  order: 2;
+
+  @media (max-width: $screen-sm) {
+    display: block;
+  }
+
+  &-Item {
+    border-bottom: none;
+    margin-bottom: 45px;
+    width: 50%;
+
+    @media (max-width: $screen-sm) {
+      width: 100%;
+      margin-bottom: 14px;
+      border-bottom: 1px solid $grey-light;
+    }
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  &-Field {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 8px;
+    color: $black;
+
+    @media (max-width: $screen-sm) {
+      margin-bottom: 1px;
+      color: $grey;
+    }
+  }
+
+  &-Value {
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+    color: $black;
+  }
+
+  &-Placeholder {
+    height: 24px;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+    color: $grey-middle;
+  }
+}

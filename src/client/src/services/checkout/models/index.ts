@@ -34,6 +34,7 @@ export interface CurrentStepPayload extends Partial<CurrentStep> {}
 export interface FulfillmentOptions {
   useForBillingAddress: boolean;
   saveToMyAccount: boolean;
+  selectedAddressOption: string;
 }
 
 export interface ShippingStep {

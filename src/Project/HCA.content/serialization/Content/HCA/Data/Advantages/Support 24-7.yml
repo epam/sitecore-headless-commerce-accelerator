@@ -20,17 +20,17 @@ Languages:
     - ID: "80968376-a314-4a17-8182-9123a819536b"
       Hint: Link
       Value: |
-        <link linktype="external" url="https://www.google.com/" anchor="" target="_blank" />
+        <link text="24/7 Online support" anchor="" linktype="internal" class="" title="" target="_blank" querystring="" id="{5D863A48-440E-4EA9-A7DA-7300BB66CB26}" />
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "797a90ea-01f6-4813-89f6-7ccd49722b0c"
+      Value: "295c8e4d-241f-4eab-b546-901fb1295ac8"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\unicorn
+        sitecore\AGolikov
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20210811T130620Z
+      Value: 20211203T122008Z
     - ID: "ff3f4d26-a588-421b-b17c-3aa70552e6da"
       Hint: Image
       Value: support

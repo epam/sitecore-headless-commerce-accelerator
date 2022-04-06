@@ -234,4 +234,11 @@
       }
     }
   }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    &::after {
+      display: none;
+    }
+  }
 }

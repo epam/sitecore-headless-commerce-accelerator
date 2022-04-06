@@ -14,12 +14,12 @@
 
 import axios from 'axios';
 
-import { Facet, ProductSearchResults } from 'services/commerce';
+import { Facet, GetProductsByIdsResult, ProductSearchResults } from 'services/commerce';
 import { Result } from 'models';
 
 import { ProductsSearchRequest, SortDirection } from 'services/catalog/models/generated';
 
-import { ProductSearchSuggestionResponse, SearchProductsParams } from './models';
+import { GetProductsByIdsParams, ProductSearchSuggestionResponse, SearchProductsParams } from './models';
 
 const parseFacets = (facetsString: string): Facet[] => {
   const facets: Facet[] = [];
@@ -67,6 +67,24 @@ export const searchProducts = async (params: SearchProductsParams): Promise<Resu
         products: data.data.products.filter((x) => x.productId),
         totalItemCount: data.data.totalItemCount,
         totalPageCount: data.data.totalPageCount,
+      },
+    };
+  } catch (e) {
+    return { error: e };
+  }
+};
+
+export const getProductsByIds = async (params: GetProductsByIdsParams): Promise<Result<GetProductsByIdsResult>> => {
+  try {
+    const response = await axios.post<Result<GetProductsByIdsResult>>('/apix/client/commerce/search/products', params);
+
+    const { data } = response;
+    if (!data.data || data.error) {
+      return { error: new Error(data.error.message) };
+    }
+    return {
+      data: {
+        products: data.data.products.filter((x) => x.productId),
       },
     };
   } catch (e) {

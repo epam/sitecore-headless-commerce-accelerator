@@ -28,5 +28,12 @@ namespace HCA.Feature.Account.Models.Requests
 
         [Required]
         public string LastName { get; set; }
+
+        [CustomValidation(typeof(DateValidator), "Validate")]
+        public string DateOfBirth { get; set; }
+
+        [RegularExpression(@"^\+[0-9]+$", ErrorMessage = "Phone number is invalid")]
+        [MaxLength(15, ErrorMessage = "Phone length exceeds 15 symbols")]
+        public string PhoneNumber { get; set; }
     }
 }

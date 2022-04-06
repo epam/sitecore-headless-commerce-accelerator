@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,7 @@ const orderReducer = (state: CurrentOrderState = orderInitialState, action: Acti
 export const orderHistoryInitialState: CurrentOrderHistoryState = {
   currentPageNumber: 0,
   isLastPage: false,
-  status: LoadingStatus.NotLoaded
+  status: LoadingStatus.NotLoaded,
 };
 
 const orderHistoryReducer = (state: CurrentOrderHistoryState = orderHistoryInitialState, action: Action) => {
@@ -60,12 +60,34 @@ const orderHistoryReducer = (state: CurrentOrderHistoryState = orderHistoryIniti
   }
 };
 
+export const allOrdersInitialState = {
+  status: LoadingStatus.NotLoaded,
+};
+
+const allOrdersReducer = (state: any = allOrdersInitialState, action: Action) => {
+  switch (action.type) {
+    case actionTypes.GET_ALL_ORDERS:
+    case actionTypes.GET_ALL_ORDERS_FAILURE:
+    case actionTypes.GET_ALL_ORDERS_REQUEST:
+    case actionTypes.GET_ALL_ORDERS_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 export const initialState: OrderState = {
   currentOrder: orderInitialState,
   orderHistory: orderHistoryInitialState,
+  allOrders: allOrdersInitialState,
 };
 
 export default combineReducers<OrderState>({
   currentOrder: orderReducer,
   orderHistory: orderHistoryReducer,
+  allOrders: allOrdersReducer,
 });

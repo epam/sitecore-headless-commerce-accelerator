@@ -111,7 +111,19 @@ export function* removeCartLine(action: Action<RemoveCartLinePayload>) {
   }
 }
 
-export function* updateCartItem(requestData: Action<UpdateCartItemRequestPayload>) {
+export function* cleanCart() {
+  yield put(actions.CleanCartRequest());
+
+  const { data, error }: Result<Commerce.Cart> = yield call(ShoppingCart.cleanCart);
+
+  if (error) {
+    yield put(actions.CleanCartFailure(error.message || 'can not remove cart lines'));
+  }
+
+  yield put(actions.CleanCartSuccess(data));
+}
+
+export function* updateCartItem(requestData: Action<UpdateCartItemRequestPayload>): SagaIterator {
   const { productId, variantId, quantity } = requestData.payload;
   const cartData: ShoppingCartData = yield select(shoppingCartData);
   const cartLines = (cartData && cartData.cartLines) || [];
@@ -166,6 +178,7 @@ function* watch(): SagaIterator {
   yield takeEvery(actionTypes.UPDATE_CART_LINE, updateCartLine);
   yield takeEvery(actionTypes.REMOVE_CART_LINE, removeCartLine);
   yield takeEvery(actionTypes.UPDATE_CART_ITEM_REQUEST, updateCartItem);
+  yield takeEvery(actionTypes.CLEAN_CART, cleanCart);
 }
 
 export default [watch()];

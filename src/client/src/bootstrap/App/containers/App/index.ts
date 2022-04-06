@@ -32,6 +32,7 @@ const mapStateToProps = (state: AppState): AppStateProps => {
 
   return {
     dictionary: viewBag.dictionary,
+    isLoaded: sitecore.status === LoadingStatus.Loaded,
     isLoading: sitecore.status === LoadingStatus.Loading,
     language: viewBag.language || 'EN',
     rendering: sitecore.route,

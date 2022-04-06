@@ -35,10 +35,11 @@ export const MenuItem: FC<MenuLinkDataSource> = ({ uri }) => {
       value: { href, text },
     },
   } = uri;
+  const link = `${href}?q=`;
 
   return (
     <li className={cnNavigation('MenuItem')}>
-      <NavigationLink className={cnNavigation('MenuItemLink')} to={href} onClick={handleLinkClick}>
+      <NavigationLink className={cnNavigation('MenuItemLink')} to={link} onClick={handleLinkClick}>
         {text}
       </NavigationLink>
     </li>

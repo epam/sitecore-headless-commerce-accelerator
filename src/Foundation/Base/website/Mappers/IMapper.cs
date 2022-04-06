@@ -12,6 +12,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+using AutoMapper;
+using System;
+
 namespace HCA.Foundation.Base.Mappers
 {
     /// <summary>
@@ -27,5 +30,6 @@ namespace HCA.Foundation.Base.Mappers
         /// <param name="source">The source object to map</param>
         /// <returns>Mapping result object</returns>
         TResult Map<TSource, TResult>(TSource source);
+        TResult Map<TSource, TResult>(TSource source, Action<IMappingOperationOptions<TSource, TResult>> opts);
     }
 }

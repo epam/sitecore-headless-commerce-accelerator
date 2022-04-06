@@ -14,25 +14,39 @@
 
 import * as JSS from 'Foundation/ReactJss';
 import * as React from 'react';
+import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 
 import { NavigationLink } from 'ui/NavigationLink';
+import { getRenderingSitecoreProps } from 'utils';
 import { NotFoundProps, NotFoundState } from './models';
+import { cnNotFound } from './cn';
 import './styles.scss';
+import { BackToTop } from '../../components/BackToTop';
 
-export class NotFound extends JSS.SafePureComponent<NotFoundProps, NotFoundState> {
+class NotFoundComponent extends JSS.SafePureComponent<NotFoundProps, NotFoundState> {
   protected safeRender() {
+    const rendering = getRenderingSitecoreProps(this.props);
+    const { isLoaded } = this.props;
     return (
-      <div className="notfound">
-        <div className="notfound-404">404</div>
-        <div className="notfound-desc">Oops! Nothing was found</div>
-        <div className="notfound-subdesc">
-          The page you are looking for might have been removed had its name changed or is temporarily unavailable.
-          <NavigationLink to="/" className="notfound-subdesc-link">
-            {' '}
-            Return to homepage
-          </NavigationLink>
+      isLoaded && (
+        <div className={cnNotFound()}>
+          <div className={cnNotFound('Title')}>404</div>
+          <div className={cnNotFound('Description')}>
+            Unfortunately, the page you are looking for is not found.
+            <br />
+            You might want to go to the
+            <NavigationLink to="/" className={cnNotFound('Link')}>
+              {' '}
+              Home page{' '}
+            </NavigationLink>
+            or browse shop categories from main menu
+          </div>
+          <Placeholder name="main-content" rendering={rendering} />
+          <BackToTop disabled={false} />
         </div>
-      </div>
+      )
     );
   }
 }
+
+export const NotFound = JSS.rendering(NotFoundComponent);

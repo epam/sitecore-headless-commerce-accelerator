@@ -47,6 +47,12 @@ export interface SavedAddressListState extends Status {
   };
 }
 
+export interface SavedCardListState extends Status {
+  items: {
+    [key: string]: Commerce.Card;
+  };
+}
+
 export interface UpdateAccountState extends Status {}
 
 export interface DeleteAccountState extends Status {}
@@ -61,14 +67,27 @@ export interface ResetPasswordState extends Status {
   token: string;
 }
 
+export interface ImageState {
+  addAccountImage: AddImageState;
+  removeAccountImage: RemoveImageState;
+}
+
+export interface AddImageState extends Status {
+  imageUrl: string;
+}
+
+export interface RemoveImageState extends Status {}
+
 export interface AccountState {
   signUp: SignUpState;
   changePassword: ChangePasswordState;
   savedAddressList: SavedAddressListState;
+  savedCardList: SavedCardListState;
   update: UpdateAccountState;
   delete: DeleteAccountState;
   requestPasswordReset: RequestPasswordResetState;
   resetPassword: ResetPasswordState;
+  accountImage: ImageState;
 }
 
 export interface GlobalAccountState {
@@ -95,10 +114,24 @@ export interface AddressPayload extends Status {
   };
 }
 
+export interface CardPayload extends Status {
+  items: {
+    [key: string]: Commerce.Card;
+  };
+}
+
 export interface UpdateAccountPayload {
   firstName: string;
   lastName: string;
+  dateOfBirth?: string;
+  phoneNumber?: string;
 }
+
+export interface AddImagePayload {
+  image: File;
+}
+
+export interface RemoveImagePayload {}
 
 export interface RequestPasswordResetPayload {
   email: string;
@@ -112,6 +145,13 @@ export interface ResetPasswordPayload {
 
 export interface CreateAccountResponse extends OkJsonResultModel<Commerce.User> {}
 
+export interface AddImageResponse {
+  data: {
+    imageUrl: string;
+  };
+}
+export interface RemoveImageResponse extends OkJsonResultModel<VoidResult> {}
+
 export interface EmailValidationResponse extends OkJsonResultModel<Commerce.ValidateEmail> {}
 
 export interface ChangePasswordResponse extends OkJsonResultModel<VoidResult> {}
@@ -121,6 +161,8 @@ export interface UpdateAccountResponse extends OkJsonResultModel<VoidResult> {}
 export interface DeleteAccountResponse extends OkJsonResultModel<VoidResult> {}
 
 export interface AddressResponse extends OkJsonResultModel<Commerce.Address[]> {}
+
+export interface CardResponse extends OkJsonResultModel<Commerce.Card[]> {}
 
 export interface ConfirmPasswordRecoveryResponse extends OkJsonResultModel<{ IsEmailValid: boolean }> {}
 

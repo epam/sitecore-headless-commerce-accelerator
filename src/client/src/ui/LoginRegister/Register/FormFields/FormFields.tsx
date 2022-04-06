@@ -99,10 +99,10 @@ export const FormFields: FC = () => {
         ),
       );
     }
-  }, [stateFormFields, formValues, accountValidation.status, returnUrl]);
+  }, [accountValidation.status]);
 
   useEffect(() => {
-    return () => dispatch(onResetValidation());
+    dispatch(onResetValidation());
   }, []);
 
   const handleFormSubmit = useCallback(() => {
@@ -122,7 +122,18 @@ export const FormFields: FC = () => {
   }, [formValues, setStateFormFields]);
 
   const formDisabled =
-    createAccount.status === LoadingStatus.Loading || accountValidation.status === LoadingStatus.Loading;
+    createAccount.status === LoadingStatus.Loading ||
+    accountValidation.status === LoadingStatus.Loading ||
+    createAccount.status === LoadingStatus.Loaded;
+
+  const handlerFocusField = (field: string) => {
+    setStateFormFields((value) => ({
+      ...value,
+      [field]: {
+        hasError: false,
+      },
+    }));
+  };
 
   return (
     <>
@@ -139,6 +150,7 @@ export const FormFields: FC = () => {
           fullWidth={true}
           error={get(stateFormFields, ['firstName', 'hasError'], false)}
           helperText={get(stateFormFields, ['firstName', 'message'])}
+          handlerFocusField={() => handlerFocusField('firstName')}
         />
       </div>
       <div className={cnRegister('FormField')}>
@@ -150,6 +162,7 @@ export const FormFields: FC = () => {
           fullWidth={true}
           error={get(stateFormFields, ['lastName', 'hasError'], false)}
           helperText={get(stateFormFields, ['lastName', 'message'])}
+          handlerFocusField={() => handlerFocusField('lastName')}
         />
       </div>
       <div className={cnRegister('FormField')}>
@@ -161,6 +174,7 @@ export const FormFields: FC = () => {
           fullWidth={true}
           error={get(stateFormFields, ['email', 'hasError'], false)}
           helperText={get(stateFormFields, ['email', 'message'])}
+          handlerFocusField={() => handlerFocusField('email')}
         />
       </div>
       <div className={cnRegister('FormField')}>
@@ -173,6 +187,7 @@ export const FormFields: FC = () => {
           error={get(stateFormFields, ['password', 'hasError'], false)}
           helperText={get(stateFormFields, ['password', 'message'])}
           onClickAdornment={handleToggleShowPassword}
+          handlerFocusField={() => handlerFocusField('password')}
         />
       </div>
       <div className={cnRegister('FormField')}>
@@ -185,13 +200,14 @@ export const FormFields: FC = () => {
           error={get(stateFormFields, ['confirmPassword', 'hasError'], false)}
           helperText={get(stateFormFields, ['confirmPassword', 'message'])}
           onClickAdornment={handleToggleShowConfirmPassword}
+          handlerFocusField={() => handlerFocusField('confirmPassword')}
         />
       </div>
       <div className={cnRegister('Actions')}>
         <Submit
           className={cnRegister('Button')}
-          buttonTheme="grey"
-          buttonSize="s"
+          buttonTheme="default"
+          buttonSize="m"
           disabled={formDisabled}
           onSubmitHandler={handleFormSubmit}
         >

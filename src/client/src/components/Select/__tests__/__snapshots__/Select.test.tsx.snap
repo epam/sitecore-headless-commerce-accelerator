@@ -1,26 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select renders correctly 1`] = `
-<select
-  className="Select Select_controlSize_m"
-  disabled={false}
-  id="country"
-  name="country"
+<div
+  className="Select"
 >
-  <option
-    value=""
+  <select
+    className="Select-SelectWrapper Select-SelectWrapper_controlSize_m"
+    disabled={false}
+    id="country"
+    name="country"
   >
-    Not Selected
-  </option>
-  <option
-    value="CA"
-  >
-    Canada
-  </option>
-  <option
-    value="US"
-  >
-    United States
-  </option>
-</select>
+    <option
+      value=""
+    >
+      Not Selected
+    </option>
+    <option
+      value="CA"
+    >
+      Canada
+    </option>
+    <option
+      value="US"
+    >
+      United States
+    </option>
+  </select>
+</div>
 `;

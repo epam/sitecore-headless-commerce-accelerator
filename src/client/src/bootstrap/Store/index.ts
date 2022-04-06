@@ -1,5 +1,5 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
@@ -51,7 +51,8 @@ export default class AppStore {
     const composeEnhancers = this.getComposeEnhancer();
 
     const enhancer = composeEnhancers(applyMiddleware(...middlewares));
-    const store = createStore(makeRootReducer(this.routerHistory), preloadedState, enhancer);
+
+    const store = createStore(makeRootReducer(this.routerHistory), preloadedState as AppState, enhancer);
 
     if (!ssr) {
       this.runSaga();

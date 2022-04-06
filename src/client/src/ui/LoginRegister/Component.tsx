@@ -32,36 +32,27 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
 
     this.state = {
       isSignUp: props.currentForm === 'register',
+      mounted: false,
     };
   }
 
+  public componentDidMount() {
+    this.setState({ mounted: true });
+  }
   public componentDidUpdate() {
     const { currentForm } = this.props;
 
     this.setState({ isSignUp: currentForm === 'register' });
   }
 
-  public getCurrentForm() {
-    switch (this.props.currentForm) {
-      case 'register':
-        return <Register />;
-      case 'login':
-        return <Login />;
-      default:
-        return (
-          <div className="lazyLoad_spinner" data-autotests="loading_spinner">
-            <Spinner className="Loading" />
-          </div>
-        );
-    }
-  }
-
   // tslint:disable-next-line:cognitive-complexity
   protected safeRender() {
-    const { commerceUser } = this.props;
-    const { isSignUp } = this.state;
+    const { commerceUser, loaded } = this.props;
+    const { isSignUp, mounted } = this.state;
 
-    return (
+    return !mounted || !loaded ? (
+      <Spinner data-autotests="loading_spinner" />
+    ) : (
       <section className="login-register">
         {!!commerceUser && commerceUser.customerId ? (
           <div className="row login-register-content">
@@ -70,7 +61,7 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
                 <div className="account-created-message_inform">Congratulations!</div>
                 <div className="account-created-message_inform">Your Account was successfully created!</div>
                 <div className="account-created-message_email">Email: {commerceUser.email}</div>
-                <NavigationLink className="btn btn-new-design-active" to="/account">
+                <NavigationLink className="btn btn-new-design-active" to="/MyAccount">
                   Go to Account Settings
                 </NavigationLink>
               </div>
@@ -101,7 +92,7 @@ export class LoginRegisterFormComponent extends Jss.SafePureComponent<LoginRegis
                     register
                   </div>
                 </div>
-                {this.getCurrentForm()}
+                {isSignUp ? <Register /> : <Login />}
               </div>
             </div>
           </div>

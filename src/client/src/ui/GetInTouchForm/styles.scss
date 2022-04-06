@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .contact-area_content_form {
   padding: 50px 110px;
@@ -58,10 +59,8 @@
         color: $contact-button-color;
         border: none;
         background-color: $contact-button-background-color;
-
-        &:hover {
-          background-color: $theme-color;
-        }
+        border: 1px solid $contact-button-background-color;
+        @include primary-button-hover-focus-active;
 
         &:disabled,
         button[disabled] {

@@ -14,7 +14,7 @@ branches:
     regex: feature?[/]
     mode: ContinuousDeployment
     increment: Inherit
-    tag: 'dev'
+    tag: 'alpha'
     is-release-branch: false
     prevent-increment-of-merged-branch-version: true
 

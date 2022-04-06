@@ -26,5 +26,10 @@ namespace HCA.Foundation.Base
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver()
         };
+
+        public static class Pipelines
+        {
+            public const string ExtendedSearchQuery = "hca.foundation.base.extendedSearchQuery";
+        }
     }
 }

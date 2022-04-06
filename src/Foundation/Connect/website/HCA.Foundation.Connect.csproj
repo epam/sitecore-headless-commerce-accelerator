@@ -611,10 +611,8 @@
     <Compile Include="Managers\Order\OrderManager.cs" />
     <Compile Include="Managers\Payment\IPaymentManager.cs" />
     <Compile Include="Managers\Payment\PaymentManager.cs" />
-    <Compile Include="Managers\Promotion\IPromotionManager.cs" />
-    <Compile Include="Managers\Promotion\PromotionManager.cs" />
-    <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Cart\CartMapper.cs" />
+    <Compile Include="Mappers\Cart\ICartMapper.cs" />
     <Compile Include="Mappers\Catalog\CatalogMapper.cs" />
     <Compile Include="Mappers\Catalog\ICatalogMapper.cs" />
     <Compile Include="Mappers\Payment\IPaymentMapper.cs" />
@@ -664,6 +662,10 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762AF-B6BC-4D02-9355-11284473EAF4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>
       <Name>HCA.Foundation.GlassMapper</Name>

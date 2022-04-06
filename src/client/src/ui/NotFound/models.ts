@@ -14,10 +14,12 @@
 
 import * as Jss from 'Foundation/ReactJss';
 
-export interface NotFoundDataSource extends Jss.BaseDataSourceItem {
-  text: Jss.GraphQLField<Jss.TextField>;
+export interface NotFoundProps {
+  isLoaded: boolean;
+  rendering: {
+    name: string;
+    placeholders: {};
+  };
 }
-
-export interface NotFoundProps extends Jss.GraphQLRendering<NotFoundDataSource> {}
 
 export interface NotFoundState extends Jss.SafePureComponentState {}

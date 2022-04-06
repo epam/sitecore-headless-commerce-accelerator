@@ -33,5 +33,11 @@ namespace HCA.Foundation.Commerce.Models.Entities.Users
         public string LastName { get; set; }
 
         public string UserName { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public string DateOfBirth { get; set; }
     }
 }

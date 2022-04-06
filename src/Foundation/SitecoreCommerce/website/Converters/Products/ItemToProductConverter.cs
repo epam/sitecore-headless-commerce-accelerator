@@ -27,8 +27,7 @@ namespace HCA.Foundation.SitecoreCommerce.Converters.Products
     using Connect.Models.Catalog;
 
     using DependencyInjection;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
+    using HCA.Foundation.ConnectBase.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;

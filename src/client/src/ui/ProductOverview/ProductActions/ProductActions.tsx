@@ -12,56 +12,18 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useState } from 'react';
-
-import axios, { AxiosError } from 'axios';
-
-import { notify, notifySubscribed } from 'services/notifications';
-import { StockStatus } from 'services/catalog';
+import React, { FC } from 'react';
 
 import { AddToCart } from 'ui/ProductCard';
 
-import { Button, Icon } from 'components';
+import { Icon } from 'components';
 
-import { SubmitEmailDialog } from '../SubmitEmailDialog';
 import { ProductActionsProps } from './models';
 
 import { cnProductActions } from './cn';
 import './ProductActions.scss';
 
-export const ProductActionsComponent: FC<ProductActionsProps> = ({
-  productId,
-  sitecoreContext,
-  commerceUser,
-  variants,
-}) => {
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  const [variant] = variants;
-
-  const outOfStock = variant && variant.stockStatusName === StockStatus.OutOfStock;
-
-  const subscribeToOOSProduct = (email: string) => {
-    const getApi = process.env.OUT_OF_STOCK_SUBSCRIPTION_API_URL || 'http://localhost:7071/api';
-    const outOfStockSubscriptionApiURL = getApi + '/Subscribe';
-    const data = {
-      email,
-      productId,
-    };
-
-    axios
-      .post(outOfStockSubscriptionApiURL, data)
-      .then(() => notifySubscribed(sitecoreContext.product))
-      .catch((error: AxiosError) => notify('error', error.message));
-  };
-
-  const handleInformMeButtonClick = useCallback(() => {
-    if (commerceUser && commerceUser.customerId) {
-      subscribeToOOSProduct(commerceUser.email);
-    } else {
-      setDialogOpen(true);
-    }
-  }, [commerceUser]);
+export const ProductActionsComponent: FC<ProductActionsProps> = () => {
 
   return (
     <>
@@ -71,18 +33,6 @@ export const ProductActionsComponent: FC<ProductActionsProps> = ({
           <Icon icon="icon-print" />
         </a>
       </div>
-      {outOfStock && (
-        <>
-          <Button buttonTheme="text" className={cnProductActions('InformMeButton')} onClick={handleInformMeButtonClick}>
-            Inform me when it back in
-          </Button>
-          <SubmitEmailDialog
-            dialogOpen={dialogOpen}
-            toggleDialog={setDialogOpen}
-            submitDialogData={subscribeToOOSProduct}
-          />
-        </>
-      )}
     </>
   );
 };

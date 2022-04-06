@@ -24,7 +24,7 @@ export const FIELDS = keyMirror(
     FIRST_NAME: null,
     LAST_NAME: null,
     POSTAL_CODE: null,
-    PROVINCE: null,
+    STATE: null,
     SAVE_TO_MY_ACCOUNT: null,
     SELECTED_ADDRESS: null,
     SELECTED_SHIPPING_METHOD: null,
@@ -37,3 +37,12 @@ export const ADDRESS_TYPE = keyMirror({
   NEW: null,
   SAVED: null,
 });
+
+export const FIELD_TYPES = {
+  FIRST_NAME: 'firstName',
+  LAST_NAME: 'lastName',
+  ADDRESS_LINE: 'addressLine',
+  CITY: 'city',
+  POSTAL_CODE: 'postalCode',
+  EMAIL: 'email',
+};

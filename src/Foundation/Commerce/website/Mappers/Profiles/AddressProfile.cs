@@ -17,10 +17,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using System.Diagnostics.CodeAnalysis;
 
     using AutoMapper;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Models.Entities.Addresses;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
 
     [ExcludeFromCodeCoverage]

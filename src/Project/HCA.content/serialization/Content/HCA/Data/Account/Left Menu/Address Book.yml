@@ -1,0 +1,31 @@
+﻿---
+ID: "1cbdba53-3c52-44a5-8037-ba449fda78c9"
+Parent: "dab1d1da-88e0-41b2-b79f-c7a678a8aad9"
+Template: "676a1efd-5cb4-4207-9eb2-5fe6e43e13ea"
+Path: /sitecore/content/HCA/Data/Account/Left Menu/Address Book
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 700
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T205550Z
+    - ID: "2a4543cc-a255-4086-b245-749fc96c549e"
+      Hint: Uri
+      Value: |
+        <link text="Address book" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{9C857814-FA05-4794-95DD-F586E5EB8DE9}" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "1491f7ab-d00d-4823-8896-f8dfed5cb236"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220118T102352Z

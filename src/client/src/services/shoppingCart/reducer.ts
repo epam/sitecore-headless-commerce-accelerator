@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -40,7 +40,10 @@ export default (state: ShoppingCartState = initialState, action: Action) => {
     case actionTypes.UPDATE_CART_LINE_FAILURE:
     case actionTypes.REMOVE_CART_LINE_REQUEST:
     case actionTypes.REMOVE_CART_LINE_SUCCESS:
-    case actionTypes.REMOVE_CART_LINE_FAILURE: {
+    case actionTypes.REMOVE_CART_LINE_FAILURE:
+    case actionTypes.CLEAN_CART_FAILURE:
+    case actionTypes.CLEAN_CART_REQUEST:
+    case actionTypes.CLEAN_CART_SUCCESS: {
       return {
         ...state,
         ...action.payload,

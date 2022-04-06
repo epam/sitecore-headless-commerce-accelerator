@@ -15,10 +15,9 @@
 namespace HCA.Foundation.Connect.Managers.Cart
 {
     using System.Collections.Generic;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Models;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
@@ -46,14 +45,6 @@ namespace HCA.Foundation.Connect.Managers.Cart
         /// <param name="federatedPaymentInfo">Federated payment info</param>
         /// <returns>Add payment info result</returns>
         AddPaymentInfoResult AddPaymentInfo(Cart cart, Party party, FederatedPaymentInfo federatedPaymentInfo);
-
-        /// <summary>
-        /// Adds promo code
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <param name="promoCode">Promo code</param>
-        /// <returns>Cart result</returns>
-        CartResult AddPromoCode(CommerceCart cart, string promoCode);
 
         /// <summary>
         /// Adds shipping info to the cart
@@ -106,14 +97,6 @@ namespace HCA.Foundation.Connect.Managers.Cart
         /// <param name="cart">Cart</param>
         /// <returns>Cart result</returns>
         CartResult RemovePaymentInfo(Cart cart);
-
-        /// <summary>
-        /// Removes promo code
-        /// </summary>
-        /// <param name="cart">Cart</param>
-        /// <param name="promoCode">Promo code</param>
-        /// <returns>Cart result</returns>
-        CartResult RemovePromoCode(CommerceCart cart, string promoCode);
 
         /// <summary>
         /// Updates cart

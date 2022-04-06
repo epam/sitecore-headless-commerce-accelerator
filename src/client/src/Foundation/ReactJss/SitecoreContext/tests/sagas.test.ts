@@ -1,5 +1,5 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
@@ -30,7 +30,7 @@ describe('SitecoreContext sagas', () => {
       sitecore: {
         context: {},
         route: {},
-        status: LoadingStatus.Loading
+        status: LoadingStatus.Loading,
       },
     };
     const gen = sagas.getRoute({ newRoute: fakeNewRoute, shouldPushNewRoute: true });

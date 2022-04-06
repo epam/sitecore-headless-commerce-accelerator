@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       LoadCart: ShoppingCart.LoadCart,
+      CleanCart: ShoppingCart.CleanCart,
     },
     dispatch,
   );

@@ -45,19 +45,7 @@ Languages:
         				We received your order and will contact you as soon as your order is shipped.
         			</td>
         		</tr>
-        		<tr>
-        		<td align="center" valign="middle" style="font-family:Helvetica; font-size:14px; padding-bottom:25px;">
-        				You can find your purchase information by clicking the button below.
-        			</td>
-        		</tr>
-        	</tbody>
-        	<tfoot>
-        	<td align="center" valign="middle" style="font-family:Helvetica; font-size:14px; padding-top:25px;">
-        				<a href="/Checkout/Confirmation?trackingNumber=$orderTrackingNumber$" style="display: block; text-decoration: none;width:30%; padding:10px; background-color:#a749ff; color:#FFFFFF; font-weight: 400;">VIEW ORDER</a>
-        			</td>
-        		
-        	</tfoot>
-                
+        	</tbody>                
         </table>
         <style>
         @media screen and (max-width:480px) {

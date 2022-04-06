@@ -1,0 +1,127 @@
+//    Copyright 2022 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.PersonalInformation {
+  margin-bottom: 54px;
+  @media (max-width: $screen-sm) {
+    margin-bottom: 0;
+  }
+
+  &-Title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  &-Content {
+    display: flex;
+
+    @media (max-width: $screen-sm) {
+      flex-direction: column;
+    }
+  }
+
+  &-ContentWrapper {
+    display: flex;
+
+    @media (max-width: $screen-sm) {
+      padding-bottom: 21px;
+      border-bottom: 1px solid #d5d4d4;
+    }
+  }
+
+  &-Details {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 10px;
+
+    @media (max-width: $screen-sm) {
+      margin-top: 0;
+      margin-left: 25px;
+    }
+  }
+
+  &-Item {
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.2px;
+    color: $grey;
+    margin-bottom: 4px;
+  }
+
+  &-Field {
+    @media (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  &-Value {
+    color: $black;
+
+    &_firstName {
+      @media (max-width: $screen-sm) {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  &-Link {
+    color: $link-color;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.2px;
+    padding: 0;
+
+    &_marginTop {
+      margin-top: auto;
+    }
+
+    &_clubPoints {
+      @media (max-width: $screen-sm) {
+        display: none;
+      }
+    }
+
+    @media (hover) {
+      &:hover {
+        text-decoration: underline;
+        color: $link-color;
+      }
+    }
+  }
+
+  &-Divider {
+    display: none;
+
+    @media (max-width: $screen-sm) {
+      display: flex;
+      width: 150%;
+      height: 19px;
+      margin-left: -25px;
+      background-color: $table-border-color;
+    }
+  }
+}

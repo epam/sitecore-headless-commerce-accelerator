@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .ResetRequestForm {
   margin: 20px 0;
@@ -54,14 +55,31 @@
     @media (max-width: $screen-xs-max) {
       display: block;
     }
+
+    .Button_buttonTheme_default,
+    .Submit {
+      background: $bg-grey;
+      border: 1px solid $bg-grey;
+      letter-spacing: 1px;
+      cursor: pointer;
+      padding: 11px 30px 11px 30px;
+      @include primary-button-hover-focus-active;
+      @media (max-width: $screen-xs-max) {
+        width: 100%;
+      }
+    }
   }
 
   &-BackToSignIn {
     text-align: center;
     padding: 1em;
     & a {
-      &:hover {
-        color: $theme-color;
+      color: $link-color;
+      @media (hover) {
+        &:hover {
+          text-decoration: underline;
+          color: $link-color;
+        }
       }
     }
   }
@@ -79,18 +97,4 @@
   }
 
   // Increased the specificity of the selector due to the fact that it is interrupted by global styles
-  & &-Submit {
-    &_disabled {
-      cursor: not-allowed;
-
-      &:hover {
-        background-color: $global-button-bg-color-lightgrey;
-        color: $button-color;
-      }
-    }
-
-    @media (max-width: $screen-xs-max) {
-      width: 100%;
-    }
-  }
 }

@@ -14,7 +14,9 @@
 
 namespace HCA.Foundation.Base.Mappers
 {
+    using AutoMapper;
     using Sitecore.Diagnostics;
+    using System;
 
     public abstract class Mapper : IMapper
     {
@@ -26,6 +28,15 @@ namespace HCA.Foundation.Base.Mappers
             Assert.ArgumentNotNull(source, nameof(source));
 
             return this.InnerMapper.Map<TSource, TResult>(source);
+        }
+
+        public TResult Map<TSource, TResult>(TSource source, Action<IMappingOperationOptions<TSource, TResult>> opts)
+        {
+            Assert.IsNotNull(this.InnerMapper, "InnerMapper must be initialized");
+            Assert.ArgumentNotNull(source, nameof(source));
+            Assert.ArgumentNotNull(opts, nameof(opts));
+
+            return this.InnerMapper.Map(source, opts);
         }
     }
 }

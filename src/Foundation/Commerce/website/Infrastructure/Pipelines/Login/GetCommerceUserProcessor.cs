@@ -19,7 +19,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
     using Base.Infrastructure.Pipelines;
     using Base.Models.Logging;
     using Base.Services.Logging;
-    using Providers.Customer;
+
     using Mappers.Users;
 
     using Providers;
@@ -27,6 +27,8 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines;
     using System.Web.Security;
+
+    using Providers.Customer;
 
     public class GetCommerceUserProcessor : SafePipelineProcessor<LoginPipelineArgs>
     {

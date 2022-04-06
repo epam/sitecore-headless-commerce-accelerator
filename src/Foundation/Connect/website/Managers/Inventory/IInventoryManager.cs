@@ -15,8 +15,7 @@
 namespace HCA.Foundation.Connect.Managers.Inventory
 {
     using System.Collections.Generic;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
+    using HCA.Foundation.ConnectBase.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
 

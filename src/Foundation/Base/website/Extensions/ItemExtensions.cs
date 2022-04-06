@@ -14,11 +14,6 @@
 
 namespace HCA.Foundation.Base.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-
     using Sitecore;
     using Sitecore.Data;
     using Sitecore.Data.Fields;
@@ -28,6 +23,12 @@ namespace HCA.Foundation.Base.Extensions
     using Sitecore.Links;
     using Sitecore.Links.UrlBuilders;
     using Sitecore.Resources.Media;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+
+    using Sitecore.SecurityModel;
 
     public static class ItemExtensions
     {
@@ -309,6 +310,26 @@ namespace HCA.Foundation.Base.Extensions
             }
 
             return !item.Paths.IsMediaItem ? LinkManager.GetItemUrl(item) : MediaManager.GetMediaUrl(item);
+        }
+
+        public static string GetImageUrl()
+        {
+            var userName = Context.User.LocalName;
+            MediaItem mediaItem;
+            long updatedTimeTicks;
+
+            using (new SecurityDisabler())
+            {
+                var item = Context.Database.GetItem($"/sitecore/media library/HCA/Userpics/{userName}");
+                if (item == null)
+                {
+                    return string.Empty;
+                }
+
+                updatedTimeTicks = item.Statistics.Updated.Ticks;
+                mediaItem = new MediaItem(item);
+            }
+            return mediaItem.ImageUrl() + $"?{updatedTimeTicks}";
         }
     }
 }

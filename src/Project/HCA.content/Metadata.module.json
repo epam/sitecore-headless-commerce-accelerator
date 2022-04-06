@@ -8,7 +8,7 @@
 			{
 				"name": "Content",
 				"path": "/sitecore/content/HCA",
-				"allowedPushOperations": "createOnly",
+				"allowedPushOperations": "createUpdateAndDelete",
 				"scope": "itemAndDescendants"
 			},
 			{
@@ -26,12 +26,6 @@
 			{
 				"name": "Master.ApiKey",
 				"path": "/sitecore/system/Settings/Services/API Keys/JssKey",
-				"allowedPushOperations": "createOnly",
-				"scope": "itemAndDescendants"
-			},
-			{
-				"name": "Commerce.Indexing.Settings",
-				"path": "/sitecore/Commerce/Commerce Control Panel/Shared Settings/Indexing Settings",
 				"allowedPushOperations": "createOnly",
 				"scope": "itemAndDescendants"
 			}

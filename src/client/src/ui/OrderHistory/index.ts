@@ -21,7 +21,7 @@ import { renderingWithContext } from 'Foundation/ReactJss';
 
 import * as OrderModule from 'services/order';
 
-import { OrderHistoryComponent } from './Component';
+import { OrderHistoryWrapper } from './OrderHistoryWrapper';
 import { AppState, OrderHistoryDispatchProps, OrderHistoryOwnProps, OrderHistoryStateProps } from './models';
 
 const mapStateToProps = (state: AppState): OrderHistoryStateProps => {
@@ -31,7 +31,7 @@ const mapStateToProps = (state: AppState): OrderHistoryStateProps => {
 
   return {
     isLastPage,
-    isLoading: status === LoadingStatus.Loading,
+    loaded: status === LoadingStatus.Loaded,
     orders,
   };
 };
@@ -51,4 +51,4 @@ const connectedToStore = connect<OrderHistoryStateProps, OrderHistoryDispatchPro
   mapDispatchToProps,
 );
 
-export const OrderHistory = compose(connectedToStore, renderingWithContext)(OrderHistoryComponent);
+export const OrderHistory = compose(connectedToStore, renderingWithContext)(OrderHistoryWrapper);

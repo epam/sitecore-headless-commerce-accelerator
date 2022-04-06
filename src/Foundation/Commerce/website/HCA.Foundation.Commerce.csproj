@@ -600,6 +600,7 @@
       <HintPath>..\..\..\packages\RainbowCodeGeneration.0.3.0\lib\net452\RainbowCodeGeneration.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="TypeLite, Version=1.8.2.0, Culture=neutral, PublicKeyToken=8cd4b9c9ac23d744, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\TypeLite.Lib.1.8.4\lib\net4\TypeLite.dll</HintPath>
     </Reference>
@@ -674,7 +675,9 @@
     <Compile Include="Models\Entities\Account\ConfirmPasswordRecoveryResult.cs" />
     <Compile Include="Models\Entities\Account\ValidateEmailResult.cs" />
     <Compile Include="Models\Entities\Adjustments\Adjustment.cs" />
+    <Compile Include="Models\Entities\Payment\PaymentData.cs" />
     <Compile Include="Models\Entities\Search\ProductSuggestion.cs" />
+    <Compile Include="Models\Entities\Shipping\ShippingData.cs" />
     <Compile Include="Models\Entities\Order\Order.cs" />
     <Compile Include="Models\Entities\Order\OrderConfirmation.cs" />
     <Compile Include="Models\Entities\Region\CountryRegion.cs" />
@@ -691,7 +694,6 @@
     <Compile Include="Models\Entities\Cart\CartLine.cs" />
     <Compile Include="Models\Entities\Delivery\DeliveryInfo.cs" />
     <Compile Include="Models\Entities\Search\Facet.cs" />
-    <Compile Include="Models\Entities\Search\FacetValue.cs" />
     <Compile Include="Models\Entities\Payment\FederatedPaymentInfo.cs" />
     <Compile Include="Models\Entities\Payment\PaymentMethod.cs" />
     <Compile Include="Models\Entities\Payment\PaymentOption.cs" />
@@ -703,22 +705,22 @@
     <Compile Include="Models\Entities\Cart\TotalPrice.cs" />
     <Compile Include="Models\Entities\Shipping\ShippingMethod.cs" />
     <Compile Include="Mappers\Profiles\UserProfile.cs" />
-    <Compile Include="Models\Entities\Search\SortDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Currency\CurrencyProvider.cs" />
     <Compile Include="Providers\Currency\ICurrencyProvider.cs" />
+    <Compile Include="Providers\Currency\CurrencyProvider.cs" />
     <Compile Include="Providers\Customer\CustomerProvider.cs" />
     <Compile Include="Providers\Customer\ICustomerProvider.cs" />
+    <Compile Include="Providers\PageType\PageTypeProvider.cs" />
+    <Compile Include="Providers\PageType\IPageTypeProvider.cs" />
     <Compile Include="Providers\ItemType\IItemTypeProvider.cs" />
     <Compile Include="Providers\ItemType\ItemTypeProvider.cs" />
     <Compile Include="Infrastructure\Pipelines\CatalogItemResolver.cs" />
     <Compile Include="Infrastructure\Pipelines\ICatalogItemResolver.cs" />
-    <Compile Include="Providers\PageType\IPageTypeProvider.cs" />
-    <Compile Include="Providers\PageType\PageTypeProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\IStorefrontSettingsProvider.cs" />
     <Compile Include="Providers\StorefrontSettings\StorefrontSettingsProvider.cs" />
     <Compile Include="Providers\Search\IProductSuggestionProvider.cs" />
     <Compile Include="Providers\Search\ProductSuggestionProvider.cs" />
+    <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Services\Account\AccountService.cs" />
     <Compile Include="Services\Account\IAccountService.cs" />
     <Compile Include="Models\Entities\Account\VerifyRecoveryTokenResult.cs" />
@@ -764,6 +766,10 @@
     <ProjectReference Include="..\..\Analytics\website\HCA.Foundation.Analytics.csproj">
       <Project>{919f57bc-39fd-4efc-a1f9-447a50d7a8b0}</Project>
       <Name>HCA.Foundation.Analytics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762af-b6bc-4d02-9355-11284473eaf4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>

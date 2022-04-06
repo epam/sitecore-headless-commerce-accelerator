@@ -12,7 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { BaseDataSourceItem, RenderingWithParams } from 'Foundation/ReactJss';
+import { BaseDataSourceItem, GraphQLRenderingWithParams } from 'Foundation/ReactJss';
 import { GridLayoutRenderingParams } from 'bootstrap/models';
 
-export interface GridProps extends RenderingWithParams<BaseDataSourceItem, GridLayoutRenderingParams> {}
+export interface GridProps extends GraphQLRenderingWithParams<BaseDataSourceItem, GridLayoutRenderingParams> {}

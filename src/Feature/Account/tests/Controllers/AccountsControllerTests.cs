@@ -94,7 +94,7 @@ namespace HCA.Feature.Account.Tests.Controllers
         public void DeleteAccount_ShouldCallExecuteMethod()
         {
             // act
-            this.controller.DeleteAccount(new DeleteAccountRequest());
+            this.controller.DeleteAccount();
 
             // assert
             this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>(), Arg.Any<Func<Result<VoidResult>, ActionResult>>());

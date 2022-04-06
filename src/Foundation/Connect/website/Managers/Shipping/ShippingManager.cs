@@ -18,16 +18,15 @@ namespace HCA.Foundation.Connect.Managers.Shipping
     using Base.Services.Logging;
 
     using DependencyInjection;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Diagnostics;
 
-    using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
+    using GetShippingMethodsRequest = ConnectBase.Pipelines.Arguments.GetShippingMethodsRequest;
 
     [Service(typeof(IShippingManager), Lifetime = Lifetime.Singleton)]
     public class ShippingManager : BaseManager, IShippingManager

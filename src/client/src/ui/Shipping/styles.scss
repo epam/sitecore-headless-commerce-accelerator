@@ -20,4 +20,12 @@
     width: 100%;
     line-height: 38px;
   }
+
+  .shippingInput {
+    &-Input-ControlWrapper {
+      &-Input-Control {
+        margin-bottom: 0px;
+      }
+    }
+  }
 }

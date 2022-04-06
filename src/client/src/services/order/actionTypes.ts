@@ -30,4 +30,9 @@ export const actionTypes = keyMirror({
   GET_ORDER_HISTORY_REQUEST: null,
   GET_ORDER_HISTORY_SUCCESS: null,
   ORDER_HISTORY_LOAD_MORE: null,
+
+  GET_ALL_ORDERS: null,
+  GET_ALL_ORDERS_FAILURE: null,
+  GET_ALL_ORDERS_REQUEST: null,
+  GET_ALL_ORDERS_SUCCESS: null,
 });

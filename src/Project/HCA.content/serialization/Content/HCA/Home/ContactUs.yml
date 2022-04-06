@@ -52,6 +52,17 @@ SharedFields:
           s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
           s:ph="main-content" />
         <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          s:ds="{90ED0DAB-5084-4C63-B93F-98DA30098D24}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:ds="{D2ABF6D8-C766-4BC0-8886-F47BA96D6E7D}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
           uid="{70B51ADE-3E72-4024-A876-80545621B913}"
           s:par="Wrapper Class=hca&amp;First Column Class=col-xs-12+col-sm-4&amp;Second Column Class=col-xs-12+col-sm-4&amp;Third Column Class=col-xs-12+col-sm-4" />
         <r
@@ -59,7 +70,7 @@ SharedFields:
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
-          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
@@ -74,18 +85,6 @@ Languages:
   Versions:
   - Version: 1
     Fields:
-    - ID: "04bf00db-f5fb-41f7-8ab7-22408372a981"
-      Hint: __Final Renderings
-      Value: |
-        <r xmlns:p="p" xmlns:s="s"
-          p:p="1">
-          <d
-            id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
-            <r
-              uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
-              s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
-          </d>
-        </r>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20201216T161902Z
@@ -95,11 +94,11 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "601b554d-2f09-4e00-a18b-b456b1572991"
+      Value: "5c2f2681-3f42-46a8-bc19-c60a47603029"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\unicorn
+        sitecore\Admin
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20210811T130619Z
+      Value: 20220120T114031Z

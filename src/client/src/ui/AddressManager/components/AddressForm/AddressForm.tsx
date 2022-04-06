@@ -52,7 +52,6 @@ export const AddressForm = (props: AddressFromProps) => {
         country: selectedCountry.name,
         countryCode: selectedCountry.countryCode,
         firstName: formValues[ADDRESS_MANAGER_FIELDS.FIRST_NAME] as string,
-        isPrimary: false,
         lastName: formValues[ADDRESS_MANAGER_FIELDS.LAST_NAME] as string,
         state: formValues[ADDRESS_MANAGER_FIELDS.PROVINCE] as string,
         zipPostalCode: formValues[ADDRESS_MANAGER_FIELDS.POSTAL_CODE] as string,

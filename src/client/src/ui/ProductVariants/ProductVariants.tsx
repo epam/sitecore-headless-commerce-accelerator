@@ -22,11 +22,19 @@ import { Variant } from 'services/commerce';
 import { useSitecoreContext } from 'hooks';
 import {
   productId as productIdSelector,
-  SelectColorVariant as selectColorVariant,
+  SelectProductVariant as selectProductVariant,
   variants as variantsSelector,
 } from 'services/productVariant';
 
-import { getVariantIdFromQuery } from './utils';
+import { getVariantIdFromQuery, sortVariantsArrayByNestedProperty } from './utils';
+
+import { cnProductVariants } from './cn';
+import './styles.scss';
+
+const PROPERTY_TYPES = {
+  SIZE: 'Size',
+  COLOR: 'Color',
+};
 
 export const ProductVariants: FC = () => {
   const dispatch = useDispatch();
@@ -44,7 +52,7 @@ export const ProductVariants: FC = () => {
     (e: MouseEvent<HTMLSpanElement>, variant: Variant) => {
       setSelectedVariantId(variant.variantId);
 
-      dispatch(selectColorVariant(productId, variant));
+      dispatch(selectProductVariant(productId, variant));
     },
     [productId, dispatch],
   );
@@ -57,35 +65,73 @@ export const ProductVariants: FC = () => {
     if (variants && variants.length > 0) {
       const variantIndex = variants.findIndex((variant) => variant.variantId === variantId);
 
-      dispatch(selectColorVariant(productId, variants[variantIndex >= 0 ? variantIndex : 0]));
+      dispatch(selectProductVariant(productId, variants[variantIndex >= 0 ? variantIndex : 0]));
     }
   }, [productId, routingQuery, variants]);
+
+  const hasColorProperty = variants.some((variant) => variant.properties[PROPERTY_TYPES.COLOR] !== '');
+  const hasSizeProperty = variants.some((variant) => variant.properties[PROPERTY_TYPES.SIZE] !== '');
+
+  const sortedVariants = hasSizeProperty && sortVariantsArrayByNestedProperty('properties.Size', variants);
 
   return (
     <>
       {variants && variants.length > 1 && (
-        <div className="colors-selector">
-          <p className="colors-label">Color</p>
-          <ul className="colors-list">
-            {variants &&
-              variants.map((variant, variantIndex) => {
-                const colorName = variant.properties['Color'];
-                const colorValue = resolveColor(colorName, sitecoreContext.productColors);
-                return (
-                  <li key={variantIndex} className={'colors-listitem'}>
-                    <button
-                      style={{ background: colorValue }}
-                      onClick={(e) => {
-                        variantSelected(e, variant);
-                      }}
-                      className={`color-variant-button colors-option
-                          ${variant.variantId === selectedVariantId ? 'color-variant-button-active' : ''}
-                        `}
-                    />
-                  </li>
-                );
-              })}
-          </ul>
+        <div className={cnProductVariants()}>
+          {(hasColorProperty && (
+            <>
+              <p className={cnProductVariants('Title')}>Color</p>
+              <ul className={cnProductVariants('List')}>
+                {variants &&
+                  variants.map((variant, variantIndex) => {
+                    const colorName = variant.properties[PROPERTY_TYPES.COLOR];
+                    const colorValue = resolveColor(colorName, sitecoreContext.productColors);
+                    return (
+                      <li key={variantIndex} className={cnProductVariants('ListItem')}>
+                        <button
+                          style={{ background: colorValue }}
+                          onClick={(e) => {
+                            variantSelected(e, variant);
+                          }}
+                          className={cnProductVariants('Button', {
+                            color: true,
+                            active: variant.variantId === selectedVariantId,
+                          })}
+                        />
+                      </li>
+                    );
+                  })}
+              </ul>
+            </>
+          )) ||
+            null}
+          {(hasSizeProperty && (
+            <>
+              <p className={cnProductVariants('Title')}>Size</p>
+              <ul className={cnProductVariants('List')}>
+                {sortedVariants &&
+                  sortedVariants.map((variant: Variant, variantIndex: number) => {
+                    const size = variant.properties[PROPERTY_TYPES.SIZE];
+                    return (
+                      <li key={variantIndex} className={cnProductVariants('ListItem')}>
+                        <button
+                          onClick={(e) => {
+                            variantSelected(e, variant as Variant);
+                          }}
+                          className={cnProductVariants('Button', {
+                            size: true,
+                            active: variant.variantId === selectedVariantId,
+                          })}
+                        >
+                          {size}
+                        </button>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </>
+          )) ||
+            null}
         </div>
       )}
     </>

@@ -71,12 +71,6 @@
     <Reference Include="FiftyOne.Foundation, Version=3.2.17.2, Culture=neutral, PublicKeyToken=e0b3a8da0bbce49c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\51Degrees.mobi-core.3.2.17.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper, Version=5.8.171.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Glass.Mapper.Sc.100.Core.5.8.171\lib\net48\Glass.Mapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Glass.Mapper.Sc, Version=5.8.171.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Glass.Mapper.Sc.100.Core.5.8.171\lib\net48\Glass.Mapper.Sc.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -559,7 +553,6 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\Pipelines\GetLayoutServiceContext\BreadcrumbContextExtension.cs" />
-    <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Entities\Breadcrumb\Breadcrumb.cs" />
     <Compile Include="Models\Entities\Breadcrumb\PageLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

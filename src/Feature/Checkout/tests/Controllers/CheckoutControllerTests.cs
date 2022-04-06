@@ -19,6 +19,8 @@ namespace HCA.Feature.Checkout.Tests.Controllers
     using Checkout.Controllers;
 
     using Foundation.Base.Models.Result;
+    using Foundation.Commerce.Models.Entities.Payment;
+    using Foundation.Commerce.Models.Entities.Shipping;
     using Foundation.Commerce.Services.Billing;
     using Foundation.Commerce.Services.Delivery;
     using Foundation.Commerce.Services.Order;
@@ -92,7 +94,7 @@ namespace HCA.Feature.Checkout.Tests.Controllers
             this.controller.SetPaymentInfo(this.fixture.Create<SetPaymentInfoRequest>());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<PaymentData>>>());
         }
 
         [Fact]
@@ -102,7 +104,7 @@ namespace HCA.Feature.Checkout.Tests.Controllers
             this.controller.SetShippingOptions(this.fixture.Create<SetShippingOptionsRequest>());
 
             // assert
-            this.controller.Received(1).Execute(Arg.Any<Func<Result<VoidResult>>>());
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<ShippingData>>>());
         }
 
         [Fact]

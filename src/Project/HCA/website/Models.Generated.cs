@@ -155,6 +155,106 @@ namespace HCA.Project.HCA.Models
 
 
     /// <summary>
+    /// IGridLayout Interface
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout</para>
+    /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
+    /// </summary>
+    [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
+    public partial interface IGridLayout: IGlassBase
+    {
+
+        /// <summary>
+        /// The First Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
+        /// </summary>
+        [SitecoreField("First Column Class")]
+        string FirstColumnClass {get; set;}
+
+        /// <summary>
+        /// The Second Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
+        /// </summary>
+        [SitecoreField("Second Column Class")]
+        string SecondColumnClass {get; set;}
+
+        /// <summary>
+        /// The Third Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: bfed443f-3ac3-460d-be12-5759b8294233</para>
+        /// </summary>
+        [SitecoreField("Third Column Class")]
+        string ThirdColumnClass {get; set;}
+
+        /// <summary>
+        /// The Wrapper Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
+        /// </summary>
+        [SitecoreField("Wrapper Class")]
+        string WrapperClass {get; set;}
+
+    }
+
+
+    /// <summary>
+    /// GridLayout Class
+    /// <para>Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout</para>
+    /// <para>ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c</para>
+    /// </summary>
+    [SitecoreType(TemplateId="61ed6a03-bbdb-4937-87fa-db5c53fc870c")]
+    public partial class GridLayout: GlassBase, IGridLayout
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout
+        /// </summary>
+        public const string TemplateId = "61ed6a03-bbdb-4937-87fa-db5c53fc870c";
+
+        /// <summary>
+        /// The First Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88</para>
+        /// </summary>
+        [SitecoreField("First Column Class")]
+        public virtual string FirstColumnClass {get; set;}
+        public const string FirstColumnClassFieldId = "a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88";
+        public const string FirstColumnClassFieldName = "First Column Class";
+
+        /// <summary>
+        /// The Second Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d</para>
+        /// </summary>
+        [SitecoreField("Second Column Class")]
+        public virtual string SecondColumnClass {get; set;}
+        public const string SecondColumnClassFieldId = "525bb442-fc9e-49dd-b557-52b833f0855d";
+        public const string SecondColumnClassFieldName = "Second Column Class";
+
+        /// <summary>
+        /// The Third Column Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: bfed443f-3ac3-460d-be12-5759b8294233</para>
+        /// </summary>
+        [SitecoreField("Third Column Class")]
+        public virtual string ThirdColumnClass {get; set;}
+        public const string ThirdColumnClassFieldId = "bfed443f-3ac3-460d-be12-5759b8294233";
+        public const string ThirdColumnClassFieldName = "Third Column Class";
+
+        /// <summary>
+        /// The Wrapper Class field.
+        /// <para>Field Type: Single-Line Text</para>
+        /// <para>Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52</para>
+        /// </summary>
+        [SitecoreField("Wrapper Class")]
+        public virtual string WrapperClass {get; set;}
+        public const string WrapperClassFieldId = "b4386ac8-1f1b-49f3-adcb-264f5f595e52";
+        public const string WrapperClassFieldName = "Wrapper Class";
+
+    }
+
+
+    /// <summary>
     /// IHome Interface
     /// <para>Path: /sitecore/templates/HCA/Project/HCA/Pages/Home</para>
     /// <para>ID: 83883836-8f50-4bb8-bf62-369b7661e815</para>

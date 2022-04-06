@@ -15,15 +15,15 @@
 import * as JSS from 'Foundation/ReactJss';
 
 export interface ContactPhoneDataSource extends JSS.BaseDataSourceItem {
-  phone: JSS.GraphQLField<JSS.TextField>;
+  phone: JSS.GraphQLField<string>;
 }
 
 export interface ContactLinkDataSource extends JSS.BaseDataSourceItem {
-  uri: JSS.GraphQLField<JSS.LinkField>;
+  uri: JSS.GraphQLField<JSS.LinkFieldValue>;
 }
 
 export interface ContactAddressDataSource extends JSS.BaseDataSourceItem {
-  address: JSS.GraphQLField<JSS.TextField>;
+  address: JSS.GraphQLField<string>;
 }
 
 export interface ContactUsDataSource extends JSS.BaseDataSourceItem {

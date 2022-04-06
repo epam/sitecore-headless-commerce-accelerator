@@ -14,7 +14,7 @@
 
 import React, { FC } from 'react';
 
-import { Button, Icon } from 'components';
+import { Icon } from 'components';
 import { NavigationLink } from 'ui/NavigationLink';
 
 import { cnResetRequestForm } from '../cn';
@@ -29,11 +29,9 @@ export const ErrorMessage: FC = () => (
       <p>
         Sorry, we didn’t recognize that email address. Want to try another? <br />
         If you’d like some extra help, please{' '}
-        <NavigationLink to="/ContactUs">
-          <Button buttonTheme="text" className={cnResetRequestForm('ContactSupportButton')}>
-            contact support
-          </Button>
-        </NavigationLink>
+        <span className={cnResetRequestForm('ContactSupportLink')}>
+          <NavigationLink to="/ContactUs">contact support</NavigationLink>
+        </span>
         .
       </p>
     </div>

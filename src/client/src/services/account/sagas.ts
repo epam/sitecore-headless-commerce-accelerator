@@ -23,8 +23,10 @@ import * as Api from './api';
 import { sagaActionTypes } from './constants';
 import {
   AccountValidationState,
+  AddImagePayload,
   ChangePasswordPayload,
   CreateAccountPayload,
+  RemoveImagePayload,
   RequestPasswordResetPayload,
   ResetPasswordPayload,
   UpdateAccountPayload,
@@ -91,7 +93,11 @@ export function* changePassword(action: Action<ChangePasswordPayload>) {
   };
 
   yield put(actions.ChangePasswordRequest());
-  const { data, error }: Result<boolean> = yield call(Api.changePassword, payload);
+  const { data, error }: Result<any> = yield call(Api.changePassword, payload);
+
+  if (data && data.errorMessage) {
+    return yield put(actions.ChangePasswordFailure(data.errorMessage));
+  }
 
   if (error) {
     return yield put(actions.ChangePasswordFailure(error.message, error.stack));
@@ -115,6 +121,56 @@ export function* verifyCommerceUser() {
   if (!commerceUser.customerId) {
     yield put(ChangeRoute('/'));
   }
+}
+
+export function* getCardList() {
+  yield put(actions.GetCardListRequest());
+
+  const { data, error }: Result<Commerce.Card[]> = yield call(Api.getCardList);
+
+  if (error || !data) {
+    return yield put(actions.GetCardListFailure(error.message, error.stack));
+  }
+  yield put(actions.GetCardListSuccess(data));
+}
+
+export function* updateCard(action: Action<Commerce.Card>) {
+  const payload: DataModel.CardRequest = action.payload;
+
+  yield put(actions.UpdateCardRequest());
+
+  const { data, error }: Result<Commerce.Card[]> = yield call(Api.updateCard, payload);
+
+  if (error || !data) {
+    return yield put(actions.UpdateCardFailure(error.message, error.stack));
+  }
+  yield put(actions.UpdateCardSuccess(data));
+}
+
+export function* addCard(action: Action<Commerce.Card>) {
+  const payload: DataModel.CardRequest = action.payload;
+
+  yield put(actions.AddAddressRequest());
+
+  const { data, error }: Result<Commerce.Card[]> = yield call(Api.addCard, payload);
+
+  if (error || !data) {
+    return yield put(actions.AddCardFailure(error.message, error.stack));
+  }
+  yield put(actions.AddCardSuccess(data));
+}
+
+export function* removeCard(action: Action<string>) {
+  const { payload } = action;
+
+  yield put(actions.UpdateCardRequest());
+
+  const { data, error }: Result<Commerce.Card[]> = yield call(Api.removeCard, payload);
+
+  if (error || !data) {
+    return yield put(actions.UpdateCardFailure(error.message, error.stack));
+  }
+  yield put(actions.UpdateCardSuccess(data));
 }
 
 export function* getAddressList() {
@@ -185,10 +241,18 @@ export function* updateAccount(action: Action<UpdateAccountPayload>) {
 
   yield put(actions.UpdateAccountRequest());
 
-  const { data, error }: Result<boolean> = yield call(Api.updateAccountInfo, payload);
+  const { data, error }: Result<any> = yield call(Api.updateAccountInfo, payload);
 
   if (!data && !error) {
-    return yield put(actions.UpdateAddressFailure(error.message, error.stack));
+    return yield put(actions.UpdateAccountFailure(error.message, error.stack));
+  }
+
+  if (!data && error) {
+    return yield put(actions.UpdateAccountFailure(error.message, error.stack));
+  }
+
+  if (data && data.errorMessage) {
+    return yield put(actions.UpdateAccountFailure(data.errorMessage));
   }
   yield put(actions.UpdateAccountSuccess());
 
@@ -252,9 +316,54 @@ export function* resetPassword(action: Action<ResetPasswordPayload>) {
   yield put(actions.ResetPasswordSuccess());
 }
 
+export function* addAccountImage(action: Action<AddImagePayload>) {
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
+  if (!commerceUser) {
+    return;
+  }
+
+  const payload: DataModel.AddImageRequest = {
+    ...action.payload,
+  };
+
+  yield put(actions.AddImageRequest());
+
+  const { data, error }: Result<any> = yield call(Api.addImage, payload);
+
+  if (!data || error) {
+    return yield put(actions.AddImageFailure(error.message, error.stack));
+  }
+  const { imageUrl } = data;
+  yield put(actions.AddImageSuccess(imageUrl));
+}
+
+export function* removeAccountImage(action: Action<RemoveImagePayload>) {
+  const commerceUser: Commerce.User = yield select(selectors.commerceUser);
+  if (!commerceUser) {
+    return;
+  }
+
+  const payload: DataModel.RemoveImageRequest = {
+    ...action.payload,
+  };
+
+  yield put(actions.RemoveImageRequest());
+
+  const { data, error }: Result<any> = yield call(Api.removeImage, payload);
+
+  if (!data || error) {
+    return yield put(actions.RemoveImageFailure(error.message, error.stack));
+  }
+  yield put(actions.RemoveImageSuccess());
+}
+
 function* watch() {
   yield takeEvery(sagaActionTypes.ACCOUNT_VALIDATION, validation);
   yield takeEvery(sagaActionTypes.RESET_VALIDATION, resetValidation);
+  yield takeEvery(sagaActionTypes.CARD_GET_LIST, getCardList);
+  yield takeEvery(sagaActionTypes.CARD_UPDATE, updateCard);
+  yield takeEvery(sagaActionTypes.CARD_ADD, addCard);
+  yield takeEvery(sagaActionTypes.CARD_REMOVE, removeCard);
   yield takeEvery(sagaActionTypes.ADDRESS_GET_LIST, getAddressList);
   yield takeEvery(sagaActionTypes.ADDRESS_UPDATE, updateAddress);
   yield takeEvery(sagaActionTypes.ADDRESS_ADD, addAddress);
@@ -265,6 +374,8 @@ function* watch() {
   yield takeEvery(sagaActionTypes.CHANGE_PASSWORD, changePassword);
   yield takeEvery(sagaActionTypes.REQUEST_PASSWORD_RESET, requestPasswordReset);
   yield takeEvery(sagaActionTypes.PASSWORD_RESET, resetPassword);
+  yield takeEvery(sagaActionTypes.IMAGE_ADD, addAccountImage);
+  yield takeEvery(sagaActionTypes.IMAGE_REMOVE, removeAccountImage);
 
   yield takeLatest(sagaActionTypes.VERIFY_COMMERCE_USER, verifyCommerceUser);
 }

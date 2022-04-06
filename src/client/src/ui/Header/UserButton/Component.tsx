@@ -60,18 +60,23 @@ export class UserButtonComponent extends JSS.SafePureComponent<UserButtonProps, 
           {commerceUser && commerceUser.customerId ? (
             <>
               <li className="account_dropdown-item">
-                <NavigationLink className="account_link" to="/account">
+                <NavigationLink className="account_link" to="/MyAccount">
                   My account
                 </NavigationLink>
               </li>
               <li className="account_dropdown-item">
-                <NavigationLink className="account_link" to="/account/order-history">
-                  Order History
+                <NavigationLink className="account_link" to="/MyAccount/Order-History">
+                  Order history
+                </NavigationLink>
+              </li>
+              <li className="account_dropdown-item">
+                <NavigationLink className="account_link" to="/MyAccount/Notifications">
+                  Notifications
                 </NavigationLink>
               </li>
               <li className="account_dropdown-item">
                 <a href="#" className="account_link" onClick={this.handleClickLogout}>
-                  Sign Out
+                  Log out
                 </a>
               </li>
             </>

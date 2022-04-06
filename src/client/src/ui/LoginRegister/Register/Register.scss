@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .Register {
   &-RegisterOptionsDescription {
@@ -72,6 +73,17 @@
       display: flex;
       flex-direction: column-reverse;
     }
+
+    .Button_buttonTheme_default,
+    .Button {
+      flex: 1;
+      background: $bg-grey;
+      border: 1px solid $bg-grey;
+      letter-spacing: 1px;
+      cursor: pointer;
+      padding: 11px 30px 11px 30px;
+      @include primary-button-hover-focus-active;
+    }
   }
 
   &-TermsAndConditions {
@@ -87,15 +99,14 @@
   &-TermsAndConditionsText {
     margin-left: 30px;
     & a {
-      &:hover {
-        color: $theme-color;
+      color: $link-color;
+      @media (hover) {
+        &:hover {
+          text-decoration: underline;
+          color: $link-color;
+        }
       }
     }
-  }
-
-  &-Button {
-    flex: 1;
-    padding: 10px 30px;
   }
 
   &-FormField {

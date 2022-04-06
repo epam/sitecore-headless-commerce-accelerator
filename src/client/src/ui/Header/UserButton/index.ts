@@ -25,7 +25,7 @@ import { AppState } from './models';
 const mapStateToProps = (state: AppState) => {
   const commerceUser = JSS.sitecoreContext(state).commerceUser;
   const url = JSS.routingLocationPathname(state);
-  const returnUrl = url === '/account' ? '/' : url;
+  const returnUrl = '/';
 
   return {
     commerceUser,

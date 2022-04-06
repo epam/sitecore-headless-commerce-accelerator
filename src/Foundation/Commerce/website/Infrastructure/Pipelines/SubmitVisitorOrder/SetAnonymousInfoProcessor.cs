@@ -22,14 +22,13 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.SubmitVisitorOrder
 
     using Context.Visitor;
 
-    using Sitecore.Commerce.Engine.Connect.Pipelines;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Pipelines;
     using Sitecore.Commerce.Services.Orders;
     using Sitecore.Diagnostics;
 
-    public class SetAnonymousInfoProcessor : PipelineProcessor
+    public class SetAnonymousInfoProcessor : PipelineProcessor<ServicePipelineArgs>
     {
         private const string EmailKey = "Confirmaion";
 

@@ -16,14 +16,14 @@ import React from 'react';
 
 import { DateField as JssDate } from '@sitecore-jss/sitecore-jss-react';
 
-import { Field } from '../../models';
+import { Field } from '../../headlessDefinitions';
 
 export type DateField = Field<string>;
 
-type RichTextProps = {
+type DateProps = {
   tag?: string;
-  field: Field<string>;
+  field: DateField;
   render: any;
 };
 
-export const Date = (props: RichTextProps) => <JssDate {...props} />;
+export const Date = (props: DateProps) => <JssDate {...props} />;

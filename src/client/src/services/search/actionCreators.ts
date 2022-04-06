@@ -49,3 +49,9 @@ export type ProductSearchSuccess = (
   totalPageCount: number,
   totalItemCount: number,
 ) => Action<Models.ProductsSearchSuccessPayload>;
+
+export type GetProductsByIds = (productIds: string[]) => Action;
+
+export type GetProductsByIdsRequest = (params: Models.GetProductsByIdsParams) => Action<Models.GetProductByIdsRequest>;
+
+export type GetProductsByIdsSuccess = (items: Product[]) => Action<Models.GetProductsByIdsPayload>;

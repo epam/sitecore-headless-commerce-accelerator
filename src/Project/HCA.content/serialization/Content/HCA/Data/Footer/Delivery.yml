@@ -1,0 +1,38 @@
+﻿---
+ID: "90ed0dab-5084-4c63-b93f-98da30098d24"
+Parent: "49c4e6b9-61f4-453b-b397-1a38d2db3ed8"
+Template: "316ff1db-aec1-4b16-9bbf-972f07bcead8"
+Path: /sitecore/content/HCA/Data/Footer/Delivery
+SharedFields:
+- ID: "6eb6810e-1468-42ad-a0f6-b347a88f729a"
+  Hint: Links
+  Value: |
+    {DD02F393-03CE-49BF-B418-9AB0DFA9DECA}
+    {18757B4A-C2C8-484B-A014-7AC14A4E4D79}
+    {429CF7C1-50A2-44A9-9CD4-134F76744CBA}
+    {BE1D59D3-258D-4280-9425-1680B63C5D97}
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 500
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T192348Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "5dfbc1fc-f279-4f0a-8075-fbb346f1ee70"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20211129T130901Z

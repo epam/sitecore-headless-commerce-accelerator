@@ -80,6 +80,10 @@ export type ProductSearchSuggestionResponse = {
   products: Commerce.ProductSearchSuggestion[];
 };
 
+export type GetProductsByIdsParams = {
+  productIds: string[];
+};
+
 export interface Status {
   status: LoadingStatus;
 }
@@ -96,6 +100,10 @@ export interface ProductSearchState extends Status {
   totalItemCount?: number;
 }
 
+export interface GetProductsByIdsState extends Status {
+  items: Product[];
+}
+
 export interface ProductsSearchRequestPayload extends Status {
   params: Params;
 }
@@ -105,6 +113,14 @@ export interface ProductsSearchSuccessPayload extends Status {
   items: Product[];
   currentPageNumber: number;
   totalPageCount: number;
+}
+
+export interface GetProductByIdsRequest extends Status {
+  params: GetProductsByIdsParams;
+}
+
+export interface GetProductsByIdsPayload extends Status {
+  items: Product[];
 }
 
 export interface FacetPayload {
@@ -130,11 +146,13 @@ export interface InitSearchPayload extends ChangeSortingTypePayload {
 export interface SearchState {
   productSearch: ProductSearchState;
   productSearchSuggestion: ProductsSearchSuggestionsState;
+  productsByIds: GetProductsByIdsState;
 }
 
 export interface GlobalSearchState {
   search: {
     productSearch: ProductSearchState;
     productSearchSuggestion: ProductsSearchSuggestionsState;
+    productsByIds: GetProductsByIdsState;
   };
 }

@@ -55,10 +55,9 @@ export const CartButton = () => {
   }, [pathname]);
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside, false);
-
+    window.addEventListener('click', handleClickOutside, false);
     return () => {
-      document.removeEventListener('click', handleClickOutside, false);
+      window.removeEventListener('click', handleClickOutside, false);
     };
   });
 
@@ -67,13 +66,13 @@ export const CartButton = () => {
       {isMobileMode ? (
         <Link to="/cart">
           <Icon icon="icon-shopbag" size="l">
-            <span className="quantity">{cartQuantity}</span>
+            {cartQuantity > 0 && <span className="quantity">{cartQuantity}</span>}
           </Icon>
         </Link>
       ) : (
         <a onClick={() => handleClick()}>
           <Icon icon="icon-shopbag" size="l">
-            <span className="quantity">{cartQuantity}</span>
+            {cartQuantity > 0 && <span className="quantity">{cartQuantity}</span>}
           </Icon>
         </a>
       )}

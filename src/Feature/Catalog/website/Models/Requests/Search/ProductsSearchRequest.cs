@@ -14,15 +14,12 @@
 
 namespace HCA.Feature.Catalog.Models.Requests.Search
 {
+    using DTO;
+    using Foundation.Search.Models.Common;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Diagnostics.CodeAnalysis;
-
-    using DTO;
-
-    using Foundation.Commerce.Models.Entities.Search;
-
     using TypeLite;
 
     [TsClass]
@@ -30,6 +27,8 @@ namespace HCA.Feature.Catalog.Models.Requests.Search
     public class ProductsSearchRequest
     {
         public string SearchKeyword { get; set; }
+
+        public IEnumerable<string> ProductIds { get; set; }
 
         public IEnumerable<FacetDto> Facets { get; set; }
 

@@ -20,9 +20,10 @@ namespace HCA.Foundation.SitecoreCommerce.Mappers.Search
 
     using Commerce.Mappers.Profiles;
     using Commerce.Providers;
+    using Commerce.Providers.Currency;
 
     using DependencyInjection;
-    using HCA.Foundation.Commerce.Providers.Currency;
+
     using Sitecore.Diagnostics;
 
     using Mapper = Base.Mappers.Mapper;

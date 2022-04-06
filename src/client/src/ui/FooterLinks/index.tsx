@@ -17,27 +17,42 @@ import * as React from 'react';
 
 import * as JSS from 'Foundation/ReactJss';
 
-import { FooterLinksProps, FooterLinksState } from './models';
+import { FooterLinksProps } from './models';
+import { LINK_TYPES } from '../DropdownFooterLinks';
 
+import { cnFooterLinks } from './cn';
 import './styles.scss';
 
-class FooterLinksComponent extends JSS.SafePureComponent<FooterLinksProps, FooterLinksState> {
+class FooterLinksComponent extends JSS.SafePureComponent<FooterLinksProps, {}> {
   protected safeRender() {
-    const { fields } = this.props;
-    const { datasource } = fields.data;
+    const {
+      fields: {
+        data: {
+          datasource: { links },
+        },
+      },
+    } = this.props;
 
     return (
-      <ul className="footer-links-list">
-        {datasource.links &&
-          datasource.links.items &&
-          datasource.links.items.map((link, index) => {
-            const { uri, isPrimary } = link;
+      <ul className={cnFooterLinks()}>
+        {links &&
+          links.items &&
+          links.items.map((link, index) => {
+            const {
+              uri,
+              isPrimary: {
+                jss: { value },
+              },
+            } = link;
+            const type = value ? LINK_TYPES.PRIMARY : LINK_TYPES.SECONDARY;
+            const isPrimary = type === LINK_TYPES.PRIMARY;
             return (
-              <li key={index} className="footer-list-item">
-                <Link
-                  field={uri.jss}
-                  className={`footer-link footer-link-${isPrimary.jss.value ? 'primary' : 'secondary'}`}
-                />
+              <li key={index} className={cnFooterLinks('LinkWrapper')}>
+                {isPrimary ? (
+                  <div className={cnFooterLinks('Link', { type })}>{uri.jss.value.text}</div>
+                ) : (
+                  <Link field={uri.jss} className={cnFooterLinks('Link', { type })} />
+                )}
               </li>
             );
           })}

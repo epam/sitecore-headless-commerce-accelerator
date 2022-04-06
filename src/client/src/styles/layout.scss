@@ -87,6 +87,10 @@ footer#footer-main {
   left: 0;
   transition: left 0.2s;
   z-index: 999;
+
+  @media #{$footer-switch-mode} {
+    padding-bottom: 0;
+  }
 }
 
 .nav-main-panel-open {

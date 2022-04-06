@@ -5,7 +5,7 @@ module.exports = {
   cwd: path.join(__dirname, '../../../../../../'),
   modules: [],
   pattern: 'Feature/Navigation/serialization/Templates/Navigation/Social Network Links/**/*.yml',
-  reactJssModule: 'Foundation/ReactJss',
+  headlessDefinitions: 'Foundation/ReactJss',
   templatePath: path.join(__dirname, 'codegenerationts.tmpl'),
   ToClass: codeGenTsUtils.toClass,
   ToInterface: codeGenTsUtils.toInterface,

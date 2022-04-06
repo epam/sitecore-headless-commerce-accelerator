@@ -35,11 +35,22 @@ SharedFields:
           uid="{70B51ADE-3E72-4024-A876-80545621B913}"
           p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']" />
         <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          s:ds="{90ED0DAB-5084-4C63-B93F-98DA30098D24}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:ds="{D2ABF6D8-C766-4BC0-8886-F47BA96D6E7D}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{E0CEDD92-13B4-4D8A-AFC7-53D1CFFA6E4B}"
-          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
@@ -55,11 +66,11 @@ Languages:
       Value: 20180427T150547Z
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "1a28090b-8eb3-40be-a14d-64772269efc4"
+      Value: "364a66c1-37cf-4349-8a92-4593396b05d4"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\unicorn
+        sitecore\Admin
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20210811T130619Z
+      Value: 20220120T113951Z

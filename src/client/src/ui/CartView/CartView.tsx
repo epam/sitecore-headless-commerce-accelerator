@@ -100,7 +100,7 @@ export const CartViewComponent: FC<CartViewPropsType> = ({ toggleClick }) => {
                 )}
               </div>
               <div className="shopping-cart-view-populated-single-item-delete">
-                <button onClick={() => onRemoveCartLine(single)}>
+                <button title={'Remove from Cart'} onClick={() => onRemoveCartLine(single)}>
                   <Icon icon="icon-close" size="l" />
                 </button>
               </div>

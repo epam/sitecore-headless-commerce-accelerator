@@ -71,7 +71,7 @@ describe('ShoppingCart sagas', () => {
       errorGen.next();
 
       // tslint:disable-next-line:quotemark
-      const expected = put(actions.GetCartFailure("Cannot read property 'data' of undefined"));
+      const expected = put(actions.GetCartFailure("Cannot read properties of undefined (reading 'data')"));
 
       const actual = errorGen.next();
 

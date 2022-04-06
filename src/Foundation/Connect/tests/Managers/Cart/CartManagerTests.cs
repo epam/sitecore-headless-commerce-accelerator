@@ -23,8 +23,10 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
     using Base.Tests.Customization;
 
     using Connect.Managers.Cart;
-    using Connect.Mappers.Cart;
-
+    using HCA.Foundation.Connect.Mappers.Cart;
+    using HCA.Foundation.ConnectBase.Entities;
+    using ConnectBase = HCA.Foundation.ConnectBase.Pipelines.Arguments;
+    using HCA.Foundation.ConnectBase.Providers;
     using Models;
 
     using NSubstitute;
@@ -33,22 +35,17 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
 
     using Xunit;
 
-    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
-
     public class CartManagerTests
     {
         private readonly CartManager cartManager;
 
-        private readonly CommerceCartServiceProvider cartServiceProvider;
+        private readonly CartServiceProviderBase cartServiceProvider;
 
         private readonly IFixture fixture;
 
@@ -58,7 +55,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
             var logService = Substitute.For<ILogService<CommonLog>>();
             var cartMapper = Substitute.For<ICartMapper>();
 
-            this.cartServiceProvider = Substitute.For<CommerceCartServiceProvider>();
+            this.cartServiceProvider = Substitute.For<CartServiceProviderBase>();
 
             connectServiceProvider.GetCommerceCartServiceProvider().Returns(this.cartServiceProvider);
             this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
@@ -145,32 +142,6 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
                 .Execute(Arg.Any<AddPaymentInfoRequest>(), this.cartServiceProvider.AddPaymentInfo);
         }
 
-        [Theory]
-        [MemberData(nameof(PromoCodeParameters))]
-        public void AddPromoCode_IfParameterIsNull_ShouldThrowArgumentNullException(CommerceCart cart, string promoCode)
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartManager.AddPromoCode(cart, promoCode));
-        }
-
-        [Fact]
-        public void AddPromoCode_IfPromoCodeIsEmpty_ShouldThrowArgumentException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentException>(
-                () => this.cartManager.AddPromoCode(this.fixture.Create<CommerceCart>(), string.Empty));
-        }
-
-        [Fact]
-        public void AddPromoCode_ShouldCallExecuteMethod()
-        {
-            // act
-            this.cartManager.AddPromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
-
-            // assert
-            this.cartManager.Received(1).Execute(Arg.Any<AddPromoCodeRequest>(), this.cartServiceProvider.AddPromoCode);
-        }
-
         [Fact]
         public void AddShippingInfo_IfParameterIsNull_ShouldThrowArgumentNullException()
         {
@@ -203,7 +174,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
 
             // assert
             this.cartManager.Received(1)
-                .Execute(Arg.Any<AddShippingInfoRequest>(), this.cartServiceProvider.AddShippingInfo);
+                .Execute(Arg.Any<ConnectBase.AddShippingInfoRequest>(), this.cartServiceProvider.AddShippingInfo);
         }
 
         [Theory]
@@ -295,7 +266,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
             this.cartManager.LoadCart(this.fixture.Create<string>(), this.fixture.Create<string>());
 
             // assert
-            this.cartManager.Received(1).Execute(Arg.Any<LoadCartByNameRequest>(), this.cartServiceProvider.LoadCart);
+            this.cartManager.Received(1).Execute(Arg.Any<ConnectBase.LoadCartByNameRequest>(), this.cartServiceProvider.LoadCart);
         }
 
         [Theory]
@@ -353,35 +324,6 @@ namespace HCA.Foundation.Connect.Tests.Managers.Cart
             // assert
             this.cartManager.Received(1)
                 .Execute(Arg.Any<RemovePaymentInfoRequest>(), this.cartServiceProvider.RemovePaymentInfo);
-        }
-
-        [Theory]
-        [MemberData(nameof(PromoCodeParameters))]
-        public void RemovePromoCode_IfParameterIsNull_ShouldThrowArgumentNullException(
-            CommerceCart cart,
-            string promoCode)
-        {
-            // act & assert
-            Assert.Throws<ArgumentNullException>(() => this.cartManager.RemovePromoCode(cart, promoCode));
-        }
-
-        [Fact]
-        public void RemovePromoCode_IfPromoCodeIsEmpty_ShouldThrowArgumentException()
-        {
-            // act & assert
-            Assert.Throws<ArgumentException>(
-                () => this.cartManager.RemovePromoCode(this.fixture.Create<CommerceCart>(), string.Empty));
-        }
-
-        [Fact]
-        public void RemovePromoCode_ShouldCallExecuteMethod()
-        {
-            // act
-            this.cartManager.RemovePromoCode(this.fixture.Create<CommerceCart>(), this.fixture.Create<string>());
-
-            // assert
-            this.cartManager.Received(1)
-                .Execute(Arg.Any<RemovePromoCodeRequest>(), this.cartServiceProvider.RemovePromoCode);
         }
 
         [Fact]

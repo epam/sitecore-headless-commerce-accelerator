@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -97,9 +97,31 @@ export function* loadMoreHistory() {
   }
 }
 
+export function* getAllOrders(requestData: Action<any>) {
+  try {
+    yield put(actions.GetAllOrdersRequest());
+    const firstPageNumber = 0;
+    const { data, error }: Result<Commerce.Order[]> = yield call(Order.getOrders, {
+      count: 100,
+      fromDate: null,
+      page: firstPageNumber,
+      untilDate: null,
+    });
+
+    if (error) {
+      return yield put(actions.GetAllOrdersFailure(error.message || 'Error Occured'));
+    }
+
+    yield put(actions.GetAllOrdersSuccess(data));
+  } catch (e) {
+    yield put(actions.GetAllOrdersFailure(e.message));
+  }
+}
+
 function* watch(): SagaIterator {
   yield takeEvery(actionTypes.GET_ORDER, getCurrentOrder);
   yield takeLatest(actionTypes.GET_ORDER_HISTORY, getOrderHistory);
+  yield takeLatest(actionTypes.GET_ALL_ORDERS, getAllOrders);
   yield takeLatest(actionTypes.ORDER_HISTORY_LOAD_MORE, loadMoreHistory);
 }
 

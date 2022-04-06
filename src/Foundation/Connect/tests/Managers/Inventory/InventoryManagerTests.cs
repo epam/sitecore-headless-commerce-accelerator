@@ -22,14 +22,13 @@ namespace HCA.Foundation.Connect.Tests.Managers.Inventory
     using Base.Services.Logging;
 
     using Connect.Managers.Inventory;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using NSubstitute;
 
     using Ploeh.AutoFixture;
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
 

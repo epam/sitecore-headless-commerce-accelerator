@@ -33,8 +33,8 @@ namespace HCA.Foundation.Connect.Tests.Managers.Pricing
 
     using Xunit;
 
-    using GetProductBulkPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest;
-    using GetProductPricesRequest = Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest;
+    using HCA.Foundation.ConnectBase.Providers;
+    using ConnectBase = HCA.Foundation.ConnectBase.Pipelines.Arguments;
 
     public class PricingManagerTests
     {
@@ -44,12 +44,12 @@ namespace HCA.Foundation.Connect.Tests.Managers.Pricing
 
         private readonly PricingManager pricingManager;
 
-        private readonly PricingServiceProvider pricingServiceProvider;
+        private readonly PricingServiceProviderBase pricingServiceProvider;
 
         public PricingManagerTests()
         {
             var connectServiceProvider = Substitute.For<IConnectServiceProvider>();
-            this.pricingServiceProvider = Substitute.For<PricingServiceProvider>();
+            this.pricingServiceProvider = Substitute.For<PricingServiceProviderBase>();
             this.logService = Substitute.For<ILogService<CommonLog>>();
 
             connectServiceProvider.GetPricingServiceProvider().Returns(this.pricingServiceProvider);
@@ -107,7 +107,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Pricing
 
             // assert
             this.pricingManager.Received(1)
-                .Execute(Arg.Any<GetProductBulkPricesRequest>(), this.pricingServiceProvider.GetProductBulkPrices);
+                .Execute(Arg.Any<ConnectBase.GetProductBulkPricesRequest>(), this.pricingServiceProvider.GetProductBulkPrices);
         }
 
         [Theory]
@@ -148,7 +148,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Pricing
 
             // assert
             this.pricingManager.Received(1)
-                .Execute(Arg.Any<GetProductPricesRequest>(), this.pricingServiceProvider.GetProductPrices);
+                .Execute(Arg.Any<ConnectBase.GetProductPricesRequest>(), this.pricingServiceProvider.GetProductPrices);
         }
     }
 }

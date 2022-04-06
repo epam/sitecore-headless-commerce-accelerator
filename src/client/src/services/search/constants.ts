@@ -37,6 +37,10 @@ export const productsSearchReducerActionTypes = keyMirrorReducer(
     RESET_STATE: null,
     UPDATE_APPLIED_FACET: null,
     UPDATE_SORTING_TYPE: null,
+
+    GET_PRODUCTS_BY_IDS_REQUEST: null,
+    GET_PRODUCTS_BY_IDS_FAILURE: null,
+    GET_PRODUCTS_BY_IDS_SUCCESS: null,
   },
   ACTION_TYPES_NAMESPACE,
 );
@@ -50,6 +54,8 @@ export const productsSearchSagaActionTypes = keyMirrorSaga(
     CLEAR_SEARCH: null,
     INIT_SEARCH: null,
     LOAD_MORE: null,
+
+    GET_PRODUCTS_BY_IDS: null,
   },
   ACTION_TYPES_NAMESPACE,
 );

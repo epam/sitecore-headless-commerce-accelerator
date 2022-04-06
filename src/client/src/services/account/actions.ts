@@ -72,10 +72,17 @@ export const VerifyCommerceUser: actionCreators.VerifyCommerceUser = () => ({
   type: sagaActionTypes.VERIFY_COMMERCE_USER,
 });
 
-export const UpdateAccount: actionCreators.UpdateAccount = (firstName: string, lastName: string) => ({
+export const UpdateAccount: actionCreators.UpdateAccount = (
+  firstName: string,
+  lastName: string,
+  dateOfBirth?: string,
+  phoneNumber?: string,
+) => ({
   payload: {
     firstName,
     lastName,
+    dateOfBirth,
+    phoneNumber,
   },
   type: sagaActionTypes.UPDATE,
 });
@@ -386,4 +393,189 @@ export const DeleteAccountSuccess: actionCreators.DeleteAccountSuccess = () => (
     status: LoadingStatus.Loaded,
   },
   type: reducerActionTypes.DELETE_SUCCESS,
+});
+
+export const AddImage: actionCreators.AddImage = (image: File) => ({
+  payload: {
+    image,
+  },
+  type: sagaActionTypes.IMAGE_ADD,
+});
+
+export const AddImageRequest: actionCreators.AddImageRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.IMAGE_ADD_REQUEST,
+});
+
+export const AddImageFailure: actionCreators.AddImageFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.IMAGE_ADD_FAILURE,
+});
+
+export const AddImageSuccess: actionCreators.AddImageSuccess = (imageUrl: string) => ({
+  payload: {
+    imageUrl,
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.IMAGE_ADD_SUCCESS,
+});
+
+export const RemoveImage: actionCreators.RemoveImage = () => ({
+  payload: {},
+  type: sagaActionTypes.IMAGE_REMOVE,
+});
+
+export const RemoveImageRequest: actionCreators.RemoveImageRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.IMAGE_REMOVE_REQUEST,
+});
+
+export const RemoveImageFailure: actionCreators.RemoveImageFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.IMAGE_REMOVE_FAILURE,
+});
+
+export const RemoveImageSuccess: actionCreators.RemoveImageSuccess = () => ({
+  payload: {
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.IMAGE_REMOVE_SUCCESS,
+});
+
+export const GetCardList: actionCreators.GetCardList = () => ({
+  type: sagaActionTypes.CARD_GET_LIST,
+});
+
+export const GetCardListRequest: actionCreators.GetCardListRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.CARD_GET_LIST_REQUEST,
+});
+
+export const GetCardListFailure: actionCreators.GetCardListFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.CARD_GET_LIST_FAILURE,
+});
+
+export const GetCardListSuccess: actionCreators.GetCardListSuccess = (cardList: Commerce.Card[]) => ({
+  payload: {
+    items: cardList.reduce((acc, currentItem) => {
+      acc[currentItem.id] = currentItem;
+      return acc;
+    }, {}),
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.CARD_GET_LIST_SUCCESS,
+});
+
+export const UpdateCardData: actionCreators.UpdateCard = (card: Commerce.Card) => ({
+  payload: card,
+  type: sagaActionTypes.CARD_UPDATE,
+});
+
+export const UpdateCardRequest: actionCreators.UpdateCardRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.CARD_UPDATE_REQUEST,
+});
+
+export const UpdateCardFailure: actionCreators.UpdateCardFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.CARD_UPDATE_FAILURE,
+});
+
+export const UpdateCardSuccess: actionCreators.UpdateCardSuccess = (cardList: Commerce.Card[]) => ({
+  payload: {
+    items: cardList.reduce((acc, currentItem) => {
+      acc[currentItem.id] = currentItem;
+      return acc;
+    }, {}),
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.CARD_UPDATE_SUCCESS,
+});
+export const AddCard: actionCreators.AddCard = (card: Commerce.Card) => ({
+  payload: card,
+  type: sagaActionTypes.CARD_ADD,
+});
+
+export const AddCardRequest: actionCreators.AddCardRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.CARD_ADD_REQUEST,
+});
+
+export const AddCardFailure: actionCreators.AddAddressFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.CARD_ADD_FAILURE,
+});
+
+export const AddCardSuccess: actionCreators.AddCardSuccess = (cardList: Commerce.Card[]) => ({
+  payload: {
+    items: cardList.reduce((acc, currentItem) => {
+      acc[currentItem.id] = currentItem;
+      return acc;
+    }, {}),
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.CARD_ADD_SUCCESS,
+});
+
+export const RemoveCard: actionCreators.RemoveCard = (id: string) => ({
+  payload: id,
+  type: sagaActionTypes.CARD_REMOVE,
+});
+
+export const RemoveCardRequest: actionCreators.RemoveAddressRequest = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: reducerActionTypes.ADDRESS_ADD_REQUEST,
+});
+
+export const RemoveCardFailure: actionCreators.RemoveCardFailure = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: reducerActionTypes.CARD_ADD_FAILURE,
+});
+
+export const RemoveCardSuccess: actionCreators.RemoveCardSuccess = (cardList: Commerce.Card[]) => ({
+  payload: {
+    items: cardList.reduce((acc, currentItem) => {
+      acc[currentItem.id] = currentItem;
+      return acc;
+    }, {}),
+    status: LoadingStatus.Loaded,
+  },
+  type: reducerActionTypes.CARD_ADD_SUCCESS,
 });

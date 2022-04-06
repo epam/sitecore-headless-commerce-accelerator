@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -36,6 +36,10 @@ export const actionTypes = keyMirror({
   REMOVE_CART_LINE_REQUEST: null,
   REMOVE_CART_LINE_SUCCESS: null,
 
+  CLEAN_CART: null,
+  CLEAN_CART_FAILURE: null,
+  CLEAN_CART_REQUEST: null,
+  CLEAN_CART_SUCCESS: null,
   UPDATE_CART_ITEM_FAILURE: null,
   UPDATE_CART_ITEM_REQUEST: null,
   UPDATE_CART_ITEM_SUCCESS: null,

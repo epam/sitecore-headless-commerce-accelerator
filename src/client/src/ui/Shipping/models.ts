@@ -15,6 +15,7 @@
 import * as Commerce from 'services/commerce';
 import * as Jss from 'Foundation/ReactJss';
 import * as Checkout from 'services/checkout';
+import { StepValues } from 'services/checkout';
 
 export interface ShippingDataSource extends Jss.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];
@@ -27,6 +28,7 @@ export interface ShippingStateProps {
   isSubmitting: boolean;
   isLoading: boolean;
   commerceUser: Commerce.User;
+  stepValues: StepValues;
 }
 export interface ShippingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;
@@ -43,5 +45,8 @@ export interface ShippingState extends Jss.SafePureComponentState {
   canResetDeliveryInfo: boolean;
   useForBillingAddress: boolean;
   saveToAccount: boolean;
+  stateFormFields: object;
+  guestEmail: string;
+  mounted: boolean;
 }
 export interface AppState extends Checkout.GlobalCheckoutState, Checkout.AppState {}

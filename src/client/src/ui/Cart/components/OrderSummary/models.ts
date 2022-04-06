@@ -19,12 +19,20 @@ import * as ShoppingCart from 'services/shoppingCart';
 export interface OrderSummaryDataSource extends JSS.BaseDataSourceItem {
   countries: Commerce.CountryRegion[];
 }
+
 export interface OrderSummaryOwnProps {
   price: ShoppingCart.ShoppingCartPrice;
   rendering: any;
   countries: Commerce.CountryRegion[];
 }
+export interface OrderSummaryStateProps {}
+export interface OrderSummaryDispatchProps {}
 
-export interface OrderSummaryProps extends OrderSummaryOwnProps {}
+export interface OrderSummaryProps extends OrderSummaryOwnProps, OrderSummaryStateProps, OrderSummaryDispatchProps {}
+
+export interface OrderSummaryState extends JSS.SafePureComponentState {
+  isVisibleTax: boolean;
+  isVisibleCartTotal: boolean;
+}
 
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}

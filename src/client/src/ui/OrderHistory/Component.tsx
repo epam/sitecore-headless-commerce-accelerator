@@ -16,7 +16,6 @@ import React, { MouseEvent } from 'react';
 
 import { SafePureComponent } from 'Foundation/ReactJss';
 
-import { Text } from '@sitecore-jss/sitecore-jss-react';
 import { Icon, Spinner } from 'components';
 import { NavigationLink } from 'ui/NavigationLink';
 
@@ -37,16 +36,13 @@ export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, 
   }
 
   public safeRender() {
-    const { orders, isLastPage, isLoading, sitecoreContext } = this.props;
+    const { orders, isLastPage, loaded, sitecoreContext } = this.props;
     const { isFirstLoad } = this.state;
     return (
       <div className="order-history">
-        {!isLoading || !isFirstLoad ? (
+        {loaded || !isFirstLoad ? (
           orders && orders.length > 0 ? (
             <div>
-              <div className="order-history-color-title">
-                <Text tag="h1" field={{ value: 'Order History' }} className="title" />
-              </div>
               <div className="order-list">
                 {orders.map((order, index) => (
                   <div className="row order-list-item" key={index}>
@@ -54,14 +50,14 @@ export class OrderHistoryComponent extends SafePureComponent<OrderHistoryProps, 
                   </div>
                 ))}
               </div>
-              {!isLastPage && !isLoading && (
+              {!isLastPage && loaded && (
                 <div className="order-history-loadMore">
                   <a className="btn-load-more" href="#" onClick={(e) => this.loadMoreHandler(e)}>
                     View more orders
                   </a>
                 </div>
               )}
-              {isLoading && !isFirstLoad && <Spinner data-autotests="loading_spinner" />}
+              {!loaded && !isFirstLoad && <Spinner data-autotests="loading_spinner" />}
             </div>
           ) : (
             <div className="order-history_container-empty">

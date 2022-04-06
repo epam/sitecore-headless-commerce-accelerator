@@ -47,7 +47,7 @@ const mapStateToProps = (state: AppState, ownProps: ProductListOwnProps) => {
   return {
     categoryId,
     currentPageNumber,
-    isLoading: status === LoadingStatus.Loading,
+    isLoading: status === LoadingStatus.NotLoaded || status === LoadingStatus.Loading,
     items,
     itemsPerPage,
     search,

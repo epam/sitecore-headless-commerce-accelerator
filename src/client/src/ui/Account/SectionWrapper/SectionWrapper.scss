@@ -1,0 +1,76 @@
+//    Copyright 2022 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.SectionWrapper {
+  margin-bottom: 50px;
+
+  &-Header {
+    @media (max-width: $screen-sm) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 15px;
+      margin-right: 20px;
+    }
+  }
+
+  &-Title {
+    font-weight: 600;
+    font-size: 18px;
+    display: inline-flex;
+
+    @media (max-width: $screen-sm) {
+      font-size: 14px;
+      line-height: 21px;
+      text-transform: uppercase;
+      color: $grey;
+    }
+  }
+
+  &-Link {
+    margin-left: 10px;
+    color: $link-color;
+
+    @media (min-width: $screen-xs) and (max-width: $screen-sm) {
+      margin-right: 30px;
+    }
+
+    @media (hover) {
+      &:hover {
+        text-decoration: underline;
+        color: $link-color;
+      }
+    }
+  }
+
+  &-Content {
+    margin-top: 14px;
+    border: 1px solid $table-border-color;
+    box-sizing: border-box;
+    padding: 18px 27px;
+
+    &_contentType_borderTop {
+      border: none;
+      border-top: 1px solid $grey-light;
+      padding: 0;
+
+      @media (max-width: $screen-sm) {
+        border-top: none;
+      }
+    }
+  }
+}

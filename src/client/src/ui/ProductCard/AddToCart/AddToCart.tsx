@@ -48,7 +48,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
   const { product, selectedVariant } = contextData;
   const { data: cartData, cartItemsState } = cartState;
   const selectedVariantId = selectedVariant ? selectedVariant.variantId : '';
-  const statusId = `${product.productId}-${selectedVariantId}`;
+  const statusId = `${product?.productId}-${selectedVariantId}`;
   const loadingStatus = get(cartItemsState, [statusId, 'status']);
   const quantity = quantities[selectedVariantId] || 0;
   const cartLinesState: CartLine[] | null = get(cartData, 'cartLines', null);
@@ -57,7 +57,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     if (!cartLinesState) {
       return false;
     }
-    const cartLine = cartLinesState.find((item) => item.product.productId === product.productId);
+    const cartLine = cartLinesState.find((item) => item.product.productId === product?.productId);
 
     return Boolean(cartLine);
   }, [cartLinesState]);
@@ -65,7 +65,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
   useEffect(() => {
     if (!initializedRef.current && cartLinesState) {
       const res = cartLinesState.reduce((acc, x) => {
-        if (x.product.productId === product.productId) {
+        if (x.product.productId === product?.productId) {
           acc[x.variant.variantId] = x.quantity;
         }
 

@@ -242,6 +242,7 @@
     <Reference Include="Sitecore.Commerce.Engine.Connect">
       <HintPath>..\..\..\packages\Sitecore.Commerce.Engine.Connect.6.0.77\lib\net48\Sitecore.Commerce.Engine.Connect.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Commerce.ServiceProxy, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Sitecore.ContentSearch, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Sitecore.ContentSearch.10.0.0\lib\net48\Sitecore.ContentSearch.dll</HintPath>
     </Reference>
@@ -495,27 +496,40 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Converters\Products\BaseItemToProductConverter.cs" />
     <Compile Include="Converters\Products\ItemToProductConverter.cs" />
     <Compile Include="Converters\Products\ItemToVariantConverter.cs" />
+    <Compile Include="Infrastructure\Pipelines\TranslatePartyToCommerceParty.cs" />
+    <Compile Include="Infrastructure\Pipelines\TranslateCommercePartyToParty.cs" />
     <Compile Include="Loaders\CommerceTypeLoader.cs" />
     <Compile Include="Loaders\ICommerceTypeLoader.cs" />
     <Compile Include="Mappers\Profiles\SearchProfile.cs" />
+    <Compile Include="Mappers\Provider\Extensions.cs" />
+    <Compile Include="Mappers\Provider\ProviderMapper.cs" />
+    <Compile Include="Mappers\Provider\ProviderProfile.cs" />
     <Compile Include="Mappers\Search\ISearchMapper.cs" />
     <Compile Include="Mappers\Search\SearchMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Cart\CommerceCartServiceProvider.cs" />
+    <Compile Include="Providers\Customer\CommerceCustomerServiceProvider.cs" />
+    <Compile Include="Providers\Inventory\CommerceInventoryServiceProvider.cs" />
+    <Compile Include="Providers\Orders\CommerceOrderServiceProvider.cs" />
+    <Compile Include="Providers\Payments\CommercePaymentServiceProvider.cs" />
+    <Compile Include="Providers\Prices\CommercePricingServiceProvider.cs" />
     <Compile Include="Providers\Search\ISearchResponseProvider.cs" />
     <Compile Include="Providers\Product\CommerceProductSearchResultProvider.cs" />
     <Compile Include="Providers\Product\CommerceProductSuggestionResultProvider.cs" />
     <Compile Include="Providers\Search\SearchResponseProvider.cs" />
     <Compile Include="Providers\Search\SearchSettingsProvider.cs" />
+    <Compile Include="Providers\Shipping\CommerceShippingServiceProvider.cs" />
     <Compile Include="Services\Category\CommerceCategorySearchService.cs" />
     <Compile Include="Services\Product\CommerceProductSearchService.cs" />
     <Compile Include="Services\Product\ICommerceProductSearchService.cs" />
     <Compile Include="Services\Search\CommerceProductSearchService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Foundation\HCA.Foundation.SitecoreCommerce.config" />
+    <Content Include="App_Config\Include\Y.Foundation\HCA.Foundation.SitecoreCommerce.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -532,6 +546,10 @@
     <ProjectReference Include="..\..\Commerce\website\HCA.Foundation.Commerce.csproj">
       <Project>{4CD01A37-76D8-4A6A-8822-014369C4243D}</Project>
       <Name>HCA.Foundation.Commerce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762af-b6bc-4d02-9355-11284473eaf4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Connect\website\HCA.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>

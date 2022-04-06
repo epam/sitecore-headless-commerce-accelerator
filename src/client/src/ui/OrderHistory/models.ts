@@ -21,7 +21,7 @@ export interface OrderHistoryOwnProps
 
 export interface OrderHistoryStateProps {
   orders: Models.Order[];
-  isLoading: boolean;
+  loaded: boolean;
   isLastPage: boolean;
 }
 

@@ -116,12 +116,12 @@ namespace HCA.Foundation.Commerce.Services.Billing
             return result;
         }
 
-        public Result<VoidResult> SetPaymentInfo(Address billingAddress, FederatedPaymentInfo federatedPayment)
+        public Result<Models.Entities.Payment.PaymentData> SetPaymentInfo(Address billingAddress, FederatedPaymentInfo federatedPayment)
         {
             Assert.ArgumentNotNull(billingAddress, nameof(billingAddress));
             Assert.ArgumentNotNull(federatedPayment, nameof(federatedPayment));
 
-            var result = new Result<VoidResult>(new VoidResult());
+            var result = new Result<Models.Entities.Payment.PaymentData>();
 
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
@@ -168,6 +168,12 @@ namespace HCA.Foundation.Commerce.Services.Billing
 
                 return result;
             }
+
+            result.SetResult(new Models.Entities.Payment.PaymentData
+            {
+                BillingAddress = billingAddress,
+                FederatedPaymentInfo = federatedPayment
+            });
 
             return result;
         }

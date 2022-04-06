@@ -20,28 +20,25 @@ namespace HCA.Foundation.Connect.Managers.Cart
     using Base.Services.Logging;
 
     using DependencyInjection;
-
+    using HCA.Foundation.ConnectBase.Entities;
+    using HCA.Foundation.ConnectBase.Pipelines.Arguments;
+    using HCA.Foundation.ConnectBase.Providers;
     using Mappers.Cart;
 
     using Models;
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
-    using Sitecore.Commerce.Engine.Connect.Services.Carts;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
-    using AddShippingInfoRequest = Sitecore.Commerce.Engine.Connect.Services.Carts.AddShippingInfoRequest;
-
     [Service(typeof(ICartManager), Lifetime = Lifetime.Singleton)]
     public class CartManager : BaseManager, ICartManager
     {
         private readonly ICartMapper cartMapper;
-        private readonly CommerceCartServiceProvider cartServiceProvider;
+        private readonly CartServiceProviderBase cartServiceProvider;
 
         public CartManager(
             ILogService<CommonLog> logService,
@@ -119,7 +116,7 @@ namespace HCA.Foundation.Connect.Managers.Cart
             Assert.ArgumentNotNull(shippings, nameof(shippings));
 
             return this.Execute(
-                new AddShippingInfoRequest(cart, shippings, shippingOptionType),
+                new ConnectBase.Pipelines.Arguments.AddShippingInfoRequest(cart, shippings, shippingOptionType),
                 this.cartServiceProvider.AddShippingInfo);
         }
 
@@ -153,22 +150,6 @@ namespace HCA.Foundation.Connect.Managers.Cart
             Assert.ArgumentNotNull(toCart, nameof(toCart));
 
             return this.Execute(new MergeCartRequest(fromCart, toCart), this.cartServiceProvider.MergeCart);
-        }
-
-        public CartResult AddPromoCode(CommerceCart cart, string promoCode)
-        {
-            Assert.ArgumentNotNull(cart, nameof(cart));
-            Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
-
-            return this.Execute(new AddPromoCodeRequest(cart, promoCode), this.cartServiceProvider.AddPromoCode);
-        }
-
-        public CartResult RemovePromoCode(CommerceCart cart, string promoCode)
-        {
-            Assert.ArgumentNotNull(cart, nameof(cart));
-            Assert.ArgumentNotNullOrEmpty(promoCode, nameof(promoCode));
-
-            return this.Execute(new RemovePromoCodeRequest(cart, promoCode), this.cartServiceProvider.RemovePromoCode);
         }
 
         public CartResult RemovePaymentInfo(Cart cart)

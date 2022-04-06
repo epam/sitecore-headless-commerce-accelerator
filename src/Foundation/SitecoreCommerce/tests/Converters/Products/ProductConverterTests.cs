@@ -22,13 +22,12 @@ namespace HCA.Foundation.SitecoreCommerce.Tests.Converters.Products
     using Connect.Managers.Inventory;
     using Connect.Managers.Pricing;
     using Connect.Models.Catalog;
-    using HCA.Foundation.Connect.Managers.Inventory;
-    using HCA.Foundation.Connect.Managers.Pricing;
+    using HCA.Foundation.ConnectBase.Entities;
     using NSubstitute;
 
     using Ploeh.AutoFixture;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
+
     using Sitecore.Commerce.Entities.Inventory;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Commerce.Services.Prices;

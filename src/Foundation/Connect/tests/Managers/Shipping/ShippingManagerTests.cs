@@ -21,21 +21,19 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
     using Base.Tests.Customization;
 
     using Connect.Managers.Shipping;
-
+    using HCA.Foundation.ConnectBase.Entities;
+    using ConnectBase = HCA.Foundation.ConnectBase.Pipelines.Arguments;
     using NSubstitute;
 
     using Ploeh.AutoFixture;
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
 
     using Xunit;
-
-    using GetShippingMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Shipping.GetShippingMethodsRequest;
 
     public class ShippingManagerTests
     {
@@ -78,7 +76,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Shipping
 
             // assert
             this.shippingManager.Received(1)
-                .Execute(Arg.Any<GetShippingMethodsRequest>(), this.shippingServiceProvider.GetShippingMethods);
+                .Execute(Arg.Any<ConnectBase.GetShippingMethodsRequest>(), this.shippingServiceProvider.GetShippingMethods);
         }
 
         [Fact]

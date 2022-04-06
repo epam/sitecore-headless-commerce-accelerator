@@ -16,64 +16,62 @@
 
 @import 'styles/variables';
 
-@media #{$xs-layout} {
-  .footer-links-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 15px 0;
-  }
-  .footer-list-item {
-    display: flex;
-    justify-content: center;
-  }
-}
+.DropdownFooterLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto auto 8px;
+  text-transform: uppercase;
 
-.footer-links-list {
-  .footer-list-item {
+  &-LinkWrapper {
     line-height: 1.8;
-    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
     & div {
-      margin: auto 0;
-    }
-    &-accordion {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      & i {
-        margin-left: 10px;
-      }
+      margin: 0 0 16px;
     }
 
-    &:last-child {
-      margin-bottom: 0;
+    & i {
+      margin-left: 10px;
+      position: relative;
+      bottom: 5px;
+    }
+
+    &_type_accordion {
+      margin-bottom: 8px;
     }
   }
 
-  .footer-link {
-    font-weight: 900;
+  &-Link {
+    font-weight: 500;
     text-transform: uppercase;
 
-    &-primary {
+    &_type_primary {
       font-size: 16px;
       font-weight: 500;
       line-height: 1;
       margin: 0 0 16px;
-      color: #313131;
+      color: $footer-title-color;
+
       @media (hover) {
         &:hover {
           color: $nav-font-second-color;
         }
       }
     }
-    &-secondary {
+
+    &_type_secondary {
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
       height: auto;
       letter-spacing: 0.3px;
-      color: #5d5d5d;
+      color: $footer-link-color;
       text-transform: capitalize;
+      margin-bottom: 10px;
+
       &:hover {
         color: $theme-color;
       }

@@ -48,6 +48,8 @@ namespace HCA.Foundation.Commerce.Tests.Converters.Cart
 
             this.catalogService = Substitute.For<ICatalogService>();
             this.cartMapper = Substitute.For<ICartMapper>();
+
+            this.cartConverter = new CartConverter(this.catalogService, this.cartMapper);
         }
 
         [Fact]

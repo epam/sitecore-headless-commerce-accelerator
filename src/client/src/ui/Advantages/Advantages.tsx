@@ -38,27 +38,27 @@ export const Advantages: FC<AdvantagesProps> = (props) => {
   const settings = {
     breakpoints: {
       460: {
-        slidesPerView: 1.1,
-      },
-      650: {
         slidesPerView: 1.5,
       },
-      730: {
+      650: {
         slidesPerView: 2.2,
       },
-      950: {
+      730: {
         slidesPerView: 2.3,
       },
-      1035: {
+      950: {
         slidesPerView: 3.2,
       },
-      1170: {
+      1035: {
         slidesPerView: 3.5,
+      },
+      1170: {
+        slidesPerView: 4,
       },
     },
     centerInsufficientSlides: true,
     setWrapperSize: true,
-    slidesPerView: 4,
+    slidesPerView: 1.1,
   };
 
   return (

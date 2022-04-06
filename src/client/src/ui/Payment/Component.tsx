@@ -35,7 +35,7 @@ export default class PaymentComponent extends Jss.SafePureComponent<PaymentProps
     };
   }
 
-  public componentWillMount() {
+  public UNSAFE_componentWillMount() {
     if (!this.props.sitecoreContext.pageEditing) {
       this.props.InitStep(CheckoutStepType.Payment);
     }

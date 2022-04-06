@@ -22,6 +22,8 @@ namespace HCA.Foundation.Search.Models.Common
     {
         public string SearchKeyword { get; set; }
 
+        public IEnumerable<string> ProductIds { get; set; }
+
         public int NumberOfItemsToReturn { get; set; }
 
         public int StartPageIndex { get; set; }

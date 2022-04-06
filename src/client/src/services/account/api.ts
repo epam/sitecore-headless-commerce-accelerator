@@ -20,6 +20,7 @@ import { Result, VoidResult } from 'models';
 
 import {
   AddressResponse,
+  CardResponse,
   ChangePasswordResponse,
   ConfirmPasswordRecoveryResponse,
   CreateAccountResponse,
@@ -27,6 +28,8 @@ import {
   RecoverPasswordResponse,
   UpdateAccountResponse,
   DeleteAccountResponse,
+  AddImageResponse,
+  RemoveImageResponse,
 } from './models';
 import * as DataModel from './models/generated';
 
@@ -62,17 +65,40 @@ export const emailValidation = async (
     });
 };
 
-export const changePassword = async (
-  changePasswordRequest: DataModel.ChangePasswordRequest,
-): Promise<Result<boolean>> => {
+export const changePassword = async (changePasswordRequest: DataModel.ChangePasswordRequest): Promise<Result<any>> => {
   return axios
     .put<ChangePasswordResponse>(`${routeBase}/password`, changePasswordRequest)
     .then((response) => {
       return { data: response.data.status === 'ok' };
     })
     .catch((error: AxiosError) => {
+      if (error.response.status === 400) {
+        return { data: { errorMessage: get(error, ['response', 'data', 'error']) } };
+      }
+      return { data: { errorMessage: 'Change password failed' } };
+    });
+};
+
+export const getCardList = async (): Promise<Result<Commerce.Card[]>> => {
+  return axios
+    .get<CardResponse>(`${routeBase}/paymentcards`)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
       return { error };
     });
+};
+
+export const updateCard = async (cardRequest: DataModel.CardRequest): Promise<Result<Commerce.Card[]>> => {
+  return null;
+};
+export const removeCard = async (externalId: string): Promise<Result<Commerce.Card[]>> => {
+  return null;
+};
+
+export const addCard = async (cardRequest: DataModel.CardRequest): Promise<Result<Commerce.Card[]>> => {
+  return null;
 };
 
 export const addAddress = async (addressRequest: DataModel.AddressRequest): Promise<Result<Commerce.Address[]>> => {
@@ -121,13 +147,16 @@ export const removeAddress = async (externalId: string): Promise<Result<Commerce
 
 export const updateAccountInfo = async (
   updateAccountRequest: DataModel.UpdateAccountRequest,
-): Promise<Result<boolean>> => {
+): Promise<{ data: boolean } | { data: { errorMessage: string } } | { error: AxiosError }> => {
   return axios
     .put<UpdateAccountResponse>(`${routeBase}/account`, updateAccountRequest)
     .then((response) => {
       return { data: response.data.status === 'ok' };
     })
     .catch((error: AxiosError) => {
+      if (error.response.status === 400) {
+        return { data: { errorMessage: get(error, ['response', 'data', 'error']) } };
+      }
       return { error };
     });
 };
@@ -163,6 +192,32 @@ export const recoverPassword = async (
     .put<RecoverPasswordResponse>(`${routeBase}/RecoverPassword`, recoverPasswordRequest)
     .then((response) => {
       return { data: response.data.status === 'ok' };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
+};
+
+export const addImage = async (addImageRequest: DataModel.AddImageRequest): Promise<Result<any>> => {
+  const newImage = addImageRequest.image;
+  const formData = new FormData();
+  formData.append('newImage', newImage, newImage.name);
+
+  return axios
+    .post<AddImageResponse>(`${routeBase}/userimage`, formData)
+    .then((response) => {
+      return { data: response.data.data };
+    })
+    .catch((error: AxiosError) => {
+      return { error };
+    });
+};
+
+export const removeImage = async (removeImageRequest: DataModel.RemoveImageRequest): Promise<Result<VoidResult>> => {
+  return axios
+    .delete<RemoveImageResponse>(`${routeBase}/userimage`)
+    .then((response) => {
+      return { data: response.data.data };
     })
     .catch((error: AxiosError) => {
       return { error };

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import { NotFound } from 'ui/NotFound';
 
 import { AppProps } from './../../../models';
 import { LoadingBar, ServerError } from '../../components';
+import { CookieBanner } from '../../../../ui/CookieBanner';
 
 import { Default } from 'layouts';
 
@@ -47,15 +48,20 @@ export default class AppComponent extends JSS.SafePureComponent<AppProps, {}> {
     return (
       <>
         <LoadingBar loading={this.props.isLoading} />
+        <CookieBanner isLoaded={this.props.isLoaded} />
         <Switch>
-          <Route exact={true} path={SitecoreContext.NOT_FOUND_ROUTE} component={NotFound} />
+          <Route
+            exact={true}
+            path={SitecoreContext.NOT_FOUND_ROUTE}
+            render={(routeProps) => <NotFound {...routeProps} {...this.props} />}
+          />
           <Route exact={true} path={SitecoreContext.SERVER_ERROR_ROUTE} component={ServerError} />
           {SITECORE_ROUTES.map((path, index) => (
             <Route key={index} path={path} render={(routeProps) => <Default {...routeProps} {...this.props} />} />
           ))}
-          <Route component={NotFound} />
+          <Route render={(routeProps) => <NotFound {...routeProps} {...this.props} />} />
         </Switch>
-        <ToastContainer hideProgressBar={true} closeOnClick={false} />
+        <ToastContainer hideProgressBar={true} closeOnClick={false} newestOnTop={true} />
       </>
     );
   }

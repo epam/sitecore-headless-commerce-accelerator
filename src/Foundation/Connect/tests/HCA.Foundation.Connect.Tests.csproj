@@ -604,7 +604,6 @@
     <Compile Include="Managers\Order\OrderManagerTests.cs" />
     <Compile Include="Managers\Payment\PaymentManagerTests.cs" />
     <Compile Include="Mappers\Profiles\PaymentProfileTests.cs" />
-    <Compile Include="Mappers\Profiles\AddressProfileTests.cs" />
     <Compile Include="Mappers\Profiles\CatalogProfileTests.cs" />
     <Compile Include="Managers\Pricing\PricingManagerTests.cs" />
     <Compile Include="Managers\Shipping\ShippingManagerTests.cs" />
@@ -634,6 +633,10 @@
     <ProjectReference Include="..\..\Base\website\HCA.Foundation.Base.csproj">
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762AF-B6BC-4D02-9355-11284473EAF4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GlassMapper\website\HCA.Foundation.GlassMapper.csproj">
       <Project>{0044B0CA-ABE2-4365-B1B2-1E347993B4AA}</Project>

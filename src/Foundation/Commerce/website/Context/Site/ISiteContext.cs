@@ -15,7 +15,7 @@
 namespace HCA.Foundation.Commerce.Context.Site
 {
     using Models.Entities.Catalog;
-
+    
     public interface ISiteContext
     {
         Category CurrentCategory { get; set; }

@@ -14,7 +14,7 @@
 
 // tslint:disable:no-empty-interface
 
-import * as ReactJssModule from '{{options.reactJssModule}}';
+import * as HeadlessDefinitions from '{{options.headlessDefinitions}}';
 {{#each options.modules}}
 import * as {{this.Name}} from '{{this.Path}}';
 {{/each}}
@@ -22,7 +22,7 @@ import * as {{this.Name}} from '{{this.Path}}';
 
 // Path: {{this.Path}}
 // ID: {{this.ID}}
-export interface {{this.AsClass}}DataSource extends {{#each this.BaseTemplates}}{{this.AsInterface}}, {{/each}}ReactJssModule.BaseDataSourceItem {
+export interface {{this.AsClass}}DataSource extends {{#each this.BaseTemplates}}{{this.AsInterface}}, {{/each}}HeadlessDefinitions.BaseDataSourceItem {
 
     {{#each this.Fields}}
     /// The {{this.Name}} field.
@@ -35,7 +35,7 @@ export interface {{this.AsClass}}DataSource extends {{#each this.BaseTemplates}}
 
 // Path: {{this.Path}}
 // ID: {{this.ID}}
-export interface {{this.AsClass}}RenderingParams extends {{#each this.BaseTemplates}}{{this.AsInterface}}, {{/each}}ReactJssModule.BaseRenderingParam {
+export interface {{this.AsClass}}RenderingParams extends {{#each this.BaseTemplates}}{{this.AsInterface}}, {{/each}}HeadlessDefinitions.BaseRenderingParam {
 
     {{#each this.Fields}}
     /// The {{this.Name}} field.

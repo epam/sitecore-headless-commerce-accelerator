@@ -20,11 +20,9 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using AutoMapper;
 
     using Connect.Mappers.Resolvers;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Models.Entities.Catalog;
     using Models.Entities.Search;
-
-    using Providers;
     using Providers.Currency;
 
     using Sitecore.Data.Items;
@@ -62,7 +60,12 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                 .IncludeBase<Connect.BaseProduct, BaseProduct>()
                 .ForMember(dest => dest.VariantId, opt => opt.MapFrom(src => src.Id));
 
-            this.CreateMap<Item, Category>()
+            this.CreateMap<Variant, CommerceCartProduct>()
+                .ForMember(dest => dest.ProductVariantId, opt => opt.MapFrom(src => src.VariantId))
+                .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))
+                .ForAllMembers(opt => opt.Ignore());
+                
+             this.CreateMap<Item, Category>()
                 .ForMember(dest => dest.SitecoreId, opt => opt.MapFrom(src => src["SitecoreId"]))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src["Name"]))
                 .ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src["DisplayName"]))

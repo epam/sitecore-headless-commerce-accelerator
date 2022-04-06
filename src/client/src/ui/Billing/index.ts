@@ -32,6 +32,7 @@ const mapStateToProps = (state: AppState): BillingStateProps => {
   return {
     commerceUser,
     useForBillingAddress,
+    stepValues,
   };
 };
 

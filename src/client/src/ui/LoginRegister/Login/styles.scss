@@ -13,97 +13,80 @@
 //    limitations under the License.
 
 @import 'styles/variables';
+@import 'styles/mixins';
 
 .Login {
   &-Button {
     padding: 10px 30px;
   }
-}
 
-.login {
-  &_actions {
+  &-FaEyeIcon {
+    cursor: pointer;
+    color: $grey;
+  }
+
+  &-Actions {
     width: 100%;
-    .actions_toggle_btn {
-      display: flex;
-      justify-content: flex-end;
-      padding: 10px 0 19px;
-      a {
-        font-size: 15px;
-        @media #{$xs-layout} {
-          font-size: 14px;
-        }
-        &:hover {
-          color: $theme-color;
-        }
-      }
-    }
-
-    button {
-      background-color: $login-button-default-color;
-      border: none;
-      color: $login-default-font-color;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1;
-      padding: 11px 30px;
-      text-transform: uppercase;
-      -webkit-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-      font-family: $poppins;
-      &:hover {
-        background-color: $theme-color;
-        color: $login-hover-font-color;
-      }
-    }
   }
 
-  &_title-welcome {
-    font-size: 35px;
-    font-weight: 700;
-    margin: 0 20px;
-    text-transform: capitalize;
-    transition: all 0.3s ease 0s;
+  .Input-Control {
+    outline: none;
+    width: 100%;
+    display: block;
+    background-color: transparent;
+    color: $login-default-font-color;
+    font-size: 14px;
+    height: 45px;
+    padding: 0 15px;
+    box-shadow: none;
     font-family: $poppins;
-    color: $theme-color;
-    margin-left: 0px;
+    margin-bottom: 0;
   }
 
-  &_form-group {
+  &-ToggleBtn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 19px;
+
+    a {
+      color: $link-color;
+
+      @media (hover) {
+        &:hover {
+          text-decoration: underline;
+          color: $link-color;
+        }
+      }
+    }
+  }
+
+  &-Actions .Button_buttonTheme_default,
+  .Login-Button {
+    font-family: $poppins;
+    background: $bg-grey;
+    border: 1px solid $bg-grey;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 11px 30px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    @include primary-button-hover-focus-active;
+  }
+
+  &_FormGroup {
     width: 100%;
     display: flex;
     flex-direction: column;
-    .form-field {
-      margin-bottom: 30px;
-      input {
-        outline: none;
-        width: 100%;
-        display: block;
-        background-color: transparent;
-        color: $login-default-font-color;
-        font-size: 14px;
-        height: 45px;
-        padding: 0 15px;
-        box-shadow: none;
-        font-family: $poppins;
-        margin-bottom: 0px;
-      }
-    }
   }
 
-  h5 {
-    margin: 4px 0;
-    padding: 0;
-    color: $focus-color;
-  }
-
-  h5 {
-    display: inline-block;
+  &-FormField {
+    margin-bottom: 30px;
   }
 }
 
 @media #{$header-switch-mode} {
-  .login {
+  .Login {
     padding: 25px;
   }
 }

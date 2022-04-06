@@ -16,66 +16,101 @@
 
 @import 'styles/variables';
 
-.footer-wrap {
-  margin: auto;
-  padding: 0px 15px;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  max-width: 1200px;
-  @media #{$footer-switch-mode} {
-    padding-top: 0;
-  }
-
-  @media (max-width: $screen-desktop) {
-    .SocialNetworksLinks {
-      align-items: flex-start;
-    }
-  }
-
-  .footer-columns {
-    margin-bottom: 0px;
-    width: 72%;
-    @media #{$xs-layout} {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin: auto;
-      .hca {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-    @media (min-width: $screen-desktop) {
-      .col-md-3 {
-        display: flex;
-        justify-content: flex-end;
-      }
-    }
-  }
-  .SocialNetworksLinks_alignItems_right {
-    display: inline-block;
-  }
-  .SocialNetworksLinks-List {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .SocialNetworksLinks-Item {
-    margin-right: 0;
-  }
-}
-
-.footer-area {
+.Footer {
   position: relative;
   background-color: $background-footer-color;
   padding-bottom: 100px;
   padding-top: 100px;
   font-family: $poppins;
+
+  &-Wrap {
+    margin: auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 1200px;
+
+    @media #{$footer-switch-mode} {
+      padding-top: 0;
+    }
+
+    @media (max-width: $screen-desktop) {
+      .SocialNetworksLinks {
+        align-items: flex-start;
+      }
+    }
+
+    .footer-columns {
+      margin-bottom: 0;
+      width: 72%;
+
+      @media #{$xs-layout} {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+
+        .hca {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      @media (min-width: $screen-desktop) {
+        .col-md-3 {
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+
+      @media (min-width: 766px) and (max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 100%;
+
+        .row {
+          display: flex;
+          justify-content: center;
+
+          .col-sm-4 {
+            width: auto;
+          }
+        }
+
+        .SocialNetworksLinks {
+          &_alignItems_right {
+            margin-top: 85px;
+          }
+        }
+      }
+    }
+
+    .SocialNetworksLinks {
+      &-List {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      &-Item {
+        margin-right: 0;
+      }
+
+      &_alignItems_right {
+        display: inline-block;
+      }
+    }
+  }
+
   @media #{$footer-switch-mode} {
     padding-top: 60px;
-    .footer-wrap {
+
+    &-Wrap {
       max-width: 1200px;
       margin: auto;
       display: flex;
@@ -84,27 +119,41 @@
       justify-content: stretch;
       position: relative;
     }
+
     &.ml-70 {
       margin-left: 15px;
     }
+
     &.mr-70 {
       margin-right: 15px;
     }
   }
 }
-@media #{$xs-layout} {
+@media #{$footer-switch-mode} {
   .footer-columns {
-    .SocialNetworksLinks_alignItems_right {
-      display: table;
-      margin: auto;
-      width: 200px;
-      .SocialNetworksLinks-Title {
+    .SocialNetworksLinks {
+      &_alignItems_right {
+        display: table;
+        width: 200px;
+        margin: 40px auto auto;
+      }
+
+      &-Title {
         display: none;
       }
-      .SocialNetworksLinks-Icon {
+
+      &-Icon {
         font-size: 22px;
-        color: #555252;
+        color: $grey;
       }
+    }
+
+    .col-md-3 {
+      width: 100%;
+    }
+
+    .col-md-9 {
+      width: 100%;
     }
   }
 }

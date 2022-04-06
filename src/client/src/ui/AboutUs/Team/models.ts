@@ -15,21 +15,21 @@
 import * as Jss from 'Foundation/ReactJss';
 
 export interface TeamMemberSocialLinkDataSource extends Jss.BaseDataSourceItem {
-  uri: Jss.GraphQLField<Jss.TextField>;
-  iconClass: Jss.GraphQLField<Jss.TextField>;
+  uri: Jss.GraphQLField<string>;
+  iconClass: Jss.GraphQLField<string>;
 }
 
 export interface TeamMemberDataSource
   extends Jss.BaseDataSourceItem,
     Jss.GraphQLListField<TeamMemberSocialLinkDataSource> {
-  fullName: Jss.GraphQLField<Jss.TextField>;
-  position: Jss.GraphQLField<Jss.TextField>;
-  image: Jss.GraphQLField<Jss.TextField>;
+  fullName: Jss.GraphQLField<string>;
+  position: Jss.GraphQLField<string>;
+  image: Jss.GraphQLField<string>;
 }
 
 export interface TeamDataSource extends Jss.BaseDataSourceItem, Jss.GraphQLListField<TeamMemberDataSource> {
-  title: Jss.GraphQLField<Jss.TextField>;
-  text: Jss.GraphQLField<Jss.TextField>;
+  title: Jss.GraphQLField<string>;
+  text: Jss.GraphQLField<string>;
 }
 
 export interface TeamProps extends Jss.GraphQLRendering<TeamDataSource> {}

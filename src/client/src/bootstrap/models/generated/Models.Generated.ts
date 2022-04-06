@@ -14,15 +14,15 @@
 
 // tslint:disable:no-empty-interface
 
-import * as ReactJssModule from 'Foundation/ReactJss';
+import * as HeadlessDefinitions from 'Foundation/ReactJss';
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Cart
 // ID: d0466420-eeca-46a4-93b6-b17cc198e87b
-export interface CartDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface CartDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Cart
 // ID: d0466420-eeca-46a4-93b6-b17cc198e87b
-export interface CartRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface CartRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Cart
 // ID: d0466420-eeca-46a4-93b6-b17cc198e87b
@@ -32,11 +32,11 @@ export const CartTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Category
 // ID: 0cbbb134-4025-4a51-9b46-1ab7021ccb0f
-export interface CategoryDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface CategoryDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Category
 // ID: 0cbbb134-4025-4a51-9b46-1ab7021ccb0f
-export interface CategoryRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface CategoryRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Category
 // ID: 0cbbb134-4025-4a51-9b46-1ab7021ccb0f
@@ -46,11 +46,11 @@ export const CategoryTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Checkout
 // ID: d5440345-d25e-4a9b-b8e4-5c2aef3c9178
-export interface CheckoutDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface CheckoutDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Checkout
 // ID: d5440345-d25e-4a9b-b8e4-5c2aef3c9178
-export interface CheckoutRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface CheckoutRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Checkout
 // ID: d5440345-d25e-4a9b-b8e4-5c2aef3c9178
@@ -60,11 +60,11 @@ export const CheckoutTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder
 // ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70
-export interface DataFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface DataFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder
 // ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70
-export interface DataFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface DataFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Data Folder
 // ID: 5c07e9e8-6ca9-43ad-9cec-2988a77f6d70
@@ -74,31 +74,31 @@ export const DataFolderTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout
 // ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c
-export interface GridLayoutDataSource extends ReactJssModule.BaseDataSourceItem {
+export interface GridLayoutDataSource extends HeadlessDefinitions.BaseDataSourceItem {
   /// The First Column Class field.
   /// Field Type: Single-Line Text
   /// Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88
-  firstColumnClass: ReactJssModule.TextField;
+  firstColumnClass: HeadlessDefinitions.TextField;
 
   /// The Second Column Class field.
   /// Field Type: Single-Line Text
   /// Field ID: 525bb442-fc9e-49dd-b557-52b833f0855d
-  secondColumnClass: ReactJssModule.TextField;
+  secondColumnClass: HeadlessDefinitions.TextField;
 
   /// The Third Column Class field.
   /// Field Type: Single-Line Text
   /// Field ID: bfed443f-3ac3-460d-be12-5759b8294233
-  thirdColumnClass: ReactJssModule.TextField;
+  thirdColumnClass: HeadlessDefinitions.TextField;
 
   /// The Wrapper Class field.
   /// Field Type: Single-Line Text
   /// Field ID: b4386ac8-1f1b-49f3-adcb-264f5f595e52
-  wrapperClass: ReactJssModule.TextField;
+  wrapperClass: HeadlessDefinitions.TextField;
 }
 
 // Path: /sitecore/templates/HCA/Project/HCA/Scaffolding/Rendering Parameters/Grid Layout
 // ID: 61ed6a03-bbdb-4937-87fa-db5c53fc870c
-export interface GridLayoutRenderingParams extends ReactJssModule.BaseRenderingParam {
+export interface GridLayoutRenderingParams extends HeadlessDefinitions.BaseRenderingParam {
   /// The First Column Class field.
   /// Field Type: Single-Line Text
   /// Field ID: a10a1cf0-25e7-4b9f-a9ac-6d40de3cbe88
@@ -152,11 +152,11 @@ export const GridLayoutTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Home
 // ID: 83883836-8f50-4bb8-bf62-369b7661e815
-export interface HomeDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface HomeDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Home
 // ID: 83883836-8f50-4bb8-bf62-369b7661e815
-export interface HomeRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface HomeRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Home
 // ID: 83883836-8f50-4bb8-bf62-369b7661e815
@@ -166,11 +166,11 @@ export const HomeTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Page
 // ID: 9ca4a8c4-0295-49c1-a879-e008933d0a4f
-export interface PageDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface PageDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Page
 // ID: 9ca4a8c4-0295-49c1-a879-e008933d0a4f
-export interface PageRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface PageRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Page
 // ID: 9ca4a8c4-0295-49c1-a879-e008933d0a4f
@@ -180,11 +180,11 @@ export const PageTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Product
 // ID: 1daeff25-b075-4c13-b41a-72b553b22542
-export interface ProductDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface ProductDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Product
 // ID: 1daeff25-b075-4c13-b41a-72b553b22542
-export interface ProductRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface ProductRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Pages/Product
 // ID: 1daeff25-b075-4c13-b41a-72b553b22542
@@ -194,28 +194,14 @@ export const ProductTemplate = {
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder
 // ID: ff3f660a-3d15-4efc-9873-113aaf71b44e
-export interface SettingsFolderDataSource extends ReactJssModule.BaseDataSourceItem {}
+export interface SettingsFolderDataSource extends HeadlessDefinitions.BaseDataSourceItem {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder
 // ID: ff3f660a-3d15-4efc-9873-113aaf71b44e
-export interface SettingsFolderRenderingParams extends ReactJssModule.BaseRenderingParam {}
+export interface SettingsFolderRenderingParams extends HeadlessDefinitions.BaseRenderingParam {}
 
 // Path: /sitecore/templates/HCA/Project/HCA/Folders/Settings Folder
 // ID: ff3f660a-3d15-4efc-9873-113aaf71b44e
 export const SettingsFolderTemplate = {
   templateId: 'ff3f660a-3d15-4efc-9873-113aaf71b44e',
-};
-
-// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
-// ID: e5e2329c-b05a-4e98-9430-018503c2699a
-export interface WishlistPageDataSource extends ReactJssModule.BaseDataSourceItem {}
-
-// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
-// ID: e5e2329c-b05a-4e98-9430-018503c2699a
-export interface WishlistPageRenderingParams extends ReactJssModule.BaseRenderingParam {}
-
-// Path: /sitecore/templates/HCA/Project/HCA/Pages/Wishlist Page
-// ID: e5e2329c-b05a-4e98-9430-018503c2699a
-export const WishlistPageTemplate = {
-  templateId: 'e5e2329c-b05a-4e98-9430-018503c2699a',
 };

@@ -1,4 +1,4 @@
-﻿//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2020 EPAM Systems, Inc.
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 namespace HCA.Foundation.Commerce.Providers.Customer
 {
+    using System;
     using System.Web;
     using System.Web.Security;
 
@@ -70,12 +71,8 @@ namespace HCA.Foundation.Commerce.Providers.Customer
             }
 
             var cookie = httpContext.Request.Cookies["SC_ANALYTICS_GLOBAL_COOKIE"];
-            if (cookie != null)
-            {
-                return new User { ExternalId = cookie.Value };
-            }
-
-            return null;
+            return cookie != null ? new User { ExternalId = cookie.Value }
+                : new User { ExternalId = Guid.NewGuid().ToString("N") };
         }
 
         private User GetCommerceUser(string name)

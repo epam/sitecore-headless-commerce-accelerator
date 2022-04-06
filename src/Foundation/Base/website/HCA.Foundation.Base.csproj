@@ -451,6 +451,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Globalization" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.IdentityModel.Tokens.Jwt.5.3.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
@@ -561,6 +562,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\HCA.Foundation.Base.config" />
+    <Content Include="App_Config\Include\Foundation\HCA.Foundation.Base.ExtendedSearchQueryPipeline.config" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -568,12 +570,20 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Extensions\CustomPropertyExtensions.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\FieldExtensions.cs" />
     <Compile Include="Extensions\SearchExtensions.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Extensions\LinkFieldOption.cs" />
     <Compile Include="Extensions\SiteExtensions.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FacetOnPipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FilterByFieldsPipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FilterByKeywordPipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FilterByLanguagePipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FilterByRootItemPipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\FilterByVersionPipelineProcessor.cs" />
+    <Compile Include="Infrastructure\Pipelines\ExtendedSearchQuery\SortResultsPipelineProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\PipelineProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SafePipelineProcessor.cs" />
     <Compile Include="Infrastructure\Pipelines\SiteSpecificPipelineProcessor.cs" />
@@ -582,6 +592,7 @@
     <Compile Include="Mappers\ProfileMapper.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Configuration\Configuration.cs" />
+    <Compile Include="Models\ExtendedSearchQuery\ExtendedSearchQueryPipelineArgs.cs" />
     <Compile Include="Models\Logging\Log.cs" />
     <Compile Include="Models\Logging\CommonLog.cs" />
     <Compile Include="Models\Result\Result.cs" />
@@ -599,6 +610,8 @@
     <Compile Include="Context\SitecoreContext.cs" />
     <Compile Include="Providers\Object\IObjectProvider.cs" />
     <Compile Include="Providers\Object\ObjectProvider.cs" />
+    <Compile Include="Providers\SiteDataSources\DataSourcesProvider.cs" />
+    <Compile Include="Providers\SiteDataSources\IDataSourcesProvider.cs" />
     <Compile Include="Providers\SiteDefinitions\ISiteDefinitionsProvider.cs" />
     <Compile Include="Providers\SiteDefinitions\SiteDefinitionsProvider.cs" />
     <Compile Include="Providers\SiteSettings\ISiteSettingsProvider.cs" />

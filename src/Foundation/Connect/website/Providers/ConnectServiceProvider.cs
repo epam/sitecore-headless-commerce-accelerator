@@ -17,15 +17,13 @@ namespace HCA.Foundation.Connect.Providers
     using Base.Providers.Object;
 
     using DependencyInjection;
-
-    using Sitecore.Commerce.Engine.Connect.Services.Carts;
+    using HCA.Foundation.ConnectBase.Providers;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Commerce.Services.Inventory;
     using Sitecore.Commerce.Services.Orders;
-    using Sitecore.Commerce.Services.Payments;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Diagnostics;
@@ -52,9 +50,9 @@ namespace HCA.Foundation.Connect.Providers
             return this.GetConnectServiceProvider<CatalogServiceProvider>("catalogServiceProvider");
         }
 
-        public CommerceCartServiceProvider GetCommerceCartServiceProvider()
+        public CartServiceProviderBase GetCommerceCartServiceProvider()
         {
-            return new CommerceCartServiceProvider();
+            return this.GetConnectServiceProvider<CartServiceProviderBase>("cartServiceProvider");
         }
 
         public CustomerServiceProvider GetCustomerServiceProvider()
@@ -72,14 +70,14 @@ namespace HCA.Foundation.Connect.Providers
             return this.GetConnectServiceProvider<OrderServiceProvider>("orderServiceProvider");
         }
 
-        public PaymentServiceProvider GetPaymentServiceProvider()
+        public PaymentServiceProviderBase GetPaymentServiceProvider()
         {
-            return this.GetConnectServiceProvider<PaymentServiceProvider>("paymentServiceProvider");
+            return this.GetConnectServiceProvider<PaymentServiceProviderBase>("paymentServiceProvider");
         }
 
-        public PricingServiceProvider GetPricingServiceProvider()
+        public PricingServiceProviderBase GetPricingServiceProvider()
         {
-            return this.GetConnectServiceProvider<PricingServiceProvider>("pricingServiceProvider");
+            return this.GetConnectServiceProvider<PricingServiceProviderBase>("pricingServiceProvider");
         }
 
         public ShippingServiceProvider GetShippingServiceProvider()

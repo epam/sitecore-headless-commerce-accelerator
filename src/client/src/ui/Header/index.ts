@@ -20,3 +20,4 @@ export * from './UserNavigation';
 export * from './NavigationSearch';
 export * from './NavigationMenu';
 export * from './NavigationLinks';
+export * from '../CookieBanner';

@@ -1,0 +1,101 @@
+﻿---
+ID: "4f08593d-e1c1-441f-9f0e-34fd35deb8a9"
+Parent: "a91ccfec-f221-4bac-afaa-bc653b06c69e"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/HCA/Home/ReturnsRefunds
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 800
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}"
+          s:ds=""
+          s:par="" />
+        <r
+          uid="{EBC0E395-7749-4489-8E2D-353EBFD0FCB0}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="main-content" />
+        <r
+          uid="{E5BC9CD8-FC2A-4C04-98D6-54F4E5C92AAA}"
+          p:after="r[@uid='{EBC0E395-7749-4489-8E2D-353EBFD0FCB0}']"
+          s:id="{3557EF9E-E1D1-4109-B71D-94588AB1EE46}"
+          s:ph="/main-content/w-col-wide-{EBC0E395-7749-4489-8E2D-353EBFD0FCB0}-0" />
+        <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          s:ds="{90ED0DAB-5084-4C63-B93F-98DA30098D24}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:ds="{D2ABF6D8-C766-4BC0-8886-F47BA96D6E7D}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{041F4022-8724-4471-BB90-F44C7F98535F}">
+          <p:d />
+        </r>
+        <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}">
+          <p:d />
+        </r>
+        <r
+          uid="{922D829B-D52B-4C23-875D-AC31DAC472C3}"
+          p:after="r[@uid='{8A675429-673A-4837-ACB9-D3E729B137DA}']"
+          s:ds="{3FFA3BC6-1E9A-4EFE-92E8-B71D74E98E45}"
+          s:id="{EFAA6F19-1DEC-4AA8-A5AE-131F7D49E7E6}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l"
+          s:ph="/main-content/header-content-{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}-0/navigation-content-{4EBE8CF1-C85E-4E94-AAB6-91FA3C690BA4}-0/widgets-social-{DE519120-CAC4-47CA-B132-4C2DE8367CE2}-0" />
+        <r
+          uid="{4B36B6D1-43EF-42EB-A548-ED2997829A81}"
+          p:after="r[@uid='{922D829B-D52B-4C23-875D-AC31DAC472C3}']"
+          s:ds=""
+          s:id="{3BFAE100-6E58-43D6-B94E-054FFF17291A}"
+          s:par=""
+          s:ph="/main-content/breadcrumb-{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}-0" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="*[1=2]" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Returns And Refunds
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220117T110846Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "fca92d40-4b68-465a-9e9c-a02bd111f48a"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220120T122942Z

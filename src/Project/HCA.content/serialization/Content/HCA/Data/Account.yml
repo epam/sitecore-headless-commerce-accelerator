@@ -1,0 +1,23 @@
+﻿---
+ID: "45ff5b62-bc65-406a-ab6c-c8514df9dd32"
+Parent: "1dd12aa7-6fb1-4631-af56-90d80ad45c17"
+Template: "d4f66f5b-66f7-4bbd-9757-0ec922562976"
+Path: /sitecore/content/HCA/Data/Account
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T203427Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "86e18b7d-c2af-46fe-9ceb-086491d24791"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220113T203427Z

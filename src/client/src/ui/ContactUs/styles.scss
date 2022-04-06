@@ -69,13 +69,6 @@
         align-items: center;
         margin-bottom: 40px;
 
-        &:hover {
-          .contact-icon i {
-            color: $contact-icon-hover-color;
-            background-color: $contact-icon-hover-background-color;
-          }
-        }
-
         .contact-icon {
           margin-right: 20px;
           i {

@@ -19,6 +19,8 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
 
+    using Base.Extensions;
+
     using Foundation.Account.Infrastructure.Pipelines.Login;
 
     using Models.Entities.Users;
@@ -55,6 +57,21 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                     dest => dest.CustomerId,
                     opt =>
                         opt.MapFrom(src => src.Customers != null ? src.Customers.FirstOrDefault() : null))
+
+                .ForMember(
+                    dest => dest.PhoneNumber,
+                    opt =>
+                        opt.MapFrom(src => src.GetPropertyValue("Phone")))
+
+                .ForMember(
+                    dest => dest.ImageUrl,
+                    opt =>
+                        opt.MapFrom(src => ItemExtensions.GetImageUrl()))
+
+                .ForMember(
+                    dest => dest.DateOfBirth,
+                    opt =>
+                        opt.MapFrom(src => CustomPropertyExtensions.GetCustomProperty("BirthDate")))
 
                 .ForMember(
                     dest => dest.ExternalId,

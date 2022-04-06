@@ -22,7 +22,7 @@ import {
   productsSearchSuggestionsReducerActionTypes,
   productsSearchSuggestionsSagaActionTypes,
 } from './constants';
-import { Params } from './models';
+import { GetProductsByIdsParams, Params } from './models';
 
 export const ResetSuggestionsState: actionCreators.ResetSuggestionsState = () => ({
   type: productsSearchSuggestionsReducerActionTypes.RESET_STATE,
@@ -141,4 +141,36 @@ export const ProductsSearchSuccess: actionCreators.ProductSearchSuccess = (
     totalPageCount,
   },
   type: productsSearchReducerActionTypes.PRODUCTS_SEARCH_SUCCESS,
+});
+
+export const GetProductsByIds: actionCreators.GetProductsByIds = (productIds) => ({
+  payload: {
+    productIds,
+    status: LoadingStatus.NotLoaded,
+  },
+  type: productsSearchSagaActionTypes.GET_PRODUCTS_BY_IDS,
+});
+
+export const GetProductsByIdsRequest: actionCreators.GetProductsByIdsRequest = (params: GetProductsByIdsParams) => ({
+  payload: {
+    params,
+    status: LoadingStatus.Loading,
+  },
+  type: productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_REQUEST,
+});
+
+export const GetProductsByIdsFailure: FailureType = (error: string) => ({
+  payload: {
+    error,
+    status: LoadingStatus.Failure,
+  },
+  type: productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_FAILURE,
+});
+
+export const GetProductsByIdsSuccess: actionCreators.GetProductsByIdsSuccess = (items: Product[]) => ({
+  payload: {
+    items,
+    status: LoadingStatus.Loaded,
+  },
+  type: productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_SUCCESS,
 });

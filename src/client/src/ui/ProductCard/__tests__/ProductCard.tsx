@@ -90,7 +90,6 @@ const productColors: Record<string, string> = {
 const history = createBrowserHistory();
 const store = createStore(
   makeRootReducer(history),
-  { shoppingCart: { data: {} } },
   compose(applyMiddleware(routerMiddleware(history))),
 );
 

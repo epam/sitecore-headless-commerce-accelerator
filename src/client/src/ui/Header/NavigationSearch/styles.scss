@@ -57,7 +57,7 @@
 
       @media #{$xs-layout} {
         top: 154%;
-        min-width: 260px;
+        min-width: 200px;
       }
     }
 
@@ -109,7 +109,7 @@
   &_mobile {
     .search {
       &_form {
-        width: 320px;
+        max-width: 320px;
       }
       input {
         font-size: 14px;

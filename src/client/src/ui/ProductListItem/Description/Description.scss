@@ -1,0 +1,69 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+@import 'styles/mixins';
+// Disabling a couple of global button styles
+
+.Description {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 180px;
+  width: 90%;
+
+  &_outOfStockItem {
+    height: 100%;
+
+    @media (min-width: $screen-sm) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (max-width: $screen-tablet) {
+    width: 100%;
+    margin-right: 10px;
+    flex-direction: column;
+  }
+
+  @media (max-width: $screen-phone) {
+    margin-right: 10px;
+    min-width: 150px;
+  }
+
+  &-WrapInfoProduct {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-WrapWishlistInfoProduct {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &-WrapOutOfStockInfoProduct {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    @media (min-width: $screen-sm) {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+}

@@ -135,15 +135,13 @@
       flex-wrap: wrap;
     }
     .header_container {
-      &:first-of-type {
-        .header_content {
-          display: block;
-          border-bottom: none;
-          .navigation-buttons {
-            position: absolute;
-            top: 0;
-            width: 100%;
-          }
+      .header_content {
+        display: block;
+        border-bottom: none;
+        .navigation-buttons {
+          position: absolute;
+          top: 0;
+          width: calc(100% - 60px);
         }
       }
       &:last-of-type {

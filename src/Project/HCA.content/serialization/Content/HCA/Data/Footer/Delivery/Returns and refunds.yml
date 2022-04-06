@@ -1,0 +1,35 @@
+﻿---
+ID: "429cf7c1-50a2-44a9-9cd4-134f76744cba"
+Parent: "90ed0dab-5084-4c63-b93f-98da30098d24"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/Delivery/Returns and refunds
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20211129T083012Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\Viyaleta_Kvetsen
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link text="Returns &amp; Refunds" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{4F08593D-E1C1-441F-9F0E-34FD35DEB8A9}" />
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Viyaleta_Kvetsen
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "f3deebb5-cfde-4a20-a8a8-6f88a5a29dde"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220120T123351Z

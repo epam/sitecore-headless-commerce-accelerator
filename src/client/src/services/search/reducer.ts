@@ -16,8 +16,12 @@ import { combineReducers } from 'redux';
 
 import { Action, LoadingStatus } from 'models';
 
-import { productsSearchReducerActionTypes, productsSearchSuggestionsReducerActionTypes } from './constants';
-import { ProductSearchState, ProductsSearchSuggestionsState, SearchState } from './models';
+import {
+  productsSearchReducerActionTypes,
+  productsSearchSagaActionTypes,
+  productsSearchSuggestionsReducerActionTypes,
+} from './constants';
+import { GetProductsByIdsState, ProductSearchState, ProductsSearchSuggestionsState, SearchState } from './models';
 
 export const ProductsSearchSuggestionsInitialState: ProductsSearchSuggestionsState = {
   products: [],
@@ -81,12 +85,38 @@ const productSearchReducer = (state: ProductSearchState = { ...ProductSearchInit
   }
 };
 
+export const GetProductsByIdsStateInitialState: GetProductsByIdsState = {
+  items: [],
+  status: LoadingStatus.NotLoaded,
+};
+
+const getProductsByIdsReducer = (
+  state: GetProductsByIdsState = { ...GetProductsByIdsStateInitialState },
+  action: Action,
+) => {
+  switch (action.type) {
+    case productsSearchSagaActionTypes.GET_PRODUCTS_BY_IDS:
+    case productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_REQUEST:
+    case productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_FAILURE:
+    case productsSearchReducerActionTypes.GET_PRODUCTS_BY_IDS_SUCCESS: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 export const initialState: SearchState = {
   productSearch: ProductSearchInitialState,
   productSearchSuggestion: ProductsSearchSuggestionsInitialState,
+  productsByIds: GetProductsByIdsStateInitialState,
 };
 
 export default combineReducers<SearchState>({
   productSearch: productSearchReducer,
   productSearchSuggestion: productSearchSuggestionReducer,
+  productsByIds: getProductsByIdsReducer,
 });

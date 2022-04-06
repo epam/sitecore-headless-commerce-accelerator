@@ -30,7 +30,7 @@ import { SetShippingOptionsRequest } from 'services/checkout/models/generated';
 import { loadCart } from 'services/shoppingCart/sagas';
 
 describe('getCheckoutData', () => {
-  const gen = sagas.getCheckoutData();
+  const gen = cloneableGenerator(sagas.getCheckoutData)();
 
   test('should select checkoutDeliveryInfo', () => {
     const expected = select(selectors.checkoutDeliveryInfo);
@@ -289,7 +289,7 @@ describe('submitFulfillmentStep', () => {
         actions.SetStepValues({
           shipping: {
             address,
-            shippingMethod
+            shippingMethod,
           } as any,
         }),
       );

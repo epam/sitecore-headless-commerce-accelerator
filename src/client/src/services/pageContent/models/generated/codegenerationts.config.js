@@ -4,7 +4,7 @@ var codeGenTsUtils = require('../../../../../scripts/code-generation/codeGenTsUt
 module.exports = {
     cwd: path.join(__dirname, '../../../../../../'),
     pattern: 'Feature/PageContent/serialization/Templates/**/*.yml',
-    reactJssModule: 'Foundation/ReactJss',
+    headlessDefinitions: 'Foundation/ReactJss',
     modules: [],
     templatePath: path.join(__dirname, 'codegenerationts.tmpl'),
     ToClass: codeGenTsUtils.toClass,

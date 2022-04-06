@@ -1,0 +1,38 @@
+﻿---
+ID: "c5fe58aa-6401-4932-871f-d0d6623dce5e"
+Parent: "49c4e6b9-61f4-453b-b397-1a38d2db3ed8"
+Template: "316ff1db-aec1-4b16-9bbf-972f07bcead8"
+Path: /sitecore/content/HCA/Data/Footer/Shopping With Us
+SharedFields:
+- ID: "6eb6810e-1468-42ad-a0f6-b347a88f729a"
+  Hint: Links
+  Value: |
+    {2240C82B-E4FC-4B52-A482-384EC1E6C3B9}
+    {EE2848E1-4B47-4E66-B588-83F5D249C294}
+    {468FB614-6DA9-452B-8292-6C0DF60B7FF6}
+    {5CB6F17F-E201-41CD-815D-F61C7A4C2498}
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T192725Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "621ef02b-adb0-4bb6-9f6b-495b567eafb1"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Viyaleta_Kvetsen
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20211126T092421Z

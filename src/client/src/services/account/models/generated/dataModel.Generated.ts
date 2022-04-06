@@ -24,12 +24,20 @@ export interface AddressRequest {
   email: string;
   externalId: string;
   firstName: string;
-  isPrimary: boolean;
   lastName: string;
   name: string;
   partyId: string;
   state: string;
   zipPostalCode: string;
+}
+export interface CardRequest {
+  cardNumber: string;
+  cardOwner: string;
+  id: string;
+  expiresMonth: string;
+  expiresYear: string;
+  cardType: string;
+  securityCode: string;
 }
 export interface ChangePasswordRequest {
   email: string;
@@ -50,6 +58,8 @@ export interface LoginRequest {
 export interface UpdateAccountRequest {
   firstName: string;
   lastName: string;
+  dateOfBirth?: string;
+  phoneNumber?: string;
 }
 export interface DeleteAccountRequest {}
 
@@ -61,3 +71,8 @@ export interface RecoverPasswordRequest {
   newPassword: string;
   token: string;
 }
+
+export interface AddImageRequest {
+  image: File;
+}
+export interface RemoveImageRequest {}

@@ -18,7 +18,6 @@ namespace HCA.Feature.Account.Controllers
     using System.Net;
     using System.Web.Mvc;
 
-    using Foundation.Account.Managers.User;
     using Foundation.Base.Controllers;
     using Foundation.Base.Services.Tracking;
     using Foundation.Commerce.Context.Visitor;
@@ -37,11 +36,7 @@ namespace HCA.Feature.Account.Controllers
     {
         private readonly IAccountService accountService;
 
-        private readonly IUserManager userManager;
-
         private readonly IAccountMapper mapper;
-
-        private readonly IAuthenticationService authenticationService;
 
         private readonly ITrackingService trackingService;
 
@@ -64,7 +59,6 @@ namespace HCA.Feature.Account.Controllers
             this.mapper = accountMapper;
             this.visitorContext = visitorContext;
             this.trackingService = trackingService;
-            this.authenticationService = authenticationService;
         }
 
         [HttpPost]
@@ -123,6 +117,22 @@ namespace HCA.Feature.Account.Controllers
                 });
         }
 
+        [HttpPost]
+        [Authorize]
+        [ActionName("userImage")]
+        public ActionResult UploadUserImage()
+        {
+            return this.Execute(this.accountService.UploadUserImage);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [ActionName("userImage")]
+        public ActionResult RemoveUserImage()
+        {
+            return this.Execute(this.accountService.DeleteUserImage);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         [ActionName("address")]
@@ -146,7 +156,11 @@ namespace HCA.Feature.Account.Controllers
         public ActionResult UpdateAccount(UpdateAccountRequest request)
         {
             return this.Execute(
-                () => this.accountService.UpdateAccount(this.visitorContext.ExternalId, request.FirstName, request.LastName));
+                () => this.accountService.UpdateAccount(this.visitorContext.ExternalId,
+                    request.FirstName,
+                    request.LastName,
+                    request.PhoneNumber,
+                    request.DateOfBirth));
         }
 
         [HttpPut]
@@ -195,22 +209,13 @@ namespace HCA.Feature.Account.Controllers
         [HttpDelete]
         [Authorize]
         [ActionName("account")]
-        public ActionResult DeleteAccount(DeleteAccountRequest request)
+        public ActionResult DeleteAccount()
         {
             var userId = this.visitorContext.ExternalId;
 
-            return this.Execute(() =>
-            {
-                return this.accountService.DeleteAccount(userId);
-            },
-                result =>
-                {
-                    if (result.Success)
-                        return this.JsonOk(result.Data);
-
-                    return this.JsonError(result.Errors?.FirstOrDefault(), HttpStatusCode.InternalServerError);
-                }
-            );
+            return this.Execute(
+                () => this.accountService.DeleteAccount(userId),
+                result => result.Success ? this.JsonOk(result.Data) : this.JsonError(result.Errors?.FirstOrDefault(), HttpStatusCode.InternalServerError));
         }
     }
 }

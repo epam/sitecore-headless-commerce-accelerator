@@ -15,11 +15,11 @@
 import * as JSS from 'Foundation/ReactJss';
 
 export interface Banner extends JSS.SafePureComponentState {
-  image: JSS.GraphQLField<JSS.ImageField>;
-  link: JSS.GraphQLField<JSS.LinkField>;
-  subtitle: JSS.GraphQLField<JSS.TextField>;
-  title: JSS.GraphQLField<JSS.TextField>;
-  text: JSS.GraphQLField<JSS.TextField>;
+  image: JSS.GraphQLField<JSS.ImageFieldValue>;
+  link: JSS.GraphQLField<JSS.LinkFieldValue>;
+  subtitle: JSS.GraphQLField<string>;
+  title: JSS.GraphQLField<string>;
+  text: JSS.GraphQLField<string>;
 }
 
 interface CarouselBannerDataSource extends JSS.BaseDataSourceItem {

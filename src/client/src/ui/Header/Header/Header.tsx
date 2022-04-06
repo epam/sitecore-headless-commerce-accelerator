@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 
 import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
-import { BaseDataSourceItem, BaseRenderingParam, RenderingWithParams } from 'Foundation/ReactJss';
+import { BaseDataSourceItem, BaseRenderingParam, GraphQLRenderingWithParams } from 'Foundation/ReactJss';
 import { closeHamburgerMenu, selectHamburgerMenuVisibility } from 'services/navigationMenu';
 
 import { Icon } from 'components';
@@ -30,7 +30,7 @@ import './Header.scss';
 
 const HEADER_TOP = 0;
 
-export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingParam>> = ({ rendering }) => {
+export const Header: FC<GraphQLRenderingWithParams<BaseDataSourceItem, BaseRenderingParam>> = ({ rendering }) => {
   const dispatch = useDispatch();
 
   const isHamburgerMenuVisible = useSelector(selectHamburgerMenuVisibility);
@@ -49,11 +49,14 @@ export const Header: FC<RenderingWithParams<BaseDataSourceItem, BaseRenderingPar
     dispatch(closeHamburgerMenu());
   }, [dispatch]);
 
-  const handleOutsideClick = (e: MouseEvent) => {
-    if (hamburgerMenuRef.current && !hamburgerMenuRef.current.contains(e.target) && isHamburgerMenuVisible) {
-      dispatch(closeHamburgerMenu());
-    }
-  };
+  const handleOutsideClick = useCallback(
+    (e: MouseEvent) => {
+      if (hamburgerMenuRef.current && !hamburgerMenuRef.current.contains(e.target) && isHamburgerMenuVisible) {
+        dispatch(closeHamburgerMenu());
+      }
+    },
+    [hamburgerMenuRef, isHamburgerMenuVisible],
+  );
 
   useEffect(() => {
     dispatch(closeHamburgerMenu());

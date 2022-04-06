@@ -23,12 +23,15 @@ type ThemeTypes =
   | 'defaultReversed'
   | 'defaultSlide'
   | 'transparentSlide'
+  | 'transparent'
   | 'grey'
   | 'greyReversed'
   | 'orange'
   | 'black'
   | 'clear'
-  | 'text';
+  | 'link'
+  | 'text'
+  | 'darkGrey';
 type ButtonTypes = 'link' | 'submit' | 'button' | 'reset';
 
 type ContainerElement = HTMLButtonElement | HTMLAnchorElement;
@@ -42,7 +45,7 @@ export type ButtonProps = {
   buttonType?: ButtonTypes;
   title?: string;
   buttonTheme?: ThemeTypes;
-  buttonSize?: 's' | 'm' | 'l';
+  buttonSize?: 's' | 'm' | 'l' | 'default';
   rounded?: boolean;
   fullWidth?: boolean;
 

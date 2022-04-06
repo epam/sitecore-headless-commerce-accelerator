@@ -38,12 +38,11 @@ try {
   };
   const config = configBuilder(configOptions);
   const options = devServerOptionsBuilder(envUrl, '/', 'localhost', DEFAULT_PORT);
-
-  WebpackDevServer.addDevServerEntrypoints(config, options);
+  
   const compiler = webpack(config);
-  const server = new WebpackDevServer(compiler, options);
+  const server = new WebpackDevServer(options, compiler);
 
-  server.listen(DEFAULT_PORT, 'localhost', (err) => {
+  server.startCallback(err => {
     if (err) {
       return console.log(err);
     }

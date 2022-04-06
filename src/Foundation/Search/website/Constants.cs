@@ -14,16 +14,13 @@
 
 namespace HCA.Foundation.Search
 {
+    using Sitecore.Data;
+
     public static class Constants
     {
-        public static class Search
+        public static class SiteContext
         {
-            public static class ItemType
-            {
-                public const string Product = "Product";
-
-                public const string Category = "Category";
-            }
+            public const string SiteName = "HCA";
         }
     }
 }

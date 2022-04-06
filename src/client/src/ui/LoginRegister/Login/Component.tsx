@@ -24,7 +24,13 @@ import { validateValue, EMAIL_REGEX } from 'utils';
 import { Icon } from 'components';
 
 import { LogInProps, LogInStates, LogInValues } from './models';
+import { cnLogin } from './cn';
 import './styles.scss';
+
+const FIELD_TYPES = {
+  EMAIL: 'email',
+  PASSWORD: 'password',
+};
 
 export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInStates> {
   public constructor(props: LogInProps) {
@@ -33,6 +39,7 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     this.state = {
       isPasswordEmpty: false,
       isUsernameValid: true,
+      showPassword: false,
     };
   }
   public componentWillUnmount() {
@@ -65,9 +72,14 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
     }
   }
 
+  public handleToggleShowPassword() {
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
+  }
+
   protected safeRender() {
     const { authenticationProcess, onLoaded } = this.props;
-    const { isUsernameValid, isPasswordEmpty } = this.state;
+    const { isUsernameValid, isPasswordEmpty, showPassword } = this.state;
 
     const isLoading = authenticationProcess.status === LoadingStatus.Loading;
     let isError = false;
@@ -80,10 +92,20 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
       onLoaded();
     }
 
+    const handlerFocusField = (field: string) => {
+      if (field === FIELD_TYPES.EMAIL) {
+        this.setState({ isUsernameValid: true });
+      }
+      if (field === FIELD_TYPES.PASSWORD) {
+        this.setState({ isPasswordEmpty: false });
+        this.props.ResetState();
+      }
+    };
+
     return (
-      <Form className="login">
-        <div className="login_form-group">
-          <div className="form-field">
+      <Form className={cnLogin()}>
+        <div className={cnLogin('FormGroup')}>
+          <div className={cnLogin('FormField')}>
             <Input
               name="email"
               type="text"
@@ -91,28 +113,39 @@ export class LogInComponent extends JSS.SafePureComponent<LogInProps, LogInState
               disabled={isLoading}
               error={!isUsernameValid}
               helperText={!isUsernameValid && 'Enter valid email'}
+              handlerFocusField={() => handlerFocusField(FIELD_TYPES.EMAIL)}
             />
           </div>
-          <div className="form-field">
+          <div className={cnLogin('FormField')}>
             <Input
               name="password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               disabled={isLoading}
               error={isError || isPasswordEmpty}
               helperText={
                 isError ? 'The email or password you entered is incorrect' : isPasswordEmpty && 'Enter valid password'
               }
+              handlerFocusField={() => handlerFocusField(FIELD_TYPES.PASSWORD)}
+              adornment={
+                <div onClick={() => this.handleToggleShowPassword()}>
+                  <Icon
+                    icon={showPassword ? 'icon-look-slash' : 'icon-look'}
+                    className={cnLogin('FaEyeIcon')}
+                    size="l"
+                  />
+                </div>
+              }
             />
           </div>
         </div>
-        <div className="login_actions">
-          <div className="actions_toggle_btn">
+        <div className={cnLogin('Actions')}>
+          <div className={cnLogin('ToggleBtn')}>
             <NavigationLink to="/reset-password">Forgot Password?</NavigationLink>
           </div>
           <Submit
-            className="Login-Button"
-            buttonTheme="grey"
+            className={cnLogin('Button')}
+            buttonTheme="default"
             buttonSize="s"
             onSubmitHandler={(form: LogInValues) => {
               isError = false;

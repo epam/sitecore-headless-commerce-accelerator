@@ -80,6 +80,7 @@ export interface AppStateProps extends Dictionary {
   routeFields: object;
   sitecoreContext: SitecoreContext;
   language: string;
+  isLoaded: boolean;
   isLoading: boolean;
 }
 

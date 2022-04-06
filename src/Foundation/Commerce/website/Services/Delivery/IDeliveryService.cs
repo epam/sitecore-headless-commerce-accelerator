@@ -21,6 +21,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
     using Models.Entities.Addresses;
     using Models.Entities.Delivery;
     using Models.Entities.Shipping;
+    using Sitecore.Commerce.Services.Carts;
 
     /// <summary>
     /// Performs main operations with delivery and shipping options
@@ -46,7 +47,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
         /// <param name="shippingAddresses">List of shipping addresses</param>
         /// <param name="shippingMethods">Shipping methods</param>
         /// <returns></returns>
-        Result<VoidResult> SetShippingOptions(
+        Result<ShippingData> SetShippingOptions(
             string shippingPreferenceType,
             List<Address> shippingAddresses,
             List<ShippingMethod> shippingMethods);

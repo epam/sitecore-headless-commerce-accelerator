@@ -27,6 +27,7 @@ export interface CartStateProps {
 }
 
 export interface CartDispatchProps {
+  CleanCart: () => void;
   LoadCart: () => void;
 }
 
@@ -34,6 +35,7 @@ export interface CartProps extends CartStateProps, CartDispatchProps, CartOwnPro
 
 export interface CartState extends JSS.SafePureComponentState {
   isFirstInitLoadPage: boolean;
+  dialogOpen: boolean;
 }
 
 export interface AppState extends ShoppingCart.GlobalShoppingCartState {}

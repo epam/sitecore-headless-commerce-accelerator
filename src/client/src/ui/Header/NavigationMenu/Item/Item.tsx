@@ -12,7 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 
 import { cnNavigation } from '../cn';
 import { DesktopItemContent } from '../DesktopItemContent';
@@ -35,7 +36,31 @@ export const Item: FC<MenuCommerceItemDataSource> = ({ commerceCategories, image
     };
   });
 
+  const { pathname } = useLocation();
+  const ref = useRef(null);
   const [hovered, setHovered] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target) && hovered) {
+      setHovered(!hovered);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside, false);
+    return () => {
+      window.removeEventListener('click', handleClickOutside, false);
+    };
+  });
+
+  useEffect(() => {
+    setHovered(false);
+  }, [pathname]);
+
+  const handleTouch = () => {
+    setIsTouch(true);
+  };
 
   const handleMouseEnter = useCallback(() => {
     setHovered(true);
@@ -45,8 +70,19 @@ export const Item: FC<MenuCommerceItemDataSource> = ({ commerceCategories, image
     setHovered(false);
   }, []);
 
+  const handleClick = (e: any) => {
+    setHovered(!hovered);
+  };
+
   return (
-    <li className={cnNavigation('Item')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <li
+      ref={ref}
+      className={cnNavigation('Item')}
+      onMouseEnter={isTouch ? null : handleMouseEnter}
+      onMouseLeave={isTouch ? null : handleMouseLeave}
+      onTouchStart={handleTouch}
+      onClick={handleClick}
+    >
       <DesktopItemContent
         commerceItemImage={commerceItemImage}
         commerceItemName={commerceItemName}

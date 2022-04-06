@@ -16,7 +16,6 @@ namespace HCA.Foundation.Search.Tests.Mappers.Profiles
 {
     using AutoMapper;
     using Search.Mappers.Profiles;
-
     using Xunit;
 
     public class SearchProfileTests
@@ -25,7 +24,11 @@ namespace HCA.Foundation.Search.Tests.Mappers.Profiles
         public void Configuration_ShouldBeValid()
         {
             // arrange
-            var configuration = new MapperConfiguration(cfg => cfg.AddProfile<SearchProfile>());
+            var configuration = new MapperConfiguration(
+                cfg =>
+            {
+                cfg.AddProfile<SearchProfile>();
+            });
 
             // act, assert
             configuration.AssertConfigurationIsValid();

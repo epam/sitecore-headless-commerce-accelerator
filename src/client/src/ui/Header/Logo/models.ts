@@ -15,7 +15,7 @@
 import * as JSS from 'Foundation/ReactJss';
 
 export interface LogoDataSource extends JSS.BaseDataSourceItem {
-  image: JSS.GraphQLField<JSS.ImageField>;
+  image: JSS.GraphQLField<JSS.ImageFieldValue>;
 }
 
 export interface LogoProps extends JSS.GraphQLRendering<LogoDataSource> {}

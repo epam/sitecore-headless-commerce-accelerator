@@ -19,12 +19,12 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
 
     using AutoMapper;
     using HCA.Foundation.Commerce.Models.Entities.Adjustments;
+    using HCA.Foundation.ConnectBase.Entities;
     using Models.Entities.Cart;
 
     using Providers;
     using Providers.Currency;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Diagnostics;
 

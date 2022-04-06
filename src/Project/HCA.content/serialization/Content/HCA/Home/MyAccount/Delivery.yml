@@ -1,0 +1,109 @@
+﻿---
+ID: "6f1cd724-3ffb-440a-954e-2e6623c84a10"
+Parent: "8b7add06-d8eb-4648-95e1-e0db63e09355"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/HCA/Home/MyAccount/Delivery
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 500
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}"
+          s:ds=""
+          s:par="" />
+        <r
+          uid="{5DE5AB44-1535-41DD-BC3A-DDFFDB9930E7}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:ds=""
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:par="Wrapper Class&amp;First Column Class=col-md-12&amp;Second Column Class&amp;Third Column Class"
+          s:ph="/main-content" />
+        <r
+          uid="{F464F6A2-78EC-4C25-9811-88578EE2073D}"
+          p:after="r[@uid='{5DE5AB44-1535-41DD-BC3A-DDFFDB9930E7}']"
+          s:ds="{6F1CD724-3FFB-440A-954E-2E6623C84A10}"
+          s:id="{91476221-4744-47AC-9082-DA86B7B1B3B2}"
+          s:par=""
+          s:ph="/main-content/w-col-wide-{5de5ab44-1535-41dd-bc3a-ddffdb9930e7}-0" />
+        <r
+          uid="{70B51ADE-3E72-4024-A876-80545621B913}"
+          p:after="r[@uid='{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}']" />
+        <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          s:ds="{90ED0DAB-5084-4C63-B93F-98DA30098D24}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:ds="{D2ABF6D8-C766-4BC0-8886-F47BA96D6E7D}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{041F4022-8724-4471-BB90-F44C7F98535F}">
+          <p:d />
+        </r>
+        <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}">
+          <p:d />
+        </r>
+        <r
+          uid="{E0CEDD92-13B4-4D8A-AFC7-53D1CFFA6E4B}"
+          p:after="r[@uid='{8A675429-673A-4837-ACB9-D3E729B137DA}']"
+          s:ds="{3FFA3BC6-1E9A-4EFE-92E8-B71D74E98E45}"
+          s:id="{EFAA6F19-1DEC-4AA8-A5AE-131F7D49E7E6}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l"
+          s:ph="/main-content/header-content-{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}-0/navigation-content-{4EBE8CF1-C85E-4E94-AAB6-91FA3C690BA4}-0/widgets-social-{DE519120-CAC4-47CA-B132-4C2DE8367CE2}-0" />
+        <r
+          uid="{5F17A982-78EB-44AE-9703-525BCD1B96CB}"
+          p:after="r[@uid='{E0CEDD92-13B4-4D8A-AFC7-53D1CFFA6E4B}']"
+          s:ds=""
+          s:id="{3BFAE100-6E58-43D6-B94E-054FFF17291A}"
+          s:par=""
+          s:ph="/main-content/breadcrumb-{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}-0" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="r[@uid='{5F17A982-78EB-44AE-9703-525BCD1B96CB}']" />
+        <r
+          uid="{D1F56F54-CF09-4FAF-844A-0C77892F941A}"
+          p:after="*[1=2]"
+          s:id="{BCA0AC5C-634E-4A0F-A2AD-B57D092AD9B4}"
+          s:ph="/main-content/w-col-wide-{5de5ab44-1535-41dd-bc3a-ddffdb9930e7}-0/left-menu-{f464f6a2-78ec-4c25-9811-88578ee2073d}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20211222T080720Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a45a86a8-fed9-4ecb-913e-3cc8e0995af8"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220127T135251Z

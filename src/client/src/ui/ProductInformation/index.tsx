@@ -37,7 +37,7 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
     const { product } = this.props.sitecoreContext;
     const { selectedTab } = this.state;
     return (
-      product && (
+      (product && (
         <section className="product-description">
           <div className="tab">
             <button
@@ -192,7 +192,8 @@ class ProductInformationComponent extends JSS.SafePureComponent<ProductInformati
             )}
           </div>
         </section>
-      )
+      )) ||
+      null
     );
   }
 }

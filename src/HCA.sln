@@ -80,14 +80,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.Connect.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{DF3B36CF-6D1C-415A-8115-C806AAE79DB9}"
 	ProjectSection(SolutionItems) = preProject
-		build-ci.ps1 = build-ci.ps1
 		build.cake = build.cake
-		build.ps1 = build.ps1
-		cake.config = cake.config
 		commands.json = commands.json
 		package.json = package.json
 		publishsettings.targets = publishsettings.targets
 		readme.md = readme.md
+		solr.cake = solr.cake
+		ts.cake = ts.cake
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{D70DA070-FACF-45F0-B63F-22766D1E1D3E}"
@@ -117,6 +116,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.SitecoreCommerce", "Foundation\SitecoreCommerce\website\HCA.Foundation.SitecoreCommerce.csproj", "{AE6ADBF8-F4AE-49D6-A929-266D6C06B237}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.SitecoreCommerce.Tests", "Foundation\SitecoreCommerce\tests\HCA.Foundation.SitecoreCommerce.Tests.csproj", "{3D2D2930-5FE6-4B70-8E37-9E734E0227E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectBase", "ConnectBase", "{5A1109A7-270E-4191-978A-04B51B4CDABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCA.Foundation.ConnectBase", "Foundation\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj", "{127762AF-B6BC-4D02-9355-11284473EAF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -252,6 +255,10 @@ Global
 		{3D2D2930-5FE6-4B70-8E37-9E734E0227E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D2D2930-5FE6-4B70-8E37-9E734E0227E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D2D2930-5FE6-4B70-8E37-9E734E0227E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127762AF-B6BC-4D02-9355-11284473EAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127762AF-B6BC-4D02-9355-11284473EAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127762AF-B6BC-4D02-9355-11284473EAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127762AF-B6BC-4D02-9355-11284473EAF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -306,9 +313,11 @@ Global
 		{4795FB2A-C609-4210-98CD-C98B71054B23} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
 		{AE6ADBF8-F4AE-49D6-A929-266D6C06B237} = {4795FB2A-C609-4210-98CD-C98B71054B23}
 		{3D2D2930-5FE6-4B70-8E37-9E734E0227E6} = {4795FB2A-C609-4210-98CD-C98B71054B23}
+		{5A1109A7-270E-4191-978A-04B51B4CDABC} = {D70DA070-FACF-45F0-B63F-22766D1E1D3E}
+		{127762AF-B6BC-4D02-9355-11284473EAF4} = {5A1109A7-270E-4191-978A-04B51B4CDABC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\lib\NET45
 		SolutionGuid = {56412AC7-41FC-4C49-8CEC-4FE3EE7CF1D2}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

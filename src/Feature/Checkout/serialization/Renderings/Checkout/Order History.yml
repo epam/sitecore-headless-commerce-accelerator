@@ -7,6 +7,9 @@ SharedFields:
 - ID: "037fe404-dd19-4bf7-8e30-4dadf68b27b0"
   Hint: componentName
   Value: Order History
+- ID: "069a8361-b1cd-437c-8c32-a3be78941446"
+  Hint: Placeholders
+  Value: "{CBF054E0-EBE4-4994-9A3B-50217523FA1C}"
 Languages:
 - Language: en
   Versions:
@@ -17,11 +20,11 @@ Languages:
       Value: 20180504T144452Z
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "d80c4aeb-da10-45ac-ae7f-c834d45dbd0e"
+      Value: "c839c8f0-22d1-41dc-b013-f238324b5cff"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\unicorn
+        sitecore\dziyana_khadasevich
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20210122T150016Z
+      Value: 20220127T102843Z

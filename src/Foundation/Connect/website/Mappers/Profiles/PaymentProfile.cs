@@ -17,8 +17,7 @@ namespace HCA.Foundation.Connect.Mappers.Profiles
     using System.Diagnostics.CodeAnalysis;
 
     using AutoMapper;
-
-    using Sitecore.Commerce.Engine.Connect.Pipelines.Arguments;
+    using HCA.Foundation.ConnectBase.Pipelines.Arguments;
 
     [ExcludeFromCodeCoverage]
     public class PaymentProfile : Profile

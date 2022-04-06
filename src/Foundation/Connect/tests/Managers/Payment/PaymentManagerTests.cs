@@ -22,7 +22,9 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
 
     using Connect.Managers.Payment;
     using Connect.Mappers.Payment;
-
+    using HCA.Foundation.ConnectBase.Entities;
+    using HCA.Foundation.ConnectBase.Providers;
+    using ConnectBase = HCA.Foundation.ConnectBase.Pipelines.Arguments;
     using Models.Payment;
 
     using NSubstitute;
@@ -31,7 +33,6 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Services;
@@ -39,15 +40,13 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
 
     using Xunit;
 
-    using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
-
     public class PaymentManagerTests
     {
         private readonly IFixture fixture;
 
         private readonly PaymentManager paymentManager;
 
-        private readonly PaymentServiceProvider paymentServiceProvider;
+        private readonly PaymentServiceProviderBase paymentServiceProvider;
 
         public PaymentManagerTests()
         {
@@ -55,7 +54,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
             var logService = Substitute.For<ILogService<CommonLog>>();
             var paymentMapper = Substitute.For<IPaymentMapper>();
 
-            this.paymentServiceProvider = Substitute.For<PaymentServiceProvider>();
+            this.paymentServiceProvider = Substitute.For<PaymentServiceProviderBase>();
 
             connectServiceProvider.GetPaymentServiceProvider().Returns(this.paymentServiceProvider);
             this.fixture = new Fixture().Customize(new OmitOnRecursionCustomization());
@@ -73,7 +72,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
             this.paymentManager.Received(1)
                 .Execute(
                     Arg.Any<ServiceProviderRequest>(),
-                    Arg.Any<Func<ServiceProviderRequest, PaymentClientTokenResult>>());
+                    Arg.Any<Func<ServiceProviderRequest, ConnectBase.PaymentClientTokenResult>>());
         }
 
         [Fact]
@@ -96,7 +95,7 @@ namespace HCA.Foundation.Connect.Tests.Managers.Payment
 
             // assert
             this.paymentManager.Received(1)
-                .Execute(Arg.Any<GetPaymentMethodsRequest>(), this.paymentServiceProvider.GetPaymentMethods);
+                .Execute(Arg.Any<ConnectBase.GetPaymentMethodsRequest>(), this.paymentServiceProvider.GetPaymentMethods);
         }
 
         [Fact]

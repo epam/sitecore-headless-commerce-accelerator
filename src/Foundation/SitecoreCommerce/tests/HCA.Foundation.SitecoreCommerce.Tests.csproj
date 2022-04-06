@@ -585,6 +585,10 @@
       <Project>{ff564a60-1cc7-4bae-b859-88de35fda77a}</Project>
       <Name>HCA.Foundation.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ConnectBase\website\HCA.Foundation.ConnectBase\HCA.Foundation.ConnectBase.csproj">
+      <Project>{127762AF-B6BC-4D02-9355-11284473EAF4}</Project>
+      <Name>HCA.Foundation.ConnectBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Connect\website\HCA.Foundation.Connect.csproj">
       <Project>{60CD1765-857B-4BC8-831E-7526264F1EC5}</Project>
       <Name>HCA.Foundation.Connect</Name>
@@ -593,6 +597,12 @@
       <Project>{AE6ADBF8-F4AE-49D6-A929-266D6C06B237}</Project>
       <Name>HCA.Foundation.SitecoreCommerce</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\license.xml">
+      <Link>license.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -16,9 +16,12 @@ import * as Commerce from 'services/commerce';
 import { Action, FailureType, StatusType } from 'models';
 
 import {
+  AddImagePayload,
   AddressPayload,
+  CardPayload,
   ChangePasswordPayload,
   CreateAccountPayload,
+  RemoveImagePayload,
   RequestPasswordResetPayload,
   ResetPasswordPayload,
   UpdateAccountPayload,
@@ -31,18 +34,53 @@ export type CreateAccount = (
   createAccountRequest: DataModel.CreateAccountRequest,
   returnUrl?: string,
 ) => Action<CreateAccountPayload>;
-export type UpdateAccount = (firstName: string, lastName: string) => Action<UpdateAccountPayload>;
+export type UpdateAccount = (
+  firstName: string,
+  lastName: string,
+  dateOfBirth?: string,
+  phoneNumber?: string,
+) => Action<UpdateAccountPayload>;
 export type DeleteAccount = () => Action;
 export type EmailValidation = (email: string) => Action<ValidateEmailPayload>;
 export type ResetValidation = () => Action;
 export type ChangePassword = (oldPassword: string, newPassword: string) => Action<ChangePasswordPayload>;
 export type VerifyCommerceUser = () => Action;
+
+export type GetCardList = () => Action;
+
+export type UpdateCard = (card: Commerce.Card) => Action<Commerce.Card>;
+export type AddCard = (card: Commerce.Card) => Action<Commerce.Card>;
+export type RemoveCard = (id: string) => Action<string>;
+export type GetCardListRequest = StatusType;
+export type GetCardListFailure = FailureType;
+export type GetCardListSuccess = (cardList: Commerce.Card[]) => Action<CardPayload>;
+export type UpdateCardRequest = StatusType;
+export type UpdateCardFailure = FailureType;
+export type UpdateCardSuccess = (cardList: Commerce.Card[]) => Action<CardPayload>;
+export type AddCardRequest = StatusType;
+export type AddCardFailure = FailureType;
+export type AddCardSuccess = (cardList: Commerce.Card[]) => Action<CardPayload>;
+
+export type RemoveCardRequest = StatusType;
+export type RemoveCardFailure = FailureType;
+export type RemoveCardSuccess = (cardList: Commerce.Card[]) => Action<CardPayload>;
+
 export type GetAddressList = () => Action;
 export type UpdateAddress = (address: Commerce.Address) => Action<Commerce.Address>;
 export type AddAddress = (address: Commerce.Address) => Action<Commerce.Address>;
 export type RemoveAddress = (externalId: string) => Action<string>;
 export type RequestPasswordReset = (email: string) => Action<RequestPasswordResetPayload>;
 export type ResetPassword = (userName: string, newPassword: string, token: string) => Action<ResetPasswordPayload>;
+export type AddImage = (image: File) => Action<AddImagePayload>;
+export type RemoveImage = () => Action<RemoveImagePayload>;
+
+export type AddImageRequest = StatusType;
+export type AddImageFailure = FailureType;
+export type AddImageSuccess = (imageUrl: string) => Action;
+
+export type RemoveImageRequest = StatusType;
+export type RemoveImageFailure = FailureType;
+export type RemoveImageSuccess = () => Action;
 
 export type CreateAccountRequest = StatusType;
 export type CreateAccountFailure = FailureType;

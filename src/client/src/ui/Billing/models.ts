@@ -23,6 +23,7 @@ export interface BillingOwnProps extends Jss.RenderingWithContext<BillingDataSou
 export interface BillingStateProps {
   useForBillingAddress: boolean;
   commerceUser: Commerce.User;
+  stepValues: Checkout.StepValues;
 }
 export interface BillingDispatchProps {
   InitStep: (step: Checkout.CheckoutStepType) => void;
@@ -33,6 +34,8 @@ export interface BillingProps extends BillingOwnProps, BillingDispatchProps, Bil
 export interface BillingState extends Jss.SafePureComponentState {
   email: string;
   selectedAddressOption: string;
+  stateFormFields: object;
+  guestEmail: string;
 }
 
 export interface AppState extends Checkout.GlobalCheckoutState, Checkout.AppState {}

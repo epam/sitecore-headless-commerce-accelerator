@@ -15,31 +15,17 @@
 import { Text } from '@sitecore-jss/sitecore-jss-react';
 import * as React from 'react';
 
-import { resolveColor } from 'utils';
 import * as Jss from 'Foundation/ReactJss';
 
 import { SummaryProps, SummaryState } from './models';
 
-import './styles.scss';
+import { ProductListItem } from 'ui/ProductListItem';
 
-const fields = {
-  colorTitle: {
-    value: 'Color:',
-  },
-  priceWasTitle: {
-    value: 'Was',
-  },
-  quantityTitle: {
-    value: 'Quantity:',
-  },
-  sizeTitle: {
-    value: 'Size:',
-  },
-};
+import './styles.scss';
 
 export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
   public safeRender() {
-    const { order, productColors, fallbackImageUrl } = this.props;
+    const { order, fallbackImageUrl } = this.props;
     return (
       <div className="order-summary-wrapper">
         <div className="row">
@@ -47,86 +33,17 @@ export class Summary extends Jss.SafePureComponent<SummaryProps, SummaryState> {
             <div className="order-summary">
               <Text field={{ value: 'Order Summary' }} tag="h3" className="summary-title" />
               <div className="product-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>IMAGE</th>
-                      <th>Product Name</th>
-                      <th>COLOR</th>
-                      <th>SIZE</th>
-                      <th>QTY</th>
-                      <th>SUBTOTAL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {order.cartLines.map((cartLine, index) => {
-                      let imageUrl = fallbackImageUrl;
+                {order.cartLines.map((orderedItem, index) => {
+                  let imageUrl = fallbackImageUrl;
 
-                      if (!!cartLine.variant.imageUrls && cartLine.variant.imageUrls.length > 0) {
-                        imageUrl = cartLine.variant.imageUrls[0];
-                      } else if (!!cartLine.product.imageUrls && cartLine.product.imageUrls.length > 0) {
-                        imageUrl = cartLine.product.imageUrls[0];
-                      }
+                  if (!!orderedItem.variant.imageUrls && orderedItem.variant.imageUrls.length > 0) {
+                    imageUrl = orderedItem.variant.imageUrls[0];
+                  } else if (!!orderedItem.product.imageUrls && orderedItem.product.imageUrls.length > 0) {
+                    imageUrl = orderedItem.product.imageUrls[0];
+                  }
 
-                      return (
-                        <tr
-                          className="cartLine"
-                          key={`${cartLine.id}-${cartLine.variant.productId}-${cartLine.variant.variantId}`}
-                        >
-                          <td className="product-image">
-                            <img className="image-border" src={imageUrl} alt="Product image" />
-                          </td>
-                          <td className="product-name">
-                            <div>
-                              <div className="brand">{cartLine.variant.brand}</div>
-                              <div className="full-name">{cartLine.variant.displayName}</div>
-                            </div>
-                          </td>
-                          <td className="product-features">
-                            {cartLine.variant.properties.color && (
-                              <div
-                                ref={(el) => {
-                                  if (el) {
-                                    el.style.setProperty(
-                                      'background-color',
-                                      resolveColor(cartLine.variant.properties.color, productColors),
-                                      'important',
-                                    );
-                                  }
-                                }}
-                                className="color"
-                              />
-                            )}
-                          </td>
-                          <td className="product-features">
-                            {cartLine.variant.properties.size && (
-                              <span className="size">
-                                <span>{cartLine.variant.properties.size}</span>
-                              </span>
-                            )}
-                          </td>
-                          <td className="product-features">
-                            <span className="quantity">
-                              <span>{cartLine.quantity}</span>
-                            </span>
-                          </td>
-                          <td className="product-price nopadding-bottom">
-                            <span>{cartLine.price.currencySymbol}</span>
-                            <span className="price-amount">{cartLine.price.total.toFixed(2)}</span>
-                            {!!cartLine.price.totalSavings && (
-                              <>
-                                <br />
-                                <Text field={fields.priceWasTitle} tag="span" />{' '}
-                                <span className="price-was-sign">{cartLine.price.currencySymbol}</span>
-                                <span className="price-was-amount">{cartLine.price.subtotal.toFixed(2)}</span>
-                              </>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                  return <ProductListItem orderedItem={orderedItem} key={index} orderedItemUrl={imageUrl} />;
+                })}
               </div>
             </div>
           </div>

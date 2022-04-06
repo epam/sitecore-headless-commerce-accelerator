@@ -40,7 +40,8 @@ nav.nav-checkout {
       text-transform: uppercase;
       letter-spacing: 1px;
       border-right: 1px solid #c5c5c5;
-      a {
+      a:not(.BackButton),
+      .CheckoutStep {
         display: block;
         line-height: 32px;
         color: #5e5e5e;
@@ -55,10 +56,29 @@ nav.nav-checkout {
       @media (max-width: $screen-md-min) {
         display: none;
       }
+
       &.active {
         font-family: $poppins;
         background-color: $main-color;
-        & a {
+
+        .BackButton {
+          display: none;
+          margin: auto;
+
+          i {
+            color: white;
+            position: absolute;
+            left: 0;
+            top: -5px;
+          }
+
+          @media (max-width: $screen-md-min) {
+            display: block;
+          }
+        }
+
+        & a,
+        .CheckoutStep {
           color: #fff;
           font-weight: 700;
         }
@@ -66,8 +86,10 @@ nav.nav-checkout {
           color: #fff;
           font-weight: 700;
         }
+
         @media (max-width: $screen-md-min) {
           display: block;
+          position: relative;
           width: 100%;
           border-right: none;
         }
@@ -98,9 +120,17 @@ nav.nav-checkout {
     position: absolute;
     top: 16px;
     left: 0;
-    color: $checkout-back-button;
+    color: $link-color;
     font-size: 15px;
     padding: 0px;
+    & a {
+      color: $link-color;
+      @media (hover) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
     &:before {
       content: '\f104';
       font-family: 'Custom';
@@ -123,6 +153,22 @@ nav.nav-checkout {
     text-transform: uppercase;
     @media (max-width: $screen-md-min) {
       display: none;
+    }
+  }
+
+  .BackButton {
+    display: none;
+    margin: auto;
+
+    i {
+      color: white;
+      position: absolute;
+      left: 0;
+      top: -5px;
+    }
+
+    @media (max-width: $screen-md-min) {
+      display: block;
     }
   }
 }

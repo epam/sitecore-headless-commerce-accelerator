@@ -47,7 +47,7 @@ namespace HCA.Foundation.Commerce.Services.Catalog
                     PageSize = 1,
                     SearchKeyword = productId
                 });
-            if (result == null || !result.Success || result.Data == null)
+            if (result == null || !result.Success || result.Data.Products?.FirstOrDefault() == null)
             {
                 return new Result<Product>(
                     new Product(),

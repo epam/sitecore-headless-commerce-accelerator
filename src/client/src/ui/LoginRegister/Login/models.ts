@@ -31,6 +31,7 @@ export interface LogInStateProps {
 export interface LogInStates extends JSS.SafePureComponentState {
   isPasswordEmpty: boolean;
   isUsernameValid: boolean;
+  showPassword: boolean;
 }
 
 export interface LogInProps extends LogInDispatchProps, LogInStateProps {}

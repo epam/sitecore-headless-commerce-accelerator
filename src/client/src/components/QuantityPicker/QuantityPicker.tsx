@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -46,16 +46,13 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
   const [valueInput, setValueInput] = useState(value);
   const handleDecreaseClick = useCallback(() => {
     onChange(valueInput - step);
-    setValueInput(valueInput - step);
+    setValueInput((v) => v - step);
   }, [valueInput, step, onChange]);
 
-  const handleIncreaseClick = useCallback(
-    (e) => {
-      onChange(valueInput + step);
-      setValueInput(valueInput + step);
-    },
-    [valueInput, step, onChange],
-  );
+  const handleIncreaseClick = useCallback(() => {
+    onChange(valueInput + step);
+    setValueInput((v) => v + step);
+  }, [valueInput, step, onChange]);
 
   const disabledDecrease = disabled || valueInput <= min;
   const disabledIncrease = disabled || valueInput >= max;
@@ -67,15 +64,16 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
   };
 
   const handleInputValueChange = useCallback((e: any) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
     setValueInput(+e.target.value);
 
     if (+e.target.value > max) {
       setValueInput(max);
     }
 
-    if (e.target.value.charAt(0) === '0' || e.key === ('-' || '+')) {
+    if (e.target.value.charAt(0) === '0') {
       const num = e.target.value.slice(1);
-      setValueInput(num);
+      +num > max ? setValueInput(max) : setValueInput(+num);
     }
 
     if (e.key === 'Enter') {
@@ -108,12 +106,11 @@ export const QuantityPicker: FC<QuantityPickerProps> = ({
       </Button>
       <input
         className={cnQuantityPicker('Field')}
-        type="number"
-        pattern="[0-9]"
+        type="text"
         value={valueInput}
         onKeyDown={(e) => handleInputValueChange(e)}
-        onChange={(e) => handleInputValueChange(e)}
-        onBlur={(e) => handleBlur(e)}
+        onChange={handleInputValueChange}
+        onBlur={handleBlur}
       />
       <Button
         buttonTheme="clear"

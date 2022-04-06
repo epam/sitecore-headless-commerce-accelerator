@@ -15,29 +15,41 @@
 import { Text } from '@sitecore-jss/sitecore-jss-react';
 import React, { FormEvent } from 'react';
 
+import { get, isEmpty } from 'lodash';
 import * as Jss from 'Foundation/ReactJss';
 
 import { Checkbox, DependentField, FieldSet, Form, FormValues, Input, Select, Submit } from 'Foundation/ReactJss/Form';
-
+import { Select as PureSelect } from 'components';
 import { CheckoutStepType } from 'services/checkout';
 
 import { AddressOptions } from './AddressOptions';
-import { ADDRESS_TYPE, FIELDS } from './constants';
+import { validate } from 'utils';
+import { ADDRESS_TYPE, FIELDS, FIELD_TYPES } from './constants';
 import { ShippingProps, ShippingState } from './models';
-
 import './styles.scss';
+
+const SHIPPING_ADDRESS_FORM_CONTENT = {
+  NOT_SELECTED: 'Not Selected',
+};
 
 export default class ShippingComponent extends Jss.SafePureComponent<ShippingProps, ShippingState> {
   public constructor(props: ShippingProps) {
     super(props);
-    const { commerceUser } = this.props;
-    const selectedAddressOption = commerceUser && commerceUser.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW;
+    const { commerceUser, stepValues } = this.props;
+    const selectedAddressOption =
+      stepValues.shipping?.options?.selectedAddressOption ||
+      (commerceUser?.customerId ? ADDRESS_TYPE.SAVED : ADDRESS_TYPE.NEW);
+    const guestEmail = stepValues.shipping ? stepValues.shipping.address.email : '';
+
     this.state = {
       canResetDeliveryInfo: true,
       email: '',
       saveToAccount: false,
       selectedAddressOption,
       useForBillingAddress: false,
+      stateFormFields: {},
+      guestEmail,
+      mounted: false,
     };
 
     this.handleAddressOptionChange = this.handleAddressOptionChange.bind(this);
@@ -46,6 +58,7 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
   }
 
   public componentDidMount() {
+    this.setState({ mounted: true });
     const { commerceUser } = this.props;
     if (!this.props.sitecoreContext.pageEditing) {
       this.props.InitStep(CheckoutStepType.Fulfillment);
@@ -57,13 +70,27 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   // tslint:disable-next-line: no-big-function
   protected safeRender() {
-    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser } = this.props;
-    const { email } = this.state;
+    const { deliveryInfo, isSubmitting, isLoading, fields, shippingInfo, commerceUser, stepValues } = this.props;
+    const { email, guestEmail, mounted } = this.state;
     const isLoggedIn = commerceUser && commerceUser.customerId;
+    const newAddressSelected = stepValues.shipping?.options?.selectedAddressOption === ADDRESS_TYPE.NEW;
+
+    const firstName = newAddressSelected ? stepValues.shipping?.address.firstName : '';
+    const lastName = newAddressSelected ? stepValues.shipping?.address.lastName : '';
+    const address1 = newAddressSelected ? stepValues.shipping?.address.address1 : '';
+    const city = newAddressSelected ? stepValues.shipping?.address.city : '';
+    const zipPostalCode = newAddressSelected ? stepValues.shipping?.address.zipPostalCode : '';
+    const state = newAddressSelected ? stepValues.shipping?.address.state : '';
+    const country = newAddressSelected ? stepValues.shipping?.address.countryCode : '';
+    const shippingMethod = stepValues.shipping ? stepValues.shipping.shippingMethod.externalId : '';
+
+    const savedAddress = deliveryInfo?.data?.userAddresses.find((address) => {
+      return address.partyId === stepValues?.shipping?.address.partyId;
+    });
 
     return (
       <Form>
-        {(isLoading || isSubmitting) && (
+        {(!mounted || isLoading || isSubmitting) && (
           <div className="billing-shipping-info-loading-overlay">
             <div className="loading" />
           </div>
@@ -91,28 +118,68 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'First Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.FIRST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
+                <Input
+                  name={FIELDS.FIRST_NAME}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  fullWidth={true}
+                  defaultValue={firstName}
+                  error={get(this.state.stateFormFields, [FIELD_TYPES.FIRST_NAME, 'hasError'], false)}
+                  helperText={get(this.state.stateFormFields, [FIELD_TYPES.FIRST_NAME, 'message'])}
+                  handlerFocusField={() => this.handlerFocusField('firstName')}
+                />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'Last Name' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.LAST_NAME} type="text" required={true} maxLength={100} fullWidth={true} />
+                <Input
+                  name={FIELDS.LAST_NAME}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  fullWidth={true}
+                  defaultValue={lastName}
+                  error={get(this.state.stateFormFields, [FIELD_TYPES.LAST_NAME, 'hasError'], false)}
+                  helperText={get(this.state.stateFormFields, [FIELD_TYPES.LAST_NAME, 'message'])}
+                  handlerFocusField={() => this.handlerFocusField('lastName')}
+                />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Address Line 1' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.ADDRESS_LINE} type="text" required={true} maxLength={100} fullWidth={true} />
+                <Input
+                  name={FIELDS.ADDRESS_LINE}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={address1}
+                  fullWidth={true}
+                  error={get(this.state.stateFormFields, [FIELD_TYPES.ADDRESS_LINE, 'hasError'], false)}
+                  helperText={get(this.state.stateFormFields, [FIELD_TYPES.ADDRESS_LINE, 'message'])}
+                  handlerFocusField={() => this.handlerFocusField('addressLine')}
+                />
               </div>
               <div className="col-ms-6">
                 <Text field={{ value: 'City' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.CITY} type="text" required={true} maxLength={100} fullWidth={true} />
+                <Input
+                  name={FIELDS.CITY}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={city}
+                  fullWidth={true}
+                  error={get(this.state.stateFormFields, [FIELD_TYPES.CITY, 'hasError'], false)}
+                  helperText={get(this.state.stateFormFields, [FIELD_TYPES.CITY, 'message'])}
+                  handlerFocusField={() => this.handlerFocusField('city')}
+                />
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Country' }} tag="label" className="input-title required" />
-                <Select fullWidth={true} name={FIELDS.COUNTRY} required={true}>
-                  <option value="">Not Selected</option>
+                <Select fullWidth={true} name={FIELDS.COUNTRY} defaultValue={country} required={true} error={false}>
+                  <option value="">{SHIPPING_ADDRESS_FORM_CONTENT.NOT_SELECTED}</option>
                   {fields.countries.map((country, index) => (
                     <option key={`${index}-${country.countryCode}`} value={country.countryCode}>
                       {country.name}
@@ -121,26 +188,36 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                 </Select>
               </div>
               <div className="col-ms-6">
-                <Text field={{ value: 'Province' }} tag="label" className="input-title required" />
+                <Text field={{ value: 'State' }} tag="label" className="input-title required" />
                 <DependentField>
-                  {(form) => (
-                    <Select
-                      fullWidth={true}
-                      name={FIELDS.PROVINCE}
-                      required={true}
-                      disabled={!form.values[FIELDS.COUNTRY]}
-                    >
-                      <option value="">Not Selected</option>
-                      {this.renderSubdivisions(form.values[FIELDS.COUNTRY] as string)}
-                    </Select>
-                  )}
+                  {(form) =>
+                    form.values[FIELDS.COUNTRY] ? (
+                      <Select fullWidth={true} name={FIELDS.STATE} defaultValue={state} required={true} error={false}>
+                        <option value="">{SHIPPING_ADDRESS_FORM_CONTENT.NOT_SELECTED}</option>
+                        {this.renderSubdivisions(form.values[FIELDS.COUNTRY] as string)}
+                      </Select>
+                    ) : (
+                      <PureSelect disabled={true} fullWidth={true}>
+                        <option>{SHIPPING_ADDRESS_FORM_CONTENT.NOT_SELECTED}</option>
+                      </PureSelect>
+                    )
+                  }
                 </DependentField>
               </div>
             </div>
             <div className="row">
               <div className="col-ms-6">
                 <Text field={{ value: 'Postal Code' }} tag="label" className="input-title required" />
-                <Input name={FIELDS.POSTAL_CODE} type="text" required={true} maxLength={100} fullWidth={true} />
+                <Input
+                  name={FIELDS.POSTAL_CODE}
+                  type="text"
+                  required={true}
+                  maxLength={100}
+                  defaultValue={zipPostalCode}
+                  fullWidth={true}
+                  error={get(this.state.stateFormFields, [FIELD_TYPES.POSTAL_CODE, 'hasError'], false)}
+                  helperText={get(this.state.stateFormFields, [FIELD_TYPES.POSTAL_CODE, 'message'])}
+                />
               </div>
             </div>
             <div className="row">
@@ -153,9 +230,11 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
                     required={true}
                     disabled={!!commerceUser && !!commerceUser.customerId}
                     onChange={(e) => this.handleEmailInput(e)}
-                    value={email}
+                    value={email ? email : guestEmail}
                     maxLength={100}
                     fullWidth={true}
+                    error={get(this.state.stateFormFields, [FIELD_TYPES.EMAIL, 'hasError'], false)}
+                    helperText={get(this.state.stateFormFields, [FIELD_TYPES.EMAIL, 'message'])}
                   />
                 </div>
               </div>
@@ -169,7 +248,13 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             <div className="row">
               <div className="col-sm-12">
                 <Text field={{ value: 'Shipping Location' }} tag="h3" />
-                <Select fullWidth={true} name={FIELDS.SELECTED_ADDRESS} defaultValue="" required={true}>
+                <Select
+                  fullWidth={true}
+                  name={FIELDS.SELECTED_ADDRESS}
+                  defaultValue={savedAddress?.partyId || ''}
+                  required={true}
+                  error={false}
+                >
                   <option disabled={true} value="">
                     Select Option
                   </option>
@@ -238,7 +323,13 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             </div>
             <div className="row">
               <div className="col-sm-12">
-                <Select fullWidth={true} name={FIELDS.SELECTED_SHIPPING_METHOD} defaultValue="" required={true}>
+                <Select
+                  fullWidth={true}
+                  name={FIELDS.SELECTED_SHIPPING_METHOD}
+                  defaultValue={shippingMethod}
+                  required={true}
+                  error={false}
+                >
                   <option disabled={true} value="">
                     Select Option
                   </option>
@@ -269,6 +360,16 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     );
   }
 
+  private handlerFocusField(field: string) {
+    this.setState({
+      stateFormFields: {
+        ...this.state.stateFormFields,
+        [field]: {
+          hasError: false,
+        },
+      },
+    });
+  }
   private getSelectedCountry(countryCode: string) {
     const { fields } = this.props;
 
@@ -308,7 +409,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
 
   // tslint:disable-next-line:cognitive-complexity
   private handleSaveAndContinueClick(formValues: FormValues) {
+    formValues[FIELDS.EMAIL] = this.state.email ? this.state.email : this.state.guestEmail;
+    const formFields = validate(formValues, FIELDS);
     const { SubmitStep, shippingInfo, AddAddressToAccount } = this.props;
+    const { selectedAddressOption } = this.state;
     const selectedShippingMethodId = formValues[FIELDS.SELECTED_SHIPPING_METHOD];
     const shippingMethod = shippingInfo.data.shippingMethods.find((a) => a.externalId === selectedShippingMethodId);
 
@@ -318,10 +422,13 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
     const options = {
       saveToMyAccount,
       useForBillingAddress,
+      selectedAddressOption,
     };
     const address = this.getShippingAddress(formValues);
-    if (saveToMyAccount) {
-      AddAddressToAccount(address);
+    if (isEmpty(formFields)) {
+      if (saveToMyAccount) {
+        AddAddressToAccount(address);
+      }
     }
     if (address && shippingMethod) {
       SubmitStep({
@@ -334,6 +441,8 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
         },
       });
     }
+
+    this.setState({ stateFormFields: formFields });
   }
 
   private getShippingAddress(formValues: FormValues) {
@@ -364,14 +473,13 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             city: formValues[FIELDS.CITY] as string,
             country: selectedCountry.name,
             countryCode: selectedCountry.countryCode,
-            email: commerceUser.email as string,
+            email: formValues[FIELDS.EMAIL] as string,
             externalId: '',
             firstName: formValues[FIELDS.FIRST_NAME] as string,
-            isPrimary: false,
             lastName: formValues[FIELDS.LAST_NAME] as string,
             name: '',
             partyId: '',
-            state: formValues[FIELDS.PROVINCE] as string,
+            state: formValues[FIELDS.STATE] as string,
             zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
           }
         : {
@@ -383,11 +491,10 @@ export default class ShippingComponent extends Jss.SafePureComponent<ShippingPro
             email: formValues[FIELDS.EMAIL] as string,
             externalId: '',
             firstName: formValues[FIELDS.FIRST_NAME] as string,
-            isPrimary: false,
             lastName: formValues[FIELDS.LAST_NAME] as string,
             name: '',
             partyId: '',
-            state: formValues[FIELDS.PROVINCE] as string,
+            state: formValues[FIELDS.STATE] as string,
             zipPostalCode: formValues[FIELDS.POSTAL_CODE] as string,
           };
     }

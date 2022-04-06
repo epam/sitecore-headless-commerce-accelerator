@@ -23,6 +23,7 @@ import { ProductOverviewProps, ProductOverviewState } from './models';
 import './styles.scss';
 
 import { ProductRating } from 'ui/ProductRating';
+import { RelatedProducts } from 'ui/RelatedProducts';
 
 import { Variant } from 'services/commerce';
 import GlassesImg from 'static/images/glasses-for-slider.png';
@@ -77,7 +78,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
     };
 
     return (
-      selectedCatalogItem && (
+      (selectedCatalogItem && (
         <section className="product-overview">
           <div className="panel-overview">
             <div className="row">
@@ -91,6 +92,7 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               <div className="col-md-6">
                 <header className="product-header">
                   <h1 className="product-title">{selectedCatalogItem.displayName}</h1>
+                  <span className="product-code">{`Product code:  ${selectedCatalogItem.productId}`}</span>
                   {/* <div
                 className={classNames('product-stock-status', {
                   'back-orderable': selectedCatalogItem.stockStatusName === Common.StockStatus.BackOrderable,
@@ -119,7 +121,6 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
                   <div className="product-description">{selectedCatalogItem.description}</div>
                   <div className="product-params">
                     <Placeholder name="product-properties" rendering={this.props.rendering} />
-                    <div className="property-selectors" />
                     <div className="actions">
                       <ProductCardContext.Provider value={context}>
                         <ProductActions />
@@ -240,8 +241,12 @@ export default class ProductOverviewComponent extends JSS.SafePureComponent<
               </div>
             </div>
           </div>
+          <div>
+            <RelatedProducts fallbackImageUrl={fallbackImageUrl} productColors={productColors} />
+          </div>
         </section>
-      )
+      )) ||
+      null
     );
   }
   // private getStockStatusLabel(stockStatus: string) {

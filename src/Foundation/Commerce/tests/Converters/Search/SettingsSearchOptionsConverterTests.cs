@@ -33,7 +33,7 @@ namespace HCA.Foundation.Commerce.Tests.Converters.Search
     using Xunit;
 
     using Facet = Models.Entities.Search.Facet;
-    using SortDirection = Models.Entities.Search.SortDirection;
+    using SortDirection = Foundation.Search.Models.Common.SortDirection;
 
     public class SearchOptionsConverterTests
     {
@@ -248,7 +248,7 @@ namespace HCA.Foundation.Commerce.Tests.Converters.Search
 
             var productSearchOptions = this.fixture.Create<ProductSearchOptions>();
             productSearchOptions.SortField = searchSettings.SortFieldNames?.FirstOrDefault();
-            productSearchOptions.Facets = this.ArrangeSearchOptionsFacets(commonFacet.Name, commonFacet.Values);
+            productSearchOptions.Facets = this.ArrangeSearchOptionsFacets(commonFacet.Name);
 
             this.searchMapper.Map<IEnumerable<Facet>, IEnumerable<Foundation.Search.Models.Common.Facet>>(Arg.Any<IEnumerable<Facet>>())
                 .Returns(
@@ -303,7 +303,7 @@ namespace HCA.Foundation.Commerce.Tests.Converters.Search
             return searchSettingsFacets;
         }
 
-        private IEnumerable<Facet> ArrangeSearchOptionsFacets(string commonFacetName, IEnumerable<object> values)
+        private IEnumerable<Facet> ArrangeSearchOptionsFacets(string commonFacetName)
         {
             var productSearchOptionsFacets = this.fixture.Create<IList<Facet>>().ToList();
             productSearchOptionsFacets.Add(

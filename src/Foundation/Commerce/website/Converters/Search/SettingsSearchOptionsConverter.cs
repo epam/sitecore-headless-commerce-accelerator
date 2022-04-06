@@ -14,24 +14,18 @@
 
 namespace HCA.Foundation.Commerce.Converters.Search
 {
+    using DependencyInjection;
+    using Foundation.Search.Models.Common;
+    using Foundation.Search.Providers;
+    using Mappers.Search;
+    using Sitecore.Data;
+    using Sitecore.Diagnostics;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    using DependencyInjection;
-
-    using Foundation.Search.Providers;
-
-    using Mappers.Search;
-
-    using Sitecore.Data;
-    using Sitecore.Diagnostics;
-
     using Facet = Models.Entities.Search.Facet;
     using ProductSearchOptions = Models.Entities.Search.ProductSearchOptions;
     using Search = Foundation.Search.Models.Entities.Product;
-
-    using SortDirection = Models.Entities.Search.SortDirection;
 
     /// <summary>
     /// Merges product search options with predefined search settings 
@@ -50,7 +44,7 @@ namespace HCA.Foundation.Commerce.Converters.Search
             this.searchMapper = searchMapper;
             this.searchSettingsProvider = searchSettingsProvider;
         }
-        
+
         public Search.ProductSearchOptions Convert(ProductSearchOptions searchOptions)
         {
             Assert.ArgumentNotNull(searchOptions, nameof(searchOptions));
@@ -71,6 +65,7 @@ namespace HCA.Foundation.Commerce.Converters.Search
             return new Search.ProductSearchOptions
             {
                 SearchKeyword = searchOptions.SearchKeyword,
+                ProductIds = searchOptions.ProductIds,
                 Facets = this.GetFacetsIntersection(searchSettings?.Facets, searchOptions.Facets),
                 StartPageIndex = searchOptions.PageNumber,
                 NumberOfItemsToReturn =
@@ -80,8 +75,8 @@ namespace HCA.Foundation.Commerce.Converters.Search
                     ? searchOptions.SortField
                     : searchSettings?.SortFieldNames?.FirstOrDefault(),
                 SortDirection = searchOptions.SortDirection == SortDirection.Asc
-                    ? Foundation.Search.Models.Common.SortDirection.Asc
-                    : Foundation.Search.Models.Common.SortDirection.Desc
+                    ? SortDirection.Asc
+                    : SortDirection.Desc
             };
         }
 

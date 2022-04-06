@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -15,11 +15,23 @@
 @import 'styles/variables';
 
 .Spinner {
+  &-lazyLoad_spinner {
+    background-color: #fff;
+    width: 100%;
+    height: 400px;
+    position: relative;
+
+    &.spinner_small {
+      height: 30px;
+    }
+  }
   &-Container {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 15px;
+    position: absolute;
+    top: 50%;
 
     &_hidden {
       display: none;

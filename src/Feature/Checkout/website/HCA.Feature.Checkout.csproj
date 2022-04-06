@@ -932,7 +932,6 @@
     <Compile Include="Infrastructure\Pipelines\Initialize\RegisterRoutes.cs" />
     <Compile Include="Models.Generated.cs" />
     <Compile Include="Models\Requests\GetOrdersRequest.cs" />
-    <Compile Include="Models\Requests\PromoCodeRequest.cs" />
     <Compile Include="Models\Requests\SetPaymentInfoRequest.cs" />
     <Compile Include="Models\Requests\SetShippingOptionsRequest.cs" />
     <Compile Include="Models\Requests\UpdateCartLineRequest.cs" />

@@ -27,13 +27,14 @@ namespace HCA.Foundation.Commerce.Tests.Services.Delivery
     using Connect.Managers.Cart;
     using Connect.Managers.Shipping;
     using Context.Visitor;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Models.Entities.Addresses;
 
     using NSubstitute;
 
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Kernel;
+
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
@@ -45,7 +46,6 @@ namespace HCA.Foundation.Commerce.Tests.Services.Delivery
     using Xunit;
 
     using ShippingMethod = Models.Entities.Shipping.ShippingMethod;
-
 
     public class DeliveryServiceTests
     {
@@ -318,9 +318,9 @@ namespace HCA.Foundation.Commerce.Tests.Services.Delivery
             this.cartResult.Success = true;
             this.cartManager.LoadCart(Arg.Any<string>(), Arg.Any<string>()).Returns(this.cartResult);
 
-            var commerceParties = this.fixture.Create<List<Party>>();
+            var commerceParties = this.fixture.Create<List<CommerceParty>>();
             var shippingOptionType = this.fixture.Create<ShippingOptionType>();
-            this.shippingMapper.Map<List<Address>, List<Party>>(Arg.Any<List<Address>>())
+            this.shippingMapper.Map<List<Address>, List<CommerceParty>>(Arg.Any<List<Address>>())
                 .Returns(commerceParties);
             this.shippingMapper.Map<string, ShippingOptionType>(Arg.Any<string>()).Returns(shippingOptionType);
 

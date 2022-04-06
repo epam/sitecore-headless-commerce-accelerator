@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,37 +12,4 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { actionTypes, RemoveCartLine, shoppingCart, UpdateCartLine } from 'services/shoppingCart';
-
-import { LoadingStatus } from 'models';
-import { CartSummaryComponent } from './Component';
-
-import { AppState, CartSummaryDispatchProps, CartSummaryOwnProps, CartSummaryStateProps } from './models';
-
-const mapStateToProps = (state: AppState): CartSummaryStateProps => {
-  const shoppingCartState = shoppingCart(state);
-  const isLoading =
-    shoppingCartState.status === LoadingStatus.Loading &&
-    (shoppingCartState.actionType === actionTypes.UPDATE_CART_LINE_REQUEST ||
-      shoppingCartState.actionType === actionTypes.REMOVE_CART_LINE_REQUEST);
-  return { isLoading };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(
-    {
-      RemoveCartLine,
-      UpdateCartLine,
-    },
-    dispatch,
-  );
-};
-
-const connectedToStore = connect<CartSummaryStateProps, CartSummaryDispatchProps, CartSummaryOwnProps>(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export const CartSummary = connectedToStore(CartSummaryComponent);
+export * from './CartSummary';

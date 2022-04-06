@@ -16,53 +16,49 @@
 @import 'styles/variables';
 
 @media #{$xs-layout} {
-  .footer-links-list {
+  .FooterLinks {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 15px 0;
-  }
-  .footer-list-item {
-    display: flex;
-    justify-content: center;
+    margin: 15px 0 0 0;
+
+    &-LinkWrapper {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 // Footer grid for columns end
-.footer-links-list {
-  .footer-list-item {
-    line-height: 1.8;
-    margin-bottom: 8px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .footer-link {
+.FooterLinks {
+  &-Link {
     font-weight: 900;
     text-transform: uppercase;
 
-    &-primary {
+    &_type_primary {
       font-size: 16px;
       font-weight: 500;
       line-height: 1;
       margin: 0 0 16px;
-      color: #313131;
-      @media (hover) {
-        &:hover {
-          color: $nav-font-second-color;
-        }
-      }
+      color: $footer-title-color;
     }
-    &-secondary {
+
+    &_type_secondary {
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
       height: auto;
       letter-spacing: 0.3px;
-      color: #5d5d5d;
+      color: $footer-link-color;
       text-transform: capitalize;
+
       &:hover {
         color: $theme-color;
       }
     }
+  }
+
+  &-LinkWrapper {
+    line-height: 1.8;
+    margin-bottom: 8px;
   }
 }

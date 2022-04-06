@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 @import 'styles/variables';
+@import 'styles/mixins';
 
 $button-defaultSlide-bg-color: #343538;
 $button-defaultSlide-before-bg-color: #a749ff;
@@ -50,6 +51,11 @@ $button-transparentSlide-before-border-color: #a749ff;
 
     &_l {
       padding: 18px 60px;
+    }
+
+    &_default {
+      padding: 11px 30px;
+      line-height: 21px;
     }
   }
 
@@ -92,17 +98,32 @@ $button-transparentSlide-before-border-color: #a749ff;
         height: 100%;
         width: 0;
       }
-
-      &:hover:before {
-        right: auto;
-        left: 0;
-        width: 100%;
+      @media (hover) {
+        &:hover:before {
+          right: auto;
+          left: 0;
+          width: 100%;
+        }
       }
 
       &:disabled:before {
         right: 0;
         left: auto;
         width: 0;
+      }
+    }
+
+    &_transparent {
+      color: $black;
+      background-color: transparent;
+      border: 1px solid $black;
+
+      @media (hover) {
+        &:hover {
+          color: $white;
+          border-color: $global-button-bg-color-purple;
+          background-color: $global-button-bg-color-purple;
+        }
       }
     }
 
@@ -189,6 +210,22 @@ $button-transparentSlide-before-border-color: #a749ff;
       padding: 0;
     }
 
+    &_link {
+      background: none;
+      padding: 0;
+      border: none;
+      color: $link-color;
+      cursor: pointer;
+      text-transform: none;
+      font-weight: 400;
+      @media (hover) {
+        &:hover {
+          text-decoration: underline;
+          color: $link-color;
+        }
+      }
+    }
+
     &_text {
       background: none;
       border: none;
@@ -197,6 +234,26 @@ $button-transparentSlide-before-border-color: #a749ff;
       color: #069;
       text-decoration: underline;
       cursor: pointer;
+    }
+
+    &_darkGrey {
+      background-color: $bg-grey;
+      border: 1px solid $bg-grey;
+      @include primary-button-hover-focus-active;
+
+      &:disabled {
+        color: $grey-middle;
+        background: $white;
+        border: 1px solid $table-border-color;
+
+        @media (hover) {
+          &:hover {
+            color: $grey-middle;
+            background: $white;
+            border: 1px solid $table-border-color;
+          }
+        }
+      }
     }
   }
 

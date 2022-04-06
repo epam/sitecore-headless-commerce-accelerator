@@ -26,14 +26,23 @@ namespace HCA.Foundation.SitecoreCommerce.Providers.Product
     public sealed class
         CommerceProductSearchResultProvider : SearchResultProvider, IProductSearchResultProvider
     {
+        private ISearchIndex searchIndex;
+        private readonly ICommerceTypeLoader commerceTypeLoader;
+
         public CommerceProductSearchResultProvider(ICommerceTypeLoader commerceTypeLoader)
         {
             Assert.ArgumentNotNull(commerceTypeLoader, nameof(commerceTypeLoader));
-
-            this.SearchIndex = commerceTypeLoader.CreateInstance<ICommerceSearchManager>()
-                ?.GetIndex();
+            this.commerceTypeLoader = commerceTypeLoader;
         }
 
-        protected override ISearchIndex SearchIndex { get; set; }
+        protected override ISearchIndex SearchIndex {
+            get
+            {
+                return searchIndex ?? (searchIndex = commerceTypeLoader.CreateInstance<ICommerceSearchManager>()?.GetIndex());
+            }
+            set {
+                searchIndex = value;
+            }
+        }
     }
 }

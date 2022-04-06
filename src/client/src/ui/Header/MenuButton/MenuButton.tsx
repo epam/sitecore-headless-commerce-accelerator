@@ -24,9 +24,13 @@ import './MenuButton.scss';
 export const MenuButton: FC = () => {
   const dispatch = useDispatch();
 
-  const handleHamburgerMenuOpen = useCallback(() => {
-    dispatch(openHamburgerMenu());
-  }, [dispatch]);
+  const handleHamburgerMenuOpen = useCallback(
+    (e) => {
+      e.stopPropagation();
+      dispatch(openHamburgerMenu());
+    },
+    [dispatch],
+  );
 
   return (
     <div className="navigation-buttons_item menu-button">

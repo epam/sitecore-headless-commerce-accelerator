@@ -31,6 +31,7 @@ export type PasswordFieldProps = {
   helperText: string;
   fullWidth?: boolean;
   onClickAdornment: () => void;
+  handlerFocusField?: () => void;
 };
 
 export const PasswordField: FC<PasswordFieldProps> = ({
@@ -43,6 +44,7 @@ export const PasswordField: FC<PasswordFieldProps> = ({
   helperText,
   fullWidth = true,
   onClickAdornment,
+  handlerFocusField,
 }) => {
   return (
     <>
@@ -55,6 +57,7 @@ export const PasswordField: FC<PasswordFieldProps> = ({
         fullWidth={fullWidth}
         error={error}
         helperText={helperText}
+        handlerFocusField={handlerFocusField}
         adornment={
           <div onClick={onClickAdornment}>
             <Icon icon={showPassword ? 'icon-look-slash' : 'icon-look'} className={cnRegister('FaEyeIcon')} size="l" />

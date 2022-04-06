@@ -27,7 +27,7 @@ namespace HCA.Foundation.GlassMapper.Infrastructure
     {
         public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<ISitecoreService>(provider => new SitecoreService(Context.Database));
+            serviceCollection.AddTransient<ISitecoreService>(provider => new SitecoreService(Context.Site.Database));
             serviceCollection.AddTransient<IRequestContext>(
                 provider =>
                 {

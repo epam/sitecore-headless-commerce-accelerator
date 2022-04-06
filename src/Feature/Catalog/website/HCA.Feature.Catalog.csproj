@@ -660,6 +660,10 @@
       <Project>{9F27A62C-2A80-42F8-8BF0-3877B65C0427}</Project>
       <Name>HCA.Foundation.ReactJss</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Foundation\Search\website\HCA.Foundation.Search.csproj">
+      <Project>{54eecef5-4c9d-4353-ac43-67fded4bbe1e}</Project>
+      <Name>HCA.Foundation.Search</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

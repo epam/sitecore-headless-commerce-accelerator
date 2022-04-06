@@ -60,13 +60,13 @@ module.exports.toPropertyType = function (typeName, id) {
     case 'tristate':
       return `{} /* UNKNOWN TYPE: ${typeName} */`;
     case 'checkbox':
-      return 'ReactJssModule.Field<boolean>';
+      return 'HeadlessDefinitions.Field<boolean>';
     case 'date':
     case 'datetime':
-      return 'ReactJssModule.Field<Date>';
+      return 'HeadlessDefinitions.Field<Date>';
     case 'number':
     case 'integer':
-      return 'ReactJssModule.Field<number>';
+      return 'HeadlessDefinitions.Field<number>';
     case 'treelist with search':
     case 'treelist':
     case 'treelistex':
@@ -74,23 +74,23 @@ module.exports.toPropertyType = function (typeName, id) {
     case 'checklist':
     case 'multilist with search':
     case 'multilist':
-      return 'ReactJssModule.ItemList<ReactJssModule.BaseDataSourceItem>';
+      return 'HeadlessDefinitions.ItemList<HeadlessDefinitions.BaseDataSourceItem>';
     case 'grouped droplink':
     case 'droplink':
     case 'lookup':
     case 'droptree':
     case 'reference':
     case 'tree':
-      return 'ReactJssModule.Item<ReactJssModule.BaseDataSourceItem>';
+      return 'HeadlessDefinitions.Item<HeadlessDefinitions.BaseDataSourceItem>';
     case 'file':
       return `{} /* UNKNOWN TYPE: ${typeName} */`;
     case 'image':
-      return 'ReactJssModule.ImageField';
+      return 'HeadlessDefinitions.ImageField';
     case 'general link':
     case 'general link with search':
-      return 'ReactJssModule.LinkField';
+      return 'HeadlessDefinitions.LinkField';
     case 'rich text':
-      return 'ReactJssModule.RichTextField';
+      return 'HeadlessDefinitions.RichTextField';
     case 'password':
     case 'icon':
     case 'html':
@@ -103,7 +103,7 @@ module.exports.toPropertyType = function (typeName, id) {
     case 'grouped droplist':
     case 'valuelookup':
     case 'name value list':
-      return 'ReactJssModule.TextField';
+      return 'HeadlessDefinitions.TextField';
     case 'attachment':
     case 'word document':
     case 'name lookup value list':

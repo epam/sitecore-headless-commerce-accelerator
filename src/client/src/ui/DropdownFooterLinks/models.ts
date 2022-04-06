@@ -15,7 +15,7 @@
 import * as Jss from 'Foundation/ReactJss';
 
 export interface FooterLinkDataSource extends Jss.BaseDataSourceItem {
-  uri: Jss.GraphQLField<Jss.LinkField>;
+  uri: Jss.GraphQLField<Jss.LinkFieldValue>;
   isPrimary: Jss.GraphQLField<Jss.TextField>;
 }
 

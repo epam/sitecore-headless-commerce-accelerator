@@ -20,13 +20,14 @@ import { NavigationLink } from 'ui/NavigationLink';
 import { Carousel } from './Carousel';
 import { RecommendedProductsProps, RecommendedProductsState } from './models';
 
-import {​​​​​​​​ Icon }​​​​​​​​ from 'components';
-
 import * as JSS from 'Foundation/ReactJss';
 import './styles.scss';
 
 import GlassesImage from 'static/images/glasses-for-slider.png';
 import { productsMockData } from './constant';
+
+import { Icon } from 'components';
+
 class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProductsProps, RecommendedProductsState> {
   public safeRender() {
     const { fields } = this.props;
@@ -39,7 +40,6 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
             <p>Lorem ipsum dolor sit amet conse ctetu.</p>
           </div>
         </div>
-
         <Carousel
           className="gallery-thumbs"
           buttonPreviousText={<Icon icon="icon-angle-left" />}
@@ -47,20 +47,20 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
           options={{
             breakpoints: {
               480: {
-                slidesPerView: 1,
-                spaceBetween: 25,
-              },
-              1024: {
                 slidesPerView: 2,
                 spaceBetween: 25,
               },
-              1310: {
+              1024: {
                 slidesPerView: 3,
                 spaceBetween: 25,
               },
+              1310: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
             },
-            slidesPerView: 4,
-            spaceBetween: 0,
+            slidesPerView: 1,
+            spaceBetween: 25,
           }}
         >
           {productsMockData &&
@@ -79,10 +79,10 @@ class RecommendedProductsComponent extends JSS.SafePureComponent<RecommendedProd
                   <div className="item-description_title">
                     <div className="item-description_title_brand">{item.productName}</div>
                     <div className="item-description_title_price">
-                      <span>{`$${item.orgPrice} - `}</span>
-                      <span className="item-description_title_price_pink">{`$${
+                      <span>{`$${
                         Math.round((item.orgPrice - item.orgPrice * item.discount + Number.EPSILON) * 100) / 100
-                      }`}</span>
+                      } - `}</span>
+                      <span className="item-description_title_price_pink">{`$${item.orgPrice}`}</span>
                     </div>
                   </div>
                 </div>

@@ -141,6 +141,33 @@ export const RemoveCartLineSuccess: actionCreators.RemoveCartLineSuccess = (data
   type: actionTypes.REMOVE_CART_LINE_SUCCESS,
 });
 
+export const CleanCart: actionCreators.CleanCart = () => ({
+  type: actionTypes.CLEAN_CART,
+});
+
+export const CleanCartRequest: StatusType = () => ({
+  payload: {
+    status: LoadingStatus.Loading,
+  },
+  type: actionTypes.CLEAN_CART_REQUEST,
+});
+
+export const CleanCartFailure: FailureType = (error: string, stack?: string) => ({
+  payload: {
+    error,
+    stack,
+    status: LoadingStatus.Failure,
+  },
+  type: actionTypes.CLEAN_CART_FAILURE,
+});
+
+export const CleanCartSuccess: actionCreators.CleanCartSuccess = (data: ShoppingCartData) => ({
+  payload: {
+    data,
+    status: LoadingStatus.Loaded,
+  },
+  type: actionTypes.CLEAN_CART_SUCCESS,
+});
 export const updateCartItemRequest: actionCreators.UpdateCartItemRequest = (payload) => ({
   payload,
   type: actionTypes.UPDATE_CART_ITEM_REQUEST,

@@ -21,7 +21,7 @@
     top: 200%;
     left: 0;
     visibility: hidden;
-    width: 125px;
+    width: 135px;
     padding: 8px 12px 10px;
     transition: all 0.5s ease 0s;
     transform: rotateX(90deg);
@@ -55,7 +55,7 @@
     line-height: 30px;
     display: block;
     padding: 0;
-    text-transform: capitalize;
+    text-transform: none;
     color: $black;
 
     &:hover {

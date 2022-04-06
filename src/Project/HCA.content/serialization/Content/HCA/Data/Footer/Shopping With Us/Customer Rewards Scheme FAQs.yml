@@ -1,0 +1,38 @@
+﻿---
+ID: "468fb614-6da9-452b-8292-6c0df60b7ff6"
+Parent: "c5fe58aa-6401-4932-871f-d0d6623dce5e"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/Shopping With Us/Customer Rewards Scheme FAQs
+SharedFields:
+- ID: "743716bb-160d-4e5c-be88-a4fe043ba2c1"
+  Hint: Is Primary
+  Value: 
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190720Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\Admin
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link text="Customer Rewards Scheme FAQs" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{0662DA60-F64A-4140-8D7C-E6A2301993CD}" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "8af681a0-db95-4951-9f47-7dd1fb4ee090"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220120T123427Z

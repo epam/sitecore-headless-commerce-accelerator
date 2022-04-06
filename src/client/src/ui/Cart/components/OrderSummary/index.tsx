@@ -12,7 +12,8 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-import * as JSS from 'Foundation/ReactJss';
+import { rendering } from 'Foundation/ReactJss';
+
 import { OrderSummaryComponent } from './Component';
 
-export const OrderSummary = JSS.rendering(OrderSummaryComponent);
+export const OrderSummary = rendering(OrderSummaryComponent);

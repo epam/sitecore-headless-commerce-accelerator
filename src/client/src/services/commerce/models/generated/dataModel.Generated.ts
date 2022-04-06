@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -62,15 +62,26 @@ export interface Address {
   email: string;
   externalId: string;
   firstName: string;
-  isPrimary: boolean;
   lastName: string;
   name: string;
   partyId: string;
   state: string;
   zipPostalCode: string;
 }
+
+export interface Card {
+  cardNumber: string;
+  cardOwner: string;
+  id: string;
+  expiresMonth: string;
+  expiresYear: string;
+  cardType: string;
+  securityCode: string;
+}
+
 export interface Cart {
   addresses: Address[];
+  adjustments: Adjustment[];
   cartLines: CartLine[];
   email: string;
   id: string;
@@ -139,12 +150,18 @@ export interface ProductSearchResults {
   totalItemCount: number;
   totalPageCount: number;
 }
+export interface GetProductsByIdsResult {
+  products: Product[];
+}
 export interface User {
   customerId: string;
   email: string;
   firstName: string;
   lastName: string;
   userName: string;
+  dateOfBirth?: string;
+  phoneNumber?: string;
+  imageUrl?: string;
 }
 export interface CountryRegion {
   countryCode: string;
@@ -179,6 +196,11 @@ export interface ProductSearchSuggestion {
   imageUrl: string;
   price: number;
   productId: string;
+}
+
+export interface Adjustment {
+  description: string;
+  isAutomatic: boolean;
 }
 
 export interface Facet {

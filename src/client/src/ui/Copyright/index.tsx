@@ -20,17 +20,25 @@ import Logo from 'static/images/logo-main-black.png';
 
 import { CopyrightProps, CopyrightState } from './models';
 
+import { cnFooterCopyright } from './cn';
 import './styles.scss';
 
 class CopyrightComponent extends JSS.SafePureComponent<CopyrightProps, CopyrightState> {
   protected safeRender() {
-    const { fields } = this.props;
-    const { datasource } = fields.data;
+    const {
+      fields: {
+        data: {
+          datasource: {
+            text: { jss },
+          },
+        },
+      },
+    } = this.props;
 
     return (
-      <div className="footer-copyright-container">
-        <img src={Logo} alt="Discover" className="footer-copyright_logo" />
-        <RichText className="footer-copyright" field={datasource.text.jss} />
+      <div>
+        <img src={Logo} alt="Discover" className={cnFooterCopyright('Logo')} />
+        <RichText className={cnFooterCopyright()} field={jss} />
       </div>
     );
   }

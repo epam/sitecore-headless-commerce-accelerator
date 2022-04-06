@@ -18,6 +18,7 @@ $input-size-m-font-size: 14px;
 $input-size-m-mobile-font-size: 16px;
 $input-size-m-line-height: 20px;
 $input-size-m-width: 200px;
+$input-size-l-width: 100%;
 $input-size-m-height: 45px;
 $input-size-m-padding: 0 15px;
 $input-border-color: #e6e6e6;
@@ -25,13 +26,27 @@ $input-border-color: #e6e6e6;
 .Input {
   &-ControlWrapper {
     position: relative;
+
+    &-Control {
+      color: #333;
+      border: 1px solid $input-border-color;
+      background: transparent none repeat scroll 0 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+
+      &:focus {
+        border: 1px solid #a03bff;
+        outline: none;
+      }
+    }
   }
 
   &_error {
     .Input-Control {
       border-color: #e9322d;
       color: #b94a48;
-
+      margin-bottom: 0;
       &:focus {
         border-color: #e9322d;
       }
@@ -58,6 +73,23 @@ $input-border-color: #e6e6e6;
     }
   }
 
+  &_controlSize_l {
+    .Input-Control {
+      font-size: $input-size-m-font-size;
+      line-height: $input-size-m-line-height;
+      width: $input-size-l-width;
+      height: $input-size-m-height;
+      padding: $input-size-m-padding;
+
+      @media #{$xxs-layout} {
+        // Increased the specificity of the selector due to the fact that it is interrupted by global styles
+        &.Input-Control {
+          font-size: $input-size-m-mobile-font-size;
+        }
+      }
+    }
+  }
+
   &_adornment {
     .Input-Control {
       padding-right: 45px;
@@ -67,20 +99,6 @@ $input-border-color: #e6e6e6;
   &_fullWidth {
     .Input-Control {
       width: 100%;
-    }
-  }
-
-  &-Control {
-    color: #333;
-    border: 1px solid $input-border-color;
-    background: transparent none repeat scroll 0 0;
-    box-sizing: border-box;
-    font-family: inherit;
-    transition: border 0.2s linear, box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
-
-    &:focus {
-      border: 1px solid #a03bff;
-      outline: none;
     }
   }
 

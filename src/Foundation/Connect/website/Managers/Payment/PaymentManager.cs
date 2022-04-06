@@ -18,28 +18,26 @@ namespace HCA.Foundation.Connect.Managers.Payment
     using Base.Services.Logging;
 
     using DependencyInjection;
-
+    using HCA.Foundation.ConnectBase.Entities;
+    using HCA.Foundation.ConnectBase.Providers;
     using Mappers.Payment;
 
     using Models.Payment;
 
     using Providers;
 
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Payments;
     using Sitecore.Diagnostics;
 
-    using GetPaymentMethodsRequest = Sitecore.Commerce.Engine.Connect.Services.Payments.GetPaymentMethodsRequest;
-
     [Service(typeof(IPaymentManager), Lifetime = Lifetime.Singleton)]
     public class PaymentManager : BaseManager, IPaymentManager
     {
         private readonly IPaymentMapper paymentMapper;
 
-        private readonly PaymentServiceProvider paymentServiceProvider;
+        private readonly PaymentServiceProviderBase paymentServiceProvider;
 
         public PaymentManager(
             IConnectServiceProvider connectServiceProvider,
@@ -55,21 +53,8 @@ namespace HCA.Foundation.Connect.Managers.Payment
 
         public PaymentClientTokenResult GetPaymentClientToken()
         {
-            return this.Execute(
-                new ServiceProviderRequest(),
-                req =>
-                {
-                    var serviceProviderResult =
-                        this.paymentServiceProvider
-                            .RunPipeline<ServiceProviderRequest, Sitecore.Commerce.Engine.Connect.Pipelines.Arguments.
-                                PaymentClientTokenResult>(
-                                "commerce.payments.getClientToken",
-                                req);
-
-                    return this.paymentMapper
-                        .Map<Sitecore.Commerce.Engine.Connect.Pipelines.Arguments.PaymentClientTokenResult,
-                            PaymentClientTokenResult>(serviceProviderResult);
-                });
+            var result = this.Execute(new ServiceProviderRequest(), this.paymentServiceProvider.GetPaymentClientToken);
+            return this.paymentMapper.Map<ConnectBase.Pipelines.Arguments.PaymentClientTokenResult, PaymentClientTokenResult>(result);
         }
 
         public GetPaymentMethodsResult GetPaymentMethods(Cart cart, PaymentOption paymentOption)
@@ -77,7 +62,7 @@ namespace HCA.Foundation.Connect.Managers.Payment
             Assert.ArgumentNotNull(cart, nameof(cart));
             Assert.ArgumentNotNull(paymentOption, nameof(paymentOption));
 
-            var request = new GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
+            var request = new ConnectBase.Pipelines.Arguments.GetPaymentMethodsRequest(cart as CommerceCart, paymentOption);
 
             return this.Execute(request, this.paymentServiceProvider.GetPaymentMethods);
         }

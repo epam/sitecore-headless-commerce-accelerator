@@ -1,0 +1,23 @@
+﻿---
+ID: "f3c7d0f5-f033-4d35-a1d2-b5dc6f6d8ca6"
+Parent: "676a1efd-5cb4-4207-9eb2-5fe6e43e13ea"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/HCA/Feature/Navigation/Left Menu/Left Menu Link/Content
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T200832Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "45f1ec6e-d1a3-4c53-90d7-252ab406896b"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220113T200909Z

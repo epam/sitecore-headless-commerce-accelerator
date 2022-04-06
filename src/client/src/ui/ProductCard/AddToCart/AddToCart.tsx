@@ -57,7 +57,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
     if (!cartLinesState) {
       return false;
     }
-    const cartLine = cartLinesState.find((item) => item.product.productId === product.productId);
+    const cartLine = cartLinesState.find((item) => item.product.productId === product?.productId);
 
     return Boolean(cartLine);
   }, [cartLinesState]);
@@ -65,7 +65,7 @@ export const AddToCart: FC<AddToCartProps> = ({ className }) => {
   useEffect(() => {
     if (!initializedRef.current && cartLinesState) {
       const res = cartLinesState.reduce((acc, x) => {
-        if (x.product.productId === product.productId) {
+        if (x.product.productId === product?.productId) {
           acc[x.variant.variantId] = x.quantity;
         }
 

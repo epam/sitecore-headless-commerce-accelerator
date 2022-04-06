@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -20,14 +20,17 @@ import './Spinner.scss';
 
 export type SpinnerProps = HTMLProps<HTMLDivElement> & {
   isLoading?: boolean;
+  containerClassName?: string;
 };
 
-export const Spinner: FC<SpinnerProps> = ({ className, isLoading = true }) => {
+export const Spinner: FC<SpinnerProps> = ({ className, containerClassName, isLoading = true }) => {
   return (
-    <div className={cnSpinner('Container', { hidden: !isLoading }, [className])}>
-      <div className={cnSpinner('Object', { one: true })} />
-      <div className={cnSpinner('Object', { two: true })} />
-      <div className={cnSpinner('Object', { three: true })} />
+    <div className={cnSpinner('lazyLoad_spinner', [className])}>
+      <div className={cnSpinner('Container', { hidden: !isLoading }, [containerClassName])}>
+        <div className={cnSpinner('Object', { one: true })} />
+        <div className={cnSpinner('Object', { two: true })} />
+        <div className={cnSpinner('Object', { three: true })} />
+      </div>
     </div>
   );
 };

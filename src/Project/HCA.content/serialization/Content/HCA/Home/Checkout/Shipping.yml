@@ -46,11 +46,23 @@ SharedFields:
           s:id="{B167B5C0-E815-444D-AC46-8B653A1A571A}"
           s:ph="/main-content/w-col-wide-{23FCB4B5-1A01-485D-9A6F-4765A4F3B70F}-0/w-col-2-{6096FD04-F6DB-4B34-94FD-A02611BD3CCA}-0" />
         <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}"
+          s:ph="/main-content/footer-content-{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}-0/w-col-1-{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}-0/w-col-2-{70B51ADE-3E72-4024-A876-80545621B913}-0" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          p:after="r[@uid='{53743A27-5901-41EA-91E6-D2169A193C70}']"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}"
+          s:ph="/main-content/footer-content-{0EF78618-639B-4F26-BAE3-5E1FB33BC7BC}-0/w-col-1-{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}-0/w-col-1-{70B51ADE-3E72-4024-A876-80545621B913}-0" />
+        <r
           uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
           s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{38D0C4EC-8D2C-4656-A430-A68BB2C76B01}"
-          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
         <r
           uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
           p:after="*[1=2]" />
@@ -69,11 +81,11 @@ Languages:
       Value: Shipping
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "caf32828-7f14-409b-9260-0fdbdff0898d"
+      Value: "c7a0a3d2-3d67-48d0-971b-17c408b6e5ae"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\unicorn
+        sitecore\Admin
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20210811T130619Z
+      Value: 20220325T065659Z

@@ -1,0 +1,35 @@
+﻿---
+ID: "f3d1e499-63d1-4997-a5b9-64efffbd8489"
+Parent: "dab1d1da-88e0-41b2-b79f-c7a678a8aad9"
+Template: "676a1efd-5cb4-4207-9eb2-5fe6e43e13ea"
+Path: /sitecore/content/HCA/Data/Account/Left Menu/Ordering and Payments
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 1100
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Ordering &amp; Payments
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T205805Z
+    - ID: "2a4543cc-a255-4086-b245-749fc96c549e"
+      Hint: Uri
+      Value: |
+        <link text="Ordering &amp; Payments" anchor="" linktype="internal" class="" title="" target="" querystring="" id="{E3280732-00D5-45FF-A268-9ACDBD8549E5}" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "cffe286a-a96a-4504-94bc-19d967b6f0e2"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220127T141939Z

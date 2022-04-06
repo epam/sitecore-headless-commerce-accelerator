@@ -32,8 +32,16 @@ export const sagaActionTypes = keyMirrorSaga(
     ADDRESS_REMOVE: null,
     ADDRESS_UPDATE: null,
 
+    CARD_ADD: null,
+    CARD_GET_LIST: null,
+    CARD_REMOVE: null,
+    CARD_UPDATE: null,
+
     PASSWORD_RESET: null,
     REQUEST_PASSWORD_RESET: null,
+
+    IMAGE_ADD: null,
+    IMAGE_REMOVE: null,
   },
   ACCOUNT_NAMESPACE,
 );
@@ -74,12 +82,33 @@ export const reducerActionTypes = keyMirrorReducer(
     ADDRESS_UPDATE_REQUEST: null,
     ADDRESS_UPDATE_SUCCESS: null,
 
+    CARD_ADD_FAILURE: null,
+    CARD_ADD_REQUEST: null,
+    CARD_ADD_SUCCESS: null,
+    CARD_GET_LIST_FAILURE: null,
+    CARD_GET_LIST_REQUEST: null,
+    CARD_GET_LIST_SUCCESS: null,
+    CARD_REMOVE_FAILURE: null,
+    CARD_REMOVE_REQUEST: null,
+    CARD_REMOVE_SUCCESS: null,
+    CARD_UPDATE_FAILURE: null,
+    CARD_UPDATE_REQUEST: null,
+    CARD_UPDATE_SUCCESS: null,
+
     PASSWORD_RESET_FAILURE: null,
     PASSWORD_RESET_REQUEST: null,
     PASSWORD_RESET_SUCCESS: null,
     REQUEST_PASSWORD_RESET_FAILURE: null,
     REQUEST_PASSWORD_RESET_REQUEST: null,
     REQUEST_PASSWORD_RESET_SUCCESS: null,
+
+    IMAGE_ADD_REQUEST: null,
+    IMAGE_ADD_SUCCESS: null,
+    IMAGE_ADD_FAILURE: null,
+
+    IMAGE_REMOVE_REQUEST: null,
+    IMAGE_REMOVE_SUCCESS: null,
+    IMAGE_REMOVE_FAILURE: null,
   },
   ACCOUNT_NAMESPACE,
 );

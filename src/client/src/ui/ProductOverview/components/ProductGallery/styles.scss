@@ -16,33 +16,58 @@
 @import 'styles/variables';
 @import '~lightgallery.js/dist/css/lightgallery.css';
 
-.product-overview {
-  .product-gallery {
-    &-header {
-      @include clearfix;
-      width: 100%;
-      max-width: 570px;
-      margin: auto;
-      border: none !important;
-      position: relative;
-      margin-bottom: 15px;
+.ProductGallery {
+  &-Header {
+    @include clearfix;
+    width: 100%;
+    max-width: 570px;
+    margin: auto;
+    border: none !important;
+    position: relative;
+    margin-bottom: 15px;
 
-      .react_lightgallery_item {
-        margin-right: 10px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        & button {
-          border: none;
-          margin: 0;
-          padding: 0;
-          background-color: #fff;
-          &:focus #product-gallery-header-modal {
-            display: block;
-          }
+    &:hover button {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .react_lightgallery_item {
+      margin-right: 10px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      & button {
+        border: none;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        &:focus #product-gallery-header-modal {
+          display: block;
         }
       }
+    }
 
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      .swiper-wrapper .swiper-slide {
+        width: 100% !important;
+        text-align: center;
+      }
+    }
+
+    &-expand {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      & button {
+        border: none;
+        margin: 0;
+        padding: 0;
+        &:focus #product-gallery-header-modal {
+          display: block;
+        }
+      }
       .swiper-container {
         width: 100%;
         height: 100%;
@@ -51,102 +76,100 @@
           text-align: center;
         }
       }
+    }
+  }
 
-      &-expand {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        & button {
-          border: none;
-          margin: 0;
-          padding: 0;
-          &:focus #product-gallery-header-modal {
-            display: block;
-          }
-        }
-        .swiper-container {
-          width: 100%;
-          height: 100%;
-          .swiper-wrapper .swiper-slide {
-            width: 100% !important;
-            text-align: center;
-          }
-        }
+  &-Button {
+    border: none;
+    background: transparent;
+    visibility: hidden;
+    opacity: 0;
+    color: #333;
+    background: none;
+
+    &_size_big {
+      position: absolute;
+      content: '';
+      top: 50%;
+      z-index: 1000;
+
+      i {
+        font-size: 50px;
       }
     }
-    &-carousel {
+
+    &_size_big#{&}_type_prev {
+      left: 0;
+    }
+
+    &_size_big#{&}_type_next {
+      left: calc(100% - 62px);
+    }
+
+    &_size_small {
+      z-index: 1;
+
+      i {
+        font-size: 40px;
+      }
+    }
+  }
+
+  &-Carousel {
+    display: flex;
+    margin: 26px auto 0;
+
+    // max-width for carousel's container with visible items, items width calculated from width of this container
+    // max-width: (a/b)*100%;
+    // where a - space for carousel item,
+    //       b - available space for carousel with arrows at upper border of the current breakpoint
+    max-width: (386/450) * 100%;
+
+    @media (min-width: $screen-xs-min) {
+      max-width: (654/738) * 100%;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      max-width: 1050px;
+    }
+
+    .swiper-slide {
+      min-width: 120px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-wrap {
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .item {
+      & img {
+        transition: transform 1.5s;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+        transition: transform 1.5s;
+      }
+    }
+
+    &:hover button {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .swiper-container {
+      img {
+        max-height: 140px;
+      }
+
       .swiper-slide {
-        min-width: 120px;
-        display: flex;
-        justify-content: center;
-      }
-      // max-width for carousel's container with visible items, items width calculated from width of this container
-      // max-width: (a/b)*100%;
-      // where a - space for carousel item,
-      //       b - available space for carousel with arrows at upper border of the current breakpoint
-      max-width: (386/450) * 100%;
-      @media (min-width: $screen-xs-min) {
-        max-width: (654/738) * 100%;
-      }
-      @media (min-width: $screen-lg-min) {
-        max-width: 1050px;
-      }
-      margin: 26px auto 0;
-      .image-wrap {
-        height: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-      .item {
-        & img {
-          transition: transform 1.5s;
-        }
-        &:hover img {
-          transform: scale(1.1);
-          transition: transform 1.5s;
-        }
-      }
-    }
-    &-carousel {
-      position: relative;
-      &-prev {
-        margin-right: auto;
-      }
-      &-next {
-        margin-left: auto;
-      }
-      &:hover button {
-        visibility: visible;
-        opacity: 1;
-      }
-      button {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        border: none;
-        z-index: 1;
-        background: transparent;
-
-        visibility: hidden;
-        opacity: 0;
-        color: #333;
-        border: none;
-        background: none;
-        i {
-          font-size: 40px;
-        }
-      }
-      .swiper-container {
-        img {
-          max-height: 140px;
-        }
-        .swiper-slide {
-          cursor: pointer;
-        }
+        cursor: pointer;
       }
     }
   }

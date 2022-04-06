@@ -37,6 +37,6 @@ namespace HCA.Foundation.Commerce.Services.Billing
         /// <param name="billingAddress">Billing address</param>
         /// <param name="federatedPayment">Contains payment information</param>
         /// <returns>Void result</returns>
-        Result<VoidResult> SetPaymentInfo(Address billingAddress, FederatedPaymentInfo federatedPayment);
+        Result<PaymentData> SetPaymentInfo(Address billingAddress, FederatedPaymentInfo federatedPayment);
     }
 }

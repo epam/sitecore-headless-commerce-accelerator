@@ -26,6 +26,7 @@ import { LoginRegister } from 'ui/LoginRegister';
 import { ResetRequestForm, PasswordResetForm } from 'ui/ResetPassword';
 
 import { Billing } from 'ui/Billing';
+
 import { Cart } from 'ui/Cart';
 import { CheckoutNavigation } from 'ui/CheckoutNavigation';
 import { GoToCheckout } from 'ui/GoToCheckout';
@@ -54,9 +55,17 @@ import { ProductOverview } from 'ui/ProductOverview';
 import { ProductsSearch } from 'ui/ProductsSearch';
 import { ProductShop } from 'ui/ProductShop';
 import { ProductVariants } from 'ui/ProductVariants';
-import { NoResultsFound } from 'ui/NoResultsFound';
-import { Advantages } from 'ui/Advantages/Advantages';
 
+import { NoResultsFound } from 'ui/NoResultsFound';
+
+import { Advantages } from 'ui/Advantages/Advantages';
+import { Account } from 'ui/Account';
+import { AccountDetails } from 'ui/AccountDetails';
+import { LeftMenu } from 'ui/LeftMenu';
+import { PaymentCardList } from 'ui/PaymentCardList';
+
+import { ShippingAddressList } from 'ui/ShippingAddressList';
+import { ShippingAddress } from 'ui/ShippingAddress';
 const components = new Map<string, any>();
 
 // add components to the map
@@ -122,6 +131,7 @@ components.set('Breadcrumb', Breadcrumb);
 
 // Not Found
 components.set('Not Found', NotFound);
+components.set('Recommended Products', RecommendedProducts);
 
 // No Results Found
 components.set('No Results Found', NoResultsFound);
@@ -142,4 +152,14 @@ components.set('Get In Touch Form', GetInTouchForm);
 // Advantages
 components.set('Advantages', Advantages);
 
+// Account
+components.set('Account', Account);
+components.set('Left Menu', LeftMenu);
+
+// Account Details
+components.set('Account Details', AccountDetails);
+
+components.set('Payment Cards', PaymentCardList);
+components.set('Shipping Address List', ShippingAddressList);
+components.set('Shipping Address', ShippingAddress);
 export default (componentName: string) => components.get(componentName);

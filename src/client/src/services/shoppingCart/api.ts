@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -73,6 +73,12 @@ export const removeCartItem = async (
 ): Promise<Result<Commerce.Cart>> =>
   axios
     .delete(`${routeBase}/cartLines?productId=${requestPayload.productId}&variantId=${requestPayload.variantId}`)
+    .then((response: AxiosResponse<GetCartResponse>) => ({ data: response.data.data }))
+    .catch((error) => ({ error }));
+
+export const cleanCart = async (): Promise<Result<Commerce.Cart>> =>
+  axios
+    .delete(`${routeBase}/cleancart`)
     .then((response: AxiosResponse<GetCartResponse>) => ({ data: response.data.data }))
     .catch((error) => ({ error }));
 

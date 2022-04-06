@@ -14,7 +14,7 @@
 
 import { get } from 'lodash';
 
-import { validateValue, INPUT_REGEX, POSTAL_CODE_REGEX, ADDRESS_LINE_REGEX, CITY_REGEX } from 'utils';
+import { validateValue, INPUT_REGEX, ADDRESS_LINE_REGEX, CITY_REGEX } from 'utils';
 import { FormValues } from 'Foundation/ReactJss/Form';
 
 import { ADDRESS_MANAGER_FIELDS } from './constants';
@@ -27,8 +27,14 @@ export const validate = (formValues: FormValues) => {
   const addressLine: string = get(formValues, [ADDRESS_LINE], null);
   const city: string = get(formValues, [CITY], null);
   const postalCode: string = get(formValues, [POSTAL_CODE], null);
-
   const formFields = {};
+
+  if (!postalCode) {
+    formFields['postalCode'] = {
+      hasError: true,
+      message: 'Postal code field is required',
+    };
+  }
 
   if (!validateValue(INPUT_REGEX, firstName)) {
     formFields['firstName'] = {
@@ -55,13 +61,6 @@ export const validate = (formValues: FormValues) => {
     formFields['city'] = {
       hasError: true,
       message: city ? 'City is invalid' : 'City field is required',
-    };
-  }
-
-  if (!validateValue(POSTAL_CODE_REGEX, postalCode)) {
-    formFields['postalCode'] = {
-      hasError: true,
-      message: postalCode ? 'Postal code is invalid' : 'Postal code field is required',
     };
   }
 

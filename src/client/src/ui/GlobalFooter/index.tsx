@@ -18,15 +18,16 @@ import * as React from 'react';
 import * as JSS from 'Foundation/ReactJss';
 import { BackToTop } from 'components/BackToTop';
 
-import { GlobalFooterProps, GlobalFooterState } from './models';
+import { GlobalFooterProps } from './models';
 
+import { cnFooter } from './cn';
 import './styles.scss';
 
-class GlobalFooterComponent extends JSS.SafePureComponent<GlobalFooterProps, GlobalFooterState> {
+class GlobalFooterComponent extends JSS.SafePureComponent<GlobalFooterProps, {}> {
   protected safeRender() {
     return (
-      <footer id="footer-main" className="footer-area bg-gray pt-100 pb-100">
-        <div className="footer-wrap">
+      <footer id="footer-main" className={cnFooter(null, ['bg-gray pt-100 pb-100'])}>
+        <div className={cnFooter('Wrap')}>
           <Placeholder name="footer-content" rendering={this.props.rendering} />
         </div>
         <BackToTop disabled={false} />

@@ -14,71 +14,40 @@
 
 namespace HCA.Foundation.Base.Services.GraphQL.Queries
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Extensions;
 
     using global::GraphQL.Types;
-    using HCA.Foundation.Base.Models;
-    using Sitecore;
+
+    using Models.ExtendedSearchQuery;
+
+    using Pipeline;
+
+    using Sitecore.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection;
     using Sitecore.ContentSearch;
-    using Sitecore.ContentSearch.Linq;
-    using Sitecore.Data.Items;
-    using Sitecore.Data.Managers;
     using Sitecore.Diagnostics;
     using Sitecore.Services.GraphQL.Content.GraphTypes.ContentSearch;
     using Sitecore.Services.GraphQL.Content.Queries;
 
     public class ExtendedSearchQuery : SearchQuery
     {
-        protected IEnumerable<string> Facets = Enumerable.Empty<string>();
-
-        protected IEnumerable<Dictionary<string, object>> FieldsAnd = Enumerable.Empty<Dictionary<string, object>>();
-
-        protected IEnumerable<Dictionary<string, object>> FieldsOr = Enumerable.Empty<Dictionary<string, object>>();
+        protected readonly IPipelineService PipelineService;
 
         public ExtendedSearchQuery()
         {
             this.AddSortArguments();
             this.AddFieldsIncludeArguments();
+
+            this.PipelineService = ServiceLocator.ServiceProvider.GetService<IPipelineService>();
         }
-
-        protected string RootItemPath { get; set; } = Context.Site.RootPath;
-
-        protected Item RootItem => this.Database.GetItem(this.RootItemPath);
 
         protected ISearchIndex Index { get; set; }
 
-        protected string Lang { get; set; } = Context.Language.Name ?? LanguageManager.DefaultLanguage.Name;
-
-        protected bool Version { get; set; } = true;
-
-        protected string Keyword { get; set; }
-
         protected int After { get; set; }
-
-        protected string SortBy { get; set; }
-
-        protected bool SortDesc { get; set; }
 
         protected virtual void Initialize(ResolveFieldContext fieldContext)
         {
             Assert.ArgumentNotNull(fieldContext, nameof(fieldContext));
-
-            this.RootItemPath = fieldContext.GetArgument("rootItem", this.RootItemPath);
-            this.Keyword = fieldContext.GetArgument("keyword", this.Keyword);
-            this.Lang = fieldContext.GetArgument("language", this.Lang);
-            this.Version = fieldContext.GetArgument("latestVersion", this.Version);
-
-            this.Facets = fieldContext.GetArgument("facetOn", this.Facets);
-            this.FieldsAnd = fieldContext.GetArgument("fieldsEqual", this.FieldsAnd);
-            this.FieldsOr = fieldContext.GetArgument("fieldsInclude", this.FieldsOr);
-
-            this.SortBy = fieldContext.GetArgument("sortBy", this.SortBy);
-            this.SortDesc = fieldContext.GetArgument("sortDesc", this.SortDesc);
-
-            this.After = fieldContext.GetArgument("after", this.After);
 
             var defaultIndexName = $"sitecore_{this.Database.Name}_index";
             var indexName = fieldContext.GetArgument("index", defaultIndexName);
@@ -100,15 +69,16 @@ namespace HCA.Foundation.Base.Services.GraphQL.Queries
             {
                 var searchQueryable = searchContext.GetQueryable<ContentSearchResult>();
 
-                searchQueryable = searchQueryable.FilterByRootItem(this.RootItemPath, this.Database);
-                searchQueryable = searchQueryable.FilterByKeyword(this.Keyword);
-                searchQueryable = searchQueryable.FilterByLanguage(this.Lang);
-                searchQueryable = searchQueryable.FilterByVersion(this.Version);
-                searchQueryable = searchQueryable.FilterByFields(this.FieldsAnd, this.FieldsOr);
-                searchQueryable = searchQueryable.SortResults(this.SortBy, this.SortDesc);
-                searchQueryable = searchQueryable.FacetOn(this.Facets);
+                var args = new ExtendedSearchPipelineArgs
+                {
+                    SearchQueryable = searchQueryable,
+                    Database = this.Database,
+                    FieldContext = fieldContext
+                };
 
-                return new ContentSearchResults(searchQueryable.PaginateAndFinalizeResults(fieldContext), this.After);
+                this.PipelineService.RunPipeline(HCA.Foundation.Base.Constants.Pipelines.ExtendedSearchQuery, args);
+
+                return new ContentSearchResults(args.SearchQueryable.PaginateAndFinalizeResults(fieldContext), this.After);
             }
         }
 

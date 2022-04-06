@@ -24,7 +24,7 @@ namespace HCA.Feature.Checkout.Models.Requests
     public class UpdateCartLineRequest : CartLineRequest
     {
         [Required]
-        [Range(0.0, double.MaxValue)]
+        [Range(0.0, 100.0)]
         public decimal Quantity { get; set; }
     }
 }

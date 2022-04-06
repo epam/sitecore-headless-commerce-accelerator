@@ -23,7 +23,18 @@ import { Icon } from 'components';
 import { ProductGalleryProps, ProductGalleryState } from './models';
 import { calculateNumberOfSlidesToShow } from './utils';
 
+import { cnProductGallery } from './cn';
 import './styles.scss';
+
+const BUTTON_TYPES = {
+  PREV: 'prev',
+  NEXT: 'next',
+};
+
+const BUTTON_SIZES = {
+  SMALL: 'small',
+  BIG: 'big',
+};
 
 export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, ProductGalleryState> {
   private readonly gallerySwiperRef: React.MutableRefObject<SwiperRefNode>;
@@ -123,9 +134,25 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
     };
 
     return (
-      <div className="product-gallery">
-        <div className="product-gallery-header">
+      <div className={cnProductGallery()}>
+        <div className={cnProductGallery('Header')}>
           <LightgalleryProvider>
+            {images && images.length > 1 && (
+              <>
+                <button
+                  className={cnProductGallery('Button', { type: BUTTON_TYPES.PREV, size: BUTTON_SIZES.BIG })}
+                  onClick={this.goPrev}
+                >
+                  <Icon icon="icon-angle-left" />
+                </button>
+                <button
+                  className={cnProductGallery('Button', { type: BUTTON_TYPES.NEXT, size: BUTTON_SIZES.BIG })}
+                  onClick={this.goNext}
+                >
+                  <Icon icon="icon-angle-right" />
+                </button>
+              </>
+            )}
             <Swiper {...gallerySwiperParams} effect="fade" ref={this.gallerySwiperRef}>
               {images &&
                 images.map((src, index) => (
@@ -144,7 +171,13 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
           </LightgalleryProvider>
         </div>
         {images && images.length > 1 && (
-          <div className="product-gallery-carousel" onClick={this.onCarouselSlideClick}>
+          <div className={cnProductGallery('Carousel')} onClick={this.onCarouselSlideClick}>
+            <button
+              className={cnProductGallery('Button', { type: BUTTON_TYPES.PREV, size: BUTTON_SIZES.SMALL })}
+              onClick={this.goPrev}
+            >
+              <Icon icon="icon-angle-left" />
+            </button>
             <Swiper {...carouselSwiperParams} ref={this.carouselSwiperRef} activeSlideKey="0">
               {images.map((src, index) => (
                 <div key={index}>
@@ -154,10 +187,10 @@ export class ProductGallery extends JSS.SafePureComponent<ProductGalleryProps, P
                 </div>
               ))}
             </Swiper>
-            <button className="product-gallery-carousel-prev" onClick={this.goPrev}>
-              <Icon icon="icon-angle-left" />
-            </button>
-            <button className="product-gallery-carousel-next" onClick={this.goNext}>
+            <button
+              className={cnProductGallery('Button', { type: BUTTON_TYPES.NEXT, size: BUTTON_SIZES.SMALL })}
+              onClick={this.goNext}
+            >
               <Icon icon="icon-angle-right" />
             </button>
           </div>

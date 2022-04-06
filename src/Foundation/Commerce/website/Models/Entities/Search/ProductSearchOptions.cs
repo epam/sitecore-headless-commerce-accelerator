@@ -18,10 +18,14 @@ namespace HCA.Foundation.Commerce.Models.Entities.Search
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    using Foundation.Search.Models.Common;
+
     [ExcludeFromCodeCoverage]
     public class ProductSearchOptions
     {
         public string SearchKeyword { get; set; }
+
+        public IEnumerable<string> ProductIds { get; set; }
 
         public IEnumerable<Facet> Facets { get; set; }
 

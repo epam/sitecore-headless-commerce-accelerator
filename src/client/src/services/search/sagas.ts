@@ -16,13 +16,13 @@ import { SagaIterator } from 'redux-saga';
 import { call, fork, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { tryParseUrlSearch } from 'utils';
-import { Product, ProductSearchResults } from 'services/commerce';
+import { GetProductsByIdsResult, Product, ProductSearchResults } from 'services/commerce';
 import { Action, LoadingStatus, Result } from 'models';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
 import { notify } from 'services/notifications';
 
 import * as actions from './actions';
-import { requestSuggestions, searchProducts } from './api';
+import { getProductsByIds, requestSuggestions, searchProducts } from './api';
 import {
   DEFAULT_ITEMS_PER_PAGE,
   DEFAULT_START_PAGE_NUMBER,
@@ -199,6 +199,27 @@ export function* discardFacet(action: Action<Models.FacetPayload>) {
   yield fork(handleFacetChange, newFacetQuery);
 }
 
+export function* getProducts(action: Action<Models.GetProductsByIdsParams>) {
+  const { productIds } = action.payload;
+  if (!productIds || !productIds?.length) {
+    return;
+  }
+  try {
+    yield put(actions.GetProductsByIdsRequest({ productIds }));
+    const { data, error }: Result<GetProductsByIdsResult> = yield call(getProductsByIds, { productIds });
+    if (error) {
+      notify('error', error.message);
+      return;
+    }
+
+    const { products } = data;
+
+    yield put(actions.GetProductsByIdsSuccess(products));
+  } catch (e) {
+    yield put(actions.GetProductsByIdsFailure(e.message || 'Get products by IDs failure'));
+  }
+}
+
 export function* watch(): SagaIterator {
   yield takeEvery(productsSearchSagaActionTypes.APPLY_FACET, applyFacet);
   yield takeEvery(productsSearchSagaActionTypes.DISCARD_FACET, discardFacet);
@@ -206,6 +227,7 @@ export function* watch(): SagaIterator {
   yield takeLatest(productsSearchSagaActionTypes.INIT_SEARCH, initialSearch);
   yield takeEvery(productsSearchSagaActionTypes.CLEAR_SEARCH, clearSearch);
   yield takeEvery(productsSearchSagaActionTypes.CHANGE_SORTING, changeSortingType);
+  yield takeEvery(productsSearchSagaActionTypes.GET_PRODUCTS_BY_IDS, getProducts);
 
   yield takeLatest(productsSearchSuggestionsSagaActionTypes.REQUEST_SUGGESTIONS, fetchProductsSearchSuggestions);
 }

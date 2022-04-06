@@ -56,7 +56,14 @@ namespace HCA.Feature.Checkout.Controllers
             Assert.ArgumentNotNull(variantId, nameof(variantId));
             return this.Execute(() => this.cartService.RemoveCartLine(productId, variantId));
         }
-        
+
+        [HttpDelete]
+        [ActionName("cleanCart")]
+        public ActionResult RemoveAllCartLine()
+        {
+            return this.Execute(() => this.cartService.CleanCartLines());
+        }
+
         [HttpPut]
         [ActionName("cartLines")]
         public ActionResult UpdateCartLine(UpdateCartLineRequest request)

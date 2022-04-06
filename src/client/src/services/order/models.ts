@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,8 +35,7 @@ export interface OrderSuccessPayload extends Status {
 
 export interface CurrentOrderState extends OrderSuccessPayload, OrderRequestPayload, Status {}
 
-export interface OrderHistoryRequestPayload {
-}
+export interface OrderHistoryRequestPayload {}
 
 export interface OrderHistorySuccessPayload extends Status {
   orders?: Commerce.Order[];
@@ -44,10 +43,19 @@ export interface OrderHistorySuccessPayload extends Status {
   isLastPage: boolean;
 }
 
+export interface AllOrdersRequestPayload {}
+
+export interface AllOrdersSuccessPayload extends Status {
+  allOrders?: Commerce.Order[];
+}
+
 export interface CurrentOrderHistoryState extends OrderHistorySuccessPayload, OrderHistoryRequestPayload {}
+
+export interface AllOrdersState extends AllOrdersSuccessPayload, AllOrdersRequestPayload {}
 
 export interface GlobalOrderState {
   order: {
+    allOrders: AllOrdersState;
     currentOrder: CurrentOrderState;
     orderHistory: CurrentOrderHistoryState;
   };
@@ -56,4 +64,5 @@ export interface GlobalOrderState {
 export interface OrderState {
   currentOrder: CurrentOrderState;
   orderHistory: CurrentOrderHistoryState;
+  allOrders: AllOrdersState;
 }

@@ -32,13 +32,12 @@ namespace HCA.Foundation.Commerce.Services.Cart
 
     using DependencyInjection;
     using HCA.Foundation.Commerce.Services.Catalog;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Models.Entities.Cart;
 
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
 
-    using CommerceConnect = Sitecore.Commerce.Engine.Connect.Entities;
     using Connect = Sitecore.Commerce.Entities.Carts;
 
     [Service(typeof(ICartService), Lifetime = Lifetime.Singleton)]
@@ -132,7 +131,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
                     var response = this.cartManager.AddCartLines(cart,
                         new[]
                         {
-                            new CommerceConnect.CommerceCartLine(
+                            new CommerceCartLine(
                             this.catalogContext.CatalogName,
                             productId,
                             variantId == "-1" ? null : variantId,
@@ -152,13 +151,20 @@ namespace HCA.Foundation.Commerce.Services.Cart
                 (result, cart) =>
                 {
                     var cartLines = this.GetCartLinesByProduct(
-                            cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
+                            cart?.Lines?.Cast<CommerceCartLine>(),
                             productId,
                             variantId)
                         .ToList();
-                    cartLines.ForEach(cartLine => cartLine.Quantity = quantity);
 
-                    var response = cartLines.Any()
+                    var cartHasLines = cartLines.Any();
+
+                    if (cartHasLines)
+                    {
+                        cartLines.ForEach(cartLine => cartLine.Quantity = 0);
+                        cartLines.First().Quantity = quantity;
+                    }
+
+                    var response = cartHasLines
                         ? quantity == 0
                             ? this.cartManager.RemoveCartLines(cart, cartLines)
                             : this.cartManager.UpdateCartLines(cart, cartLines)
@@ -166,7 +172,6 @@ namespace HCA.Foundation.Commerce.Services.Cart
 
                     return this.BuildResult(response);
                 });
-
         }
 
         public Result<Cart> RemoveCartLine(string productId, string variantId)
@@ -178,7 +183,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
                 (result, cart) =>
                 {
                     var response = this.cartManager.RemoveCartLines(cart,
-                            this.GetCartLinesByProduct(cart?.Lines?.Cast<CommerceConnect.CommerceCartLine>(),
+                            this.GetCartLinesByProduct(cart?.Lines?.Cast<CommerceCartLine>(),
                             productId,
                             variantId)
                         .ToList());
@@ -186,14 +191,27 @@ namespace HCA.Foundation.Commerce.Services.Cart
                     return this.BuildResult(response);
                 });
         }
+
+        public Result<Cart> CleanCartLines()
+        {
+            return this.ExecuteWithCart(
+                (result, cart) =>
+                {
+                    var response = this.cartManager
+                        .RemoveCartLines(cart, cart?.Lines?.Cast<CommerceCartLine>());
+
+                    return this.BuildResult(response);
+                });
+        }
+
         private Result<Cart> BuildResult(CartResult cartResult)
         {
             var cart = this.cartConverter.Convert(cartResult?.Cart);
             return new Result<Cart>(cart, cartResult?.SystemMessages.Select(_ => _.Message).ToList());
         }
 
-        private IEnumerable<CommerceConnect.CommerceCartLine> GetCartLinesByProduct(
-            IEnumerable<CommerceConnect.CommerceCartLine> cartLines,
+        private IEnumerable<CommerceCartLine> GetCartLinesByProduct(
+            IEnumerable<CommerceCartLine> cartLines,
             string productId,
             string variantId)
         {
@@ -201,7 +219,7 @@ namespace HCA.Foundation.Commerce.Services.Cart
                 .Where(
                     cartLine =>
                     {
-                        var product = cartLine.Product as CommerceConnect.CommerceCartProduct;
+                        var product = cartLine.Product as CommerceCartProduct;
                         return product?.ProductId == productId && product?.ProductVariantId == variantId;
                     });
         }
@@ -227,7 +245,6 @@ namespace HCA.Foundation.Commerce.Services.Cart
 
             if (productResult != null && !productResult.Success)
             {
-
                 var errorList = new List<string>();
                 errorList.AddRange(productResult.Errors);
                 return new Result<Cart>(new Cart(), errorList);
@@ -239,9 +256,9 @@ namespace HCA.Foundation.Commerce.Services.Cart
             }
 
             var stockStatus = this.inventoryManager.GetStockInformation(this.storefrontContext.ShopName,
-                new List<CommerceConnect.CommerceInventoryProduct>
+                new List<CommerceInventoryProduct>
                 {
-                    new CommerceConnect.CommerceInventoryProduct
+                    new CommerceInventoryProduct
                     {
                         ProductId = productId,
                         VariantId = variantId,
@@ -253,9 +270,14 @@ namespace HCA.Foundation.Commerce.Services.Cart
             if (stockStatus != null
                 && stockStatus.Success
                 && stockStatus.StockInformation.Any()
-                && stockStatus.StockInformation.FirstOrDefault().Status.Name == "OutOfStock")
+                && stockStatus.StockInformation.FirstOrDefault()?.Status.Name == "OutOfStock")
             {
-                return new Result<Cart>(new Cart(), new List<string>() { "Product which is out of stock can't be added to cart" });
+                return new Result<Cart>(
+                    new Cart(),
+                    new List<string>
+                    {
+                        "Product which is out of stock can't be added to cart"
+                    });
             }
 
             return new Result<Cart>();

@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
+import { LoadingStatus } from 'models';
 import { tryParseUrlSearch } from 'utils';
 import * as JSS from 'Foundation/ReactJss';
 import { ChangeRoute } from 'Foundation/ReactJss/SitecoreContext';
@@ -28,13 +29,16 @@ import { AppState, LoginRegisterStateProps } from './models';
 
 const mapStateToProps = (state: AppState): LoginRegisterStateProps => {
   const commerceUser = Account.commerceUser(state);
+  const sitecoreState = JSS.sitecore(state);
   const location: Location = state.router.location;
   const currentForm = tryParseUrlSearch(location.search).form;
   const pathname: Pathname = location.pathname;
+  const loaded = sitecoreState.status === LoadingStatus.Loaded;
 
   return {
     commerceUser,
     currentForm,
+    loaded,
     pathname,
   };
 };

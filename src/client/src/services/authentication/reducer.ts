@@ -44,6 +44,7 @@ export default (state: AuthenticationState = { ...initialState }, action: Action
           ...authenticationProcess,
           ...action.payload,
         },
+        logoutProcess: initialLogoutProcessState,
       };
     }
 
@@ -53,10 +54,11 @@ export default (state: AuthenticationState = { ...initialState }, action: Action
       const { logoutProcess } = state;
       return {
         ...state,
-        authenticationProcess: {
+        logoutProcess: {
           ...logoutProcess,
           ...action.payload,
         },
+        authenticationProcess: initialAuthenticationProcessState,
       };
     }
 

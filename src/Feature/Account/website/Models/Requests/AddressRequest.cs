@@ -26,14 +26,18 @@ namespace HCA.Feature.Account.Models.Requests
         public string Name { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "First name is invalid")]
         public string FirstName { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Last name is invalid")]
         public string LastName { get; set; }
 
         [Required]
+        [RegularExpression("^[A-Za-z0-9'\\.\\-\\s\\,]+$", ErrorMessage = "Address line is invalid")]
         public string Address1 { get; set; }
 
+        [RegularExpression("^[A-Za-z0-9'\\.\\-\\s\\,]+$", ErrorMessage = "Address line is invalid")]
         public string Address2 { get; set; }
 
         [Required]
@@ -42,6 +46,7 @@ namespace HCA.Feature.Account.Models.Requests
         public string CountryCode { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z',.\\s-]{1,25}$", ErrorMessage = "^[a-zA-Z',.\\s-]{1,25}$")]
         public string City { get; set; }
 
         [Required]

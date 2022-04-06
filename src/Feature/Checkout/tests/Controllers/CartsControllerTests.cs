@@ -54,27 +54,26 @@ namespace HCA.Feature.Checkout.Tests.Controllers
             // assert
             this.controller.Received(1).Execute(this.cartService.GetCart);
         }
+        
+        [Fact]
+        public void AddCartLine_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controller.AddCartLine(this.fixture.Create<AddCartLineRequest>());
 
-        // TODO: Tests are valid. Should be uncommented after fixing issue with Quantity validation
-        //[Fact]
-        //public void AddCartLine_ShouldCallExecuteMethod()
-        //{
-        //    // act
-        //    this.controller.AddCartLine(this.fixture.Create<AddCartLineRequest>());
+            // assert
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
+        }
 
-        //    // assert
-        //    this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
-        //}
+        [Fact]
+        public void UpdateCartLine_ShouldCallExecuteMethod()
+        {
+            // act
+            this.controller.UpdateCartLine(this.fixture.Create<UpdateCartLineRequest>());
 
-        //[Fact]
-        //public void UpdateCartLine_ShouldCallExecuteMethod()
-        //{
-        //    // act
-        //    this.controller.UpdateCartLine(this.fixture.Create<UpdateCartLineRequest>());
-
-        //    // assert
-        //    this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
-        //}
+            // assert
+            this.controller.Received(1).Execute(Arg.Any<Func<Result<Cart>>>());
+        }
 
         [Fact]
         public void RemoveCartLine_ShouldCallExecuteMethod()

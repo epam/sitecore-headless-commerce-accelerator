@@ -1,0 +1,91 @@
+﻿---
+ID: "13b118a9-d431-4024-b18f-f6b3fbe7560f"
+Parent: "8b7add06-d8eb-4648-95e1-e0db63e09355"
+Template: "9ca4a8c4-0295-49c1-a879-e008933d0a4f"
+Path: /sitecore/content/HCA/Home/MyAccount/ReturnsExchanges
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 400
+- ID: "f1a1fe9e-a60c-4ddb-a3a0-bb5b29fe732e"
+  Hint: __Renderings
+  Value: |
+    <r xmlns:p="p" xmlns:s="s"
+      p:p="1">
+      <d
+        id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
+        <r
+          uid="{FCF08077-1D17-4DB4-8AE6-ED8CEAC614D0}"
+          s:ds=""
+          s:par="" />
+        <r
+          uid="{68226758-D091-4D97-B160-31D1229247AF}">
+          <p:d />
+        </r>
+        <r
+          uid="{881A9677-2B9A-47EC-9689-4BDE26819D5C}"
+          p:after="r[@uid='{81A550A2-9194-420B-A3CD-E37CA90006E3}']"
+          s:id="{D3BE8962-02F6-4CD8-8088-59589B7ECC8A}"
+          s:ph="/main-content" />
+        <r
+          uid="{F7CE6546-3AB3-4AB4-A1A8-30B22ED7E1A9}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{AE940294-F2FC-475E-A355-E447CB2A700A}"
+          s:ds="{90ED0DAB-5084-4C63-B93F-98DA30098D24}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{53743A27-5901-41EA-91E6-D2169A193C70}"
+          s:ds="{D2ABF6D8-C766-4BC0-8886-F47BA96D6E7D}"
+          s:id="{F3493594-EFDA-4C1C-9B5F-ABE1F7B34A6A}" />
+        <r
+          uid="{FB9345E4-2D5C-45D4-AA34-FFF30DDF0366}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_right&amp;Show Title=1&amp;Title Tag=h2&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}"
+          s:par="Container Class=SocialNetworksLinks_alignItems_left&amp;Show Title=1&amp;Title Tag&amp;Title Class=SocialNetworksLinks-Title_size_l" />
+        <r
+          uid="{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}"
+          p:after="r[@uid='{F9BF5D79-F24A-45E3-BA4F-8EC4AEC4C012}']" />
+        <r
+          uid="{6D9CB8CA-5444-41D5-9B1E-ACBF3E7F47D5}"
+          p:after="r[@uid='{8B7D9E49-DC8D-45B9-81C8-3C010932EFC4}']"
+          s:id="{DD9AE0BB-5D02-4AA4-BA6F-058074BCB8C7}"
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0" />
+        <r
+          uid="{EB0EEF64-9026-4AA9-B2C5-B287509DECEC}"
+          p:after="*[1=2]"
+          s:id="{BCA0AC5C-634E-4A0F-A2AD-B57D092AD9B4}"
+          s:ph="/main-content/w-col-wide-{881A9677-2B9A-47EC-9689-4BDE26819D5C}-0/left-menu-{6d9cb8ca-5444-41d5-9b1e-acbf3e7f47d5}-0" />
+      </d>
+    </r>
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Returns / Exchanges
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20211222T080703Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\dziyana_khadasevich
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "84089d25-bc43-4273-8bfb-1302bf589a92"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220127T134513Z

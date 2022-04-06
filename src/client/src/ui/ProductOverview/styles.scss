@@ -172,112 +172,6 @@
   }
   // #Color selectors end
 
-  // #Property selectors
-  .property-selectors {
-    margin-bottom: 20px;
-
-    & div {
-      margin-bottom: 10px;
-
-      @media (min-width: $screen-ms-min) {
-        display: inline-block;
-        margin-right: 14px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-  .select {
-    &-label {
-      font-size: 16px;
-      font-weight: 900;
-      font-family: $poppins;
-      color: $font-color;
-      text-transform: uppercase;
-    }
-    &-wrap {
-      position: relative;
-      display: block;
-      width: 50%;
-      @media (min-width: $screen-ms-min) {
-        display: inline-block;
-        width: auto;
-      }
-
-      & .select-ghost {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 0;
-        display: block;
-        width: auto;
-        min-width: 100px;
-        height: 25px;
-        border: 1px solid #ccc;
-        padding: 4px 30px 3px 13px;
-        margin: 0;
-        font-size: 13px;
-        font-family: $poppins;
-        color: $font-color;
-        line-height: 1.2;
-        background: #fff;
-        font-weight: 500;
-        text-transform: uppercase;
-      }
-
-      & select {
-        position: relative;
-        z-index: 1;
-        display: block;
-        width: 100%;
-        min-width: 100px;
-        height: 25px;
-        opacity: 0;
-        border: 1px solid #ccc;
-        border-radius: 0;
-        padding: 4px 30px 3px 13px;
-        margin: 0;
-        font-size: 13px;
-        font-family: $poppins;
-        outline: none; /* remove focus ring from Webkit */
-        line-height: 1.2;
-        background: #fff;
-        font-weight: 500;
-        text-transform: uppercase;
-
-        -webkit-appearance: none; /* remove the strong OSX influence from Webkit */
-
-        @media (min-width: $screen-ms-min) {
-          width: auto;
-        }
-      }
-
-      /* Select arrow styling */
-      &:after {
-        content: '\e910';
-        font: normal normal normal 14px/1 Custom;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        font-size: 20px;
-        line-height: 25px;
-        padding: 0 7px;
-        background: $theme-color;
-        color: $font-color;
-        border: 1px solid #ccc;
-
-        pointer-events: none;
-
-        border-radius: 0;
-      }
-    }
-  }
-  // #Property selectors end
-
   // #Actions
   .actions {
     margin: 40px 0 34px 0;
@@ -388,7 +282,7 @@
         transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
       }
     }
-    .btn-main:nth-child(3) {
+    .btn-main.btn-wishlist {
       font-size: 18px;
       color: $product-overview-main-color;
       border: none;
@@ -529,6 +423,9 @@
         color: $focus-color;
       }
     }
+    &-code {
+      color: $grey;
+    }
     &-info {
       margin-left: 70px;
       @media (max-width: $screen-sm) {
@@ -607,13 +504,6 @@
       text-decoration: line-through;
       color: #333;
     }
-  }
-}
-
-.color-variant-button-active {
-  &:after {
-    visibility: visible !important;
-    opacity: 1 !important;
   }
 }
 

@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -47,11 +47,12 @@ $counter-border-color-grey: #e8e8e8;
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  input[type='number'] {
+  input[type='text'] {
     border: none;
     color: $counter-text-color-grey;
     margin: 0;
     padding: 0;
+    box-shadow: none;
   }
 
   &_theme_withBorder {

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -209,18 +209,17 @@ export class Carousel<TProps extends CarouselProps, TState extends CarouselState
     const noSlide = prevButtonDisabled && nextButtonDisabled;
     return (
       <div className={classnames('carousel', { 'no-slide': noSlide })}>
-        {buttonPreviousText &&
-          !noSlide && (
-            <div className="carousel-button-container">
-              <button
-                disabled={prevButtonDisabled}
-                className="carousel-button-container_button"
-                onClick={(e) => this.slidePrev()}
-              >
-                {buttonPreviousText}
-              </button>
-            </div>
-          )}
+        {buttonPreviousText && !noSlide && (
+          <div className="carousel-button-container">
+            <button
+              disabled={prevButtonDisabled}
+              className="carousel-button-container_button"
+              onClick={(e) => this.slidePrev()}
+            >
+              {buttonPreviousText}
+            </button>
+          </div>
+        )}
         <div
           ref={(el) => {
             this.setSwiperContainer(el);
@@ -229,18 +228,17 @@ export class Carousel<TProps extends CarouselProps, TState extends CarouselState
         >
           <div className="swiper-wrapper">{children}</div>
         </div>
-        {buttonPreviousText &&
-          !noSlide && (
-            <div className="carousel-button-container">
-              <button
-                disabled={nextButtonDisabled}
-                className="carousel-button-container_button"
-                onClick={(e) => this.slideNext()}
-              >
-                {buttonNextText}
-              </button>
-            </div>
-          )}
+        {buttonPreviousText && !noSlide && (
+          <div className="carousel-button-container">
+            <button
+              disabled={nextButtonDisabled}
+              className="carousel-button-container_button"
+              onClick={(e) => this.slideNext()}
+            >
+              {buttonNextText}
+            </button>
+          </div>
+        )}
       </div>
     );
   }

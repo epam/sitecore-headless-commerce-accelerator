@@ -17,6 +17,8 @@ namespace HCA.Foundation.Commerce.Models.Entities.Search
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
+    using Foundation.Search.Models.Common;
+
     using TypeLite;
 
     [TsClass]

@@ -1,0 +1,30 @@
+﻿---
+ID: "04f1e10a-ef7d-4fa6-a2f4-c5209fc57238"
+Parent: "dab1d1da-88e0-41b2-b79f-c7a678a8aad9"
+Template: "676a1efd-5cb4-4207-9eb2-5fe6e43e13ea"
+Path: /sitecore/content/HCA/Data/Account/Left Menu/Payment Methods
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 600
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20220113T205517Z
+    - ID: "2a4543cc-a255-4086-b245-749fc96c549e"
+      Hint: Uri
+      Value: 
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "71d3c936-8371-4193-bbd2-76bb2f9be92e"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20220310T055047Z

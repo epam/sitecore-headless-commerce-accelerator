@@ -20,6 +20,7 @@ namespace HCA.Foundation.Commerce.Infrastructure.Pipelines.Login
     using Base.Models.Logging;
     using Base.Services.Logging;
 
+    using Context;
     using Context.Visitor;
 
     using Mappers.Users;

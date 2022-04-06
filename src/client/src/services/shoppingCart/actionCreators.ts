@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -44,6 +44,10 @@ export type UpdateCartLineSuccess = (model: ShoppingCartData) => Action<CartLine
 export type RemoveCartLine = (model: ShoppingCartLine) => Action<RemoveCartLinePayload>;
 
 export type RemoveCartLineSuccess = (model: ShoppingCartData) => Action<CartSuccessPayload>;
+
+export type CleanCart = () => Action;
+
+export type CleanCartSuccess = (cart: ShoppingCartData) => Action<CartSuccessPayload>;
 
 export type AddPromoCode = (promoCode: DataModels.PromoCodeRequest) => Action;
 

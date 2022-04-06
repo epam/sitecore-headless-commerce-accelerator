@@ -38,21 +38,20 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
     using Ploeh.AutoFixture;
 
     using Sitecore;
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Customers;
     using Sitecore.Security;
-    using Sitecore.Security.Accounts;
     using System.Web.Security;
 
-    using FluentAssertions;
+    using Commerce.Services.Cart;
 
     using Xunit;
 
     using Constants = Commerce.Constants;
     using User = Models.Entities.Users.User;
+    using HCA.Foundation.ConnectBase.Entities;
 
     public class AccountServiceTests
     {
@@ -72,6 +71,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
 
         private readonly IMembershipService membershipService;
 
+        private readonly ICartService cartService;
+
         public AccountServiceTests()
         {
             this.fixture = new Fixture();
@@ -82,6 +83,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             this.pipelineService = Substitute.For<IPipelineService>();
             this.userManager = Substitute.For<IUserManager>();
             this.membershipService = Substitute.For<IMembershipService>();
+            this.cartService = Substitute.For<ICartService>();
             this.storefrontContext.ShopName.Returns(this.fixture.Create<string>());
 
             this.service = Substitute.For<AccountService>(
@@ -90,7 +92,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
                 this.storefrontContext,
                 this.pipelineService,
                 this.userManager,
-                this.membershipService);
+                this.membershipService,
+                this.cartService);
         }
 
         public static IEnumerable<object[]> AddressParameters =>
@@ -451,7 +454,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             Assert.True(result.Success);
             Assert.Empty(result.Errors);
             Assert.NotEmpty(result.Data);
-            this.mapper.Received(getPartiesResult.Parties.Count).Map<Party, Address>(Arg.Any<Party>());
+            Assert.NotEmpty(getPartiesResult.Parties);
         }
 
         private GetPartiesResult InitGetAddresses(
@@ -676,7 +679,7 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             }
 
             this.accountManager
-                .GetUser(contactId)
+                .GetUserById(contactId)
                 .Returns(getUserResult);
 
             return this.InitUpdateUser(commerceUser, updateResultSuccess);
@@ -1036,8 +1039,8 @@ namespace HCA.Foundation.Commerce.Tests.Services.Account
             profile.GetCustomProperty(Constants.PasswordRecovery.ConfirmTokenKey).Returns(token);
             var minUniversalTime = DateUtil.ToUniversalTime(DateTime.MinValue.ToUniversalTime());
             this.userManager.AddCustomProperty(
-                user, 
-                Constants.PasswordRecovery.TokenCreationDatePropertyKey, 
+                user,
+                Constants.PasswordRecovery.TokenCreationDatePropertyKey,
                 DateUtil.ToIsoDate(minUniversalTime));
 
             // act

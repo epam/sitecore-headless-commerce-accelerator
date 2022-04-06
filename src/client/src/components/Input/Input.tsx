@@ -18,26 +18,37 @@ import { cnInput } from './cn';
 
 import './Input.scss';
 
-export type InputType = 'text' | 'password' | 'number' | 'email' | 'search';
+export type InputType = 'text' | 'password' | 'number' | 'email' | 'search' | 'file';
 
 export type InputProps = HTMLProps<HTMLInputElement> & {
   error?: boolean;
   helperText?: string;
   fullWidth?: boolean;
-  controlSize?: 'm';
+  controlSize?: 'm' | 'l';
   type?: InputType;
   adornment?: React.ReactElement;
+  handlerFocusField?: () => void;
 };
 
 export const Input: FC<InputProps> = forwardRef(
   (
-    { className, error = false, helperText, fullWidth = false, controlSize = 'm', type = 'text', adornment, ...rest },
+    {
+      className,
+      error = false,
+      helperText,
+      fullWidth = false,
+      controlSize = 'm',
+      type = 'text',
+      adornment,
+      handlerFocusField,
+      ...rest
+    },
     ref,
   ) => {
     return (
       <div className={cnInput({ error, fullWidth, controlSize, adornment: !!adornment }, [className])}>
         <div className={cnInput('ControlWrapper')}>
-          <input {...rest} className={cnInput('Control')} type={type} ref={ref} />
+          <input {...rest} className={cnInput('Control')} type={type} ref={ref} onFocus={handlerFocusField} />
           {adornment && <div className={cnInput('Adornment')}>{adornment}</div>}
         </div>
         {helperText && <p className={cnInput('HelperText')}>{helperText}</p>}

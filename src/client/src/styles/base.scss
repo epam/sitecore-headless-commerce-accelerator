@@ -158,7 +158,7 @@ a {
         cursor: default;
       }
     }
-    input {
+    .Input_Control {
       font-size: 14px;
       padding-right: 10px;
       padding-left: 20px;
@@ -182,10 +182,7 @@ a {
     &.no-border {
       border: none;
     }
-    .button-spacing-wrap {
-      padding: 20px 20px 0;
-    }
-    p {
+    .Input_HelperText {
       font-size: 18px;
       margin: 0;
       padding: 20px;
@@ -389,6 +386,7 @@ a {
         display: flex;
         margin-left: 25px;
         li {
+          display: inline-flex;
           padding: 5px;
         }
       }

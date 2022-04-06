@@ -18,8 +18,7 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
     using System.Globalization;
 
     using AutoMapper;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
+    using HCA.Foundation.ConnectBase.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
 

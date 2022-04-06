@@ -38,9 +38,7 @@ export const getOrder = async (trackingNumber: string): Promise<Result<Commerce.
 
 export const getOrders = async (getOrdersRequest: DataModel.GetOrdersRequest): Promise<Result<Commerce.Order[]>> => {
   try {
-    const response = await axios.get<GetOrdersResponse>(`${routeBase}`, {
-      params: getOrdersRequest,
-    });
+    const response = await axios.post<GetOrdersResponse>(`${routeBase}`, getOrdersRequest);
 
     const { data } = response;
     if (data.status !== 'ok') {

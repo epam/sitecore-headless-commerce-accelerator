@@ -1,4 +1,4 @@
-//    Copyright 2020 EPAM Systems, Inc.
+//    Copyright 2021 EPAM Systems, Inc.
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
 
 import { LoadingStatus, Status } from 'models';
 import * as Commerce from 'services/commerce';
+
+export interface Adjustment extends Commerce.Adjustment {}
 
 export interface ShoppingCartLine extends Commerce.CartLine {}
 

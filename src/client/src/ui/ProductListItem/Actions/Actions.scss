@@ -1,0 +1,76 @@
+//    Copyright 2020 EPAM Systems, Inc.
+//
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
+
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.Actions {
+  @media (max-width: $screen-tablet) {
+    position: absolute;
+    top: 25px;
+    right: 0;
+  }
+
+  &_outOfStockItem {
+    @media (min-width: $screen-sm) {
+      position: absolute;
+      right: 0;
+      top: 23px;
+    }
+  }
+
+  &-PanelBtn {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -6px;
+    button {
+      background: none;
+      border: none;
+
+      @media (hover) {
+        &:hover {
+          color: $theme-color;
+        }
+      }
+
+      &:active {
+        color: $theme-color;
+      }
+      @media (max-width: $screen-phone) {
+        padding: 0px;
+      }
+    }
+
+    @media (max-width: $screen-tablet) {
+      top: -10px;
+    }
+  }
+  &-RemoveBtn {
+    i {
+      font-size: 32px;
+    }
+  }
+
+  &-AddWishlistBtn {
+    i {
+      font-size: 16px;
+    }
+
+    &_AddWishlistActive i {
+      color: $theme-color;
+    }
+  }
+}

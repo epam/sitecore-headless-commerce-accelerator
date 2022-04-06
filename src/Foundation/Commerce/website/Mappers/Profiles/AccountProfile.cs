@@ -34,6 +34,9 @@ namespace HCA.Foundation.Commerce.Mappers.Profiles
                 .ForMember(
                     dest => dest.CustomerId,
                     opt => opt.MapFrom(src => src.Customers.FirstOrDefault()))
+                .ForMember(dest => dest.DateOfBirth, opt => opt.Ignore())
+                .ForMember(dest => dest.PhoneNumber, opt => opt.Ignore())
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore())
                 .ReverseMap();
         }
     }

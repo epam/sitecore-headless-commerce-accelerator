@@ -28,9 +28,11 @@ namespace HCA.Feature.Account.Models.Requests
         public string Email { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "First name is invalid")]
         public string FirstName { get; set; }
 
         [Required]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Last name is invalid")]
         public string LastName { get; set; }
 
         [Required]

@@ -4,9 +4,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const constants = require('./constants');
 // Preparation
@@ -131,22 +129,21 @@ const clientWebpackConfigFactory = (projectManifest) => {
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                // Necessary for external CSS imports to work
-                // https://github.com/facebookincubator/create-react-app/issues/2677
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  require('postcss-object-fit-images'),
-                  autoprefixer({
-                    overrideBrowserslist: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009',
-                  }),
-                ],
+                postcssOptions:{
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    require('postcss-object-fit-images'),
+                    autoprefixer({
+                      overrideBrowserslist: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ]
+                },
               },
             },
             {
@@ -172,13 +169,12 @@ const clientWebpackConfigFactory = (projectManifest) => {
           '/src/bootstrap/',
         ],
         tsconfig: './tsconfig.json',
-        tslint: './tslint.json',
+        eslint: './.eslintrc',
       }),
       new webpack.DefinePlugin({
         'process.env.API_KEY': JSON.stringify(apiKey),
       }),
       extractSass,
-      new StylelintPlugin(),
     ],
   };
 };
@@ -261,10 +257,9 @@ const serverWebpackConfigFactory = (projectManifest) => {
           '/src/bootstrap/',
         ],
         tsconfig: './tsconfig.json',
-        tslint: './tslint.json',
+        eslint: './.eslintrc',
       }),
       extractSass,
-      new StylelintPlugin(),
     ],
   };
 };

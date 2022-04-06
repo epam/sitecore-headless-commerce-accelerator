@@ -34,7 +34,8 @@
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "esModuleInterop": true
   }, 
   "files":["src/bootstrap/modules.d.ts"],
   "include": [

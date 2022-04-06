@@ -1,0 +1,38 @@
+﻿---
+ID: "dd02f393-03ce-49bf-b418-9ab0dfa9deca"
+Parent: "90ed0dab-5084-4c63-b93f-98da30098d24"
+Template: "2c9c975e-89d7-4c96-bf7b-74ac622d54ab"
+Path: /sitecore/content/HCA/Data/Footer/Delivery/Delivery
+SharedFields:
+- ID: "743716bb-160d-4e5c-be88-a4fe043ba2c1"
+  Hint: Is Primary
+  Value: 1
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: "-50"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "001dd393-96c5-490b-924a-b0f25cd9efd8"
+      Hint: __Lock
+      Value: |
+        <r owner="sitecore\Viyaleta_Kvetsen" date="20211129T122837Z" />
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200428T190515Z
+    - ID: "59c90da9-7201-4915-b904-73405da46bb1"
+      Hint: Uri
+      Value: |
+        <link text="Delivery" linktype="external" url="" anchor="" target="" />
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "2741f7d8-55bf-4e97-928c-dea826eecc08"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\Admin
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20211129T122913Z

@@ -15,36 +15,34 @@
 @import 'styles/variables';
 @import 'styles/mixins';
 
-.footer-copyright-container {
-  .footer-copyright {
-    &_logo {
-      margin-top: 5px;
-      margin-bottom: 12px;
-      width: 95px;
-      height: 26px;
-    }
-    font-family: $poppins;
-    margin: 0;
-    padding-bottom: 30px;
-    font-size: 14px;
-    font-weight: 400;
-    text-transform: capitalize;
-    max-width: 188px;
-    color: $footer-title-color;
-    letter-spacing: 0.9px;
-    line-height: 24px;
+.FooterCopyright {
+  font-family: $poppins;
+  margin: 0;
+  padding-bottom: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  max-width: 188px;
+  color: $footer-title-color;
+  letter-spacing: 0.9px;
+  line-height: 24px;
+
+  &-Logo {
+    margin-top: 5px;
+    margin-bottom: 12px;
+    width: 95px;
+    height: 26px;
   }
 }
 
-@media #{$xs-layout} {
-  .footer-copyright-container {
-    .footer-copyright {
-      text-align: center;
-      max-width: unset;
-      margin-top: 20px;
-      &_logo {
-        display: none;
-      }
+@media #{$footer-switch-mode} {
+  .FooterCopyright {
+    text-align: center;
+    max-width: unset;
+    margin-top: 20px;
+
+    &-Logo {
+      display: none;
     }
   }
 }

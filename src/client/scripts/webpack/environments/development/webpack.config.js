@@ -5,7 +5,6 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const extractSass = new MiniCssExtractPlugin({
   filename: '[name].css',
@@ -14,7 +13,9 @@ const extractSass = new MiniCssExtractPlugin({
 
 module.exports = (compilerOptions) => {
   return {
+    profile: true,
     mode: 'development',
+    target: 'web',
     entry: {
       common: path.resolve(__dirname, `./../../../../src/bootstrap/${compilerOptions.entry}`),
     },
@@ -73,7 +74,12 @@ module.exports = (compilerOptions) => {
           ],
         },
         {
-          test: /\.scss$/,
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
+        },
+        {
+          test: /\.css$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -81,40 +87,47 @@ module.exports = (compilerOptions) => {
             {
               loader: 'css-loader',
             },
+          ],
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: {
+                  // cssnano
+                  preset: 'default',
+                },
+              },
+            },
             {
               loader: require.resolve('postcss-loader'),
               options: {
-                // Necessary for external CSS imports to work
-                // https://github.com/facebookincubator/create-react-app/issues/2677
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  require('postcss-object-fit-images'),
-                  autoprefixer({
-                    overrideBrowserslist: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9', // React doesn't support IE8 anyway
-                    ],
-                    flexbox: 'no-2009',
-                  }),
-                ],
+                postcssOptions:{
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    require('postcss-object-fit-images'),
+                    autoprefixer({
+                      overrideBrowserslist: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ]
+                },
               },
             },
             {
               loader: require.resolve('sass-loader'),
             },
           ],
-        },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
-          test: /\.mjs$/,
-          include: /node_modules/,
-          type: 'javascript/auto',
         },
       ],
     },
@@ -134,7 +147,7 @@ module.exports = (compilerOptions) => {
           '/src/bootstrap/',
         ],
         tsconfig: './tsconfig.dev.json',
-        tslint: './tslint.json',
+        eslint: './.eslintrc',
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('development'),
@@ -144,9 +157,7 @@ module.exports = (compilerOptions) => {
         'process.env.TRACKING_ID': JSON.stringify('UA-187610105-1'),
       }),
       extractSass,
-      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new StylelintPlugin(),
     ],
   };
 };

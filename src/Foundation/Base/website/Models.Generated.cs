@@ -43,6 +43,34 @@ namespace HCA.Foundation.Base.Models
 
 
     /// <summary>
+    /// ISiteDataSources Interface
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Base/_SiteDataSources</para>
+    /// <para>ID: 3c1584a1-d872-4ae8-a59e-4e30f1b4408e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3c1584a1-d872-4ae8-a59e-4e30f1b4408e")]
+    public partial interface ISiteDataSources: IGlassBase
+    {
+
+    }
+
+
+    /// <summary>
+    /// SiteDataSources Class
+    /// <para>Path: /sitecore/templates/HCA/Foundation/Base/_SiteDataSources</para>
+    /// <para>ID: 3c1584a1-d872-4ae8-a59e-4e30f1b4408e</para>
+    /// </summary>
+    [SitecoreType(TemplateId="3c1584a1-d872-4ae8-a59e-4e30f1b4408e")]
+    public partial class SiteDataSources: GlassBase, ISiteDataSources
+    {
+        /// <summary>
+        /// The TemplateId string for /sitecore/templates/HCA/Foundation/Base/_SiteDataSources
+        /// </summary>
+        public const string TemplateId = "3c1584a1-d872-4ae8-a59e-4e30f1b4408e";
+
+    }
+
+
+    /// <summary>
     /// ISiteSettings Interface
     /// <para>Path: /sitecore/templates/HCA/Foundation/Base/_SiteSettings</para>
     /// <para>ID: 7724bf37-c8c6-4189-b7c9-7ed566ac76d8</para>

@@ -1,11 +1,11 @@
 //    Copyright 2020 EPAM Systems, Inc.
-// 
+//
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
 //    You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //    Unless required by applicable law or agreed to in writing, software
 //    distributed under the License is distributed on an "AS IS" BASIS,
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,7 +14,7 @@
 
 import i18n from 'i18next';
 import fetchBackend from 'i18next-fetch-backend';
-import { initReactI18next  } from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 /**
  * Initializes the i18next library to provide a translation dictionary to the app.
@@ -71,10 +71,7 @@ export default async function i18nInit(language?: string, dictionary?: any) {
         },
       };
 
-      i18n
-        .use(fetchBackend)
-        .use(initReactI18next)
-        .init(options, initCallback);
+      i18n.use(fetchBackend).use(initReactI18next).init(options, initCallback);
     }
   });
 }

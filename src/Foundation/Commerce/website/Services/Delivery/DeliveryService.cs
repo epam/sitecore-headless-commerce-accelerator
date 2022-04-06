@@ -14,32 +14,25 @@
 
 namespace HCA.Foundation.Commerce.Services.Delivery
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Base.Models.Result;
-
     using Connect.Context.Storefront;
     using Connect.Managers.Account;
     using Connect.Managers.Cart;
     using Connect.Managers.Shipping;
     using Context.Visitor;
-
     using DependencyInjection;
-
+    using HCA.Foundation.ConnectBase.Entities;
     using Mappers.Shipping;
-
     using Models.Entities.Addresses;
     using Models.Entities.Checkout;
     using Models.Entities.Delivery;
-
-    using Sitecore.Commerce.Engine.Connect.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Diagnostics;
-
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using ShippingInfo = Models.Entities.Shipping.ShippingInfo;
     using ShippingMethod = Models.Entities.Shipping.ShippingMethod;
 
@@ -96,7 +89,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!cartResult.Success)
             {
-                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message));
 
                 return result;
             }
@@ -128,7 +121,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!cartResult.Success)
             {
-                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message));
 
                 return result;
             }
@@ -139,7 +132,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!shippingMethodsResult.Success)
             {
-                result.SetErrors(shippingMethodsResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(shippingMethodsResult.SystemMessages.Select(m => m.Message));
 
                 return result;
             }
@@ -152,16 +145,17 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             return result;
         }
 
-        public Result<VoidResult> SetShippingOptions(
+        public Result<HCA.Foundation.Commerce.Models.Entities.Shipping.ShippingData> SetShippingOptions(
             string shippingPreferenceType,
             List<Address> shippingAddresses,
             List<ShippingMethod> shippingMethods)
         {
+
             Assert.ArgumentNotNullOrEmpty(shippingPreferenceType, nameof(shippingPreferenceType));
             Assert.ArgumentNotNull(shippingAddresses, nameof(shippingAddresses));
             Assert.ArgumentNotNull(shippingMethods, nameof(shippingMethods));
 
-            var result = new Result<VoidResult>(new VoidResult());
+            var result = new Result<Models.Entities.Shipping.ShippingData>();
 
             var cartResult = this.cartManager.LoadCart(
                 this.storefrontContext.ShopName,
@@ -170,7 +164,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!cartResult.Success)
             {
-                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(cartResult.SystemMessages.Select(m => m.Message));
 
                 return result;
             }
@@ -196,8 +190,15 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!addShippingInfoResult.Success)
             {
-                result.SetErrors(addShippingInfoResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(addShippingInfoResult.SystemMessages.Select(m => m.Message));
             }
+
+            result.SetResult(new Models.Entities.Shipping.ShippingData
+            {
+                ShippingAddresses = shippingAddresses,
+                ShippingMethods = shippingMethods,
+                ShippingPreferenceType = shippingPreferenceType
+            });
 
             return result;
         }
@@ -208,7 +209,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
 
             if (!getShippingOptionsResult.Success)
             {
-                result.SetErrors(getShippingOptionsResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(getShippingOptionsResult.SystemMessages.Select(m => m.Message));
             }
             else
             {
@@ -235,7 +236,7 @@ namespace HCA.Foundation.Commerce.Services.Delivery
             }
             else
             {
-                result.SetErrors(getPartiesResult.SystemMessages.Select(m => m.Message).ToList());
+                result.SetErrors(getPartiesResult.SystemMessages.Select(m => m.Message));
             }
         }
 

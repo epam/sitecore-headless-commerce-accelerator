@@ -19,6 +19,7 @@ interface HeaderContentParams extends GridLayoutRenderingParams {
   isMain: string;
 }
 
-export interface HeaderContentProps extends JSS.RenderingWithParams<JSS.BaseDataSourceItem, HeaderContentParams> {}
+export interface HeaderContentProps
+  extends JSS.GraphQLRenderingWithParams<JSS.BaseDataSourceItem, HeaderContentParams> {}
 
 export interface HeaderContentState extends JSS.SafePureComponentState {}

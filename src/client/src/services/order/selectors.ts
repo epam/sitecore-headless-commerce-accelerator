@@ -15,6 +15,8 @@
 import { GlobalOrderState } from './models';
 
 const currentOrderContext = (state: GlobalOrderState) => state.order.currentOrder;
+export const getAllOrders = (state: GlobalOrderState) => state.order.allOrders.allOrders;
+export const getAllOrdersStatus = (state: GlobalOrderState) => state.order.allOrders.status;
 
 export const requestTrackingNumber = (state: GlobalOrderState) => currentOrderContext(state).requestTrackingNumber;
 export const currentOrder = (state: GlobalOrderState) => currentOrderContext(state).order;

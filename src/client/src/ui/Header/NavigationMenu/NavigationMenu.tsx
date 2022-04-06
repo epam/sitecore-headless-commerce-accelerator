@@ -16,14 +16,7 @@ import { Placeholder } from '@sitecore-jss/sitecore-jss-react';
 import { get } from 'lodash';
 import React, { FC } from 'react';
 
-import {
-  GraphQLField,
-  GraphQLListField,
-  GraphQLRendering,
-  ImageField,
-  LinkField,
-  TextField,
-} from 'Foundation/ReactJss';
+import { GraphQLField, GraphQLListField, GraphQLRendering, ImageFieldValue, LinkFieldValue } from 'Foundation/ReactJss';
 
 import { cnNavigation } from './cn';
 import { navigationSelectors } from './constants';
@@ -38,14 +31,14 @@ type CommerceCategory = {
 
 export type MenuCommerceItemDataSource = {
   id: string;
-  title: GraphQLField<TextField>;
-  image: GraphQLField<ImageField>;
+  title: GraphQLField<string>;
+  image: GraphQLField<ImageFieldValue>;
   commerceCategories: GraphQLListField<CommerceCategory>;
 };
 
 export type MenuLinkDataSource = {
   id: string;
-  uri: GraphQLField<LinkField>;
+  uri: GraphQLField<LinkFieldValue>;
 };
 
 export type NavigationMenuDataSource = {
@@ -57,11 +50,13 @@ export type NavigationMenuDataSource = {
 type NavigationMenuProps = GraphQLRendering<NavigationMenuDataSource>;
 
 export const NavigationMenu: FC<NavigationMenuProps> = ({ fields, rendering }) => {
-  const { menuCommerceItems, menuLinks } = get(fields, ['data', 'datasource']);
+  const menu = get(fields, ['data', 'datasource']);
 
   return (
     <nav className={cnNavigation()}>
-      <ItemList menuCommerceItems={menuCommerceItems} menuLinks={menuLinks} />
+      {menu && menu.menuCommerceItems && menu.menuLinks && (
+        <ItemList menuCommerceItems={menu.menuCommerceItems} menuLinks={menu.menuLinks} />
+      )}
       <div className={cnNavigation('Selectors')}>
         {navigationSelectors.map(({ options, title }, idx) => (
           <NavigationSelect key={`${title}${idx}`} options={options} title={title} />

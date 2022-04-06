@@ -31,8 +31,11 @@
   &-Link {
     font-weight: 500;
     color: #5b5858;
-    &:hover {
-      color: $theme-color;
+
+    @media (hover) {
+      &:hover {
+        color: $theme-color;
+      }
     }
   }
 

@@ -15,22 +15,21 @@
 // tslint:disable:indent array-type
 // tslint:disable: no-use-before-declare
 
-  export interface ProductsSearchRequest {
-    categoryId: Guid;
-    facets: FacetDto[];
-    pageNumber: number;
-    pageSize: number;
-    searchKeyword: string;
-    sortDirection: SortDirection;
-    sortField: string;
-  }
-  export interface FacetDto {
-    name: string;
-    values: string[];
-  }
-  export interface Guid {
-  }
-  export const enum SortDirection {
-    Asc = 0,
-    Desc = 1
-  }
+export interface ProductsSearchRequest {
+  categoryId: Guid;
+  facets: FacetDto[];
+  pageNumber: number;
+  pageSize: number;
+  searchKeyword: string;
+  sortDirection: SortDirection;
+  sortField: string;
+}
+export interface FacetDto {
+  name: string;
+  values: string[];
+}
+export interface Guid {}
+export const enum SortDirection {
+  Asc = 0,
+  Desc = 1,
+}

@@ -56,13 +56,9 @@ namespace HCA.Foundation.Base.Models.Result
             this.SetError($"{area}: {exception.Message}");
         }
 
-        public void SetErrors(IList<string> errors)
+        public void SetErrors(IEnumerable<string> errors)
         {
-            if (!errors.Any())
-            {
-                return;
-            }
-
+            if (errors == null) return;
             foreach (var error in errors)
             {
                 this.SetError(error);

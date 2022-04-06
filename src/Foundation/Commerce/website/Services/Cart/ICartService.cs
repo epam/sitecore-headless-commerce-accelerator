@@ -52,7 +52,12 @@ namespace HCA.Foundation.Commerce.Services.Cart
         /// <param name="variantId">Variant product id</param>
         /// <returns>Updated cart result</returns>
         Result<Cart> RemoveCartLine(string productId, string variantId);
-        
+
+        /// <summary>
+        /// Removes all product from cart
+        /// </summary>
+        /// <returns></returns>
+        Result<Cart> CleanCartLines();
         /// <summary>
         /// Updates product in cart
         /// </summary>

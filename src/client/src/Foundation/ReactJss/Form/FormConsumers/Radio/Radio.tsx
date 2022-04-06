@@ -17,12 +17,14 @@ import React from 'react';
 import { RadioButton } from 'components';
 
 import BaseField from '../BaseField';
+import { FieldValue } from '../../models';
 
 export default class RadioField extends BaseField<HTMLInputElement> {
   public componentDidMount() {
     const { validity } = this.currentFieldRef;
     const defaultValue = this.getDefaultValue();
-    this.registerField(validity, defaultValue);
+
+    this.registerField(validity, defaultValue as FieldValue);
   }
 
   public render() {

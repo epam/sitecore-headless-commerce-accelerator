@@ -1,3 +1,5 @@
+This repo is archived! Please check out the new **Sitecore Order Cloud** based implementation: [Headless Commerce Accelerator](https://www.epam.com/about/who-we-are/partners/sitecore/headless-commerce-accelerator-for-composable-sitecore)
+
 ![Homepage](https://user-images.githubusercontent.com/23119997/97112726-ed10d000-16f6-11eb-9c7b-b8fdc40ec1da.png)
 
 <details>
